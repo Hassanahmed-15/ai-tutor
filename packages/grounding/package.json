@@ -1,0 +1,16 @@
+{
+  "name": "@aria/grounding",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aria/lesson-graph": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

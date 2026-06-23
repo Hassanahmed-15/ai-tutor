@@ -1,0 +1,38 @@
+{
+  "topic": "binary-search",
+  "subject": "cs-fundamentals",
+  "sources": [
+    {
+      "sourceId": "clrs-ch2",
+      "sourceTitle": "Introduction to Algorithms (Cormen, Leiserson, Rivest, Stein), Ch. 2",
+      "locator": "Section 2.3, exercises on divide-and-conquer search"
+    },
+    {
+      "sourceId": "oer-cs-search",
+      "sourceTitle": "Open Data Structures (Pat Morin), Ch. 1 — Array-Based Sequences",
+      "locator": "Section 1.3, binary search"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-precondition",
+      "statement": "Binary search requires the input array to be sorted; it does not work correctly on unsorted data.",
+      "sourceId": "clrs-ch2"
+    },
+    {
+      "id": "fact-complexity",
+      "statement": "Binary search runs in O(log n) time, compared to O(n) for linear search, because each comparison eliminates half of the remaining search space.",
+      "sourceId": "clrs-ch2"
+    },
+    {
+      "id": "fact-mechanism",
+      "statement": "At each step, binary search compares the target value to the middle element of the current range: if equal, the search ends; if the target is smaller, the search continues on the left half; if larger, it continues on the right half.",
+      "sourceId": "oer-cs-search"
+    },
+    {
+      "id": "fact-termination",
+      "statement": "Binary search terminates either by finding the target or by the search range becoming empty (low pointer exceeds high pointer), which means the target is not present.",
+      "sourceId": "oer-cs-search"
+    }
+  ]
+}

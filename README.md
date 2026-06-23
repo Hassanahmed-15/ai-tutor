@@ -242,14 +242,14 @@ Same Lesson Graph, same step 1–4. At step 5, the **Visual Impairment Lens** in
 ## 8. MVP Roadmap
 
 ### Phase 0 — MVP (this repo's current scope)
-- [ ] One subject seeded deeply (recommend: a CS fundamentals or algebra topic) with a real OER-grounded corpus
-- [ ] Lesson Graph generation + Tutor Reasoning loop (text-first, to validate the teaching policy before adding voice complexity)
-- [ ] Whiteboard + slide live-rendering from structured commands
-- [ ] Turn-based voice I/O (STT/TTS), push-to-talk interrupt model
-- [ ] Living Lecture Engine: interrupt-as-annotation behavior (Section 4.2)
-- [ ] Confusion Radar v1: latency + repeated-question signals only (no webcam yet)
-- [ ] 4 Modality Lenses: Visual impairment, Hearing impairment, Dyslexia, ADHD
-- [ ] Basic auth + per-student profile (disability track preference, stored explicitly and changeable any time)
+- [x] One subject seeded deeply: binary search, `content/cs-fundamentals/binary-search.json`, with real citations (CLRS, Open Data Structures)
+- [x] Lesson Graph generation + Tutor Reasoning loop (text-first; `MockTutorReasoningProvider`, no LLM wired in yet — see Section 10)
+- [x] Whiteboard live-rendering from structured commands (`apps/web/components/Whiteboard.tsx`) — array primitive only; tree/graph/timeline/comparison-table not yet built
+- [x] Living Lecture Engine: interrupt-as-annotation behavior (Section 4.2) — implemented and verified: interrupting mid-beat answers via a branch and leaves the interrupted beat's visual untouched
+- [ ] Turn-based voice I/O (STT/TTS), push-to-talk interrupt model — UI is currently text-input only, no voice yet
+- [ ] Confusion Radar v1: latency + repeated-question signals only (no webcam yet) — not yet built; interrupts are explicit/manual right now, not yet feeding an adaptivity score
+- [x] 2 of 4 planned Modality Lenses: Default and Dyslexia implemented; Visual Impairment and Hearing Impairment not yet built
+- [ ] Basic auth + per-student profile (disability track preference, stored explicitly and changeable any time) — currently no auth; lens is chosen per-session, not persisted to a profile
 
 ### Phase 1 — Post-MVP hardening
 - [ ] Full-duplex real-time streaming voice (true interrupt-anywhere)
@@ -278,28 +278,58 @@ Stated plainly, per Section 1's honesty commitment:
 
 ---
 
-## 10. Repository Structure (planned)
+## 10. Repository Structure (current)
 
 ```
 ai-tutor/
 ├── README.md                 # this file
-├── docs/                     # architecture deep-dives, ADRs, design notes
+├── docs/                     # architecture deep-dives, ADRs, design notes (not yet populated)
 ├── apps/
-│   └── web/                  # Next.js application (frontend + API routes)
+│   └── web/                  # Next.js app: API routes (Session Orchestrator) + Lesson Player UI
 ├── packages/
-│   ├── lesson-graph/         # Lesson Graph schema + generation logic
-│   ├── modality-lenses/      # one module per lens (visual/hearing/dyslexia/adhd/default)
-│   ├── voice-io/             # STT/TTS integration layer
-│   ├── visual-gen/           # whiteboard/slide structured-command generation + renderers
-│   └── grounding/            # RAG/retrieval + citation + confidence scoring
-└── content/                  # seeded curriculum/OER corpus for MVP subject(s)
+│   ├── lesson-graph/         # Lesson Graph schema + append-only graph operations (Section 4.2)
+│   ├── tutor-reasoning/      # provider abstraction, mock provider, TutorSession orchestration
+│   ├── modality-lenses/      # lens contract + registry; Default and Dyslexia lenses implemented
+│   ├── grounding/            # corpus types + in-memory retrieval/citation/confidence scoring
+│   ├── voice-io/             # not yet implemented (Section 7.3)
+│   └── visual-gen/           # not yet implemented as a standalone package — whiteboard rendering
+│                                currently lives in apps/web/components/Whiteboard.tsx; will be
+│                                extracted here once a second primitive beyond "array" exists
+└── content/
+    └── cs-fundamentals/      # binary-search.json — the one MVP-seeded topic (Section 8/9)
 ```
 
-This structure is not yet created in full — it will be scaffolded incrementally as each subsystem above is actually built, so the repo never has empty placeholder folders pretending to be implemented features.
+`tutor-reasoning` was added beyond the original plan to give the "Tutor Reasoning" box in the
+Section 5.1 diagram its own package, separate from the Lesson Graph schema itself — reasoning
+logic and data structure are different concerns and change for different reasons.
+
+**What's real right now:** a working end-to-end loop — start a binary-search lesson, watch beats
+render through a chosen lens (Default or Dyslexia), interrupt mid-beat and get an annotated
+answer without losing the current beat, answer a checkpoint, switch lenses. No LLM is wired in
+yet (`MockTutorReasoningProvider` is hand-written, deterministic content for one topic only) and
+there is no voice I/O, no persistence beyond an in-memory session map, and only 2 of the 4
+planned Modality Lenses exist. This is intentional MVP sequencing (Section 11), not a shortfall.
 
 ---
 
-## 11. Contributing / Next Steps
+## 11. Running This Locally
+
+```
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`. Pick a lens (Default or Dyslexia — the other two are not built yet,
+see Section 10) and click "Start lesson" to walk through the seeded binary-search lesson. Type an
+interrupt like "wait, why do we ignore half the array?" while on the diagram beat to see the
+Living Lecture Engine's annotate-don't-restart behavior (Section 4.2).
+
+`npm run typecheck` runs `tsc --noEmit` across every package. `npm run build` runs the Next.js
+production build for `apps/web`.
+
+---
+
+## 12. Contributing / Next Steps
 
 This README is the architecture contract for the project. The next steps from here:
 1. Pick the MVP subject (Section 8, Phase 0) and seed its corpus.
