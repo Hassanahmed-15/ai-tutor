@@ -1,20 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lexend, Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bodyFont = Lexend({
   subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const headlineFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
+  variable: "--font-headline",
+  weight: ["700", "800"],
+  display: "swap",
+});
+
+// Technical geometric display face for the holographic HUD redesign — precise, instrument-like.
+const displayFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Monospace face for HUD data labels: eyebrows, status chips, step counters.
+const hudMonoFont = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-hud-mono",
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Aria — AI Tutor",
-  description: "A living, adaptive AI tutor for disabled and non-disabled learners.",
+  title: "Aria — Learning, shaped to every mind",
+  description: "A living, adaptive AI tutor. One lesson, many minds — for disabled and non-disabled learners alike.",
 };
 
 export default function RootLayout({
@@ -23,10 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`h-full antialiased ${bodyFont.variable} ${headlineFont.variable} ${displayFont.variable} ${hudMonoFont.variable}`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

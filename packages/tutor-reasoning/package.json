@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@aria/lesson-graph": "*",
-    "@aria/grounding": "*"
+    "@aria/grounding": "*",
+    "openai": "^4.77.0"
   },
   "devDependencies": {
     "typescript": "^5.7.0"

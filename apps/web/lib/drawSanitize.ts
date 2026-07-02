@@ -1,0 +1,1982 @@
+import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
+import type { DrawScript } from "@/components/sketch/LiveSketch";
+
+/**
+ * Defensive validation for LLM-generated DrawScript lectures — never trust raw model
+ * output. Clamps coordinates to the 0–100 grid, validates op kinds, maps named
+ * colors to the marker hex palette, drops malformed ops, and drops beats that end up with
+ * no usable content. Mirrors the spirit of lib/lectureSanitize.ts (same instinct, the
+ * DrawScript schema instead of the template schema).
+ */
+
+const VALID_SLIDE_KINDS: SlideKind[] = ["intro", "definition", "checkpoint", "compare", "recap"];
+
+/** Named colors the prompt allows -> the marker palette LiveSketch strokes with. */
+const COLOR_MAP: Record<string, string> = {
+  amber: "#d97706",
+  green: "#15803d",
+  blue: "#2563eb",
+  slate: "#1e293b",
+  rose: "#be123c",
+  violet: "#7c3aed",
+};
+
+function str(v: unknown, fallback = ""): string {
+  return typeof v === "string" && v.trim() ? v.trim() : fallback;
+}
+function strArray(v: unknown): string[] {
+  return Array.isArray(v) ? v.filter((x): x is string => typeof x === "string" && x.trim().length > 0) : [];
+}
+
+/** Clamp a coordinate/size into the visible grid. Returns null for non-finite input. */
+function coord(v: unknown, fallback?: number): number | null {
+  const n = typeof v === "number" ? v : typeof v === "string" ? Number(v) : NaN;
+  if (!Number.isFinite(n)) return fallback ?? null;
+  return Math.max(0, Math.min(100, n));
+}
+/** Clamp generated positions away from the edges; sizes still use coord(). */
+function pos(v: unknown, fallback?: number): number | null {
+  const n = coord(v, fallback);
+  if (n === null) return null;
+  return Math.max(8, Math.min(92, n));
+}
+/** 0..1 timeline fraction. */
+function frac(v: unknown, fallback: number): number {
+  const n = typeof v === "number" ? v : typeof v === "string" ? Number(v) : NaN;
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(0, Math.min(1, n));
+}
+function color(v: unknown): string | undefined {
+  if (typeof v !== "string") return undefined;
+  return COLOR_MAP[v.trim().toLowerCase()] ?? undefined;
+}
+function size(v: unknown): "sm" | "md" | "lg" | undefined {
+  return v === "sm" || v === "md" || v === "lg" ? v : undefined;
+}
+
+type DrawOp = DrawScript["ops"][number];
+type MotionOp = Extract<DrawOp, { kind: "motion" }>;
+type SceneOp = Extract<DrawOp, { kind: "scene" }>;
+type DrawRepairContext = {
+  title?: string;
+  script?: string;
+  slideKind?: SlideKind;
+  index?: number;
+  points?: string[];
+  compareLeft?: { label: string; points: string[] };
+  compareRight?: { label: string; points: string[] };
+};
+
+function motionKind(v: unknown): MotionOp["motion"] {
+  return v === "beam" || v === "orbit" || v === "collapse" || v === "pulse" || v === "reveal" || v === "flow" ? v : "flow";
+}
+function sceneKind(v: unknown): SceneOp["scene"] {
+  return v === "spotlight" || v === "compare" || v === "cycle" || v === "system" || v === "timeline" || v === "graph" || v === "process" ? v : "process";
+}
+
+/** Generated-topic boards now use the image as the whole live whiteboard backdrop. The
+ *  marker/animation layer writes on top; dimensions from older right-panel prompts are
+ *  ignored by the renderer, but the sanitized default is full-board for new/fallback ops. */
+const IMAGE_DEFAULT_W = 100;
+const IMAGE_DEFAULT_H = 100;
+const IMAGE_DEFAULT_X = 50;
+const IMAGE_DEFAULT_Y = 50;
+
+/** True if a point sits inside (or very near) an image's bounding box. Kept for legacy
+ *  panel layouts; generated boards now treat the first image as the whole live backdrop. */
+function overlapsImage(x: number, y: number, img: { x: number; y: number; w: number; h: number }): boolean {
+  const pad = 4; // small buffer so text doesn't hug the image edge either
+  return (
+    x > img.x - img.w / 2 - pad &&
+    x < img.x + img.w / 2 + pad &&
+    y > img.y - img.h / 2 - pad &&
+    y < img.y + img.h / 2 + pad
+  );
+}
+
+/** Validates one draw op, returning a clean op or null to drop it. Static "shape"/
+ *  "circleHighlight"/"underline" ops are not part of the grammar (per explicit user feedback
+ *  that motionless abstract shapes read as generic clip-art clutter) — only "image", "callout",
+ *  "label", "arrow", "note", "motion", and "scene" survive. Legacy "morph" is converted into a semantic flow
+ *  motion so old cached output still animates without drawing random tokens. */
+function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; h: number }): DrawOp | null {
+  if (!raw || typeof raw !== "object") return null;
+  const o = raw as Record<string, unknown>;
+  const rawKind = typeof o.kind === "string" ? o.kind.trim() : "";
+  const at = frac(o.at, 0.1);
+  const c = color(o.color);
+
+  switch (rawKind) {
+    case "label": {
+      const text = str(o.text);
+      let x = pos(o.x);
+      let y = pos(o.y);
+      if (!text || x === null || y === null) return null;
+      if (imageBox && overlapsImage(x, y, imageBox)) {
+        // Push the label out to the nearest margin rather than dropping it.
+        x = x < imageBox.x ? Math.max(8, imageBox.x - imageBox.w / 2 - 8) : Math.min(92, imageBox.x + imageBox.w / 2 + 8);
+        y = Math.max(10, Math.min(90, y));
+      }
+      return { kind: "label", text: text.slice(0, 40), x, y, size: size(o.size), color: c, at };
+    }
+    case "callout": {
+      const text = str(o.text);
+      const x = pos(o.x ?? o.targetX);
+      const y = pos(o.y ?? o.targetY);
+      const labelX = pos(o.labelX ?? o.lx, x !== null ? (x < 50 ? x + 18 : x - 18) : undefined);
+      const labelY = pos(o.labelY ?? o.ly, y !== null ? y - 12 : undefined);
+      if (!text || x === null || y === null) return null;
+      return { kind: "callout", text: text.slice(0, 34), x, y, labelX: labelX ?? undefined, labelY: labelY ?? undefined, color: c, at };
+    }
+    case "note": {
+      const text = str(o.text);
+      const x = pos(o.x);
+      let y = pos(o.y);
+      if (!text || x === null || y === null) return null;
+      if (imageBox && overlapsImage(x, y, imageBox)) {
+        // Notes belong in the top/bottom margin — snap to whichever is closer.
+        y = y < imageBox.y ? Math.max(10, imageBox.y - imageBox.h / 2 - 8) : Math.min(90, imageBox.y + imageBox.h / 2 + 8);
+      }
+      return { kind: "note", text: text.slice(0, 100), x, y, color: c, at };
+    }
+    case "arrow": {
+      const x1 = pos(o.x1);
+      const y1 = pos(o.y1);
+      const x2 = pos(o.x2);
+      const y2 = pos(o.y2);
+      if (x1 === null || y1 === null || x2 === null || y2 === null) return null;
+      return { kind: "arrow", x1, y1, x2, y2, curved: o.curved === true, color: c, at };
+    }
+    case "image": {
+      // `prompt` is required (written by the text model, filled before client delivery).
+      // `src` may be absent at sanitize time and is populated by fillImageOps after generation.
+      const prompt = str(o.prompt);
+      if (!prompt) return null;
+      const x = pos(o.x) ?? IMAGE_DEFAULT_X;
+      const y = pos(o.y) ?? IMAGE_DEFAULT_Y;
+      const op: Record<string, unknown> = { kind: "image", prompt, x, y, at };
+      op.w = coord(o.w) ?? IMAGE_DEFAULT_W;
+      op.h = coord(o.h) ?? IMAGE_DEFAULT_H;
+      if (typeof o.src === "string" && o.src) op.src = o.src;
+      return op as DrawOp;
+    }
+    case "motion": {
+      const motion = motionKind(o.motion);
+      const startedAt = frac(o.at, 0.22);
+      const endAt = frac(o.endAt ?? o.morphAt, Math.min(0.95, startedAt + 0.32));
+      if (endAt <= startedAt) return null;
+      const op: MotionOp = {
+        kind: "motion",
+        motion,
+        color: c,
+        text: str(o.text).slice(0, 18) || undefined,
+        at: startedAt,
+        endAt,
+      };
+      if (motion === "orbit" || motion === "pulse" || motion === "reveal") {
+        op.cx = pos(o.cx ?? o.x ?? o.x1, 50) ?? 50;
+        op.cy = pos(o.cy ?? o.y ?? o.y1, 50) ?? 50;
+        op.r = coord(o.r, 14) ?? 14;
+      } else {
+        op.x1 = pos(o.x1 ?? o.x, 18) ?? 18;
+        op.y1 = pos(o.y1 ?? o.y, 50) ?? 50;
+        op.x2 = pos(o.x2 ?? o.toX, 72) ?? 72;
+        op.y2 = pos(o.y2 ?? o.toY, 50) ?? 50;
+      }
+      return op;
+    }
+    case "scene": {
+      const scene = sceneKind(o.scene ?? o.mode ?? o.type);
+      const items = strArray(o.items).map((item) => shorten(item, 32)).filter(Boolean).slice(0, 5);
+      const title = shorten(str(o.title), 48);
+      if (!title && items.length === 0) return null;
+      const startedAt = frac(o.at, 0.18);
+      const endAt = frac(o.endAt, Math.min(0.95, startedAt + 0.62));
+      const op: SceneOp = {
+        kind: "scene",
+        scene,
+        title: title || undefined,
+        items: items.length ? items : undefined,
+        left: shorten(str(o.left), 22) || undefined,
+        right: shorten(str(o.right), 22) || undefined,
+        color: c,
+        at: startedAt,
+      };
+      if (endAt > startedAt) op.endAt = endAt;
+      return op;
+    }
+    case "morph": {
+      // Legacy repair: old prompts emitted moving shape tokens. Convert the travel path into
+      // a semantic flow animation and discard the token shape completely.
+      let x = pos(o.x);
+      let y = pos(o.y);
+      let toX = pos(o.toX);
+      let toY = pos(o.toY);
+      if (x === null || y === null || toX === null || toY === null) return null;
+      const morphAt = frac(o.morphAt, at + 0.2);
+      if (morphAt <= at) return null; // travel must move forward in time — never coerce a glitch
+      if (imageBox) {
+        // Legacy panel repair only.
+        if (overlapsImage(x, y, imageBox)) {
+          x = x < imageBox.x ? Math.max(8, imageBox.x - imageBox.w / 2 - 8) : Math.min(92, imageBox.x + imageBox.w / 2 + 8);
+          y = Math.max(10, Math.min(90, y));
+        }
+        if (overlapsImage(toX, toY, imageBox)) {
+          toX = toX < imageBox.x ? Math.max(8, imageBox.x - imageBox.w / 2 - 8) : Math.min(92, imageBox.x + imageBox.w / 2 + 8);
+          toY = Math.max(10, Math.min(90, toY));
+        }
+      }
+      return {
+        kind: "motion",
+        motion: "flow",
+        text: str(o.toText, str(o.text)).slice(0, 18) || undefined,
+        x1: x,
+        y1: y,
+        x2: toX,
+        y2: toY,
+        color: color(o.toColor) ?? c,
+        at,
+        endAt: morphAt,
+      };
+    }
+    default:
+      // "shape" / "circleHighlight" / "underline" / anything else: static decoration, not
+      // part of the grammar. Drop silently — the board still renders fine without them.
+      return null;
+  }
+}
+
+/** Validates a DrawScript; returns undefined if it has too few usable ops. The image op (if
+ *  any) is sanitized FIRST so its bounding box can be used to push labels/notes out of its
+ *  footprint — the marker writes in the margins, never over the picture. */
+export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScript | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const o = raw as Record<string, unknown>;
+  const opsRaw = Array.isArray(o.ops) ? o.ops : [];
+
+  const imageRaw = opsRaw.find((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "image");
+  const sanitizedImage = imageRaw ? (sanitizeOp(imageRaw) as Extract<DrawOp, { kind: "image" }> | null) : null;
+  // The image is a backdrop now, not a panel to avoid. Let labels, arrows, and motion live
+  // anywhere on the board; LiveSketch gives text a dark stroke so it remains readable.
+  const imageBox = undefined;
+
+  const rest = opsRaw.filter((op) => op !== imageRaw).map((op) => sanitizeOp(op, imageBox)).filter((op): op is DrawOp => op !== null);
+  const fullBoardImage = sanitizedImage ? forceFullBoardImage(sanitizedImage) : null;
+
+  // OPENING BEAT ENFORCEMENT (index 0): the first beat is always a calm, slow introduction —
+  // one real image of the topic, a short title label, and at most two notes. No scene, no
+  // motion, no callouts pointing at fine detail. The model frequently ignores this and adds
+  // a scene/spotlight/motion anyway; strip them unconditionally here as a code guarantee.
+  // The intro's only job is to orient the student to the big picture before going into detail.
+  if (context?.index === 0) {
+    const introImage = fullBoardImage;
+    const introRest = rest.filter((op) => op.kind === "note" || op.kind === "label");
+    const introOps = introImage ? [introImage, ...introRest.slice(0, 3)] : introRest.slice(0, 4);
+    const introDuration = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 32000 ? o.durationMs : 22000;
+    if (introOps.length < 1) return undefined;
+    return { caption: str(o.caption), durationMs: introDuration, ops: introOps };
+  }
+
+  // Anti-decoration backstop: if the model gave us a full-board image AND scene/motion ops,
+  // that is the "generate a picture then animate over it for no reason" failure mode the new
+  // prompt explicitly forbids. Strip the image and let the animation run on the clean board —
+  // the animation-led board is the intentional choice and needs its canvas clear. This is a
+  // code-level guarantee, independent of prompt compliance, applying only when the model mixes
+  // both despite the explicit either/or rule. (Callout-only boards with an image are fine —
+  // those are image-led and should keep their image; the filter below only fires when scene/
+  // motion are also present, confirming the model intended animation-led treatment.)
+  const hasSceneOrMotion = rest.some((op) => op.kind === "scene" || op.kind === "motion");
+  const imageForBoard = hasSceneOrMotion ? null : fullBoardImage;
+
+  // Blackboard-vs-graph disambiguation. A "graph" scene renders its OWN opaque axes/curves panel
+  // over the board's center. If the model ALSO wrote a dense set of symbolic relationship labels
+  // + arrows (a written blackboard — e.g. "Demand ↑" → "Shortage" → "Price ↑"), those get buried
+  // under the graph panel and collide with its built-in tags. The model mixed two treatments that
+  // are meant to be separate. Resolve it by intent: if the writing IS a blackboard (several labels
+  // carrying relationship symbols ↑↓→ plus connecting arrows), DROP the graph scene and keep the
+  // clean chalkboard writing — that writing is the real teaching content. A code-level guarantee,
+  // independent of prompt compliance.
+  const graphSceneOp = rest.find((op) => op.kind === "scene" && op.scene === "graph");
+  const symbolLabels = rest.filter((op) => op.kind === "label" && /[↑↓→←=+×∴≈′]/.test(op.text));
+  const arrowCount = rest.filter((op) => op.kind === "arrow").length;
+  const isWrittenBlackboard = symbolLabels.length >= 3 && arrowCount >= 2;
+  const deGraphed =
+    graphSceneOp && isWrittenBlackboard
+      ? rest.filter((op) => !(op.kind === "scene" || op.kind === "motion"))
+      : rest;
+
+  const animatedOps = ensureLiveMotion(imageForBoard ? [imageForBoard, ...deGraphed] : deGraphed, context);
+  const withRelationships = ensureImageRelationships(animatedOps, context);
+  // A "scene" op renders on its own opaque backing panel covering the board's center
+  // (x:14-86, y:15-92 on the 0-100 grid — matches LiveSketch.tsx's SceneRenderer panel).
+  // Any "callout" pinned to the photo inside that region would render UNDER the scene panel
+  // and be invisible, wasted work. Drop those rather than ship an invisible callout — this is
+  // a code-level guarantee, independent of whether the model followed the prompt's guidance
+  // to keep photo callouts and scene panels on separate beats.
+  const sceneOp = withRelationships.find((op) => op.kind === "scene");
+  const hasScene = !!sceneOp;
+  // A "motion" op's text label can land directly on top of a scene's own item tag when the
+  // model reuses the same word for both (e.g. a "timeline" scene already has a "core collapse"
+  // tag, and a motion op also labels itself "core collapse") — two overlapping copies of the
+  // same word, illegible. Drop the motion op's text (keep the animation, lose the duplicate
+  // label) rather than ship a literal duplicate, independent of prompt compliance.
+  const sceneWords = sceneOp
+    ? new Set(
+        [sceneOp.title, sceneOp.left, sceneOp.right, ...(sceneOp.items ?? [])]
+          .filter((s): s is string => typeof s === "string")
+          .map((s) => s.trim().toLowerCase())
+      )
+    : null;
+  // A "graph" scene draws its OWN axis + curve tags (price, quantity, Supply, Demand,
+  // Equilibrium) at fixed positions. When the model ALSO emits label ops with those same words,
+  // the two collide into an illegible overlap (e.g. "Demand" printed on top of "Supply"). Drop
+  // the model's redundant labels for words the graph already renders, keeping only its NEW
+  // annotations — the whole point of a shift beat (e.g. "D → D′", "New Equilibrium", "income ↑",
+  // "S → S′"). This is a code-level guarantee, independent of prompt compliance.
+  const GRAPH_BUILTIN_WORDS = new Set(["supply", "demand", "equilibrium", "price", "quantity"]);
+  const isGraphScene = sceneOp?.kind === "scene" && sceneOp.scene === "graph";
+  const hasBottomNote = isGraphScene && withRelationships.some((op) => op.kind === "note" && op.y >= 80);
+  const ops = (
+    hasScene
+      ? withRelationships.filter((op) => !(op.kind === "callout" && op.x >= 14 && op.x <= 86 && op.y >= 15 && op.y <= 92))
+      : withRelationships
+  )
+    .filter((op) => {
+      if (isGraphScene && op.kind === "label" && GRAPH_BUILTIN_WORDS.has(op.text.trim().toLowerCase())) {
+        // Keep only NEW annotations (D→D′, income↑, New Equilibrium); drop bare words the graph
+        // already draws (Supply/Demand/Equilibrium/Price/Quantity) so they don't collide.
+        return false;
+      }
+      // A graph scene draws its own centered title in the top band. A model note there crowds it.
+      // If there's already a bottom caption, drop the top note; otherwise it's moved down below.
+      if (isGraphScene && op.kind === "note" && op.y < 20 && hasBottomNote) {
+        return false;
+      }
+      return true;
+    })
+    .map((op) => {
+      if (op.kind === "motion" && op.text && sceneWords?.has(op.text.trim().toLowerCase())) {
+        return { ...op, text: undefined };
+      }
+      // Relocate a lone top note (no bottom caption exists) to the bottom caption slot.
+      if (isGraphScene && op.kind === "note" && op.y < 20) {
+        return { ...op, y: 90 };
+      }
+      return op;
+    });
+  // Motion deduplication: remove redundant motion ops that add no new teaching value.
+  // Two motion ops with the same kind AND traveling in the same directional quadrant are
+  // wasteful (e.g. two "flow" ops both going left→right). Keep the first; drop the second.
+  // Also enforce the max-2-motion-ops-per-beat rule from the prompt.
+  const motionKindDir = (op: DrawOp): string => {
+    if (op.kind !== "motion") return "";
+    const dx = (op.x2 ?? op.cx ?? 50) - (op.x1 ?? op.cx ?? 50);
+    const dy = (op.y2 ?? op.cy ?? 50) - (op.y1 ?? op.cy ?? 50);
+    const hDir = dx >= 0 ? "R" : "L";
+    const vDir = dy >= 0 ? "D" : "U";
+    return `${op.motion}-${hDir}${vDir}`;
+  };
+  const seenMotionDirs = new Set<string>();
+  let motionCount = 0;
+  const dedupedOps = ops.filter((op) => {
+    if (op.kind !== "motion") return true;
+    motionCount++;
+    if (motionCount > 3) return false; // hard cap: a little more life, still readable (dedup below keeps each distinct)
+    const dir = motionKindDir(op);
+    if (seenMotionDirs.has(dir)) return false; // duplicate direction+kind = wasteful
+    seenMotionDirs.add(dir);
+    return true;
+  });
+
+  if (dedupedOps.length < 2) return undefined;
+
+  // Heading injection: if this looks like a written blackboard (labels + arrows, no image/scene)
+  // but has no title label in the top band (y < 16), inject one so the top quarter is never blank.
+  // The model frequently skips the heading and starts content at y:28+, leaving a large empty gap.
+  // Inline the blackboard detection here (can't call isWrittenBlackboard — defined later in file).
+  const hasTopHeading = dedupedOps.some((op) => op.kind === "label" && op.y < 16);
+  const looksLikeBlackboard = !dedupedOps.some((op) => op.kind === "image" || op.kind === "scene")
+    && dedupedOps.some((op) => op.kind === "label")
+    && dedupedOps.some((op) => op.kind === "arrow");
+  const finalOps: DrawOp[] = hasTopHeading || !looksLikeBlackboard ? dedupedOps : [
+    { kind: "label", text: shorten(str(o.caption, context?.title ?? ""), 22), x: 50, y: 8, size: "md" as const, color: COLOR_MAP.amber, at: 0.03 },
+    { kind: "arrow", x1: 20, y1: 14, x2: 80, y2: 14, color: COLOR_MAP.amber, at: 0.06 },
+    ...dedupedOps,
+  ];
+
+  // Spatial diagram injection for sparse blackboards: when a written blackboard has content
+  // stopping before the bottom third, append a hand-drawn chalk diagram (shared with
+  // makeWrittenBoard via buildChalkDiagram). Large centered supply/demand chart for
+  // equilibrium topics; small bottom-right corner sketch otherwise.
+  let enrichedOps = finalOps;
+  if (looksLikeBlackboard) {
+    const maxY = finalOps.reduce((m, op) => {
+      const y = op.kind === "label" || op.kind === "note" ? op.y : op.kind === "arrow" ? Math.max(op.y1 ?? 0, op.y2 ?? 0) : 0;
+      return Math.max(m, y);
+    }, 0);
+    const combined = ((context?.title ?? "") + " " + (context?.script ?? "")).toLowerCase();
+    const wantsLargeDiagram = /\bsupply\b/.test(combined) && /\bdemand\b/.test(combined)
+      && /\b(curve|supply|demand|slope|equilibrium)\b/.test(combined);
+    // Large diagram needs the lower half clear (content must stop by ~y:50); the corner sketch
+    // only needs the bottom-right free (content stops by ~y:82).
+    if (wantsLargeDiagram && maxY < 52) {
+      enrichedOps = [...finalOps, ...buildChalkDiagram(combined, { x0: 34, y0: 52, x1: 86, y1: 88 }, 0.62)];
+    } else if (maxY < 82) {
+      enrichedOps = [...finalOps, ...buildChalkDiagram(combined, { x0: 60, y0: 66, x1: 88, y1: 91 }, 0.72)];
+    }
+  }
+
+  // Slower pacing per repeated feedback that boards advance too fast to read. Continuous
+  // semantic motion fills the middle of the timeline, while the longer default gives each
+  // op more dwell time.
+  const durationMs = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 32000 ? o.durationMs : 24000;
+  return { caption: str(o.caption), durationMs, ops: enrichedOps };
+}
+
+function forceFullBoardImage(op: Extract<DrawOp, { kind: "image" }>): Extract<DrawOp, { kind: "image" }> {
+  return { ...op, x: IMAGE_DEFAULT_X, y: IMAGE_DEFAULT_Y, w: IMAGE_DEFAULT_W, h: IMAGE_DEFAULT_H, at: Math.min(op.at, 0.05) };
+}
+
+function sanitizeCheckpoint(raw: unknown): CheckpointSpec | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const o = raw as Record<string, unknown>;
+  const prompt = str(o.prompt);
+  if (!prompt) return undefined;
+  const acceptableKeywords = Array.isArray(o.acceptableKeywords)
+    ? o.acceptableKeywords
+        .map((set) => (Array.isArray(set) ? set.filter((k): k is string => typeof k === "string" && k.trim().length > 0).map((k) => k.toLowerCase()) : []))
+        .filter((set) => set.length > 0)
+    : [];
+  if (acceptableKeywords.length === 0) return undefined;
+  return {
+    prompt,
+    acceptableKeywords,
+    correctFeedback: str(o.correctFeedback, "That's right."),
+    hintFeedback: str(o.hintFeedback, "Not quite — think it through again."),
+    revealAnswer: str(o.revealAnswer, prompt),
+  };
+}
+
+function sanitizeBeat(raw: unknown, index: number): Beat | null {
+  if (!raw || typeof raw !== "object") return null;
+  const o = raw as Record<string, unknown>;
+
+  const script = str(o.script);
+  if (!script) return null;
+
+  let slideKind: SlideKind = VALID_SLIDE_KINDS.includes(o.slideKind as SlideKind) ? (o.slideKind as SlideKind) : "intro";
+  const title = str(o.title, `Beat ${index + 1}`);
+
+  const beat: Beat = {
+    id: str(o.id, `beat-${index}`),
+    title,
+    teacherMove: str(o.teacherMove, "I keep teaching."),
+    stepLabel: str(o.stepLabel, `${index + 1}`),
+    slideKind,
+    points: strArray(o.points).slice(0, 4),
+    script,
+  };
+
+  if (slideKind === "definition") {
+    beat.definitionTerm = str(o.definitionTerm, title);
+    // definitionMeaning is used by the slide-stage text display but is optional — image-led and
+    // animation-led beats legitimately omit it since they teach via the board, not a text slide.
+    beat.definitionMeaning = str(o.definitionMeaning, "");
+  }
+
+  if (slideKind === "compare") {
+    const sideOf = (r: unknown) => {
+      if (!r || typeof r !== "object") return null;
+      const rr = r as Record<string, unknown>;
+      const label = str(rr.label);
+      const points = strArray(rr.points);
+      if (!label || points.length === 0) return null;
+      return { label, points: points.slice(0, 4) };
+    };
+    const left = sideOf(o.compareLeft);
+    const right = sideOf(o.compareRight);
+    if (left && right) {
+      beat.compareLeft = left;
+      beat.compareRight = right;
+    } else {
+      // Models often mark a beat as "compare" just because the script contrasts two ideas,
+      // without providing the extra compareLeft/compareRight metadata needed by SlideStage.
+      // Keep the beat and render it as a normal teaching beat instead of dropping it and
+      // collapsing the whole lecture to five survivors.
+      slideKind = "intro";
+      beat.slideKind = "intro";
+    }
+  }
+
+  if (slideKind === "checkpoint") {
+    const checkpoint = sanitizeCheckpoint(o.checkpoint);
+    if (!checkpoint) return null;
+    beat.checkpoint = checkpoint;
+  } else {
+    const draw = sanitizeDraw(o.draw, {
+      title,
+      script,
+      slideKind,
+      index,
+      points: beat.points,
+      compareLeft: beat.compareLeft,
+      compareRight: beat.compareRight,
+    });
+    // A non-checkpoint beat must have a real generated image, not just floating labels. The
+    // model sometimes returns a board with no image (or one that later fails generation) —
+    // when that happens, synthesize a contextual image-placeholder board instead of leaving
+    // the whiteboard text-only.
+    beat.draw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(title, script);
+    // Backstop for image compliance: the prompt requires one "image" op per non-checkpoint,
+    // non-animation-led beat, but the model sometimes drops it anyway. Rather than discard an
+    // otherwise-good board, inject a contextual image-op placeholder so it gets a real generated
+    // image once fillImageOps runs.
+    // EXCEPTION: animation-led boards (those with a "scene" or "motion" op but no "image")
+    // intentionally have no image — the animation IS the teaching on a clean dark canvas.
+    // Do not inject a photo backdrop into those; it would break the composition the model chose.
+    if (beat.draw && !beat.draw.ops.some((op) => op.kind === "image")) {
+      const hasAnimation = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
+      // A written blackboard is also intentionally image-less (a teacher writing on a clean
+      // board) — don't force a photo backdrop under it.
+      if (!hasAnimation && !isWrittenBlackboard(beat.draw.ops)) {
+        beat.draw = { ...beat.draw, ops: [...beat.draw.ops, fallbackImagePlaceholder(title, script)] };
+      }
+    }
+  }
+
+  return beat;
+}
+
+/** Synthesizes an "image" op placeholder (no src yet) for a beat the model forgot to give
+ *  one to. Placed center-stage; fillImageOps generates the actual picture from this prompt. */
+function fallbackImagePlaceholder(title: string, script: string): Extract<DrawOp, { kind: "image" }> {
+  // Describe people/objects/actions only — no text-bearing surfaces. imagePrompt() also runs
+  // stripTextInvitingPhrases() over this at generation time as a second line of defense.
+  const prompt = `A wide, cinematic photograph of ONE specific real-world scene that demonstrates: ${title}. Context: ${script.slice(0, 200)}. Choose a single named subject caught mid-action (a specific person, animal, or object — never a generic crowd or montage), with 2-3 distinctive physical details in frame. No signs, no labels, no printed text of any kind; leave all wording to the live overlay.`;
+  return { kind: "image", prompt, x: IMAGE_DEFAULT_X, y: IMAGE_DEFAULT_Y, w: IMAGE_DEFAULT_W, h: IMAGE_DEFAULT_H, at: 0.05 };
+}
+
+function hasLiveAnimation(ops: DrawOp[]) {
+  return ops.some((op) => op.kind === "motion" || op.kind === "morph" || op.kind === "scene");
+}
+function hasScene(ops: DrawOp[]) {
+  return ops.some((op) => op.kind === "scene");
+}
+function hasMotionOp(ops: DrawOp[]) {
+  return ops.some((op) => op.kind === "motion" || op.kind === "morph");
+}
+function hasCallout(ops: DrawOp[]) {
+  return ops.some((op) => op.kind === "callout");
+}
+
+/** A written blackboard: either (a) symbolic relationship labels (↑↓→) connected by arrows,
+ *  or (b) a term+note two-column board (makeWrittenBoard output). Both are intentional clean-board
+ *  treatments — no image, no scene/motion should be injected on top of either. */
+function isWrittenBlackboard(ops: DrawOp[]): boolean {
+  if (ops.some((op) => op.kind === "image")) return false;
+  if (ops.some((op) => op.kind === "scene")) return false;
+  // Pattern A: symbolic labels (↑↓→ etc.) + arrows = AI-authored law/derivation board
+  const symbolLabels = ops.filter((op) => op.kind === "label" && /[↑↓→←=+×∴≈′]/.test(op.text));
+  const arrows = ops.filter((op) => op.kind === "arrow").length;
+  if (symbolLabels.length >= 3 && arrows >= 2) return true;
+  // Pattern B: header label + multiple notes = makeWrittenBoard two-column output
+  const notes = ops.filter((op) => op.kind === "note").length;
+  const labels = ops.filter((op) => op.kind === "label").length;
+  return labels >= 1 && notes >= 3;
+}
+
+function ensureLiveMotion(ops: DrawOp[], context?: DrawRepairContext): DrawOp[] {
+  if (ops.length === 0) return ops;
+  // A written blackboard is a deliberate clean-board treatment — leave it exactly as authored.
+  if (isWrittenBlackboard(ops)) return ops;
+  // Image-led boards (have an image + callouts but no scene/motion) are intentionally
+  // animation-free — the image is the teaching surface, explained via callouts. Do not
+  // inject a scene/motion layer; that would violate the composition the model chose and
+  // re-create the exact "photo with random animation on top" failure mode this redesign fixes.
+  const hasImage = ops.some((op) => op.kind === "image");
+  const hasCallouts = hasCallout(ops);
+  if (hasImage && (hasCallouts || !hasLiveAnimation(ops))) {
+    // Only inject animation if the board looks like it truly needs it (no callouts pointing
+    // at the image, and also no scene/motion already present) — i.e. a board with just a
+    // bare image and labels/notes but nothing pointing at it specifically. Even then, only
+    // inject a scene if context suggests it (not on opening/intro beats which are meant to
+    // be static). A board with callouts is image-led and correct as-is.
+    if (hasCallouts) return ops;
+    if (!hasLiveAnimation(ops) && !shouldHaveScene(context)) return ops;
+  }
+  if (!hasLiveAnimation(ops) && shouldHaveScene(context)) {
+    const scene = fallbackScene(context);
+    return [...ops, scene, ...fallbackMotions(scene, context)];
+  }
+  if (!hasScene(ops) && !hasImage && shouldHaveScene(context)) {
+    // Animation-led board with motion but no scene — add the scene.
+    const scene = fallbackScene(context);
+    return hasMotionOp(ops) ? [...ops, scene] : [...ops, scene, ...fallbackMotions(scene, context)];
+  }
+  return ops;
+}
+
+function fallbackScene(context?: DrawRepairContext): SceneOp {
+  const scene = pickSceneKind(context);
+  const items = contextualItems(context, scene);
+  const title = fallbackSceneTitle(context, scene, items);
+  const compare = compareSides(context, items);
+  return {
+    kind: "scene",
+    scene,
+    title,
+    items,
+    left: compare.left,
+    right: compare.right,
+    color: colorForScene(scene, context),
+    at: scene === "spotlight" ? 0.16 : 0.2,
+    endAt: 0.9,
+  };
+}
+
+function fallbackMotions(scene: SceneOp, context?: DrawRepairContext): MotionOp[] {
+  const items = scene.items?.length ? scene.items : contextualItems(context, scene.scene);
+  const first = items[0] ?? "cause";
+  const second = items[1] ?? "response";
+  const third = items[2] ?? "outcome";
+  if (scene.scene === "compare") {
+    // 3 distinct motions: left side flows in (→), right side flows in (←), then the
+    // meeting point pulses. Each differs in kind or direction — no wasted repeat.
+    return [
+      { kind: "motion", motion: "flow", text: first, x1: 24, y1: 38, x2: 46, y2: 50, color: COLOR_MAP.blue, at: 0.30, endAt: 0.56 },
+      { kind: "motion", motion: "flow", text: second, x1: 76, y1: 38, x2: 54, y2: 50, color: COLOR_MAP.rose, at: 0.46, endAt: 0.72 },
+      { kind: "motion", motion: "pulse", text: third, cx: 50, cy: 52, r: 12, color: COLOR_MAP.amber, at: 0.72, endAt: 0.92 },
+    ];
+  }
+  if (scene.scene === "cycle") {
+    return [
+      { kind: "motion", motion: "orbit", text: first, cx: 50, cy: 54, r: 21, color: COLOR_MAP.green, at: 0.3, endAt: 0.86 },
+      { kind: "motion", motion: "pulse", text: second, cx: 50, cy: 54, r: 13, color: COLOR_MAP.blue, at: 0.62, endAt: 0.92 },
+    ];
+  }
+  if (scene.scene === "spotlight") {
+    return [
+      { kind: "motion", motion: "reveal", text: first, cx: 50, cy: 50, r: 18, color: COLOR_MAP.amber, at: 0.3, endAt: 0.68 },
+      { kind: "motion", motion: "pulse", text: second, cx: 60, cy: 52, r: 12, color: COLOR_MAP.green, at: 0.62, endAt: 0.9 },
+    ];
+  }
+  if (scene.scene === "system") {
+    // 3 distinct motions: input flows in, passes through, then the output endpoint pulses.
+    return [
+      { kind: "motion", motion: "flow", text: first, x1: 20, y1: 50, x2: 48, y2: 50, color: COLOR_MAP.blue, at: 0.30, endAt: 0.58 },
+      { kind: "motion", motion: "flow", text: second, x1: 52, y1: 50, x2: 82, y2: 50, color: COLOR_MAP.green, at: 0.52, endAt: 0.80 },
+      { kind: "motion", motion: "pulse", text: third, cx: 82, cy: 50, r: 12, color: COLOR_MAP.amber, at: 0.80, endAt: 0.94 },
+    ];
+  }
+  // default (process/timeline/graph): flow → beam → pulse, three distinct kinds.
+  return [
+    { kind: "motion", motion: "flow", text: first, x1: 18, y1: 56, x2: 45, y2: 46, color: COLOR_MAP.blue, at: 0.28, endAt: 0.54 },
+    { kind: "motion", motion: "beam", text: second, x1: 45, y1: 46, x2: 72, y2: 56, color: COLOR_MAP.violet, at: 0.52, endAt: 0.78 },
+    { kind: "motion", motion: "pulse", text: third, cx: 74, cy: 56, r: 12, color: COLOR_MAP.green, at: 0.78, endAt: 0.94 },
+  ];
+}
+
+function pickSceneKind(context?: DrawRepairContext): SceneOp["scene"] {
+  const text = contextText(context);
+  if (/\b(equilibrium|supply and demand|demand and supply|supply curve|demand curve|market price|price floor|price ceiling)\b/i.test(text)) return "graph";
+  if (context?.compareLeft || context?.compareRight || /\b(vs|versus|compare|contrast|opposite|difference|supply and demand|demand and supply)\b/i.test(text)) return "compare";
+  if (/\b(cycle|loop|repeats|feedback|orbit|circulation|recycles)\b/i.test(text)) return "cycle";
+  if (/\b(timeline|history|over time|first|then|next|stages?|sequence|phase|evolution|before|after)\b/i.test(text)) return "timeline";
+  if (/\b(system|network|market|ecosystem|chain|connect|connected|interact|cause|effect|depends)\b/i.test(text)) return "system";
+  if (context?.slideKind === "definition" || /\b(define|definition|means|term|vocabulary|inside|where|what is)\b/i.test(text)) return "spotlight";
+  const order = ["spotlight", "process", "system", "timeline", "compare", "cycle", "graph"] as const;
+  return order[(context?.index ?? 0) % order.length];
+}
+
+function shouldHaveScene(context?: DrawRepairContext) {
+  if (!context) return false;
+  if (context.slideKind === "definition" || context.slideKind === "compare" || context.slideKind === "recap") return true;
+  const text = contextText(context);
+  if (/\b(process|mechanism|market|system|cause|effect|compare|contrast|cycle|timeline|sequence|steps?|definition|means|supply|demand|equilibrium|gravity|collapse|flow|chain)\b/i.test(text)) return true;
+  return (context.index ?? 0) % 3 === 0;
+}
+
+function contextualItems(context: DrawRepairContext | undefined, scene: SceneOp["scene"]): string[] {
+  const special = specialItems(context);
+  if (special.length) return special;
+  if (context?.compareLeft || context?.compareRight) {
+    const items = [
+      context.compareLeft?.label,
+      ...(context.compareLeft?.points ?? []),
+      context.compareRight?.label,
+      ...(context.compareRight?.points ?? []),
+    ].filter((item): item is string => Boolean(item));
+    return uniqueShort(items, 5);
+  }
+  const fromPoints = uniqueShort(context?.points ?? [], 5);
+  if (fromPoints.length >= 2) return fromPoints;
+  const words = keywordItems(contextText(context));
+  if (words.length >= 2) return words.slice(0, scene === "compare" ? 4 : 5);
+  const title = shorten(context?.title ?? "concept", 26);
+  if (scene === "compare") return uniqueShort([title, "other side", "shared result"], 4);
+  if (scene === "spotlight") return uniqueShort([title, "key detail", "why it matters"], 3);
+  if (scene === "system") return uniqueShort([title, "cause", "response", "outcome"], 4);
+  if (scene === "graph") return uniqueShort(["supply", "demand", "equilibrium"], 3);
+  return uniqueShort([title, "main step", "outcome"], 3);
+}
+
+function specialItems(context?: DrawRepairContext): string[] {
+  const text = contextText(context);
+  if (/\bsupply\b/i.test(text) && /\bdemand\b/i.test(text)) {
+    return ["supply", "demand", "equilibrium", "market balance"];
+  }
+  if (/\bblack hole|event horizon|massive star|gravity\b/i.test(text)) {
+    return ["massive star", "gravity wins", "core collapses", "event horizon"];
+  }
+  if (/\bphotosynthesis|chloroplast|glucose|sunlight\b/i.test(text)) {
+    return ["sunlight", "chloroplast", "atom rearrangement", "glucose", "oxygen"];
+  }
+  return [];
+}
+
+function fallbackSceneTitle(context: DrawRepairContext | undefined, scene: SceneOp["scene"], items: string[]) {
+  const title = shorten(context?.title ?? "", 42);
+  if (scene === "compare") {
+    const sides = compareSides(context, items);
+    return sides.left && sides.right ? `${sides.left} vs ${sides.right}` : title || `${items[0]} vs ${items[1] ?? "other side"}`;
+  }
+  if (scene === "spotlight") return title || `${items[0]} up close`;
+  if (scene === "cycle") return title || `${items[0]} cycle`;
+  if (scene === "timeline") return title || `${items[0]} over time`;
+  if (scene === "graph") return title || `${items[0]} meets ${items[1] ?? "demand"}`;
+  if (scene === "system") return title || `How ${items[0]} connects`;
+  return title || items.slice(0, 3).join(" -> ");
+}
+
+function compareSides(context: DrawRepairContext | undefined, items: string[]) {
+  const text = contextText(context);
+  if (/\bsupply\b/i.test(text) && /\bdemand\b/i.test(text)) return { left: "Supply", right: "Demand" };
+  return {
+    left: context?.compareLeft?.label ?? items[0] ?? "first side",
+    right: context?.compareRight?.label ?? items[1] ?? "other side",
+  };
+}
+
+function colorForScene(scene: SceneOp["scene"], context?: DrawRepairContext) {
+  const text = contextText(context);
+  if (/\bblack hole|gravity|collapse|danger|scarce|shortage\b/i.test(text)) return COLOR_MAP.rose;
+  if (/\bwater|ocean|air|gas|flow\b/i.test(text)) return COLOR_MAP.blue;
+  if (/\bsun|energy|price|heat|light\b/i.test(text)) return COLOR_MAP.amber;
+  if (scene === "graph") return COLOR_MAP.amber;
+  if (scene === "compare") return COLOR_MAP.violet;
+  if (scene === "system") return COLOR_MAP.blue;
+  return COLOR_MAP.green;
+}
+
+function ensureImageRelationships(ops: DrawOp[], context?: DrawRepairContext): DrawOp[] {
+  if (!ops.some((op) => op.kind === "image") || hasCallout(ops)) return ops;
+  return [...ops, ...fallbackCallouts(context)];
+}
+
+function fallbackCallouts(context?: DrawRepairContext): DrawOp[] {
+  const text = contextText(context);
+  if (/\bsupply\b/i.test(text) && /\bdemand\b/i.test(text)) {
+    return [
+      { kind: "callout", text: "sellers", x: 24, y: 58, labelX: 18, labelY: 34, color: COLOR_MAP.blue, at: 0.18 },
+      { kind: "callout", text: "buyers", x: 78, y: 58, labelX: 84, labelY: 34, color: COLOR_MAP.rose, at: 0.24 },
+      { kind: "callout", text: "equilibrium", x: 51, y: 50, labelX: 64, labelY: 62, color: COLOR_MAP.amber, at: 0.52 },
+    ];
+  }
+  if (/\bblack hole|event horizon|massive star|gravity|collapse\b/i.test(text)) {
+    return [
+      { kind: "callout", text: "stellar core", x: 50, y: 52, labelX: 24, labelY: 34, color: COLOR_MAP.amber, at: 0.18 },
+      { kind: "callout", text: "gravity pulls", x: 50, y: 52, labelX: 78, labelY: 36, color: COLOR_MAP.rose, at: 0.3 },
+      { kind: "callout", text: "outer layers", x: 72, y: 42, labelX: 82, labelY: 66, color: COLOR_MAP.blue, at: 0.44 },
+    ];
+  }
+  const items = contextualItems(context, pickSceneKind(context));
+  return [
+    { kind: "callout", text: items[0] ?? "key area", x: 34, y: 48, labelX: 18, labelY: 28, color: COLOR_MAP.green, at: 0.2 },
+    { kind: "callout", text: items[1] ?? "change point", x: 62, y: 48, labelX: 78, labelY: 30, color: COLOR_MAP.violet, at: 0.36 },
+  ];
+}
+
+type ImageTeachingProfile = {
+  prompt: string;
+  callouts: Extract<DrawOp, { kind: "callout" }>[];
+};
+
+function makeImageCalloutBoard(title: string, script: string, durationMs = 26000): DrawScript {
+  const profile = imageTeachingProfile(title, script);
+  return {
+    caption: title,
+    durationMs,
+    ops: [
+      { kind: "image", prompt: profile.prompt, x: IMAGE_DEFAULT_X, y: IMAGE_DEFAULT_Y, w: IMAGE_DEFAULT_W, h: IMAGE_DEFAULT_H, at: 0.04 },
+      ...profile.callouts,
+    ],
+  };
+}
+
+function imageBeatNeedsConcreteRepair(beat: Beat): boolean {
+  const promptText = (beat.draw?.ops ?? [])
+    .filter((op) => op.kind === "image")
+    .map((op) => op.prompt)
+    .join(" ")
+    .toLowerCase();
+  return /\b(graph paper|plotted|labeled axes|axis|axes|curve|diagram|chart|whiteboard|blackboard|classroom|teacher|infographic|poster)\b/.test(promptText);
+}
+
+function imageTeachingProfile(title: string, script: string): ImageTeachingProfile {
+  const text = `${title} ${script}`.toLowerCase();
+  const C = COLOR_MAP;
+
+  if (/\bdemand\b/.test(text) && !/\bsupply\b/.test(text) && !/\bshift|income|taste|substitute|complement|preference\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic open-air produce market scene for an economics lecture about "${title}": a tomato stall with a clearly visible seller, several buyers reaching toward tomatoes, full crates of tomatoes, and a quieter nearby produce option. No readable text, labels, price tags, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "buyers demand", x: 49, y: 39, labelX: 30, labelY: 18, color: C.rose, at: 0.18 },
+        { kind: "callout", text: "seller offers", x: 23, y: 40, labelX: 18, labelY: 64, color: C.blue, at: 0.34 },
+        { kind: "callout", text: "quantity bought", x: 46, y: 69, labelX: 58, labelY: 83, color: C.green, at: 0.5 },
+        { kind: "callout", text: "other options", x: 78, y: 59, labelX: 84, labelY: 28, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\bsupply\b/.test(text) && !/\bdemand\b/.test(text) && /\b(bakery|producer|seller|cost|input|output|supply)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic educational scene for an economics lecture about "${title}": the back room of a small bakery before opening, with sacks of flour and ingredients, a baker pulling trays from an oven, cooling racks full of bread, and delivery crates being packed. No readable text, labels, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "input costs", x: 16, y: 62, labelX: 20, labelY: 28, color: C.rose, at: 0.18 },
+        { kind: "callout", text: "production capacity", x: 47, y: 34, labelX: 48, labelY: 18, color: C.blue, at: 0.32 },
+        { kind: "callout", text: "output supplied", x: 68, y: 70, labelX: 78, labelY: 35, color: C.green, at: 0.48 },
+        { kind: "callout", text: "ready for market", x: 86, y: 53, labelX: 84, labelY: 78, color: C.amber, at: 0.62 },
+      ],
+    };
+  }
+
+  if (/\bshift|income|taste|substitute|complement|preference\b/.test(text) && /\bdemand\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic grocery-store scene for an economics lesson about "${title}": shoppers choosing between similar snack or drink options, a friend pointing at a newly popular item, a basket containing complementary goods together, and a quieter competing shelf nearby. No readable text, brand names, labels, price tags, or signage.`,
+      callouts: [
+        { kind: "callout", text: "taste changes", x: 47, y: 44, labelX: 36, labelY: 18, color: C.violet, at: 0.18 },
+        { kind: "callout", text: "substitute option", x: 78, y: 50, labelX: 82, labelY: 22, color: C.rose, at: 0.34 },
+        { kind: "callout", text: "complements together", x: 56, y: 78, labelX: 32, labelY: 78, color: C.green, at: 0.5 },
+        { kind: "callout", text: "new demand", x: 35, y: 59, labelX: 20, labelY: 42, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\bequilibrium|balance|market dynamics|shortage|surplus\b/.test(text) || (/\bsupply\b/.test(text) && /\bdemand\b/.test(text))) {
+    return {
+      prompt: `A wide photorealistic open-air produce market scene for an economics lecture about "${title}": a seller at a tomato stall, buyers reaching for tomatoes, full crates, a quieter neighboring produce section, and visible movement between buyer interest and seller stock. No readable text, labels, price tags, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "buyers demand", x: 49, y: 39, labelX: 30, labelY: 18, color: C.rose, at: 0.18 },
+        { kind: "callout", text: "seller supplies", x: 23, y: 40, labelX: 18, labelY: 64, color: C.blue, at: 0.34 },
+        { kind: "callout", text: "quantity traded", x: 46, y: 69, labelX: 58, labelY: 83, color: C.green, at: 0.5 },
+        { kind: "callout", text: "balance point", x: 58, y: 45, labelX: 76, labelY: 25, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(force|motion|acceleration|velocity|gravity|energy|friction|wave|electric|magnet|newton)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic physics lab demonstration for a lecture about "${title}": a small cart on a ramp, hanging weights, motion sensors, measuring tools, and a student hand preparing the setup. No readable text, labels, numbers, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "starting condition", x: 23, y: 61, labelX: 20, labelY: 26, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "applied force", x: 42, y: 42, labelX: 42, labelY: 18, color: C.rose, at: 0.34 },
+        { kind: "callout", text: "motion response", x: 66, y: 57, labelX: 76, labelY: 28, color: C.green, at: 0.5 },
+        { kind: "callout", text: "measured result", x: 80, y: 70, labelX: 76, labelY: 84, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(cell|dna|gene|protein|enzyme|photosynthesis|respiration|ecosystem|organism|biology|mitosis)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic biology learning scene for a lecture about "${title}": a lab bench with a microscope, plant samples, water droplets on leaves, specimen trays, and a student observing carefully. No readable text, labels, numbers, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "structure", x: 34, y: 48, labelX: 20, labelY: 24, color: C.green, at: 0.18 },
+        { kind: "callout", text: "input", x: 58, y: 35, labelX: 68, labelY: 18, color: C.blue, at: 0.34 },
+        { kind: "callout", text: "process", x: 54, y: 63, labelX: 76, labelY: 52, color: C.violet, at: 0.5 },
+        { kind: "callout", text: "output", x: 74, y: 74, labelX: 62, labelY: 84, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(chemistry|reaction|reactant|product|molecule|atom|bond|acid|base|solution|catalyst)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic chemistry lab bench for a lecture about "${title}": clear glassware with colored liquids, molecular model pieces, a safe heating setup, droppers, and visible before-and-after samples. No readable text, labels, numbers, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "reactants", x: 26, y: 57, labelX: 20, labelY: 25, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "energy change", x: 51, y: 43, labelX: 50, labelY: 18, color: C.amber, at: 0.34 },
+        { kind: "callout", text: "new bonds", x: 63, y: 62, labelX: 78, labelY: 34, color: C.violet, at: 0.5 },
+        { kind: "callout", text: "products", x: 79, y: 70, labelX: 70, labelY: 84, color: C.green, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(algebra|function|equation|geometry|calculus|derivative|integral|probability|statistics|ratio|slope|math)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic hands-on math workspace for a lecture about "${title}": colored blocks, measuring tools, folded paper shapes, a calculator with blank screen glare, and objects arranged to show a relationship. No readable text, labels, numbers, formulas, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "known pieces", x: 28, y: 60, labelX: 20, labelY: 26, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "relationship", x: 53, y: 45, labelX: 52, labelY: 18, color: C.violet, at: 0.34 },
+        { kind: "callout", text: "change", x: 66, y: 66, labelX: 78, labelY: 44, color: C.rose, at: 0.5 },
+        { kind: "callout", text: "result", x: 79, y: 74, labelX: 70, labelY: 84, color: C.green, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(algorithm|program|coding|code|computer|data|database|network|internet|software|binary|machine learning)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic computer science workspace for a lecture about "${title}": a laptop with unreadable blurred interface, connected cables, small server hardware, sticky-note shapes with no writing, and a person tracing a process with their hand. No readable text, code, labels, numbers, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "input", x: 27, y: 62, labelX: 20, labelY: 28, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "rule", x: 51, y: 42, labelX: 50, labelY: 18, color: C.violet, at: 0.34 },
+        { kind: "callout", text: "state change", x: 62, y: 62, labelX: 78, labelY: 38, color: C.amber, at: 0.5 },
+        { kind: "callout", text: "output", x: 82, y: 67, labelX: 74, labelY: 84, color: C.green, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(history|civilization|empire|revolution|government|election|war|trade route|culture|society)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic museum-style learning scene for a lecture about "${title}": historical objects on a table, old maps with no readable markings, a timeline-like arrangement of artifacts, and students examining evidence. No readable text, labels, dates, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "context", x: 26, y: 54, labelX: 20, labelY: 25, color: C.amber, at: 0.18 },
+        { kind: "callout", text: "choice", x: 49, y: 42, labelX: 50, labelY: 18, color: C.blue, at: 0.34 },
+        { kind: "callout", text: "conflict", x: 65, y: 62, labelX: 78, labelY: 38, color: C.rose, at: 0.5 },
+        { kind: "callout", text: "consequence", x: 79, y: 73, labelX: 68, labelY: 84, color: C.green, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(literature|poem|novel|story|character|theme|plot|metaphor|author|essay)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic literature study desk for a lecture about "${title}": an open book with pages blurred so no words are readable, index cards with no writing, a pencil, warm desk light, and objects arranged around the book to suggest story evidence. No readable text, labels, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "character", x: 34, y: 52, labelX: 20, labelY: 24, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "conflict", x: 55, y: 42, labelX: 58, labelY: 18, color: C.rose, at: 0.34 },
+        { kind: "callout", text: "evidence", x: 61, y: 66, labelX: 78, labelY: 48, color: C.amber, at: 0.5 },
+        { kind: "callout", text: "theme", x: 77, y: 74, labelX: 66, labelY: 84, color: C.green, at: 0.64 },
+      ],
+    };
+  }
+
+  return {
+    prompt: `A wide photorealistic educational scene depicting the real-world idea "${title}". Context: ${script.slice(0, 220)}. The scene must contain several distinct visible regions that can be explained with live callouts. No readable text, labels, logos, or signage.`,
+    callouts: [
+      { kind: "callout", text: "main example", x: 42, y: 48, labelX: 20, labelY: 26, color: C.green, at: 0.2 },
+      { kind: "callout", text: "cause", x: 60, y: 45, labelX: 78, labelY: 28, color: C.blue, at: 0.36 },
+      { kind: "callout", text: "effect", x: 54, y: 68, labelX: 72, labelY: 78, color: C.amber, at: 0.54 },
+    ],
+  };
+}
+
+function contextText(context?: DrawRepairContext) {
+  return [context?.title, ...(context?.points ?? []), context?.compareLeft?.label, ...(context?.compareLeft?.points ?? []), context?.compareRight?.label, ...(context?.compareRight?.points ?? []), context?.script]
+    .filter(Boolean)
+    .join(" ");
+}
+
+const STOP_WORDS = new Set([
+  "about", "after", "again", "almost", "also", "because", "before", "being", "between", "called", "could", "defining", "definition", "does", "each", "every", "from", "have", "here", "idea", "into", "just", "like", "look", "main", "make", "makes", "means", "more", "most", "need", "needs", "notice", "only", "other", "part", "really", "right", "same", "show", "shows", "some", "that", "their", "then", "there", "these", "thing", "this", "through", "what", "when", "where", "which", "while", "with", "your",
+]);
+
+function keywordItems(text: string) {
+  const words = text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word.length > 3 && !STOP_WORDS.has(word));
+  const seen = new Set<string>();
+  const picked: string[] = [];
+  for (const word of words) {
+    if (seen.has(word)) continue;
+    seen.add(word);
+    picked.push(word);
+    if (picked.length >= 5) break;
+  }
+  return picked;
+}
+
+function uniqueShort(items: string[], max: number) {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const item of items) {
+    const clean = shorten(item, 28);
+    const key = clean.toLowerCase();
+    if (!clean || seen.has(key)) continue;
+    seen.add(key);
+    out.push(clean);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
+type SanitizeDrawLectureOptions = {
+  enforceDepth?: boolean;
+};
+
+/** Sanitizes the whole `{ beats: [...] }` payload. Throws if too few survive. */
+export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOptions = {}): Beat[] {
+  if (!raw || typeof raw !== "object") throw new Error("Model returned no usable lecture.");
+  const beatsRaw = (raw as Record<string, unknown>).beats;
+  if (!Array.isArray(beatsRaw)) throw new Error("Model returned no usable lecture.");
+  const beats = beatsRaw.map((b, i) => sanitizeBeat(b, i)).filter((b): b is Beat => b !== null);
+  if (beats.length < 10) {
+    throw new Error(`Model only returned ${beats.length} usable beats — too few for a real lecture. Try again.`);
+  }
+
+  // BLACKBOARD GUARANTEE: the first two teaching beats after the intro are always clean
+  // written boards. We author them from the beat's own title/script so the board is reliable
+  // and dense even when the model drifts into a generic image or messy scene.
+  function beatIsBlackboard(beat: Beat): boolean {
+    if (!beat.draw) return false;
+    return isWrittenBlackboard(beat.draw.ops);
+  }
+  function beatIsImageLed(beat: Beat): boolean {
+    if (!beat.draw) return false;
+    const hasImage = beat.draw.ops.some((op) => op.kind === "image");
+    const hasCallouts = beat.draw.ops.some((op) => op.kind === "callout");
+    const hasAnim = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
+    return hasImage && hasCallouts && !hasAnim;
+  }
+
+  // ── BOARD-QUALITY GATES ──────────────────────────────────────────────────
+  // "Trust the model more": we only overwrite a model-authored board with the sanitizer's
+  // makeWrittenBoard() fallback when the model's own board is genuinely bad OR when a
+  // hardcoded topicRows template exists (economics/physics/bio) that is strictly better.
+  const modelBoardIsGoodBlackboard = (beat: Beat): boolean => beatIsBlackboard(beat);
+  const modelBoardIsGoodImage = (beat: Beat): boolean => {
+    if (!beat.draw) return false;
+    const hasImage = beat.draw.ops.some((op) => op.kind === "image");
+    const calloutCount = beat.draw.ops.filter((op) => op.kind === "callout").length;
+    const hasAnim = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
+    return hasImage && calloutCount >= 2 && !hasAnim;
+  };
+  const modelBoardIsGoodAnimation = (beat: Beat): boolean => {
+    if (!beat.draw) return false;
+    const hasSceneOp = beat.draw.ops.some((op) => op.kind === "scene");
+    const motionCount = beat.draw.ops.filter((op) => op.kind === "motion" || op.kind === "morph").length;
+    return hasSceneOp && motionCount >= 1 && motionCount <= 3;
+  };
+  const modelBoardIsGood = (beat: Beat): boolean =>
+    modelBoardIsGoodBlackboard(beat) || modelBoardIsGoodImage(beat) || modelBoardIsGoodAnimation(beat);
+  const meaningfulOpCount = (beat: Beat): number =>
+    beat.draw ? beat.draw.ops.filter((op) =>
+      op.kind === "label" || op.kind === "note" || op.kind === "callout" ||
+      op.kind === "arrow" || op.kind === "scene" || op.kind === "motion" || op.kind === "image"
+    ).length : 0;
+  const modelBoardIsAcceptable = (beat: Beat): boolean => {
+    if (!beat.draw) return false;
+    if (modelBoardIsGood(beat)) return true;
+    const ops = beat.draw.ops;
+    const hasImage = ops.some((op) => op.kind === "image");
+    const calloutCount = ops.filter((op) => op.kind === "callout").length;
+    const hasSceneOp = ops.some((op) => op.kind === "scene");
+    const motionCount = ops.filter((op) => op.kind === "motion" || op.kind === "morph").length;
+    const labelCount = ops.filter((op) => op.kind === "label").length;
+    const noteCount = ops.filter((op) => op.kind === "note").length;
+    // Looser tier: single-callout image, static labeled scene, or a light written board.
+    if (hasImage && calloutCount >= 1) return true;
+    if (hasSceneOp && motionCount === 0) return true;
+    if (labelCount >= 1 && noteCount >= 2) return true;
+    return meaningfulOpCount(beat) >= 4;
+  };
+  // boardScore: higher = better. Used to convert the WEAKEST boards first in the safety net.
+  const boardScore = (beat: Beat): number => {
+    let score = 0;
+    if (modelBoardIsGood(beat)) score += 3;
+    else if (modelBoardIsAcceptable(beat)) score += 1;
+    return score * 100 + meaningfulOpCount(beat);
+  };
+
+  // Cross-beat synthesis state: every makeWrittenBoard call below shares it so no two
+  // synthesized boards in one lecture write the same rows or the same chalk diagram. Seed it
+  // with the model's own KEPT blackboards so synthesized boards don't echo those either.
+  const boardCtx = newBoardContext();
+  for (const beat of beats) {
+    if (beat.draw && modelBoardIsGoodBlackboard(beat)) {
+      registerBlackboardOps(beat.draw.ops, boardCtx.usedSyms);
+    }
+  }
+
+  for (const idx of [1, 2]) {
+    const beat = beats[idx];
+    if (!beat || beat.slideKind === "checkpoint") continue;
+    if (modelBoardIsGoodBlackboard(beat)) continue; // already the ideal opening board
+    // Keep a good non-template model board (image/animation). For topics WITH a hardcoded
+    // template (economics/physics/bio), force the strong blackboard instead — it beats both
+    // the model's scene and the weak keyword fallback.
+    if (modelBoardIsGood(beat) && !hasTemplateRows(beat.title, beat.script)) continue;
+    beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+  }
+
+  // TOPIC-AWARE BLACKBOARD UPGRADE: beats whose titles match known explanatory patterns
+  // (laws, definitions, shifts, formulas) are better as blackboards than animations,
+  // regardless of what the model generated. Convert them if they're currently animation-led
+  // and topicRows() has a real template for them (non-fallback).
+  const BLACKBOARD_TITLE_PATTERNS = [
+    /\blaw of (demand|supply)\b/i,
+    /\bshift(s)? in (demand|supply)\b/i,
+    /\bequilibrium\b/i,
+    /\bprice (floor|ceiling|control)\b/i,
+    /\belasticity\b/i,
+    /\bnewton'?s (first|second|third)? law\b/i,
+    /\bphotosynthesis\b/i,
+    /\bformula|equation|theorem|law\b/i,
+  ];
+  let blackboardCount = beats.slice(1).filter(beatIsBlackboard).length;
+  for (let i = 1; i < beats.length; i++) {
+    const beat = beats[i];
+    if (!beat?.draw || beat.slideKind === "checkpoint") continue;
+    if (beatIsBlackboard(beat)) continue; // already a blackboard
+    if (i >= 3 && i <= 5) continue; // protect the explanatory image window
+    // Only upgrade animation-led beats (scene/motion), not image-led beats — those have photos
+    const hasAnim = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
+    if (!hasAnim) continue;
+    const titleMatches = BLACKBOARD_TITLE_PATTERNS.some((p) => p.test(beat.title));
+    // Only upgrade when a real hardcoded template exists — otherwise a generic "…law/formula"
+    // title would be converted into the weak keyword fallback board, which is worse than the
+    // model's own animation.
+    if (titleMatches && hasTemplateRows(beat.title, beat.script) && blackboardCount < 4) {
+      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 26000, boardCtx);
+      blackboardCount++;
+    }
+  }
+
+  // IMAGE-LED GUARANTEE: after the opening blackboards, every full lecture should include
+  // several concrete real-world image boards. These are not decorative photos — they carry
+  // callouts that point at visible evidence in the image.
+  const lastTeachingIdx = (() => {
+    for (let i = beats.length - 1; i >= 1; i--) {
+      if (beats[i]?.slideKind !== "checkpoint") return i;
+    }
+    return beats.length - 1;
+  })();
+  let imageLedCount = beats.slice(1).filter(beatIsImageLed).length;
+  const preferredImageIdxs = [3, 4, 5, 6, 7, 8, 9].filter((i) => i < beats.length && i < lastTeachingIdx);
+  const forceImageBoards = (allowReplacingBlackboard: boolean) => {
+    for (const idx of preferredImageIdxs) {
+      const beat = beats[idx];
+      if (!beat || beat.slideKind === "checkpoint") continue;
+      if (beatIsImageLed(beat) && imageBeatNeedsConcreteRepair(beat)) {
+        beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+        continue;
+      }
+      if (imageLedCount >= 3) break;
+      if (beatIsImageLed(beat)) continue;
+      if (!allowReplacingBlackboard && beatIsBlackboard(beat)) continue;
+      beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+      imageLedCount++;
+    }
+  };
+  forceImageBoards(false);
+  forceImageBoards(true);
+
+  // CLOSING BLACKBOARD GUARANTEE: the final non-checkpoint beat should recap the logic on
+  // a written board — but keep a good non-template model recap (e.g. a clean recap animation
+  // for a history topic) rather than replacing it with the weak keyword fallback.
+  const closingBeat = beats[lastTeachingIdx];
+  if (closingBeat && closingBeat.slideKind !== "checkpoint") {
+    const keep = modelBoardIsGoodBlackboard(closingBeat)
+      || (modelBoardIsGood(closingBeat) && !hasTemplateRows(closingBeat.title, closingBeat.script));
+    if (!keep) {
+      // Synthesize a genuine recap (one row per idea taught) rather than re-rendering the
+      // topic template that beats 1-2 already showed.
+      closingBeat.draw = makeRecapBoard(beats, closingBeat, boardCtx);
+    }
+  }
+
+  // Variety enforcement: the model sometimes reuses the SAME scene kind on many beats in a row,
+  // which makes several boards look identical. For most scene kinds we convert the duplicate into
+  // a written/blackboard board built from the beat's content.
+  //
+  // EXCEPTION — "graph": economics lectures legitimately need several graph beats (the base
+  // supply/demand equilibrium, then a demand-shift, then a supply-shift). Each is a genuinely
+  // DIFFERENT hand-drawn diagram — a real teaching visual — even though they share the "graph"
+  // scene kind. Converting those to the written fallback throws away good model-authored diagrams
+  // and replaces them with narration transcribed as bullets, which is exactly the failure the
+  // user complained about. So we KEEP graph duplicates: a real drawn diagram always beats the
+  // transcription fallback. We cap the count only to avoid an absurd run of them.
+  const seenSceneKinds = new Set<string>();
+  let graphCount = 0;
+  for (const beat of beats) {
+    if (!beat.draw) continue;
+    if (isWrittenBlackboard(beat.draw.ops)) continue; // already a blackboard, skip
+    const sceneOp = beat.draw.ops.find((op) => op.kind === "scene");
+    if (!sceneOp) continue;
+    const kind = sceneOp.scene;
+    if (kind === "graph") {
+      // Keep up to 3 graph diagrams (base + demand shift + supply shift); convert only beyond that.
+      graphCount++;
+      if (graphCount <= 3) continue;
+      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 26000, boardCtx);
+      continue;
+    }
+    if (seenSceneKinds.has(kind)) {
+      // Convert this duplicate non-graph scene to a written board (label + arrow + note steps).
+      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 26000, boardCtx);
+    } else {
+      seenSceneKinds.add(kind);
+    }
+  }
+
+  // MINIMUM-BLACKBOARD SAFETY NET: now that we trust the model (and no longer force beats 1-2),
+  // a lecture could in principle come back all-animation. Guarantee at least a couple of clean
+  // written boards by converting the WEAKEST non-blackboard beats first (preserving the model's
+  // best work). For most topics beats 1-2 already satisfy this, so the net is a no-op.
+  const MIN_BLACKBOARDS = 2;
+  let goodBlackboards = beats.slice(1).filter(modelBoardIsGoodBlackboard).length;
+  if (goodBlackboards < MIN_BLACKBOARDS) {
+    const candidates = beats
+      .map((beat, i) => ({ beat, i }))
+      .filter(({ beat, i }) => i >= 1 && beat.slideKind !== "checkpoint" && !modelBoardIsGoodBlackboard(beat))
+      .sort((a, b) => boardScore(a.beat) - boardScore(b.beat)); // weakest first
+    for (const { beat } of candidates) {
+      if (goodBlackboards >= MIN_BLACKBOARDS) break;
+      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000, boardCtx);
+      if (modelBoardIsGoodBlackboard(beat)) goodBlackboards++;
+    }
+  }
+
+  if (options.enforceDepth !== false) {
+    assertLectureDepth(beats);
+  }
+
+  return beats;
+}
+
+export function scriptWordCount(text: string): number {
+  return text.match(/[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)?/g)?.length ?? 0;
+}
+
+export type LectureDepthStats = {
+  totalWords: number;
+  teachingWords: number;
+  teachingBeatCount: number;
+  avgTeachingWords: number;
+  shortTeachingBeatCount: number;
+};
+
+export function lectureDepthStats(beats: Beat[]): LectureDepthStats {
+  const teachingBeats = beats.filter((beat) => beat.slideKind !== "checkpoint");
+  const totalWords = beats.reduce((sum, beat) => sum + scriptWordCount(beat.script), 0);
+  const teachingWords = teachingBeats.reduce((sum, beat) => sum + scriptWordCount(beat.script), 0);
+  const avgTeachingWords = teachingBeats.length ? teachingWords / teachingBeats.length : 0;
+  const shortTeachingBeats = teachingBeats.filter((beat, index) => scriptWordCount(beat.script) < (index === 0 ? 45 : 55));
+  return {
+    totalWords,
+    teachingWords,
+    teachingBeatCount: teachingBeats.length,
+    avgTeachingWords,
+    shortTeachingBeatCount: shortTeachingBeats.length,
+  };
+}
+
+export function assertLectureDepth(beats: Beat[]): LectureDepthStats {
+  const stats = lectureDepthStats(beats);
+  const maxShortBeats = Math.max(1, Math.floor(stats.teachingBeatCount * 0.15));
+
+  if (stats.totalWords < 820 || stats.avgTeachingWords < 58 || stats.shortTeachingBeatCount > maxShortBeats) {
+    throw new Error(
+      `Model returned a shallow lecture (${stats.totalWords} spoken words, ${Math.round(stats.avgTeachingWords)} words/teaching beat). Try again with deeper scripts.`
+    );
+  }
+  return stats;
+}
+
+/** Splits a script into clean, whole sentences (trimmed, sensible length). */
+function scriptSentences(script: string): string[] {
+  return script
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.trim())
+    .filter((s) => s.length >= 12);
+}
+
+const RELATION_STOP = new Set([
+  "the", "a", "an", "of", "to", "and", "or", "is", "are", "be", "in", "on", "at", "as", "it",
+  "its", "this", "that", "these", "those", "with", "for", "by", "we", "our", "you", "they",
+  "them", "their", "when", "where", "which", "while", "will", "can", "let", "lets", "us",
+]);
+
+/** Pulls clean single-word CONCEPT terms worth writing on a board — salient nouns/keywords,
+ *  title-cased, never sentence fragments. Regex phrase-grabbing produces garbage like "To this"
+ *  or "Supply and", so we use ONLY the stopword-filtered keyword list (single meaningful words)
+ *  plus the beat title's core term. Reliable and never embarrassing. */
+function conceptTerms(title: string, script: string, max: number): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  const push = (raw: string) => {
+    const clean = raw.replace(/[^a-zA-Z0-9↑↓→=+-]/g, "").trim();
+    const key = clean.toLowerCase();
+    if (clean.length < 4 || seen.has(key) || RELATION_STOP.has(key)) return;
+    seen.add(key);
+    out.push(clean.charAt(0).toUpperCase() + clean.slice(1));
+  };
+  // 1. The title's core single word (drop leading articles/question words).
+  const titleCore = title.replace(/^(the|a|an|how|what|why|understanding|intro(duction)? to|changes? in)\s+/i, "").trim();
+  const firstWord = titleCore.split(/\s+/)[0];
+  if (firstWord) push(firstWord);
+  // 2. Salient single keywords from title + script (already stopword-filtered).
+  for (const w of keywordItems(title + " " + script)) push(w);
+  return out.slice(0, max);
+}
+
+/** Greedy word-wrap to a max character width — MUST mirror LiveSketch's wrapText() so the
+ *  sanitizer's height model matches what actually renders (its notes wrap at 44 chars). */
+function wrapToWidth(text: string, maxChars: number): string[] {
+  const words = text.replace(/\s+/g, " ").trim().split(" ");
+  const lines: string[] = [];
+  let line = "";
+  for (const w of words) {
+    if (!line) line = w;
+    else if ((line + " " + w).length <= maxChars) line += " " + w;
+    else {
+      lines.push(line);
+      line = w;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+type BoardRow = { sym: string; note: string; color: string };
+
+/**
+ * Cross-beat synthesis state threaded through every makeWrittenBoard call in one lecture.
+ * Without it, every template-matched beat (beats 1-2, title upgrades, closing recap, variety
+ * conversions) renders the SAME topicRows() output — the exact "board repeats again and again"
+ * failure. usedRowFps stores normalized row-symbol fingerprints; usedDiagrams stores chalk
+ * diagram kinds so the big equilibrium chart draws once and later boards get different sketches.
+ */
+type BoardSynthesisContext = {
+  usedSyms: Set<string>;
+  usedDiagrams: Set<string>;
+};
+
+function newBoardContext(): BoardSynthesisContext {
+  return { usedSyms: new Set(), usedDiagrams: new Set() };
+}
+
+function normSym(text: string): string {
+  return text.toLowerCase().replace(/^[•·\-\s]+/, "").replace(/\s+/g, " ").trim();
+}
+
+/** A candidate row-set is "stale" when most of its symbol chains already appeared on an
+ *  earlier board this lecture — rendering it again is exactly the repetition users notice. */
+function rowsAreStale(rows: BoardRow[], used: Set<string>): boolean {
+  if (!rows.length) return false;
+  const hits = rows.filter((r) => used.has(normSym(r.sym))).length;
+  return hits >= Math.ceil(rows.length / 2);
+}
+
+function registerRows(rows: BoardRow[], used: Set<string>): void {
+  for (const r of rows) used.add(normSym(r.sym));
+}
+
+/** Seeds the context with the symbols of a MODEL-authored blackboard the sanitizer kept, so a
+ *  later synthesized board never re-writes chains the model already put on screen. */
+function registerBlackboardOps(ops: DrawOp[], used: Set<string>): void {
+  for (const op of ops) {
+    if (op.kind === "label" && op.text.length > 1) used.add(normSym(op.text));
+  }
+}
+
+/**
+ * True when topicRows() has a HARDCODED (non-fallback) template for this topic — i.e. the
+ * synthesized blackboard would be strong, domain-specific content rather than the generic
+ * keyword→clause fallback. Used by sanitizeDrawLecture to decide when it's worth overriding
+ * a good model board with makeWrittenBoard(). MUST stay in sync with the branch regexes in
+ * topicRows() below (economics demand/supply/equilibrium/shifts, physics Newton, bio photosynthesis).
+ */
+function hasTemplateRows(title: string, script: string): boolean {
+  const combined = (title + " " + script).toLowerCase();
+  const has = (re: RegExp) => re.test(combined);
+  // Economics — demand / supply / equilibrium / shifts
+  if (has(/\blaw of demand\b/) || (has(/\bdemand\b/) && has(/\bprice\b/) && !has(/\bsupply\b/))) return true;
+  if (has(/\blaw of supply\b/) || (has(/\bsupply\b/) && has(/\bprice\b/) && !has(/\bdemand\b/))) return true;
+  if (has(/\bequilibrium\b/) || (has(/\bsupply\b/) && has(/\bdemand\b/))) return true;
+  if (has(/\bshift\b/) && (has(/\bdemand\b/) || has(/\bsupply\b/))) return true;
+  // Physics — Newton / force
+  if (has(/\bnewton|force|acceleration|mass\b/)) return true;
+  // Biology — photosynthesis
+  if (has(/\bphotosynthesis|chlorophyll|glucose\b/)) return true;
+  return false;
+}
+
+/**
+ * Authors topic-aware cause→effect symbol rows for the blackboard.
+ * sym  = chalk symbol on the LEFT  (short, uses ↑↓→ symbols)
+ * note = explanation on the RIGHT  (short enough for 1-2 chalk lines, NOT narration)
+ * color = chalk color for this row
+ *
+ * `variant` picks between two genuinely different row-sets per hardcoded template branch, so
+ * two boards on the same topic in one lecture never write the same chains twice (variant 1 is
+ * chosen by makeWrittenBoard when variant 0's symbols already appeared on an earlier board).
+ */
+function topicRows(title: string, combined: string, variant: 0 | 1 = 0): BoardRow[] {
+  const C = COLOR_MAP;
+  // Economics — demand
+  if (/\blaw of demand\b/.test(combined) || (/\bdemand\b/.test(combined) && /\bprice\b/.test(combined) && !/\bsupply\b/.test(combined))) {
+    return variant === 1 ? [
+      { sym: "WTP ladder",       note: "buyers line up from highest to lowest value", color: C.amber },
+      { sym: "Price ↑ → exit",  note: "each rise pushes the lowest-value buyer out",  color: C.rose },
+      { sym: "Price ↓ → entry", note: "each cut invites the next buyer onto the ladder", color: C.green },
+      { sym: "Move ≠ shift",    note: "price moves along the curve, never moves the curve", color: C.blue },
+    ] : [
+      { sym: "Price ↓",      note: "lower price makes more buyers willing to enter", color: C.rose },
+      { sym: "→ Q_d ↑",     note: "quantity demanded rises along the same curve",     color: C.rose },
+      { sym: "Price ↑",      note: "higher price screens out lower-value buyers", color: C.blue },
+      { sym: "→ Q_d ↓",     note: "fewer units are worth buying at that price",    color: C.blue },
+    ];
+  }
+  // Economics — supply
+  if (/\blaw of supply\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bprice\b/.test(combined) && !/\bdemand\b/.test(combined))) {
+    return variant === 1 ? [
+      { sym: "Unit cost ↑",       note: "extra units get harder and pricier to make", color: C.rose },
+      { sym: "P > cost → sell",  note: "firms add units while price beats the cost of one more", color: C.green },
+      { sym: "P < cost → stop",  note: "units that would lose money never get produced", color: C.blue },
+      { sym: "Profit = signal",   note: "price tells producers how much effort to commit", color: C.amber },
+    ] : [
+      { sym: "Price ↑",      note: "higher price makes extra production worthwhile", color: C.blue },
+      { sym: "→ Q_s ↑",     note: "firms offer more units along the same curve",       color: C.blue },
+      { sym: "Price ↓",      note: "lower price cuts the reward for producing",     color: C.rose },
+      { sym: "→ Q_s ↓",     note: "less output is offered because margins shrink",       color: C.rose },
+    ];
+  }
+  // Economics — equilibrium / market
+  if (/\bequilibrium\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bdemand\b/.test(combined))) {
+    return variant === 1 ? [
+      { sym: "P > P* → surplus",  note: "unsold stock piles up and forces discounts", color: C.rose },
+      { sym: "P < P* → shortage", note: "empty shelves let sellers nudge price upward", color: C.blue },
+      { sym: "Both push → P*",    note: "surplus and shortage pressures meet at the crossing", color: C.amber },
+      { sym: "Nobody sets P*",    note: "the market discovers the price, no one dictates it", color: C.green },
+    ] : [
+      { sym: "S ∩ D",        note: "buyer plans and seller plans meet here", color: C.amber },
+      { sym: "P* clears",    note: "market clears when quantity plans match", color: C.amber },
+      { sym: "P > P*",       note: "surplus gives sellers pressure to cut price",   color: C.rose },
+      { sym: "P < P*",       note: "shortage lets sellers raise price over time",     color: C.blue },
+    ];
+  }
+  // Economics — shifts in demand/supply
+  if (/\bshift\b/.test(combined) && /\bdemand\b/.test(combined)) {
+    return variant === 1 ? [
+      { sym: "D → right",      note: "every price now maps to a bigger quantity", color: C.green },
+      { sym: "D → left",       note: "every price now maps to a smaller quantity", color: C.rose },
+      { sym: "New P*, new Q*", note: "after a shift the market settles at a new crossing", color: C.amber },
+      { sym: "Cause ≠ price",  note: "income, tastes and rivals move the curve, not price", color: C.violet },
+    ] : [
+      { sym: "Income ↑",     note: "normal-good demand shifts right at every price", color: C.green },
+      { sym: "Tastes →",     note: "preferences move the whole curve, not one point",      color: C.violet },
+      { sym: "Substitute ↑", note: "better alternatives can pull demand away",             color: C.rose },
+      { sym: "Complement ↑", note: "paired goods rise or fall together in demand",     color: C.blue },
+    ];
+  }
+  if (/\bshift\b/.test(combined) && /\bsupply\b/.test(combined)) {
+    return variant === 1 ? [
+      { sym: "S → right",     note: "cheaper inputs mean more offered at every price", color: C.green },
+      { sym: "S → left",      note: "higher costs or taxes cut what firms can offer", color: C.rose },
+      { sym: "New crossing",  note: "the shift drags the equilibrium to a new spot", color: C.amber },
+      { sym: "P = messenger", note: "price reacts to the shift, it did not cause it", color: C.blue },
+    ] : [
+      { sym: "Cost ↓",       note: "supply shifts right because each unit is cheaper",        color: C.green },
+      { sym: "Tech ↑",       note: "better methods create more output per input",      color: C.blue },
+      { sym: "Tax ↑",        note: "taxes raise cost and shift supply left",         color: C.rose },
+      { sym: "Input ↑",      note: "higher input prices reduce profitable supply", color: C.violet },
+    ];
+  }
+  // Physics — Newton / force
+  if (/\bnewton|force|acceleration|mass\b/.test(combined)) {
+    return variant === 1 ? [
+      { sym: "a = F/m",          note: "the same force moves a lighter object faster", color: C.amber },
+      { sym: "F_net = 0",        note: "balanced forces keep velocity exactly constant", color: C.blue },
+      { sym: "Action ↔ reaction", note: "every push gets an equal push straight back", color: C.green },
+      { sym: "1N = kg·m/s²",     note: "one newton speeds 1 kg up by 1 m/s every second", color: C.rose },
+    ] : [
+      { sym: "F = ma",       note: "force equals mass times acceleration",  color: C.amber },
+      { sym: "F ↑",          note: "more push creates more acceleration",    color: C.blue },
+      { sym: "m ↑",          note: "more mass needs more force to change motion",  color: C.rose },
+      { sym: "a ↑",          note: "acceleration means velocity changes faster",   color: C.green },
+    ];
+  }
+  // Biology — photosynthesis
+  if (/\bphotosynthesis|chlorophyll|glucose\b/.test(combined)) {
+    return variant === 1 ? [
+      { sym: "Light stage",   note: "chlorophyll captures photons and splits water", color: C.amber },
+      { sym: "Calvin cycle",  note: "stored energy stitches CO₂ into sugar rings", color: C.green },
+      { sym: "Stomata",       note: "leaf pores let CO₂ in and O₂ back out", color: C.blue },
+      { sym: "Chloroplast",   note: "the whole sugar factory sits in one organelle", color: C.rose },
+    ] : [
+      { sym: "6CO₂ + 6H₂O", note: "reactants enter the leaf from air and roots",   color: C.blue },
+      { sym: "+ light →",    note: "sunlight supplies energy for bond rearranging",    color: C.amber },
+      { sym: "C₆H₁₂O₆",    note: "glucose stores the captured energy as food",    color: C.green },
+      { sym: "+ 6O₂",        note: "oxygen leaves as the useful by-product",    color: C.rose },
+    ];
+  }
+  return scriptDerivedRows(title, combined);
+}
+
+/**
+ * Topic-agnostic row synthesis: pair each salient keyword with a SHORT, DISTINCT phrase from
+ * the script that actually mentions it. This avoids the old failures — mid-sentence "..." cuts,
+ * the title echoing into every note, and identical notes repeated across rows. Runs when no
+ * hardcoded template matches, AND as the final dedup fallback when both template variants have
+ * already been written on earlier boards (different beats have different scripts, so the rows
+ * naturally diverge per beat).
+ */
+function scriptDerivedRows(title: string, combined: string): BoardRow[] {
+  const C = COLOR_MAP;
+  const keywords = conceptTerms(title, combined, 4);
+  const fallbackColors = [C.amber, C.blue, C.rose, C.green];
+  // Split into clauses (not just sentences) so we have more distinct fragments to choose from.
+  const clauses = scriptSentences(combined)
+    .flatMap((s) => s.split(/,|—|–|;|\bbecause\b|\bwhich\b|\bso that\b|\band then\b/i))
+    .map((c) => c.replace(/^(so|now|let'?s|this|that|here|we|the|a|an|of)\s+/i, "").trim())
+    .filter((c) => c.length >= 10);
+  const usedClause = new Set<number>();
+  const usedNote = new Set<string>();
+  const phraseFor = (kw: string): string => {
+    const kwLow = kw.toLowerCase();
+    // Prefer a not-yet-used clause that mentions this keyword; else the next unused clause.
+    let pick = clauses.findIndex((c, idx) => !usedClause.has(idx) && c.toLowerCase().includes(kwLow));
+    if (pick === -1) pick = clauses.findIndex((_, idx) => !usedClause.has(idx));
+    if (pick === -1) return kw;
+    usedClause.add(pick);
+    return clauses[pick];
+  };
+  return keywords.slice(0, 4).map((kw, i) => {
+    const sym = `• ${shorten(kw, 14)}`;
+    let note = wrapToWidth(shorten(phraseFor(kw), 56), 38).slice(0, 2).join(" ") || kw;
+    if (usedNote.has(note.toLowerCase())) note = kw; // never repeat the same note twice
+    usedNote.add(note.toLowerCase());
+    return { sym, note, color: fallbackColors[i % fallbackColors.length] };
+  });
+}
+
+/**
+ * Builds a hand-drawn chalk diagram from label+arrow ops only (stays within blackboard
+ * grammar — no scene op, so isWrittenBlackboard() keeps classifying the beat as a blackboard).
+ *
+ * Two modes:
+ *  - LARGE equilibrium diagram (when the topic has BOTH supply and demand): a proper
+ *    two-curve supply/demand chart with axes, a rising S curve, a falling D curve, and an
+ *    equilibrium dot at the crossing — the chalk equivalent of LiveSketch's GraphScene.
+ *    Occupies a big centered/lower region.
+ *  - SMALL corner sketch (single curve, cycle, rise, or fall): mini axes + one curve, or a
+ *    loop / up-arrow / down-arrow, tucked into the given region.
+ *
+ * `region` is the box the diagram may occupy (0-100 grid). Returns [] when the topic has no
+ * spatial relationship to draw or the region is too small.
+ */
+function buildChalkDiagram(
+  combined: string,
+  region: { x0: number; y0: number; x1: number; y1: number },
+  startAt: number,
+  used?: Set<string>,
+  forceLarge = false,
+): DrawOp[] {
+  const isDemand = /\bdemand\b/.test(combined);
+  const isSupply = /\bsupply\b/.test(combined);
+  const hasCurve = /\b(curve|supply|demand|slope|upward|downward)\b/.test(combined);
+  const hasCycle = /\b(cycle|loop|circular|feedback)\b/.test(combined);
+  const hasCompare = /\b(vs\.?|versus|compare|comparison|more than|less than|bigger|smaller|trade-?off|two sides|both sides)\b/.test(combined);
+  const hasBalance = /\b(equilibrium|balance|balanced|equal|offset|cancel)\b/.test(combined);
+  const hasSteps = /\b(steps?|stages?|phases?|process|sequence|first|then|finally)\b/.test(combined);
+  const hasFork = /\b(either|choice|choose|decision|branch|options?|alternatives?)\b/.test(combined);
+  const hasRise  = /\b(rise|increase|grow|higher|surge)\b/.test(combined) && !hasCurve;
+  const hasFall  = /\b(fall|decrease|decline|drop|lower)\b/.test(combined) && !hasCurve && !hasRise;
+
+  const w = region.x1 - region.x0;
+  const h = region.y1 - region.y0;
+  if (w < 16 || h < 14) return [];
+
+  const ops: DrawOp[] = [];
+  const DC = COLOR_MAP.slate;
+  const a = startAt;
+
+  // Each sketch kind draws at most once per lecture (when `used` is threaded through), so
+  // consecutive boards on one topic get DIFFERENT corner diagrams instead of the same one.
+  const canUse = (kind: string) => !used?.has(kind);
+  const take = (kind: string) => used?.add(kind);
+
+  // ── LARGE two-curve equilibrium diagram ─────────────────────────────────
+  if (isSupply && isDemand && hasCurve && (forceLarge || canUse("graph-large"))) {
+    take("graph-large");
+    const oy = region.y0; // origin top
+    const by = region.y1; // baseline (x-axis)
+    const ax = region.x0 + w * 0.14; // vertical axis x
+    const rx = region.x1 - w * 0.06; // right edge of plot
+    const midX = ax + (rx - ax) * 0.5;
+    const midY = oy + h * 0.5;
+    // Axes (draw first)
+    ops.push({ kind: "arrow", x1: ax, y1: by, x2: ax, y2: oy + 1, color: DC, at: a });
+    ops.push({ kind: "arrow", x1: ax, y1: by, x2: rx + 2, y2: by, color: DC, at: a + 0.02 });
+    ops.push({ kind: "label", text: "P", x: ax - 3, y: oy - 1, size: "sm", color: DC, at: a + 0.03 });
+    ops.push({ kind: "label", text: "Q", x: Math.min(92, rx + 4), y: Math.min(92, by + 3), size: "sm", color: DC, at: a + 0.04 });
+    // Demand (falling, rose): top-left → bottom-right through the crossing
+    ops.push({ kind: "arrow", x1: ax + 3, y1: oy + 3, x2: midX, y2: midY, color: COLOR_MAP.rose, at: a + 0.06 });
+    ops.push({ kind: "arrow", x1: midX, y1: midY, x2: rx - 2, y2: by - 3, color: COLOR_MAP.rose, at: a + 0.09 });
+    ops.push({ kind: "label", text: "D", x: rx, y: by - 4, size: "sm", color: COLOR_MAP.rose, at: a + 0.11 });
+    // Supply (rising, blue): bottom-left → top-right through the crossing
+    ops.push({ kind: "arrow", x1: ax + 3, y1: by - 3, x2: midX, y2: midY, color: COLOR_MAP.blue, at: a + 0.13 });
+    ops.push({ kind: "arrow", x1: midX, y1: midY, x2: rx - 2, y2: oy + 3, color: COLOR_MAP.blue, at: a + 0.16 });
+    ops.push({ kind: "label", text: "S", x: rx, y: oy + 4, size: "sm", color: COLOR_MAP.blue, at: a + 0.18 });
+    // Equilibrium dot + guide labels
+    ops.push({ kind: "label", text: "•", x: midX, y: midY, size: "md", color: COLOR_MAP.amber, at: a + 0.20 });
+    ops.push({ kind: "label", text: "P*", x: ax - 4, y: midY, size: "sm", color: COLOR_MAP.amber, at: a + 0.22 });
+    ops.push({ kind: "label", text: "Q*", x: midX, y: Math.min(92, by + 3), size: "sm", color: COLOR_MAP.amber, at: a + 0.24 });
+    return ops;
+  }
+
+  // ── SMALL corner sketches ────────────────────────────────────────────────
+  const axisX = region.x0 + w * 0.12;
+  const axisY = region.y1;
+  const topY = region.y0;
+  const midY = region.y0 + h * 0.5;
+  if (hasCurve && canUse("curve")) {
+    take("curve");
+    ops.push({ kind: "arrow", x1: axisX, y1: axisY, x2: axisX, y2: topY + 1, color: DC, at: a });
+    ops.push({ kind: "arrow", x1: axisX, y1: axisY, x2: region.x1, y2: axisY, color: DC, at: a + 0.02 });
+    ops.push({ kind: "label", text: "P", x: axisX - 2, y: topY - 2, size: "sm", color: DC, at: a + 0.03 });
+    ops.push({ kind: "label", text: "Q", x: Math.min(92, region.x1 + 1), y: Math.min(92, axisY + 3), size: "sm", color: DC, at: a + 0.04 });
+    const rightX = region.x1 - w * 0.18;
+    if (isDemand && !isSupply) {
+      ops.push({ kind: "arrow", x1: axisX + 3, y1: topY + 3, x2: (axisX + rightX) / 2, y2: midY, color: COLOR_MAP.rose, at: a + 0.06 });
+      ops.push({ kind: "arrow", x1: (axisX + rightX) / 2, y1: midY, x2: rightX, y2: axisY - 2, color: COLOR_MAP.rose, at: a + 0.08 });
+      ops.push({ kind: "label", text: "D ↘", x: rightX + 3, y: axisY - 1, size: "sm", color: COLOR_MAP.rose, at: a + 0.10 });
+    } else {
+      ops.push({ kind: "arrow", x1: axisX + 3, y1: axisY - 3, x2: (axisX + rightX) / 2, y2: midY, color: COLOR_MAP.blue, at: a + 0.06 });
+      ops.push({ kind: "arrow", x1: (axisX + rightX) / 2, y1: midY, x2: rightX, y2: topY + 3, color: COLOR_MAP.blue, at: a + 0.08 });
+      ops.push({ kind: "label", text: "S ↗", x: rightX + 3, y: topY + 2, size: "sm", color: COLOR_MAP.blue, at: a + 0.10 });
+    }
+    return ops;
+  }
+  if (hasBalance && canUse("balance")) {
+    take("balance");
+    // Balance scale: tilted beam over a pivot — two forces meeting at one point.
+    const cx = region.x0 + w * 0.5; const cy = midY + h * 0.1;
+    ops.push({ kind: "arrow", x1: cx, y1: axisY, x2: cx, y2: cy + 2, color: DC, at: a });
+    ops.push({ kind: "arrow", x1: cx - w * 0.38, y1: cy + 2.5, x2: cx + w * 0.38, y2: cy - 2.5, color: COLOR_MAP.amber, at: a + 0.04 });
+    ops.push({ kind: "label", text: "▲", x: cx, y: cy + 4, size: "sm", color: DC, at: a + 0.07 });
+    ops.push({ kind: "label", text: "⇄ balance", x: cx, y: Math.min(92, axisY + 3), size: "sm", color: COLOR_MAP.amber, at: a + 0.10 });
+    return ops;
+  }
+  if (hasCompare && canUse("bars")) {
+    take("bars");
+    // Two chalk bars of different heights on a shared baseline — the "which is bigger" sketch.
+    const leftX = region.x0 + w * 0.32;
+    const rightX = region.x0 + w * 0.68;
+    ops.push({ kind: "arrow", x1: region.x0 + w * 0.1, y1: axisY, x2: region.x1 - w * 0.05, y2: axisY, color: DC, at: a });
+    ops.push({ kind: "arrow", x1: leftX, y1: axisY, x2: leftX, y2: topY + h * 0.45, color: COLOR_MAP.rose, at: a + 0.04 });
+    ops.push({ kind: "arrow", x1: rightX, y1: axisY, x2: rightX, y2: topY + h * 0.08, color: COLOR_MAP.green, at: a + 0.08 });
+    ops.push({ kind: "label", text: "less", x: leftX, y: topY + h * 0.45 - 3, size: "sm", color: COLOR_MAP.rose, at: a + 0.11 });
+    ops.push({ kind: "label", text: "more", x: rightX, y: topY + h * 0.08 - 3, size: "sm", color: COLOR_MAP.green, at: a + 0.14 });
+    return ops;
+  }
+  if (hasSteps && canUse("stairs")) {
+    take("stairs");
+    // Staircase: alternating right/up arrows climbing the corner — "one stage at a time".
+    const sw = w * 0.26; const sh = h * 0.26;
+    let sx = region.x0 + w * 0.08; let sy = axisY - 2;
+    for (let i = 0; i < 3; i++) {
+      ops.push({ kind: "arrow", x1: sx, y1: sy, x2: sx + sw, y2: sy, color: COLOR_MAP.blue, at: a + i * 0.06 });
+      ops.push({ kind: "arrow", x1: sx + sw, y1: sy, x2: sx + sw, y2: sy - sh, color: COLOR_MAP.blue, at: a + i * 0.06 + 0.03 });
+      sx += sw; sy -= sh;
+    }
+    ops.push({ kind: "label", text: "step by step", x: region.x0 + w * 0.4, y: Math.min(92, axisY + 3), size: "sm", color: COLOR_MAP.blue, at: a + 0.2 });
+    return ops;
+  }
+  if (hasFork && canUse("fork")) {
+    take("fork");
+    // Branching fork: one path splitting into two — an either/or decision point.
+    const splitX = region.x0 + w * 0.45; const cy = midY;
+    ops.push({ kind: "arrow", x1: region.x0 + w * 0.05, y1: cy, x2: splitX, y2: cy, color: DC, at: a });
+    ops.push({ kind: "arrow", x1: splitX, y1: cy, x2: region.x1 - w * 0.08, y2: topY + h * 0.15, color: COLOR_MAP.green, at: a + 0.05 });
+    ops.push({ kind: "arrow", x1: splitX, y1: cy, x2: region.x1 - w * 0.08, y2: axisY - h * 0.15, color: COLOR_MAP.rose, at: a + 0.09 });
+    ops.push({ kind: "label", text: "?", x: splitX, y: cy - 4, size: "sm", color: COLOR_MAP.amber, at: a + 0.12 });
+    return ops;
+  }
+  if (hasCycle && canUse("cycle")) {
+    take("cycle");
+    const cx = region.x0 + w * 0.5; const cy = midY;
+    ops.push({ kind: "label", text: "cycle", x: cx, y: cy, size: "sm", color: DC, at: a });
+    ops.push({ kind: "arrow", x1: cx, y1: cy - 9, x2: cx + 8, y2: cy - 4, color: DC, at: a + 0.04 });
+    ops.push({ kind: "arrow", x1: cx + 8, y1: cy + 2, x2: cx + 2, y2: cy + 8, color: DC, at: a + 0.07 });
+    ops.push({ kind: "arrow", x1: cx - 4, y1: cy + 8, x2: cx - 8, y2: cy + 2, color: DC, at: a + 0.10 });
+    ops.push({ kind: "arrow", x1: cx - 8, y1: cy - 4, x2: cx - 2, y2: cy - 9, color: DC, at: a + 0.13 });
+    return ops;
+  }
+  if (hasRise && canUse("rise")) {
+    take("rise");
+    const cx = region.x0 + w * 0.5;
+    ops.push({ kind: "arrow", x1: cx, y1: axisY, x2: cx, y2: topY + 3, color: COLOR_MAP.green, at: a });
+    ops.push({ kind: "label", text: "↑ rising", x: cx + 5, y: midY, size: "sm", color: COLOR_MAP.green, at: a + 0.04 });
+    return ops;
+  }
+  if (hasFall && canUse("fall")) {
+    take("fall");
+    const cx = region.x0 + w * 0.5;
+    ops.push({ kind: "arrow", x1: cx, y1: topY + 3, x2: cx, y2: axisY, color: COLOR_MAP.rose, at: a });
+    ops.push({ kind: "label", text: "↓ falling", x: cx + 5, y: midY, size: "sm", color: COLOR_MAP.rose, at: a + 0.04 });
+    return ops;
+  }
+  return ops;
+}
+
+/**
+ * Synthesizes a rich explanatory blackboard.
+ *
+ * The board shows CAUSE→EFFECT symbolic chains on the LEFT (x:26) and short
+ * explanatory notes on the RIGHT (x:70) that are NOT the narration — they add
+ * additional context the teacher doesn't say aloud. A small diagram draws in
+ * the lower-right when the topic is spatial.
+ *
+ * Layout geometry (matches LiveSketch exactly):
+ *   LEFT ZONE  (x:8-44)  — symbol label at x:26 + connecting arrow below
+ *   RIGHT ZONE (x:52-88) — short note at x:72, wrapped to compact chalk lines
+ *   GAP        (x:44-52) — always empty, separates zones
+ *   LINE_H = 5.2 grid units per rendered line
+ */
+function makeWrittenBoard(
+  title: string,
+  script: string,
+  durationMs = 28000,
+  ctx?: BoardSynthesisContext,
+  rowsOverride?: BoardRow[],
+): DrawScript {
+  const combined = (title + " " + script).toLowerCase();
+
+  // Pick rows the lecture hasn't shown yet: template variant A → variant B → this beat's own
+  // script. Without the ctx (single-shot callers like fallbackWrittenDraw) behavior is unchanged.
+  let rows: BoardRow[] = rowsOverride ?? topicRows(title, combined, 0);
+  if (!rowsOverride && ctx && rowsAreStale(rows, ctx.usedSyms)) {
+    const alt = topicRows(title, combined, 1);
+    rows = rowsAreStale(alt, ctx.usedSyms) ? scriptDerivedRows(title, combined) : alt;
+  }
+
+  // A supply+demand equilibrium topic gets a LARGE centered chalk diagram, so text rows must
+  // stop higher to leave room. Draw it at most once per lecture — later boards on the same
+  // topic get a different corner sketch instead of the same chart again.
+  const wantsLargeDiagram = /\bsupply\b/.test(combined) && /\bdemand\b/.test(combined)
+    && /\b(curve|supply|demand|slope|equilibrium)\b/.test(combined)
+    && !ctx?.usedDiagrams.has("graph-large");
+  const rowStopY = wantsLargeDiagram ? 46 : 74;
+
+  // Richness: on boards without the large diagram, append a 5th row derived from this beat's
+  // own script when a distinct one exists — template branches are fixed at 4 rows, and the
+  // extra script-specific row is what ties the generic law back to today's example.
+  if (!wantsLargeDiagram && rows.length === 4) {
+    const extra = scriptDerivedRows(title, combined).find(
+      (cand) =>
+        !rows.some((r) => normSym(r.sym) === normSym(cand.sym)) &&
+        !rows.some((r) => r.note.toLowerCase() === cand.note.toLowerCase()) &&
+        !(ctx && ctx.usedSyms.has(normSym(cand.sym))),
+    );
+    if (extra) rows = [...rows, extra];
+  }
+  if (ctx) registerRows(rows, ctx.usedSyms);
+
+  // ── GEOMETRY ─────────────────────────────────────────────────────────────
+  const TERM_X   = 26;
+  const NOTE_X   = 72;
+  const NOTE_CHARS = 44;
+  const LINE_H   = 4.8;
+  const ROW_PAD  = 4.4;
+  const AT_START = 0.13;
+  const AT_END   = 0.62; // leave room for footer + diagram
+  const atStep   = rows.length > 1 ? (AT_END - AT_START) / rows.length : 0.15;
+
+  const ops: DrawOp[] = [];
+
+  // ── HEADING ───────────────────────────────────────────────────────────────
+  ops.push({ kind: "label", text: shorten(title, 22), x: 50, y: 8, size: "md", color: COLOR_MAP.amber, at: 0.04 });
+  ops.push({ kind: "arrow", x1: 20, y1: 14, x2: 80, y2: 14, color: COLOR_MAP.amber, at: 0.08 });
+
+  // ── ROWS ──────────────────────────────────────────────────────────────────
+  let y = 22;
+  for (let i = 0; i < rows.length; i++) {
+    const { sym, note, color: rowColor } = rows[i];
+    const rowAtBase = AT_START + i * atStep;
+
+    // LEFT: symbol label
+    ops.push({ kind: "label", text: sym, x: TERM_X, y, size: "sm", color: rowColor, at: rowAtBase });
+
+    // Connecting arrow downward to next symbol (except last row)
+    if (i < rows.length - 1) {
+      ops.push({ kind: "arrow", x1: TERM_X, y1: y + 3, x2: TERM_X, y2: y + LINE_H + 1.5, color: rowColor, at: rowAtBase + 0.02 });
+    }
+
+    // RIGHT: explanatory note, pre-wrapped to NOTE_CHARS
+    const noteLines = wrapToWidth(note, NOTE_CHARS).slice(0, 3);
+    const noteStartY = noteLines.length > 1 ? y - ((noteLines.length - 1) * LINE_H) / 2 : y;
+    noteLines.forEach((line, li) => {
+      ops.push({
+        kind: "note",
+        text: line,
+        x: NOTE_X,
+        y: Math.max(18, noteStartY + li * LINE_H),
+        color: COLOR_MAP.slate,
+        at: rowAtBase + 0.03 + li * 0.02,
+      });
+    });
+
+    y += Math.max(1, noteLines.length) * LINE_H + ROW_PAD;
+    if (y > rowStopY) break;
+  }
+
+  // ── FOOTER RULE (bottom-left) ────────────────────────────────────────────
+  // Skip the footer on large-diagram boards — the diagram fills the lower half instead.
+  if (!wantsLargeDiagram) {
+    const footer = boardFooter(title, combined);
+    const footerLines = wrapToWidth(footer, 44).slice(0, 2);
+    footerLines.forEach((line, i) => {
+      ops.push({
+        kind: "note",
+        text: i === 0 ? `Rule: ${line}` : line,
+        x: 30,
+        y: 76 + i * 5.2,
+        color: i === 0 ? COLOR_MAP.amber : COLOR_MAP.slate,
+        at: 0.66 + i * 0.025,
+      });
+    });
+  }
+
+  // ── SPATIAL DIAGRAM ──────────────────────────────────────────────────────
+  // Large centered supply/demand chart for equilibrium topics; small bottom-right corner
+  // sketch otherwise. Built from label+arrow ops so the board stays a written blackboard.
+  if (wantsLargeDiagram) {
+    ctx?.usedDiagrams.add("graph-large");
+    ops.push(...buildChalkDiagram(combined, { x0: 34, y0: 52, x1: 86, y1: 88 }, 0.5, ctx?.usedDiagrams, true));
+  } else {
+    const diagTop = Math.max(y, 66);
+    if (diagTop <= 73) {
+      ops.push(...buildChalkDiagram(combined, { x0: 60, y0: diagTop, x1: 88, y1: 91 }, 0.74, ctx?.usedDiagrams));
+    }
+  }
+
+  return { caption: title, durationMs, ops };
+}
+
+/**
+ * Closing-recap synthesis: one row per major idea IN LECTURE ORDER (each teaching beat's core
+ * term + one clause from that beat's own script) instead of re-matching the topic template.
+ * Beats 1-2 already rendered the template rows, so re-rendering them as the "recap" is exactly
+ * the end-of-lecture repetition users notice. Falls back to the dedup-aware standard path when
+ * the scripts don't yield at least 3 distinct rows.
+ */
+function makeRecapBoard(beats: Beat[], closing: Beat, ctx: BoardSynthesisContext): DrawScript {
+  const palette = [COLOR_MAP.amber, COLOR_MAP.blue, COLOR_MAP.green, COLOR_MAP.rose, COLOR_MAP.violet];
+  const rows: BoardRow[] = [];
+  const seenSym = new Set<string>();
+  const seenNote = new Set<string>();
+  for (let i = 1; i < beats.length && rows.length < 5; i++) {
+    const beat = beats[i];
+    if (!beat || beat === closing || beat.slideKind === "checkpoint") continue;
+    const core = beat.title.replace(/^(the|a|an|how|what|why|understanding|intro(duction)? to|changes? in)\s+/i, "").trim();
+    const sym = `• ${shorten(core, 16)}`;
+    if (!core || seenSym.has(normSym(sym))) continue;
+    const clause = scriptSentences(beat.script)
+      .flatMap((s) => s.split(/,|—|–|;|\bbecause\b|\bwhich\b|\bso that\b/i))
+      .map((c) => c.replace(/^(so|now|let'?s|this|that|here|we|the|a|an|of)\s+/i, "").trim())
+      .find((c) => c.length >= 14 && c.length <= 64 && !seenNote.has(c.toLowerCase()));
+    if (!clause) continue;
+    seenSym.add(normSym(sym));
+    seenNote.add(clause.toLowerCase());
+    rows.push({ sym, note: clause, color: palette[rows.length % palette.length] });
+  }
+  const durationMs = closing.draw?.durationMs ?? 28000;
+  if (rows.length < 3) {
+    return makeWrittenBoard(closing.title, closing.script, durationMs, ctx);
+  }
+  return makeWrittenBoard(closing.title, closing.script, durationMs, ctx, rows);
+}
+
+function boardFooter(title: string, combined: string): string {
+  if (/\blaw of demand\b/.test(combined) || (/\bdemand\b/.test(combined) && /\bprice\b/.test(combined) && !/\bsupply\b/.test(combined))) {
+    return "price changes move quantity along one demand curve; non-price factors shift the curve";
+  }
+  if (/\blaw of supply\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bprice\b/.test(combined) && !/\bdemand\b/.test(combined))) {
+    return "price changes move quantity along one supply curve; costs and tech shift the curve";
+  }
+  if (/\bshift\b/.test(combined)) {
+    return "a shift means every price has a new quantity, not just one point moving";
+  }
+  if (/\bequilibrium\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bdemand\b/.test(combined))) {
+    return "price adjusts toward the place where buyer plans and seller plans match";
+  }
+  return `connect each symbol back to the cause, the effect, and ${shorten(title.toLowerCase(), 24)}`;
+}
+
+/** Structural check used right after sanitizing the model's JSON, BEFORE fillImageOps has
+ *  run — at this point no image has a "src" yet (generation happens later), so we only
+ *  check that a real image op with a prompt exists. Using "has src" here would always be
+ *  false and incorrectly discard every valid model-authored board in favor of the generic
+ *  fallback before generation even gets a chance to run. */
+export function hasUsefulExplanationVisual(draw: DrawScript | undefined): draw is DrawScript {
+  if (!draw) return false;
+  // Animation-led boards (scene/motion on clean canvas) are valid explanations without an image.
+  const hasAnimation = draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
+  if (hasAnimation) return true;
+  // A written blackboard (symbol labels + arrows, no image) is a valid clean-board explanation.
+  if (isWrittenBlackboard(draw.ops)) return true;
+  return draw.ops.some((op) => op.kind === "image" && !!op.prompt);
+}
+
+/** Post-fill check used by fillImageOps AFTER generation has actually run — here we require
+ *  a real filled "src", since by this point generation has had its chance and a prompt with
+ *  no src means that image's generation genuinely failed. */
+export function hasFilledImage(draw: DrawScript | undefined): draw is DrawScript {
+  if (!draw) return false;
+  return draw.ops.some((op) => op.kind === "image" && !!op.src);
+}
+
+/** Last-resort post-image fallback: if every image attempt failed, keep the lesson useful
+ *  by turning the beat into a dense written board instead of returning floating notes. */
+export function fallbackWrittenDraw(title: string, script: string): DrawScript {
+  return makeWrittenBoard(title || firstSentence(script, "Key idea"), script, 28000);
+}
+
+function firstSentence(text: string, fallback: string) {
+  const sentence = text.match(/[^.!?]+[.!?]?/)?.[0]?.trim() || fallback;
+  return shorten(sentence, 72);
+}
+
+function shorten(text: string, max: number) {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const clipped = clean.slice(0, max - 3);
+  const lastSpace = clipped.lastIndexOf(" ");
+  return `${clipped.slice(0, lastSpace > 24 ? lastSpace : clipped.length)}...`;
+}
+
+/** Synthesizes a board when the model's own board didn't validate: one contextual image
+ *  placeholder (fillImageOps generates the real picture from this prompt — built from the
+ *  actual question/script text, not a generic shape) plus a top and bottom note in the
+ *  margins. No shapes — the grammar no longer has them. */
+export function fallbackExplanationDraw(question: string, script: string): DrawScript {
+  const topNote = firstSentence(script, "Here is the key idea.");
+  const seed = question.trim() || topNote;
+  const context = { title: seed, script, slideKind: "intro" as const, index: 0 };
+  return {
+    caption: shorten(seed, 48),
+    durationMs: 18000,
+    ops: ensureLiveMotion([
+      fallbackImagePlaceholder(seed, script),
+      { kind: "note", text: topNote, x: 50, y: 13, color: COLOR_MAP.slate, at: 0.14 },
+      { kind: "note", text: shorten(script, 72), x: 50, y: 86, color: COLOR_MAP.amber, at: 0.85 },
+    ], context),
+  };
+}
+
+/** Sanitizes a single side-chat explanation: { script, draw }. */
+export function sanitizeExplanation(raw: unknown, context?: { question?: string }): { script: string; draw?: DrawScript } {
+  if (!raw || typeof raw !== "object") throw new Error("No explanation returned.");
+  const o = raw as Record<string, unknown>;
+  const script = str(o.script);
+  if (!script) throw new Error("Empty explanation.");
+  const draw = sanitizeDraw(o.draw, { title: context?.question, script, slideKind: "intro", index: 0 });
+  let finalDraw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(context?.question ?? "", script);
+  // Backstop for image compliance, same as the lecture path: inject a placeholder if the
+  // model forgot the required image op, so fillImageOps still generates a real picture.
+  if (finalDraw && !finalDraw.ops.some((op) => op.kind === "image")) {
+    finalDraw = { ...finalDraw, ops: [...finalDraw.ops, fallbackImagePlaceholder(context?.question ?? "this question", script)] };
+  }
+  return { script, draw: finalDraw };
+}

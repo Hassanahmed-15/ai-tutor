@@ -21,6 +21,9 @@ export const defaultLens: ModalityLens = {
             relations: node.visual.relations ?? [],
           }
         : undefined,
+      scene: node.scene,
+      customScene: node.customScene,
+      drawScript: node.drawScript,
     };
   },
 

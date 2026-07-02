@@ -1,0 +1,38 @@
+{
+  "topic": "water-cycle",
+  "subject": "science",
+  "sources": [
+    {
+      "sourceId": "usgs-water-cycle",
+      "sourceTitle": "USGS Water Science School - The Water Cycle",
+      "locator": "Water cycle overview"
+    },
+    {
+      "sourceId": "nasa-water-cycle",
+      "sourceTitle": "NASA Earth Observatory - The Water Cycle",
+      "locator": "Evaporation, condensation, precipitation"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-evaporation",
+      "statement": "Heat from the Sun causes liquid water at Earth's surface to evaporate into water vapor.",
+      "sourceId": "usgs-water-cycle"
+    },
+    {
+      "id": "fact-condensation",
+      "statement": "Water vapor cools in the atmosphere and condenses into tiny droplets that form clouds.",
+      "sourceId": "nasa-water-cycle"
+    },
+    {
+      "id": "fact-precipitation",
+      "statement": "When cloud droplets grow heavy enough, water falls back to Earth as precipitation such as rain or snow.",
+      "sourceId": "usgs-water-cycle"
+    },
+    {
+      "id": "fact-collection",
+      "statement": "Water collects in rivers, lakes, oceans, soil, ice, and groundwater before cycling again.",
+      "sourceId": "usgs-water-cycle"
+    }
+  ]
+}

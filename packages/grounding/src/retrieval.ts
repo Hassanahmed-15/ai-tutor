@@ -1,6 +1,8 @@
 import type { Citation } from "@aria/lesson-graph";
 import type { GroundedFact, Source, TopicCorpus } from "./types";
 import binarySearchCorpus from "../../../content/cs-fundamentals/binary-search.json";
+import waterCycleCorpus from "../../../content/science/water-cycle.json";
+import ragCorpus from "../../../content/ai/rag.json";
 
 /**
  * MVP retrieval: an in-memory lookup over the seeded corpus (README content/ dir).
@@ -11,6 +13,8 @@ import binarySearchCorpus from "../../../content/cs-fundamentals/binary-search.j
  */
 const corpusByTopic: Record<string, TopicCorpus> = {
   "binary-search": binarySearchCorpus as TopicCorpus,
+  "water-cycle": waterCycleCorpus as TopicCorpus,
+  rag: ragCorpus as TopicCorpus,
 };
 
 export function getCorpus(topic: string): TopicCorpus | undefined {

@@ -15,8 +15,14 @@ export async function POST(request: Request) {
     ? (requestedLens as ModalityLens["id"])
     : "default";
 
-  const { id, session, lens } = createSession(subject, topic, lensId);
-  const graph = await session.start();
-
-  return NextResponse.json({ sessionId: id, ...renderSessionView(graph, lens) });
+  try {
+    const { id, session, lens } = createSession(subject, topic, lensId);
+    const graph = await session.start();
+    return NextResponse.json({ sessionId: id, ...renderSessionView(graph, lens) });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Failed to start lesson";
+    // 400: caller asked for a topic we can't serve (no key / no corpus). 502: model/network failure.
+    const status = message.includes("OPENAI_API_KEY") || message.includes("No content") ? 400 : 502;
+    return NextResponse.json({ error: message }, { status });
+  }
 }

@@ -1,0 +1,343 @@
+{
+  "topic": "supply and demand",
+  "beats": [
+    {
+      "id": "0",
+      "title": "Supply and Demand",
+      "teacherMove": "introduce the market as the meeting place between buyers and sellers",
+      "stepLabel": "Introduction",
+      "slideKind": "intro",
+      "points": ["buyers want goods", "sellers offer goods"],
+      "script": "Welcome in. Today we are going to make supply and demand feel like something you can actually see, not just a graph in a textbook. Think of a market stall: buyers arrive with wants, sellers arrive with goods, and the price helps both sides decide what to do. We will start with the two laws, then look at real scenes where those laws show up. By the end, the graph should feel like a map of real behavior.",
+      "draw": {
+        "caption": "Supply and Demand",
+        "durationMs": 20000,
+        "ops": [
+          {
+            "kind": "image",
+            "prompt": "busy produce marketplace with buyers, sellers, and visible goods changing hands, cinematic documentary photo, no text",
+            "src": "/lecture-assets/supply-demand-intro.png",
+            "x": 50,
+            "y": 50,
+            "w": 100,
+            "h": 100,
+            "at": 0.02
+          },
+          { "kind": "label", "text": "Supply and Demand", "x": 50, "y": 10, "size": "lg", "color": "amber", "at": 0.12 },
+          { "kind": "note", "text": "buyers want goods", "x": 50, "y": 82, "color": "blue", "at": 0.28 },
+          { "kind": "note", "text": "sellers offer goods", "x": 50, "y": 88, "color": "green", "at": 0.42 }
+        ]
+      }
+    },
+    {
+      "id": "1",
+      "title": "Law of Demand",
+      "teacherMove": "explain the inverse relationship between price and quantity demanded",
+      "stepLabel": "Law 1",
+      "slideKind": "definition",
+      "points": ["price down, quantity demanded up", "price up, quantity demanded down"],
+      "definitionTerm": "Demand",
+      "definitionMeaning": "How much buyers are willing and able to buy at different prices.",
+      "script": "The law of demand says that, other things equal, people usually buy more when the price is lower. A lower price makes the good easier to justify, so more buyers enter and existing buyers may buy extra units. When price rises, some buyers step back or switch to something else. That is why the demand curve slopes downward.",
+      "draw": {
+        "caption": "Law of Demand",
+        "durationMs": 22000,
+        "ops": [
+          { "kind": "label", "text": "Law of Demand", "x": 50, "y": 8, "size": "md", "color": "amber", "at": 0.04 },
+          { "kind": "arrow", "x1": 20, "y1": 14, "x2": 80, "y2": 14, "color": "amber", "at": 0.08 },
+          { "kind": "label", "text": "Price ↓", "x": 26, "y": 22, "size": "sm", "color": "rose", "at": 0.13 },
+          { "kind": "arrow", "x1": 26, "y1": 25, "x2": 26, "y2": 31, "color": "rose", "at": 0.16 },
+          { "kind": "label", "text": "→ Q_d ↑", "x": 26, "y": 34, "size": "sm", "color": "rose", "at": 0.19 },
+          { "kind": "note", "text": "lower price invites buyers", "x": 72, "y": 25, "color": "slate", "at": 0.22 },
+          { "kind": "label", "text": "Price ↑", "x": 26, "y": 46, "size": "sm", "color": "blue", "at": 0.31 },
+          { "kind": "arrow", "x1": 26, "y1": 49, "x2": 26, "y2": 55, "color": "blue", "at": 0.34 },
+          { "kind": "label", "text": "→ Q_d ↓", "x": 26, "y": 58, "size": "sm", "color": "blue", "at": 0.37 },
+          { "kind": "note", "text": "higher price filters buyers", "x": 72, "y": 50, "color": "slate", "at": 0.4 },
+          { "kind": "note", "text": "Rule: move along one demand curve", "x": 30, "y": 78, "color": "amber", "at": 0.62 },
+          { "kind": "arrow", "x1": 63, "y1": 91, "x2": 63, "y2": 70, "color": "slate", "at": 0.7 },
+          { "kind": "arrow", "x1": 63, "y1": 91, "x2": 88, "y2": 91, "color": "slate", "at": 0.72 },
+          { "kind": "label", "text": "P", "x": 61, "y": 68, "size": "sm", "color": "slate", "at": 0.74 },
+          { "kind": "label", "text": "Q", "x": 89, "y": 94, "size": "sm", "color": "slate", "at": 0.76 },
+          { "kind": "arrow", "x1": 66, "y1": 73, "x2": 73, "y2": 81, "color": "rose", "at": 0.79 },
+          { "kind": "arrow", "x1": 73, "y1": 81, "x2": 82, "y2": 88, "color": "rose", "at": 0.82 },
+          { "kind": "label", "text": "D ↘", "x": 83, "y": 91, "size": "sm", "color": "rose", "at": 0.85 }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "title": "Law of Supply",
+      "teacherMove": "explain the direct relationship between price and quantity supplied",
+      "stepLabel": "Law 2",
+      "slideKind": "definition",
+      "points": ["price up, quantity supplied up", "price down, quantity supplied down"],
+      "definitionTerm": "Supply",
+      "definitionMeaning": "How much sellers are willing and able to offer at different prices.",
+      "script": "The law of supply runs the other direction. When the price is higher, sellers have a stronger reason to produce, stock, or bring more units to market. When price falls, the reward is weaker, so some sellers cut back or stop offering as much. That is why the supply curve slopes upward.",
+      "draw": {
+        "caption": "Law of Supply",
+        "durationMs": 22000,
+        "ops": [
+          { "kind": "label", "text": "Law of Supply", "x": 50, "y": 8, "size": "md", "color": "amber", "at": 0.04 },
+          { "kind": "arrow", "x1": 20, "y1": 14, "x2": 80, "y2": 14, "color": "amber", "at": 0.08 },
+          { "kind": "label", "text": "Price ↑", "x": 26, "y": 22, "size": "sm", "color": "blue", "at": 0.13 },
+          { "kind": "arrow", "x1": 26, "y1": 25, "x2": 26, "y2": 31, "color": "blue", "at": 0.16 },
+          { "kind": "label", "text": "→ Q_s ↑", "x": 26, "y": 34, "size": "sm", "color": "blue", "at": 0.19 },
+          { "kind": "note", "text": "higher price rewards output", "x": 72, "y": 25, "color": "slate", "at": 0.22 },
+          { "kind": "label", "text": "Price ↓", "x": 26, "y": 46, "size": "sm", "color": "rose", "at": 0.31 },
+          { "kind": "arrow", "x1": 26, "y1": 49, "x2": 26, "y2": 55, "color": "rose", "at": 0.34 },
+          { "kind": "label", "text": "→ Q_s ↓", "x": 26, "y": 58, "size": "sm", "color": "rose", "at": 0.37 },
+          { "kind": "note", "text": "lower price cuts reward", "x": 72, "y": 50, "color": "slate", "at": 0.4 },
+          { "kind": "note", "text": "Rule: move along one supply curve", "x": 30, "y": 78, "color": "amber", "at": 0.62 },
+          { "kind": "arrow", "x1": 63, "y1": 91, "x2": 63, "y2": 70, "color": "slate", "at": 0.7 },
+          { "kind": "arrow", "x1": 63, "y1": 91, "x2": 88, "y2": 91, "color": "slate", "at": 0.72 },
+          { "kind": "label", "text": "P", "x": 61, "y": 68, "size": "sm", "color": "slate", "at": 0.74 },
+          { "kind": "label", "text": "Q", "x": 89, "y": 94, "size": "sm", "color": "slate", "at": 0.76 },
+          { "kind": "arrow", "x1": 66, "y1": 88, "x2": 73, "y2": 81, "color": "blue", "at": 0.79 },
+          { "kind": "arrow", "x1": 73, "y1": 81, "x2": 82, "y2": 73, "color": "blue", "at": 0.82 },
+          { "kind": "label", "text": "S ↗", "x": 83, "y": 72, "size": "sm", "color": "blue", "at": 0.85 }
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "title": "Demand in a Market",
+      "teacherMove": "connect demand to buyer behavior in a concrete market scene",
+      "stepLabel": "Real Example",
+      "slideKind": "intro",
+      "points": ["buyers reveal demand", "quantity changes at the stall"],
+      "script": "Now let’s attach the demand law to a real scene. Look at the buyers gathered around the tomatoes: that crowd is not abstract demand, it is people deciding whether the good is worth it to them. If the price becomes easier to accept, more hands reach in and more units leave the crate. The graph is just a clean way to summarize that behavior.",
+      "draw": {
+        "caption": "Demand in a Market",
+        "durationMs": 20000,
+        "ops": [
+          {
+            "kind": "image",
+            "prompt": "open-air produce market tomato stall with seller, buyers reaching, full crates, and a quieter produce section, cinematic documentary photo, no text",
+            "src": "/lecture-assets/supply-demand-demand-market.png",
+            "x": 50,
+            "y": 50,
+            "w": 100,
+            "h": 100,
+            "at": 0.04
+          },
+          { "kind": "callout", "text": "buyers demand", "x": 50, "y": 38, "labelX": 30, "labelY": 18, "color": "rose", "at": 0.18 },
+          { "kind": "callout", "text": "seller offers", "x": 22, "y": 40, "labelX": 18, "labelY": 64, "color": "blue", "at": 0.34 },
+          { "kind": "callout", "text": "quantity bought", "x": 43, "y": 72, "labelX": 58, "labelY": 84, "color": "green", "at": 0.5 },
+          { "kind": "callout", "text": "other options", "x": 78, "y": 59, "labelX": 84, "labelY": 28, "color": "amber", "at": 0.64 }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "title": "Supply Behind the Stall",
+      "teacherMove": "show supply as production choices before goods reach the market",
+      "stepLabel": "Real Example",
+      "slideKind": "intro",
+      "points": ["inputs affect cost", "capacity affects supply"],
+      "script": "Supply starts before the product reaches the stall. In a bakery, flour, labor, ovens, and time all shape how many loaves can be offered. If the selling price rises or production becomes easier, the bakery has a reason to send more bread out. If costs rise, the same bakery may supply less at every price.",
+      "draw": {
+        "caption": "Supply Behind the Stall",
+        "durationMs": 20000,
+        "ops": [
+          {
+            "kind": "image",
+            "prompt": "small bakery production room with flour sacks, oven, bakers, cooling racks, and delivery crates, cinematic documentary photo, no text",
+            "src": "/lecture-assets/supply-demand-supply-bakery.png",
+            "x": 50,
+            "y": 50,
+            "w": 100,
+            "h": 100,
+            "at": 0.04
+          },
+          { "kind": "callout", "text": "input costs", "x": 16, "y": 62, "labelX": 20, "labelY": 28, "color": "rose", "at": 0.18 },
+          { "kind": "callout", "text": "oven capacity", "x": 47, "y": 34, "labelX": 48, "labelY": 18, "color": "blue", "at": 0.34 },
+          { "kind": "callout", "text": "output supplied", "x": 68, "y": 70, "labelX": 78, "labelY": 35, "color": "green", "at": 0.5 },
+          { "kind": "callout", "text": "delivery to market", "x": 86, "y": 53, "labelX": 84, "labelY": 78, "color": "amber", "at": 0.64 }
+        ]
+      }
+    },
+    {
+      "id": "5",
+      "title": "Why Demand Shifts",
+      "teacherMove": "use a grocery choice scene to explain demand shifters",
+      "stepLabel": "Real Example",
+      "slideKind": "intro",
+      "points": ["taste can move demand", "substitutes and complements matter"],
+      "script": "A shift in demand is different from moving along the same demand curve. The price of this good is not the only thing changing the decision. A new trend, a change in income, a substitute product, or a complementary item can make people want more or less at every possible price. That is why the whole demand curve moves.",
+      "draw": {
+        "caption": "Why Demand Shifts",
+        "durationMs": 20000,
+        "ops": [
+          {
+            "kind": "image",
+            "prompt": "grocery aisle with shoppers choosing between similar products, basket with complementary goods, and a competing shelf, photorealistic retail scene, no text",
+            "src": "/lecture-assets/supply-demand-demand-shift-grocery.png",
+            "x": 50,
+            "y": 50,
+            "w": 100,
+            "h": 100,
+            "at": 0.04
+          },
+          { "kind": "callout", "text": "taste changes", "x": 47, "y": 44, "labelX": 36, "labelY": 18, "color": "violet", "at": 0.18 },
+          { "kind": "callout", "text": "substitute option", "x": 78, "y": 50, "labelX": 82, "labelY": 22, "color": "rose", "at": 0.34 },
+          { "kind": "callout", "text": "complements", "x": 56, "y": 78, "labelX": 32, "labelY": 78, "color": "green", "at": 0.5 },
+          { "kind": "callout", "text": "new demand", "x": 35, "y": 59, "labelX": 20, "labelY": 42, "color": "amber", "at": 0.64 }
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "title": "Shifts in Demand",
+      "teacherMove": "summarize demand shifters on a written board",
+      "stepLabel": "Demand Shifts",
+      "slideKind": "definition",
+      "points": ["non-price factors move the curve", "right means more demand"],
+      "definitionTerm": "Demand shift",
+      "definitionMeaning": "A change in demand at every price, caused by something other than the good's own price.",
+      "script": "Let’s now write the demand shifters cleanly. Income can push demand right for normal goods. Tastes and trends can also move the curve because people now value the good differently. Substitutes and complements matter because goods are connected in everyday choices.",
+      "draw": {
+        "caption": "Shifts in Demand",
+        "durationMs": 22000,
+        "ops": [
+          { "kind": "label", "text": "Shifts in Demand", "x": 50, "y": 8, "size": "md", "color": "amber", "at": 0.04 },
+          { "kind": "arrow", "x1": 20, "y1": 14, "x2": 80, "y2": 14, "color": "amber", "at": 0.08 },
+          { "kind": "label", "text": "Income ↑", "x": 26, "y": 22, "size": "sm", "color": "green", "at": 0.13 },
+          { "kind": "note", "text": "normal-good demand shifts right", "x": 72, "y": 22, "color": "slate", "at": 0.17 },
+          { "kind": "label", "text": "Tastes →", "x": 26, "y": 35, "size": "sm", "color": "violet", "at": 0.24 },
+          { "kind": "note", "text": "preferences move the curve", "x": 72, "y": 35, "color": "slate", "at": 0.28 },
+          { "kind": "label", "text": "Substitute ↑", "x": 26, "y": 48, "size": "sm", "color": "rose", "at": 0.35 },
+          { "kind": "note", "text": "own demand can fall", "x": 72, "y": 48, "color": "slate", "at": 0.39 },
+          { "kind": "label", "text": "Complement ↑", "x": 26, "y": 61, "size": "sm", "color": "blue", "at": 0.46 },
+          { "kind": "note", "text": "goods move together", "x": 72, "y": 61, "color": "slate", "at": 0.5 },
+          { "kind": "note", "text": "Rule: non-price factor moves the curve", "x": 30, "y": 78, "color": "amber", "at": 0.64 },
+          { "kind": "arrow", "x1": 64, "y1": 88, "x2": 82, "y2": 80, "color": "green", "at": 0.72 },
+          { "kind": "label", "text": "D → D′", "x": 82, "y": 76, "size": "sm", "color": "green", "at": 0.78 }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "title": "Shifts in Supply",
+      "teacherMove": "summarize supply shifters on a written board",
+      "stepLabel": "Supply Shifts",
+      "slideKind": "definition",
+      "points": ["cost changes shift supply", "technology can shift supply right"],
+      "definitionTerm": "Supply shift",
+      "definitionMeaning": "A change in supply at every price, caused by production conditions.",
+      "script": "Supply shifts when the conditions of production change. Lower costs or better technology let sellers offer more at the same price, so supply shifts right. Higher input prices, taxes, or disruptions make production harder, so supply shifts left. Again, this is not just sliding along the curve; the whole curve moves.",
+      "draw": {
+        "caption": "Shifts in Supply",
+        "durationMs": 22000,
+        "ops": [
+          { "kind": "label", "text": "Shifts in Supply", "x": 50, "y": 8, "size": "md", "color": "amber", "at": 0.04 },
+          { "kind": "arrow", "x1": 20, "y1": 14, "x2": 80, "y2": 14, "color": "amber", "at": 0.08 },
+          { "kind": "label", "text": "Cost ↓", "x": 26, "y": 22, "size": "sm", "color": "green", "at": 0.13 },
+          { "kind": "note", "text": "supply shifts right", "x": 72, "y": 22, "color": "slate", "at": 0.17 },
+          { "kind": "label", "text": "Tech ↑", "x": 26, "y": 35, "size": "sm", "color": "blue", "at": 0.24 },
+          { "kind": "note", "text": "more output per input", "x": 72, "y": 35, "color": "slate", "at": 0.28 },
+          { "kind": "label", "text": "Tax ↑", "x": 26, "y": 48, "size": "sm", "color": "rose", "at": 0.35 },
+          { "kind": "note", "text": "supply shifts left", "x": 72, "y": 48, "color": "slate", "at": 0.39 },
+          { "kind": "label", "text": "Input ↑", "x": 26, "y": 61, "size": "sm", "color": "violet", "at": 0.46 },
+          { "kind": "note", "text": "higher costs reduce supply", "x": 72, "y": 61, "color": "slate", "at": 0.5 },
+          { "kind": "note", "text": "Rule: production conditions move the curve", "x": 30, "y": 78, "color": "amber", "at": 0.64 },
+          { "kind": "arrow", "x1": 64, "y1": 82, "x2": 82, "y2": 74, "color": "blue", "at": 0.72 },
+          { "kind": "label", "text": "S → S′", "x": 82, "y": 70, "size": "sm", "color": "blue", "at": 0.78 }
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "title": "Equilibrium",
+      "teacherMove": "show supply and demand meeting at a market-clearing point",
+      "stepLabel": "Balance",
+      "slideKind": "intro",
+      "points": ["curves meet", "price clears the market"],
+      "script": "Now we can put the two curves on the same graph. Demand slopes down, supply slopes up, and the crossing point is equilibrium. At that price, the quantity buyers want matches the quantity sellers want to offer. If the price is away from that point, pressure builds to move it back.",
+      "draw": {
+        "caption": "Equilibrium",
+        "durationMs": 20000,
+        "ops": [
+          { "kind": "scene", "scene": "graph", "title": "Equilibrium", "items": ["supply", "demand", "P*", "Q*"], "color": "amber", "at": 0.16, "endAt": 0.9 },
+          { "kind": "motion", "motion": "pulse", "text": "market clears", "cx": 51, "cy": 50, "r": 11, "color": "amber", "at": 0.5, "endAt": 0.9 }
+        ]
+      }
+    },
+    {
+      "id": "9",
+      "title": "Checkpoint: Demand",
+      "teacherMove": "check whether the student can identify movement along demand",
+      "stepLabel": "Checkpoint",
+      "slideKind": "checkpoint",
+      "points": [],
+      "script": "Quick checkpoint. What usually happens to quantity demanded when the price of a good decreases, assuming other things stay the same?",
+      "checkpoint": {
+        "prompt": "When price decreases, what usually happens to quantity demanded?",
+        "acceptableKeywords": [["increase"], ["goes", "up"], ["more"], ["rises"]],
+        "correctFeedback": "Exactly. Lower price usually increases quantity demanded.",
+        "hintFeedback": "Think about buyers: if it becomes cheaper, are they usually willing to buy more or less?",
+        "revealAnswer": "Quantity demanded usually increases when price decreases."
+      }
+    },
+    {
+      "id": "10",
+      "title": "Market Dynamics",
+      "teacherMove": "animate how a shock moves through the market",
+      "stepLabel": "Dynamics",
+      "slideKind": "intro",
+      "points": ["shock changes one side", "price and quantity respond"],
+      "script": "Markets are dynamic because one change can move through the whole system. Imagine production gets cheaper: supply shifts right, sellers bring more units, and the old price may now be too high. Competition puts downward pressure on price until buyers and sellers settle into a new balance. The movement is not random; it follows the pressure created by surplus or shortage.",
+      "draw": {
+        "caption": "Market Dynamics",
+        "durationMs": 20000,
+        "ops": [
+          { "kind": "scene", "scene": "system", "title": "Cost Shock Moves the Market", "items": ["costs fall", "supply shifts", "surplus pressure", "new balance"], "color": "blue", "at": 0.14, "endAt": 0.92 },
+          { "kind": "motion", "motion": "flow", "text": "costs fall", "x1": 20, "y1": 50, "x2": 47, "y2": 50, "color": "green", "at": 0.34, "endAt": 0.62 },
+          { "kind": "motion", "motion": "flow", "text": "new balance", "x1": 53, "y1": 50, "x2": 80, "y2": 50, "color": "amber", "at": 0.56, "endAt": 0.88 }
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "title": "Final Checkpoint",
+      "teacherMove": "check whether the student can distinguish a shift from movement along a curve",
+      "stepLabel": "Checkpoint",
+      "slideKind": "checkpoint",
+      "points": [],
+      "script": "Final checkpoint. If a new technology makes bread cheaper to produce, is that mainly a movement along the supply curve or a shift of the supply curve?",
+      "checkpoint": {
+        "prompt": "New technology makes production cheaper. Is that movement along supply, or a supply shift?",
+        "acceptableKeywords": [["shift"], ["supply", "right"], ["curve", "moves"], ["technology"]],
+        "correctFeedback": "Yes. Technology changes production conditions, so the supply curve shifts.",
+        "hintFeedback": "Ask whether the good's own price changed, or whether production conditions changed.",
+        "revealAnswer": "It is a supply shift, usually to the right."
+      }
+    },
+    {
+      "id": "12",
+      "title": "Supply and Demand Recap",
+      "teacherMove": "close with a written recap of the core logic",
+      "stepLabel": "Recap",
+      "slideKind": "recap",
+      "points": ["demand slopes down", "supply slopes up", "shifts move whole curves", "equilibrium is where plans match"],
+      "script": "Let’s close by locking in the whole map. Demand is the buyer side: lower price usually means more quantity demanded. Supply is the seller side: higher price usually means more quantity supplied. Shifts happen when something besides the good's own price changes the whole relationship. Equilibrium is the place where buyer plans and seller plans match.",
+      "draw": {
+        "caption": "Supply and Demand Recap",
+        "durationMs": 22000,
+        "ops": [
+          { "kind": "label", "text": "Supply + Demand", "x": 50, "y": 8, "size": "md", "color": "amber", "at": 0.04 },
+          { "kind": "arrow", "x1": 20, "y1": 14, "x2": 80, "y2": 14, "color": "amber", "at": 0.08 },
+          { "kind": "label", "text": "D ↘", "x": 26, "y": 24, "size": "sm", "color": "rose", "at": 0.14 },
+          { "kind": "note", "text": "buyers react to price", "x": 72, "y": 24, "color": "slate", "at": 0.18 },
+          { "kind": "label", "text": "S ↗", "x": 26, "y": 38, "size": "sm", "color": "blue", "at": 0.26 },
+          { "kind": "note", "text": "sellers react to reward", "x": 72, "y": 38, "color": "slate", "at": 0.3 },
+          { "kind": "label", "text": "Shift →", "x": 26, "y": 52, "size": "sm", "color": "green", "at": 0.38 },
+          { "kind": "note", "text": "non-price factor moves curve", "x": 72, "y": 52, "color": "slate", "at": 0.42 },
+          { "kind": "label", "text": "S ∩ D", "x": 26, "y": 66, "size": "sm", "color": "amber", "at": 0.5 },
+          { "kind": "note", "text": "plans match at equilibrium", "x": 72, "y": 66, "color": "slate", "at": 0.54 },
+          { "kind": "note", "text": "Rule: curves summarize real choices", "x": 50, "y": 84, "color": "amber", "at": 0.68 }
+        ]
+      }
+    }
+  ]
+}

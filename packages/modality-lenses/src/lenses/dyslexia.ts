@@ -35,6 +35,9 @@ export const dyslexiaLens: ModalityLens = {
             relations: node.visual.relations ?? [],
           }
         : undefined,
+      scene: node.scene,
+      customScene: node.customScene,
+      drawScript: node.drawScript,
       // Slightly slower default pacing reduces reading/listening mismatch (README 3.2).
       pacingMultiplier: 0.85,
     };

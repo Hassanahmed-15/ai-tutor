@@ -1,0 +1,38 @@
+{
+  "topic": "rag",
+  "subject": "ai",
+  "sources": [
+    {
+      "sourceId": "rag-paper",
+      "sourceTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "locator": "Lewis et al., 2020"
+    },
+    {
+      "sourceId": "openai-rag",
+      "sourceTitle": "OpenAI guide: Retrieval augmented generation",
+      "locator": "RAG concept overview"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-rag-retrieval",
+      "statement": "Retrieval-augmented generation first retrieves relevant information from an external knowledge source.",
+      "sourceId": "rag-paper"
+    },
+    {
+      "id": "fact-rag-generation",
+      "statement": "The model uses retrieved context together with the user question to generate an answer.",
+      "sourceId": "rag-paper"
+    },
+    {
+      "id": "fact-rag-grounding",
+      "statement": "RAG can improve factual grounding by giving the model relevant source material at answer time.",
+      "sourceId": "openai-rag"
+    },
+    {
+      "id": "fact-rag-citations",
+      "statement": "RAG systems often expose citations or source snippets so users can inspect where an answer came from.",
+      "sourceId": "openai-rag"
+    }
+  ]
+}

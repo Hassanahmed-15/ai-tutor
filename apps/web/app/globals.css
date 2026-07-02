@@ -1,26 +1,948 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f1f5f9;
+  --foreground: #020617;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
+  --font-headline: var(--font-headline), var(--font-body), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-hud-mono: var(--font-hud-mono), "SFMono-Regular", Consolas, monospace;
+
+  /* Per-mode emissive accents, exposed as Tailwind utilities (text-accent-autism, etc.) */
+  --color-accent-standard: var(--accent-standard);
+  --color-accent-standard-bright: var(--accent-standard-bright);
+  --color-accent-blind: var(--accent-blind);
+  --color-accent-blind-bright: var(--accent-blind-bright);
+  --color-accent-adhd: var(--accent-adhd);
+  --color-accent-adhd-bright: var(--accent-adhd-bright);
+  --color-accent-autism: var(--accent-autism);
+  --color-accent-autism-bright: var(--accent-autism-bright);
+  --color-accent-dyslexia: var(--accent-dyslexia);
+  --color-accent-dyslexia-bright: var(--accent-dyslexia-bright);
+  --color-accent-dysgraphia: var(--accent-dysgraphia);
+  --color-accent-dysgraphia-bright: var(--accent-dysgraphia-bright);
+  --color-accent-deaf: var(--accent-deaf);
+  --color-accent-deaf-bright: var(--accent-deaf-bright);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+.font-black,
+.font-extrabold,
+.font-bold {
+  font-family: var(--font-headline), var(--font-body), Arial, Helvetica, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #bfdbfe;
+  color: #020617;
+}
+
+/* Hand-drawn whiteboard draw-in: stroke animates from invisible to fully drawn,
+   like a marker moving along the path. pathLength=1 normalizes dasharray math
+   across paths of any actual length. */
+.sketch-draw-in {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation-name: sketch-stroke-in;
+  /* easeOutCubic-ish: fast confident start, gentle settle — closer to a real pen stroke
+     than the old ease-out */
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes sketch-stroke-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sketch-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rag-scan {
+  from {
+    left: -10%;
+  }
+  to {
+    left: 110%;
+  }
+}
+
+@keyframes mesh-drift {
+  0% {
+    background-position: 0% 0%, 100% 100%;
+  }
+  50% {
+    background-position: 30% 20%, 70% 80%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%;
+  }
+}
+
+.lecture-ken-burns {
+  animation: lecture-ken-burns 18s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes lecture-ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.055) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+.sketch-pop-in {
+  opacity: 0;
+  transform-origin: center;
+  animation: sketch-pop-in 520ms cubic-bezier(0.2, 0.9, 0.2, 1.15) forwards;
+}
+
+@keyframes sketch-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.red-marker-dot {
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.55));
+}
+
+.lecture-card-rise {
+  opacity: 0;
+  animation: lecture-card-rise 620ms ease-out forwards;
+}
+
+@keyframes lecture-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.rag-scan-beam {
+  animation: rag-scan 2.8s ease-in-out infinite;
+}
+
+.lecture-pulse-glow {
+  animation: lecture-pulse-glow 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes lecture-pulse-glow {
+  from {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+.marker-highlight-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.marker-highlight-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.45), transparent);
+  transform: translateX(-120%);
+  animation: marker-highlight-sweep 2.4s ease-in-out infinite;
+}
+
+@keyframes marker-highlight-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  55%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.leaf-sunbeam {
+  animation: leaf-sunbeam 4.8s ease-in-out infinite alternate;
+  transform-origin: top;
+}
+
+@keyframes leaf-sunbeam {
+  from {
+    opacity: 0.42;
+    transform: rotate(12deg) translateX(-8px) scaleY(0.94);
+  }
+  to {
+    opacity: 0.92;
+    transform: rotate(12deg) translateX(8px) scaleY(1.04);
+  }
+}
+
+.water-rise {
+  animation: water-rise 2.8s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+@keyframes water-rise {
+  0% {
+    opacity: 0.45;
+    transform: scaleY(0.25);
+  }
+  55% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scaleY(0.35);
+  }
+}
+
+.co2-float {
+  animation: co2-float 3.2s ease-in-out infinite;
+}
+
+@keyframes co2-float {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-18px);
+  }
+}
+
+.chloroplast-cell {
+  animation: chloroplast-cell 4s ease-in-out infinite alternate;
+}
+
+@keyframes chloroplast-cell {
+  from {
+    opacity: 0.72;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.sugar-pop {
+  opacity: 0;
+  animation: sugar-pop 700ms cubic-bezier(0.2, 0.9, 0.2, 1.2) forwards;
+}
+
+@keyframes sugar-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.6) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+.oxygen-bubble {
+  animation: oxygen-bubble 4s ease-in-out infinite;
+}
+
+@keyframes oxygen-bubble {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.65);
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-190px) scale(1.15);
+  }
+}
+
+/* Teacher avatar animations */
+.av-ring {
+  animation: av-ring 1.8s ease-out infinite;
+}
+@keyframes av-ring {
+  0% { transform: scale(0.92); opacity: 0.7; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+.av-talk {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: av-talk 280ms ease-in-out infinite alternate;
+}
+@keyframes av-talk {
+  from { transform: scaleY(0.35); }
+  to { transform: scaleY(1.15); }
+}
+.av-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: av-blink 4.5s infinite;
+}
+@keyframes av-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+
+/* Landing page ambient motion */
+.landing-orb {
+  animation: landing-orb 16s ease-in-out infinite alternate;
+}
+@keyframes landing-orb {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(4%, -3%, 0) scale(1.12); }
+}
+.float-slow {
+  animation: float-slow 7s ease-in-out infinite alternate;
+}
+@keyframes float-slow {
+  from { transform: translateY(0); }
+  to { transform: translateY(-14px); }
+}
+
+/* Slide -> board beat transition */
+.beat-fade-in {
+  animation: beat-fade-in 850ms cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes beat-fade-in {
+  from { opacity: 0; transform: scale(0.98) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.diagram-pop {
+  animation: diagram-pop 920ms cubic-bezier(0.2, 0.9, 0.2, 1.08) both;
+}
+
+@keyframes diagram-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.delivery-drop {
+  animation: delivery-drop 1100ms cubic-bezier(0.2, 0.9, 0.2, 1.05) both;
+}
+
+@keyframes delivery-drop {
+  from {
+    opacity: 0;
+    transform: translate3d(-18px, -34px, 0) rotate(-5deg) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+  }
+}
+
+.science-frame {
+  isolation: isolate;
+}
+
+.science-frame svg {
+  position: relative;
+  z-index: 1;
+}
+
+.science-stage-glow,
+.science-vignette,
+.science-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.science-stage-glow {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 24% 18%, rgba(187, 247, 208, 0.24), transparent 34%),
+    radial-gradient(circle at 78% 72%, rgba(56, 189, 248, 0.18), transparent 38%),
+    linear-gradient(135deg, rgba(2, 6, 23, 0.18), rgba(2, 6, 23, 0.72));
+  animation: science-stage-glow 8s ease-in-out infinite alternate;
+}
+
+.science-vignette {
+  z-index: 3;
+  box-shadow: inset 0 0 90px rgba(2, 6, 23, 0.62), inset 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+.science-grain {
+  z-index: 4;
+  opacity: 0.13;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.24) 0 1px, transparent 1.5px);
+  background-size: 18px 18px, 23px 23px;
+}
+
+@keyframes science-stage-glow {
+  from {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.035);
+  }
+}
+
+.science-camera-drift {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: science-camera-drift 12s ease-in-out infinite alternate;
+}
+
+@keyframes science-camera-drift {
+  from {
+    opacity: 0.82;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.science-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: science-breathe 5.4s ease-in-out infinite alternate;
+}
+
+@keyframes science-breathe {
+  from {
+    opacity: 0.72;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.018);
+  }
+}
+
+.leaf-vein-flow {
+  stroke-dasharray: 32 18;
+  animation: leaf-vein-flow 4.8s linear infinite;
+}
+
+@keyframes leaf-vein-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.photon-stream,
+.reaction-path,
+.gas-drift {
+  animation: photon-stream 1.9s linear infinite;
+}
+
+@keyframes photon-stream {
+  to {
+    stroke-dashoffset: -80;
+  }
+}
+
+.gas-drift {
+  animation-duration: 3.8s;
+}
+
+.cell-drift {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cell-drift 5.8s ease-in-out infinite alternate;
+}
+
+@keyframes cell-drift {
+  from {
+    opacity: 0.22;
+    transform: translate3d(-3px, 4px, 0) scale(0.9);
+  }
+  to {
+    opacity: 0.72;
+    transform: translate3d(5px, -6px, 0) scale(1.08);
+  }
+}
+
+.microscope-float,
+.chloroplast-orbit,
+.molecule-float,
+.earth-drift,
+.earth-cloud-drift {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.microscope-float {
+  animation: microscope-float 7s ease-in-out infinite alternate;
+}
+
+@keyframes microscope-float {
+  from {
+    transform: translate3d(-4px, 3px, 0) rotate(-0.6deg);
+  }
+  to {
+    transform: translate3d(5px, -4px, 0) rotate(0.5deg);
+  }
+}
+
+.chloroplast-orbit {
+  animation: chloroplast-orbit 4.8s ease-in-out infinite alternate;
+}
+
+@keyframes chloroplast-orbit {
+  from {
+    transform: translate3d(-2px, 2px, 0) scale(0.99);
+  }
+  to {
+    transform: translate3d(3px, -3px, 0) scale(1.025);
+  }
+}
+
+.molecule-float {
+  animation: molecule-float 3.6s ease-in-out infinite alternate;
+}
+
+@keyframes molecule-float {
+  from {
+    transform: translate3d(-4px, 4px, 0) rotate(-1deg);
+  }
+  to {
+    transform: translate3d(5px, -5px, 0) rotate(1deg);
+  }
+}
+
+.photon-bolt {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: photon-bolt 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes photon-bolt {
+  from {
+    opacity: 0.78;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.earth-drift {
+  animation: earth-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes earth-drift {
+  from {
+    transform: rotate(-1deg) scale(0.99);
+  }
+  to {
+    transform: rotate(1.2deg) scale(1.02);
+  }
+}
+
+.earth-cloud-drift {
+  animation: earth-cloud-drift 7s ease-in-out infinite alternate;
+}
+
+@keyframes earth-cloud-drift {
+  from {
+    transform: translate3d(-8px, 0, 0);
+  }
+  to {
+    transform: translate3d(10px, -2px, 0);
+  }
+}
+
+.molecule-travel-a {
+  animation: molecule-travel-a 2.2s ease-in-out infinite alternate;
+}
+
+.molecule-travel-b {
+  animation: molecule-travel-b 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes molecule-travel-a {
+  from {
+    opacity: 0.88;
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(145%, 42%, 0) scale(1.08);
+  }
+}
+
+@keyframes molecule-travel-b {
+  from {
+    opacity: 0.88;
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(116%, -58%, 0) scale(1.08);
+  }
+}
+
+/* Small "live" status dot pulse — landing page badge */
+.av-ring-dot {
+  animation: av-ring-dot 1.6s ease-in-out infinite;
+}
+@keyframes av-ring-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* OpenDyslexic — used by the Dyslexia track. Self-served via the open-licensed
+   @fontsource CDN (OpenDyslexic is free/open). Applied through the .font-dyslexic class so
+   only that track opts in; the rest of the app keeps its normal type. */
+@font-face {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@5.0.0/files/opendyslexic-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@5.0.0/files/opendyslexic-latin-700-normal.woff2") format("woff2");
+}
+/* Excludes SVG content (:not(svg *)) — the hand-drawn whiteboard diagrams have their own
+   carefully-sized/positioned text baked into each scene; overriding their font broke
+   layout (text overflowing its shapes) without helping readability, since those labels are
+   short callouts, not body text the student needs to decode. */
+.font-dyslexic,
+.font-dyslexic *:not(svg *) {
+  font-family: "OpenDyslexic", "Comic Sans MS", var(--font-body), sans-serif !important;
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+  line-height: 1.7;
+}
+
+/* Dyslexia track: the dense->chunk text-splitting reveal */
+.chunk-line-in {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: chunk-line-in 0.5s ease-out forwards;
+}
+@keyframes chunk-line-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dysgraphia track: jittery "live soundwave" bars while the student is speaking */
+.soundwave-bar {
+  animation-name: soundwave-jitter;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes soundwave-jitter {
+  from { transform: scaleY(0.65); opacity: 0.75; }
+  to { transform: scaleY(1.15); opacity: 1; }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ============================================================================
+   HOLOGRAPHIC HUD DESIGN SYSTEM
+   Deep navy-black canvas, cyan-white emissive glow, corner-bracket chrome.
+   Replaces the dark-luxury system above (kept temporarily for migration safety).
+   ============================================================================ */
+:root {
+  /* Canvas */
+  --hud-bg: #06080d;
+  --hud-bg-2: #0a0f1a;
+  --hud-surface: #0d1420;
+  --hud-surface-2: #121b2c;
+  --hud-line: rgba(120, 200, 255, 0.14);
+  --hud-line-strong: rgba(120, 200, 255, 0.28);
+  --hud-grid: rgba(120, 200, 255, 0.05);
+
+  /* Text */
+  --hud-text: #eaf6ff;
+  --hud-text-dim: rgba(234, 246, 255, 0.62);
+  --hud-text-faint: rgba(234, 246, 255, 0.38);
+
+  /* Primary signature accent: cyan-white glow */
+  --hud-cyan: #5eead4;
+  --hud-cyan-bright: #aef5ec;
+  --hud-cyan-deep: #1f9e92;
+  --hud-cyan-glow: rgba(94, 234, 212, 0.55);
+  --hud-cyan-glow-soft: rgba(94, 234, 212, 0.22);
+
+  /* Status/utility — semantic, not hue-locked to cyan */
+  --hud-warn: #fbbf24;
+  --hud-danger: #fb7185;
+
+  /* Per-mode emissive accents — same hue family as the original mode colors,
+     redefined as base + bright + glow triples for the holographic treatment. */
+  --accent-standard: #5eead4;
+  --accent-standard-bright: #aef5ec;
+  --accent-standard-glow: rgba(94, 234, 212, 0.5);
+
+  --accent-blind: #818cf8;
+  --accent-blind-bright: #c7d2fe;
+  --accent-blind-glow: rgba(129, 140, 248, 0.5);
+
+  --accent-adhd: #f472b6;
+  --accent-adhd-bright: #fbcfe8;
+  --accent-adhd-glow: rgba(244, 114, 182, 0.5);
+
+  --accent-autism: #34d399;
+  --accent-autism-bright: #a7f3d0;
+  --accent-autism-glow: rgba(52, 211, 153, 0.5);
+
+  --accent-dyslexia: #fb923c;
+  --accent-dyslexia-bright: #fed7aa;
+  --accent-dyslexia-glow: rgba(251, 146, 60, 0.5);
+
+  --accent-dysgraphia: #c084fc;
+  --accent-dysgraphia-bright: #e9d5ff;
+  --accent-dysgraphia-glow: rgba(192, 132, 252, 0.5);
+
+  --accent-deaf: #34d399;
+  --accent-deaf-bright: #a7f3d0;
+  --accent-deaf-glow: rgba(52, 211, 153, 0.5);
+}
+
+/* Baseline OS-level respect for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .hud-scan::after,
+  .hud-shimmer,
+  .hud-halo,
+  .hud-float,
+  .hud-materialize {
+    animation: none !important;
+  }
+  .hud-materialize {
+    opacity: 1;
+    clip-path: none;
+  }
+}
+
+/* The HUD page canvas: faint instrument-panel grid instead of a warm radial glow. */
+.hud-canvas {
+  background-color: var(--hud-bg);
+  color: var(--hud-text);
+  position: relative;
+}
+.hud-canvas::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, var(--hud-grid) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, var(--hud-grid) 0 1px, transparent 1px 48px),
+    radial-gradient(60% 50% at 50% -8%, rgba(94, 234, 212, 0.08), transparent 70%);
+  z-index: 0;
+}
+/* Much subtler grain than the luxury version — a pure-digital surface still wants a touch
+   of texture, but flat-vector-flat reads cheap; keep it nearly imperceptible. */
+.hud-grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.02;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Genuine emissive text glow — replaces the gradient-clip-text gold treatment. */
+.hud-text-glow {
+  color: var(--hud-cyan-bright);
+  text-shadow: 0 0 12px var(--hud-cyan-glow), 0 0 2px var(--hud-cyan-glow);
+}
+
+/* Glass instrument panel. Sharper corners than lux's soft luxury card — reads as
+   hardware, not upholstery. Corner brackets and scan-line are separate, composable
+   pieces (rendered by HudKit's HudCorners / the .hud-scan class) so panels can opt in
+   or out of motion independently. */
+.hud-panel {
+  background: linear-gradient(180deg, rgba(94, 234, 212, 0.04), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--hud-line);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(16px);
+}
+.hud-panel-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.hud-panel-hover:hover {
+  border-color: var(--hud-line-strong);
+  box-shadow: 0 0 40px -8px var(--hud-cyan-glow-soft);
+}
+
+/* Corner-bracket reticle chrome — the HUD's signature motif. */
+.hud-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--hud-cyan);
+  opacity: 0.65;
+  pointer-events: none;
+}
+.hud-corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.hud-corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.hud-corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.hud-corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+/* Animated scan-line sweep — opt-in per panel via the .hud-scan class, NEVER applied
+   globally. Low alpha, slow duration: an ambient signal, not a flashing distraction. */
+.hud-scan {
+  position: relative;
+  overflow: hidden;
+}
+.hud-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, var(--hud-cyan-glow-soft) 48%, transparent);
+  transform: translateY(-100%);
+  animation: hud-scan-sweep 5s linear infinite;
+  pointer-events: none;
+}
+@keyframes hud-scan-sweep {
+  to { transform: translateY(100%); }
+}
+
+/* Materialize-in: a digital flicker + clip-path wipe, replacing lux-reveal's smooth fade.
+   steps(1, end) keeps the flicker feeling discrete/digital rather than eased. */
+.hud-materialize {
+  opacity: 0;
+  animation: hud-materialize 0.6s steps(1, end) forwards;
+}
+@keyframes hud-materialize {
+  0% { opacity: 0; clip-path: inset(0 0 100% 0); }
+  8% { opacity: 0.4; }
+  16% { opacity: 0.1; }
+  24% { opacity: 1; clip-path: inset(0 0 60% 0); }
+  100% { opacity: 1; clip-path: inset(0 0 0% 0); }
+}
+
+/* Primary HUD button: glow-on-hover instead of lift-on-hover. */
+.hud-btn-primary {
+  background: linear-gradient(180deg, var(--hud-cyan-bright), var(--hud-cyan));
+  color: #03110f;
+  border: 1px solid var(--hud-cyan-bright);
+  box-shadow: 0 0 24px var(--hud-cyan-glow-soft), 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.25s ease, filter 0.25s ease;
+}
+.hud-btn-primary:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 40px var(--hud-cyan-glow), 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+}
+.hud-btn-ghost {
+  border: 1px solid var(--hud-line-strong);
+  color: var(--hud-text-dim);
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+.hud-btn-ghost:hover {
+  border-color: var(--hud-cyan);
+  color: var(--hud-text);
+  background: rgba(94, 234, 212, 0.06);
+}
+
+/* Monospace data-label treatment — the single highest-impact typographic change for
+   the "instrument panel" feel; every eyebrow/tagline across the app uses this class. */
+/* Deliberately does NOT set color: a Tailwind text-color utility placed on the same element
+   (e.g. text-accent-autism) has identical specificity to a plain class selector, so whichever
+   rule loads later in the stylesheet would silently win regardless of which one the caller
+   "meant." Color must always come from an explicit utility/style at the call site — bare
+   `hud-eyebrow` usages default via the `text-[var(--hud-cyan)]` applied alongside it. */
+.hud-eyebrow {
+  font-family: var(--font-hud-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* Cyan-tinted sweep highlight — replaces .lux-shimmer for CTA banners. */
+.hud-shimmer {
+  background: linear-gradient(110deg, transparent 30%, var(--hud-cyan-glow-soft) 50%, transparent 70%);
+  background-size: 220% 100%;
+  animation: hud-shimmer 6s ease-in-out infinite;
+}
+@keyframes hud-shimmer {
+  0% { background-position: 180% 0; }
+  100% { background-position: -80% 0; }
+}
+/* Gentle bobbing — replaces .lux-float for decorative glyphs/ornaments. */
+.hud-float {
+  animation: hud-float 7s ease-in-out infinite alternate;
+}
+@keyframes hud-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+/* Slow conic rotation — replaces .lux-halo for hero/seal ornaments. */
+.hud-halo {
+  animation: hud-halo 24s linear infinite;
+}
+@keyframes hud-halo {
+  to { transform: rotate(360deg); }
 }

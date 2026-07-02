@@ -35,6 +35,12 @@ export interface RenderedBeat {
   visualDescription?: string;
   /** Raw drawing instructions for lenses that render an actual whiteboard (Default, Hearing). Opaque to lenses that don't draw. */
   drawCommands?: unknown;
+  /** An animated scene to play for this beat (the motion-visual layer). Opaque to non-visual lenses. */
+  scene?: unknown;
+  /** Name of a bespoke hand-built animation to render for this beat (e.g. "rag-flow"). */
+  customScene?: string;
+  /** A live-sketch draw script (teacher-draws-it-live layer). Opaque to non-visual lenses. */
+  drawScript?: unknown;
   sonicCues?: SonicCue[];
   /** Suggested pacing multiplier (1 = normal). ADHD lens and Confusion Radar both modulate this (README 4.3). */
   pacingMultiplier?: number;

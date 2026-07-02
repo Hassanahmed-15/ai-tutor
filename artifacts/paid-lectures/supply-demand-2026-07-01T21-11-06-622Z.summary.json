@@ -1,0 +1,64 @@
+{
+  "topic": "supply and demand",
+  "costUsd": 0.11593750000000003,
+  "elapsedSec": 79,
+  "beatCount": 5,
+  "beats": [
+    {
+      "i": 0,
+      "id": "0",
+      "title": "Introduction to Supply and Demand",
+      "slideKind": "intro",
+      "type": "blackboard",
+      "counts": {
+        "image": 1,
+        "label": 1,
+        "note": 1
+      }
+    },
+    {
+      "i": 1,
+      "id": "1",
+      "title": "Understanding Demand",
+      "slideKind": "definition",
+      "type": "blackboard",
+      "counts": {
+        "label": 8,
+        "arrow": 8,
+        "note": 6
+      }
+    },
+    {
+      "i": 2,
+      "id": "2",
+      "title": "Understanding Supply",
+      "slideKind": "definition",
+      "type": "blackboard",
+      "counts": {
+        "label": 8,
+        "arrow": 8,
+        "note": 6
+      }
+    },
+    {
+      "i": 3,
+      "id": "7",
+      "title": "Checkpoint: Supply and Demand",
+      "slideKind": "checkpoint",
+      "type": "checkpoint",
+      "counts": {}
+    },
+    {
+      "i": 4,
+      "id": "9",
+      "title": "Recap of Supply and Demand",
+      "slideKind": "recap",
+      "type": "blackboard",
+      "counts": {
+        "label": 8,
+        "arrow": 8,
+        "note": 5
+      }
+    }
+  ]
+}

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:fixture": "LECTURE_FIXTURE=${LECTURE_FIXTURE:-/tmp/lecture_v4.json} NEXT_PUBLIC_USE_FIXTURE=1 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -13,7 +14,9 @@
     "@aria/lesson-graph": "*",
     "@aria/modality-lenses": "*",
     "@aria/tutor-reasoning": "*",
+    "@mediapipe/tasks-vision": "^0.10.35",
     "next": "16.2.9",
+    "openai": "^4.77.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "server-only": "^0.0.1"
