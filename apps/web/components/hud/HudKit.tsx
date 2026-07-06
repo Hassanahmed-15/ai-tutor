@@ -59,7 +59,17 @@ export function HudPanel({
   return (
     <div className={`hud-panel relative ${hover ? "hud-panel-hover" : ""} ${scan ? "hud-scan" : ""} ${className}`}>
       {corners && <HudCorners accent={accent} />}
-      <div className="relative">{children}</div>
+      {/* display:contents removes this wrapper from layout entirely — children become direct
+          flex/grid items of the outer div above instead of being boxed inside an extra block
+          element. Without this, any caller passing multi-child flex layout on the outer div
+          (flex-row with gap/justify-between, or a flex-col that needs an inner child to
+          shrink/scroll via flex-1 + min-h-0) silently didn't work: the outer div only ever had
+          ONE actual flex item (this wrapper), so gap/justify-between/flex-1/min-h-0 were all
+          no-ops, and overflowing content in a scrollable child got clipped (via the outer's
+          overflow-hidden) instead of scrolling — the "no scrollbar" bug in the lesson chat
+          panel. The outer div already provides its own `relative` positioning context, so
+          absolutely-positioned children losing this wrapper's own `position:relative` is fine. */}
+      <div style={{ display: "contents" }}>{children}</div>
     </div>
   );
 }

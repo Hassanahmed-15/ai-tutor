@@ -279,6 +279,14 @@ Optional tuning knobs (all have defaults if unset): `OPENAI_LECTURE_MODEL`, `OPE
 `OPENAI_IMAGE_MODEL`, `OPENAI_IMAGE_SIZE`, `OPENAI_IMAGE_QUALITY`, `OPENAI_LECTURE_ATTEMPTS`,
 `OPENAI_LECTURE_MAX_TOKENS`, `OPENAI_LECTURE_DEEPEN_ATTEMPTS`.
 
+No extra credentials needed for the mid-lecture "explain this further" question flow's images:
+`app/api/explain/route.ts` (via `lib/imageSearch.ts`) looks up a real photo for the question
+through an unofficial DuckDuckGo image-search scrape — no API key, no signup. If DuckDuckGo
+changes that internal endpoint and the scrape breaks, or no qualifying result comes back, it
+falls back to the existing AI image generation automatically — no crash either way. Optional
+`IMAGE_SEARCH_KEYWORD_MODEL` overrides the model used to turn the question into a search query
+(defaults to `gpt-4o-mini`).
+
 ---
 
 ## 10. Cookbook — "I want to change X"

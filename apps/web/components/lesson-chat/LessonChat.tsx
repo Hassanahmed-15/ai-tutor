@@ -22,10 +22,14 @@ export interface ChatTurn {
   text: string;
 }
 
+/** Which pipeline produced the explanation board's image — surfaced in the UI so it's clear
+ *  whether a real scraped photo or an AI-generated illustration is being shown. */
+export type ImageSource = "web" | "ai" | "none";
+
 export interface LessonChatState {
   chat: ChatTurn[];
   explaining: boolean;
-  explainBoard: { script: string; draw?: DrawScript } | null;
+  explainBoard: { script: string; draw?: DrawScript; imageSource: ImageSource } | null;
   drawProgress: number;
   listening: boolean;
   interim: string;
@@ -50,7 +54,7 @@ export function useLessonChat(opts: {
 }): LessonChatState {
   const [chat, setChat] = useState<ChatTurn[]>([]);
   const [explaining, setExplaining] = useState(false);
-  const [explainBoard, setExplainBoard] = useState<{ script: string; draw?: DrawScript } | null>(null);
+  const [explainBoard, setExplainBoard] = useState<{ script: string; draw?: DrawScript; imageSource: ImageSource } | null>(null);
   const [drawProgress, setDrawProgress] = useState(0);
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
@@ -81,7 +85,8 @@ export function useLessonChat(opts: {
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
         setChat((c) => [...c, { role: "aria", text: data.script }]);
-        setExplainBoard({ script: data.script, draw: data.draw });
+        const imageSource: ImageSource = data.imageSource === "web" || data.imageSource === "ai" ? data.imageSource : "none";
+        setExplainBoard({ script: data.script, draw: data.draw, imageSource });
         setDrawProgress(0);
         const handle = playNarration(data.script, {
           onStart: () => {},
@@ -157,13 +162,31 @@ export function useLessonChat(opts: {
 
 /* ───────────────────────── UI pieces ───────────────────────── */
 
+/** Small badge disclosing whether the board's image came from a real web photo scrape or AI
+ *  image generation — shown every time so it's never ambiguous which pipeline produced it. */
+function ImageSourceBadge({ source }: { source: ImageSource }) {
+  if (source === "none") return null;
+  const isWeb = source === "web";
+  return (
+    <span
+      className={`pointer-events-none absolute right-3 top-3 z-30 rounded-full border px-3 py-1.5 text-xs font-bold shadow-lg backdrop-blur-md sm:right-4 sm:top-4 ${
+        isWeb
+          ? "border-emerald-400/30 bg-emerald-500/15 text-emerald-200"
+          : "border-violet-400/30 bg-violet-500/15 text-violet-200"
+      }`}
+    >
+      {isWeb ? "🔎 Real photo (web search)" : "✨ AI-generated image"}
+    </span>
+  );
+}
+
 /** The fresh explanation board overlay (marker draws the answer to the question). */
 export function ExplainOverlay({
   board,
   progress,
   onClose,
 }: {
-  board: { script: string; draw?: DrawScript };
+  board: { script: string; draw?: DrawScript; imageSource: ImageSource };
   progress: number;
   onClose: () => void;
 }) {
@@ -175,7 +198,8 @@ export function ExplainOverlay({
           Got it — back to lecture
         </button>
       </div>
-      <div className="min-h-0 flex-1 overflow-y-auto" aria-live="polite">
+      <div className="relative min-h-0 flex-1 overflow-y-auto hud-scroll" aria-live="polite">
+        {board.draw && <ImageSourceBadge source={board.imageSource} />}
         {board.draw ? (
           <LiveSketch key={board.script.slice(0, 24)} script={board.draw} progress={progress} />
         ) : (
@@ -222,7 +246,7 @@ export function ChatPanel({
           </p>
         </div>
       </div>
-      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
+      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4 hud-scroll">
         {chat.length === 0 ? (
           <div className="grid h-full place-items-center px-2 text-center">
             <div>
