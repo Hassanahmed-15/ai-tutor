@@ -43,6 +43,12 @@ interface NarrationCallbacks {
 }
 
 let voicesReadyPromise: Promise<SpeechSynthesisVoice[]> | null = null;
+const activeNarrationCancelers = new Set<() => void>();
+
+export function cancelActiveNarrations() {
+  for (const cancel of [...activeNarrationCancelers]) cancel();
+  activeNarrationCancelers.clear();
+}
 
 function waitForVoices(): Promise<SpeechSynthesisVoice[]> {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return Promise.resolve([]);
@@ -117,6 +123,7 @@ export function splitNarrationSentences(text: string): string[] {
 }
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {
+  cancelActiveNarrations();
   const rate = callbacks.rate ?? 1;
   const useCloudTts = callbacks.cloudTts ?? CLOUD_TTS_DEFAULT;
   let cancelled = false;
@@ -146,12 +153,29 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       );
     }
   };
+  const cancel = () => {
+    if (cancelled) return;
+    cancelled = true;
+    activeNarrationCancelers.delete(cancel);
+    if (audio) {
+      audio.pause();
+      audio = null;
+    }
+    void audioContext?.close();
+    audioContext = null;
+    clearCues();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+  activeNarrationCancelers.add(cancel);
 
   const browserFallback = async () => {
     if (cancelled) return;
 
     const sentences = splitNarrationSentences(text);
     if (sentences.length === 0) {
+      activeNarrationCancelers.delete(cancel);
       callbacks.onEnd();
       return;
     }
@@ -175,6 +199,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     const cueNext = () => {
       if (cancelled) return;
       if (cursor >= sentences.length) {
+        activeNarrationCancelers.delete(cancel);
         callbacks.onEnd();
         return;
       }
@@ -258,6 +283,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         // If Web Audio routing fails, the plain media element still plays at normal volume.
       }
       audio.onended = () => {
+        activeNarrationCancelers.delete(cancel);
         clearCues();
         URL.revokeObjectURL(url);
         void audioContext?.close();
@@ -265,6 +291,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         callbacks.onEnd();
       };
       audio.onerror = () => {
+        activeNarrationCancelers.delete(cancel);
         clearCues();
         URL.revokeObjectURL(url);
         void audioContext?.close();
@@ -277,6 +304,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     } catch (err) {
       // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
       if (err instanceof DOMException && err.name === "NotAllowedError") {
+        activeNarrationCancelers.delete(cancel);
         callbacks.onBlocked();
         return;
       }
@@ -285,18 +313,6 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   })();
 
   return {
-    cancel: () => {
-      cancelled = true;
-      if (audio) {
-        audio.pause();
-        audio = null;
-      }
-      void audioContext?.close();
-      audioContext = null;
-      clearCues();
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
-    },
+    cancel,
   };
 }

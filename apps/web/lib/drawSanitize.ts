@@ -399,7 +399,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
     && dedupedOps.some((op) => op.kind === "label")
     && dedupedOps.some((op) => op.kind === "arrow");
   const finalOps: DrawOp[] = hasTopHeading || !looksLikeBlackboard ? dedupedOps : [
-    { kind: "label", text: shorten(str(o.caption, context?.title ?? ""), 22), x: 50, y: 8, size: "md" as const, color: COLOR_MAP.amber, at: 0.03 },
+    { kind: "label", text: boardTitle(str(o.caption, context?.title ?? "")), x: 50, y: 8, size: "md" as const, color: COLOR_MAP.amber, at: 0.03 },
     { kind: "arrow", x1: 20, y1: 14, x2: 80, y2: 14, color: COLOR_MAP.amber, at: 0.06 },
     ...dedupedOps,
   ];
@@ -585,6 +585,35 @@ function isWrittenBlackboard(ops: DrawOp[]): boolean {
   return labels >= 1 && notes >= 3;
 }
 
+function blackboardTextIsClean(ops: DrawOp[]): boolean {
+  const texts = ops
+    .filter((op): op is Extract<DrawOp, { kind: "label" | "note" | "callout" }> =>
+      op.kind === "label" || op.kind === "note" || op.kind === "callout"
+    )
+    .map((op) => op.text.trim())
+    .filter((text) => !isTinyDiagramToken(text))
+    .filter(Boolean);
+
+  if (texts.length < 5) return false;
+
+  const seen = new Set<string>();
+  let duplicateCount = 0;
+  let badCount = 0;
+  for (const text of texts) {
+    const key = text.toLowerCase().replace(/^[•·\-\s]+/, "").replace(/\s+/g, " ");
+    if (seen.has(key)) duplicateCount++;
+    seen.add(key);
+    if (looksLikeFragment(text)) badCount++;
+    if (text.length > 78) badCount++;
+  }
+
+  return badCount === 0 && duplicateCount <= 1;
+}
+
+function isTinyDiagramToken(text: string): boolean {
+  return /^(P|Q|S|D|P\*|Q\*|D′|S′|[?•▲]|[↑↓↗↘←→⇄])$/.test(text.trim());
+}
+
 function ensureLiveMotion(ops: DrawOp[], context?: DrawRepairContext): DrawOp[] {
   if (ops.length === 0) return ops;
   // A written blackboard is a deliberate clean-board treatment — leave it exactly as authored.
@@ -639,6 +668,9 @@ function fallbackMotions(scene: SceneOp, context?: DrawRepairContext): MotionOp[
   const first = items[0] ?? "cause";
   const second = items[1] ?? "response";
   const third = items[2] ?? "outcome";
+  if (scene.scene === "graph" || isPhotosynthesisText(contextText(context))) {
+    return [];
+  }
   if (scene.scene === "compare") {
     // 3 distinct motions: left side flows in (→), right side flows in (←), then the
     // meeting point pulses. Each differs in kind or direction — no wasted repeat.
@@ -678,7 +710,8 @@ function fallbackMotions(scene: SceneOp, context?: DrawRepairContext): MotionOp[
 
 function pickSceneKind(context?: DrawRepairContext): SceneOp["scene"] {
   const text = contextText(context);
-  if (/\b(equilibrium|supply and demand|demand and supply|supply curve|demand curve|market price|price floor|price ceiling)\b/i.test(text)) return "graph";
+  if (/\b(equilibrium|supply|demand|supply curve|demand curve|market price|price floor|price ceiling)\b/i.test(text)) return "graph";
+  if (isPhotosynthesisText(text)) return "process";
   if (context?.compareLeft || context?.compareRight || /\b(vs|versus|compare|contrast|opposite|difference|supply and demand|demand and supply)\b/i.test(text)) return "compare";
   if (/\b(cycle|loop|repeats|feedback|orbit|circulation|recycles)\b/i.test(text)) return "cycle";
   if (/\b(timeline|history|over time|first|then|next|stages?|sequence|phase|evolution|before|after)\b/i.test(text)) return "timeline";
@@ -768,6 +801,10 @@ function colorForScene(scene: SceneOp["scene"], context?: DrawRepairContext) {
   return COLOR_MAP.green;
 }
 
+function isPhotosynthesisText(text: string): boolean {
+  return /\b(photosynthesis|chlorophyll|chloroplast|glucose|sunlight|light absorption|absorbs? light|red and blue|wavelength|thylakoid|light reactions?)\b/i.test(text);
+}
+
 function ensureImageRelationships(ops: DrawOp[], context?: DrawRepairContext): DrawOp[] {
   if (!ops.some((op) => op.kind === "image") || hasCallout(ops)) return ops;
   return [...ops, ...fallbackCallouts(context)];
@@ -801,8 +838,8 @@ type ImageTeachingProfile = {
   callouts: Extract<DrawOp, { kind: "callout" }>[];
 };
 
-function makeImageCalloutBoard(title: string, script: string, durationMs = 26000): DrawScript {
-  const profile = imageTeachingProfile(title, script);
+function makeImageCalloutBoard(title: string, script: string, durationMs = 26000, technical = false): DrawScript {
+  const profile = technical ? technicalImageTeachingProfile(title, script) : imageTeachingProfile(title, script);
   return {
     caption: title,
     durationMs,
@@ -811,6 +848,119 @@ function makeImageCalloutBoard(title: string, script: string, durationMs = 26000
       ...profile.callouts,
     ],
   };
+}
+
+function technicalImageTeachingProfile(title: string, script: string): ImageTeachingProfile {
+  const text = `${title} ${script}`.toLowerCase();
+  const C = COLOR_MAP;
+
+  if (isPhotosynthesisText(text)) {
+    return {
+      prompt: `A wide photorealistic technical biology demonstration for "${title}": a leaf cross-section slide under a microscope, a desk lamp shining onto a fresh green leaf, clear cuvettes of chlorophyll extract, and tiny oxygen bubbles rising from an aquatic plant in a glass beaker. Clean lab bench, no readable text, labels, numbers, logos, screens, or signage.`,
+      callouts: [
+        { kind: "callout", text: "leaf sample", x: 24, y: 56, labelX: 18, labelY: 26, color: C.green, at: 0.18 },
+        { kind: "callout", text: "light source", x: 45, y: 28, labelX: 48, labelY: 16, color: C.amber, at: 0.32 },
+        { kind: "callout", text: "chlorophyll extract", x: 62, y: 58, labelX: 78, labelY: 34, color: C.blue, at: 0.48 },
+        { kind: "callout", text: "oxygen bubbles", x: 78, y: 70, labelX: 70, labelY: 84, color: C.violet, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\bdemand|buyer|consumer|choice|substitute|complement|preference\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic consumer-choice study scene for "${title}": an overhead view of a shopper basket beside two similar product options, a hand comparing one item against another, a paired complementary item nearby, and several identical units left on a shelf. No readable text, brand names, labels, price tags, numbers, logos, screens, or signage.`,
+      callouts: [
+        { kind: "callout", text: "chosen item", x: 36, y: 56, labelX: 20, labelY: 28, color: C.green, at: 0.18 },
+        { kind: "callout", text: "substitute nearby", x: 66, y: 46, labelX: 78, labelY: 24, color: C.rose, at: 0.32 },
+        { kind: "callout", text: "paired good", x: 54, y: 75, labelX: 36, labelY: 84, color: C.blue, at: 0.48 },
+        { kind: "callout", text: "remaining stock", x: 82, y: 62, labelX: 80, labelY: 78, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\bsupply|producer|seller|cost|input|output|factory|production|inventory\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic technical operations scene for "${title}": a small food production line with an ingredient scale, trays moving out of an oven, cooling racks filling up, stacked packing crates, and a worker checking available inventory by hand. No readable text, labels, price tags, numbers, logos, screens, or signage.`,
+      callouts: [
+        { kind: "callout", text: "input materials", x: 18, y: 62, labelX: 18, labelY: 28, color: C.rose, at: 0.18 },
+        { kind: "callout", text: "oven capacity", x: 44, y: 38, labelX: 46, labelY: 18, color: C.amber, at: 0.32 },
+        { kind: "callout", text: "finished output", x: 66, y: 66, labelX: 78, labelY: 38, color: C.green, at: 0.48 },
+        { kind: "callout", text: "packed inventory", x: 83, y: 58, labelX: 78, labelY: 84, color: C.blue, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(force|motion|acceleration|velocity|gravity|energy|friction|wave|electric|magnet|newton)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic technical physics setup for "${title}": a dynamics cart on a metal track, pulley string with hanging masses, motion sensor, spring scale, and a hand releasing the cart. No readable text, labels, numbers, logos, screens, or signage.`,
+      callouts: [
+        { kind: "callout", text: "cart mass", x: 34, y: 58, labelX: 20, labelY: 28, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "pulling weight", x: 68, y: 45, labelX: 80, labelY: 24, color: C.rose, at: 0.32 },
+        { kind: "callout", text: "track direction", x: 52, y: 70, labelX: 42, labelY: 84, color: C.green, at: 0.48 },
+        { kind: "callout", text: "sensor view", x: 82, y: 60, labelX: 78, labelY: 82, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
+  if (/\b(chemistry|reaction|reactant|product|molecule|atom|bond|acid|base|solution|catalyst)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic technical chemistry setup for "${title}": clear reaction vessels, dropper adding liquid, molecular model pieces arranged beside the glassware, a safe heating plate, and two visibly different before-and-after samples. No readable text, labels, numbers, logos, screens, or signage.`,
+      callouts: [
+        { kind: "callout", text: "reactant vessel", x: 28, y: 56, labelX: 18, labelY: 26, color: C.blue, at: 0.18 },
+        { kind: "callout", text: "energy source", x: 52, y: 42, labelX: 52, labelY: 18, color: C.amber, at: 0.32 },
+        { kind: "callout", text: "bond model", x: 66, y: 64, labelX: 80, labelY: 42, color: C.violet, at: 0.48 },
+        { kind: "callout", text: "product sample", x: 82, y: 72, labelX: 70, labelY: 84, color: C.green, at: 0.64 },
+      ],
+    };
+  }
+
+  return imageTeachingProfile(title, script);
+}
+
+function makeAnimationBoard(title: string, script: string, durationMs = 26000): DrawScript {
+  const context: DrawRepairContext = {
+    title,
+    script,
+    slideKind: "intro",
+    index: 0,
+  };
+  const scene = fallbackScene(context);
+  if (isPhotosynthesisText(`${title} ${script}`)) {
+    return {
+      caption: title,
+      durationMs,
+      ops: [{
+        kind: "scene",
+        scene: "process",
+        title: boardTitle(title),
+        items: ["photons", "chlorophyll", "electron jump", "ATP/NADPH", "glucose"],
+        color: COLOR_MAP.amber,
+        at: 0.12,
+        endAt: 0.94,
+      }],
+    };
+  }
+  return {
+    caption: title,
+    durationMs,
+    ops: [scene, ...fallbackMotions(scene, context)],
+  };
+}
+
+function animationNeedsRepair(beat: Beat): boolean {
+  if (!beat.draw) return true;
+  const text = `${beat.title} ${beat.script}`.toLowerCase();
+  const scene = beat.draw.ops.find((op): op is SceneOp => op.kind === "scene");
+  if (!scene) return true;
+  if (/\bsupply|demand|equilibrium|market price|supply curve|demand curve\b/.test(text)) {
+    return scene.scene !== "graph";
+  }
+  if (isPhotosynthesisText(text)) {
+    return scene.scene !== "process";
+  }
+  const textLabels = beat.draw.ops.filter((op) => (op.kind === "label" || op.kind === "note" || op.kind === "callout") && op.text.trim().length > 0).length;
+  const motionLabels = beat.draw.ops.filter((op) => op.kind === "motion" && op.text).length;
+  return textLabels > 0 || motionLabels > 2;
 }
 
 function imageBeatNeedsConcreteRepair(beat: Beat): boolean {
@@ -874,6 +1024,18 @@ function imageTeachingProfile(title: string, script: string): ImageTeachingProfi
     };
   }
 
+  if (/\b(cell|dna|gene|protein|enzyme|photosynthesis|respiration|ecosystem|organism|biology|mitosis|chlorophyll|chloroplast|glucose|light absorption|wavelength|thylakoid)\b/.test(text)) {
+    return {
+      prompt: `A wide photorealistic biology learning scene for a lecture about "${title}": a lab bench with a microscope, plant samples, water droplets on leaves, specimen trays, and a student observing carefully. No readable text, labels, numbers, logos, or signage.`,
+      callouts: [
+        { kind: "callout", text: "structure", x: 34, y: 48, labelX: 20, labelY: 24, color: C.green, at: 0.18 },
+        { kind: "callout", text: "input", x: 58, y: 35, labelX: 68, labelY: 18, color: C.blue, at: 0.34 },
+        { kind: "callout", text: "process", x: 54, y: 63, labelX: 76, labelY: 52, color: C.violet, at: 0.5 },
+        { kind: "callout", text: "output", x: 74, y: 74, labelX: 62, labelY: 84, color: C.amber, at: 0.64 },
+      ],
+    };
+  }
+
   if (/\b(force|motion|acceleration|velocity|gravity|energy|friction|wave|electric|magnet|newton)\b/.test(text)) {
     return {
       prompt: `A wide photorealistic physics lab demonstration for a lecture about "${title}": a small cart on a ramp, hanging weights, motion sensors, measuring tools, and a student hand preparing the setup. No readable text, labels, numbers, logos, or signage.`,
@@ -882,18 +1044,6 @@ function imageTeachingProfile(title: string, script: string): ImageTeachingProfi
         { kind: "callout", text: "applied force", x: 42, y: 42, labelX: 42, labelY: 18, color: C.rose, at: 0.34 },
         { kind: "callout", text: "motion response", x: 66, y: 57, labelX: 76, labelY: 28, color: C.green, at: 0.5 },
         { kind: "callout", text: "measured result", x: 80, y: 70, labelX: 76, labelY: 84, color: C.amber, at: 0.64 },
-      ],
-    };
-  }
-
-  if (/\b(cell|dna|gene|protein|enzyme|photosynthesis|respiration|ecosystem|organism|biology|mitosis)\b/.test(text)) {
-    return {
-      prompt: `A wide photorealistic biology learning scene for a lecture about "${title}": a lab bench with a microscope, plant samples, water droplets on leaves, specimen trays, and a student observing carefully. No readable text, labels, numbers, logos, or signage.`,
-      callouts: [
-        { kind: "callout", text: "structure", x: 34, y: 48, labelX: 20, labelY: 24, color: C.green, at: 0.18 },
-        { kind: "callout", text: "input", x: 58, y: 35, labelX: 68, labelY: 18, color: C.blue, at: 0.34 },
-        { kind: "callout", text: "process", x: 54, y: 63, labelX: 76, labelY: 52, color: C.violet, at: 0.5 },
-        { kind: "callout", text: "output", x: 74, y: 74, labelX: 62, labelY: 84, color: C.amber, at: 0.64 },
       ],
     };
   }
@@ -1023,9 +1173,9 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     throw new Error(`Model only returned ${beats.length} usable beats — too few for a real lecture. Try again.`);
   }
 
-  // BLACKBOARD GUARANTEE: the first two teaching beats after the intro are always clean
-  // written boards. We author them from the beat's own title/script so the board is reliable
-  // and dense even when the model drifts into a generic image or messy scene.
+  // BLACKBOARD GUARANTEE: the first teaching beat after the intro is a clean written board.
+  // Later beats are balanced by the rhythm pass below so the lecture does not become a wall
+  // of chalkboards.
   function beatIsBlackboard(beat: Beat): boolean {
     if (!beat.draw) return false;
     return isWrittenBlackboard(beat.draw.ops);
@@ -1037,12 +1187,21 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     const hasAnim = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
     return hasImage && hasCallouts && !hasAnim;
   }
+  function beatIsAnimationLed(beat: Beat): boolean {
+    if (!beat.draw) return false;
+    const hasImage = beat.draw.ops.some((op) => op.kind === "image");
+    const hasCallouts = beat.draw.ops.some((op) => op.kind === "callout");
+    const hasSceneOp = beat.draw.ops.some((op) => op.kind === "scene");
+    const motionCount = beat.draw.ops.filter((op) => op.kind === "motion" || op.kind === "morph").length;
+    return !hasImage && !hasCallouts && hasSceneOp && motionCount >= 1 && motionCount <= 3;
+  }
 
   // ── BOARD-QUALITY GATES ──────────────────────────────────────────────────
   // "Trust the model more": we only overwrite a model-authored board with the sanitizer's
   // makeWrittenBoard() fallback when the model's own board is genuinely bad OR when a
   // hardcoded topicRows template exists (economics/physics/bio) that is strictly better.
-  const modelBoardIsGoodBlackboard = (beat: Beat): boolean => beatIsBlackboard(beat);
+  const modelBoardIsGoodBlackboard = (beat: Beat): boolean =>
+    !!beat.draw && beatIsBlackboard(beat) && blackboardTextIsClean(beat.draw.ops);
   const modelBoardIsGoodImage = (beat: Beat): boolean => {
     if (!beat.draw) return false;
     const hasImage = beat.draw.ops.some((op) => op.kind === "image");
@@ -1097,7 +1256,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     }
   }
 
-  for (const idx of [1, 2]) {
+  for (const idx of [1]) {
     const beat = beats[idx];
     if (!beat || beat.slideKind === "checkpoint") continue;
     if (modelBoardIsGoodBlackboard(beat)) continue; // already the ideal opening board
@@ -1106,6 +1265,16 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     // the model's scene and the weak keyword fallback.
     if (modelBoardIsGood(beat) && !hasTemplateRows(beat.title, beat.script)) continue;
     beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+  }
+
+  // If a model-authored blackboard survived structurally but contains chopped phrases,
+  // duplicate rows, or overlong notes, rebuild it from the beat script. This is deliberately
+  // deterministic: the model teaches in `script`; our code writes the chalkboard cleanly.
+  for (const beat of beats) {
+    if (!beat.draw || beat.slideKind === "checkpoint") continue;
+    if (beatIsBlackboard(beat) && !blackboardTextIsClean(beat.draw.ops)) {
+      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 28000, boardCtx);
+    }
   }
 
   // TOPIC-AWARE BLACKBOARD UPGRADE: beats whose titles match known explanatory patterns
@@ -1218,6 +1387,34 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     }
   }
 
+  // SURFACE RHYTHM GUARANTEE: avoid the "everything becomes blackboard" failure mode.
+  // After the intro, the lecture alternates the teaching surface:
+  //   blackboard -> image -> animation -> blackboard -> image -> animation ...
+  // The blackboards still use the cleaned deterministic board builder; image beats still get
+  // real generated pictures + callouts; animation beats are clean scene/motion boards.
+  const rhythm = ["blackboard", "image", "animation"] as const;
+  const rhythmBeats = beats
+    .map((beat, i) => ({ beat, i }))
+    .filter(({ beat, i }) => i >= 1 && i < lastTeachingIdx && beat.slideKind !== "checkpoint");
+  rhythmBeats.forEach(({ beat }, rhythmIndex) => {
+    const desired = rhythm[rhythmIndex % rhythm.length];
+    if (desired === "blackboard") {
+      if (!modelBoardIsGoodBlackboard(beat)) {
+        beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+      }
+      return;
+    }
+    if (desired === "image") {
+      if (!beatIsImageLed(beat) || imageBeatNeedsConcreteRepair(beat)) {
+        beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+      }
+      return;
+    }
+    if (!beatIsAnimationLed(beat) || animationNeedsRepair(beat)) {
+      beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+    }
+  });
+
   // MINIMUM-BLACKBOARD SAFETY NET: now that we trust the model (and no longer force beats 1-2),
   // a lecture could in principle come back all-animation. Guarantee at least a couple of clean
   // written boards by converting the WEAKEST non-blackboard beats first (preserving the model's
@@ -1235,6 +1432,31 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
       if (modelBoardIsGoodBlackboard(beat)) goodBlackboards++;
     }
   }
+
+  // FINAL SURFACE LOCK: this runs after every upgrade/safety-net pass. Earlier passes may
+  // decide a topic "deserves" a board, but the user experience still needs alternation:
+  // intro -> blackboard -> image -> animation -> blackboard -> image -> animation -> recap.
+  beats
+    .map((beat, i) => ({ beat, i }))
+    .filter(({ beat, i }) => i >= 1 && i < lastTeachingIdx && beat.slideKind !== "checkpoint")
+    .reduce((imageSlot, { beat }, rhythmIndex) => {
+      const desired = rhythm[rhythmIndex % rhythm.length];
+      if (desired === "blackboard") {
+        if (!modelBoardIsGoodBlackboard(beat)) {
+          beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+        }
+        return imageSlot;
+      }
+      if (desired === "image") {
+        const useTechnicalImage = imageSlot < 2;
+        if (useTechnicalImage || !beatIsImageLed(beat) || imageBeatNeedsConcreteRepair(beat)) {
+          beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000, useTechnicalImage);
+        }
+        return imageSlot + 1;
+      }
+      beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+      return imageSlot;
+    }, 0);
 
   if (options.enforceDepth !== false) {
     assertLectureDepth(beats);
@@ -1273,8 +1495,12 @@ export function lectureDepthStats(beats: Beat[]): LectureDepthStats {
 export function assertLectureDepth(beats: Beat[]): LectureDepthStats {
   const stats = lectureDepthStats(beats);
   const maxShortBeats = Math.max(1, Math.floor(stats.teachingBeatCount * 0.15));
+  // The generator sometimes returns a compact but still usable lecture after sanitization
+  // removes malformed beats. Judge total depth relative to the number of surviving teaching
+  // beats instead of enforcing a fixed 820-word floor for every lecture shape.
+  const minTotalWords = Math.min(820, Math.max(560, stats.teachingBeatCount * 55));
 
-  if (stats.totalWords < 820 || stats.avgTeachingWords < 58 || stats.shortTeachingBeatCount > maxShortBeats) {
+  if (stats.totalWords < minTotalWords || stats.avgTeachingWords < 55 || stats.shortTeachingBeatCount > maxShortBeats) {
     throw new Error(
       `Model returned a shallow lecture (${stats.totalWords} spoken words, ${Math.round(stats.avgTeachingWords)} words/teaching beat). Try again with deeper scripts.`
     );
@@ -1396,8 +1622,8 @@ function hasTemplateRows(title: string, script: string): boolean {
   if (has(/\bshift\b/) && (has(/\bdemand\b/) || has(/\bsupply\b/))) return true;
   // Physics — Newton / force
   if (has(/\bnewton|force|acceleration|mass\b/)) return true;
-  // Biology — photosynthesis
-  if (has(/\bphotosynthesis|chlorophyll|glucose\b/)) return true;
+  // Biology — photosynthesis / light absorption
+  if (has(/\bphotosynthesis|chlorophyll|chloroplast|glucose|light absorption|absorbs? light|red and blue|wavelength|thylakoid\b/)) return true;
   return false;
 }
 
@@ -1411,43 +1637,48 @@ function hasTemplateRows(title: string, script: string): boolean {
  * two boards on the same topic in one lecture never write the same chains twice (variant 1 is
  * chosen by makeWrittenBoard when variant 0's symbols already appeared on an earlier board).
  */
-function topicRows(title: string, combined: string, variant: 0 | 1 = 0): BoardRow[] {
+function topicRows(title: string, script: string, variant: 0 | 1 = 0): BoardRow[] {
+  const combined = (title + " " + script).toLowerCase();
+  const titleText = title.toLowerCase();
   const C = COLOR_MAP;
+  const demandTitle = /\bdemand\b/.test(titleText) && !/\bsupply\b/.test(titleText);
+  const supplyTitle = /\bsupply\b/.test(titleText) && !/\bdemand\b/.test(titleText);
+  const shiftTitle = /\bshift/.test(titleText);
   // Economics — demand
-  if (/\blaw of demand\b/.test(combined) || (/\bdemand\b/.test(combined) && /\bprice\b/.test(combined) && !/\bsupply\b/.test(combined))) {
+  if (/\blaw of demand\b/.test(titleText) || (demandTitle && !shiftTitle && /\bprice\b/.test(combined)) || (!supplyTitle && /\bdemand\b/.test(combined) && /\bprice\b/.test(combined) && !/\bsupply\b/.test(combined))) {
     return variant === 1 ? [
-      { sym: "WTP ladder",       note: "buyers line up from highest to lowest value", color: C.amber },
-      { sym: "Price ↑ → exit",  note: "each rise pushes the lowest-value buyer out",  color: C.rose },
-      { sym: "Price ↓ → entry", note: "each cut invites the next buyer onto the ladder", color: C.green },
-      { sym: "Move ≠ shift",    note: "price moves along the curve, never moves the curve", color: C.blue },
+      { sym: "WTP ladder",       note: "buyers line up by value", color: C.amber },
+      { sym: "Price ↑ → exit",  note: "low-value buyers leave first",  color: C.rose },
+      { sym: "Price ↓ → entry", note: "new buyers enter the market", color: C.green },
+      { sym: "Move ≠ shift",    note: "price moves along one curve", color: C.blue },
     ] : [
-      { sym: "Price ↓",      note: "lower price makes more buyers willing to enter", color: C.rose },
+      { sym: "Price ↓",      note: "lower price brings buyers in", color: C.rose },
       { sym: "→ Q_d ↑",     note: "quantity demanded rises along the same curve",     color: C.rose },
       { sym: "Price ↑",      note: "higher price screens out lower-value buyers", color: C.blue },
       { sym: "→ Q_d ↓",     note: "fewer units are worth buying at that price",    color: C.blue },
     ];
   }
   // Economics — supply
-  if (/\blaw of supply\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bprice\b/.test(combined) && !/\bdemand\b/.test(combined))) {
+  if (/\blaw of supply\b/.test(titleText) || (supplyTitle && !shiftTitle && /\bprice\b/.test(combined)) || (!demandTitle && /\bsupply\b/.test(combined) && /\bprice\b/.test(combined) && !/\bdemand\b/.test(combined))) {
     return variant === 1 ? [
-      { sym: "Unit cost ↑",       note: "extra units get harder and pricier to make", color: C.rose },
-      { sym: "P > cost → sell",  note: "firms add units while price beats the cost of one more", color: C.green },
-      { sym: "P < cost → stop",  note: "units that would lose money never get produced", color: C.blue },
-      { sym: "Profit = signal",   note: "price tells producers how much effort to commit", color: C.amber },
+      { sym: "Unit cost ↑",       note: "extra units cost more to make", color: C.rose },
+      { sym: "P > cost → sell",  note: "profitable units get produced", color: C.green },
+      { sym: "P < cost → stop",  note: "loss-making units stay unsold", color: C.blue },
+      { sym: "Profit = signal",   note: "price guides producer effort", color: C.amber },
     ] : [
-      { sym: "Price ↑",      note: "higher price makes extra production worthwhile", color: C.blue },
+      { sym: "Price ↑",      note: "higher price rewards output", color: C.blue },
       { sym: "→ Q_s ↑",     note: "firms offer more units along the same curve",       color: C.blue },
       { sym: "Price ↓",      note: "lower price cuts the reward for producing",     color: C.rose },
-      { sym: "→ Q_s ↓",     note: "less output is offered because margins shrink",       color: C.rose },
+      { sym: "→ Q_s ↓",     note: "less output is offered",       color: C.rose },
     ];
   }
   // Economics — equilibrium / market
   if (/\bequilibrium\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bdemand\b/.test(combined))) {
     return variant === 1 ? [
-      { sym: "P > P* → surplus",  note: "unsold stock piles up and forces discounts", color: C.rose },
-      { sym: "P < P* → shortage", note: "empty shelves let sellers nudge price upward", color: C.blue },
-      { sym: "Both push → P*",    note: "surplus and shortage pressures meet at the crossing", color: C.amber },
-      { sym: "Nobody sets P*",    note: "the market discovers the price, no one dictates it", color: C.green },
+      { sym: "P > P* → surplus",  note: "unsold stock pushes price down", color: C.rose },
+      { sym: "P < P* → shortage", note: "scarcity pulls price upward", color: C.blue },
+      { sym: "Both push → P*",    note: "pressure returns to the crossing", color: C.amber },
+      { sym: "Nobody sets P*",    note: "the market discovers the price", color: C.green },
     ] : [
       { sym: "S ∩ D",        note: "buyer plans and seller plans meet here", color: C.amber },
       { sym: "P* clears",    note: "market clears when quantity plans match", color: C.amber },
@@ -1460,23 +1691,23 @@ function topicRows(title: string, combined: string, variant: 0 | 1 = 0): BoardRo
     return variant === 1 ? [
       { sym: "D → right",      note: "every price now maps to a bigger quantity", color: C.green },
       { sym: "D → left",       note: "every price now maps to a smaller quantity", color: C.rose },
-      { sym: "New P*, new Q*", note: "after a shift the market settles at a new crossing", color: C.amber },
-      { sym: "Cause ≠ price",  note: "income, tastes and rivals move the curve, not price", color: C.violet },
+      { sym: "New P*, new Q*", note: "the market finds a new crossing", color: C.amber },
+      { sym: "Cause ≠ price",  note: "income and tastes shift the curve", color: C.violet },
     ] : [
-      { sym: "Income ↑",     note: "normal-good demand shifts right at every price", color: C.green },
-      { sym: "Tastes →",     note: "preferences move the whole curve, not one point",      color: C.violet },
+      { sym: "Income ↑",     note: "normal-good demand shifts right", color: C.green },
+      { sym: "Tastes →",     note: "preferences move the whole curve",      color: C.violet },
       { sym: "Substitute ↑", note: "better alternatives can pull demand away",             color: C.rose },
       { sym: "Complement ↑", note: "paired goods rise or fall together in demand",     color: C.blue },
     ];
   }
   if (/\bshift\b/.test(combined) && /\bsupply\b/.test(combined)) {
     return variant === 1 ? [
-      { sym: "S → right",     note: "cheaper inputs mean more offered at every price", color: C.green },
-      { sym: "S → left",      note: "higher costs or taxes cut what firms can offer", color: C.rose },
-      { sym: "New crossing",  note: "the shift drags the equilibrium to a new spot", color: C.amber },
-      { sym: "P = messenger", note: "price reacts to the shift, it did not cause it", color: C.blue },
+      { sym: "S → right",     note: "cheaper inputs raise supply", color: C.green },
+      { sym: "S → left",      note: "higher costs cut supply", color: C.rose },
+      { sym: "New crossing",  note: "equilibrium moves to a new spot", color: C.amber },
+      { sym: "P = messenger", note: "price reacts after the shift", color: C.blue },
     ] : [
-      { sym: "Cost ↓",       note: "supply shifts right because each unit is cheaper",        color: C.green },
+      { sym: "Cost ↓",       note: "supply shifts right",        color: C.green },
       { sym: "Tech ↑",       note: "better methods create more output per input",      color: C.blue },
       { sym: "Tax ↑",        note: "taxes raise cost and shift supply left",         color: C.rose },
       { sym: "Input ↑",      note: "higher input prices reduce profitable supply", color: C.violet },
@@ -1486,9 +1717,9 @@ function topicRows(title: string, combined: string, variant: 0 | 1 = 0): BoardRo
   if (/\bnewton|force|acceleration|mass\b/.test(combined)) {
     return variant === 1 ? [
       { sym: "a = F/m",          note: "the same force moves a lighter object faster", color: C.amber },
-      { sym: "F_net = 0",        note: "balanced forces keep velocity exactly constant", color: C.blue },
+      { sym: "F_net = 0",        note: "balanced forces keep velocity steady", color: C.blue },
       { sym: "Action ↔ reaction", note: "every push gets an equal push straight back", color: C.green },
-      { sym: "1N = kg·m/s²",     note: "one newton speeds 1 kg up by 1 m/s every second", color: C.rose },
+      { sym: "1N = kg·m/s²",     note: "one newton accelerates one kilogram", color: C.rose },
     ] : [
       { sym: "F = ma",       note: "force equals mass times acceleration",  color: C.amber },
       { sym: "F ↑",          note: "more push creates more acceleration",    color: C.blue },
@@ -1496,21 +1727,183 @@ function topicRows(title: string, combined: string, variant: 0 | 1 = 0): BoardRo
       { sym: "a ↑",          note: "acceleration means velocity changes faster",   color: C.green },
     ];
   }
-  // Biology — photosynthesis
-  if (/\bphotosynthesis|chlorophyll|glucose\b/.test(combined)) {
+  // Biology — light absorption / photosynthesis
+  if (/\blight absorption|absorbs? light|chlorophyll|red and blue|wavelength|thylakoid\b/.test(combined)) {
     return variant === 1 ? [
-      { sym: "Light stage",   note: "chlorophyll captures photons and splits water", color: C.amber },
+      { sym: "Red + blue",     note: "chlorophyll absorbs these wavelengths best", color: C.rose },
+      { sym: "Green ↩",        note: "green light reflects back to our eyes", color: C.green },
+      { sym: "e⁻ excited",     note: "absorbed light raises electron energy", color: C.amber },
+      { sym: "ATP + NADPH",    note: "energy carriers power sugar building", color: C.blue },
+    ] : [
+      { sym: "Sunlight → leaf", note: "photons strike the leaf surface", color: C.amber },
+      { sym: "Chlorophyll",     note: "pigment traps useful light energy", color: C.green },
+      { sym: "Red/blue in",     note: "strongest absorption happens here", color: C.rose },
+      { sym: "Energy stored",   note: "light energy starts photosynthesis", color: C.blue },
+    ];
+  }
+  if (/\bphotosynthesis|chloroplast|glucose\b/.test(combined)) {
+    return variant === 1 ? [
+      { sym: "Light stage",   note: "chlorophyll captures light", color: C.amber },
       { sym: "Calvin cycle",  note: "stored energy stitches CO₂ into sugar rings", color: C.green },
       { sym: "Stomata",       note: "leaf pores let CO₂ in and O₂ back out", color: C.blue },
-      { sym: "Chloroplast",   note: "the whole sugar factory sits in one organelle", color: C.rose },
+      { sym: "Chloroplast",   note: "the sugar factory organelle", color: C.rose },
     ] : [
       { sym: "6CO₂ + 6H₂O", note: "reactants enter the leaf from air and roots",   color: C.blue },
-      { sym: "+ light →",    note: "sunlight supplies energy for bond rearranging",    color: C.amber },
+      { sym: "+ light →",    note: "sunlight powers bond changes",    color: C.amber },
       { sym: "C₆H₁₂O₆",    note: "glucose stores the captured energy as food",    color: C.green },
       { sym: "+ 6O₂",        note: "oxygen leaves as the useful by-product",    color: C.rose },
     ];
   }
-  return scriptDerivedRows(title, combined);
+  return scriptDerivedRows(title, script);
+}
+
+function explicitTitleRows(title: string, variant: 0 | 1 = 0): BoardRow[] | null {
+  const t = title.toLowerCase();
+  const C = COLOR_MAP;
+  if (/\babsorption spectrum|color\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Blue peak",   note: "short wavelengths are absorbed strongly", color: C.blue },
+      { sym: "Red peak",    note: "red light also drives the light reactions", color: C.rose },
+      { sym: "Green valley", note: "green is absorbed weakly", color: C.green },
+      { sym: "Leaf color",  note: "reflected green reaches your eyes", color: C.amber },
+    ] : [
+      { sym: "Spectrum",    note: "absorption changes with wavelength", color: C.amber },
+      { sym: "Red + blue",  note: "chlorophyll captures these colors best", color: C.rose },
+      { sym: "Green ↩",     note: "green light is mostly reflected", color: C.green },
+      { sym: "More absorbed", note: "more captured light means more energy", color: C.blue },
+    ];
+  }
+  if (/\bchloroplast|thylakoid\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Thylakoids",  note: "stacked membranes hold chlorophyll", color: C.green },
+      { sym: "Light hits",  note: "photons arrive at the membrane", color: C.amber },
+      { sym: "Carriers fill", note: "ATP and NADPH store usable energy", color: C.blue },
+      { sym: "Stroma",      note: "sugar building happens nearby", color: C.rose },
+    ] : [
+      { sym: "Chloroplast", note: "organelle where photosynthesis runs", color: C.green },
+      { sym: "Chlorophyll", note: "pigment embedded in membranes", color: C.amber },
+      { sym: "Light reactions", note: "capture energy before sugar is made", color: C.blue },
+      { sym: "Glucose later", note: "stored energy feeds carbon fixing", color: C.rose },
+    ];
+  }
+  if (/\blight reactions?|energy moves?|energy flow\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Photon",      note: "a packet of light reaches chlorophyll", color: C.amber },
+      { sym: "e⁻ jump",     note: "the electron moves to a higher energy state", color: C.blue },
+      { sym: "Chain flow",  note: "energy passes through carriers", color: C.green },
+      { sym: "ATP made",    note: "the cell stores energy for the next step", color: C.rose },
+    ] : [
+      { sym: "Light in",    note: "absorbed light starts the reaction", color: C.amber },
+      { sym: "e⁻ excited",  note: "chlorophyll electrons gain energy", color: C.blue },
+      { sym: "Energy → carriers", note: "ATP and NADPH collect the energy", color: C.green },
+      { sym: "Sugar step",  note: "carriers power glucose building later", color: C.rose },
+    ];
+  }
+  if (/\bglucose|sugar|from light to sugar\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "ATP",         note: "supplies quick cellular energy", color: C.amber },
+      { sym: "NADPH",       note: "carries high-energy electrons", color: C.blue },
+      { sym: "CO₂ fixed",   note: "carbon atoms are built into sugar", color: C.green },
+      { sym: "Glucose",     note: "chemical bonds store captured light", color: C.rose },
+    ] : [
+      { sym: "Light energy", note: "starts as absorbed photons", color: C.amber },
+      { sym: "Carriers",     note: "ATP and NADPH move energy forward", color: C.blue },
+      { sym: "Carbon joins", note: "CO₂ becomes part of the sugar chain", color: C.green },
+      { sym: "Stored sugar", note: "glucose keeps energy in chemical bonds", color: C.rose },
+    ];
+  }
+  if (/\blight absorption|absorbs? light|chlorophyll|red and blue|wavelength|thylakoid\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Red + blue",  note: "chlorophyll absorbs these wavelengths best", color: C.rose },
+      { sym: "Green ↩",     note: "green light reflects back to our eyes", color: C.green },
+      { sym: "e⁻ excited",  note: "absorbed light raises electron energy", color: C.amber },
+      { sym: "ATP + NADPH", note: "energy carriers power sugar building", color: C.blue },
+    ] : [
+      { sym: "Sunlight → leaf", note: "photons strike the leaf surface", color: C.amber },
+      { sym: "Chlorophyll",     note: "pigment traps useful light energy", color: C.green },
+      { sym: "Red/blue in",     note: "strongest absorption happens here", color: C.rose },
+      { sym: "Energy stored",   note: "light energy starts photosynthesis", color: C.blue },
+    ];
+  }
+  if (/\blaw of demand\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "WTP ladder",       note: "buyers line up by value", color: C.amber },
+      { sym: "Price ↑ → exit",  note: "low-value buyers leave first", color: C.rose },
+      { sym: "Price ↓ → entry", note: "new buyers enter the market", color: C.green },
+      { sym: "Move ≠ shift",    note: "price moves along one curve", color: C.blue },
+    ] : [
+      { sym: "Price ↓",      note: "lower price brings buyers in", color: C.rose },
+      { sym: "→ Q_d ↑",     note: "quantity demanded rises", color: C.rose },
+      { sym: "Price ↑",      note: "higher price screens buyers", color: C.blue },
+      { sym: "→ Q_d ↓",     note: "fewer units are worth buying", color: C.blue },
+    ];
+  }
+  if (/\blaw of supply\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Unit cost ↑",      note: "extra units cost more to make", color: C.rose },
+      { sym: "P > cost → sell", note: "profitable units get produced", color: C.green },
+      { sym: "P < cost → stop", note: "loss-making units stay unsold", color: C.blue },
+      { sym: "Profit = signal", note: "price guides producer effort", color: C.amber },
+    ] : [
+      { sym: "Price ↑",      note: "higher price rewards output", color: C.blue },
+      { sym: "→ Q_s ↑",     note: "firms offer more units", color: C.blue },
+      { sym: "Price ↓",      note: "lower price cuts reward", color: C.rose },
+      { sym: "→ Q_s ↓",     note: "less output is offered", color: C.rose },
+    ];
+  }
+  if (/\bshift/.test(t) && /\bdemand\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "D → right",      note: "quantity rises at every price", color: C.green },
+      { sym: "D → left",       note: "quantity falls at every price", color: C.rose },
+      { sym: "New P*, new Q*", note: "the market finds a new crossing", color: C.amber },
+      { sym: "Cause ≠ price",  note: "income and tastes shift the curve", color: C.violet },
+    ] : [
+      { sym: "Income ↑",     note: "normal-good demand shifts right", color: C.green },
+      { sym: "Tastes →",     note: "preferences move the whole curve", color: C.violet },
+      { sym: "Substitute ↑", note: "better alternatives pull demand away", color: C.rose },
+      { sym: "Complement ↑", note: "paired goods move together", color: C.blue },
+    ];
+  }
+  if (/\bshift/.test(t) && /\bsupply\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "S → right",     note: "cheaper inputs raise supply", color: C.green },
+      { sym: "S → left",      note: "higher costs cut supply", color: C.rose },
+      { sym: "New crossing",  note: "equilibrium moves to a new spot", color: C.amber },
+      { sym: "P = messenger", note: "price reacts after the shift", color: C.blue },
+    ] : [
+      { sym: "Cost ↓",       note: "supply shifts right", color: C.green },
+      { sym: "Tech ↑",       note: "more output per input", color: C.blue },
+      { sym: "Tax ↑",        note: "supply shifts left", color: C.rose },
+      { sym: "Input ↑",      note: "higher costs reduce supply", color: C.violet },
+    ];
+  }
+  if (/\bsupply\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Inputs",      note: "materials and labor set capacity", color: C.blue },
+      { sym: "Costs ↑",     note: "higher costs reduce supply", color: C.rose },
+      { sym: "Price ↑",     note: "higher reward brings more output", color: C.green },
+      { sym: "S curve",     note: "shows quantity sellers offer", color: C.amber },
+    ] : [
+      { sym: "Flour + labor", note: "inputs decide what can be made", color: C.blue },
+      { sym: "Ovens + time",  note: "capacity limits total output", color: C.violet },
+      { sym: "Price signal",  note: "higher price encourages supply", color: C.green },
+      { sym: "Costs rise",    note: "supply falls at each price", color: C.rose },
+    ];
+  }
+  if (/\bdemand\b/.test(t)) {
+    return variant === 1 ? [
+      { sym: "Need + want", note: "buyers value the good", color: C.rose },
+      { sym: "Price ↓",    note: "more buyers enter", color: C.green },
+      { sym: "Price ↑",    note: "some buyers step back", color: C.blue },
+      { sym: "D curve",    note: "shows quantity buyers want", color: C.amber },
+    ] : [
+      { sym: "Buyers",    note: "people compare price to value", color: C.rose },
+      { sym: "Low price", note: "purchase feels easier to justify", color: C.green },
+      { sym: "High price", note: "substitutes look more attractive", color: C.blue },
+      { sym: "Q_d",       note: "quantity demanded responds", color: C.amber },
+    ];
+  }
+  return null;
 }
 
 /**
@@ -1521,33 +1914,109 @@ function topicRows(title: string, combined: string, variant: 0 | 1 = 0): BoardRo
  * already been written on earlier boards (different beats have different scripts, so the rows
  * naturally diverge per beat).
  */
-function scriptDerivedRows(title: string, combined: string): BoardRow[] {
+function scriptDerivedRows(title: string, script: string): BoardRow[] {
   const C = COLOR_MAP;
-  const keywords = conceptTerms(title, combined, 4);
   const fallbackColors = [C.amber, C.blue, C.rose, C.green];
-  // Split into clauses (not just sentences) so we have more distinct fragments to choose from.
-  const clauses = scriptSentences(combined)
-    .flatMap((s) => s.split(/,|—|–|;|\bbecause\b|\bwhich\b|\bso that\b|\band then\b/i))
-    .map((c) => c.replace(/^(so|now|let'?s|this|that|here|we|the|a|an|of)\s+/i, "").trim())
-    .filter((c) => c.length >= 10);
-  const usedClause = new Set<number>();
-  const usedNote = new Set<string>();
-  const phraseFor = (kw: string): string => {
-    const kwLow = kw.toLowerCase();
-    // Prefer a not-yet-used clause that mentions this keyword; else the next unused clause.
-    let pick = clauses.findIndex((c, idx) => !usedClause.has(idx) && c.toLowerCase().includes(kwLow));
-    if (pick === -1) pick = clauses.findIndex((_, idx) => !usedClause.has(idx));
-    if (pick === -1) return kw;
-    usedClause.add(pick);
-    return clauses[pick];
-  };
-  return keywords.slice(0, 4).map((kw, i) => {
-    const sym = `• ${shorten(kw, 14)}`;
-    let note = wrapToWidth(shorten(phraseFor(kw), 56), 38).slice(0, 2).join(" ") || kw;
-    if (usedNote.has(note.toLowerCase())) note = kw; // never repeat the same note twice
-    usedNote.add(note.toLowerCase());
-    return { sym, note, color: fallbackColors[i % fallbackColors.length] };
-  });
+  const sentences = scriptSentences(script)
+    .map((sentence) => cleanBoardPhrase(sentence, ""))
+    .filter((sentence) => sentence.length >= 12 && !looksLikeFragment(sentence));
+  const usedSyms = new Set<string>();
+  const rows = sentences.slice(0, 6).flatMap((sentence, i) => {
+    const sym = sentenceSymbol(title, sentence, i);
+    const key = normSym(sym);
+    if (usedSyms.has(key)) return [];
+    usedSyms.add(key);
+    const note = sentenceNote(sentence);
+    return [{ sym, note, color: fallbackColors[i % fallbackColors.length] }];
+  }).slice(0, 4);
+  if (rows.length >= 3) return rows;
+
+  const keywords = conceptTerms(title, script, 4);
+  return keywords.slice(0, 4).map((kw, i) => ({
+    sym: `• ${shortenAtWord(kw, 14)}`,
+    note: sentenceNote(sentences[i] ?? kw),
+    color: fallbackColors[i % fallbackColors.length],
+  }));
+}
+
+function sentenceSymbol(title: string, sentence: string, index: number): string {
+  const combined = `${title} ${sentence}`.toLowerCase();
+  const s = sentence.toLowerCase();
+  if (/\bred\b/.test(s) && /\bblue\b/.test(s)) return "Red + blue";
+  if (/\bchlorophyll\b/.test(s)) return "Chlorophyll";
+  if (/\bwavelength\b|\babsorb/.test(s) && /\blight\b/.test(combined)) return "Absorption";
+  if (/\bgreen\b/.test(s) && /\breflect/.test(s)) return "Green ↩";
+  if (/\bphotosynthesis\b/.test(s)) return "Photosynthesis";
+  if (/\bsunlight\b|\bphoton/.test(s)) return "Sunlight";
+  if (/\bglucose\b|\bsugar\b/.test(s)) return "Glucose";
+  if (/\blower costs?\b|\bcosts? (fall|drop|decrease)\b/.test(s)) return "Costs ↓";
+  if (/\bhigher costs?\b|\bcosts? (rise|increase)\b|\btax/.test(s)) return "Costs ↑";
+  if (/\bprice rises?\b|\bhigher price\b|\bprice is higher\b/.test(s)) return "Price ↑";
+  if (/\bprice falls?\b|\blower price\b|\bprice is lower\b/.test(s)) return "Price ↓";
+  if (/\btechnology\b|\btech\b|\beasier\b/.test(s)) return "Tech ↑";
+  if (/\binput\b|\bflour\b|\blabor\b|\bmaterial/.test(s)) return "Inputs";
+  if (/\bcapacity\b|\boven\b|\btime\b/.test(s)) return "Capacity";
+  if (/\bdemand\b/.test(s)) return "Demand";
+  if (/\bsupply\b/.test(s)) return "Supply";
+  if (/\bresult\b|\btherefore\b|\bso\b/.test(s)) return "Result";
+  const terms = conceptTerms(title, sentence, 1);
+  return terms[0] ? `• ${shortenAtWord(terms[0], 14)}` : `Step ${index + 1}`;
+}
+
+function sentenceNote(sentence: string): string {
+  return shortenAtWord(
+    sentence
+      .replace(/^(this means|that means|notice how|watch how|remember that)\s+/i, "")
+      .replace(/\s+/g, " ")
+      .trim(),
+    62
+  );
+}
+
+function cleanBoardPhrase(raw: string, fallback: string): string {
+  const clean = raw
+    .replace(/\s+/g, " ")
+    .replace(/^[,.;:!?–—\s]+/, "")
+    .replace(/^(so|now|then|and|but|because|which|where|when|while|that|this|these|those|here|there|let'?s|we|you|the|a|an|of)\s+/i, "")
+    .replace(/[.?!,;:–—\s]+$/, "")
+    .trim();
+  const source = clean || fallback;
+  return shortenAtWord(source, 62);
+}
+
+function looksLikeFragment(text: string): boolean {
+  const t = text.trim().toLowerCase();
+  if (!t) return true;
+  if (/\.\.\.$/.test(t)) return true;
+  if (/^(and|but|because|which|where|when|while|that|this|these|those|of|to|for|with)\b/.test(t)) return true;
+  if (/\b(and|or|to|of|with|because|which|when|while|so)$/i.test(t)) return true;
+  const words = t.match(/[a-z0-9]+/g)?.length ?? 0;
+  return words < 2 && !/[↑↓→=+*]/.test(t);
+}
+
+function shortenAtWord(text: string, max: number) {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const clipped = clean.slice(0, max + 1);
+  const lastSpace = clipped.lastIndexOf(" ");
+  const minUsefulWordBreak = Math.max(4, Math.floor(max * 0.55));
+  return clipped.slice(0, lastSpace >= minUsefulWordBreak ? lastSpace : max).replace(/[,.!?;:–—-]+$/, "").trim();
+}
+
+function boardTitle(title: string): string {
+  const clean = title.replace(/\s+/g, " ").trim();
+  const t = clean.toLowerCase();
+  if (/\brecap\b/.test(t)) return "Recap";
+  if (/\blight absorption|absorbs? light\b/.test(t)) return "Light Absorption";
+  if (/\bchlorophyll\b/.test(t)) return "Chlorophyll";
+  if (/\bphotosynthesis\b/.test(t)) return "Photosynthesis";
+  if (/\blaw of demand\b/.test(t)) return "Law of Demand";
+  if (/\blaw of supply\b/.test(t)) return "Law of Supply";
+  if (/\bshift/.test(t) && /\bdemand\b/.test(t)) return "Demand Shift";
+  if (/\bshift/.test(t) && /\bsupply\b/.test(t)) return "Supply Shift";
+  if (/\bsupply\b/.test(t) && /\bbehind|stall|producer|seller|bakery|cost|output|offer\b/.test(t)) return "Supply Setup";
+  if (/\bdemand\b/.test(t) && /\bbuyer|value|price|market|want\b/.test(t)) return "Demand Setup";
+  return shortenAtWord(clean, 22);
 }
 
 /**
@@ -1574,7 +2043,9 @@ function buildChalkDiagram(
 ): DrawOp[] {
   const isDemand = /\bdemand\b/.test(combined);
   const isSupply = /\bsupply\b/.test(combined);
-  const hasCurve = /\b(curve|supply|demand|slope|upward|downward)\b/.test(combined);
+  const hasCurve =
+    /\b(curve|supply|demand|slope|upward|downward)\b/.test(combined) ||
+    ((isDemand || isSupply) && /\b(price|quantity|buyers?|sellers?|costs?|offered|market)\b/.test(combined));
   const hasCycle = /\b(cycle|loop|circular|feedback)\b/.test(combined);
   const hasCompare = /\b(vs\.?|versus|compare|comparison|more than|less than|bigger|smaller|trade-?off|two sides|both sides)\b/.test(combined);
   const hasBalance = /\b(equilibrium|balance|balanced|equal|offset|cancel)\b/.test(combined);
@@ -1630,6 +2101,18 @@ function buildChalkDiagram(
   const axisY = region.y1;
   const topY = region.y0;
   const midY = region.y0 + h * 0.5;
+  if (isPhotosynthesisText(combined) && canUse("photo-flow")) {
+    take("photo-flow");
+    const sunX = region.x0 + w * 0.16;
+    const leafX = region.x0 + w * 0.52;
+    const energyX = region.x0 + w * 0.84;
+    ops.push({ kind: "label", text: "☼", x: sunX, y: topY + h * 0.28, size: "md", color: COLOR_MAP.amber, at: a });
+    ops.push({ kind: "arrow", x1: sunX + w * 0.1, y1: topY + h * 0.32, x2: leafX - w * 0.12, y2: midY, color: COLOR_MAP.amber, at: a + 0.04 });
+    ops.push({ kind: "label", text: "leaf", x: leafX, y: midY, size: "sm", color: COLOR_MAP.green, at: a + 0.08 });
+    ops.push({ kind: "arrow", x1: leafX + w * 0.12, y1: midY, x2: energyX - w * 0.1, y2: topY + h * 0.32, color: COLOR_MAP.blue, at: a + 0.12 });
+    ops.push({ kind: "label", text: "ATP", x: energyX, y: topY + h * 0.32, size: "sm", color: COLOR_MAP.blue, at: a + 0.16 });
+    return ops;
+  }
   if (hasCurve && canUse("curve")) {
     take("curve");
     ops.push({ kind: "arrow", x1: axisX, y1: axisY, x2: axisX, y2: topY + 1, color: DC, at: a });
@@ -1670,7 +2153,7 @@ function buildChalkDiagram(
     ops.push({ kind: "label", text: "more", x: rightX, y: topY + h * 0.08 - 3, size: "sm", color: COLOR_MAP.green, at: a + 0.14 });
     return ops;
   }
-  if (hasSteps && canUse("stairs")) {
+  if (hasSteps && !hasCurve && canUse("stairs")) {
     take("stairs");
     // Staircase: alternating right/up arrows climbing the corner — "one stage at a time".
     const sw = w * 0.26; const sh = h * 0.26;
@@ -1717,6 +2200,19 @@ function buildChalkDiagram(
     ops.push({ kind: "label", text: "↓ falling", x: cx + 5, y: midY, size: "sm", color: COLOR_MAP.rose, at: a + 0.04 });
     return ops;
   }
+
+  if (canUse("concept-flow")) {
+    take("concept-flow");
+    const leftX = region.x0 + w * 0.18;
+    const midX = region.x0 + w * 0.5;
+    const rightX = region.x0 + w * 0.82;
+    ops.push({ kind: "label", text: "cause", x: leftX, y: midY, size: "sm", color: COLOR_MAP.blue, at: a });
+    ops.push({ kind: "arrow", x1: leftX + w * 0.12, y1: midY, x2: midX - w * 0.12, y2: midY, color: COLOR_MAP.slate, at: a + 0.04 });
+    ops.push({ kind: "label", text: "change", x: midX, y: midY, size: "sm", color: COLOR_MAP.amber, at: a + 0.08 });
+    ops.push({ kind: "arrow", x1: midX + w * 0.14, y1: midY, x2: rightX - w * 0.14, y2: midY, color: COLOR_MAP.slate, at: a + 0.12 });
+    ops.push({ kind: "label", text: "effect", x: rightX, y: midY, size: "sm", color: COLOR_MAP.green, at: a + 0.16 });
+    return ops;
+  }
   return ops;
 }
 
@@ -1745,10 +2241,16 @@ function makeWrittenBoard(
 
   // Pick rows the lecture hasn't shown yet: template variant A → variant B → this beat's own
   // script. Without the ctx (single-shot callers like fallbackWrittenDraw) behavior is unchanged.
-  let rows: BoardRow[] = rowsOverride ?? topicRows(title, combined, 0);
+  const explicitRows = rowsOverride ? null : explicitTitleRows(title, 0);
+  let rows: BoardRow[] = rowsOverride ?? explicitRows ?? topicRows(title, script, 0);
   if (!rowsOverride && ctx && rowsAreStale(rows, ctx.usedSyms)) {
-    const alt = topicRows(title, combined, 1);
-    rows = rowsAreStale(alt, ctx.usedSyms) ? scriptDerivedRows(title, combined) : alt;
+    const explicitAlt = explicitTitleRows(title, 1);
+    if (explicitRows && explicitAlt) {
+      rows = explicitAlt;
+    } else {
+      const alt = topicRows(title, script, 1);
+      rows = rowsAreStale(alt, ctx.usedSyms) && !hasTemplateRows(title, script) ? scriptDerivedRows(title, script) : alt;
+    }
   }
 
   // A supply+demand equilibrium topic gets a LARGE centered chalk diagram, so text rows must
@@ -1757,13 +2259,13 @@ function makeWrittenBoard(
   const wantsLargeDiagram = /\bsupply\b/.test(combined) && /\bdemand\b/.test(combined)
     && /\b(curve|supply|demand|slope|equilibrium)\b/.test(combined)
     && !ctx?.usedDiagrams.has("graph-large");
-  const rowStopY = wantsLargeDiagram ? 46 : 74;
+  const rowStopY = wantsLargeDiagram ? 46 : 58;
 
   // Richness: on boards without the large diagram, append a 5th row derived from this beat's
   // own script when a distinct one exists — template branches are fixed at 4 rows, and the
   // extra script-specific row is what ties the generic law back to today's example.
-  if (!wantsLargeDiagram && rows.length === 4) {
-    const extra = scriptDerivedRows(title, combined).find(
+  if (!wantsLargeDiagram && rows.length === 4 && !hasTemplateRows(title, script)) {
+    const extra = scriptDerivedRows(title, script).find(
       (cand) =>
         !rows.some((r) => normSym(r.sym) === normSym(cand.sym)) &&
         !rows.some((r) => r.note.toLowerCase() === cand.note.toLowerCase()) &&
@@ -1786,7 +2288,7 @@ function makeWrittenBoard(
   const ops: DrawOp[] = [];
 
   // ── HEADING ───────────────────────────────────────────────────────────────
-  ops.push({ kind: "label", text: shorten(title, 22), x: 50, y: 8, size: "md", color: COLOR_MAP.amber, at: 0.04 });
+  ops.push({ kind: "label", text: boardTitle(title), x: 50, y: 8, size: "md", color: COLOR_MAP.amber, at: 0.04 });
   ops.push({ kind: "arrow", x1: 20, y1: 14, x2: 80, y2: 14, color: COLOR_MAP.amber, at: 0.08 });
 
   // ── ROWS ──────────────────────────────────────────────────────────────────
@@ -1845,10 +2347,10 @@ function makeWrittenBoard(
     ctx?.usedDiagrams.add("graph-large");
     ops.push(...buildChalkDiagram(combined, { x0: 34, y0: 52, x1: 86, y1: 88 }, 0.5, ctx?.usedDiagrams, true));
   } else {
-    const diagTop = Math.max(y, 66);
-    if (diagTop <= 73) {
-      ops.push(...buildChalkDiagram(combined, { x0: 60, y0: diagTop, x1: 88, y1: 91 }, 0.74, ctx?.usedDiagrams));
-    }
+    const diagTop = Math.max(62, Math.min(y + 2, 70));
+    const diagram = buildChalkDiagram(combined, { x0: 60, y0: diagTop, x1: 88, y1: 91 }, 0.74, ctx?.usedDiagrams);
+    if (diagram.length) ops.push(...diagram);
+    else ops.push(...buildChalkDiagram(combined, { x0: 60, y0: diagTop, x1: 88, y1: 91 }, 0.74));
   }
 
   return { caption: title, durationMs, ops };
@@ -1870,12 +2372,13 @@ function makeRecapBoard(beats: Beat[], closing: Beat, ctx: BoardSynthesisContext
     const beat = beats[i];
     if (!beat || beat === closing || beat.slideKind === "checkpoint") continue;
     const core = beat.title.replace(/^(the|a|an|how|what|why|understanding|intro(duction)? to|changes? in)\s+/i, "").trim();
-    const sym = `• ${shorten(core, 16)}`;
+    const sym = `• ${boardTitle(core)}`;
     if (!core || seenSym.has(normSym(sym))) continue;
-    const clause = scriptSentences(beat.script)
-      .flatMap((s) => s.split(/,|—|–|;|\bbecause\b|\bwhich\b|\bso that\b/i))
-      .map((c) => c.replace(/^(so|now|let'?s|this|that|here|we|the|a|an|of)\s+/i, "").trim())
-      .find((c) => c.length >= 14 && c.length <= 64 && !seenNote.has(c.toLowerCase()));
+    const templateRows = explicitTitleRows(beat.title, (rows.length % 2) as 0 | 1) ?? explicitTitleRows(core, (rows.length % 2) as 0 | 1);
+    const templateNote = templateRows?.find((row) => !seenNote.has(row.note.toLowerCase()))?.note;
+    const clause = templateNote ?? scriptSentences(beat.script)
+      .map((s) => sentenceNote(s))
+      .find((c) => c.length >= 14 && !looksLikeFragment(c) && !seenNote.has(c.toLowerCase()));
     if (!clause) continue;
     seenSym.add(normSym(sym));
     seenNote.add(clause.toLowerCase());
@@ -1889,17 +2392,39 @@ function makeRecapBoard(beats: Beat[], closing: Beat, ctx: BoardSynthesisContext
 }
 
 function boardFooter(title: string, combined: string): string {
-  if (/\blaw of demand\b/.test(combined) || (/\bdemand\b/.test(combined) && /\bprice\b/.test(combined) && !/\bsupply\b/.test(combined))) {
-    return "price changes move quantity along one demand curve; non-price factors shift the curve";
+  const t = title.toLowerCase();
+  if (/\bglucose|sugar|from light to sugar\b/.test(t)) {
+    return "glucose stores captured light energy";
   }
-  if (/\blaw of supply\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bprice\b/.test(combined) && !/\bdemand\b/.test(combined))) {
-    return "price changes move quantity along one supply curve; costs and tech shift the curve";
+  if (/\blight reactions?|energy moves?|chloroplast|thylakoid\b/.test(t)) {
+    return "light energy moves through carriers";
   }
-  if (/\bshift\b/.test(combined)) {
-    return "a shift means every price has a new quantity, not just one point moving";
+  if (/\bphotosynthesis\b/.test(t)) {
+    return "light energy becomes chemical energy";
+  }
+  if (/\blight absorption|absorbs? light|chlorophyll|red and blue|wavelength\b/.test(`${t} ${combined}`)) {
+    return "chlorophyll absorbs red and blue light";
+  }
+  if (/\bphotosynthesis|chloroplast|glucose\b/.test(`${t} ${combined}`)) {
+    return "light energy becomes chemical energy";
+  }
+  if (/\bshift\b/.test(t) || /\bshift\b/.test(combined)) {
+    return "a shift changes every price";
+  }
+  if (/\blaw of supply\b/.test(t) || (/\bsupply\b/.test(t) && !/\bdemand\b/.test(t))) {
+    return "price moves along the supply curve";
+  }
+  if (/\blaw of demand\b/.test(t) || (/\bdemand\b/.test(t) && !/\bsupply\b/.test(t))) {
+    return "price moves along the demand curve";
   }
   if (/\bequilibrium\b/.test(combined) || (/\bsupply\b/.test(combined) && /\bdemand\b/.test(combined))) {
-    return "price adjusts toward the place where buyer plans and seller plans match";
+    return "price moves until plans match";
+  }
+  if (/\bdemand\b/.test(combined) && /\bprice\b/.test(combined) && !/\bsupply\b/.test(combined)) {
+    return "price moves along the demand curve";
+  }
+  if (/\bsupply\b/.test(combined) && /\bprice\b/.test(combined) && !/\bdemand\b/.test(combined)) {
+    return "price moves along the supply curve";
   }
   return `connect each symbol back to the cause, the effect, and ${shorten(title.toLowerCase(), 24)}`;
 }
@@ -1941,28 +2466,17 @@ function firstSentence(text: string, fallback: string) {
 function shorten(text: string, max: number) {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
-  const clipped = clean.slice(0, max - 3);
+  const clipped = clean.slice(0, max + 1);
   const lastSpace = clipped.lastIndexOf(" ");
-  return `${clipped.slice(0, lastSpace > 24 ? lastSpace : clipped.length)}...`;
+  return clipped.slice(0, lastSpace > 24 ? lastSpace : max).replace(/[,.!?;:–—-]+$/, "").trim();
 }
 
-/** Synthesizes a board when the model's own board didn't validate: one contextual image
- *  placeholder (fillImageOps generates the real picture from this prompt — built from the
- *  actual question/script text, not a generic shape) plus a top and bottom note in the
- *  margins. No shapes — the grammar no longer has them. */
+/** Synthesizes a chalkboard diagram when the model's own board didn't validate. Follow-up
+ *  questions should always open a teachable blackboard, not fall back to a text card. */
 export function fallbackExplanationDraw(question: string, script: string): DrawScript {
   const topNote = firstSentence(script, "Here is the key idea.");
   const seed = question.trim() || topNote;
-  const context = { title: seed, script, slideKind: "intro" as const, index: 0 };
-  return {
-    caption: shorten(seed, 48),
-    durationMs: 18000,
-    ops: ensureLiveMotion([
-      fallbackImagePlaceholder(seed, script),
-      { kind: "note", text: topNote, x: 50, y: 13, color: COLOR_MAP.slate, at: 0.14 },
-      { kind: "note", text: shorten(script, 72), x: 50, y: 86, color: COLOR_MAP.amber, at: 0.85 },
-    ], context),
-  };
+  return makeWrittenBoard(seed, script || topNote, 18000);
 }
 
 /** Sanitizes a single side-chat explanation: { script, draw }. */
@@ -1971,12 +2485,7 @@ export function sanitizeExplanation(raw: unknown, context?: { question?: string 
   const o = raw as Record<string, unknown>;
   const script = str(o.script);
   if (!script) throw new Error("Empty explanation.");
-  const draw = sanitizeDraw(o.draw, { title: context?.question, script, slideKind: "intro", index: 0 });
-  let finalDraw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(context?.question ?? "", script);
-  // Backstop for image compliance, same as the lecture path: inject a placeholder if the
-  // model forgot the required image op, so fillImageOps still generates a real picture.
-  if (finalDraw && !finalDraw.ops.some((op) => op.kind === "image")) {
-    finalDraw = { ...finalDraw, ops: [...finalDraw.ops, fallbackImagePlaceholder(context?.question ?? "this question", script)] };
-  }
+  const draw = sanitizeDraw(o.draw, { title: context?.question, script, slideKind: "definition", index: 1 });
+  const finalDraw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(context?.question ?? "", script);
   return { script, draw: finalDraw };
 }

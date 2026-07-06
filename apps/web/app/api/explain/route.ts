@@ -6,10 +6,11 @@ import { fillImageOps } from "@/lib/imageGen";
 
 /**
  * The side-chat "explain this further" endpoint. Returns one spoken explanation plus a fresh
- * marker-drawn DrawScript board answering the question, now with a real AI-generated
- * contextual image plus semantic live motion as the visual anchor when the topic calls for one.
+ * marker-drawn DrawScript board answering the question. Follow-up questions prefer a
+ * blackboard diagram; if a legacy/model response still includes an image op, it is filled.
  *
- * Honesty: costs a gpt-4o call + optionally one or more low-quality image calls per question.
+ * Honesty: costs a gpt-4o call + optionally a low-quality image call only if an image op
+ * survives sanitization.
  * Needs OPENAI_API_KEY in apps/web/.env.local.
  */
 const MODEL = process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-4o";

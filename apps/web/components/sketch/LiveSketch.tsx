@@ -901,6 +901,10 @@ function ProcessScene({
   glowId: string;
   progress: number;
 }) {
+  const joined = `${title ?? ""} ${items.join(" ")}`.toLowerCase();
+  if (/\b(photosynthesis|chlorophyll|chloroplast|glucose|sunlight|photons?|light absorption|electron|atp|nadph)\b/.test(joined)) {
+    return <PhotosynthesisFlowScene title={title} items={items} color={color} glowId={glowId} progress={progress} />;
+  }
   const points = scenePoints(items.length, 140, 820, 320, 42);
   const path = pathFromPoints(points);
   return (
@@ -932,6 +936,60 @@ function ProcessScene({
           </PopGroup>
         );
       })}
+    </g>
+  );
+}
+
+function PhotosynthesisFlowScene({
+  title,
+  color,
+  glowId,
+  progress,
+}: {
+  title?: string;
+  items: string[];
+  color: string;
+  glowId: string;
+  progress: number;
+}) {
+  const path = "M 156 294 C 268 220 360 220 446 288 C 536 358 628 358 752 286";
+  const active = (threshold: number) => progress > threshold;
+  return (
+    <g filter={`url(#${glowId})`}>
+      <SceneText x={500} y={118} text={title || "Light becomes stored energy"} size={34} maxChars={34} fill="#f8fafc" />
+      <circle cx="178" cy="196" r="48" fill="#facc15" opacity="0.95">
+        <animate attributeName="r" values="43;52;43" dur="2.4s" repeatCount="indefinite" />
+      </circle>
+      {[0, 1, 2, 3].map((i) => (
+        <path key={i} d={`M ${204 + i * 10} ${218 + i * 18} C ${278 + i * 22} ${236 + i * 10} ${338 + i * 30} ${262 + i * 2} ${414 + i * 18} ${286 - i * 8}`} stroke="#fde68a" strokeWidth="7" strokeLinecap="round" strokeDasharray="20 18" opacity="0.88" fill="none">
+          <animate attributeName="stroke-dashoffset" from="0" to="-190" dur={`${2.1 + i * 0.22}s`} repeatCount="indefinite" />
+        </path>
+      ))}
+      <ellipse cx="450" cy="306" rx="124" ry="86" fill="#14532d" opacity="0.72" stroke="#86efac" strokeWidth="6" />
+      <path d="M 378 310 C 414 252 490 248 526 306 C 486 366 414 368 378 310 Z" fill="#22c55e" opacity="0.64" />
+      <SceneText x={450} y={314} text="chlorophyll" size={24} maxChars={14} fill="#ecfdf5" />
+      <circle cx="450" cy="306" r={active(0.42) ? 20 : 10} fill="#fef08a" opacity="0.92" stroke="#fff7ed" strokeWidth="4">
+        <animate attributeName="opacity" values="0.55;1;0.55" dur="1.6s" repeatCount="indefinite" />
+      </circle>
+      <path d={path} fill="none" stroke="#e0f2fe" strokeWidth="18" strokeLinecap="round" opacity="0.14" />
+      <path d={path} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round" strokeDasharray="28 18" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-230" dur="2.6s" repeatCount="indefinite" />
+      </path>
+      {[0, 1, 2].map((i) => (
+        <circle key={i} r={i === 0 ? 10 : 7} fill={i === 0 ? "#fff7ed" : "#bfdbfe"} opacity="0.95">
+          <animateMotion dur={`${2.7 + i * 0.18}s`} begin={`${i * 0.34}s`} repeatCount="indefinite" path={path} />
+          <animate attributeName="opacity" values="0;1;0" dur={`${2.7 + i * 0.18}s`} begin={`${i * 0.34}s`} repeatCount="indefinite" />
+        </circle>
+      ))}
+      <PopGroup t={stagger(progress, 0, 3, 0.48)} cx={178} cy={388}>
+        <SceneTag x={178} y={388} text="photons arrive" color="#f59e0b" />
+      </PopGroup>
+      <PopGroup t={stagger(progress, 1, 3, 0.48)} cx={450} cy={424}>
+        <SceneTag x={450} y={424} text="electron jumps" color="#22c55e" />
+      </PopGroup>
+      <PopGroup t={stagger(progress, 2, 3, 0.48)} cx={744} cy={388}>
+        <SceneTag x={744} y={388} text="ATP/NADPH carry energy" color="#38bdf8" />
+      </PopGroup>
     </g>
   );
 }
@@ -1130,6 +1188,12 @@ function GraphScene({
   glowId: string;
   progress: number;
 }) {
+  const joined = `${title ?? ""} ${items.join(" ")}`.toLowerCase();
+  const supplyOnly = /\bsupply\b/.test(joined) && !/\bdemand|equilibrium\b/.test(joined);
+  const demandOnly = /\bdemand\b/.test(joined) && !/\bsupply|equilibrium\b/.test(joined);
+  if (supplyOnly || demandOnly) {
+    return <SingleCurveGraphScene title={title} kind={supplyOnly ? "supply" : "demand"} color={color} gradientId={gradientId} glowId={glowId} progress={progress} />;
+  }
   const demand = items.find((item) => /demand|buyer|want/i.test(item)) ?? "Demand";
   const supply = items.find((item) => /supply|seller|offer/i.test(item)) ?? "Supply";
   const equilibrium = items.find((item) => /equilibrium|balance|price/i.test(item)) ?? "Equilibrium";
@@ -1167,6 +1231,58 @@ function GraphScene({
       </circle>
       <circle r="7" fill="#fff7ed">
         <animateMotion dur="3.2s" repeatCount="indefinite" path={demandPath} />
+      </circle>
+    </g>
+  );
+}
+
+function SingleCurveGraphScene({
+  title,
+  kind,
+  color,
+  gradientId,
+  glowId,
+  progress,
+}: {
+  title?: string;
+  kind: "supply" | "demand";
+  color: string;
+  gradientId: string;
+  glowId: string;
+  progress: number;
+}) {
+  const left = 210;
+  const bottom = 430;
+  const right = 820;
+  const top = 136;
+  const curveColor = kind === "supply" ? "#38bdf8" : "#fb7185";
+  const startY = kind === "supply" ? bottom - 34 : top + 34;
+  const endY = kind === "supply" ? top + 34 : bottom - 34;
+  const curve = `M ${left + 46} ${startY} C 376 ${kind === "supply" ? 370 : 190} 536 ${kind === "supply" ? 250 : 316} ${right - 46} ${endY}`;
+  const p1 = { x: 388, y: kind === "supply" ? 346 : 222 };
+  const p2 = { x: 650, y: kind === "supply" ? 224 : 350 };
+  const dotX = lerp(p1.x, p2.x, progress);
+  const dotY = lerp(p1.y, p2.y, progress);
+  const lowerTag = kind === "supply" ? "higher price makes output worthwhile" : "higher price pushes buyers out";
+  return (
+    <g filter={`url(#${glowId})`}>
+      <SceneText x={500} y={104} text={title || (kind === "supply" ? "Law of Supply" : "Law of Demand")} size={34} maxChars={34} fill="#f8fafc" />
+      <rect x="146" y="114" width="708" height="366" rx="34" fill={`url(#${gradientId})`} opacity="0.2" stroke={color} strokeWidth="3" />
+      <path d={`M ${left} ${top} L ${left} ${bottom} L ${right} ${bottom}`} fill="none" stroke="#e0f2fe" strokeWidth="7" strokeLinecap="round" opacity="0.82" />
+      <text x={right - 26} y={bottom + 36} textAnchor="end" style={{ fontSize: 22, fontWeight: 900, fill: "#e0f2fe" }}>quantity</text>
+      <text x={left - 22} y={top - 18} textAnchor="middle" style={{ fontSize: 22, fontWeight: 900, fill: "#e0f2fe" }}>price</text>
+      <path d={curve} fill="none" stroke={curveColor} strokeWidth="12" strokeLinecap="round" opacity="0.95" strokeDasharray="760" strokeDashoffset={progress < 0.18 ? 760 : 0} style={{ transition: "stroke-dashoffset 900ms ease" }} />
+      <path d={`M ${left + 12} ${dotY} L ${dotX} ${dotY} L ${dotX} ${bottom - 10}`} fill="none" stroke="#fde68a" strokeWidth="4" strokeDasharray="10 10" opacity="0.9" />
+      <circle cx={dotX} cy={dotY} r="18" fill="#facc15" stroke="#fff7ed" strokeWidth="5">
+        <animate attributeName="r" values="14;22;14" dur="1.8s" repeatCount="indefinite" />
+      </circle>
+      <circle cx={p1.x} cy={p1.y} r="9" fill="#94a3b8" opacity="0.7" />
+      <circle cx={p2.x} cy={p2.y} r="11" fill="#fff7ed" opacity={progress > 0.55 ? 0.95 : 0.35} />
+      <SceneTag x={p1.x - 80} y={p1.y + (kind === "supply" ? 46 : -46)} text={kind === "supply" ? "low price" : "high price"} color="#64748b" />
+      <SceneTag x={p2.x + 88} y={p2.y + (kind === "supply" ? -46 : 46)} text={kind === "supply" ? "more supplied" : "less demanded"} color={curveColor} />
+      <SceneText x={500} y={488} text={lowerTag} size={22} maxChars={44} fill="#dbeafe" opacity={0.9} />
+      <circle r="7" fill="#fff7ed">
+        <animateMotion dur="3s" repeatCount="indefinite" path={curve} />
       </circle>
     </g>
   );
