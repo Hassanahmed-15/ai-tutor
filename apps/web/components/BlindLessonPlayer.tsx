@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
-import { blindBeatContent, DEFAULT_BLIND_BEAT } from "@/lib/blindLectureContent";
+import { getBlindBeatContent } from "@/lib/blindLectureContent";
 import { playCue, unlockSonicCues } from "@/lib/sonicCues";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { HudCorners } from "./hud/HudKit";
@@ -36,7 +36,39 @@ function checkAnswer(beat: Beat, answer: string): CheckpointResult {
 
 type Phase = "script" | "description" | "checkpoint-prompt" | "waiting-answer" | "feedback" | "done";
 
-export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; beats?: Beat[]; title?: string }) {
+// The wake name is deliberately strict: commands only act after a whole-word "Nova".
+// That prevents background noise, narration, or nearby conversation from pausing the lecture.
+const WAKE_WORDS = ["hey nova", "okay nova", "ok nova", "nova"];
+
+function normalizeSpeech(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[“”]/g, '"')
+    .replace(/[’]/g, "'")
+    .replace(/[^a-z0-9'\s]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function phraseRegex(phrase: string) {
+  return new RegExp(`(^|\\s)${phrase.replace(/\s+/g, "\\s+")}(?=$|\\s)`, "i");
+}
+
+function speechMatches(text: string, words: string[]) {
+  return words.some((w) => phraseRegex(w).test(text));
+}
+
+export function BlindLessonPlayer({
+  onExit,
+  beats = demoBeats,
+  title = "Photosynthesis",
+  autoStart = false,
+}: {
+  onExit?: () => void;
+  beats?: Beat[];
+  title?: string;
+  autoStart?: boolean;
+}) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [phase, setPhase] = useState<Phase>("script");
@@ -54,25 +86,39 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   const [micSupported, setMicSupported] = useState<boolean>(() => getSpeechRecognition() !== null);
 
   const cancelRef = useRef<NarrationHandle | null>(null);
+  const speechRunRef = useRef(0);
+  const autoStartedRef = useRef(false);
   const answerInputRef = useRef<HTMLInputElement | null>(null);
   // Echo guard: true while Aria's TTS is playing, so the mic doesn't process her own voice
   // coming back through the speakers as a command.
   const speakingRef = useRef(false);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
-  const content = blindBeatContent[beat.id] ?? DEFAULT_BLIND_BEAT;
+  const content = getBlindBeatContent(beat, beats[index + 1]);
 
   const speak = useCallback(
     (text: string, onEnd: () => void) => {
+      speechRunRef.current += 1;
+      const runId = speechRunRef.current;
+      cancelRef.current?.cancel();
+      cancelRef.current = null;
       speakingRef.current = true;
       const handle = playNarration(text, {
-        onStart: () => setAnnouncement(text),
+        onStart: () => {
+          if (speechRunRef.current === runId) setAnnouncement(text);
+        },
         onEnd: () => {
+          if (speechRunRef.current !== runId) return;
           speakingRef.current = false;
           cancelRef.current = null;
           onEnd();
         },
-        onBlocked: () => setVoiceBlocked(true),
+        onBlocked: () => {
+          if (speechRunRef.current === runId) {
+            setVoiceBlocked(true);
+            setPlaying(false);
+          }
+        },
       });
       cancelRef.current = handle;
     },
@@ -80,6 +126,7 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   );
 
   const stopVoice = useCallback(() => {
+    speechRunRef.current += 1;
     cancelRef.current?.cancel();
     cancelRef.current = null;
     speakingRef.current = false;
@@ -230,8 +277,9 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
     const parts = [beat.script];
     if (content.audioDescription) parts.push(content.audioDescription);
     const full = parts.join(" ");
-    // Make sure we're in a spoken (not waiting-for-answer) state so the explanation flows.
-    setPlaying(true);
+    // Speak this directly instead of toggling normal playback on. If playback was paused
+    // by "Nova" or "Nova, stop", setting `playing` true would also restart the beat effect
+    // underneath the explanation and could cancel this custom response.
     speak(`Here's a fuller explanation. ${full}`, () => {});
   }
 
@@ -253,11 +301,6 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   // "Nova, stop") or say "Nova" alone — which chimes and opens a short window to catch the
   // command in a following breath. This stops the lecture's own narration and random speech
   // from ever triggering commands by accident.
-  // "nova" plus the ways speech recognizers commonly mis-hear it, so the student rarely has to
-  // repeat the wake-word. All are distinctive enough not to appear in normal lecture narration.
-  // NOTE: keep every variant a WHOLE distinct word — never a fragment like "nova s" that could
-  // swallow the leading letter of the command ("nova start" must not strip to "tart").
-  const WAKE_WORDS = ["hey nova", "okay nova", "ok nova", "supernova", "innova", "novia", "nolan", "nova"];
   // How long (ms) after a bare "Nova" we keep listening for the command before giving up.
   const WAKE_WINDOW_MS = 6000;
   // True while we've heard "Nova" and are waiting for the command that follows.
@@ -266,42 +309,45 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   awaitingCommandRef.current = awaitingCommand;
   const wakeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wasPlayingBeforeWakeRef = useRef(false);
+  const commandWindowFreeformRef = useRef(true);
+  const resumeAfterCommandWindowRef = useRef(false);
 
   // Routes one finalized spoken phrase to an action, based on the live control state. The
   // command words ("start", "stop", "next"…) are checked first; in a checkpoint's
   // waiting-answer phase, anything that isn't a command is treated as the spoken answer.
   const COMMANDS = {
-    start: ["start", "begin", "play", "resume", "go ahead", "let's go", "lets go"],
-    stop: ["stop", "pause", "wait", "hold on"],
+    start: ["start", "begin", "play", "resume", "continue", "go ahead", "keep going", "let's go", "lets go"],
+    stop: ["stop", "pause", "wait", "hold on", "be quiet", "quiet", "shush"],
     next: ["next", "skip", "move on", "forward"],
     back: ["back", "previous", "go back"],
     repeat: ["repeat", "again", "say that again", "one more time"],
-    explain: ["explain this", "explain that", "explain", "what does this mean", "tell me more", "i don't understand", "i dont understand", "more detail", "elaborate"],
+    explain: ["explain this", "explain that", "explain me", "explain", "re explain", "reexplain", "what does this mean", "tell me more", "i don't understand", "i dont understand", "more detail", "elaborate"],
     restart: ["restart", "start over", "from the beginning"],
     exit: ["exit", "quit", "close", "leave"],
     continue: ["continue", "yes", "yeah", "got it", "okay", "ok", "understood", "i'm following", "im following"],
   };
-  const matches = (text: string, words: string[]) => words.some((w) => text.includes(w));
   // Strips the wake-word (and everything before it) off a phrase, leaving just the command:
   // "nova, stop" -> "stop", "um nova next" -> "next". Uses the wake-word's position so a
   // student who says a filler word before "Nova" still gets a clean command.
   const stripWakeWord = (text: string): string => {
+    const normalized = normalizeSpeech(text);
     let best = -1;
     let bestEnd = 0;
     for (const w of WAKE_WORDS) {
-      const idx = text.indexOf(w);
+      const match = phraseRegex(w).exec(normalized);
+      const idx = match?.index ?? -1;
       // Prefer the EARLIEST wake-word; on a tie prefer the LONGEST (so "hey nova" beats "nova").
-      if (idx !== -1 && (best === -1 || idx < best || (idx === best && idx + w.length > bestEnd))) {
+      if (match && (best === -1 || idx < best || (idx === best && idx + match[0].length > bestEnd))) {
         best = idx;
-        bestEnd = idx + w.length;
+        bestEnd = idx + match[0].length;
       }
     }
-    if (best === -1) return text.replace(/^[\s,.:;-]+/, "").trim();
-    let rest = text.slice(bestEnd);
+    if (best === -1) return normalized.trim();
+    let rest = normalized.slice(bestEnd);
     // Drop a possessive "'s" only when it's directly attached to the wake-word ("nova's stop").
     rest = rest.replace(/^'s\b/, "");
     // Drop separating whitespace/punctuation — but NOT letters, so "start"/"stop" stay intact.
-    return rest.replace(/^[\s,.:;!?-]+/, "").trim();
+    return rest.trim();
   };
 
   const clearWakeTimer = () => {
@@ -312,14 +358,15 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   // matters: "explain" is checked before "stop"/"start" etc. so multi-word commands win.
   const commandKey = (text: string): keyof typeof COMMANDS | null => {
     if (!text) return null;
-    if (matches(text, COMMANDS.exit)) return "exit";
-    if (matches(text, COMMANDS.restart)) return "restart";
-    if (matches(text, COMMANDS.explain)) return "explain";
-    if (matches(text, COMMANDS.stop)) return "stop";
-    if (matches(text, COMMANDS.start)) return "start";
-    if (matches(text, COMMANDS.next)) return "next";
-    if (matches(text, COMMANDS.back)) return "back";
-    if (matches(text, COMMANDS.repeat)) return "repeat";
+    if (speechMatches(text, COMMANDS.exit)) return "exit";
+    if (speechMatches(text, COMMANDS.restart)) return "restart";
+    if (speechMatches(text, COMMANDS.explain)) return "explain";
+    if (speechMatches(text, COMMANDS.stop)) return "stop";
+    if (speechMatches(text, COMMANDS.start)) return "start";
+    if (speechMatches(text, COMMANDS.next)) return "next";
+    if (speechMatches(text, COMMANDS.back)) return "back";
+    if (speechMatches(text, COMMANDS.repeat)) return "repeat";
+    if (speechMatches(text, COMMANDS.continue)) return "start";
     return null;
   };
 
@@ -347,24 +394,34 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
 
   // Bare "Nova": chime, pause narration, and open a short window to catch the command that
   // follows in the next breath. If nothing comes, quietly resume where we were.
-  const enterCommandWindow = () => {
+  const enterCommandWindow = ({
+    allowFreeform = true,
+    resumeOnTimeout = false,
+  }: { allowFreeform?: boolean; resumeOnTimeout?: boolean } = {}) => {
     clearWakeTimer();
     playCue("wake");
-    wasPlayingBeforeWakeRef.current = stateRef.current.playing && !speakingRef.current;
+    wasPlayingBeforeWakeRef.current = stateRef.current.playing;
+    commandWindowFreeformRef.current = allowFreeform;
+    resumeAfterCommandWindowRef.current = resumeOnTimeout;
     // Pause Aria so she isn't talking over the student's command.
     stopVoice();
+    setPlaying(false);
     setAwaitingCommand(true);
     setAnnouncement("Listening… ask me anything, or say a command like “repeat”, “next”, or “stop”.");
     wakeTimerRef.current = setTimeout(() => {
       setAwaitingCommand(false);
       wakeTimerRef.current = null;
       // Nothing said — resume the beat if we were mid-lecture.
-      if (wasPlayingBeforeWakeRef.current) {
-        setAnnouncement("");
-        repeatDescription();
+      if (wasPlayingBeforeWakeRef.current && resumeAfterCommandWindowRef.current) {
+        setAnnouncement("Resuming.");
+        setPlaying(true);
+      } else if (wasPlayingBeforeWakeRef.current) {
+        setAnnouncement('No command heard. Say "Nova, start" to continue.');
       } else {
         setAnnouncement('Say "Nova" then a command whenever you\'re ready.');
       }
+      resumeAfterCommandWindowRef.current = false;
+      commandWindowFreeformRef.current = true;
     }, WAKE_WINDOW_MS);
   };
 
@@ -422,7 +479,6 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
           return;
         case "answer":
           if (data.answer) {
-            setPlaying(true);
             speak(data.answer, () => {});
           } else {
             repeatDescription();
@@ -443,21 +499,28 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   // handlerRef.current (below) so it never calls a stale version.
   //
   // WAKE-WORD GATE: nothing acts unless the student has said "Nova" — either in this same
-  // phrase ("Nova, stop") or just before (bare "Nova" opened a command window). The one
-  // exception is answering a checkpoint out loud, where the mic has explicitly asked for the
-  // answer, so no wake-word is required.
+  // phrase ("Nova, stop") or just before (bare "Nova" opened a command window). There is
+  // no exception for checkpoints: spoken answers must also start with "Nova".
   //
   // `isFinal` = the recognizer settled this phrase (spoken pause). We ALSO run on interim
   // (isFinal=false) so wake-word commands fire the instant they're heard, without waiting for
   // the pause — but interim only acts on clear wake-word commands, never on free-form answers.
   const handleVoiceCommand = (raw: string, isFinal: boolean) => {
-    const text = raw.toLowerCase().trim();
+    const text = normalizeSpeech(raw);
     if (!text) return;
     const s = stateRef.current;
 
     // (1) We're already awaiting a command after a bare "Nova" — this phrase IS the command.
     if (awaitingCommandRef.current) {
       const cmd = stripWakeWord(text); // tolerate the student repeating "Nova" here too
+      const phraseHadWake = speechMatches(text, WAKE_WORDS);
+      if (isFinal && commandKey(cmd) === "explain") {
+        if (recentlyFired("win:explain")) return;
+        clearWakeTimer();
+        setAwaitingCommand(false);
+        explainThis();
+        return;
+      }
       // Obvious control word -> fire instantly (even on interim, so it feels snappy).
       if (isObviousCommand(cmd)) {
         const key = commandKey(cmd)!;
@@ -470,6 +533,11 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
       // Anything else waits for the FINAL phrase, then goes to the interpreter (or is taken as a
       // checkpoint answer if we're waiting for one).
       if (!isFinal) return;
+      if (!cmd) return;
+      if (!commandWindowFreeformRef.current && !phraseHadWake) {
+        setAnnouncement('Listening… say "Nova" before a question, or say a command like "stop", "repeat", or "explain".');
+        return;
+      }
       clearWakeTimer();
       setAwaitingCommand(false);
       if (s.playing && s.isCheckpoint && s.phase === "waiting-answer" && !speakingRef.current) {
@@ -479,16 +547,34 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
       if (cmd) {
         if (recentlyFired("remote:" + cmd)) return;
         void interpretRemotely(cmd);
-      } else if (wasPlayingBeforeWakeRef.current) {
-        repeatDescription();
       }
       return;
     }
 
-    const hasWake = matches(text, WAKE_WORDS);
+    const hasWake = speechMatches(text, WAKE_WORDS);
 
     // (2) A pending comprehension ping just needs acknowledgement — say "Nova" to advance.
     if (s.awaitingQuickCheckKey && hasWake) {
+      const cmd = stripWakeWord(text);
+      const key = commandKey(cmd);
+      if (cmd && key && key !== "start") {
+        if (recentlyFired("quickcheck:" + key)) return;
+        setAwaitingQuickCheckKey(false);
+        runCommand(cmd);
+        return;
+      }
+      if (cmd && key === "explain" && isFinal) {
+        if (recentlyFired("quickcheck:explain")) return;
+        setAwaitingQuickCheckKey(false);
+        explainThis();
+        return;
+      }
+      if (cmd && !key && isFinal) {
+        if (recentlyFired("quickcheck:remote:" + cmd)) return;
+        setAwaitingQuickCheckKey(false);
+        void interpretRemotely(cmd);
+        return;
+      }
       if (recentlyFired("quickcheck")) return;
       setAwaitingQuickCheckKey(false);
       stopVoice();
@@ -496,21 +582,26 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
       return;
     }
 
-    // (3) Checkpoint answer: accept a spoken answer WITHOUT a wake-word (once Aria has stopped
-    // and only on the FINAL transcript, so we get the whole answer, not a partial).
-    if (isFinal && s.playing && s.isCheckpoint && s.phase === "waiting-answer" && !speakingRef.current && !hasWake) {
-      submitAnswer(text);
-      return;
-    }
+    // (3) Spoken checkpoint answers also require "Nova". If the student says an answer without
+    // the wake name, ignore it exactly like background noise.
 
     // (4) Everything else MUST contain the wake-word, or it's ignored entirely.
     if (!hasWake) return;
     const cmd = stripWakeWord(text);
-    if (isObviousCommand(cmd)) {
+    if (!cmd && !isFinal && (s.playing || speakingRef.current)) {
+      if (recentlyFired("wake:interim")) return;
+      enterCommandWindow();
+    } else if (isFinal && commandKey(cmd) === "explain") {
+      if (recentlyFired("cmd:explain")) return;
+      explainThis();
+    } else if (isObviousCommand(cmd)) {
       // "Nova, stop" / "Nova, next" — obvious control word, fire instantly (interim or final).
       const key = commandKey(cmd)!;
       if (recentlyFired("cmd:" + key)) return;
       runCommand(cmd);
+    } else if (cmd && isFinal && s.playing && s.isCheckpoint && s.phase === "waiting-answer" && !speakingRef.current) {
+      if (recentlyFired("answer:" + cmd)) return;
+      submitAnswer(cmd);
     } else if (cmd && isFinal) {
       // "Nova, <anything else>" — a fuzzy request or a real question. Wait for the FINAL phrase
       // (so we have the whole thing) and let OpenAI interpret it: control action or spoken answer.
@@ -528,18 +619,169 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
   const handlerRef = useRef(handleVoiceCommand);
   handlerRef.current = handleVoiceCommand;
 
-  // The always-on microphone. Once started it stays hot for the whole session, auto-
-  // restarting whenever the browser ends a recognition turn (they stop after a pause). We
-  // only ACT on a phrase that finalized while Aria wasn't speaking — otherwise the mic would
-  // hear her own narration through the speakers and fire commands at itself.
+  // The always-on microphone. Once started it stays hot for the whole session. Browsers
+  // still end speech-recognition sessions after pauses or while page audio is playing, so
+  // each end/error schedules a brand-new recognizer instead of relying on one fragile object.
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const micWantedRef = useRef(false);
+  const micRestartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const micHealthTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const micSessionRef = useRef(0);
+  const bargeStreamRef = useRef<MediaStream | null>(null);
+  const bargeAudioContextRef = useRef<AudioContext | null>(null);
+  const bargeFrameRef = useRef<number | null>(null);
+  const bargeWantedRef = useRef(false);
+  const bargeSessionRef = useRef(0);
+  const bargeNoiseFloorRef = useRef(0.018);
+  const bargeHitCountRef = useRef(0);
+  const bargeCooldownUntilRef = useRef(0);
 
-  const startMic = useCallback(() => {
-    if (micWantedRef.current) return;
+  const clearMicRestartTimer = () => {
+    if (micRestartTimerRef.current) {
+      clearTimeout(micRestartTimerRef.current);
+      micRestartTimerRef.current = null;
+    }
+  };
+
+  const detachRecognition = (recognition: SpeechRecognitionLike | null) => {
+    if (!recognition) return;
+    recognition.onresult = null;
+    recognition.onerror = null;
+    recognition.onend = null;
+  };
+
+  const scheduleMicRestart = (session: number, delay = 350) => {
+    clearMicRestartTimer();
+    micRestartTimerRef.current = setTimeout(() => {
+      micRestartTimerRef.current = null;
+      if (!micWantedRef.current || micSessionRef.current !== session) return;
+      startRecognitionSession();
+    }, delay);
+  };
+
+  const refreshRecognitionAfterBarge = () => {
+    clearMicRestartTimer();
+    micRestartTimerRef.current = setTimeout(() => {
+      micRestartTimerRef.current = null;
+      if (micWantedRef.current) startRecognitionSession();
+    }, 120);
+  };
+
+  const stopBargeDetector = () => {
+    bargeWantedRef.current = false;
+    bargeSessionRef.current += 1;
+    if (bargeFrameRef.current !== null) {
+      cancelAnimationFrame(bargeFrameRef.current);
+      bargeFrameRef.current = null;
+    }
+    bargeStreamRef.current?.getTracks().forEach((track) => track.stop());
+    bargeStreamRef.current = null;
+    void bargeAudioContextRef.current?.close();
+    bargeAudioContextRef.current = null;
+    bargeHitCountRef.current = 0;
+  };
+
+  async function startBargeDetector() {
+    if (bargeWantedRef.current || bargeStreamRef.current) return;
+    if (!navigator.mediaDevices?.getUserMedia) return;
+
+    bargeWantedRef.current = true;
+    const session = bargeSessionRef.current + 1;
+    bargeSessionRef.current = session;
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          autoGainControl: true,
+          echoCancellation: true,
+          noiseSuppression: true,
+        },
+      });
+      if (!bargeWantedRef.current || bargeSessionRef.current !== session) {
+        stream.getTracks().forEach((track) => track.stop());
+        return;
+      }
+
+      const AudioContextCtor =
+        window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AudioContextCtor) {
+        stream.getTracks().forEach((track) => track.stop());
+        return;
+      }
+
+      const audioContext = new AudioContextCtor();
+      const analyser = audioContext.createAnalyser();
+      analyser.fftSize = 1024;
+      analyser.smoothingTimeConstant = 0.35;
+      const source = audioContext.createMediaStreamSource(stream);
+      source.connect(analyser);
+
+      bargeStreamRef.current = stream;
+      bargeAudioContextRef.current = audioContext;
+      const samples = new Uint8Array(analyser.fftSize);
+
+      const tick = () => {
+        if (!bargeWantedRef.current || bargeSessionRef.current !== session) return;
+
+        analyser.getByteTimeDomainData(samples);
+        let sum = 0;
+        for (let i = 0; i < samples.length; i += 1) {
+          const centered = (samples[i] - 128) / 128;
+          sum += centered * centered;
+        }
+        const rms = Math.sqrt(sum / samples.length);
+        const now = Date.now();
+        const lectureIsTalking = speakingRef.current || stateRef.current.playing;
+
+        if (!lectureIsTalking || awaitingCommandRef.current) {
+          // Keep a slow-moving room baseline while we are not trying to barge in.
+          bargeNoiseFloorRef.current = bargeNoiseFloorRef.current * 0.96 + rms * 0.04;
+          bargeHitCountRef.current = 0;
+        } else if (now > bargeCooldownUntilRef.current) {
+          const threshold = Math.max(0.038, bargeNoiseFloorRef.current * 2.4);
+          if (rms > threshold) {
+            bargeHitCountRef.current += 1;
+          } else {
+            bargeHitCountRef.current = Math.max(0, bargeHitCountRef.current - 1);
+          }
+
+          if (bargeHitCountRef.current >= 4) {
+            bargeHitCountRef.current = 0;
+            bargeCooldownUntilRef.current = now + 2400;
+            if (!awaitingCommandRef.current && (speakingRef.current || stateRef.current.playing)) {
+              enterCommandWindow({ allowFreeform: false, resumeOnTimeout: true });
+              setHeard("Voice detected. Listening now...");
+              refreshRecognitionAfterBarge();
+            }
+          }
+        }
+
+        bargeFrameRef.current = requestAnimationFrame(tick);
+      };
+
+      bargeFrameRef.current = requestAnimationFrame(tick);
+    } catch {
+      bargeWantedRef.current = false;
+    }
+  }
+
+  function startRecognitionSession() {
+    if (!micWantedRef.current) return;
     const recognition = getSpeechRecognition();
-    if (!recognition) { setMicSupported(false); return; }
-    micWantedRef.current = true;
+    if (!recognition) {
+      setMicSupported(false);
+      setMicOn(false);
+      micWantedRef.current = false;
+      return;
+    }
+
+    const previous = recognitionRef.current;
+    detachRecognition(previous);
+    try { previous?.stop(); } catch { /* ignore */ }
+
+    const session = micSessionRef.current + 1;
+    micSessionRef.current = session;
+    recognitionRef.current = recognition;
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = "en-US";
@@ -564,39 +806,81 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
       // de-dupes so the same phrase isn't run again when it later finalizes.
       if (interim) {
         handlerRef.current(interim, false);
-        if (!speakingRef.current) setHeard(interim);
+        const heardWake = speechMatches(normalizeSpeech(interim), WAKE_WORDS);
+        if (heardWake || awaitingCommandRef.current) setHeard(interim);
+        else setHeard("");
       }
     };
-    recognition.onerror = () => { /* transient (no-speech/network) — onend will restart */ };
+    recognition.onerror = (event) => {
+      if (micSessionRef.current !== session) return;
+      if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+        micWantedRef.current = false;
+        setMicOn(false);
+        setAnnouncement("Microphone permission is blocked. Allow the microphone to use Nova.");
+        return;
+      }
+      // Chrome often ends recognition while page audio is playing. Start a fresh recognizer
+      // instead of trusting the same object to recover.
+      scheduleMicRestart(session, 500);
+    };
     recognition.onend = () => {
       // Auto-restart so the mic stays continuously live, unless we intentionally stopped it.
-      if (micWantedRef.current) {
-        try { recognition.start(); } catch { /* already starting */ }
+      if (micWantedRef.current && micSessionRef.current === session) {
+        scheduleMicRestart(session);
       }
     };
-    recognitionRef.current = recognition;
-    try { recognition.start(); } catch { /* already started */ }
-    setMicOn(true);
+
+    try {
+      recognition.start();
+      setMicOn(true);
+    } catch {
+      scheduleMicRestart(session, 500);
+    }
+  }
+
+  const startMic = useCallback(() => {
+    if (micWantedRef.current) return;
+    micWantedRef.current = true;
+    startRecognitionSession();
+    void startBargeDetector();
+    micHealthTimerRef.current ??= setInterval(() => {
+      if (!micWantedRef.current) return;
+      if (!recognitionRef.current) startRecognitionSession();
+    }, 1500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const stopMic = useCallback(() => {
     micWantedRef.current = false;
+    micSessionRef.current += 1;
+    clearMicRestartTimer();
+    if (micHealthTimerRef.current) {
+      clearInterval(micHealthTimerRef.current);
+      micHealthTimerRef.current = null;
+    }
     setMicOn(false);
     setHeard("");
     const r = recognitionRef.current;
     recognitionRef.current = null;
-    if (r) { r.onend = null; try { r.stop(); } catch { /* ignore */ } }
+    detachRecognition(r);
+    if (r) { try { r.stop(); } catch { /* ignore */ } }
+    stopBargeDetector();
   }, []);
 
-  // Open the mic automatically as soon as the Blind player mounts. Rendering this player
-  // follows the student's click on the "Blind" mode card — that click is the user gesture
-  // the browser requires, so recognition can start right away. From here it's voice-only:
-  // say "start" to begin, "stop" to pause, speak answers aloud.
+  // Open the mic automatically as soon as the Blind player mounts. In generated Blind
+  // lectures, `autoStart` also begins the first beat immediately so a blind learner is not
+  // stranded on a visual "Start lecture" button after already speaking the topic.
   useEffect(() => {
     if (!micSupported) return;
     const t = setTimeout(() => {
       startMic();
-      setAnnouncement('Microphone is on. Say "Nova, start" to begin the lecture. Say "Nova" any time to give a command.');
+      if (autoStart && !autoStartedRef.current) {
+        autoStartedRef.current = true;
+        start();
+        setAnnouncement('Starting the lecture now. Say "Nova, stop" any time to pause, or "Nova, explain this" for more detail.');
+      } else {
+        setAnnouncement('Microphone is on. Say "Nova, start" to begin the lecture. Say "Nova" any time to give a command.');
+      }
     }, 300);
     return () => { clearTimeout(t); stopMic(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -686,8 +970,8 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
           </div>
         )}
 
-        {/* Voice-control status. The mic is on for the whole session: say "start" to begin,
-            "stop" to pause, "repeat", "next", "back", or speak your answer at a checkpoint. */}
+        {/* Voice-control status. The mic is on for the whole session, but commands only run
+            after the wake name: "Nova, start", "Nova, stop", "Nova, repeat", etc. */}
         {micSupported ? (
           <div className={`flex flex-wrap items-center gap-3 rounded-2xl border px-5 py-3.5 transition-colors ${thinking ? "border-violet-400/50 bg-violet-500/15" : awaitingCommand ? "border-emerald-400/50 bg-emerald-500/15" : "border-accent-blind/25 bg-accent-blind/10"}`}>
             <span className={`grid size-9 shrink-0 place-items-center rounded-full ${thinking ? "bg-violet-400/40 text-violet-100 animate-pulse" : awaitingCommand ? "bg-emerald-400/40 text-emerald-100" : micOn ? "bg-emerald-500/25 text-emerald-200" : "bg-white/10 text-white/50"}`} aria-hidden="true">
@@ -719,7 +1003,7 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
           </p>
         )}
 
-        {!playing && phase !== "done" && (
+        {(!autoStart || voiceBlocked) && !playing && phase !== "done" && (
           <button
             onClick={start}
             className="rounded-full px-6 py-3 text-base font-black"
@@ -746,8 +1030,8 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
             }}
           >
             <label htmlFor="blind-answer" className="text-sm font-bold text-white/60">
-              {micSupported ? "Speak your answer aloud" : "Your answer"}{checkpointAttempts > 0 ? ` (attempt ${checkpointAttempts + 1} of ${MAX_ATTEMPTS})` : ""}
-              {micSupported && <span className="ml-2 font-semibold text-white/40">— or type it below</span>}
+              {micSupported ? 'Speak your answer aloud starting with "Nova"' : "Your answer"}{checkpointAttempts > 0 ? ` (attempt ${checkpointAttempts + 1} of ${MAX_ATTEMPTS})` : ""}
+              {micSupported && <span className="ml-2 font-semibold text-white/40">— for example, “Nova, oxygen”</span>}
             </label>
             <input
               id="blind-answer"
@@ -775,7 +1059,7 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
         )}
 
         {awaitingQuickCheckKey && (
-          <p className="text-sm font-bold uppercase tracking-[0.15em] text-fuchsia-300">Press any key to continue…</p>
+          <p className="text-sm font-bold uppercase tracking-[0.15em] text-fuchsia-300">Say “Nova” or press any key to continue…</p>
         )}
 
         {phase === "done" && (
@@ -790,8 +1074,8 @@ export function BlindLessonPlayer({ onExit, beats = demoBeats, title = "Photosyn
 
         <nav aria-label="Voice and keyboard controls" className="mt-auto flex flex-col gap-3">
           <p className="text-sm font-semibold text-accent-blind/80">
-            Say <span className="font-black text-white/90">“Nova”</span>, then talk to her naturally — she understands what you mean.
-            Try <span className="font-black text-white/90">“Nova, explain the light part again”</span>, <span className="font-black text-white/90">“Nova, I&rsquo;m a bit lost”</span>, <span className="font-black text-white/90">“Nova, go back”</span>, or quick commands like <span className="font-black text-white/90">“Nova, stop”</span> / <span className="font-black text-white/90">“Nova, next”</span> / <span className="font-black text-white/90">“Nova, exit”</span>. At a checkpoint, just speak your answer.
+            Say <span className="font-black text-white/90">“Nova”</span>, then talk to her naturally — without that name, noise is ignored.
+            Try <span className="font-black text-white/90">“Nova, explain the light part again”</span>, <span className="font-black text-white/90">“Nova, I&rsquo;m a bit lost”</span>, <span className="font-black text-white/90">“Nova, go back”</span>, or quick commands like <span className="font-black text-white/90">“Nova, stop”</span> / <span className="font-black text-white/90">“Nova, next”</span> / <span className="font-black text-white/90">“Nova, exit”</span>. At a checkpoint, answer the same way: <span className="font-black text-white/90">“Nova, oxygen”</span>.
           </p>
           <div className="grid grid-cols-2 gap-2 text-sm font-semibold text-white/40 sm:grid-cols-3">
           <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">Space</kbd> play / pause</p>

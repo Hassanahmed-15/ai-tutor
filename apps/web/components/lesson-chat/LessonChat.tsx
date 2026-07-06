@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
@@ -81,7 +81,7 @@ export function useLessonChat(opts: {
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
         setChat((c) => [...c, { role: "aria", text: data.script }]);
-        setExplainBoard({ script: data.script, draw: data.draw });
+        setExplainBoard({ script: data.script, draw: data.draw ?? clientBlackboardDraw(trimmed, data.script) });
         setDrawProgress(0);
         const handle = playNarration(data.script, {
           onStart: () => {},
@@ -166,9 +166,12 @@ export function ExplainOverlay({
   onClose: () => void;
 }) {
   return (
-    <div className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/90 p-3 backdrop-blur-md lg:p-5">
+    <div className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/95 p-3 backdrop-blur-md lg:p-5">
       <div className="mb-2 flex items-center justify-between">
-        <HudEyebrow>Explaining your question</HudEyebrow>
+        <div>
+          <HudEyebrow>Blackboard explanation</HudEyebrow>
+          <p className="mt-1 text-xs font-semibold text-[var(--hud-text-faint)]">Aria is drawing the answer as a fresh diagram.</p>
+        </div>
         <button onClick={onClose} className="hud-btn-ghost rounded-full px-4 py-1.5 text-xs font-bold">
           Got it — back to lecture
         </button>
@@ -209,8 +212,12 @@ export function ChatPanel({
   const [question, setQuestion] = useState("");
   const endRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "end" });
+  }, [chat.length, explaining, listening, interim]);
+
   return (
-    <HudPanel className="flex min-h-0 flex-col overflow-hidden !rounded-[1.5rem]">
+    <HudPanel className="flex min-h-0 flex-col overflow-hidden !rounded-[1.5rem] [&>div]:flex [&>div]:h-full [&>div]:min-h-0 [&>div]:flex-col">
       <div className="flex items-center gap-2.5 border-b border-[var(--hud-line)] px-5 py-4">
         <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--hud-cyan)]/15 text-sm">💬</span>
         <div>
@@ -222,14 +229,7 @@ export function ChatPanel({
       </div>
       <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
         {chat.length === 0 ? (
-          <div className="grid h-full place-items-center px-2 text-center">
-            <div>
-              <p className="text-2xl opacity-30">✦</p>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--hud-text-faint)]">
-                Confused about something? Type or speak a question any time and Aria will explain it on a fresh board.
-              </p>
-            </div>
-          </div>
+          <div className="h-full" aria-hidden="true" />
         ) : (
           chat.map((t, i) => (
             <div
@@ -260,7 +260,7 @@ export function ChatPanel({
         <div ref={endRef} />
       </div>
 
-      <div className="border-t border-[var(--hud-line)] p-3">
+      <div className="mt-auto border-t border-[var(--hud-line)] p-3">
         {voiceOnly ? (
           <button
             onClick={onVoice}
@@ -307,4 +307,40 @@ export function ChatPanel({
       </div>
     </HudPanel>
   );
+}
+
+function clientBlackboardDraw(question: string, script: string): DrawScript {
+  const title = shortenClientText(question || "Question", 42);
+  const first = firstClientSentence(script, "Main idea");
+  const second = secondClientSentence(script, "Example");
+
+  return {
+    caption: title,
+    durationMs: 16000,
+    ops: [
+      { kind: "label", text: title, x: 50, y: 10, size: "md", color: "#1e293b", at: 0.05 },
+      { kind: "note", text: shortenClientText(first, 46), x: 28, y: 28, color: "#2563eb", at: 0.16 },
+      { kind: "arrow", x1: 36, y1: 36, x2: 49, y2: 48, color: "#475569", at: 0.30 },
+      { kind: "label", text: "key change", x: 50, y: 50, size: "sm", color: "#d97706", at: 0.42 },
+      { kind: "arrow", x1: 55, y1: 52, x2: 68, y2: 64, color: "#475569", at: 0.56 },
+      { kind: "note", text: shortenClientText(second, 46), x: 72, y: 72, color: "#059669", at: 0.72 },
+    ],
+  };
+}
+
+function firstClientSentence(text: string, fallback: string) {
+  return text.match(/[^.!?]+[.!?]?/)?.[0]?.trim() || fallback;
+}
+
+function secondClientSentence(text: string, fallback: string) {
+  const sentences = text.match(/[^.!?]+[.!?]?/g)?.map((s) => s.trim()).filter(Boolean) ?? [];
+  return sentences[1] ?? sentences[0] ?? fallback;
+}
+
+function shortenClientText(text: string, max: number) {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const clipped = clean.slice(0, max + 1);
+  const lastSpace = clipped.lastIndexOf(" ");
+  return clipped.slice(0, lastSpace > 18 ? lastSpace : max).replace(/[,.!?;:–—-]+$/, "").trim();
 }

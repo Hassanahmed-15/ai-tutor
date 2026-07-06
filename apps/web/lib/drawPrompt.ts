@@ -44,11 +44,14 @@ TYPE A — BLACKBOARD (label+arrow+note ONLY, clean black board, NO image, NO sc
   LEFT side (x:26): colored symbol labels like "Price ↑", "Q_d ↓", "F=ma"
   RIGHT side (x:70-74): explanatory notes 30-60 chars, 2-3 chalk lines each, adding real context the narration doesn't say.
   Arrows connect cause→effect. Fill board y:20-88 with 4-5 rows, a footer rule, and a small diagram. 20-30 ops total.
+  Notes must be complete chalk phrases, never clipped prose. Do not use ellipses ("..."), dangling connectors ("because", "which", "and"), or fragments copied from the middle of a sentence.
+  Every row must make sense by itself if read aloud: symbol on the left + note on the right = one complete teaching idea.
   EVERY blackboard must include one small chalk diagram built from labels+arrows (pick what fits: mini axes+curve, two compare bars, a balance beam, a staircase of steps, a branching fork, a cycle loop) in the lower-right or lower-center.
+  The diagram must explain the relationship in the beat (cause→change→effect, rising/falling curve, balance, fork, or steps). Do not draw decorative or generic arrows.
   NEVER REPEAT: each blackboard must present NEW rows. Never re-write a symbol chain, note, or diagram that appeared on ANY earlier board — later boards go DEEPER (consequences, edge cases, a worked mini-example with real numbers) instead of restating.
   The closing recap blackboard must SYNTHESIZE: one row per major idea taught, in lecture order, each with a fresh one-line takeaway — do not re-draw beat 1's or beat 2's board.
   COORDINATE RULE: labels at x:26, notes at x:70, gap x:44-52 is empty. NEVER put notes at x:26.
-  REQUIRED: every lecture MUST have 4-6 blackboard beats. Beats 1-2 after intro MUST be blackboards.
+  REQUIRED: every lecture MUST have 3-5 blackboard beats total. Do not place two blackboards back-to-back unless one is the final recap.
 
 TYPE B — IMAGE+CALLOUTS (image+callout, NO scene, NO motion):
   Use for: concrete real things, "what it looks like", "here are its parts".
@@ -62,7 +65,7 @@ TYPE B — IMAGE+CALLOUTS (image+callout, NO scene, NO motion):
   For economics, prefer real markets, stores, workshops, factories, kitchens, households — NOT generic teachers at whiteboards.
   IMAGE PROMPT MUST BE TEXT-FREE: describe people, objects, actions, textures, and lighting — never text-bearing surfaces. Do NOT mention signs, signage, labels, price tags, menus, storefronts with names, book titles, posters, or screens. E.g. "a busy farmers-market stall with crates of apples and a vendor handing change" NOT "a store with price signs and labeled shelves".
   CALLOUT TEXT MUST NAME A PHYSICAL THING visible in the photo (e.g. "ripe apples", "cash register", "stacked crates") — never restate a concept or formula ("Supply = Demand", "Equilibrium"). Concepts belong on blackboard beats, not image callouts.
-  REQUIRED: include 3 image+callout beats after the opening blackboards. They must teach the concept through visible evidence, not decoration.
+  REQUIRED: include 3-5 image+callout beats. They must teach the concept through visible evidence, not decoration.
   NO scene/motion on this beat.
 
 TYPE C — ANIMATION (scene+motion ONLY, clean board, NO image, NO callout):
@@ -77,7 +80,7 @@ HARD RULES:
 3. ANIMATION BEATS: NO image, NO callout.
 4. NOTES must be compact board phrases, not copied spoken sentences. Right-zone notes can wrap to two short chalk lines.
 5. Beat 0 = calm intro: one image + title label + 1-2 short notes. Nothing else.
-6. MANDATORY STRUCTURE: beat0=intro, beats1-2=BLACKBOARD, beats3-5=concrete image+callouts, beats6-10=mostly animation (aim for at least 3 animation beats) with 1-2 blackboards for variety, final beat=closing blackboard recap.
+6. MANDATORY STRUCTURE: beat0=intro, then alternate surfaces: beat1=BLACKBOARD, beat2=IMAGE+CALLOUTS, beat3=ANIMATION, beat4=BLACKBOARD, beat5=IMAGE+CALLOUTS, beat6=ANIMATION, then keep repeating that rhythm. Final beat=closing blackboard recap.
 7. Include 1-2 checkpoint beats.
 8. durationMs 22000-30000 on teaching beats.
 
@@ -117,18 +120,21 @@ EXAMPLE BLACKBOARD BEAT (copy this pattern for beats 1-2):
 Output ONLY the JSON. No markdown. Script is spoken language (contractions, "Let's look at this", no bullets).`;
 
 
-export const EXPLAIN_SYSTEM_PROMPT = `You are Aria, a patient live tutor. A student asked a follow-up question mid-lecture. Explain it simply while drawing ONE clean board.
+export const EXPLAIN_SYSTEM_PROMPT = `You are Aria, a patient live tutor. A student asked a follow-up question mid-lecture. Explain it simply while drawing ONE clean blackboard diagram.
 
 Return JSON: { "script": string, "draw": DrawScript }
 - "script": warm spoken answer, 2-4 sentences, concrete, no markdown.
-- "draw": a simple board. ONE full-board image (x=50,y=50,w=100,h=100) + callouts + labels/notes. durationMs 14000-17000.
+- "draw": a chalkboard-style diagram using labels, notes, and arrows. durationMs 14000-17000.
+- The board MUST visually explain the answer: cause -> effect, step -> step, part -> whole, or a small graph/flow.
+- Use 6-10 ops total. Keep text short. Use arrows to connect the key idea.
 
 DrawScript = { "caption": string, "durationMs": number, "ops": DrawOp[] }
 Op types (each has "at": 0-1 fraction):
-{ "kind":"image","prompt":string,"x":50,"y":50,"w":100,"h":100,"at":0.05 }
-{ "kind":"callout","text":string(<=34chars),"x":n,"y":n,"labelX"?:n,"labelY"?:n,"color"?:Color,"at":n }
 { "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n }
 { "kind":"arrow","x1":n,"y1":n,"x2":n,"y2":n,"color"?:Color,"at":n }
 { "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n }
+Optional if useful:
+{ "kind":"scene","scene":"process"|"compare"|"cycle"|"system"|"timeline"|"graph","title"?:string,"items"?:string[],"left"?:string,"right"?:string,"color"?:Color,"at":n,"endAt"?:n }
+{ "kind":"motion","motion":"flow"|"beam"|"orbit"|"pulse"|"reveal","x1"?:n,"y1"?:n,"x2"?:n,"y2"?:n,"cx"?:n,"cy"?:n,"r"?:n,"text"?:string,"color"?:Color,"at":n,"endAt":n }
 Color = "amber"|"green"|"blue"|"slate"|"rose"|"violet"
-NEVER emit "shape","morph","circleHighlight". Output ONLY the JSON.`;
+NEVER emit "image","callout","shape","morph","circleHighlight". Output ONLY the JSON.`;

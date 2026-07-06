@@ -42,7 +42,17 @@ export function checkAnswer(beat: Beat, answer: string): CheckpointResult {
     : { correct: false, feedback: beat.checkpoint.hintFeedback };
 }
 
-export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; beats?: Beat[]; title?: string }) {
+export function LessonPlayer({
+  onExit,
+  beats = demoBeats,
+  title = "Photosynthesis",
+  mode = "standard",
+}: {
+  onExit?: () => void;
+  beats?: Beat[];
+  title?: string;
+  mode?: "standard" | "deaf";
+}) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -52,12 +62,14 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
   const [waitingOnCheckpoint, setWaitingOnCheckpoint] = useState(false);
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
   const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "" });
+  const [captionLog, setCaptionLog] = useState<string[]>([]);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
   const cancelRef = useRef<NarrationHandle | null>(null);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
+  const deafMode = mode === "deaf";
 
   const stopVoice = useCallback(() => {
     cancelRef.current?.cancel();
@@ -103,6 +115,13 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
       onStart: () => setSpeaking(true),
       onSentenceStart: (sentenceIndex, sentence, total) => {
         setSentenceCue({ index: sentenceIndex, text: sentence, total });
+        if (deafMode) {
+          const caption = sentence.trim();
+          setCaptionLog((lines) => {
+            if (!caption || lines[lines.length - 1] === caption) return lines;
+            return [...lines, caption].slice(-9);
+          });
+        }
         // Sync draw progress so LiveSketch boards draw in step with the narration.
         setDrawProgress(total > 1 ? Math.min(1, (sentenceIndex + 1) / total) : 1);
       },
@@ -127,7 +146,7 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy]);
+  }, [index, playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, deafMode]);
 
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
@@ -180,6 +199,7 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
+    if (deafMode) setCaptionLog([]);
     setIndex(i);
     setStage("slide");
     setPlaying(true);
@@ -190,6 +210,7 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
+    if (deafMode) setCaptionLog([]);
     setIndex(0);
     setStage("slide");
     setPlaying(true);
@@ -205,6 +226,8 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
   const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / beats.length) * 100;
 
   const statusText = speaking ? "explaining" : waitingOnCheckpoint ? "waiting on you" : stage === "slide" ? "setting up" : "drawing";
+  const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
+  const currentCaption = sentenceCue.text || beat.script;
 
   return (
     <main className="relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
@@ -228,9 +251,32 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
             ) : (
               <div className="beat-fade-in relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+                {deafMode && (
+                  <div className="pointer-events-none absolute left-3 top-3 z-40 flex flex-wrap items-center gap-2 lg:left-5 lg:top-5">
+                    <div className="flex items-center gap-2 rounded-full border border-[var(--accent-deaf)]/35 bg-black/70 px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] text-[var(--accent-deaf)] shadow-[0_0_28px_var(--accent-deaf-glow)] backdrop-blur-md">
+                      <span className={`size-2.5 rounded-full ${speaking ? "animate-pulse bg-[var(--accent-deaf)]" : waitingOnCheckpoint ? "bg-amber-300" : "bg-white/35"}`} />
+                      {speaking ? "Teacher speaking" : waitingOnCheckpoint ? "Checkpoint" : "Visual cue"}
+                    </div>
+                    <div className="rounded-full border border-white/10 bg-white/[0.08] px-3.5 py-2 text-xs font-bold text-white/70 backdrop-blur-md">
+                      {sentenceCue.total > 1 ? `Caption ${Math.min(sentenceCue.index + 1, sentenceCue.total)}/${sentenceCue.total}` : "Caption ready"}
+                    </div>
+                  </div>
+                )}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5">
-                  <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center text-base font-bold leading-snug text-white shadow-2xl backdrop-blur-md">
-                    {sentenceCue.text || beat.script}
+                  <div
+                    className={`mx-auto max-w-5xl rounded-2xl border px-5 py-3 font-bold leading-snug text-white shadow-2xl backdrop-blur-md ${
+                      deafMode
+                        ? "border-[var(--accent-deaf)]/35 bg-slate-950/95 text-left text-lg lg:px-6 lg:py-4 lg:text-xl"
+                        : "border-white/10 bg-slate-950/86 text-center text-base"
+                    }`}
+                  >
+                    {deafMode && (
+                      <div className="mb-2 flex items-center justify-between gap-3 text-[0.65rem] font-black uppercase tracking-[0.16em] text-[var(--accent-deaf)]">
+                        <span>Live caption</span>
+                        <span className="text-white/45">{speaking ? "On screen" : "Paused"}</span>
+                      </div>
+                    )}
+                    {currentCaption}
                   </div>
                 </div>
               </div>
@@ -243,15 +289,26 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
           </section>
 
           <div className="hidden min-h-0 xl:block [&>*]:h-full">
-            <ChatPanel
-              chat={chat.chat}
-              explaining={chat.explaining}
-              listening={chat.listening}
-              interim={chat.interim}
-              voiceSupported={chat.voiceSupported}
-              onAsk={chat.ask}
-              onVoice={chat.startVoice}
-            />
+            {deafMode ? (
+              <DeafAccessPanel
+                beat={beat}
+                caption={currentCaption}
+                captionLog={captionLog}
+                speaking={speaking}
+                waitingOnCheckpoint={waitingOnCheckpoint}
+                stage={stage}
+              />
+            ) : (
+              <ChatPanel
+                chat={chat.chat}
+                explaining={chat.explaining}
+                listening={chat.listening}
+                interim={chat.interim}
+                voiceSupported={chat.voiceSupported}
+                onAsk={chat.ask}
+                onVoice={chat.startVoice}
+              />
+            )}
           </div>
         </div>
 
@@ -265,8 +322,8 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
               </AvatarRing>
             </button>
             <div>
-              <p className="hud-eyebrow text-[11px] tracking-[0.16em] text-[var(--hud-cyan)]">
-                {hasStarted ? <span className="capitalize">{statusText}…</span> : "Live tutor"} · beat {index + 1}/{beats.length}
+              <p className="hud-eyebrow text-[11px] tracking-[0.16em]" style={{ color: accent }}>
+                {deafMode ? "Caption-first" : hasStarted ? <span className="capitalize">{statusText}…</span> : "Live tutor"} · beat {index + 1}/{beats.length}
               </p>
               <h1 className="max-w-[44ch] truncate text-xl font-black tracking-tight">{title}</h1>
             </div>
@@ -318,6 +375,84 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
       </div>
     </main>
   );
+}
+
+function DeafAccessPanel({
+  beat,
+  caption,
+  captionLog,
+  speaking,
+  waitingOnCheckpoint,
+  stage,
+}: {
+  beat: Beat;
+  caption: string;
+  captionLog: string[];
+  speaking: boolean;
+  waitingOnCheckpoint: boolean;
+  stage: Stage;
+}) {
+  const visualState = waitingOnCheckpoint ? "Checkpoint waiting" : speaking ? "Caption live" : stage === "slide" ? "Visual setup" : "Board drawing";
+  const terms = deafKeywords(beat.title, caption);
+  const lines = captionLog.length ? captionLog : [caption];
+
+  return (
+    <aside className="relative flex h-full min-h-0 flex-col gap-3 overflow-hidden rounded-xl border border-[var(--accent-deaf)]/25 bg-slate-950/86 p-4 shadow-[0_32px_110px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+      <HudCorners accent="var(--accent-deaf)" />
+
+      <div className="rounded-lg border border-[var(--accent-deaf)]/25 bg-[var(--accent-deaf-glow)] px-4 py-3">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-[var(--accent-deaf)]">Deaf mode</p>
+        <h2 className="mt-1 text-lg font-black text-white">Caption-first lesson</h2>
+      </div>
+
+      <div className="rounded-lg border border-white/10 bg-black/30 p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Visual sound cue</p>
+        <div className="mt-3 flex items-center gap-3">
+          <span className={`size-4 rounded-full ${speaking ? "animate-pulse bg-[var(--accent-deaf)] shadow-[0_0_20px_var(--accent-deaf)]" : waitingOnCheckpoint ? "bg-amber-300" : "bg-white/30"}`} />
+          <p className="text-base font-black text-white">{visualState}</p>
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-white/10 bg-black/30 p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Current caption</p>
+        <p className="mt-3 text-base font-bold leading-snug text-white">{caption}</p>
+      </div>
+
+      <div className="rounded-lg border border-white/10 bg-black/30 p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Key terms</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {terms.map((term) => (
+            <span key={term} className="rounded-full border border-[var(--accent-deaf)]/25 bg-[var(--accent-deaf-glow)] px-3 py-1.5 text-xs font-black text-[var(--accent-deaf)]">
+              {term}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="min-h-0 flex-1 overflow-hidden rounded-lg border border-white/10 bg-black/30 p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Recent transcript</p>
+        <div className="mt-3 flex max-h-full flex-col gap-2 overflow-y-auto pr-1">
+          {lines.map((line, i) => (
+            <p key={`${i}-${line}`} className="rounded-lg bg-white/[0.05] px-3 py-2 text-sm font-semibold leading-snug text-white/80">
+              {line}
+            </p>
+          ))}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+function deafKeywords(title: string, caption: string) {
+  const stop = new Set(["about", "after", "again", "because", "before", "being", "between", "could", "every", "from", "have", "into", "like", "make", "means", "more", "that", "their", "there", "these", "this", "through", "when", "where", "which", "with", "your"]);
+  const words = `${title} ${caption}`
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]+/g, " ")
+    .split(/\s+/)
+    .map((word) => word.trim())
+    .filter((word) => word.length > 3 && !stop.has(word));
+
+  return [...new Set(words)].slice(0, 5);
 }
 
 /** A progress ring around the avatar — the lecture's progress bar, built into the header
