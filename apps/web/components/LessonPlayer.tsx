@@ -56,8 +56,13 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
   const [rate, setRate] = useState(1);
   const cancelRef = useRef<NarrationHandle | null>(null);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const playingRef = useRef(playing);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
+
+  useEffect(() => {
+    playingRef.current = playing;
+  }, [playing]);
 
   const stopVoice = useCallback(() => {
     cancelRef.current?.cancel();
@@ -91,9 +96,12 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
 
   // Effect 2: start narration exactly once per (beat, stage) — when a checkpoint's slide
   // appears, or once a normal beat reaches "board". Separate from effect 1 so flipping
-  // `stage` here doesn't retrigger effect 1 and cancel narration mid-start.
+  // `stage` here doesn't retrigger effect 1 and cancel narration mid-start. Deliberately does
+  // NOT depend on `playing`: a pause/resume toggle must not tear down and recreate this
+  // narration (that used to reset the board to blank and restart the voice from the top —
+  // see effect 3, which pauses/resumes the SAME handle in place instead).
   useEffect(() => {
-    if (!playing || chat.busy) return;
+    if (!playingRef.current || chat.busy) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
@@ -103,9 +111,10 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
       onStart: () => setSpeaking(true),
       onSentenceStart: (sentenceIndex, sentence, total) => {
         setSentenceCue({ index: sentenceIndex, text: sentence, total });
-        // Sync draw progress so LiveSketch boards draw in step with the narration.
-        setDrawProgress(total > 1 ? Math.min(1, (sentenceIndex + 1) / total) : 1);
       },
+      // Continuous, real narration-clock progress — the board draws in lockstep with the
+      // actual voice instead of jumping ahead at each sentence boundary (see lib/voice.ts).
+      onProgress: (fraction) => setDrawProgress(fraction),
       onEnd: () => {
         setSpeaking(false);
         cancelRef.current = null;
@@ -127,7 +136,15 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy]);
+  }, [index, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy]);
+
+  // Effect 3: the ONLY thing that reacts to Pause/Resume — freezes/continues the SAME
+  // narration handle in place rather than tearing it down (see effect 2's comment).
+  useEffect(() => {
+    if (!cancelRef.current) return;
+    if (playing) cancelRef.current.resume();
+    else cancelRef.current.pause();
+  }, [playing]);
 
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
@@ -227,7 +244,7 @@ export function LessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesi
               />
             ) : (
               <div className="beat-fade-in relative h-full">
-                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={!playing} />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5">
                   <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center text-base font-bold leading-snug text-white shadow-2xl backdrop-blur-md">
                     {sentenceCue.text || beat.script}
@@ -363,14 +380,16 @@ export function Board({
   beat,
   sentenceCue,
   drawProgress,
+  paused,
 }: {
   beat: Beat;
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
+  paused?: boolean;
 }) {
   return (
-    <div className="absolute inset-0 bg-slate-950">
-      <VisualDirector beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+    <div className="absolute inset-0 bg-slate-950" data-anim-paused={paused ? "true" : undefined}>
+      <VisualDirector beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={paused} />
     </div>
   );
 }
@@ -379,10 +398,12 @@ function VisualDirector({
   beat,
   sentenceCue,
   drawProgress,
+  paused,
 }: {
   beat: Beat;
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
+  paused?: boolean;
 }) {
   const text = sentenceCue.text;
   const cue = sentenceCue.index;
@@ -408,7 +429,7 @@ function VisualDirector({
   if (beat.draw) {
     return (
       <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
-        <LiveSketch key={beat.id} script={beat.draw} progress={drawProgress} />
+        <LiveSketch key={beat.id} script={beat.draw} progress={drawProgress} paused={paused} />
       </section>
     );
   }

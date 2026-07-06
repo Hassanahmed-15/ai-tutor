@@ -85,7 +85,9 @@ export function useLessonChat(opts: {
         setDrawProgress(0);
         const handle = playNarration(data.script, {
           onStart: () => {},
-          onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
+          // Continuous, real narration-clock progress — same fix as LessonPlayer's board,
+          // so the explanation board never draws ahead of what's actually been said.
+          onProgress: (fraction) => setDrawProgress(fraction),
           onEnd: () => {
             cancelRef.current = null;
             setDrawProgress(1);

@@ -42,12 +42,21 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
   // button — the lecture only continues when the student clicks it. `null` = running
   // normally, "stopped" = frozen during the hold, "ready" = hold elapsed, awaiting click.
   const [focusPause, setFocusPause] = useState<null | "stopped" | "ready">(null);
+  // Bumped by resumeFromFocusPause() to force effect 2 to start fresh narration for the current
+  // beat: the focus-pause path fully cancels the handle (unlike a manual pause, which effect 3
+  // just pauses in place), so there's nothing left to resume — this beat has to restart.
+  const [narrationRestartTick, setNarrationRestartTick] = useState(0);
 
   const cancelRef = useRef<NarrationHandle | null>(null);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const playingRef = useRef(playing);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
+
+  useEffect(() => {
+    playingRef.current = playing;
+  }, [playing]);
 
   const attention = useAttentionMonitor(cameraEnabled);
 
@@ -75,9 +84,12 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
     };
   }, [index, playing, stage, isCheckpoint]);
 
-  // Effect 2: normal narration. `playing` goes false during a focus pause, halting this.
+  // Effect 2: normal narration. Deliberately does NOT depend on `playing` — a manual pause or
+  // a focus-pause must not tear down and recreate this narration (that reset the board to
+  // blank and restarted the voice from the top). Effect 3 below pauses/resumes the SAME
+  // handle in place instead, so both stopping and resuming happen exactly where they left off.
   useEffect(() => {
-    if (!playing || chat.busy) return;
+    if (!playingRef.current || chat.busy) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
@@ -104,9 +116,17 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, beats.length, chat.busy]);
+  }, [index, stage, isCheckpoint, beat.script, beats.length, chat.busy, narrationRestartTick]);
 
-  // Effect 3: the ADHD mechanism. The instant attention drops to/below the threshold
+  // Effect 3: the ONLY thing that reacts to pause/resume (manual button OR focus-pause) —
+  // freezes/continues the SAME narration handle in place rather than tearing it down.
+  useEffect(() => {
+    if (!cancelRef.current) return;
+    if (playing) cancelRef.current.resume();
+    else cancelRef.current.pause();
+  }, [playing]);
+
+  // Effect 4: the ADHD mechanism. The instant attention drops to/below the threshold
   // (engagement <= 70%), STOP immediately — cancel narration, pause the lecture, freeze the
   // board — then hold for FOCUS_HOLD_MS before surfacing a Resume button. Nothing
   // auto-resumes; the student must click Resume to continue (handled in resumeFromFocusPause).
@@ -133,6 +153,7 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
     unlockAudio();
     setFocusPause(null);
     setPlaying(true);
+    setNarrationRestartTick((t) => t + 1); // stopVoice() fully cancelled the handle — restart this beat's narration
   }
 
   function advanceFromCheckpoint() {
@@ -225,7 +246,7 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
               />
             ) : (
               <div className="beat-fade-in relative h-full">
-                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} />
+                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} paused={!playing} />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5">
                   <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center text-base font-bold leading-snug text-white shadow-2xl backdrop-blur-md">
                     {sentenceCue.text || beat.script}

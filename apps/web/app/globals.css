@@ -783,6 +783,15 @@ textarea {
   }
 }
 
+/* Pause button: freezes every CSS keyframe animation in a paused whiteboard subtree without
+   enumerating each animation class by name. Native SVG SMIL <animate>/<animateMotion> elements
+   are NOT CSS animations and are unaffected by animation-play-state — those are paused
+   separately via SVGSVGElement.pauseAnimations() in components/sketch/LiveSketch.tsx. */
+[data-anim-paused="true"],
+[data-anim-paused="true"] * {
+  animation-play-state: paused !important;
+}
+
 /* The HUD page canvas: faint instrument-panel grid instead of a warm radial glow. */
 .hud-canvas {
   background-color: var(--hud-bg);

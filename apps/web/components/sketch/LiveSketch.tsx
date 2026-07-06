@@ -117,18 +117,24 @@ const gy = (y: number) => (y / 100) * VB_H;
  * Feels like a teacher filling a whiteboard while talking. Topic-agnostic — chemistry,
  * history, biology, math all script into the same primitives.
  */
-export function LiveSketch({ script, progress }: { script: DrawScript; progress?: number }) {
+export function LiveSketch({ script, progress, paused }: { script: DrawScript; progress?: number; paused?: boolean }) {
   // Re-mount (restart the clock) when the script identity changes between beats.
   const key = useMemo(() => `${script.caption ?? ""}:${script.ops.length}:${script.ops.map((o) => o.at).join(",")}`, [script]);
-  return <LiveSketchClock key={key} script={script} progress={progress} />;
+  return <LiveSketchClock key={key} script={script} progress={progress} paused={paused} />;
 }
 
-function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: number }) {
+function LiveSketchClock({ script, progress, paused }: { script: DrawScript; progress?: number; paused?: boolean }) {
   const duration = script.durationMs ?? DEFAULT_DURATION;
+  const hasExternalProgress = typeof progress === "number";
   const [elapsed, setElapsed] = useState(0);
-  const startRef = useRef<number | null>(null);
-  const externalElapsed = typeof progress === "number" ? clamp01(progress) * duration : null;
-  const visibleElapsed = Math.max(elapsed, externalElapsed ?? 0);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const externalElapsed = hasExternalProgress ? clamp01(progress as number) * duration : null;
+  // When narration is driving this board, its real playback progress is the ONLY source of
+  // truth for what's visible — previously this took Math.max(selfClock, narrationClock),
+  // which let the self-driving wall clock below race ahead of the actual voice (content would
+  // appear before the teacher said it, since the self clock ticks every frame regardless of
+  // narration state). The self clock now only runs for boards shown with no narration at all.
+  const visibleElapsed = hasExternalProgress ? (externalElapsed as number) : elapsed;
 
   // Ops sorted by their start time, each with an absolute start in ms.
   const timed = useMemo(() => {
@@ -138,17 +144,34 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   }, [script, duration]);
 
   useEffect(() => {
+    if (hasExternalProgress || paused) return; // frozen while paused; narration progress otherwise drives the board
     let raf = 0;
-    startRef.current = null;
+    const start = performance.now() - elapsed; // resume from wherever it left off, not from 0
     const loop = (now: number) => {
-      if (startRef.current === null) startRef.current = now;
-      const t = Math.min(duration, now - startRef.current);
+      const t = Math.min(duration, now - start);
       setElapsed(t);
       if (t < duration) raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [duration]);
+    // `elapsed` is read once as the resume baseline; including it would restart the loop every frame.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [duration, hasExternalProgress, paused]);
+
+  // Native SVG SMIL animations (<animate>/<animateMotion> used by MotionRenderer/SceneRenderer)
+  // aren't CSS, so `animation-play-state` (see globals.css) can't touch them — pause them via
+  // the SVG's own time-container API instead. Defensive: not every engine implements it, but
+  // the CSS rule already freezes everything className-driven regardless.
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    try {
+      if (paused) svg.pauseAnimations?.();
+      else svg.unpauseAnimations?.();
+    } catch {
+      // SMIL pause/unpause isn't implemented everywhere — CSS freeze rule still covers the rest.
+    }
+  }, [paused]);
 
   const visible = timed.filter((t) => visibleElapsed >= t.startMs);
   const visibleImages = visible.filter((t) => t.op.kind === "image");
@@ -173,7 +196,7 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   return (
     <section className="relative h-full min-h-0 overflow-hidden rounded-xl border border-slate-800 bg-black text-white shadow-[0_18px_70px_rgba(0,0,0,0.5)]">
       <Paper />
-      <svg viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="xMidYMid meet" className="absolute inset-0 h-full min-h-0 w-full" aria-hidden="true">
+      <svg ref={svgRef} viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="xMidYMid meet" className="absolute inset-0 h-full min-h-0 w-full" aria-hidden="true">
         <defs>
           <marker id="live-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" />

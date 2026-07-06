@@ -14,6 +14,11 @@
 
 export type NarrationHandle = {
   cancel: () => void;
+  /** Freezes playback in place — audio position and board/caption progress are preserved,
+   *  not torn down. Pairs with `resume()`. */
+  pause: () => void;
+  /** Continues playback from exactly where `pause()` left it. */
+  resume: () => void;
 };
 
 /**
@@ -35,6 +40,13 @@ interface NarrationCallbacks {
   onBlocked: () => void;
   /** Fired whenever the teacher starts a new sentence so visuals can follow the exact explanation. */
   onSentenceStart?: (index: number, sentence: string, total: number) => void;
+  /** Fired every animation frame with narration progress as a 0→1 fraction, driven by the
+   *  REAL audio clock (cloud TTS: `audio.currentTime / audio.duration`) or, for the browser
+   *  fallback, a pausable elapsed-time clock against the estimated total speaking duration.
+   *  This is what whiteboard/board drawing should sync to — unlike `onSentenceStart`, it
+   *  never jumps ahead of what the teacher has actually said, since it's tied to the same
+   *  clock as the voice, and it freezes/resumes exactly in step with `pause()`/`resume()`. */
+  onProgress?: (fraction: number) => void;
   /** Playback speed multiplier (1 = normal). Applies to both the OpenAI audio element and
    *  the browser TTS fallback's base rate. Defaults to 1. */
   rate?: number;
@@ -43,6 +55,32 @@ interface NarrationCallbacks {
 }
 
 let voicesReadyPromise: Promise<SpeechSynthesisVoice[]> | null = null;
+
+function now() {
+  return typeof performance !== "undefined" ? performance.now() : Date.now();
+}
+
+/** A wall-clock timer that can be paused/resumed without losing its position — drives the
+ *  browser-fallback path's cue schedule and progress estimate off one shared clock, so pausing
+ *  narration freezes both in lockstep and resuming continues exactly where it left off instead
+ *  of restarting. */
+function makePausableClock() {
+  const start = now();
+  let pausedAt: number | null = null;
+  let pausedTotal = 0;
+  return {
+    elapsed: () => (pausedAt ?? now()) - start - pausedTotal,
+    pause: () => {
+      if (pausedAt === null) pausedAt = now();
+    },
+    resume: () => {
+      if (pausedAt !== null) {
+        pausedTotal += now() - pausedAt;
+        pausedAt = null;
+      }
+    },
+  };
+}
 
 function waitForVoices(): Promise<SpeechSynthesisVoice[]> {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return Promise.resolve([]);
@@ -122,28 +160,12 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   let cancelled = false;
   let audio: HTMLAudioElement | null = null;
   let audioContext: AudioContext | null = null;
-  let cueTimers: ReturnType<typeof setTimeout>[] = [];
-  const clearCues = () => {
-    cueTimers.forEach((timer) => clearTimeout(timer));
-    cueTimers = [];
-  };
-  const scheduleEstimatedCues = () => {
-    clearCues();
-    const sentences = splitNarrationSentences(text);
-    if (sentences.length === 0) return;
-    callbacks.onSentenceStart?.(0, sentences[0], sentences.length);
-    const weights = sentences.map((sentence) => Math.max(1.35, sentence.length / 13));
-    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-    // Conservative estimate for OpenAI TTS playback. Browser fallback fires exact cues.
-    const estimatedMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
-    let cursor = 0;
-    for (let i = 1; i < sentences.length; i += 1) {
-      cursor += weights[i - 1];
-      cueTimers.push(
-        setTimeout(() => {
-          if (!cancelled) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
-        }, Math.round((cursor / totalWeight) * estimatedMs))
-      );
+  let progressRaf: number | null = null;
+  let fallbackControls: { pause: () => void; resume: () => void } | null = null;
+  const stopProgressLoop = () => {
+    if (progressRaf !== null) {
+      cancelAnimationFrame(progressRaf);
+      progressRaf = null;
     }
   };
 
@@ -167,25 +189,27 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     // Chrome-on-macOS setups) accept speechSynthesis.speak() — reporting speaking:true —
     // but never actually fire onstart/onend/onerror and produce no audio, which used to
     // freeze the whole lecture (cues stuck, animations stuck, no advancement). Now speech
-    // is best-effort and layered ON TOP of a self-driving timeline: if the engine works you
-    // hear it in sync; if it's dead, the lecture still flows visually and advances on time.
+    // is best-effort and layered ON TOP of a self-driving, pausable timeline: if the engine
+    // works you hear it in sync; if it's dead, the lecture still flows visually and advances
+    // on time — and pause()/resume() freeze/continue that same timeline exactly in place.
     let started = false;
+    let nextIndex = 0;
+
+    // Cumulative scheduled-start time (ms) for each sentence, all sharing one pausable clock
+    // so the cue schedule and the progress estimate freeze/resume together.
+    const durations = sentences.map((sentence) => Math.max(2200, sentence.length * 85) / Math.max(0.5, rate) + 240);
+    const thresholds: number[] = [];
     let cursor = 0;
+    for (const d of durations) {
+      thresholds.push(cursor);
+      cursor += d;
+    }
+    const totalEstimatedMs = cursor;
+    const clock = makePausableClock();
 
-    const cueNext = () => {
-      if (cancelled) return;
-      if (cursor >= sentences.length) {
-        callbacks.onEnd();
-        return;
-      }
-      const sentenceIndex = cursor;
-      const sentence = sentences[sentenceIndex];
-      cursor += 1;
-
-      // Fire the visual cue immediately — this is what the board animations follow.
-      callbacks.onSentenceStart?.(sentenceIndex, sentence, sentences.length);
-
-      // Best-effort speech, layered on. Its events do NOT gate progression.
+    const fireSentence = (i: number) => {
+      const sentence = sentences[i];
+      callbacks.onSentenceStart?.(i, sentence, sentences.length);
       if (hasSpeech) {
         const u = new SpeechSynthesisUtterance(sentence);
         u.rate = 0.93 * rate;
@@ -204,14 +228,25 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           /* speech is optional — ignore engine failures, the timeline drives everything */
         }
       }
-
-      // Advance on an estimated speaking duration so paced visuals feel right whether or
-      // not audio actually plays. ~85ms/char ≈ a clear narration rate (~12 chars/sec),
-      // floored so very short sentences still get a readable beat, plus a brief pause.
-      const spokenMs = Math.max(2200, sentence.length * 85) / Math.max(0.5, rate);
-      setTimeout(cueNext, spokenMs + 240);
     };
-    cueNext();
+
+    const tick = () => {
+      if (cancelled) return;
+      const t = clock.elapsed();
+      callbacks.onProgress?.(Math.min(1, t / totalEstimatedMs));
+      while (nextIndex < sentences.length && t >= thresholds[nextIndex]) {
+        fireSentence(nextIndex);
+        nextIndex += 1;
+      }
+      if (nextIndex >= sentences.length && t >= totalEstimatedMs) {
+        stopProgressLoop();
+        callbacks.onProgress?.(1);
+        callbacks.onEnd();
+        return;
+      }
+      progressRaf = requestAnimationFrame(tick);
+    };
+    progressRaf = requestAnimationFrame(tick);
 
     // We still want onStart to fire promptly so the UI shows "speaking" even before the
     // (best-effort) audio engine confirms it. If the engine never fires its own onstart
@@ -222,6 +257,17 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         callbacks.onStart();
       }
     }, 700);
+
+    fallbackControls = {
+      pause: () => {
+        clock.pause();
+        if (hasSpeech) window.speechSynthesis.pause();
+      },
+      resume: () => {
+        clock.resume();
+        if (hasSpeech) window.speechSynthesis.resume();
+      },
+    };
   };
 
   (async () => {
@@ -258,22 +304,56 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         // If Web Audio routing fails, the plain media element still plays at normal volume.
       }
       audio.onended = () => {
-        clearCues();
+        stopProgressLoop();
+        callbacks.onProgress?.(1);
         URL.revokeObjectURL(url);
         void audioContext?.close();
         audioContext = null;
         callbacks.onEnd();
       };
       audio.onerror = () => {
-        clearCues();
+        stopProgressLoop();
         URL.revokeObjectURL(url);
         void audioContext?.close();
         audioContext = null;
         void browserFallback();
       };
       callbacks.onStart();
-      scheduleEstimatedCues();
       await audio.play();
+
+      // Continuous progress AND sentence-cue timing driven by the REAL audio clock — this is
+      // the actual voice, so the board/captions can never draw ahead of (or drift out of sync
+      // during a pause with) what's been said. `audio.currentTime` naturally freezes/resumes
+      // in step with `audio.pause()`/`audio.play()`, so pause()/resume() need no extra state.
+      const sentences = splitNarrationSentences(text);
+      const weights = sentences.map((sentence) => Math.max(1.35, sentence.length / 13));
+      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0) || 1;
+      const cumulativeFractions: number[] = [];
+      let acc = 0;
+      for (const w of weights) {
+        cumulativeFractions.push(acc / totalWeight);
+        acc += w;
+      }
+      let nextSentenceIndex = 0;
+      if (sentences.length > 0) {
+        callbacks.onSentenceStart?.(0, sentences[0], sentences.length);
+        nextSentenceIndex = 1;
+      }
+
+      const tickProgress = () => {
+        if (cancelled || !audio) return;
+        const dur = audio.duration;
+        if (dur && isFinite(dur) && dur > 0) {
+          const fraction = Math.min(1, audio.currentTime / dur);
+          callbacks.onProgress?.(fraction);
+          while (nextSentenceIndex < sentences.length && fraction >= cumulativeFractions[nextSentenceIndex]) {
+            callbacks.onSentenceStart?.(nextSentenceIndex, sentences[nextSentenceIndex], sentences.length);
+            nextSentenceIndex += 1;
+          }
+        }
+        progressRaf = requestAnimationFrame(tickProgress);
+      };
+      progressRaf = requestAnimationFrame(tickProgress);
     } catch (err) {
       // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
       if (err instanceof DOMException && err.name === "NotAllowedError") {
@@ -293,10 +373,20 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       }
       void audioContext?.close();
       audioContext = null;
-      clearCues();
+      stopProgressLoop();
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
       }
+    },
+    pause: () => {
+      if (cancelled) return;
+      if (audio) audio.pause();
+      else fallbackControls?.pause();
+    },
+    resume: () => {
+      if (cancelled) return;
+      if (audio) void audio.play();
+      else fallbackControls?.resume();
     },
   };
 }
