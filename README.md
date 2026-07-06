@@ -242,9 +242,9 @@ Same Lesson Graph, same step 1–4. At step 5, the **Visual Impairment Lens** in
 ## 8. MVP Roadmap
 
 ### Phase 0 — MVP (this repo's current scope)
-- [x] One subject seeded deeply: binary search, `content/cs-fundamentals/binary-search.json`, with real citations (CLRS, Open Data Structures)
+- [x] One subject seeded deeply: binary search, `backend/content/cs-fundamentals/binary-search.json`, with real citations (CLRS, Open Data Structures)
 - [x] Lesson Graph generation + Tutor Reasoning loop (text-first; `MockTutorReasoningProvider`, no LLM wired in yet — see Section 10)
-- [x] Whiteboard live-rendering from structured commands (`apps/web/components/Whiteboard.tsx`) — array primitive only; tree/graph/timeline/comparison-table not yet built
+- [x] Whiteboard live-rendering from structured commands (`frontend/web/components/Whiteboard.tsx`) — array primitive only; tree/graph/timeline/comparison-table not yet built
 - [x] Living Lecture Engine: interrupt-as-annotation behavior (Section 4.2) — implemented and verified: interrupting mid-beat answers via a branch and leaves the interrupted beat's visual untouched
 - [ ] Turn-based voice I/O (STT/TTS), push-to-talk interrupt model — UI is currently text-input only, no voice yet
 - [ ] Confusion Radar v1: latency + repeated-question signals only (no webcam yet) — not yet built; interrupts are explicit/manual right now, not yet feeding an adaptivity score
@@ -284,19 +284,21 @@ Stated plainly, per Section 1's honesty commitment:
 ai-tutor/
 ├── README.md                 # this file
 ├── docs/                     # architecture deep-dives, ADRs, design notes (not yet populated)
-├── apps/
-│   └── web/                  # Next.js app: API routes (Session Orchestrator) + Lesson Player UI
-├── packages/
-│   ├── lesson-graph/         # Lesson Graph schema + append-only graph operations (Section 4.2)
-│   ├── tutor-reasoning/      # provider abstraction, mock provider, TutorSession orchestration
-│   ├── modality-lenses/      # lens contract + registry; Default and Dyslexia lenses implemented
-│   ├── grounding/            # corpus types + in-memory retrieval/citation/confidence scoring
-│   ├── voice-io/             # not yet implemented (Section 7.3)
-│   └── visual-gen/           # not yet implemented as a standalone package — whiteboard rendering
-│                                currently lives in apps/web/components/Whiteboard.tsx; will be
-│                                extracted here once a second primitive beyond "array" exists
-└── content/
-    └── cs-fundamentals/      # binary-search.json — the one MVP-seeded topic (Section 8/9)
+├── frontend/
+│   └── web/                  # Next.js app: UI, lesson players, and API routes
+└── backend/
+    ├── packages/
+    │   ├── lesson-graph/     # Lesson Graph schema + append-only graph operations (Section 4.2)
+    │   ├── tutor-reasoning/  # provider abstraction, mock/OpenAI providers, TutorSession orchestration
+    │   ├── modality-lenses/  # lens contract + registry; Default and Dyslexia lenses implemented
+    │   ├── grounding/        # corpus types + in-memory retrieval/citation/confidence scoring
+    │   ├── voice-io/         # not yet implemented (Section 7.3)
+    │   └── visual-gen/       # not yet implemented as a standalone package — whiteboard rendering
+    │                            currently lives in frontend/web/components/Whiteboard.tsx; will be
+    │                            extracted here once a second primitive beyond "array" exists
+    ├── content/              # seeded lesson/corpus JSON
+    ├── artifacts/            # generated lecture outputs and verification screenshots
+    └── *.cjs                 # local generation/verification helper scripts
 ```
 
 `tutor-reasoning` was added beyond the original plan to give the "Tutor Reasoning" box in the
@@ -325,7 +327,7 @@ interrupt like "wait, why do we ignore half the array?" while on the diagram bea
 Living Lecture Engine's annotate-don't-restart behavior (Section 4.2).
 
 `npm run typecheck` runs `tsc --noEmit` across every package. `npm run build` runs the Next.js
-production build for `apps/web`.
+production build for `frontend/web`.
 
 ---
 
@@ -333,6 +335,6 @@ production build for `apps/web`.
 
 This README is the architecture contract for the project. The next steps from here:
 1. Pick the MVP subject (Section 8, Phase 0) and seed its corpus.
-2. Define the Lesson Graph schema precisely (types, not just prose) in `packages/lesson-graph`.
+2. Define the Lesson Graph schema precisely (types, not just prose) in `backend/packages/lesson-graph`.
 3. Build the text-first Tutor Reasoning loop before adding voice — validate the teaching policy is good before adding I/O complexity.
 4. Layer in the Default + one disability lens first, prove the Modality Lens contract works, then add the remaining three.
