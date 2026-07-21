@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   sketchHexagon,
   sketchCircle,
@@ -80,10 +80,13 @@ type DrawOp =
   | {
       /** A real AI-generated photographic/illustrative image, "developing in" over ~500ms.
        *  `prompt` is the generation description (always present, written by the text model).
-       *  `src` is a data URI (`data:image/png;base64,...`) populated server-side before the
-       *  response is sent — the client never receives this op without `src` already filled. */
+       *  `src` is a data URI (`data:image/png;base64,...`) populated server-side. During
+       *  streaming generation the client may briefly receive this op before `src` arrives. */
       kind: "image";
       prompt: string;
+      /** Optional reference to a provided source asset (for Suprnotes/PPTX imports). When present,
+       *  the API hydrates `src` from the supplied asset instead of generating a new image. */
+      assetId?: string;
       src?: string;
       x: number;
       y: number;
@@ -91,11 +94,41 @@ type DrawOp =
       h?: number;
       color?: string;
       at: number;
+    }
+  | {
+      /** A topic-specific React component (plain SVG/CSS), authored by the text model and filled
+       *  in server-side by fillReactAnimationOps before the response is sent, then rendered live
+       *  in a sandboxed iframe by ReactAnimationSandbox. `teachingPoint` is the grounding sent to
+       *  the code-generation call. `fallback` is legacy/reference data only; LessonPlayer does
+       *  not render it for animation failures. */
+      kind: "reactAnimation";
+      teachingPoint?: string;
+      code?: string;
+      status?: "ready" | "failed";
+      error?: string;
+      fallback?: DrawOp[];
+      at: 0;
+      endAt: 1;
+    }
+  | {
+      /** A model-authored chalk blackboard. `boardBrief` is the step-1 one-liner describing what
+       *  the board must teach; `ops` is filled server-side by fillBlackboardOps with the real
+       *  chalk ops (label/arrow/note/shape), each carrying an `at` fraction aligned to a spoken
+       *  sentence for narration-synced reveal. VisualDirector unwraps `ops` into LiveSketch. */
+      kind: "chalkBoard";
+      boardBrief?: string;
+      ops?: DrawOp[];
+      status?: "ready" | "failed";
+      error?: string;
+      at: 0;
+      endAt: 1;
     };
 
 export interface DrawScript {
   caption?: string;
   durationMs?: number;
+  /** Visual surface for imported note-style lessons. `paper` matches Suprnotes-style white boards. */
+  surface?: "dark" | "paper";
   ops: DrawOp[];
 }
 
@@ -107,6 +140,7 @@ const INK = "#1e293b";
 const STROKE_WINDOW = 700; // how long an op takes to draw in
 const TEXT_PAD_X = 48;
 const TEXT_PAD_Y = 18;
+const INITIAL_SYNC_PROGRESS = 0.06;
 
 const gx = (x: number) => (x / 100) * VB_W;
 const gy = (y: number) => (y / 100) * VB_H;
@@ -125,16 +159,29 @@ export function LiveSketch({ script, progress }: { script: DrawScript; progress?
 
 function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: number }) {
   const duration = script.durationMs ?? DEFAULT_DURATION;
+  const paperSurface = script.surface === "paper";
+  // Per-instance prefix so clipPath/id attributes never collide when two boards are on screen
+  // at once (e.g. the main board + an ExplainOverlay board).
+  const instanceId = useId().replace(/[:]/g, "");
   const [elapsed, setElapsed] = useState(0);
   const startRef = useRef<number | null>(null);
-  const externalElapsed = typeof progress === "number" ? clamp01(progress) * duration : null;
-  const visibleElapsed = Math.max(elapsed, externalElapsed ?? 0);
+  const externalElapsed = typeof progress === "number" ? Math.max(INITIAL_SYNC_PROGRESS, clamp01(progress)) * duration : null;
+  const visibleElapsed = externalElapsed ?? elapsed;
 
-  // Ops sorted by their start time, each with an absolute start in ms.
+  // Ops sorted by their start time, each with an absolute start in ms. `windowMs` is how long
+  // this op "owns" before the next op begins — used to spread a text op's word-by-word reveal
+  // across the exact span the narration spends on it, so words appear as they're spoken.
   const timed = useMemo(() => {
-    return script.ops
+    const sorted = script.ops
       .map((op, i) => ({ op, i, startMs: Math.max(0, Math.min(1, op.at)) * duration }))
       .sort((a, b) => a.startMs - b.startMs);
+    return sorted.map((entry, idx) => {
+      const next = sorted[idx + 1];
+      const gap = next ? next.startMs - entry.startMs : duration - entry.startMs;
+      // Clamp: never faster than ~500ms (unreadable) or slower than ~2.6s (feels stalled).
+      const windowMs = Math.max(500, Math.min(2600, gap));
+      return { ...entry, windowMs };
+    });
   }, [script, duration]);
 
   useEffect(() => {
@@ -171,8 +218,12 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   const progressValue = Math.min(1, visibleElapsed / duration);
 
   return (
-    <section className="relative h-full min-h-0 overflow-hidden rounded-xl border border-slate-800 bg-black text-white shadow-[0_18px_70px_rgba(0,0,0,0.5)]">
-      <Paper />
+    <section
+      className={`relative h-full min-h-0 overflow-hidden rounded-xl border shadow-[0_18px_70px_rgba(0,0,0,0.22)] ${
+        paperSurface ? "border-slate-200 bg-white text-slate-700" : "border-slate-800 bg-black text-white"
+      }`}
+    >
+      <Paper surface={script.surface} />
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="xMidYMid meet" className="absolute inset-0 h-full min-h-0 w-full" aria-hidden="true">
         <defs>
           <marker id="live-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -209,29 +260,24 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
           </filter>
         </defs>
         {visibleImages.map((t) => (
-          <OpRenderer key={t.i} op={t.op} seed={`op-${t.i}`} startMs={t.startMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} />
+          <OpRenderer key={t.i} op={t.op} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
         ))}
         {visibleDrawing.map((t) => (
-          <OpRenderer key={t.i} op={t.op} seed={`op-${t.i}`} startMs={t.startMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} />
+          <OpRenderer key={t.i} op={t.op} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
         ))}
         {penAnchor && <Pen x={penAnchor.x} y={penAnchor.y} />}
       </svg>
 
-      <div className="pointer-events-none absolute left-3 top-3 z-20 flex max-w-[min(36rem,calc(100%-6.5rem))] items-start justify-between gap-3 rounded-2xl border border-white/15 bg-slate-950/68 px-4 py-3 shadow-2xl backdrop-blur-md sm:left-4 sm:top-4">
-        <div className="min-w-0">
-          <p className="hud-eyebrow text-[10px] text-[var(--hud-cyan-bright)] sm:text-xs">Live board</p>
-          {script.caption && <h2 className="mt-1 line-clamp-2 text-lg font-black leading-tight tracking-tight text-white sm:text-xl lg:text-2xl">{script.caption}</h2>}
-        </div>
-      </div>
-
-      <span className="hud-eyebrow pointer-events-none absolute right-3 top-3 z-20 rounded-full bg-slate-950/78 px-3 py-1.5 text-xs text-[var(--hud-cyan-bright)] shadow-2xl backdrop-blur-md sm:right-4 sm:top-4 sm:px-4 sm:py-2 sm:text-sm">
+      <span className={`hud-eyebrow pointer-events-none absolute right-3 top-3 z-20 rounded-full px-3 py-1.5 text-xs shadow-2xl backdrop-blur-md sm:right-4 sm:top-4 sm:px-4 sm:py-2 sm:text-sm ${
+        paperSurface ? "bg-white/82 text-slate-400" : "bg-slate-950/78 text-[var(--hud-cyan-bright)]"
+      }`}>
         {visible.length}/{timed.length}
       </span>
 
-      <div className="absolute inset-x-3 bottom-3 z-20 h-1.5 overflow-hidden rounded-full bg-white/15 sm:inset-x-4">
+      <div className={`absolute inset-x-3 bottom-3 z-20 h-1.5 overflow-hidden rounded-full sm:inset-x-4 ${paperSurface ? "bg-slate-200" : "bg-white/15"}`}>
         <div
-          className="h-full bg-[var(--hud-cyan)]"
-          style={{ width: `${progressValue * 100}%`, boxShadow: "0 0 8px var(--hud-cyan-glow)" }}
+          className={`h-full ${paperSurface ? "bg-teal-400" : "bg-[var(--hud-cyan)]"}`}
+          style={{ width: `${progressValue * 100}%`, boxShadow: paperSurface ? "none" : "0 0 8px var(--hud-cyan-glow)" }}
         />
       </div>
     </section>
@@ -267,6 +313,14 @@ function anchorOf(op: DrawOp, elapsed: number, startMs: number, duration: number
       // Images develop in photographically — pen never tracks them (filtered in drawingNow).
       // Returning a valid anchor anyway so the type is safe.
       return { x: op.x, y: op.y };
+    case "reactAnimation":
+      // Never actually reaches LiveSketch — intercepted upstream in the sanitizer and routed to
+      // ReactAnimationSandbox instead. Anchor is unused; kept only for exhaustive type safety.
+      return { x: 50, y: 50 };
+    case "chalkBoard":
+      // Never reaches the renderer — VisualDirector unwraps its inner ops into LiveSketch.
+      // Kept only for exhaustive type safety.
+      return { x: 50, y: 50 };
     default:
       return { x: op.x, y: op.y };
   }
@@ -295,6 +349,125 @@ function wrapText(text: string, maxChars: number): string[] {
   }
   if (current) lines.push(current);
   return lines.slice(0, 3);
+}
+
+/**
+ * Renders text word-by-word, each word "written" with a left-to-right stroke wipe as the
+ * narration reaches it — the teacher-at-the-board feel. Words are timed across `windowMs`
+ * (the span the voice spends on this op), so the written word lands with the spoken word.
+ *
+ * SVG can't measure text before layout, so word widths are estimated from character count.
+ * Each word is a separate <text> whose horizontal reveal is done with a per-word clipPath
+ * rectangle that grows from the word's left edge to its right edge over ~140ms.
+ */
+function WordByWordText({
+  lines,
+  cx,
+  cy,
+  anchor,
+  fontSize,
+  fontFamily,
+  fontWeight,
+  fill,
+  stroke,
+  strokeWidth,
+  glow,
+  localElapsed,
+  windowMs,
+  seed,
+}: {
+  lines: string[];
+  cx: number;
+  cy: number;
+  anchor: "start" | "middle" | "end";
+  fontSize: number;
+  fontFamily: string;
+  fontWeight: number;
+  fill: string;
+  stroke: string;
+  strokeWidth: number;
+  glow: boolean;
+  localElapsed: number;
+  windowMs: number;
+  seed: string;
+}) {
+  const lineH = fontSize * 1.15;
+  // Generous glyph-advance estimate — the marker/display fonts here are WIDE, and it is far
+  // safer to OVER-estimate word width (so the reveal clip is wider than the real glyphs and
+  // never chops off a final letter) than to under-estimate (which clips letters permanently).
+  const charW = fontSize * 0.72;
+  const spaceW = charW * 0.55;
+
+  // Flatten all words across all lines into one sequence with per-word geometry, so timing
+  // flows naturally line-to-line (word N of the whole block, not per line).
+  type WordBox = { text: string; lineIndex: number; xLeft: number; width: number };
+  const wordBoxes: WordBox[] = [];
+  lines.forEach((line, lineIndex) => {
+    const words = line.split(" ").filter(Boolean);
+    const lineWidth = words.reduce((sum, w) => sum + w.length * charW, 0) + Math.max(0, words.length - 1) * spaceW;
+    // Starting x depends on anchor so the line stays visually anchored like the old single <text>.
+    let penX = anchor === "start" ? cx : anchor === "end" ? cx - lineWidth : cx - lineWidth / 2;
+    for (const w of words) {
+      const width = w.length * charW;
+      wordBoxes.push({ text: w, lineIndex, xLeft: penX, width });
+      penX += width + spaceW;
+    }
+  });
+
+  const total = Math.max(1, wordBoxes.length);
+  // Reserve the tail of the window so the last word isn't still writing when the op's time ends.
+  const perWord = windowMs / (total + 0.4);
+  const WIPE_MS = Math.min(180, perWord * 0.9); // each word's own stroke-on duration
+
+  // Which words are still mid-wipe (need a clip) vs. fully written (render with NO clip so the
+  // width estimate can never chop a finished word).
+  const wiping = wordBoxes.filter((_, k) => localElapsed >= k * perWord && localElapsed - k * perWord < WIPE_MS);
+
+  return (
+    <g style={{ filter: glow ? "drop-shadow(0 0 4px rgba(148,163,184,0.28))" : "none" }}>
+      <defs>
+        {wiping.map((wb) => {
+          const k = wordBoxes.indexOf(wb);
+          const wipe = clamp01((localElapsed - k * perWord) / WIPE_MS);
+          // Pad the reveal width so the clip's leading edge is always a touch AHEAD of the glyphs.
+          const revealW = wb.width * wipe + fontSize * 0.4;
+          const y = cy + wb.lineIndex * lineH;
+          return (
+            <clipPath key={`${seed}-clip-${k}`} id={`${seed}-clip-${k}`}>
+              <rect x={wb.xLeft - 4} y={y - fontSize} width={revealW + 4} height={fontSize * 1.6} />
+            </clipPath>
+          );
+        })}
+      </defs>
+      {wordBoxes.map((wb, k) => {
+        const wordStart = k * perWord;
+        if (localElapsed < wordStart) return null; // not started yet
+        const isWiping = localElapsed - wordStart < WIPE_MS;
+        const y = cy + wb.lineIndex * lineH;
+        return (
+          <text
+            key={`${seed}-w-${k}`}
+            x={wb.xLeft}
+            y={y}
+            textAnchor="start"
+            clipPath={isWiping ? `url(#${seed}-clip-${k})` : undefined}
+            style={{
+              fontSize,
+              fontFamily,
+              fontWeight,
+              fill,
+              paintOrder: "stroke",
+              stroke,
+              strokeLinejoin: "round",
+              strokeWidth,
+            }}
+          >
+            {wb.text}
+          </text>
+        );
+      })}
+    </g>
+  );
 }
 
 function textAnchorFor(x: number): "start" | "middle" | "end" {
@@ -327,20 +500,31 @@ function OpRenderer({
   op,
   seed,
   startMs,
+  windowMs,
   elapsed,
   duration,
   contextTitle,
   hasBackdropImage,
+  surface,
 }: {
   op: DrawOp;
   seed: string;
   startMs: number;
+  windowMs?: number;
   elapsed: number;
   duration: number;
   contextTitle?: string;
   hasBackdropImage?: boolean;
+  surface?: DrawScript["surface"];
 }) {
-  const color = op.color ?? INK;
+  // Never actually reaches LiveSketch — intercepted upstream in the sanitizer and routed to
+  // ReactAnimationSandbox instead. Guard kept only for exhaustive type safety.
+  if (op.kind === "reactAnimation") return null;
+  // chalkBoard is unwrapped by VisualDirector before LiveSketch; guard for type safety.
+  if (op.kind === "chalkBoard") return null;
+
+  const paperSurface = surface === "paper";
+  const color = op.color ?? (paperSurface ? "#6b7280" : INK);
   const localElapsed = elapsed - startMs;
 
   if (op.kind === "morph") {
@@ -356,7 +540,7 @@ function OpRenderer({
   }
 
   if (op.kind === "callout") {
-    return <CalloutRenderer op={op} localElapsed={localElapsed} seed={seed} />;
+    return <CalloutRenderer op={op} localElapsed={localElapsed} seed={seed} surface={surface} />;
   }
 
   if (op.kind === "label" || op.kind === "note") {
@@ -401,43 +585,47 @@ function OpRenderer({
       );
     }
 
-    // Standard label/note: writes on with fade + slight rise. Notes on the black board are
-    // larger and wrap wider so real sentences fill the space and read like chalk writing.
-    const fontSize = isNote ? 20 : op.size === "lg" ? 34 : op.size === "sm" ? 22 : 28;
-    const lines = isNote ? wrapText(op.text, 44) : wrapText(op.text, op.size === "lg" ? 14 : 20);
+    // Standard label/note: WRITTEN one word at a time, left to right, like a teacher at the
+    // board — each word strokes on with a horizontal wipe as the narration reaches it. Words
+    // are spread across this op's `windowMs` (the span the voice spends here) so writing and
+    // speaking land together.
+    const fontSize = paperSurface
+      ? isNote ? 18 : op.size === "lg" ? 34 : op.size === "sm" ? 20 : 27
+      : isNote ? 20 : op.size === "lg" ? 34 : op.size === "sm" ? 22 : 28;
+    const lines = isNote ? wrapText(op.text, paperSurface ? 50 : 44) : wrapText(op.text, op.size === "lg" ? 14 : paperSurface ? 24 : 20);
     const anchor = textAnchorFor(op.x);
     const cx = safeTextX(op.x, anchor);
     const cy = safeTextY(gy(op.y), fontSize, lines.length);
     const darkInk = color === INK || color.toLowerCase() === "#1e293b";
-    const textFill = isNote ? (darkInk ? "#fff7ed" : color || "#fff7ed") : darkInk ? "#f8fafc" : color;
+    const textFill = paperSurface
+      ? (darkInk ? "#6b7280" : color)
+      : isNote
+        ? (darkInk ? "#fff7ed" : color || "#fff7ed")
+        : darkInk ? "#f8fafc" : color;
+    const textStroke = paperSurface ? "#ffffff" : "#020617";
+    const fontFamily = paperSurface
+      ? "'Chalkboard SE', 'Marker Felt', 'Bradley Hand', 'Comic Sans MS', 'Trebuchet MS', var(--font-body, Lexend, sans-serif)"
+      : isNote ? "var(--font-body, Lexend, sans-serif)" : "var(--font-display, 'Space Grotesk', sans-serif)";
+    const fontWeight = paperSurface ? (isNote ? 560 : 680) : isNote ? 500 : 800;
+    const strokeWidth = paperSurface ? (isNote ? 2.2 : 2.8) : isNote ? 4.5 : 5.5;
+
     return (
-      <text
-        x={cx}
-        y={cy}
-        textAnchor={anchor}
-        style={{
-          fontSize,
-          fontFamily: isNote ? "var(--font-body, Lexend, sans-serif)" : "var(--font-display, 'Space Grotesk', sans-serif)",
-          fontWeight: isNote ? 500 : 800,
-          fontStyle: "normal",
-          fill: textFill,
-          opacity: reveal,
-          paintOrder: "stroke",
-          stroke: "#020617",
-          strokeLinejoin: "round",
-          strokeWidth: isNote ? 4.5 : 5.5,
-          filter: "drop-shadow(0 0 4px rgba(148,163,184,0.28))",
-          // springPop overshoots ~4% then settles, so the text rises past its resting
-          // baseline by a hair and drops back — a chalk "flick" instead of a linear slide.
-          transform: `translateY(${(1 - springPop(reveal)) * 8}px)`,
-        }}
-      >
-        {lines.map((line, i) => (
-          <tspan key={i} x={cx} dy={i === 0 ? 0 : fontSize * 1.15}>
-            {line}
-          </tspan>
-        ))}
-      </text>
+      <WordByWordText
+        lines={lines}
+        cx={cx}
+        cy={cy}
+        anchor={anchor}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+        fontWeight={fontWeight}
+        fill={textFill}
+        stroke={textStroke}
+        strokeWidth={strokeWidth}
+        glow={!paperSurface}
+        localElapsed={localElapsed}
+        windowMs={windowMs ?? 1400}
+        seed={seed}
+      />
     );
   }
 
@@ -453,10 +641,19 @@ function OpRenderer({
       <g opacity={reveal}>
         {isBackdrop ? (
           <>
-            <image href={op.src} x="0" y="0" width={VB_W} height={VB_H} preserveAspectRatio="xMidYMid slice" opacity="0.72" filter="url(#live-photo-soft-cover)" />
-            <image href={op.src} x="0" y="0" width={VB_W} height={VB_H} preserveAspectRatio="xMidYMid meet" />
-            <rect x="0" y="0" width={VB_W} height={VB_H} fill="url(#live-photo-shade)" />
-            <rect x="0" y="0" width={VB_W} height={VB_H} fill="url(#live-photo-caption-shade)" />
+            {paperSurface ? (
+              <>
+                <rect x="0" y="0" width={VB_W} height={VB_H} fill="#ffffff" />
+                <image href={op.src} x="0" y="0" width={VB_W} height={VB_H} preserveAspectRatio="xMidYMid meet" />
+              </>
+            ) : (
+              <>
+                <image href={op.src} x="0" y="0" width={VB_W} height={VB_H} preserveAspectRatio="xMidYMid slice" opacity="0.72" filter="url(#live-photo-soft-cover)" />
+                <image href={op.src} x="0" y="0" width={VB_W} height={VB_H} preserveAspectRatio="xMidYMid meet" />
+                <rect x="0" y="0" width={VB_W} height={VB_H} fill="url(#live-photo-shade)" />
+                <rect x="0" y="0" width={VB_W} height={VB_H} fill="url(#live-photo-caption-shade)" />
+              </>
+            )}
           </>
         ) : (
           <>
@@ -466,9 +663,9 @@ function OpRenderer({
               width={W + 12}
               height={H + 12}
               rx={14}
-              fill="#020617"
-              fillOpacity="0.74"
-              stroke="var(--hud-cyan-bright)"
+              fill={paperSurface ? "#ffffff" : "#020617"}
+              fillOpacity={paperSurface ? 1 : 0.74}
+              stroke={paperSurface ? "#e5e7eb" : "var(--hud-cyan-bright)"}
               strokeWidth={2}
               opacity={0.92}
               filter="url(#live-glow)"
@@ -502,7 +699,7 @@ function OpRenderer({
         strokeLinecap="round"
         strokeLinejoin="round"
         markerEnd={isArrow ? "url(#live-arrow)" : undefined}
-        filter="url(#live-glow)"
+        filter={paperSurface ? undefined : "url(#live-glow)"}
         className="sketch-draw-in"
         style={{ animationDuration: `${STROKE_WINDOW}ms` }}
       />
@@ -673,12 +870,15 @@ function CalloutRenderer({
   op,
   localElapsed,
   seed,
+  surface,
 }: {
   op: Extract<DrawOp, { kind: "callout" }>;
   localElapsed: number;
   seed: string;
+  surface?: DrawScript["surface"];
 }) {
-  const color = op.color ?? "#5eead4";
+  const paperSurface = surface === "paper";
+  const color = op.color ?? (paperSurface ? "#6b7280" : "#5eead4");
   const reveal = clamp01(localElapsed / 520);
   const px = gx(op.x);
   const py = gy(op.y);
@@ -696,20 +896,30 @@ function CalloutRenderer({
   const chipX = anchor === "end" ? textX - chipW + 16 : anchor === "middle" ? textX - chipW / 2 : textX - 16;
 
   return (
-    <g opacity={reveal} filter="url(#live-glow)">
+    <g opacity={reveal} filter={paperSurface ? undefined : "url(#live-glow)"}>
       {/* Dashed line from label to pin */}
       <path d={path} fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 5" opacity="0.85" />
       {/* Pin dot — small precise circle on the subject */}
-      <circle cx={px} cy={py} r="5" fill={color} stroke="#020617" strokeWidth="2" opacity="0.95" />
+      <circle cx={px} cy={py} r="5" fill={color} stroke={paperSurface ? "#ffffff" : "#020617"} strokeWidth="2" opacity="0.95" />
       <circle cx={px} cy={py} r="11" fill={color} opacity="0.15" />
-      {/* Label chip — dark background, clean white text */}
-      <rect x={chipX} y={textY - 24} width={chipW} height="36" rx="6" fill="#0a0f1a" opacity="0.88" />
-      <rect x={chipX} y={textY - 24} width={chipW} height="36" rx="6" fill="none" stroke={color} strokeWidth="1.5" opacity="0.7" />
+      {/* Label chip */}
+      <rect x={chipX} y={textY - 24} width={chipW} height="36" rx="6" fill={paperSurface ? "#ffffff" : "#0a0f1a"} opacity={paperSurface ? 0.94 : 0.88} />
+      <rect x={chipX} y={textY - 24} width={chipW} height="36" rx="6" fill="none" stroke={paperSurface ? "#d1d5db" : color} strokeWidth="1.5" opacity="0.9" />
       <text
         x={textX}
         y={textY}
         textAnchor={anchor}
-        style={{ fontSize: 17, fontFamily: "var(--font-display, 'Space Grotesk', sans-serif)", fontWeight: 700, fill: "#f8fafc", paintOrder: "stroke", stroke: "#0a0f1a", strokeWidth: 3, strokeLinejoin: "round", letterSpacing: "0.02em" }}
+        style={{
+          fontSize: 17,
+          fontFamily: "var(--font-display, 'Space Grotesk', sans-serif)",
+          fontWeight: 700,
+          fill: paperSurface ? color : "#f8fafc",
+          paintOrder: "stroke",
+          stroke: paperSurface ? "#ffffff" : "#0a0f1a",
+          strokeWidth: paperSurface ? 2 : 3,
+          strokeLinejoin: "round",
+          letterSpacing: "0.02em",
+        }}
       >
         {op.text}
       </text>
@@ -1581,7 +1791,18 @@ function Pen({ x, y }: { x: number; y: number }) {
   );
 }
 
-function Paper() {
+function Paper({ surface }: { surface?: DrawScript["surface"] }) {
+  if (surface === "paper") {
+    return (
+      <>
+        <div className="pointer-events-none absolute inset-0 bg-white" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #6b7280 1px, transparent 0)", backgroundSize: "30px 30px" }}
+        />
+      </>
+    );
+  }
   return (
     <>
       {/* Faint chalk-grid on the black board — light lines, barely visible, like a real chalkboard. */}

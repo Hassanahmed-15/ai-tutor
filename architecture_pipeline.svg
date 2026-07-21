@@ -1,0 +1,238 @@
+<svg width="1760" height="1500" viewBox="0 0 1760 1500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <!-- Background -->
+  <radialGradient id="bgGlow1" cx="15%" cy="5%" r="55%">
+    <stop offset="0%" stop-color="#3a1466" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="#3a1466" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="bgGlow2" cx="90%" cy="60%" r="50%">
+    <stop offset="0%" stop-color="#0f5f52" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="#0f5f52" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- Title gradient -->
+  <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#ffffff"/>
+    <stop offset="100%" stop-color="#d9c8ff"/>
+  </linearGradient>
+
+  <!-- Card gradients per accent -->
+  <linearGradient id="cardTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1a2e2c"/>
+    <stop offset="100%" stop-color="#141e22"/>
+  </linearGradient>
+  <linearGradient id="cardPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#241a38"/>
+    <stop offset="100%" stop-color="#171225"/>
+  </linearGradient>
+  <linearGradient id="cardAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#2e2417"/>
+    <stop offset="100%" stop-color="#1e1811"/>
+  </linearGradient>
+  <linearGradient id="cardNeutral" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1e1c28"/>
+    <stop offset="100%" stop-color="#16151f"/>
+  </linearGradient>
+
+  <linearGradient id="tealAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#5eead4"/>
+    <stop offset="100%" stop-color="#22d3ac"/>
+  </linearGradient>
+  <linearGradient id="purpleAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#a855f7"/>
+    <stop offset="100%" stop-color="#7c1fd6"/>
+  </linearGradient>
+  <linearGradient id="amberAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ffd88a"/>
+    <stop offset="100%" stop-color="#ff9d3d"/>
+  </linearGradient>
+
+  <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#5a5470"/>
+    <stop offset="100%" stop-color="#3d3850"/>
+  </linearGradient>
+
+  <!-- Soft drop shadow for cards -->
+  <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%">
+    <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000000" flood-opacity="0.45"/>
+  </filter>
+  <filter id="softGlowTeal" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="6" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <style>
+    .kicker { font: 700 21px 'Helvetica Neue', Arial, sans-serif; letter-spacing: 2.5px; fill: #b98cff; }
+    .h1 { font: 800 42px 'Helvetica Neue', Arial, sans-serif; fill: url(#titleGrad); letter-spacing: -0.5px; }
+    .sub { font: 400 22px 'Helvetica Neue', Arial, sans-serif; fill: #9a94ae; }
+    .stagelabel { font: 800 14px 'Helvetica Neue', Arial, sans-serif; letter-spacing: 1.6px; }
+    .cardtitle { font: 700 22px 'Helvetica Neue', Arial, sans-serif; fill: #ffffff; }
+    .detail { font: 400 15px 'SF Mono', Menlo, Consolas, monospace; fill: #9d97b3; }
+    .detailhi { font: 600 15px 'SF Mono', Menlo, Consolas, monospace; fill: #c8c2dc; }
+    .stagehead { font: 800 17px 'Helvetica Neue', Arial, sans-serif; letter-spacing: 1.4px; fill: #ffb35c; }
+    .note { font: 400 14.5px 'Helvetica Neue', Arial, sans-serif; fill: #6b6580; font-style: italic; }
+    .legend { font: 500 15px 'Helvetica Neue', Arial, sans-serif; fill: #a49dbb; }
+  </style>
+</defs>
+
+<!-- Background -->
+<rect width="1760" height="1500" fill="#0c0b13"/>
+<rect width="1760" height="1500" fill="url(#bgGlow1)"/>
+<rect width="1760" height="1500" fill="url(#bgGlow2)"/>
+<!-- faint dot grid -->
+<pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+  <circle cx="1" cy="1" r="1" fill="#26233a"/>
+</pattern>
+<rect width="1760" height="1500" fill="url(#dots)" opacity="0.5"/>
+
+<!-- ============ HEADER ============ -->
+<text x="70" y="66" class="kicker">TECHNICAL ARCHITECTURE — SIMPLIFIED</text>
+<text x="70" y="122" class="h1">How one typed topic becomes a live-tutored lecture</text>
+<text x="70" y="160" class="sub">Text generation runs first; images, animations, and boards generate in parallel; playback starts as soon as the first slides are ready.</text>
+
+<!-- ============ STAGE 1 ============ -->
+<g filter="url(#cardShadow)">
+  <rect x="70" y="200" width="490" height="130" rx="20" fill="url(#cardTeal)" stroke="#2a4744" stroke-width="1.5"/>
+</g>
+<rect x="70" y="200" width="6" height="130" rx="3" fill="url(#tealAccent)"/>
+<circle cx="115" cy="248" r="22" fill="#0f2a26" stroke="url(#tealAccent)" stroke-width="2"/>
+<text x="115" y="255" text-anchor="middle" font-size="20" fill="#5eead4">①</text>
+<text x="150" y="235" class="stagelabel" fill="#5eead4">STAGE 1 · INPUT</text>
+<text x="150" y="262" class="cardtitle">Student types a topic</text>
+<text x="150" y="292" class="detailhi">POST /api/generate-lecture</text>
+<text x="150" y="312" class="detail">{ topic, mood }</text>
+
+<!-- arrow 1 -->
+<line x1="315" y1="330" x2="315" y2="378" stroke="url(#arrowGrad)" stroke-width="3"/>
+<path d="M 302 368 L 315 388 L 328 368 Z" fill="#5a5470"/>
+
+<!-- ============ STAGE 2 ============ -->
+<g filter="url(#cardShadow)">
+  <rect x="70" y="390" width="490" height="150" rx="20" fill="url(#cardPurple)" stroke="#3d2a5c" stroke-width="1.5"/>
+</g>
+<rect x="70" y="390" width="6" height="150" rx="3" fill="url(#purpleAccent)"/>
+<circle cx="115" cy="438" r="22" fill="#241238" stroke="url(#purpleAccent)" stroke-width="2"/>
+<text x="115" y="445" text-anchor="middle" font-size="20" fill="#c893ff">②</text>
+<text x="150" y="425" class="stagelabel" fill="#c893ff">STAGE 2 · SCRIPT (SERIAL)</text>
+<text x="150" y="452" class="cardtitle">Lecture text generator</text>
+<text x="150" y="482" class="detail">1 call — gpt-4o. Writes script + beat</text>
+<text x="150" y="502" class="detail">structure with per-beat placeholders</text>
+<text x="150" y="522" class="detail">for blackboard, image, or animation.</text>
+
+<text x="610" y="452" class="note">Must finish first — nothing downstream</text>
+<text x="610" y="474" class="note">knows what a beat teaches until this</text>
+<text x="610" y="496" class="note">step returns.</text>
+
+<!-- arrow 2 -->
+<line x1="315" y1="540" x2="315" y2="598" stroke="url(#arrowGrad)" stroke-width="3"/>
+<path d="M 302 588 L 315 608 L 328 588 Z" fill="#5a5470"/>
+
+<!-- ============ STAGE 3 header ============ -->
+<circle cx="82" cy="628" r="5" fill="#ff9d3d"/>
+<text x="70" y="618" class="stagehead" x2="94">STAGE 3 · ASSETS — ALL GENERATE AT THE SAME TIME</text>
+<text x="655" y="618" class="detail" fill="#ff9d3d">(Promise.all)</text>
+
+<!-- Stage 3 cards -->
+<g filter="url(#cardShadow)">
+  <rect x="70" y="646" width="530" height="200" rx="20" fill="url(#cardTeal)" stroke="#2a4744" stroke-width="1.5"/>
+</g>
+<rect x="70" y="646" width="6" height="200" rx="3" fill="url(#tealAccent)"/>
+<text x="98" y="682" class="stagelabel" fill="#5eead4">IMAGES</text>
+<text x="98" y="712" class="cardtitle">Image + callout beats</text>
+<text x="98" y="746" class="detail">AI image generation per beat.</text>
+<text x="98" y="768" class="detail">Photorealistic OR technical diagram,</text>
+<text x="98" y="790" class="detail">chosen automatically by topic type.</text>
+<text x="98" y="812" class="detail">Callouts point at real visible regions.</text>
+
+<g filter="url(#cardShadow)">
+  <rect x="618" y="646" width="530" height="200" rx="20" fill="url(#cardAmber)" stroke="#4a3a1e" stroke-width="1.5"/>
+</g>
+<rect x="618" y="646" width="6" height="200" rx="3" fill="url(#amberAccent)"/>
+<text x="646" y="682" class="stagelabel" fill="#ffb35c">ANIMATIONS</text>
+<text x="646" y="712" class="cardtitle">One React animation</text>
+<text x="646" y="746" class="detail">Exactly 1 per lecture — capped.</text>
+<text x="646" y="768" class="detail">LLM writes a real component, rendered</text>
+<text x="646" y="790" class="detail">live and synced to narration progress.</text>
+<text x="646" y="812" class="detail">Sandboxed iframe — no CDN, script-only.</text>
+
+<g filter="url(#cardShadow)">
+  <rect x="1166" y="646" width="524" height="200" rx="20" fill="url(#cardPurple)" stroke="#3d2a5c" stroke-width="1.5"/>
+</g>
+<rect x="1166" y="646" width="6" height="200" rx="3" fill="url(#purpleAccent)"/>
+<text x="1194" y="682" class="stagelabel" fill="#c893ff">BLACKBOARDS</text>
+<text x="1194" y="712" class="cardtitle">Chalk-text boards</text>
+<text x="1194" y="746" class="detail">3–5 per lecture.</text>
+<text x="1194" y="768" class="detail">Heading + short lines only — no</text>
+<text x="1194" y="790" class="detail">diagrams or shapes.</text>
+<text x="1194" y="812" class="detail">Validated for overlap before it ships.</text>
+
+<!-- converge arrows -->
+<line x1="335" y1="846" x2="335" y2="876" stroke="#4a4560" stroke-width="2.5"/>
+<line x1="883" y1="846" x2="883" y2="876" stroke="#4a4560" stroke-width="2.5"/>
+<line x1="1428" y1="846" x2="1428" y2="876" stroke="#4a4560" stroke-width="2.5"/>
+<line x1="335" y1="876" x2="1428" y2="876" stroke="#4a4560" stroke-width="2.5"/>
+<line x1="880" y1="876" x2="880" y2="920" stroke="url(#arrowGrad)" stroke-width="3"/>
+<path d="M 867 910 L 880 930 L 893 910 Z" fill="#5a5470"/>
+
+<!-- ============ STAGE 4 ============ -->
+<g filter="url(#cardShadow)">
+  <rect x="70" y="940" width="800" height="160" rx="20" fill="url(#cardTeal)" stroke="#2a4744" stroke-width="1.5"/>
+</g>
+<rect x="70" y="940" width="6" height="160" rx="3" fill="url(#tealAccent)"/>
+<text x="98" y="976" class="stagelabel" fill="#5eead4">STAGE 4 · STREAMING</text>
+<text x="98" y="1006" class="cardtitle">Head-start playback</text>
+<text x="98" y="1038" class="detail">First 3 beats' assets ready → playback starts.</text>
+<text x="98" y="1060" class="detail">Remaining beats keep generating in the background</text>
+<text x="98" y="1082" class="detail">and stream in over NDJSON as each one finishes.</text>
+
+<g filter="url(#cardShadow)">
+  <rect x="900" y="940" width="790" height="160" rx="20" fill="url(#cardNeutral)" stroke="#3a3650" stroke-width="1.5"/>
+</g>
+<rect x="900" y="940" width="6" height="160" rx="3" fill="url(#purpleAccent)"/>
+<text x="928" y="976" class="stagelabel" fill="#918bab">SAFEGUARDS</text>
+<text x="928" y="1006" class="cardtitle">Server-side quality gates</text>
+<text x="928" y="1038" class="detail">One-animation cap · min-blackboard net · text-</text>
+<text x="928" y="1060" class="detail">overlap detector · blackboard ↔ image rhythm lock</text>
+<text x="928" y="1082" class="detail">· 9-beat minimum lecture length before shipping.</text>
+
+<line x1="335" y1="1100" x2="335" y2="1158" stroke="url(#arrowGrad)" stroke-width="3"/>
+<path d="M 322 1148 L 335 1168 L 348 1148 Z" fill="#5a5470"/>
+
+<!-- ============ STAGE 5 ============ -->
+<g filter="url(#cardShadow)">
+  <rect x="70" y="1180" width="730" height="180" rx="20" fill="url(#cardTeal)" stroke="#2a4744" stroke-width="1.5"/>
+</g>
+<rect x="70" y="1180" width="6" height="180" rx="3" fill="url(#tealAccent)"/>
+<text x="98" y="1216" class="stagelabel" fill="#5eead4">STAGE 5 · PLAYBACK</text>
+<text x="98" y="1246" class="cardtitle">Lesson player</text>
+<text x="98" y="1278" class="detail">Scripted narration synced to boards, images,</text>
+<text x="98" y="1300" class="detail">and the animation. Checkpoints require a correct</text>
+<text x="98" y="1322" class="detail">answer to advance. Five accessibility modes</text>
+<text x="98" y="1344" class="detail">render the very same beats differently.</text>
+
+<!-- connector dots -->
+<circle cx="800" cy="1270" r="6" fill="#4a4560"/>
+<line x1="806" y1="1270" x2="850" y2="1270" stroke="#4a4560" stroke-width="2.5" stroke-dasharray="2 6"/>
+<circle cx="856" cy="1270" r="6" fill="#4a4560"/>
+
+<g filter="url(#cardShadow)">
+  <rect x="860" y="1180" width="830" height="180" rx="20" fill="url(#cardAmber)" stroke="#4a3a1e" stroke-width="1.5"/>
+</g>
+<rect x="860" y="1180" width="6" height="180" rx="3" fill="url(#amberAccent)"/>
+<text x="888" y="1216" class="stagelabel" fill="#ffb35c">LIVE LAYER · PARALLEL SYSTEM</text>
+<text x="888" y="1246" class="cardtitle">Realtime voice tutor</text>
+<text x="888" y="1278" class="detail">WebRTC full-duplex with server-side VAD barge-in.</text>
+<text x="888" y="1300" class="detail">show_board / pause_lecture / resume_lecture tools</text>
+<text x="888" y="1322" class="detail">let the student control the room by voice.</text>
+<text x="888" y="1344" class="detail">ADHD mode: camera attention monitor pauses on drift.</text>
+
+<!-- ============ Legend ============ -->
+<line x1="70" y1="1400" x2="1690" y2="1400" stroke="#252233" stroke-width="1.5"/>
+<circle cx="82" cy="1436" r="8" fill="url(#tealAccent)"/>
+<text x="100" y="1442" class="legend">Content generation</text>
+<circle cx="330" cy="1436" r="8" fill="url(#amberAccent)"/>
+<text x="348" y="1442" class="legend">Realtime / animation</text>
+<circle cx="592" cy="1436" r="8" fill="url(#purpleAccent)"/>
+<text x="610" y="1442" class="legend">Core pipeline / quality</text>
+
+</svg>

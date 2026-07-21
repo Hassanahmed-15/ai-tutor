@@ -2,6 +2,7 @@
 
 import { HudPage, HudEyebrow, HudButton, HudDivider, HudPanel, type PageName } from "@/components/hud/HudKit";
 import { TRACKS } from "@/components/hud/tracks";
+import { DEMO_HARDCODED } from "@/lib/demo/demoLecture";
 
 /**
  * The landing page — the dark-luxury front door. Big editorial serif hero, a slow gold
@@ -49,6 +50,16 @@ export function LandingPage({ go, onStart }: { go: (p: PageName) => void; onStar
             Or choose a mode
           </HudButton>
         </div>
+
+        {process.env.NODE_ENV !== "production" && DEMO_HARDCODED && (
+          <button
+            onClick={() => go("demo")}
+            className="hud-materialize relative mt-4 text-xs font-medium text-[var(--hud-text-faint)] hover:text-[var(--hud-cyan)] hover:underline"
+            style={{ animationDelay: "0.46s" }}
+          >
+            Dev: free hardcoded demo (no generation cost) →
+          </button>
+        )}
 
         {/* the six modes as a quiet cyan-ticked line */}
         <div className="hud-materialize relative mt-16 flex flex-wrap items-center justify-center gap-x-7 gap-y-3" style={{ animationDelay: "0.52s" }}>

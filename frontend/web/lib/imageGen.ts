@@ -26,6 +26,25 @@ import { fallbackExplanationDraw, fallbackWrittenDraw, hasUsefulExplanationVisua
  */
 
 type ImageDrawOp = Extract<DrawScript["ops"][number], { kind: "image" }>;
+type PendingImageRef = {
+  beat: Beat;
+  beatIndex: number;
+  op: ImageDrawOp;
+};
+
+export type ImageFillStats = {
+  costUsd: number;
+  pending: number;
+  filled: number;
+  failed: number;
+};
+
+export type ImageFillUpdate = {
+  beat: Beat;
+  beatIndex: number;
+  costUsd: number;
+  phase: "image" | "fallback";
+};
 
 // Image pricing fallback: $0.011 per low-quality image when usage data is absent.
 // We use actual per-token usage from the API response when available, falling back to the
@@ -118,34 +137,38 @@ function subjectStyleCue(scene: string): string {
   return "Strong focal subject, rich color, tactile real-world texture, purposeful composition.";
 }
 
+// If the model's own prompt asked for a technical diagram (per drawPrompt.ts's TYPE B branch:
+// mechanical/scientific topics should get a labeled cutaway/schematic, not a photo), honor that
+// intent instead of forcing the photorealistic-photograph style suffix on it — asking gpt-image-1
+// for a "photorealistic photograph" of a diagram produces an incoherent, vaguely-realistic blob
+// instead of a real, readable technical illustration.
+const DIAGRAM_KEYWORDS = /\b(diagram|cutaway|cross-section|cross section|schematic|exploded[- ]view|blueprint|technical illustration|labeled illustration|engineering drawing)\b/i;
+
+function isDiagramPrompt(scene: string): boolean {
+  return DIAGRAM_KEYWORDS.test(scene);
+}
+
 function imagePrompt(op: EnrichedImageOp) {
   const isBackdrop = (op.w ?? 100) >= 92 && (op.h ?? 100) >= 92;
   const scene = stripTextInvitingPhrases(op.prompt);
   const teachingLine = op._teachingPoint
-    ? `This photo must make one idea visible without words: ${op._teachingPoint}. Compose the scene so a viewer could infer that idea from the subjects, action, and details alone.`
+    ? `This image must make one idea visible without words: ${op._teachingPoint}. Compose it so a viewer could infer that idea from the parts, layout, and details alone.`
     : "";
   const calloutLine = op._calloutHints
-    ? `IMPORTANT COMPOSITION: live callout pins will point to specific things — place these subjects at these positions: ${op._calloutHints}. Make each named subject physically detailed and unmistakable in that region — its shape and texture must read clearly at a glance.`
+    ? `IMPORTANT COMPOSITION: live callout pins will point to specific things — place these subjects/parts at these positions: ${op._calloutHints}. Make each named subject/part physically detailed and unmistakable in that region — its shape must read clearly at a glance.`
     : "";
-
-  if (!isBackdrop) {
-    return `${NO_TEXT_DIRECTIVE}
-
-${scene}
-
-${teachingLine}
-Photorealistic, ultra-sharp educational detail photograph. Shot on a professional camera, shallow depth of field with sharp subject in focus. ${subjectStyleCue(scene)} No illustration, no painting, no cartoon, no CGI render — real photography only.
-Reminder: absolutely no text, labels, or lettering anywhere in the frame — leave all wording to the live animated overlay. Keep the subject fully visible; do not crop off important parts.
-${calloutLine}`.trim();
-  }
+  const diagram = isDiagramPrompt(scene);
+  const styleLine = diagram
+    ? `Clean technical/engineering diagram illustration style — precise line work, accurate part shapes and proportions, flat or subtly shaded fills, the look of a real textbook or engineering-manual cutaway. Dark background, bright clearly-outlined parts in distinct colors so each component reads separately. This is a DIAGRAM, not a photograph — no photographic lighting, no camera lens effects, no photorealism, no painterly texture.`
+    : `Photorealistic, ultra-sharp educational detail photograph. Shot on a professional camera, ${isBackdrop ? "cinematic wide-angle, high detail" : "shallow depth of field with sharp subject in focus"}. ${subjectStyleCue(scene)} No illustration, no painting, no cartoon, no CGI render — real photography only.`;
 
   return `${NO_TEXT_DIRECTIVE}
 
 ${scene}
 
 ${teachingLine}
-Photorealistic, ultra-sharp, cinematic wide-angle photograph. Shot on a professional cinema camera, high detail. ${subjectStyleCue(scene)} No illustration, no painting, no watercolor, no cartoon style, no CGI render — real photography only.
-Reminder: absolutely no text, labels, or lettering anywhere in the frame — leave all wording to the live animated overlay. Wide 16:9 composition, main subject clearly visible with natural surrounding context.
+${styleLine}
+Reminder: absolutely no text, labels, or lettering anywhere in the frame — leave all wording to the live animated overlay. ${isBackdrop ? "Wide 16:9 composition, main subject clearly visible with natural surrounding context." : "Keep the subject fully visible; do not crop off important parts."}
 ${calloutLine}`.trim();
 }
 
@@ -189,71 +212,137 @@ function regionDesc(x: number, y: number): string {
 }
 
 export async function fillImageOps(client: OpenAI, beats: Beat[]): Promise<number> {
-  const collectPending = () => {
-    const pending: ImageDrawOp[] = [];
-    for (const beat of beats) {
-      if (!beat.draw) continue;
-      const callouts = beat.draw.ops.filter((op) => op.kind === "callout") as Extract<DrawScript["ops"][number], { kind: "callout" }>[];
-      // Intro images may stay broad/atmospheric; every other image must visibly carry this
-      // beat's teaching point — the single biggest lever against generic stock-photo output.
-      const teachingPoint = beat.slideKind === "intro"
-        ? undefined
-        : [beat.title, beat.script.match(/[^.!?]+[.!?]?/)?.[0]?.trim()].filter(Boolean).join(" — ").slice(0, 180);
-      for (const op of beat.draw.ops) {
-        if (op.kind === "image" && op.prompt && !op.src) {
-          const imgOp = op as EnrichedImageOp;
-          imgOp._teachingPoint = teachingPoint;
-          if (callouts.length > 0) {
-            imgOp._calloutHints = callouts
-              .map((c) => `"${c.text}" at the ${regionDesc(c.x, c.y)} of the image`)
-              .join("; ");
-          }
-          pending.push(imgOp);
+  const stats = await fillImageOpsIncremental(client, beats);
+  return stats.costUsd;
+}
+
+export function pauseImageOps(beats: Beat[]): ImageFillStats {
+  const pending = collectPendingImageRefs(beats).length;
+  repairMissingImageSurfaces(beats);
+  return { costUsd: 0, pending, filled: 0, failed: pending };
+}
+
+function collectPendingImageRefs(beats: Beat[]): PendingImageRef[] {
+  const pending: PendingImageRef[] = [];
+  for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
+    const beat = beats[beatIndex];
+    if (!beat.draw) continue;
+    const callouts = beat.draw.ops.filter((op) => op.kind === "callout") as Extract<DrawScript["ops"][number], { kind: "callout" }>[];
+    // Intro images may stay broad/atmospheric; every other image must visibly carry this
+    // beat's teaching point — the single biggest lever against generic stock-photo output.
+    const teachingPoint = beat.slideKind === "intro"
+      ? undefined
+      : [beat.title, beat.script.match(/[^.!?]+[.!?]?/)?.[0]?.trim()].filter(Boolean).join(" — ").slice(0, 180);
+    for (const op of beat.draw.ops) {
+      if (op.kind === "image" && op.prompt && !op.src) {
+        const imgOp = op as EnrichedImageOp;
+        imgOp._teachingPoint = teachingPoint;
+        if (callouts.length > 0) {
+          imgOp._calloutHints = callouts
+            .map((c) => `"${c.text}" at the ${regionDesc(c.x, c.y)} of the image`)
+            .join("; ");
         }
+        pending.push({ beat, beatIndex, op: imgOp });
       }
     }
-    return pending;
-  };
-
-  let imageCostUsd = 0;
-
-  // Round 1: generate every image the model itself requested, in parallel — one image's
-  // latency bounds the total wall-clock cost rather than multiplying by beat count.
-  const firstRound = collectPending();
-  if (firstRound.length > 0) {
-    const costs = await Promise.all(firstRound.map((op) => generateOne(client, op)));
-    imageCostUsd += costs.reduce((sum, c) => sum + c, 0);
   }
+  return pending;
+}
 
-  // Drop any image op that still has no src (both attempts failed) — the board renders
-  // normally with its remaining labels/notes/arrows, graceful degradation, not a crash.
-  for (const beat of beats) {
+function repairMissingImageSurfaces(beats: Beat[]): ImageFillUpdate[] {
+  const updates: ImageFillUpdate[] = [];
+  for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
+    const beat = beats[beatIndex];
     if (!beat.draw) continue;
-    beat.draw.ops = beat.draw.ops.filter((op) => op.kind !== "image" || (op as ImageDrawOp).src);
+    const beforeOps = beat.draw.ops;
+    const filteredOps = beat.draw.ops.filter((op) => op.kind !== "image" || (op as ImageDrawOp).src);
+    const removedImage = filteredOps.length !== beforeOps.length;
+    beat.draw.ops = filteredOps;
+    let replacedDraw = false;
     // Preserve intentional image-less visuals. Written blackboards and animation-led boards
     // are valid teaching surfaces; only synthesize a fallback image when a beat truly lost
     // its explanation visual after image generation failed.
     if (!hasUsefulExplanationVisual(beat.draw)) {
       beat.draw = fallbackExplanationDraw(beat.title, beat.script);
+      replacedDraw = true;
     }
+    if (removedImage || replacedDraw) {
+      updates.push({ beat, beatIndex, costUsd: 0, phase: "fallback" });
+    }
+  }
+  return updates;
+}
+
+function repairMissingFallbackImages(beats: Beat[]): ImageFillUpdate[] {
+  const updates: ImageFillUpdate[] = [];
+  for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
+    const beat = beats[beatIndex];
+    if (!beat.draw) continue;
+    const beforeOps = beat.draw.ops;
+    const filteredOps = beat.draw.ops.filter((op) => op.kind !== "image" || (op as ImageDrawOp).src);
+    const removedImage = filteredOps.length !== beforeOps.length;
+    beat.draw.ops = filteredOps;
+    let replacedDraw = false;
+    if (!hasUsefulExplanationVisual(beat.draw)) {
+      beat.draw = fallbackWrittenDraw(beat.title, beat.script);
+      replacedDraw = true;
+    }
+    if (removedImage || replacedDraw) {
+      updates.push({ beat, beatIndex, costUsd: 0, phase: "fallback" });
+    }
+  }
+  return updates;
+}
+
+export async function fillImageOpsIncremental(
+  client: OpenAI,
+  beats: Beat[],
+  onUpdate?: (update: ImageFillUpdate) => void | Promise<void>
+): Promise<ImageFillStats> {
+  let imageCostUsd = 0;
+  let filled = 0;
+
+  // Round 1: generate every image the model itself requested, in parallel — one image's
+  // latency bounds the total wall-clock cost rather than multiplying by beat count.
+  const firstRound = collectPendingImageRefs(beats);
+  if (firstRound.length > 0) {
+    const results = await Promise.all(firstRound.map(async (ref) => {
+      const costUsd = await generateOne(client, ref.op);
+      if (ref.op.src) {
+        await onUpdate?.({ beat: ref.beat, beatIndex: ref.beatIndex, costUsd, phase: "image" });
+      }
+      return { costUsd, filled: Boolean(ref.op.src) };
+    }));
+    imageCostUsd += results.reduce((sum, result) => sum + result.costUsd, 0);
+    filled += results.filter((result) => result.filled).length;
+  }
+
+  // Drop any image op that still has no src (both attempts failed) — the board renders
+  // normally with its remaining labels/notes/arrows, graceful degradation, not a crash.
+  for (const update of repairMissingImageSurfaces(beats)) {
+    await onUpdate?.(update);
   }
 
   // Round 2: the fallback boards just injected above carry a brand-new, unfilled image
-  // placeholder — generate those too so the client never receives an "image" op with no
-  // src (LiveSketch renders nothing for one). If this also fails, convert that beat into a
+  // placeholder — generate those too so the final board does not keep an empty image op
+  // (LiveSketch renders nothing for one). If this also fails, convert that beat into a
   // written blackboard so the teaching surface remains dense and readable.
-  const secondRound = collectPending();
+  const secondRound = collectPendingImageRefs(beats);
   if (secondRound.length > 0) {
-    const costs = await Promise.all(secondRound.map((op) => generateOne(client, op)));
-    imageCostUsd += costs.reduce((sum, c) => sum + c, 0);
-    for (const beat of beats) {
-      if (!beat.draw) continue;
-      beat.draw.ops = beat.draw.ops.filter((op) => op.kind !== "image" || (op as ImageDrawOp).src);
-      if (!hasUsefulExplanationVisual(beat.draw)) {
-        beat.draw = fallbackWrittenDraw(beat.title, beat.script);
+    const results = await Promise.all(secondRound.map(async (ref) => {
+      const costUsd = await generateOne(client, ref.op);
+      if (ref.op.src) {
+        await onUpdate?.({ beat: ref.beat, beatIndex: ref.beatIndex, costUsd, phase: "image" });
       }
+      return { costUsd, filled: Boolean(ref.op.src) };
+    }));
+    imageCostUsd += results.reduce((sum, result) => sum + result.costUsd, 0);
+    filled += results.filter((result) => result.filled).length;
+    for (const update of repairMissingFallbackImages(beats)) {
+      await onUpdate?.(update);
     }
   }
 
-  return imageCostUsd;
+  const pending = firstRound.length + secondRound.length;
+  return { costUsd: imageCostUsd, pending, filled, failed: Math.max(0, pending - filled) };
 }

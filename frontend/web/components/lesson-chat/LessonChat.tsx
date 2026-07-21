@@ -34,6 +34,8 @@ export interface LessonChatState {
   startVoice: () => void;
   stopVoice: () => void;
   closeExplanation: () => void;
+  /** Append a finished conversation turn directly (used by the live voice tutor transcript). */
+  appendTurn: (role: "you" | "aria", text: string) => void;
   /** True while either explaining or an explanation board is open — the lecture should hold. */
   busy: boolean;
 }
@@ -137,6 +139,19 @@ export function useLessonChat(opts: {
     opts.onExplanationClosed?.();
   }, [stopNarration, opts]);
 
+  // Push a completed turn straight into the chat log. The live voice tutor calls this with each
+  // finalized transcript line so the conversation shows up in the chat panel, not a separate bar.
+  const appendTurn = useCallback((role: "you" | "aria", text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    setChat((c) => {
+      // Guard against duplicate final lines the realtime API can emit.
+      const last = c[c.length - 1];
+      if (last && last.role === role && last.text === trimmed) return c;
+      return [...c, { role, text: trimmed }];
+    });
+  }, []);
+
   return {
     chat,
     explaining,
@@ -149,6 +164,7 @@ export function useLessonChat(opts: {
     startVoice,
     stopVoice: stopVoiceCapture,
     closeExplanation,
+    appendTurn,
     busy: explaining || explainBoard !== null,
   };
 }
@@ -199,6 +215,12 @@ export function ChatPanel({
   voiceOnly,
   onAsk,
   onVoice,
+  liveActive = false,
+  liveStatusLabel = "",
+  liveMuted = false,
+  onLiveMute,
+  liveError = null,
+  liveAlwaysOn = false,
 }: {
   chat: ChatTurn[];
   explaining: boolean;
@@ -208,6 +230,17 @@ export function ChatPanel({
   voiceOnly?: boolean;
   onAsk: (q: string) => void;
   onVoice: () => void;
+  /** True while a live full-duplex tutor session is running (the mic toggles the call). */
+  liveActive?: boolean;
+  /** Status text shown while a live session is active (e.g. "Aria speaking…"). */
+  liveStatusLabel?: string;
+  /** Live-session mic muted state + toggle (shown only while live). */
+  liveMuted?: boolean;
+  onLiveMute?: () => void;
+  /** Live-session error message (mic denied / connection dropped). */
+  liveError?: string | null;
+  /** Always-on mode (ADHD): the mic stays open; the button toggles mute instead of ending a call. */
+  liveAlwaysOn?: boolean;
 }) {
   const [question, setQuestion] = useState("");
   const endRef = useRef<HTMLDivElement | null>(null);
@@ -261,13 +294,39 @@ export function ChatPanel({
       </div>
 
       <div className="mt-auto border-t border-[var(--hud-line)] p-3">
+        {liveActive && (
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 rounded-full bg-rose-500/15 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] text-rose-300">
+              <span className="size-2 animate-pulse rounded-full bg-rose-400" />
+              {liveStatusLabel || "Live — costs apply"}
+            </div>
+            {onLiveMute && (
+              <button
+                type="button"
+                onClick={onLiveMute}
+                className="shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-bold text-white/80 transition hover:bg-white/10"
+              >
+                {liveMuted ? "🔇 Unmute" : "🎙 Mute"}
+              </button>
+            )}
+          </div>
+        )}
+        {liveError && <p className="mb-2 text-xs font-semibold text-rose-300">{liveError}</p>}
         {voiceOnly ? (
           <button
             onClick={onVoice}
-            disabled={explaining || !voiceSupported}
-            className={`w-full rounded-full py-3 text-sm font-black transition disabled:opacity-40 ${listening ? "bg-rose-500 text-white" : "hud-btn-primary"}`}
+            disabled={(explaining || !voiceSupported) && !liveActive}
+            className={`w-full rounded-full py-3 text-sm font-black transition disabled:opacity-40 ${
+              liveActive || listening ? "bg-rose-500 text-white" : "hud-btn-primary"
+            }`}
           >
-            {!voiceSupported ? "Voice not supported here" : listening ? "⏹ Stop & ask" : "🎙 Hold a question? Tap to speak"}
+            {liveActive
+              ? "⏹ End live conversation"
+              : !voiceSupported
+                ? "Voice not supported here"
+                : listening
+                  ? "⏹ Stop & ask"
+                  : "🎙 Talk to Aria live"}
           </button>
         ) : (
           <form
@@ -284,22 +343,44 @@ export function ChatPanel({
               <button
                 type="button"
                 onClick={onVoice}
-                disabled={explaining}
-                title="Ask by voice"
-                className={`shrink-0 rounded-full px-3 py-2.5 text-sm font-black transition disabled:opacity-40 ${listening ? "bg-rose-500 text-white" : "hud-btn-ghost"}`}
+                disabled={explaining && !liveActive}
+                title={
+                  liveAlwaysOn
+                    ? liveMuted
+                      ? "Unmute your mic"
+                      : "Mute your mic"
+                    : liveActive
+                      ? "End live conversation"
+                      : "Talk live with Aria"
+                }
+                className={`shrink-0 rounded-full px-3 py-2.5 text-sm font-black transition disabled:opacity-40 ${
+                  liveAlwaysOn
+                    ? liveMuted
+                      ? "bg-rose-500 text-white"
+                      : "hud-btn-ghost"
+                    : liveActive || listening
+                      ? "bg-rose-500 text-white"
+                      : "hud-btn-ghost"
+                }`}
               >
-                🎙
+                {liveAlwaysOn ? (liveMuted ? "🔇" : "🎙") : liveActive ? "⏹" : "🎙"}
               </button>
             )}
             <input
               id="lesson-chat-input"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask about this part…"
-              disabled={explaining}
+              placeholder={
+                liveAlwaysOn
+                  ? "Speak anytime, or type here…"
+                  : liveActive
+                    ? "Live conversation — just speak…"
+                    : "Ask about this part…"
+              }
+              disabled={explaining || (liveActive && !liveAlwaysOn)}
               className="min-w-0 flex-1 rounded-full border border-[var(--hud-line-strong)] bg-black/40 px-4 py-2.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none disabled:opacity-50"
             />
-            <button type="submit" disabled={explaining || !question.trim()} className="hud-btn-primary shrink-0 rounded-full px-4 py-2.5 text-sm font-black disabled:opacity-40">
+            <button type="submit" disabled={explaining || (liveActive && !liveAlwaysOn) || !question.trim()} className="hud-btn-primary shrink-0 rounded-full px-4 py-2.5 text-sm font-black disabled:opacity-40">
               Ask
             </button>
           </form>

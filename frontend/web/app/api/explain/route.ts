@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { EXPLAIN_SYSTEM_PROMPT } from "@/lib/drawPrompt";
-import { sanitizeExplanation } from "@/lib/drawSanitize";
+import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT } from "@/lib/drawPrompt";
+import { sanitizeExplanation, sanitizeTextExplanation } from "@/lib/drawSanitize";
 import { fillImageOps } from "@/lib/imageGen";
 
 /**
@@ -24,6 +24,8 @@ export async function POST(req: Request) {
   const topic = typeof body.topic === "string" ? body.topic.trim() : "";
   const beatContext = typeof body.beatContext === "string" ? body.beatContext.trim() : "";
   const question = typeof body.question === "string" ? body.question.trim() : "";
+  // When true (ADHD live tutor), the board must be SIMPLE chalk text — never fill an image op.
+  const textOnly = body.textOnly === true;
   if (!question) return NextResponse.json({ error: "question is required" }, { status: 400 });
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -38,17 +40,20 @@ export async function POST(req: Request) {
       const completion = await client.chat.completions.create({
         model: MODEL,
         messages: [
-          { role: "system", content: EXPLAIN_SYSTEM_PROMPT },
+          { role: "system", content: textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT },
           { role: "user", content: userMsg },
         ],
         temperature: 0.7,
         response_format: { type: "json_object" },
       });
       const raw = completion.choices[0]?.message?.content ?? "";
-      const result = sanitizeExplanation(JSON.parse(raw), { question });
+      // TEXT-ONLY (ADHD tutor): dedicated sanitizer keeps ONLY label/note ops and never substitutes
+      // the shape/scene diagram fallback — guaranteeing a clean chalk-text board.
+      if (textOnly) {
+        return NextResponse.json(sanitizeTextExplanation(JSON.parse(raw), { question }));
+      }
 
-      // Fill any "image" op placeholder with a real generated contextual image.
-      // sanitizeExplanation returns { script, draw? } — wrap draw in a synthetic beat for fillImageOps.
+      const result = sanitizeExplanation(JSON.parse(raw), { question });
       if (result.draw) {
         const syntheticBeat = { title: topic || question, script: result.script, draw: result.draw };
         await fillImageOps(client, [syntheticBeat as Parameters<typeof fillImageOps>[1][number]]);

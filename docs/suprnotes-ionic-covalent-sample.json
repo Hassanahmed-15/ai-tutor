@@ -1,0 +1,566 @@
+{
+  "schemaVersion": "suprnotes.lesson_input.v1",
+  "source": {
+    "provider": "suprnotes.ai",
+    "sourceType": "generated_notes_with_crops",
+    "exportedAt": "2026-07-20T00:00:00+05:00",
+    "originalFormat": "markdown",
+    "sourceId": "47e10b0d-5c0e-4fdd-8fba-dc7773067ae6"
+  },
+  "lesson": {
+    "title": "Understanding Ionic and Covalent Bonds",
+    "subject": "Chemistry",
+    "level": "introductory",
+    "language": "en",
+    "estimatedTeachingMinutes": 5,
+    "learningGoals": [
+      "Distinguish nonpolar covalent, polar covalent, and ionic bonds.",
+      "Explain how electronegativity differences affect electron sharing or transfer.",
+      "Use the C-O and Na-Cl examples to connect diagrams with bond behavior.",
+      "Predict basic properties such as solubility and conductivity from bond type."
+    ]
+  },
+  "generationDirectives": {
+    "useProvidedNotesAsGrounding": true,
+    "doNotInventBeyondNotes": true,
+    "imagePolicy": "use_provided_images_only",
+    "disableAiImageGeneration": true,
+    "preferredLectureStyle": "full_teaching_explanation",
+    "preserveExistingLecturePrompting": true,
+    "visualUsage": {
+      "reuseCroppedImages": true,
+      "allowCalloutOverlays": true,
+      "allowBlackboardRedrawsFromNotes": true,
+      "allowReactAnimationsFromNotes": true
+    }
+  },
+  "contentGovernance": {
+    "groundingPolicy": "strict_source_grounded",
+    "hallucinationPolicy": "no_new_factual_claims_without_source",
+    "allowedSourceTypes": [
+      "suprnotes_content_block",
+      "provided_asset",
+      "approved_web_preview"
+    ],
+    "requireClaimSourceTags": true,
+    "webPreviewPolicy": "web_preview_may_enrich_examples_only_when_claims_are_listed_below"
+  },
+  "assets": [
+    {
+      "id": "img_polar_covalent_co_dipole",
+      "type": "image",
+      "mimeType": "image/png",
+      "width": 994,
+      "height": 804,
+      "caption": "Polar Covalent C-O Bond and Dipole Moment",
+      "description": "A cropped diagram showing carbon with a partial positive charge and oxygen with a partial negative charge. A dipole arrow points toward oxygen, indicating that oxygen attracts the shared electrons more strongly.",
+      "remoteUrl": "https://notesblob.blob.core.windows.net/notes/47e10b0d-5c0e-4fdd-8fba-dc7773067ae6/graph/afbe934a_slide-1--.jpg",
+      "localPath": "/var/folders/dq/j5nf1ny95md62gnzbt_qm0k80000gn/T/codex-clipboard-c7fc9760-7df0-4728-9fb9-0a5f0d5e634b.png",
+      "sourceBlockIds": [
+        "block_polar_covalent_bonds"
+      ],
+      "teachingUse": {
+        "role": "primary_visual",
+        "concepts": [
+          "polar covalent bond",
+          "partial charges",
+          "dipole moment",
+          "electronegativity"
+        ],
+        "suggestedCallouts": [
+          {
+            "label": "delta positive on carbon",
+            "target": "C / partial positive side"
+          },
+          {
+            "label": "delta negative on oxygen",
+            "target": "O / partial negative side"
+          },
+          {
+            "label": "dipole points toward oxygen",
+            "target": "arrow"
+          }
+        ]
+      }
+    },
+    {
+      "id": "img_sodium_chlorine_ionic_transfer",
+      "type": "image",
+      "mimeType": "image/png",
+      "width": 1170,
+      "height": 660,
+      "caption": "Sodium-Chlorine Ionic Bond Formation Diagram",
+      "description": "A cropped diagram showing sodium transferring an electron to chlorine. Sodium becomes Na+ and chlorine becomes Cl-, then opposite charges attract to form an ionic bond.",
+      "remoteUrl": "https://notesblob.blob.core.windows.net/notes/47e10b0d-5c0e-4fdd-8fba-dc7773067ae6/graph/afbe934a_slide-4--.jpg",
+      "localPath": "/var/folders/dq/j5nf1ny95md62gnzbt_qm0k80000gn/T/codex-clipboard-dfd767cc-1b70-4941-ac6d-dc4eca4ac4a9.png",
+      "sourceBlockIds": [
+        "block_ionic_bonds"
+      ],
+      "teachingUse": {
+        "role": "primary_visual",
+        "concepts": [
+          "ionic bond",
+          "electron transfer",
+          "cation",
+          "anion",
+          "electrostatic attraction"
+        ],
+        "suggestedCallouts": [
+          {
+            "label": "electron leaves sodium",
+            "target": "electron transfer arrow"
+          },
+          {
+            "label": "sodium becomes positive",
+            "target": "Na+"
+          },
+          {
+            "label": "chlorine becomes negative",
+            "target": "Cl-"
+          },
+          {
+            "label": "opposite charges attract",
+            "target": "force arrows"
+          }
+        ]
+      }
+    }
+  ],
+  "contentBlocks": [
+    {
+      "id": "block_intro",
+      "type": "section",
+      "heading": "Introduction to Bond Types",
+      "text": "In this lesson, we explore the nature of ionic and covalent bonds, focusing on the distinctions between polar covalent and nonpolar covalent bonds. Understanding these bonds is crucial for comprehending molecular interactions, reactivity, and the properties of substances.",
+      "sourceOrder": 1,
+      "keyIdeas": [
+        "Bond type depends on how atoms handle electrons.",
+        "The main categories here are ionic, polar covalent, and nonpolar covalent.",
+        "Bonding patterns help explain molecular properties and interactions."
+      ]
+    },
+    {
+      "id": "block_nonpolar_covalent_bonds",
+      "type": "section",
+      "heading": "Nonpolar Covalent Bonds",
+      "text": "A nonpolar covalent bond occurs when two atoms of the same element share electrons equally. For example, in a bond between two hydrogen atoms, the electrons are shared equally because both atoms have the same electronegativity, resulting in a nonpolar covalent bond. This equal sharing is due to the identical electronegativity values, which means neither atom exerts a stronger pull on the shared electrons.",
+      "sourceOrder": 2,
+      "keyIdeas": [
+        "Electrons are shared equally.",
+        "Atoms with the same electronegativity pull with equal strength.",
+        "H-H is a typical example."
+      ],
+      "teachingHints": [
+        "Contrast equal sharing with a fair tug-of-war.",
+        "Use this as the baseline before introducing unequal sharing."
+      ]
+    },
+    {
+      "id": "block_polar_covalent_bonds",
+      "type": "section",
+      "heading": "Polar Covalent Bonds",
+      "text": "Polar covalent bonds arise when electrons are shared unequally between two different non-metal atoms. The carbon-oxygen bond is a classic example. Carbon has an electronegativity of 2.5, while oxygen's is 3.5. The difference of 1.0 indicates a polar covalent bond, where oxygen, being more electronegative, attracts the shared electrons more strongly, resulting in a partial negative charge on oxygen and a partial positive charge on carbon. This creates a dipole moment, represented by an arrow pointing towards the more electronegative atom.",
+      "sourceOrder": 3,
+      "assetIds": [
+        "img_polar_covalent_co_dipole"
+      ],
+      "keyIdeas": [
+        "Electrons are shared unequally.",
+        "Oxygen is more electronegative than carbon.",
+        "Oxygen becomes partially negative and carbon becomes partially positive.",
+        "The dipole arrow points toward the more electronegative atom."
+      ],
+      "facts": [
+        {
+          "claim": "Carbon has an electronegativity of 2.5 and oxygen has an electronegativity of 3.5 in the notes' example.",
+          "source": "suprnotes"
+        },
+        {
+          "claim": "The C-O electronegativity difference of 1.0 indicates a polar covalent bond.",
+          "source": "suprnotes"
+        }
+      ]
+    },
+    {
+      "id": "block_ionic_bonds",
+      "type": "section",
+      "heading": "Ionic Bonds",
+      "text": "Ionic bonds form between metals and non-metals, characterized by the transfer of electrons rather than sharing. For instance, in sodium chloride (NaCl), sodium, a metal, donates an electron to chlorine, a non-metal, resulting in positively charged sodium ions (Na+) and negatively charged chloride ions (Cl-). The electrostatic attraction between these oppositely charged ions constitutes the ionic bond. This electron transfer is driven by the significant difference in electronegativity between metals and non-metals.",
+      "sourceOrder": 4,
+      "assetIds": [
+        "img_sodium_chlorine_ionic_transfer"
+      ],
+      "keyIdeas": [
+        "Ionic bonding uses electron transfer, not electron sharing.",
+        "A metal loses electrons and becomes a cation.",
+        "A non-metal gains electrons and becomes an anion.",
+        "Opposite charges attract to form the ionic bond."
+      ],
+      "facts": [
+        {
+          "claim": "In NaCl, sodium donates an electron to chlorine.",
+          "source": "suprnotes"
+        },
+        {
+          "claim": "Na+ and Cl- are held together by electrostatic attraction.",
+          "source": "suprnotes"
+        }
+      ]
+    },
+    {
+      "id": "block_comparing_bond_types",
+      "type": "table",
+      "heading": "Comparing Bond Types",
+      "sourceOrder": 5,
+      "columns": [
+        "Bond Type",
+        "Electron Interaction",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Nonpolar Covalent",
+          "Electrons shared equally",
+          "H-H"
+        ],
+        [
+          "Polar Covalent",
+          "Electrons shared unequally",
+          "C-O"
+        ],
+        [
+          "Ionic",
+          "Electrons transferred",
+          "Na-Cl"
+        ]
+      ],
+      "teachingHints": [
+        "Use this as a recap board after teaching the three bond types.",
+        "Make the student classify examples by electron behavior."
+      ]
+    },
+    {
+      "id": "block_hydrogen_bonds",
+      "type": "section",
+      "heading": "Special Cases: Hydrogen Bonds",
+      "text": "A special type of polar covalent bond involves hydrogen bonding, which occurs when hydrogen is directly bonded to highly electronegative elements like nitrogen, oxygen, or fluorine. For example, the O-H bond in water is highly polar due to oxygen's higher electronegativity of 3.5 compared to hydrogen's 2.1, resulting in a significant dipole moment. Hydrogen bonds are responsible for water's high boiling point compared to other molecules of similar size.",
+      "sourceOrder": 6,
+      "keyIdeas": [
+        "Hydrogen bonding is connected to strong polarity involving hydrogen.",
+        "N, O, and F are highly electronegative atoms commonly involved.",
+        "Water's unusual boiling point is linked to hydrogen bonding."
+      ]
+    },
+    {
+      "id": "block_practical_implications",
+      "type": "section",
+      "heading": "Practical Implications",
+      "text": "Understanding these bond types helps predict molecular behavior. For instance, nonpolar molecules like methane (CH4) do not mix with polar substances like water due to their nonpolar nature. Conversely, polar molecules and ionic compounds tend to dissolve in polar solvents, illustrating the principle like dissolves like.",
+      "sourceOrder": 7,
+      "keyIdeas": [
+        "Bond type helps predict solubility.",
+        "Nonpolar substances do not mix well with polar substances.",
+        "Polar molecules and ionic compounds tend to dissolve in polar solvents."
+      ]
+    },
+    {
+      "id": "block_ionic_interactions_lif",
+      "type": "section",
+      "heading": "Example: Lithium and Fluoride",
+      "text": "A classic example of an ionic interaction is the bond between lithium and fluoride. Lithium, being a metal, readily loses an electron to achieve a stable electron configuration, thus becoming a lithium cation, Li+. Fluoride, a non-metal, gains an electron to complete its valence shell, resulting in a fluoride anion, F-. The electrostatic attraction between Li+ and F- ions forms a strong ionic bond, creating lithium fluoride.",
+      "sourceOrder": 8,
+      "keyIdeas": [
+        "Lithium loses an electron and becomes Li+.",
+        "Fluoride gains an electron and becomes F-.",
+        "The attraction between Li+ and F- forms lithium fluoride."
+      ]
+    },
+    {
+      "id": "block_ionic_characteristics",
+      "type": "bullet_list",
+      "heading": "Characteristics of Ionic Bonds",
+      "sourceOrder": 9,
+      "items": [
+        "Formation involves electron transfer from a metal to a non-metal.",
+        "Charge results in the formation of cations and anions.",
+        "Strength is generally high due to electrostatic forces between ions.",
+        "Solubility is typically high in polar solvents like water.",
+        "Conductivity occurs in molten or dissolved states because ions can move."
+      ],
+      "keyIdeas": [
+        "Ionic compounds have properties that follow from charged particles.",
+        "Mobile ions explain conductivity in molten or dissolved states."
+      ]
+    },
+    {
+      "id": "block_conclusion",
+      "type": "section",
+      "heading": "Conclusion",
+      "text": "Recognizing the differences between ionic, polar covalent, and nonpolar covalent bonds is essential for predicting the physical and chemical properties of substances. These concepts form the foundation for understanding molecular interactions and the behavior of compounds in various environments.",
+      "sourceOrder": 10,
+      "keyIdeas": [
+        "Classify bonds by electron sharing or transfer.",
+        "Use bond type to reason about physical and chemical properties."
+      ]
+    }
+  ],
+  "webPreview": {
+    "status": "available",
+    "queryPlan": [
+      "introductory chemistry ionic vs covalent bond definitions",
+      "electronegativity polar covalent bond dipole moment C-O",
+      "ionic compounds conductivity molten dissolved ions",
+      "like dissolves like polar nonpolar solubility"
+    ],
+    "items": [
+      {
+        "id": "web_electronegativity_difference",
+        "title": "Electronegativity and bond polarity preview",
+        "sourceName": "approved chemistry reference",
+        "url": "https://example.edu/chemistry/electronegativity",
+        "retrievedAt": "2026-07-20T00:00:00+05:00",
+        "summary": "Electronegativity differences help explain whether electrons are shared equally, shared unequally, or transferred.",
+        "allowedUses": [
+          "clarify the electron-pull reasoning already present in Suprnotes",
+          "support the polarity explanation without adding new numeric thresholds"
+        ],
+        "claims": [
+          {
+            "claim": "A larger difference in electronegativity means the shared electrons are pulled more strongly toward one atom.",
+            "supportsBlockIds": [
+              "block_polar_covalent_bonds"
+            ],
+            "confidence": "preview_only"
+          }
+        ]
+      },
+      {
+        "id": "web_ionic_conductivity",
+        "title": "Ionic compounds and conductivity preview",
+        "sourceName": "approved chemistry reference",
+        "url": "https://example.edu/chemistry/ionic-conductivity",
+        "retrievedAt": "2026-07-20T00:00:00+05:00",
+        "summary": "Ionic compounds conduct electricity when ions are mobile, such as in molten or dissolved states.",
+        "allowedUses": [
+          "explain the conductivity item in the notes",
+          "connect mobile ions to the practical implications beat"
+        ],
+        "claims": [
+          {
+            "claim": "Ionic compounds conduct when ions can move through the liquid or solution.",
+            "supportsBlockIds": [
+              "block_ionic_characteristics",
+              "block_practical_implications"
+            ],
+            "confidence": "preview_only"
+          }
+        ]
+      }
+    ]
+  },
+  "lessonPlan": {
+    "status": "locked",
+    "targetBeatCount": 10,
+    "sequencePolicy": "follow_exact_order",
+    "depthPolicy": {
+      "scriptWordsPerTeachingBeat": "80-110",
+      "explainEveryAssignedBlock": true,
+      "avoidThinSummaryBeats": true,
+      "includeMisconceptionOrContrastPerBeat": true
+    },
+    "groundingPolicy": {
+      "allowedFacts": "assigned_source_blocks_plus_listed_web_preview_claims_only",
+      "webPreviewUsage": "optional_enrichment_not_core_source",
+      "forbidden": [
+        "new examples not present in notes or webPreview",
+        "numeric thresholds not present in notes or webPreview",
+        "claims about properties not present in source blocks"
+      ]
+    },
+    "beats": [
+      {
+        "id": "beat_hook",
+        "beatNumber": 1,
+        "title": "Why Atoms Bond",
+        "teachingObjective": "Frame bonding as atoms handling electrons in three different ways: equal sharing, unequal sharing, or transfer.",
+        "sourceBlockIds": [
+          "block_intro"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "contextual_svg",
+        "scriptRequirements": [
+          "Explain why electron behavior is the organizing idea for the lesson.",
+          "Name the three categories without adding extra bond types.",
+          "Preview that properties will be predicted later from the same electron logic."
+        ],
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Show three paths: equal sharing, unequal sharing, transfer."
+        }
+      },
+      {
+        "id": "beat_nonpolar",
+        "beatNumber": 2,
+        "title": "Nonpolar Covalent: Equal Sharing",
+        "teachingObjective": "Teach equal electron sharing using H-H as the baseline case.",
+        "sourceBlockIds": [
+          "block_nonpolar_covalent_bonds"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "contextual_svg",
+        "scriptRequirements": [
+          "Explain equal sharing slowly.",
+          "Use H-H as the only example unless another example appears in the source.",
+          "Contrast this with unequal sharing without teaching polar covalent fully yet."
+        ],
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Draw H-H with electrons centered equally between atoms."
+        }
+      },
+      {
+        "id": "beat_polar",
+        "beatNumber": 3,
+        "title": "Polar Covalent: Unequal Sharing",
+        "teachingObjective": "Use the provided C-O crop to teach unequal sharing and partial charges.",
+        "sourceBlockIds": [
+          "block_polar_covalent_bonds"
+        ],
+        "allowedWebPreviewIds": [
+          "web_electronegativity_difference"
+        ],
+        "visualMode": "provided_image",
+        "recommendedVisual": {
+          "type": "provided_image",
+          "assetId": "img_polar_covalent_co_dipole"
+        }
+      },
+      {
+        "id": "beat_dipole",
+        "beatNumber": 4,
+        "title": "Reading the Dipole Arrow",
+        "teachingObjective": "Explain how to read the dipole arrow and connect it to oxygen's stronger pull.",
+        "sourceBlockIds": [
+          "block_polar_covalent_bonds"
+        ],
+        "allowedWebPreviewIds": [
+          "web_electronegativity_difference"
+        ],
+        "visualMode": "contextual_svg",
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Draw a realistic C-O dipole board: carbon and oxygen atoms, electron cloud pulled toward oxygen, delta positive on carbon, delta negative on oxygen, and the dipole arrow pointing toward oxygen."
+        }
+      },
+      {
+        "id": "beat_ionic",
+        "beatNumber": 5,
+        "title": "Ionic Bonds: Electron Transfer",
+        "teachingObjective": "Use the provided Na-Cl crop to teach electron transfer and ion formation.",
+        "sourceBlockIds": [
+          "block_ionic_bonds"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "provided_image",
+        "recommendedVisual": {
+          "type": "provided_image",
+          "assetId": "img_sodium_chlorine_ionic_transfer"
+        }
+      },
+      {
+        "id": "beat_ionic_attraction",
+        "beatNumber": 6,
+        "title": "Why Na+ and Cl- Stick Together",
+        "teachingObjective": "Explain electrostatic attraction after electron transfer has created opposite charges.",
+        "sourceBlockIds": [
+          "block_ionic_bonds"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "contextual_svg",
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Draw Na+ and Cl- after transfer, with opposite-charge force arrows pulling the ions together and a compact cause-effect chain: transfer creates ions, opposite charges attract."
+        }
+      },
+      {
+        "id": "beat_compare",
+        "beatNumber": 7,
+        "title": "Three Bond Types Side by Side",
+        "teachingObjective": "Compare nonpolar covalent, polar covalent, and ionic bonds using the notes table.",
+        "sourceBlockIds": [
+          "block_comparing_bond_types"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "contextual_svg",
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Convert the comparison table into a clean recap board."
+        },
+        "checkpoint": {
+          "prompt": "If electrons are transferred from a metal to a non-metal, which bond type is that?",
+          "acceptableAnswers": [
+            "ionic",
+            "ionic bond"
+          ]
+        }
+      },
+      {
+        "id": "beat_hydrogen",
+        "beatNumber": 8,
+        "title": "Hydrogen Bonds as a Special Polarity Case",
+        "teachingObjective": "Connect hydrogen bonding to strong polarity involving hydrogen and electronegative atoms.",
+        "sourceBlockIds": [
+          "block_hydrogen_bonds"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "contextual_svg",
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Draw O-H polarity and connect it to water's high boiling point."
+        }
+      },
+      {
+        "id": "beat_properties",
+        "beatNumber": 9,
+        "title": "How Bonds Predict Properties",
+        "teachingObjective": "Explain solubility and conductivity as practical consequences of bond type.",
+        "sourceBlockIds": [
+          "block_practical_implications",
+          "block_ionic_characteristics"
+        ],
+        "allowedWebPreviewIds": [
+          "web_ionic_conductivity"
+        ],
+        "visualMode": "contextual_svg",
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Show like dissolves like and mobile ions conducting electricity."
+        }
+      },
+      {
+        "id": "beat_recap",
+        "beatNumber": 10,
+        "title": "Recap: Share Equally, Share Unequally, or Transfer",
+        "teachingObjective": "Review the decision rule and tie the source blocks together without adding new facts.",
+        "sourceBlockIds": [
+          "block_conclusion",
+          "block_comparing_bond_types"
+        ],
+        "allowedWebPreviewIds": [],
+        "visualMode": "contextual_svg",
+        "recommendedVisual": {
+          "type": "contextual_svg",
+          "brief": "Draw a three-path decision recap: equal sharing as H-H, unequal sharing as C-O with partial charges, and transfer as Na-Cl ions, arranged as a clean final board."
+        }
+      }
+    ]
+  },
+  "suggestedLecturePlan": {
+    "$ref": "#/lessonPlan"
+  },
+  "rawSuprnotesText": {
+    "format": "markdown",
+    "included": false,
+    "attachmentPath": "/Users/hassanahmed/.codex/attachments/48636dc6-fdfb-46ce-9c97-7ce32bdf641d/pasted-text.txt"
+  }
+}

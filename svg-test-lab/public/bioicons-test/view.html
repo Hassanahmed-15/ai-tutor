@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><style>
+  body { background: #f4f1ea; padding: 60px; font-family: sans-serif; }
+  .card { background: #fdfbf6; border: 2px solid #e2ddd0; border-radius: 20px; padding: 32px; max-width: 700px; position: relative; }
+  h2 { font-size: 14px; color: #9a5a1b; letter-spacing: 1px; margin-bottom: 20px; }
+  .scene { position: relative; width: 500px; height: 400px; }
+  .cell-bg { position: absolute; top: 0; left: 0; width: 500px; opacity: 0.9; }
+  .mito { position: absolute; top: 140px; left: 180px; width: 90px; }
+  .label { position: absolute; font-family: sans-serif; font-size: 15px; font-weight: 700; color: #20180a; background: rgba(253,251,246,0.85); padding: 2px 6px; border-radius: 4px; }
+</style></head>
+<body>
+  <div class="card">
+    <h2>REAL BIOICONS SVG, COMPOSED (no custom drawing — just placed + labeled)</h2>
+    <div class="scene">
+      <img class="cell-bg" src="emptycell-1.svg" />
+      <img class="mito" src="mitochondria.svg" />
+      <div class="label" style="top: 20px; left: 30px;">Cell membrane</div>
+      <div class="label" style="top: 120px; left: 195px;">Mitochondria</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 40px;">
+    <h2>RAW SVG, gpt-5.2, ONE-SHOT DRAFT (no critique pass)</h2>
+    <div class="scene" style="width: 600px; height: 400px;">
+      <img src="battery_draft.svg" width="600" />
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 40px; border-color: #1e5c56;">
+    <h2 style="color: #1e5c56;">RAW SVG, gpt-5.2, AFTER SELF-CRITIQUE + REVISION PASS</h2>
+    <div class="scene" style="width: 600px; height: 400px;">
+      <img src="battery_revised.svg" width="600" />
+    </div>
+  </div>
+</body>
+</html>

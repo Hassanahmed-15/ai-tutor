@@ -1,0 +1,219 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How a battery works: electrons flow from anode to cathode through an external circuit powering a light bulb">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5fbff"/>
+      <stop offset="1" stop-color="#fffaf2"/>
+    </linearGradient>
+
+    <linearGradient id="batteryBodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f7ff"/>
+      <stop offset="0.55" stop-color="#d4ddf1"/>
+      <stop offset="1" stop-color="#b8c4de"/>
+    </linearGradient>
+    <linearGradient id="batteryBevelGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="0.2" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="0.8" stop-color="#000000" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.14"/>
+    </linearGradient>
+
+    <linearGradient id="anodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c6dcff"/>
+      <stop offset="1" stop-color="#5f8fe6"/>
+    </linearGradient>
+    <linearGradient id="cathodeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe0cc"/>
+      <stop offset="1" stop-color="#f07f3a"/>
+    </linearGradient>
+
+    <linearGradient id="terminalGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f8ff"/>
+      <stop offset="1" stop-color="#b7c2d8"/>
+    </linearGradient>
+
+    <linearGradient id="wireGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b4d6b"/>
+      <stop offset="1" stop-color="#1f2c45"/>
+    </linearGradient>
+
+    <linearGradient id="bulbGlassGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.92"/>
+      <stop offset="0.5" stop-color="#e6f5ff" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#b7d7ef" stop-opacity="0.9"/>
+    </linearGradient>
+    <radialGradient id="bulbGlowGrad" cx="35%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#fff4b0" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#ffd36a" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ffd36a" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="labelBoxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#f2f6ff" stop-opacity="0.96"/>
+    </linearGradient>
+
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#22314d"/>
+    </marker>
+
+    <linearGradient id="electronDotGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b7fbff"/>
+      <stop offset="1" stop-color="#18a8c9"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2.2" stdDeviation="3" flood-color="#0b1526" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="600" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <text x="300" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#1b2740">How a Battery Works — Energy Flow</text>
+    <text x="300" y="53" text-anchor="middle" font-size="13" fill="#3a4a6a">Electrons move from the anode (−) to the cathode (+) through the external circuit to power the device</text>
+  </g>
+
+  <!-- External circuit wires (slightly inset to avoid frame edges) -->
+  <path d="M 214 176
+           C 175 160, 150 135, 150 108
+           C 150 84, 170 72, 195 72
+           L 420 72
+           C 445 72, 465 84, 465 108
+           C 465 135, 440 160, 401 176"
+        fill="none" stroke="url(#wireGrad)" stroke-width="6" stroke-linecap="round"/>
+
+  <path d="M 214 224
+           C 175 240, 150 265, 150 292
+           C 150 316, 170 328, 195 328
+           L 420 328
+           C 445 328, 465 316, 465 292
+           C 465 265, 440 240, 401 224"
+        fill="none" stroke="url(#wireGrad)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Connection nodes -->
+  <g>
+    <circle cx="150" cy="108" r="7" fill="#f7f9ff" stroke="#22314d" stroke-width="2"/>
+    <circle cx="150" cy="292" r="7" fill="#f7f9ff" stroke="#22314d" stroke-width="2"/>
+    <circle cx="465" cy="108" r="7" fill="#f7f9ff" stroke="#22314d" stroke-width="2"/>
+    <circle cx="465" cy="292" r="7" fill="#f7f9ff" stroke="#22314d" stroke-width="2"/>
+  </g>
+
+  <!-- Battery (more realistic: tall body + positive cap + terminal) -->
+  <g filter="url(#softShadow)">
+    <!-- Body -->
+    <rect x="70" y="118" width="160" height="180" rx="22" ry="22" fill="url(#batteryBodyGrad)" stroke="#22314d" stroke-width="2"/>
+    <!-- Bevel shine -->
+    <rect x="78" y="126" width="144" height="164" rx="18" ry="18" fill="url(#batteryBevelGrad)" opacity="0.75"/>
+
+    <!-- Positive cap (top) -->
+    <rect x="92" y="104" width="116" height="24" rx="10" ry="10" fill="#cfd7ea" stroke="#22314d" stroke-width="2"/>
+    <!-- Positive terminal bump -->
+    <rect x="130" y="88" width="40" height="18" rx="7" ry="7" fill="url(#terminalGrad)" stroke="#22314d" stroke-width="2"/>
+
+    <!-- Inner cutaway window -->
+    <rect x="90" y="156" width="120" height="110" rx="14" ry="14" fill="#f6f8ff" stroke="#98a8c8" stroke-width="1.6" opacity="0.95"/>
+
+    <!-- Anode/Cathode plates inside -->
+    <rect x="100" y="170" width="46" height="82" rx="10" ry="10" fill="url(#anodeGrad)" stroke="#2c4a86" stroke-width="1.5"/>
+    <rect x="154" y="170" width="46" height="82" rx="10" ry="10" fill="url(#cathodeGrad)" stroke="#a24a1d" stroke-width="1.5"/>
+
+    <!-- Minus/Plus marks -->
+    <g font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800" font-size="18" fill="#1b2740">
+      <text x="102" y="146">−</text>
+      <text x="192" y="122">+</text>
+    </g>
+
+    <!-- Labels (kept clear of shapes) -->
+    <g font-family="Inter, Helvetica, Arial, sans-serif">
+      <rect x="88" y="305" width="124" height="24" rx="7" ry="7" fill="url(#labelBoxGrad)" stroke="#c7d0ea"/>
+      <text x="150" y="322" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1b2740">Battery</text>
+
+      <rect x="82" y="334" width="90" height="22" rx="7" ry="7" fill="url(#labelBoxGrad)" stroke="#c7d0ea"/>
+      <text x="127" y="349" text-anchor="middle" font-size="12.2" font-weight="700" fill="#1b2740">Anode (−)</text>
+
+      <rect x="168" y="334" width="104" height="22" rx="7" ry="7" fill="url(#labelBoxGrad)" stroke="#c7d0ea"/>
+      <text x="220" y="349" text-anchor="middle" font-size="12.2" font-weight="700" fill="#1b2740">Cathode (+)</text>
+    </g>
+  </g>
+
+  <!-- Device (Light bulb) -->
+  <g filter="url(#softShadow)">
+    <!-- Glow behind glass -->
+    <circle cx="465" cy="192" r="62" fill="url(#bulbGlowGrad)"/>
+
+    <!-- Glass envelope -->
+    <path d="M 465 122
+             C 428 122, 400 152, 400 190
+             C 400 228, 428 254, 465 254
+             C 502 254, 530 228, 530 190
+             C 530 152, 502 122, 465 122 Z"
+          fill="url(#bulbGlassGrad)" stroke="#22314d" stroke-width="2"/>
+
+    <!-- Glass highlight -->
+    <path d="M 435 140
+             C 420 155, 414 173, 414 194
+             C 414 215, 421 232, 438 244"
+          fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- Neck -->
+    <rect x="448" y="250" width="34" height="20" rx="7" ry="7" fill="#d6dcea" stroke="#22314d" stroke-width="2"/>
+
+    <!-- Screw base -->
+    <path d="M 436 270
+             C 436 252, 494 252, 494 270
+             L 494 306
+             C 494 323, 436 323, 436 306 Z"
+          fill="#b9c3d7" stroke="#22314d" stroke-width="2"/>
+
+    <!-- Base ridges -->
+    <path d="M 442 284 L 488 284" stroke="#7f8aa3" stroke-width="2" opacity="0.85"/>
+    <path d="M 442 294 L 488 294" stroke="#7f8aa3" stroke-width="2" opacity="0.85"/>
+    <path d="M 442 304 L 488 304" stroke="#7f8aa3" stroke-width="2" opacity="0.85"/>
+
+    <!-- Filament supports -->
+    <path d="M 454 250 L 454 212" stroke="#c77b2d" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 476 250 L 476 212" stroke="#c77b2d" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Filament -->
+    <path d="M 446 210
+             C 453 198, 465 198, 472 210
+             C 466 218, 452 218, 446 210 Z"
+          fill="none" stroke="#c77b2d" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Device label -->
+    <g font-family="Inter, Helvetica, Arial, sans-serif">
+      <rect x="414" y="332" width="102" height="24" rx="7" ry="7" fill="url(#labelBoxGrad)" stroke="#c7d0ea"/>
+      <text x="465" y="349" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1b2740">Light bulb (load)</text>
+    </g>
+  </g>
+
+  <!-- Single clear electron-flow indicator: arrow + dots on bottom wire -->
+  <path d="M 155 289
+           C 200 322, 285 338, 350 332
+           C 405 328, 440 315, 462 296"
+        fill="none" stroke="#22314d" stroke-width="2.6" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+
+  <g>
+    <circle cx="205" cy="322" r="5.7" fill="url(#electronDotGrad)" stroke="#0f6f86" stroke-width="1"/>
+    <circle cx="250" cy="333" r="5.7" fill="url(#electronDotGrad)" stroke="#0f6f86" stroke-width="1"/>
+    <circle cx="295" cy="337" r="5.7" fill="url(#electronDotGrad)" stroke="#0f6f86" stroke-width="1"/>
+    <circle cx="340" cy="334" r="5.7" fill="url(#electronDotGrad)" stroke="#0f6f86" stroke-width="1"/>
+    <circle cx="385" cy="325" r="5.7" fill="url(#electronDotGrad)" stroke="#0f6f86" stroke-width="1"/>
+  </g>
+
+  <!-- Flow label placed away from wires -->
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <rect x="232" y="286" width="206" height="24" rx="7" ry="7" fill="url(#labelBoxGrad)" stroke="#c7d0ea"/>
+    <text x="335" y="303" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1b2740">Electrons through the external circuit</text>
+  </g>
+
+  <!-- Legend -->
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <rect x="130" y="363" width="340" height="28" rx="10" ry="10" fill="url(#labelBoxGrad)" stroke="#c7d0ea"/>
+    <circle cx="152" cy="377" r="6" fill="url(#electronDotGrad)" stroke="#0f6f86" stroke-width="1"/>
+    <text x="168" y="381" font-size="12.2" fill="#1b2740">electron</text>
+    <path d="M 240 377 L 280 377" stroke="#22314d" stroke-width="2.6" marker-end="url(#arrowHead)"/>
+    <text x="290" y="381" font-size="12.2" fill="#1b2740">direction of electron flow</text>
+  </g>
+</svg>

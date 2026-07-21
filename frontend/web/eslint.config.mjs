@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored third-party UMD builds for the sandboxed React-animation iframe — not app
+    // source, never authored or edited here. See components/sketch/ReactAnimationSandbox.tsx.
+    "public/sandbox/**",
   ]),
 ]);
 

@@ -5,6 +5,7 @@ import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { getBlindBeatContent } from "@/lib/blindLectureContent";
 import { playCue, unlockSonicCues } from "@/lib/sonicCues";
+import { createLocalVad, type LocalVadController, type VadState } from "@/lib/localVad";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { HudCorners } from "./hud/HudKit";
 
@@ -35,6 +36,7 @@ function checkAnswer(beat: Beat, answer: string): CheckpointResult {
 }
 
 type Phase = "script" | "description" | "checkpoint-prompt" | "waiting-answer" | "feedback" | "done";
+type ConversationState = "lecture" | "nova-speaking" | "barge-detected" | "listening-turn" | "thinking" | "responding" | "resume";
 
 // The wake name is deliberately strict: commands only act after a whole-word "Nova".
 // That prevents background noise, narration, or nearby conversation from pausing the lecture.
@@ -84,6 +86,8 @@ export function BlindLessonPlayer({
   const [micOn, setMicOn] = useState(false);
   const [heard, setHeard] = useState("");
   const [micSupported, setMicSupported] = useState<boolean>(() => getSpeechRecognition() !== null);
+  const [vadState, setVadState] = useState<VadState>("idle");
+  const [conversationState, setConversationState] = useState<ConversationState>("lecture");
 
   const cancelRef = useRef<NarrationHandle | null>(null);
   const speechRunRef = useRef(0);
@@ -105,12 +109,16 @@ export function BlindLessonPlayer({
       speakingRef.current = true;
       const handle = playNarration(text, {
         onStart: () => {
+          vadRef.current?.setCooldown(900);
+          setConversationState("nova-speaking");
           if (speechRunRef.current === runId) setAnnouncement(text);
         },
         onEnd: () => {
           if (speechRunRef.current !== runId) return;
           speakingRef.current = false;
           cancelRef.current = null;
+          vadRef.current?.setCooldown(900);
+          setConversationState("resume");
           onEnd();
         },
         onBlocked: () => {
@@ -130,6 +138,8 @@ export function BlindLessonPlayer({
     cancelRef.current?.cancel();
     cancelRef.current = null;
     speakingRef.current = false;
+    vadRef.current?.setCooldown(450);
+    setConversationState("lecture");
   }, []);
 
   // Mirror the current control state into refs so the always-on recognition handler (wired
@@ -407,6 +417,7 @@ export function BlindLessonPlayer({
     stopVoice();
     setPlaying(false);
     setAwaitingCommand(true);
+    setConversationState("listening-turn");
     setAnnouncement("Listening… ask me anything, or say a command like “repeat”, “next”, or “stop”.");
     wakeTimerRef.current = setTimeout(() => {
       setAwaitingCommand(false);
@@ -420,6 +431,7 @@ export function BlindLessonPlayer({
       } else {
         setAnnouncement('Say "Nova" then a command whenever you\'re ready.');
       }
+      setConversationState("resume");
       resumeAfterCommandWindowRef.current = false;
       commandWindowFreeformRef.current = true;
     }, WAKE_WINDOW_MS);
@@ -458,6 +470,7 @@ export function BlindLessonPlayer({
     const s = stateRef.current;
     stopVoice();
     setThinking(true);
+    setConversationState("thinking");
     setAnnouncement("One moment…");
     playCue("wake");
     const beatContext = `${beatsRef.current[s.index]?.title ?? ""}: ${beatsRef.current[s.index]?.script ?? ""}`;
@@ -479,6 +492,7 @@ export function BlindLessonPlayer({
           return;
         case "answer":
           if (data.answer) {
+            setConversationState("responding");
             speak(data.answer, () => {});
           } else {
             repeatDescription();
@@ -489,6 +503,7 @@ export function BlindLessonPlayer({
       }
     } catch {
       setThinking(false);
+      setConversationState("resume");
       setAnnouncement('I couldn\'t reach the assistant. Say "Nova" and try again.');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -619,6 +634,23 @@ export function BlindLessonPlayer({
   const handlerRef = useRef(handleVoiceCommand);
   handlerRef.current = handleVoiceCommand;
 
+  const vadStatus =
+    conversationState === "thinking"
+      ? "Nova is thinking."
+      : conversationState === "responding"
+      ? "Nova is answering."
+      : conversationState === "barge-detected"
+      ? "Barge-in detected."
+      : conversationState === "listening-turn"
+      ? "Listening to your turn."
+      : vadState === "speaking"
+      ? "Voice activity detected."
+      : vadState === "cooldown"
+      ? "Nova is avoiding echo."
+      : vadState === "listening"
+      ? "VAD listening."
+      : "";
+
   // The always-on microphone. Once started it stays hot for the whole session. Browsers
   // still end speech-recognition sessions after pauses or while page audio is playing, so
   // each end/error schedules a brand-new recognizer instead of relying on one fragile object.
@@ -627,14 +659,7 @@ export function BlindLessonPlayer({
   const micRestartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const micHealthTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const micSessionRef = useRef(0);
-  const bargeStreamRef = useRef<MediaStream | null>(null);
-  const bargeAudioContextRef = useRef<AudioContext | null>(null);
-  const bargeFrameRef = useRef<number | null>(null);
-  const bargeWantedRef = useRef(false);
-  const bargeSessionRef = useRef(0);
-  const bargeNoiseFloorRef = useRef(0.018);
-  const bargeHitCountRef = useRef(0);
-  const bargeCooldownUntilRef = useRef(0);
+  const vadRef = useRef<LocalVadController | null>(null);
 
   const clearMicRestartTimer = () => {
     if (micRestartTimerRef.current) {
@@ -659,7 +684,7 @@ export function BlindLessonPlayer({
     }, delay);
   };
 
-  const refreshRecognitionAfterBarge = () => {
+  const refreshRecognitionAfterVadSpeech = () => {
     clearMicRestartTimer();
     micRestartTimerRef.current = setTimeout(() => {
       micRestartTimerRef.current = null;
@@ -667,102 +692,52 @@ export function BlindLessonPlayer({
     }, 120);
   };
 
-  const stopBargeDetector = () => {
-    bargeWantedRef.current = false;
-    bargeSessionRef.current += 1;
-    if (bargeFrameRef.current !== null) {
-      cancelAnimationFrame(bargeFrameRef.current);
-      bargeFrameRef.current = null;
-    }
-    bargeStreamRef.current?.getTracks().forEach((track) => track.stop());
-    bargeStreamRef.current = null;
-    void bargeAudioContextRef.current?.close();
-    bargeAudioContextRef.current = null;
-    bargeHitCountRef.current = 0;
-  };
-
-  async function startBargeDetector() {
-    if (bargeWantedRef.current || bargeStreamRef.current) return;
-    if (!navigator.mediaDevices?.getUserMedia) return;
-
-    bargeWantedRef.current = true;
-    const session = bargeSessionRef.current + 1;
-    bargeSessionRef.current = session;
-
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          autoGainControl: true,
-          echoCancellation: true,
-          noiseSuppression: true,
-        },
-      });
-      if (!bargeWantedRef.current || bargeSessionRef.current !== session) {
-        stream.getTracks().forEach((track) => track.stop());
-        return;
-      }
-
-      const AudioContextCtor =
-        window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (!AudioContextCtor) {
-        stream.getTracks().forEach((track) => track.stop());
-        return;
-      }
-
-      const audioContext = new AudioContextCtor();
-      const analyser = audioContext.createAnalyser();
-      analyser.fftSize = 1024;
-      analyser.smoothingTimeConstant = 0.35;
-      const source = audioContext.createMediaStreamSource(stream);
-      source.connect(analyser);
-
-      bargeStreamRef.current = stream;
-      bargeAudioContextRef.current = audioContext;
-      const samples = new Uint8Array(analyser.fftSize);
-
-      const tick = () => {
-        if (!bargeWantedRef.current || bargeSessionRef.current !== session) return;
-
-        analyser.getByteTimeDomainData(samples);
-        let sum = 0;
-        for (let i = 0; i < samples.length; i += 1) {
-          const centered = (samples[i] - 128) / 128;
-          sum += centered * centered;
-        }
-        const rms = Math.sqrt(sum / samples.length);
-        const now = Date.now();
+  async function startVadDetector() {
+    if (vadRef.current) return;
+    const vad = createLocalVad({
+      minSpeechMs: 180,
+      silenceMs: 650,
+      cooldownMs: 900,
+      thresholdMultiplier: 2.2,
+      minThreshold: 0.035,
+      shouldDetectSpeech: () => {
         const lectureIsTalking = speakingRef.current || stateRef.current.playing;
-
-        if (!lectureIsTalking || awaitingCommandRef.current) {
-          // Keep a slow-moving room baseline while we are not trying to barge in.
-          bargeNoiseFloorRef.current = bargeNoiseFloorRef.current * 0.96 + rms * 0.04;
-          bargeHitCountRef.current = 0;
-        } else if (now > bargeCooldownUntilRef.current) {
-          const threshold = Math.max(0.038, bargeNoiseFloorRef.current * 2.4);
-          if (rms > threshold) {
-            bargeHitCountRef.current += 1;
-          } else {
-            bargeHitCountRef.current = Math.max(0, bargeHitCountRef.current - 1);
-          }
-
-          if (bargeHitCountRef.current >= 4) {
-            bargeHitCountRef.current = 0;
-            bargeCooldownUntilRef.current = now + 2400;
-            if (!awaitingCommandRef.current && (speakingRef.current || stateRef.current.playing)) {
-              enterCommandWindow({ allowFreeform: false, resumeOnTimeout: true });
-              setHeard("Voice detected. Listening now...");
-              refreshRecognitionAfterBarge();
-            }
-          }
+        return micWantedRef.current && (lectureIsTalking || awaitingCommandRef.current);
+      },
+      onEvent: (event) => {
+        if (event.type === "state") {
+          setVadState(event.state);
+          return;
         }
-
-        bargeFrameRef.current = requestAnimationFrame(tick);
-      };
-
-      bargeFrameRef.current = requestAnimationFrame(tick);
-    } catch {
-      bargeWantedRef.current = false;
+        if (event.type === "speechstart") {
+          if (!awaitingCommandRef.current && (speakingRef.current || stateRef.current.playing)) {
+            setConversationState("barge-detected");
+            enterCommandWindow({ allowFreeform: false, resumeOnTimeout: true });
+            setHeard("Voice detected. Listening now...");
+            refreshRecognitionAfterVadSpeech();
+          } else if (awaitingCommandRef.current) {
+            setConversationState("listening-turn");
+          }
+          return;
+        }
+        if (event.type === "speechend" && awaitingCommandRef.current) {
+          setConversationState("thinking");
+          setHeard((current) => current || "Speech ended. Waiting for words...");
+        }
+      },
+    });
+    vadRef.current = vad;
+    const started = await vad.start();
+    if (!started && vadRef.current === vad) {
+      vadRef.current = null;
+      setVadState("idle");
     }
+  }
+
+  function stopVadDetector() {
+    vadRef.current?.stop();
+    vadRef.current = null;
+    setVadState("idle");
   }
 
   function startRecognitionSession() {
@@ -842,7 +817,7 @@ export function BlindLessonPlayer({
     if (micWantedRef.current) return;
     micWantedRef.current = true;
     startRecognitionSession();
-    void startBargeDetector();
+    void startVadDetector();
     micHealthTimerRef.current ??= setInterval(() => {
       if (!micWantedRef.current) return;
       if (!recognitionRef.current) startRecognitionSession();
@@ -864,7 +839,7 @@ export function BlindLessonPlayer({
     recognitionRef.current = null;
     detachRecognition(r);
     if (r) { try { r.stop(); } catch { /* ignore */ } }
-    stopBargeDetector();
+    stopVadDetector();
   }, []);
 
   // Open the mic automatically as soon as the Blind player mounts. In generated Blind
@@ -987,7 +962,7 @@ export function BlindLessonPlayer({
                   ? "Nova is listening — ask a question or say a command like “repeat”, “next”, or “stop”."
                   : heard
                   ? `Heard: “${heard}”`
-                  : "Say “Nova” then anything — “Nova, explain the light part”, “Nova, go back”, “Nova, stop”."}
+                  : `${vadStatus ? `${vadStatus} ` : ""}Say “Nova” then anything — “Nova, explain the light part”, “Nova, go back”, “Nova, stop”.`}
               </p>
             </div>
             <button

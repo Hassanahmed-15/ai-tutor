@@ -4,10 +4,22 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
-import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
+import { playNarration, unlockAudio, cancelActiveNarrations, type NarrationHandle } from "@/lib/voice";
 import { LiveSketch } from "./sketch/LiveSketch";
+import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
+import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
+
+// Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
+const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
+
+// Client-side mirror of the server's REACT_ANIMATIONS_ENABLED kill switch (see
+// app/api/generate-lecture/route.ts). When off, beats never carry filled `code` anyway (the
+// server never generates it), so this only guards against rendering stale cached beats.
+const REACT_ANIMATIONS_ENABLED = process.env.NEXT_PUBLIC_REACT_ANIMATIONS_ENABLED === "1";
+// Client mirror of the server's BLACKBOARD_GEN_ENABLED (see app/api/generate-lecture/route.ts).
+const BLACKBOARD_GEN_ENABLED = process.env.NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED === "1";
 
 /**
  * The live tutor: each beat opens on a slide (sets up the idea), auto-flips into the
@@ -42,16 +54,37 @@ export function checkAnswer(beat: Beat, answer: string): CheckpointResult {
     : { correct: false, feedback: beat.checkpoint.hintFeedback };
 }
 
+function findReactAnimationOp(beat: Beat) {
+  return beat.draw?.ops.find((op) => op.kind === "reactAnimation");
+}
+
+function isReactAnimationPending(beat: Beat) {
+  const op = findReactAnimationOp(beat);
+  return Boolean(op && REACT_ANIMATIONS_ENABLED && !op.code && op.status !== "failed");
+}
+
+function findChalkBoardOp(beat: Beat) {
+  return beat.draw?.ops.find((op) => op.kind === "chalkBoard");
+}
+
+function isChalkBoardPending(beat: Beat) {
+  const op = findChalkBoardOp(beat);
+  return Boolean(op && BLACKBOARD_GEN_ENABLED && (!op.ops || op.ops.length === 0) && op.status !== "failed");
+}
+
 export function LessonPlayer({
   onExit,
   beats = demoBeats,
   title = "Photosynthesis",
   mode = "standard",
+  mood = "",
 }: {
   onExit?: () => void;
   beats?: Beat[];
   title?: string;
   mode?: "standard" | "deaf";
+  /** Freeform learner-mode string fed into the live tutor's session instructions. */
+  mood?: string;
 }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -67,9 +100,19 @@ export function LessonPlayer({
   const [rate, setRate] = useState(1);
   const cancelRef = useRef<NarrationHandle | null>(null);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Mirror `playing` into a ref so async narration callbacks (which capture the value at the time
+  // playback started) can read the LIVE pause state — otherwise a narration's onEnd that fires
+  // right as the user pauses would still auto-advance the beat using a stale playing=true.
+  const playingRef = useRef(playing);
+  useEffect(() => {
+    playingRef.current = playing;
+  }, [playing]);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
   const deafMode = mode === "deaf";
+  // A pending generated asset (animation OR chalk board) must finish before the beat plays, so the
+  // narration-synced reveal has real ops to draw. Treat both the same way for gating.
+  const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
 
   const stopVoice = useCallback(() => {
     cancelRef.current?.cancel();
@@ -86,6 +129,72 @@ export function LessonPlayer({
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
+  // ── Live voice tutor (full-duplex realtime) ──────────────────────────────
+  // A board the realtime tutor draws via its show_board tool. Kept SEPARATE from chat.explainBoard
+  // because the realtime model narrates the board itself — we must NOT run playNarration for it,
+  // which would violate the single-speaker invariant.
+  const [liveBoard, setLiveBoard] = useState<RealtimeBoard | null>(null);
+  // `sessionActive` freezes the scripted narration/slide-advance effects while the tutor talks.
+  const [sessionActive, setSessionActive] = useState(false);
+  const beatRef = useRef(beat);
+  useEffect(() => {
+    beatRef.current = beat;
+  }, [beat]);
+
+  const tutor = useRealtimeTutor({
+    topic: title,
+    getBeatContext: () => `${beatRef.current.title}: ${beatRef.current.script}`,
+    mood,
+    onBoardRequest: (board) => setLiveBoard(board),
+    onTranscript: (role, text, final) => {
+      // Finalized lines flow into the chat log so the live conversation shows up in the chat
+      // panel (not a separate bottom bar). student -> "you", tutor -> "aria".
+      if (!final || !text.trim()) return;
+      chat.appendTurn(role === "student" ? "you" : "aria", text);
+    },
+    onSessionEnded: () => {
+      setSessionActive(false);
+      setLiveBoard(null);
+      // Resume the current beat where it paused.
+      setPlaying(true);
+    },
+  });
+
+  // Short label for the chat mic button while a live session is active/connecting.
+  const liveMicLabel =
+    tutor.status === "connecting"
+      ? "Connecting…"
+      : tutor.status === "drawing"
+        ? "Drawing…"
+        : tutor.speaking
+          ? "Aria speaking…"
+          : sessionActive
+            ? "Listening — tap to end"
+            : "";
+
+  function startLiveTutor() {
+    // Single-speaker hand-off: silence all scripted TTS, freeze the player, then connect.
+    stopVoice();
+    cancelActiveNarrations();
+    if (slideTimer.current) {
+      clearTimeout(slideTimer.current);
+      slideTimer.current = null;
+    }
+    setPlaying(false);
+    setSessionActive(true);
+    void tutor.start();
+  }
+  function endLiveTutor() {
+    tutor.stop(); // onSessionEnded resumes the lecture in the normal case
+    // Safety net: if the realtime session errored out earlier and its internal teardown guard
+    // already fired once (silently, e.g. on a dropped connection), tutor.stop() here is a no-op
+    // and onSessionEnded never re-fires — leaving the lecture paused forever. Force the same
+    // resume state directly so pressing "end call" always works, even in that edge case.
+    setSessionActive(false);
+    setLiveBoard(null);
+    setPlaying(true);
+  }
+
   // Drives each beat: show its slide briefly, then (for normal beats) flip to the board
   // and narrate; on voice end, advance. Checkpoint beats narrate the question on the slide
   // itself and then STOP — they wait for submitCheckpoint() instead of auto-advancing.
@@ -93,24 +202,25 @@ export function LessonPlayer({
   // for checkpoints, which narrate right on the slide). This effect ONLY sets `stage` — it
   // never starts narration itself, so it can't race with the narration effect's cleanup.
   useEffect(() => {
-    if (!playing || stage !== "slide" || isCheckpoint) return;
+    if (!playing || sessionActive || stage !== "slide" || isCheckpoint || currentAnimationPending) return;
     if (slideTimer.current) clearTimeout(slideTimer.current);
     slideTimer.current = setTimeout(() => setStage("board"), SLIDE_MS);
     return () => {
       if (slideTimer.current) clearTimeout(slideTimer.current);
     };
-  }, [index, playing, stage, isCheckpoint]);
+  }, [index, playing, sessionActive, stage, isCheckpoint, currentAnimationPending]);
 
   // Effect 2: start narration exactly once per (beat, stage) — when a checkpoint's slide
   // appears, or once a normal beat reaches "board". Separate from effect 1 so flipping
   // `stage` here doesn't retrigger effect 1 and cancel narration mid-start.
   useEffect(() => {
-    if (!playing || chat.busy) return;
+    if (!playing || chat.busy || sessionActive) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
+    if (narrateOnBoard && currentAnimationPending) return;
 
-    window.setTimeout(() => setDrawProgress(0), 0);
+    window.setTimeout(() => setDrawProgress(0.06), 0);
     const handle = playNarration(beat.script, {
       onStart: () => setSpeaking(true),
       onSentenceStart: (sentenceIndex, sentence, total) => {
@@ -122,12 +232,16 @@ export function LessonPlayer({
             return [...lines, caption].slice(-9);
           });
         }
-        // Sync draw progress so LiveSketch boards draw in step with the narration.
-        setDrawProgress(total > 1 ? Math.min(1, (sentenceIndex + 1) / total) : 1);
       },
+      // The media element's clock is the source of truth for board progress. This keeps the
+      // live marker, generated SVG progress, and beat advancement pinned to the actual voice.
+      onProgress: (progress) => setDrawProgress(Math.max(0.06, progress)),
       onEnd: () => {
         setSpeaking(false);
         cancelRef.current = null;
+        // If playback was paused between the last cue and this onEnd firing, do NOT advance —
+        // freeze on the current beat. Resuming re-runs the narration effect for this beat.
+        if (!playingRef.current) return;
         setDrawProgress(1);
         if (isCheckpoint) {
           setWaitingOnCheckpoint(true);
@@ -146,12 +260,13 @@ export function LessonPlayer({
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, deafMode]);
+  }, [index, playing, sessionActive, stage, isCheckpoint, currentAnimationPending, beat.script, rate, beats.length, chat.busy, deafMode]);
 
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
+    setDrawProgress(0);
     setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
     setStage("slide");
   }
@@ -183,7 +298,17 @@ export function LessonPlayer({
     setPlaying(true);
   }
   function togglePlay() {
-    if (!playing) unlockAudio();
+    if (playing) {
+      // Pausing: stop narration immediately so audio + the sentence-cue timeline halt at once,
+      // and cancel the slide→board timer so the beat can't flip stage while paused.
+      stopVoice();
+      if (slideTimer.current) {
+        clearTimeout(slideTimer.current);
+        slideTimer.current = null;
+      }
+    } else {
+      unlockAudio();
+    }
     setPlaying((p) => !p);
   }
   function retryVoice() {
@@ -199,6 +324,7 @@ export function LessonPlayer({
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
+    setDrawProgress(0);
     if (deafMode) setCaptionLog([]);
     setIndex(i);
     setStage("slide");
@@ -210,6 +336,7 @@ export function LessonPlayer({
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
+    setDrawProgress(0);
     if (deafMode) setCaptionLog([]);
     setIndex(0);
     setStage("slide");
@@ -286,6 +413,12 @@ export function LessonPlayer({
             {chat.explainBoard && (
               <ExplainOverlay board={chat.explainBoard} progress={chat.drawProgress} onClose={chat.closeExplanation} />
             )}
+
+            {/* Live-tutor board (drawn by the realtime show_board tool). Closing it just clears the
+                board — the live session stays active and the tutor keeps talking. */}
+            {liveBoard && (
+              <ExplainOverlay board={liveBoard} progress={1} onClose={() => setLiveBoard(null)} />
+            )}
           </section>
 
           <div className="hidden min-h-0 xl:block [&>*]:h-full">
@@ -304,9 +437,16 @@ export function LessonPlayer({
                 explaining={chat.explaining}
                 listening={chat.listening}
                 interim={chat.interim}
-                voiceSupported={chat.voiceSupported}
+                voiceSupported={REALTIME_TUTOR_ENABLED ? true : chat.voiceSupported}
                 onAsk={chat.ask}
-                onVoice={chat.startVoice}
+                // The mic now toggles the live full-duplex tutor (real conversation) instead of a
+                // one-shot transcription. Falls back to one-shot voice if realtime is disabled.
+                onVoice={REALTIME_TUTOR_ENABLED ? (sessionActive ? endLiveTutor : startLiveTutor) : chat.startVoice}
+                liveActive={sessionActive}
+                liveStatusLabel={liveMicLabel}
+                liveMuted={tutor.muted}
+                onLiveMute={tutor.toggleMute}
+                liveError={tutor.errorMessage}
               />
             )}
           </div>
@@ -491,9 +631,9 @@ export function AvatarRing({ progress, speaking, children }: { progress: number;
 }
 
 /** Exported so other tracks (e.g. AdhdLessonPlayer) can render the visual board.
- *  For AI-generated topic beats, `beat.draw` (DrawScript) is rendered via LiveSketch with
- *  narration-synced progress. For the hardcoded photosynthesis demo beats, the bespoke
- *  per-id scene components run unchanged — no regression. */
+ *  AI-generated topic beats render either sandboxed React animations or normal LiveSketch
+ *  boards with narration-synced progress. For the hardcoded photosynthesis demo beats, the
+ *  bespoke per-id scene components run unchanged — no regression. */
 export function Board({
   beat,
   sentenceCue,
@@ -505,7 +645,7 @@ export function Board({
 }) {
   return (
     <div className="absolute inset-0 bg-slate-950">
-      <VisualDirector beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+      <VisualDirector key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
     </div>
   );
 }
@@ -522,6 +662,10 @@ function VisualDirector({
   const text = sentenceCue.text;
   const cue = sentenceCue.index;
   const bespokeScene = isCuratedPhotosynthesisBeat(beat) ? photosynthesisSceneForBeat(beat.id, cue) : null;
+  // Once the sandboxed animation fails for this beat (transpile error, runtime throw, watchdog
+  // timeout), show an explicit unavailable board for the rest of this beat's lifetime. Resets
+  // naturally: Board renders VisualDirector with `key={beat.id}`, so this state is fresh per beat.
+  const [sandboxFailed, setSandboxFailed] = useState(false);
 
   if (bespokeScene) {
     return (
@@ -538,9 +682,54 @@ function VisualDirector({
     );
   }
 
-  // If the beat has a DrawScript board (all AI-generated topic beats), render it via
-  // LiveSketch with narration-synced progress so the marker draws in time with the voice.
+  // If a beat declares a React animation, never mask a missing or failed animation with the old
+  // line-diagram fallback. Normal DrawScript boards still render through LiveSketch.
   if (beat.draw) {
+    // A chalkBoard beat: its real chalk ops are authored server-side; unwrap them into LiveSketch
+    // (chalk rendering). Pending → preparing card; failed → unavailable card (never the old
+    // template board, per the design).
+    const chalkOp = findChalkBoardOp(beat);
+    if (chalkOp?.kind === "chalkBoard") {
+      if (chalkOp.ops && chalkOp.ops.length > 0 && BLACKBOARD_GEN_ENABLED) {
+        return (
+          <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+            <LiveSketch key={beat.id} script={{ ...beat.draw, ops: chalkOp.ops }} progress={drawProgress} />
+          </section>
+        );
+      }
+      if (isChalkBoardPending(beat)) {
+        return <AnimationStatusBoard title={beat.title} teachingPoint={chalkOp.boardBrief} eyebrow="Preparing board" />;
+      }
+      const boardReason = !BLACKBOARD_GEN_ENABLED
+        ? "Blackboard generation is turned off."
+        : chalkOp.error ?? "Blackboard was not available.";
+      return <AnimationStatusBoard title={beat.title} teachingPoint={chalkOp.boardBrief} eyebrow="Board unavailable" reason={boardReason} />;
+    }
+
+    const animationOp = findReactAnimationOp(beat);
+    if (animationOp?.kind === "reactAnimation" && animationOp.code && REACT_ANIMATIONS_ENABLED && !sandboxFailed) {
+      return (
+        <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+          <ReactAnimationSandbox
+            key={beat.id}
+            code={animationOp.code}
+            progress={drawProgress}
+            onError={() => setSandboxFailed(true)}
+          />
+        </section>
+      );
+    }
+    if (animationOp?.kind === "reactAnimation" && isReactAnimationPending(beat) && !sandboxFailed) {
+      return <AnimationPreparingBoard title={beat.title} teachingPoint={animationOp.teachingPoint} />;
+    }
+    if (animationOp?.kind === "reactAnimation") {
+      const reason = !REACT_ANIMATIONS_ENABLED
+        ? "React animations are turned off."
+        : sandboxFailed
+          ? "Generated animation failed to run safely."
+          : animationOp.error ?? "Generated animation code was not available.";
+      return <AnimationUnavailableBoard title={beat.title} teachingPoint={animationOp.teachingPoint} reason={reason} />;
+    }
     return (
       <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
         <LiveSketch key={beat.id} script={beat.draw} progress={drawProgress} />
@@ -570,6 +759,60 @@ function VisualDirector({
         </div>
       </div>
     </section>
+  );
+}
+
+function AnimationStatusBoard({
+  title,
+  teachingPoint,
+  eyebrow,
+  reason,
+}: {
+  title: string;
+  teachingPoint?: string;
+  eyebrow: string;
+  reason?: string;
+}) {
+  return (
+    <section className="relative grid h-full min-h-0 place-items-center overflow-hidden bg-slate-950 p-4 text-white">
+      <div className="pointer-events-none absolute inset-0 opacity-80" style={{ backgroundImage: "radial-gradient(circle at 50% 42%, rgba(45,212,191,0.18), transparent 34%), radial-gradient(circle at 22% 78%, rgba(59,130,246,0.12), transparent 30%)" }} />
+      <div className="pointer-events-none absolute inset-0 opacity-20" style={{ backgroundImage: "linear-gradient(rgba(148,163,184,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.08) 1px, transparent 1px)", backgroundSize: "46px 46px" }} />
+      <div className="relative max-w-2xl rounded-3xl border border-cyan-200/20 bg-slate-950/70 px-8 py-7 text-center shadow-[0_0_60px_rgba(45,212,191,0.10)]">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200/70">{eyebrow}</p>
+        <h3 className="mt-3 font-display text-3xl font-black text-white">{title}</h3>
+        {teachingPoint && <p className="mt-4 text-sm font-semibold leading-6 text-white/60">{teachingPoint}</p>}
+        {reason ? (
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-rose-200/70">{reason}</p>
+        ) : (
+          <div className="mx-auto mt-7 h-1.5 w-56 overflow-hidden rounded-full bg-white/10">
+            <div className="hud-shimmer h-full w-full" />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function AnimationPreparingBoard({ title, teachingPoint }: { title: string; teachingPoint?: string }) {
+  return <AnimationStatusBoard title={title} teachingPoint={teachingPoint} eyebrow="Preparing animation" />;
+}
+
+function AnimationUnavailableBoard({
+  title,
+  teachingPoint,
+  reason,
+}: {
+  title: string;
+  teachingPoint?: string;
+  reason: string;
+}) {
+  return (
+    <AnimationStatusBoard
+      title={title}
+      teachingPoint={teachingPoint}
+      eyebrow="Animation unavailable"
+      reason={reason}
+    />
   );
 }
 

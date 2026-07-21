@@ -35,6 +35,8 @@ interface NarrationCallbacks {
   onBlocked: () => void;
   /** Fired whenever the teacher starts a new sentence so visuals can follow the exact explanation. */
   onSentenceStart?: (index: number, sentence: string, total: number) => void;
+  /** Fired from the active audio/timeline clock. `progress` is 0..1 for the current beat. */
+  onProgress?: (progress: number, currentTimeMs: number, durationMs: number) => void;
   /** Playback speed multiplier (1 = normal). Applies to both the OpenAI audio element and
    *  the browser TTS fallback's base rate. Defaults to 1. */
   rate?: number;
@@ -126,32 +128,20 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   cancelActiveNarrations();
   const rate = callbacks.rate ?? 1;
   const useCloudTts = callbacks.cloudTts ?? CLOUD_TTS_DEFAULT;
+  const initialSentences = splitNarrationSentences(text);
   let cancelled = false;
   let audio: HTMLAudioElement | null = null;
   let audioContext: AudioContext | null = null;
   let cueTimers: ReturnType<typeof setTimeout>[] = [];
+  let progressRaf = 0;
+  let objectUrl: string | null = null;
   const clearCues = () => {
     cueTimers.forEach((timer) => clearTimeout(timer));
     cueTimers = [];
   };
-  const scheduleEstimatedCues = () => {
-    clearCues();
-    const sentences = splitNarrationSentences(text);
-    if (sentences.length === 0) return;
-    callbacks.onSentenceStart?.(0, sentences[0], sentences.length);
-    const weights = sentences.map((sentence) => Math.max(1.35, sentence.length / 13));
-    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-    // Conservative estimate for OpenAI TTS playback. Browser fallback fires exact cues.
-    const estimatedMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
-    let cursor = 0;
-    for (let i = 1; i < sentences.length; i += 1) {
-      cursor += weights[i - 1];
-      cueTimers.push(
-        setTimeout(() => {
-          if (!cancelled) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
-        }, Math.round((cursor / totalWeight) * estimatedMs))
-      );
-    }
+  const stopProgressLoop = () => {
+    if (progressRaf) window.cancelAnimationFrame(progressRaf);
+    progressRaf = 0;
   };
   const cancel = () => {
     if (cancelled) return;
@@ -161,14 +151,23 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       audio.pause();
       audio = null;
     }
+    stopProgressLoop();
     void audioContext?.close();
     audioContext = null;
     clearCues();
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+    }
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
   };
   activeNarrationCancelers.add(cancel);
+  callbacks.onProgress?.(0, 0, 1);
+  if (initialSentences.length > 0) {
+    callbacks.onSentenceStart?.(0, initialSentences[0], initialSentences.length);
+  }
 
   const browserFallback = async () => {
     if (cancelled) return;
@@ -195,11 +194,17 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     // hear it in sync; if it's dead, the lecture still flows visually and advances on time.
     let started = false;
     let cursor = 0;
+    const weights = sentences.map((sentence) => Math.max(1.35, sentence.length / 13));
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+    const estimatedMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
+    const startMs = performance.now();
 
     const cueNext = () => {
       if (cancelled) return;
       if (cursor >= sentences.length) {
         activeNarrationCancelers.delete(cancel);
+        stopProgressLoop();
+        callbacks.onProgress?.(1, estimatedMs, estimatedMs);
         callbacks.onEnd();
         return;
       }
@@ -208,7 +213,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       cursor += 1;
 
       // Fire the visual cue immediately — this is what the board animations follow.
-      callbacks.onSentenceStart?.(sentenceIndex, sentence, sentences.length);
+      if (sentenceIndex > 0) callbacks.onSentenceStart?.(sentenceIndex, sentence, sentences.length);
 
       // Best-effort speech, layered on. Its events do NOT gate progression.
       if (hasSpeech) {
@@ -236,7 +241,16 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       const spokenMs = Math.max(2200, sentence.length * 85) / Math.max(0.5, rate);
       setTimeout(cueNext, spokenMs + 240);
     };
+    const progressLoop = () => {
+      if (cancelled) return;
+      const currentMs = Math.min(estimatedMs, performance.now() - startMs);
+      callbacks.onProgress?.(estimatedMs > 0 ? currentMs / estimatedMs : 1, currentMs, estimatedMs);
+      if (currentMs < estimatedMs) {
+        progressRaf = window.requestAnimationFrame(progressLoop);
+      }
+    };
     cueNext();
+    progressLoop();
 
     // We still want onStart to fire promptly so the UI shows "speaking" even before the
     // (best-effort) audio engine confirms it. If the engine never fires its own onstart
@@ -264,10 +278,38 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       if (!res.ok) throw new Error("tts unavailable");
       const blob = await res.blob();
       if (cancelled) return;
-      const url = URL.createObjectURL(blob);
-      audio = new Audio(url);
+      objectUrl = URL.createObjectURL(blob);
+      audio = new Audio(objectUrl);
       audio.playbackRate = rate;
       audio.volume = 1;
+      const sentences = splitNarrationSentences(text);
+      const weights = sentences.map((sentence) => Math.max(1.35, sentence.length / 13));
+      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+      const cumulative = weights.reduce<number[]>((acc, weight, i) => {
+        acc.push((acc[i - 1] ?? 0) + weight);
+        return acc;
+      }, []);
+      let lastCueIndex = initialSentences.length > 0 ? 0 : -1;
+      const estimatedDurationMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
+      const emitAudioClock = () => {
+        if (cancelled || !audio) return;
+        const durationMs = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration * 1000 : estimatedDurationMs;
+        const currentMs = Math.min(durationMs, audio.currentTime * 1000);
+        const progress = durationMs > 0 ? Math.max(0, Math.min(1, currentMs / durationMs)) : 0;
+        callbacks.onProgress?.(progress, currentMs, durationMs);
+
+        if (sentences.length > 0) {
+          const currentWeight = progress * totalWeight;
+          const nextBoundaryIndex = cumulative.findIndex((boundary) => currentWeight < boundary);
+          const cueIndex = nextBoundaryIndex === -1 ? sentences.length - 1 : nextBoundaryIndex;
+          if (cueIndex !== lastCueIndex) {
+            lastCueIndex = cueIndex;
+            callbacks.onSentenceStart?.(cueIndex, sentences[cueIndex], sentences.length);
+          }
+        }
+
+        if (!audio.paused && !audio.ended) progressRaf = window.requestAnimationFrame(emitAudioClock);
+      };
       try {
         const AudioContextCtor =
           window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -284,23 +326,32 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       }
       audio.onended = () => {
         activeNarrationCancelers.delete(cancel);
+        stopProgressLoop();
         clearCues();
-        URL.revokeObjectURL(url);
+        if (objectUrl) {
+          URL.revokeObjectURL(objectUrl);
+          objectUrl = null;
+        }
         void audioContext?.close();
         audioContext = null;
+        callbacks.onProgress?.(1, audio?.duration ? audio.duration * 1000 : 1, audio?.duration ? audio.duration * 1000 : 1);
         callbacks.onEnd();
       };
       audio.onerror = () => {
         activeNarrationCancelers.delete(cancel);
+        stopProgressLoop();
         clearCues();
-        URL.revokeObjectURL(url);
+        if (objectUrl) {
+          URL.revokeObjectURL(objectUrl);
+          objectUrl = null;
+        }
         void audioContext?.close();
         audioContext = null;
         void browserFallback();
       };
       callbacks.onStart();
-      scheduleEstimatedCues();
       await audio.play();
+      emitAudioClock();
     } catch (err) {
       // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
       if (err instanceof DOMException && err.name === "NotAllowedError") {

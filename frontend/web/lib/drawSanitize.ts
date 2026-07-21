@@ -11,6 +11,12 @@ import type { DrawScript } from "@/components/sketch/LiveSketch";
 
 const VALID_SLIDE_KINDS: SlideKind[] = ["intro", "definition", "checkpoint", "compare", "recap"];
 
+// When the dynamic chalk-blackboard pipeline is off, the sanitizer keeps the legacy behavior:
+// blackboard beats are synthesized by makeWrittenBoard() templates instead of emitting a
+// `chalkBoard` placeholder (which would otherwise never get filled → an "unavailable" card).
+// Server-only env; the client mirror is NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED in LessonPlayer.
+const BLACKBOARD_GEN_ENABLED = process.env.BLACKBOARD_GEN_ENABLED === "1";
+
 /** Named colors the prompt allows -> the marker palette LiveSketch strokes with. */
 const COLOR_MAP: Record<string, string> = {
   amber: "#d97706",
@@ -57,6 +63,9 @@ function size(v: unknown): "sm" | "md" | "lg" | undefined {
 type DrawOp = DrawScript["ops"][number];
 type MotionOp = Extract<DrawOp, { kind: "motion" }>;
 type SceneOp = Extract<DrawOp, { kind: "scene" }>;
+export type ReactAnimationOp = Extract<DrawOp, { kind: "reactAnimation" }>;
+export type ChalkBoardOp = Extract<DrawOp, { kind: "chalkBoard" }>;
+type ImageOp = Extract<DrawOp, { kind: "image" }> & { assetId?: string; providedAssetId?: string };
 type DrawRepairContext = {
   title?: string;
   script?: string;
@@ -155,6 +164,8 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
       const x = pos(o.x) ?? IMAGE_DEFAULT_X;
       const y = pos(o.y) ?? IMAGE_DEFAULT_Y;
       const op: Record<string, unknown> = { kind: "image", prompt, x, y, at };
+      const assetId = str(o.assetId ?? o.providedAssetId);
+      if (assetId) op.assetId = assetId.slice(0, 120);
       op.w = coord(o.w) ?? IMAGE_DEFAULT_W;
       op.h = coord(o.h) ?? IMAGE_DEFAULT_H;
       if (typeof o.src === "string" && o.src) op.src = o.src;
@@ -246,6 +257,390 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
   }
 }
 
+/** Valid chalk shape kinds a generated blackboard diagram may use (all render in LiveSketch's
+ *  pathFor/CompoundShapeRenderer). */
+const CHALK_SHAPES: ReadonlySet<string> = new Set([
+  "circle", "rect", "hexagon", "line", "chain", "leaf", "sun", "droplet", "stove",
+]);
+
+/** Sanitizes ONE op for a generated chalk blackboard. Unlike the top-level sanitizeOp, this
+ *  PERMITS `shape` ops (for real hand-drawn diagrams) — kept scoped here so shapes never leak
+ *  into image/animation beats, which still go through sanitizeOp where `shape` is dropped.
+ *  Reuses the same clamps (pos/coord/frac/color) as sanitizeOp for label/note/arrow. */
+function sanitizeChalkOp(raw: unknown): DrawOp | null {
+  if (!raw || typeof raw !== "object") return null;
+  const o = raw as Record<string, unknown>;
+  const rawKind = typeof o.kind === "string" ? o.kind.trim() : "";
+  const at = frac(o.at, 0.1);
+  const c = color(o.color);
+
+  switch (rawKind) {
+    case "label": {
+      const text = str(o.text);
+      const x = pos(o.x);
+      const y = pos(o.y);
+      if (!text || x === null || y === null) return null;
+      return { kind: "label", text: text.slice(0, 44), x, y, size: size(o.size), color: c, at };
+    }
+    case "note": {
+      const text = str(o.text);
+      const x = pos(o.x);
+      const y = pos(o.y);
+      if (!text || x === null || y === null) return null;
+      return { kind: "note", text: text.slice(0, 120), x, y, color: c, at };
+    }
+    case "arrow": {
+      const x1 = pos(o.x1);
+      const y1 = pos(o.y1);
+      const x2 = pos(o.x2);
+      const y2 = pos(o.y2);
+      if (x1 === null || y1 === null || x2 === null || y2 === null) return null;
+      return { kind: "arrow", x1, y1, x2, y2, curved: o.curved === true, color: c, at };
+    }
+    case "shape": {
+      const shape = typeof o.shape === "string" ? o.shape.trim() : "";
+      if (!CHALK_SHAPES.has(shape)) return null;
+      const x = pos(o.x);
+      const y = pos(o.y);
+      if (x === null || y === null) return null;
+      const op: Record<string, unknown> = { kind: "shape", shape, x, y, color: c, at };
+      const w = coord(o.w);
+      const h = coord(o.h);
+      if (w !== null) op.w = w;
+      if (h !== null) op.h = h;
+      // Points for line/chain polylines — clamp each to the grid; drop malformed.
+      if (Array.isArray(o.points)) {
+        const pts = o.points
+          .map((p) => {
+            if (!p || typeof p !== "object") return null;
+            const pr = p as Record<string, unknown>;
+            const px = pos(pr.x);
+            const py = pos(pr.y);
+            return px === null || py === null ? null : { x: px, y: py };
+          })
+          .filter((p): p is { x: number; y: number } => p !== null)
+          .slice(0, 24);
+        if (pts.length >= 2) op.points = pts;
+      }
+      return op as DrawOp;
+    }
+    default:
+      return null;
+  }
+}
+
+/** Sanitizes a full set of generated chalk-board ops. Clamps `at` into 0..1 and sorts by `at`
+ *  so the reveal order is stable. */
+export function sanitizeChalkBoardOps(rawOps: unknown): DrawOp[] {
+  if (!Array.isArray(rawOps)) return [];
+  return rawOps
+    .map((op) => sanitizeChalkOp(op))
+    .filter((op): op is DrawOp => op !== null)
+    // Blackboards are TEXT ONLY — drop any diagram geometry (shapes/arrows) so the weak,
+    // box-like auto-diagrams can never render. Only labels and notes survive.
+    .filter((op) => op.kind === "label" || op.kind === "note")
+    .sort((a, b) => a.at - b.at);
+}
+
+export type BlackboardDiagnostics = { issue: string | null; labelCount: number; noteCount: number; diagramCount: number; opCount: number };
+
+/** Quality bar for a generated chalk board — deliberately NOT the animation density validator
+ *  (a blackboard is legitimately text-heavy). The board is TEXT ONLY: checks it has a heading +
+ *  real content rows and that the text is clean (no fragments/dupes/overlap). No diagram required
+ *  — diagram geometry is stripped in sanitizeChalkBoardOps. Called by blackboardGen. */
+export function getBlackboardDiagnostics(ops: DrawOp[]): BlackboardDiagnostics {
+  const labels = ops.filter((op) => op.kind === "label");
+  const notes = ops.filter((op) => op.kind === "note");
+  // diagramCount is always 0 now (shapes/arrows stripped) — kept in the shape for callers/logging.
+  const base = { labelCount: labels.length, noteCount: notes.length, diagramCount: 0, opCount: ops.length };
+
+  const textRows = labels.length + notes.length;
+  if (textRows < 4) return { ...base, issue: "too sparse; a blackboard needs a heading plus several content rows" };
+  if (ops.length > 24) return { ...base, issue: "too crowded; keep it to a heading and ~4-6 clean rows" };
+  if (labels.length < 3) return { ...base, issue: "needs a heading label plus a term/symbol label per content row (3+ labels)" };
+  if (notes.length < 1) return { ...base, issue: "needs at least one explanatory note giving real context beyond the labels" };
+  if (blackboardTextOverlaps(ops)) return { ...base, issue: "two or more text rows overlap; stack rows top-to-bottom with >= 9 grid units of vertical gap and no two at the same y" };
+  if (!blackboardTextIsClean(ops)) return { ...base, issue: "text has fragments, duplicates, or over-long lines; write complete self-contained chalk phrases" };
+  return { ...base, issue: null };
+}
+
+/** Detects overlapping text on the board. Text ops are LEFT-anchored: `x` is where the text
+ *  starts and it extends rightward by its rendered width. Two ops on the same visual row collide
+ *  when one's [x, x+width] span reaches into the other's. We also flag a single label so wide it
+ *  runs off the right edge (x+width > 92) — that "Price Interactio…" clipping is a form of overlap
+ *  with the frame. Catches the "blackboard texts overlap" failure so the generator retries. */
+function blackboardTextOverlaps(ops: DrawOp[]): boolean {
+  type TextOp = Extract<DrawOp, { kind: "label" | "note" }>;
+  const textOps = ops.filter((op): op is TextOp => op.kind === "label" || op.kind === "note");
+
+  // Per-character grid width, font-size aware. Big headings render much wider per glyph than a
+  // small note, so a flat estimate under-counts labels and misses exactly the collisions seen.
+  const charW = (op: TextOp): number => {
+    if (op.kind === "note") return 0.95;
+    const size = "size" in op ? op.size : "md";
+    return size === "lg" ? 2.0 : size === "sm" ? 0.95 : 1.35; // md default
+  };
+  // Rendered width in grid units (left edge = x, right edge = x + width). Text wraps in the
+  // renderer past ~ the frame, but for collision purposes the un-wrapped run is the worst case.
+  const width = (op: TextOp): number => op.text.trim().length * charW(op);
+  // Row height each op occupies vertically (bigger text needs more vertical clearance).
+  const rowH = (op: TextOp): number => (op.kind === "label" && "size" in op && op.size === "lg" ? 12 : 8);
+
+  for (let i = 0; i < textOps.length; i++) {
+    const a = textOps[i];
+    // A label/note whose right edge runs past the frame margin is effectively overlapping the edge
+    // (and will visually collide with whatever is placed to its right). Flag it.
+    if (a.x + width(a) > 92) return true;
+    for (let j = i + 1; j < textOps.length; j++) {
+      const b = textOps[j];
+      const dy = Math.abs(a.y - b.y);
+      // TWO OPS ON (NEARLY) THE SAME ROW is banned outright — this board is a single left column,
+      // one line per op. The most common overlap (a label and its note placed side-by-side on the
+      // same y, then colliding because the label is longer than the model estimated) is caught here
+      // regardless of x/width guesswork: if two text ops are within ~5 units of the same y, FAIL.
+      if (dy < 5) return true;
+      if (dy >= Math.max(rowH(a), rowH(b)) / 2 + 3) continue; // otherwise clearly separate rows
+      // Near rows: also verify the horizontal spans don't intersect (with a small gap).
+      const aL = a.x, aR = a.x + width(a);
+      const bL = b.x, bR = b.x + width(b);
+      if (aL < bR + 2 && bL < aR + 2) return true;
+    }
+  }
+  return false;
+}
+
+// Generated React animation code never gets a free pass just because it's sandboxed client-side
+// (defense in depth): reject obviously hostile/escape-attempting source before it's ever stored
+// or shipped to a browser, and cap size so transpile cost + iframe payload stay bounded.
+const REACT_ANIMATION_CODE_MIN_BYTES = 1600;
+// 48KB: strong code models (gpt-5.x) write genuinely rich full-board scenes that legitimately
+// run 25-40KB. The sandbox renders arbitrary SVG fine, so the only reason to cap at all is to
+// bound transpile cost and reject runaway output — 48KB is generous headroom for a real scene
+// while still catching pathological cases. (Was 24KB, calibrated for gpt-4o's smaller output.)
+const REACT_ANIMATION_CODE_MAX_BYTES = 48 * 1024;
+const REACT_ANIMATION_BANNED_PATTERNS: RegExp[] = [
+  /\bfetch\s*\(/, /\bXMLHttpRequest\b/, /\bimport\s*\(/, /\brequire\s*\(/,
+  /\bdocument\s*\./, /\bwindow\s*\./, /\bnavigator\s*\./, /\blocation\s*(?:\.|=|\[)/,
+  /\bFunction\s*\(/, /\beval\s*\(/, /<script/i,
+  /\blocalStorage\b/, /\bsessionStorage\b/, /\bindexedDB\b/, /\bWebSocket\b/,
+];
+const REACT_ANIMATION_EXPORT_PATTERN = /export\s+default\s+function\s+Animation\s*\(\s*\{\s*progress\s*\}\s*\)/;
+
+export type ReactAnimationCodeDiagnostics = {
+  issue: string | null;
+  byteLength: number;
+  groupCount: number;
+  primitiveTagCount: number;
+  primitiveScore: number;
+  objectPrimitiveScore: number;
+  silhouetteCount: number;
+  lineLikeCount: number;
+  textCount: number;
+  distinctPrimitiveTypes: number;
+  progressRefs: number;
+  progressDriveScore: number;
+  repeaters: number;
+  darkFillCount: number;
+  brightFillCount: number;
+  tagCounts: Record<string, number>;
+};
+
+/** True if a hex color (#rgb or #rrggbb) is so dark it vanishes into the near-black board
+ *  background (#020617) — perceived luma below a low threshold. Used to catch the "everything
+ *  drawn in dark-navy so it looks unfilled/monochrome" failure. */
+function isNearBackgroundDark(hex: string): boolean {
+  let h = hex.replace("#", "");
+  if (h.length === 3) h = h.split("").map((c) => c + c).join("");
+  if (h.length !== 6) return false;
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  if ([r, g, b].some((v) => Number.isNaN(v))) return false;
+  // Rec. 601 luma. #020617≈6, #0f172a≈22, #1e293b≈40, #334155≈52. Treat <= 55 as too dark to
+  // read as a real filled part on the near-black board.
+  const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+  return luma <= 55;
+}
+
+export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimationCodeDiagnostics {
+  const code = rawCode.trim();
+  const base = {
+    byteLength: new TextEncoder().encode(code).length,
+    groupCount: 0,
+    primitiveTagCount: 0,
+    primitiveScore: 0,
+    objectPrimitiveScore: 0,
+    silhouetteCount: 0,
+    lineLikeCount: 0,
+    textCount: 0,
+    distinctPrimitiveTypes: 0,
+    progressRefs: 0,
+    progressDriveScore: 0,
+    repeaters: 0,
+    darkFillCount: 0,
+    brightFillCount: 0,
+    tagCounts: {},
+  };
+  if (!code) return { ...base, issue: "empty animation source" };
+
+  const byteLength = base.byteLength;
+  if (byteLength > REACT_ANIMATION_CODE_MAX_BYTES) {
+    return { ...base, issue: "too large; keep the scene focused and under 48KB" };
+  }
+  if (!REACT_ANIMATION_EXPORT_PATTERN.test(code)) {
+    return { ...base, issue: "missing exact export signature: export default function Animation({ progress })" };
+  }
+  const banned = REACT_ANIMATION_BANNED_PATTERNS.find((re) => re.test(code));
+  if (banned) return { ...base, issue: "uses a banned browser/API pattern; keep it pure SVG/CSS/React" };
+  if (!/<\s*svg\b/i.test(code) || !/\bviewBox\s*=/.test(code)) {
+    return { ...base, issue: "must render a full-board SVG with a viewBox" };
+  }
+
+  const primitiveTags = [...code.matchAll(/<\s*(path|circle|rect|ellipse|polygon|polyline|line|text)\b/gi)].map((match) =>
+    match[1].toLowerCase()
+  );
+  const tagCounts = primitiveTags.reduce<Record<string, number>>((counts, tag) => {
+    counts[tag] = (counts[tag] ?? 0) + 1;
+    return counts;
+  }, {});
+  const groupCount = (code.match(/<\s*g\b/gi) ?? []).length;
+  // NOTE: repeaters (Array.from/.map calls) intentionally no longer add a flat score bonus.
+  // A per-call bonus regardless of array length rewarded wrapping ANY tiny repeated cluster in
+  // a .map() as a cheap way to inflate the score — the direct cause of scenes where every
+  // sub-component got its own decorative dot-cluster just to pad primitiveScore/objectPrimitiveScore.
+  // Real richness must come from the actual primitive tag count the code renders.
+  const repeaters = (code.match(/Array\.from|\bmap\s*\(/g) ?? []).length;
+  const primitiveScore = primitiveTags.length;
+  const distinctPrimitiveTypes = new Set(primitiveTags);
+  const objectPrimitiveScore =
+    (tagCounts.path ?? 0) +
+    (tagCounts.rect ?? 0) +
+    (tagCounts.circle ?? 0) +
+    (tagCounts.ellipse ?? 0) +
+    (tagCounts.polygon ?? 0);
+  const lineLikeCount = (tagCounts.line ?? 0) + (tagCounts.polyline ?? 0);
+  const silhouetteCount = (tagCounts.path ?? 0) + (tagCounts.polygon ?? 0) + (tagCounts.ellipse ?? 0);
+  const textCount = tagCounts.text ?? 0;
+  const progressRefs = (code.match(/\bprogress\b/g) ?? []).length;
+  const progressDerivedVars = [
+    ...code.matchAll(/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*[^;\n]*\bprogress\b[^;\n]*/g),
+  ].map((match) => match[1]);
+  const phaseLikeVars = [
+    ...code.matchAll(/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*[^;\n]*(?:clamp|lerp|phase|progress)[^;\n]*/gi),
+  ].map((match) => match[1]);
+  const motionVars = Array.from(new Set([...progressDerivedVars, ...phaseLikeVars])).filter(
+    (name) => name !== "progress"
+  );
+  const motionVarRefs = motionVars.reduce((sum, name) => {
+    const refs = code.match(new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g")) ?? [];
+    return sum + Math.max(0, refs.length - 1);
+  }, 0);
+  const interpolationRefs = (code.match(/\b(?:lerp|clamp01|clamp|phase)\s*\(/gi) ?? []).length;
+  const animatedBindingRefs = (
+    code.match(/\b(?:transform|opacity|cx|cy|x|y|d|points|width|height|r|rx|ry|strokeDashoffset|offset)\s*[=:]/g) ?? []
+  ).length;
+  const progressDriveScore = progressRefs + motionVarRefs + interpolationRefs + Math.min(animatedBindingRefs, 12);
+
+  // Color audit: count literal hex fills that are near-background-dark vs bright/visible. A scene
+  // whose fills are overwhelmingly dark-navy reads as unfilled/monochrome on the #020617 board —
+  // the "not filled with colours" failure. Only literal fill="#..." are counted (dynamic
+  // fill={var} can't be judged statically and is ignored).
+  const fillHexes = [...code.matchAll(/fill\s*=\s*"(#[0-9a-fA-F]{3,6})"/g)].map((m) => m[1].toLowerCase());
+  const darkFillCount = fillHexes.filter(isNearBackgroundDark).length;
+  const brightFillCount = fillHexes.length - darkFillCount;
+
+  const metrics = {
+    byteLength,
+    groupCount,
+    primitiveTagCount: primitiveTags.length,
+    primitiveScore,
+    objectPrimitiveScore,
+    silhouetteCount,
+    lineLikeCount,
+    textCount,
+    distinctPrimitiveTypes: distinctPrimitiveTypes.size,
+    progressRefs,
+    progressDriveScore,
+    repeaters,
+    darkFillCount,
+    brightFillCount,
+    tagCounts,
+  };
+  if (groupCount < 2) {
+    return { ...metrics, issue: "too flat; organize the animation into a couple of grouped scene layers, not loose labels and lines" };
+  }
+  // Thresholds deliberately lowered AGAIN (were 18/12, originally 34/24): the higher bars forced
+  // the model to pack scenes with parts/agents just to clear the number, producing busy, hard-to-
+  // follow animations. A simple, legible scene that clearly teaches ONE mechanism is the goal —
+  // these lower floors still reject a bare line-diagram/single-icon output while letting a clean
+  // minimal scene pass. Simplicity is the target; the floor only guards against emptiness.
+  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < 10) {
+    return { ...metrics, issue: "too sparse; build a clear scene with a main subject, its parts, and a moving agent" };
+  }
+  if (primitiveScore < 10) {
+    return { ...metrics, issue: "too few drawn elements; show the topic's main object plus a moving agent and a result" };
+  }
+  if (objectPrimitiveScore < 7) {
+    return { ...metrics, issue: "too few actual scene objects; draw the mechanism's body, a couple of parts, and the result" };
+  }
+  if (silhouetteCount < 1) {
+    return { ...metrics, issue: "needs real object silhouettes or cutaway shapes, not only rectangles/circles/lines" };
+  }
+  if (lineLikeCount >= objectPrimitiveScore / 2) {
+    return { ...metrics, issue: "too line-diagram-like; the mechanism must be a full scene, not mostly wires/arrows" };
+  }
+  if (textCount > 0 && textCount >= objectPrimitiveScore / 2) {
+    return { ...metrics, issue: "too text-heavy; labels must support the visual, not carry the animation" };
+  }
+  if (distinctPrimitiveTypes.size < 4) {
+    return { ...metrics, issue: "too visually flat; use at least four SVG primitive types" };
+  }
+  if (!primitiveTags.includes("text")) {
+    return { ...metrics, issue: "needs short JSX/SVG labels so the visual teaches without becoming a slide" };
+  }
+
+  if (progressDriveScore < 14) {
+    return { ...metrics, issue: "motion is not driven enough by progress; add setup, transformation, and result phases" };
+  }
+  if (!/(lerp|clamp|phase|transform|opacity|translate|scale|rotate)/i.test(code)) {
+    return { ...metrics, issue: "missing explicit interpolation or transform/opacity changes" };
+  }
+  // Color audit: reject scenes whose literal fills are overwhelmingly dark-navy (invisible on the
+  // #020617 board) — this is the "not filled with colours / looks monochrome and empty" failure.
+  // Require a real count of bright fills AND that dark fills don't dominate. Only enforced when
+  // there are enough literal fills to judge (dynamic fill={var} colors are not counted).
+  const totalLiteralFills = darkFillCount + brightFillCount;
+  // Reject when: too few bright fills to look colorful at all, OR dark fills are a large fraction
+  // (>=40%) of the total — either way the scene reads as dark/washed-out. (A scene with 20 dark
+  // + 21 bright fills still looks half-invisible, so a simple dark>bright test is too lenient.)
+  if (totalLiteralFills >= 6 && (brightFillCount < 6 || darkFillCount >= totalLiteralFills * 0.4)) {
+    return {
+      ...metrics,
+      issue:
+        "too dark/monochrome — most fills are near-background dark-navy and vanish on the board. Fill the main parts with SATURATED MID-TONE colors (cyan #22d3ee, blue #60a5fa, green #4ade80, amber #fbbf24, rose #fb7185, mid-grey #94a3b8) at fill-opacity>=0.85. Do NOT use #0f172a/#0b1224/#1e293b-type dark navy as the fill of any real drawn part.",
+    };
+  }
+
+  return { ...metrics, issue: null };
+}
+
+export function getReactAnimationCodeIssue(rawCode: string): string | null {
+  return getReactAnimationCodeDiagnostics(rawCode).issue;
+}
+
+/** Validates a `reactAnimation` op's `code` field. Returns the op unchanged if the code passes,
+ *  or the op with `code` stripped if it fails any check. Deliberately does NOT touch
+ *  `teachingPoint` because it is safe plain data regardless of what happened to `code`. Exported
+ *  so reactAnimationGen.ts can run the exact same checks at generation time, before code is even
+ *  stored on the beat. */
+export function sanitizeReactAnimationOp(op: ReactAnimationOp): ReactAnimationOp {
+  const code = typeof op.code === "string" ? op.code.trim() : "";
+  if (!code) return { ...op, code: undefined };
+  const issue = getReactAnimationCodeIssue(code);
+  if (issue) return { ...op, code: undefined, status: "failed", error: issue };
+  return { ...op, code, status: "ready", error: undefined };
+}
+
 /** Validates a DrawScript; returns undefined if it has too few usable ops. The image op (if
  *  any) is sanitized FIRST so its bounding box can be used to push labels/notes out of its
  *  footprint — the marker writes in the margins, never over the picture. */
@@ -253,6 +648,119 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
   if (!raw || typeof raw !== "object") return undefined;
   const o = raw as Record<string, unknown>;
   const opsRaw = Array.isArray(o.ops) ? o.ops : [];
+
+  // The model sometimes ignores the "emit ONE reactAnimation op" instruction for TYPE C beats
+  // and falls back to the old scene+motion grammar it also still knows from the DrawOp type
+  // list (worked example bias). Code-level guarantee, independent of prompt compliance: if a
+  // beat's raw ops are a pure animation-led board (scene+motion present, no image, no dense
+  // written-blackboard content) and it did NOT already emit a reactAnimation op, synthesize one
+  // — teachingPoint from the scene's own title/items. This is what actually makes TYPE C route
+  // through the new pipeline even when the model's JSON output alone wouldn't have.
+  let reactAnimationRaw = opsRaw.find(
+    (op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "reactAnimation"
+  );
+  if (!reactAnimationRaw && context?.index !== 0) {
+    const hasImage = opsRaw.some((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "image");
+    const sceneRaw = opsRaw.find((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "scene") as
+      | Record<string, unknown>
+      | undefined;
+    const hasMotion = opsRaw.some((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "motion");
+    const symbolLabelCount = opsRaw.filter(
+      (op) =>
+        op && typeof op === "object" && (op as Record<string, unknown>).kind === "label" &&
+        typeof (op as Record<string, unknown>).text === "string" &&
+        /[↑↓→←=+×∴≈′]/.test((op as Record<string, unknown>).text as string)
+    ).length;
+    // A "pure animation-led" beat: has a scene (the TYPE C anchor), no image, and isn't also a
+    // dense written blackboard (which legitimately uses labels/arrows on its own, unrelated grammar).
+    if (sceneRaw && hasMotion && !hasImage && symbolLabelCount < 3) {
+      const items = strArray(sceneRaw.items);
+      const title = str(sceneRaw.title);
+      const teachingPoint = [title, ...items].filter(Boolean).join(" — ").slice(0, 180) || str(context?.title);
+      reactAnimationRaw = {
+        kind: "reactAnimation",
+        teachingPoint,
+      };
+    }
+  }
+  if (reactAnimationRaw && context?.index !== 0) {
+    const r = reactAnimationRaw as Record<string, unknown>;
+    const teachingPoint = str(r.teachingPoint) || str(context?.title) || undefined;
+    const rawOp: ReactAnimationOp = {
+      kind: "reactAnimation",
+      teachingPoint,
+      code: typeof r.code === "string" ? r.code : undefined,
+      status: r.status === "ready" || r.status === "failed" ? r.status : undefined,
+      error: typeof r.error === "string" ? r.error.slice(0, 180) : undefined,
+      at: 0,
+      endAt: 1,
+    };
+    const op = sanitizeReactAnimationOp(rawOp);
+    // Keep placeholders even before code exists; streaming fills `code` later. If generation
+    // fails, LessonPlayer shows an explicit unavailable board instead of a substitute sketch.
+    if (op.code || op.teachingPoint) {
+      return { caption: str(o.caption), durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined, ops: [op] };
+    }
+  }
+
+  // BLACKBOARD short-circuit (mirrors reactAnimation): a blackboard beat carries a single
+  // `chalkBoard` placeholder whose real ops are authored later by fillBlackboardOps. If the model
+  // emitted the placeholder directly, keep it. If it instead fell back to the old label/arrow/note
+  // blackboard grammar (worked-example bias), COERCE that into a `chalkBoard` placeholder with a
+  // derived boardBrief — this is what routes legacy blackboard output through the new pipeline.
+  // Intro beats (index 0) are never blackboards.
+  let chalkBoardRaw = opsRaw.find(
+    (op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "chalkBoard"
+  ) as Record<string, unknown> | undefined;
+  if (!chalkBoardRaw && BLACKBOARD_GEN_ENABLED && context?.index !== 0) {
+    const hasImage = opsRaw.some((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "image");
+    const hasSceneOrMotion = opsRaw.some(
+      (op) => op && typeof op === "object" && ((op as Record<string, unknown>).kind === "scene" || (op as Record<string, unknown>).kind === "motion")
+    );
+    const symbolLabelCount = opsRaw.filter(
+      (op) =>
+        op && typeof op === "object" && (op as Record<string, unknown>).kind === "label" &&
+        typeof (op as Record<string, unknown>).text === "string" &&
+        /[↑↓→←=+×∴≈′]/.test((op as Record<string, unknown>).text as string)
+    ).length;
+    const arrowCount = opsRaw.filter((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "arrow").length;
+    const noteCount = opsRaw.filter((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "note").length;
+    // Legacy written-blackboard shape: symbol labels + arrows (or label + several notes), no image/scene/motion.
+    const looksLikeBlackboard = !hasImage && !hasSceneOrMotion && ((symbolLabelCount >= 3 && arrowCount >= 2) || noteCount >= 3);
+    if (looksLikeBlackboard) {
+      const briefFromLabels = opsRaw
+        .filter((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "label")
+        .map((op) => str((op as Record<string, unknown>).text))
+        .filter(Boolean)
+        .slice(0, 4)
+        .join("; ");
+      chalkBoardRaw = { kind: "chalkBoard", boardBrief: briefFromLabels || str(context?.title) };
+    }
+  }
+  if (chalkBoardRaw && context?.index !== 0) {
+    const r = chalkBoardRaw;
+    const rawBrief = str(r.boardBrief) || str(context?.title) || firstSentence(str(context?.script), "Key idea");
+    if (!BLACKBOARD_GEN_ENABLED) {
+      // Flag off: never emit an unfillable placeholder. Fall back to the legacy template board so
+      // the app is fully usable without the generation step.
+      return makeWrittenBoard(
+        str(context?.title) || rawBrief.slice(0, 60),
+        str(context?.script),
+        typeof o.durationMs === "number" ? o.durationMs : 28000
+      );
+    }
+    const rawOps = Array.isArray(r.ops) ? sanitizeChalkBoardOps(r.ops) : undefined;
+    const chalkOp: ChalkBoardOp = {
+      kind: "chalkBoard",
+      boardBrief: rawBrief.slice(0, 240) || undefined,
+      ops: rawOps && rawOps.length ? rawOps : undefined,
+      status: r.status === "ready" || r.status === "failed" ? (r.status as "ready" | "failed") : undefined,
+      error: typeof r.error === "string" ? r.error.slice(0, 180) : undefined,
+      at: 0,
+      endAt: 1,
+    };
+    return { caption: str(o.caption), durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined, ops: [chalkOp] };
+  }
 
   const imageRaw = opsRaw.find((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "image");
   const sanitizedImage = imageRaw ? (sanitizeOp(imageRaw) as Extract<DrawOp, { kind: "image" }> | null) : null;
@@ -433,7 +941,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
   return { caption: str(o.caption), durationMs, ops: enrichedOps };
 }
 
-function forceFullBoardImage(op: Extract<DrawOp, { kind: "image" }>): Extract<DrawOp, { kind: "image" }> {
+function forceFullBoardImage(op: ImageOp): ImageOp {
   return { ...op, x: IMAGE_DEFAULT_X, y: IMAGE_DEFAULT_Y, w: IMAGE_DEFAULT_W, h: IMAGE_DEFAULT_H, at: Math.min(op.at, 0.05) };
 }
 
@@ -534,7 +1042,7 @@ function sanitizeBeat(raw: unknown, index: number): Beat | null {
     // EXCEPTION: animation-led boards (those with a "scene" or "motion" op but no "image")
     // intentionally have no image — the animation IS the teaching on a clean dark canvas.
     // Do not inject a photo backdrop into those; it would break the composition the model chose.
-    if (beat.draw && !beat.draw.ops.some((op) => op.kind === "image")) {
+    if (beat.draw && !beat.draw.ops.some((op) => op.kind === "image" || op.kind === "reactAnimation" || op.kind === "chalkBoard")) {
       const hasAnimation = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
       // A written blackboard is also intentionally image-less (a teacher writing on a clean
       // board) — don't force a photo backdrop under it.
@@ -586,25 +1094,41 @@ function isWrittenBlackboard(ops: DrawOp[]): boolean {
 }
 
 function blackboardTextIsClean(ops: DrawOp[]): boolean {
-  const texts = ops
-    .filter((op): op is Extract<DrawOp, { kind: "label" | "note" | "callout" }> =>
-      op.kind === "label" || op.kind === "note" || op.kind === "callout"
-    )
+  // "label" ops are legitimately short terms/section headings/axis tags on a real chalk board
+  // (e.g. "Demand", "Price", "Equilibrium") — the fragment/duplicate checks below are calibrated
+  // for "note" (and legacy "callout") body text, which must be complete sentences. Applying the
+  // same bar to short label headings rejected genuinely good boards (a term label reused once as
+  // a heading and once as an axis tag is normal, not a duplication bug).
+  const noteTexts = ops
+    .filter((op): op is Extract<DrawOp, { kind: "note" | "callout" }> => op.kind === "note" || op.kind === "callout")
+    .map((op) => op.text.trim())
+    .filter((text) => !isTinyDiagramToken(text))
+    .filter(Boolean);
+  const labelTexts = ops
+    .filter((op): op is Extract<DrawOp, { kind: "label" }> => op.kind === "label")
     .map((op) => op.text.trim())
     .filter((text) => !isTinyDiagramToken(text))
     .filter(Boolean);
 
-  if (texts.length < 5) return false;
+  if (noteTexts.length + labelTexts.length < 5) return false;
 
   const seen = new Set<string>();
   let duplicateCount = 0;
   let badCount = 0;
-  for (const text of texts) {
+  for (const text of noteTexts) {
     const key = text.toLowerCase().replace(/^[•·\-\s]+/, "").replace(/\s+/g, " ");
     if (seen.has(key)) duplicateCount++;
     seen.add(key);
     if (looksLikeFragment(text)) badCount++;
     if (text.length > 78) badCount++;
+  }
+  // Labels: only flag genuine dangling fragments (trailing/leading connectors, "..."), not
+  // single-word terms — a term/heading label is ALWAYS short by design. Allow label repeats
+  // entirely (a heading and an axis tag sharing a word is normal chalk-board practice).
+  for (const text of labelTexts) {
+    if (/\.\.\.$/.test(text) || /^(and|but|because|which|where|when|while|that|this)\b/i.test(text) || /\b(and|or|because|which)$/i.test(text)) {
+      badCount++;
+    }
   }
 
   return badCount === 0 && duplicateCount <= 1;
@@ -925,30 +1449,61 @@ function makeAnimationBoard(title: string, script: string, durationMs = 26000): 
     index: 0,
   };
   const scene = fallbackScene(context);
+  const referenceMotion = [scene, ...fallbackMotions(scene, context)];
+  const teachingPoint = makeAnimationTeachingPoint(title, script, scene, referenceMotion);
   if (isPhotosynthesisText(`${title} ${script}`)) {
+    const photosynthesisReference: DrawOp[] = [{
+      kind: "scene",
+      scene: "process",
+      title: boardTitle(title),
+      items: ["photons", "chlorophyll", "electron jump", "ATP/NADPH", "glucose"],
+      color: COLOR_MAP.amber,
+      at: 0.12,
+      endAt: 0.94,
+    }];
     return {
       caption: title,
       durationMs,
       ops: [{
-        kind: "scene",
-        scene: "process",
-        title: boardTitle(title),
-        items: ["photons", "chlorophyll", "electron jump", "ATP/NADPH", "glucose"],
-        color: COLOR_MAP.amber,
-        at: 0.12,
-        endAt: 0.94,
+        kind: "reactAnimation",
+        teachingPoint: makeAnimationTeachingPoint(title, script, photosynthesisReference[0] as SceneOp, photosynthesisReference),
+        at: 0,
+        endAt: 1,
       }],
     };
   }
   return {
     caption: title,
     durationMs,
-    ops: [scene, ...fallbackMotions(scene, context)],
+    ops: [{
+      kind: "reactAnimation",
+      teachingPoint,
+      at: 0,
+      endAt: 1,
+    }],
   };
+}
+
+function makeAnimationTeachingPoint(title: string, script: string, scene: SceneOp, fallback: DrawOp[]): string {
+  const items = scene.items?.length ? scene.items : contextualItems({ title, script }, scene.scene);
+  const motionWords = fallback
+    .filter((op): op is MotionOp => op.kind === "motion")
+    .map((op) => op.text)
+    .filter((text): text is string => Boolean(text));
+  const actors = uniqueShort([...items, ...motionWords], 5).join(", ");
+  const scriptLead = shortenAtWord(script.replace(/\s+/g, " "), 170);
+  return shortenAtWord(
+    `${title}: show ${actors || "the key parts"} in a full-board ${scene.scene} animation where the starting state visibly changes step by step into the outcome; ground the motion in this narration: ${scriptLead}`,
+    360
+  );
 }
 
 function animationNeedsRepair(beat: Beat): boolean {
   if (!beat.draw) return true;
+  // A reactAnimation op IS a complete, valid animation board on its own (see beatIsAnimationLed
+  // above) — none of the legacy scene-kind checks below apply to it, and it must never be
+  // rewritten here even when it happens to describe a supply/demand or photosynthesis topic.
+  if (beat.draw.ops.some((op) => op.kind === "reactAnimation")) return false;
   const text = `${beat.title} ${beat.script}`.toLowerCase();
   const scene = beat.draw.ops.find((op): op is SceneOp => op.kind === "scene");
   if (!scene) return true;
@@ -969,6 +1524,17 @@ function imageBeatNeedsConcreteRepair(beat: Beat): boolean {
     .map((op) => op.prompt)
     .join(" ")
     .toLowerCase();
+  // A prompt describing an INTENTIONAL technical diagram (per drawPrompt.ts TYPE B's
+  // mechanical/scientific branch — "cutaway diagram of a battery cell", "exploded-view technical
+  // diagram of an engine") is valid content, not a bug — do not flag it for repair. Only flag the
+  // OLD failure pattern this check existed to catch: a prompt that describes a flat 2D chart,
+  // classroom poster, or literal graph-paper axes INSTEAD OF a real photographed/illustrated
+  // scene (e.g. "a whiteboard with a demand curve drawn on it" — a photo of a drawing, not a
+  // subject). A genuine diagram request names real parts/cutaway/schematic; a bad one names
+  // meta-objects like whiteboard/poster/graph paper/classroom.
+  if (/\b(diagram|cutaway|cross-section|cross section|schematic|exploded[- ]view|blueprint|technical illustration|labeled illustration|engineering drawing)\b/.test(promptText)) {
+    return /\b(graph paper|plotted on|whiteboard|blackboard|classroom|teacher|infographic|poster|hand-drawn|drawn on a)\b/.test(promptText);
+  }
   return /\b(graph paper|plotted|labeled axes|axis|axes|curve|diagram|chart|whiteboard|blackboard|classroom|teacher|infographic|poster)\b/.test(promptText);
 }
 
@@ -1169,7 +1735,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   const beatsRaw = (raw as Record<string, unknown>).beats;
   if (!Array.isArray(beatsRaw)) throw new Error("Model returned no usable lecture.");
   const beats = beatsRaw.map((b, i) => sanitizeBeat(b, i)).filter((b): b is Beat => b !== null);
-  if (beats.length < 10) {
+  if (beats.length < 9) {
     throw new Error(`Model only returned ${beats.length} usable beats — too few for a real lecture. Try again.`);
   }
 
@@ -1178,6 +1744,10 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   // of chalkboards.
   function beatIsBlackboard(beat: Beat): boolean {
     if (!beat.draw) return false;
+    // A `chalkBoard` op IS the blackboard — its real ops are authored later by fillBlackboardOps.
+    // Treat it as a blackboard so the rhythm/quality gates below leave it alone (mirrors how a
+    // `reactAnimation` op is treated as animation-led) rather than overwriting it with a template.
+    if (beat.draw.ops.some((op) => op.kind === "chalkBoard")) return true;
     return isWrittenBlackboard(beat.draw.ops);
   }
   function beatIsImageLed(beat: Beat): boolean {
@@ -1189,6 +1759,10 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   }
   function beatIsAnimationLed(beat: Beat): boolean {
     if (!beat.draw) return false;
+    // A `reactAnimation` op IS the animation-led board — it's a self-contained op, not a
+    // scene+motion pair. Treat it as automatically animation-led so none of the rhythm/quality
+    // gates below mistake it for an empty/weak beat and overwrite it with makeAnimationBoard().
+    if (beat.draw.ops.some((op) => op.kind === "reactAnimation")) return true;
     const hasImage = beat.draw.ops.some((op) => op.kind === "image");
     const hasCallouts = beat.draw.ops.some((op) => op.kind === "callout");
     const hasSceneOp = beat.draw.ops.some((op) => op.kind === "scene");
@@ -1200,8 +1774,26 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   // "Trust the model more": we only overwrite a model-authored board with the sanitizer's
   // makeWrittenBoard() fallback when the model's own board is genuinely bad OR when a
   // hardcoded topicRows template exists (economics/physics/bio) that is strictly better.
-  const modelBoardIsGoodBlackboard = (beat: Beat): boolean =>
-    !!beat.draw && beatIsBlackboard(beat) && blackboardTextIsClean(beat.draw.ops);
+  const modelBoardIsGoodBlackboard = (beat: Beat): boolean => {
+    if (!beat.draw) return false;
+    // A chalkBoard placeholder is a complete, valid blackboard on its own (real ops filled by
+    // fillBlackboardOps) — always "good" so no forcing pass overwrites it with a template.
+    if (beat.draw.ops.some((op) => op.kind === "chalkBoard")) return true;
+    return beatIsBlackboard(beat) && blackboardTextIsClean(beat.draw.ops);
+  };
+  // Puts a `chalkBoard` placeholder on a beat that a rhythm/safety pass wants to be a blackboard.
+  // Replaces the old makeWrittenBoard() template forcing — the real chalk ops are authored later
+  // by fillBlackboardOps. Idempotent: leaves an existing chalkBoard beat untouched.
+  const injectChalkBoard = (beat: Beat, durationMs: number) => {
+    if (beat.draw?.ops.some((op) => op.kind === "chalkBoard")) return;
+    if (!BLACKBOARD_GEN_ENABLED) {
+      // Flag off: keep the legacy deterministic template board.
+      beat.draw = makeWrittenBoard(beat.title, beat.script, durationMs, boardCtx);
+      return;
+    }
+    const boardBrief = (`${beat.title}. ${firstSentence(beat.script, "")}`).trim().slice(0, 240) || beat.title;
+    beat.draw = { caption: beat.title, durationMs, ops: [{ kind: "chalkBoard", boardBrief, at: 0, endAt: 1 }] };
+  };
   const modelBoardIsGoodImage = (beat: Beat): boolean => {
     if (!beat.draw) return false;
     const hasImage = beat.draw.ops.some((op) => op.kind === "image");
@@ -1211,17 +1803,24 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   };
   const modelBoardIsGoodAnimation = (beat: Beat): boolean => {
     if (!beat.draw) return false;
+    if (beat.draw.ops.some((op) => op.kind === "reactAnimation")) return true;
     const hasSceneOp = beat.draw.ops.some((op) => op.kind === "scene");
     const motionCount = beat.draw.ops.filter((op) => op.kind === "motion" || op.kind === "morph").length;
     return hasSceneOp && motionCount >= 1 && motionCount <= 3;
   };
   const modelBoardIsGood = (beat: Beat): boolean =>
     modelBoardIsGoodBlackboard(beat) || modelBoardIsGoodImage(beat) || modelBoardIsGoodAnimation(beat);
-  const meaningfulOpCount = (beat: Beat): number =>
-    beat.draw ? beat.draw.ops.filter((op) =>
+  const meaningfulOpCount = (beat: Beat): number => {
+    if (!beat.draw) return 0;
+    // A reactAnimation op is a single self-contained board, not a set of composable primitives
+    // to count individually — credit it with 4 so it clears the `>= 4` acceptability floor
+    // below (modelBoardIsAcceptable) on its own, same as a real multi-op board would.
+    if (beat.draw.ops.some((op) => op.kind === "reactAnimation")) return 4;
+    return beat.draw.ops.filter((op) =>
       op.kind === "label" || op.kind === "note" || op.kind === "callout" ||
       op.kind === "arrow" || op.kind === "scene" || op.kind === "motion" || op.kind === "image"
-    ).length : 0;
+    ).length;
+  };
   const modelBoardIsAcceptable = (beat: Beat): boolean => {
     if (!beat.draw) return false;
     if (modelBoardIsGood(beat)) return true;
@@ -1264,7 +1863,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     // template (economics/physics/bio), force the strong blackboard instead — it beats both
     // the model's scene and the weak keyword fallback.
     if (modelBoardIsGood(beat) && !hasTemplateRows(beat.title, beat.script)) continue;
-    beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+    injectChalkBoard(beat, beat.draw?.durationMs ?? 28000);
   }
 
   // If a model-authored blackboard survived structurally but contains chopped phrases,
@@ -1272,8 +1871,9 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   // deterministic: the model teaches in `script`; our code writes the chalkboard cleanly.
   for (const beat of beats) {
     if (!beat.draw || beat.slideKind === "checkpoint") continue;
+    if (beat.draw.ops.some((op) => op.kind === "chalkBoard")) continue; // already the new pipeline
     if (beatIsBlackboard(beat) && !blackboardTextIsClean(beat.draw.ops)) {
-      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 28000, boardCtx);
+      injectChalkBoard(beat, beat.draw.durationMs ?? 28000);
     }
   }
 
@@ -1305,7 +1905,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     // title would be converted into the weak keyword fallback board, which is worse than the
     // model's own animation.
     if (titleMatches && hasTemplateRows(beat.title, beat.script) && blackboardCount < 4) {
-      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 26000, boardCtx);
+      injectChalkBoard(beat, beat.draw.durationMs ?? 26000);
       blackboardCount++;
     }
   }
@@ -1325,6 +1925,11 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     for (const idx of preferredImageIdxs) {
       const beat = beats[idx];
       if (!beat || beat.slideKind === "checkpoint") continue;
+      // A reactAnimation or chalkBoard beat is a deliberate animation-/blackboard-slot board —
+      // never overwrite either with a forced image board, even on the allowReplacingBlackboard
+      // pass (that pass is meant for the OLD label/arrow/note blackboard grammar, not the new
+      // chalkBoard placeholder, which is never a legacy "beatIsBlackboard" match on its own).
+      if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "chalkBoard")) continue;
       if (beatIsImageLed(beat) && imageBeatNeedsConcreteRepair(beat)) {
         beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
         continue;
@@ -1347,9 +1952,15 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     const keep = modelBoardIsGoodBlackboard(closingBeat)
       || (modelBoardIsGood(closingBeat) && !hasTemplateRows(closingBeat.title, closingBeat.script));
     if (!keep) {
-      // Synthesize a genuine recap (one row per idea taught) rather than re-rendering the
-      // topic template that beats 1-2 already showed.
-      closingBeat.draw = makeRecapBoard(beats, closingBeat, boardCtx);
+      if (BLACKBOARD_GEN_ENABLED) {
+        // Recap becomes a chalkBoard placeholder too — fillBlackboardOps authors a genuine
+        // one-row-per-idea synthesis from the beat script (the boardBrief nudges "recap/synthesize").
+        const recapBrief = `Recap of ${closingBeat.title}: synthesize the lecture's key ideas, one row each, with a closing takeaway.`;
+        closingBeat.draw = { caption: closingBeat.title, durationMs: closingBeat.draw?.durationMs ?? 26000, ops: [{ kind: "chalkBoard", boardBrief: recapBrief, at: 0, endAt: 1 }] };
+      } else {
+        // Synthesize a genuine recap from the legacy template builder.
+        closingBeat.draw = makeRecapBoard(beats, closingBeat, boardCtx);
+      }
     }
   }
 
@@ -1376,42 +1987,77 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
       // Keep up to 3 graph diagrams (base + demand shift + supply shift); convert only beyond that.
       graphCount++;
       if (graphCount <= 3) continue;
-      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 26000, boardCtx);
+      injectChalkBoard(beat, beat.draw.durationMs ?? 26000);
       continue;
     }
     if (seenSceneKinds.has(kind)) {
-      // Convert this duplicate non-graph scene to a written board (label + arrow + note steps).
-      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw.durationMs ?? 26000, boardCtx);
+      // Convert this duplicate non-graph scene into a chalkBoard placeholder (authored later).
+      injectChalkBoard(beat, beat.draw.durationMs ?? 26000);
     } else {
       seenSceneKinds.add(kind);
     }
   }
 
   // SURFACE RHYTHM GUARANTEE: avoid the "everything becomes blackboard" failure mode.
-  // After the intro, the lecture alternates the teaching surface:
-  //   blackboard -> image -> animation -> blackboard -> image -> animation ...
-  // The blackboards still use the cleaned deterministic board builder; image beats still get
-  // real generated pictures + callouts; animation beats are clean scene/motion boards.
-  const rhythm = ["blackboard", "image", "animation"] as const;
+  // After the intro, the lecture alternates blackboard -> image -> blackboard -> image ...
+  // We deliberately DO NOT force any animation slot here — the lecture should contain at most ONE
+  // animation, chosen by the model (see prompt TYPE C). Any beat the model already made an
+  // animation is left untouched by this rhythm pass (handled below); every other non-blackboard
+  // slot becomes an image, never a forced animation. This keeps exactly one animation per lecture.
+  const rhythm = ["blackboard", "image"] as const;
   const rhythmBeats = beats
     .map((beat, i) => ({ beat, i }))
     .filter(({ beat, i }) => i >= 1 && i < lastTeachingIdx && beat.slideKind !== "checkpoint");
   rhythmBeats.forEach(({ beat }, rhythmIndex) => {
+    // Preserve a model-authored animation beat as-is (repair only if broken) — this is the single
+    // allowed animation; the rhythm never overwrites it or creates new ones.
+    if (beatIsAnimationLed(beat)) {
+      if (animationNeedsRepair(beat)) {
+        beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+      }
+      return;
+    }
     const desired = rhythm[rhythmIndex % rhythm.length];
     if (desired === "blackboard") {
       if (!modelBoardIsGoodBlackboard(beat)) {
-        beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+        injectChalkBoard(beat, beat.draw?.durationMs ?? 28000);
       }
       return;
     }
-    if (desired === "image") {
-      if (!beatIsImageLed(beat) || imageBeatNeedsConcreteRepair(beat)) {
-        beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
-      }
-      return;
+    // desired === "image"
+    if (!beatIsImageLed(beat) || imageBeatNeedsConcreteRepair(beat)) {
+      beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
     }
-    if (!beatIsAnimationLed(beat) || animationNeedsRepair(beat)) {
-      beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+  });
+
+  // EXACTLY-ONE-ANIMATION GUARANTEE.
+  // (a) If the model emitted NO animation beat, convert one middle-third teaching beat into an
+  //     animation placeholder so step-2 (fillReactAnimationOps) generates the single animation.
+  // (b) Keep only the FIRST animation beat; convert any extras to image boards.
+  const animationCount = beats.filter(
+    (b, i) => i >= 1 && i < lastTeachingIdx && b.slideKind !== "checkpoint" && beatIsAnimationLed(b)
+  ).length;
+  if (animationCount === 0) {
+    // Pick a beat around the middle of the teaching range to become the animation.
+    const teachingIdxs = beats
+      .map((b, i) => ({ b, i }))
+      .filter(({ b, i }) => i >= 1 && i < lastTeachingIdx && b.slideKind !== "checkpoint")
+      .map(({ i }) => i);
+    if (teachingIdxs.length > 0) {
+      const target = teachingIdxs[Math.floor(teachingIdxs.length / 2)];
+      const beat = beats[target];
+      const teachingPoint = `${beat.title}: ${(beat.script || "").split(/(?<=[.!?])\s+/)[0] ?? beat.title}`.slice(0, 240);
+      beat.draw = { caption: beat.title, durationMs: beat.draw?.durationMs ?? 26000, ops: [{ kind: "reactAnimation", teachingPoint, at: 0, endAt: 1 }] };
+    }
+  }
+  let seenAnimation = false;
+  beats.forEach((beat, i) => {
+    if (i < 1 || i >= lastTeachingIdx || beat.slideKind === "checkpoint") return;
+    if (!beatIsAnimationLed(beat)) return;
+    if (!seenAnimation) {
+      seenAnimation = true; // keep the first one
+    } else {
+      beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
     }
   });
 
@@ -1424,11 +2070,20 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   if (goodBlackboards < MIN_BLACKBOARDS) {
     const candidates = beats
       .map((beat, i) => ({ beat, i }))
-      .filter(({ beat, i }) => i >= 1 && beat.slideKind !== "checkpoint" && !modelBoardIsGoodBlackboard(beat))
+      .filter(
+        ({ beat, i }) =>
+          i >= 1 &&
+          beat.slideKind !== "checkpoint" &&
+          !modelBoardIsGoodBlackboard(beat) &&
+          // A reactAnimation beat is guaranteed-useful content for the animation pipeline. Never
+          // sacrifice it to this safety net, even in the degenerate case where no candidate ever
+          // satisfies modelBoardIsGoodBlackboard and the loop would burn through every beat.
+          !beat.draw?.ops.some((op) => op.kind === "reactAnimation")
+      )
       .sort((a, b) => boardScore(a.beat) - boardScore(b.beat)); // weakest first
     for (const { beat } of candidates) {
       if (goodBlackboards >= MIN_BLACKBOARDS) break;
-      beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000, boardCtx);
+      injectChalkBoard(beat, beat.draw?.durationMs ?? 26000);
       if (modelBoardIsGoodBlackboard(beat)) goodBlackboards++;
     }
   }
@@ -1440,21 +2095,35 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     .map((beat, i) => ({ beat, i }))
     .filter(({ beat, i }) => i >= 1 && i < lastTeachingIdx && beat.slideKind !== "checkpoint")
     .reduce((imageSlot, { beat }, rhythmIndex) => {
+      // PRESERVE THE SINGLE ANIMATION BEAT. `rhythm` is blackboard/image only (we allow exactly one
+      // animation, chosen earlier), so without this guard the lock would convert the animation beat
+      // into a board/image. Leave any reactAnimation beat untouched.
+      if (beat.draw?.ops.some((op) => op.kind === "reactAnimation")) {
+        return imageSlot;
+      }
       const desired = rhythm[rhythmIndex % rhythm.length];
       if (desired === "blackboard") {
         if (!modelBoardIsGoodBlackboard(beat)) {
-          beat.draw = makeWrittenBoard(beat.title, beat.script, beat.draw?.durationMs ?? 28000, boardCtx);
+          injectChalkBoard(beat, beat.draw?.durationMs ?? 28000);
         }
         return imageSlot;
       }
       if (desired === "image") {
-        const useTechnicalImage = imageSlot < 2;
-        if (useTechnicalImage || !beatIsImageLed(beat) || imageBeatNeedsConcreteRepair(beat)) {
-          beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000, useTechnicalImage);
+        // Previously forced the fallback template unconditionally for the first 2 image slots
+        // (useTechnicalImage = imageSlot < 2, always truthy for those beats) — that meant the
+        // model's own image prompt (now diagram-aware per drawPrompt.ts TYPE B) was NEVER used
+        // for most lectures. Only fall back when the model's board is actually missing/thin or
+        // imageBeatNeedsConcreteRepair flags a genuine problem (now diagram-prompt-aware too).
+        if (!beatIsImageLed(beat) || imageBeatNeedsConcreteRepair(beat)) {
+          beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000, imageSlot < 2);
         }
         return imageSlot + 1;
       }
-      beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+      // A reactAnimation op is already the complete, correct animation-slot board — never
+      // overwrite it with the legacy scene/motion makeAnimationBoard() synthesis.
+      if (!beat.draw?.ops.some((op) => op.kind === "reactAnimation")) {
+        beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
+      }
       return imageSlot;
     }, 0);
 
@@ -2436,6 +3105,13 @@ function boardFooter(title: string, combined: string): string {
  *  fallback before generation even gets a chance to run. */
 export function hasUsefulExplanationVisual(draw: DrawScript | undefined): draw is DrawScript {
   if (!draw) return false;
+  // A reactAnimation op is a complete, self-contained animation-slot board.
+  if (draw.ops.some((op) => op.kind === "reactAnimation")) return true;
+  // A chalkBoard op is a complete, self-contained blackboard-slot board — its real content is
+  // authored later by fillBlackboardOps. Without this check, a fresh placeholder (which has no
+  // label/note/arrow ops yet) fails every other check below and gets silently replaced by
+  // fallbackExplanationDraw(), destroying the new dynamic-blackboard pipeline before it can run.
+  if (draw.ops.some((op) => op.kind === "chalkBoard")) return true;
   // Animation-led boards (scene/motion on clean canvas) are valid explanations without an image.
   const hasAnimation = draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
   if (hasAnimation) return true;
@@ -2488,4 +3164,50 @@ export function sanitizeExplanation(raw: unknown, context?: { question?: string 
   const draw = sanitizeDraw(o.draw, { title: context?.question, script, slideKind: "definition", index: 1 });
   const finalDraw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(context?.question ?? "", script);
   return { script, draw: finalDraw };
+}
+
+/**
+ * TEXT-ONLY explanation sanitize (ADHD live tutor). Keeps the model's label/note ops as a clean
+ * chalk-text board — never substitutes the shape/scene fallback that produces the busy diagram.
+ * If the model gave too few text ops, synthesize a couple of note lines from the script so the
+ * board is never empty.
+ */
+export function sanitizeTextExplanation(raw: unknown, context?: { question?: string }): { script: string; draw?: DrawScript } {
+  if (!raw || typeof raw !== "object") throw new Error("No explanation returned.");
+  const o = raw as Record<string, unknown>;
+  const script = str(o.script);
+  if (!script) throw new Error("Empty explanation.");
+
+  const rawDraw = (o.draw && typeof o.draw === "object" ? (o.draw as Record<string, unknown>) : {}) as Record<string, unknown>;
+  const cleaned = sanitizeChalkBoardOps(rawDraw.ops) as Array<Extract<DrawOp, { kind: "label" | "note" }>>;
+
+  // The overlay already shows the title as a caption chip in the TOP-LEFT — so the board must NOT
+  // draw its own heading up there (that caused the overlap). Drop any op the model placed in the
+  // top zone (a heading), take the remaining lines as content, and re-lay them out in a clean
+  // single left column that STARTS BELOW the caption chip (y>=26) with even vertical spacing.
+  const contentTexts = cleaned
+    .filter((op) => op.y > 18) // skip anything up in the caption-chip zone (a redundant heading)
+    .map((op) => op.text.trim())
+    .filter(Boolean);
+
+  // If that left us too thin, fall back to sentences from the spoken answer.
+  let lines = contentTexts;
+  if (lines.length < 2) {
+    lines = script.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
+  }
+  lines = lines.slice(0, 5).map((t) => t.slice(0, 42));
+
+  const palette: Parameters<typeof color>[0][] = ["green", "blue", "amber", "rose", "violet"];
+  const finalOps: DrawOp[] = lines.map((text, i) => ({
+    kind: "note",
+    text,
+    x: 12,
+    y: 26 + i * 14, // start below the caption chip; 14 units apart = no overlap
+    color: color(palette[i % palette.length]),
+    at: (i + 1) / (lines.length + 1),
+  }));
+
+  const caption = str(rawDraw.caption) || (context?.question ?? "Explanation");
+  const draw: DrawScript = { caption: caption.slice(0, 60), durationMs: 13000, ops: finalOps };
+  return { script, draw };
 }
