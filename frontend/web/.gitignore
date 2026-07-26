@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# generated lesson cache (see lib/lectureCache.ts)
+/.lecture-cache/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
