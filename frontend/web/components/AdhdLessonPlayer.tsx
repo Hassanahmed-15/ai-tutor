@@ -5,11 +5,19 @@ import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { Board, AvatarRing, checkAnswer, MAX_ATTEMPTS, type CheckpointResult } from "./LessonPlayer";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
-import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
+import { unlockAudio } from "@/lib/voice";
+import { useVoiceDirector } from "@/lib/useVoiceDirector";
+import { useLessonMachine } from "@/lib/lessonMachine";
+import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
+import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
+import { DrawOverlay } from "./sketch/DrawOverlay";
+import { HighlightOverlay } from "./sketch/HighlightOverlay";
 import { HudCorners } from "./hud/HudKit";
+
+const UNDERSTANDING_CHECK_EVERY = 4;
 
 // Client mirror of REALTIME_TUTOR_ENABLED — gates the live conversational tutor on the chat mic.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -33,7 +41,6 @@ type Stage = "slide" | "board";
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string; mood?: string }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -42,14 +49,22 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
   const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "" });
   const [drawProgress, setDrawProgress] = useState(0);
+  const [rate] = useState(1);
 
   // Focus-pause flow: when attention drops to/below the threshold, the lecture STOPS
   // immediately, holds frozen for FOCUS_HOLD_MS (nothing happens), then shows a Resume
   // button — the lecture only continues when the student clicks it. `null` = running
   // normally, "stopped" = frozen during the hold, "ready" = hold elapsed, awaiting click.
   const [focusPause, setFocusPause] = useState<null | "stopped" | "ready">(null);
+  // Two-way board: freehand sketch + highlighter (same as the standard LessonPlayer).
+  const [drawMode, setDrawMode] = useState(false);
+  const [askingDrawing, setAskingDrawing] = useState(false);
+  const [highlightMode, setHighlightMode] = useState(false);
+  const [highlightExplaining, setHighlightExplaining] = useState(false);
+  const [drawingContext, setDrawingContext] = useState("");
+  const [exportingPdf, setExportingPdf] = useState(false);
+  const comprehensionAskedForRef = useRef(-1);
 
-  const cancelRef = useRef<NarrationHandle | null>(null);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
@@ -57,16 +72,12 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
 
   const attention = useAttentionMonitor(cameraEnabled);
 
-  const stopVoice = useCallback(() => {
-    cancelRef.current?.cancel();
-    cancelRef.current = null;
-    setSpeaking(false);
-  }, []);
-
   const chat = useLessonChat({
     topic: title,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
-    pausePlayer: stopVoice,
+    // Same unification as the standard LessonPlayer: a chat question pauses/resumes in place via
+    // the lesson machine instead of destroying and restarting the beat's narration.
+    pausePlayer: () => lesson.enterChat({ resumeAfterAnswer: true }),
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
@@ -77,15 +88,6 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   useEffect(() => {
     beatRef.current = beat;
   }, [beat]);
-  // Resume coordination: `pendingResumeRef` = the student asked to resume while the tutor was still
-  // mid-sentence, so we resume once the turn completes. `tutorSpeakingRef` mirrors tutor.speaking
-  // and `focusPauseRef` mirrors focusPause for reads inside callbacks.
-  const pendingResumeRef = useRef(false);
-  const tutorSpeakingRef = useRef(false);
-  const focusPauseRef = useRef<null | "stopped" | "ready">(null);
-  useEffect(() => {
-    focusPauseRef.current = focusPause;
-  }, [focusPause]);
 
   const tutor = useRealtimeTutor({
     topic: title,
@@ -97,47 +99,48 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     lectureControlTools: true,
     onBoardRequest: (board) => setLiveBoard(board),
     // The MOMENT the student starts speaking, pause the lecture — and it STAYS paused until the
-    // student explicitly asks to resume (no auto-resume when the tutor finishes).
-    onStudentSpeechStarted: () => {
-      stopVoice();
-      setPlaying(false);
-    },
-    // NO auto-resume. Once you talk to the tutor, the lecture stays paused until YOU explicitly ask
-    // it to resume (the tutor calls resume_lecture) or you press the Resume button. The tutor's turn
-    // finishing does NOT restart the lecture.
-    onTutorTurnComplete: () => {
-      // Only honor a resume the student explicitly requested mid-tutor-sentence (pending resume).
-      if (pendingResumeRef.current && !focusPauseRef.current) {
-        pendingResumeRef.current = false;
-        setPlaying(true);
-      }
-    },
+    // student explicitly asks to resume (no auto-resume when the tutor finishes, unlike the
+    // standard LessonPlayer's enterChat({resumeAfterAnswer:true}) — ADHD's design is deliberately
+    // "stays paused until YOU say so", so this uses a plain pause(), not enterChat()).
+    onStudentSpeechStarted: () => lesson.pause("user"),
+    // NO auto-resume by default — but if the tutor was still mid-sentence when resume_lecture was
+    // called, requestResume() deferred it; this is the ONLY thing that flushes that deferred
+    // resume. It does nothing if no resume was ever requested (the common ADHD case).
+    onTutorTurnComplete: () => lesson.flushDeferredResume(),
     onTranscript: (role, text, final) => {
       if (!final || !text.trim()) return;
       chat.appendTurn(role === "student" ? "you" : "aria", text);
     },
     // The tutor's pause_lecture / resume_lecture tools control the scripted lecture.
-    onPauseLecture: () => {
-      stopVoice();
-      setPlaying(false);
-    },
+    onPauseLecture: () => lesson.pause("user"),
     onResumeLecture: () => {
       if (holdTimer.current) clearTimeout(holdTimer.current);
       setFocusPause(null);
-      // If the tutor is mid-sentence (it usually says a quick "sure!" then calls this), defer the
-      // resume to onTutorTurnComplete so the lecture never starts over the tutor's voice.
-      if (tutorSpeakingRef.current) {
-        pendingResumeRef.current = true;
-      } else {
-        pendingResumeRef.current = false;
-        setPlaying(true);
-      }
+      // requestResume() itself defers to flushDeferredResume() if the tutor is still mid-sentence
+      // (isChatbotSpeaking()), so the lecture never starts over the tutor's voice.
+      lesson.requestResume();
     },
     onSessionEnded: () => {
       // In always-on mode this only fires on error or explicit end; don't force-resume.
       setSessionActive(false);
       setLiveBoard(null);
     },
+  });
+
+  const voice = useVoiceDirector({ tutorSpeaking: tutor.speaking, isChatbotSpeakingNow: tutor.isSpeaking });
+  const lesson = useLessonMachine(voice);
+
+  const stopVoice = useCallback(() => {
+    voice.stopTeacher();
+    setSpeaking(false);
+  }, [voice]);
+
+  const quiz = useTeacherQuiz({
+    voice,
+    setMicEnabled: tutor.setMicEnabled,
+    rate,
+    onPassed: () => lesson.requestResume(),
+    onFailed: () => lesson.pause("wrong-answer"),
   });
 
   const liveMicLabel =
@@ -165,71 +168,63 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     tutor.toggleMute();
   }
 
-  // Effect 1: slide -> board timing (identical to LessonPlayer's). `playing` goes false
+  // Effect 1: slide -> board timing (identical to LessonPlayer's). `lesson.playing` goes false
   // during a focus pause, so this naturally halts then.
   useEffect(() => {
     // In ADHD the mic is always open (sessionActive) but the lecture keeps playing in the
-    // background — only an actual pause (drift / pause_lecture / tutor speaking) sets playing=false.
-    if (!playing || stage !== "slide" || isCheckpoint) return;
+    // background — only an actual pause (drift / pause_lecture / tutor speaking) halts it.
+    if (!lesson.playing || stage !== "slide" || isCheckpoint) return;
     if (slideTimer.current) clearTimeout(slideTimer.current);
     slideTimer.current = setTimeout(() => setStage("board"), SLIDE_MS);
     return () => {
       if (slideTimer.current) clearTimeout(slideTimer.current);
     };
-  }, [index, playing, stage, isCheckpoint]);
+  }, [index, lesson.playing, stage, isCheckpoint]);
 
-  // Effect 2: normal narration. `playing` goes false during a focus pause, halting this.
+  // Effect 2: normal narration, through the voice director (single audio owner) instead of calling
+  // playNarration directly — the director already freezes the teacher the instant the chatbot
+  // speaks, which is what the old belt-and-suspenders "tutor speaking pauses" effect did by hand.
   useEffect(() => {
-    // Lecture narration runs while playing; a tutor pause/speech sets playing=false so the two
-    // voices never overlap (single-speaker invariant). Mic being open alone does NOT block it.
-    if (!playing || chat.busy) return;
+    if (!lesson.playing || chat.busy) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
 
     window.setTimeout(() => setDrawProgress(0), 0);
-    const handle = playNarration(beat.script, {
-      onStart: () => setSpeaking(true),
-      onSentenceStart: (sentenceIndex, sentence, total) => setSentenceCue({ index: sentenceIndex, text: sentence, total }),
-      onProgress: (progress) => setDrawProgress(Math.max(0, progress)),
-      onEnd: () => {
-        setSpeaking(false);
-        cancelRef.current = null;
-        setDrawProgress(1);
-        if (isCheckpoint) {
-          setWaitingOnCheckpoint(true);
-        } else {
-          setIndex((i) => {
-            if (i < beats.length - 1) return i + 1;
-            onComplete?.();
-            return i;
-          });
-          setStage("slide");
-        }
+    const started = voice.speakAsTeacher(
+      beat.script,
+      {
+        onStart: () => setSpeaking(true),
+        onSentenceStart: (sentenceIndex, sentence, total) => setSentenceCue({ index: sentenceIndex, text: sentence, total }),
+        onProgress: (progress) => setDrawProgress(Math.max(0, progress)),
+        onEnd: () => {
+          setSpeaking(false);
+          if (!lesson.playing) return;
+          setDrawProgress(1);
+          if (isCheckpoint) {
+            setWaitingOnCheckpoint(true);
+          } else {
+            setIndex((i) => {
+              if (i < beats.length - 1) return i + 1;
+              onComplete?.();
+              return i;
+            });
+            setStage("slide");
+          }
+        },
+        onBlocked: () => setVoiceBlocked(true),
+        rate,
       },
-      onBlocked: () => setVoiceBlocked(true),
-    });
-    cancelRef.current = handle;
+      "lecture"
+    );
+    if (!started) return;
 
     return () => {
-      handle.cancel();
-      cancelRef.current = null;
+      voice.stopTeacher();
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, beats.length, chat.busy, onComplete]);
-
-  // While the tutor is speaking: keep the lecture paused (belt-and-suspenders on top of the
-  // speech-started pause). This effect NEVER resumes — the lecture stays paused until the student
-  // explicitly asks to resume (resume_lecture tool) or presses Resume.
-  useEffect(() => {
-    tutorSpeakingRef.current = tutor.speaking;
-    if (!tutor.speaking) return;
-    const t = setTimeout(() => {
-      stopVoice();
-      setPlaying(false);
-    }, 0);
-    return () => clearTimeout(t);
-  }, [tutor.speaking, stopVoice]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, lesson.playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, onComplete]);
 
   // Effect 3: the ADHD focus mechanism. After DRIFT_HOLD_MS of SUSTAINED drift:
   //  - If the live tutor mic is open (sessionActive): the tutor VERBALLY nudges the student and
@@ -237,11 +232,11 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   //    "I'm ready" to resume, or use the Resume button.
   //  - Otherwise: the original silent freeze + hold + Resume-button flow.
   useEffect(() => {
-    if (!playing || focusPause || isCheckpoint || !attention.drifting) return;
+    if (!lesson.playing || focusPause || isCheckpoint || !attention.drifting) return;
     // Require the drift to persist for DRIFT_HOLD_MS before reacting (avoids reacting to a glance).
     const trigger = setTimeout(() => {
       stopVoice();
-      setPlaying(false);
+      lesson.pause("focus");
       if (sessionActive && tutor.status !== "idle") {
         // Tutor handles it out loud, then pauses the lecture itself.
         tutor.say(
@@ -259,18 +254,33 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     }, DRIFT_HOLD_MS);
     return () => clearTimeout(trigger);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attention.drifting, playing, focusPause, isCheckpoint, sessionActive]);
+  }, [attention.drifting, lesson.playing, focusPause, isCheckpoint, sessionActive]);
 
   // Clean up the hold timer on unmount.
   useEffect(() => () => {
     if (holdTimer.current) clearTimeout(holdTimer.current);
   }, []);
 
+  // The teacher's own periodic comprehension check (same cadence as the standard LessonPlayer),
+  // on top of the camera-based drift detection above — a real teacher checks in occasionally even
+  // when attention looks fine.
+  useEffect(() => {
+    if (!lesson.playing || comprehensionAskedForRef.current === index || isCheckpoint || waitingOnCheckpoint) return;
+    const due = index > 0 && index % UNDERSTANDING_CHECK_EVERY === 0 && stage === "board" && !speaking;
+    if (!due) return;
+    comprehensionAskedForRef.current = index;
+    quiz.ask({
+      kind: "comprehension",
+      question: `Quick check — in your own words, what's the main idea of "${beat.title}" so far?`,
+      expected: beat.script,
+    });
+  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, index, stage, speaking, quiz, beat.title, beat.script]);
+
   function resumeFromFocusPause() {
     if (holdTimer.current) clearTimeout(holdTimer.current);
     unlockAudio();
     setFocusPause(null);
-    setPlaying(true);
+    lesson.requestResume();
   }
 
   function advanceFromCheckpoint() {
@@ -306,7 +316,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     unlockAudio();
     setCameraEnabled(true);
     setVoiceBlocked(false);
-    setPlaying(true);
+    lesson.startTeaching();
     // ADHD: open the always-on tutor mic in the background so the student can talk anytime and the
     // tutor can nudge on drift. The lecture keeps playing; the tutor only speaks when needed.
     if (REALTIME_TUTOR_ENABLED && !sessionActive) {
@@ -315,8 +325,13 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     }
   }
   function togglePlay() {
-    if (!playing) unlockAudio();
-    setPlaying((p) => !p);
+    if (lesson.playing) {
+      stopVoice();
+      lesson.pause("user");
+    } else {
+      unlockAudio();
+      lesson.requestResume();
+    }
   }
   function retryVoice() {
     unlockAudio();
@@ -324,7 +339,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     setFocusPause(null);
     setVoiceBlocked(false);
     setStage("slide");
-    setPlaying(true);
+    lesson.startTeaching();
   }
   function restart() {
     stopVoice();
@@ -336,10 +351,10 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     setSentenceCue({ index: 0, total: 1, text: "" });
     setIndex(0);
     setStage("slide");
-    setPlaying(true);
+    lesson.startTeaching();
   }
 
-  const hasStarted = playing || index > 0 || stage === "board";
+  const hasStarted = lesson.mode !== "idle" || index > 0 || stage === "board";
   const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / beats.length) * 100;
   const statusText = focusPause
     ? "paused — focus check"
@@ -397,6 +412,57 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
             {focusPause && (
               <FocusPauseOverlay state={focusPause} onResume={resumeFromFocusPause} />
             )}
+
+            {drawMode && (
+              <DrawOverlay
+                busy={askingDrawing}
+                seenLabel={drawingContext ? "Aria can see this — just ask" : undefined}
+                onClose={() => setDrawMode(false)}
+                onDrawingChange={(dataUrl) => {
+                  setAskingDrawing(true);
+                  fetch("/api/ask-drawing", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      image: dataUrl,
+                      topic: title,
+                      beatContext: `${beat.title}: ${beat.script}`,
+                      describeOnly: true,
+                    }),
+                  })
+                    .then((res) => res.json().catch(() => ({})))
+                    .then((data) => {
+                      const description = typeof data.description === "string" ? data.description : "";
+                      setDrawingContext(description);
+                      if (description && description !== "NOTHING") {
+                        tutor.addContext(`The student drew this on the board: ${description}`);
+                      }
+                    })
+                    .catch(() => {})
+                    .finally(() => setAskingDrawing(false));
+                }}
+              />
+            )}
+
+            {highlightMode && (
+              <HighlightOverlay
+                busy={highlightExplaining}
+                onClose={() => setHighlightMode(false)}
+                onHighlight={(text) => {
+                  if (text) tutor.addContext(`The student highlighted this on the board: "${text}"`);
+                }}
+                onExplain={(text) => {
+                  setHighlightExplaining(true);
+                  voice.speakAsTeacher(
+                    `Let's look at that more closely — ${text}.`,
+                    { onStart: () => {}, onEnd: () => setHighlightExplaining(false), onBlocked: () => setHighlightExplaining(false), rate },
+                    "utterance"
+                  );
+                }}
+              />
+            )}
+
+            {quiz.phase !== "idle" && <QuizPrompt quiz={quiz} onSkip={() => { quiz.cancel(); lesson.requestResume(); }} />}
           </section>
 
           <div className="hidden min-h-0 xl:block [&>*]:h-full">
@@ -438,11 +504,66 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
           <div className="flex flex-wrap items-center gap-3">
             <EngagementMeter attention={attention} cameraEnabled={cameraEnabled} />
             <button
+              onClick={() => {
+                setHighlightMode(false);
+                setDrawMode((v) => !v);
+              }}
+              aria-label="Draw on the board"
+              title="Sketch on the board, then ask Aria about it"
+              className={`rounded-full border px-3 py-2.5 text-sm font-black transition lg:px-4 ${
+                drawMode ? "border-cyan-300/50 bg-cyan-300/15 text-cyan-100" : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
+              }`}
+            >
+              <span aria-hidden="true">✎</span><span className="hidden lg:inline"> Draw</span>
+            </button>
+            <button
+              onClick={() => {
+                setDrawMode(false);
+                setHighlightMode((v) => !v);
+              }}
+              aria-label="Highlight the board"
+              title="Sweep the marker over anything on the board to ask about it"
+              className={`rounded-full border px-3 py-2.5 text-sm font-black transition lg:px-4 ${
+                highlightMode ? "border-amber-300/50 bg-amber-300/15 text-amber-100" : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
+              }`}
+            >
+              <span aria-hidden="true">▧</span><span className="hidden lg:inline"> Highlight</span>
+            </button>
+            <button
+              onClick={async () => {
+                setExportingPdf(true);
+                try {
+                  const res = await fetch("/api/export-pdf", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ topic: title, beats }),
+                  });
+                  if (!res.ok) throw new Error("export failed");
+                  const blob = await res.blob();
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `${title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}.pdf`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                } catch {
+                  /* PDF export failures shouldn't interrupt the lesson */
+                } finally {
+                  setExportingPdf(false);
+                }
+              }}
+              disabled={exportingPdf}
+              title="Export this lesson as a PDF"
+              className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-black text-white/80 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {exportingPdf ? "Exporting…" : "Export PDF"}
+            </button>
+            <button
               onClick={hasStarted ? togglePlay : startLesson}
               className="rounded-full px-6 py-2.5 text-sm font-black"
               style={{ background: "linear-gradient(180deg, var(--accent-adhd-bright), var(--accent-adhd))", color: "#2b0a1a", boxShadow: "0 0 24px var(--accent-adhd-glow)" }}
             >
-              {!hasStarted ? "Start lecture ▶" : playing ? "Pause ❙❙" : "Resume ▶"}
+              {!hasStarted ? "Start lecture ▶" : lesson.playing ? "Pause ❙❙" : "Resume ▶"}
             </button>
             <button onClick={restart} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
               Restart
