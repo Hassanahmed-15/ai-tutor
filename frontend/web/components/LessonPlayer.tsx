@@ -141,9 +141,14 @@ export function LessonPlayer({
   const [drawMode, setDrawMode] = useState(false);
   const [askingDrawing, setAskingDrawing] = useState(false);
   const [highlightMode, setHighlightMode] = useState(false);
-  const [highlightExplaining, setHighlightExplaining] = useState(false);
   const highlightedTextRef = useRef("");
   const [drawingContext, setDrawingContext] = useState("");
+  const drawingDataUrlRef = useRef("");
+  // Result of an explicit "Explain this in detail" on a drawing — a real vision-read answer +
+  // board, shown the same way the realtime tutor's show_board / chat's explainBoard are (a
+  // dedicated ExplainOverlay), narrated through the voice director so it participates correctly
+  // in the single-speaker pause/resume system instead of a bare, un-coordinated playNarration call.
+  const [drawExplainBoard, setDrawExplainBoard] = useState<{ script: string; draw?: RealtimeBoard["draw"] } | null>(null);
   const [exportingPdf, setExportingPdf] = useState(false);
   const bumpInteraction = useCallback(() => setLastInteractionAt(Date.now()), []);
 
@@ -442,6 +447,46 @@ export function LessonPlayer({
     window.setTimeout(advanceFromCheckpoint, 2800);
   }
 
+  /** "Explain this in detail" on a drawing — a real vision-read answer, reliable regardless of
+   *  whether the realtime tutor's mic happens to be unmuted right now (unlike "just ask out loud",
+   *  which silently does nothing if the student never tapped the mic button). */
+  async function explainDrawing() {
+    const dataUrl = drawingDataUrlRef.current;
+    if (!dataUrl || askingDrawing) return;
+    bumpInteraction();
+    setAskingDrawing(true);
+    lesson.enterChat({ resumeAfterAnswer: true });
+    try {
+      const res = await fetch("/api/ask-drawing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          image: dataUrl,
+          topic: title,
+          beatContext: `${beat.title}: ${beat.script}`,
+          question: "Explain what I drew in detail.",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that drawing.");
+      setDrawExplainBoard({ script: data.script, draw: data.draw });
+      voice.speakAsTeacher(
+        data.script,
+        {
+          onStart: () => {},
+          onEnd: () => lesson.requestResume(),
+          onBlocked: () => setVoiceBlocked(true),
+          rate,
+        },
+        "utterance"
+      );
+    } catch {
+      lesson.requestResume();
+    } finally {
+      setAskingDrawing(false);
+    }
+  }
+
   function startLesson() {
     unlockAudio(); // must run inside this click handler — that's what satisfies the autoplay gate
     setVoiceBlocked(false);
@@ -607,7 +652,9 @@ export function LessonPlayer({
                 busy={askingDrawing}
                 seenLabel={drawingContext ? "Aria can see this — just ask" : undefined}
                 onClose={() => setDrawMode(false)}
+                onExplain={explainDrawing}
                 onDrawingChange={(dataUrl) => {
+                  drawingDataUrlRef.current = dataUrl;
                   bumpInteraction();
                   setAskingDrawing(true);
                   fetch("/api/ask-drawing", {
@@ -634,24 +681,38 @@ export function LessonPlayer({
               />
             )}
 
+            {/* Result of an explicit "Explain this in detail" on a drawing — a real vision-read
+                answer + board, shown the same way chat's explainBoard is. */}
+            {drawExplainBoard && (
+              <ExplainOverlay board={drawExplainBoard} progress={1} autoReveal onClose={() => setDrawExplainBoard(null)} />
+            )}
+
             {/* Two-way board: highlighter. Reads the actual DOM text under the marker (no vision
                 guesswork), and can ask Aria to explain exactly that in detail. */}
             {highlightMode && (
               <HighlightOverlay
-                busy={highlightExplaining}
+                busy={chat.explaining}
                 onClose={() => setHighlightMode(false)}
                 onHighlight={(text) => {
+                  // Track the latest selection locally only — do NOT push to the realtime tutor
+                  // here. onHighlight fires once per newly-captured line while the student is still
+                  // sweeping the marker (HighlightOverlay dedupes per-fragment, but a multi-line
+                  // sweep still fires several times), so calling tutor.addContext() from here sent
+                  // the whole growing selection as a new "context" message on every line — flooding
+                  // the live conversation with near-duplicate messages, which is what caused the
+                  // tutor's repeated/garbled replies. The realtime tutor only ever gets ONE mention
+                  // of this highlight, sent from onExplain below, at the moment the student actually
+                  // asks about it.
                   highlightedTextRef.current = text;
-                  if (text) tutor.addContext(`The student highlighted this on the board: "${text}"`);
                 }}
                 onExplain={(text) => {
                   bumpInteraction();
-                  setHighlightExplaining(true);
-                  voice.speakAsTeacher(
-                    `Let's look at that more closely — ${text}.`,
-                    { onStart: () => {}, onEnd: () => setHighlightExplaining(false), onBlocked: () => setHighlightExplaining(false), rate },
-                    "utterance"
-                  );
+                  // Let the realtime tutor (if listening) know what was highlighted, once — then
+                  // ask for a REAL explanation through the same /api/explain path the side-chat
+                  // uses (chat.explaining/chat.explainBoard drive the busy state and the resulting
+                  // board+narration), instead of just having the teacher voice echo the text back.
+                  tutor.addContext(`The student highlighted this on the board: "${text}"`);
+                  chat.ask(`Explain this in detail: ${text}`);
                 }}
               />
             )}

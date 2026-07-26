@@ -24,11 +24,17 @@ type Props = {
   busy?: boolean;
   /** Short confirmation that Aria has seen the drawing. */
   seenLabel?: string;
+  /**
+   * Explicit "Explain this in detail" trigger — reliable regardless of whether the realtime
+   * tutor's mic happens to be unmuted (unlike "just ask out loud"). Only shown once there's ink
+   * to explain.
+   */
+  onExplain?: () => void;
 };
 
 const COLORS = ["#e11d48", "#2563eb", "#16a34a", "#f59e0b", "#111827"];
 
-export function DrawOverlay({ onDrawingChange, onClose, busy, seenLabel }: Props) {
+export function DrawOverlay({ onDrawingChange, onClose, busy, seenLabel, onExplain }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const drawing = useRef(false);
   const [color, setColor] = useState(COLORS[0]);
@@ -170,6 +176,15 @@ export function DrawOverlay({ onDrawingChange, onClose, busy, seenLabel }: Props
         <span className={`rounded-full px-2 py-1 text-[11px] font-bold ${busy ? "text-cyan-200" : "text-white/50"}`}>
           {busy ? "Aria is looking…" : seenLabel ? "Aria can see this — just ask" : hasInk ? "…" : "Draw, then ask Aria out loud"}
         </span>
+        {onExplain && (
+          <button
+            onClick={onExplain}
+            disabled={!hasInk || busy}
+            className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-[11px] font-black text-cyan-100 transition hover:bg-cyan-300/20 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Explain this in detail
+          </button>
+        )}
         <button
           onClick={onClose}
           className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-black text-white/85 transition hover:bg-white/20"
