@@ -121,7 +121,7 @@ export function LessonPlayer({
   const [captionLog, setCaptionLog] = useState<string[]>([]);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
-  const [learningExperience, setLearningExperience] = useState<"fork" | "twin" | "teach" | null>(null);
+  const [learningExperience, setLearningExperience] = useState<"fork" | null>(null);
   const resumeAfterExperience = useRef(false);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
@@ -505,7 +505,7 @@ export function LessonPlayer({
     setRate((r) => (r >= 1.5 ? 0.85 : r === 0.85 ? 1 : 1.25));
   }
 
-  function openLearningExperience(experience: "fork" | "twin" | "teach") {
+  function openLearningExperience(experience: "fork") {
     resumeAfterExperience.current = lesson.playing;
     stopVoice();
     if (slideTimer.current) {
@@ -538,8 +538,11 @@ export function LessonPlayer({
       <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(rgba(120,200,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(120,200,255,0.1) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
 
       <div className="absolute inset-0">
-        {/* Board + side chat, with room at top for the floating header */}
-        <div className="absolute inset-2 grid gap-2 pt-[150px] lg:inset-4 lg:gap-3 lg:pt-[150px] xl:grid-cols-[minmax(0,1fr)_340px] xl:pt-[92px]">
+        {/* Board + side chat, with room at top for the floating header. The header now carries
+            more controls (engagement meter, draw/highlight, PDF export) than one line fits on
+            most viewports, so it commonly wraps to two lines — this padding is sized generously
+            enough that a two-line header never bleeds into the board underneath it. */}
+        <div className="absolute inset-2 grid gap-2 pt-[210px] lg:inset-4 lg:gap-3 lg:pt-[210px] xl:grid-cols-[minmax(0,1fr)_340px] xl:pt-[150px]">
           <section className="relative min-h-0 overflow-hidden rounded-xl border border-[var(--hud-line)] bg-slate-950/80 shadow-[0_32px_110px_rgba(0,0,0,0.34)]">
             <HudCorners />
             {stage === "slide" || isCheckpoint ? (
@@ -779,23 +782,6 @@ export function LessonPlayer({
               className="rounded-full border border-amber-300/25 bg-amber-300/[0.06] px-3 py-2.5 text-sm font-black text-amber-200 transition hover:bg-amber-300/10 disabled:cursor-not-allowed disabled:opacity-30 lg:px-4"
             >
               <span aria-hidden="true">⎇</span><span className="hidden lg:inline"> Fork</span>
-            </button>
-            <button
-              onClick={() => openLearningExperience("twin")}
-              aria-label="Open learning twin"
-              title="Open your learning twin"
-              className="rounded-full border border-[var(--hud-cyan)]/25 bg-[var(--hud-cyan)]/[0.06] px-3 py-2.5 text-sm font-black text-[var(--hud-cyan)] transition hover:bg-[var(--hud-cyan)]/10 lg:px-4"
-            >
-              <span aria-hidden="true">◉</span><span className="hidden lg:inline"> Twin</span>
-            </button>
-            <button
-              onClick={() => openLearningExperience("teach")}
-              disabled={isCheckpoint}
-              aria-label="Teach this idea"
-              title="Teach this idea to an AI learner"
-              className="rounded-full border border-blue-300/25 bg-blue-300/[0.06] px-3 py-2.5 text-sm font-black text-blue-200 transition hover:bg-blue-300/10 disabled:cursor-not-allowed disabled:opacity-30 lg:px-4"
-            >
-              <span aria-hidden="true">◇</span><span className="hidden lg:inline"> Teach</span>
             </button>
             <button
               onClick={skipForward}

@@ -371,7 +371,10 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(249,168,212,0.18),transparent_32%),radial-gradient(circle_at_88%_18%,rgba(96,165,250,0.18),transparent_34%),linear-gradient(180deg,#06080d_0%,#020617_72%)]" />
 
       <div className="absolute inset-0">
-        <div className="absolute inset-2 grid gap-2 pt-[84px] lg:inset-4 lg:gap-3 lg:pt-[92px] xl:grid-cols-[minmax(0,1fr)_340px]">
+        {/* Header now carries more controls (engagement meter, draw/highlight, PDF export) than
+            one line fits on most viewports, so it commonly wraps to two lines — this padding is
+            sized generously enough that a two-line header never bleeds into the board below it. */}
+        <div className="absolute inset-2 grid gap-2 pt-[190px] lg:inset-4 lg:gap-3 lg:pt-[150px] xl:grid-cols-[minmax(0,1fr)_340px]">
           {/* Static corner brackets only — no .hud-scan/animated sweep on this player.
               Continuous ambient motion directly competes with useAttentionMonitor's
               gaze/blink signal, so it's a hard rule for this file: brackets are fine,
