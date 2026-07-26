@@ -14,10 +14,12 @@
 
 export type NarrationHandle = {
   cancel: () => void;
-  /** Freeze the active narration at its current media timestamp without destroying it. */
-  pause: () => void;
-  /** Continue a paused narration from the exact timestamp where it was interrupted. */
-  resume: () => void;
+  /** Freeze the active narration at its current media timestamp without destroying it. Returns
+   *  false when this narration can't be paused, so the caller can fall back to cancel(). */
+  pause: () => boolean;
+  /** Continue a paused narration from the exact timestamp where it was interrupted. Returns
+   *  false if there's nothing resumable. */
+  resume: () => boolean;
 };
 
 /**
@@ -32,7 +34,7 @@ const CLOUD_TTS_DEFAULT = true;
 const CLOUD_TTS_GAIN = 1.45;
 const BROWSER_TTS_VOLUME = 1;
 
-interface NarrationCallbacks {
+export interface NarrationCallbacks {
   onStart: () => void;
   onEnd: () => void;
   /** Fired when the browser silently blocked audio (autoplay policy) — needs a user tap to unlock. */
@@ -46,6 +48,15 @@ interface NarrationCallbacks {
   rate?: number;
   /** Override server-side OpenAI TTS for this call. Defaults to CLOUD_TTS_DEFAULT. */
   cloudTts?: boolean;
+  /**
+   * Don't cancel narrations that are already running. Used for short interjections the teacher
+   * makes while a beat is FROZEN mid-sentence (a comprehension question, a re-explanation), so the
+   * beat can still resume from where it stopped afterwards instead of replaying from the top.
+   *
+   * Only `useVoiceDirector` should set this — it is what guarantees the preserved narration stays
+   * paused while the interjection plays, so the two never overlap.
+   */
+  preserveActive?: boolean;
 }
 
 let voicesReadyPromise: Promise<SpeechSynthesisVoice[]> | null = null;
@@ -129,7 +140,7 @@ export function splitNarrationSentences(text: string): string[] {
 }
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {
-  cancelActiveNarrations();
+  if (!callbacks.preserveActive) cancelActiveNarrations();
   const rate = callbacks.rate ?? 1;
   const useCloudTts = callbacks.cloudTts ?? CLOUD_TTS_DEFAULT;
   const initialSentences = splitNarrationSentences(text);
@@ -171,8 +182,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       window.speechSynthesis.cancel();
     }
   };
-  const pause = () => {
-    if (cancelled || paused) return;
+  const pause = (): boolean => {
+    if (cancelled) return false;
+    if (paused) return true; // already frozen
     paused = true;
     pausedAtMs = typeof performance !== "undefined" ? performance.now() : Date.now();
     if (audio && !audio.paused) audio.pause();
@@ -180,9 +192,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.pause();
     }
+    return true;
   };
-  const resume = () => {
-    if (cancelled || !paused) return;
+  const resume = (): boolean => {
+    if (cancelled || !paused) return false;
     const resumedAtMs = typeof performance !== "undefined" ? performance.now() : Date.now();
     totalPausedMs += Math.max(0, resumedAtMs - pausedAtMs);
     paused = false;
@@ -194,6 +207,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     } else {
       resumeProgressLoop?.();
     }
+    return true;
   };
   activeNarrationCancelers.add(cancel);
   callbacks.onProgress?.(0, 0, 1);
