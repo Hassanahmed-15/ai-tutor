@@ -366,7 +366,9 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           turnCompletedRef.current = false;
           markChatbotActive();
           if (speechStopTsRef.current > 0) {
-            console.error(`[realtime] reply latency: ${Math.round(performance.now() - speechStopTsRef.current)}ms`);
+            // Diagnostic only, not an error — console.log so Next's dev overlay doesn't surface a
+            // routine latency metric as a red "Console Error".
+            console.log(`[realtime] reply latency: ${Math.round(performance.now() - speechStopTsRef.current)}ms`);
             speechStopTsRef.current = 0;
           }
           break;
