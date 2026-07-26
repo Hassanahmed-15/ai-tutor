@@ -7,10 +7,14 @@ import { fillImageOps, pauseImageOps, type ImageFillStats } from "@/lib/imageGen
 import { fillReactAnimationOps, type ReactAnimationFillStats } from "@/lib/reactAnimationGen";
 import { fillBlackboardOps, type BlackboardFillStats } from "@/lib/blackboardGen";
 import { fillRealReferenceImage, type ReferenceImageStats } from "@/lib/referenceImageGen";
+import { describeAssetsWithVision } from "@/lib/imageVision";
+import { fillImageCalloutOpsIncremental } from "@/lib/imageCalloutGen";
+import { lectureCacheKey, readCachedLecture, writeCachedLecture } from "@/lib/lectureCache";
 import {
   applySuprnotesPaperSurface,
   applySuprnotesPaperLayout,
   applyPaperLayout,
+  cleanProvidedImageBoards,
   composePromptedSuprnotesBoards,
   composeSuprnotesPaperBoards,
   compactSuprnotesForPrompt,
@@ -19,6 +23,7 @@ import {
   hydrateProvidedImageOps,
   isSuprnotesLessonInput,
   removeUnhydratedSuprnotesImageOps,
+  repairMissingSuprnotesBoards,
   repairMissingSuprnotesSvgCode,
   shouldUseOnlyProvidedImages,
   suprnotesTitle,
@@ -456,11 +461,33 @@ export async function POST(req: Request) {
 
   const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline };
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const refresh = body.refresh === true;
+
+  // Lesson cache: replaying the SAME task folder/upload is instant and free instead of re-running
+  // the whole pipeline. A miss (or any read error) never blocks generation — it just falls through.
+  const cacheKey = lectureCacheKey({
+    topic: input.topic,
+    mood: input.mood,
+    slideContext: input.slideContext,
+    sourceDocument: input.sourceDocument,
+    model: MODEL,
+  });
+  if (!refresh) {
+    const cached = await readCachedLecture(cacheKey);
+    if (cached) {
+      return NextResponse.json({ topic: cached.topic || input.topic, beats: cached.beats, costUsd: 0, cached: true });
+    }
+  }
 
   try {
     const base = await generateBaseLecture(client, input);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     const useOnlyProvidedImages = shouldUseOnlyProvidedImages(input.sourceDocument);
+
+    // Vision pass FIRST (sourceDocument only): look at each provided image and rewrite its
+    // description from the actual pixels, so the director's script and the image-explainer's
+    // labels teach the real picture instead of the upstream relevant_images.json text.
+    const visionCostUsd = input.sourceDocument ? await describeAssetsWithVision(client, input.sourceDocument) : 0;
 
     // Step 2: fill each "image" op placeholder with a real generated image, and (if enabled)
     // each "reactAnimation" op placeholder with generated component source — in parallel with
@@ -470,12 +497,26 @@ export async function POST(req: Request) {
       IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages ? fillImageOps(client, base.beats) : Promise.resolve(disabledImageStats(base.beats).costUsd),
       REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument ? fillRealReferenceImage(client, base.beats) : Promise.resolve(disabledReferenceImageStats()),
       REACT_ANIMATIONS_ENABLED ? fillReactAnimationOps(client, base.beats) : Promise.resolve(disabledAnimationStats()),
-      BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats) : Promise.resolve(disabledBlackboardStats()),
+      BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats, Boolean(input.sourceDocument)) : Promise.resolve(disabledBlackboardStats()),
     ]);
 
+    // Image-Explainer agent (sourceDocument only): label the real visible parts of each provided
+    // image, sentence-synced to the narration. Runs after the fills above so it labels the
+    // hydrated/finalized image, and before the final cleanup pass so its grounded callouts survive.
+    const calloutStats = input.sourceDocument
+      ? await fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument)
+      : { costUsd: 0 };
+
     repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
+    repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-    const costUsd = base.textCost + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd;
+    cleanProvidedImageBoards(base.beats, input.sourceDocument);
+    const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd;
+
+    if (input.sourceDocument) {
+      await writeCachedLecture(cacheKey, { beats: base.beats, costUsd, topic: input.topic });
+    }
+
     return NextResponse.json({ topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats });
   } catch (err) {
     return NextResponse.json(
