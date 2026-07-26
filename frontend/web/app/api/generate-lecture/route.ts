@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { DRAW_LECTURE_SYSTEM_PROMPT, PPTX_LECTURE_SYSTEM_PROMPT } from "@/lib/drawPrompt";
-import { assertLectureDepth, lectureDepthStats, sanitizeDrawLecture, scriptWordCount } from "@/lib/drawSanitize";
+import { assertLectureDepth, lectureDepthStats, sanitizeDrawLecture, scriptWordCount, stripInlineMath } from "@/lib/drawSanitize";
 import { fillImageOps, fillImageOpsIncremental, pauseImageOps, type ImageFillStats } from "@/lib/imageGen";
 import { fillReactAnimationOps, fillReactAnimationOpsIncremental, type ReactAnimationFillStats } from "@/lib/reactAnimationGen";
 import { fillBlackboardOps, fillBlackboardOpsIncremental, type BlackboardFillStats } from "@/lib/blackboardGen";
+import { fillImageCalloutOpsIncremental } from "@/lib/imageCalloutGen";
+import { describeAssetsWithVision } from "@/lib/imageVision";
+import { lectureCacheKey, readCachedLecture, writeCachedLecture } from "@/lib/lectureCache";
 import {
   applySuprnotesPaperSurface,
   applySuprnotesPaperLayout,
+  cleanProvidedImageBoards,
   composeSuprnotesPaperBoards,
   compactSuprnotesForPrompt,
   ensureSuprnotesAssetUsage,
@@ -16,6 +20,7 @@ import {
   isSuprnotesLessonInput,
   removeUnhydratedSuprnotesImageOps,
   repairMissingSuprnotesSvgCode,
+  repairMissingSuprnotesBoards,
   shouldUseOnlyProvidedImages,
   suprnotesTitle,
   type SuprnotesLessonInput,
@@ -69,6 +74,8 @@ type LectureBuildInput = {
   diagramHints: string;
   slideImages: Array<{ slide: number; descriptions: string[] }>;
   sourceDocument: SuprnotesLessonInput | null;
+  /** Skip the lesson cache and force a full regeneration. */
+  refresh?: boolean;
 };
 
 type BaseLecture = {
@@ -183,6 +190,8 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
       `Do not invent chemistry-specific layouts, exact coordinates, or examples outside the source; choose layout, callout text, and placement dynamically from the content and asset descriptions. ` +
       `Do not ask for AI-generated images for this source document. If an image beat is useful, it must use one of the provided assetId values. ` +
       `Make the visuals feel like a clean teaching whiteboard: generous whitespace, centered headings, readable gray/colored marker text, and callouts placed around the provided image without covering the key content. ` +
+      `WRITE-THEN-TELL: the board is written stroke-by-stroke as you speak, so pace each script so a thing is introduced in one sentence and explained in the next ("Let's write the recurrence… OPT(j) is the best value using the first j requests… it either includes request j or skips it"). Short, sequential sentences that each add ONE idea, so each board line lands with its sentence — not one dense run-on. ` +
+      `EXPLAIN THE IMAGES: for every image beat, the script must actively WALK THE STUDENT THROUGH the provided image using its description — name what is visible, point out each labeled part, and say what it means — never just "as you can see here". Spend 2-4 sentences teaching from the picture. ` +
       `Build the complete lecture now from the plan: teacher script, board layouts, provided-image callouts, SVG/paper board choices, and checkpoints.${retryGuidance}`
     );
   }
@@ -299,9 +308,17 @@ function mergeAnimationStats(first: ReactAnimationFillStats, second: ReactAnimat
 
 function finalizeSuprnotesBeats(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): void {
   if (!sourceDocument) return;
+  // Render LaTeX math as readable text in the spoken script + title (so captions/TTS never show
+  // raw `$P_x$`). Idempotent — safe across the repeated finalize calls. Preserves sentence
+  // boundaries so the blackboard engine's sentence-sync stays aligned with the client.
+  for (const beat of beats) {
+    if (typeof beat.script === "string") beat.script = stripInlineMath(beat.script);
+    // NOTE: beat.title is DISPLAYED (board caption), not spoken — keep its `$…$` for KaTeX.
+  }
   ensureSuprnotesAssetUsage(beats, sourceDocument);
   hydrateProvidedImageOps(beats, sourceDocument);
   removeUnhydratedSuprnotesImageOps(beats, sourceDocument);
+  cleanProvidedImageBoards(beats, sourceDocument);
   enforcePlannedSuprnotesVisualModes(beats, sourceDocument);
   composeSuprnotesPaperBoards(beats, sourceDocument);
   applySuprnotesPaperSurface(beats, sourceDocument);
@@ -317,7 +334,33 @@ function streamLecture(client: OpenAI, input: LectureBuildInput): Response {
         controller.enqueue(encoder.encode(`${JSON.stringify(payload)}\n`));
       };
 
+      let streamedVisionCostUsd = 0;
       try {
+        // Cache: replaying the SAME folder is instant and free. Key covers the source document,
+        // topic/mood, model and CACHE_VERSION (see lib/lectureCache.ts). `refresh` forces a rebuild.
+        const cacheKey = lectureCacheKey({
+          topic: input.topic,
+          mood: input.mood,
+          slideContext: input.slideContext,
+          sourceDocument: input.sourceDocument,
+          model: MODEL,
+        });
+        if (!input.refresh) {
+          const cached = await readCachedLecture(cacheKey);
+          if (cached) {
+            send({ type: "status", stage: "cache", message: "Loading this lesson from cache" });
+            send({ type: "lecture", topic: cached.topic || input.topic, beats: cached.beats, costUsd: 0 });
+            send({ type: "done", topic: cached.topic || input.topic, costUsd: 0, cached: true });
+            return; // the outer `finally` closes the controller — closing here too aborts the stream
+          }
+        }
+
+        // Vision pass FIRST: look at each provided image and rewrite its description from the actual
+        // pixels, so the director's script and the image-explainer's labels teach the real picture.
+        if (input.sourceDocument) {
+          send({ type: "status", stage: "vision", message: "Looking at the images" });
+          streamedVisionCostUsd = await describeAssetsWithVision(client, input.sourceDocument);
+        }
         send({ type: "status", stage: "text", message: "Writing the lecture script and boards" });
         const base = await generateBaseLecture(client, input);
         finalizeSuprnotesBeats(base.beats, input.sourceDocument);
@@ -328,15 +371,15 @@ function streamLecture(client: OpenAI, input: LectureBuildInput): Response {
             ? noImageWorkStats()
             : disabledImageStats(base.beats);
         finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-        let streamedAssetCostUsd = imageStatsWhenPaused?.costUsd ?? 0;
+        let streamedAssetCostUsd = (imageStatsWhenPaused?.costUsd ?? 0) + streamedVisionCostUsd;
 
         let warmedAnimationStats: ReactAnimationFillStats = { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: [] };
-        if (input.sourceDocument && REACT_ANIMATIONS_ENABLED) {
-          send({
-            type: "status",
-            stage: "svg-boards",
-            message: "Generating Suprnotes whiteboard SVGs",
-          });
+        if (input.sourceDocument) {
+          // Full multi-agent pipeline for task-folder lessons: generate the real React animation
+          // for every animation beat (rendered in the sandbox), grounded in the source. Any beat
+          // that fails validation falls back to the deterministic whiteboard so it never renders
+          // "Animation unavailable". Synchronous (before the lecture is sent) — quality over speed.
+          send({ type: "status", stage: "svg-boards", message: "Animating the key ideas (sandboxed React)" });
           warmedAnimationStats = await fillReactAnimationOpsIncremental(client, base.beats);
           repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
           finalizeSuprnotesBeats(base.beats, input.sourceDocument);
@@ -357,11 +400,43 @@ function streamLecture(client: OpenAI, input: LectureBuildInput): Response {
         }
 
         let warmedBoardStats: BlackboardFillStats = { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: [] };
-        if (BLACKBOARD_GEN_ENABLED && BLACKBOARD_WARMUP_COUNT > 0) {
+        if (input.sourceDocument) {
+          // Write the concept boards with the sentence-synced chalkboard engine so each row is
+          // drawn as its sentence is spoken (write-then-tell). Failed boards fall back to the
+          // deterministic notes board so a beat is never blank.
+          send({ type: "status", stage: "board-warmup", message: "Writing the classroom boards, in sync with the voice" });
+          warmedBoardStats = await fillBlackboardOpsIncremental(client, base.beats);
+          finalizeSuprnotesBeats(base.beats, input.sourceDocument);
+          streamedAssetCostUsd += warmedBoardStats.costUsd;
+        } else if (BLACKBOARD_GEN_ENABLED && BLACKBOARD_WARMUP_COUNT > 0) {
           send({ type: "status", stage: "board-warmup", message: "Preparing the first blackboards before playback" });
           warmedBoardStats = await fillBlackboardOpsIncremental(client, base.beats, undefined, { limit: BLACKBOARD_WARMUP_COUNT });
           finalizeSuprnotesBeats(base.beats, input.sourceDocument);
           streamedAssetCostUsd += warmedBoardStats.costUsd;
+        }
+
+        // Image-Explainer agent: for beats showing a provided image, add a few accurate labels
+        // grounded ONLY in the image's real description, revealed in sync as the teacher explains
+        // each part. Runs after clean/hydrate (finalize above) so it labels the real image; the
+        // grounded callouts survive the pre-send finalize (cleanProvidedImageBoards keeps them).
+        if (input.sourceDocument) {
+          send({ type: "status", stage: "image-explainer", message: "Labelling the images to explain them" });
+          const calloutStats = await fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument);
+          streamedAssetCostUsd += calloutStats.costUsd;
+        }
+
+        // Guarantee every Suprnotes SVG-board beat has renderable code before the client plays it.
+        // When REACT_ANIMATIONS_ENABLED is off (the default), the block above is skipped and these
+        // ops would otherwise reach the player with only a prompt brief and no code — rendering as
+        // "Animation unavailable" with the raw brief text on the board. This deterministic fallback
+        // is idempotent (only fills ops that still lack code), so it never clobbers a real animation.
+        // Finalize FIRST, then apply the deterministic fallbacks LAST — a finalize after the board
+        // fallback would re-compose the replaced board back into an empty chalk placeholder (the
+        // "chalk-FAILED" bug). Nothing mutates beats after these repairs before the send.
+        if (input.sourceDocument) {
+          finalizeSuprnotesBeats(base.beats, input.sourceDocument);
+          repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
+          repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
         }
 
         send({ type: "lecture", topic: input.topic, beats: base.beats, costUsd: base.textCost + streamedAssetCostUsd });
@@ -420,8 +495,10 @@ function streamLecture(client: OpenAI, input: LectureBuildInput): Response {
         ]);
         const animationStats = mergeAnimationStats(warmedAnimationStats, remainingAnimationStats);
         const boardStats = mergeBlackboardStats(warmedBoardStats, remainingBoardStats);
-        const costUsd = base.textCost + imageStats.costUsd + animationStats.costUsd + boardStats.costUsd;
+        const costUsd = base.textCost + streamedVisionCostUsd + imageStats.costUsd + animationStats.costUsd + boardStats.costUsd;
         finalizeSuprnotesBeats(base.beats, input.sourceDocument);
+        // Cache the finished lecture so replaying this exact folder is instant and free next time.
+        await writeCachedLecture(cacheKey, { beats: base.beats, costUsd, topic: input.topic });
         send({ type: "done", topic: input.topic, costUsd, imageStats, animationStats, boardStats });
       } catch (err) {
         send({
@@ -470,7 +547,15 @@ export async function POST(req: Request) {
   if (!effectiveTopic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
   if (effectiveTopic.length > 200) return NextResponse.json({ error: "topic is too long — keep it to a short phrase" }, { status: 400 });
 
-  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument };
+  const input: LectureBuildInput = {
+    topic: effectiveTopic,
+    mood,
+    slideContext,
+    diagramHints,
+    slideImages,
+    sourceDocument,
+    refresh: body.refresh === true,
+  };
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   if (body.stream === true || req.headers.get("accept")?.includes("application/x-ndjson")) {

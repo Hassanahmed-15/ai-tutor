@@ -17,9 +17,36 @@ import { NextResponse } from "next/server";
  */
 const REALTIME_ENABLED = process.env.REALTIME_TUTOR_ENABLED === "1";
 const REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL ?? "gpt-realtime";
-// `marin` / `cedar` are the newer, most natural-sounding GA realtime voices; alloy is the flat
-// default. Warmer voice does most of the "sounds human" work.
-const REALTIME_VOICE = process.env.OPENAI_REALTIME_VOICE ?? "marin";
+// ONE persona: this MUST match the scripted lecture's TTS voice (see app/api/tts/route.ts). The
+// live chatbot and the narrating teacher are the same person (Aria); a different voice here is what
+// makes them sound like two entities. `coral` is warm and exists in both the TTS and Realtime APIs.
+const REALTIME_VOICE = process.env.OPENAI_REALTIME_VOICE ?? process.env.OPENAI_TEACHER_VOICE ?? "coral";
+
+// Adaptive/configurable turn detection. Default = snappy server_vad (jumps in on a short pause).
+// Flip REALTIME_VAD_TYPE=semantic_vad so Aria waits until you've actually finished a thought
+// (fewer wrong interruptions, slightly higher latency). Thresholds tune server_vad's eagerness.
+const numEnv = (v: string | undefined, d: number) => (v != null && Number.isFinite(Number(v)) ? Number(v) : d);
+const VAD_TYPE = process.env.REALTIME_VAD_TYPE === "semantic_vad" ? "semantic_vad" : "server_vad";
+const VAD_THRESHOLD = numEnv(process.env.REALTIME_VAD_THRESHOLD, 0.5);
+const VAD_SILENCE_MS = numEnv(process.env.REALTIME_VAD_SILENCE_MS, 320);
+const VAD_PREFIX_MS = numEnv(process.env.REALTIME_VAD_PREFIX_MS, 200);
+const VAD_EAGERNESS = process.env.REALTIME_VAD_EAGERNESS ?? "medium"; // semantic_vad only: low|medium|high|auto
+
+function buildTurnDetection(): Record<string, unknown> {
+  if (VAD_TYPE === "semantic_vad") {
+    // Model-based endpointing: waits for a semantically complete turn. `eagerness` trades
+    // wait-time vs responsiveness. No manual silence threshold applies.
+    return { type: "semantic_vad", eagerness: VAD_EAGERNESS, interrupt_response: true, create_response: true };
+  }
+  return {
+    type: "server_vad",
+    threshold: VAD_THRESHOLD,
+    prefix_padding_ms: VAD_PREFIX_MS,
+    silence_duration_ms: VAD_SILENCE_MS,
+    interrupt_response: true,
+    create_response: true,
+  };
+}
 
 const TUTOR_PERSONA =
   "You are Aria — a warm, sharp friend who happens to be great at explaining things, talking live " +
@@ -37,11 +64,12 @@ const TUTOR_PERSONA =
   "- Be encouraging and human, never stern, theatrical, or condescending.\n" +
   "Answer their actual question first, concisely, then check if they want more. Stay within the " +
   "current lecture's topic; if they drift far off, gently bring it back.\n" +
-  "MOSTLY JUST TALK — answer with your voice. Only draw on the board when the student EXPLICITLY " +
-  "asks to see, draw, visualize, sketch, or show something, OR when a quick diagram is genuinely " +
-  "essential to their specific question. Do NOT draw for every answer, for greetings, or for simple " +
-  "verbal questions — most turns need no board. When you do draw, call `show_board` with a short " +
-  "concept, then talk them through it naturally as it appears.";
+  "MOSTLY JUST TALK — answer with your voice for ordinary questions and greetings. BUT: whenever the " +
+  "student asks you to draw, show, visualize, sketch, illustrate, write, or 'put it on the board' — " +
+  "in ANY wording — you MUST call the `show_board` tool immediately with a short concept. Do NOT " +
+  "just describe the picture in words when they asked to SEE it; actually call show_board, then talk " +
+  "them through it as it appears. Treat an explicit draw/show request as a direct command to use the " +
+  "tool. Also use it when a quick diagram is genuinely essential. For simple verbal questions, no board.";
 
 const SHOW_BOARD_TOOL = {
   type: "function" as const,
@@ -95,8 +123,15 @@ const ADHD_ADDENDUM =
   "You can pause/resume the lecture anytime with those tools. When you draw with `show_board`, it is " +
   "a SIMPLE chalk-text board — keep the concept short and explain it in plain words.";
 
-function buildInstructions(topic: string, beatContext: string, mood: string, adhd: boolean): string {
+function buildInstructions(topic: string, beatContext: string, lessonContext: string, mood: string, adhd: boolean): string {
   const parts = [TUTOR_PERSONA, `The lecture topic is: ${topic || "this lesson"}.`];
+  if (lessonContext) {
+    parts.push(
+      "FULL LESSON CONTEXT — this is the entire lecture the student is watching (their uploaded " +
+      "material). Ground every answer in THIS content; when they ask 'what did this cover' or " +
+      "reference 'the video', use it. Do not invent material outside it:\n" + lessonContext,
+    );
+  }
   if (beatContext) parts.push(`The student is currently on this part of the lecture: ${beatContext}`);
   if (mood) parts.push(`Learner context / mode: ${mood}. Adapt your pacing and tone to fit it.`);
   if (adhd) parts.push(ADHD_ADDENDUM);
@@ -118,6 +153,7 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
   const beatContext = typeof body.beatContext === "string" ? body.beatContext.trim().slice(0, 2000) : "";
+  const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 6000) : "";
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 300) : "";
   // ADHD always-on mode: adds lecture-control tools + always-on persona guidance.
   const lectureControl = body.lectureControl === true;
@@ -137,23 +173,14 @@ export async function POST(req: Request) {
         session: {
           type: "realtime",
           model: REALTIME_MODEL,
-          instructions: buildInstructions(topic, beatContext, mood, lectureControl),
+          instructions: buildInstructions(topic, beatContext, lessonContext, mood, lectureControl),
           audio: {
             output: { voice: REALTIME_VOICE },
             input: {
-              // FAST, conversational turn-taking. server_vad triggers on a short silence gap — it
-              // responds noticeably quicker than semantic_vad (which runs a model to judge meaning
-              // and adds latency before every reply). A short 320ms silence + low prefix padding
-              // makes Aria jump in promptly once you pause. `interrupt_response` keeps barge-in, and
-              // the client hard-flushes buffered audio the instant you speak over her.
-              turn_detection: {
-                type: "server_vad",
-                threshold: 0.5,
-                prefix_padding_ms: 200,
-                silence_duration_ms: 320,
-                interrupt_response: true,
-                create_response: true,
-              },
+              // Configurable turn-taking (see buildTurnDetection): snappy server_vad by default,
+              // or semantic_vad via env so Aria waits for a finished thought. `interrupt_response`
+              // keeps barge-in; the client hard-flushes buffered audio the instant you speak over her.
+              turn_detection: buildTurnDetection(),
               // whisper-1 lags; gpt-4o-mini transcription is faster + more accurate for the live
               // transcript and for the model's own sense of what you just said.
               transcription: { model: "gpt-4o-mini-transcribe" },

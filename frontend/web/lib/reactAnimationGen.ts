@@ -226,6 +226,12 @@ async function generateOne(
 ): Promise<{ costUsd: number; filled: boolean; issue?: string }> {
   let totalCostUsd = 0;
   let previousFailure: PreviousFailure | undefined;
+  // Best "runnable but sub-floor" attempt: code that MISSED a quality floor but still parses and
+  // passes the safety validator. If no attempt clears every floor, we use this instead of falling
+  // back to a written board — a simple valid animation beats no animation (the recurring "animations
+  // not rendered" complaint). Env ANIMATION_ACCEPT_BEST=0 disables this.
+  const ACCEPT_BEST = process.env.ANIMATION_ACCEPT_BEST !== "0";
+  let bestRunnable: string | undefined;
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     try {
@@ -265,6 +271,17 @@ async function generateOne(
       if (diagnostics.issue) {
         const stalled = isStalled(previousFailure?.diagnostics, diagnostics);
         previousFailure = { issue: diagnostics.issue, diagnostics, code, stalled };
+        // Capture this as a fallback if it at least parses + passes safety (cheap, local checks).
+        if (ACCEPT_BEST && !bestRunnable && code) {
+          try {
+            if (!(await transpileCheck(code))) {
+              const safe = sanitizeReactAnimationOp({ ...op, code });
+              if (safe.code) bestRunnable = safe.code;
+            }
+          } catch {
+            /* ignore — just don't capture it */
+          }
+        }
         continue;
       }
 
@@ -303,6 +320,17 @@ async function generateOne(
         stalled: false,
       };
     }
+  }
+
+  // No attempt cleared every quality floor. Rather than show nothing, use the best runnable
+  // sub-floor attempt if we captured one — a simple valid animation renders and teaches, which is
+  // what the student wants.
+  if (bestRunnable) {
+    op.code = bestRunnable;
+    op.status = "ready";
+    op.error = undefined;
+    console.error(`[anim] beat=${beat.id} using best sub-floor attempt (renders; missed a quality floor).`);
+    return { costUsd: totalCostUsd, filled: true };
   }
 
   // Leave op.code unset; the client will show the animation-unavailable state for this beat.

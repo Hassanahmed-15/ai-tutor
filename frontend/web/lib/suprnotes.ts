@@ -194,6 +194,42 @@ export function removeUnhydratedSuprnotesImageOps(beats: Beat[], sourceDocument:
   return removed;
 }
 
+/**
+ * Provided images (real slides/infographics) already carry their own labels, so any beat that ends
+ * up showing one must render CLEAN: just the image + a single top title. This strips the connector
+ * callouts and stray text ops that other board builders (e.g. drawSanitize's makeImageCalloutBoard,
+ * whose hardcoded keyword-matched labels could be wildly off — chemistry labels on a CS slide) may
+ * have layered on before the provided image src was hydrated underneath them.
+ */
+export function cleanProvidedImageBoards(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): number {
+  if (!sourceDocument) return 0;
+  let cleaned = 0;
+
+  for (const beat of beats) {
+    const ops = beat.draw?.ops;
+    if (!ops?.length) continue;
+    // Only touch beats that actually show a resolved provided image.
+    const hasProvidedImage = ops.some((op) => op.kind === "image" && Boolean((op as ImageOp).src));
+    if (!hasProvidedImage) continue;
+
+    // Keep the top-most label as the board title; drop everything else that isn't the image or a
+    // GROUNDED callout (those come from the image-explainer agent — accurate, description-derived,
+    // sentence-synced — and must survive the repeated finalize passes).
+    const titleLabel = ops
+      .filter((op): op is Extract<DrawOp, { kind: "label" }> => op.kind === "label")
+      .slice()
+      .sort((a, b) => (a.y ?? 0) - (b.y ?? 0))[0];
+
+    const before = ops.length;
+    beat.draw!.ops = ops.filter(
+      (op) => op.kind === "image" || op === titleLabel || (op.kind === "callout" && op.grounded === true),
+    );
+    if (beat.draw!.ops.length !== before) cleaned++;
+  }
+
+  return cleaned;
+}
+
 export function composeSuprnotesPaperBoards(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): number {
   const blocks = sourceDocument?.contentBlocks
     ?.slice()
@@ -206,6 +242,10 @@ export function composeSuprnotesPaperBoards(beats: Beat[], sourceDocument: Suprn
   beats.forEach((beat, index) => {
     if (beat.draw?.ops.some((op) => op.kind === "image")) return;
     if (beat.draw?.ops.some((op) => op.kind === "reactAnimation")) return;
+    // Idempotency: a chalkBoard placeholder (filled or not) is already a board beat — never
+    // overwrite it. This runs after every incremental blackboard fill (route.ts), so clobbering
+    // a filled board here would erase the engine's sentence-synced output.
+    if (beat.draw?.ops.some((op) => op.kind === "chalkBoard")) return;
 
     const planBeat = plannedBeatForBeat(sourceDocument, beat, index);
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index);
@@ -217,11 +257,19 @@ export function composeSuprnotesPaperBoards(beats: Beat[], sourceDocument: Suprn
       : shouldUseSvgBoard(beat, block, index);
     const wantsPaper = visualPreference.includes("paper") || visualPreference.includes("notes") || visualPreference.includes("text");
     const isPlannedSvg = Boolean(visualPreference) && wantsSvg && !wantsPaper;
-    if (!wantsPaper && (svgBoards < MAX_SUPRNOTES_SVG_BOARDS || isPlannedSvg) && wantsSvg) {
+    // A written board (sentence-synced chalkboard) is the DEFAULT — that's the real-classroom
+    // "write-then-tell" experience. Reserve the animation for a small number of beats (the key
+    // mechanisms), so most concept beats are written boards, not animations. Animations are also
+    // the expensive step (gpt-4o + validate/retry), so capping them keeps cost/latency down.
+    const svgCap = isPlannedSvg ? MAX_SUPRNOTES_SVG_BOARDS : 1;
+    const isMechanismBeat = index > 0 && beat.slideKind !== "recap";
+    if (!wantsPaper && wantsSvg && isMechanismBeat && svgBoards < svgCap) {
       beat.draw = generatedSvgPaperBoard(beat, block);
       svgBoards++;
     } else {
-      beat.draw = sourceNotePaperBoard(beat, block);
+      // Concept/text beats become a chalkBoard PLACEHOLDER filled by the sentence-synced blackboard
+      // engine (write-then-tell) instead of the deterministic raw-notes board.
+      beat.draw = chalkBoardPlaceholder(beat, block);
     }
     changed++;
   });
@@ -242,6 +290,8 @@ export function enforcePlannedSuprnotesVisualModes(beats: Beat[], sourceDocument
     if (!visualPreference.includes("svg") && !visualPreference.includes("animation") && !visualPreference.includes("diagram")) return;
     if (beat.draw?.ops.some((op) => op.kind === "image")) return;
     if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" && op.code)) return;
+    // Don't overwrite a filled/queued chalkboard with an SVG board.
+    if (beat.draw?.ops.some((op) => op.kind === "chalkBoard" && (op.ops?.length || op.status === "ready"))) return;
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, new Set<string>(), index);
     if (!block) return;
     beat.draw = generatedSvgPaperBoard(beat, block);
@@ -266,9 +316,36 @@ export function repairMissingSuprnotesSvgCode(beats: Beat[], sourceDocument: Sup
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index);
     if (!block) return;
     usedBlocks.add(block.id);
-    animationOp.code = fallbackWhiteboardSvgCode(beat, block);
-    animationOp.status = "ready";
-    animationOp.error = undefined;
+    // A failed animation now degrades to a CLEAN written board (single-column, laid out by
+    // layoutPaperTextBoard) instead of the old fallbackWhiteboardSvgCode, whose text overlapped.
+    // The whole beat's draw is replaced, dropping the empty reactAnimation op.
+    beat.draw = sourceNotePaperBoard(beat, block);
+    repaired++;
+  });
+
+  return repaired;
+}
+
+/** Fallback for concept beats whose chalkboard engine failed (or hasn't filled): swap the empty
+ *  chalkBoard placeholder for the deterministic sourceNotePaperBoard so a beat never renders blank.
+ *  Only touches chalkBoard ops with no filled ops AND status "failed" (leaves pending ones alone). */
+export function repairMissingSuprnotesBoards(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): number {
+  const blocks = sourceDocument?.contentBlocks
+    ?.slice()
+    .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0));
+  if (!blocks?.length) return 0;
+
+  let repaired = 0;
+  const usedBlocks = new Set<string>();
+  beats.forEach((beat, index) => {
+    const chalkOp = beat.draw?.ops.find((op) => op.kind === "chalkBoard");
+    if (!chalkOp || chalkOp.kind !== "chalkBoard") return;
+    if (chalkOp.ops?.length || chalkOp.status !== "failed") return; // filled or still pending — leave it
+    const planBeat = plannedBeatForBeat(sourceDocument, beat, index);
+    const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index);
+    if (!block) return;
+    usedBlocks.add(block.id);
+    beat.draw = sourceNotePaperBoard(beat, block);
     repaired++;
   });
 
@@ -329,8 +406,12 @@ export function applySuprnotesPaperLayout(beats: Beat[], sourceDocument: Suprnot
     if (!beat.draw) continue;
     beat.draw.surface = "paper";
     const chalkOp = beat.draw.ops.find((op) => op.kind === "chalkBoard");
-    if (chalkOp?.kind === "chalkBoard" && chalkOp.ops?.length) {
-      chalkOp.ops = layoutPaperTextBoard(chalkOp.ops, beat.title);
+    if (chalkOp?.kind === "chalkBoard") {
+      // Trust the blackboard engine's own layout: its ops are already single-column, top-to-bottom,
+      // non-overlapping (getBlackboardDiagnostics enforces it) AND sentence-synced via `at`.
+      // Re-running layoutPaperTextBoard here re-flowed them into a broken 2-column layout (same-y
+      // collisions) and overwrote the sentence timing — so we leave filled chalk ops untouched.
+      // An unfilled placeholder is likewise preserved for the engine to fill later.
       continue;
     }
 
@@ -351,6 +432,30 @@ export function applySuprnotesPaperLayout(beats: Beat[], sourceDocument: Suprnot
 
     beat.draw.ops = layoutPaperTextBoard(beat.draw.ops, beat.title);
   }
+}
+
+/** Dense one-sentence brief handed to the chalkboard engine (BLACKBOARD_SYSTEM_PROMPT) for a
+ *  concept/text beat — grounds the written board in the matched content block. */
+function suprnotesChalkBoardBrief(beat: Beat, block: SuprnotesContentBlock): string {
+  const heading = clean(block.heading) || beat.title;
+  const ideas = boardIdeas(block).slice(0, 5).map((idea) => shortText(idea, 90));
+  return [
+    `Teach "${heading}" as a written board grounded ONLY in these notes.`,
+    ideas.length ? `Key points to write: ${ideas.join(" / ")}.` : "",
+    `Source text: ${shortText(block.text ?? beat.script, 420)}`,
+  ].filter(Boolean).join(" ");
+}
+
+/** A chalkBoard PLACEHOLDER for a concept beat. The blackboard engine (lib/blackboardGen.ts) fills
+ *  op.ops sentence-synced so the board is WRITTEN as it is spoken (write-then-tell). If that engine
+ *  fails, repairMissingSuprnotesBoards swaps in the deterministic sourceNotePaperBoard. */
+function chalkBoardPlaceholder(beat: Beat, block: SuprnotesContentBlock): DrawScript {
+  return {
+    caption: clean(block.heading) || beat.title,
+    durationMs: beat.draw?.durationMs ?? 26000,
+    surface: "paper",
+    ops: [{ kind: "chalkBoard", boardBrief: suprnotesChalkBoardBrief(beat, block), at: 0, endAt: 1 }],
+  };
 }
 
 function generatedSvgPaperBoard(beat: Beat, block: SuprnotesContentBlock): DrawScript {
@@ -592,7 +697,7 @@ function layoutPaperImageBoard(
   return [titleOp, laidImage, ...laidCallouts, ...notes].sort((a, b) => a.at - b.at);
 }
 
-function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x: number; y: number; w: number; h: number }): CalloutOp {
+export function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x: number; y: number; w: number; h: number }): CalloutOp {
   const targetSlots = [
     { x: box.x - box.w * 0.24, y: box.y - box.h * 0.18 },
     { x: box.x + box.w * 0.25, y: box.y - box.h * 0.16 },
@@ -638,49 +743,30 @@ function layoutPaperTextBoard(ops: DrawOp[], title: string): DrawOp[] {
     at: 0.02,
   }];
 
-  if (rows.length <= 4) {
-    rows.forEach((row, index) => {
-      laid.push({
-        kind: index === 0 ? "label" : "note",
-        text: row,
-        x: 16,
-        y: 28 + index * 15,
-        size: index === 0 ? "md" : undefined,
-        color: markerColor(index),
-        at: 0.18 + index * 0.13,
-      } as DrawOp);
-    });
-  } else {
-    rows.forEach((row, index) => {
-      const col = index % 2;
-      const r = Math.floor(index / 2);
-      laid.push({
-        kind: index < 2 ? "label" : "note",
-        text: row,
-        x: col === 0 ? 18 : 58,
-        y: 27 + r * 18,
-        size: index < 2 ? "md" : undefined,
-        color: markerColor(index),
-        at: 0.16 + index * 0.1,
-      } as DrawOp);
-    });
-  }
+  // ALWAYS single left column, stacked top-to-bottom with even spacing that fits inside the frame.
+  // (The old >4-rows 2-column branch put a label and a long note on the same y, so their text
+  // overran into each other — the overlap bug.) Rows are already shortened + deduped above.
+  const step = rows.length > 1 ? Math.min(15, 64 / (rows.length - 1)) : 15;
+  rows.forEach((row, index) => {
+    laid.push({
+      kind: index === 0 ? "label" : "note",
+      text: row,
+      x: 14,
+      y: 24 + index * step,
+      size: index === 0 ? "md" : undefined,
+      color: markerColor(index),
+      at: 0.16 + index * (0.72 / Math.max(rows.length, 1)),
+    } as DrawOp);
+  });
 
   return laid.sort((a, b) => a.at - b.at);
 }
 
 function providedAssetBoard(beat: Beat, asset: SuprnotesAsset, src: string): DrawScript {
-  const callouts = assetCalloutLabels(asset).slice(0, 4).map((text, index): CalloutOp => ({
-    kind: "callout",
-    text,
-    x: 50,
-    y: 50,
-    labelX: 20,
-    labelY: 28 + index * 14,
-    color: markerColor(index + 1),
-    at: 0.22 + index * 0.12,
-  }));
-
+  // Provided images are self-contained slides/infographics that already carry their own labels,
+  // so we render them CLEAN — just a top title + the image, no overlaid callouts (which used to
+  // land generic/wrong labels on top of the picture). See cleanProvidedImageBoards for the pass
+  // that strips callouts off provided-image beats built by other (non-suprnotes) paths too.
   return {
     caption: clean(asset.caption) || beat.title,
     durationMs: beat.draw?.durationMs ?? 26000,
@@ -700,13 +786,12 @@ function providedAssetBoard(beat: Beat, asset: SuprnotesAsset, src: string): Dra
         prompt: [asset.caption, asset.description].map(clean).filter(Boolean).join(" — ") || asset.id,
         assetId: asset.id,
         src,
-        x: 55,
-        y: 55,
-        w: 62,
-        h: 50,
+        x: 50,
+        y: 56,
+        w: 66,
+        h: 54,
         at: 0.08,
       },
-      ...callouts,
     ],
   };
 }
@@ -861,5 +946,7 @@ function inferAssetIdFromPrompt(prompt: string, assets: Map<string, SuprnotesAss
 }
 
 function clean(value: unknown): string {
+  // Board text KEEPS inline math ($…$) so LiveSketch can typeset it (KaTeX). Only the spoken
+  // narration is de-math'd, in finalizeSuprnotesBeats.
   return typeof value === "string" ? value.trim() : "";
 }

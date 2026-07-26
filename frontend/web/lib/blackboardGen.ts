@@ -8,7 +8,10 @@ import {
   type ChalkBoardOp,
 } from "./drawSanitize";
 import { splitNarrationSentences } from "./voice";
+import { critiqueBoard, boardVisionCriticEnabled } from "./boardVisionCritic";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+
+type DrawOp = DrawScript["ops"][number];
 
 /**
  * Second step of the two-step pipeline for BLACKBOARD beats, mirroring reactAnimationGen.ts.
@@ -89,6 +92,53 @@ function quantizeAtToSentences(rawOps: unknown, sentenceCount: number): unknown[
   });
 }
 
+// Grounding critic (the multi-agent verifier): a cheap check that the board's written claims are
+// supported by the beat's own source (script + boardBrief). Rejected boards are regenerated via the
+// existing retry loop with the critic's reason. On by default for quality; disable with GROUNDING_CHECK=0.
+const GROUNDING_CHECK = process.env.GROUNDING_CHECK !== "0";
+const VERIFIER_MODEL = process.env.OPENAI_VERIFIER_MODEL ?? "gpt-4o-mini";
+
+async function checkGrounding(
+  client: OpenAI,
+  ops: DrawOp[],
+  beat: Beat,
+  op: ChalkBoardOp,
+): Promise<{ costUsd: number; ok: boolean; issue?: string }> {
+  const boardText = ops
+    .map((o) => ("text" in o && typeof o.text === "string" ? o.text : ""))
+    .filter(Boolean)
+    .join(" | ");
+  if (!boardText) return { costUsd: 0, ok: true };
+  const source = `${op.boardBrief ?? ""}\n${beat.script}`.trim();
+  try {
+    const completion = await client.chat.completions.create({
+      model: VERIFIER_MODEL,
+      messages: [
+        {
+          role: "system",
+          content:
+            "You verify that a teaching board is grounded in its source notes. Reply JSON only: " +
+            '{ "grounded": boolean, "issue": string }. Set grounded=false ONLY if the board states a ' +
+            "specific fact, number, term, or claim that is NOT supported by the source notes (a " +
+            "hallucination), or is off-topic. General teaching phrasing is fine. If grounded=false, " +
+            '"issue" names the exact unsupported item to remove/fix. Otherwise "issue" is "".',
+        },
+        { role: "user", content: `SOURCE NOTES:\n${source}\n\nBOARD LINES:\n${boardText}` },
+      ],
+      temperature: 0,
+      max_tokens: 300,
+      response_format: { type: "json_object" },
+    });
+    const c = costUsd(completion.usage);
+    const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
+    const grounded = parsed.grounded !== false;
+    const issue = typeof parsed.issue === "string" ? parsed.issue.trim() : "";
+    return { costUsd: c, ok: grounded, issue: grounded ? undefined : issue || "a board claim is not supported by the notes" };
+  } catch {
+    return { costUsd: 0, ok: true }; // never block on the critic itself
+  }
+}
+
 async function generateOne(
   client: OpenAI,
   op: ChalkBoardOp,
@@ -97,6 +147,8 @@ async function generateOne(
   const sentences = splitNarrationSentences(beat.script);
   let totalCostUsd = 0;
   let previousIssue: string | undefined;
+  let groundingChecks = 0;
+  let visionChecks = 0;
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     try {
@@ -136,7 +188,34 @@ async function generateOne(
         continue;
       }
 
+      // Grounding critic: verify the board's claims trace to the source before accepting it. Run at
+      // most twice per beat (cost guard); on a hallucination, retry with the critic's reason.
+      if (GROUNDING_CHECK && groundingChecks < 2) {
+        groundingChecks++;
+        const verdict = await checkGrounding(client, ops, beat, op);
+        totalCostUsd += verdict.costUsd;
+        if (!verdict.ok && verdict.issue) {
+          console.error(`[board] beat=${beat.id} grounding rejected: ${verdict.issue}`);
+          previousIssue = `Not grounded in the notes: ${verdict.issue}. Only write claims supported by the source; remove or correct that item.`;
+          continue;
+        }
+      }
+
+      // Vision critic (Clarix idea): render the finished board and let a vision model reject
+      // overlaps/clipping/illegibility. Set op.ops so the serializer sees the real board; on
+      // reject, clear + retry with the critic's concrete issue. Capped at 1 vision call/beat.
       op.ops = ops;
+      if (boardVisionCriticEnabled() && visionChecks < 1) {
+        visionChecks++;
+        const v = await critiqueBoard(client, beat);
+        totalCostUsd += v.costUsd;
+        if (!v.ok && v.issue) {
+          op.ops = undefined;
+          previousIssue = `The rendered board has a layout problem: ${v.issue}. Fix ONLY the spacing/layout — keep every op on its own line, stacked top-to-bottom with clear gaps, nothing overlapping or off the frame.`;
+          continue;
+        }
+      }
+
       op.status = "ready";
       op.error = undefined;
       return { costUsd: totalCostUsd, filled: true };

@@ -331,6 +331,32 @@ function sanitizeChalkOp(raw: unknown): DrawOp | null {
 
 /** Sanitizes a full set of generated chalk-board ops. Clamps `at` into 0..1 and sorts by `at`
  *  so the reveal order is stable. */
+const SUP: Record<string, string> = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹", n: "ⁿ", i: "ⁱ", "+": "⁺", "-": "⁻" };
+const SUB: Record<string, string> = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉", x: "ₓ", j: "ⱼ", i: "ᵢ", n: "ₙ", a: "ₐ", "+": "₊", "-": "₋" };
+const MATH_MACROS: Array<[RegExp, string]> = [
+  [/\\log\b/g, "log"], [/\\max\b/g, "max"], [/\\min\b/g, "min"], [/\\cdot\b/g, "·"], [/\\times\b/g, "×"],
+  [/\\leq\b/g, "≤"], [/\\geq\b/g, "≥"], [/\\le\b/g, "≤"], [/\\ge\b/g, "≥"], [/\\neq\b/g, "≠"], [/\\approx\b/g, "≈"],
+  [/\\in\b/g, "∈"], [/\\infty\b/g, "∞"], [/\\sum\b/g, "Σ"], [/\\(dots|ldots|cdots)\b/g, "…"], [/\\(rightarrow|to)\b/g, "→"],
+  [/\\theta\b/g, "θ"], [/\\Theta\b/g, "Θ"], [/\\delta\b/g, "δ"], [/\\pi\b/g, "π"], [/\\alpha\b/g, "α"], [/\\beta\b/g, "β"], [/\\Omega\b/g, "Ω"],
+];
+function toScript(s: string, map: Record<string, string>): string {
+  return s.split("").map((c) => map[c] ?? c).join("");
+}
+/**
+ * Convert inline LaTeX math to readable plain/unicode text so notes like `$P_x$`, `$O(n^2)$`, or
+ * `$OPT(j) = \max(v_j + OPT(p(j)))$` never render as raw `$...$` on the board. Delimiters are
+ * stripped, common macros/sub/superscripts converted, and any leftover TeX commands/braces removed.
+ */
+export function stripInlineMath(input: string): string {
+  if (!input || (input.indexOf("$") === -1 && input.indexOf("\\") === -1)) return input;
+  let s = input.replace(/\$\$([^$]*)\$\$/g, "$1").replace(/\$([^$]*)\$/g, "$1");
+  for (const [re, rep] of MATH_MACROS) s = s.replace(re, rep);
+  s = s.replace(/\^\{([^}]*)\}/g, (_, g) => toScript(g, SUP)).replace(/\^([A-Za-z0-9+\-])/g, (_, g) => SUP[g] ?? `^${g}`);
+  s = s.replace(/_\{([^}]*)\}/g, (_, g) => toScript(g, SUB)).replace(/_([A-Za-z0-9+\-])/g, (_, g) => SUB[g] ?? g);
+  s = s.replace(/\\[A-Za-z]+/g, "").replace(/[{}\\]/g, "");
+  return s.replace(/\s{2,}/g, " ").trim();
+}
+
 export function sanitizeChalkBoardOps(rawOps: unknown): DrawOp[] {
   if (!Array.isArray(rawOps)) return [];
   return rawOps
@@ -339,6 +365,8 @@ export function sanitizeChalkBoardOps(rawOps: unknown): DrawOp[] {
     // Blackboards are TEXT ONLY — drop any diagram geometry (shapes/arrows) so the weak,
     // box-like auto-diagrams can never render. Only labels and notes survive.
     .filter((op) => op.kind === "label" || op.kind === "note")
+    // NOTE: inline math ($…$) is intentionally PRESERVED here so the board can render it as real
+    // typeset KaTeX (LiveSketch MathText). Only the SPOKEN script is de-math'd (finalizeSuprnotesBeats).
     .sort((a, b) => a.at - b.at);
 }
 
@@ -413,6 +441,17 @@ function blackboardTextOverlaps(ops: DrawOp[]): boolean {
 // (defense in depth): reject obviously hostile/escape-attempting source before it's ever stored
 // or shipped to a browser, and cap size so transpile cost + iframe payload stay bounded.
 const REACT_ANIMATION_CODE_MIN_BYTES = 1600;
+
+// Animation acceptance floors — env-overridable, defaulting LOW so abstract/CS animations pass
+// (see getReactAnimationCodeDiagnostics). Raise via env to make the bar stricter for richer topics.
+const num = (v: string | undefined, d: number) => (v != null && Number.isFinite(Number(v)) ? Number(v) : d);
+const ANIM_MIN_PRIMITIVES = num(process.env.ANIMATION_MIN_PRIMITIVES, 7);
+const ANIM_MIN_OBJECTS = num(process.env.ANIMATION_MIN_OBJECTS, 4);
+const ANIM_MIN_SILHOUETTES = num(process.env.ANIMATION_MIN_SILHOUETTES, 0);
+const ANIM_MIN_PROGRESS_DRIVE = num(process.env.ANIMATION_MIN_PROGRESS_DRIVE, 9);
+// Max ratio of line/polyline tags to object primitives (0 disables the check). CS diagrams are
+// legitimately line-heavy (axes, dividing lines, connections), so this is generous.
+const ANIM_MAX_LINE_RATIO = num(process.env.ANIMATION_MAX_LINE_RATIO, 1.5);
 // 48KB: strong code models (gpt-5.x) write genuinely rich full-board scenes that legitimately
 // run 25-40KB. The sandbox renders arbitrary SVG fine, so the only reason to cap at all is to
 // bound transpile cost and reject runaway output — 48KB is generous headroom for a real scene
@@ -569,37 +608,38 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
   if (groupCount < 2) {
     return { ...metrics, issue: "too flat; organize the animation into a couple of grouped scene layers, not loose labels and lines" };
   }
-  // Thresholds deliberately lowered AGAIN (were 18/12, originally 34/24): the higher bars forced
-  // the model to pack scenes with parts/agents just to clear the number, producing busy, hard-to-
-  // follow animations. A simple, legible scene that clearly teaches ONE mechanism is the goal —
-  // these lower floors still reject a bare line-diagram/single-icon output while letting a clean
-  // minimal scene pass. Simplicity is the target; the floor only guards against emptiness.
-  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < 10) {
+  // Floors are env-overridable and now default LOWER, tuned so ABSTRACT/CS animations pass. The
+  // previous bars (primitives 10, objects 7, silhouette 1, no line-heavy, progressDrive 14) were
+  // set for physical-science cutaways and rejected legitimate CS scenes — points on a plane, a
+  // dividing line, an array with a pointer, a recursion tree — which are naturally line-heavy and
+  // have no "silhouette". These still reject a bare single-icon/empty output. Parse/safety checks
+  // downstream are unchanged.
+  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < ANIM_MIN_PRIMITIVES) {
     return { ...metrics, issue: "too sparse; build a clear scene with a main subject, its parts, and a moving agent" };
   }
-  if (primitiveScore < 10) {
+  if (primitiveScore < ANIM_MIN_PRIMITIVES) {
     return { ...metrics, issue: "too few drawn elements; show the topic's main object plus a moving agent and a result" };
   }
-  if (objectPrimitiveScore < 7) {
+  if (objectPrimitiveScore < ANIM_MIN_OBJECTS) {
     return { ...metrics, issue: "too few actual scene objects; draw the mechanism's body, a couple of parts, and the result" };
   }
-  if (silhouetteCount < 1) {
+  if (silhouetteCount < ANIM_MIN_SILHOUETTES) {
     return { ...metrics, issue: "needs real object silhouettes or cutaway shapes, not only rectangles/circles/lines" };
   }
-  if (lineLikeCount >= objectPrimitiveScore / 2) {
+  if (ANIM_MAX_LINE_RATIO > 0 && lineLikeCount > objectPrimitiveScore * ANIM_MAX_LINE_RATIO) {
     return { ...metrics, issue: "too line-diagram-like; the mechanism must be a full scene, not mostly wires/arrows" };
   }
-  if (textCount > 0 && textCount >= objectPrimitiveScore / 2) {
+  if (textCount > 0 && textCount >= objectPrimitiveScore) {
     return { ...metrics, issue: "too text-heavy; labels must support the visual, not carry the animation" };
   }
-  if (distinctPrimitiveTypes.size < 4) {
-    return { ...metrics, issue: "too visually flat; use at least four SVG primitive types" };
+  if (distinctPrimitiveTypes.size < 3) {
+    return { ...metrics, issue: "too visually flat; use at least three SVG primitive types" };
   }
   if (!primitiveTags.includes("text")) {
     return { ...metrics, issue: "needs short JSX/SVG labels so the visual teaches without becoming a slide" };
   }
 
-  if (progressDriveScore < 14) {
+  if (progressDriveScore < ANIM_MIN_PROGRESS_DRIVE) {
     return { ...metrics, issue: "motion is not driven enough by progress; add setup, transformation, and result phases" };
   }
   if (!/(lerp|clamp|phase|transform|opacity|translate|scale|rotate)/i.test(code)) {

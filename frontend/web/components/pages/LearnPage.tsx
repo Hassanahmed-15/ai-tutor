@@ -10,6 +10,7 @@ import { TRACKS, type TrackMeta } from "@/components/hud/tracks";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
+import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
@@ -71,7 +72,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [slideContext, setSlideContext] = useState("");
   const [diagramHints, setDiagramHints] = useState("");
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
-  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "suprnotes"; assetCount?: number } | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "suprnotes" | "markdown"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "ready" | "error">("idle");
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -84,10 +85,19 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     return () => buildAbortRef.current?.abort();
   }, []);
 
+  function readAsDataUrl(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(reader.error ?? new Error("read failed"));
+      reader.readAsDataURL(file);
+    });
+  }
+
   async function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    // Reset file input so the same file can be re-selected if needed
+    const files = Array.from(e.target.files ?? []);
+    if (!files.length) return;
+    // Reset file input so the same file(s) can be re-selected if needed
     e.target.value = "";
 
     setUploadPhase("reading");
@@ -98,7 +108,58 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     setUploadedFile(null);
     setSourceDocument(null);
 
+    const relPath = (f: File): string => ((f as File & { webkitRelativePath?: string }).webkitRelativePath || f.name).replace(/\\/g, "/");
+
     try {
+      // --- Task folder: extract generated_notes.md + images + relevance scores, then build a
+      //     Suprnotes source in-browser (see lib/markdownSource.ts). Everything is pulled from the
+      //     folder automatically — the student only picks the folder. ---
+      const mdFile =
+        files.find((f) => /(^|\/)generated_notes\.md$/i.test(relPath(f))) ??
+        files.find((f) => /\.(md|markdown)$/i.test(f.name));
+      if (mdFile) {
+        const findText = async (re: RegExp): Promise<string | undefined> => {
+          const f = files.find((x) => re.test(relPath(x)));
+          return f ? await f.text() : undefined;
+        };
+        const [mdText, relevantImagesText, detectedSubjectText] = await Promise.all([
+          mdFile.text(),
+          findText(/(^|\/)relevant_images\.json$/i),
+          findText(/(^|\/)detected_subject\.json$/i),
+        ]);
+
+        // Only base64 the images this lesson actually needs (referenced in the notes or scored in
+        // relevant_images.json) — a task folder holds many stray YOLO crops we must not embed.
+        const wanted = relevantImageKeys(mdText, relevantImagesText);
+        const imageFiles = files.filter((f) => {
+          const isImg = f.type.startsWith("image/") || /\.(png|jpe?g|webp|gif|avif)$/i.test(f.name);
+          if (!isImg) return false;
+          return wanted.size === 0 || wanted.has(assetKey(relPath(f)));
+        });
+        const images: UploadedImage[] = await Promise.all(
+          imageFiles.map(async (f) => ({ path: relPath(f), dataUrl: await readAsDataUrl(f) })),
+        );
+
+        const { document, title, blockCount, assetCount, missingRefs } = buildLessonInputFromMarkdown(mdText, images, {
+          relevantImagesText,
+          detectedSubjectText,
+        });
+        if (!blockCount && !assetCount) {
+          throw new Error("Couldn't read a lesson from that folder — no generated_notes.md sections or images were found.");
+        }
+        const folderName = relPath(mdFile).split("/")[0] || mdFile.name;
+        setSourceDocument(document);
+        setUploadedFile({ name: folderName, kind: "markdown", assetCount });
+        setInput(title);
+        setTopic(title);
+        setUploadPhase("ready");
+        if (missingRefs.length) {
+          setUploadError(`Heads up: ${missingRefs.length} image${missingRefs.length > 1 ? "s" : ""} referenced in the notes weren't found in the folder — the lesson will build without them.`);
+        }
+        return;
+      }
+
+      const file = files[0];
       if (file.name.toLowerCase().endsWith(".json") || file.type === "application/json") {
         const text = await file.text();
         const parsed = JSON.parse(text) as Record<string, unknown>;
@@ -464,16 +525,24 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
 
                 {/* Source upload */}
                 <div className="mb-12">
-                  <p className="mb-3 text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Or upload a source</p>
+                  <p className="mb-3 text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Or upload a task folder</p>
 
                   {/* Hidden file input */}
                   <input
-                    ref={fileInputRef}
+                    ref={(el) => {
+                      fileInputRef.current = el;
+                      // webkitdirectory / directory aren't typed React props — set them directly so
+                      // the picker selects a whole task folder, not individual files.
+                      if (el) {
+                        el.setAttribute("webkitdirectory", "");
+                        el.setAttribute("directory", "");
+                      }
+                    }}
                     type="file"
-                    accept=".pptx,.json,application/json"
+                    multiple
                     className="sr-only"
                     onChange={handleFileSelect}
-                    aria-label="Upload PowerPoint or Suprnotes JSON file"
+                    aria-label="Upload a task folder containing generated_notes.md, images, and relevant_images.json"
                   />
 
                   {uploadPhase === "idle" || uploadPhase === "error" ? (
@@ -484,14 +553,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                     >
                         <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">📎</span>
                         <span>
-                        <span className="block font-bold">Upload .pptx slides or Suprnotes .json</span>
-                        <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
+                        <span className="block font-bold">Upload a task folder</span>
+                        <span className="text-sm text-[var(--hud-text-faint)]">Aria pulls the notes, images, and relevance scores out of the folder and builds a lecture from them</span>
                       </span>
                     </button>
                   ) : uploadPhase === "reading" ? (
                     <div className="flex items-center gap-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] px-6 py-5">
                       <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">⏳</span>
-                      <span className="text-base font-semibold text-[var(--hud-text-dim)]">Reading slides…</span>
+                      <span className="text-base font-semibold text-[var(--hud-text-dim)]">Reading folder…</span>
                     </div>
                   ) : (
                     /* uploadPhase === "ready" */
@@ -504,7 +573,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                             <p className="text-sm text-[var(--hud-text-dim)]">
                               {uploadedFile?.kind === "suprnotes"
                                 ? `${uploadedFile.assetCount ?? 0} provided images · ready to build`
-                                : `${uploadedFile?.slideCount ?? 0} slides extracted · ready to build`}
+                                : uploadedFile?.kind === "markdown"
+                                  ? `Task folder · ${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} extracted · ready to build`
+                                  : `${uploadedFile?.slideCount ?? 0} slides extracted · ready to build`}
                             </p>
                           </div>
                         </div>
@@ -519,7 +590,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                     </div>
                   )}
 
-                  {uploadPhase === "error" && uploadError && (
+                  {uploadError && (
                     <p className="mt-2 text-sm font-semibold text-rose-300">⚠️ {uploadError}</p>
                   )}
                 </div>
@@ -571,7 +642,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                       <p className="mt-2 text-xs font-semibold text-[var(--hud-cyan)]">
                         📎 {uploadedFile.kind === "suprnotes"
                           ? `${uploadedFile.assetCount ?? 0} images loaded from notes`
-                          : `${uploadedFile.slideCount ?? 0} slides loaded`}
+                          : uploadedFile.kind === "markdown"
+                            ? `${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} loaded from folder`
+                            : `${uploadedFile.slideCount ?? 0} slides loaded`}
                       </p>
                     )}
                   </div>

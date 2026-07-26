@@ -34,6 +34,9 @@ type TranscriptRole = "student" | "tutor";
 export type UseRealtimeTutorOptions = {
   topic: string;
   getBeatContext: () => string;
+  /** Compact digest of the WHOLE lesson (all beats / the task-folder content) so the tutor has
+   *  context of the entire video, not just the current beat. Sent once at session start. */
+  getLessonContext?: () => string;
   mood?: string;
   /** Called when the tutor's show_board tool fires and /api/explain returns a board to draw. */
   onBoardRequest: (board: RealtimeBoard) => void;
@@ -74,7 +77,70 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
+  // Timestamp of the student's last speech-stop, to measure reply latency (Paper 3 p95 budget).
+  const speechStopTsRef = useRef<number>(0);
   const audioElRef = useRef<HTMLAudioElement | null>(null);
+  // True between response.created and response.done. `silence()` uses it so it only cancels a turn
+  // that actually exists — the voice director calls silence() defensively on every hand-off.
+  const responseInFlightRef = useRef(false);
+  // True while her audio is ACTUALLY coming out of the speakers (output_audio_buffer.started ..
+  // .stopped). This is different from responseInFlight: the model finishes GENERATING (response.done)
+  // a second or two before the buffered audio finishes PLAYING. We must not report "she stopped"
+  // until playback is truly done, or the lecture resumes over her tail — the collision the student
+  // keeps hearing.
+  const audioPlayingRef = useRef(false);
+  // Guards onTutorTurnComplete to exactly once per settled turn. Reset when a new response begins.
+  const turnCompletedRef = useRef(false);
+  // show_board is a silent tool call that chains into MORE responses (a "let me draw…" filler, a
+  // multi-second /api/explain draw, then the narration). While this is set we never declare the turn
+  // over, so the lecture can't resume in the middle of that sequence. Cleared right before the final
+  // narration response, and on barge-in.
+  const boardChainPendingRef = useRef(false);
+  // The turn ends when she has been SILENT for a short debounce — audio drained AND no response in
+  // flight. This one signal is correct for every case (silent tool calls, spoken answers, chained
+  // show_board), because it keys off actual silence rather than per-response bookkeeping.
+  const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const SETTLE_MS = 700;
+
+  // "Her turn is fully over" — fire the completion callback once.
+  const finishTutorTurn = useCallback(() => {
+    if (turnCompletedRef.current) return;
+    turnCompletedRef.current = true;
+    audioPlayingRef.current = false;
+    responseInFlightRef.current = false;
+    setSpeaking(false);
+    optsRef.current.onTutorTurnComplete?.();
+  }, []);
+
+  const cancelSettle = useCallback(() => {
+    if (settleTimerRef.current) {
+      clearTimeout(settleTimerRef.current);
+      settleTimerRef.current = null;
+    }
+  }, []);
+
+  // Arm the "she's settled" debounce. If she starts making sound again before it fires, cancelSettle
+  // clears it; while a show_board chain is mid-flight we don't arm it at all.
+  const scheduleSettle = useCallback(() => {
+    if (boardChainPendingRef.current) return;
+    if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    settleTimerRef.current = setTimeout(() => {
+      settleTimerRef.current = null;
+      finishTutorTurn();
+    }, SETTLE_MS);
+  }, [finishTutorTurn]);
+
+  // She is actively producing sound (or about to). Keep the turn open.
+  const markChatbotActive = useCallback(() => {
+    cancelSettle();
+    setSpeaking(true);
+  }, [cancelSettle]);
+
+  // Re-evaluate after a flag change: if she's gone quiet, arm the settle; otherwise keep it open.
+  const reassessSettle = useCallback(() => {
+    if (responseInFlightRef.current || audioPlayingRef.current) cancelSettle();
+    else scheduleSettle();
+  }, [cancelSettle, scheduleSettle]);
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const endedRef = useRef(false);
@@ -87,8 +153,10 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
   const clearTimers = useCallback(() => {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     if (maxTimerRef.current) clearTimeout(maxTimerRef.current);
+    if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
     idleTimerRef.current = null;
     maxTimerRef.current = null;
+    settleTimerRef.current = null;
   }, []);
 
   // Full teardown — idempotent. This is the point the lecture resumes, so nothing may keep
@@ -143,6 +211,49 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
     if (dc && dc.readyState === "open") dc.send(JSON.stringify(event));
   }, []);
 
+  /**
+   * Cut the tutor's voice off RIGHT NOW.
+   *
+   * The server stops generating the moment we cancel, but audio it already streamed is buffered
+   * inside the <audio> element and keeps playing (~1-2s of Aria talking over whoever interrupted).
+   * WebRTC gives us no buffer flush, so we cut it hard: mute the element and jump it to its live
+   * edge, which drops the buffered tail, then unmute shortly after so the NEXT response is audible.
+   *
+   * This is the primitive the voice director uses to guarantee the teacher and the tutor never
+   * speak at once — it is called both on student barge-in and before the teacher takes the channel.
+   */
+  const silence = useCallback(() => {
+    const el = audioElRef.current;
+    if (el) {
+      el.muted = true;
+      try {
+        if (Number.isFinite(el.duration) && el.duration > 0) el.currentTime = el.duration;
+      } catch {
+        /* seeking a live MediaStream can throw — ignore */
+      }
+      setTimeout(() => {
+        if (audioElRef.current) audioElRef.current.muted = false;
+      }, 250);
+    }
+    // Tell the server to truncate/cancel the in-flight response immediately.
+    if (responseInFlightRef.current) {
+      responseInFlightRef.current = false;
+      sendEvent({ type: "response.cancel" });
+    }
+    // The tail is cut — she is no longer playing. Mark the turn done so a deferred resume can fire,
+    // but WITHOUT calling onTutorTurnComplete (a barge-in is the student taking over, not her
+    // finishing a thought the lecture should resume behind). Also drop any pending settle and any
+    // half-finished board chain so neither wedges a later turn.
+    if (settleTimerRef.current) {
+      clearTimeout(settleTimerRef.current);
+      settleTimerRef.current = null;
+    }
+    boardChainPendingRef.current = false;
+    audioPlayingRef.current = false;
+    turnCompletedRef.current = true;
+    setSpeaking(false);
+  }, [sendEvent]);
+
   // Handle a show_board tool call: draw via /api/explain, then hand the result back so the
   // model can talk about the now-visible board. The model narrates it (NOT playNarration) —
   // that keeps the single-speaker invariant.
@@ -182,6 +293,9 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
       } finally {
         if (!endedRef.current) setStatus("live");
       }
+      // The chain's final leg — the narration — is about to start. Release the guard so THIS
+      // response settles normally (and resumes the lecture) once she finishes talking about the board.
+      boardChainPendingRef.current = false;
       // Return the tool result and ask the model to respond about the board.
       sendEvent({
         type: "conversation.item.create",
@@ -202,50 +316,55 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           // Notify the caller IMMEDIATELY so it can pause the lecture the moment the student speaks
           // (not later when the tutor replies).
           optsRef.current.onStudentSpeechStarted?.();
-          // BARGE-IN FIX: the server stops generating on interrupt, but audio already streamed to
-          // the browser is buffered in the <audio> element and keeps playing (~1-2s of Aria talking
-          // over you). WebRTC has no buffer flush, so cut it hard: mute + jump the element to its
-          // live edge so the buffered tail is dropped and only fresh post-truncation audio plays.
-          const el = audioElRef.current;
-          if (el) {
-            el.muted = true;
-            try {
-              if (Number.isFinite(el.duration) && el.duration > 0) el.currentTime = el.duration;
-            } catch {
-              /* seeking a live MediaStream can throw — ignore */
-            }
-            // Unmute shortly after so the next (fresh) response is audible again.
-            setTimeout(() => {
-              if (audioElRef.current) audioElRef.current.muted = false;
-            }, 250);
-          }
-          // Tell the server to truncate/cancel the in-flight response immediately.
-          sendEvent({ type: "response.cancel" });
+          // Drop the buffered tail of whatever the tutor was saying so she doesn't talk over the
+          // student for the next second or two. See silence() for why this is needed.
+          silence();
           break;
         }
         case "input_audio_buffer.speech_stopped":
           resetIdleTimer();
+          speechStopTsRef.current = performance.now();
           optsRef.current.onStudentSpeechStopped?.();
           break;
         case "response.created":
-          // A tutor turn has begun (may contain several audio segments). Mark speaking now and let
-          // it stay true until response.done — so brief gaps BETWEEN segments don't read as "done".
-          setSpeaking(true);
+          // A tutor turn has begun (may contain several audio segments). She is active — hold the
+          // turn open until she has been silent for the settle debounce.
+          responseInFlightRef.current = true;
+          turnCompletedRef.current = false;
+          markChatbotActive();
+          if (speechStopTsRef.current > 0) {
+            console.error(`[realtime] reply latency: ${Math.round(performance.now() - speechStopTsRef.current)}ms`);
+            speechStopTsRef.current = 0;
+          }
+          break;
+        case "output_audio_buffer.started":
+          // Her audio is now actually playing out of the speakers.
+          audioPlayingRef.current = true;
+          markChatbotActive();
+          break;
+        case "output_audio_buffer.stopped":
+        case "output_audio_buffer.cleared":
+          // Her audio drained. If nothing else is in flight, arm the settle debounce; the turn ends
+          // (and the lecture may resume) only once she's stayed quiet through it.
+          audioPlayingRef.current = false;
+          reassessSettle();
           break;
         case "response.audio_transcript.delta":
-          setSpeaking(true);
+          markChatbotActive();
           if (typeof evt.delta === "string") optsRef.current.onTranscript?.("tutor", evt.delta, false);
           break;
         case "response.audio_transcript.done":
-          // Do NOT clear `speaking` here — this fires per audio segment and would flicker false
-          // mid-turn. The turn ends on response.done.
+          // Do NOT settle here — this fires per audio segment. The debounce, driven by real silence,
+          // is what ends the turn.
           if (typeof evt.transcript === "string") optsRef.current.onTranscript?.("tutor", evt.transcript, true);
           break;
         case "response.done":
-          // The ENTIRE tutor turn is complete — this is the only reliable "finished speaking"
-          // signal. Clear speaking and notify the caller so it can safely resume the lecture.
-          setSpeaking(false);
-          optsRef.current.onTutorTurnComplete?.();
+          // Generation is complete, but her audio may still be PLAYING. Reassess: if audio has also
+          // drained, arm the settle; otherwise output_audio_buffer.stopped will. This correctly ends
+          // silent terminal responses (a bare resume_lecture / pause_lecture tool call) too — the old
+          // code swallowed those, which is why voice-resume got stuck.
+          responseInFlightRef.current = false;
+          reassessSettle();
           break;
         case "conversation.item.input_audio_transcription.delta":
           if (typeof evt.delta === "string") optsRef.current.onTranscript?.("student", evt.delta, false);
@@ -263,7 +382,14 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
             } catch {
               /* ignore malformed args */
             }
-            if (concept) void handleShowBoard(callId, concept);
+            if (concept) {
+              // This kicks off a multi-response chain (filler → draw → narration). Hold the turn open
+              // across the whole thing so the lecture can't resume in the middle of it; handleShowBoard
+              // releases the guard right before the final narration response.
+              boardChainPendingRef.current = true;
+              cancelSettle();
+              void handleShowBoard(callId, concept);
+            }
           } else if (name === "pause_lecture") {
             optsRef.current.onPauseLecture?.();
             // Report the result but do NOT force another response — the model already said its line
@@ -287,7 +413,7 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           break;
       }
     },
-    [resetIdleTimer, handleShowBoard, sendEvent]
+    [resetIdleTimer, handleShowBoard, sendEvent, silence, markChatbotActive, reassessSettle, cancelSettle]
   );
 
   const start = useCallback(async () => {
@@ -304,6 +430,7 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
       body: JSON.stringify({
         topic: optsRef.current.topic,
         beatContext: optsRef.current.getBeatContext(),
+        lessonContext: optsRef.current.getLessonContext?.() ?? "",
         mood: optsRef.current.mood ?? "",
         lectureControl: optsRef.current.lectureControlTools === true,
       }),
@@ -312,7 +439,13 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
       if (!res.ok || !data.client_secret) throw new Error(data.error || "Could not start the live tutor.");
       return { token: data.client_secret as string, model: data.model as string };
     });
-    const micPromise = navigator.mediaDevices.getUserMedia({ audio: true });
+    // Echo cancellation + noise suppression so Aria's OWN voice (played through the speakers)
+    // doesn't leak into the mic and self-trigger the VAD, and so room noise doesn't cause false
+    // interruptions. Auto gain keeps a quiet student audible. These are hints; the browser applies
+    // what it supports.
+    const micPromise = navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+    });
 
     let token: string;
     let model: string;
@@ -426,6 +559,17 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
     setMuted(!track.enabled);
   }, []);
 
+  // Explicitly enable/disable the mic input. The caller mutes the mic WHILE the scripted lecture is
+  // narrating so the tutor never "hears" the lecture's own TTS through the speakers and reply to it
+  // (the cause of spurious tutor speech coinciding with the lecture). Idempotent + safe pre-connect.
+  const setMicEnabled = useCallback((on: boolean) => {
+    const track = micStreamRef.current?.getAudioTracks()[0];
+    if (!track) return;
+    if (track.enabled === on) return;
+    track.enabled = on;
+    setMuted(!on);
+  }, []);
+
   // Make the tutor speak a specific line right now (e.g. a focus-drift nudge). The `prompt` is an
   // instruction to the model, not literal words — it phrases it naturally in its own voice.
   // No-op until the session is live.
@@ -437,6 +581,26 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
     [sendEvent]
   );
 
+  /**
+   * Push a fact into the live conversation WITHOUT making the tutor speak. Used to keep Aria aware
+   * of things she can't hear — e.g. what the student just drew on the board — so when they ask
+   * about it by voice she already has the context and answers naturally. No-op until live.
+   */
+  const addContext = useCallback(
+    (text: string) => {
+      if (!dcRef.current || dcRef.current.readyState !== "open" || !text.trim()) return;
+      sendEvent({
+        type: "conversation.item.create",
+        item: {
+          type: "message",
+          role: "user",
+          content: [{ type: "input_text", text }],
+        },
+      });
+    },
+    [sendEvent]
+  );
+
   // Ensure teardown on unmount.
   useEffect(() => {
     return () => {
@@ -444,5 +608,14 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
     };
   }, [teardown]);
 
-  return { status, speaking, muted, errorMessage, start, stop, toggleMute, say };
+  /**
+   * SYNCHRONOUS "is she making (or about to make) sound?" — read straight from refs the event
+   * handler sets, with none of the one-render lag that `speaking` (React state) has. The voice
+   * director uses this to decide, at the exact instant it wants to start the teacher, whether the
+   * chatbot holds the channel. A render-late answer here is precisely how the two voices overlapped.
+   * Covers the whole span: response.created (in flight, audio imminent) → audio playing → drained.
+   */
+  const isSpeaking = useCallback(() => responseInFlightRef.current || audioPlayingRef.current, []);
+
+  return { status, speaking, muted, errorMessage, start, stop, toggleMute, setMicEnabled, say, addContext, silence, isSpeaking };
 }

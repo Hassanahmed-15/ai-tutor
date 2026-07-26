@@ -9,7 +9,11 @@ import OpenAI from "openai";
  * Honesty: this costs a small amount per call and needs OPENAI_API_KEY in frontend/web/.env.local.
  * Without a key it returns 503 and the client falls back to silent captions.
  */
-const VOICE = process.env.OPENAI_TTS_VOICE ?? "nova"; // brighter and more classroom-friendly than the old darker narrator voice
+// ONE persona. The scripted lecture and the live chatbot are the SAME teacher (Aria), so they must
+// use the SAME voice — `coral` is warm and classroom-friendly and, crucially, exists in BOTH the TTS
+// API and the Realtime API (see app/api/realtime-session/route.ts). Change both together, or the
+// student hears two different people and the illusion of one teacher breaks.
+const VOICE = process.env.OPENAI_TTS_VOICE ?? process.env.OPENAI_TEACHER_VOICE ?? "coral";
 const TTS_MODEL = process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts";
 
 const TEACHER_TONE =

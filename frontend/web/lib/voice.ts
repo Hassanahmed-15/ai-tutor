@@ -14,6 +14,13 @@
 
 export type NarrationHandle = {
   cancel: () => void;
+  /**
+   * Freeze playback in place (keeps position, sentence cue and board progress). Returns false when
+   * this narration can't be paused (browser-TTS fallback), so the caller can fall back to a restart.
+   */
+  pause: () => boolean;
+  /** Continue from exactly where pause() stopped. Returns false if there's nothing resumable. */
+  resume: () => boolean;
 };
 
 /**
@@ -28,7 +35,7 @@ const CLOUD_TTS_DEFAULT = true;
 const CLOUD_TTS_GAIN = 1.45;
 const BROWSER_TTS_VOLUME = 1;
 
-interface NarrationCallbacks {
+export interface NarrationCallbacks {
   onStart: () => void;
   onEnd: () => void;
   /** Fired when the browser silently blocked audio (autoplay policy) — needs a user tap to unlock. */
@@ -42,6 +49,15 @@ interface NarrationCallbacks {
   rate?: number;
   /** Override server-side OpenAI TTS for this call. Defaults to CLOUD_TTS_DEFAULT. */
   cloudTts?: boolean;
+  /**
+   * Don't cancel narrations that are already running. Used for short interjections the teacher makes
+   * while a beat is FROZEN mid-sentence (a comprehension question, a re-explanation), so the beat can
+   * still resume from where it stopped afterwards instead of replaying from the top.
+   *
+   * Only `useVoiceDirector` should set this — it is what guarantees the preserved narration stays
+   * paused while the interjection plays, so the two never overlap.
+   */
+  preserveActive?: boolean;
 }
 
 let voicesReadyPromise: Promise<SpeechSynthesisVoice[]> | null = null;
@@ -125,7 +141,7 @@ export function splitNarrationSentences(text: string): string[] {
 }
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {
-  cancelActiveNarrations();
+  if (!callbacks.preserveActive) cancelActiveNarrations();
   const rate = callbacks.rate ?? 1;
   const useCloudTts = callbacks.cloudTts ?? CLOUD_TTS_DEFAULT;
   const initialSentences = splitNarrationSentences(text);
@@ -135,6 +151,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   let cueTimers: ReturnType<typeof setTimeout>[] = [];
   let progressRaf = 0;
   let objectUrl: string | null = null;
+  // Set by the cloud-TTS path once its <audio> element exists, so the lesson can pause/resume in
+  // place instead of cancelling and replaying the beat from the top.
+  let pauseImpl: (() => boolean) | null = null;
+  let resumeImpl: (() => boolean) | null = null;
   const clearCues = () => {
     cueTimers.forEach((timer) => clearTimeout(timer));
     cueTimers = [];
@@ -349,6 +369,21 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         audioContext = null;
         void browserFallback();
       };
+      // Pausing the <audio> element freezes the audio clock, which is what drives BOTH the board
+      // progress and the sentence cues — so resume continues exactly where it stopped.
+      pauseImpl = () => {
+        if (cancelled || !audio) return false;
+        audio.pause();
+        stopProgressLoop();
+        return true;
+      };
+      resumeImpl = () => {
+        if (cancelled || !audio || audio.ended) return false;
+        void audio.play().catch(() => {});
+        stopProgressLoop();
+        emitAudioClock();
+        return true;
+      };
       callbacks.onStart();
       await audio.play();
       emitAudioClock();
@@ -365,5 +400,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
   return {
     cancel,
+    pause: () => (pauseImpl ? pauseImpl() : false),
+    resume: () => (resumeImpl ? resumeImpl() : false),
   };
 }

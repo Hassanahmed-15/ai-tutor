@@ -247,6 +247,8 @@ LAYOUT & COMPOSITION (this is graded as strictly as density — a correct but me
 - ALIGNMENT. Align related elements to shared baselines/centers. Center the main subject. Keep the composition balanced, not lopsided.
 - The finished frame should look like a clean, intentional infographic a designer would ship — if it looks busy, tangled, or cluttered, simplify before submitting.
 
+ABSTRACT / COMPUTER-SCIENCE TOPICS: if the teachingPoint is an algorithm or data-structure idea (sorting, search, recursion, graphs, geometry, dynamic programming), you do NOT need a physical silhouette — the "scene" is the data structure itself, drawn clearly and animated. Good CS animations: an array of boxes with a pointer/marker sweeping across it; points on a 2D plane with a vertical dividing line and a highlighted strip; a recursion/decision tree whose nodes light up in order; two regions (left/right) being compared; a value updating in a cell. Use rects for array cells/boxes, circles for points/nodes, lines for axes/divisions/edges, text for the few key labels/values — and drive real motion from progress (the pointer moves, the line sweeps, nodes highlight one by one, a region fills). Keep it to ONE clear idea with visible before→after, on the dark board.
+
 You will be given the beat's title, spoken script, and a one-sentence teachingPoint naming the exact mechanism to visualize. Ground the animation in that content — do not default to a generic loading-spinner-style animation.`;
 
 /**
@@ -331,3 +333,22 @@ RULES:
 - All content x:8-14 (single left column), all text <= 40 chars so nothing runs off the frame.
 - Give each op an "at" (0-1) that increases down the board so it writes top-to-bottom.
 - 4-7 ops total. NEVER emit image, callout, shape, arrow, scene, motion, morph, or circleHighlight. Output ONLY the JSON.`;
+
+/**
+ * Image-Explainer agent (lib/imageCalloutGen.ts). A real provided teaching image (photo / diagram /
+ * infographic slide) is on the board and the teacher is walking the student through it. This picks
+ * a few SHORT labels naming REAL things visible in THAT specific image, each tagged with the
+ * sentence that explains it, so the pen points at each part exactly as it is spoken. Strictly
+ * grounded in the image's real description — no invented labels (the fix for wrong/chemistry labels).
+ */
+export const IMAGE_EXPLAINER_SYSTEM_PROMPT = `You are Aria's image-explainer. A real teaching image (a photo, diagram, or infographic slide) is on the board, and the teacher is talking the student through it. Pick 2-4 SHORT labels that name REAL things VISIBLE in THIS specific image, so the teacher can point at each part as they explain it.
+
+You are given the image's DESCRIPTION (what is actually in it) and the spoken script split into NUMBERED SENTENCES (0..N-1). Output JSON: { "callouts": [ { "text": string, "group": number } ] }.
+
+RULES:
+- Ground every label ONLY in the DESCRIPTION. Name a concrete thing that is actually shown (a curve, a point, an axis, a region, a labeled part, an object, a value). NEVER invent a label the description does not support. If the description names fewer than 2 distinct visible parts, return FEWER callouts (even zero) rather than making things up.
+- "text": <= 24 characters, a real visible part — NOT a concept, formula, or a restatement of the sentence.
+- "group": the index of the sentence that explains/mentions that part, so the label appears exactly when the teacher talks about it. Order callouts so their groups increase (top-to-bottom reveal).
+- 2-4 callouts maximum. Sparse and accurate beats many. No duplicates. No label may repeat the board title.
+
+Output ONLY the JSON object.`;

@@ -1,5 +1,6 @@
 "use client";
 
+import katex from "katex";
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   sketchHexagon,
@@ -28,7 +29,7 @@ interface Pt {
 type DrawOp =
   | { kind: "shape"; shape: DrawShape; x: number; y: number; w?: number; h?: number; points?: Pt[]; color?: string; at: number }
   | { kind: "label"; text: string; x: number; y: number; size?: "sm" | "md" | "lg"; color?: string; at: number }
-  | { kind: "callout"; text: string; x: number; y: number; labelX?: number; labelY?: number; color?: string; at: number }
+  | { kind: "callout"; text: string; x: number; y: number; labelX?: number; labelY?: number; color?: string; at: number; group?: number; grounded?: boolean }
   | { kind: "arrow"; x1: number; y1: number; x2: number; y2: number; curved?: boolean; color?: string; at: number }
   | { kind: "note"; text: string; x: number; y: number; color?: string; at: number }
   | {
@@ -360,6 +361,75 @@ function wrapText(text: string, maxChars: number): string[] {
  * Each word is a separate <text> whose horizontal reveal is done with a per-word clipPath
  * rectangle that grows from the word's left edge to its right edge over ~140ms.
  */
+/** Small stable hash of a seed string → non-negative int, for deterministic handwriting jitter. */
+function hashSeed(seed: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return Math.abs(h);
+}
+
+/**
+ * Renders board text that contains inline LaTeX ($…$) as REAL typeset math via KaTeX, embedded in
+ * an SVG <foreignObject> so it lands on the board like a written formula (e.g. OPT(j)=max(vⱼ+…)).
+ * Non-math segments render as plain spans in the same handwriting font. Fades in with elapsed time
+ * (word-by-word stroking doesn't apply cleanly to typeset math). Falls back to raw text on parse
+ * error so a bad LaTeX string never blanks the board.
+ */
+function MathText({
+  text,
+  cx,
+  cy,
+  anchor,
+  fontSize,
+  fontFamily,
+  fill,
+  localElapsed,
+}: {
+  text: string;
+  cx: number;
+  cy: number;
+  anchor: "start" | "middle" | "end";
+  fontSize: number;
+  fontFamily: string;
+  fill: string;
+  localElapsed: number;
+}) {
+  const html = useMemo(() => {
+    // Split on $…$, KaTeX-render the math parts, HTML-escape the plain parts.
+    const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return text
+      .split(/(\$[^$]+\$)/)
+      .map((seg) => {
+        const m = seg.match(/^\$([^$]+)\$$/);
+        if (!m) return esc(seg);
+        try {
+          return katex.renderToString(m[1], { throwOnError: false, displayMode: false, output: "html" });
+        } catch {
+          return esc(m[1]);
+        }
+      })
+      .join("");
+  }, [text]);
+
+  const reveal = Math.min(1, localElapsed / 500);
+  // Wide, tall foreignObject anchored to the op point; inner div handles alignment + color.
+  const W = Math.max(120, text.length * fontSize * 0.62);
+  const x = anchor === "start" ? cx : anchor === "end" ? cx - W : cx - W / 2;
+  const justify = anchor === "start" ? "flex-start" : anchor === "end" ? "flex-end" : "center";
+  return (
+    <foreignObject x={x} y={cy - fontSize} width={W} height={fontSize * 2.4} opacity={reveal} style={{ overflow: "visible" }}>
+      <div
+        // eslint-disable-next-line react/no-danger-with-children
+        style={{ display: "flex", justifyContent: justify, alignItems: "center", width: "100%", height: "100%", color: fill, fontSize, lineHeight: 1.1, fontFamily }}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    </foreignObject>
+  );
+}
+
 function WordByWordText({
   lines,
   cx,
@@ -589,10 +659,16 @@ function OpRenderer({
     // board — each word strokes on with a horizontal wipe as the narration reaches it. Words
     // are spread across this op's `windowMs` (the span the voice spends here) so writing and
     // speaking land together.
+    const size = op.kind === "label" ? op.size : undefined;
+    const isLgHeading = size === "lg";
     const fontSize = paperSurface
-      ? isNote ? 18 : op.size === "lg" ? 34 : op.size === "sm" ? 20 : 27
-      : isNote ? 20 : op.size === "lg" ? 34 : op.size === "sm" ? 22 : 28;
-    const lines = isNote ? wrapText(op.text, paperSurface ? 50 : 44) : wrapText(op.text, op.size === "lg" ? 14 : paperSurface ? 24 : 20);
+      ? isNote ? 18 : isLgHeading ? 30 : size === "sm" ? 20 : 26
+      : isNote ? 20 : isLgHeading ? 30 : size === "sm" ? 22 : 27;
+    // Headings (lg) stay on ONE line — truncated, never wrapped — so a long title can't spill into
+    // the row below it (the overlap bug the wide handwriting font exposed). Notes/labels still wrap.
+    const lines = isLgHeading
+      ? [op.text.length > 24 ? `${op.text.slice(0, 23).trimEnd()}…` : op.text]
+      : isNote ? wrapText(op.text, paperSurface ? 46 : 42) : wrapText(op.text, paperSurface ? 22 : 18);
     const anchor = textAnchorFor(op.x);
     const cx = safeTextX(op.x, anchor);
     const cy = safeTextY(gy(op.y), fontSize, lines.length);
@@ -603,13 +679,32 @@ function OpRenderer({
         ? (darkInk ? "#fff7ed" : color || "#fff7ed")
         : darkInk ? "#f8fafc" : color;
     const textStroke = paperSurface ? "#ffffff" : "#020617";
-    const fontFamily = paperSurface
-      ? "'Chalkboard SE', 'Marker Felt', 'Bradley Hand', 'Comic Sans MS', 'Trebuchet MS', var(--font-body, Lexend, sans-serif)"
-      : isNote ? "var(--font-body, Lexend, sans-serif)" : "var(--font-display, 'Space Grotesk', sans-serif)";
-    const fontWeight = paperSurface ? (isNote ? 560 : 680) : isNote ? 500 : 800;
+    // Real hand-lettered board on EVERY machine (bundled Kalam) instead of the old system-font stack
+    // that fell back to a generic sans. Kalam has near-normal metrics so it doesn't overflow the
+    // layout the way the wider Caveat script did; headings just render heavier.
+    const fontFamily = "var(--font-board-hand, 'Kalam', 'Comic Sans MS', cursive)";
+    const fontWeight = paperSurface ? (isNote ? 400 : 700) : isNote ? 400 : 700;
     const strokeWidth = paperSurface ? (isNote ? 2.2 : 2.8) : isNote ? 4.5 : 5.5;
 
-    return (
+    // A tiny deterministic tilt (seeded, ±1.4°) so lines look hand-written, not typeset. Stable
+    // across re-renders because it's derived from the op seed, so nothing wobbles during playback.
+    const tilt = (hashSeed(seed) % 1000) / 1000 * 2.8 - 1.4;
+    const pivotX = safeTextX(op.x, anchor);
+    const pivotY = gy(op.y);
+
+    // Math ops (text containing $…$) render as real typeset KaTeX, not word-by-word plain text.
+    const inner = /\$[^$]+\$/.test(op.text) ? (
+      <MathText
+        text={op.text}
+        cx={cx}
+        cy={cy}
+        anchor={anchor}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+        fill={textFill}
+        localElapsed={localElapsed}
+      />
+    ) : (
       <WordByWordText
         lines={lines}
         cx={cx}
@@ -627,6 +722,7 @@ function OpRenderer({
         seed={seed}
       />
     );
+    return <g transform={`rotate(${tilt} ${pivotX} ${pivotY})`}>{inner}</g>;
   }
 
   if (op.kind === "image") {
@@ -1795,10 +1891,16 @@ function Paper({ surface }: { surface?: DrawScript["surface"] }) {
   if (surface === "paper") {
     return (
       <>
-        <div className="pointer-events-none absolute inset-0 bg-white" />
+        {/* Warm off-white like a real classroom whiteboard/paper, not sterile pure white. */}
+        <div className="pointer-events-none absolute inset-0" style={{ background: "#faf9f5" }} />
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #6b7280 1px, transparent 0)", backgroundSize: "30px 30px" }}
+        />
+        {/* Faint marker sheen so the surface reads like a real board under light. */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(circle at 50% 20%, rgba(0,0,0,0.015) 0%, rgba(0,0,0,0) 60%)" }}
         />
       </>
     );

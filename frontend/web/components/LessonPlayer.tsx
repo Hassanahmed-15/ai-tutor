@@ -1,18 +1,35 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
-import { playNarration, unlockAudio, cancelActiveNarrations, type NarrationHandle } from "@/lib/voice";
+import { unlockAudio } from "@/lib/voice";
+import { useVoiceDirector } from "@/lib/useVoiceDirector";
+import { useLessonMachine } from "@/lib/lessonMachine";
+import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
+import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
 import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
+import { useConfusionRadar } from "@/lib/useConfusionRadar";
+import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
+import { useEngagementScore } from "@/lib/useEngagementScore";
+import { EngagementMeter } from "./EngagementMeter";
+import { FocusPauseOverlay } from "./FocusPauseOverlay";
+import { DrawOverlay } from "./sketch/DrawOverlay";
+import { HighlightOverlay } from "./sketch/HighlightOverlay";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
+// Focus-pause (ported from the ADHD track): drift must persist this long before we react (so a
+// glance away doesn't stop the lesson), then the board freezes for a beat before offering Resume.
+const DRIFT_HOLD_MS = 2000;
+const FOCUS_HOLD_MS = 5000;
+/** The teacher breaks off to check the room roughly this often, the way a real one would. */
+const UNDERSTANDING_CHECK_EVERY = 4;
 
 // Client-side mirror of the server's REACT_ANIMATIONS_ENABLED kill switch (see
 // app/api/generate-lecture/route.ts). When off, beats never carry filled `code` anyway (the
@@ -87,7 +104,6 @@ export function LessonPlayer({
   mood?: string;
 }) {
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -98,34 +114,92 @@ export function LessonPlayer({
   const [captionLog, setCaptionLog] = useState<string[]>([]);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
-  const cancelRef = useRef<NarrationHandle | null>(null);
-  const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // Mirror `playing` into a ref so async narration callbacks (which capture the value at the time
-  // playback started) can read the LIVE pause state — otherwise a narration's onEnd that fires
-  // right as the user pauses would still auto-advance the beat using a stale playing=true.
-  const playingRef = useRef(playing);
+  const [exportingPdf, setExportingPdf] = useState(false);
+  // Confusion Radar inputs. Camera is OFF by default and purely optional (privacy: on-device only).
+  const [cameraOn, setCameraOn] = useState(false);
+  const [beatQuestions, setBeatQuestions] = useState(0);
+  const [beatRepeats, setBeatRepeats] = useState(0);
+  const [driftEvents, setDriftEvents] = useState(0);
+  // Camera is ASKED FOR explicitly before the lesson starts (consent-gated, on-device only).
+  const [cameraDecision, setCameraDecision] = useState<null | "granted" | "declined">(null);
+  const [askingCamera, setAskingCamera] = useState(false);
+  const [comprehensionAsked, setComprehensionAsked] = useState(false);
+  // Focus-pause flow: null = running, "stopped" = frozen during the hold, "ready" = awaiting Resume.
+  const [focusPause, setFocusPause] = useState<null | "stopped" | "ready">(null);
+  const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [lastInteractionAt, setLastInteractionAt] = useState(() => Date.now());
+  const [reexplaining, setReexplaining] = useState(false);
+  // Student drawing on the board (two-way board).
+  const [drawMode, setDrawMode] = useState(false);
+  const [askingDrawing, setAskingDrawing] = useState(false);
+  // Highlighter: sweep the marker over board text, then ask Aria to explain THAT in detail.
+  const [highlightMode, setHighlightMode] = useState(false);
+  const [highlightExplaining, setHighlightExplaining] = useState(false);
+  /** The exact text currently highlighted — fed into Aria's live context so voice questions work. */
+  const highlightedTextRef = useRef("");
+  /** Latest description of what the student drew — fed into Aria's context so she "sees" the board. */
+  const drawingContextRef = useRef("");
+  const [drawingSeen, setDrawingSeen] = useState("");
+  const [showMore, setShowMore] = useState(false);
+  /** Bumped to (re)start narration for the current beat when there's nothing to resume. */
+  const [startNonce, setStartNonce] = useState(0);
+  // Measure the floating header so the board is always padded clear of it, whatever its height.
+  const headerRef = useRef<HTMLElement | null>(null);
+  const [headerH, setHeaderH] = useState(76);
   useEffect(() => {
-    playingRef.current = playing;
-  }, [playing]);
+    const el = headerRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => setHeaderH(el.getBoundingClientRect().height));
+    ro.observe(el);
+    setHeaderH(el.getBoundingClientRect().height);
+    return () => ro.disconnect();
+  }, []);
+  const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const waitingOnCheckpointRef = useRef(false);
+  useEffect(() => {
+    waitingOnCheckpointRef.current = waitingOnCheckpoint;
+  }, [waitingOnCheckpoint]);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
   const deafMode = mode === "deaf";
+  // Confusion Radar: fuses checkpoint misses, replays, repeated questions and (optionally) the
+  // on-device attention signal into a per-beat "is this student lost?" score.
+  const attention = useAttentionMonitor(cameraOn);
+  // Count sustained drifts (only meaningful when the camera is on).
+  useEffect(() => {
+    if (cameraOn && attention.drifting) setDriftEvents((n) => n + 1);
+  }, [attention.drifting, cameraOn]);
+
+  const radar = useConfusionRadar(beat.id, {
+    checkpointAttempts,
+    repeats: beatRepeats,
+    questions: beatQuestions,
+    drifting: cameraOn ? attention.drifting : undefined,
+    engagement: cameraOn ? attention.engagement : undefined,
+  });
+  // Reset the per-beat signals whenever the beat changes.
+  useEffect(() => {
+    setBeatQuestions(0);
+    setBeatRepeats(0);
+    drawingContextRef.current = "";
+    setDrawingSeen("");
+    setComprehensionAsked(false);
+  }, [beat.id]);
+  // Adaptation 1: ease the pace as soon as confusion is detected (bounded so it never crawls).
+  useEffect(() => {
+    if (!radar.confused) return;
+    setRate((r) => Math.max(0.85, Number((r - 0.1).toFixed(2))));
+  }, [radar.confused]);
   // A pending generated asset (animation OR chalk board) must finish before the beat plays, so the
   // narration-synced reveal has real ops to draw. Treat both the same way for gating.
   const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
-
-  const stopVoice = useCallback(() => {
-    cancelRef.current?.cancel();
-    cancelRef.current = null;
-    setSpeaking(false);
-  }, []);
 
   // Shared side-chat. Asking a question pauses the lecture; closing the explanation lets the
   // narration effect re-run (chat.busy flips false) and resume the current beat.
   const chat = useLessonChat({
     topic: title,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
-    pausePlayer: stopVoice,
+    pausePlayer: () => machine.pause("user"),
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
@@ -141,11 +215,48 @@ export function LessonPlayer({
     beatRef.current = beat;
   }, [beat]);
 
+  // Full-lesson digest so the tutor knows the WHOLE video (every beat / the task-folder content),
+  // not just the beat the student is on. Sent once at session start.
+  const lessonOutline = useMemo(
+    () => beats.map((b, i) => `${i + 1}. ${b.title}${b.script ? `: ${b.script.slice(0, 200)}` : ""}`).join("\n"),
+    [beats],
+  );
+
   const tutor = useRealtimeTutor({
     topic: title,
-    getBeatContext: () => `${beatRef.current.title}: ${beatRef.current.script}`,
+    getBeatContext: () =>
+      `${beatRef.current.title}: ${beatRef.current.script}` +
+      (drawingContextRef.current ? `
+On the board the student has drawn: ${drawingContextRef.current}` : ""),
+    getLessonContext: () => lessonOutline,
     mood,
+    // Always-on mic: the session stays open for the whole lecture (no idle/cost auto-end) and the
+    // tutor can pause/resume the scripted narration via its lecture-control tools, so the student
+    // can interrupt by voice at any time (full-duplex barge-in) without pressing anything.
+    alwaysOn: true,
+    lectureControlTools: true,
     onBoardRequest: (board) => setLiveBoard(board),
+    // The student started talking: the chatbot is taking over, so the lecture freezes HERE and stays
+    // frozen. It does not come back until they press Resume or say so — see `requestResume`.
+    onStudentSpeechStarted: () => {
+      quiz.cancel(); // a question of the teacher's is moot once they've started asking their own
+      // Freeze the lecture and cater to the question; resume on her own once she's answered.
+      machine.enterChat({ resumeAfterAnswer: true });
+      // Repeated questions on one beat are a confusion signal (Confusion Radar).
+      setBeatQuestions((n) => n + 1);
+      setLastInteractionAt(Date.now());
+    },
+    // The tutor's pause_lecture / resume_lecture tools drive the scripted lecture.
+    onPauseLecture: () => machine.pause("user"),
+    // The student SAID to resume. If she's still finishing her sentence this is remembered and
+    // honoured on turn-complete, so the lecture never starts underneath her voice.
+    onResumeLecture: () => machine.requestResume(),
+    // Aria has stopped talking. The lecture does NOT resume on its own here — that auto-resume was
+    // the bug. The only thing that happens is honouring a resume the student already asked for.
+    onTutorTurnComplete: () => {
+      if (waitingOnCheckpointRef.current) return;
+      machine.flushDeferredResume();
+    },
     onTranscript: (role, text, final) => {
       // Finalized lines flow into the chat log so the live conversation shows up in the chat
       // panel (not a separate bottom bar). student -> "you", tutor -> "aria".
@@ -155,8 +266,49 @@ export function LessonPlayer({
     onSessionEnded: () => {
       setSessionActive(false);
       setLiveBoard(null);
-      // Resume the current beat where it paused.
-      setPlaying(true);
+      // Resume the current beat where it paused (only fires on error/explicit end in always-on mode).
+      machine.requestResume();
+    },
+  });
+
+  // ── The voice director and the lesson state machine ──────────────────────
+  // Everything above can ask for the lecture to stop or continue; only these two decide whether a
+  // sound actually plays. The director guarantees the teacher and Aria are never audible together;
+  // the machine guarantees the lecture only ever restarts through `requestResume`.
+  const voice = useVoiceDirector({
+    tutorSpeaking: tutor.speaking,
+    isChatbotSpeakingNow: tutor.isSpeaking,
+  });
+  const machine = useLessonMachine(voice);
+  const playing = machine.playing;
+
+  // Live engagement rate — same multi-factor score as the ADHD track. The camera is optional (see
+  // the Focus-sensing toggle); without it the rate runs on questions asked, checkpoint misses,
+  // replays and idle time, so it always shows a real number.
+  const engagement = useEngagementScore({
+    cameraEngagement: attention.engagement,
+    cameraDrifting: attention.drifting,
+    cameraActive: cameraOn && attention.ready && !attention.error,
+    driftEvents,
+    questionsAsked: beatQuestions,
+    checkpointAttempts,
+    lastInteractionAt,
+    active: playing,
+  });
+
+  // The teacher's own comprehension check. Answering correctly carries on; missing it stops the
+  // lecture and offers to go over the point again, rather than ploughing ahead.
+  const quiz = useTeacherQuiz({
+    voice,
+    setMicEnabled: tutor.setMicEnabled,
+    rate,
+    onPassed: () => {
+      setLastInteractionAt(Date.now());
+      machine.requestResume();
+    },
+    onFailed: () => {
+      setLastInteractionAt(Date.now());
+      machine.pause("wrong-answer");
     },
   });
 
@@ -172,15 +324,23 @@ export function LessonPlayer({
             ? "Listening — tap to end"
             : "";
 
+  // Aria took the floor while the lecture was running (a barge-in the VAD caught late, or her own
+  // acknowledgement). Freeze the lecture behind her AND arm auto-resume, so the moment she finishes
+  // the lecture continues on its own — she never leaves it stranded paused. (A drift nudge doesn't
+  // reach here: the drift handler pauses the lecture first, so modeRef is no longer "teaching".)
+  useEffect(() => {
+    if (tutor.speaking && machine.modeRef.current === "teaching") machine.enterChat({ resumeAfterAnswer: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tutor.speaking]);
+
   function startLiveTutor() {
-    // Single-speaker hand-off: silence all scripted TTS, freeze the player, then connect.
-    stopVoice();
-    cancelActiveNarrations();
+    // Single-speaker hand-off: the machine freezes the scripted TTS in place (so ending the call
+    // resumes mid-beat rather than replaying it), then connect.
     if (slideTimer.current) {
       clearTimeout(slideTimer.current);
       slideTimer.current = null;
     }
-    setPlaying(false);
+    machine.enterChat();
     setSessionActive(true);
     void tutor.start();
   }
@@ -192,7 +352,7 @@ export function LessonPlayer({
     // resume state directly so pressing "end call" always works, even in that edge case.
     setSessionActive(false);
     setLiveBoard(null);
-    setPlaying(true);
+    machine.requestResume();
   }
 
   // Drives each beat: show its slide briefly, then (for normal beats) flip to the board
@@ -202,26 +362,34 @@ export function LessonPlayer({
   // for checkpoints, which narrate right on the slide). This effect ONLY sets `stage` — it
   // never starts narration itself, so it can't race with the narration effect's cleanup.
   useEffect(() => {
-    if (!playing || sessionActive || stage !== "slide" || isCheckpoint || currentAnimationPending) return;
+    // Note: not gated on `sessionActive` — the always-on mic keeps the lecture playing in the
+    // background; pausing is driven by `playing` (set false when the student/tutor speaks), not by
+    // the session merely being open.
+    if (!playing || stage !== "slide" || isCheckpoint || currentAnimationPending) return;
     if (slideTimer.current) clearTimeout(slideTimer.current);
     slideTimer.current = setTimeout(() => setStage("board"), SLIDE_MS);
     return () => {
       if (slideTimer.current) clearTimeout(slideTimer.current);
     };
-  }, [index, playing, sessionActive, stage, isCheckpoint, currentAnimationPending]);
+  }, [index, playing, stage, isCheckpoint, currentAnimationPending]);
 
   // Effect 2: start narration exactly once per (beat, stage) — when a checkpoint's slide
   // appears, or once a normal beat reaches "board". Separate from effect 1 so flipping
   // `stage` here doesn't retrigger effect 1 and cancel narration mid-start.
   useEffect(() => {
-    if (!playing || chat.busy || sessionActive) return;
+    // Not gated on `sessionActive` (see effect 1) — while the live mic is open the scripted voice
+    // still narrates; it's silenced only when the tutor is actually speaking (the director does it).
+    // NOTE: the lesson mode is deliberately NOT a dependency of this effect. If it were, pausing
+    // would run the cleanup and CANCEL the narration, so resuming replayed the beat from the top.
+    // Pause/resume is handled by the effect below, which freezes the audio in place instead.
+    if (machine.modeRef.current !== "teaching" || chat.busy) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
     if (narrateOnBoard && currentAnimationPending) return;
 
     window.setTimeout(() => setDrawProgress(0.06), 0);
-    const handle = playNarration(beat.script, {
+    voice.speakAsTeacher(beat.script, {
       onStart: () => setSpeaking(true),
       onSentenceStart: (sentenceIndex, sentence, total) => {
         setSentenceCue({ index: sentenceIndex, text: sentence, total });
@@ -238,10 +406,9 @@ export function LessonPlayer({
       onProgress: (progress) => setDrawProgress(Math.max(0.06, progress)),
       onEnd: () => {
         setSpeaking(false);
-        cancelRef.current = null;
         // If playback was paused between the last cue and this onEnd firing, do NOT advance —
         // freeze on the current beat. Resuming re-runs the narration effect for this beat.
-        if (!playingRef.current) return;
+        if (machine.modeRef.current !== "teaching") return;
         setDrawProgress(1);
         if (isCheckpoint) {
           setWaitingOnCheckpoint(true);
@@ -253,14 +420,36 @@ export function LessonPlayer({
       onBlocked: () => setVoiceBlocked(true),
       rate,
     });
-    cancelRef.current = handle;
 
     return () => {
-      handle.cancel();
-      cancelRef.current = null;
+      voice.stopTeacher();
       setSpeaking(false);
     };
-  }, [index, playing, sessionActive, stage, isCheckpoint, currentAnimationPending, beat.script, rate, beats.length, chat.busy, deafMode]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, stage, isCheckpoint, currentAnimationPending, beat.script, rate, beats.length, chat.busy, deafMode, startNonce]);
+
+  // Pause/resume IN PLACE, driven by the ONE mode value. Leaving `teaching` freezes the audio (and
+  // with it the board reveal and sentence cue); returning to it continues from the exact same spot.
+  // When there's nothing resumable (nothing started yet, or the browser-TTS fallback), `startNonce`
+  // restarts the beat instead.
+  useEffect(() => {
+    if (machine.mode === "teaching") {
+      if (!voice.resumeTeacher()) setStartNonce((n) => n + 1);
+    } else {
+      voice.pauseTeacher();
+      setSpeaking(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [machine.mode]);
+
+  // Mic stays ON the whole time so the student can barge in mid-narration by voice. Self-triggering
+  // from the lecture's own TTS is suppressed by echoCancellation/noiseSuppression on the mic +
+  // semantic_vad. When the student barges in, the lecture pauses and stays paused (manual resume).
+  const setMicEnabled = tutor.setMicEnabled;
+  useEffect(() => {
+    if (!sessionActive) return;
+    setMicEnabled(true);
+  }, [sessionActive, setMicEnabled]);
 
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
@@ -294,31 +483,154 @@ export function LessonPlayer({
 
   function startLesson() {
     unlockAudio(); // must run inside this click handler — that's what satisfies the autoplay gate
+    // ALWAYS open the live mic on this click, BEFORE anything else. This click is the user gesture
+    // the browser requires for getUserMedia, and the camera prompt below returns early — gating the
+    // mic behind that prompt is what made it look like the always-on mic had been removed.
+    if (REALTIME_TUTOR_ENABLED && !sessionActive) {
+      setSessionActive(true);
+      void tutor.start();
+    }
+    // Ask about the camera the first time. The lesson doesn't begin until they choose; declining is
+    // fine — engagement then runs purely on behavioural signals.
+    if (cameraDecision === null) {
+      setAskingCamera(true);
+      return;
+    }
     setVoiceBlocked(false);
-    setPlaying(true);
+    setLastInteractionAt(Date.now());
+    machine.startTeaching();
   }
+  // Sustained attention drift auto-pauses the lecture (camera-only signal, so this is inert unless
+  // the student allowed the camera). The tutor says one warm line when it's live; otherwise the
+  // board freezes, holds, then offers Resume. Never resumes on its own.
+  useEffect(() => {
+    if (!cameraOn || !playing || focusPause || isCheckpoint || drawMode || !attention.drifting) return;
+    const trigger = setTimeout(() => {
+      machine.pause("focus");
+      if (sessionActive && REALTIME_TUTOR_ENABLED && tutor.status !== "idle") {
+        tutor.say(
+          "The student's attention just drifted. Say ONE short, warm line telling them their focus is " +
+            "drifting so you're pausing the lecture, and to tell you when they want to resume. Do NOT " +
+            "offer a recap or ask another question.",
+        );
+        setFocusPause("ready");
+      } else {
+        setFocusPause("stopped");
+        if (holdTimer.current) clearTimeout(holdTimer.current);
+        holdTimer.current = setTimeout(() => setFocusPause("ready"), FOCUS_HOLD_MS);
+      }
+    }, DRIFT_HOLD_MS);
+    return () => clearTimeout(trigger);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attention.drifting, cameraOn, playing, focusPause, isCheckpoint, drawMode, sessionActive]);
+
+  useEffect(() => () => { if (holdTimer.current) clearTimeout(holdTimer.current); }, []);
+
+  function resumeFromFocusPause() {
+    if (holdTimer.current) clearTimeout(holdTimer.current);
+    setLastInteractionAt(Date.now());
+    setFocusPause(null);
+    machine.requestResume(); // guarded: never starts under Aria's voice
+  }
+
+  /** Resolve the camera prompt, then actually begin the lesson either way. */
+  function decideCamera(granted: boolean) {
+    setCameraDecision(granted ? "granted" : "declined");
+    setCameraOn(granted);
+    setAskingCamera(false);
+    setVoiceBlocked(false);
+    setLastInteractionAt(Date.now());
+    machine.startTeaching();
+    if (REALTIME_TUTOR_ENABLED && !sessionActive) {
+      setSessionActive(true);
+      void tutor.start();
+    }
+  }
+
+  /**
+   * A short spoken check-in in the TEACHER's voice that does NOT stop the lecture. The "utterance"
+   * slot freezes the running narration for just the ~3s the line takes, then `resumeTeacher()`
+   * continues it from exactly where it froze — a gentle nudge, never a blocking wait, so it can never
+   * leave the lecture stranded paused. Returns false (and does nothing) if Aria holds the channel.
+   */
+  const speakCheckIn = useCallback(
+    (text: string) =>
+      voice.speakAsTeacher(
+        text,
+        {
+          onStart: () => setSpeaking(true),
+          onEnd: () => { setSpeaking(false); voice.resumeTeacher(); },
+          onBlocked: () => { setSpeaking(false); voice.resumeTeacher(); },
+          rate,
+        },
+        "utterance",
+      ),
+    [voice, rate],
+  );
+
+  /**
+   * The two engagement bands the student asked for:
+   *   below 30 — properly checked out. Fully pause the lecture; nothing continues until they resume.
+   *   30 to 50 — still here but drifting. The TEACHER gives a quick spoken nudge and the lecture
+   *              KEEPS GOING (it only pauses for the ~3s line), never a blocking question.
+   */
+  useEffect(() => {
+    if (!engagement.low || !playing || comprehensionAsked || isCheckpoint || drawMode || focusPause) return;
+    if (voice.isChatbotSpeaking()) return; // she has the floor — we'll catch it on the next tick
+
+    if (engagement.critical) {
+      // Below 30: properly checked out — pause the video automatically.
+      setComprehensionAsked(true);
+      machine.pause("engagement");
+      return;
+    }
+    // 30-50: a quick nudge that keeps the lecture going. Only mark it "done" if it actually spoke —
+    // otherwise a momentary refusal would burn the one-shot flag and the check would never happen.
+    if (speakCheckIn(`Quick check — are you still following this? Let's stay with it, this part matters.`)) {
+      setComprehensionAsked(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [engagement.low, engagement.critical, playing, comprehensionAsked, isCheckpoint, drawMode, focusPause]);
+
+  // The periodic "is this landing?" — every few sections, the way a real teacher checks the room.
+  // Deliberately skips checkpoint beats, which already stop and ask something of their own.
+  useEffect(() => {
+    if (!playing || isCheckpoint || comprehensionAsked || drawMode || focusPause) return;
+    if (index === 0 || (index + 1) % UNDERSTANDING_CHECK_EVERY !== 0) return;
+    if (stage !== "board" || drawProgress < 0.85) return; // wait until the section has been taught
+    if (voice.isChatbotSpeaking()) return;
+    if (speakCheckIn(`Quick check — is this making sense so far? Let's keep going.`)) {
+      setComprehensionAsked(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, stage, drawProgress, playing, isCheckpoint, comprehensionAsked, drawMode, focusPause]);
+
   function togglePlay() {
+    setLastInteractionAt(Date.now());
     if (playing) {
-      // Pausing: stop narration immediately so audio + the sentence-cue timeline halt at once,
-      // and cancel the slide→board timer so the beat can't flip stage while paused.
-      stopVoice();
+      // Pausing: freeze narration in place (position kept, so Resume continues rather than
+      // replaying the beat) and cancel the slide→board timer so the stage can't flip while paused.
       if (slideTimer.current) {
         clearTimeout(slideTimer.current);
         slideTimer.current = null;
       }
+      machine.pause("user");
     } else {
-      unlockAudio();
+      machine.requestResume(); // guarded: defers if Aria is still speaking
     }
-    setPlaying((p) => !p);
   }
   function retryVoice() {
     unlockAudio();
     setVoiceBlocked(false);
     setStage("slide");
-    setPlaying(true);
+    machine.requestResume();
   }
   function goTo(i: number) {
-    stopVoice();
+    setLastInteractionAt(Date.now());
+    quiz.cancel();
+    voice.stopTeacher();
+    // Going back over a beat you've already seen is a confusion signal (Confusion Radar).
+    if (i <= index) setBeatRepeats((n) => n + 1);
     if (slideTimer.current) clearTimeout(slideTimer.current);
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
@@ -328,10 +640,11 @@ export function LessonPlayer({
     if (deafMode) setCaptionLog([]);
     setIndex(i);
     setStage("slide");
-    setPlaying(true);
+    machine.startTeaching();
   }
   function restart() {
-    stopVoice();
+    quiz.cancel();
+    voice.stopTeacher();
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
     setCheckpointAttempts(0);
@@ -340,8 +653,199 @@ export function LessonPlayer({
     if (deafMode) setCaptionLog([]);
     setIndex(0);
     setStage("slide");
-    setPlaying(true);
+    machine.startTeaching();
   }
+  /**
+   * Adaptation 2: re-teach the CURRENT beat with a deliberately different strategy (analogy /
+   * worked example / plainer words) and draw a fresh board. Reuses /api/explain and renders through
+   * the same `liveBoard` → <ExplainOverlay> path the live tutor uses.
+   */
+  async function explainDifferently() {
+    if (reexplaining) return;
+    setReexplaining(true);
+    radar.dismiss();
+    quiz.cancel();
+    machine.pause("user");
+    try {
+      const res = await fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: title,
+          beatContext: `${beat.title}: ${beat.script}`,
+          question:
+            "I didn't follow that. Re-teach this SAME point a DIFFERENT way than the script above — " +
+            "use a concrete analogy or a small worked example, plainer words, and a fresh simple board. " +
+            "Do not repeat the original wording.",
+        }),
+      });
+      if (!res.ok) throw new Error("explain failed");
+      const board = (await res.json()) as RealtimeBoard;
+      if (!board?.script) throw new Error("empty explanation");
+      setLiveBoard(board);
+      // An "utterance": it plays over the frozen beat, so continuing afterwards still picks up
+      // where the section stopped rather than replaying it.
+      voice.speakAsTeacher(
+        board.script,
+        {
+          onStart: () => setSpeaking(true),
+          onEnd: () => setSpeaking(false),
+          onBlocked: () => setVoiceBlocked(true),
+          rate,
+        },
+        "utterance",
+      );
+    } catch {
+      /* leave the lecture paused; the student can resume manually */
+    } finally {
+      setReexplaining(false);
+    }
+  }
+
+  /** Enter/leave draw mode. Entering pauses the lecture so the student can sketch in peace. */
+  function toggleDrawMode() {
+    setDrawMode((on) => {
+      if (!on) machine.pause("draw");
+      return !on;
+    });
+  }
+
+  /** Enter/leave highlight mode. Entering pauses the lecture so the board is still while marking. */
+  function toggleHighlightMode() {
+    setHighlightMode((on) => {
+      if (!on) machine.pause("draw");
+      else highlightedTextRef.current = "";
+      return !on;
+    });
+  }
+
+  /** The highlighted text changed — keep Aria's live context current so she can be asked by voice. */
+  function handleHighlightChange(text: string) {
+    highlightedTextRef.current = text;
+    if (text.trim()) {
+      tutor.addContext(
+        `[Board note — the student just highlighted this on the board: "${text}"] ` +
+          "If they ask you to explain it, explain THAT specifically, in detail.",
+      );
+    }
+  }
+
+  /**
+   * Explain exactly what the student highlighted — by VOICE, using the live chatbot's context. No new
+   * board/animation is generated (the student asked for this): the highlighted text is handed to the
+   * chatbot and it explains THAT in its own voice. The lecture stays paused while she talks (the
+   * director freezes it), and the student resumes when ready.
+   */
+  async function explainHighlighted(text: string) {
+    const focus = text.trim();
+    if (!focus || highlightExplaining) return;
+    setHighlightMode(false);
+    machine.pause("draw");
+    // Make sure the chatbot has the highlighted text as context, then ask it to explain by voice.
+    tutor.addContext(`The student highlighted this on the board: "${focus}".`);
+    if (REALTIME_TUTOR_ENABLED && sessionActive && tutor.status !== "idle") {
+      tutor.say(
+        `The student highlighted "${focus}" on the board and wants it explained in detail. Explain ` +
+          `THAT specifically and clearly, out loud — what it means, why it matters, and a quick ` +
+          `example. Do NOT draw a board or call any tools; just explain it in your voice.`,
+      );
+      return;
+    }
+    // Fallback when the live session isn't running: speak a focused explanation, still WITHOUT drawing
+    // a board/animation (never call setLiveBoard here).
+    setHighlightExplaining(true);
+    try {
+      const res = await fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: title,
+          beatContext: `${beat.title}: ${beat.script}`,
+          textOnly: true,
+          question:
+            `Explain this specific thing the student highlighted, in detail but briefly, in plain ` +
+            `spoken words — what it means, why it matters, a quick example: "${focus}".`,
+        }),
+      });
+      if (!res.ok) throw new Error("explain failed");
+      const board = (await res.json()) as RealtimeBoard;
+      if (board?.script) {
+        voice.speakAsTeacher(
+          board.script,
+          {
+            onStart: () => setSpeaking(true),
+            onEnd: () => setSpeaking(false),
+            onBlocked: () => setVoiceBlocked(true),
+            rate,
+          },
+          "utterance",
+        );
+      }
+    } catch {
+      /* leave the lecture paused; the student can resume manually */
+    } finally {
+      setHighlightExplaining(false);
+    }
+  }
+
+  /**
+   * The student's sketch is read automatically (no "send" button) and pushed into Aria's context,
+   * so they can simply ASK her about it out loud and she already knows what's on the board.
+   */
+  async function handleDrawingChange(imageDataUrl: string) {
+    if (askingDrawing) return;
+    setAskingDrawing(true);
+    try {
+      const res = await fetch("/api/ask-drawing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: imageDataUrl, topic: title, describeOnly: true }),
+      });
+      if (!res.ok) throw new Error("describe failed");
+      const { description } = (await res.json()) as { description?: string };
+      if (!description) return;
+      drawingContextRef.current = description;
+      setDrawingSeen(description);
+      // Tell the LIVE session right now (it can't see the screen), so the very next thing the
+      // student says is answered with the sketch in mind.
+      tutor.addContext(
+        `[Board note — the student just drew this on the board: ${description}] ` +
+          "Keep it in mind; if they ask about it, refer to what they actually drew.",
+      );
+    } catch {
+      /* a failed read just means Aria doesn't have the sketch yet — harmless */
+    } finally {
+      setAskingDrawing(false);
+    }
+  }
+
+  /** Build a revision PDF (board image + transcript per beat) and save it. */
+  async function downloadPdf() {
+    if (exportingPdf) return;
+    setExportingPdf(true);
+    try {
+      const res = await fetch("/api/export-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: title, beats }),
+      });
+      if (!res.ok) throw new Error("export failed");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${(title || "lesson").replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").slice(0, 60) || "lesson"}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch {
+      setVoiceBlocked(false); // no-op guard; failure is surfaced by the button returning to idle
+    } finally {
+      setExportingPdf(false);
+    }
+  }
+
   function skipForward() {
     if (index < beats.length - 1) goTo(index + 1);
   }
@@ -362,8 +866,13 @@ export function LessonPlayer({
       <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(rgba(120,200,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(120,200,255,0.1) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
 
       <div className="absolute inset-0">
-        {/* Board + side chat, with room at top for the floating header */}
-        <div className="absolute inset-2 grid gap-2 pt-[84px] lg:inset-4 lg:gap-3 lg:pt-[92px] xl:grid-cols-[minmax(0,1fr)_340px]">
+        {/* Board + side chat. Top padding is MEASURED from the floating header rather than a fixed
+            84px guess — a wrapped header (long title, narrow window, extra controls) used to grow
+            past the guess and cover the top of the board. */}
+        <div
+          className="absolute inset-2 grid gap-2 lg:inset-4 lg:gap-3 xl:grid-cols-[minmax(0,1fr)_340px]"
+          style={{ paddingTop: headerH + 12 }}
+        >
           <section className="relative min-h-0 overflow-hidden rounded-xl border border-[var(--hud-line)] bg-slate-950/80 shadow-[0_32px_110px_rgba(0,0,0,0.34)]">
             <HudCorners />
             {stage === "slide" || isCheckpoint ? (
@@ -378,6 +887,24 @@ export function LessonPlayer({
             ) : (
               <div className="beat-fade-in relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+                {/* Two-way board: student sketches over the lesson board, then asks Aria about it. */}
+                {drawMode && (
+                  <DrawOverlay
+                    onDrawingChange={handleDrawingChange}
+                    onClose={() => setDrawMode(false)}
+                    busy={askingDrawing}
+                    seenLabel={drawingSeen}
+                  />
+                )}
+                {/* Highlighter: sweep the marker over board text and ask Aria to explain THAT. */}
+                {highlightMode && (
+                  <HighlightOverlay
+                    onHighlight={handleHighlightChange}
+                    onExplain={(text) => void explainHighlighted(text)}
+                    onClose={() => setHighlightMode(false)}
+                    busy={highlightExplaining}
+                  />
+                )}
                 {deafMode && (
                   <div className="pointer-events-none absolute left-3 top-3 z-40 flex flex-wrap items-center gap-2 lg:left-5 lg:top-5">
                     <div className="flex items-center gap-2 rounded-full border border-[var(--accent-deaf)]/35 bg-black/70 px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] text-[var(--accent-deaf)] shadow-[0_0_28px_var(--accent-deaf-glow)] backdrop-blur-md">
@@ -414,10 +941,137 @@ export function LessonPlayer({
               <ExplainOverlay board={chat.explainBoard} progress={chat.drawProgress} onClose={chat.closeExplanation} />
             )}
 
-            {/* Live-tutor board (drawn by the realtime show_board tool). Closing it just clears the
-                board — the live session stays active and the tutor keeps talking. */}
+            {/* Live-tutor / explanation board. Closing it must ALSO cut whatever is narrating it —
+                both the chatbot's own audio and any teacher utterance — so the audio doesn't keep
+                playing after you exit the animation. */}
             {liveBoard && (
-              <ExplainOverlay board={liveBoard} progress={1} onClose={() => setLiveBoard(null)} />
+              <ExplainOverlay
+                board={liveBoard}
+                progress={1}
+                onClose={() => { tutor.silence(); voice.stopUtterance(); setLiveBoard(null); }}
+              />
+            )}
+
+            {/* Focus-pause overlay: freezes the board after sustained drift, then offers Resume. */}
+            {focusPause && (
+              <FocusPauseOverlay
+                state={focusPause}
+                onResume={resumeFromFocusPause}
+                accentVar="rgb(45 212 191)"
+                accentBrightVar="rgb(94 234 212)"
+                accentGlowVar="rgba(45,212,191,0.45)"
+              />
+            )}
+
+            {/* Camera consent — asked explicitly BEFORE the lesson starts. Declining is a
+                first-class choice: engagement then runs on behavioural signals only. */}
+            {askingCamera && (
+              <div className="absolute inset-0 z-50 grid place-items-center bg-slate-950/85 p-8 text-center backdrop-blur-md">
+                <div className="max-w-lg">
+                  <p className="hud-eyebrow text-[0.7rem] tracking-[0.2em] text-cyan-200">Before we start</p>
+                  <h2 className="mt-4 text-3xl font-black leading-tight text-white">
+                    Can I use your camera to notice when you lose focus?
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-md text-sm font-medium leading-6 text-white/60">
+                    It runs <strong className="text-white/80">entirely on your device</strong> — no video is ever
+                    uploaded or stored. It only helps me tell when you&rsquo;ve zoned out so I can check in.
+                    You can say no; I&rsquo;ll measure engagement from how you interact instead.
+                  </p>
+                  <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+                    <button onClick={() => decideCamera(true)} className="hud-btn-primary rounded-full px-6 py-3 text-sm font-black">
+                      Allow camera
+                    </button>
+                    <button
+                      onClick={() => decideCamera(false)}
+                      className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-bold text-white/80 transition hover:bg-white/10"
+                    >
+                      Continue without it
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* The teacher's own question, on screen while she waits for the answer. */}
+            <QuizPrompt
+              quiz={quiz}
+              accentVar="rgb(94 234 212)"
+              onSkip={() => {
+                setLastInteractionAt(Date.now());
+                quiz.cancel();
+                machine.requestResume();
+              }}
+            />
+
+            {/* Missed her question: the lecture stays STOPPED and offers to go over the point again,
+                rather than carrying on regardless. */}
+            {machine.pauseReason === "wrong-answer" && quiz.phase === "idle" && (
+              <div className="absolute bottom-16 left-1/2 z-30 flex w-[min(92%,34rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-3 rounded-2xl border border-amber-300/30 bg-slate-950/92 px-5 py-3 text-center shadow-xl backdrop-blur">
+                <p className="w-full text-sm font-black text-amber-100">
+                  Let&rsquo;s go over {beat.title.toLowerCase()} again before we move on.
+                </p>
+                <button
+                  onClick={() => { setLastInteractionAt(Date.now()); void explainDifferently(); }}
+                  className="rounded-full bg-amber-300/20 px-3 py-1 text-xs font-black text-amber-50 transition hover:bg-amber-300/30"
+                  disabled={reexplaining}
+                >
+                  {reexplaining ? "Rethinking…" : "Explain it differently"}
+                </button>
+                <button
+                  onClick={() => { setLastInteractionAt(Date.now()); machine.requestResume(); }}
+                  className="rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-black text-emerald-100 transition hover:bg-emerald-400/30"
+                >
+                  I&rsquo;ve got it — keep going
+                </button>
+              </div>
+            )}
+
+            {/* Always-available way out of the current section — notably an animation, which
+                otherwise fills the board with no exit. Sits on the board, clear of the header. */}
+            {hasStarted && !drawMode && !highlightMode && index < beats.length - 1 && (
+              <button
+                onClick={skipForward}
+                title="Skip this section"
+                className="absolute bottom-4 right-4 z-30 rounded-full border border-white/15 bg-slate-950/80 px-4 py-2 text-xs font-bold text-white/80 shadow-lg backdrop-blur transition hover:bg-slate-900 hover:text-white"
+              >
+                Skip section ⏭
+              </button>
+            )}
+
+            {/* Confusion Radar offer — floats OVER the board (bottom-left) rather than living in the
+                header, so it can never widen/wrap the header and cover the board. The pace has
+                already eased automatically; the student chooses whether to take the re-explain. */}
+            {radar.confused && (
+              <div className="absolute bottom-4 left-4 z-30 flex max-w-[min(92%,30rem)] items-center gap-2 rounded-2xl border border-amber-300/30 bg-slate-950/90 px-4 py-2.5 text-sm text-amber-100 shadow-xl backdrop-blur">
+                <span className="font-semibold">Looks like {radar.reason}.</span>
+                <button
+                  onClick={explainDifferently}
+                  disabled={reexplaining}
+                  className="shrink-0 rounded-full bg-amber-300/20 px-3 py-1 text-xs font-black text-amber-50 transition hover:bg-amber-300/30 disabled:opacity-50"
+                >
+                  {reexplaining ? "Rethinking…" : "Explain it differently"}
+                </button>
+                <button
+                  onClick={radar.dismiss}
+                  className="shrink-0 rounded-full px-1.5 py-1 text-xs font-bold text-amber-100/70 hover:text-amber-50"
+                  aria-label="Dismiss"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
+            {/* When Aria has been talking, the lecture is PAUSED and waits for a manual Resume so the
+                two voices never overlap. Show a clear prompt (checkpoints have their own UI). */}
+            {sessionActive && hasStarted && !playing && !waitingOnCheckpoint && quiz.phase === "idle" && machine.pauseReason !== "wrong-answer" && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center">
+                <button
+                  onClick={() => machine.requestResume()}
+                  className="pointer-events-auto rounded-full border border-cyan-200/30 bg-slate-950/85 px-6 py-3 text-sm font-bold text-cyan-100 shadow-lg backdrop-blur transition hover:bg-slate-900"
+                >
+                  {tutor.speaking ? "Aria is talking…" : "▶ Resume the lecture"}
+                </button>
+              </div>
             )}
           </section>
 
@@ -453,7 +1107,10 @@ export function LessonPlayer({
         </div>
 
         {/* Header: avatar w/ progress ring, status, title — and the new controls (speed, skip) */}
-        <header className="absolute left-4 right-4 top-4 z-50 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--hud-line)] bg-slate-950/76 px-5 py-3.5 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl lg:left-6 lg:right-6 lg:top-6">
+        <header
+          ref={headerRef}
+          className="absolute left-4 right-4 top-4 z-50 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--hud-line)] bg-slate-950/76 px-4 py-2.5 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl lg:left-6 lg:right-6 lg:top-6"
+        >
           <HudCorners />
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
@@ -469,36 +1126,72 @@ export function LessonPlayer({
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={cycleRate}
-              title="Playback speed"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-black tabular-nums text-white/80 transition hover:bg-white/10"
-            >
-              {rate}×
-            </button>
-            <button
-              onClick={skipForward}
-              disabled={index >= beats.length - 1}
-              title="Skip to next beat"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-black text-white/80 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30"
-            >
-              Skip ⏭
-            </button>
+          {/* Only Play/Pause + a single ⋯ button live in the header, so it stays tiny and never
+              covers the board. Everything else lives in the menu that ⋯ opens. */}
+          <div className="flex flex-nowrap items-center gap-1.5">
+            {hasStarted && <EngagementMeter engagement={engagement} accent="bg-emerald-400" />}
             <button
               onClick={hasStarted ? togglePlay : startLesson}
-              className="hud-btn-primary rounded-full px-6 py-2.5 text-sm font-black"
+              className="hud-btn-primary rounded-full px-5 py-2 text-xs font-black"
             >
-              {!hasStarted ? "Start lecture ▶" : playing ? "Pause ❙❙" : "Resume ▶"}
+              {!hasStarted ? "Start ▶" : playing ? "Pause ❙❙" : "Resume ▶"}
             </button>
-            <button onClick={restart} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
-              Restart
-            </button>
-            {onExit && (
-              <button onClick={onExit} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
-                Exit
+            <div className="relative">
+              <button
+                onClick={() => setShowMore((v) => !v)}
+                title="Lesson controls"
+                aria-label="Lesson controls"
+                aria-expanded={showMore}
+                className={`grid size-9 place-items-center rounded-full border text-base transition ${
+                  showMore ? "border-cyan-300/40 bg-cyan-300/15 text-cyan-100" : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
+                }`}
+              >
+                ⋯
               </button>
-            )}
+              {showMore && (
+                <>
+                  {/* click-away catcher */}
+                  <button className="fixed inset-0 z-40 cursor-default" aria-hidden onClick={() => setShowMore(false)} tabIndex={-1} />
+                  <div className="absolute right-0 z-50 mt-2 w-60 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-1.5 shadow-2xl backdrop-blur-xl">
+                    <MenuItem onClick={() => { setShowMore(false); cycleRate(); }} hint="Playback speed">
+                      Speed: {rate}×
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => { setShowMore(false); toggleDrawMode(); }}
+                      active={drawMode}
+                      hint="Sketch on the board — Aria sees it"
+                    >
+                      {drawMode ? "Stop drawing" : "Draw on the board"}
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => { setShowMore(false); toggleHighlightMode(); }}
+                      active={highlightMode}
+                      hint="Mark a term — Aria explains it in detail"
+                    >
+                      {highlightMode ? "Stop highlighting" : "Highlight & explain"}
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => { setShowMore(false); skipForward(); }}
+                      disabled={index >= beats.length - 1}
+                    >
+                      Skip to next section
+                    </MenuItem>
+                    <MenuItem onClick={() => { setShowMore(false); restart(); }}>Restart lesson</MenuItem>
+                    <MenuItem onClick={() => { setShowMore(false); void downloadPdf(); }} disabled={exportingPdf}>
+                      {exportingPdf ? "Building PDF…" : "Download PDF"}
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => setCameraOn((c) => !c)}
+                      hint="On-device only — never uploaded"
+                      active={cameraOn}
+                    >
+                      {cameraOn ? "Focus sensing: on" : "Focus sensing: off"}
+                    </MenuItem>
+                    {onExit && <MenuItem onClick={() => { setShowMore(false); onExit(); }}>Exit lesson</MenuItem>}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </header>
 
@@ -514,6 +1207,34 @@ export function LessonPlayer({
         )}
       </div>
     </main>
+  );
+}
+
+/** One row in the header's "More" menu — keeps the floating header to a single compact line. */
+function MenuItem({
+  children,
+  onClick,
+  disabled,
+  hint,
+  active,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  disabled?: boolean;
+  hint?: string;
+  active?: boolean;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`flex w-full flex-col items-start gap-0.5 rounded-xl px-3 py-2 text-left text-sm font-semibold transition disabled:opacity-50 ${
+        active ? "bg-cyan-300/10 text-cyan-100" : "text-white/85 hover:bg-white/10"
+      }`}
+    >
+      <span>{children}</span>
+      {hint && <span className="text-[11px] font-medium text-white/45">{hint}</span>}
+    </button>
   );
 }
 
