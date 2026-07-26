@@ -87,6 +87,7 @@ type DrawOp =
       /** Optional reference to a provided source asset (for Suprnotes/PPTX imports). When present,
        *  the API hydrates `src` from the supplied asset instead of generating a new image. */
       assetId?: string;
+      credit?: { title: string; creator: string; license: string; sourceUrl: string; provider?: string };
       src?: string;
       x: number;
       y: number;
@@ -140,7 +141,7 @@ const INK = "#1e293b";
 const STROKE_WINDOW = 700; // how long an op takes to draw in
 const TEXT_PAD_X = 48;
 const TEXT_PAD_Y = 18;
-const INITIAL_SYNC_PROGRESS = 0.06;
+const INITIAL_SYNC_PROGRESS = 0.001;
 
 const gx = (x: number) => (x / 100) * VB_W;
 const gy = (y: number) => (y / 100) * VB_H;
@@ -212,9 +213,13 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
           ? visibleElapsed < t.op.endAt * duration + 300
           : t.op.kind === "scene" && typeof t.op.endAt === "number"
             ? visibleElapsed < t.op.endAt * duration + 300
-          : visibleElapsed - t.startMs < STROKE_WINDOW
+          : t.op.kind === "label" || t.op.kind === "note" || t.op.kind === "callout"
+            ? visibleElapsed - t.startMs < t.windowMs
+            : visibleElapsed - t.startMs < STROKE_WINDOW
     );
-  const penAnchor = drawingNow ? anchorOf(drawingNow.op, visibleElapsed, drawingNow.startMs, duration) : null;
+  const penAnchor = drawingNow
+    ? anchorOf(drawingNow.op, visibleElapsed, drawingNow.startMs, drawingNow.windowMs, duration, paperSurface)
+    : null;
   const progressValue = Math.min(1, visibleElapsed / duration);
 
   return (
@@ -286,12 +291,15 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
 
 /** Where the pen should sit while an op draws (its "starting nib" point, or its current
  *  travel position for a morph in progress). */
-function anchorOf(op: DrawOp, elapsed: number, startMs: number, duration: number): Pt {
+function anchorOf(op: DrawOp, elapsed: number, startMs: number, windowMs: number, duration: number, paperSurface: boolean): Pt {
   switch (op.kind) {
+    case "label":
+    case "note":
+      return textPenAnchor(op, elapsed - startMs, windowMs, paperSurface);
     case "arrow":
       return { x: op.x1, y: op.y1 };
     case "callout":
-      return { x: op.x, y: op.y };
+      return calloutPenAnchor(op, elapsed - startMs, windowMs, paperSurface);
     case "shape":
       if (op.points && op.points.length) return op.points[0];
       return { x: op.x, y: op.y };
@@ -351,6 +359,100 @@ function wrapText(text: string, maxChars: number): string[] {
   return lines.slice(0, 3);
 }
 
+type WordBox = { text: string; lineIndex: number; xLeft: number; width: number };
+type TimedWordBox = WordBox & { startMs: number; writeMs: number; endMs: number };
+
+function layoutWords(lines: string[], cx: number, anchor: "start" | "middle" | "end", fontSize: number): WordBox[] {
+  // Chalkboard/Marker Felt glyphs are substantially narrower than a monospace estimate. The
+  // old 0.72 multiplier made separately written words look artificially scattered.
+  const charW = fontSize * 0.62;
+  const spaceW = charW * 0.48;
+  const boxes: WordBox[] = [];
+  lines.forEach((line, lineIndex) => {
+    const words = line.split(" ").filter(Boolean);
+    const lineWidth = words.reduce((sum, word) => sum + word.length * charW, 0) + Math.max(0, words.length - 1) * spaceW;
+    let penX = anchor === "start" ? cx : anchor === "end" ? cx - lineWidth : cx - lineWidth / 2;
+    for (const word of words) {
+      const width = word.length * charW;
+      boxes.push({ text: word, lineIndex, xLeft: penX, width });
+      penX += width + spaceW;
+    }
+  });
+  return boxes;
+}
+
+function timeWords(boxes: WordBox[], windowMs: number): TimedWordBox[] {
+  if (!boxes.length) return [];
+  const weights = boxes.map((box, index) => {
+    const writing = Math.max(0.8, Math.min(2.8, box.text.length * 0.28));
+    const naturalVariation = 0.92 + ((box.text.length * 17 + index * 11) % 19) / 100;
+    const pause = /[.!?]$/.test(box.text) ? 0.7 : /[,;:]$/.test(box.text) ? 0.3 : 0.1;
+    return writing * naturalVariation + pause;
+  });
+  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+  let cursor = 0;
+  return boxes.map((box, index) => {
+    const slotMs = (weights[index] / totalWeight) * windowMs;
+    const pauseRatio = /[.!?]$/.test(box.text) ? 0.24 : /[,;:]$/.test(box.text) ? 0.13 : 0.06;
+    // A short word slot must still finish before the next word starts. Previously the 105ms
+    // minimum could exceed `slotMs`, leaving the final glyph permanently inside its wipe mask.
+    const writeMs = Math.min(slotMs * 0.94, Math.max(42, slotMs * (1 - pauseRatio)));
+    const timed = { ...box, startMs: cursor, writeMs, endMs: cursor + slotMs };
+    cursor += slotMs;
+    return timed;
+  });
+}
+
+function textPenAnchor(op: Extract<DrawOp, { kind: "label" | "note" }>, localElapsed: number, windowMs: number, paperSurface: boolean): Pt {
+  const isNote = op.kind === "note";
+  const fontSize = paperSurface
+    ? isNote ? 18 : op.size === "lg" ? 34 : op.size === "sm" ? 20 : 27
+    : isNote ? 20 : op.size === "lg" ? 34 : op.size === "sm" ? 22 : 28;
+  const lines = isNote
+    ? wrapText(op.text, paperSurface ? 50 : 44)
+    : wrapText(op.text, op.size === "lg" ? 14 : paperSurface ? 24 : 20);
+  const anchor = textAnchorFor(op.x);
+  const cx = safeTextX(op.x, anchor);
+  const cy = safeTextY(gy(op.y), fontSize, lines.length);
+  const words = timeWords(layoutWords(lines, cx, anchor, fontSize), windowMs);
+  const active = words.find((word) => localElapsed >= word.startMs && localElapsed < word.endMs) ?? words.at(-1);
+  if (!active) return { x: op.x, y: op.y };
+  const strokeProgress = clamp01((localElapsed - active.startMs) / active.writeMs);
+  return {
+    x: ((active.xLeft + active.width * strokeProgress) / VB_W) * 100,
+    y: ((cy + active.lineIndex * fontSize * 1.15 - fontSize * 0.08) / VB_H) * 100,
+  };
+}
+
+function calloutPenAnchor(
+  op: Extract<DrawOp, { kind: "callout" }>,
+  localElapsed: number,
+  windowMs: number,
+  paperSurface: boolean
+): Pt {
+  if (!paperSurface) return { x: op.x, y: op.y };
+  const labelX = op.labelX ?? (op.x < 50 ? Math.min(86, op.x + 14) : Math.max(14, op.x - 14));
+  const labelY = op.labelY ?? Math.max(12, op.y - 10);
+  const fontSize = 18;
+  const lines = wrapText(op.text, 18);
+  const anchor = textAnchorFor(labelX);
+  const cx = safeTextX(labelX, anchor);
+  const cy = safeTextY(gy(labelY), fontSize, lines.length);
+  const writingWindow = windowMs * 0.62;
+  if (localElapsed <= writingWindow) {
+    const words = timeWords(layoutWords(lines, cx, anchor, fontSize), writingWindow);
+    const active = words.find((word) => localElapsed >= word.startMs && localElapsed < word.endMs) ?? words.at(-1);
+    if (!active) return { x: labelX, y: labelY };
+    const strokeProgress = clamp01((localElapsed - active.startMs) / active.writeMs);
+    return {
+      x: ((active.xLeft + active.width * strokeProgress) / VB_W) * 100,
+      y: ((cy + active.lineIndex * fontSize * 1.15 - fontSize * 0.08) / VB_H) * 100,
+    };
+  }
+  const connectorProgress = clamp01((localElapsed - writingWindow) / Math.max(1, windowMs - writingWindow));
+  return { x: lerp(labelX, op.x, connectorProgress), y: lerp(labelY, op.y, connectorProgress) };
+}
+
 /**
  * Renders text word-by-word, each word "written" with a left-to-right stroke wipe as the
  * narration reaches it — the teacher-at-the-board feel. Words are timed across `windowMs`
@@ -392,57 +494,31 @@ function WordByWordText({
   seed: string;
 }) {
   const lineH = fontSize * 1.15;
-  // Generous glyph-advance estimate — the marker/display fonts here are WIDE, and it is far
-  // safer to OVER-estimate word width (so the reveal clip is wider than the real glyphs and
-  // never chops off a final letter) than to under-estimate (which clips letters permanently).
-  const charW = fontSize * 0.72;
-  const spaceW = charW * 0.55;
-
-  // Flatten all words across all lines into one sequence with per-word geometry, so timing
-  // flows naturally line-to-line (word N of the whole block, not per line).
-  type WordBox = { text: string; lineIndex: number; xLeft: number; width: number };
-  const wordBoxes: WordBox[] = [];
-  lines.forEach((line, lineIndex) => {
-    const words = line.split(" ").filter(Boolean);
-    const lineWidth = words.reduce((sum, w) => sum + w.length * charW, 0) + Math.max(0, words.length - 1) * spaceW;
-    // Starting x depends on anchor so the line stays visually anchored like the old single <text>.
-    let penX = anchor === "start" ? cx : anchor === "end" ? cx - lineWidth : cx - lineWidth / 2;
-    for (const w of words) {
-      const width = w.length * charW;
-      wordBoxes.push({ text: w, lineIndex, xLeft: penX, width });
-      penX += width + spaceW;
-    }
-  });
-
-  const total = Math.max(1, wordBoxes.length);
-  // Reserve the tail of the window so the last word isn't still writing when the op's time ends.
-  const perWord = windowMs / (total + 0.4);
-  const WIPE_MS = Math.min(180, perWord * 0.9); // each word's own stroke-on duration
+  const wordBoxes = timeWords(layoutWords(lines, cx, anchor, fontSize), windowMs);
 
   // Which words are still mid-wipe (need a clip) vs. fully written (render with NO clip so the
   // width estimate can never chop a finished word).
-  const wiping = wordBoxes.filter((_, k) => localElapsed >= k * perWord && localElapsed - k * perWord < WIPE_MS);
+  const wiping = wordBoxes.filter((word) => localElapsed >= word.startMs && localElapsed - word.startMs < word.writeMs);
 
   return (
     <g style={{ filter: glow ? "drop-shadow(0 0 4px rgba(148,163,184,0.28))" : "none" }}>
       <defs>
         {wiping.map((wb) => {
           const k = wordBoxes.indexOf(wb);
-          const wipe = clamp01((localElapsed - k * perWord) / WIPE_MS);
-          // Pad the reveal width so the clip's leading edge is always a touch AHEAD of the glyphs.
-          const revealW = wb.width * wipe + fontSize * 0.4;
+          const wipe = clamp01((localElapsed - wb.startMs) / wb.writeMs);
+          const revealW = wb.width * wipe;
           const y = cy + wb.lineIndex * lineH;
           return (
             <clipPath key={`${seed}-clip-${k}`} id={`${seed}-clip-${k}`}>
-              <rect x={wb.xLeft - 4} y={y - fontSize} width={revealW + 4} height={fontSize * 1.6} />
+              <rect x={wb.xLeft - 2} y={y - fontSize} width={revealW + 2} height={fontSize * 1.6} />
             </clipPath>
           );
         })}
       </defs>
       {wordBoxes.map((wb, k) => {
-        const wordStart = k * perWord;
+        const wordStart = wb.startMs;
         if (localElapsed < wordStart) return null; // not started yet
-        const isWiping = localElapsed - wordStart < WIPE_MS;
+        const isWiping = localElapsed - wordStart < wb.writeMs;
         const y = cy + wb.lineIndex * lineH;
         return (
           <text
@@ -540,7 +616,7 @@ function OpRenderer({
   }
 
   if (op.kind === "callout") {
-    return <CalloutRenderer op={op} localElapsed={localElapsed} seed={seed} surface={surface} />;
+    return <CalloutRenderer op={op} localElapsed={localElapsed} windowMs={windowMs ?? 1400} seed={seed} surface={surface} />;
   }
 
   if (op.kind === "label" || op.kind === "note") {
@@ -622,7 +698,7 @@ function OpRenderer({
         stroke={textStroke}
         strokeWidth={strokeWidth}
         glow={!paperSurface}
-        localElapsed={localElapsed}
+        localElapsed={Math.max(0, localElapsed - 55)}
         windowMs={windowMs ?? 1400}
         seed={seed}
       />
@@ -671,6 +747,19 @@ function OpRenderer({
               filter="url(#live-glow)"
             />
             <image href={op.src} x={ix} y={iy} width={W} height={H} preserveAspectRatio="xMidYMid meet" />
+            {op.credit && (
+              <text
+                x={ix + W}
+                y={iy + H + 19}
+                textAnchor="end"
+                fill={paperSurface ? "#94a3b8" : "#cbd5e1"}
+                fontSize="10"
+                fontFamily="var(--font-body, Lexend, sans-serif)"
+                fontWeight="500"
+              >
+                {`${op.credit.provider ?? "Wikimedia Commons"} · ${op.credit.license}`}
+              </text>
+            )}
           </>
         )}
       </g>
@@ -869,11 +958,13 @@ function MotionText({ x, y, text, color }: { x: number; y: number; text: string;
 function CalloutRenderer({
   op,
   localElapsed,
+  windowMs,
   seed,
   surface,
 }: {
   op: Extract<DrawOp, { kind: "callout" }>;
   localElapsed: number;
+  windowMs: number;
   seed: string;
   surface?: DrawScript["surface"];
 }) {
@@ -894,6 +985,45 @@ function CalloutRenderer({
   const textY = safeTextY(ly, 20, 1);
   const chipW = Math.min(260, Math.max(118, op.text.length * 12 + 34));
   const chipX = anchor === "end" ? textX - chipW + 16 : anchor === "middle" ? textX - chipW / 2 : textX - 16;
+
+  if (paperSurface) {
+    const fontSize = 18;
+    const lines = wrapText(op.text, 18);
+    const writingWindow = windowMs * 0.62;
+    const connectorProgress = clamp01((localElapsed - writingWindow) / Math.max(1, windowMs - writingWindow));
+    return (
+      <g>
+        <WordByWordText
+          lines={lines}
+          cx={textX}
+          cy={safeTextY(ly, fontSize, lines.length)}
+          anchor={anchor}
+          fontSize={fontSize}
+          fontFamily="'Chalkboard SE', 'Marker Felt', 'Bradley Hand', 'Comic Sans MS', 'Trebuchet MS', sans-serif"
+          fontWeight={680}
+          fill={color}
+          stroke="#ffffff"
+          strokeWidth={2.2}
+          glow={false}
+          localElapsed={Math.max(0, localElapsed - 45)}
+          windowMs={writingWindow}
+          seed={`${seed}-label`}
+        />
+        <path
+          d={path}
+          pathLength={1}
+          fill="none"
+          stroke={color}
+          strokeWidth="2.8"
+          strokeLinecap="round"
+          strokeDasharray="1"
+          strokeDashoffset={1 - connectorProgress}
+        />
+        <circle cx={px} cy={py} r="5" fill={color} stroke="#ffffff" strokeWidth="2" opacity={connectorProgress > 0.82 ? 0.95 : 0} />
+        <circle cx={px} cy={py} r="11" fill={color} opacity={connectorProgress > 0.82 ? 0.15 : 0} />
+      </g>
+    );
+  }
 
   return (
     <g opacity={reveal} filter={paperSurface ? undefined : "url(#live-glow)"}>
@@ -1782,7 +1912,7 @@ function Pen({ x, y }: { x: number; y: number }) {
   const px = gx(x);
   const py = gy(y);
   return (
-    <g style={{ transform: `translate(${px}px, ${py}px)`, transition: "transform 250ms ease-out" }} filter="url(#live-glow)">
+    <g style={{ transform: `translate(${px}px, ${py}px)`, transition: "transform 32ms linear" }} filter="url(#live-glow)">
       {/* nib tip sits at 0,0; body angles up-right like a held marker */}
       <path d="M 0 0 L 10 -22 L 22 -16 L 6 4 Z" fill="var(--hud-cyan-deep)" />
       <path d="M 10 -22 L 22 -16 L 30 -30 L 18 -36 Z" fill="var(--hud-cyan-bright)" />

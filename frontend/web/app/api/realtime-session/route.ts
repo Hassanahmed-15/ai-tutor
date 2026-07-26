@@ -37,19 +37,23 @@ const TUTOR_PERSONA =
   "- Be encouraging and human, never stern, theatrical, or condescending.\n" +
   "Answer their actual question first, concisely, then check if they want more. Stay within the " +
   "current lecture's topic; if they drift far off, gently bring it back.\n" +
-  "MOSTLY JUST TALK — answer with your voice. Only draw on the board when the student EXPLICITLY " +
-  "asks to see, draw, visualize, sketch, or show something, OR when a quick diagram is genuinely " +
-  "essential to their specific question. Do NOT draw for every answer, for greetings, or for simple " +
-  "verbal questions — most turns need no board. When you do draw, call `show_board` with a short " +
-  "concept, then talk them through it naturally as it appears.";
+  "TEACHER VISUAL JUDGMENT — independently choose the smallest teaching medium that removes the " +
+  "student's confusion. Use voice alone for a simple definition. Reuse and annotate the current " +
+  "idea when the question is a small extension. Open a fresh board for a new mechanism or worked " +
+  "example. Prefer a precise diagram for spatial, causal, structural, mathematical, or process " +
+  "questions. Prefer a real reference image only when the learner must inspect a real organism, " +
+  "object, device, place, or historical artifact. Never draw as decoration and never wait for the " +
+  "student to explicitly request a visual when one is clearly the best teaching choice. When a " +
+  "visual is justified, call `show_board`, choose the visual_mode and whether to reuse context, " +
+  "then narrate the important annotation as it appears.";
 
 const SHOW_BOARD_TOOL = {
   type: "function" as const,
   name: "show_board",
   description:
-    "Draw a fresh explanation board (a chalk-style diagram) for a concept the student asked to " +
-    "see or that would be clearer as a visual, then narrate it. Use for 'show me...', 'draw...', " +
-    "'what does X look like', or when a diagram would help.",
+    "Create or extend a premium teaching visual when it will explain the student's question better " +
+    "than speech alone. Choose the appropriate visual medium and whether continuity with the current " +
+    "board matters.",
   parameters: {
     type: "object",
     properties: {
@@ -57,8 +61,17 @@ const SHOW_BOARD_TOOL = {
         type: "string",
         description: "The concept or question to diagram, as a short phrase (e.g. 'the water cycle').",
       },
+      visual_mode: {
+        type: "string",
+        enum: ["annotated_board", "scientific_diagram", "worked_example", "real_reference_image"],
+        description: "The teaching medium that best matches the student's confusion.",
+      },
+      reuse_context: {
+        type: "boolean",
+        description: "True when the explanation should visually continue the current board rather than reset context.",
+      },
     },
-    required: ["concept"],
+    required: ["concept", "visual_mode", "reuse_context"],
   },
 };
 
@@ -95,11 +108,30 @@ const ADHD_ADDENDUM =
   "You can pause/resume the lecture anytime with those tools. When you draw with `show_board`, it is " +
   "a SIMPLE chalk-text board — keep the concept short and explain it in plain words.";
 
-function buildInstructions(topic: string, beatContext: string, mood: string, adhd: boolean): string {
+// Live oral exam mode: the tutor persona becomes a strict, ordered examiner. It asks the given
+// questions one at a time, never teaches/hints/reveals correctness mid-exam (grading happens in
+// a separate post-session transcript pass — see app/api/grade-oral-test/route.ts — so nothing
+// here needs to parse the model's live spoken judgment), and closes with a short thank-you.
+function buildExamAddendum(oralQuestions: string[]): string {
+  const list = oralQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n");
+  return (
+    "\n\nThis is a LIVE ORAL EXAM, not a casual chat. You are testing the student on the lecture " +
+    "material — ask ONE question at a time from the list below, IN ORDER, wait for their full " +
+    "spoken answer, then move to the next question. Do NOT teach, hint, or give away the answer " +
+    "during the exam, and do NOT tell them whether an answer was right or wrong. After each answer, " +
+    "give only a brief neutral acknowledgement ('okay', 'got it', 'thank you') and move on. Once " +
+    "every question has been asked and answered, say one short closing line thanking them for " +
+    "taking the test — do not reveal or estimate a score yourself.\n\n" +
+    `QUESTIONS (ask these, in this exact order, using natural spoken phrasing):\n${list}`
+  );
+}
+
+function buildInstructions(topic: string, beatContext: string, mood: string, adhd: boolean, examQuestions: string[]): string {
   const parts = [TUTOR_PERSONA, `The lecture topic is: ${topic || "this lesson"}.`];
   if (beatContext) parts.push(`The student is currently on this part of the lecture: ${beatContext}`);
   if (mood) parts.push(`Learner context / mode: ${mood}. Adapt your pacing and tone to fit it.`);
   if (adhd) parts.push(ADHD_ADDENDUM);
+  if (examQuestions.length > 0) parts.push(buildExamAddendum(examQuestions));
   return parts.join("\n\n");
 }
 
@@ -121,10 +153,18 @@ export async function POST(req: Request) {
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 300) : "";
   // ADHD always-on mode: adds lecture-control tools + always-on persona guidance.
   const lectureControl = body.lectureControl === true;
+  // Live oral exam mode: strict ordered question list, no board tool (drawing mid-exam could
+  // leak hints), no lecture-control tools — mutually exclusive with the two flags above in practice.
+  const examMode = body.examMode === true;
+  const examQuestions: string[] = examMode && Array.isArray(body.examQuestions)
+    ? body.examQuestions.filter((q: unknown): q is string => typeof q === "string" && q.trim().length > 0).slice(0, 12)
+    : [];
 
-  const tools = lectureControl
-    ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
-    : [SHOW_BOARD_TOOL];
+  const tools = examMode
+    ? []
+    : lectureControl
+      ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
+      : [SHOW_BOARD_TOOL];
 
   try {
     const res = await fetch("https://api.openai.com/v1/realtime/client_secrets", {
@@ -137,7 +177,7 @@ export async function POST(req: Request) {
         session: {
           type: "realtime",
           model: REALTIME_MODEL,
-          instructions: buildInstructions(topic, beatContext, mood, lectureControl),
+          instructions: buildInstructions(topic, beatContext, mood, lectureControl, examQuestions),
           audio: {
             output: { voice: REALTIME_VOICE },
             input: {
@@ -160,7 +200,7 @@ export async function POST(req: Request) {
             },
           },
           tools,
-          tool_choice: "auto",
+          tool_choice: examMode ? "none" : "auto",
         },
       }),
     });

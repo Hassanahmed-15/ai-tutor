@@ -27,7 +27,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
  */
 
 const READY_TIMEOUT_MS = 8000;
-const INITIAL_REVEAL_PROGRESS = 0.2;
+const INITIAL_REVEAL_PROGRESS = 0.005;
+
+type MarkerState = { x: number; y: number; rotate: number; visible: boolean };
 
 // Transpiled-output cache, keyed by the raw source string's identity — repeated renders of the
 // same beat (or re-mounts) skip re-invoking Babel entirely.
@@ -93,6 +95,7 @@ svg text{
   letter-spacing:0!important;
   transition:opacity 80ms linear!important;
 }
+[data-teach-order]{opacity:0;}
 </style>
 </head>
 <body>
@@ -104,6 +107,7 @@ svg text{
   var root = null;
   var Animation = null;
   var hasErrored = false;
+  var timelineFrame = 0;
 
   function postToParent(msg) {
     try { window.parent.postMessage(msg, "*"); } catch (e) {}
@@ -125,11 +129,222 @@ svg text{
     reportError(err);
   }
 
-  function render(progress) {
+  function numberAttr(node, name, fallback) {
+    var value = Number(node.getAttribute(name));
+    return Number.isFinite(value) ? value : fallback;
+  }
+
+  function wordWritingProgress(text, local) {
+    var words = String(text || "").trim().split(/\\s+/).filter(Boolean);
+    if (!words.length) return local;
+    var weights = words.map(function (word, index) {
+      var writing = Math.max(0.8, Math.min(2.8, word.length * 0.28));
+      var variation = 0.92 + ((word.length * 17 + index * 11) % 19) / 100;
+      var pause = /[.!?]$/.test(word) ? 0.7 : /[,;:]$/.test(word) ? 0.3 : 0.1;
+      return writing * variation + pause;
+    });
+    var total = weights.reduce(function (sum, weight) { return sum + weight; }, 0);
+    var target = Math.max(0, Math.min(1, local)) * total;
+    var consumed = 0;
+    for (var i = 0; i < weights.length; i += 1) {
+      var word = words[i];
+      var slot = weights[i];
+      if (target <= consumed + slot) {
+        var pauseRatio = /[.!?]$/.test(word) ? 0.24 : /[,;:]$/.test(word) ? 0.13 : 0.06;
+        var written = Math.min(1, Math.max(0, (target - consumed) / (slot * (1 - pauseRatio))));
+        return (i + written) / words.length;
+      }
+      consumed += slot;
+    }
+    return 1;
+  }
+
+  function boxFor(node) {
+    try {
+      var box = node.getBBox();
+      if (box && Number.isFinite(box.x)) return box;
+    } catch (e) {}
+    return { x: numberAttr(node, "x", 500), y: numberAttr(node, "y", 280), width: 1, height: 1 };
+  }
+
+  function keepTextInsideBoard(svg) {
+    if (svg.getAttribute("data-host-text-safe") === "1") return;
+    var viewBox = svg.viewBox && svg.viewBox.baseVal;
+    var width = viewBox && viewBox.width ? viewBox.width : 1000;
+    var height = viewBox && viewBox.height ? viewBox.height : 560;
+    var margin = 42;
+    Array.prototype.slice.call(svg.querySelectorAll("text")).forEach(function (node) {
+      var box = boxFor(node);
+      var dx = 0;
+      var dy = 0;
+      if (box.x < margin) dx = margin - box.x;
+      if (box.x + box.width > width - margin) dx = width - margin - box.x - box.width;
+      if (box.y < margin) dy = margin - box.y;
+      if (box.y + box.height > height - margin) dy = height - margin - box.y - box.height;
+      if (!dx && !dy) return;
+      var base = node.getAttribute("transform") || "";
+      node.setAttribute("transform", (base + " translate(" + dx + " " + dy + ")").trim());
+    });
+    svg.setAttribute("data-host-text-safe", "1");
+  }
+
+  function setStrokeProgress(node, local) {
+    var shapes = node.matches("path,line,polyline,polygon,circle,ellipse,rect")
+      ? [node]
+      : Array.prototype.slice.call(node.querySelectorAll("path,line,polyline,polygon,circle,ellipse,rect"));
+    shapes.forEach(function (shape) {
+      shape.setAttribute("pathLength", "1");
+      shape.style.strokeDasharray = "1";
+      shape.style.strokeDashoffset = String(1 - local);
+      shape.style.opacity = local <= 0 ? "0" : "1";
+      var originalFill = shape.getAttribute("fill");
+      if (originalFill && originalFill !== "none") shape.style.fillOpacity = String(Math.max(0, (local - 0.46) / 0.54));
+    });
+  }
+
+  function applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal) {
+    var svg = document.querySelector("#root svg");
+    if (!svg) return;
+    keepTextInsideBoard(svg);
+    var steps = Array.prototype.slice.call(svg.querySelectorAll("[data-teach-order]"));
+    if (!steps.length) {
+      postToParent({ type: "marker", x: 50, y: 28, rotate: 18, visible: false });
+      return;
+    }
+    steps.sort(function (a, b) { return numberAttr(a, "data-teach-order", 0) - numberAttr(b, "data-teach-order", 0); });
+    var weights = steps.map(function (step) { return Math.max(0.35, numberAttr(step, "data-teach-weight", 1)); });
+    var total = weights.reduce(function (sum, weight) { return sum + weight; }, 0);
+    var cursor = 0;
+    var active = null;
+    var activeLocal = 0;
+    var sentenceRanges = new Map();
+    var sentenceTimed = Number.isFinite(sentenceIndex) && Number.isFinite(sentenceProgress) && steps.every(function (step) {
+      return Number.isFinite(Number(step.getAttribute("data-teach-sentence")));
+    });
+    if (sentenceTimed) {
+      var grouped = new Map();
+      steps.forEach(function (step, index) {
+        var sentence = Math.max(0, Math.min(Math.max(0, sentenceTotal - 1), numberAttr(step, "data-teach-sentence", 0)));
+        var list = grouped.get(sentence) || [];
+        list.push({ step: step, weight: weights[index] });
+        grouped.set(sentence, list);
+      });
+      grouped.forEach(function (list) {
+        var sentenceWeight = list.reduce(function (sum, entry) { return sum + entry.weight; }, 0);
+        var sentenceCursor = 0;
+        list.forEach(function (entry) {
+          sentenceRanges.set(entry.step, { start: sentenceCursor / sentenceWeight, end: (sentenceCursor + entry.weight) / sentenceWeight });
+          sentenceCursor += entry.weight;
+        });
+      });
+    }
+
+    steps.forEach(function (step, index) {
+      var local = 0;
+      if (sentenceTimed) {
+        var stepSentence = Math.max(0, Math.min(Math.max(0, sentenceTotal - 1), numberAttr(step, "data-teach-sentence", 0)));
+        var range = sentenceRanges.get(step) || { start: 0, end: 1 };
+        local = sentenceIndex > stepSentence
+          ? 1
+          : sentenceIndex < stepSentence
+            ? 0
+            : Math.max(0, Math.min(1, (sentenceProgress - range.start) / Math.max(0.001, range.end - range.start)));
+      } else {
+        var start = cursor / total;
+        cursor += weights[index];
+        var end = cursor / total;
+        local = Math.max(0, Math.min(1, (progress - start) / Math.max(0.001, end - start)));
+      }
+      var kind = step.getAttribute("data-teach-kind") || "diagram";
+      step.style.opacity = local <= 0 ? "0" : "1";
+      step.style.transition = "none";
+      if (kind === "write" || kind === "label") {
+        // The marker arrives first; ink appears a fraction later at the nib. This compensates
+        // for the parent-frame message hop and prevents text from visibly leading the hand.
+        var inkLocal = Math.max(0, local - 0.035);
+        var writing = wordWritingProgress(step.textContent, inkLocal);
+        var box = boxFor(step);
+        // A completed word must be completely unmasked. Keeping an exact-bounds clip attached
+        // could shave off antialiasing or a glyph overhang on the final character (for example G).
+        if (writing >= 0.97) {
+          step.removeAttribute("clip-path");
+        } else {
+          var clipId = "teacher-clip-" + index;
+          var defs = svg.querySelector("defs");
+          if (!defs) {
+            defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+            svg.insertBefore(defs, svg.firstChild);
+          }
+          var clip = svg.querySelector("#" + clipId);
+          if (!clip) {
+            clip = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+            clip.id = clipId;
+            var clipRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            clip.appendChild(clipRect);
+            defs.appendChild(clip);
+          }
+          var rect = clip.firstElementChild;
+          // Handwritten glyphs commonly overhang their measured advance width. Give the live
+          // reveal enough room for the active glyph's full stroke, especially the last letter.
+          var overhang = Math.max(14, box.height * 0.55);
+          rect.setAttribute("x", String(box.x - overhang * 0.35));
+          rect.setAttribute("y", String(box.y - overhang));
+          rect.setAttribute("width", String(Math.max(0, box.width * writing + overhang)));
+          rect.setAttribute("height", String(box.height + overhang * 2));
+          step.setAttribute("clip-path", "url(#" + clipId + ")");
+        }
+      } else if (kind === "diagram" || kind === "arrow" || kind === "annotate") {
+        step.removeAttribute("clip-path");
+        setStrokeProgress(step, Math.max(0, local - 0.025));
+      } else {
+        step.removeAttribute("clip-path");
+        step.style.opacity = String(local);
+      }
+      if (local > 0 && local < 1) {
+        active = step;
+        activeLocal = local;
+      }
+    });
+
+    if (!active) {
+      postToParent({ type: "marker", x: 50, y: 25, rotate: 18, visible: false });
+      return;
+    }
+    var box = boxFor(active);
+    var activeKind = active.getAttribute("data-teach-kind") || "diagram";
+    var x = activeKind === "write" || activeKind === "label" ? box.x + box.width * wordWritingProgress(active.textContent, activeLocal) : box.x + box.width * activeLocal;
+    var y = activeKind === "write" || activeKind === "label" ? box.y + box.height * 0.72 : box.y + box.height * (0.25 + activeLocal * 0.5);
+    var screenX = x;
+    var screenY = y;
+    try {
+      var point = svg.createSVGPoint();
+      point.x = x;
+      point.y = y;
+      var matrix = svg.getScreenCTM();
+      if (matrix) {
+        var screenPoint = point.matrixTransform(matrix);
+        screenX = screenPoint.x;
+        screenY = screenPoint.y;
+      }
+    } catch (e) {}
+    var viewportWidth = Math.max(1, document.documentElement.clientWidth);
+    var viewportHeight = Math.max(1, document.documentElement.clientHeight);
+    postToParent({
+      type: "marker",
+      x: Math.max(2, Math.min(98, screenX / viewportWidth * 100)),
+      y: Math.max(3, Math.min(96, screenY / viewportHeight * 100)),
+      rotate: activeKind === "arrow" ? 34 : activeKind === "write" || activeKind === "label" ? 14 : 24,
+      visible: true
+    });
+  }
+
+  function render(progress, sentenceIndex, sentenceProgress, sentenceTotal) {
     if (hasErrored || typeof Animation !== "function") return;
     try {
       if (!root) root = ReactDOM.createRoot(document.getElementById("root"));
       root.render(React.createElement(Animation, { progress: progress }));
+      cancelAnimationFrame(timelineFrame);
+      timelineFrame = requestAnimationFrame(function () { applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal); });
     } catch (err) {
       reportError(err);
     }
@@ -138,11 +353,16 @@ svg text{
   window.addEventListener("message", function (event) {
     var data = event.data;
     if (!data || typeof data !== "object") return;
-    if (data.type === "progress") render(typeof data.value === "number" ? data.value : 0);
+    if (data.type === "progress") render(
+      typeof data.value === "number" ? data.value : 0,
+      typeof data.sentenceIndex === "number" ? data.sentenceIndex : 0,
+      typeof data.sentenceProgress === "number" ? data.sentenceProgress : 0,
+      typeof data.sentenceTotal === "number" ? data.sentenceTotal : 1
+    );
   });
 
   if (!hasErrored) {
-    render(${INITIAL_REVEAL_PROGRESS});
+    render(${INITIAL_REVEAL_PROGRESS}, 0, 0, 1);
     postToParent({ type: "ready" });
   }
 })();
@@ -154,15 +374,22 @@ svg text{
 export function ReactAnimationSandbox({
   code,
   progress,
+  sentenceIndex = 0,
+  sentenceProgress = 0,
+  sentenceTotal = 1,
   onError,
 }: {
   code: string;
   progress?: number;
+  sentenceIndex?: number;
+  sentenceProgress?: number;
+  sentenceTotal?: number;
   onError?: () => void;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [srcDoc, setSrcDoc] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
+  const [marker, setMarker] = useState<MarkerState>({ x: 50, y: 25, rotate: 18, visible: false });
   const erroredRef = useRef(false);
   const readyRef = useRef(false);
 
@@ -210,8 +437,14 @@ export function ReactAnimationSandbox({
   useEffect(() => {
     if (!srcDoc || failed) return;
     const value = Math.max(INITIAL_REVEAL_PROGRESS, Math.max(0, Math.min(1, progress ?? 0)));
-    iframeRef.current?.contentWindow?.postMessage({ type: "progress", value }, "*");
-  }, [srcDoc, failed, progress]);
+    iframeRef.current?.contentWindow?.postMessage({
+      type: "progress",
+      value,
+      sentenceIndex,
+      sentenceProgress,
+      sentenceTotal,
+    }, "*");
+  }, [srcDoc, failed, progress, sentenceIndex, sentenceProgress, sentenceTotal]);
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
@@ -219,6 +452,14 @@ export function ReactAnimationSandbox({
       const data = event.data;
       if (!data || typeof data !== "object") return;
       if (data.type === "ready") readyRef.current = true;
+      if (data.type === "marker") {
+        setMarker({
+          x: Number.isFinite(data.x) ? data.x : 50,
+          y: Number.isFinite(data.y) ? data.y : 25,
+          rotate: Number.isFinite(data.rotate) ? data.rotate : 18,
+          visible: data.visible === true,
+        });
+      }
       if (data.type === "error") reportFailure();
     }
     window.addEventListener("message", onMessage);
@@ -226,10 +467,6 @@ export function ReactAnimationSandbox({
   }, [reportFailure]);
 
   if (failed || !srcDoc) return null;
-  const rawProgress = Math.max(0, Math.min(1, progress ?? 0));
-  const visibleProgress = Math.max(INITIAL_REVEAL_PROGRESS, rawProgress);
-  const marker = markerPosition(visibleProgress);
-
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#fbfbf8]">
       <iframe
@@ -244,8 +481,9 @@ export function ReactAnimationSandbox({
         style={{
           left: `${marker.x}%`,
           top: `${marker.y}%`,
+          opacity: marker.visible ? 1 : 0,
           transform: `translate(-10%, -88%) rotate(${marker.rotate}deg)`,
-          transition: "left 90ms linear, top 90ms linear, transform 90ms linear",
+          transition: "left 28ms linear, top 28ms linear, transform 28ms linear, opacity 45ms linear",
         }}
         aria-hidden="true"
       >
@@ -257,25 +495,4 @@ export function ReactAnimationSandbox({
       </div>
     </div>
   );
-}
-
-function markerPosition(progress: number): { x: number; y: number; rotate: number } {
-  const p = Math.max(0, Math.min(1, progress));
-  const points = [
-    { x: 32, y: 24, rotate: 20 },
-    { x: 58, y: 32, rotate: 32 },
-    { x: 72, y: 48, rotate: 18 },
-    { x: 44, y: 64, rotate: -18 },
-    { x: 68, y: 76, rotate: 28 },
-  ];
-  const scaled = p * (points.length - 1);
-  const i = Math.min(points.length - 2, Math.floor(scaled));
-  const t = scaled - i;
-  const a = points[i];
-  const b = points[i + 1];
-  return {
-    x: a.x + (b.x - a.x) * t,
-    y: a.y + (b.y - a.y) * t,
-    rotate: a.rotate + (b.rotate - a.rotate) * t,
-  };
 }

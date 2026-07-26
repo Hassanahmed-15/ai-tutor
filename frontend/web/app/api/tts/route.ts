@@ -11,6 +11,8 @@ import OpenAI from "openai";
  */
 const VOICE = process.env.OPENAI_TTS_VOICE ?? "nova"; // brighter and more classroom-friendly than the old darker narrator voice
 const TTS_MODEL = process.env.OPENAI_TTS_MODEL ?? "gpt-4o-mini-tts";
+const MAX_CACHE_ENTRIES = Math.max(0, Math.min(200, Number(process.env.TTS_CACHE_ENTRIES ?? 80)));
+const ttsCache = new Map<string, Buffer>();
 
 const TEACHER_TONE =
   "You are Aria, a kind classroom teacher helping one curious student. Speak with a clear, " +
@@ -33,22 +35,42 @@ export async function POST(req: Request) {
   if (!text) {
     return NextResponse.json({ error: "text is required" }, { status: 400 });
   }
+  const input = text.slice(0, 4000);
+  const cacheKey = `${TTS_MODEL}:${VOICE}:${input}`;
+  const cached = MAX_CACHE_ENTRIES > 0 ? ttsCache.get(cacheKey) : undefined;
+  if (cached) {
+    return new NextResponse(Buffer.from(cached), {
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Cache-Control": "private, max-age=3600",
+        "X-TTS-Cache": "hit",
+      },
+    });
+  }
 
   try {
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const speech = await client.audio.speech.create({
       model: TTS_MODEL,
       voice: VOICE,
-      input: text.slice(0, 4000), // API hard limit is 4096 chars
+      input, // API hard limit is 4096 chars
       instructions: TEACHER_TONE,
       response_format: "mp3",
     });
 
     const buffer = Buffer.from(await speech.arrayBuffer());
+    if (MAX_CACHE_ENTRIES > 0) {
+      if (ttsCache.size >= MAX_CACHE_ENTRIES) {
+        const oldestKey = ttsCache.keys().next().value;
+        if (oldestKey) ttsCache.delete(oldestKey);
+      }
+      ttsCache.set(cacheKey, buffer);
+    }
     return new NextResponse(buffer, {
       headers: {
         "Content-Type": "audio/mpeg",
-        "Cache-Control": "no-store",
+        "Cache-Control": "private, max-age=3600",
+        "X-TTS-Cache": "miss",
       },
     });
   } catch (err) {

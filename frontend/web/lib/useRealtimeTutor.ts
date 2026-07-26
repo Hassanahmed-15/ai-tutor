@@ -46,8 +46,8 @@ export type UseRealtimeTutorOptions = {
   onStudentSpeechStarted?: () => void;
   /** Fired when the student STOPS speaking. */
   onStudentSpeechStopped?: () => void;
-  /** Fired when the tutor's ENTIRE response turn is complete (response.done) — the reliable
-   *  "tutor finished talking" signal (unlike `speaking`, which flickers between audio segments). */
+  /** Fired only after the tutor's generated response is complete AND its WebRTC output buffer
+   *  has fully drained. This is the safe point for scripted lecture audio to resume. */
   onTutorTurnComplete?: () => void;
   /** The tutor called its pause_lecture tool — the caller should pause the scripted lecture. */
   onPauseLecture?: () => void;
@@ -60,10 +60,20 @@ export type UseRealtimeTutorOptions = {
   boardTextOnly?: boolean;
   /** Expose lecture-control tools (pause_lecture / resume_lecture) to the model. */
   lectureControlTools?: boolean;
+  /** Connect the microphone immediately but keep its outgoing track disabled until the learner
+   *  explicitly unmutes. This makes the tutor interaction-ready without sacrificing privacy. */
+  startMuted?: boolean;
+  /** LIVE ORAL EXAM mode: the persona becomes a strict ordered examiner (see EXAM_ADDENDUM in
+   *  app/api/realtime-session/route.ts) and no tools are exposed. `examQuestions` is the ordered
+   *  list of spoken-phrasing questions to ask — required when this is true. */
+  examMode?: boolean;
+  examQuestions?: string[];
 };
 
 const IDLE_TIMEOUT_MS = 60_000; // no speech for 60s -> auto-end (cost guard)
 const MAX_SESSION_MS = 5 * 60_000; // hard cap 5 min (cost guard)
+// An 8-10 question oral exam runs longer than a casual live-tutor aside — give it more room.
+const EXAM_MAX_SESSION_MS = 12 * 60_000;
 
 export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
   const [status, setStatus] = useState<RealtimeStatus>("idle");
@@ -78,6 +88,11 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const endedRef = useRef(false);
+  const outputAudioActiveRef = useRef(false);
+  const responseDoneRef = useRef(false);
+  const studentSpeakingRef = useRef(false);
+  const pendingLectureResumeRef = useRef(false);
+  const boardToolActiveRef = useRef(false);
   // Keep latest callbacks/props without forcing start()/stop() identity to change.
   const optsRef = useRef(opts);
   useEffect(() => {
@@ -122,7 +137,13 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
       dcRef.current = null;
       micStreamRef.current = null;
       audioElRef.current = null;
+      outputAudioActiveRef.current = false;
+      responseDoneRef.current = false;
+      studentSpeakingRef.current = false;
+      pendingLectureResumeRef.current = false;
+      boardToolActiveRef.current = false;
       setSpeaking(false);
+      setMuted(false);
       setStatus("idle");
       optsRef.current.onSessionEnded?.(reason);
     },
@@ -147,7 +168,13 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
   // model can talk about the now-visible board. The model narrates it (NOT playNarration) —
   // that keeps the single-speaker invariant.
   const handleShowBoard = useCallback(
-    async (callId: string, concept: string) => {
+    async (
+      callId: string,
+      concept: string,
+      visualMode = "annotated_board",
+      reuseContext = false
+    ) => {
+      boardToolActiveRef.current = true;
       setStatus("drawing");
       // Mask the /api/explain latency: ask Aria to say a short filler line NOW, while the board
       // generates, so the multi-second wait isn't dead air. This response is spoken before the
@@ -171,6 +198,8 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
             beatContext: optsRef.current.getBeatContext(),
             question: concept,
             textOnly: optsRef.current.boardTextOnly === true,
+            visualMode,
+            reuseContext,
           }),
         });
         const data = await res.json().catch(() => ({}));
@@ -187,6 +216,7 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
         type: "conversation.item.create",
         item: { type: "function_call_output", call_id: callId, output: outcome },
       });
+      boardToolActiveRef.current = false;
       sendEvent({ type: "response.create" });
     },
     [sendEvent]
@@ -198,6 +228,9 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
       switch (type) {
         case "input_audio_buffer.speech_started": {
           resetIdleTimer();
+          studentSpeakingRef.current = true;
+          responseDoneRef.current = false;
+          pendingLectureResumeRef.current = false;
           setSpeaking(false); // student started talking (barge-in) -> tutor yields
           // Notify the caller IMMEDIATELY so it can pause the lecture the moment the student speaks
           // (not later when the tutor replies).
@@ -225,12 +258,34 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
         }
         case "input_audio_buffer.speech_stopped":
           resetIdleTimer();
+          studentSpeakingRef.current = false;
           optsRef.current.onStudentSpeechStopped?.();
           break;
         case "response.created":
           // A tutor turn has begun (may contain several audio segments). Mark speaking now and let
           // it stay true until response.done — so brief gaps BETWEEN segments don't read as "done".
+          responseDoneRef.current = false;
           setSpeaking(true);
+          break;
+        case "output_audio_buffer.started":
+          outputAudioActiveRef.current = true;
+          setSpeaking(true);
+          break;
+        case "output_audio_buffer.stopped":
+          outputAudioActiveRef.current = false;
+          setSpeaking(false);
+          if (pendingLectureResumeRef.current && !studentSpeakingRef.current) {
+            pendingLectureResumeRef.current = false;
+            optsRef.current.onResumeLecture?.();
+          } else if (responseDoneRef.current && !studentSpeakingRef.current && !boardToolActiveRef.current) {
+            responseDoneRef.current = false;
+            optsRef.current.onTutorTurnComplete?.();
+          }
+          break;
+        case "output_audio_buffer.cleared":
+          outputAudioActiveRef.current = false;
+          responseDoneRef.current = false;
+          setSpeaking(false);
           break;
         case "response.audio_transcript.delta":
           setSpeaking(true);
@@ -242,10 +297,15 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           if (typeof evt.transcript === "string") optsRef.current.onTranscript?.("tutor", evt.transcript, true);
           break;
         case "response.done":
-          // The ENTIRE tutor turn is complete — this is the only reliable "finished speaking"
-          // signal. Clear speaking and notify the caller so it can safely resume the lecture.
-          setSpeaking(false);
-          optsRef.current.onTutorTurnComplete?.();
+          // `response.done` means generation ended, not that WebRTC has finished playing the
+          // buffered audio. Resume only after output_audio_buffer.stopped; otherwise Aria and the
+          // scripted lecturer overlap for the final few seconds.
+          responseDoneRef.current = true;
+          if (!outputAudioActiveRef.current && !studentSpeakingRef.current && !boardToolActiveRef.current) {
+            responseDoneRef.current = false;
+            setSpeaking(false);
+            optsRef.current.onTutorTurnComplete?.();
+          }
           break;
         case "conversation.item.input_audio_transcription.delta":
           if (typeof evt.delta === "string") optsRef.current.onTranscript?.("student", evt.delta, false);
@@ -258,12 +318,21 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           const callId = evt.call_id as string;
           if (name === "show_board") {
             let concept = "";
+            let visualMode = "annotated_board";
+            let reuseContext = false;
             try {
-              concept = (JSON.parse((evt.arguments as string) || "{}").concept as string) || "";
+              const args = JSON.parse((evt.arguments as string) || "{}") as {
+                concept?: string;
+                visual_mode?: string;
+                reuse_context?: boolean;
+              };
+              concept = args.concept || "";
+              visualMode = args.visual_mode || visualMode;
+              reuseContext = args.reuse_context === true;
             } catch {
               /* ignore malformed args */
             }
-            if (concept) void handleShowBoard(callId, concept);
+            if (concept) void handleShowBoard(callId, concept, visualMode, reuseContext);
           } else if (name === "pause_lecture") {
             optsRef.current.onPauseLecture?.();
             // Report the result but do NOT force another response — the model already said its line
@@ -273,7 +342,10 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
               item: { type: "function_call_output", call_id: callId, output: "lecture paused. Now stay silent and wait for the student." },
             });
           } else if (name === "resume_lecture") {
-            optsRef.current.onResumeLecture?.();
+            // The model may call this while its final spoken phrase is still buffered. Defer the
+            // scripted voice until that buffer drains so there is always exactly one speaker.
+            if (outputAudioActiveRef.current) pendingLectureResumeRef.current = true;
+            else optsRef.current.onResumeLecture?.();
             // Critical: NO response.create here. The scripted lecture is now speaking again — the
             // tutor must go silent, not generate its own speech over the lecture.
             sendEvent({
@@ -306,6 +378,8 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
         beatContext: optsRef.current.getBeatContext(),
         mood: optsRef.current.mood ?? "",
         lectureControl: optsRef.current.lectureControlTools === true,
+        examMode: optsRef.current.examMode === true,
+        examQuestions: optsRef.current.examMode ? optsRef.current.examQuestions ?? [] : undefined,
       }),
     }).then(async (res) => {
       const data = await res.json().catch(() => ({}));
@@ -335,6 +409,11 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
       return;
     }
     micStreamRef.current = micStream;
+    const startMuted = optsRef.current.startMuted === true;
+    micStream.getAudioTracks().forEach((track) => {
+      track.enabled = !startMuted;
+    });
+    setMuted(startMuted);
 
     // 3. Peer connection + tracks + data channel.
     const pc = new RTCPeerConnection();
@@ -373,6 +452,16 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           },
         });
       }
+      if (optsRef.current.examMode) {
+        sendEvent({
+          type: "response.create",
+          response: {
+            instructions:
+              "Start the oral exam now. Briefly greet the student, then ask question 1 exactly once. " +
+              "Do not explain, hint, or grade.",
+          },
+        });
+      }
     };
 
     pc.onconnectionstatechange = () => {
@@ -383,7 +472,8 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
         // the caller ends it explicitly. Otherwise apply the idle + hard-cap timers.
         if (!optsRef.current.alwaysOn) {
           resetIdleTimer();
-          maxTimerRef.current = setTimeout(() => teardown("timeout"), MAX_SESSION_MS);
+          const cap = optsRef.current.examMode ? EXAM_MAX_SESSION_MS : MAX_SESSION_MS;
+          maxTimerRef.current = setTimeout(() => teardown("timeout"), cap);
         }
       } else if (st === "failed" || st === "closed") {
         // Real, unrecoverable failures only. "disconnected" is excluded on purpose — it's a

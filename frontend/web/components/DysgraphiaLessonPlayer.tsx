@@ -29,7 +29,7 @@ type ScribePhase = "idle" | "listening" | "processing" | "result";
 
 const FILLER_WORDS = ["um", "uh", "like", "so basically", "you know", "kind of", "sort of", "basically", "actually"];
 
-export function DysgraphiaLessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; beats?: Beat[]; title?: string }) {
+export function DysgraphiaLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -104,7 +104,11 @@ export function DysgraphiaLessonPlayer({ onExit, beats = demoBeats, title = "Pho
         setSpeaking(false);
         cancelRef.current = null;
         if (!isCheckpoint) {
-          setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+          setIndex((i) => {
+            if (i < beats.length - 1) return i + 1;
+            onComplete?.();
+            return i;
+          });
           setStage("slide");
         }
         // Checkpoints: stay put. The mic is available as soon as the question is asked.
@@ -118,7 +122,7 @@ export function DysgraphiaLessonPlayer({ onExit, beats = demoBeats, title = "Pho
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, beats.length, scribePhase, chat.busy]);
+  }, [index, playing, stage, isCheckpoint, beat.script, beats.length, scribePhase, chat.busy, onComplete]);
 
   // Starts listening: captures speech (interim + final) for the messy-soundwave animation,
   // and on stop sends the full transcript to the AI scribe for restructuring.
@@ -201,7 +205,11 @@ export function DysgraphiaLessonPlayer({ onExit, beats = demoBeats, title = "Pho
     setScribePhase("idle");
     setRawWords([]);
     setCleanNote("");
-    setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+    setIndex((i) => {
+      if (i < beats.length - 1) return i + 1;
+      onComplete?.();
+      return i;
+    });
     setStage("slide");
   }
 

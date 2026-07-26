@@ -208,6 +208,19 @@ textarea {
   }
 }
 
+.fork-step-in {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fork-step-in 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fork-step-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .leaf-sunbeam {
   animation: leaf-sunbeam 4.8s ease-in-out infinite alternate;
   transform-origin: top;

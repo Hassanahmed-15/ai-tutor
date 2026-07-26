@@ -436,12 +436,18 @@ export type ReactAnimationCodeDiagnostics = {
   silhouetteCount: number;
   lineLikeCount: number;
   textCount: number;
+  directlyTimedTextCount: number;
   distinctPrimitiveTypes: number;
   progressRefs: number;
   progressDriveScore: number;
   repeaters: number;
   darkFillCount: number;
   brightFillCount: number;
+  timelineStepCount: number;
+  timelineSentenceCount: number;
+  distinctTimelineSentences: number;
+  boardPlanPresent: boolean;
+  visualSpecPresent: boolean;
   tagCounts: Record<string, number>;
 };
 
@@ -473,12 +479,18 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
     silhouetteCount: 0,
     lineLikeCount: 0,
     textCount: 0,
+    directlyTimedTextCount: 0,
     distinctPrimitiveTypes: 0,
     progressRefs: 0,
     progressDriveScore: 0,
     repeaters: 0,
     darkFillCount: 0,
     brightFillCount: 0,
+    timelineStepCount: 0,
+    timelineSentenceCount: 0,
+    distinctTimelineSentences: 0,
+    boardPlanPresent: false,
+    visualSpecPresent: false,
     tagCounts: {},
   };
   if (!code) return { ...base, issue: "empty animation source" };
@@ -521,6 +533,12 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
   const lineLikeCount = (tagCounts.line ?? 0) + (tagCounts.polyline ?? 0);
   const silhouetteCount = (tagCounts.path ?? 0) + (tagCounts.polygon ?? 0) + (tagCounts.ellipse ?? 0);
   const textCount = tagCounts.text ?? 0;
+  const directlyTimedTextCount = [...code.matchAll(/<text\b([^>]*)>/gi)].filter((match) =>
+    /data-teach-order\s*=/.test(match[1]) &&
+    /data-teach-kind\s*=/.test(match[1]) &&
+    /data-teach-weight\s*=/.test(match[1]) &&
+    /data-teach-sentence\s*=/.test(match[1])
+  ).length;
   const progressRefs = (code.match(/\bprogress\b/g) ?? []).length;
   const progressDerivedVars = [
     ...code.matchAll(/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*[^;\n]*\bprogress\b[^;\n]*/g),
@@ -548,6 +566,20 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
   const fillHexes = [...code.matchAll(/fill\s*=\s*"(#[0-9a-fA-F]{3,6})"/g)].map((m) => m[1].toLowerCase());
   const darkFillCount = fillHexes.filter(isNearBackgroundDark).length;
   const brightFillCount = fillHexes.length - darkFillCount;
+  const timelineStepCount = (code.match(/data-teach-order\s*=/g) ?? []).length;
+  const timelineKindCount = (code.match(/data-teach-kind\s*=/g) ?? []).length;
+  const timelineWeightCount = (code.match(/data-teach-weight\s*=/g) ?? []).length;
+  const timelineSentenceCount = (code.match(/data-teach-sentence\s*=/g) ?? []).length;
+  const timelineSentenceValues = [...code.matchAll(/data-teach-sentence\s*=\s*(?:["'](\d+)["']|\{\s*(\d+)\s*\})/g)]
+    .map((match) => Number(match[1] ?? match[2]))
+    .filter(Number.isFinite);
+  const distinctTimelineSentences = new Set(timelineSentenceValues).size;
+  const boardPlanPresent = /\bconst\s+boardPlan\s*=/.test(code) && /reservedRegions/.test(code) && /readingPath/.test(code);
+  const visualSpecPresent =
+    /\bconst\s+visualSpec\s*=/.test(code) &&
+    /recognitionCues/.test(code) &&
+    /requiredParts/.test(code) &&
+    /forbiddenShortcuts/.test(code);
 
   const metrics = {
     byteLength,
@@ -558,29 +590,47 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
     silhouetteCount,
     lineLikeCount,
     textCount,
+    directlyTimedTextCount,
     distinctPrimitiveTypes: distinctPrimitiveTypes.size,
     progressRefs,
     progressDriveScore,
     repeaters,
     darkFillCount,
     brightFillCount,
+    timelineStepCount,
+    timelineSentenceCount,
+    distinctTimelineSentences,
+    boardPlanPresent,
+    visualSpecPresent,
     tagCounts,
   };
-  if (groupCount < 2) {
-    return { ...metrics, issue: "too flat; organize the animation into a couple of grouped scene layers, not loose labels and lines" };
+  if (!boardPlanPresent) {
+    return { ...metrics, issue: "missing the required boardPlan with composition, readingPath, and reservedRegions" };
+  }
+  if (timelineStepCount < 8 || timelineKindCount < timelineStepCount || timelineWeightCount < timelineStepCount || timelineSentenceCount < timelineStepCount) {
+    return { ...metrics, issue: "missing a complete sentence-synchronized teacher timeline; add at least 8 ordered steps and give every step data-teach-order, data-teach-kind, data-teach-weight, and data-teach-sentence" };
+  }
+  if (timelineSentenceValues.length < timelineStepCount || distinctTimelineSentences < 3) {
+    return { ...metrics, issue: "the teacher timeline is front-loaded; use literal data-teach-sentence values and distribute the board actions across at least three different spoken sentences" };
+  }
+  if (textCount > 0 && directlyTimedTextCount < textCount) {
+    return { ...metrics, issue: "every SVG text element must carry its own complete teaching timeline attributes directly on the text node so marker tracking uses the exact text bounds" };
+  }
+  if (groupCount < 5) {
+    return { ...metrics, issue: "too flat; organize the whiteboard into at least five meaningful groups (frame/title, notes, subject silhouette, mechanism/details, result)" };
   }
   // Thresholds deliberately lowered AGAIN (were 18/12, originally 34/24): the higher bars forced
   // the model to pack scenes with parts/agents just to clear the number, producing busy, hard-to-
   // follow animations. A simple, legible scene that clearly teaches ONE mechanism is the goal —
   // these lower floors still reject a bare line-diagram/single-icon output while letting a clean
   // minimal scene pass. Simplicity is the target; the floor only guards against emptiness.
-  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < 10) {
+  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < 14) {
     return { ...metrics, issue: "too sparse; build a clear scene with a main subject, its parts, and a moving agent" };
   }
-  if (primitiveScore < 10) {
+  if (primitiveScore < 14) {
     return { ...metrics, issue: "too few drawn elements; show the topic's main object plus a moving agent and a result" };
   }
-  if (objectPrimitiveScore < 7) {
+  if (objectPrimitiveScore < 8) {
     return { ...metrics, issue: "too few actual scene objects; draw the mechanism's body, a couple of parts, and the result" };
   }
   if (silhouetteCount < 1) {
@@ -599,7 +649,7 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
     return { ...metrics, issue: "needs short JSX/SVG labels so the visual teaches without becoming a slide" };
   }
 
-  if (progressDriveScore < 14) {
+  if (progressDriveScore < 8) {
     return { ...metrics, issue: "motion is not driven enough by progress; add setup, transformation, and result phases" };
   }
   if (!/(lerp|clamp|phase|transform|opacity|translate|scale|rotate)/i.test(code)) {
@@ -613,11 +663,11 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
   // Reject when: too few bright fills to look colorful at all, OR dark fills are a large fraction
   // (>=40%) of the total — either way the scene reads as dark/washed-out. (A scene with 20 dark
   // + 21 bright fills still looks half-invisible, so a simple dark>bright test is too lenient.)
-  if (totalLiteralFills >= 6 && (brightFillCount < 6 || darkFillCount >= totalLiteralFills * 0.4)) {
+  if (totalLiteralFills >= 6 && brightFillCount < 4) {
     return {
       ...metrics,
       issue:
-        "too dark/monochrome — most fills are near-background dark-navy and vanish on the board. Fill the main parts with SATURATED MID-TONE colors (cyan #22d3ee, blue #60a5fa, green #4ade80, amber #fbbf24, rose #fb7185, mid-grey #94a3b8) at fill-opacity>=0.85. Do NOT use #0f172a/#0b1224/#1e293b-type dark navy as the fill of any real drawn part.",
+        "too monochrome for a premium paper board — give the main scientific parts at least four meaningful mid-tone fills while keeping dark ink for labels and outlines",
     };
   }
 
@@ -780,7 +830,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
     const introImage = fullBoardImage;
     const introRest = rest.filter((op) => op.kind === "note" || op.kind === "label");
     const introOps = introImage ? [introImage, ...introRest.slice(0, 3)] : introRest.slice(0, 4);
-    const introDuration = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 32000 ? o.durationMs : 22000;
+    const introDuration = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 60000 ? o.durationMs : 46000;
     if (introOps.length < 1) return undefined;
     return { caption: str(o.caption), durationMs: introDuration, ops: introOps };
   }
@@ -937,7 +987,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
   // Slower pacing per repeated feedback that boards advance too fast to read. Continuous
   // semantic motion fills the middle of the timeline, while the longer default gives each
   // op more dwell time.
-  const durationMs = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 32000 ? o.durationMs : 24000;
+  const durationMs = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 60000 ? o.durationMs : 48000;
   return { caption: str(o.caption), durationMs, ops: enrichedOps };
 }
 
@@ -965,7 +1015,7 @@ function sanitizeCheckpoint(raw: unknown): CheckpointSpec | undefined {
   };
 }
 
-function sanitizeBeat(raw: unknown, index: number): Beat | null {
+export function sanitizeBeat(raw: unknown, index: number): Beat | null {
   if (!raw || typeof raw !== "object") return null;
   const o = raw as Record<string, unknown>;
 
@@ -1034,7 +1084,34 @@ function sanitizeBeat(raw: unknown, index: number): Beat | null {
     // model sometimes returns a board with no image (or one that later fails generation) —
     // when that happens, synthesize a contextual image-placeholder board instead of leaving
     // the whiteboard text-only.
-    beat.draw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(title, script);
+    //
+    // Defensive layer (belt-and-suspenders on top of sanitizeDraw's own chalkBoard coercion at
+    // ~706-739): the model doesn't ALWAYS emit the chalkBoard placeholder or a shape that clears
+    // isWrittenBlackboard's bar — confirmed via live testing this is real generation variance,
+    // not a deterministic bug, but when it happens the OLD path here fell through to
+    // fallbackExplanationDraw()'s legacy makeWrittenBoard() template synthesizer, which produces
+    // generic/truncated/repeated-looking content (fixed footer line, keyword-derived rows) that
+    // reads as broken. If the raw draw still shows ANY sign the model was attempting a written
+    // board (labels/notes/arrows present, no image/scene/motion) but narrowly missed the
+    // isWrittenBlackboard bar, route it through the SAME dynamic chalkBoard+fillBlackboardOps
+    // pipeline used everywhere else, instead of the legacy synthesizer — only a draw with no
+    // blackboard-shaped content at all should ever reach fallbackExplanationDraw now.
+    const rawDrawOps: DrawOp[] = draw?.ops ?? [];
+    if (hasUsefulExplanationVisual(draw)) {
+      beat.draw = draw;
+    } else if (BLACKBOARD_GEN_ENABLED && draw !== undefined && looksLikeAttemptedBlackboard(rawDrawOps)) {
+      const briefFromLabels = rawDrawOps
+        .filter((op): op is Extract<DrawOp, { kind: "label" }> => op.kind === "label")
+        .map((op) => op.text)
+        .filter(Boolean)
+        .slice(0, 4)
+        .join("; ");
+      const boardBrief = (briefFromLabels || title || firstSentence(script, "")).slice(0, 240) || title;
+      const drawMeta: DrawScript = draw;
+      beat.draw = { caption: drawMeta.caption, durationMs: drawMeta.durationMs, ops: [{ kind: "chalkBoard", boardBrief, at: 0, endAt: 1 }] };
+    } else {
+      beat.draw = fallbackExplanationDraw(title, script);
+    }
     // Backstop for image compliance: the prompt requires one "image" op per non-checkpoint,
     // non-animation-led beat, but the model sometimes drops it anyway. Rather than discard an
     // otherwise-good board, inject a contextual image-op placeholder so it gets a real generated
@@ -1091,6 +1168,21 @@ function isWrittenBlackboard(ops: DrawOp[]): boolean {
   const notes = ops.filter((op) => op.kind === "note").length;
   const labels = ops.filter((op) => op.kind === "label").length;
   return labels >= 1 && notes >= 3;
+}
+
+/** Much looser than isWrittenBlackboard — true if the raw ops show ANY sign the model was
+ *  attempting a written board (some labels/notes/arrows, no image/scene/motion), even if it
+ *  narrowly misses isWrittenBlackboard's stricter shape bar. Used only to decide "route to the
+ *  dynamic chalkBoard pipeline" vs. "this beat has no blackboard content at all" — the dynamic
+ *  pipeline authors real content from the boardBrief regardless of how thin the raw signal was,
+ *  so a loose trigger here is safe (unlike isWrittenBlackboard, which gates whether to KEEP the
+ *  model's raw ops as-is and must stay strict). */
+function looksLikeAttemptedBlackboard(ops: DrawOp[]): boolean {
+  if (ops.some((op) => op.kind === "image" || op.kind === "scene" || op.kind === "motion" || op.kind === "reactAnimation" || op.kind === "chalkBoard")) return false;
+  const labels = ops.filter((op) => op.kind === "label").length;
+  const notes = ops.filter((op) => op.kind === "note").length;
+  const arrows = ops.filter((op) => op.kind === "arrow").length;
+  return labels + notes + arrows >= 2;
 }
 
 function blackboardTextIsClean(ops: DrawOp[]): boolean {
@@ -1727,6 +1819,7 @@ function uniqueShort(items: string[], max: number) {
 
 type SanitizeDrawLectureOptions = {
   enforceDepth?: boolean;
+  minUsableBeats?: number;
 };
 
 /** Sanitizes the whole `{ beats: [...] }` payload. Throws if too few survive. */
@@ -1735,7 +1828,8 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   const beatsRaw = (raw as Record<string, unknown>).beats;
   if (!Array.isArray(beatsRaw)) throw new Error("Model returned no usable lecture.");
   const beats = beatsRaw.map((b, i) => sanitizeBeat(b, i)).filter((b): b is Beat => b !== null);
-  if (beats.length < 9) {
+  const minUsableBeats = options.minUsableBeats ?? 9;
+  if (beats.length < minUsableBeats) {
     throw new Error(`Model only returned ${beats.length} usable beats — too few for a real lecture. Try again.`);
   }
 
@@ -2127,6 +2221,15 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
       return imageSlot;
     }, 0);
 
+  // Keep every teaching board available for the full, deeper narration window. Playback still
+  // follows the real audio clock; this only gives the marker timeline enough temporal room and
+  // does not add, remove, reorder, or visually redesign any beat.
+  for (const beat of beats) {
+    if (beat.slideKind === "checkpoint" || !beat.draw) continue;
+    const duration = beat.draw.durationMs;
+    beat.draw.durationMs = typeof duration === "number" && duration >= 42000 && duration <= 60000 ? duration : 48000;
+  }
+
   if (options.enforceDepth !== false) {
     assertLectureDepth(beats);
   }
@@ -2151,7 +2254,7 @@ export function lectureDepthStats(beats: Beat[]): LectureDepthStats {
   const totalWords = beats.reduce((sum, beat) => sum + scriptWordCount(beat.script), 0);
   const teachingWords = teachingBeats.reduce((sum, beat) => sum + scriptWordCount(beat.script), 0);
   const avgTeachingWords = teachingBeats.length ? teachingWords / teachingBeats.length : 0;
-  const shortTeachingBeats = teachingBeats.filter((beat, index) => scriptWordCount(beat.script) < (index === 0 ? 45 : 55));
+  const shortTeachingBeats = teachingBeats.filter((beat, index) => scriptWordCount(beat.script) < (index === 0 ? 70 : 95));
   return {
     totalWords,
     teachingWords,
@@ -2164,12 +2267,11 @@ export function lectureDepthStats(beats: Beat[]): LectureDepthStats {
 export function assertLectureDepth(beats: Beat[]): LectureDepthStats {
   const stats = lectureDepthStats(beats);
   const maxShortBeats = Math.max(1, Math.floor(stats.teachingBeatCount * 0.15));
-  // The generator sometimes returns a compact but still usable lecture after sanitization
-  // removes malformed beats. Judge total depth relative to the number of surviving teaching
-  // beats instead of enforcing a fixed 820-word floor for every lecture shape.
-  const minTotalWords = Math.min(820, Math.max(560, stats.teachingBeatCount * 55));
+  // Judge depth relative to the number of surviving teaching beats. Beat count is preserved;
+  // each board now earns enough narration time for a layered explanation rather than a summary.
+  const minTotalWords = Math.min(1250, Math.max(900, stats.teachingBeatCount * 100));
 
-  if (stats.totalWords < minTotalWords || stats.avgTeachingWords < 55 || stats.shortTeachingBeatCount > maxShortBeats) {
+  if (stats.totalWords < minTotalWords || stats.avgTeachingWords < 100 || stats.shortTeachingBeatCount > maxShortBeats) {
     throw new Error(
       `Model returned a shallow lecture (${stats.totalWords} spoken words, ${Math.round(stats.avgTeachingWords)} words/teaching beat). Try again with deeper scripts.`
     );
@@ -3155,7 +3257,9 @@ export function fallbackExplanationDraw(question: string, script: string): DrawS
   return makeWrittenBoard(seed, script || topNote, 18000);
 }
 
-/** Sanitizes a single side-chat explanation: { script, draw }. */
+/** Sanitizes a single side-chat explanation: { script, draw }. Rendered on the same paper
+ *  whiteboard surface as the main lecture (see surface default in generate-lecture/route.ts) so
+ *  a mid-lecture "explain this" board doesn't pop up as a mismatched dark chalkboard. */
 export function sanitizeExplanation(raw: unknown, context?: { question?: string }): { script: string; draw?: DrawScript } {
   if (!raw || typeof raw !== "object") throw new Error("No explanation returned.");
   const o = raw as Record<string, unknown>;
@@ -3163,7 +3267,7 @@ export function sanitizeExplanation(raw: unknown, context?: { question?: string 
   if (!script) throw new Error("Empty explanation.");
   const draw = sanitizeDraw(o.draw, { title: context?.question, script, slideKind: "definition", index: 1 });
   const finalDraw = hasUsefulExplanationVisual(draw) ? draw : fallbackExplanationDraw(context?.question ?? "", script);
-  return { script, draw: finalDraw };
+  return { script, draw: { ...finalDraw, surface: "paper" } };
 }
 
 /**

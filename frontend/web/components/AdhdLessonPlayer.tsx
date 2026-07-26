@@ -30,7 +30,7 @@ const FOCUS_HOLD_MS = 5000; // how long the lecture stays frozen after a focus d
 const DRIFT_HOLD_MS = 2000; // drift must persist this long before the tutor/pause reacts (avoids a fleeting glance)
 type Stage = "slide" | "board";
 
-export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesis", mood = "" }: { onExit?: () => void; beats?: Beat[]; title?: string; mood?: string }) {
+export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string; mood?: string }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -187,11 +187,11 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
 
-    window.setTimeout(() => setDrawProgress(0.06), 0);
+    window.setTimeout(() => setDrawProgress(0), 0);
     const handle = playNarration(beat.script, {
       onStart: () => setSpeaking(true),
       onSentenceStart: (sentenceIndex, sentence, total) => setSentenceCue({ index: sentenceIndex, text: sentence, total }),
-      onProgress: (progress) => setDrawProgress(Math.max(0.06, progress)),
+      onProgress: (progress) => setDrawProgress(Math.max(0, progress)),
       onEnd: () => {
         setSpeaking(false);
         cancelRef.current = null;
@@ -199,7 +199,11 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
         if (isCheckpoint) {
           setWaitingOnCheckpoint(true);
         } else {
-          setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+          setIndex((i) => {
+            if (i < beats.length - 1) return i + 1;
+            onComplete?.();
+            return i;
+          });
           setStage("slide");
         }
       },
@@ -212,7 +216,7 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, stage, isCheckpoint, beat.script, beats.length, chat.busy]);
+  }, [index, playing, stage, isCheckpoint, beat.script, beats.length, chat.busy, onComplete]);
 
   // While the tutor is speaking: keep the lecture paused (belt-and-suspenders on top of the
   // speech-started pause). This effect NEVER resumes — the lecture stays paused until the student
@@ -274,7 +278,11 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
     setDrawProgress(0);
-    setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+    setIndex((i) => {
+      if (i < beats.length - 1) return i + 1;
+      onComplete?.();
+      return i;
+    });
     setStage("slide");
   }
 
@@ -382,7 +390,7 @@ export function AdhdLessonPlayer({ onExit, beats = demoBeats, title = "Photosynt
             {/* Live-tutor board drawn by the realtime show_board tool. Closing it clears the board
                 only — the live session stays active. */}
             {liveBoard && (
-              <ExplainOverlay board={liveBoard} progress={1} onClose={() => setLiveBoard(null)} />
+              <ExplainOverlay board={liveBoard} progress={1} autoReveal onClose={() => setLiveBoard(null)} />
             )}
 
             {/* Focus-pause overlay: freezes the board, holds 5s, then offers Resume. */}

@@ -65,14 +65,14 @@ function buildUserPrompt(op: ChalkBoardOp, beat: Beat, sentences: string[], prev
       ? previousIssue.includes("overlap")
         ? `The previous attempt was rejected because: ${previousIssue}. Re-space the rows: stack them strictly top-to-bottom with at least 9 grid units of vertical gap between consecutive rows, and never put two pieces of text at the same y. Keep the content; only fix the spacing.`
         : `The previous attempt was rejected because: ${previousIssue}. Fix exactly that — keep it a clean, well-spaced, TEXT-ONLY chalk board with a heading and real content rows. No diagrams or shapes.`
-      : `Author the board now: a heading plus 4-6 real content rows grounded in the script. TEXT ONLY — no diagrams, shapes, or arrows. Stack rows top-to-bottom with clear vertical gaps, no overlap, everything inside the frame.`,
+      : `Author the board now: a heading plus 4-6 real content rows grounded in the script. The narration is intentionally deep and may be long; select only its pivotal claims instead of turning every sentence into a row. TEXT ONLY — no diagrams, shapes, or arrows. Stack rows top-to-bottom with clear vertical gaps, no overlap, everything inside the frame.`,
   ];
   return parts.join("\n\n");
 }
 
 /** Reads the model's `group` tag off each raw op and rewrites `at` to a sentence-aligned reveal
- *  fraction. An op in group g reveals at (g+1)/N so it appears as sentence g begins (client
- *  drawProgress = (sentenceIndex+1)/total). Ops with no/invalid group fall back to their own `at`
+ *  fraction. An op in group g begins just after g/N, while sentence g is being spoken. Ops with
+ *  no/invalid group fall back to their own `at`
  *  or the last group. Mutates a shallow copy of each raw op before sanitize. */
 function quantizeAtToSentences(rawOps: unknown, sentenceCount: number): unknown[] {
   if (!Array.isArray(rawOps)) return [];
@@ -83,7 +83,7 @@ function quantizeAtToSentences(rawOps: unknown, sentenceCount: number): unknown[
     const g = typeof o.group === "number" ? o.group : Number(o.group);
     if (Number.isFinite(g)) {
       const group = Math.max(0, Math.min(n - 1, Math.floor(g)));
-      o.at = (group + 1) / n;
+      o.at = Math.min(0.98, group / n + 0.004);
     }
     return o;
   });

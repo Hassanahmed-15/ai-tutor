@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
+import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
@@ -83,7 +84,7 @@ export function useLessonChat(opts: {
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
         setChat((c) => [...c, { role: "aria", text: data.script }]);
-        setExplainBoard({ script: data.script, draw: data.draw ?? clientBlackboardDraw(trimmed, data.script) });
+        setExplainBoard({ script: data.script, draw: data.draw });
         setDrawProgress(0);
         const handle = playNarration(data.script, {
           onStart: () => {},
@@ -175,12 +176,36 @@ export function useLessonChat(opts: {
 export function ExplainOverlay({
   board,
   progress,
+  autoReveal = false,
   onClose,
 }: {
   board: { script: string; draw?: DrawScript };
   progress: number;
+  autoReveal?: boolean;
   onClose: () => void;
 }) {
+  const [automaticProgress, setAutomaticProgress] = useState(0);
+  const animationOp = board.draw?.ops.find(
+    (op): op is Extract<typeof op, { kind: "reactAnimation" }> =>
+      op.kind === "reactAnimation" && typeof op.code === "string"
+  );
+
+  useEffect(() => {
+    if (!autoReveal) return;
+    let frame = 0;
+    const startedAt = performance.now();
+    const duration = Math.max(12_000, Math.min(24_000, board.draw?.durationMs ?? 18_000));
+    const tick = (now: number) => {
+      const next = Math.min(1, (now - startedAt) / duration);
+      setAutomaticProgress(next);
+      if (next < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [autoReveal, board]);
+
+  const effectiveProgress = autoReveal ? automaticProgress : progress;
+
   return (
     <div className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/95 p-3 backdrop-blur-md lg:p-5">
       <div className="mb-2 flex items-center justify-between">
@@ -193,8 +218,15 @@ export function ExplainOverlay({
         </button>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto" aria-live="polite">
-        {board.draw ? (
-          <LiveSketch key={board.script.slice(0, 24)} script={board.draw} progress={progress} />
+        {animationOp?.code ? (
+          <ReactAnimationSandbox
+            key={board.script.slice(0, 24)}
+            code={animationOp.code}
+            progress={effectiveProgress}
+            sentenceProgress={effectiveProgress}
+          />
+        ) : board.draw ? (
+          <LiveSketch key={board.script.slice(0, 24)} script={board.draw} progress={effectiveProgress} />
         ) : (
           <div className="grid h-full place-items-center p-8 text-center">
             <p className="max-w-lg text-lg font-medium text-[var(--hud-text-dim)]">{board.script}</p>
@@ -216,6 +248,7 @@ export function ChatPanel({
   onAsk,
   onVoice,
   liveActive = false,
+  liveReady = false,
   liveStatusLabel = "",
   liveMuted = false,
   onLiveMute,
@@ -232,6 +265,8 @@ export function ChatPanel({
   onVoice: () => void;
   /** True while a live full-duplex tutor session is running (the mic toggles the call). */
   liveActive?: boolean;
+  /** The realtime session is preconnected but may be privacy-muted while the lecture plays. */
+  liveReady?: boolean;
   /** Status text shown while a live session is active (e.g. "Aria speaking…"). */
   liveStatusLabel?: string;
   /** Live-session mic muted state + toggle (shown only while live). */
@@ -294,11 +329,11 @@ export function ChatPanel({
       </div>
 
       <div className="mt-auto border-t border-[var(--hud-line)] p-3">
-        {liveActive && (
+        {(liveActive || liveReady) && (
           <div className="mb-2 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2 rounded-full bg-rose-500/15 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] text-rose-300">
-              <span className="size-2 animate-pulse rounded-full bg-rose-400" />
-              {liveStatusLabel || "Live — costs apply"}
+            <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveActive ? "bg-rose-500/15 text-rose-300" : "bg-cyan-400/10 text-cyan-200"}`}>
+              <span className={`size-2 rounded-full ${liveActive ? "animate-pulse bg-rose-400" : "bg-cyan-300"}`} />
+              {liveActive ? liveStatusLabel || "Live — costs apply" : "Voice ready · muted"}
             </div>
             {onLiveMute && (
               <button
@@ -351,7 +386,9 @@ export function ChatPanel({
                       : "Mute your mic"
                     : liveActive
                       ? "End live conversation"
-                      : "Talk live with Aria"
+                      : liveReady
+                        ? "Unmute and talk to Aria"
+                        : "Talk live with Aria"
                 }
                 className={`shrink-0 rounded-full px-3 py-2.5 text-sm font-black transition disabled:opacity-40 ${
                   liveAlwaysOn
@@ -363,7 +400,7 @@ export function ChatPanel({
                       : "hud-btn-ghost"
                 }`}
               >
-                {liveAlwaysOn ? (liveMuted ? "🔇" : "🎙") : liveActive ? "⏹" : "🎙"}
+                {liveAlwaysOn ? (liveMuted ? "🔇" : "🎙") : liveActive ? "⏹" : liveReady && liveMuted ? "🔇" : "🎙"}
               </button>
             )}
             <input
@@ -388,40 +425,4 @@ export function ChatPanel({
       </div>
     </HudPanel>
   );
-}
-
-function clientBlackboardDraw(question: string, script: string): DrawScript {
-  const title = shortenClientText(question || "Question", 42);
-  const first = firstClientSentence(script, "Main idea");
-  const second = secondClientSentence(script, "Example");
-
-  return {
-    caption: title,
-    durationMs: 16000,
-    ops: [
-      { kind: "label", text: title, x: 50, y: 10, size: "md", color: "#1e293b", at: 0.05 },
-      { kind: "note", text: shortenClientText(first, 46), x: 28, y: 28, color: "#2563eb", at: 0.16 },
-      { kind: "arrow", x1: 36, y1: 36, x2: 49, y2: 48, color: "#475569", at: 0.30 },
-      { kind: "label", text: "key change", x: 50, y: 50, size: "sm", color: "#d97706", at: 0.42 },
-      { kind: "arrow", x1: 55, y1: 52, x2: 68, y2: 64, color: "#475569", at: 0.56 },
-      { kind: "note", text: shortenClientText(second, 46), x: 72, y: 72, color: "#059669", at: 0.72 },
-    ],
-  };
-}
-
-function firstClientSentence(text: string, fallback: string) {
-  return text.match(/[^.!?]+[.!?]?/)?.[0]?.trim() || fallback;
-}
-
-function secondClientSentence(text: string, fallback: string) {
-  const sentences = text.match(/[^.!?]+[.!?]?/g)?.map((s) => s.trim()).filter(Boolean) ?? [];
-  return sentences[1] ?? sentences[0] ?? fallback;
-}
-
-function shortenClientText(text: string, max: number) {
-  const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length <= max) return clean;
-  const clipped = clean.slice(0, max + 1);
-  const lastSpace = clipped.lastIndexOf(" ");
-  return clipped.slice(0, lastSpace > 18 ? lastSpace : max).replace(/[,.!?;:–—-]+$/, "").trim();
 }

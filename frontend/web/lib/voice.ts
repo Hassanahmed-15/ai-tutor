@@ -14,6 +14,10 @@
 
 export type NarrationHandle = {
   cancel: () => void;
+  /** Freeze the active narration at its current media timestamp without destroying it. */
+  pause: () => void;
+  /** Continue a paused narration from the exact timestamp where it was interrupted. */
+  resume: () => void;
 };
 
 /**
@@ -130,10 +134,14 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   const useCloudTts = callbacks.cloudTts ?? CLOUD_TTS_DEFAULT;
   const initialSentences = splitNarrationSentences(text);
   let cancelled = false;
+  let paused = false;
+  let pausedAtMs = 0;
+  let totalPausedMs = 0;
   let audio: HTMLAudioElement | null = null;
   let audioContext: AudioContext | null = null;
   let cueTimers: ReturnType<typeof setTimeout>[] = [];
   let progressRaf = 0;
+  let resumeProgressLoop: (() => void) | null = null;
   let objectUrl: string | null = null;
   const clearCues = () => {
     cueTimers.forEach((timer) => clearTimeout(timer));
@@ -161,6 +169,30 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     }
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
+    }
+  };
+  const pause = () => {
+    if (cancelled || paused) return;
+    paused = true;
+    pausedAtMs = typeof performance !== "undefined" ? performance.now() : Date.now();
+    if (audio && !audio.paused) audio.pause();
+    stopProgressLoop();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.pause();
+    }
+  };
+  const resume = () => {
+    if (cancelled || !paused) return;
+    const resumedAtMs = typeof performance !== "undefined" ? performance.now() : Date.now();
+    totalPausedMs += Math.max(0, resumedAtMs - pausedAtMs);
+    paused = false;
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.resume();
+    }
+    if (audio) {
+      void audio.play().then(() => resumeProgressLoop?.()).catch(() => callbacks.onBlocked());
+    } else {
+      resumeProgressLoop?.();
     }
   };
   activeNarrationCancelers.add(cancel);
@@ -201,6 +233,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
     const cueNext = () => {
       if (cancelled) return;
+      if (paused) {
+        cueTimers.push(setTimeout(cueNext, 80));
+        return;
+      }
       if (cursor >= sentences.length) {
         activeNarrationCancelers.delete(cancel);
         stopProgressLoop();
@@ -243,12 +279,14 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     };
     const progressLoop = () => {
       if (cancelled) return;
-      const currentMs = Math.min(estimatedMs, performance.now() - startMs);
+      if (paused) return;
+      const currentMs = Math.min(estimatedMs, performance.now() - startMs - totalPausedMs);
       callbacks.onProgress?.(estimatedMs > 0 ? currentMs / estimatedMs : 1, currentMs, estimatedMs);
       if (currentMs < estimatedMs) {
         progressRaf = window.requestAnimationFrame(progressLoop);
       }
     };
+    resumeProgressLoop = progressLoop;
     cueNext();
     progressLoop();
 
@@ -293,6 +331,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       const estimatedDurationMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
       const emitAudioClock = () => {
         if (cancelled || !audio) return;
+        if (paused) return;
         const durationMs = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration * 1000 : estimatedDurationMs;
         const currentMs = Math.min(durationMs, audio.currentTime * 1000);
         const progress = durationMs > 0 ? Math.max(0, Math.min(1, currentMs / durationMs)) : 0;
@@ -310,6 +349,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
         if (!audio.paused && !audio.ended) progressRaf = window.requestAnimationFrame(emitAudioClock);
       };
+      resumeProgressLoop = emitAudioClock;
       try {
         const AudioContextCtor =
           window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -350,8 +390,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         void browserFallback();
       };
       callbacks.onStart();
-      await audio.play();
-      emitAudioClock();
+      if (!paused) {
+        await audio.play();
+        emitAudioClock();
+      }
     } catch (err) {
       // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
       if (err instanceof DOMException && err.name === "NotAllowedError") {
@@ -365,5 +407,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
   return {
     cancel,
+    pause,
+    resume,
   };
 }

@@ -1,5 +1,6 @@
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import type { Beat } from "./lessonContent";
+import { fallbackWrittenDraw } from "./drawSanitize";
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -91,6 +92,8 @@ type LabelOp = Extract<DrawOp, { kind: "label" }>;
 type NoteOp = Extract<DrawOp, { kind: "note" }>;
 type CalloutOp = Extract<DrawOp, { kind: "callout" }>;
 const MAX_SUPRNOTES_SVG_BOARDS = 8;
+const MIN_PROMPTED_SVG_BOARDS = 4;
+const MAX_PROMPTED_SVG_BOARDS = 6;
 type LessonPlanBeat = {
   id?: string;
   title?: string;
@@ -229,6 +232,69 @@ export function composeSuprnotesPaperBoards(beats: Beat[], sourceDocument: Suprn
   return changed;
 }
 
+/**
+ * Gives ordinary prompted/PPTX lectures the same visual grammar as a Suprnotes import.
+ *
+ * The first text-model pass is still responsible for the lesson plan and factual content, but
+ * its visual op choices are deliberately not trusted here. The legacy sanitizer may turn those
+ * choices into photo slides or sparse written boards. This pass deterministically re-composes
+ * every teaching beat as either a complete Suprnotes SVG board or a concise paper note board.
+ * Checkpoints remain untouched.
+ */
+export function composePromptedSuprnotesBoards(beats: Beat[]): number {
+  const teaching = beats
+    .map((beat, index) => ({ beat, index, block: promptedBlockForBeat(beat, index) }))
+    .filter(({ beat }) => beat.slideKind !== "checkpoint");
+  if (!teaching.length) return 0;
+
+  const targetSvgCount = clamp(
+    Math.round(teaching.length * 0.55),
+    Math.min(MIN_PROMPTED_SVG_BOARDS, teaching.length),
+    Math.min(MAX_PROMPTED_SVG_BOARDS, teaching.length)
+  );
+  const selected = selectPromptedSvgIndexes(teaching, targetSvgCount);
+  let changed = 0;
+
+  for (const { beat, index, block } of teaching) {
+    const trustedReferenceImage = beat.draw?.ops.some(
+      (op) => op.kind === "image"
+        && typeof op.assetId === "string"
+        && (op.assetId.startsWith("reference:") || op.assetId.startsWith("commons:"))
+        && Boolean(op.src)
+    );
+    if (trustedReferenceImage) {
+      if (beat.draw) beat.draw.surface = "paper";
+      continue;
+    }
+    if (selected.has(index)) {
+      const teachingIndex = teaching.findIndex((entry) => entry.index === index);
+      const context = {
+        previousTitle: teaching[teachingIndex - 1]?.beat.title,
+        nextTitle: teaching[teachingIndex + 1]?.beat.title,
+      };
+      const existing = beat.draw?.ops.find((op) => op.kind === "reactAnimation");
+      const isComposedBoard = existing?.kind === "reactAnimation"
+        && existing.teachingPoint?.includes("SUPRNOTES_WHITEBOARD_SVG_BOARD") === true;
+      if (!isComposedBoard) {
+        beat.draw = generatedSvgPaperBoard(beat, block, context);
+        changed++;
+      } else if (beat.draw) {
+        beat.draw.surface = "paper";
+      }
+      continue;
+    }
+
+    const alreadyPaperNotes = beat.draw?.surface === "paper"
+      && !beat.draw.ops.some((op) => op.kind === "image" || op.kind === "reactAnimation" || op.kind === "chalkBoard");
+    if (!alreadyPaperNotes) {
+      beat.draw = sourceNotePaperBoard(beat, block);
+      changed++;
+    }
+  }
+
+  return changed;
+}
+
 export function enforcePlannedSuprnotesVisualModes(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): number {
   const blocks = sourceDocument?.contentBlocks
     ?.slice()
@@ -252,10 +318,13 @@ export function enforcePlannedSuprnotesVisualModes(beats: Beat[], sourceDocument
 }
 
 export function repairMissingSuprnotesSvgCode(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): number {
-  const blocks = sourceDocument?.contentBlocks
+  const sourceBlocks = sourceDocument?.contentBlocks
     ?.slice()
     .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0));
-  if (!blocks?.length) return 0;
+  const blocks = sourceBlocks?.length
+    ? sourceBlocks
+    : beats.map((beat, index) => promptedBlockForBeat(beat, index));
+  if (!blocks.length) return 0;
 
   let repaired = 0;
   const usedBlocks = new Set<string>();
@@ -263,12 +332,19 @@ export function repairMissingSuprnotesSvgCode(beats: Beat[], sourceDocument: Sup
     const animationOp = beat.draw?.ops.find((op) => op.kind === "reactAnimation");
     if (!animationOp || animationOp.code) return;
     const planBeat = plannedBeatForBeat(sourceDocument, beat, index);
-    const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index);
+    const block = sourceDocument
+      ? blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index)
+      : blocks[index];
     if (!block) return;
     usedBlocks.add(block.id);
-    animationOp.code = fallbackWhiteboardSvgCode(beat, block);
-    animationOp.status = "ready";
-    animationOp.error = undefined;
+    // Never substitute a topic-agnostic diagram here. The old emergency SVG reused the same
+    // oval/wave composition on every subject and extracted short tokens such as "In" or "If",
+    // which made failed generations look like fabricated lesson content. A failed premium
+    // illustration now degrades to a content-grounded written board instead.
+    beat.draw = {
+      ...fallbackWrittenDraw(beat.title, beat.script),
+      surface: "paper",
+    };
     repaired++;
   });
 
@@ -353,7 +429,49 @@ export function applySuprnotesPaperLayout(beats: Beat[], sourceDocument: Suprnot
   }
 }
 
-function generatedSvgPaperBoard(beat: Beat, block: SuprnotesContentBlock): DrawScript {
+/** Free-topic equivalent of applySuprnotesPaperLayout — same paper-appropriate re-layout pass
+ *  (sparse rows, generous spacing, clean image/callout placement) but for beats with no uploaded
+ *  source document, so there is no asset map to draw on. Sets `surface: "paper"` and re-lays-out
+ *  chalk/label/note/image ops using the exact same layoutPaperTextBoard/layoutPaperImageBoard
+ *  helpers Suprnotes uses — without this, free-topic beats keep their dark-chalkboard-tuned
+ *  positions/density (many rows, tight spacing) while only the color theme flips to paper,
+ *  which reads as cramped/messy rather than a clean whiteboard. */
+export function applyPaperLayout(beats: Beat[]): void {
+  const noAssets = new Map<string, SuprnotesAsset>();
+
+  for (const beat of beats) {
+    if (!beat.draw) continue;
+    beat.draw.surface = "paper";
+    const chalkOp = beat.draw.ops.find((op) => op.kind === "chalkBoard");
+    if (chalkOp?.kind === "chalkBoard" && chalkOp.ops?.length) {
+      chalkOp.ops = layoutPaperTextBoard(chalkOp.ops, beat.title);
+      continue;
+    }
+
+    const imageOp = beat.draw.ops.find((op): op is ImageOp => op.kind === "image");
+    if (imageOp) {
+      beat.draw.ops = layoutPaperImageBoard(beat.draw.ops, beat.title, imageOp, noAssets);
+      continue;
+    }
+
+    const animationOp = beat.draw.ops.find((op) => op.kind === "reactAnimation");
+    if (animationOp) continue;
+
+    const hasStructuredInk = beat.draw.ops.some(
+      (op) => op.kind === "shape" || op.kind === "arrow" || op.kind === "underline" || op.kind === "circleHighlight"
+    );
+    const hasEnoughText = beat.draw.ops.filter((op) => op.kind === "label" || op.kind === "note").length >= 4;
+    if (hasStructuredInk && hasEnoughText) continue;
+
+    beat.draw.ops = layoutPaperTextBoard(beat.draw.ops, beat.title);
+  }
+}
+
+function generatedSvgPaperBoard(
+  beat: Beat,
+  block: SuprnotesContentBlock,
+  context?: { previousTitle?: string; nextTitle?: string }
+): DrawScript {
   const heading = clean(block.heading) || beat.title;
   return {
     caption: heading,
@@ -361,7 +479,7 @@ function generatedSvgPaperBoard(beat: Beat, block: SuprnotesContentBlock): DrawS
     surface: "paper",
     ops: [{
       kind: "reactAnimation",
-      teachingPoint: suprnotesSvgBrief(beat, block),
+      teachingPoint: suprnotesSvgBrief(beat, block, context),
       at: 0,
       endAt: 1,
     }],
@@ -427,18 +545,6 @@ function sourceNotePaperBoard(beat: Beat, block: SuprnotesContentBlock): DrawScr
       at: 0.19 + index * 0.13,
     });
   });
-  const symbols = formulaTokens([heading, block.text, ...ideas].join(" ")).slice(0, 3);
-  symbols.forEach((symbol, index) => {
-    ops.push({
-      kind: "label",
-      text: symbol,
-      x: 68 + index * 9,
-      y: 80,
-      size: "sm",
-      color: colors[(index + 1) % colors.length],
-      at: 0.62 + index * 0.08,
-    });
-  });
   return { caption: heading, durationMs: beat.draw?.durationMs ?? 24000, surface: "paper", ops };
 }
 
@@ -456,92 +562,95 @@ function shouldUseSvgBoard(beat: Beat, block: SuprnotesContentBlock, index: numb
   return index === 0 || beat.slideKind === "recap";
 }
 
-function suprnotesSvgBrief(beat: Beat, block: SuprnotesContentBlock): string {
+function promptedBlockForBeat(beat: Beat, index: number): SuprnotesContentBlock {
+  const structuredIdeas = [
+    ...(beat.points ?? []),
+    beat.definitionTerm && beat.definitionMeaning
+      ? `${beat.definitionTerm}: ${beat.definitionMeaning}`
+      : "",
+    ...(beat.compareLeft?.points ?? []).map((point) => `${beat.compareLeft?.label ?? "Left"}: ${point}`),
+    ...(beat.compareRight?.points ?? []).map((point) => `${beat.compareRight?.label ?? "Right"}: ${point}`),
+  ].map(clean).filter(Boolean);
+  const scriptIdeas = clean(beat.script)
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.replace(/^(?:so|now|okay|alright|let(?:'s| us))[,\s]+/i, "").trim())
+    .filter((sentence) => sentence.length >= 14)
+    .slice(0, 5);
+
+  return {
+    id: `prompted-${beat.id || index}`,
+    type: beat.slideKind === "compare" ? "comparison" : "section",
+    heading: beat.title,
+    text: beat.script,
+    keyIdeas: dedupeRows([...structuredIdeas, ...scriptIdeas]).slice(0, 5),
+    sourceOrder: index,
+  };
+}
+
+function selectPromptedSvgIndexes(
+  teaching: Array<{ beat: Beat; index: number; block: SuprnotesContentBlock }>,
+  target: number
+): Set<number> {
+  const visualTerms = /\b(?:how|inside|structure|system|process|cycle|flow|path|mechanism|transfer|transform|convert|compare|versus|difference|relationship|cause|effect|force|field|reaction|molecule|cell|circuit|graph|timeline|map|model|anatomy|architecture)\b/i;
+  const scores = new Map<number, number>();
+  teaching.forEach(({ beat, index, block }, order) => {
+    const source = `${beat.title} ${beat.teacherMove} ${block.keyIdeas?.join(" ") ?? ""}`;
+    let score = index === 0 ? 120 : 0;
+    if (beat.slideKind === "compare") score += 55;
+    if (beat.slideKind === "definition") score += 18;
+    if (beat.slideKind === "recap") score -= 18;
+    if (visualTerms.test(source)) score += 44;
+    if ((beat.points?.length ?? 0) >= 3) score += 12;
+    // A small center-weight favors mechanism boards without forcing adjacent SVG slides.
+    const center = (teaching.length - 1) / 2;
+    score += Math.max(0, 10 - Math.abs(order - center) * 2);
+    scores.set(index, score);
+  });
+
+  const selected = new Set<number>();
+  const first = teaching[0];
+  if (first) selected.add(first.index);
+  while (selected.size < target) {
+    let best: { index: number; score: number } | null = null;
+    for (const { index } of teaching) {
+      if (selected.has(index)) continue;
+      const nearest = selected.size
+        ? Math.min(...Array.from(selected, (chosen) => Math.abs(chosen - index)))
+        : teaching.length;
+      const spreadBonus = Math.min(30, nearest * 9);
+      const score = (scores.get(index) ?? 0) + spreadBonus;
+      if (!best || score > best.score) best = { index, score };
+    }
+    if (!best) break;
+    selected.add(best.index);
+  }
+  return selected;
+}
+
+function suprnotesSvgBrief(
+  beat: Beat,
+  block: SuprnotesContentBlock,
+  context?: { previousTitle?: string; nextTitle?: string }
+): string {
   const heading = clean(block.heading) || beat.title;
   const ideas = boardIdeas(block).slice(0, 5);
   const table = block.rows?.length
     ? `Table/comparison data: columns=${(block.columns ?? []).join(" | ")}; rows=${block.rows.map((row) => row.join(" | ")).join("; ")}.`
     : "";
-  const formulas = formulaTokens([heading, block.text, ...ideas].join(" ")).slice(0, 6);
   return [
     "SUPRNOTES_WHITEBOARD_SVG_BOARD",
     `Board title: ${heading}.`,
     `Beat title: ${beat.title}.`,
     `Source text: ${shortText(block.text ?? beat.script, 520)}`,
     ideas.length ? `Key ideas to show, using plain accurate labels: ${ideas.map((idea) => shortText(idea, 120)).join(" / ")}.` : "",
-    formulas.length ? `Important symbols/examples from the notes: ${formulas.join(", ")}.` : "",
     table,
-    "Create a clean whiteboard-style SVG scene grounded in these notes. Use real subject-specific visuals, not generic bubbles: diagrams, comparison panels, molecular/structural sketches, arrows, annotations, or simple illustrated objects as appropriate. Keep labels short and readable; no clipped text; no filler. Leave wide margins and place the main visual center/right with explanatory labels in clear zones around it.",
+    context?.previousTitle ? `Prior lesson context: ${context.previousTitle}. Preserve one small spatial or conceptual anchor from it only when that makes the relationship clearer.` : "",
+    context?.nextTitle ? `Next lesson direction: ${context.nextTitle}. Reserve space or end with a visual bridge only when it naturally prepares that idea.` : "",
+    "Plan the full board before drawing. Choose a content-specific reading path rather than a fixed left/right split, then interleave short handwritten claims with the exact diagrams, labels, arrows, and later annotations they explain. Use real subject-specific visuals, not generic bubbles: accurate molecular or structural sketches, professional cutaways, graphs, maps, mechanisms, or comparisons as appropriate. Keep labels short and readable; no clipped text, filler, or invented facts. The illustration should have textbook/BioRender-level proportions, layered editable SVG shapes, clean outlines, restrained depth, and meaningful colors.",
   ].filter(Boolean).join("\n");
 }
 
-function fallbackWhiteboardSvgCode(beat: Beat, block: SuprnotesContentBlock): string {
-  const heading = clean(block.heading) || beat.title;
-  const ideas = boardIdeas(block).slice(0, 4).map((idea) => shortText(idea, 82));
-  const symbols = formulaTokens([heading, block.text, ...ideas].join(" ")).slice(0, 5);
-  const columns = (block.columns ?? []).slice(0, 3).map((column) => shortText(column, 24));
-  const rows = (block.rows ?? []).slice(0, 4).map((row) => row.slice(0, 3).map((cell) => shortText(cell, 26)));
-  const tableMode = rows.length > 0;
-  const data = JSON.stringify({ heading: boardTitle(heading), ideas, symbols, columns, rows, tableMode });
-
-  return `export default function Animation({ progress }) {
-  const p = Math.max(0, Math.min(1, Number(progress) || 0));
-  const data = ${data};
-  const colors = ["#14b8a6", "#3b82f6", "#be185d", "#65a30d", "#d97706"];
-  const show = (i) => Math.max(0, Math.min(1, (p - i * 0.08) / 0.18));
-  const textStyle = { fontFamily: "'Comic Sans MS','Trebuchet MS',sans-serif", fontWeight: 800, letterSpacing: 0 };
-  return (
-    <div style={{ width: "100%", height: "100%", background: "#fbfbf8" }}>
-      <svg viewBox="0 0 1000 560" width="100%" height="100%" role="img" aria-label={data.heading}>
-        <rect width="1000" height="560" fill="#fbfbf8" />
-        <g opacity="0.22">
-          {Array.from({ length: 18 }).map((_, i) => <line key={"v"+i} x1={40+i*54} y1="0" x2={40+i*54} y2="560" stroke="#e5e7eb" strokeWidth="1" />)}
-          {Array.from({ length: 10 }).map((_, i) => <line key={"h"+i} x1="0" y1={42+i*52} x2="1000" y2={42+i*52} stroke="#e5e7eb" strokeWidth="1" />)}
-        </g>
-        <g opacity={show(0)}>
-          <text x="500" y="70" textAnchor="middle" fill="#747b85" fontSize="34" style={textStyle}>{data.heading}</text>
-          <path d="M 360 86 Q 500 104 640 86" fill="none" stroke="#9ca3af" strokeWidth="5" strokeLinecap="round" />
-        </g>
-        {data.tableMode ? (
-          <g opacity={show(1)}>
-            <rect x="120" y="138" width="760" height="270" rx="22" fill="#ffffff" stroke="#d1d5db" strokeWidth="3" />
-            {data.columns.map((col, i) => <text key={col+i} x={220+i*260} y="186" textAnchor="middle" fill={colors[i % colors.length]} fontSize="25" style={textStyle}>{col}</text>)}
-            <line x1="150" y1="210" x2="850" y2="210" stroke="#d1d5db" strokeWidth="3" />
-            {data.rows.map((row, r) => (
-              <g key={r} opacity={show(r+2)}>
-                <rect x="150" y={230+r*42} width="700" height="31" rx="14" fill={r % 2 ? "#f8fafc" : "#ffffff"} stroke="#eef2f7" />
-                {row.map((cell, c) => <text key={c} x={220+c*260} y={252+r*42} textAnchor="middle" fill={c===0 ? colors[r % colors.length] : "#6b7280"} fontSize={c===0 ? 22 : 18} style={textStyle}>{cell}</text>)}
-              </g>
-            ))}
-          </g>
-        ) : (
-          <g>
-            {data.ideas.map((idea, i) => (
-              <g key={i} opacity={show(i+1)}>
-                <circle cx="125" cy={165+i*70} r="18" fill="#ffffff" stroke={colors[i % colors.length]} strokeWidth="7" />
-                <text x="170" y={174+i*70} fill={i===0 ? colors[i % colors.length] : "#6b7280"} fontSize={i===0 ? 27 : 23} style={textStyle}>{idea}</text>
-              </g>
-            ))}
-            <g opacity={show(3)}>
-              <ellipse cx="735" cy="250" rx="124" ry="86" fill="#eef6ff" stroke="#3b82f6" strokeWidth="7" />
-              <ellipse cx="735" cy="250" rx="52" ry="34" fill="#ffffff" stroke="#14b8a6" strokeWidth="5" />
-              {(data.symbols.length ? data.symbols : [data.heading.split(" ")[0]]).slice(0,3).map((symbol, i) => (
-                <text key={i} x={650+i*82} y={355+i%2*38} textAnchor="middle" fill={colors[(i+1)%colors.length]} fontSize="30" style={textStyle}>{symbol}</text>
-              ))}
-              <path d="M 590 250 C 640 210, 685 210, 735 250 S 830 290, 880 250" fill="none" stroke="#9ca3af" strokeWidth="5" strokeLinecap="round" />
-            </g>
-          </g>
-        )}
-        <g opacity={show(5)}>
-          <path d="M 176 470 Q 500 506 824 470" fill="none" stroke="#14b8a6" strokeWidth="6" strokeLinecap="round" />
-        </g>
-      </svg>
-    </div>
-  );
-}`;
-}
-
-function layoutPaperImageBoard(
+export function layoutPaperImageBoard(
   ops: DrawOp[],
   title: string,
   imageOp: ImageOp,
@@ -619,7 +728,7 @@ function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x: number
   };
 }
 
-function layoutPaperTextBoard(ops: DrawOp[], title: string): DrawOp[] {
+export function layoutPaperTextBoard(ops: DrawOp[], title: string): DrawOp[] {
   const textOps = ops.filter((op): op is LabelOp | NoteOp => op.kind === "label" || op.kind === "note");
   const rawRows = textOps
     .filter((op) => op.y > 14)
@@ -750,11 +859,6 @@ function boardIdeas(block: SuprnotesContentBlock): string[] {
     .slice(0, 4);
 }
 
-function formulaTokens(value: string): string[] {
-  const matches = value.match(/\b(?:[A-Z][a-z]?\d*[+\-]?)(?:[-–][A-Z][a-z]?\d*[+\-]?|\s*[+→]\s*[A-Z][a-z]?\d*[+\-]?)*\b/g) ?? [];
-  return dedupeRows(matches.map((match) => match.replace(/\s+/g, " ").trim()).filter((match) => /[A-Z]/.test(match))).slice(0, 6);
-}
-
 function bestBeatForAsset(beats: Beat[], asset: SuprnotesAsset, blocks: Map<string, SuprnotesContentBlock>): number {
   const assetBlocks = (asset.sourceBlockIds ?? []).map((id) => blocks.get(id)).filter(Boolean) as SuprnotesContentBlock[];
   const searchTerms = [
@@ -827,7 +931,7 @@ function markerColor(index: number): string {
 }
 
 function boardTitle(value: string): string {
-  return shortText(value, 42).toUpperCase();
+  return shortText(value, 42);
 }
 
 function shortText(value: string, max: number): string {

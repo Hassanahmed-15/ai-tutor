@@ -16,6 +16,7 @@ export function LiveTutorPanel({
   transcript,
   onMuteToggle,
   onEnd,
+  progressLabel,
 }: {
   status: RealtimeStatus;
   speaking: boolean;
@@ -24,6 +25,8 @@ export function LiveTutorPanel({
   transcript: Array<{ role: "student" | "tutor"; text: string }>;
   onMuteToggle: () => void;
   onEnd: () => void;
+  /** Optional short progress string shown next to the eyebrow, e.g. "Question 3 of 8" (oral exam mode). */
+  progressLabel?: string;
 }) {
   const stateLabel =
     status === "connecting"
@@ -57,6 +60,11 @@ export function LiveTutorPanel({
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {progressLabel && (
+            <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white/70">
+              {progressLabel}
+            </span>
+          )}
           {live && (
             <span className="rounded-full bg-rose-500/15 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-rose-300">
               ● live — costs apply

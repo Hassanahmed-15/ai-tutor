@@ -62,11 +62,13 @@ function speechMatches(text: string, words: string[]) {
 
 export function BlindLessonPlayer({
   onExit,
+  onComplete,
   beats = demoBeats,
   title = "Photosynthesis",
   autoStart = false,
 }: {
   onExit?: () => void;
+  onComplete?: () => void;
   beats?: Beat[];
   title?: string;
   autoStart?: boolean;
@@ -221,6 +223,7 @@ export function BlindLessonPlayer({
     } else {
       setPhase("done");
       setAnnouncement("That's the end of the lecture. Press R to restart, or Escape to exit.");
+      onComplete?.();
     }
   }
 

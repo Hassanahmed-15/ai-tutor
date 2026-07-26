@@ -60,7 +60,7 @@ function loadDecode(): boolean {
   }
 }
 
-export function AutismLessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; beats?: Beat[]; title?: string }) {
+export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -173,7 +173,11 @@ export function AutismLessonPlayer({ onExit, beats = demoBeats, title = "Photosy
         if (isCheckpoint) {
           setWaitingOnCheckpoint(true);
         } else {
-          setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+          setIndex((i) => {
+            if (i < beats.length - 1) return i + 1;
+            onComplete?.();
+            return i;
+          });
           setStage("slide");
         }
       },
@@ -186,7 +190,7 @@ export function AutismLessonPlayer({ onExit, beats = demoBeats, title = "Photosy
       cancelRef.current = null;
       setSpeaking(false);
     };
-  }, [index, playing, paused, stage, isCheckpoint, beat.script, beats.length, chat.busy]);
+  }, [index, playing, paused, stage, isCheckpoint, beat.script, beats.length, chat.busy, onComplete]);
 
   // Keep the transcript scrolled to the newest line.
   useEffect(() => {
@@ -197,7 +201,11 @@ export function AutismLessonPlayer({ onExit, beats = demoBeats, title = "Photosy
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
-    setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+    setIndex((i) => {
+      if (i < beats.length - 1) return i + 1;
+      onComplete?.();
+      return i;
+    });
     setStage("slide");
   }
 

@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import type { Beat } from "./lessonContent";
 import { REACT_ANIMATION_SYSTEM_PROMPT } from "./drawPrompt";
 import {
@@ -22,8 +24,15 @@ import {
  */
 
 const MODEL = process.env.OPENAI_ANIMATION_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const PLANNER_MODEL = process.env.OPENAI_ANIMATION_PLANNER_MODEL ?? MODEL;
+const REVIEW_MODEL = process.env.OPENAI_ANIMATION_REVIEW_MODEL ?? MODEL;
 const MAX_TOKENS = Math.max(3_000, Math.min(20_000, Number(process.env.OPENAI_ANIMATION_MAX_TOKENS ?? 12_000)));
-const MAX_ATTEMPTS = Math.max(1, Math.min(6, Number(process.env.OPENAI_ANIMATION_ATTEMPTS ?? 5)));
+// Keep normal lessons predictable in both latency and cost. The generator gets one corrective
+// retry for malformed code; expensive model-authored planning/review passes are opt-in.
+const MAX_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_ANIMATION_ATTEMPTS ?? 2)));
+const AI_VISUAL_PLANNING_ENABLED = process.env.AI_VISUAL_PLANNING_ENABLED === "1";
+const AI_VISUAL_REVIEW_ENABLED = process.env.AI_VISUAL_REVIEW_ENABLED === "1";
+const DEBUG_SAVE_SVG = process.env.SVG_DEBUG_SAVE === "1";
 
 // Cost estimate uses the same gpt-4o-era rates as generate-lecture; override models may differ.
 const INPUT_PRICE = 2.50 / 1_000_000;
@@ -88,25 +97,280 @@ type PreviousFailure = {
   issue: string;
   diagnostics: ReactAnimationCodeDiagnostics;
   code: string;
+  review?: VisualReview;
   /** True when this attempt's primitiveScore/objectPrimitiveScore barely moved (or regressed)
    *  versus the attempt before it — signals the model is repeating itself instead of closing
    *  the gap, and needs a more forceful instruction than another generic "add more" nudge. */
   stalled: boolean;
 };
 
+type VisualBlueprint = {
+  subject: string;
+  view: string;
+  learningGoal: string;
+  recognitionCues: string[];
+  requiredParts: Array<{
+    name: string;
+    relationship: string;
+    relativePosition: string;
+  }>;
+  forbiddenShortcuts: string[];
+  composition: {
+    focalRegion: string;
+    annotationRegions: string[];
+    readingPath: string;
+  };
+};
+
+type VisualReview = {
+  pass: boolean;
+  criticalIssues: string[];
+  scores: {
+    scientificFidelity: number;
+    recognizability: number;
+    composition: number;
+    labeling: number;
+    educationalClarity: number;
+    professionalFinish: number;
+  };
+  revision: string;
+};
+
+function completionTokenParam(model: string, maxTokens: number) {
+  return /^(gpt-5|o[0-9])/.test(model)
+    ? { max_completion_tokens: maxTokens }
+    : { max_tokens: maxTokens };
+}
+
+function parseJsonObject(text: string): Record<string, unknown> | null {
+  const clean = text.trim().replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "");
+  try {
+    const parsed = JSON.parse(clean);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? parsed as Record<string, unknown>
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function stringList(value: unknown, max: number): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0)
+        .map((item) => item.trim().slice(0, 180))
+        .slice(0, max)
+    : [];
+}
+
+function fallbackBlueprint(op: ReactAnimationOp, beat: Beat): VisualBlueprint {
+  return {
+    subject: beat.title,
+    view: "the clearest scientifically appropriate teaching view",
+    learningGoal: op.teachingPoint ?? beat.title,
+    recognitionCues: ["recognizable silhouette", "correct relative proportions", "clear functional relationships"],
+    requiredParts: [],
+    forbiddenShortcuts: ["generic icon", "unlabeled blob", "decorative geometry", "unrelated analogy object"],
+    composition: {
+      focalRegion: "the central teaching region",
+      annotationRegions: ["clear exterior whitespace near each named part"],
+      readingPath: "title, main subject, functional relationship, concise takeaway",
+    },
+  };
+}
+
+async function planVisual(
+  client: OpenAI,
+  op: ReactAnimationOp,
+  beat: Beat
+): Promise<{ blueprint: VisualBlueprint; costUsd: number }> {
+  const fallback = fallbackBlueprint(op, beat);
+  try {
+    const completion = await client.chat.completions.create({
+      model: PLANNER_MODEL,
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a scientific visual architect for a premium educational whiteboard. " +
+            "Plan one accurate, recognizable editable SVG illustration before anyone draws it. " +
+            "Be subject-specific and topology-aware. Never prescribe generic icons, clip art, UI cards, or decorative analogies. " +
+            "Return JSON only.",
+        },
+        {
+          role: "user",
+          content: [
+            `Title: ${beat.title}`,
+            `Teaching brief: ${op.teachingPoint ?? beat.title}`,
+            `Narration: ${beat.script}`,
+            "Return this exact shape:",
+            JSON.stringify({
+              subject: "exact real subject being depicted",
+              view: "specific view/cutaway/perspective best suited to the concept",
+              learningGoal: "what the finished figure must make visually obvious",
+              recognitionCues: ["3-6 visible cues without which the subject is not recognizable"],
+              requiredParts: [
+                {
+                  name: "part",
+                  relationship: "how it connects to or acts on another part",
+                  relativePosition: "where it must sit relative to the whole",
+                },
+              ],
+              forbiddenShortcuts: ["3-6 tempting but misleading generic substitutions"],
+              composition: {
+                focalRegion: "where the main subject belongs",
+                annotationRegions: ["where labels and explanations can sit without collisions"],
+                readingPath: "natural order in which a teacher builds and revisits the figure",
+              },
+            }),
+            "Include only parts needed for this teaching point. Use accurate morphology and relative position, not exhaustive detail.",
+          ].join("\n\n"),
+        },
+      ],
+      response_format: { type: "json_object" },
+      temperature: 0.2,
+      ...completionTokenParam(PLANNER_MODEL, 1_400),
+    });
+    const parsed = parseJsonObject(completion.choices[0]?.message?.content ?? "");
+    if (!parsed) return { blueprint: fallback, costUsd: costUsd(completion.usage) };
+    const requiredParts = Array.isArray(parsed.requiredParts)
+      ? parsed.requiredParts.flatMap((item) => {
+          if (!item || typeof item !== "object") return [];
+          const part = item as Record<string, unknown>;
+          const name = typeof part.name === "string" ? part.name.trim() : "";
+          if (!name) return [];
+          return [{
+            name: name.slice(0, 80),
+            relationship: typeof part.relationship === "string" ? part.relationship.trim().slice(0, 180) : "",
+            relativePosition: typeof part.relativePosition === "string" ? part.relativePosition.trim().slice(0, 180) : "",
+          }];
+        }).slice(0, 9)
+      : [];
+    const composition = parsed.composition && typeof parsed.composition === "object"
+      ? parsed.composition as Record<string, unknown>
+      : {};
+    return {
+      blueprint: {
+        subject: typeof parsed.subject === "string" ? parsed.subject.trim().slice(0, 140) : fallback.subject,
+        view: typeof parsed.view === "string" ? parsed.view.trim().slice(0, 180) : fallback.view,
+        learningGoal: typeof parsed.learningGoal === "string" ? parsed.learningGoal.trim().slice(0, 240) : fallback.learningGoal,
+        recognitionCues: stringList(parsed.recognitionCues, 6),
+        requiredParts,
+        forbiddenShortcuts: stringList(parsed.forbiddenShortcuts, 6),
+        composition: {
+          focalRegion: typeof composition.focalRegion === "string" ? composition.focalRegion.trim().slice(0, 160) : fallback.composition.focalRegion,
+          annotationRegions: stringList(composition.annotationRegions, 5),
+          readingPath: typeof composition.readingPath === "string" ? composition.readingPath.trim().slice(0, 220) : fallback.composition.readingPath,
+        },
+      },
+      costUsd: costUsd(completion.usage),
+    };
+  } catch {
+    return { blueprint: fallback, costUsd: 0 };
+  }
+}
+
+function reviewScore(value: unknown): number {
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.max(1, Math.min(5, number)) : 1;
+}
+
+async function reviewGeneratedVisual(
+  client: OpenAI,
+  beat: Beat,
+  blueprint: VisualBlueprint,
+  code: string
+): Promise<{ review: VisualReview; costUsd: number }> {
+  const failedReview: VisualReview = {
+    pass: false,
+    criticalIssues: ["The independent visual review did not return a valid verdict."],
+    scores: {
+      scientificFidelity: 1,
+      recognizability: 1,
+      composition: 1,
+      labeling: 1,
+      educationalClarity: 1,
+      professionalFinish: 1,
+    },
+    revision: "Rebuild the figure conservatively from the visual blueprint with a recognizable silhouette, correct topology, and collision-free labels.",
+  };
+  try {
+    const completion = await client.chat.completions.create({
+      model: REVIEW_MODEL,
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are the uncompromising art director and scientific editor for a premium educational platform. " +
+            "Review the final progress=1 SVG implied by the React source. Reject attractive but inaccurate, generic, tangled, crowded, childish, or clip-art-like work. " +
+            "A passing figure must be recognizable before reading labels, preserve the blueprint's topology and relative positions, use clean non-crossing leaders, and look publication-ready. " +
+            "Do not reward primitive count or code complexity. Return JSON only.",
+        },
+        {
+          role: "user",
+          content: [
+            `Beat: ${beat.title}`,
+            `Visual blueprint:\n${JSON.stringify(blueprint, null, 2)}`,
+            "Score each category from 1 to 5. Passing requires every category >=4 and zero critical issues.",
+            "Critical failures include: wrong morphology; missing required part; incorrect connection/direction; generic substitute; subject unrecognizable without labels; text or leaders crossing the subject; overlapping labels; crossed/tangled leaders; clipped content; decorative analogy dominating the real subject.",
+            "Return: {\"pass\":boolean,\"criticalIssues\":string[],\"scores\":{\"scientificFidelity\":number,\"recognizability\":number,\"composition\":number,\"labeling\":number,\"educationalClarity\":number,\"professionalFinish\":number},\"revision\":\"one precise actionable revision brief\"}",
+            `Generated component:\n\`\`\`jsx\n${code}\n\`\`\``,
+          ].join("\n\n"),
+        },
+      ],
+      response_format: { type: "json_object" },
+      temperature: 0,
+      ...completionTokenParam(REVIEW_MODEL, 1_200),
+    });
+    const parsed = parseJsonObject(completion.choices[0]?.message?.content ?? "");
+    if (!parsed) return { review: failedReview, costUsd: costUsd(completion.usage) };
+    const rawScores = parsed.scores && typeof parsed.scores === "object"
+      ? parsed.scores as Record<string, unknown>
+      : {};
+    const scores = {
+      scientificFidelity: reviewScore(rawScores.scientificFidelity),
+      recognizability: reviewScore(rawScores.recognizability),
+      composition: reviewScore(rawScores.composition),
+      labeling: reviewScore(rawScores.labeling),
+      educationalClarity: reviewScore(rawScores.educationalClarity),
+      professionalFinish: reviewScore(rawScores.professionalFinish),
+    };
+    const criticalIssues = stringList(parsed.criticalIssues, 8);
+    const strictPass = criticalIssues.length === 0 && Object.values(scores).every((score) => score >= 4);
+    return {
+      review: {
+        pass: parsed.pass === true && strictPass,
+        criticalIssues,
+        scores,
+        revision: typeof parsed.revision === "string" && parsed.revision.trim()
+          ? parsed.revision.trim().slice(0, 900)
+          : failedReview.revision,
+      },
+      costUsd: costUsd(completion.usage),
+    };
+  } catch {
+    return { review: failedReview, costUsd: 0 };
+  }
+}
+
 function diagnosticsSummary(diagnostics: ReactAnimationCodeDiagnostics): string {
   return [
     `groups=${diagnostics.groupCount}/5+`,
-    `primitiveScore=${diagnostics.primitiveScore}/18+`,
+    `primitiveScore=${diagnostics.primitiveScore}/14+`,
     `primitiveTags=${diagnostics.primitiveTagCount}`,
-    `objectPrimitives=${diagnostics.objectPrimitiveScore}/12+`,
+    `objectPrimitives=${diagnostics.objectPrimitiveScore}/8+`,
     `silhouettes=${diagnostics.silhouetteCount}/1+`,
     `primitiveTypes=${diagnostics.distinctPrimitiveTypes}/4+`,
     `progressRefs=${diagnostics.progressRefs}`,
-    `progressDriveScore=${diagnostics.progressDriveScore}/14+`,
+    `progressDriveScore=${diagnostics.progressDriveScore}/8+`,
     `lineLike=${diagnostics.lineLikeCount}`,
     `text=${diagnostics.textCount}`,
+    `directlyTimedText=${diagnostics.directlyTimedTextCount}/${diagnostics.textCount}`,
     `fills=bright:${diagnostics.brightFillCount}/dark:${diagnostics.darkFillCount}`,
+    `timelineSteps=${diagnostics.timelineStepCount}/8+`,
+    `sentenceMapped=${diagnostics.timelineSentenceCount}/${diagnostics.timelineStepCount}`,
+    `distinctSentences=${diagnostics.distinctTimelineSentences}/3+`,
+    `boardPlan=${diagnostics.boardPlanPresent ? "present" : "missing"}`,
+    `visualSpec=${diagnostics.visualSpecPresent ? "present" : "missing"}`,
     `bytes=${diagnostics.byteLength}/49152`,
     `tags=${JSON.stringify(diagnostics.tagCounts)}`,
   ].join("; ");
@@ -119,9 +383,15 @@ function diagnosticsSummary(diagnostics: ReactAnimationCodeDiagnostics): string 
 function gapInstruction(diagnostics: ReactAnimationCodeDiagnostics): string {
   const gaps: string[] = [];
   if (diagnostics.groupCount < 5) gaps.push(`${5 - diagnostics.groupCount} more <g> group(s) (currently ${diagnostics.groupCount}, need 5+)`);
-  if (diagnostics.primitiveScore < 18) gaps.push(`${18 - diagnostics.primitiveScore} more real drawn SVG tags — actual meaningful shapes, not decorative filler clusters (currently ${diagnostics.primitiveScore}, need 18+)`);
-  if (diagnostics.objectPrimitiveScore < 12) gaps.push(`${12 - diagnostics.objectPrimitiveScore} more object/body primitives — more path/rect/circle/ellipse/polygon shapes forming the mechanism's actual parts (currently ${diagnostics.objectPrimitiveScore}, need 12+)`);
+  if (diagnostics.primitiveScore < 14) gaps.push(`${14 - diagnostics.primitiveScore} more real drawn SVG tags — actual meaningful shapes, not decorative filler clusters (currently ${diagnostics.primitiveScore}, need 14+)`);
+  if (diagnostics.objectPrimitiveScore < 8) gaps.push(`${8 - diagnostics.objectPrimitiveScore} more object/body primitives — only genuine parts of the subject (currently ${diagnostics.objectPrimitiveScore}, need 8+)`);
   if (diagnostics.silhouetteCount < 1) gaps.push("at least one path/polygon/ellipse silhouette or cutaway shape (currently 0)");
+  if (diagnostics.timelineStepCount < 8) gaps.push(`${8 - diagnostics.timelineStepCount} more complete teacher timeline step(s), each with order/kind/weight attributes`);
+  if (diagnostics.timelineSentenceCount < diagnostics.timelineStepCount) gaps.push(`${diagnostics.timelineStepCount - diagnostics.timelineSentenceCount} timeline step(s) still need data-teach-sentence`);
+  if (diagnostics.distinctTimelineSentences < 3) gaps.push(`${3 - diagnostics.distinctTimelineSentences} more distinct spoken sentence cue(s) must own timeline actions`);
+  if (diagnostics.directlyTimedTextCount < diagnostics.textCount) gaps.push(`${diagnostics.textCount - diagnostics.directlyTimedTextCount} SVG text element(s) need all four timeline attributes directly on the text node`);
+  if (!diagnostics.boardPlanPresent) gaps.push("the required const boardPlan with composition, readingPath, and reservedRegions");
+  if (!diagnostics.visualSpecPresent) gaps.push("the required const visualSpec with recognitionCues, requiredParts, and forbiddenShortcuts");
   if (diagnostics.distinctPrimitiveTypes < 4) gaps.push(`${4 - diagnostics.distinctPrimitiveTypes} more distinct SVG primitive type(s) — mix path/circle/rect/ellipse/polygon, not just one or two kinds (currently ${diagnostics.distinctPrimitiveTypes}, need 4+)`);
   if (diagnostics.progressDriveScore < 14) gaps.push(`${14 - diagnostics.progressDriveScore} more progress-drive score — more lerp/clamp/phase-derived variables actually referenced in the JSX bindings (currently ${diagnostics.progressDriveScore}, need 14+)`);
   if (gaps.length === 0) return "";
@@ -148,75 +418,88 @@ function codeExcerpt(code: string): string {
   return `${clean.slice(0, 4_500)}\n\n/* ...middle removed for repair prompt... */\n\n${clean.slice(-4_000)}`;
 }
 
-function buildUserPrompt(op: ReactAnimationOp, beat: Beat, previousFailure?: PreviousFailure): string {
-  const isSuprnotesWhiteboard = (op.teachingPoint ?? "").includes("SUPRNOTES_WHITEBOARD_SVG_BOARD");
-  if (isSuprnotesWhiteboard) {
-    const whiteboardContract =
-      "SUPRNOTES WHITEBOARD MODE: create a mostly STATIC, full-board WHITE SVG teaching board, like a polished handwritten science whiteboard. Override the default dark-board style: the component itself must render a white/off-white background (#ffffff or #fbfbf8), soft gray handwritten-looking headings, and colored marker-style diagrams. Use SVG primitives directly: path, circle, ellipse, rect, polygon, line, polyline, text. This is not a loading animation and not a generic flowchart. Use a more realistic textbook-sketch approach: real object/structure silhouettes, correct subject parts, and believable arrows/forces/particles, not abstract UI pills.";
-    const contentContract =
-      "CONTENT QUALITY: ground every visible label and diagram element in the Suprnotes source text below. Do not invent random words. Do not make generic circles/bubbles unless they represent a real atom, particle, molecule, ion, object, or table cell named by the notes. Prefer subject-specific visuals: molecular/structural sketches, before/after panels, annotated diagrams, comparison tables, arrows showing actual cause/effect, and short labels copied or tightly paraphrased from the notes. For chemistry properties, draw realistic/simple lab-style objects where appropriate: beakers, water/oil layers, dissolved ions, solid crystals, electrodes, molecule dipoles, or force arrows. The visual must make the exact source concept visible without reading the narration.";
-    const layoutContract =
-      "LAYOUT: use a clean two-zone teacher whiteboard composition. Do NOT use title pills, floating translucent label cards, or labels on top of the molecule/diagram. Title is plain handwritten text centered at y 52-78. Left notes zone: x 95-420, y 150-405, max 3 stacked short labels. Main visual zone: x 560-845, y 155-405, one large chemistry drawing. Keep a clear gutter from x 430-535. Optional formula/comparison strip may use x 210-790, y 455-500. Keep a 95px safe margin on every side. All text must fit fully inside the SVG; no ellipses, no clipping, no labels behind other labels. Use at most 5 text labels total, each <= 22 characters. Before placing text, estimate its bounding box (width≈0.58*fontSize*chars, height≈1.35*fontSize) and ensure it does not intersect any other label or visual object. Use fontFamily: 'Chalkboard SE, Marker Felt, Bradley Hand, Comic Sans MS, Trebuchet MS, sans-serif' on every text element. If a source sentence is long, convert it into a compact diagram label plus a short note. Do not place a big transcript paragraph on the board.";
-    const animationContract =
-      "ANIMATION VISIBILITY: progress must feel like a marker/teacher writing on the board, not a slide fade. Do not make text slowly fade from opacity 0 over several seconds. When a text label's phase begins, make it readable immediately (opacity 1) and, if you animate it, use a quick clip-path/strokeDashoffset/write-on effect under 500ms. Use 4 phases: phase 1 writes title/left notes, phase 2 draws the main atoms/object with strokeDashoffset, phase 3 moves electrons/arrows/forces clearly across the board, phase 4 reveals the final state/highlight. At least two major visual elements must change position, strokeDashoffset, or scale using progress-derived values. The moving electron/arrow path must be visible at normal playback speed.";
-    const implementationContract =
-      "IMPLEMENTATION: export default function Animation({ progress }) exactly. You may use progress only for subtle draw-in/fade/arrow movement; the board should already be understandable as a static SVG. Include at least 18 meaningful SVG primitive tags and at least 5 <g> groups, but avoid decorative filler. Use inline SVG only, no external assets.";
-
-    return [
-      `Beat title: ${beat.title}`,
-      `Spoken script: ${beat.script}`,
-      `Whiteboard source brief:\n${op.teachingPoint}`,
-      whiteboardContract,
-      contentContract,
-      layoutContract,
-      animationContract,
-      implementationContract,
-      previousFailure
-        ? [
-            `The previous generated component was rejected because: ${previousFailure.issue}.`,
-            `Validator metrics for the rejected source: ${diagnosticsSummary(previousFailure.diagnostics)}`,
-            gapInstruction(previousFailure.diagnostics),
-            "Rewrite the whiteboard SVG from scratch while preserving the source facts. Fix validation by adding meaningful subject-specific diagram parts, not filler dots or decorative blobs.",
-            "Rejected source for diagnosis only:",
-            "```jsx",
-            codeExcerpt(previousFailure.code),
-            "```",
-          ].join("\n")
-        : "Generate the whiteboard SVG component now. Return only one fenced jsx code block.",
-    ].filter(Boolean).join("\n\n");
+async function saveDebugSvgCandidate(beat: Beat, op: ReactAnimationOp, code: string, issue: string): Promise<void> {
+  if (!DEBUG_SAVE_SVG) return;
+  try {
+    const generatedDir = path.join(process.cwd(), "public", "generated");
+    await mkdir(generatedDir, { recursive: true });
+    await writeFile(
+      path.join(generatedDir, "debug-latest-svg.json"),
+      JSON.stringify({
+        script: beat.script,
+        issue,
+        draw: {
+          caption: beat.draw?.caption ?? beat.title,
+          durationMs: beat.draw?.durationMs ?? 26000,
+          ops: [{ ...op, code, status: "ready" }],
+        },
+      }),
+      "utf8"
+    );
+  } catch (err) {
+    console.error(`[anim-debug] could not save latest SVG candidate: ${err instanceof Error ? err.message : String(err)}`);
   }
+}
 
-  const sceneContract =
-    "Quality contract: create a full-board mini scene with grouped layers: setting/background, main subject/object, internal parts or stages, moving agents/particles/materials, visible cause/effect path, and final changed state. The validator rejects line diagrams, endpoint labels connected by paths, text-heavy slides, and sparse SVGs.";
-  const validatorChecklist =
-    "Hard validator checklist (these are FLOORS, not targets — stop once cleared): include 5+ <g> groups; 18+ drawn SVG primitive tags total across path/circle/rect/ellipse/polygon/polyline/line/text; 12+ object/body primitives across path/rect/circle/ellipse/polygon; at least one silhouette or cutaway shape using path, polygon, or ellipse; at least 4 primitive tag types; strong progress-driven motion via progress-derived phase variables, lerp/clamp calls, and animated bindings; labels must support the scene, not dominate it. Build the physical scene first, then add only as much extra detail as genuinely helps teach the mechanism — do not keep adding shapes past that point.";
-  const implementationPattern =
-    "Implementation pattern: use explicit scene groups named in comments or aria-labels: background, apparatus/body, internal-parts, moving-agents, energy-or-material-paths, result-state, labels. Keep it SIMPLE: prefer one well-drawn subject with a few clearly meaningful moving parts. Only use arrays/maps for something that is genuinely a real repeated agent (e.g. particles actually traveling along a path) — never as a way to make a sub-component 'look detailed' with a decorative cluster of dots. Build the central subject as a solid, clearly-shaped object with a few visible internal parts before adding arrows/trails — not every named part needs its own internal ornamentation.";
+// Unified whiteboard-diagram contract — used for EVERY reactAnimation beat regardless of source
+// (free-typed topic or Suprnotes upload). Originally Suprnotes-only (gated behind a sentinel
+// string in teachingPoint); free-topic beats used a separate dark-background "motion scene"
+// contract that predates this app's paper-surface default (see applyPaperLayout in
+// generate-lecture/route.ts) and was stylistically mismatched with it — a free-topic lecture's
+// animation beat would render a dark particle scene sitting on an otherwise all-paper lecture.
+// Unified to this contract since it's the proven-good style (confirmed against real Suprnotes
+// output: clean flat-pastel labeled diagrams on a white board, not generic dark motion).
+function buildUserPrompt(
+  op: ReactAnimationOp,
+  beat: Beat,
+  blueprint: VisualBlueprint,
+  previousFailure?: PreviousFailure
+): string {
+  const spokenSentences = beat.script
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+  const numberedScript = spokenSentences.map((sentence, index) => `[${index}] ${sentence}`).join("\n");
+  const whiteboardContract =
+    "WHITEBOARD MODE: create a full-board WHITE SVG teaching canvas that evolves like a lesson, not a slide. Render an off-white paper background, natural handwritten lines, and a professional editable educational illustration. Use SVG primitives directly: path, circle, ellipse, rect, polygon, line, polyline, text. This is not a loading animation, generic flowchart, fixed template, or collection of UI cards.";
+  const contentContract =
+    "CONTENT QUALITY: the VISUAL BLUEPRINT below is the source of truth for morphology, topology, proportions, and required parts. The main subject must be recognizable before any label is read. Ground every visible label and diagram element in the beat's script and blueprint. Never replace the real subject with a metaphor, mascot, generic circle cluster, icon, or decorative analogy. Draw fewer parts well rather than many vague parts. Every connection, direction, layer, chamber, boundary, and relative position must agree with the blueprint.";
+  const layoutContract =
+    "DYNAMIC COMPOSITION: first choose the layout that best teaches THIS content: center-out mechanism, causal path, vertical derivation, zoom-in cutaway, radial anatomy, equation spine, timeline/map, or comparison only when comparison is the idea. Define const boardPlan with that composition, its reading path, and reservedRegions as NUMERIC {name,x,y,w,h} rectangles. Do not default to left text/right diagram. Reserve a title strip inside x=54..946,y=30..104 and place teaching content only inside x=64..936,y=122..500. Place each explanation beside the object or relationship it explains and reserve room for later annotations. Before returning, estimate every text box as width=0.62*fontSize*characterCount and height=1.35*fontSize; no estimated text rectangle may intersect a diagram rectangle, another text rectangle, or leave the content bounds. Keep at least 36px between text and diagram silhouettes, 28px between unrelated items, and 64px horizontal safety after every line's last character. Occupy roughly 58-76% of the usable board. Use 4-7 short text lines, each <=25 characters, one line per SVG text node. Put the timing attributes directly on every text node. No descriptive label may overlap or sit inside the subject silhouette; only real chemical symbols <=4 characters may be inside. All other labels stay outside and use a leader line that touches the named part. No cards, pills, clipped text, ellipses, or transcript paragraph. Use fontFamily: 'Chalkboard SE, Marker Felt, Bradley Hand, Comic Sans MS, Trebuchet MS, sans-serif' on every text element.";
+  const longNarrationContract =
+    "LONG-NARRATION DISCIPLINE: the teacher may spend close to a minute on this board. Do not respond by drawing more objects or copying more sentences. Select 3-5 pivotal sentence cues for new visual actions, then let the existing diagram remain while later narration explains, revisits, highlights, and connects those same anchors. The final board must stay as concise as a premium textbook figure.";
+  const animationContract =
+    `TEACHING SCORE: add data-teach-order, data-teach-kind, data-teach-weight, and a LITERAL data-teach-sentence={N} to at least 8 meaningful outer elements/groups. N must be the zero-based sentence number whose spoken words introduce that exact visual action, from 0 through ${Math.max(0, spokenSentences.length - 1)}. Distribute the steps across at least 3 different sentences and normally assign no more than 3 steps to one sentence; assigning the whole board to sentence 0 is a failure. Start by writing the heading, then INTERLEAVE a claim, its drawing, its label, its relationship arrow, the next nearby claim, and a later annotation that returns to something already drawn. Never put all text before all diagrams. The host writes words and traces contours from these attributes, so do not hide timeline groups with your own opacity and never construct partial strings with slice, substring, substr, or a progress-driven character count. Progress may additionally drive at least two scientifically meaningful changes. Diagram contours should be real paths and shapes that can be traced; fills settle after outlines; labels come after their target; arrows draw in their actual direction.`;
+  const implementationContract =
+    "IMPLEMENTATION: export default function Animation({ progress }) exactly. Inside it define const visualSpec using the blueprint's subject, recognitionCues, requiredParts, relationships, morphology/view, and forbiddenShortcuts; also define const boardPlan with composition, readingPath, and reservedRegions. Use enough editable inline SVG primitives to draw the real subject convincingly, but never add elements to satisfy a count. At progress=1 the page must be coherent, premium, recognizable, and understandable as a static teaching figure.";
 
   return [
     `Beat title: ${beat.title}`,
-    `Spoken script: ${beat.script}`,
-    `Teaching point to visualize: ${op.teachingPoint ?? beat.title}`,
-    sceneContract,
-    validatorChecklist,
-    implementationPattern,
+    `Spoken script split into exact synchronization cues:\n${numberedScript}`,
+    `Whiteboard source brief:\n${op.teachingPoint}`,
+    `MANDATORY VISUAL BLUEPRINT:\n${JSON.stringify(blueprint, null, 2)}`,
+    whiteboardContract,
+    contentContract,
+    layoutContract,
+    longNarrationContract,
+    animationContract,
+    implementationContract,
     previousFailure
       ? [
           `The previous generated component was rejected because: ${previousFailure.issue}.`,
           `Validator metrics for the rejected source: ${diagnosticsSummary(previousFailure.diagnostics)}`,
           gapInstruction(previousFailure.diagnostics),
-          previousFailure.stalled
-            ? "STALL WARNING: your last two attempts barely changed these numbers — you are repeating the same scene instead of growing it. Do not tweak the existing shapes. Add an ENTIRELY NEW visual layer the previous attempts did not have: e.g. a second repeated particle/agent group (5+ mapped instances), a background texture layer (grid/gradient/dots as multiple primitives), or a multi-part cutaway body for the main object with 4+ internal segments. The scene must look visually denser than before, not just numerically different."
-            : "Rewrite from scratch as a denser physical/mechanistic scene that satisfies every validator number above. Do not merely rename labels or add one arrow. Add real topic-specific object bodies, background, internal parts, repeated moving agents, trails, gauges/material changes, and a changed result state. Preserve the exact export signature and sandbox rules.",
+          previousFailure.review
+            ? `INDEPENDENT ART-DIRECTION REVIEW:\nCritical issues: ${previousFailure.review.criticalIssues.join("; ") || "quality scores below threshold"}\nScores: ${JSON.stringify(previousFailure.review.scores)}\nRequired revision: ${previousFailure.review.revision}`
+            : "",
+          "Rewrite the whiteboard SVG from scratch while preserving the source facts and visual blueprint. Fix the named failure directly. Do not add filler dots, decorative blobs, extra labels, or unrelated analogy objects.",
           "Rejected source for diagnosis only:",
           "```jsx",
           codeExcerpt(previousFailure.code),
           "```",
         ].join("\n")
-      : "Make the first attempt pass: a setting, topic-specific objects, internal parts, multiple moving agents/groups, labels, and a clear before/during/after change driven by progress.",
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+      : "Generate the whiteboard SVG component now. Return only one fenced jsx code block.",
+  ].filter(Boolean).join("\n\n");
 }
 
 async function generateOne(
@@ -224,7 +507,11 @@ async function generateOne(
   op: ReactAnimationOp,
   beat: Beat
 ): Promise<{ costUsd: number; filled: boolean; issue?: string }> {
-  let totalCostUsd = 0;
+  const visualPlan = AI_VISUAL_PLANNING_ENABLED
+    ? await planVisual(client, op, beat)
+    : { blueprint: fallbackBlueprint(op, beat), costUsd: 0 };
+  const blueprint = visualPlan.blueprint;
+  let totalCostUsd = visualPlan.costUsd;
   let previousFailure: PreviousFailure | undefined;
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
@@ -239,17 +526,14 @@ async function generateOne(
           : Math.min(1.0, 0.55 + attempt * 0.2 + (previousFailure?.stalled ? 0.15 : 0));
       // gpt-5.x models reject `max_tokens` (require `max_completion_tokens`); gpt-4.x/4o accept
       // `max_tokens`. Pick the right key from the model name so either family works.
-      const tokenParam = /^(gpt-5|o[0-9])/.test(MODEL)
-        ? { max_completion_tokens: MAX_TOKENS }
-        : { max_tokens: MAX_TOKENS };
       const completion = await client.chat.completions.create({
         model: MODEL,
         messages: [
           { role: "system", content: REACT_ANIMATION_SYSTEM_PROMPT },
-          { role: "user", content: buildUserPrompt(op, beat, previousFailure) },
+          { role: "user", content: buildUserPrompt(op, beat, blueprint, previousFailure) },
         ],
         temperature,
-        ...tokenParam,
+        ...completionTokenParam(MODEL, MAX_TOKENS),
       });
       totalCostUsd += costUsd(completion.usage);
 
@@ -262,9 +546,14 @@ async function generateOne(
       console.error(
         `[anim] beat=${beat.id} attempt=${attempt} finish=${finishReason} rawLen=${raw.length} codeLen=${code.length} issue=${diagnostics.issue ?? "OK"} | ${diagnosticsSummary(diagnostics)}`
       );
-      if (diagnostics.issue) {
+      const generationIssue = diagnostics.issue ??
+        (!diagnostics.visualSpecPresent
+          ? "missing the required visualSpec with recognitionCues, requiredParts, and forbiddenShortcuts"
+          : null);
+      if (generationIssue) {
+        await saveDebugSvgCandidate(beat, op, code, generationIssue);
         const stalled = isStalled(previousFailure?.diagnostics, diagnostics);
-        previousFailure = { issue: diagnostics.issue, diagnostics, code, stalled };
+        previousFailure = { issue: generationIssue, diagnostics, code, stalled };
         continue;
       }
 
@@ -273,6 +562,7 @@ async function generateOne(
       const parseError = await transpileCheck(code);
       if (parseError) {
         console.error(`[anim] beat=${beat.id} attempt=${attempt} PARSE FAIL: ${parseError}`);
+        await saveDebugSvgCandidate(beat, op, code, `parse failed: ${parseError}`);
         previousFailure = {
           issue: `the code did not parse: ${parseError}. Return ONLY valid JSX with no markdown fences and no TypeScript type annotations.`,
           diagnostics,
@@ -280,6 +570,30 @@ async function generateOne(
           stalled: false,
         };
         continue;
+      }
+
+      if (AI_VISUAL_REVIEW_ENABLED) {
+        const visualReview = await reviewGeneratedVisual(client, beat, blueprint, code);
+        totalCostUsd += visualReview.costUsd;
+        console.error(
+          `[anim-review] beat=${beat.id} attempt=${attempt} pass=${visualReview.review.pass} scores=${JSON.stringify(visualReview.review.scores)} issues=${visualReview.review.criticalIssues.join(" | ") || "none"}`
+        );
+        if (!visualReview.review.pass) {
+          await saveDebugSvgCandidate(
+            beat,
+            op,
+            code,
+            visualReview.review.criticalIssues[0] ?? visualReview.review.revision
+          );
+          previousFailure = {
+            issue: visualReview.review.criticalIssues[0] ?? visualReview.review.revision,
+            diagnostics,
+            code,
+            review: visualReview.review,
+            stalled: false,
+          };
+          continue;
+        }
       }
 
       const validated = sanitizeReactAnimationOp({ ...op, code });

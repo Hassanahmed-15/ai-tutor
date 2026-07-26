@@ -46,7 +46,7 @@ function loadReadLevel(): ReadingLevel {
   }
 }
 
-export function DyslexiaLessonPlayer({ onExit, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; beats?: Beat[]; title?: string }) {
+export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -130,7 +130,11 @@ export function DyslexiaLessonPlayer({ onExit, beats = demoBeats, title = "Photo
           setRevealed(chunks.length);
           phaseTimers.current.push(
             setTimeout(() => {
-              setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+              setIndex((i) => {
+                if (i < beats.length - 1) return i + 1;
+                onComplete?.();
+                return i;
+              });
             }, 900)
           );
         },
@@ -171,7 +175,11 @@ export function DyslexiaLessonPlayer({ onExit, beats = demoBeats, title = "Photo
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
     setCheckpointAttempts(0);
-    setIndex((i) => (i < beats.length - 1 ? i + 1 : i));
+    setIndex((i) => {
+      if (i < beats.length - 1) return i + 1;
+      onComplete?.();
+      return i;
+    });
   }
   function handleCheckpointAnswer(answer: string) {
     const result = checkAnswer(beat, answer);

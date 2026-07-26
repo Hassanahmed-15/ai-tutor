@@ -222,9 +222,11 @@ export function pauseImageOps(beats: Beat[]): ImageFillStats {
   return { costUsd: 0, pending, filled: 0, failed: pending };
 }
 
-function collectPendingImageRefs(beats: Beat[]): PendingImageRef[] {
+function collectPendingImageRefs(beats: Beat[], options: { minBeatIndex?: number; maxBeatIndex?: number } = {}): PendingImageRef[] {
   const pending: PendingImageRef[] = [];
   for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
+    if (typeof options.minBeatIndex === "number" && beatIndex < options.minBeatIndex) continue;
+    if (typeof options.maxBeatIndex === "number" && beatIndex > options.maxBeatIndex) break;
     const beat = beats[beatIndex];
     if (!beat.draw) continue;
     const callouts = beat.draw.ops.filter((op) => op.kind === "callout") as Extract<DrawScript["ops"][number], { kind: "callout" }>[];
@@ -249,9 +251,11 @@ function collectPendingImageRefs(beats: Beat[]): PendingImageRef[] {
   return pending;
 }
 
-function repairMissingImageSurfaces(beats: Beat[]): ImageFillUpdate[] {
+function repairMissingImageSurfaces(beats: Beat[], options: { minBeatIndex?: number; maxBeatIndex?: number } = {}): ImageFillUpdate[] {
   const updates: ImageFillUpdate[] = [];
   for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
+    if (typeof options.minBeatIndex === "number" && beatIndex < options.minBeatIndex) continue;
+    if (typeof options.maxBeatIndex === "number" && beatIndex > options.maxBeatIndex) break;
     const beat = beats[beatIndex];
     if (!beat.draw) continue;
     const beforeOps = beat.draw.ops;
@@ -273,9 +277,11 @@ function repairMissingImageSurfaces(beats: Beat[]): ImageFillUpdate[] {
   return updates;
 }
 
-function repairMissingFallbackImages(beats: Beat[]): ImageFillUpdate[] {
+function repairMissingFallbackImages(beats: Beat[], options: { minBeatIndex?: number; maxBeatIndex?: number } = {}): ImageFillUpdate[] {
   const updates: ImageFillUpdate[] = [];
   for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
+    if (typeof options.minBeatIndex === "number" && beatIndex < options.minBeatIndex) continue;
+    if (typeof options.maxBeatIndex === "number" && beatIndex > options.maxBeatIndex) break;
     const beat = beats[beatIndex];
     if (!beat.draw) continue;
     const beforeOps = beat.draw.ops;
@@ -297,14 +303,15 @@ function repairMissingFallbackImages(beats: Beat[]): ImageFillUpdate[] {
 export async function fillImageOpsIncremental(
   client: OpenAI,
   beats: Beat[],
-  onUpdate?: (update: ImageFillUpdate) => void | Promise<void>
+  onUpdate?: (update: ImageFillUpdate) => void | Promise<void>,
+  options: { minBeatIndex?: number; maxBeatIndex?: number } = {}
 ): Promise<ImageFillStats> {
   let imageCostUsd = 0;
   let filled = 0;
 
   // Round 1: generate every image the model itself requested, in parallel — one image's
   // latency bounds the total wall-clock cost rather than multiplying by beat count.
-  const firstRound = collectPendingImageRefs(beats);
+  const firstRound = collectPendingImageRefs(beats, options);
   if (firstRound.length > 0) {
     const results = await Promise.all(firstRound.map(async (ref) => {
       const costUsd = await generateOne(client, ref.op);
@@ -319,7 +326,7 @@ export async function fillImageOpsIncremental(
 
   // Drop any image op that still has no src (both attempts failed) — the board renders
   // normally with its remaining labels/notes/arrows, graceful degradation, not a crash.
-  for (const update of repairMissingImageSurfaces(beats)) {
+  for (const update of repairMissingImageSurfaces(beats, options)) {
     await onUpdate?.(update);
   }
 
@@ -327,7 +334,7 @@ export async function fillImageOpsIncremental(
   // placeholder — generate those too so the final board does not keep an empty image op
   // (LiveSketch renders nothing for one). If this also fails, convert that beat into a
   // written blackboard so the teaching surface remains dense and readable.
-  const secondRound = collectPendingImageRefs(beats);
+  const secondRound = collectPendingImageRefs(beats, options);
   if (secondRound.length > 0) {
     const results = await Promise.all(secondRound.map(async (ref) => {
       const costUsd = await generateOne(client, ref.op);
@@ -338,7 +345,7 @@ export async function fillImageOpsIncremental(
     }));
     imageCostUsd += results.reduce((sum, result) => sum + result.costUsd, 0);
     filled += results.filter((result) => result.filled).length;
-    for (const update of repairMissingFallbackImages(beats)) {
+    for (const update of repairMissingFallbackImages(beats, options)) {
       await onUpdate?.(update);
     }
   }

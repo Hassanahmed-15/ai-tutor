@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { DRAW_LECTURE_SYSTEM_PROMPT, PPTX_LECTURE_SYSTEM_PROMPT } from "@/lib/drawPrompt";
+import { outlineGroundingInstruction, type PlanOutline } from "@/lib/planPrompt";
 import { assertLectureDepth, lectureDepthStats, sanitizeDrawLecture, scriptWordCount } from "@/lib/drawSanitize";
-import { fillImageOps, fillImageOpsIncremental, pauseImageOps, type ImageFillStats } from "@/lib/imageGen";
-import { fillReactAnimationOps, fillReactAnimationOpsIncremental, type ReactAnimationFillStats } from "@/lib/reactAnimationGen";
-import { fillBlackboardOps, fillBlackboardOpsIncremental, type BlackboardFillStats } from "@/lib/blackboardGen";
+import { fillImageOps, pauseImageOps, type ImageFillStats } from "@/lib/imageGen";
+import { fillReactAnimationOps, type ReactAnimationFillStats } from "@/lib/reactAnimationGen";
+import { fillBlackboardOps, type BlackboardFillStats } from "@/lib/blackboardGen";
+import { fillRealReferenceImage, type ReferenceImageStats } from "@/lib/referenceImageGen";
 import {
   applySuprnotesPaperSurface,
   applySuprnotesPaperLayout,
+  applyPaperLayout,
+  composePromptedSuprnotesBoards,
   composeSuprnotesPaperBoards,
   compactSuprnotesForPrompt,
   ensureSuprnotesAssetUsage,
@@ -31,13 +35,13 @@ const IMAGE_GENERATION_ENABLED = process.env.IMAGE_GENERATION_ENABLED === "1";
 // Server-side mirror of NEXT_PUBLIC_REACT_ANIMATIONS_ENABLED — gating generation here (not just
 // client rendering) means disabling the flag also saves the extra gpt-4o call, not just the render.
 const REACT_ANIMATIONS_ENABLED = process.env.REACT_ANIMATIONS_ENABLED === "1";
-const REACT_ANIMATION_WARMUP_COUNT = Math.max(0, Math.min(8, Number(process.env.REACT_ANIMATION_WARMUP_COUNT ?? 2)));
 
 // Kill switch for the dynamic model-authored chalk blackboard pipeline (see lib/blackboardGen.ts).
 // When off, drawSanitize keeps synthesizing blackboards from templates (no extra model call) and
 // no chalkBoard placeholders reach here to fill. Client mirror: NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED.
 const BLACKBOARD_GEN_ENABLED = process.env.BLACKBOARD_GEN_ENABLED === "1";
-const BLACKBOARD_WARMUP_COUNT = Math.max(0, Math.min(8, Number(process.env.BLACKBOARD_WARMUP_COUNT ?? 2)));
+
+const REAL_REFERENCE_IMAGES_ENABLED = process.env.REAL_REFERENCE_IMAGES_ENABLED !== "0";
 
 /**
  * Generates a full lecture for ANY typed topic using the DrawScript pipeline:
@@ -69,6 +73,7 @@ type LectureBuildInput = {
   diagramHints: string;
   slideImages: Array<{ slide: number; descriptions: string[] }>;
   sourceDocument: SuprnotesLessonInput | null;
+  outline: PlanOutline | null;
 };
 
 type BaseLecture = {
@@ -76,8 +81,83 @@ type BaseLecture = {
   textCost: number;
 };
 
+type BeatCountRepair = {
+  beats: Beat[];
+  costUsd: number;
+};
+
 function textCostUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
   return usage ? usage.prompt_tokens * TEXT_INPUT_PRICE + usage.completion_tokens * TEXT_OUTPUT_PRICE : 0;
+}
+
+async function addMissingPromptedBeat(
+  client: OpenAI,
+  topic: string,
+  mood: string,
+  beats: Beat[]
+): Promise<BeatCountRepair> {
+  const nextCount = beats.length + 1;
+  const completion = await client.chat.completions.create({
+    model: MODEL,
+    messages: [
+      {
+        role: "system",
+        content:
+          `You repair an otherwise strong AI tutor lecture that has ${beats.length} beats. Return JSON only: ` +
+          "{\"insertAfterId\":string,\"beat\":Beat}. Add exactly ONE substantive teaching beat at the weakest conceptual transition. " +
+          "Preserve the existing lecture; do not rewrite or repeat an existing beat. The new beat needs a unique id, a precise title, " +
+          "a teacherMove, 2-4 concise points, and a warm 110-140 word script that deeply explains one idea and connects the surrounding beats. " +
+          "Use slideKind definition, mechanism, example, compare, application, misconception, or recap. Do not add a checkpoint. " +
+          "Its draw must contain exactly one reactAnimation op with at:0, endAt:1, and a dense teachingPoint describing a content-driven " +
+          "paper-whiteboard composition plus the natural order in which the teacher writes, draws, labels, connects, and annotates it. " +
+          "Ground every fact in the supplied beats. No markdown and no commentary.",
+      },
+      {
+        role: "user",
+        content: JSON.stringify({
+          topic,
+          mood,
+          instruction: `Add one missing beat so this becomes a coherent ${nextCount}-beat draft on the way to a full ten-beat lecture.`,
+          existingBeats: beats.map((beat) => ({
+            id: beat.id,
+            title: beat.title,
+            slideKind: beat.slideKind,
+            teacherMove: beat.teacherMove,
+            points: beat.points,
+            script: beat.script,
+          })),
+        }),
+      },
+    ],
+    temperature: 0.35,
+    max_tokens: 2_000,
+    response_format: { type: "json_object" },
+  });
+
+  const payload = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
+  const insertAfterId = typeof payload.insertAfterId === "string" ? payload.insertAfterId : "";
+  const insertAfterIndex = beats.findIndex((beat) => beat.id === insertAfterId);
+  const recapIndex = beats.findIndex((beat) => beat.slideKind === "recap");
+  const fallbackIndex = recapIndex >= 0 ? recapIndex : Math.max(0, beats.length - 1);
+  const insertionIndex = insertAfterIndex >= 0 ? insertAfterIndex + 1 : fallbackIndex;
+  const combined = [...beats];
+  combined.splice(insertionIndex, 0, payload.beat);
+  const repaired = sanitizeDrawLecture({ beats: combined }, { enforceDepth: false, minUsableBeats: nextCount });
+  if (repaired.length !== nextCount) {
+    throw new Error(`Beat-count repair produced ${repaired.length} beats instead of ${nextCount}.`);
+  }
+  return { beats: repaired, costUsd: textCostUsd(completion.usage) };
+}
+
+async function repairPromptedBeatCount(client: OpenAI, topic: string, mood: string, beats: Beat[]): Promise<BeatCountRepair> {
+  let repaired = beats;
+  let costUsd = 0;
+  while (repaired.length < 10) {
+    const repair = await addMissingPromptedBeat(client, topic, mood, repaired);
+    repaired = repair.beats;
+    costUsd += repair.costUsd;
+  }
+  return { beats: repaired, costUsd };
 }
 
 function compactBeatsForDeepening(beats: Beat[]) {
@@ -131,9 +211,13 @@ async function deepenLectureScripts(client: OpenAI, topic: string, mood: string,
             content:
               "You deepen AI tutor lecture scripts. Return JSON only: {\"beats\":[{\"id\":string,\"script\":string}]}. " +
               "Preserve every id exactly. Do not change titles, visuals, checkpoints, or order. " +
-              "Rewrite only the spoken script. Teaching beats need 75-95 words each. Intro needs 60-80 words. " +
-              "Checkpoint scripts need 25-45 words. Recap needs 85-105 words. Total output should create 900-1100 spoken words. " +
-              "Use warm natural spoken language, concrete examples, misconception warnings, and smooth transitions. No markdown, no bullets.",
+              "Rewrite only the spoken script. Teaching beats need 110-140 words each. Intro needs 75-95 words. " +
+              "Checkpoint scripts need 25-45 words. Recap needs 110-135 words. Total output should create 1050-1450 spoken words without changing the number of beats. " +
+              "Use warm natural spoken language, concrete examples, misconception warnings, and smooth transitions. " +
+              "Deepen each existing board in layers: claim, mechanism or reasoning, one concrete example, misconception contrast, and connection forward. Do not introduce facts absent from the existing scripts. " +
+              "Do not request more visual elements or change board composition; the same concise board should be revisited and annotated while the deeper narration continues. " +
+              "Preserve and strengthen any interactive teaching moments already present: Socratic question sequences, Mistake Ambush wording, Two Explanations Duel phrasing, Live Lesson Steering choices, and Doubt Button prerequisite-rewind language. " +
+              "Do not convert these moments into ordinary exposition. No markdown, no bullets.",
           },
           {
             role: "user",
@@ -142,7 +226,7 @@ async function deepenLectureScripts(client: OpenAI, topic: string, mood: string,
               mood,
               failedDepthStats: stats,
               instruction:
-                "Expand these scripts so the lecture feels like a real 5-minute explanation. Keep the same beat ids and return one script per beat.",
+                "Expand these scripts so every teaching board receives an unhurried, in-depth explanation. Keep the same beat ids, facts, and beat count, and return one script per beat.",
               beats: compactBeatsForDeepening(beats),
             }),
           },
@@ -169,6 +253,7 @@ async function deepenLectureScripts(client: OpenAI, topic: string, mood: string,
 function buildUserMessage(input: LectureBuildInput, retryGuidance: string): string {
   const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
   const base = `Teach this topic live: "${input.topic}". ${moodLine}`;
+  const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
 
   if (input.sourceDocument) {
     return (
@@ -206,13 +291,13 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
 
     return (
       `${base}\nThe student uploaded a presentation. Slide content:\n---\n${input.slideContext}\n---\n` +
-      `Use the slide text and data as your factual source (do not invent content). Choose board types freely — blackboard / image / animation — based on what fits each idea best, following the same rhythm as a free-topic lecture.` +
+      `Use the slide text and data as your factual source (do not invent content). Choose board types in the same Suprnotes-style paper-whiteboard grammar: mostly whiteboard SVG diagrams and blackboards, with slide images only when they are truly useful evidence.` +
       `${diagramLine}${imageRefBlock}` +
-      `\nBuild the complete lecture now: teacher script, animated drawn boards with contextual image ops, and checkpoints.${retryGuidance}`
+      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}`
     );
   }
 
-  return `${base}Build the complete lecture now: teacher script, animated drawn boards with contextual image ops, and checkpoints.${retryGuidance}`;
+  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}`;
 }
 
 async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Promise<BaseLecture> {
@@ -239,16 +324,32 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
       });
       const raw = completion.choices[0]?.message?.content ?? "";
       const rawLecture = JSON.parse(raw);
-      let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false });
+      let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats: input.sourceDocument ? undefined : 8 });
+
+      // Eight or nine strong beats are recoverable. Add only the missing conceptual bridges instead of
+      // discarding the entire lecture and paying for another full generation attempt.
+      let textCost = textCostUsd(completion.usage);
+      if (!input.sourceDocument && beats.length >= 8 && beats.length < 10) {
+        const repair = await repairPromptedBeatCount(client, input.topic, input.mood, beats);
+        beats = repair.beats;
+        textCost += repair.costUsd;
+        if (rawLecture && typeof rawLecture === "object") {
+          (rawLecture as Record<string, unknown>).beats = beats;
+        }
+      }
+      if (!input.sourceDocument && (beats.length < 10 || beats.length > 12)) {
+        throw new Error(`Model returned ${beats.length} beats; prompted lessons must contain 10-12 complete beats.`);
+      }
 
       // Tally the text-generation cost from actual token usage.
-      let textCost = textCostUsd(completion.usage);
-
       try {
         assertLectureDepth(beats);
       } catch {
         textCost += await deepenLectureScripts(client, input.topic, input.mood, rawLecture, beats);
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false });
+        if (!input.sourceDocument && (beats.length < 10 || beats.length > 12)) {
+          throw new Error(`Model returned ${beats.length} beats after deepening; prompted lessons must contain 10-12 complete beats.`);
+        }
         assertLectureDepth(beats);
       }
 
@@ -269,36 +370,26 @@ function disabledImageStats(beats: Beat[]): ImageFillStats {
   return pauseImageOps(beats);
 }
 
-function noImageWorkStats(): ImageFillStats {
-  return { costUsd: 0, pending: 0, filled: 0, failed: 0 };
-}
-
 function disabledBlackboardStats(): BlackboardFillStats {
   return { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: ["BLACKBOARD_GEN_ENABLED is not 1"] };
 }
 
-function mergeBlackboardStats(first: BlackboardFillStats, second: BlackboardFillStats): BlackboardFillStats {
-  return {
-    costUsd: first.costUsd + second.costUsd,
-    pending: first.pending + second.pending,
-    filled: first.filled + second.filled,
-    rejected: first.rejected + second.rejected,
-    issues: [...first.issues, ...second.issues].slice(0, 5),
-  };
+function disabledReferenceImageStats(): ReferenceImageStats {
+  return { costUsd: 0, filled: 0, failed: 0 };
 }
 
-function mergeAnimationStats(first: ReactAnimationFillStats, second: ReactAnimationFillStats): ReactAnimationFillStats {
-  return {
-    costUsd: first.costUsd + second.costUsd,
-    pending: first.pending + second.pending,
-    filled: first.filled + second.filled,
-    rejected: first.rejected + second.rejected,
-    issues: [...first.issues, ...second.issues].slice(0, 5),
-  };
-}
-
+// Shared finalize pass for BOTH paths — re-applied every time new content lands (base generation,
+// then again after each async asset fill), because ops that were still empty placeholders on an
+// earlier call (e.g. a chalkBoard with no rows yet) need the paper re-layout applied once their
+// real content exists. Suprnotes gets its full asset-aware pipeline; a free-typed/PPTX lecture
+// (no sourceDocument) gets the same paper surface + re-layout via applyPaperLayout so its boards
+// match the Suprnotes look instead of keeping dark-chalkboard-tuned spacing under a paper theme.
 function finalizeSuprnotesBeats(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): void {
-  if (!sourceDocument) return;
+  if (!sourceDocument) {
+    composePromptedSuprnotesBoards(beats);
+    applyPaperLayout(beats);
+    return;
+  }
   ensureSuprnotesAssetUsage(beats, sourceDocument);
   hydrateProvidedImageOps(beats, sourceDocument);
   removeUnhydratedSuprnotesImageOps(beats, sourceDocument);
@@ -306,141 +397,6 @@ function finalizeSuprnotesBeats(beats: Beat[], sourceDocument: SuprnotesLessonIn
   composeSuprnotesPaperBoards(beats, sourceDocument);
   applySuprnotesPaperSurface(beats, sourceDocument);
   applySuprnotesPaperLayout(beats, sourceDocument);
-}
-
-function streamLecture(client: OpenAI, input: LectureBuildInput): Response {
-  const encoder = new TextEncoder();
-
-  const stream = new ReadableStream<Uint8Array>({
-    async start(controller) {
-      const send = (payload: Record<string, unknown>) => {
-        controller.enqueue(encoder.encode(`${JSON.stringify(payload)}\n`));
-      };
-
-      try {
-        send({ type: "status", stage: "text", message: "Writing the lecture script and boards" });
-        const base = await generateBaseLecture(client, input);
-        finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-        const useOnlyProvidedImages = shouldUseOnlyProvidedImages(input.sourceDocument);
-        const imageStatsWhenPaused = IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages
-          ? null
-          : useOnlyProvidedImages
-            ? noImageWorkStats()
-            : disabledImageStats(base.beats);
-        finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-        let streamedAssetCostUsd = imageStatsWhenPaused?.costUsd ?? 0;
-
-        let warmedAnimationStats: ReactAnimationFillStats = { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: [] };
-        if (input.sourceDocument && REACT_ANIMATIONS_ENABLED) {
-          send({
-            type: "status",
-            stage: "svg-boards",
-            message: "Generating Suprnotes whiteboard SVGs",
-          });
-          warmedAnimationStats = await fillReactAnimationOpsIncremental(client, base.beats);
-          repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
-          finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-          streamedAssetCostUsd += warmedAnimationStats.costUsd;
-        } else if (REACT_ANIMATIONS_ENABLED && REACT_ANIMATION_WARMUP_COUNT > 0) {
-          send({
-            type: "status",
-            stage: "animation-warmup",
-            message: "Preparing the first animation beats before playback",
-          });
-          warmedAnimationStats = await fillReactAnimationOpsIncremental(
-            client,
-            base.beats,
-            undefined,
-            { limit: REACT_ANIMATION_WARMUP_COUNT }
-          );
-          streamedAssetCostUsd += warmedAnimationStats.costUsd;
-        }
-
-        let warmedBoardStats: BlackboardFillStats = { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: [] };
-        if (BLACKBOARD_GEN_ENABLED && BLACKBOARD_WARMUP_COUNT > 0) {
-          send({ type: "status", stage: "board-warmup", message: "Preparing the first blackboards before playback" });
-          warmedBoardStats = await fillBlackboardOpsIncremental(client, base.beats, undefined, { limit: BLACKBOARD_WARMUP_COUNT });
-          finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-          streamedAssetCostUsd += warmedBoardStats.costUsd;
-        }
-
-        send({ type: "lecture", topic: input.topic, beats: base.beats, costUsd: base.textCost + streamedAssetCostUsd });
-
-        send({
-          type: "status",
-          stage: "assets",
-          message: IMAGE_GENERATION_ENABLED
-            ? "Generating images and sandboxed animations"
-            : "Image generation paused; finishing sandboxed animations",
-        });
-        const imagePromise = IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages
-          ? fillImageOpsIncremental(client, base.beats, (update) => {
-              finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-              streamedAssetCostUsd += update.costUsd;
-              send({
-                type: "beat",
-                asset: update.phase === "image" ? "image" : "image-fallback",
-                beatIndex: update.beatIndex,
-                beat: update.beat,
-                costUsd: base.textCost + streamedAssetCostUsd,
-              });
-            })
-          : Promise.resolve(imageStatsWhenPaused ?? disabledImageStats(base.beats));
-        const animationPromise = REACT_ANIMATIONS_ENABLED
-          ? fillReactAnimationOpsIncremental(client, base.beats, (update) => {
-              finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-              streamedAssetCostUsd += update.costUsd;
-              send({
-                type: "beat",
-                asset: update.status === "ready" ? "animation" : "animation-failed",
-                beatIndex: update.beatIndex,
-                beat: update.beat,
-                costUsd: base.textCost + streamedAssetCostUsd,
-              });
-            })
-          : Promise.resolve(disabledAnimationStats());
-        const boardPromise = BLACKBOARD_GEN_ENABLED
-          ? fillBlackboardOpsIncremental(client, base.beats, (update) => {
-              finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-              streamedAssetCostUsd += update.costUsd;
-              send({
-                type: "beat",
-                asset: update.status === "ready" ? "board" : "board-failed",
-                beatIndex: update.beatIndex,
-                beat: update.beat,
-                costUsd: base.textCost + streamedAssetCostUsd,
-              });
-            })
-          : Promise.resolve(disabledBlackboardStats());
-
-        const [imageStats, remainingAnimationStats, remainingBoardStats] = await Promise.all([
-          imagePromise,
-          animationPromise,
-          boardPromise,
-        ]);
-        const animationStats = mergeAnimationStats(warmedAnimationStats, remainingAnimationStats);
-        const boardStats = mergeBlackboardStats(warmedBoardStats, remainingBoardStats);
-        const costUsd = base.textCost + imageStats.costUsd + animationStats.costUsd + boardStats.costUsd;
-        finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-        send({ type: "done", topic: input.topic, costUsd, imageStats, animationStats, boardStats });
-      } catch (err) {
-        send({
-          type: "error",
-          error: err instanceof Error ? err.message : "Lecture generation failed",
-        });
-      } finally {
-        controller.close();
-      }
-    },
-  });
-
-  return new Response(stream, {
-    headers: {
-      "Content-Type": "application/x-ndjson; charset=utf-8",
-      "Cache-Control": "no-cache, no-transform",
-      "X-Accel-Buffering": "no",
-    },
-  });
 }
 
 export async function POST(req: Request) {
@@ -470,12 +426,36 @@ export async function POST(req: Request) {
   if (!effectiveTopic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
   if (effectiveTopic.length > 200) return NextResponse.json({ error: "topic is too long — keep it to a short phrase" }, { status: 400 });
 
-  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument };
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  // Approved outline from the planning flow (LearnPage's clarify/outline screens) — optional,
+  // additive grounding for the existing single-shot generation. Not used for Suprnotes source
+  // documents, which already carry their own strict lessonPlan/suggestedLecturePlan structure.
+  const outline: PlanOutline | null =
+    body.outline && typeof body.outline === "object" && Array.isArray(body.outline.subtopics)
+      ? {
+          topic: typeof body.outline.topic === "string" ? body.outline.topic.slice(0, 200) : effectiveTopic,
+          subtopics: (body.outline.subtopics as unknown[])
+            .filter((s): s is Record<string, unknown> => !!s && typeof s === "object")
+            .map((s) => ({
+              title: typeof s.title === "string" ? s.title.slice(0, 80) : "",
+              caption: typeof s.caption === "string" ? s.caption.slice(0, 160) : "",
+              safetyNet: s.safetyNet && typeof s.safetyNet === "object"
+                ? {
+                    prerequisite: typeof (s.safetyNet as Record<string, unknown>).prerequisite === "string" ? ((s.safetyNet as Record<string, unknown>).prerequisite as string).slice(0, 80) : "",
+                    diagnostic: typeof (s.safetyNet as Record<string, unknown>).diagnostic === "string" ? ((s.safetyNet as Record<string, unknown>).diagnostic as string).slice(0, 220) : "",
+                    masterySignal: typeof (s.safetyNet as Record<string, unknown>).masterySignal === "string" ? ((s.safetyNet as Record<string, unknown>).masterySignal as string).slice(0, 120) : "",
+                    rescueMove: typeof (s.safetyNet as Record<string, unknown>).rescueMove === "string" ? ((s.safetyNet as Record<string, unknown>).rescueMove as string).slice(0, 220) : "",
+                    reinforceAfter: Math.max(1, Math.min(3, Math.round(Number((s.safetyNet as Record<string, unknown>).reinforceAfter) || 2))) as 1 | 2 | 3,
+                    reinforcementPrompt: typeof (s.safetyNet as Record<string, unknown>).reinforcementPrompt === "string" ? ((s.safetyNet as Record<string, unknown>).reinforcementPrompt as string).slice(0, 180) : "",
+                  }
+                : undefined,
+            }))
+            .filter((s) => s.title.trim().length > 0)
+            .slice(0, 10),
+        }
+      : null;
 
-  if (body.stream === true || req.headers.get("accept")?.includes("application/x-ndjson")) {
-    return streamLecture(client, input);
-  }
+  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline };
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   try {
     const base = await generateBaseLecture(client, input);
@@ -486,16 +466,17 @@ export async function POST(req: Request) {
     // each "reactAnimation" op placeholder with generated component source — in parallel with
     // each other since they touch disjoint beats and are both I/O-bound. Individual failures
     // in either degrade gracefully (dropped image / explicit animation unavailable state).
-    const [imageCostUsd, reactAnimationStats, boardStats] = await Promise.all([
+    const [imageCostUsd, referenceImageStats, reactAnimationStats, boardStats] = await Promise.all([
       IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages ? fillImageOps(client, base.beats) : Promise.resolve(disabledImageStats(base.beats).costUsd),
+      REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument ? fillRealReferenceImage(client, base.beats) : Promise.resolve(disabledReferenceImageStats()),
       REACT_ANIMATIONS_ENABLED ? fillReactAnimationOps(client, base.beats) : Promise.resolve(disabledAnimationStats()),
       BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats) : Promise.resolve(disabledBlackboardStats()),
     ]);
 
     repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
-    const costUsd = base.textCost + imageCostUsd + reactAnimationStats.costUsd + boardStats.costUsd;
-    return NextResponse.json({ topic: input.topic, beats: base.beats, costUsd, animationStats: reactAnimationStats, boardStats });
+    const costUsd = base.textCost + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd;
+    return NextResponse.json({ topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats });
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Lecture generation failed" },
