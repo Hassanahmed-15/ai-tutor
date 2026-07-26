@@ -28,7 +28,22 @@ interface Pt {
 type DrawOp =
   | { kind: "shape"; shape: DrawShape; x: number; y: number; w?: number; h?: number; points?: Pt[]; color?: string; at: number }
   | { kind: "label"; text: string; x: number; y: number; size?: "sm" | "md" | "lg"; color?: string; at: number }
-  | { kind: "callout"; text: string; x: number; y: number; labelX?: number; labelY?: number; color?: string; at: number }
+  | {
+      kind: "callout";
+      text: string;
+      x: number;
+      y: number;
+      labelX?: number;
+      labelY?: number;
+      color?: string;
+      at: number;
+      /** Sentence index this callout is revealed on (Image-Explainer agent sync). */
+      group?: number;
+      /** True when this callout's label is grounded in a real image description (image-explainer
+       *  agent output) — survives the provided-image board cleanup pass that otherwise strips
+       *  ungrounded/legacy keyword-matched callouts. */
+      grounded?: boolean;
+    }
   | { kind: "arrow"; x1: number; y1: number; x2: number; y2: number; curved?: boolean; color?: string; at: number }
   | { kind: "note"; text: string; x: number; y: number; color?: string; at: number }
   | {
