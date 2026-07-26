@@ -14,6 +14,7 @@ import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
+import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
@@ -140,11 +141,15 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [slideContext, setSlideContext] = useState("");
   const [diagramHints, setDiagramHints] = useState("");
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
-  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "suprnotes"; assetCount?: number } | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "suprnotes" | "task-folder"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "ready" | "error">("idle");
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
+  // into folder-selection mode, so it must be its own <input> — it can't share fileInputRef, which
+  // stays a plain single-file .pptx/.json picker exactly as it works today).
+  const folderInputRef = useRef<HTMLInputElement>(null);
   const buildAbortRef = useRef<AbortController | null>(null);
 
   const selectedMode = TRACKS.find((m) => m.id === mode) ?? TRACKS[0];
@@ -220,6 +225,89 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       setUploadPhase("ready");
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : "Upload failed.");
+      setUploadPhase("error");
+    }
+  }
+
+  function readAsDataUrl(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(reader.error ?? new Error("read failed"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /**
+   * Task-folder upload: the student picks a whole folder (generated_notes.md + yolo_output/ images
+   * + relevant_images.json + detected_subject.json). Everything is pulled out and adapted into the
+   * same Suprnotes lesson-input shape the .json upload already produces (lib/markdownSource.ts), so
+   * it flows through the exact same sourceDocument pipeline — build(), shouldSkipPlanning(), and the
+   * server's generate-lecture route treat it identically to a Suprnotes JSON upload.
+   */
+  async function handleFolderSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(e.target.files ?? []);
+    e.target.value = "";
+    if (!files.length) return;
+
+    setUploadPhase("reading");
+    setUploadError(null);
+    setSlideContext("");
+    setDiagramHints("");
+    setSlideImages([]);
+    setUploadedFile(null);
+    setSourceDocument(null);
+
+    const relPath = (f: File): string => ((f as File & { webkitRelativePath?: string }).webkitRelativePath || f.name).replace(/\\/g, "/");
+
+    try {
+      const mdFile =
+        files.find((f) => /(^|\/)generated_notes\.md$/i.test(relPath(f))) ??
+        files.find((f) => /\.(md|markdown)$/i.test(f.name));
+      if (!mdFile) {
+        throw new Error("Couldn't find a generated_notes.md in that folder.");
+      }
+
+      const findText = async (re: RegExp): Promise<string | undefined> => {
+        const f = files.find((x) => re.test(relPath(x)));
+        return f ? await f.text() : undefined;
+      };
+      const [mdText, relevantImagesText, detectedSubjectText] = await Promise.all([
+        mdFile.text(),
+        findText(/(^|\/)relevant_images\.json$/i),
+        findText(/(^|\/)detected_subject\.json$/i),
+      ]);
+
+      // Only base64 the images this lesson actually needs (referenced in the notes or scored in
+      // relevant_images.json) — a task folder holds many stray YOLO crops we must not embed.
+      const wanted = relevantImageKeys(mdText, relevantImagesText);
+      const imageFiles = files.filter((f) => {
+        const isImg = f.type.startsWith("image/") || /\.(png|jpe?g|webp|gif|avif)$/i.test(f.name);
+        if (!isImg) return false;
+        return wanted.size === 0 || wanted.has(assetKey(relPath(f)));
+      });
+      const images: UploadedImage[] = await Promise.all(
+        imageFiles.map(async (f) => ({ path: relPath(f), dataUrl: await readAsDataUrl(f) })),
+      );
+
+      const { document, title, blockCount, assetCount, missingRefs } = buildLessonInputFromMarkdown(mdText, images, {
+        relevantImagesText,
+        detectedSubjectText,
+      });
+      if (!blockCount && !assetCount) {
+        throw new Error("Couldn't read a lesson from that folder — no generated_notes.md sections or images were found.");
+      }
+      const folderName = relPath(mdFile).split("/")[0] || mdFile.name;
+      setSourceDocument(document);
+      setUploadedFile({ name: folderName, kind: "task-folder", assetCount });
+      setInput(title);
+      setTopic(title);
+      setUploadPhase("ready");
+      if (missingRefs.length) {
+        setUploadError(`Heads up: ${missingRefs.length} image${missingRefs.length > 1 ? "s" : ""} referenced in the notes weren't found in the folder — the lesson will build without them.`);
+      }
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : "Couldn't read that folder.");
       setUploadPhase("error");
     }
   }
@@ -828,19 +916,44 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                     onChange={handleFileSelect}
                     aria-label="Upload PowerPoint or Suprnotes JSON file"
                   />
+                  {/* Second, separate hidden input for a task-folder pick — webkitdirectory forces
+                      folder-selection mode, so it cannot share the single-file input above. */}
+                  <input
+                    ref={(el) => {
+                      folderInputRef.current = el;
+                      if (el) {
+                        el.setAttribute("webkitdirectory", "");
+                        el.setAttribute("directory", "");
+                      }
+                    }}
+                    type="file"
+                    multiple
+                    className="sr-only"
+                    onChange={handleFolderSelect}
+                    aria-label="Upload a task folder containing generated_notes.md, images, and relevant_images.json"
+                  />
 
                   {uploadPhase === "idle" || uploadPhase === "error" ? (
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="flex w-full items-center gap-4 rounded-2xl border border-dashed border-[var(--hud-line)] bg-white/[0.02] px-6 py-5 text-left text-base text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)]/50 hover:bg-white/[0.05] hover:text-[var(--hud-text)]"
-                    >
-                        <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">📎</span>
-                        <span>
-                        <span className="block font-bold">Upload .pptx slides or Suprnotes .json</span>
-                        <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
-                      </span>
-                    </button>
+                    <div className="space-y-2">
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="flex w-full items-center gap-4 rounded-2xl border border-dashed border-[var(--hud-line)] bg-white/[0.02] px-6 py-5 text-left text-base text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)]/50 hover:bg-white/[0.05] hover:text-[var(--hud-text)]"
+                      >
+                          <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">📎</span>
+                          <span>
+                          <span className="block font-bold">Upload .pptx slides or Suprnotes .json</span>
+                          <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => folderInputRef.current?.click()}
+                        className="w-full px-6 text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
+                      >
+                        or upload a task folder →
+                      </button>
+                    </div>
                   ) : uploadPhase === "reading" ? (
                     <div className="flex items-center gap-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] px-6 py-5">
                       <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">⏳</span>
@@ -857,7 +970,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                             <p className="text-sm text-[var(--hud-text-dim)]">
                               {uploadedFile?.kind === "suprnotes"
                                 ? `${uploadedFile.assetCount ?? 0} provided images · ready to build`
-                                : `${uploadedFile?.slideCount ?? 0} slides extracted · ready to build`}
+                                : uploadedFile?.kind === "task-folder"
+                                  ? `Task folder · ${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} extracted · ready to build`
+                                  : `${uploadedFile?.slideCount ?? 0} slides extracted · ready to build`}
                             </p>
                           </div>
                         </div>
@@ -924,7 +1039,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                       <p className="mt-2 text-xs font-semibold text-[var(--hud-cyan)]">
                         📎 {uploadedFile.kind === "suprnotes"
                           ? `${uploadedFile.assetCount ?? 0} images loaded from notes`
-                          : `${uploadedFile.slideCount ?? 0} slides loaded`}
+                          : uploadedFile.kind === "task-folder"
+                            ? `${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} loaded from folder`
+                            : `${uploadedFile.slideCount ?? 0} slides loaded`}
                       </p>
                     )}
                   </div>
