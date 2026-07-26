@@ -9,6 +9,7 @@ import {
   type ReactAnimationCodeDiagnostics,
   type ReactAnimationOp,
 } from "./drawSanitize";
+import { critiqueShapeRecognizability, reactAnimationVisionCriticEnabled } from "./reactAnimationVisionCritic";
 
 /**
  * Second step of the two-step generate-then-render pipeline for ANIMATION beats, mirroring
@@ -590,6 +591,26 @@ async function generateOne(
             diagnostics,
             code,
             review: visualReview.review,
+            stalled: false,
+          };
+          continue;
+        }
+      }
+
+      // Shape-recognizability critic: renders the ACTUAL finished frame server-side and has a
+      // vision model look at the real pixels to judge whether the subject reads as the real thing
+      // it claims to be (a leaf looks like a leaf, not a generic oval) — catches what the static
+      // primitive-count diagnostics above and the text-based JSX review can't, since neither one
+      // looks at a rendered image. Runs for every lecture, gated only by its own env flag.
+      if (reactAnimationVisionCriticEnabled()) {
+        const shapeCritique = await critiqueShapeRecognizability(client, beat, code, blueprint.subject);
+        totalCostUsd += shapeCritique.costUsd;
+        if (!shapeCritique.ok) {
+          await saveDebugSvgCandidate(beat, op, code, shapeCritique.issue ?? "shape not recognizable");
+          previousFailure = {
+            issue: `The rendered shape is not recognizable: ${shapeCritique.issue}. Rebuild the subject's silhouette so it visually reads as ${blueprint.subject} — correct proportions, real contours, not generic geometric substitutes.`,
+            diagnostics,
+            code,
             stalled: false,
           };
           continue;
