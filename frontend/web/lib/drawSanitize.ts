@@ -428,6 +428,10 @@ const REACT_ANIMATION_EXPORT_PATTERN = /export\s+default\s+function\s+Animation\
 
 export type ReactAnimationCodeDiagnostics = {
   issue: string | null;
+  /** Only the HARD safety/structural failures (empty, too large, wrong export signature, banned
+   *  browser APIs, no full-board SVG) — never the soft quality/density ones. `issue` is
+   *  `safetyIssue ?? <quality issue>`, so a candidate that fails only on quality has this null. */
+  safetyIssue: string | null;
   byteLength: number;
   groupCount: number;
   primitiveTagCount: number;
@@ -492,20 +496,29 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
     boardPlanPresent: false,
     visualSpecPresent: false,
     tagCounts: {},
+    safetyIssue: null as string | null,
   };
-  if (!code) return { ...base, issue: "empty animation source" };
+  // Hard safety/structural gate — these ALSO set safetyIssue, so callers that only want to reject
+  // genuinely unsafe/unrenderable code (ACCEPT_BEST) can gate on safetyIssue alone.
+  if (!code) return { ...base, issue: "empty animation source", safetyIssue: "empty animation source" };
 
   const byteLength = base.byteLength;
   if (byteLength > REACT_ANIMATION_CODE_MAX_BYTES) {
-    return { ...base, issue: "too large; keep the scene focused and under 48KB" };
+    const m = "too large; keep the scene focused and under 48KB";
+    return { ...base, issue: m, safetyIssue: m };
   }
   if (!REACT_ANIMATION_EXPORT_PATTERN.test(code)) {
-    return { ...base, issue: "missing exact export signature: export default function Animation({ progress })" };
+    const m = "missing exact export signature: export default function Animation({ progress })";
+    return { ...base, issue: m, safetyIssue: m };
   }
   const banned = REACT_ANIMATION_BANNED_PATTERNS.find((re) => re.test(code));
-  if (banned) return { ...base, issue: "uses a banned browser/API pattern; keep it pure SVG/CSS/React" };
+  if (banned) {
+    const m = "uses a banned browser/API pattern; keep it pure SVG/CSS/React";
+    return { ...base, issue: m, safetyIssue: m };
+  }
   if (!/<\s*svg\b/i.test(code) || !/\bviewBox\s*=/.test(code)) {
-    return { ...base, issue: "must render a full-board SVG with a viewBox" };
+    const m = "must render a full-board SVG with a viewBox";
+    return { ...base, issue: m, safetyIssue: m };
   }
 
   const primitiveTags = [...code.matchAll(/<\s*(path|circle|rect|ellipse|polygon|polyline|line|text)\b/gi)].map((match) =>
@@ -582,6 +595,8 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
     /forbiddenShortcuts/.test(code);
 
   const metrics = {
+    // Past the hard safety gate above, so any issue from here on is quality/density only.
+    safetyIssue: null as string | null,
     byteLength,
     groupCount,
     primitiveTagCount: primitiveTags.length,
@@ -683,10 +698,17 @@ export function getReactAnimationCodeIssue(rawCode: string): string | null {
  *  `teachingPoint` because it is safe plain data regardless of what happened to `code`. Exported
  *  so reactAnimationGen.ts can run the exact same checks at generation time, before code is even
  *  stored on the beat. */
-export function sanitizeReactAnimationOp(op: ReactAnimationOp): ReactAnimationOp {
+export function sanitizeReactAnimationOp(
+  op: ReactAnimationOp,
+  opts: { requireQuality?: boolean } = {},
+): ReactAnimationOp {
   const code = typeof op.code === "string" ? op.code.trim() : "";
   if (!code) return { ...op, code: undefined };
-  const issue = getReactAnimationCodeIssue(code);
+  // Default: enforce the full quality floor (the normal accept path). When requireQuality is false
+  // (ACCEPT_BEST fallback), gate ONLY on hard safety/structural failures — a runnable, safe, but
+  // sub-floor animation is still worth rendering instead of showing the "unavailable" card.
+  const diagnostics = getReactAnimationCodeDiagnostics(code);
+  const issue = opts.requireQuality === false ? diagnostics.safetyIssue : diagnostics.issue;
   if (issue) return { ...op, code: undefined, status: "failed", error: issue };
   return { ...op, code, status: "ready", error: undefined };
 }

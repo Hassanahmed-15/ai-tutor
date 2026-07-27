@@ -14,7 +14,7 @@ import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
 import { DrawOverlay } from "./sketch/DrawOverlay";
-import { HighlightOverlay } from "./sketch/HighlightOverlay";
+import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { HudCorners } from "./hud/HudKit";
 
 const UNDERSTANDING_CHECK_EVERY = 4;
@@ -50,6 +50,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "" });
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate] = useState(1);
+  // (Re)starts narration for the current beat only when there's nothing to resume in place; pausing
+  // never bumps it, so a pause freezes and a resume continues instead of replaying the beat.
+  const [startNonce, setStartNonce] = useState(0);
 
   // Focus-pause flow: when attention drops to/below the threshold, the lecture STOPS
   // immediately, holds frozen for FOCUS_HOLD_MS (nothing happens), then shows a Resume
@@ -61,6 +64,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   const [askingDrawing, setAskingDrawing] = useState(false);
   const [highlightMode, setHighlightMode] = useState(false);
   const [highlightExplaining, setHighlightExplaining] = useState(false);
+  const [highlightStrokes, setHighlightStrokes] = useState<HlStroke[]>([]);
+  const highlightedTextRef = useRef("");
+  const highlightCtxTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [drawingContext, setDrawingContext] = useState("");
   const [exportingPdf, setExportingPdf] = useState(false);
   const comprehensionAskedForRef = useRef(-1);
@@ -91,7 +97,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
 
   const tutor = useRealtimeTutor({
     topic: title,
-    getBeatContext: () => `${beatRef.current.title}: ${beatRef.current.script}`,
+    getBeatContext: () =>
+      `${beatRef.current.title}: ${beatRef.current.script}` +
+      (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
     // ADHD: mic stays open the whole lecture, board is simple chalk text, tutor can pause/resume.
     alwaysOn: true,
@@ -134,6 +142,30 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     voice.stopTeacher();
     setSpeaking(false);
   }, [voice]);
+
+  // Feed the highlighted text into Aria's live context (debounced), so highlighting then asking her by
+  // voice works — she already has the exact words. getBeatContext only counts at session start, so the
+  // running session needs this addContext push.
+  const pushHighlightContext = useCallback(
+    (text: string) => {
+      highlightedTextRef.current = text;
+      if (highlightCtxTimer.current) clearTimeout(highlightCtxTimer.current);
+      const t = text.trim();
+      if (!t) return;
+      highlightCtxTimer.current = setTimeout(() => {
+        tutor.addContext(
+          `The student highlighted this on the board: "${t}". If they ask about it, explain THAT specifically, in detail.`,
+        );
+      }, 400);
+    },
+    [tutor],
+  );
+
+  // New section -> old highlights no longer map to it. Clear them.
+  useEffect(() => {
+    setHighlightStrokes([]);
+    highlightedTextRef.current = "";
+  }, [beat.id]);
 
   const quiz = useTeacherQuiz({
     voice,
@@ -185,7 +217,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   // playNarration directly — the director already freezes the teacher the instant the chatbot
   // speaks, which is what the old belt-and-suspenders "tutor speaking pauses" effect did by hand.
   useEffect(() => {
-    if (!lesson.playing || chat.busy) return;
+    // Gated on the LIVE mode ref, NOT reactive `lesson.playing` — otherwise pausing cancels the
+    // narration and resuming replays the beat. Pause/resume-in-place is the mode effect below.
+    if (lesson.modeRef.current !== "teaching" || chat.busy) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
@@ -199,7 +233,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
         onProgress: (progress) => setDrawProgress(Math.max(0, progress)),
         onEnd: () => {
           setSpeaking(false);
-          if (!lesson.playing) return;
+          if (lesson.modeRef.current !== "teaching") return;
           setDrawProgress(1);
           if (isCheckpoint) {
             setWaitingOnCheckpoint(true);
@@ -224,7 +258,19 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
       setSpeaking(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, lesson.playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, onComplete]);
+  }, [index, startNonce, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, onComplete]);
+
+  // Pause/resume IN PLACE (same as the standard player): leaving `teaching` freezes the audio;
+  // returning continues from the exact spot. `startNonce` starts a fresh beat when nothing is frozen.
+  useEffect(() => {
+    if (lesson.mode === "teaching") {
+      if (!voice.resumeTeacher()) setStartNonce((n) => n + 1);
+    } else {
+      voice.pauseTeacher();
+      setSpeaking(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode]);
 
   // Effect 3: the ADHD focus mechanism. After DRIFT_HOLD_MS of SUSTAINED drift:
   //  - If the live tutor mic is open (sessionActive): the tutor VERBALLY nudges the student and
@@ -447,13 +493,15 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
               />
             )}
 
-            {highlightMode && (
+            {(highlightMode || highlightStrokes.length > 0) && (
               <HighlightOverlay
+                strokes={highlightStrokes}
+                active={highlightMode}
                 busy={highlightExplaining}
+                onCommitStroke={(s) => setHighlightStrokes((prev) => [...prev, s])}
+                onClear={() => { setHighlightStrokes([]); highlightedTextRef.current = ""; }}
                 onClose={() => setHighlightMode(false)}
-                onHighlight={(text) => {
-                  if (text) tutor.addContext(`The student highlighted this on the board: "${text}"`);
-                }}
+                onHighlight={pushHighlightContext}
                 onExplain={(text) => {
                   setHighlightExplaining(true);
                   voice.speakAsTeacher(

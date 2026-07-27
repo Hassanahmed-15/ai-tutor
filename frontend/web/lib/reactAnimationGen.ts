@@ -515,6 +515,27 @@ async function generateOne(
   let totalCostUsd = visualPlan.costUsd;
   let previousFailure: PreviousFailure | undefined;
 
+  // ACCEPT_BEST: track the richest RUNNABLE attempt so that if no attempt clears the full quality
+  // floor, we still render the best real animation instead of discarding everything and showing the
+  // "Animation unavailable" card. A candidate only counts once it's confirmed to transpile.
+  type BestCandidate = { code: string; score: number };
+  let best: BestCandidate | null = null;
+  const scoreOf = (d: ReactAnimationCodeDiagnostics) =>
+    (d.primitiveScore ?? 0) + 2 * (d.timelineStepCount ?? 0) + 2 * (d.groupCount ?? 0);
+  // Returns a runnable candidate that beats `best`, or null. Assignment happens in the outer scope
+  // (below) so TypeScript's control-flow analysis tracks that `best` may become non-null.
+  const runnableCandidate = async (
+    code: string,
+    d: ReactAnimationCodeDiagnostics,
+    alreadyParsed: boolean,
+  ): Promise<BestCandidate | null> => {
+    if (!code) return null;
+    const score = scoreOf(d);
+    if (best && score <= best.score) return null;
+    if (!alreadyParsed && (await transpileCheck(code))) return null; // not runnable — skip
+    return { code, score };
+  };
+
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     try {
       // Retries need to diversify away from a near-miss, not converge harder on it — a lower
@@ -553,6 +574,7 @@ async function generateOne(
           : null);
       if (generationIssue) {
         await saveDebugSvgCandidate(beat, op, code, generationIssue);
+        best = (await runnableCandidate(code, diagnostics, false)) ?? best; // keep it if it runs
         const stalled = isStalled(previousFailure?.diagnostics, diagnostics);
         previousFailure = { issue: generationIssue, diagnostics, code, stalled };
         continue;
@@ -586,6 +608,7 @@ async function generateOne(
             code,
             visualReview.review.criticalIssues[0] ?? visualReview.review.revision
           );
+          best = (await runnableCandidate(code, diagnostics, true)) ?? best; // already parsed above
           previousFailure = {
             issue: visualReview.review.criticalIssues[0] ?? visualReview.review.revision,
             diagnostics,
@@ -607,6 +630,7 @@ async function generateOne(
         totalCostUsd += shapeCritique.costUsd;
         if (!shapeCritique.ok) {
           await saveDebugSvgCandidate(beat, op, code, shapeCritique.issue ?? "shape not recognizable");
+          best = (await runnableCandidate(code, diagnostics, true)) ?? best; // already parsed above
           previousFailure = {
             issue: `The rendered shape is not recognizable: ${shapeCritique.issue}. Rebuild the subject's silhouette so it visually reads as ${blueprint.subject} — correct proportions, real contours, not generic geometric substitutes.`,
             diagnostics,
@@ -640,7 +664,22 @@ async function generateOne(
     }
   }
 
-  // Leave op.code unset; the client will show the animation-unavailable state for this beat.
+  // ACCEPT_BEST: no attempt cleared the full floor, but if we captured a runnable candidate, ship it
+  // rather than showing nothing. A real (slightly-below-floor) animation beats the "unavailable" card.
+  if (best) {
+    // requireQuality:false — the best candidate already transpiles and passed the safety gate; ship
+    // it even though it's below the quality floor, rather than discarding to "unavailable".
+    const validated = sanitizeReactAnimationOp({ ...op, code: best.code }, { requireQuality: false });
+    if (validated.code) {
+      op.code = validated.code;
+      op.status = "ready";
+      op.error = undefined;
+      console.error(`[anim] beat=${beat.id} accepted best sub-floor attempt (score=${best.score}) after ${MAX_ATTEMPTS} attempts.`);
+      return { costUsd: totalCostUsd, filled: true };
+    }
+  }
+
+  // Truly nothing runnable — leave op.code unset; the client shows the animation-unavailable state.
   op.code = undefined;
   op.status = "failed";
   op.error = previousFailure?.issue ?? "animation code was not generated";

@@ -18,7 +18,7 @@ import { useEngagementScore } from "@/lib/useEngagementScore";
 import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
 import { DrawOverlay } from "./sketch/DrawOverlay";
-import { HighlightOverlay } from "./sketch/HighlightOverlay";
+import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { PastYouEcho } from "./experience/LearningExperiences";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
@@ -45,6 +45,10 @@ const BLACKBOARD_GEN_ENABLED = process.env.NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED ==
  * not five disconnected facts.
  */
 const SLIDE_MS = 1500;
+// Safety net: a beat whose animation/board op never resolves (still no `code`/`ops`, e.g. a
+// server that didn't generate it) would otherwise hold the lecture on its slide forever. After this
+// long we stop waiting and let the lecture proceed (the board shows its status card meanwhile).
+const ANIMATION_PENDING_TIMEOUT_MS = 10_000;
 export const MAX_ATTEMPTS = 2; // wrong answers allowed before "show me the answer" appears
 type Stage = "slide" | "board";
 export type CheckpointResult = { correct: boolean; feedback: string; revealed?: boolean } | null;
@@ -119,12 +123,20 @@ export function LessonPlayer({
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
   const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "" });
   const [captionLog, setCaptionLog] = useState<string[]>([]);
+  // Bumped to (re)start narration for the current beat ONLY when there's nothing to resume in place
+  // (fresh beat, or the browser-TTS fallback that can't be frozen). Pausing does NOT touch this — a
+  // pause freezes the audio and a resume continues it, so the beat never replays from the top.
+  const [startNonce, setStartNonce] = useState(0);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
   const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
+  // The lecture only WAITS on a pending animation until the watchdog trips (see below); after that it
+  // proceeds so a never-resolving op can't freeze the whole lesson on its slide.
+  const [animationTimedOut, setAnimationTimedOut] = useState(false);
+  const animationBlocking = currentAnimationPending && !animationTimedOut;
   const deafMode = mode === "deaf";
 
   // Engagement + confusion signals (Confusion Radar / adaptive check-ins).
@@ -139,6 +151,11 @@ export function LessonPlayer({
   const [drawMode, setDrawMode] = useState(false);
   const [askingDrawing, setAskingDrawing] = useState(false);
   const [highlightMode, setHighlightMode] = useState(false);
+  // Persistent highlighter marks for the current beat (normalized 0..1 coords) + the latest text the
+  // student swept over, kept in a ref so it can be woven into the live tutor's context.
+  const [highlightStrokes, setHighlightStrokes] = useState<HlStroke[]>([]);
+  const highlightedTextRef = useRef("");
+  const highlightCtxTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [drawingContext, setDrawingContext] = useState("");
   // True briefly while an "Explain this in detail" (draw/highlight) hand-off to the live tutor is
   // in flight — used purely to drive the overlay busy indicators.
@@ -161,7 +178,9 @@ export function LessonPlayer({
 
   const tutor = useRealtimeTutor({
     topic: title,
-    getBeatContext: () => `${beatRef.current.title}: ${beatRef.current.script}`,
+    getBeatContext: () =>
+      `${beatRef.current.title}: ${beatRef.current.script}` +
+      (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
     onTranscript: (role, text, final) => {
@@ -184,8 +203,10 @@ export function LessonPlayer({
       }
     },
     onTutorTurnComplete: () => {
-      setSessionActive(false);
-      if (!tutor.muted) tutor.toggleMute();
+      // Do NOT auto-mute after each answer — once the student has unmuted, the mic stays live so they
+      // can keep talking (a natural back-and-forth). Auto-muting here (and reading the laggy `muted`
+      // state) is what made the mic "sometimes listen, sometimes not" even while it read unmuted. The
+      // session stays active through a multi-turn conversation; it ends only on a real end.
       lesson.flushDeferredResume();
     },
     startMuted: true,
@@ -274,8 +295,8 @@ export function LessonPlayer({
     setSessionActive(true);
     if (tutor.status === "idle" || tutor.status === "error" || tutor.status === "mic-denied") {
       void tutor.start();
-    } else if (tutor.muted) {
-      tutor.toggleMute();
+    } else {
+      tutor.setMicEnabled(true); // idempotent unmute — robust against stale `muted` state
     }
   }
   function endLiveTutor() {
@@ -289,6 +310,17 @@ export function LessonPlayer({
     lesson.requestResume();
   }
 
+  // Watchdog: reset the timed-out flag on every new beat, then — while this beat's animation/board op
+  // is still pending and the lecture is playing — start a timer. If it fires, stop waiting so the
+  // lecture can move on instead of freezing on the slide forever (a never-filled op, a server that
+  // didn't generate it, etc.). A ready op is never pending, so this never delays a normal beat.
+  useEffect(() => setAnimationTimedOut(false), [beat.id]);
+  useEffect(() => {
+    if (!currentAnimationPending || !lesson.playing || animationTimedOut) return;
+    const t = setTimeout(() => setAnimationTimedOut(true), ANIMATION_PENDING_TIMEOUT_MS);
+    return () => clearTimeout(t);
+  }, [currentAnimationPending, lesson.playing, animationTimedOut, beat.id]);
+
   // Drives each beat: show its slide briefly, then (for normal beats) flip to the board
   // and narrate; on voice end, advance. Checkpoint beats narrate the question on the slide
   // itself and then STOP — they wait for submitCheckpoint() instead of auto-advancing.
@@ -296,24 +328,28 @@ export function LessonPlayer({
   // for checkpoints, which narrate right on the slide). This effect ONLY sets `stage` — it
   // never starts narration itself, so it can't race with the narration effect's cleanup.
   useEffect(() => {
-    if (!lesson.playing || stage !== "slide" || isCheckpoint || currentAnimationPending) return;
+    if (!lesson.playing || stage !== "slide" || isCheckpoint || animationBlocking) return;
     if (slideTimer.current) clearTimeout(slideTimer.current);
     slideTimer.current = setTimeout(() => setStage("board"), SLIDE_MS);
     return () => {
       if (slideTimer.current) clearTimeout(slideTimer.current);
     };
-  }, [index, lesson.playing, stage, isCheckpoint, currentAnimationPending]);
+  }, [index, lesson.playing, stage, isCheckpoint, animationBlocking]);
 
   // Effect 2: start narration exactly once per (beat, stage) — when a checkpoint's slide
   // appears, or once a normal beat reaches "board". Separate from effect 1 so flipping
   // `stage` here doesn't retrigger effect 1 and cancel narration mid-start. Narration now goes
   // through the voice director (single audio owner) instead of calling playNarration directly.
   useEffect(() => {
-    if (!lesson.playing || chat.busy) return;
+    // NOTE: gated on the LIVE mode ref, NOT the reactive `lesson.playing`. If `lesson.playing` were a
+    // dependency, pausing would re-run this effect's cleanup and CANCEL the narration, so resuming
+    // replayed the beat from the top. Pause/resume is handled by the mode effect below, which freezes
+    // and continues the SAME audio in place. This effect only (re)starts a beat fresh.
+    if (lesson.modeRef.current !== "teaching" || chat.busy) return;
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
     if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
-    if (narrateOnBoard && currentAnimationPending) return;
+    if (narrateOnBoard && animationBlocking) return;
     window.setTimeout(() => setDrawProgress(0), 0);
     const started = voice.speakAsTeacher(
       beat.script,
@@ -335,8 +371,8 @@ export function LessonPlayer({
         onEnd: () => {
           setSpeaking(false);
           // If playback was paused between the last cue and this onEnd firing, do NOT advance —
-          // freeze on the current beat. Resuming re-runs the narration effect for this beat.
-          if (!lesson.playing) return;
+          // freeze on the current beat. Read the LIVE mode (not the captured `lesson.playing`).
+          if (lesson.modeRef.current !== "teaching") return;
           setDrawProgress(1);
           if (isCheckpoint) {
             setWaitingOnCheckpoint(true);
@@ -361,7 +397,21 @@ export function LessonPlayer({
       setSpeaking(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, lesson.playing, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, deafMode, onComplete, currentAnimationPending]);
+  }, [index, startNonce, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, deafMode, onComplete, animationBlocking]);
+
+  // Pause/resume IN PLACE, driven by the single mode value. Leaving `teaching` freezes the audio
+  // (and with it the board reveal + sentence cue); returning to it continues from the exact same
+  // spot — the pause button and "resume the lecture" both land here. When there is nothing to resume
+  // (a fresh beat, or the browser-TTS fallback), `startNonce` starts the beat instead.
+  useEffect(() => {
+    if (lesson.mode === "teaching") {
+      if (!voice.resumeTeacher()) setStartNonce((n) => n + 1);
+    } else {
+      voice.pauseTeacher();
+      setSpeaking(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode]);
 
   // Focus/engagement bands: below 30 the lecture pauses outright (focus-pause overlay, manual
   // resume only); 30-50 the TEACHER stops and asks a quick comprehension question instead of
@@ -448,6 +498,33 @@ export function LessonPlayer({
   }
 
   /**
+   * Feed the highlighted text into the LIVE tutor's context, debounced so a multi-line sweep sends
+   * one clean message instead of one per fragment. This is what lets the student HIGHLIGHT and then
+   * simply ASK Aria by voice — she already has the exact words in context (getBeatContext only counts
+   * at session start, so the running session needs this addContext push).
+   */
+  const pushHighlightContext = useCallback(
+    (text: string) => {
+      highlightedTextRef.current = text;
+      if (highlightCtxTimer.current) clearTimeout(highlightCtxTimer.current);
+      const t = text.trim();
+      if (!t) return;
+      highlightCtxTimer.current = setTimeout(() => {
+        tutor.addContext(
+          `The student highlighted this on the board: "${t}". If they ask about it, explain THAT specifically, in detail.`,
+        );
+      }, 400);
+    },
+    [tutor],
+  );
+
+  // New section (board content changes) -> old highlights no longer map to it. Clear them.
+  useEffect(() => {
+    setHighlightStrokes([]);
+    highlightedTextRef.current = "";
+  }, [beat.id]);
+
+  /**
    * Bring the live conversational tutor in to actually engage with something the student drew or
    * highlighted — not a fresh scripted board, just Aria talking about exactly this, the same voice
    * that's already teaching. Pauses the lecture, makes sure the tutor session is connected and
@@ -480,7 +557,7 @@ export function LessonPlayer({
       void tutor.start().then(() => sayWhenReady());
       return;
     }
-    if (tutor.muted) tutor.toggleMute();
+    tutor.setMicEnabled(true); // idempotent unmute — never skipped/double-toggled by stale state
     sayWhenReady();
   }
 
@@ -670,11 +747,15 @@ export function LessonPlayer({
 
             {/* Two-way board: highlighter. Reads the actual DOM text under the marker (no vision
                 guesswork), and can ask Aria to explain exactly that in detail. */}
-            {highlightMode && (
+            {(highlightMode || highlightStrokes.length > 0) && (
               <HighlightOverlay
+                strokes={highlightStrokes}
+                active={highlightMode}
                 busy={engagingTutor}
+                onCommitStroke={(s) => setHighlightStrokes((prev) => [...prev, s])}
+                onClear={() => { setHighlightStrokes([]); highlightedTextRef.current = ""; }}
                 onClose={() => setHighlightMode(false)}
-                onHighlight={() => {}}
+                onHighlight={pushHighlightContext}
                 onExplain={(text) => {
                   explainWithTutor(
                     `The student just highlighted this on the board and wants you to explain it in detail: "${text}"`
