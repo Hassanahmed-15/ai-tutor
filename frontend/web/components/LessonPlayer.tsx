@@ -19,7 +19,7 @@ import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay } from "./sketch/HighlightOverlay";
-import { LearningExperienceOverlay, PastYouEcho } from "./experience/LearningExperiences";
+import { PastYouEcho } from "./experience/LearningExperiences";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -121,8 +121,6 @@ export function LessonPlayer({
   const [captionLog, setCaptionLog] = useState<string[]>([]);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
-  const [learningExperience, setLearningExperience] = useState<"fork" | null>(null);
-  const resumeAfterExperience = useRef(false);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
@@ -141,14 +139,10 @@ export function LessonPlayer({
   const [drawMode, setDrawMode] = useState(false);
   const [askingDrawing, setAskingDrawing] = useState(false);
   const [highlightMode, setHighlightMode] = useState(false);
-  const highlightedTextRef = useRef("");
   const [drawingContext, setDrawingContext] = useState("");
-  const drawingDataUrlRef = useRef("");
-  // Result of an explicit "Explain this in detail" on a drawing — a real vision-read answer +
-  // board, shown the same way the realtime tutor's show_board / chat's explainBoard are (a
-  // dedicated ExplainOverlay), narrated through the voice director so it participates correctly
-  // in the single-speaker pause/resume system instead of a bare, un-coordinated playNarration call.
-  const [drawExplainBoard, setDrawExplainBoard] = useState<{ script: string; draw?: RealtimeBoard["draw"] } | null>(null);
+  // True briefly while an "Explain this in detail" (draw/highlight) hand-off to the live tutor is
+  // in flight — used purely to drive the overlay busy indicators.
+  const [engagingTutor, setEngagingTutor] = useState(false);
   const [exportingPdf, setExportingPdf] = useState(false);
   const bumpInteraction = useCallback(() => setLastInteractionAt(Date.now()), []);
 
@@ -196,6 +190,12 @@ export function LessonPlayer({
     },
     startMuted: true,
     alwaysOn: autoVoiceAssistant,
+  });
+  // Mirrors `tutor` so a setTimeout-based poll (explainWithTutor) can read the LATEST status
+  // instead of the stale one captured in whichever render kicked the poll off.
+  const tutorRef = useRef(tutor);
+  useEffect(() => {
+    tutorRef.current = tutor;
   });
 
   // ── Single-speaker voice pipeline ────────────────────────────────────────
@@ -447,44 +447,52 @@ export function LessonPlayer({
     window.setTimeout(advanceFromCheckpoint, 2800);
   }
 
-  /** "Explain this in detail" on a drawing — a real vision-read answer, reliable regardless of
-   *  whether the realtime tutor's mic happens to be unmuted right now (unlike "just ask out loud",
-   *  which silently does nothing if the student never tapped the mic button). */
-  async function explainDrawing() {
-    const dataUrl = drawingDataUrlRef.current;
-    if (!dataUrl || askingDrawing) return;
+  /**
+   * Bring the live conversational tutor in to actually engage with something the student drew or
+   * highlighted — not a fresh scripted board, just Aria talking about exactly this, the same voice
+   * that's already teaching. Pauses the lecture, makes sure the tutor session is connected and
+   * listening (same connect logic as the "Talk to tutor" button), gives her the context, and
+   * prompts her to respond right away instead of silently waiting for the student to ask by voice.
+   */
+  function explainWithTutor(prompt: string) {
     bumpInteraction();
-    setAskingDrawing(true);
     lesson.enterChat({ resumeAfterAnswer: true });
-    try {
-      const res = await fetch("/api/ask-drawing", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          image: dataUrl,
-          topic: title,
-          beatContext: `${beat.title}: ${beat.script}`,
-          question: "Explain what I drew in detail.",
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that drawing.");
-      setDrawExplainBoard({ script: data.script, draw: data.draw });
-      voice.speakAsTeacher(
-        data.script,
-        {
-          onStart: () => {},
-          onEnd: () => lesson.requestResume(),
-          onBlocked: () => setVoiceBlocked(true),
-          rate,
-        },
-        "utterance"
-      );
-    } catch {
-      lesson.requestResume();
-    } finally {
-      setAskingDrawing(false);
+    if (slideTimer.current) {
+      clearTimeout(slideTimer.current);
+      slideTimer.current = null;
     }
+    setSessionActive(true);
+    setEngagingTutor(true);
+    // say() silently no-ops until the WebRTC data channel is actually open, which lags a moment
+    // behind start() resolving — retry briefly (reading tutorRef, not the closed-over `tutor` from
+    // this render, since status keeps changing across renders while we wait) rather than dropping
+    // the very first ask on the floor.
+    const sayWhenReady = (attempt = 0) => {
+      const current = tutorRef.current;
+      if (current.status === "live" || attempt > 20) {
+        current.say(prompt);
+        setEngagingTutor(false);
+        return;
+      }
+      window.setTimeout(() => sayWhenReady(attempt + 1), 150);
+    };
+    if (tutor.status === "idle" || tutor.status === "error" || tutor.status === "mic-denied") {
+      void tutor.start().then(() => sayWhenReady());
+      return;
+    }
+    if (tutor.muted) tutor.toggleMute();
+    sayWhenReady();
+  }
+
+  /** "Explain this in detail" on a drawing — reliable regardless of mic state, and engages the
+   *  same live tutor voice instead of opening a separate scripted explanation board. */
+  function explainDrawing() {
+    const description = drawingContext && drawingContext !== "NOTHING" ? drawingContext : "";
+    explainWithTutor(
+      description
+        ? `The student just drew this on the board and wants you to explain it in detail: ${description}`
+        : "The student just drew something on the board and wants you to explain it in detail — look at what's there and talk them through it."
+    );
   }
 
   function startLesson() {
@@ -550,26 +558,6 @@ export function LessonPlayer({
     setRate((r) => (r >= 1.5 ? 0.85 : r === 0.85 ? 1 : 1.25));
   }
 
-  function openLearningExperience(experience: "fork") {
-    resumeAfterExperience.current = lesson.playing;
-    stopVoice();
-    if (slideTimer.current) {
-      clearTimeout(slideTimer.current);
-      slideTimer.current = null;
-    }
-    lesson.pause("draw");
-    setLearningExperience(experience);
-  }
-
-  function closeLearningExperience() {
-    setLearningExperience(null);
-    if (resumeAfterExperience.current) {
-      unlockAudio();
-      lesson.requestResume();
-    }
-    resumeAfterExperience.current = false;
-  }
-
   const hasStarted = lesson.mode !== "idle" || index > 0 || stage === "board";
   const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / beats.length) * 100;
 
@@ -587,7 +575,7 @@ export function LessonPlayer({
             more controls (engagement meter, draw/highlight, PDF export) than one line fits on
             most viewports, so it commonly wraps to two lines — this padding is sized generously
             enough that a two-line header never bleeds into the board underneath it. */}
-        <div className="absolute inset-2 grid gap-2 pt-[210px] lg:inset-4 lg:gap-3 lg:pt-[210px] xl:grid-cols-[minmax(0,1fr)_340px] xl:pt-[150px]">
+        <div className="absolute inset-2 grid gap-2 pt-[190px] lg:inset-4 lg:gap-3 lg:pt-[190px] xl:grid-cols-[minmax(0,1fr)_340px] xl:pt-[150px]">
           <section className="relative min-h-0 overflow-hidden rounded-xl border border-[var(--hud-line)] bg-slate-950/80 shadow-[0_32px_110px_rgba(0,0,0,0.34)]">
             <HudCorners />
             {stage === "slide" || isCheckpoint ? (
@@ -649,12 +637,11 @@ export function LessonPlayer({
                 a moment after the pen lifts — no "send" step, the student just asks about it. */}
             {drawMode && (
               <DrawOverlay
-                busy={askingDrawing}
+                busy={askingDrawing || engagingTutor}
                 seenLabel={drawingContext ? "Aria can see this — just ask" : undefined}
                 onClose={() => setDrawMode(false)}
                 onExplain={explainDrawing}
                 onDrawingChange={(dataUrl) => {
-                  drawingDataUrlRef.current = dataUrl;
                   bumpInteraction();
                   setAskingDrawing(true);
                   fetch("/api/ask-drawing", {
@@ -681,38 +668,17 @@ export function LessonPlayer({
               />
             )}
 
-            {/* Result of an explicit "Explain this in detail" on a drawing — a real vision-read
-                answer + board, shown the same way chat's explainBoard is. */}
-            {drawExplainBoard && (
-              <ExplainOverlay board={drawExplainBoard} progress={1} autoReveal onClose={() => setDrawExplainBoard(null)} />
-            )}
-
             {/* Two-way board: highlighter. Reads the actual DOM text under the marker (no vision
                 guesswork), and can ask Aria to explain exactly that in detail. */}
             {highlightMode && (
               <HighlightOverlay
-                busy={chat.explaining}
+                busy={engagingTutor}
                 onClose={() => setHighlightMode(false)}
-                onHighlight={(text) => {
-                  // Track the latest selection locally only — do NOT push to the realtime tutor
-                  // here. onHighlight fires once per newly-captured line while the student is still
-                  // sweeping the marker (HighlightOverlay dedupes per-fragment, but a multi-line
-                  // sweep still fires several times), so calling tutor.addContext() from here sent
-                  // the whole growing selection as a new "context" message on every line — flooding
-                  // the live conversation with near-duplicate messages, which is what caused the
-                  // tutor's repeated/garbled replies. The realtime tutor only ever gets ONE mention
-                  // of this highlight, sent from onExplain below, at the moment the student actually
-                  // asks about it.
-                  highlightedTextRef.current = text;
-                }}
+                onHighlight={() => {}}
                 onExplain={(text) => {
-                  bumpInteraction();
-                  // Let the realtime tutor (if listening) know what was highlighted, once — then
-                  // ask for a REAL explanation through the same /api/explain path the side-chat
-                  // uses (chat.explaining/chat.explainBoard drive the busy state and the resulting
-                  // board+narration), instead of just having the teacher voice echo the text back.
-                  tutor.addContext(`The student highlighted this on the board: "${text}"`);
-                  chat.ask(`Explain this in detail: ${text}`);
+                  explainWithTutor(
+                    `The student just highlighted this on the board and wants you to explain it in detail: "${text}"`
+                  );
                 }}
               />
             )}
@@ -836,15 +802,6 @@ export function LessonPlayer({
               {exportingPdf ? "Exporting…" : "Export PDF"}
             </button>
             <button
-              onClick={() => openLearningExperience("fork")}
-              disabled={isCheckpoint}
-              aria-label="Fork this idea"
-              title="Change one rule and predict what happens"
-              className="rounded-full border border-amber-300/25 bg-amber-300/[0.06] px-3 py-2.5 text-sm font-black text-amber-200 transition hover:bg-amber-300/10 disabled:cursor-not-allowed disabled:opacity-30 lg:px-4"
-            >
-              <span aria-hidden="true">⎇</span><span className="hidden lg:inline"> Fork</span>
-            </button>
-            <button
               onClick={skipForward}
               disabled={index >= beats.length - 1}
               title="Skip to next beat"
@@ -880,14 +837,6 @@ export function LessonPlayer({
           </div>
         )}
 
-        {learningExperience && (
-          <LearningExperienceOverlay
-            experience={learningExperience}
-            topic={title}
-            beat={beat}
-            onClose={closeLearningExperience}
-          />
-        )}
       </div>
     </main>
   );
