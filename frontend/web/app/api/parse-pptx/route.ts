@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import JSZip from "jszip";
 import { XMLParser } from "fast-xml-parser";
 import OpenAI from "openai";
+import type { SuprnotesAsset, SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -10,6 +11,10 @@ type VisualKind = "text" | "chart" | "table" | "image" | "smartart" | "mixed";
 
 type SlideImage = {
   description: string;
+  /** Base64 data URL of the actual embedded image bytes, so the lecture pipeline can ground
+   *  boards in the real picture instead of only GPT-4o's text description of it. Omitted if the
+   *  media file couldn't be read from the zip. */
+  dataUrl?: string;
 };
 
 type ChartSeries = {
@@ -38,6 +43,11 @@ type ParsePptxResponse = {
   slides: ParsedSlide[];
   fullText: string;
   diagramHints: string;
+  /** Present whenever at least one slide image was successfully read — gives the lecture
+   *  pipeline the same grounded-asset treatment (vision verification, image-only mode,
+   *  content-block-linked chalkboard boards) a task-folder upload already gets. */
+  sourceDocument?: SuprnotesLessonInput;
+  assetCount?: number;
 };
 
 const parser = new XMLParser({
@@ -493,35 +503,35 @@ export async function POST(req: NextRequest) {
 
   if (!deckTitle && rawSlides[0]?.title) deckTitle = rawSlides[0].title;
 
-  // Step 2: collect all unique images that need Vision descriptions, fire them all at once
+  // Step 2: collect all unique images referenced by any slide — read their real bytes
+  // unconditionally (needed for the sourceDocument's grounded assets regardless of whether Vision
+  // is configured), and ALSO fire a Vision description call per image when a client is available.
   type PendingImage = { mediaPath: string; ext: string };
   const uniqueImages = new Map<string, PendingImage>(); // mediaPath → pending
-  if (client) {
-    for (const s of rawSlides) {
-      for (const rId of s.imageRIds) {
-        const mediaPath = s.relsMap.get(rId);
-        if (!mediaPath) continue;
-        const ext = mediaPath.split(".").pop()?.toLowerCase() ?? "";
-        if (!["png", "jpg", "jpeg", "gif", "webp"].includes(ext)) continue;
-        if (!uniqueImages.has(mediaPath)) uniqueImages.set(mediaPath, { mediaPath, ext });
-      }
+  for (const s of rawSlides) {
+    for (const rId of s.imageRIds) {
+      const mediaPath = s.relsMap.get(rId);
+      if (!mediaPath) continue;
+      const ext = mediaPath.split(".").pop()?.toLowerCase() ?? "";
+      if (!["png", "jpg", "jpeg", "gif", "webp"].includes(ext)) continue;
+      if (!uniqueImages.has(mediaPath)) uniqueImages.set(mediaPath, { mediaPath, ext });
     }
   }
 
-  // Fire all Vision calls in parallel — one network round-trip for the whole deck
-  const describedMedia = new Map<string, string>();
-  if (client && uniqueImages.size > 0) {
+  const describedMedia = new Map<string, { description: string; dataUrl: string }>();
+  if (uniqueImages.size > 0) {
     await Promise.all(
       [...uniqueImages.values()].map(async ({ mediaPath, ext }) => {
         const imgFile = zip.file(mediaPath);
-        if (!imgFile) { describedMedia.set(mediaPath, ""); return; }
+        if (!imgFile) return;
         try {
           const imgBuffer = await imgFile.async("uint8array");
-          if (imgBuffer.length < 5000) { describedMedia.set(mediaPath, ""); return; }
-          const description = await describeImage(client, toDataUri(imgBuffer, mimeForExt(ext)));
-          describedMedia.set(mediaPath, description);
+          if (imgBuffer.length < 5000) return;
+          const dataUrl = toDataUri(imgBuffer, mimeForExt(ext));
+          const description = client ? await describeImage(client, dataUrl) : "";
+          describedMedia.set(mediaPath, { description, dataUrl });
         } catch {
-          describedMedia.set(mediaPath, "");
+          // Skip this image — it simply won't appear as an asset or a description.
         }
       })
     );
@@ -530,11 +540,14 @@ export async function POST(req: NextRequest) {
   // Step 3: assemble final slide objects (all chart parses also in parallel)
   const assembledSlides = await Promise.all(
     rawSlides.map(async (s) => {
-      // Collect image descriptions for this slide
+      // Collect image descriptions + real bytes for this slide
       const slideImages: SlideImage[] = s.imageRIds
         .map((rId) => s.relsMap.get(rId))
-        .filter((p): p is string => !!p && describedMedia.has(p) && !!describedMedia.get(p))
-        .map((p) => ({ description: describedMedia.get(p)! }));
+        .filter((p): p is string => !!p && describedMedia.has(p))
+        .map((p) => {
+          const media = describedMedia.get(p)!;
+          return { description: media.description, dataUrl: media.dataUrl };
+        });
 
       // Parse charts in parallel per slide
       const slideCharts = (
@@ -560,8 +573,9 @@ export async function POST(req: NextRequest) {
     if (s.title) slideTextParts.push(`Title: ${s.title}`);
     if (s.body) slideTextParts.push(s.body);
 
-    if (s.images.length > 0) {
-      slideTextParts.push(`[Visuals: ${s.images.map((img, idx) => `Image ${idx + 1}: ${img.description}`).join("; ")}]`);
+    const describedImages = s.images.filter((img) => img.description);
+    if (describedImages.length > 0) {
+      slideTextParts.push(`[Visuals: ${describedImages.map((img, idx) => `Image ${idx + 1}: ${img.description}`).join("; ")}]`);
     }
 
     for (const chart of s.chartData) {
@@ -597,12 +611,90 @@ export async function POST(req: NextRequest) {
     ? diagramSlides.slice(0, 8).join("; ")
     : "";
 
+  // Build a real sourceDocument when at least one slide image was actually read — this is what
+  // gives the lecture the same grounded pipeline (vision verification, image-only mode,
+  // content-block-linked chalkboard boards) a task-folder upload already gets, instead of the
+  // legacy flat-text-only fallback. One asset per unique media file (the same picture can be
+  // reused across multiple slides — dedupe via describedMedia's mediaPath keys, same pattern
+  // lib/markdownSource.ts uses for its own asset dedup), one content block per slide.
+  let sourceDocument: SuprnotesLessonInput | undefined;
+  if (describedMedia.size > 0) {
+    const assetIdByPath = new Map<string, string>();
+    const assets: SuprnotesAsset[] = [];
+    const contentBlocks: SuprnotesContentBlock[] = [];
+
+    for (const s of assembledSlides) {
+      const blockId = `slide-${s.index}`;
+      const assetIds: string[] = [];
+      for (const rId of s.imageRIds) {
+        const mediaPath = s.relsMap.get(rId);
+        if (!mediaPath || !describedMedia.has(mediaPath)) continue;
+        let assetId = assetIdByPath.get(mediaPath);
+        if (!assetId) {
+          const media = describedMedia.get(mediaPath)!;
+          assetId = `img-${assets.length + 1}`;
+          assetIdByPath.set(mediaPath, assetId);
+          assets.push({
+            id: assetId,
+            type: "image",
+            mimeType: mimeForExt(mediaPath.split(".").pop()?.toLowerCase() ?? ""),
+            url: media.dataUrl,
+            description: media.description || undefined,
+            sourceBlockIds: [blockId],
+          });
+        } else {
+          const asset = assets.find((a) => a.id === assetId);
+          asset?.sourceBlockIds?.push(blockId);
+        }
+        assetIds.push(assetId);
+      }
+
+      const textParts: string[] = [];
+      if (s.title) textParts.push(s.title);
+      if (s.body) textParts.push(s.body);
+      for (const chart of s.chartData) {
+        if (chart.title) textParts.push(`Chart: ${chart.title}`);
+      }
+
+      contentBlocks.push({
+        id: blockId,
+        type: "section",
+        heading: s.title || `Slide ${s.index}`,
+        text: textParts.join("\n") || undefined,
+        assetIds: assetIds.length ? assetIds : undefined,
+        sourceOrder: s.index,
+      });
+    }
+
+    sourceDocument = {
+      schemaVersion: "suprnotes.lesson_input.v1",
+      source: { adapter: "pptx-upload", generatedAt: new Date().toISOString() },
+      lesson: { title: deckTitle, subject: deckTitle, language: "en" },
+      generationDirectives: {
+        imagePolicy: "use_provided_images_only",
+        disableAiImageGeneration: true,
+        preferredLectureStyle: "grounded_from_notes",
+        preserveExistingLecturePrompting: true,
+      },
+      contentGovernance: {
+        groundingPolicy: "prefer_provided_content",
+        hallucinationPolicy: "hedge_when_unsupported",
+        requireClaimSourceTags: false,
+      },
+      webPreview: { status: "not_requested" },
+      assets,
+      contentBlocks,
+    };
+  }
+
   const result: ParsePptxResponse = {
     topic: deckTitle,
     slideCount: slides.length,
     slides,
     fullText,
     diagramHints,
+    sourceDocument,
+    assetCount: sourceDocument?.assets?.length ?? 0,
   };
 
   return NextResponse.json(result);

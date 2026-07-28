@@ -141,7 +141,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [slideContext, setSlideContext] = useState("");
   const [diagramHints, setDiagramHints] = useState("");
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
-  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "suprnotes" | "task-folder"; assetCount?: number } | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "ready" | "error">("idle");
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -197,6 +197,23 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         return;
       }
 
+      if (file.name.toLowerCase().endsWith(".pdf") || file.type === "application/pdf") {
+        const fd = new FormData();
+        fd.append("file", file);
+        const res = await fetch("/api/parse-pdf", { method: "POST", body: fd });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.sourceDocument) {
+          throw new Error(data.error || "Couldn't read the PDF. Make sure it's a valid .pdf file.");
+        }
+        setUploadedFile({ name: file.name, slideCount: data.pageCount ?? 0, kind: "pdf", assetCount: data.assetCount ?? 0 });
+        setSourceDocument(data.sourceDocument);
+        if (!topic && !input.trim() && data.title) {
+          setInput(data.title);
+        }
+        setUploadPhase("ready");
+        return;
+      }
+
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch("/api/parse-pptx", { method: "POST", body: fd });
@@ -204,10 +221,15 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       if (!res.ok || !data.topic) {
         throw new Error(data.error || "Couldn't read the presentation. Make sure it's a valid .pptx file.");
       }
-      setUploadedFile({ name: file.name, slideCount: data.slideCount ?? 0, kind: "pptx" });
+      setUploadedFile({ name: file.name, slideCount: data.slideCount ?? 0, kind: "pptx", assetCount: data.assetCount ?? 0 });
       setSlideContext(data.fullText ?? "");
       setDiagramHints(data.diagramHints ?? "");
-      setSourceDocument(null);
+      // A pptx with at least one readable embedded image now gets a real sourceDocument, which
+      // routes it through the same grounded pipeline (vision verification, image-only mode,
+      // content-block-linked chalkboard boards) task-folder uploads already get — the payload
+      // spread in build() below prefers sourceDocument over the flat slideContext when both are
+      // set, so this is a strict upgrade, not a behavior change for decks with no images.
+      setSourceDocument(data.sourceDocument ?? null);
       // Collect per-slide image descriptions for the "recreate" image prompts
       if (Array.isArray(data.slides)) {
         const imgs = (data.slides as Array<{ index: number; images?: Array<{ description: string }> }>)
@@ -613,10 +635,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       return;
     }
 
-    if (sourceDocument) {
-      setBuildStatus("Building from the uploaded Suprnotes JSON");
-    }
-    setBuildStatus(sourceDocument ? "Building from the uploaded Suprnotes JSON" : "Writing the lecture script and boards");
+    setBuildStatus(sourceDocument ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
 
     const payload: LecturePayload = {
       topic: trimmed,
@@ -911,10 +930,10 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept=".pptx,.json,application/json"
+                    accept=".pptx,.pdf,.json,application/json"
                     className="sr-only"
                     onChange={handleFileSelect}
-                    aria-label="Upload PowerPoint or Suprnotes JSON file"
+                    aria-label="Upload PowerPoint, PDF, or Suprnotes JSON file"
                   />
                   {/* Second, separate hidden input for a task-folder pick — webkitdirectory forces
                       folder-selection mode, so it cannot share the single-file input above. */}
@@ -942,7 +961,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                       >
                           <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">📎</span>
                           <span>
-                          <span className="block font-bold">Upload .pptx slides or Suprnotes .json</span>
+                          <span className="block font-bold">Upload .pptx, .pdf, or Suprnotes .json</span>
                           <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
                         </span>
                       </button>
@@ -972,7 +991,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                                 ? `${uploadedFile.assetCount ?? 0} provided images · ready to build`
                                 : uploadedFile?.kind === "task-folder"
                                   ? `Task folder · ${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} extracted · ready to build`
-                                  : `${uploadedFile?.slideCount ?? 0} slides extracted · ready to build`}
+                                  : uploadedFile?.kind === "pdf"
+                                    ? `${uploadedFile.slideCount ?? 0} page${(uploadedFile.slideCount ?? 0) === 1 ? "" : "s"} · ${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} extracted · ready to build`
+                                    : `${uploadedFile?.slideCount ?? 0} slides extracted${(uploadedFile?.assetCount ?? 0) > 0 ? ` · ${uploadedFile?.assetCount} image${uploadedFile?.assetCount === 1 ? "" : "s"}` : ""} · ready to build`}
                             </p>
                           </div>
                         </div>
@@ -1041,7 +1062,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                           ? `${uploadedFile.assetCount ?? 0} images loaded from notes`
                           : uploadedFile.kind === "task-folder"
                             ? `${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} loaded from folder`
-                            : `${uploadedFile.slideCount ?? 0} slides loaded`}
+                            : uploadedFile.kind === "pdf"
+                              ? `${uploadedFile.slideCount ?? 0} page${(uploadedFile.slideCount ?? 0) === 1 ? "" : "s"} loaded from PDF`
+                              : `${uploadedFile.slideCount ?? 0} slides loaded`}
                       </p>
                     )}
                   </div>
