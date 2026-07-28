@@ -38,6 +38,9 @@ export interface Beat {
   compareRight?: { label: string; points: string[] };
   checkpoint?: CheckpointSpec;
   script: string;
+  /** Source-document provenance. PDF lessons use this to guarantee ordered block coverage and
+   *  attach each extracted figure to the exact beat that teaches its page content. */
+  sourceBlockIds?: string[];
   draw?: DrawScript;
   /** Full-bleed real photo behind the slide (scene-setting beats only — hook/recap). Path under /public. */
   photoBackdrop?: string;

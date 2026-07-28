@@ -63,7 +63,10 @@ async function describeOne(client: OpenAI, dataUri: string, caption: string): Pr
  */
 export async function describeAssetsWithVision(client: OpenAI, sourceDocument: SuprnotesLessonInput | null): Promise<number> {
   const assets = (sourceDocument?.assets ?? []).filter(
-    (a) => typeof a.url === "string" && a.url.startsWith("data:image"),
+    (a) =>
+      a.visionVerified !== true &&
+      typeof a.url === "string" &&
+      a.url.startsWith("data:image"),
   );
   if (!assets.length) return 0;
 

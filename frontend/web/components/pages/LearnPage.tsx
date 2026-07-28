@@ -468,15 +468,13 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     streamOutlineRequest({ mode: "outline", topic, clarifications: clarifyAnswers, angle, sourceDocument }, topic);
   }
 
-  // Suprnotes JSON and task-folder uploads already carry their own explicit lesson structure
-  // (lessonPlan/suggestedLecturePlan) — planning would just re-derive a redundant, possibly
-  // conflicting outline, so those skip straight to build. PDF/PPTX uploads have no such
-  // structure of their own (they're raw extracted content), so they go through the SAME
-  // clarify/outline planning screen a typed topic does — the resulting outline is layered on
-  // top of the sourceDocument as a content checklist (see outlineLine in buildUserMessage's
-  // sourceDocument branch). The curated demo bypasses generation entirely.
+  // Structured uploads already carry an explicit source-grounded lesson plan. Re-planning them
+  // here can reorder or omit source material, so they skip directly to lecture generation.
   function shouldSkipPlanning(): boolean {
-    const structuredUpload = uploadedFile?.kind === "suprnotes" || uploadedFile?.kind === "task-folder";
+    const structuredUpload =
+      uploadedFile?.kind === "suprnotes" ||
+      uploadedFile?.kind === "task-folder" ||
+      uploadedFile?.kind === "pdf";
     return structuredUpload || Boolean(slideContext && !sourceDocument) || (DEMO_HARDCODED && !sourceDocument && !slideContext);
   }
 

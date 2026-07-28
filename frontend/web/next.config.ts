@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // route handler (which makes the runtime import/require fail). Used by the vision board critic
   // (lib/boardVisionCritic.ts), the PDF export route, and the PDF upload parser (parse-pdf route).
   serverExternalPackages: ["@resvg/resvg-js", "@napi-rs/canvas", "pdfjs-dist"],
+  outputFileTracingIncludes: {
+    "/api/parse-pdf": ["./scripts/pdf_pipeline.py"],
+  },
 };
 
 export default nextConfig;

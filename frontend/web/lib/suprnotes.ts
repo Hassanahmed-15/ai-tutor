@@ -19,6 +19,10 @@ export type SuprnotesAsset = {
   localPath?: string;
   sourceBlockIds?: string[];
   teachingUse?: unknown;
+  pageNumber?: number;
+  visualType?: string;
+  bbox?: { x: number; y: number; width: number; height: number };
+  visionVerified?: boolean;
 };
 
 export type SuprnotesContentBlock = {
@@ -34,6 +38,9 @@ export type SuprnotesContentBlock = {
   keyIdeas?: string[];
   teachingHints?: string[];
   facts?: Array<{ claim?: string; source?: string; confidence?: string }>;
+  pageNumber?: number;
+  bbox?: { x: number; y: number; width: number; height: number };
+  role?: string;
 };
 
 export type SuprnotesWebPreviewItem = {
@@ -118,14 +125,22 @@ export function shouldUseOnlyProvidedImages(input: SuprnotesLessonInput | null):
 }
 
 export function compactSuprnotesForPrompt(input: SuprnotesLessonInput): string {
+  const isPdf = Boolean(
+    input.source &&
+    typeof input.source === "object" &&
+    (input.source as UnknownRecord).adapter === "pdf-upload"
+  );
   const assets = (input.assets ?? []).map((asset) => ({
     id: asset.id,
     caption: clean(asset.caption),
     description: clean(asset.description),
     width: asset.width,
     height: asset.height,
-    sourceBlockIds: asset.sourceBlockIds ?? [],
-    teachingUse: asset.teachingUse,
+      sourceBlockIds: asset.sourceBlockIds ?? [],
+      teachingUse: asset.teachingUse,
+      pageNumber: asset.pageNumber,
+      visualType: asset.visualType,
+      bbox: asset.bbox,
   }));
 
   const blocks = (input.contentBlocks ?? [])
@@ -135,14 +150,17 @@ export function compactSuprnotesForPrompt(input: SuprnotesLessonInput): string {
       id: block.id,
       type: block.type ?? "section",
       heading: clean(block.heading),
-      text: clean(block.text).slice(0, 1400),
-      items: (block.items ?? []).slice(0, 8),
+      text: clean(block.text).slice(0, isPdf ? 2200 : 1400),
+      items: isPdf ? (block.items ?? []) : (block.items ?? []).slice(0, 8),
       columns: block.columns,
-      rows: block.rows?.slice(0, 8),
+      rows: isPdf ? block.rows : block.rows?.slice(0, 8),
       assetIds: block.assetIds ?? [],
       keyIdeas: block.keyIdeas ?? [],
       teachingHints: block.teachingHints ?? [],
       facts: block.facts ?? [],
+      pageNumber: block.pageNumber,
+      bbox: block.bbox,
+      role: block.role,
     }));
 
   return JSON.stringify({
@@ -160,6 +178,16 @@ export function compactSuprnotesForPrompt(input: SuprnotesLessonInput): string {
 export function hydrateProvidedImageOps(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): number {
   if (!sourceDocument?.assets?.length) return 0;
   const assets = new Map(sourceDocument.assets.filter((asset) => asset.id).map((asset) => [asset.id, asset]));
+  const pdfSource = Boolean(
+    sourceDocument.source &&
+    typeof sourceDocument.source === "object" &&
+    (sourceDocument.source as UnknownRecord).adapter === "pdf-upload"
+  );
+  const plannedAssetIds = new Set(
+    lessonPlanBeats(sourceDocument)
+      .map((beat) => beat.recommendedVisual?.assetId)
+      .filter((id): id is string => Boolean(id))
+  );
   let hydrated = 0;
 
   for (const beat of beats) {
@@ -168,6 +196,7 @@ export function hydrateProvidedImageOps(beats: Beat[], sourceDocument: Suprnotes
       const imageOp = op as ImageOp;
       const assetId = imageOp.assetId ?? imageOp.providedAssetId ?? inferAssetIdFromPrompt(imageOp.prompt, assets);
       if (!assetId || imageOp.src) continue;
+      if (pdfSource && !plannedAssetIds.has(assetId)) continue;
       const asset = assets.get(assetId);
       const src = asset ? sourceForBrowser(asset) : "";
       if (!src) continue;
@@ -440,11 +469,24 @@ export function ensureSuprnotesAssetUsage(beats: Beat[], sourceDocument: Suprnot
   }
 
   let injected = 0;
+  const planned = lessonPlanBeats(sourceDocument);
+  const pdfSource = Boolean(
+    sourceDocument.source &&
+    typeof sourceDocument.source === "object" &&
+    (sourceDocument.source as UnknownRecord).adapter === "pdf-upload"
+  );
+  const plannedAssetIds = new Set(
+    planned.map((beat) => beat.recommendedVisual?.assetId).filter((id): id is string => Boolean(id))
+  );
   for (const asset of sourceDocument.assets) {
+    if (pdfSource && !plannedAssetIds.has(asset.id)) continue;
     if (!asset.id || usedAssetIds.has(asset.id)) continue;
     const src = sourceForBrowser(asset);
     if (!src) continue;
-    const targetIndex = bestBeatForAsset(beats, asset, blocks);
+    const plannedIndex = planned.findIndex((planBeat) => planBeat.recommendedVisual?.assetId === asset.id);
+    const targetIndex = plannedIndex >= 0 && plannedIndex < beats.length
+      ? plannedIndex
+      : bestBeatForAsset(beats, asset, blocks);
     if (targetIndex < 0) continue;
     const beat = beats[targetIndex];
     beat.draw = providedAssetBoard(beat, asset, src);
@@ -816,7 +858,21 @@ export function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x:
     { x: 18, y: 76 },
     { x: 86, y: 76 },
   ];
-  const target = targetSlots[index % targetSlots.length];
+  const imageLeft = box.x - box.w / 2;
+  const imageRight = box.x + box.w / 2;
+  const imageTop = box.y - box.h / 2;
+  const imageBottom = box.y + box.h / 2;
+  const hasGroundedTarget =
+    op.grounded === true &&
+    Number.isFinite(op.x) &&
+    Number.isFinite(op.y) &&
+    op.x >= imageLeft &&
+    op.x <= imageRight &&
+    op.y >= imageTop &&
+    op.y <= imageBottom;
+  const target = hasGroundedTarget
+    ? { x: op.x, y: op.y }
+    : targetSlots[index % targetSlots.length];
   const label = labelSlots[index % labelSlots.length];
   return {
     ...op,
@@ -826,7 +882,7 @@ export function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x:
     labelX: label.x,
     labelY: label.y,
     color: op.color ?? markerColor(index),
-    at: 0.18 + index * 0.13,
+    at: hasGroundedTarget ? op.at : 0.18 + index * 0.13,
   };
 }
 
@@ -881,15 +937,37 @@ export function layoutPaperTextBoard(ops: DrawOp[], title: string): DrawOp[] {
 }
 
 function providedAssetBoard(beat: Beat, asset: SuprnotesAsset, src: string): DrawScript {
-  const callouts = assetCalloutLabels(asset).slice(0, 4).map((text, index): CalloutOp => ({
+  const imageBox = { x: 55, y: 55, w: 62, h: 50 };
+  const teachingUse = asset.teachingUse && typeof asset.teachingUse === "object"
+    ? asset.teachingUse as UnknownRecord
+    : null;
+  const annotationNeeded = teachingUse?.annotationNeeded !== false;
+  const focusRegions = annotationNeeded ? assetFocusRegions(asset) : [];
+  const calloutSeeds = !annotationNeeded
+    ? []
+    : focusRegions.length
+    ? focusRegions.map((region) => ({
+        text: region.label,
+        x: imageBox.x - imageBox.w / 2 + (region.x + region.width / 2) * imageBox.w,
+        y: imageBox.y - imageBox.h / 2 + (region.y + region.height / 2) * imageBox.h,
+        grounded: true,
+      }))
+    : assetCalloutLabels(asset).slice(0, 4).map((text) => ({
+        text,
+        x: imageBox.x,
+        y: imageBox.y,
+        grounded: false,
+      }));
+  const callouts = calloutSeeds.map((item, index): CalloutOp => ({
     kind: "callout",
-    text,
-    x: 50,
-    y: 50,
-    labelX: 20,
-    labelY: 28 + index * 14,
+    text: item.text,
+    x: item.x,
+    y: item.y,
+    labelX: index % 2 === 0 ? 18 : 88,
+    labelY: index < 2 ? 28 : 76,
     color: markerColor(index + 1),
     at: 0.22 + index * 0.12,
+    grounded: item.grounded,
   }));
 
   return {
@@ -911,10 +989,10 @@ function providedAssetBoard(beat: Beat, asset: SuprnotesAsset, src: string): Dra
         prompt: [asset.caption, asset.description].map(clean).filter(Boolean).join(" — ") || asset.id,
         assetId: asset.id,
         src,
-        x: 55,
-        y: 55,
-        w: 62,
-        h: 50,
+        x: imageBox.x,
+        y: imageBox.y,
+        w: imageBox.w,
+        h: imageBox.h,
         at: 0.08,
       },
       ...callouts,
@@ -976,9 +1054,11 @@ function bestBeatForAsset(beats: Beat[], asset: SuprnotesAsset, blocks: Map<stri
     if (beat.slideKind === "checkpoint") return;
     const text = `${beat.title} ${beat.script}`.toLowerCase();
     const hasImage = beat.draw?.ops.some((op) => op.kind === "image") ?? false;
+    const exactBlockMatches = (beat.sourceBlockIds ?? []).filter((id) => asset.sourceBlockIds?.includes(id)).length;
     const score = searchTerms.reduce((sum, term) => sum + (text.includes(term) ? 1 : 0), 0)
+      + exactBlockMatches * 20
       + (index === 0 ? -4 : 0)
-      + (hasImage ? -2 : 0);
+      + (hasImage ? -30 : 0);
     if (score > best.score) best = { index, score };
   });
 
@@ -1003,6 +1083,29 @@ function assetCalloutLabels(asset: SuprnotesAsset): string[] {
     if (concepts.length) return concepts;
   }
   return [asset.caption, asset.description].map(clean).filter(Boolean).slice(0, 3);
+}
+
+function assetFocusRegions(asset: SuprnotesAsset): Array<{ label: string; x: number; y: number; width: number; height: number }> {
+  if (!asset.teachingUse || typeof asset.teachingUse !== "object") return [];
+  const raw = (asset.teachingUse as UnknownRecord).focusRegions;
+  if (!Array.isArray(raw)) return [];
+  return raw.flatMap((item) => {
+    if (!item || typeof item !== "object") return [];
+    const region = item as UnknownRecord;
+    const label = clean(region.label);
+    const x = Number(region.x);
+    const y = Number(region.y);
+    const width = Number(region.width);
+    const height = Number(region.height);
+    if (!label || ![x, y, width, height].every(Number.isFinite)) return [];
+    return [{
+      label,
+      x: clamp(x, 0, 1),
+      y: clamp(y, 0, 1),
+      width: clamp(width, 0, 1),
+      height: clamp(height, 0, 1),
+    }];
+  }).slice(0, 4);
 }
 
 function keywordTokens(value: string): string[] {

@@ -66,6 +66,8 @@ const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
 const TEXT_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_ATTEMPTS ?? 4)));
 const TEXT_MAX_TOKENS = Math.max(8_000, Math.min(16_000, Number(process.env.OPENAI_LECTURE_MAX_TOKENS ?? 14_000)));
 const DEEPEN_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 2)));
+const PDF_BEATS_PER_GENERATION = Math.max(2, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 4)));
+const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
 
 // gpt-4o pricing for the text-generation step (as of 2025, source: openai.com/api/pricing).
 const TEXT_INPUT_PRICE  = 2.50 / 1_000_000;  // $2.50 per M input tokens
@@ -90,6 +92,66 @@ type BeatCountRepair = {
   beats: Beat[];
   costUsd: number;
 };
+
+type PlannedPdfBeat = {
+  id?: string;
+  title?: string;
+  sourceBlockIds: string[];
+  recommendedVisual?: { type?: string; assetId?: string; brief?: string };
+};
+
+function isPdfSource(sourceDocument: SuprnotesLessonInput | null): boolean {
+  if (!sourceDocument?.source || typeof sourceDocument.source !== "object") return false;
+  return (sourceDocument.source as Record<string, unknown>).adapter === "pdf-upload";
+}
+
+function plannedPdfBeats(sourceDocument: SuprnotesLessonInput | null): PlannedPdfBeat[] {
+  if (!isPdfSource(sourceDocument)) return [];
+  const plan = (sourceDocument?.lessonPlan ?? sourceDocument?.suggestedLecturePlan) as Record<string, unknown> | undefined;
+  if (!plan || !Array.isArray(plan.beats)) return [];
+  return plan.beats.flatMap((raw) => {
+    if (!raw || typeof raw !== "object") return [];
+    const record = raw as Record<string, unknown>;
+    const recommended = record.recommendedVisual && typeof record.recommendedVisual === "object"
+      ? record.recommendedVisual as Record<string, unknown>
+      : null;
+    return [{
+      id: typeof record.id === "string" ? record.id : undefined,
+      title: typeof record.title === "string" ? record.title : undefined,
+      sourceBlockIds: Array.isArray(record.sourceBlockIds)
+        ? record.sourceBlockIds.filter((id): id is string => typeof id === "string")
+        : [],
+      recommendedVisual: recommended
+        ? {
+            type: typeof recommended.type === "string" ? recommended.type : undefined,
+            assetId: typeof recommended.assetId === "string" ? recommended.assetId : undefined,
+            brief: typeof recommended.brief === "string" ? recommended.brief : undefined,
+          }
+        : undefined,
+    }];
+  });
+}
+
+function applyPdfPlanMetadata(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): void {
+  const planned = plannedPdfBeats(sourceDocument);
+  if (!planned.length) return;
+  if (beats.length !== planned.length) {
+    throw new Error(`PDF plan requires exactly ${planned.length} beats in source order; model returned ${beats.length}.`);
+  }
+  const covered = new Set<string>();
+  beats.forEach((beat, index) => {
+    const planBeat = planned[index];
+    if (planBeat.id) beat.id = planBeat.id;
+    if (planBeat.title) beat.title = planBeat.title;
+    beat.sourceBlockIds = [...planBeat.sourceBlockIds];
+    planBeat.sourceBlockIds.forEach((id) => covered.add(id));
+  });
+  const expected = new Set((sourceDocument?.contentBlocks ?? []).map((block) => block.id));
+  const missing = [...expected].filter((id) => !covered.has(id));
+  if (missing.length) {
+    throw new Error(`PDF lesson plan omitted ${missing.length} source blocks.`);
+  }
+}
 
 function textCostUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
   return usage ? usage.prompt_tokens * TEXT_INPUT_PRICE + usage.completion_tokens * TEXT_OUTPUT_PRICE : 0;
@@ -201,7 +263,28 @@ function applyScriptPatchesToRawLecture(rawLecture: unknown, patches: unknown) {
   }
 }
 
-async function deepenLectureScripts(client: OpenAI, topic: string, mood: string, rawLecture: unknown, beats: Beat[]): Promise<number> {
+function assertInputLectureDepth(beats: Beat[], pdfSource: boolean): void {
+  if (!pdfSource) {
+    assertLectureDepth(beats);
+    return;
+  }
+  const stats = lectureDepthStats(beats);
+  const maxShortBeats = Math.max(1, Math.floor(stats.teachingBeatCount * 0.15));
+  if (stats.avgTeachingWords < 100 || stats.shortTeachingBeatCount > maxShortBeats) {
+    throw new Error(
+      `Model returned shallow PDF teaching beats (${Math.round(stats.avgTeachingWords)} words per teaching beat).`
+    );
+  }
+}
+
+async function deepenLectureScripts(
+  client: OpenAI,
+  topic: string,
+  mood: string,
+  rawLecture: unknown,
+  beats: Beat[],
+  options: { minUsableBeats?: number; pdfSource?: boolean } = {},
+): Promise<number> {
   let extraCostUsd = 0;
   let lastError = "Could not deepen the generated lecture.";
 
@@ -217,7 +300,7 @@ async function deepenLectureScripts(client: OpenAI, topic: string, mood: string,
               "You deepen AI tutor lecture scripts. Return JSON only: {\"beats\":[{\"id\":string,\"script\":string}]}. " +
               "Preserve every id exactly. Do not change titles, visuals, checkpoints, or order. " +
               "Rewrite only the spoken script. Teaching beats need 110-140 words each. Intro needs 75-95 words. " +
-              "Checkpoint scripts need 25-45 words. Recap needs 110-135 words. Total output should create 1050-1450 spoken words without changing the number of beats. " +
+              `Checkpoint scripts need 25-45 words. Recap needs 110-135 words. ${options.pdfSource ? "This is one ordered PDF section, so deepen every supplied beat without trying to reach a whole-lecture word total. " : "Total output should create 1050-1450 spoken words without changing the number of beats. "}` +
               "Use warm natural spoken language, concrete examples, misconception warnings, and smooth transitions. " +
               "Deepen each existing board in layers: claim, mechanism or reasoning, one concrete example, misconception contrast, and connection forward. Do not introduce facts absent from the existing scripts. " +
               "Do not request more visual elements or change board composition; the same concise board should be revisited and annotated while the deeper narration continues. " +
@@ -244,8 +327,11 @@ async function deepenLectureScripts(client: OpenAI, topic: string, mood: string,
       extraCostUsd += textCostUsd(completion.usage);
       const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
       applyScriptPatchesToRawLecture(rawLecture, parsed.beats);
-      const deepenedBeats = sanitizeDrawLecture(rawLecture, { enforceDepth: false });
-      assertLectureDepth(deepenedBeats);
+      const deepenedBeats = sanitizeDrawLecture(rawLecture, {
+        enforceDepth: false,
+        minUsableBeats: options.minUsableBeats,
+      });
+      assertInputLectureDepth(deepenedBeats, options.pdfSource === true);
       return extraCostUsd;
     } catch (err) {
       lastError = err instanceof Error ? err.message : "Could not deepen the generated lecture.";
@@ -261,11 +347,14 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
   const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
 
   if (input.sourceDocument) {
+    const pdfRules = isPdfSource(input.sourceDocument)
+      ? `This is an uploaded PDF with a deterministic semantic plan. Return EXACTLY the number of beats in lessonPlan.beats, in that exact order. Copy each plan beat's sourceBlockIds onto the matching output beat exactly. Do not merge, split, omit, or reorder planned beats. Explain every assigned source block and preserve formulas, table values, examples, qualifications, and definitions exactly. Match the SAME premium visual grammar and quality as a normal prompted lesson: content-specific animated whiteboard SVGs for every svg_diagram beat, sentence-synchronized marker boards for paper_whiteboard beats, and natural progressive teaching sequences rather than static text slides. Preserve reactAnimation placeholders exactly so the premium animation generator can build them after planning. Use a PDF image ONLY when that plan beat's recommendedVisual explicitly supplies an assetId; never force every extracted asset into the lecture. On an image beat, show the clean complete crop in context and add labels/arrows only when the recommended brief and narration genuinely need them. Do not turn chapter banners, question boxes, decorative graphics, or unrelated photos into teaching boards. `
+      : `Ten detailed beats are acceptable and preferred over many thin beats. `;
     return (
       `${base}\nThe student provided a structured Suprnotes-style source document. Treat this document as the primary lesson source:\n` +
       `${compactSuprnotesForPrompt(input.sourceDocument)}\n\n` +
       `STRICT LESSON CONTRACT RULES: If lessonPlan or suggestedLecturePlan is present, follow its beat order, targetBeatCount, titles, sourceBlockIds, objectives, and recommendedVisual choices as the required lecture plan. Do not reorder or merge beats unless the plan explicitly allows it. ` +
-      `Every planned beat must be explained in depth: write a teacher script that fully teaches the sourceBlockIds assigned to that beat, not a one-line summary. Ten detailed beats are acceptable and preferred over many thin beats. ` +
+      `Every planned beat must be explained in depth: write a teacher script that fully teaches the sourceBlockIds assigned to that beat, not a one-line summary. ${pdfRules}` +
       `Use only facts from contentBlocks, assets, lessonPlan/suggestedLecturePlan, and webPreview items. Treat webPreview as optional enrichment: include a web claim only if it is explicitly present in webPreview.claims/summary and useful for the assigned beat; do not invent extra web facts. ` +
       `If contentGovernance says grounding or hallucination controls are strict, every concrete claim in the script must be traceable to a source block or webPreview item. If a detail is not in the source, either omit it or phrase it as a general teaching analogy, not as a fact. ` +
       `Use the contentBlocks as the factual backbone and use their source order only when no explicit lesson plan is provided. ` +
@@ -330,7 +419,10 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
       });
       const raw = completion.choices[0]?.message?.content ?? "";
       const rawLecture = JSON.parse(raw);
-      let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats: input.sourceDocument ? undefined : 8 });
+      const pdfPlanCount = plannedPdfBeats(input.sourceDocument).length;
+      const minUsableBeats = pdfPlanCount || (input.sourceDocument ? 1 : 8);
+      let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
+      applyPdfPlanMetadata(beats, input.sourceDocument);
 
       // Eight or nine strong beats are recoverable. Add only the missing conceptual bridges instead of
       // discarding the entire lecture and paying for another full generation attempt.
@@ -349,14 +441,18 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
 
       // Tally the text-generation cost from actual token usage.
       try {
-        assertLectureDepth(beats);
+        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument));
       } catch {
-        textCost += await deepenLectureScripts(client, input.topic, input.mood, rawLecture, beats);
-        beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false });
+        textCost += await deepenLectureScripts(client, input.topic, input.mood, rawLecture, beats, {
+          minUsableBeats,
+          pdfSource: isPdfSource(input.sourceDocument),
+        });
+        beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
+        applyPdfPlanMetadata(beats, input.sourceDocument);
         if (!input.sourceDocument && (beats.length < 10 || beats.length > 12)) {
           throw new Error(`Model returned ${beats.length} beats after deepening; prompted lessons must contain 10-12 complete beats.`);
         }
-        assertLectureDepth(beats);
+        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument));
       }
 
       return { beats, textCost };
@@ -366,6 +462,83 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
   }
 
   throw new Error(lastError);
+}
+
+function chunkPdfSourceDocument(
+  sourceDocument: SuprnotesLessonInput,
+  start: number,
+  size: number,
+): SuprnotesLessonInput {
+  const rawPlan = (sourceDocument.lessonPlan ?? sourceDocument.suggestedLecturePlan) as Record<string, unknown>;
+  const rawBeats = Array.isArray(rawPlan?.beats) ? rawPlan.beats : [];
+  const chunkBeats = rawBeats.slice(start, start + size);
+  const sourceBlockIds = new Set<string>();
+  const recommendedAssetIds = new Set<string>();
+  for (const raw of chunkBeats) {
+    if (!raw || typeof raw !== "object") continue;
+    const beat = raw as Record<string, unknown>;
+    if (Array.isArray(beat.sourceBlockIds)) {
+      beat.sourceBlockIds.forEach((id) => {
+        if (typeof id === "string") sourceBlockIds.add(id);
+      });
+    }
+    const visual = beat.recommendedVisual && typeof beat.recommendedVisual === "object"
+      ? beat.recommendedVisual as Record<string, unknown>
+      : null;
+    if (typeof visual?.assetId === "string") recommendedAssetIds.add(visual.assetId);
+  }
+  const assets = (sourceDocument.assets ?? []).filter((asset) =>
+    recommendedAssetIds.has(asset.id) ||
+    asset.sourceBlockIds?.some((id) => sourceBlockIds.has(id))
+  );
+  const chunkPlan = {
+    ...rawPlan,
+    targetBeatCount: chunkBeats.length,
+    contentBlockIds: [...sourceBlockIds],
+    assetIds: assets.map((asset) => asset.id),
+    beats: chunkBeats,
+  };
+  return {
+    ...sourceDocument,
+    contentBlocks: (sourceDocument.contentBlocks ?? []).filter((block) => sourceBlockIds.has(block.id)),
+    assets,
+    lessonPlan: chunkPlan,
+    suggestedLecturePlan: chunkPlan,
+  };
+}
+
+async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInput): Promise<BaseLecture> {
+  const sourceDocument = input.sourceDocument;
+  const planned = plannedPdfBeats(sourceDocument);
+  if (!sourceDocument || planned.length <= PDF_BEATS_PER_GENERATION) {
+    return generateBaseLecture(client, input);
+  }
+
+  const chunks = Array.from(
+    { length: Math.ceil(planned.length / PDF_BEATS_PER_GENERATION) },
+    (_, index) => index * PDF_BEATS_PER_GENERATION,
+  );
+  const results = new Array<BaseLecture>(chunks.length);
+  let cursor = 0;
+  await Promise.all(Array.from({ length: Math.min(PDF_GENERATION_CONCURRENCY, chunks.length) }, async () => {
+    while (cursor < chunks.length) {
+      const chunkIndex = cursor++;
+      const start = chunks[chunkIndex];
+      const chunkSource = chunkPdfSourceDocument(sourceDocument, start, PDF_BEATS_PER_GENERATION);
+      results[chunkIndex] = await generateBaseLecture(client, {
+        ...input,
+        topic: `${input.topic} (document section ${start + 1}-${Math.min(start + PDF_BEATS_PER_GENERATION, planned.length)} of ${planned.length})`,
+        sourceDocument: chunkSource,
+      });
+    }
+  }));
+
+  const beats = results.flatMap((result) => result.beats);
+  applyPdfPlanMetadata(beats, sourceDocument);
+  return {
+    beats,
+    textCost: results.reduce((sum, result) => sum + result.textCost, 0),
+  };
 }
 
 function disabledAnimationStats(): ReactAnimationFillStats {
@@ -481,7 +654,9 @@ export async function POST(req: Request) {
   }
 
   try {
-    const base = await generateBaseLecture(client, input);
+    const base = isPdfSource(input.sourceDocument)
+      ? await generatePdfLectureInChunks(client, input)
+      : await generateBaseLecture(client, input);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     const useOnlyProvidedImages = shouldUseOnlyProvidedImages(input.sourceDocument);
 

@@ -1055,6 +1055,7 @@ export function sanitizeBeat(raw: unknown, index: number): Beat | null {
     slideKind,
     points: strArray(o.points).slice(0, 4),
     script,
+    sourceBlockIds: strArray(o.sourceBlockIds).slice(0, 80),
   };
 
   if (slideKind === "definition") {
