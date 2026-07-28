@@ -394,7 +394,7 @@ function gapInstruction(diagnostics: ReactAnimationCodeDiagnostics): string {
   if (!diagnostics.boardPlanPresent) gaps.push("the required const boardPlan with composition, readingPath, and reservedRegions");
   if (!diagnostics.visualSpecPresent) gaps.push("the required const visualSpec with recognitionCues, requiredParts, and forbiddenShortcuts");
   if (diagnostics.distinctPrimitiveTypes < 4) gaps.push(`${4 - diagnostics.distinctPrimitiveTypes} more distinct SVG primitive type(s) — mix path/circle/rect/ellipse/polygon, not just one or two kinds (currently ${diagnostics.distinctPrimitiveTypes}, need 4+)`);
-  if (diagnostics.progressDriveScore < 14) gaps.push(`${14 - diagnostics.progressDriveScore} more progress-drive score — more lerp/clamp/phase-derived variables actually referenced in the JSX bindings (currently ${diagnostics.progressDriveScore}, need 14+)`);
+  if (diagnostics.progressDriveScore < 8) gaps.push(`${8 - diagnostics.progressDriveScore} more progress-drive score — more lerp/clamp/phase-derived variables actually referenced in the JSX bindings (currently ${diagnostics.progressDriveScore}, need 8+)`);
   if (gaps.length === 0) return "";
   return `EXACT GAP TO CLOSE (the previous attempt was close — add real, meaningful parts, not clutter): ${gaps.join("; ")}. Close each gap by drawing genuine additional parts of the mechanism (more internal components, more cutaway detail, evenly-spaced agents), keeping the layout clean and uncrowded — never by adding filler text, duplicate labels, random scattered dots, or background noise.`;
 }
@@ -493,7 +493,7 @@ function buildUserPrompt(
           previousFailure.review
             ? `INDEPENDENT ART-DIRECTION REVIEW:\nCritical issues: ${previousFailure.review.criticalIssues.join("; ") || "quality scores below threshold"}\nScores: ${JSON.stringify(previousFailure.review.scores)}\nRequired revision: ${previousFailure.review.revision}`
             : "",
-          "Rewrite the whiteboard SVG from scratch while preserving the source facts and visual blueprint. Fix the named failure directly. Do not add filler dots, decorative blobs, extra labels, or unrelated analogy objects.",
+          "Rewrite the whiteboard SVG from scratch while preserving the source facts and visual blueprint. Fix ONLY the named failure. Unless the failure is explicitly that the scene is too sparse or too flat, keep the SAME number of shapes or FEWER — a format, timeline, or layout failure is fixed by restructuring what is already there, never by drawing more parts. Do not add filler dots, decorative blobs, extra labels, or unrelated analogy objects. A calmer, simpler board that fixes the issue beats a busier one.",
           "Rejected source for diagnosis only:",
           "```jsx",
           codeExcerpt(previousFailure.code),

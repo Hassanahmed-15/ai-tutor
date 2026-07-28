@@ -323,7 +323,8 @@ REALISTIC SVG DRAWING:
 - Use believable subject colors with a base tone, shaded side, highlight, and clean outline. Use subtle depth only where it clarifies volume. Marker accents should come from teal #14b8a6, blue #3b82f6, rose #be185d, green #65a30d, and amber #d97706.
 - Scientific parts must look like the named structure, not interchangeable circles. Show correct relative scale, recognizable morphology, attachment points, directionality, and internal relationships. Molecules may use circles because atoms are spherical; cells, organs, plants, apparatus, maps, and machines require subject-specific paths and proportions.
 - Every shape must represent a real part, material, force, quantity, or annotation. Decoration does not count.
-- Include at least 5 meaningful <g> groups, at least 18 meaningful SVG primitive tags, at least 12 object/body primitives, at least 4 primitive tag types, and at least one path/polygon/ellipse silhouette. Meet these floors through real subject detail, never filler.
+- Include at least 5 meaningful <g> groups, at least 14 meaningful SVG primitive tags, at least 8 object/body primitives, at least 4 primitive tag types, and at least one path/polygon/ellipse silhouette. Meet these floors through real subject detail, never filler.
+- These are floors, not targets. Once the subject clearly reads and the mechanism is legible, STOP adding elements — do not keep building past what the concept needs just because more is possible. A simple, calm scene that teaches one idea plainly, with real objects and believable, subtle motion, beats a busier one that piles on extra parts or agents. Minimal and premium beats elaborate and artificial.
 
 NARRATION-SYNCED TEACHING MOTION:
 - Progress is the only clock. Derive all phases from progress with clamp/lerp/smoothstep-style values.

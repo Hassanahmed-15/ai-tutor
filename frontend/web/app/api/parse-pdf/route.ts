@@ -64,7 +64,13 @@ async function detectFigures(client: OpenAI, dataUrl: string): Promise<PdfDetect
       messages: [{
         role: "user",
         content: [
-          { type: "image_url", image_url: { url: dataUrl, detail: "high" } },
+          // "low" verified empirically to produce the same bounding boxes/focus regions as "high"
+          // on a real test page (only a marginally less specific description), at roughly half
+          // the prompt tokens — the downstream OCR-verified expand/crop step in pdf_pipeline.py
+          // already tolerates an imprecise initial box by growing it until clear of ink/text, so
+          // the extra precision "high" buys isn't needed here the way it might be for reading
+          // fine print. Every other vision critic in this codebase already uses "low".
+          { type: "image_url", image_url: { url: dataUrl, detail: "low" } },
           {
             type: "text",
             text: `Inspect this rendered PDF page and locate EVERY meaningful educational visual: photo, scientific diagram, chart, graph, table, flowchart, illustration, displayed formula, map, or multi-panel figure.
