@@ -269,11 +269,12 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
       `Use only facts from contentBlocks, assets, lessonPlan/suggestedLecturePlan, and webPreview items. Treat webPreview as optional enrichment: include a web claim only if it is explicitly present in webPreview.claims/summary and useful for the assigned beat; do not invent extra web facts. ` +
       `If contentGovernance says grounding or hallucination controls are strict, every concrete claim in the script must be traceable to a source block or webPreview item. If a detail is not in the source, either omit it or phrase it as a general teaching analogy, not as a fact. ` +
       `Use the contentBlocks as the factual backbone and use their source order only when no explicit lesson plan is provided. ` +
-      `Use provided assets when a visual helps: for an image beat, emit an image op with the matching "assetId" from the assets list, plus a short prompt describing what the asset shows. ` +
+      `Use provided assets ONLY for beats where the asset itself is the evidence (a real photo/diagram the student uploaded) — emit an image op with the matching "assetId" from the assets list, plus a short prompt describing what the asset shows. ` +
+      `Not every beat needs a provided image: for beats that explain a mechanism, process, comparison, or relationship, prefer a WHITEBOARD SVG DIAGRAM beat (exactly one "reactAnimation" op, see TYPE C) built from the source's own facts — the same as you would for a beat with no provided asset at all. Use provided images sparingly, only when they are genuinely the clearest way to teach that specific beat. ` +
       `Do not invent chemistry-specific layouts, exact coordinates, or examples outside the source; choose layout, callout text, and placement dynamically from the content and asset descriptions. ` +
       `Do not ask for AI-generated images for this source document. If an image beat is useful, it must use one of the provided assetId values. ` +
       `Make the visuals feel like a clean teaching whiteboard: generous whitespace, centered headings, readable gray/colored marker text, and callouts placed around the provided image without covering the key content. ` +
-      `Build the complete lecture now from the plan: teacher script, board layouts, provided-image callouts, SVG/paper board choices, and checkpoints.${retryGuidance}`
+      `Build the complete lecture now from the plan: teacher script, board layouts, provided-image callouts, whiteboard SVG diagrams, and checkpoints.${retryGuidance}${outlineLine}`
     );
   }
 

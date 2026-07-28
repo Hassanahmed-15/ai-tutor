@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import OpenAI from "openai";
 import type { SuprnotesAsset, SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
 
 export const runtime = "nodejs";
@@ -12,10 +13,13 @@ export const maxDuration = 60;
  * chalkboard boards — all already gated on `Boolean(sourceDocument)` in generate-lecture/route.ts.
  *
  * Image strategy: full-page rasterization (render each page to a PNG), not embedded XObject
- * extraction. A PDF's internal image encoding (DCTDecode/FlateDecode streams, indexed
+ * extraction — a PDF's internal image encoding (DCTDecode/FlateDecode streams, indexed
  * colorspaces, soft masks) is far messier than pptx's plain zip-of-PNGs, so reliably pulling out
- * the exact original embedded bytes isn't worth the fragility — a rendered page always produces a
- * usable, faithful visual, which is what actually matters for grounding a lecture's boards.
+ * the exact original embedded bytes isn't worth the fragility. But a full page (with its own body
+ * text baked in) is a poor stand-in for "the photo/diagram on this page" — so a vision call looks
+ * at the rendered page and finds the bounding box of the actual figure, and only THAT region is
+ * cropped out and kept as the asset. Pages with no distinct figure (pure text) get no image asset
+ * at all — the content block still carries the page's text either way.
  */
 
 const MAX_BYTES = 20 * 1024 * 1024;
@@ -28,6 +32,56 @@ const RENDER_SCALE = 1.5;
 function titleFromText(text: string): string {
   const firstLine = text.split("\n").map((l) => l.trim()).find((l) => l.length > 0);
   return firstLine ? firstLine.slice(0, 120) : "";
+}
+
+type FigureBox = { x: number; y: number; width: number; height: number };
+
+/**
+ * Ask GPT-4o Vision whether this rendered page contains one distinct photo/diagram/figure
+ * (as opposed to being plain text, or the whole page just being a slide-style graphic with no
+ * single distinguishable figure) and, if so, its bounding box as fractions of the page (0-1).
+ * Returns null on "no distinct figure" OR on any failure — callers must treat null as "no crop",
+ * never as an error worth surfacing.
+ */
+async function detectFigureBox(client: OpenAI, dataUrl: string): Promise<FigureBox | null> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o",
+      max_tokens: 200,
+      response_format: { type: "json_object" },
+      messages: [
+        {
+          role: "user",
+          content: [
+            { type: "image_url", image_url: { url: dataUrl, detail: "low" } },
+            {
+              type: "text",
+              text:
+                "This is a rendered page from a document. Does it contain ONE distinct photo, illustration, chart, or diagram that is clearly separate from the body text (not just text/paragraphs, and not a full-page slide graphic with no single distinguishable figure)? " +
+                'Reply JSON only: { "hasFigure": boolean, "x": number, "y": number, "width": number, "height": number }. ' +
+                "x/y/width/height are the figure's bounding box as FRACTIONS of the full page (0 to 1, x/y = top-left corner). Tight box around just the figure, excluding surrounding body text/captions where possible. If hasFigure is false, x/y/width/height can be 0.",
+            },
+          ],
+        },
+      ],
+    });
+    const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
+    if (parsed.hasFigure !== true) return null;
+    const x = typeof parsed.x === "number" ? parsed.x : NaN;
+    const y = typeof parsed.y === "number" ? parsed.y : NaN;
+    const width = typeof parsed.width === "number" ? parsed.width : NaN;
+    const height = typeof parsed.height === "number" ? parsed.height : NaN;
+    if (![x, y, width, height].every((v) => Number.isFinite(v) && v >= 0)) return null;
+    if (width < 0.03 || height < 0.03) return null; // Too small to be a meaningful figure.
+    return {
+      x: Math.min(x, 0.98),
+      y: Math.min(y, 0.98),
+      width: Math.min(width, 1 - Math.min(x, 0.98)),
+      height: Math.min(height, 1 - Math.min(y, 0.98)),
+    };
+  } catch {
+    return null;
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -56,6 +110,10 @@ export async function POST(req: NextRequest) {
   // import) keeps it out of any client-bundle analysis, matching the pattern already used for
   // react-dom/server in lib/reactAnimationVisionCritic.ts.
   const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+  const { loadImage, createCanvas: createCropCanvas } = await import("@napi-rs/canvas");
+
+  const openaiKey = process.env.OPENAI_API_KEY;
+  const client = openaiKey ? new OpenAI({ apiKey: openaiKey }) : null;
 
   let buffer: ArrayBuffer;
   try {
@@ -113,7 +171,7 @@ export async function POST(req: NextRequest) {
     }
     if (i === 1) firstPageText = pageText;
 
-    let dataUrl = "";
+    let pagePngBuffer: Buffer | null = null;
     try {
       const viewport = page.getViewport({ scale: RENDER_SCALE });
       type CanvasFactory = { create: (w: number, h: number) => { canvas: unknown; context: unknown }; destroy: (entry: { canvas: unknown; context: unknown }) => void };
@@ -129,15 +187,44 @@ export async function POST(req: NextRequest) {
           viewport,
         }).promise;
         const canvas = canvasAndContext.canvas as { toBuffer: (mime: "image/png") => Buffer };
-        const pngBuffer = canvas.toBuffer("image/png");
-        if (pngBuffer.length >= MIN_PAGE_PNG_BYTES) {
-          dataUrl = `data:image/png;base64,${pngBuffer.toString("base64")}`;
-        }
+        const buf = canvas.toBuffer("image/png");
+        if (buf.length >= MIN_PAGE_PNG_BYTES) pagePngBuffer = buf;
       } finally {
         canvasFactory.destroy(canvasAndContext);
       }
     } catch {
-      dataUrl = "";
+      pagePngBuffer = null;
+    }
+
+    // Don't use the whole rendered page as the asset — it bakes in the page's own body text and
+    // reads as a screenshot, not a photo. Ask Vision for the actual figure's bounding box on the
+    // page and crop to just that region; pages with no distinct figure get no image asset at all
+    // (their text still becomes a content block below). Without a vision client configured, fall
+    // back to the uncropped full page — a coarser asset is still better than none.
+    let dataUrl = "";
+    if (pagePngBuffer && client) {
+      const fullPageDataUrl = `data:image/png;base64,${pagePngBuffer.toString("base64")}`;
+      const box = await detectFigureBox(client, fullPageDataUrl);
+      if (box) {
+        try {
+          const img = await loadImage(pagePngBuffer);
+          const cropX = Math.round(box.x * img.width);
+          const cropY = Math.round(box.y * img.height);
+          const cropW = Math.max(1, Math.round(box.width * img.width));
+          const cropH = Math.max(1, Math.round(box.height * img.height));
+          const cropCanvas = createCropCanvas(cropW, cropH);
+          const cropCtx = cropCanvas.getContext("2d");
+          cropCtx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+          const cropBuffer = cropCanvas.toBuffer("image/png");
+          if (cropBuffer.length >= MIN_PAGE_PNG_BYTES / 4) {
+            dataUrl = `data:image/png;base64,${cropBuffer.toString("base64")}`;
+          }
+        } catch {
+          dataUrl = "";
+        }
+      }
+    } else if (pagePngBuffer && !client) {
+      dataUrl = `data:image/png;base64,${pagePngBuffer.toString("base64")}`;
     }
 
     if (!pageText && !dataUrl) continue; // Genuinely blank page — nothing to teach from.

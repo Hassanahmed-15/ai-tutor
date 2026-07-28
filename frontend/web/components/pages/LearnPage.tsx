@@ -468,11 +468,16 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     streamOutlineRequest({ mode: "outline", topic, clarifications: clarifyAnswers, angle }, topic);
   }
 
-  // Sources that already carry their own structure (uploads) or bypass generation entirely
-  // (curated demo) skip the clarify/outline planning screens and build directly, as does the
-  // voice-first blind flow (handled separately via BlindTopicCapture's onBuild).
+  // Suprnotes JSON and task-folder uploads already carry their own explicit lesson structure
+  // (lessonPlan/suggestedLecturePlan) — planning would just re-derive a redundant, possibly
+  // conflicting outline, so those skip straight to build. PDF/PPTX uploads have no such
+  // structure of their own (they're raw extracted content), so they go through the SAME
+  // clarify/outline planning screen a typed topic does — the resulting outline is layered on
+  // top of the sourceDocument as a content checklist (see outlineLine in buildUserMessage's
+  // sourceDocument branch). The curated demo bypasses generation entirely.
   function shouldSkipPlanning(): boolean {
-    return Boolean(sourceDocument) || Boolean(slideContext) || (DEMO_HARDCODED && !sourceDocument && !slideContext);
+    const structuredUpload = uploadedFile?.kind === "suprnotes" || uploadedFile?.kind === "task-folder";
+    return structuredUpload || Boolean(slideContext && !sourceDocument) || (DEMO_HARDCODED && !sourceDocument && !slideContext);
   }
 
   // Ask BEFORE drafting, but only ONE thing, only when genuinely warranted — never both at once:
