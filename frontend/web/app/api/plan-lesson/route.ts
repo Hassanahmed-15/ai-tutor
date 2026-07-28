@@ -8,6 +8,30 @@ import {
   type PlanOutline,
   type PlanningAngleId,
 } from "@/lib/planPrompt";
+import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
+
+/**
+ * Compact, planning-sized summary of an uploaded source document (PDF/PPTX) — just enough for
+ * the clarify/outline calls to ground their questions and subtopics in what the document ACTUALLY
+ * contains, instead of free-associating from the bare topic string (which is often just a title
+ * line and can drift the outline to an unrelated, more "famous" topic in the same general area).
+ * Deliberately smaller than compactSuprnotesForPrompt (lib/suprnotes.ts) — that one feeds the full
+ * lecture-generation call and needs the complete text/asset detail; this only needs enough of each
+ * section's heading + gist for a cheap gpt-4o-mini call to sketch a structurally sound outline.
+ */
+function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
+  const blocks = (doc.contentBlocks ?? [])
+    .slice()
+    .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0))
+    .slice(0, 40)
+    .map((b) => {
+      const heading = (b.heading ?? "").trim();
+      const gist = (b.text ?? "").trim().slice(0, 220);
+      return `- ${heading || "(untitled section)"}: ${gist}`;
+    })
+    .join("\n");
+  return blocks || "(no readable content extracted)";
+}
 
 /**
  * Cheap, fast pre-generation planning calls: "clarify" checks whether a typed topic is
@@ -385,6 +409,14 @@ export async function POST(req: Request) {
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+  // Present whenever the student uploaded a PDF/PPTX and it's going through planning (unlike
+  // Suprnotes JSON/task-folder uploads, which carry their own lessonPlan and skip planning
+  // entirely) — grounds the outline in what the document actually says instead of just its title.
+  const sourceDocument = isSuprnotesLessonInput(body.sourceDocument) ? (body.sourceDocument as SuprnotesLessonInput) : null;
+  const sourceDocLine = sourceDocument
+    ? `\n\nThe student uploaded a source document. Its actual content (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${summarizeSourceDocumentForPlanning(sourceDocument)}`
+    : "";
+
   if (mode === "clarify") {
     const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
     if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
@@ -393,7 +425,7 @@ export async function POST(req: Request) {
         model: MODEL,
         messages: [
           { role: "system", content: CLARIFY_TOPIC_SYSTEM_PROMPT },
-          { role: "user", content: `Topic: "${topic}"` },
+          { role: "user", content: `Topic: "${topic}"${sourceDocLine}` },
         ],
         temperature: 0.3,
         max_tokens: 600,
@@ -418,7 +450,7 @@ export async function POST(req: Request) {
       ? `\nClarification from the student:\n${clarifications.map((c: { question: string; answer: string }) => `Q: ${c.question}\nA: ${c.answer}`).join("\n")}`
       : "";
 
-    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}`;
+    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, userContent, topic);
   }
 
@@ -429,6 +461,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "outline and instruction are required" }, { status: 400 });
   }
   const currentOutline = sanitizeOutline(rawOutline, typeof (rawOutline as Record<string, unknown>).topic === "string" ? (rawOutline as Record<string, unknown>).topic as string : "");
-  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"`;
+  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${sourceDocLine}`;
   return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, userContent, currentOutline.topic);
 }

@@ -458,14 +458,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   async function requestOutline(t: string, clarifications: { question: string; answer: string }[], angle: PlanningAngleId = "standard") {
     setPhase("outline");
     setPlanAngle(angle);
-    await streamOutlineRequest({ mode: "outline", topic: t, clarifications, angle }, t);
+    await streamOutlineRequest({ mode: "outline", topic: t, clarifications, angle, sourceDocument }, t);
   }
 
   /** "Teach it differently" — rerolls the entire outline through a different pedagogical angle
    *  instead of the default structure, so the same topic can produce a genuinely different lesson. */
   function rerollAngle(angle: PlanningAngleId) {
     setPlanAngle(angle);
-    streamOutlineRequest({ mode: "outline", topic, clarifications: clarifyAnswers, angle }, topic);
+    streamOutlineRequest({ mode: "outline", topic, clarifications: clarifyAnswers, angle, sourceDocument }, topic);
   }
 
   // Suprnotes JSON and task-folder uploads already carry their own explicit lesson structure
@@ -505,7 +505,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
 
     setPhase("outline");
     setPlanLoading(true);
-    const data = await callPlanApi({ mode: "clarify", topic: trimmed });
+    const data = await callPlanApi({ mode: "clarify", topic: trimmed, sourceDocument });
     setPlanLoading(false);
     if (data && data.ambiguous === true && Array.isArray(data.questions) && data.questions.length > 0) {
       // Genuinely vague — hold off on drafting until the student resolves it.
@@ -556,7 +556,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
 
   async function reviseOutline(instruction: string) {
     if (!outline || !instruction.trim()) return;
-    await streamOutlineRequest({ mode: "revise", outline, instruction: instruction.trim() }, outline.topic);
+    await streamOutlineRequest({ mode: "revise", outline, instruction: instruction.trim(), sourceDocument }, outline.topic);
   }
 
   function backToAsk() {
