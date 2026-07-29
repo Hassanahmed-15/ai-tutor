@@ -95,6 +95,7 @@ export async function renderPdfWithPython(pdfBytes: Uint8Array): Promise<PythonR
 export async function cropFiguresWithPython(
   pagePng: Buffer,
   figures: PdfDetectedFigure[],
+  textBoxes: Array<{ x: number; y: number; width: number; height: number }> = [],
 ): Promise<PythonCrop[] | null> {
   if (process.env.PDF_PYTHON_PIPELINE === "0" || !figures.length) return null;
   const directory = await mkdtemp(path.join(os.tmpdir(), "aria-pdf-crop-"));
@@ -104,6 +105,9 @@ export async function cropFiguresWithPython(
     await writeFile(pagePath, pagePng);
     await writeFile(regionsPath, JSON.stringify({
       regions: figures.map(({ x, y, width, height }) => ({ x, y, width, height })),
+      // The cropper uses these to stop box-expansion at body-text boundaries so a figure crop
+      // never swallows adjacent paragraphs.
+      textBoxes: textBoxes.map(({ x, y, width, height }) => ({ x, y, width, height })),
     }));
     await runPython(["crop", "--page", pagePath, "--regions", regionsPath, "--output-dir", directory]);
     const manifest = JSON.parse(await readFile(path.join(directory, "crops.json"), "utf8")) as CropManifest;

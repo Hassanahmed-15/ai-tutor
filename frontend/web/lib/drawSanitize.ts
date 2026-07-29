@@ -472,8 +472,16 @@ function isNearBackgroundDark(hex: string): boolean {
   return luma <= 55;
 }
 
-export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimationCodeDiagnostics {
+export function getReactAnimationCodeDiagnostics(
+  rawCode: string,
+  opts: { abstract?: boolean } = {},
+): ReactAnimationCodeDiagnostics {
   const code = rawCode.trim();
+  // Abstract/conceptual topics (algorithms, data structures, math) are correctly drawn AS diagrams
+  // — a timeline, array/table, tree, graph, number line. The physical-only quality gates below
+  // (silhouette, object-vs-line ratio, "real scene objects") would wrongly reject exactly those, so
+  // in abstract mode we skip them and keep only the safety + teaching-timeline + basic-richness gates.
+  const abstract = opts.abstract === true;
   const base = {
     byteLength: new TextEncoder().encode(code).length,
     groupCount: 0,
@@ -631,34 +639,45 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
   if (textCount > 0 && directlyTimedTextCount < textCount) {
     return { ...metrics, issue: "every SVG text element must carry its own complete teaching timeline attributes directly on the text node so marker tracking uses the exact text bounds" };
   }
-  if (groupCount < 5) {
-    return { ...metrics, issue: "too flat; organize the whiteboard into at least five meaningful groups (frame/title, notes, subject silhouette, mechanism/details, result)" };
+  if (groupCount < (abstract ? 3 : 5)) {
+    return { ...metrics, issue: abstract
+      ? "too flat; organize the diagram into at least three meaningful groups (title, the structure itself, and its labels/annotations)"
+      : "too flat; organize the whiteboard into at least five meaningful groups (frame/title, notes, subject silhouette, mechanism/details, result)" };
   }
   // Thresholds deliberately lowered AGAIN (were 18/12, originally 34/24): the higher bars forced
   // the model to pack scenes with parts/agents just to clear the number, producing busy, hard-to-
   // follow animations. A simple, legible scene that clearly teaches ONE mechanism is the goal —
   // these lower floors still reject a bare line-diagram/single-icon output while letting a clean
   // minimal scene pass. Simplicity is the target; the floor only guards against emptiness.
-  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < 14) {
-    return { ...metrics, issue: "too sparse; build a clear scene with a main subject, its parts, and a moving agent" };
+  const minPrimitiveScore = abstract ? 10 : 14;
+  if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < minPrimitiveScore) {
+    return { ...metrics, issue: abstract
+      ? "too sparse; draw the concept's full structure (all cells/nodes/intervals) with labels"
+      : "too sparse; build a clear scene with a main subject, its parts, and a moving agent" };
   }
-  if (primitiveScore < 14) {
-    return { ...metrics, issue: "too few drawn elements; show the topic's main object plus a moving agent and a result" };
+  if (primitiveScore < minPrimitiveScore) {
+    return { ...metrics, issue: abstract
+      ? "too few drawn elements; show the concept's full structure (array cells, tree nodes, graph edges, timeline bars) with labels"
+      : "too few drawn elements; show the topic's main object plus a moving agent and a result" };
   }
-  if (objectPrimitiveScore < 8) {
-    return { ...metrics, issue: "too few actual scene objects; draw the mechanism's body, a couple of parts, and the result" };
+  // Physical-scene gates — skipped for abstract concept diagrams (which legitimately ARE mostly
+  // rects/lines/text and have no "silhouette").
+  if (!abstract) {
+    if (objectPrimitiveScore < 8) {
+      return { ...metrics, issue: "too few actual scene objects; draw the mechanism's body, a couple of parts, and the result" };
+    }
+    if (silhouetteCount < 1) {
+      return { ...metrics, issue: "needs real object silhouettes or cutaway shapes, not only rectangles/circles/lines" };
+    }
+    if (lineLikeCount >= objectPrimitiveScore / 2) {
+      return { ...metrics, issue: "too line-diagram-like; the mechanism must be a full scene, not mostly wires/arrows" };
+    }
+    if (textCount > 0 && textCount >= objectPrimitiveScore / 2) {
+      return { ...metrics, issue: "too text-heavy; labels must support the visual, not carry the animation" };
+    }
   }
-  if (silhouetteCount < 1) {
-    return { ...metrics, issue: "needs real object silhouettes or cutaway shapes, not only rectangles/circles/lines" };
-  }
-  if (lineLikeCount >= objectPrimitiveScore / 2) {
-    return { ...metrics, issue: "too line-diagram-like; the mechanism must be a full scene, not mostly wires/arrows" };
-  }
-  if (textCount > 0 && textCount >= objectPrimitiveScore / 2) {
-    return { ...metrics, issue: "too text-heavy; labels must support the visual, not carry the animation" };
-  }
-  if (distinctPrimitiveTypes.size < 4) {
-    return { ...metrics, issue: "too visually flat; use at least four SVG primitive types" };
+  if (distinctPrimitiveTypes.size < (abstract ? 3 : 4)) {
+    return { ...metrics, issue: "too visually flat; use at least three or four SVG primitive types" };
   }
   if (!primitiveTags.includes("text")) {
     return { ...metrics, issue: "needs short JSX/SVG labels so the visual teaches without becoming a slide" };
@@ -689,8 +708,8 @@ export function getReactAnimationCodeDiagnostics(rawCode: string): ReactAnimatio
   return { ...metrics, issue: null };
 }
 
-export function getReactAnimationCodeIssue(rawCode: string): string | null {
-  return getReactAnimationCodeDiagnostics(rawCode).issue;
+export function getReactAnimationCodeIssue(rawCode: string, opts: { abstract?: boolean } = {}): string | null {
+  return getReactAnimationCodeDiagnostics(rawCode, opts).issue;
 }
 
 /** Validates a `reactAnimation` op's `code` field. Returns the op unchanged if the code passes,
@@ -700,14 +719,15 @@ export function getReactAnimationCodeIssue(rawCode: string): string | null {
  *  stored on the beat. */
 export function sanitizeReactAnimationOp(
   op: ReactAnimationOp,
-  opts: { requireQuality?: boolean } = {},
+  opts: { requireQuality?: boolean; abstract?: boolean } = {},
 ): ReactAnimationOp {
   const code = typeof op.code === "string" ? op.code.trim() : "";
   if (!code) return { ...op, code: undefined };
   // Default: enforce the full quality floor (the normal accept path). When requireQuality is false
   // (ACCEPT_BEST fallback), gate ONLY on hard safety/structural failures — a runnable, safe, but
-  // sub-floor animation is still worth rendering instead of showing the "unavailable" card.
-  const diagnostics = getReactAnimationCodeDiagnostics(code);
+  // sub-floor animation is still worth rendering instead of showing the "unavailable" card. The
+  // abstract flag relaxes the physical-only quality gates (see getReactAnimationCodeDiagnostics).
+  const diagnostics = getReactAnimationCodeDiagnostics(code, { abstract: opts.abstract });
   const issue = opts.requireQuality === false ? diagnostics.safetyIssue : diagnostics.issue;
   if (issue) return { ...op, code: undefined, status: "failed", error: issue };
   return { ...op, code, status: "ready", error: undefined };

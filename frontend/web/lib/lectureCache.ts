@@ -15,7 +15,7 @@ import type { Beat } from "./lessonContent";
 
 // v1: multi-agent pipeline (director + chalkboard + animation + image-explainer + vision critic),
 // KaTeX math on the board, handwriting fonts, accept-best animations.
-const CACHE_VERSION = "v3";
+const CACHE_VERSION = "v5";
 
 const CACHE_DIR = path.join(process.cwd(), ".lecture-cache");
 

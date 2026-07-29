@@ -370,35 +370,6 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[]): string 
   return pages.length > 1 ? `Pages ${pages[0]}-${pages[pages.length - 1]}` : `Page ${pages[0] ?? 1}`;
 }
 
-function partitionBlocks(blocks: SuprnotesContentBlock[], target: number): SuprnotesContentBlock[][] {
-  if (target <= 1) return [blocks];
-  const weights = blocks.map((block) =>
-    Math.max(80, clean(block.text, 10_000).length + (block.items ?? []).join(" ").length + (block.rows ?? []).flat().join(" ").length)
-  );
-  const total = weights.reduce((sum, value) => sum + value, 0);
-  const groups: SuprnotesContentBlock[][] = [];
-  let cursor = 0;
-  let remainingWeight = total;
-  for (let groupIndex = 0; groupIndex < target && cursor < blocks.length; groupIndex += 1) {
-    const groupsRemaining = target - groupIndex;
-    const desired = remainingWeight / groupsRemaining;
-    const group: SuprnotesContentBlock[] = [];
-    let groupWeight = 0;
-    while (cursor < blocks.length) {
-      const blocksAfter = blocks.length - (cursor + 1);
-      if (group.length && groupWeight >= desired && blocksAfter >= groupsRemaining - 1) break;
-      group.push(blocks[cursor]);
-      groupWeight += weights[cursor];
-      remainingWeight -= weights[cursor];
-      cursor += 1;
-      if (blocks.length - cursor < groupsRemaining - 1) break;
-    }
-    if (group.length) groups.push(group);
-  }
-  if (cursor < blocks.length) groups[groups.length - 1].push(...blocks.slice(cursor));
-  return groups;
-}
-
 function isInstructionalAsset(asset: SuprnotesAsset): boolean {
   if (!asset.teachingUse || typeof asset.teachingUse !== "object") return false;
   const use = asset.teachingUse as Record<string, unknown>;
@@ -439,13 +410,22 @@ function selectAnimatedGroups(groups: SuprnotesContentBlock[][]): Set<number> {
  */
 export function buildPdfLessonPlan(blocks: SuprnotesContentBlock[], assets: SuprnotesAsset[]) {
   const orderedBlocks = [...blocks].sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0));
-  const totalText = orderedBlocks.reduce((sum, block) =>
-    sum + clean(block.text, 10_000).length + (block.items ?? []).join(" ").length + (block.rows ?? []).flat().join(" ").length, 0);
-  const desiredTeachingBeats = Math.max(
-    Math.min(10, orderedBlocks.length),
-    Math.min(20, orderedBlocks.length, Math.ceil(totalText / 1_100)),
-  );
-  const groups = partitionBlocks(orderedBlocks, Math.max(1, desiredTeachingBeats));
+  // One teaching beat per source page, in document order. Blocks are already ordered by
+  // (pageNumber, y) via applyGlobalSourceOrder, so grouping by pageNumber keeps source order and
+  // yields a page-aligned plan (each page → exactly one beat). Blocks with no pageNumber fall back
+  // to their sourceOrder so nothing is dropped.
+  const groups: SuprnotesContentBlock[][] = [];
+  const groupIndexByPage = new Map<number | string, number>();
+  for (const block of orderedBlocks) {
+    const pageKey = typeof block.pageNumber === "number" ? block.pageNumber : `s${block.sourceOrder ?? 0}`;
+    let idx = groupIndexByPage.get(pageKey);
+    if (idx === undefined) {
+      idx = groups.length;
+      groupIndexByPage.set(pageKey, idx);
+      groups.push([]);
+    }
+    groups[idx].push(block);
+  }
   const beats: PdfLessonPlanBeat[] = [];
   const usedAssets = new Set<string>();
   const maximumImageBeats = Math.min(3, Math.max(1, Math.round(groups.length * 0.22)));
@@ -490,18 +470,6 @@ export function buildPdfLessonPlan(blocks: SuprnotesContentBlock[], assets: Supr
             ? { type: "paper_whiteboard", brief: "Write the exact formula and derive or explain each term progressively." }
             : { type: "paper_whiteboard", brief: "Use a sentence-synchronized marker board with concise source-grounded claims and relationships." },
     });
-
-    const shouldCheckpoint = offset > 0 && offset < groups.length - 1 && (offset + 1) % 5 === 0;
-    if (shouldCheckpoint) {
-      beats.push({
-        id: `pdf-${beats.length + 1}`,
-        title: "Pause and connect",
-        objective: "Check whether the learner can connect the preceding PDF concepts before continuing, without introducing new source content.",
-        sourceBlockIds: [],
-        pageNumbers: pageGroup,
-        visualMode: "checkpoint",
-      });
-    }
   }
 
   return {

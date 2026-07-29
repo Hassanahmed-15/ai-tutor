@@ -474,7 +474,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     const structuredUpload =
       uploadedFile?.kind === "suprnotes" ||
       uploadedFile?.kind === "task-folder" ||
-      uploadedFile?.kind === "pdf";
+      uploadedFile?.kind === "pdf" ||
+      uploadedFile?.kind === "pptx";
     return structuredUpload || Boolean(slideContext && !sourceDocument) || (DEMO_HARDCODED && !sourceDocument && !slideContext);
   }
 
@@ -611,14 +612,19 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     setBuildSteeringChoices([]);
     buildSteeringNotesRef.current = [];
 
-    setBuildSteeringActive(true);
-    try {
-      await waitForBuildSteering(controller.signal);
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") return;
-      throw err;
-    } finally {
-      setBuildSteeringActive(false);
+    // Structured uploads (PDF/PPT/task-folder/notes) must teach their source AS-IS — no planning and
+    // no build-time steering choices. Only typed prompts get the steering step. This is why a PDF was
+    // still showing "planning options" even though the outline step was already skipped.
+    if (!shouldSkipPlanning()) {
+      setBuildSteeringActive(true);
+      try {
+        await waitForBuildSteering(controller.signal);
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        throw err;
+      } finally {
+        setBuildSteeringActive(false);
+      }
     }
 
     const buildSteeringNotes = buildSteeringNotesRef.current;

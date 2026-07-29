@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Beat } from "./lessonContent";
-import { REACT_ANIMATION_SYSTEM_PROMPT } from "./drawPrompt";
+import { REACT_ANIMATION_SYSTEM_PROMPT, REACT_ANIMATION_ABSTRACT_SYSTEM_PROMPT } from "./drawPrompt";
 import {
   getReactAnimationCodeDiagnostics,
   sanitizeReactAnimationOp,
@@ -56,6 +56,25 @@ export type ReactAnimationFillUpdate = {
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
   return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+}
+
+// Deterministic classifier: is this beat an ABSTRACT/conceptual topic (algorithm, data structure,
+// math, logic, procedure) whose correct visual is a DIAGRAM — rather than a PHYSICAL subject
+// (biology/chemistry/physics/anatomy/device) with a recognizable silhouette? The physical-subject
+// contract (real object, silhouette, "no boxes and arrows") produces irrelevant animations for
+// abstract content, so we switch the system prompt + validator + skip the shape critic when true.
+const ABSTRACT_SIGNALS =
+  /\b(algorithm|algorithms|complexity|runtime|big-?o|asymptotic|pseudocode|data structure|array|arrays|list|linked list|stack|queue|hash|hashmap|hash table|dictionary|map\b|set\b|tree|trees|binary tree|bst|heap|trie|graph|graphs|node|nodes|edge|edges|vertex|vertices|traversal|bfs|dfs|recursion|recursive|recurrence|dynamic programming|memoization|memoized|greedy|backtracking|divide and conquer|sorting|sort\b|search\b|binary search|schedule|scheduling|interval|intervals|matrix|matrices|vector|tensor|probability|statistics|distribution|combinatorics|permutation|combination|equation|function\b|derivative|integral|calculus|theorem|lemma|proof|induction|logic|boolean|truth table|predicate|grammar|automaton|finite state|state machine|regex|regular expression|protocol|networking|packet|database|sql|query|schema|index\b|pointer|compiler|parsing|token|bit|binary\b|encryption|hashing|cache|complexity class|np-?complete|optimization|linear programming|gradient|neural|finance|interest rate|compound interest|amortiz|economic|supply and demand|elasticity)\b/i;
+const PHYSICAL_SIGNALS =
+  /\b(cell|cells|membrane|organ|organs|heart|lung|brain|neuron|leaf|plant|photosynthesis|chloroplast|mitochond|molecule|atom|atoms|ion|electron|reaction|enzyme|protein|dna|rna|tissue|muscle|bone|skeleton|blood|artery|vein|body|anatomy|apparatus|engine|piston|circuit|battery|motor|gear|lever|pulley|magnet|wave|lens|planet|orbit|volcano|rock|mineral|river|climate|weather|ecosystem|animal|insect|bacteria|virus|skin|digest|respirat)\b/i;
+
+function isAbstractTopic(op: ReactAnimationOp, beat: Beat): boolean {
+  const haystack = `${beat.title} ${beat.script} ${op.teachingPoint ?? ""}`;
+  const abstract = (haystack.match(ABSTRACT_SIGNALS) ?? []).length;
+  const physical = (haystack.match(PHYSICAL_SIGNALS) ?? []).length;
+  // Any abstract signal wins unless the beat is clearly more physical (a physics/bio worked example
+  // that happens to mention an equation shouldn't flip to diagram mode).
+  return abstract > 0 && abstract >= physical;
 }
 
 // Cached @babel/standalone module — used to confirm generated code actually PARSES before we
@@ -454,19 +473,26 @@ function buildUserPrompt(
   op: ReactAnimationOp,
   beat: Beat,
   blueprint: VisualBlueprint,
-  previousFailure?: PreviousFailure
+  previousFailure?: PreviousFailure,
+  abstract = false,
 ): string {
   const spokenSentences = beat.script
     .split(/(?<=[.!?])\s+/)
     .map((sentence) => sentence.trim())
     .filter(Boolean);
   const numberedScript = spokenSentences.map((sentence, index) => `[${index}] ${sentence}`).join("\n");
-  const whiteboardContract =
-    "WHITEBOARD MODE: create a full-board WHITE SVG teaching canvas that evolves like a lesson, not a slide. Render an off-white paper background, natural handwritten lines, and a professional editable educational illustration. Use SVG primitives directly: path, circle, ellipse, rect, polygon, line, polyline, text. This is not a loading animation, generic flowchart, fixed template, or collection of UI cards.";
-  const contentContract =
-    "CONTENT QUALITY: the VISUAL BLUEPRINT below is the source of truth for morphology, topology, proportions, and required parts. The main subject must be recognizable before any label is read. Ground every visible label and diagram element in the beat's script and blueprint. Never replace the real subject with a metaphor, mascot, generic circle cluster, icon, or decorative analogy. Draw fewer parts well rather than many vague parts. Every connection, direction, layer, chamber, boundary, and relative position must agree with the blueprint.";
+  const whiteboardContract = abstract
+    ? "WHITEBOARD MODE: create a full-board WHITE SVG teaching canvas that evolves like a lesson, not a slide. Render an off-white paper background and a clean, precise, editable concept DIAGRAM using SVG primitives directly: rect, line, polyline, path, circle, ellipse, polygon, text. Cells, rows, nodes, edges, axes, and arrows are the concept — use them. This is not a loading animation, fixed template, or collection of UI cards."
+    : "WHITEBOARD MODE: create a full-board WHITE SVG teaching canvas that evolves like a lesson, not a slide. Render an off-white paper background, natural handwritten lines, and a professional editable educational illustration. Use SVG primitives directly: path, circle, ellipse, rect, polygon, line, polyline, text. This is not a loading animation, generic flowchart, fixed template, or collection of UI cards.";
+  const contentContract = abstract
+    ? "CONTENT QUALITY: draw the CORRECT diagram for this abstract concept (indexed array/grid, labeled timeline of intervals, tree/graph of nodes and edges, number line, coordinate plane, ordered step flow, or matrix — whichever teaches THIS beat). Use REAL example values from the script (actual numbers, names, intervals), not placeholders. Do NOT invent a physical object, mascot, or silhouette to stand in for the concept. Ground every cell, node, edge, axis, and label in the beat's script. Draw the full structure clearly; show relationships (pointers, edges, comparisons, selection) explicitly."
+    : "CONTENT QUALITY: the VISUAL BLUEPRINT below is the source of truth for morphology, topology, proportions, and required parts. The main subject must be recognizable before any label is read. Ground every visible label and diagram element in the beat's script and blueprint. Never replace the real subject with a metaphor, mascot, generic circle cluster, icon, or decorative analogy. Draw fewer parts well rather than many vague parts. Every connection, direction, layer, chamber, boundary, and relative position must agree with the blueprint.";
   const layoutContract =
-    "DYNAMIC COMPOSITION: first choose the layout that best teaches THIS content: center-out mechanism, causal path, vertical derivation, zoom-in cutaway, radial anatomy, equation spine, timeline/map, or comparison only when comparison is the idea. Define const boardPlan with that composition, its reading path, and reservedRegions as NUMERIC {name,x,y,w,h} rectangles. Do not default to left text/right diagram. Reserve a title strip inside x=54..946,y=30..104 and place teaching content only inside x=64..936,y=122..500. Place each explanation beside the object or relationship it explains and reserve room for later annotations. Before returning, estimate every text box as width=0.62*fontSize*characterCount and height=1.35*fontSize; no estimated text rectangle may intersect a diagram rectangle, another text rectangle, or leave the content bounds. Keep at least 36px between text and diagram silhouettes, 28px between unrelated items, and 64px horizontal safety after every line's last character. Occupy roughly 58-76% of the usable board. Use 4-7 short text lines, each <=25 characters, one line per SVG text node. Put the timing attributes directly on every text node. No descriptive label may overlap or sit inside the subject silhouette; only real chemical symbols <=4 characters may be inside. All other labels stay outside and use a leader line that touches the named part. No cards, pills, clipped text, ellipses, or transcript paragraph. Use fontFamily: 'Chalkboard SE, Marker Felt, Bradley Hand, Comic Sans MS, Trebuchet MS, sans-serif' on every text element.";
+    `DYNAMIC COMPOSITION: first choose the layout that best teaches THIS content: center-out mechanism, causal path, vertical derivation, zoom-in cutaway, radial anatomy, equation spine, timeline/map, or comparison only when comparison is the idea. Define const boardPlan with that composition, its reading path, and reservedRegions as NUMERIC {name,x,y,w,h} rectangles. Do not default to left text/right diagram. Reserve a title strip inside x=54..946,y=30..104 and place teaching content only inside x=64..936,y=122..500. Place each explanation beside the object or relationship it explains and reserve room for later annotations. Before returning, estimate every text box as width=0.62*fontSize*characterCount and height=1.35*fontSize; no estimated text rectangle may intersect a diagram rectangle, another text rectangle, or leave the content bounds. Keep at least 36px between text and diagram silhouettes, 28px between unrelated items, and 64px horizontal safety after every line's last character. Occupy roughly 58-76% of the usable board. Use 4-7 short text lines, each <=25 characters, one line per SVG text node. Put the timing attributes directly on every text node. ${
+      abstract
+        ? "A value or short name that belongs to a cell/node/bar (an array value, an index, a node label) SITS INSIDE that element; an explanatory annotation stays outside near what it describes."
+        : "No descriptive label may overlap or sit inside the subject silhouette; only real chemical symbols <=4 characters may be inside. All other labels stay outside and use a leader line that touches the named part."
+    } No cards, pills, clipped text, ellipses, or transcript paragraph. Use fontFamily: 'Chalkboard SE, Marker Felt, Bradley Hand, Comic Sans MS, Trebuchet MS, sans-serif' on every text element.`;
   const longNarrationContract =
     "LONG-NARRATION DISCIPLINE: the teacher may spend close to a minute on this board. Do not respond by drawing more objects or copying more sentences. Select 3-5 pivotal sentence cues for new visual actions, then let the existing diagram remain while later narration explains, revisits, highlights, and connects those same anchors. The final board must stay as concise as a premium textbook figure.";
   const animationContract =
@@ -508,6 +534,10 @@ async function generateOne(
   op: ReactAnimationOp,
   beat: Beat
 ): Promise<{ costUsd: number; filled: boolean; issue?: string }> {
+  // Abstract topics (algorithms/data-structures/math) draw as DIAGRAMS, not physical objects: use
+  // the abstract system prompt + relaxed validator, and skip the physical shape-recognizability critic.
+  const abstract = isAbstractTopic(op, beat);
+  const systemPrompt = abstract ? REACT_ANIMATION_ABSTRACT_SYSTEM_PROMPT : REACT_ANIMATION_SYSTEM_PROMPT;
   const visualPlan = AI_VISUAL_PLANNING_ENABLED
     ? await planVisual(client, op, beat)
     : { blueprint: fallbackBlueprint(op, beat), costUsd: 0 };
@@ -551,8 +581,8 @@ async function generateOne(
       const completion = await client.chat.completions.create({
         model: MODEL,
         messages: [
-          { role: "system", content: REACT_ANIMATION_SYSTEM_PROMPT },
-          { role: "user", content: buildUserPrompt(op, beat, blueprint, previousFailure) },
+          { role: "system", content: systemPrompt },
+          { role: "user", content: buildUserPrompt(op, beat, blueprint, previousFailure, abstract) },
         ],
         temperature,
         ...completionTokenParam(MODEL, MAX_TOKENS),
@@ -561,7 +591,7 @@ async function generateOne(
 
       const raw = completion.choices[0]?.message?.content ?? "";
       const code = extractCodeFence(raw);
-      const diagnostics = getReactAnimationCodeDiagnostics(code);
+      const diagnostics = getReactAnimationCodeDiagnostics(code, { abstract });
       const finishReason = completion.choices[0]?.finish_reason;
       // Always-on (not debug-gated): animation failures were invisible in production logs, so we
       // kept flying blind on why a beat showed "unavailable". One concise line per attempt.
@@ -625,7 +655,9 @@ async function generateOne(
       // it claims to be (a leaf looks like a leaf, not a generic oval) — catches what the static
       // primitive-count diagnostics above and the text-based JSX review can't, since neither one
       // looks at a rendered image. Runs for every lecture, gated only by its own env flag.
-      if (reactAnimationVisionCriticEnabled()) {
+      // SKIPPED for abstract topics: this critic judges whether the shape reads as a real physical
+      // object, which is meaningless (and wrongly rejects) a concept diagram (timeline/array/tree/graph).
+      if (!abstract && reactAnimationVisionCriticEnabled()) {
         const shapeCritique = await critiqueShapeRecognizability(client, beat, code, blueprint.subject);
         totalCostUsd += shapeCritique.costUsd;
         if (!shapeCritique.ok) {
@@ -641,7 +673,7 @@ async function generateOne(
         }
       }
 
-      const validated = sanitizeReactAnimationOp({ ...op, code });
+      const validated = sanitizeReactAnimationOp({ ...op, code }, { abstract });
       if (validated.code) {
         op.code = validated.code;
         op.status = "ready";
@@ -669,7 +701,7 @@ async function generateOne(
   if (best) {
     // requireQuality:false — the best candidate already transpiles and passed the safety gate; ship
     // it even though it's below the quality floor, rather than discarding to "unavailable".
-    const validated = sanitizeReactAnimationOp({ ...op, code: best.code }, { requireQuality: false });
+    const validated = sanitizeReactAnimationOp({ ...op, code: best.code }, { requireQuality: false, abstract });
     if (validated.code) {
       op.code = validated.code;
       op.status = "ready";

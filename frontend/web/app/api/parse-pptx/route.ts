@@ -3,6 +3,7 @@ import JSZip from "jszip";
 import { XMLParser } from "fast-xml-parser";
 import OpenAI from "openai";
 import type { SuprnotesAsset, SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
+import { applyGlobalSourceOrder, buildPdfLessonPlan } from "@/lib/pdfLessonPipeline";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -611,14 +612,14 @@ export async function POST(req: NextRequest) {
     ? diagramSlides.slice(0, 8).join("; ")
     : "";
 
-  // Build a real sourceDocument when at least one slide image was actually read — this is what
-  // gives the lecture the same grounded pipeline (vision verification, image-only mode,
-  // content-block-linked chalkboard boards) a task-folder upload already gets, instead of the
-  // legacy flat-text-only fallback. One asset per unique media file (the same picture can be
-  // reused across multiple slides — dedupe via describedMedia's mediaPath keys, same pattern
-  // lib/markdownSource.ts uses for its own asset dedup), one content block per slide.
+  // Build a real sourceDocument for EVERY deck (not only when an image was read) so a PowerPoint
+  // upload teaches its slides in exact source order, like a PDF — the deterministic
+  // buildPdfLessonPlan below gives generate-lecture the same strict "follow the plan, don't reorder"
+  // contract, and LearnPage.shouldSkipPlanning skips the AI outline for pptx too. One asset per
+  // unique media file (a picture reused across slides is deduped via describedMedia's mediaPath
+  // keys), one content block per slide, kept in slide order.
   let sourceDocument: SuprnotesLessonInput | undefined;
-  if (describedMedia.size > 0) {
+  {
     const assetIdByPath = new Map<string, string>();
     const assets: SuprnotesAsset[] = [];
     const contentBlocks: SuprnotesContentBlock[] = [];
@@ -656,35 +657,53 @@ export async function POST(req: NextRequest) {
         if (chart.title) textParts.push(`Chart: ${chart.title}`);
       }
 
+      const text = textParts.join("\n").trim();
+      // Skip an utterly empty slide (no title, no body, no image) — it has nothing to teach.
+      if (!text && !assetIds.length) continue;
+
       contentBlocks.push({
         id: blockId,
         type: "section",
         heading: s.title || `Slide ${s.index}`,
-        text: textParts.join("\n") || undefined,
+        text: text || undefined,
         assetIds: assetIds.length ? assetIds : undefined,
         sourceOrder: s.index,
+        pageNumber: s.index,
       });
     }
 
-    sourceDocument = {
-      schemaVersion: "suprnotes.lesson_input.v1",
-      source: { adapter: "pptx-upload", generatedAt: new Date().toISOString() },
-      lesson: { title: deckTitle, subject: deckTitle, language: "en" },
-      generationDirectives: {
-        imagePolicy: "use_provided_images_only",
-        disableAiImageGeneration: true,
-        preferredLectureStyle: "grounded_from_notes",
-        preserveExistingLecturePrompting: true,
-      },
-      contentGovernance: {
-        groundingPolicy: "prefer_provided_content",
-        hallucinationPolicy: "hedge_when_unsupported",
-        requireClaimSourceTags: false,
-      },
-      webPreview: { status: "not_requested" },
-      assets,
-      contentBlocks,
-    };
+    if (contentBlocks.length > 0) {
+      // Deterministic source-order plan — identical treatment to the PDF path, so the lecture
+      // teaches slides in order, grouped into coherent beats, with no AI reordering.
+      applyGlobalSourceOrder(contentBlocks);
+      const lessonPlan = buildPdfLessonPlan(contentBlocks, assets);
+      sourceDocument = {
+        schemaVersion: "suprnotes.lesson_input.v1",
+        source: { adapter: "pptx-upload", generatedAt: new Date().toISOString() },
+        lesson: {
+          title: deckTitle,
+          subject: deckTitle,
+          language: "en",
+          estimatedTeachingMinutes: Math.max(5, lessonPlan.beats.length * 2),
+        },
+        generationDirectives: {
+          imagePolicy: "use_provided_images_only",
+          disableAiImageGeneration: true,
+          preferredLectureStyle: "grounded_from_notes",
+          preserveExistingLecturePrompting: true,
+        },
+        contentGovernance: {
+          groundingPolicy: "prefer_provided_content",
+          hallucinationPolicy: "hedge_when_unsupported",
+          requireClaimSourceTags: false,
+        },
+        webPreview: { status: "not_requested" },
+        assets,
+        contentBlocks,
+        lessonPlan,
+        suggestedLecturePlan: lessonPlan,
+      };
+    }
   }
 
   const result: ParsePptxResponse = {

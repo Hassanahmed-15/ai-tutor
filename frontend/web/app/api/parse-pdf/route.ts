@@ -54,7 +54,119 @@ function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
-async function detectFigures(client: OpenAI, dataUrl: string): Promise<PdfDetectedFigure[]> {
+// "high" gives tighter, more accurate figure coordinates (the crop quality the user cares about);
+// overridable to "low" via PDF_VISION_DETAIL to save tokens.
+const VISION_DETAIL = process.env.PDF_VISION_DETAIL === "low" ? "low" : "high";
+
+/** Compact list of the page's TEXT rectangles (normalized), so the model excludes body text and
+ *  returns figure boxes that live in the gaps between text — not paragraphs mistaken for figures. */
+function textRegionsHint(textRegions: Array<{ x: number; y: number; width: number; height: number }>): string {
+  if (!textRegions.length) return "";
+  const boxes = textRegions
+    .slice(0, 40)
+    .map((r) => `[${r.x.toFixed(3)},${r.y.toFixed(3)},${r.width.toFixed(3)},${r.height.toFixed(3)}]`)
+    .join(" ");
+  return `\n\nThe following normalized [x,y,width,height] rectangles are TEXT already extracted from this page — they are NOT figures. Do not return any figure box that merely covers one of these text rectangles; real figures sit in the space between them:\n${boxes}`;
+}
+
+// Genuine graphical artifacts worth cropping and showing the student.
+const ARTIFACT_TYPES = new Set(["diagram", "chart", "graph", "table", "flowchart", "formula", "map", "illustration", "photo"]);
+// Types whose value is graphical/structural, so a box that is almost entirely text is really a
+// paragraph the detector mistook for a figure. Tables and formulas are inherently text, so they are
+// exempt from this text-coverage rejection.
+const PROSE_IF_TEXT_HEAVY = new Set(["diagram", "chart", "graph", "flowchart", "map", "illustration", "photo"]);
+
+/** Fraction of `box` (page-normalized) covered by the union of extracted text rectangles. */
+function textCoverageOfBox(
+  box: { x: number; y: number; width: number; height: number },
+  textRegions: Array<{ x: number; y: number; width: number; height: number }>,
+): number {
+  const area = box.width * box.height;
+  if (area <= 0) return 0;
+  let covered = 0;
+  for (const region of textRegions) {
+    const xOverlap = Math.max(0, Math.min(box.x + box.width, region.x + region.width) - Math.max(box.x, region.x));
+    const yOverlap = Math.max(0, Math.min(box.y + box.height, region.y + region.height) - Math.max(box.y, region.y));
+    covered += xOverlap * yOverlap;
+  }
+  return Math.min(1, covered / area);
+}
+
+/**
+ * Deterministic guard against the failure the user reported: cropping whole pages / body text
+ * instead of real artifacts. Keeps only recognized artifact types, drops near-whole-page grabs, and
+ * drops graphical-type boxes that are almost entirely running text (a paragraph, not a figure).
+ */
+function keepArtifactFigures(
+  figures: PdfDetectedFigure[],
+  textRegions: Array<{ x: number; y: number; width: number; height: number }>,
+): PdfDetectedFigure[] {
+  return figures.filter((figure) => {
+    if (!ARTIFACT_TYPES.has(figure.type)) return false;
+    if (figure.width * figure.height >= 0.9) return false; // whole-page grab
+    if (PROSE_IF_TEXT_HEAVY.has(figure.type) && textCoverageOfBox(figure, textRegions) > 0.7) return false;
+    return true;
+  });
+}
+
+/**
+ * Second-opinion vision pass on the ACTUAL crop. Page-level detection can be fooled by a nearby
+ * caption (e.g. a two-column prose block sitting under a "TABLE III" heading gets boxed as a table).
+ * Here the model sees only the cropped pixels — no surrounding caption to mislead it — and decides
+ * whether the crop is a real standalone graphical artifact or just running text. Returns the kept
+ * flag plus a possibly-corrected type.
+ */
+async function verifyCropIsArtifact(
+  client: OpenAI,
+  pngBuffer: Buffer,
+  claimedType: PdfDetectedFigure["type"],
+): Promise<{ keep: boolean; type: PdfDetectedFigure["type"] }> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: VISION_MODEL,
+      max_tokens: 200,
+      temperature: 0,
+      response_format: { type: "json_object" },
+      messages: [{
+        role: "user",
+        content: [
+          { type: "image_url", image_url: { url: `data:image/png;base64,${pngBuffer.toString("base64")}`, detail: "high" } },
+          {
+            type: "text",
+            text: `This is a single image cropped from a PDF. Judge ONLY the pixels shown, ignoring any assumption from a title.
+
+Decide if it is a genuine standalone graphical artifact worth showing a student on its own:
+- a real DATA TABLE with a visible grid of rows AND columns (not just paragraphs in two columns),
+- a chart, graph, or plot with axes/bars/lines/points,
+- a diagram, flowchart, labeled illustration, map, or a displayed mathematical equation/formula,
+- a meaningful photo/figure.
+
+REJECT it (keep=false) if the crop is actually just paragraphs, sentences, a numbered or bulleted list, a heading/title, references, or running text — even if it is arranged in columns and even if a caption calls it a "table". A numbered list of text items is NOT a table.
+
+Return JSON only: { "keep": true|false, "type": "table|chart|graph|diagram|flowchart|illustration|formula|map|photo|other", "reason": "<=8 words" }`,
+          },
+        ],
+      }],
+    });
+    const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as { keep?: unknown; type?: unknown };
+    const keep = parsed.keep === true;
+    const type = typeof parsed.type === "string" && ARTIFACT_TYPES.has(parsed.type)
+      ? (parsed.type as PdfDetectedFigure["type"])
+      : claimedType;
+    return { keep, type };
+  } catch (error) {
+    // On a verification failure, keep the crop (fail open) so a transient error never drops a real
+    // figure — the page-level detector + deterministic filter already screened it once.
+    console.error(`[pdf] crop verification failed: ${error instanceof Error ? error.message : "unknown error"}`);
+    return { keep: true, type: claimedType };
+  }
+}
+
+async function detectFigures(
+  client: OpenAI,
+  dataUrl: string,
+  textRegions: Array<{ x: number; y: number; width: number; height: number }> = [],
+): Promise<PdfDetectedFigure[]> {
   try {
     const completion = await client.chat.completions.create({
       model: VISION_MODEL,
@@ -64,16 +176,12 @@ async function detectFigures(client: OpenAI, dataUrl: string): Promise<PdfDetect
       messages: [{
         role: "user",
         content: [
-          // "low" verified empirically to produce the same bounding boxes/focus regions as "high"
-          // on a real test page (only a marginally less specific description), at roughly half
-          // the prompt tokens — the downstream OCR-verified expand/crop step in pdf_pipeline.py
-          // already tolerates an imprecise initial box by growing it until clear of ink/text, so
-          // the extra precision "high" buys isn't needed here the way it might be for reading
-          // fine print. Every other vision critic in this codebase already uses "low".
-          { type: "image_url", image_url: { url: dataUrl, detail: "low" } },
+          { type: "image_url", image_url: { url: dataUrl, detail: VISION_DETAIL } },
           {
             type: "text",
-            text: `Inspect this rendered PDF page and locate EVERY meaningful educational visual: photo, scientific diagram, chart, graph, table, flowchart, illustration, displayed formula, map, or multi-panel figure.
+            text: `Inspect this rendered PDF page and locate ONLY genuine graphical artifacts: a scientific diagram, chart, graph, plot, table with a visible row/column grid, flowchart, labeled illustration, displayed equation/formula, map, or photo/figure. Precision matters far more than recall — it is better to return nothing than to box ordinary text.
+
+DO NOT box any of these, even when they sit inside a border, colored panel, or column: running prose/paragraphs, sentences, bullet lists, section headers, titles, author/affiliation lines, page numbers, captions on their own, references, or the whole page. A region that is mostly words in sentence form is NOT a figure. A table only counts if it has a real gridded structure of rows and columns.
 
 Return JSON only:
 {
@@ -102,8 +210,8 @@ Rules:
 - useInLesson is true only when the visual materially improves understanding of the source concept. Decorative photos, repeated icons, banners, and layout graphics must be false.
 - instructionalPriority is high for an essential diagram/chart/photo discussed by the source, medium for useful supporting evidence, and low for incidental/decorative visuals.
 - annotationNeeded is true only when pointing to specific visible regions improves the explanation. A visual does not need labels merely because it exists.
-- Use an empty figures array when the page has no meaningful visual.
-- Give 1-8 focus regions for visible parts worth pointing to while teaching; do not invent parts.`,
+- Return an empty figures array when the page is only text — that is the correct and common answer for a prose page.
+- Give 1-8 focus regions for visible parts worth pointing to while teaching; do not invent parts.${textRegionsHint(textRegions)}`,
           },
         ],
       }],
@@ -460,10 +568,16 @@ export async function POST(req: NextRequest) {
     const pageBlocks = [...page.blocks];
     const pageAssets: SuprnotesAsset[] = [];
     let figures: PdfDetectedFigure[] = [];
+    // Normalized rectangles of the page's extracted TEXT — handed to the vision detector (so it
+    // excludes paragraphs) AND to the Python cropper (so a crop never grows across body text).
+    const textRegions = pageBlocks
+      .map((block) => block.bbox)
+      .filter((bbox): bbox is { x: number; y: number; width: number; height: number } =>
+        Boolean(bbox) && [bbox!.x, bbox!.y, bbox!.width, bbox!.height].every((v) => typeof v === "number"));
 
     if (page.png && client) {
       const dataUrl = `data:image/png;base64,${page.png.toString("base64")}`;
-      figures = await detectFigures(client, dataUrl);
+      figures = keepArtifactFigures(await detectFigures(client, dataUrl, textRegions), textRegions);
     } else if (page.png && !page.text) {
       // Image-only/scanned pages remain teachable even if Vision is unavailable. The whole page is
       // preserved because there is no separately extractable text to duplicate on the board.
@@ -493,7 +607,7 @@ export async function POST(req: NextRequest) {
         role: "visual",
       });
     }
-    const verifiedCrops = page.png ? await cropFiguresWithPython(page.png, figures) : null;
+    const verifiedCrops = page.png ? await cropFiguresWithPython(page.png, figures, textRegions) : null;
     const verifiedByIndex = new Map((verifiedCrops ?? []).map((crop) => [crop.index, crop]));
     if (page.png) {
       for (let index = 0; index < figures.length; index += 1) {
@@ -515,6 +629,13 @@ export async function POST(req: NextRequest) {
               canvasModule.createCanvas as unknown as Parameters<typeof cropFigure>[5],
             );
         if (!crop) continue;
+        // Second-opinion pass on the crop itself: rejects prose that page-level detection mislabeled
+        // as a table/figure because of a nearby caption. Skipped when Vision is unavailable.
+        const verdict = client
+          ? await verifyCropIsArtifact(client, crop.buffer, figure.type)
+          : { keep: true, type: figure.type };
+        if (!verdict.keep) continue;
+        const resolvedType = verdict.type;
         const id = `p${page.pageNumber}-figure-${index + 1}`;
         const focusRegions = focusRegionsInsideCrop(figure, crop.cropBox);
         const labels = focusRegions.map((region) => region.label).filter(Boolean);
@@ -526,11 +647,11 @@ export async function POST(req: NextRequest) {
           url: `data:image/png;base64,${crop.buffer.toString("base64")}`,
           width: crop.width,
           height: crop.height,
-          caption: figure.caption || `${figure.type} from page ${page.pageNumber}`,
+          caption: figure.caption || `${resolvedType} from page ${page.pageNumber}`,
           description: figure.description,
           sourceBlockIds,
           pageNumber: page.pageNumber,
-          visualType: figure.type,
+          visualType: resolvedType,
           bbox: crop.cropBox,
           visionVerified: Boolean(client),
           teachingUse: {

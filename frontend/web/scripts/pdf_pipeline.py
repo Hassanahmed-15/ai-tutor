@@ -129,14 +129,33 @@ def ocr_edge_risks(image: np.ndarray) -> set[str]:
     return risks
 
 
+def strip_hits_text(
+    strip: tuple[int, int, int, int],
+    text_boxes_px: list[tuple[int, int, int, int]],
+) -> bool:
+    """True if the [x0,y0,x1,y1] strip we're about to grow into meaningfully overlaps body text.
+    Used to stop a figure crop from swallowing an adjacent paragraph. A figure's OWN internal labels
+    are inside the box already, so they never appear in an outward growth strip."""
+    sx0, sy0, sx1, sy1 = strip
+    strip_area = max(1, (sx1 - sx0) * (sy1 - sy0))
+    for tx0, ty0, tx1, ty1 in text_boxes_px:
+        ox = max(0, min(sx1, tx1) - max(sx0, tx0))
+        oy = max(0, min(sy1, ty1) - max(sy0, ty0))
+        if ox * oy > strip_area * 0.12:
+            return True
+    return False
+
+
 def expand_box_until_clear(
     page: np.ndarray,
     box: tuple[int, int, int, int],
+    text_boxes_px: list[tuple[int, int, int, int]] | None = None,
 ) -> tuple[int, int, int, int]:
     page_height, page_width = page.shape[:2]
     x0, y0, x1, y1 = box
     step_x = max(24, round(page_width * 0.028))
     step_y = max(24, round(page_height * 0.020))
+    text_boxes_px = text_boxes_px or []
 
     for _ in range(6):
         crop = page[y0:y1, x0:x1]
@@ -153,13 +172,15 @@ def expand_box_until_clear(
         if edge_ink_ratio(mask, "bottom") > 0.025:
             risks.add("bottom")
         before = (x0, y0, x1, y1)
-        if "left" in risks and x0 > 0:
+        # Grow toward figure ink, but NEVER across body text: if the strip we'd add is mostly a text
+        # region, the ink at that edge is a neighbouring paragraph, not the figure — leave it out.
+        if "left" in risks and x0 > 0 and not strip_hits_text((max(0, x0 - step_x), y0, x0, y1), text_boxes_px):
             x0 = max(0, x0 - step_x)
-        if "right" in risks and x1 < page_width:
+        if "right" in risks and x1 < page_width and not strip_hits_text((x1, y0, min(page_width, x1 + step_x), y1), text_boxes_px):
             x1 = min(page_width, x1 + step_x)
-        if "top" in risks and y0 > 0:
+        if "top" in risks and y0 > 0 and not strip_hits_text((x0, max(0, y0 - step_y), x1, y0), text_boxes_px):
             y0 = max(0, y0 - step_y)
-        if "bottom" in risks and y1 < page_height:
+        if "bottom" in risks and y1 < page_height and not strip_hits_text((x0, y1, x1, min(page_height, y1 + step_y)), text_boxes_px):
             y1 = min(page_height, y1 + step_y)
         if before == (x0, y0, x1, y1):
             break
@@ -239,6 +260,24 @@ def crop_regions(page_path: Path, regions_path: Path, output_dir: Path) -> None:
     page_height, page_width = page.shape[:2]
     raw = json.loads(regions_path.read_text(encoding="utf-8"))
     regions = raw.get("regions", [])
+    # Normalized text rectangles -> pixel boxes, so expansion never crosses body text.
+    text_boxes_px: list[tuple[int, int, int, int]] = []
+    for tb in raw.get("textBoxes", []) or []:
+        try:
+            tx = clamp(float(tb.get("x", 0)), 0, 1)
+            ty = clamp(float(tb.get("y", 0)), 0, 1)
+            tw = clamp(float(tb.get("width", 0)), 0, 1)
+            th = clamp(float(tb.get("height", 0)), 0, 1)
+        except (TypeError, ValueError):
+            continue
+        if tw <= 0 or th <= 0:
+            continue
+        text_boxes_px.append((
+            math.floor(tx * page_width),
+            math.floor(ty * page_height),
+            math.ceil((tx + tw) * page_width),
+            math.ceil((ty + th) * page_height),
+        ))
     crops: list[dict[str, Any]] = []
 
     for index, region in enumerate(regions):
@@ -252,7 +291,7 @@ def crop_regions(page_path: Path, regions_path: Path, output_dir: Path) -> None:
         y0 = max(0, math.floor(y * page_height) - padding_y)
         x1 = min(page_width, math.ceil((x + width) * page_width) + padding_x)
         y1 = min(page_height, math.ceil((y + height) * page_height) + padding_y)
-        x0, y0, x1, y1 = expand_box_until_clear(page, (x0, y0, x1, y1))
+        x0, y0, x1, y1 = expand_box_until_clear(page, (x0, y0, x1, y1), text_boxes_px)
         crop = page[y0:y1, x0:x1]
         crop, trim = trim_whitespace(crop)
         tx0, ty0, tx1, ty1 = trim

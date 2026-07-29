@@ -66,7 +66,7 @@ const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
 const TEXT_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_ATTEMPTS ?? 4)));
 const TEXT_MAX_TOKENS = Math.max(8_000, Math.min(16_000, Number(process.env.OPENAI_LECTURE_MAX_TOKENS ?? 14_000)));
 const DEEPEN_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 2)));
-const PDF_BEATS_PER_GENERATION = Math.max(2, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 4)));
+const PDF_BEATS_PER_GENERATION = Math.max(1, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 1)));
 const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
 
 // gpt-4o pricing for the text-generation step (as of 2025, source: openai.com/api/pricing).
