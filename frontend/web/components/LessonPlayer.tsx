@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
@@ -11,6 +11,13 @@ import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
 import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
+import { ManimBoard } from "./sketch/ManimBoard";
+import { GsapSketch } from "./sketch/GsapSketch";
+import { StructureBoard } from "./sketch/StructureBoard";
+import type { StructureSpec } from "@/lib/structureSpec";
+import { RendererBadge } from "./sketch/RendererBadge";
+import { useManimPrefetch } from "@/lib/useManimPrefetch";
+import { selectAnimationRenderer } from "@/lib/animationRouting";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
@@ -36,6 +43,17 @@ const UNDERSTANDING_CHECK_EVERY = 4;
 const REACT_ANIMATIONS_ENABLED = process.env.NEXT_PUBLIC_REACT_ANIMATIONS_ENABLED === "1";
 // Client mirror of the server's BLACKBOARD_GEN_ENABLED (see app/api/generate-lecture/route.ts).
 const BLACKBOARD_GEN_ENABLED = process.env.NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED === "1";
+// Renders plain DrawScript beats through Manim (pre-rendered video) instead of the live SVG
+// board. Off by default: it needs the Python/ffmpeg toolchain installed on the host, and each
+// beat costs several seconds of CPU the first time it is seen. Mirrors the server's
+// MANIM_RENDER_ENABLED (see app/api/manim-render/route.ts) — both must be set.
+const MANIM_RENDER_ENABLED = process.env.NEXT_PUBLIC_MANIM_RENDER_ENABLED === "1";
+// Compatible vector morph boards use GSAP by default. Set to "0" as a client-side kill
+// switch; the shared selector then sends those beats to another complete renderer.
+const GSAP_RENDER_ENABLED = process.env.NEXT_PUBLIC_GSAP_RENDER_ENABLED !== "0";
+// The hand-built photosynthesis demo scenes. On by default; set to "0" to let those beats
+// render from their DrawScripts instead (see isCuratedPhotosynthesisBeat).
+const CURATED_SCENES_ENABLED = process.env.NEXT_PUBLIC_CURATED_SCENES_ENABLED !== "0";
 
 /**
  * The live tutor: each beat opens on a slide (sets up the idea), auto-flips into the
@@ -131,6 +149,33 @@ export function LessonPlayer({
   const [rate, setRate] = useState(1);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
+
+  // Start rendering every Manim beat the moment the lecture loads, not when it is reached.
+  // A render takes seconds and the narration does not wait, so on-demand rendering always
+  // loses the race; prefetching means the video is already cached by the time the student
+  // gets there. Only plain DrawScript beats go through Manim (chalkBoard/reactAnimation
+  // beats have their own renderers), and only those with something to animate — see
+  // isManimWorthy. Must match the VisualDirector condition below, or a beat gets rendered
+  // and never shown.
+  useManimPrefetch(
+    useMemo(
+      () =>
+        MANIM_RENDER_ENABLED
+          ? beats
+              .filter(
+                (b) =>
+                  b.draw &&
+                  selectAnimationRenderer(b.draw, {
+                    gsapEnabled: GSAP_RENDER_ENABLED,
+                    manimEnabled: MANIM_RENDER_ENABLED,
+                  }).renderer === "manim",
+              )
+              .map((b) => b.draw)
+          : [],
+      [beats],
+    ),
+    { enabled: MANIM_RENDER_ENABLED },
+  );
   const isCheckpoint = beat.slideKind === "checkpoint";
   const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
   // The lecture only WAITS on a pending animation until the watchdog trips (see below); after that it
@@ -605,6 +650,10 @@ export function LessonPlayer({
   }
   function goTo(i: number) {
     stopVoice();
+    // Leaving the beat must also abandon any question asked ON it. Without this, skipping
+    // forward mid-question left the quiz card on screen (and the teacher still asking it)
+    // over the next beat's board.
+    quiz.cancel();
     if (slideTimer.current) clearTimeout(slideTimer.current);
     setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
@@ -1073,11 +1122,21 @@ function VisualDirector({
   // timeout), show an explicit unavailable board for the rest of this beat's lifetime. Resets
   // naturally: Board renders VisualDirector with `key={beat.id}`, so this state is fresh per beat.
   const [sandboxFailed, setSandboxFailed] = useState(false);
+  // Same lifetime rule as sandboxFailed: once Manim fails for this beat, fall back to the live
+  // board for the rest of the beat rather than retrying a render that costs seconds.
+  const [manimFailed, setManimFailed] = useState(false);
+  const rendererSelection = beat.draw
+    ? selectAnimationRenderer(beat.draw, {
+        gsapEnabled: GSAP_RENDER_ENABLED,
+        manimEnabled: MANIM_RENDER_ENABLED && !manimFailed,
+      })
+    : null;
 
   if (bespokeScene) {
     return (
       <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-3 text-white lg:p-4">
         <div className="pointer-events-none absolute inset-0 opacity-80" style={{ backgroundImage: "radial-gradient(circle at 20% 16%, rgba(16,185,129,0.24), transparent 38%), radial-gradient(circle at 78% 78%, rgba(59,130,246,0.22), transparent 42%)" }} />
+        <RendererBadge kind="svg" />
         <div className="relative flex h-full flex-col">
           <div className="relative min-h-0 flex-1 pb-16">{bespokeScene}</div>
           <div className="relative hidden">
@@ -1101,6 +1160,7 @@ function VisualDirector({
         return (
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
             <LiveSketch key={beat.id} script={{ ...beat.draw, ops: chalkOp.ops }} progress={sentenceTiming.alignedProgress} />
+            <RendererBadge kind="svg" />
           </section>
         );
       }
@@ -1126,6 +1186,7 @@ function VisualDirector({
             sentenceTotal={sentenceTiming.total}
             onError={() => setSandboxFailed(true)}
           />
+          <RendererBadge kind="sandbox" />
         </section>
       );
     }
@@ -1137,9 +1198,59 @@ function VisualDirector({
           : animationOp.error ?? "Generated animation code was not available.";
       return <AnimationUnavailableBoard title={beat.title} teachingPoint={animationOp.teachingPoint} reason={reason} />;
     }
+    // A plain DrawScript beat. Manim renders the same script to video when enabled and the
+    // beat actually has something to animate; a text-only notes board stays on LiveSketch,
+    // which writes it word-by-word with the marker — an effect video cannot reproduce. Falls
+    // back to the live board if the render fails, so the flag can degrade but never break a
+    // lesson. This condition must match the prefetch filter above.
+    if (rendererSelection?.renderer === "structure") {
+      const structureOp = beat.draw.ops.find((op) => op.kind === "structureScene");
+      if (structureOp?.kind === "structureScene" && structureOp.spec) {
+        return (
+          <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+            <StructureBoard key={beat.id} spec={structureOp.spec as StructureSpec} progress={drawProgress} />
+            <RendererBadge kind="structure" />
+          </section>
+        );
+      }
+    }
+    if (rendererSelection?.renderer === "gsap") {
+      return (
+        <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+          <GsapSketch key={beat.id} script={beat.draw} progress={drawProgress} />
+          <RendererBadge kind="gsap" />
+        </section>
+      );
+    }
+    if (rendererSelection?.renderer === "manim") {
+      return (
+        <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+          {/* ManimBoard renders its own badge: only it knows whether the video is ready or it
+              is currently falling back to the live SVG board. */}
+          <ManimBoard key={beat.id} script={beat.draw} progress={drawProgress} onError={() => setManimFailed(true)} />
+        </section>
+      );
+    }
+    const manimSceneOp = beat.draw.ops.find((op) => op.kind === "manimScene");
+    if (manimSceneOp?.kind === "manimScene") {
+      const reason = !MANIM_RENDER_ENABLED
+        ? "Manim rendering is turned off."
+        : manimFailed
+          ? "The diagram video failed to render."
+          : manimSceneOp.error ?? "The diagram specification was not available.";
+      return (
+        <AnimationStatusBoard
+          title={beat.title}
+          teachingPoint={manimSceneOp.sceneBrief}
+          eyebrow="Diagram unavailable"
+          reason={reason}
+        />
+      );
+    }
     return (
       <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
         <LiveSketch key={beat.id} script={beat.draw} progress={drawProgress} />
+        <RendererBadge kind="svg" />
       </section>
     );
   }
@@ -1250,6 +1361,12 @@ function publicTeachingPoint(teachingPoint?: string) {
 }
 
 function isCuratedPhotosynthesisBeat(beat: Beat) {
+  // The demo's bespoke React scenes intercept all nine beats before their DrawScripts are
+  // ever rendered. Six of those DrawScripts carry real shapes, arrows and morphs — the only
+  // Manim-worthy content in the whole app — so this switch releases them to the normal
+  // renderer path. Set NEXT_PUBLIC_CURATED_SCENES_ENABLED=0 to compare Manim against the
+  // hand-built scenes on a real narrated lecture, with no API spend.
+  if (!CURATED_SCENES_ENABLED) return false;
   if (!PHOTOSYNTHESIS_SCENE_IDS.has(beat.id)) return false;
   return demoBeats.some((demo) => demo.id === beat.id && demo.title === beat.title && demo.script === beat.script);
 }

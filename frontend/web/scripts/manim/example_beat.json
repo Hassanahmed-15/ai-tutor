@@ -1,0 +1,15 @@
+{
+  "caption": "How a leaf makes sugar",
+  "durationMs": 12000,
+  "ops": [
+    { "kind": "label", "id": "title", "text": "Photosynthesis", "x": 50, "y": 12, "size": "lg", "color": "green", "at": 0.02 },
+    { "kind": "shape", "id": "leaf", "shape": "circle", "x": 30, "y": 48, "w": 22, "h": 22, "color": "green", "at": 0.14 },
+    { "kind": "label", "text": "chloroplast", "anchorTo": "leaf", "anchorDir": "down", "anchorBuff": 5, "x": 0, "y": 0, "color": "slate", "at": 0.28 },
+    { "kind": "arrow", "x1": 44, "y1": 48, "x2": 62, "y2": 48, "color": "amber", "at": 0.40 },
+    { "kind": "shape", "id": "sugar", "shape": "rect", "x": 74, "y": 48, "w": 18, "h": 14, "color": "amber", "at": 0.50 },
+    { "kind": "label", "text": "glucose", "anchorTo": "sugar", "anchorDir": "down", "anchorBuff": 5, "x": 0, "y": 0, "color": "amber", "at": 0.60 },
+    { "kind": "circumscribe", "targetId": "sugar", "x": 0, "y": 0, "color": "rose", "at": 0.70 },
+    { "kind": "motion", "motion": "flow", "x1": 20, "y1": 82, "x2": 80, "y2": 82, "color": "blue", "at": 0.80, "endAt": 0.92 },
+    { "kind": "note", "text": "Light energy becomes chemical energy stored in sugar.", "x": 50, "y": 92, "color": "slate", "at": 0.90 }
+  ]
+}

@@ -14,6 +14,10 @@ import {
   sketchDroplet,
   sketchStove,
 } from "../whiteboard/sketch";
+import { clamp01, lerp, springPop, thereAndBackWithPause, SMOOTH_SPLINE } from "../../lib/anim/rate";
+import { lagged, phase } from "../../lib/anim/compose";
+import { useReducedMotion } from "../../lib/anim/useReducedMotion";
+import { nextToAvoiding, isDirection, type Bounds, type Direction as AnchorDirection } from "../../lib/anim/nextTo";
 
 /* Mirror of the lesson-graph DrawScript types (kept local so the client component is
    self-contained; the server passes plain JSON matching this shape). */
@@ -25,10 +29,33 @@ interface Pt {
   x: number;
   y: number;
 }
+
+/**
+ * Relative-positioning fields, mixed into every op that has a position.
+ *
+ * `id` names an op so others can point at it; `anchorTo` says "put me beside that one" and
+ * the renderer resolves it against the target's real bounds (Manim's `next_to`). Literal
+ * `x`/`y` still works everywhere and wins if no anchor is given, so this is purely additive —
+ * every existing DrawScript renders exactly as before.
+ *
+ * The point is to stop labels being placed by an LLM guessing coordinates. See
+ * lib/anim/nextTo.ts for why that guessing was expensive.
+ */
+interface Anchorable {
+  /** Stable name for this op, so other ops (labels, arrows, emphasis) can reference it. */
+  id?: string;
+  /** `id` of the op to sit beside. When set, `x`/`y` are ignored. */
+  anchorTo?: string;
+  /** Which side of the target to sit on. Defaults to "up". */
+  anchorDir?: AnchorDirection;
+  /** Gap between the target's edge and this op, on the 0-100 grid. Defaults to 6. */
+  anchorBuff?: number;
+}
+
 type DrawOp =
-  | { kind: "shape"; shape: DrawShape; x: number; y: number; w?: number; h?: number; points?: Pt[]; color?: string; at: number }
-  | { kind: "label"; text: string; x: number; y: number; size?: "sm" | "md" | "lg"; color?: string; at: number }
-  | {
+  | ({ kind: "shape"; shape: DrawShape; x: number; y: number; w?: number; h?: number; points?: Pt[]; color?: string; at: number } & Anchorable)
+  | ({ kind: "label"; text: string; x: number; y: number; size?: "sm" | "md" | "lg"; color?: string; at: number } & Anchorable)
+  | ({
       kind: "callout";
       text: string;
       x: number;
@@ -43,9 +70,21 @@ type DrawOp =
        *  agent output) — survives the provided-image board cleanup pass that otherwise strips
        *  ungrounded/legacy keyword-matched callouts. */
       grounded?: boolean;
-    }
-  | { kind: "arrow"; x1: number; y1: number; x2: number; y2: number; curved?: boolean; color?: string; at: number }
-  | { kind: "note"; text: string; x: number; y: number; color?: string; at: number }
+    } & Anchorable)
+  | ({
+      kind: "arrow";
+      x1: number;
+      y1: number;
+      x2: number;
+      y2: number;
+      curved?: boolean;
+      color?: string;
+      at: number;
+      /** Connect two named ops instead of two literal points — the arrow then follows them. */
+      fromId?: string;
+      toId?: string;
+    } & Anchorable)
+  | ({ kind: "note"; text: string; x: number; y: number; color?: string; at: number } & Anchorable)
   | {
       kind: "scene";
       scene: DrawScene;
@@ -57,7 +96,7 @@ type DrawOp =
       at: number;
       endAt?: number;
     }
-  | {
+  | ({
       kind: "motion";
       motion: "flow" | "beam" | "orbit" | "collapse" | "pulse" | "reveal";
       x1?: number;
@@ -71,9 +110,58 @@ type DrawOp =
       color?: string;
       at: number;
       endAt: number;
-    }
-  | { kind: "underline" | "circleHighlight"; x: number; y: number; w?: number; h?: number; color?: string; at: number }
+    } & Anchorable)
+  | ({ kind: "underline" | "circleHighlight"; x: number; y: number; w?: number; h?: number; color?: string; at: number } & Anchorable)
+  | ({
+      /**
+       * Emphasis: draw the eye to something already on the board, then release it.
+       *
+       * The board could previously only *add* ink. `underline` and `circleHighlight` draw once
+       * and stay, so after three of them the board is a mess of permanent marks and none of
+       * them means "look here, now". These three ride `thereAndBack`, so they peak and then
+       * clear — the move a teacher makes constantly and the board could not express.
+       *
+       * Ports of Manim's Indicate, Circumscribe and Flash. Each targets an existing op by
+       * `targetId` (falling back to literal x/y), so emphasis never restates geometry.
+       */
+      kind: "indicate" | "circumscribe" | "flash";
+      /** `id` of the op to emphasise. Its bounds decide the size of the mark. */
+      targetId?: string;
+      x: number;
+      y: number;
+      w?: number;
+      h?: number;
+      /** Circumscribe only: box or ellipse. Defaults to a box. */
+      shape?: "box" | "ellipse";
+      color?: string;
+      at: number;
+      /** When the emphasis has fully released. Defaults to ~1.1s after `at`. */
+      endAt?: number;
+    } & Anchorable)
   | {
+      /**
+       * Camera move — Manim's MovingCameraScene (`self.camera.frame.animate.scale(0.5)
+       * .move_to(x)`), and its `save_state` / `Restore` pair.
+       *
+       * The board is a fixed 1000x560 frame, so everything has to be legible at once. That
+       * single constraint is why the prompts carry a "HARD ROW BUDGET" of three bands and a
+       * "SCOPE DOWN MULTI-STEP TOPICS" rule: not because three is the right number of ideas,
+       * but because a fourth would not fit. Being able to push in on the part under
+       * discussion lifts that limit — detail can exist on the board without competing for
+       * attention until it is the thing being explained.
+       *
+       * Omit `targetId` to pull back to the whole board (Restore).
+       */
+      kind: "focus";
+      /** `id` of the op to frame. Absent means "back to the full board". */
+      targetId?: string;
+      /** Fraction of the full frame to show. 1 is the whole board; 0.5 is a 2x push-in. */
+      scale?: number;
+      at: number;
+      /** When the move completes. Defaults to ~900ms after `at`. */
+      endAt?: number;
+    }
+  | ({
       kind: "morph";
       shape: DrawShape;
       text?: string;
@@ -91,8 +179,8 @@ type DrawOp =
       at: number;
       /** 0..1 fraction of the WHOLE script timeline when the travel finishes (must be > at). */
       morphAt: number;
-    }
-  | {
+    } & Anchorable)
+  | ({
       /** A real AI-generated photographic/illustrative image, "developing in" over ~500ms.
        *  `prompt` is the generation description (always present, written by the text model).
        *  `src` is a data URI (`data:image/png;base64,...`) populated server-side. During
@@ -110,7 +198,7 @@ type DrawOp =
       h?: number;
       color?: string;
       at: number;
-    }
+    } & Anchorable)
   | {
       /** A topic-specific React component (plain SVG/CSS), authored by the text model and filled
        *  in server-side by fillReactAnimationOps before the response is sent, then rendered live
@@ -123,6 +211,45 @@ type DrawOp =
       status?: "ready" | "failed";
       error?: string;
       fallback?: DrawOp[];
+      at: 0;
+      endAt: 1;
+    }
+  | {
+      /**
+       * A Manim-rendered scene: a plotted graph, a shape transformation, a flow with moving
+       * parts, or a measured geometric construction — the things video renders better than
+       * this SVG board can.
+       *
+       * Same two-step shape as `chalkBoard`: the lecture call writes `sceneBrief`, a second
+       * call fills `spec` (a typed structure, never code — see lib/manimSceneSpec.ts), and
+       * ManimBoard renders it. LiveSketch never draws this itself; if the render is missing or
+       * fails, the beat falls back to whatever other ops it carries.
+       */
+      kind: "manimScene";
+      sceneBrief?: string;
+      spec?: unknown;
+      status?: "ready" | "failed";
+      error?: string;
+      at: 0;
+      endAt: 1;
+    }
+  | {
+      /**
+       * A structural diagram — a process, cycle, tree or state machine (TYPE F).
+       *
+       * Same two-step shape as `manimScene`: the lecture call writes `structureBrief`, a second
+       * call fills `spec` (validated by lib/structureSpec.ts), and StructureBoard renders it.
+       *
+       * The spec carries NO COORDINATES — only nodes and the edges between them. Positions come
+       * from lib/structureLayout.ts, which is what makes these boards immune to the overlapping
+       * and off-canvas text that coordinate-authoring boards produce. LiveSketch never draws this
+       * itself.
+       */
+      kind: "structureScene";
+      structureBrief?: string;
+      spec?: unknown;
+      status?: "ready" | "failed";
+      error?: string;
       at: 0;
       endAt: 1;
     }
@@ -154,6 +281,11 @@ const VB_H = 560;
 const DEFAULT_DURATION = 11000;
 const INK = "#1e293b";
 const STROKE_WINDOW = 700; // how long an op takes to draw in
+// Emphasis marks are transient: long enough to read, short enough that the board is clean
+// again before the narration has moved on.
+const EMPHASIS_WINDOW = 1400;
+// Long enough that a push-in reads as a move rather than a cut.
+const CAMERA_WINDOW = 900;
 const TEXT_PAD_X = 48;
 const TEXT_PAD_Y = 18;
 const INITIAL_SYNC_PROGRESS = 0.001;
@@ -181,16 +313,28 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   const instanceId = useId().replace(/[:]/g, "");
   const [elapsed, setElapsed] = useState(0);
   const startRef = useRef<number | null>(null);
+  const reducedMotion = useReducedMotion();
   const externalElapsed = typeof progress === "number" ? Math.max(INITIAL_SYNC_PROGRESS, clamp01(progress)) * duration : null;
-  const visibleElapsed = externalElapsed ?? elapsed;
+  // Reduced motion means "show me the finished board", not "show me a slower drawing of it".
+  // With an external narration clock we still honour it by jumping each op to its end state
+  // as soon as its start time passes, rather than freezing the whole board at t=0.
+  const visibleElapsed = reducedMotion && externalElapsed === null ? duration : externalElapsed ?? elapsed;
 
   // Ops sorted by their start time, each with an absolute start in ms. `windowMs` is how long
   // this op "owns" before the next op begins — used to spread a text op's word-by-word reveal
   // across the exact span the narration spends on it, so words appear as they're spoken.
   const timed = useMemo(() => {
-    const sorted = script.ops
+    // Sort first, then resolve anchors: an op may only attach to something drawn before it,
+    // which is both the natural teaching order and what makes one resolution pass sufficient.
+    const ordered = script.ops
       .map((op, i) => ({ op, i, startMs: Math.max(0, Math.min(1, op.at)) * duration }))
       .sort((a, b) => a.startMs - b.startMs);
+    const anchored = resolveAnchors(ordered.map((entry) => entry.op));
+    const sorted = ordered.map((entry, idx) => ({
+      ...entry,
+      op: anchored.ops[idx],
+      focusRect: anchored.focusRects[idx],
+    }));
     return sorted.map((entry, idx) => {
       const next = sorted[idx + 1];
       const gap = next ? next.startMs - entry.startMs : duration - entry.startMs;
@@ -201,6 +345,9 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   }, [script, duration]);
 
   useEffect(() => {
+    // No point burning frames when the result is discarded — reduced motion reads `duration`
+    // straight out of `visibleElapsed` above.
+    if (reducedMotion) return;
     let raf = 0;
     startRef.current = null;
     const loop = (now: number) => {
@@ -211,11 +358,13 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [duration]);
+  }, [duration, reducedMotion]);
 
   const visible = timed.filter((t) => visibleElapsed >= t.startMs);
   const visibleImages = visible.filter((t) => t.op.kind === "image");
-  const visibleDrawing = visible.filter((t) => t.op.kind !== "image");
+  // `focus` is excluded so the pen doesn't jump to board-centre during a camera move — it
+  // draws nothing, so there is no nib for the hand to be at.
+  const visibleDrawing = visible.filter((t) => t.op.kind !== "image" && t.op.kind !== "focus");
   const hasBackdropImage = script.ops.some((op) => op.kind === "image" && (op.w ?? 100) >= 92);
   // The op currently mid-draw (for the pen cursor position) — morphs stay "active" for the
   // pen across their whole travel window, everything else only while its stroke draws in.
@@ -237,6 +386,32 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
     : null;
   const progressValue = Math.min(1, visibleElapsed / duration);
 
+  // Camera: interpolate between the frame the previous focus op established and the one the
+  // current focus op wants. Eased with `smooth`, because a linear camera push is the most
+  // obviously mechanical motion there is — real camera moves settle.
+  const camera = useMemo(() => {
+    const focuses = timed.filter((t) => t.op.kind === "focus");
+    if (!focuses.length) return FULL_FRAME;
+
+    let from = FULL_FRAME;
+    let to = FULL_FRAME;
+    let moveT = 1;
+    for (const entry of focuses) {
+      if (visibleElapsed < entry.startMs) break;
+      const op = entry.op as Extract<DrawOp, { kind: "focus" }>;
+      const endMs = typeof op.endAt === "number" ? op.endAt * duration : entry.startMs + CAMERA_WINDOW;
+      from = to;
+      to = frameFor(entry.focusRect, op.scale ?? (entry.focusRect ? 0.55 : 1));
+      moveT = phase(visibleElapsed, entry.startMs, endMs);
+    }
+    return {
+      x: lerp(from.x, to.x, moveT),
+      y: lerp(from.y, to.y, moveT),
+      w: lerp(from.w, to.w, moveT),
+      h: lerp(from.h, to.h, moveT),
+    };
+  }, [timed, visibleElapsed, duration]);
+
   return (
     <section
       className={`relative h-full min-h-0 overflow-hidden rounded-xl border shadow-[0_18px_70px_rgba(0,0,0,0.22)] ${
@@ -244,7 +419,12 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
       }`}
     >
       <Paper surface={script.surface} />
-      <svg viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="xMidYMid meet" className="absolute inset-0 h-full min-h-0 w-full" aria-hidden="true">
+      <svg
+        viewBox={`${camera.x} ${camera.y} ${camera.w} ${camera.h}`}
+        preserveAspectRatio="xMidYMid meet"
+        className="absolute inset-0 h-full min-h-0 w-full"
+        aria-hidden="true"
+      >
         <defs>
           <marker id="live-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" />
@@ -304,6 +484,155 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   );
 }
 
+/**
+ * Approximate bounds of an op on the 0-100 grid, as centre + half-extents.
+ *
+ * Deliberately approximate: this exists so ops can be positioned *relative to each other*,
+ * and for that a box that is roughly the right size in roughly the right place beats an exact
+ * one that needs a laid-out DOM to measure. Text extents use the same 0.62-per-character
+ * estimate the prompts already tell the model to use, so both sides agree.
+ */
+function boundsOf(op: DrawOp): Bounds {
+  switch (op.kind) {
+    case "label":
+    case "note": {
+      const fontGrid = op.kind === "label" ? (op.size === "lg" ? 3.4 : op.size === "sm" ? 2 : 2.6) : 2.2;
+      const chars = op.text?.length ?? 0;
+      return { x: op.x, y: op.y, w: Math.min(42, (chars * fontGrid * 0.62) / 2), h: fontGrid * 0.9 };
+    }
+    case "callout":
+      return { x: op.x, y: op.y, w: 3, h: 3 };
+    case "shape":
+      return { x: op.x, y: op.y, w: (op.w ?? 16) / 2, h: (op.h ?? 12) / 2 };
+    case "morph":
+      return { x: op.x, y: op.y, w: (op.w ?? 12) / 2, h: (op.h ?? 10) / 2 };
+    case "underline":
+    case "circleHighlight":
+      return { x: op.x, y: op.y, w: (op.w ?? 18) / 2, h: (op.h ?? 6) / 2 };
+    case "indicate":
+    case "circumscribe":
+    case "flash":
+      return { x: op.x, y: op.y, w: (op.w ?? 14) / 2, h: (op.h ?? 10) / 2 };
+    case "image":
+      return { x: op.x, y: op.y, w: (op.w ?? 40) / 2, h: (op.h ?? 30) / 2 };
+    case "arrow":
+      return {
+        x: (op.x1 + op.x2) / 2,
+        y: (op.y1 + op.y2) / 2,
+        w: Math.abs(op.x2 - op.x1) / 2,
+        h: Math.abs(op.y2 - op.y1) / 2,
+      };
+    case "motion":
+      return { x: op.cx ?? op.x1 ?? 50, y: op.cy ?? op.y1 ?? 50, w: op.r ?? 10, h: (op.r ?? 10) * 0.6 };
+    default:
+      // scene / reactAnimation / chalkBoard all own the whole board.
+      return { x: 50, y: 50, w: 42, h: 42 };
+  }
+}
+
+/**
+ * Resolves every `anchorTo` reference into concrete coordinates, once, before rendering.
+ *
+ * Ops are processed in timeline order so an anchor can only point at something already
+ * placed — that keeps resolution a single pass with no cycles to detect, and matches how a
+ * teacher actually works (you label the thing after you have drawn it). Unresolvable
+ * references fall through to the op's literal `x`/`y`, so a bad `anchorTo` degrades to the
+ * old behaviour instead of throwing.
+ */
+function resolveAnchors(ops: DrawOp[]): { ops: DrawOp[]; focusRects: (Bounds | null)[] } {
+  const placed = new Map<string, Bounds>();
+  const occupied: Bounds[] = [];
+  const focusRects: (Bounds | null)[] = [];
+
+  const resolvedOps = ops.map((op) => {
+    let resolved = op;
+    const anchorTo = "anchorTo" in op ? op.anchorTo : undefined;
+    const target = anchorTo ? placed.get(anchorTo) : undefined;
+
+    if (target && "x" in op) {
+      const dir = "anchorDir" in op && isDirection(op.anchorDir) ? op.anchorDir : "up";
+      const buff = ("anchorBuff" in op ? op.anchorBuff : undefined) ?? 6;
+      const self = boundsOf(op);
+      const point = nextToAvoiding(target, occupied, dir, buff, { w: self.w, h: self.h });
+      resolved = { ...op, x: point.x, y: point.y };
+    }
+
+    // Emphasis ops adopt their target's real position AND size, so a circumscribe fits the
+    // thing it circles instead of the model having to restate its geometry.
+    if (resolved.kind === "indicate" || resolved.kind === "circumscribe" || resolved.kind === "flash") {
+      const focus = resolved.targetId ? placed.get(resolved.targetId) : undefined;
+      if (focus) {
+        resolved = {
+          ...resolved,
+          x: focus.x,
+          y: focus.y,
+          w: resolved.w ?? Math.max(6, focus.w * 2 + 4),
+          h: resolved.h ?? Math.max(5, focus.h * 2 + 3),
+        };
+      }
+    }
+
+    // Arrows can name their endpoints instead of hardcoding them, so a connector keeps
+    // pointing at the right parts even when those parts move.
+    if (resolved.kind === "arrow") {
+      const from = resolved.fromId ? placed.get(resolved.fromId) : undefined;
+      const to = resolved.toId ? placed.get(resolved.toId) : undefined;
+      if (from || to) {
+        resolved = {
+          ...resolved,
+          x1: from ? from.x : resolved.x1,
+          y1: from ? from.y + from.h + 1.5 : resolved.y1,
+          x2: to ? to.x : resolved.x2,
+          y2: to ? to.y - to.h - 1.5 : resolved.y2,
+        };
+      }
+    }
+
+    // A camera move records what it should frame here, while the placement map is in scope.
+    // No target means "pull back to the whole board" (Manim's Restore).
+    focusRects.push(
+      resolved.kind === "focus" ? (resolved.targetId ? placed.get(resolved.targetId) ?? null : null) : null,
+    );
+
+    const box = boundsOf(resolved);
+    if ("id" in resolved && resolved.id) placed.set(resolved.id, box);
+    // Only text competes for space in a way worth avoiding; shapes are meant to be drawn on.
+    if (resolved.kind === "label" || resolved.kind === "note") occupied.push(box);
+    return resolved;
+  });
+
+  return { ops: resolvedOps, focusRects };
+}
+
+/** Full-board viewBox, and the value every camera move returns to. */
+const FULL_FRAME: ViewBox = { x: 0, y: 0, w: VB_W, h: VB_H };
+
+interface ViewBox {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+/**
+ * Turns a target's bounds and a zoom `scale` into a viewBox, kept inside the board.
+ *
+ * Clamping to the board edges matters more than centring perfectly: a camera that frames a
+ * corner element by showing empty space outside the board looks broken, whereas one that
+ * slides to keep the frame full reads as a deliberate pan.
+ */
+function frameFor(target: Bounds | null, scale: number): ViewBox {
+  if (!target) return FULL_FRAME;
+  const w = Math.max(160, Math.min(VB_W, VB_W * scale));
+  const h = Math.max(90, Math.min(VB_H, VB_H * scale));
+  return {
+    x: Math.max(0, Math.min(VB_W - w, gx(target.x) - w / 2)),
+    y: Math.max(0, Math.min(VB_H - h, gy(target.y) - h / 2)),
+    w,
+    h,
+  };
+}
+
 /** Where the pen should sit while an op draws (its "starting nib" point, or its current
  *  travel position for a morph in progress). */
 function anchorOf(op: DrawOp, elapsed: number, startMs: number, windowMs: number, duration: number, paperSurface: boolean): Pt {
@@ -318,16 +647,15 @@ function anchorOf(op: DrawOp, elapsed: number, startMs: number, windowMs: number
     case "shape":
       if (op.points && op.points.length) return op.points[0];
       return { x: op.x, y: op.y };
+    // Both travel cases ease rather than track linearly: the pen is the largest moving thing
+    // on the board, so a constant-velocity glide is exactly where "a script is playing" reads
+    // instead of "someone is drawing".
     case "morph": {
-      const travelStart = startMs;
-      const travelEnd = op.morphAt * duration;
-      const t = travelEnd > travelStart ? clamp01((elapsed - travelStart) / (travelEnd - travelStart)) : 1;
+      const t = phase(elapsed, startMs, op.morphAt * duration);
       return { x: lerp(op.x, op.toX, t), y: lerp(op.y, op.toY, t) };
     }
     case "motion": {
-      const travelStart = startMs;
-      const travelEnd = op.endAt * duration;
-      const t = travelEnd > travelStart ? clamp01((elapsed - travelStart) / (travelEnd - travelStart)) : 1;
+      const t = phase(elapsed, startMs, op.endAt * duration);
       return { x: lerp(op.x1 ?? op.cx ?? 50, op.x2 ?? op.cx ?? 50, t), y: lerp(op.y1 ?? op.cy ?? 50, op.y2 ?? op.cy ?? 50, t) };
     }
     case "scene":
@@ -344,16 +672,18 @@ function anchorOf(op: DrawOp, elapsed: number, startMs: number, windowMs: number
       // Never reaches the renderer — VisualDirector unwraps its inner ops into LiveSketch.
       // Kept only for exhaustive type safety.
       return { x: 50, y: 50 };
+    case "focus":
+      // Camera-only; the pen never follows it (filtered out of drawingNow).
+      return { x: 50, y: 50 };
+    case "manimScene":
+      // Rendered as video by ManimBoard, never drawn here. Kept for exhaustive type safety.
+      return { x: 50, y: 50 };
+    case "structureScene":
+      // Rendered by StructureBoard from a layout-engine result; this board has no equivalent.
+      return { x: 50, y: 50 };
     default:
       return { x: op.x, y: op.y };
   }
-}
-
-function clamp01(n: number) {
-  return Math.max(0, Math.min(1, n));
-}
-function lerp(a: number, b: number, t: number) {
-  return a + (b - a) * t;
 }
 
 /** Greedily wraps text into lines of at most `maxChars`, so note sentences fit the board. */
@@ -613,6 +943,12 @@ function OpRenderer({
   if (op.kind === "reactAnimation") return null;
   // chalkBoard is unwrapped by VisualDirector before LiveSketch; guard for type safety.
   if (op.kind === "chalkBoard") return null;
+  // `focus` draws nothing — it only moves the camera, handled in LiveSketchClock.
+  if (op.kind === "focus") return null;
+  // `manimScene` is rendered as video by ManimBoard; this board has no equivalent.
+  if (op.kind === "manimScene") return null;
+  // `structureScene` is rendered by StructureBoard from computed geometry; same reasoning.
+  if (op.kind === "structureScene") return null;
 
   const paperSurface = surface === "paper";
   const color = op.color ?? (paperSurface ? "#6b7280" : INK);
@@ -624,6 +960,10 @@ function OpRenderer({
 
   if (op.kind === "motion") {
     return <MotionRenderer op={op} startMs={startMs} elapsed={elapsed} duration={duration} seed={seed} />;
+  }
+
+  if (op.kind === "indicate" || op.kind === "circumscribe" || op.kind === "flash") {
+    return <EmphasisRenderer op={op} startMs={startMs} elapsed={elapsed} duration={duration} paperSurface={paperSurface} />;
   }
 
   if (op.kind === "scene") {
@@ -828,6 +1168,97 @@ function OpRenderer({
   );
 }
 
+/**
+ * Emphasis marks that peak and then release — Manim's Indicate, Circumscribe and Flash.
+ *
+ * All three ride `thereAndBackWithPause`: out, HOLD, back. The hold is the point. Without it
+ * the mark is a flicker the eye cannot land on; with it the student gets a beat to actually
+ * read what is being pointed at. That is also why these leave no permanent ink — a board
+ * where every emphasis is still visible is a board with no emphasis at all.
+ */
+function EmphasisRenderer({
+  op,
+  startMs,
+  elapsed,
+  duration,
+  paperSurface,
+}: {
+  op: Extract<DrawOp, { kind: "indicate" | "circumscribe" | "flash" }>;
+  startMs: number;
+  elapsed: number;
+  duration: number;
+  paperSurface: boolean;
+}) {
+  const endMs = typeof op.endAt === "number" ? op.endAt * duration : startMs + EMPHASIS_WINDOW;
+  const t = endMs > startMs ? clamp01((elapsed - startMs) / (endMs - startMs)) : 1;
+  if (t <= 0 || t >= 1) return null;
+
+  const pulse = thereAndBackWithPause(t);
+  const color = op.color ?? (paperSurface ? "#be185d" : "#fbbf24");
+  const cx = gx(op.x);
+  const cy = gy(op.y);
+  const halfW = gx((op.w ?? 14) / 2);
+  const halfH = gy((op.h ?? 10) / 2);
+
+  if (op.kind === "indicate") {
+    // Scale up about the target's centre and wash it in the accent colour. Manim's Indicate
+    // scales to 1.2; on a dense board that is enough to notice without displacing neighbours.
+    const scale = 1 + 0.2 * pulse;
+    return (
+      <g transform={`translate(${cx} ${cy}) scale(${scale}) translate(${-cx} ${-cy})`} opacity={pulse}>
+        <ellipse cx={cx} cy={cy} rx={halfW} ry={halfH} fill={color} fillOpacity={0.22 * pulse} stroke={color} strokeWidth={3} strokeOpacity={0.85} />
+      </g>
+    );
+  }
+
+  if (op.kind === "circumscribe") {
+    // The mark draws itself on (dash offset) before the pulse holds, so it reads as a hand
+    // ringing something rather than a box fading in on top of it.
+    const drawIn = clamp01(t / 0.35);
+    const common = {
+      fill: "none" as const,
+      stroke: color,
+      strokeWidth: 4,
+      strokeLinecap: "round" as const,
+      pathLength: 1,
+      strokeDasharray: 1,
+      strokeDashoffset: 1 - drawIn,
+      opacity: pulse,
+    };
+    return op.shape === "ellipse" ? (
+      <ellipse cx={cx} cy={cy} rx={halfW + 8} ry={halfH + 8} {...common} />
+    ) : (
+      <rect x={cx - halfW - 8} y={cy - halfH - 8} width={(halfW + 8) * 2} height={(halfH + 8) * 2} rx={10} {...common} />
+    );
+  }
+
+  // Flash: rays radiating out from a point, fading as they travel. For "this just happened".
+  const rays = 12;
+  const inner = Math.max(halfW, halfH) * 0.55;
+  const outer = inner + 26 * pulse;
+  return (
+    <g opacity={pulse}>
+      {Array.from({ length: rays }, (_, i) => {
+        const angle = (i / rays) * Math.PI * 2;
+        const dx = Math.cos(angle);
+        const dy = Math.sin(angle);
+        return (
+          <line
+            key={i}
+            x1={cx + dx * inner}
+            y1={cy + dy * inner}
+            x2={cx + dx * outer}
+            y2={cy + dy * outer}
+            stroke={color}
+            strokeWidth={3}
+            strokeLinecap="round"
+          />
+        );
+      })}
+    </g>
+  );
+}
+
 function MotionRenderer({
   op,
   startMs,
@@ -856,8 +1287,10 @@ function MotionRenderer({
   const labelY = lerp(y1, y2, Math.min(0.78, Math.max(0.35, travel))) - 18;
 
   // Shared spline so traveling orbs accelerate out and decelerate in instead of moving at
-  // constant speed — the single cheapest "this looks hand-animated" upgrade.
-  const EASE = { calcMode: "spline", keyPoints: "0;1", keyTimes: "0;1", keySplines: "0.42 0 0.24 1" } as const;
+  // constant speed — the single cheapest "this looks hand-animated" upgrade. The spline is
+  // the bezier approximation of `smooth` (lib/anim/rate), so SMIL-driven motion here and
+  // JS-driven motion everywhere else agree on how a move should feel.
+  const EASE = { calcMode: "spline", keyPoints: "0;1", keyTimes: "0;1", keySplines: SMOOTH_SPLINE } as const;
 
   if (op.motion === "orbit") {
     const orbitPath = `M ${cx - r} ${cy} A ${r} ${r * 0.58} 0 1 0 ${cx + r} ${cy} A ${r} ${r * 0.58} 0 1 0 ${cx - r} ${cy}`;
@@ -1073,21 +1506,15 @@ function CalloutRenderer({
 }
 
 /**
- * Staggered build-in: element i of n gets its own 0→1 entrance curve inside the first
- * `window` fraction of scene progress, so nodes/tags pop in one-by-one instead of all
- * appearing with the card. Returns 0 before the element's slot, 1 once it has landed.
+ * Staggered build-in: element i of n gets its own eased 0→1 entrance curve, so nodes/tags
+ * arrive one-by-one instead of all appearing with the card.
+ *
+ * Now a thin wrapper over `lagged` (lib/anim/compose) — Manim's LaggedStart. The visible
+ * change from the old hand-rolled version is that each element's own entrance is eased
+ * rather than linear, and per-element pace no longer shrinks as the list grows.
  */
-function stagger(progress: number, i: number, n: number, window = 0.42): number {
-  const slot = window / Math.max(1, n);
-  const start = 0.08 + i * slot;
-  return clamp01((progress - start) / Math.max(0.001, slot * 1.4));
-}
-
-/** Spring-ish ease with a small overshoot (~4%) that settles — the "pop" in pop-in. */
-function springPop(t: number): number {
-  if (t <= 0) return 0;
-  if (t >= 1) return 1;
-  return 1 - Math.exp(-5.2 * t) * Math.cos(9 * t);
+function stagger(progress: number, i: number, n: number, lagRatio = 0.34): number {
+  return lagged(progress, i, n, { lagRatio, delay: 0.08 });
 }
 
 /** Wraps children in a scale-about-point transform driven by a spring entrance. */
@@ -1117,8 +1544,11 @@ function SceneRenderer({
 }) {
   const localElapsed = Math.max(0, elapsed - startMs);
   const endMs = (op.endAt ?? Math.min(0.96, op.at + 0.58)) * duration;
+  // Scene progress stays LINEAR on purpose: the templates below slice it into per-element
+  // windows via `stagger`, and easing it twice would double-apply the curve. Easing belongs
+  // on each element's own entrance, not on the timeline that schedules them.
   const progress = endMs > startMs ? clamp01((elapsed - startMs) / (endMs - startMs)) : 1;
-  const reveal = clamp01(localElapsed / 650);
+  const reveal = phase(localElapsed, 0, 650);
   const color = op.color ?? "#5eead4";
   const items = sceneItems(op, contextTitle).slice(0, 4);
   const cleanTitle = op.title && !isFillerSceneText(op.title) ? op.title : undefined;
@@ -1128,8 +1558,7 @@ function SceneRenderer({
 
   // Spring scale-in entrance about the card center, then a very slow breathing scale via the
   // nested animateTransform — gentle camera life without touching any child coordinates.
-  const cardT = clamp01(localElapsed / 480);
-  const cardScale = 0.92 + 0.08 * springPop(cardT);
+  const cardScale = 0.92 + 0.08 * springPop(clamp01(localElapsed / 480));
 
   return (
     <g opacity={reveal} transform={`translate(500 300) scale(${cardScale}) translate(-500 -300)`}>
@@ -1779,8 +2208,9 @@ function SceneText({
 /**
  * A piece that visibly travels across the board and relabels/recolors partway through —
  * this is what makes "water splits, pieces recombine into sugar" an animation instead of
- * a static reveal. Position interpolates linearly; label/color swap at the travel midpoint
- * (so it reads as "this became that" rather than two unrelated objects).
+ * a static reveal. Position eases out of rest and settles at the destination; label/color
+ * swap at the travel midpoint (so it reads as "this became that" rather than two unrelated
+ * objects).
  */
 function MorphRenderer({
   op,
@@ -1796,7 +2226,7 @@ function MorphRenderer({
   seed: string;
 }) {
   const travelEnd = op.morphAt * duration;
-  const t = travelEnd > startMs ? clamp01((elapsed - startMs) / (travelEnd - startMs)) : 1;
+  const t = phase(elapsed, startMs, travelEnd);
   const motion: Extract<DrawOp, { kind: "motion" }> = {
     kind: "motion",
     motion: "flow",

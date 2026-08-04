@@ -99,8 +99,22 @@ type LabelOp = Extract<DrawOp, { kind: "label" }>;
 type NoteOp = Extract<DrawOp, { kind: "note" }>;
 type CalloutOp = Extract<DrawOp, { kind: "callout" }>;
 const MAX_SUPRNOTES_SVG_BOARDS = 8;
-const MIN_PROMPTED_SVG_BOARDS = 4;
-const MAX_PROMPTED_SVG_BOARDS = 6;
+/**
+ * How many React-sandbox SVG boards composePromptedSuprnotesBoards FORCES onto a lecture.
+ *
+ * This — not the lecture prompt — is what actually decides how many sandbox boards a student
+ * sees. It was 4-6, so every attempt to shrink their share by editing the prompt was overridden
+ * a few lines later by this pass, which is exactly why a quota change from "4-5" to "3-4"
+ * measured 5 boards instead of 3.
+ *
+ * The sandbox is the last renderer that asks the model for absolute coordinates, and it produces
+ * the boards that read worst (labels stacked inside one shape, text off the canvas). Capping it
+ * hands those beats to the chalk/paper boards, whose content is authored server-side and laid out
+ * by code. Raise REACT_ANIMATION_BEAT_CAP to restore the old behaviour.
+ */
+const PROMPTED_SVG_BOARD_CAP = Math.max(0, Math.min(12, Number(process.env.REACT_ANIMATION_BEAT_CAP ?? 2)));
+const MIN_PROMPTED_SVG_BOARDS = PROMPTED_SVG_BOARD_CAP;
+const MAX_PROMPTED_SVG_BOARDS = PROMPTED_SVG_BOARD_CAP;
 type LessonPlanBeat = {
   id?: string;
   title?: string;
@@ -333,6 +347,13 @@ export function composePromptedSuprnotesBoards(beats: Beat[]): number {
   let changed = 0;
 
   for (const { beat, index, block } of teaching) {
+    // A TYPE D diagram beat is already a complete, self-contained board: one `manimScene` op whose
+    // video is rendered later from its sceneBrief/spec. Composing a paper board over it destroys
+    // the op — and because this pass runs BEFORE fillManimSceneOps, the fill then found nothing to
+    // build and the diagram never reached the player at all.
+    // Same for a TYPE E morph board: its shape/morph ops ARE the finished GSAP artwork, and no
+    // later fill step rebuilds them, so composing a paper board over it loses the beat outright.
+    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene")) continue;
     const trustedReferenceImage = beat.draw?.ops.some(
       (op) => op.kind === "image"
         && typeof op.assetId === "string"
@@ -539,6 +560,12 @@ export function applySuprnotesPaperLayout(beats: Beat[], sourceDocument: Suprnot
     const animationOp = beat.draw.ops.find((op) => op.kind === "reactAnimation");
     if (animationOp) continue;
 
+    // A TYPE D diagram beat is rendered as Manim video from its scene spec — it has no paper text
+    // to lay out. Without this escape it matches none of the cases above, falls through to
+    // layoutPaperTextBoard below, and its single `manimScene` op is rewritten away entirely.
+    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene");
+    if (diagramOp) continue;
+
     const hasStructuredInk = beat.draw.ops.some(
       (op) => op.kind === "shape" || op.kind === "arrow" || op.kind === "underline" || op.kind === "circleHighlight"
     );
@@ -576,6 +603,12 @@ export function applyPaperLayout(beats: Beat[]): void {
 
     const animationOp = beat.draw.ops.find((op) => op.kind === "reactAnimation");
     if (animationOp) continue;
+
+    // A TYPE D diagram beat is rendered as Manim video from its scene spec — it has no paper text
+    // to lay out. Without this escape it matches none of the cases above, falls through to
+    // layoutPaperTextBoard below, and its single `manimScene` op is rewritten away entirely.
+    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene");
+    if (diagramOp) continue;
 
     const hasStructuredInk = beat.draw.ops.some(
       (op) => op.kind === "shape" || op.kind === "arrow" || op.kind === "underline" || op.kind === "circleHighlight"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ANIM_SANDBOX_RUNTIME } from "../../lib/anim/sandboxRuntime";
 
 /**
  * Renders an LLM-generated React component (a `reactAnimation` DrawOp's `code` string) live,
@@ -109,6 +110,10 @@ svg text{
   var hasErrored = false;
   var timelineFrame = 0;
 
+  // Easing/composition helpers, declared before the generated component runs so it can call
+  // them by name. Function declarations hoist, so they are in scope inside the try block below.
+${ANIM_SANDBOX_RUNTIME}
+
   function postToParent(msg) {
     try { window.parent.postMessage(msg, "*"); } catch (e) {}
   }
@@ -213,8 +218,6 @@ svg text{
     }
     steps.sort(function (a, b) { return numberAttr(a, "data-teach-order", 0) - numberAttr(b, "data-teach-order", 0); });
     var weights = steps.map(function (step) { return Math.max(0.35, numberAttr(step, "data-teach-weight", 1)); });
-    var total = weights.reduce(function (sum, weight) { return sum + weight; }, 0);
-    var cursor = 0;
     var active = null;
     var activeLocal = 0;
     var sentenceRanges = new Map();
@@ -239,7 +242,15 @@ svg text{
       });
     }
 
+    var weightedRanges = successionRanges(weights);
+
     steps.forEach(function (step, index) {
+      var kind = step.getAttribute("data-teach-kind") || "diagram";
+      // Drawn contours ease (Manim's default on Create) so a stroke accelerates out of rest
+      // and settles. Handwriting does NOT: a hand writes a line at a fairly even pace, and
+      // easing a whole text line makes the middle words visibly sprint. Previously everything
+      // was raw linear, which is why traced contours read like a progress bar dragging a line.
+      var ease = kind === "write" || kind === "label" ? null : smooth;
       var local = 0;
       if (sentenceTimed) {
         var stepSentence = Math.max(0, Math.min(Math.max(0, sentenceTotal - 1), numberAttr(step, "data-teach-sentence", 0)));
@@ -248,14 +259,11 @@ svg text{
           ? 1
           : sentenceIndex < stepSentence
             ? 0
-            : Math.max(0, Math.min(1, (sentenceProgress - range.start) / Math.max(0.001, range.end - range.start)));
+            : phase(sentenceProgress, range.start, range.end, ease || clamp01);
       } else {
-        var start = cursor / total;
-        cursor += weights[index];
-        var end = cursor / total;
-        local = Math.max(0, Math.min(1, (progress - start) / Math.max(0.001, end - start)));
+        var timelineRange = weightedRanges[index] || { start: 0, end: 1 };
+        local = phase(progress, timelineRange.start, timelineRange.end, ease || clamp01);
       }
-      var kind = step.getAttribute("data-teach-kind") || "diagram";
       step.style.opacity = local <= 0 ? "0" : "1";
       step.style.transition = "none";
       if (kind === "write" || kind === "label") {

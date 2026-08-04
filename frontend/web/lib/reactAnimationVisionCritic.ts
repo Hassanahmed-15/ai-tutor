@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { createElement, type ReactNode } from "react";
 import type { Beat } from "./lessonContent";
+import { ANIM_SANDBOX_RUNTIME } from "./anim/sandboxRuntime";
 
 /**
  * Vision-based shape-recognizability critic for generated `reactAnimation` whiteboard SVGs.
@@ -94,7 +95,13 @@ async function renderStaticFrame(code: string): Promise<string | null> {
       if (name === "react") return { createElement };
       throw new Error(`unexpected require("${name}") in generated animation code`);
     };
-    const factory = new Function("module", "exports", "require", "React", transpiled);
+    // The generated component calls the animation helpers the SANDBOX injects at runtime —
+    // `phase`, `smooth`, `lagged`, `thereAndBack`, and friends. Without them every real board
+    // threw "phase is not defined" here, renderStaticFrame returned null, and both critics
+    // degraded to ok:true. The whole rendered-output quality layer was therefore silently inert
+    // on every lecture ever generated, which is exactly how overlapping and clipped boards
+    // reached the player. Prepending the same runtime the sandbox uses keeps the two in step.
+    const factory = new Function("module", "exports", "require", "React", `${ANIM_SANDBOX_RUNTIME}\n${transpiled}`);
     const ReactGlobal = { createElement };
     factory(fakeModule, fakeModule.exports, fakeRequire, ReactGlobal);
     const Animation = fakeModule.exports.default;
@@ -153,6 +160,103 @@ const SYSTEM_PROMPT =
   "string if score is 5.";
 
 export type ShapeCritique = { ok: boolean; score: number; issue?: string; costUsd: number };
+
+/* ── Layout critic ────────────────────────────────────────────────────────────
+ * Geometry needs no vision model. The prompt already asks the model to reserve text as
+ * {x,y,w,h} rectangles and keep them inside x=64..936 / y=122..500 without overlapping — it
+ * simply does not comply, and nothing checked. Observed on a real Pythagoras board: a "3" and a
+ * "c" printed on top of each other as "3c", and the final line "c² = 25 -> c = 5" clipped off the
+ * bottom edge.
+ *
+ * So this measures the ACTUAL rendered frame instead of asking. It reuses renderStaticFrame (the
+ * same transpile+render the shape critic uses) and applies the prompt's own width estimate to each
+ * <text>. Deterministic, free, and — unlike the shape critic — meaningful for abstract boards,
+ * which is exactly where it was missing.
+ *
+ * Deliberately conservative: it flags only unambiguous breakage (a box substantially outside the
+ * frame, or two text boxes overlapping by more than a third of the smaller one), because a false
+ * rejection costs a whole regeneration round.
+ */
+/**
+ * The OUTER bound, deliberately not the content bound. The prompt gives two bands — title at
+ * x=54..946 / y=30..104 and teaching content at x=64..936 / y=122..500 — so checking every text
+ * against the content band alone rejected all four boards of a good lecture purely for having a
+ * heading. This is the union plus a small tolerance: it still catches the real failure (a line
+ * pushed off the bottom edge) without punishing a correctly placed title.
+ */
+const FRAME = { x0: 54, x1: 946, y0: 26, y1: 508 };
+
+type TextBox = { text: string; x: number; y: number; w: number; h: number };
+
+/** The prompt's own estimate: width = 0.62 * fontSize * chars, height = 1.35 * fontSize. */
+function textBoxes(svg: string): TextBox[] {
+  const boxes: TextBox[] = [];
+  const re = /<text\b([^>]*)>([\s\S]*?)<\/text>/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(svg))) {
+    const attrs = m[1];
+    const content = m[2].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+    if (!content) continue;
+    const num = (name: string) => {
+      const hit = new RegExp(name + '\\s*=\\s*"([-\\d.]+)"').exec(attrs);
+      return hit ? Number(hit[1]) : null;
+    };
+    const x = num("x");
+    const y = num("y");
+    if (x === null || y === null) continue;
+    const fs = num("font-size") ?? (/font-size:\s*([\d.]+)/.exec(attrs)?.[1] ? Number(/font-size:\s*([\d.]+)/.exec(attrs)![1]) : 16);
+    const anchor = /text-anchor\s*=\s*"(middle|end)"/.exec(attrs)?.[1];
+    const w = 0.62 * fs * content.length;
+    const h = 1.35 * fs;
+    // x is the anchor point, not the left edge; y is the baseline, not the top.
+    const left = anchor === "middle" ? x - w / 2 : anchor === "end" ? x - w : x;
+    boxes.push({ text: content, x: left, y: y - h * 0.78, w, h });
+  }
+  return boxes;
+}
+
+function overlapArea(a: TextBox, b: TextBox): number {
+  const dx = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+  const dy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+  return dx > 0 && dy > 0 ? dx * dy : 0;
+}
+
+export type LayoutCritique = { ok: boolean; issue?: string };
+
+/** Measures the rendered frame's text layout. Degrades to ok on any render failure, exactly like
+ *  the shape critic — a bug in here must never block a lecture. */
+export async function critiqueLayout(code: string): Promise<LayoutCritique> {
+  if (!ENABLED) return { ok: true };
+  const svg = await renderStaticFrame(code);
+  if (!svg) return { ok: true };
+  const boxes = textBoxes(svg);
+  if (boxes.length === 0) return { ok: true };
+
+  const clipped = boxes.find(
+    (b) => b.x < FRAME.x0 - 10 || b.x + b.w > FRAME.x1 + 10 || b.y < FRAME.y0 - 10 || b.y + b.h > FRAME.y1 + 10,
+  );
+  if (clipped) {
+    return {
+      ok: false,
+      issue: `the text "${clipped.text.slice(0, 40)}" is outside the safe frame (measured x ${Math.round(clipped.x)}..${Math.round(clipped.x + clipped.w)}, y ${Math.round(clipped.y)}..${Math.round(clipped.y + clipped.h)}; allowed x ${FRAME.x0}..${FRAME.x1}, y ${FRAME.y0}..${FRAME.y1}), so it renders clipped by the board edge`,
+    };
+  }
+
+  for (let i = 0; i < boxes.length; i++) {
+    for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i];
+      const b = boxes[j];
+      const area = overlapArea(a, b);
+      if (area > 0.34 * Math.min(a.w * a.h, b.w * b.h)) {
+        return {
+          ok: false,
+          issue: `the labels "${a.text.slice(0, 24)}" and "${b.text.slice(0, 24)}" are printed on top of each other (their boxes overlap), so they render as unreadable overlapping glyphs`,
+        };
+      }
+    }
+  }
+  return { ok: true };
+}
 
 /**
  * Critique a single generated animation's finished shape. Returns ok=true (never blocks) unless

@@ -9,7 +9,7 @@ import {
   type ReactAnimationCodeDiagnostics,
   type ReactAnimationOp,
 } from "./drawSanitize";
-import { critiqueShapeRecognizability, reactAnimationVisionCriticEnabled } from "./reactAnimationVisionCritic";
+import { critiqueLayout, critiqueShapeRecognizability, reactAnimationVisionCriticEnabled } from "./reactAnimationVisionCritic";
 
 /**
  * Second step of the two-step generate-then-render pipeline for ANIMATION beats, mirroring
@@ -550,6 +550,9 @@ async function generateOne(
   // "Animation unavailable" card. A candidate only counts once it's confirmed to transpile.
   type BestCandidate = { code: string; score: number };
   let best: BestCandidate | null = null;
+  // The best candidate that also passed the rendered-layout check, kept separately so the
+  // ACCEPT_BEST fallback below can prefer a well-laid-out board over a higher-scoring broken one.
+  let bestLayoutClean: BestCandidate | null = null;
   const scoreOf = (d: ReactAnimationCodeDiagnostics) =>
     (d.primitiveScore ?? 0) + 2 * (d.timelineStepCount ?? 0) + 2 * (d.groupCount ?? 0);
   // Returns a runnable candidate that beats `best`, or null. Assignment happens in the outer scope
@@ -604,9 +607,21 @@ async function generateOne(
           : null);
       if (generationIssue) {
         await saveDebugSvgCandidate(beat, op, code, generationIssue);
-        best = (await runnableCandidate(code, diagnostics, false)) ?? best; // keep it if it runs
+        const candidate: BestCandidate | null = (await runnableCandidate(code, diagnostics, false)) ?? best; // keep it if it runs
+        best = candidate;
+        // Sub-floor candidates are the ones ACCEPT_BEST actually ships, so it is worth knowing
+        // which of them at least render without overlapping or clipped text. No model call —
+        // critiqueLayout only rasterises and measures.
+        if (candidate && candidate.code === code && (await critiqueLayout(code)).ok) {
+          bestLayoutClean = candidate;
+        }
         const stalled = isStalled(previousFailure?.diagnostics, diagnostics);
         previousFailure = { issue: generationIssue, diagnostics, code, stalled };
+        // Feed the layout fault back too, so the retry fixes placement as well as density.
+        const layoutOnFail = await critiqueLayout(code);
+        if (!layoutOnFail.ok) {
+          previousFailure.issue = `${generationIssue}. Also, the rendered board has a layout fault: ${layoutOnFail.issue}. A line of N characters at font-size F is about 0.62*F*N px wide, so on this 1000px board a 34px heading must stay under ~42 characters and a 24px body line under ~58. SHORTEN THE WORDING to fit — do not shrink the font, and do not let two text boxes intersect.`;
+        }
         continue;
       }
 
@@ -673,6 +688,24 @@ async function generateOne(
         }
       }
 
+      // Layout critic: measures the ACTUAL rendered text boxes for overlap and for anything
+      // pushed outside the safe frame. Unlike the shape critic above this runs for abstract
+      // boards too — geometry is exactly as wrong on a maths board, and those were the only ones
+      // with no rendered-output check at all. Costs nothing (no model call) and degrades to ok.
+      const layout = await critiqueLayout(code);
+      if (!layout.ok) {
+        console.error(`[anim] beat=${beat.id} layout reject: ${layout.issue}`);
+        await saveDebugSvgCandidate(beat, op, code, layout.issue ?? "layout violation");
+        best = (await runnableCandidate(code, diagnostics, true)) ?? best;
+        previousFailure = {
+          issue: `The rendered board has a layout fault: ${layout.issue}. A line of N characters at font-size F is about 0.62*F*N px wide, so on this 1000px board a 34px heading must stay under ~42 characters and a 24px body line under ~58. SHORTEN THE WORDING to fit inside x=64..936, y=122..500, and make sure no two text boxes intersect — do not shrink the font to force a fit.`,
+          diagnostics,
+          code,
+          stalled: false,
+        };
+        continue;
+      }
+
       const validated = sanitizeReactAnimationOp({ ...op, code }, { abstract });
       if (validated.code) {
         op.code = validated.code;
@@ -699,6 +732,14 @@ async function generateOne(
   // ACCEPT_BEST: no attempt cleared the full floor, but if we captured a runnable candidate, ship it
   // rather than showing nothing. A real (slightly-below-floor) animation beats the "unavailable" card.
   if (best) {
+    // Prefer a candidate whose LAYOUT is sound over one with a marginally higher primitive score.
+    // This path ships a below-floor board by design, so the tie-break should be the fault a student
+    // actually sees: overlapping labels and text clipped by the frame ruin a board far more than a
+    // slightly thin primitive count does.
+    if (bestLayoutClean && bestLayoutClean.code !== best.code) {
+      console.error(`[anim] beat=${beat.id} preferring layout-clean candidate over higher-scoring one.`);
+      best = bestLayoutClean;
+    }
     // requireQuality:false — the best candidate already transpiles and passed the safety gate; ship
     // it even though it's below the quality floor, rather than discarding to "unavailable".
     const validated = sanitizeReactAnimationOp({ ...op, code: best.code }, { requireQuality: false, abstract });

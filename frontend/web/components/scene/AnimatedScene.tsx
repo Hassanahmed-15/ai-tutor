@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { arrangeRadial } from "../../lib/anim/arrange";
+import { laggedRange } from "../../lib/anim/compose";
+import { useReducedMotion } from "../../lib/anim/useReducedMotion";
 
 export type AnimationTemplate = "process" | "shrink" | "cycle" | "build" | "compare" | "transform";
 
@@ -27,21 +30,37 @@ const TICK_MS = 1500;
  * template paints that clock differently. Topic-agnostic — the reasoning layer (mock or
  * LLM) picks the template + fills the steps, this just animates whatever it's handed.
  */
-export function AnimatedScene({ scene }: { scene: AnimatedScene }) {
+export function AnimatedScene({ scene, progress }: { scene: AnimatedScene; progress?: number }) {
   // Re-mount (resetting the animation clock) whenever the beat's scene changes, so the
   // inner component can start from active=0 via useState initialiser — no setState-in-effect.
   const sceneKey = `${scene.template}:${scene.steps.map((s) => s.id).join(",")}`;
-  return <SceneClock key={sceneKey} scene={scene} />;
+  return <SceneClock key={sceneKey} scene={scene} progress={progress} />;
 }
 
-function SceneClock({ scene }: { scene: AnimatedScene }) {
+function SceneClock({ scene, progress }: { scene: AnimatedScene; progress?: number }) {
   const stepCount = Math.max(1, scene.steps.length);
-  const [active, setActive] = useState(0);
+  const [ticked, setTicked] = useState(0);
+  const reducedMotion = useReducedMotion();
+
+  // A caller that has a narration clock passes `progress`, and the scene follows the words.
+  // The free-running TICK_MS interval is the fallback for standalone/demo use: it can never
+  // line up with what the tutor is saying, because nothing tells it what that is.
+  const externallyDriven = typeof progress === "number";
 
   useEffect(() => {
-    const id = setInterval(() => setActive((a) => (a + 1) % (stepCount + 1)), TICK_MS);
+    if (externallyDriven || reducedMotion) return;
+    const id = setInterval(() => setTicked((a) => (a + 1) % (stepCount + 1)), TICK_MS);
     return () => clearInterval(id);
-  }, [stepCount]);
+  }, [stepCount, externallyDriven, reducedMotion]);
+
+  // Narration-driven: map 0-1 onto step indices, holding the last step to the end rather
+  // than wrapping. Reduced motion: jump straight to the completed scene.
+  const sceneProgress = externallyDriven ? Math.max(0, Math.min(1, progress)) : 0;
+  const active = externallyDriven
+    ? Math.min(stepCount - 1, Math.floor(sceneProgress * stepCount))
+    : reducedMotion
+      ? stepCount - 1
+      : ticked;
 
   return (
     <section className="relative flex min-h-[640px] flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-[#0b1020] p-8 text-white">
@@ -176,13 +195,19 @@ function CycleScene({ steps, active }: { steps: SceneStep[]; active: number }) {
   const cx = 0;
   const cy = 0;
   const cur = active % n;
+  // Ring positions come from the shared arrangeRadial (lib/anim/arrange) so this and
+  // LiveSketch's CycleScene finally agree on where node 0 sits. arrangeRadial works on the
+  // 0-100 board grid, so map its output back onto this scene's centred SVG coordinates.
+  const ring = arrangeRadial(n, { center: { x: 50, y: 50 }, radius: 50 });
+  const toLocal = (p: { x: number; y: number }) => ({
+    x: cx + ((p.x - 50) / 50) * radius,
+    y: cy + ((p.y - 50) / 50) * (radius / 0.62),
+  });
   return (
     <svg viewBox="-260 -240 520 480" className="h-[460px] w-full">
       <circle cx={cx} cy={cy} r={radius} fill="none" stroke="rgba(129,140,248,0.25)" strokeWidth={2} strokeDasharray="6 8" />
       {steps.map((step, i) => {
-        const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
-        const x = cx + Math.cos(angle) * radius;
-        const y = cy + Math.sin(angle) * radius;
+        const { x, y } = toLocal(ring[i]);
         const isActive = i === cur;
         return (
           <g key={step.id} style={{ transition: "all 600ms" }}>
@@ -232,6 +257,13 @@ function CycleArrow({ from, to, n, radius, lit }: { from: number; to: number; n:
 /* ----------------------------- build ----------------------------- */
 // Parts assemble into a whole, one piece at a time, stacking up. For "how X is made /
 // composed" concepts.
+//
+// The per-piece offset comes from `laggedRange` (Manim's LaggedStart) rather than a flat
+// `i * 40ms`: the schedule is normalised over the whole group, so the last piece of a
+// nine-item stack lands at the same point in the window as the last piece of a three-item
+// one, instead of trailing three times further behind.
+const BUILD_LAG = { lagRatio: 0.32 } as const;
+const BUILD_STAGGER_MS = 340;
 function BuildScene({ steps, active }: { steps: SceneStep[]; active: number }) {
   return (
     <div className="flex w-full flex-col items-center gap-3">
@@ -248,7 +280,7 @@ function BuildScene({ steps, active }: { steps: SceneStep[]; active: number }) {
                   : "translate-y-0 border-amber-400/40 bg-white/5 text-white opacity-100"
                 : "translate-y-6 border-white/10 bg-white/[0.02] text-white/30 opacity-0"
             }`}
-            style={{ transitionDelay: placed ? `${i * 40}ms` : "0ms" }}
+            style={{ transitionDelay: placed ? `${Math.round(laggedRange(i, steps.length, BUILD_LAG).start * BUILD_STAGGER_MS)}ms` : "0ms" }}
           >
             {step.label}
             {step.detail && isActive && <p className="mt-1 text-sm font-semibold text-amber-100/80">{step.detail}</p>}

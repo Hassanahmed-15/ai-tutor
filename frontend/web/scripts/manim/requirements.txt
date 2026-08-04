@@ -1,0 +1,27 @@
+# Manim beat renderer (scripts/manim/render_beat.py).
+#
+# Setup, from frontend/web/scripts/manim:
+#     python -m venv .venv
+#     .venv/Scripts/python.exe -m pip install -r requirements.txt      # Windows
+#     .venv/bin/python -m pip install -r requirements.txt              # macOS/Linux
+#
+# Verify the install without starting the app (renders the committed example beat):
+#     .venv/Scripts/python.exe render_beat.py example_beat.json out.mp4 --quality low
+# It should print one JSON line and leave a ~12s MP4 next to it.
+#
+# Then enable both flags (server + client mirror) in frontend/web/.env.local:
+#     MANIM_RENDER_ENABLED=1
+#     NEXT_PUBLIC_MANIM_RENDER_ENABLED=1
+#
+# Point lib/manimRender.ts at a different interpreter with MANIM_PYTHON_BINARY if the venv
+# lives elsewhere.
+#
+# NOTE: ffmpeg is required and is NOT a Python package. imageio-ffmpeg ships a static binary
+# and render_beat.py points Manim at it, so no system ffmpeg install is needed.
+#
+# NOT included: a LaTeX distribution. Manim only needs it for MathTex/Tex, which
+# render_beat.py does not use — all text goes through Text() (Pango). Install MiKTeX/TinyTeX
+# if you later want real equation typesetting.
+
+manim==0.20.1
+imageio-ffmpeg==0.6.0

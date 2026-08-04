@@ -172,6 +172,11 @@ export function useTeacherQuiz({
   );
 
   const startListening = useCallback(() => {
+    // The question's utterance fires this on end (and on blocked), so it can arrive AFTER the
+    // student has already skipped. Without this guard, skipping mid-question set the phase to
+    // "idle" and then the finishing utterance dragged it straight back to "listening" — the
+    // card reappeared and the mic reopened, which is exactly the "skip doesn't skip" bug.
+    if (settledRef.current) return;
     setPhase("listening");
     setHeard("");
 
@@ -247,11 +252,19 @@ export function useTeacherQuiz({
 
   const cancel = useCallback(() => {
     if (settledRef.current) return;
+    // Set FIRST: stopping the utterance can synchronously fire its onEnd, and the guard in
+    // startListening is what stops that callback reopening the quiz.
     settledRef.current = true;
+    // Skipping has to silence the teacher too. Previously cancel only tore down the mic and
+    // timers, so if the student skipped while she was still reading the question aloud she
+    // simply carried on asking it.
+    voice.stopUtterance();
     teardown();
     setPhase("idle");
     setKind(null);
-  }, [teardown]);
+    setHeard("");
+    setFeedback("");
+  }, [teardown, voice]);
 
   useEffect(() => () => teardown(), [teardown]);
 

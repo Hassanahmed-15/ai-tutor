@@ -35,3 +35,29 @@ coverage/
 # Misc
 *.tsbuildinfo
 .turbo/
+
+# Test build output (npm run test:anim)
+.test-build/
+
+# Manim renderer: venv, pip scratch, and rendered-beat cache
+frontend/web/scripts/manim/.venv/
+frontend/web/scripts/manim/.pip-tmp/
+frontend/web/scripts/manim/.pip-cache/
+frontend/web/scripts/manim/_smoke_media/
+frontend/web/scripts/manim/_out/
+frontend/web/scripts/manim/_frames/
+frontend/web/scripts/manim/_smoke.py
+frontend/web/.manim-cache/
+
+# Manim renderer: python bytecode, probe scripts and their rendered scratch output.
+# Only render_beat.py / render_worker.py / scenes.py / requirements.txt / example_beat.json
+# are real source; everything else under scripts/manim is generated while testing a render.
+frontend/web/scripts/manim/__pycache__/
+frontend/web/scripts/manim/_probe.py
+frontend/web/scripts/manim/_mk.py
+frontend/web/scripts/manim/_probe_media/
+frontend/web/scripts/manim/_specs/
+frontend/web/scripts/manim/_test_script.json
+
+# Dev-server logs written by the local runner
+frontend/web/.codex-dev.*.log

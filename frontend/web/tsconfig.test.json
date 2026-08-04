@@ -1,0 +1,24 @@
+{
+  "//": "Test-only build. The app targets a bundler (extensionless ESM imports), which Node's ESM loader cannot resolve, so tests compile to CommonJS in .test-build and run there via `node --test`. Run with `npm run test:anim`.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "outDir": ".test-build",
+    "noEmit": false,
+    "incremental": false,
+    "types": ["node"]
+  },
+  "include": [
+    "lib/anim/**/*.ts",
+    "lib/animationRouting.ts",
+    "lib/manimRouting.ts",
+    "lib/manimSceneSpec.ts",
+    "lib/structureSpec.ts",
+    "lib/structureLayout.ts",
+    "components/sketch/LiveSketch.tsx",
+    "components/whiteboard/sketch.ts"
+  ],
+  "exclude": ["node_modules"]
+}

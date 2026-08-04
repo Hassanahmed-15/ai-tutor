@@ -6,6 +6,8 @@ import { assertLectureDepth, lectureDepthStats, sanitizeDrawLecture, scriptWordC
 import { fillImageOps, pauseImageOps, type ImageFillStats } from "@/lib/imageGen";
 import { fillReactAnimationOps, type ReactAnimationFillStats } from "@/lib/reactAnimationGen";
 import { fillBlackboardOps, type BlackboardFillStats } from "@/lib/blackboardGen";
+import { fillManimSceneOps, type ManimSceneFillStats } from "@/lib/manimSceneGen";
+import { fillStructureSceneOps } from "@/lib/structureSceneGen";
 import { fillRealReferenceImage, type ReferenceImageStats } from "@/lib/referenceImageGen";
 import { describeAssetsWithVision } from "@/lib/imageVision";
 import { fillImageCalloutOpsIncremental } from "@/lib/imageCalloutGen";
@@ -45,6 +47,13 @@ const REACT_ANIMATIONS_ENABLED = process.env.REACT_ANIMATIONS_ENABLED === "1";
 // When off, drawSanitize keeps synthesizing blackboards from templates (no extra model call) and
 // no chalkBoard placeholders reach here to fill. Client mirror: NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED.
 const BLACKBOARD_GEN_ENABLED = process.env.BLACKBOARD_GEN_ENABLED === "1";
+// TYPE D diagram boards are only worth generating when Manim can actually render them.
+// Same switch the render API uses; client mirror: NEXT_PUBLIC_MANIM_RENDER_ENABLED.
+const MANIM_RENDER_ENABLED = process.env.MANIM_RENDER_ENABLED === "1";
+
+function disabledManimSceneStats(): ManimSceneFillStats {
+  return { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: ["MANIM_RENDER_ENABLED is not 1"] };
+}
 
 const REAL_REFERENCE_IMAGES_ENABLED = process.env.REAL_REFERENCE_IMAGES_ENABLED !== "0";
 
@@ -64,8 +73,14 @@ const REAL_REFERENCE_IMAGES_ENABLED = process.env.REAL_REFERENCE_IMAGES_ENABLED 
  */
 const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
 const TEXT_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_ATTEMPTS ?? 4)));
+// NOT the depth lever: measured completions run ~2,800-3,000 tokens with finish_reason "stop",
+// i.e. under 20% of this budget, so shallow lectures are the model choosing to write short rather
+// than running out of room. Raising this changes nothing; depth is recovered by deepenLectureScripts.
 const TEXT_MAX_TOKENS = Math.max(8_000, Math.min(16_000, Number(process.env.OPENAI_LECTURE_MAX_TOKENS ?? 14_000)));
-const DEEPEN_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 2)));
+// This IS the depth lever. First-pass generation measures ~79 words/teaching beat against a gate
+// of 100; the deepen pass is what lifts it to ~102-110, so the shallow-lecture error the user sees
+// is a deepen pass running out of attempts, not the first pass being bad. 3 is the clamp ceiling.
+const DEEPEN_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 3)));
 const PDF_BEATS_PER_GENERATION = Math.max(1, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 1)));
 const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
 
@@ -388,11 +403,14 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
       `${base}\nThe student uploaded a presentation. Slide content:\n---\n${input.slideContext}\n---\n` +
       `Use the slide text and data as your factual source (do not invent content). Choose board types in the same Suprnotes-style paper-whiteboard grammar: mostly whiteboard SVG diagrams and blackboards, with slide images only when they are truly useful evidence.` +
       `${diagramLine}${imageRefBlock}` +
-      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}`
+      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, one or two TYPE D diagram beats (a "manimScene" op) where the deck contains a curve or staged process, one TYPE E morph beat (a "morph" op) if anything in the deck literally turns into something else, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}`
     );
   }
 
-  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}`;
+  // The closing enumeration is the last thing the model reads, so it must name every board type
+  // that should appear. Omitting TYPE D here suppressed diagram beats entirely even when the
+  // system prompt required one — the model built exactly the three board types this line listed.
+  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, one or two TYPE D diagram beats (a "manimScene" op) for the curve or staged process at the heart of the topic, one TYPE E morph beat (a "morph" op) if anything in the topic literally turns into something else, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}`;
 }
 
 async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Promise<BaseLecture> {
@@ -669,11 +687,18 @@ export async function POST(req: Request) {
     // each "reactAnimation" op placeholder with generated component source — in parallel with
     // each other since they touch disjoint beats and are both I/O-bound. Individual failures
     // in either degrade gracefully (dropped image / explicit animation unavailable state).
-    const [imageCostUsd, referenceImageStats, reactAnimationStats, boardStats] = await Promise.all([
+    const [imageCostUsd, referenceImageStats, reactAnimationStats, boardStats, manimSceneStats, structureStats] = await Promise.all([
       IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages ? fillImageOps(client, base.beats) : Promise.resolve(disabledImageStats(base.beats).costUsd),
       REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument ? fillRealReferenceImage(client, base.beats) : Promise.resolve(disabledReferenceImageStats()),
       REACT_ANIMATIONS_ENABLED ? fillReactAnimationOps(client, base.beats) : Promise.resolve(disabledAnimationStats()),
       BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats, Boolean(input.sourceDocument)) : Promise.resolve(disabledBlackboardStats()),
+      // TYPE D diagram boards. Gated on the same switch as rendering: with Manim off there is
+      // nothing to render the spec, so paying for one would be pure waste — the beat falls
+      // back to the live SVG board either way.
+      MANIM_RENDER_ENABLED ? fillManimSceneOps(client, base.beats) : Promise.resolve(disabledManimSceneStats()),
+      // TYPE F structural diagrams. Ungated: unlike Manim there is nothing to install and no video
+      // to render — the layout is computed in-process, so the only cost is one small spec call.
+      fillStructureSceneOps(client, base.beats),
     ]);
 
     // Image-Explainer agent (sourceDocument only): label the real visible parts of each provided
@@ -687,13 +712,13 @@ export async function POST(req: Request) {
     repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     cleanProvidedImageBoards(base.beats, input.sourceDocument);
-    const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd;
+    const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd + manimSceneStats.costUsd + structureStats.costUsd;
 
     if (input.sourceDocument) {
       await writeCachedLecture(cacheKey, { beats: base.beats, costUsd, topic: input.topic });
     }
 
-    return NextResponse.json({ topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats });
+    return NextResponse.json({ topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats });
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Lecture generation failed" },
