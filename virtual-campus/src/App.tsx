@@ -1,8 +1,9 @@
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, Loader } from "@react-three/drei";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Hand, Mic, MicOff, Users, Zap } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Hand, Map as MapIcon, Mic, MicOff, Moon, Sun, Users, Zap } from "lucide-react";
 import { CampusScene } from "./CampusScene";
+import { CampusMap } from "./ui/CampusMap";
 import { CampusHud } from "./Hud";
 import { PLAYER_CONTROL_MAP, type TeleportRequest, type TouchInput } from "./PlayerController";
 import { SmartboardWorkspace } from "./Smartboard";
@@ -42,6 +43,12 @@ export default function App() {
   /** Seat id the player currently occupies, or null when standing. Synced to peers so everyone
    *  sees who is actually sitting where. */
   const [seatedAt, setSeatedAt] = useState<string | null>(null);
+  /** Raised hand — the classroom turn-taking signal, synced to everyone nearby. */
+  const [handRaised, setHandRaised] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false);
+  /** Day or evening light. Evening turns the campus into the warm, lamp-lit version of itself —
+   *  same architecture, different mood — and the toggle makes the lighting system legible. */
+  const [timeOfDay, setTimeOfDay] = useState<"day" | "evening">("day");
   /** Room whose in-world board currently has interaction focus. While focused, the board's DOM
    *  receives pointer events and the player controller is frozen so WASD doesn't fight typing. */
   const [focusedBoardRoomId, setFocusedBoardRoomId] = useState<string | null>(null);
@@ -90,22 +97,29 @@ export default function App() {
     rotation: 0,
   });
 
+  // Live gameplay state for the per-frame network callback. A ref rather than closure capture:
+  // the callback is memoised (it runs every frame and must not re-create per state change), and a
+  // memoised closure over React state reads STALE values forever — sitting/hand state would sync
+  // once and then freeze. The ref is updated every render, so the callback always reads current.
+  const liveStateRef = useRef({ seatedAt: null as string | null, playerState: "idle", handRaised: false, room: "atrium" });
+  liveStateRef.current = { seatedAt, playerState: player.state, handRaised, room: selectedRoomId };
+
   const handleNetworkFrame = useCallback(
     (position: [number, number, number], rotation: number) => {
       playerTransform.current = { position, rotation };
+      const live = liveStateRef.current;
       network.reportMovement(
         position,
         rotation,
-        seatedAt ? "sitting" : player.state,
-        selectedRoomId,
-        seatedAt,
+        live.seatedAt ? "sitting" : live.playerState,
+        live.room,
+        live.seatedAt,
+        live.handRaised,
       );
       network.updateSpatialAudio(position, rotation);
     },
-    // player.state/seatedAt are read through closure intentionally — this runs every frame and
-    // must not re-create on every state change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [network.reportMovement, network.updateSpatialAudio, selectedRoomId],
+    [network.reportMovement, network.updateSpatialAudio],
   );
 
   /**
@@ -143,6 +157,18 @@ export default function App() {
       }
       if (event.key.toLowerCase() === "q" && !event.metaKey && !event.ctrlKey) {
         travelToRoom("wellness");
+      }
+      if (event.key.toLowerCase() === "h" && !event.metaKey && !event.ctrlKey) {
+        const target = event.target as HTMLElement | null;
+        if (!target || (target.tagName !== "INPUT" && target.tagName !== "TEXTAREA")) {
+          setHandRaised((value) => !value);
+        }
+      }
+      if (event.key.toLowerCase() === "m" && !event.metaKey && !event.ctrlKey) {
+        const target = event.target as HTMLElement | null;
+        if (!target || (target.tagName !== "INPUT" && target.tagName !== "TEXTAREA")) {
+          setMapOpen((value) => !value);
+        }
       }
     };
     window.addEventListener("keydown", onKeyDown);
@@ -192,6 +218,7 @@ export default function App() {
                 focusedBoardRoomId={focusedBoardRoomId}
                 onFocusBoard={setFocusedBoardRoomId}
                 boardPortal={boardPortalRef}
+                timeOfDay={timeOfDay}
               />
             </Suspense>
           </Canvas>
@@ -232,6 +259,35 @@ export default function App() {
         </div>
 
         <button
+          className="hand-button"
+          onClick={() => setMapOpen((value) => !value)}
+          aria-pressed={mapOpen}
+          title="Campus map & search (M)"
+        >
+          <MapIcon size={15} aria-hidden="true" />
+          <span>Map</span>
+        </button>
+
+        <button
+          className="hand-button"
+          onClick={() => setTimeOfDay((value) => (value === "day" ? "evening" : "day"))}
+          title={timeOfDay === "day" ? "Switch to evening light" : "Switch to daylight"}
+        >
+          {timeOfDay === "day" ? <Moon size={15} aria-hidden="true" /> : <Sun size={15} aria-hidden="true" />}
+          <span>{timeOfDay === "day" ? "Evening" : "Daytime"}</span>
+        </button>
+
+        <button
+          className={`hand-button${handRaised ? " is-raised" : ""}`}
+          onClick={() => setHandRaised((value) => !value)}
+          aria-pressed={handRaised}
+          title="Raise hand (H)"
+        >
+          <span aria-hidden="true">✋</span>
+          <span>{handRaised ? "Hand raised" : "Raise hand"}</span>
+        </button>
+
+        <button
           className={`mic-button${network.micEnabled ? " is-live" : ""}${boardOpen ? " is-handed-over" : ""}`}
           onClick={() => (network.micEnabled ? network.disableMic() : void network.enableMic())}
           disabled={!network.connected}
@@ -265,6 +321,14 @@ export default function App() {
           </ul>
         )}
       </div>
+
+      <CampusMap
+        open={mapOpen}
+        onClose={() => setMapOpen(false)}
+        onNavigate={travelToRoom}
+        playerPosition={player.position}
+        selectedRoomId={selectedRoomId}
+      />
 
       {network.voiceError && (
         <p className="voice-error" role="status">Microphone unavailable: {network.voiceError}</p>

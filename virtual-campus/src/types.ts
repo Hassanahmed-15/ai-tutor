@@ -1,4 +1,14 @@
-export type CampusZone = "atrium" | "commons" | "library" | "classroom" | "wellness";
+export type CampusZone =
+  | "atrium"
+  | "commons"
+  | "library"
+  | "classroom"
+  | "wellness"
+  | "dining"
+  | "lab"
+  | "auditorium"
+  | "quiet"
+  | "office";
 
 export type AccessibilityProfile = {
   reducedMotion: boolean;

@@ -31,6 +31,8 @@ export type PeerState = {
   animation: "idle" | "walking" | "running" | "sitting";
   room: string;
   seat: string | null;
+  /** Raised-hand flag — the classroom's turn-taking signal. */
+  hand: boolean;
   /** True while this peer's mic is producing sound — drives the speaking indicator. */
   speaking: boolean;
 };
@@ -74,7 +76,7 @@ export function useCampusNetwork({
   const localStreamRef = useRef<MediaStream | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const selfIdRef = useRef<string | null>(null);
-  const lastSentRef = useRef({ t: 0, p: [0, 0, 0] as number[], r: 0 });
+  const lastSentRef = useRef({ t: 0, p: [0, 0, 0] as number[], r: 0, hand: false, seat: null as string | null });
 
   const commitPeers = useCallback(() => {
     setPeers(new Map(peersRef.current));
@@ -261,7 +263,7 @@ export function useCampusNetwork({
       }
     };
 
-    function upsertPeer(remote: { id: string; profile: { name: string; color: string }; state: { p: number[]; r: number; a: string; room: string; seat: string | null } }) {
+    function upsertPeer(remote: { id: string; profile: { name: string; color: string }; state: { p: number[]; r: number; a: string; room: string; seat: string | null; hand?: boolean } }) {
       if (remote.id === selfIdRef.current) return;
       const existing = peersRef.current.get(remote.id);
       const next: PeerState = {
@@ -273,6 +275,7 @@ export function useCampusNetwork({
         animation: (remote.state?.a as PeerState["animation"]) ?? "idle",
         room: remote.state?.room ?? existing?.room ?? "atrium",
         seat: remote.state?.seat ?? null,
+        hand: remote.state?.hand === true,
         speaking: existing?.speaking ?? false,
       };
       peersRef.current.set(remote.id, next);
@@ -290,17 +293,20 @@ export function useCampusNetwork({
 
   /** Report our own position. Change-gated + rate-limited; see the note at the top. */
   const reportMovement = useCallback(
-    (position: [number, number, number], rotation: number, animation: string, room: string, seat: string | null) => {
+    (position: [number, number, number], rotation: number, animation: string, room: string, seat: string | null, hand = false) => {
       const socket = socketRef.current;
       if (socket?.readyState !== WebSocket.OPEN) return;
       const now = performance.now();
       const last = lastSentRef.current;
       const movedFar = Math.hypot(position[0] - last.p[0], position[2] - last.p[2]) > 0.04;
       const turned = Math.abs(rotation - last.r) > 0.05;
-      if (now - last.t < 66) return;              // ~15Hz ceiling
-      if (!movedFar && !turned && now - last.t < 1000) return; // idle heartbeat once a second
-      lastSentRef.current = { t: now, p: [...position], r: rotation };
-      socket.send(JSON.stringify({ type: "move", p: position, r: rotation, a: animation, room, seat }));
+      // State flips (hand up/down, sitting/standing) bypass the movement gate — they are the
+      // events peers most need to see promptly, and they happen while standing still.
+      const stateFlip = hand !== last.hand || seat !== last.seat;
+      if (!stateFlip && now - last.t < 66) return;              // ~15Hz ceiling
+      if (!stateFlip && !movedFar && !turned && now - last.t < 1000) return; // idle heartbeat
+      lastSentRef.current = { t: now, p: [...position], r: rotation, hand, seat };
+      socket.send(JSON.stringify({ type: "move", p: position, r: rotation, a: animation, room, seat, hand }));
     },
     [],
   );

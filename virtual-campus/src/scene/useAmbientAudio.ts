@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import { audioBus, type AudioEvent } from "./audioBus";
 
 /**
  * Environmental audio, synthesised rather than sampled.
@@ -186,6 +187,80 @@ export function useAmbientAudio({
     },
     [context, enabled, quiet],
   );
+
+  /**
+   * Fixture sounds routed through the audio bus, so props buried deep in the scene graph can make
+   * sound without threading callbacks through every layer. Each is a short synthesised gesture:
+   * coffee = low machine hum burst; water = descending bubble; chime = two-tone lift bell;
+   * locker = metallic clack. All gated behind the same enabled/quiet rules as everything else.
+   */
+  const fixtureSound = useCallback(
+    (event: AudioEvent) => {
+      if (!enabled || quiet) return;
+      const ctx = context();
+      const master = masterRef.current;
+      const buffer = noiseBufferRef.current;
+      if (!master || !buffer) return;
+      const t = ctx.currentTime;
+
+      const tone = (freq: number, dur: number, level: number, type: OscillatorType, delay = 0) => {
+        const osc = ctx.createOscillator();
+        osc.type = type;
+        osc.frequency.value = freq;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, t + delay);
+        gain.gain.exponentialRampToValueAtTime(level, t + delay + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + delay + dur);
+        osc.connect(gain).connect(master);
+        osc.start(t + delay);
+        osc.stop(t + delay + dur + 0.05);
+      };
+      const noiseBurst = (cutoff: number, dur: number, level: number, delay = 0) => {
+        const src = ctx.createBufferSource();
+        src.buffer = buffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.value = cutoff;
+        filter.Q.value = 0.8;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(level, t + delay);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + delay + dur);
+        src.connect(filter).connect(gain).connect(master);
+        src.start(t + delay);
+        src.stop(t + delay + dur + 0.05);
+      };
+
+      switch (event) {
+        case "coffee":
+          noiseBurst(240, 2.6, 0.05);          // pump hum
+          noiseBurst(1900, 0.5, 0.03, 2.4);    // final steam hiss
+          break;
+        case "water":
+          tone(320, 0.12, 0.06, "sine");
+          tone(240, 0.12, 0.06, "sine", 0.14);
+          tone(180, 0.16, 0.05, "sine", 0.3);
+          break;
+        case "chime":
+          tone(880, 0.5, 0.05, "sine");
+          tone(660, 0.7, 0.05, "sine", 0.18);
+          break;
+        case "locker":
+          noiseBurst(1400, 0.08, 0.09);
+          tone(210, 0.1, 0.05, "square");
+          break;
+        case "door-open":
+        case "door-close":
+          doorSound(event === "door-open");
+          break;
+      }
+    },
+    [context, doorSound, enabled, quiet],
+  );
+
+  useEffect(() => {
+    audioBus.register(fixtureSound);
+    return () => audioBus.register(null);
+  }, [fixtureSound]);
 
   useEffect(() => {
     return () => {

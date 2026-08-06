@@ -2,6 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { RigidBody, type RapierRigidBody } from "@react-three/rapier";
 import { useRef, useState } from "react";
 import * as THREE from "three";
+import { audioBus } from "../audioBus";
 import { M } from "../materials";
 import { DoorFrame } from "./Wall";
 
@@ -56,6 +57,7 @@ export function Door({
   const collider = useRef<RapierRigidBody>(null);
   const angle = useRef(0);
   const [isOpen, setIsOpen] = useState(false);
+  const wasOpen = useRef(false);
   const worldPos = useRef(new THREE.Vector3());
   const localPlayer = useRef(new THREE.Vector3());
   const hingeSign = hinge === "left" ? 1 : -1;
@@ -80,6 +82,13 @@ export function Door({
       } else if (isOpen && manualOnly) {
         target = OPEN_ANGLE;
       }
+    }
+
+    // Emit the latch/swing sound exactly on the state transition, not per frame.
+    const opening = target !== 0;
+    if (opening !== wasOpen.current) {
+      wasOpen.current = opening;
+      audioBus.emit(opening ? "door-open" : "door-close");
     }
 
     const desired = target * swingSign;

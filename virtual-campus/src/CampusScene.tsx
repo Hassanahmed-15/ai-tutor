@@ -7,6 +7,7 @@ import { PlayerController, type TeleportRequest, type TouchInput } from "./Playe
 import { RemoteAvatars } from "./net/RemoteAvatars";
 import type { PeerState } from "./net/useCampusNetwork";
 import { CampusBuilding } from "./scene/CampusBuilding";
+import { CampusNpcs } from "./scene/Npcs";
 import { Lighting } from "./scene/Lighting";
 import { Postprocessing } from "./scene/Postprocessing";
 import { applyHighContrast, applyLowStimulation } from "./scene/materials";
@@ -32,6 +33,7 @@ type SceneProps = {
   focusedBoardRoomId: string | null;
   onFocusBoard: (roomId: string) => void;
   boardPortal?: React.MutableRefObject<HTMLElement | null>;
+  timeOfDay?: "day" | "evening";
 };
 
 export function CampusScene(props: SceneProps) {
@@ -72,9 +74,25 @@ export function CampusScene(props: SceneProps) {
 
   return (
     <>
-      <color attach="background" args={[profile.highContrast ? "#e8f1f4" : "#b9d2dd"]} />
-      <fog attach="fog" args={[profile.highContrast ? "#e8f1f4" : "#b9d2dd", 70, 160]} />
-      <Lighting profile={profile} bounds={[46, 46]} />
+      <color
+        attach="background"
+        args={[
+          props.timeOfDay === "evening"
+            ? profile.highContrast ? "#31404c" : "#243440"
+            : profile.highContrast ? "#e8f1f4" : "#b9d2dd",
+        ]}
+      />
+      <fog
+        attach="fog"
+        args={[
+          props.timeOfDay === "evening"
+            ? profile.highContrast ? "#31404c" : "#243440"
+            : profile.highContrast ? "#e8f1f4" : "#b9d2dd",
+          70,
+          160,
+        ]}
+      />
+      <Lighting profile={profile} bounds={[46, 46]} timeOfDay={props.timeOfDay ?? "day"} />
       <Postprocessing profile={profile} />
 
       {/* BVH acceleration: replaces three's linear raycast with a bounded hierarchy. Speeds up
@@ -94,6 +112,11 @@ export function CampusScene(props: SceneProps) {
           />
 
           <RemoteAvatars peers={props.peers ?? []} showLabels={!profile.quietWorld} />
+          <CampusNpcs
+            playerPosition={playerSnapshot}
+            reducedMotion={profile.reducedMotion}
+            quiet={profile.quietWorld}
+          />
 
           <PlayerController
             profile={profile}

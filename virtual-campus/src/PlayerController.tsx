@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { clone as cloneSkeleton } from "three/examples/jsm/utils/SkeletonUtils.js";
 import { CAMPUS_ROOMS } from "./campus";
+import { ROOMS, boardPlacement } from "./scene/floorplan";
 import type { AccessibilityProfile, CampusRoom } from "./types";
 
 export type PlayerControl = "forward" | "back" | "left" | "right" | "run" | "jump" | "interact";
@@ -240,10 +241,15 @@ export function PlayerController({ profile, touch, teleport, paused, onRoomChang
       onRoomChange(nearestRoom);
     }
 
-    const classroom = nearestRoom.zone === "classroom" ? nearestRoom : null;
-    const boardZ = classroom ? classroom.position[2] - (classroom.position[2] > 0 ? 4.45 : 4.7) : 0;
-    const boardDistance = classroom ? Math.hypot(translation.x - classroom.position[0], translation.z - boardZ) : Number.POSITIVE_INFINITY;
-    const nextBoard = boardDistance < 3.2 ? classroom : null;
+    // Board proximity now derives from the floorplan's actual board mounts rather than the old
+    // hand-tuned per-zone offsets, so any room with a boardWall — classroom, lab, auditorium —
+    // offers the "press E" prompt at the real board position.
+    const shell = ROOMS.find((entry) => entry.id === nearestRoom.id);
+    const mount = shell ? boardPlacement(shell) : null;
+    const boardDistance = mount
+      ? Math.hypot(translation.x - mount.position[0], translation.z - mount.position[2])
+      : Number.POSITIVE_INFINITY;
+    const nextBoard = boardDistance < 3.4 ? nearestRoom : null;
     if (nextBoard?.id !== nearbyBoard.current?.id) {
       nearbyBoard.current = nextBoard;
       onBoardProximity(nextBoard);

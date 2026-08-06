@@ -78,6 +78,9 @@ port 8787). `VITE_LIVE_TUTOR_URL` overrides the tutor origin.
 | Jump | Space |
 | Use the teaching board | Walk up, then E |
 | Sit | Click a chair |
+| Raise hand | H, or the ✋ button |
+| Campus map & search | M, or the Map button |
+| Day / evening light | toggle in the top bar |
 | Leave the board | "Step back" button (a cross-origin iframe swallows Escape) |
 | Return to the atrium | R |
 
@@ -91,7 +94,10 @@ port 8787). `VITE_LIVE_TUTOR_URL` overrides the tutor origin.
 - `src/scene/materials.ts` is a shared PBR material library; accessibility modes (low-stimulation,
   high-contrast) mutate it in place, so they are genuine rendering modes rather than CSS filters.
 - `server/index.mjs` handles presence and movement on a 15Hz tick, and relays WebRTC signalling.
-  Voice audio itself is peer-to-peer and never touches the server.
+  Voice audio itself is peer-to-peer and never touches the server. Sitting and raised-hand state
+  ride the same movement channel and bypass its idle-gating so state flips propagate immediately.
+- `npm run validate` executes the floorplan: it builds every wall's extruded geometry and fails
+  on room overlaps, openings that overflow their wall, or unreachable rooms.
 - The teaching board runs the real tutor in an iframe mounted on the classroom wall via drei's
   `<Html transform occlude="raycast">`. Only one is live at a time; the rest show a standby
   screen. The 2D dialog route is retained as the non-3D accessibility path.

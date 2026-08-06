@@ -47,6 +47,7 @@ function RemoteAvatar({ peer, showLabel }: { peer: PeerState; showLabel: boolean
   // identically.
   const avatar = useMemo(() => {
     const clone = cloneSkeleton(scene);
+    const bones: Record<string, { bone: THREE.Bone; base: THREE.Euler }> = {};
     clone.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true;
@@ -60,8 +61,9 @@ function RemoteAvatar({ peer, showLabel }: { peer: PeerState; showLabel: boolean
           child.material = material;
         }
       }
+      if (child instanceof THREE.Bone) bones[child.name] = { bone: child, base: child.rotation.clone() };
     });
-    return clone;
+    return { clone, bones };
   }, [scene, peer.color]);
 
   const walkPhase = useRef(0);
@@ -93,6 +95,26 @@ function RemoteAvatar({ peer, showLabel }: { peer: PeerState; showLabel: boolean
     const speed = lastPosition.current.distanceTo(new THREE.Vector3(target[0], target[1], target[2])) / Math.max(delta, 0.001);
     lastPosition.current.set(target[0], target[1], target[2]);
 
+    // Raised hand: a real arm-up pose. The badge alone is legible in the tag, but the gesture is
+    // what someone across the classroom actually sees.
+    const arm = avatar.bones.RightArm;
+    if (arm) {
+      arm.bone.rotation.z = THREE.MathUtils.damp(arm.bone.rotation.z, arm.base.z + (peer.hand ? -1.05 : 1.1), 10, delta);
+      arm.bone.rotation.x = THREE.MathUtils.damp(arm.bone.rotation.x, arm.base.x + (peer.hand ? -0.55 : 0), 10, delta);
+    }
+    const leftArm = avatar.bones.LeftArm;
+    if (leftArm) {
+      leftArm.bone.rotation.z = THREE.MathUtils.damp(leftArm.bone.rotation.z, leftArm.base.z - 1.1, 10, delta);
+    }
+    for (const name of ["LeftUpLeg", "RightUpLeg"] as const) {
+      const leg = avatar.bones[name];
+      if (leg) leg.bone.rotation.x = THREE.MathUtils.damp(leg.bone.rotation.x, leg.base.x + (seated ? -1.5 : 0), 12, delta);
+    }
+    for (const name of ["LeftLeg", "RightLeg"] as const) {
+      const leg = avatar.bones[name];
+      if (leg) leg.bone.rotation.x = THREE.MathUtils.damp(leg.bone.rotation.x, leg.base.x + (seated ? 1.45 : 0), 12, delta);
+    }
+
     if (model.current) {
       if (seated) {
         model.current.position.y = 0;
@@ -115,7 +137,7 @@ function RemoteAvatar({ peer, showLabel }: { peer: PeerState; showLabel: boolean
   return (
     <group ref={group} position={peer.position}>
       <group ref={model}>
-        <primitive object={avatar} scale={1} />
+        <primitive object={avatar.clone} scale={1} />
       </group>
 
       {showLabel && (
@@ -127,9 +149,10 @@ function RemoteAvatar({ peer, showLabel }: { peer: PeerState; showLabel: boolean
           occlude="raycast"
           style={{ pointerEvents: "none" }}
         >
-          <div className={`peer-tag${peer.speaking ? " is-speaking" : ""}`}>
+          <div className={`peer-tag${peer.speaking ? " is-speaking" : ""}${peer.hand ? " is-hand" : ""}`}>
             <span className="peer-dot" style={{ background: peer.color }} />
             {peer.name}
+            {peer.hand && <span className="peer-hand" aria-label="hand raised">✋</span>}
             {peer.speaking && <span className="peer-speaking" aria-hidden="true" />}
           </div>
         </Html>

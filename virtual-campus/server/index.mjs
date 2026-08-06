@@ -55,7 +55,7 @@ wss.on("connection", (socket) => {
     id,
     socket,
     profile: { name: `Student ${id.slice(0, 4)}`, color: "#7aa2c8" },
-    state: { p: [0, 1, 14], r: 0, a: "idle", seat: null, room: "atrium" },
+    state: { p: [0, 1, 14], r: 0, a: "idle", seat: null, room: "atrium", hand: false },
     lastSeen: Date.now(),
     dirty: false,
   };
@@ -88,6 +88,7 @@ wss.on("connection", (socket) => {
         player.state.a = message.a === "walking" || message.a === "running" || message.a === "sitting" ? message.a : "idle";
         player.state.room = typeof message.room === "string" ? message.room.slice(0, 40) : player.state.room;
         player.state.seat = typeof message.seat === "string" ? message.seat.slice(0, 40) : null;
+        player.state.hand = message.hand === true;
         player.dirty = true;
         break;
       }

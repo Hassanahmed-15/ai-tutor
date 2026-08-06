@@ -35,9 +35,11 @@ type LightingProps = {
   profile: AccessibilityProfile;
   /** Footprint half-extents [x, z] used to fit the sun's shadow frustum tightly. */
   bounds?: [number, number];
+  timeOfDay?: "day" | "evening";
 };
 
-export function Lighting({ profile, bounds = [34, 30] }: LightingProps) {
+export function Lighting({ profile, bounds = [34, 30], timeOfDay = "day" }: LightingProps) {
+  const evening = timeOfDay === "evening";
   const gl = useThree((state) => state.gl);
   const quiet = profile.quietWorld;
   const lowStim = profile.quietWorld || profile.reducedMotion;
@@ -63,7 +65,12 @@ export function Lighting({ profile, bounds = [34, 30] }: LightingProps) {
         in matte concrete and soft gradients in glass; higher resolution costs memory for detail
         nobody can perceive at architectural viewing distances.
       */}
-      <Environment resolution={256} frames={1} environmentIntensity={quiet ? 0.75 : 1}>
+      <Environment
+        key={timeOfDay}
+        resolution={256}
+        frames={1}
+        environmentIntensity={(quiet ? 0.75 : 1) * (evening ? 0.4 : 1)}
+      >
         {/* Sky dome — cool daylight from above, the dominant ambient source. */}
         <Lightformer
           form="rect"
@@ -114,7 +121,10 @@ export function Lighting({ profile, bounds = [34, 30] }: LightingProps) {
 
       {/* Ambient floor — very low. With a real environment map this exists only to stop fully
           unlit crevices reading as pure black, not to light the scene. */}
-      <ambientLight intensity={quiet ? 0.35 : 0.18} color="#e6eef2" />
+      <ambientLight
+        intensity={(quiet ? 0.35 : 0.18) + (evening ? 0.1 : 0)}
+        color={evening ? "#3d4a5c" : "#e6eef2"}
+      />
 
       {/*
         The sun. Frustum fitted to the building footprint: at 2048² over a 68×60 area that's
@@ -122,9 +132,9 @@ export function Lighting({ profile, bounds = [34, 30] }: LightingProps) {
         usual reason shadows go soft and blocky, so it is derived from bounds rather than guessed.
       */}
       <directionalLight
-        position={[-24, 30, 18]}
-        intensity={quiet ? 1.6 : 2.6}
-        color="#fff4e2"
+        position={evening ? [-34, 9, 26] : [-24, 30, 18]}
+        intensity={(quiet ? 1.6 : 2.6) * (evening ? 0.35 : 1)}
+        color={evening ? "#ff9d5c" : "#fff4e2"}
         castShadow={!quiet}
         shadow-mapSize={[2048, 2048]}
         shadow-camera-left={-bounds[0]}

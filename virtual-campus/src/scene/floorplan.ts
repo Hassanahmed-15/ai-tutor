@@ -184,6 +184,70 @@ export const ROOMS: RoomShell[] = [
     windows: [{ side: "west", offset: 0, width: 7.4, height: 2.4, sill: 0.7 }],
   },
   {
+    // Dining hall + coffee counter, east of the commons so food smells stay out of the
+    // teaching wing — the kind of adjacency reasoning a real campus plan is built from.
+    id: "cafeteria",
+    center: [14.6, 3.2],
+    size: [GRID * 1.3, GRID * 1.1],
+    height: 3.8,
+    floor: "oak",
+    ceiling: "slat",
+    doors: [{ side: "west", offset: 0, width: 1.4, hinge: "left" }],
+    windows: [
+      { side: "south", offset: 0, width: 7.4, height: 2.6, sill: 0.85 },
+      { side: "east", offset: 0, width: 6.2, height: 2.6, sill: 0.85 },
+    ],
+  },
+  {
+    // Innovation lab (AI + robotics). Mirrors the cafeteria on the west side; workstations
+    // rather than a seat grid, but it keeps a teaching board so the tutor works here too.
+    id: "innovation",
+    center: [-14.6, 3.2],
+    size: [GRID * 1.3, GRID * 1.1],
+    height: 3.8,
+    floor: "rubber",
+    ceiling: "exposed",
+    boardWall: "west",
+    doors: [{ side: "east", offset: 0, width: 1.4, hinge: "right" }],
+    windows: [{ side: "south", offset: 0, width: 7.4, height: 2.6, sill: 0.85 }],
+  },
+  {
+    // Auditorium, south of the library across the south lawn. Tiered rows face the stage
+    // at the north end; the board is oversized separately in the room contents.
+    id: "auditorium",
+    center: [0, -52],
+    size: [GRID * 2.9, GRID * 1.8],
+    height: 6.0,
+    floor: "carpet",
+    ceiling: "exposed",
+    boardWall: "north",
+    doors: [{ side: "north", offset: -6, width: 1.4, hinge: "left" }],
+    windows: [{ side: "south", offset: 0, width: GRID * 2.2, height: 3.2, sill: 1.4 }],
+  },
+  {
+    // Prayer / meditation room. Deliberately the quietest geometry in the plan: one door,
+    // one low window, warm floor, no board, no seating grid.
+    id: "meditation",
+    center: [-14.6, -39],
+    size: [GRID, GRID],
+    height: 3.2,
+    floor: "oak",
+    ceiling: "slat",
+    doors: [{ side: "east", offset: 0, width: 1.0, hinge: "left" }],
+    windows: [{ side: "west", offset: 0, width: 4.6, height: 1.8, sill: 0.5 }],
+  },
+  {
+    // Teacher offices + accessibility centre desk. Where office hours happen.
+    id: "offices",
+    center: [14.6, -39],
+    size: [GRID, GRID],
+    height: 3.2,
+    floor: "carpet",
+    ceiling: "acoustic",
+    doors: [{ side: "west", offset: 0, width: 1.0, hinge: "right" }],
+    windows: [{ side: "east", offset: 0, width: 4.6, height: 2.0, sill: 0.9 }],
+  },
+  {
     id: "library",
     center: [0, -39],
     size: [GRID * 2.9, GRID * 1.5],
