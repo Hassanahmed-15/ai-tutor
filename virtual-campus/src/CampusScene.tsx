@@ -6,6 +6,8 @@ import * as THREE from "three";
 import { clone as cloneSkeleton } from "three/examples/jsm/utils/SkeletonUtils.js";
 import { CAMPUS_PEOPLE, CAMPUS_ROOMS } from "./campus";
 import { PlayerController, type TeleportRequest, type TouchInput } from "./PlayerController";
+import { RemoteAvatars } from "./net/RemoteAvatars";
+import type { PeerState } from "./net/useCampusNetwork";
 import { GroundingShadow, Lighting } from "./scene/Lighting";
 import { M, applyHighContrast, applyLowStimulation } from "./scene/materials";
 import type { AccessibilityProfile, CampusPerson, CampusRoom } from "./types";
@@ -20,7 +22,12 @@ type SceneProps = {
   paused: boolean;
   onRoomChange: (room: CampusRoom) => void;
   onBoardProximity: (room: CampusRoom | null) => void;
-  onPlayerUpdate: (position: [number, number, number], state: "idle" | "walking" | "running") => void;
+  onPlayerUpdate: (position: [number, number, number], state: "idle" | "walking" | "running", rotation: number) => void;
+  /** Real people from the multiplayer server, rendered alongside the scripted campus NPCs. */
+  peers?: PeerState[];
+  /** Called every frame with the player's world transform so the network layer can sync position
+   *  and keep the spatial-audio listener attached to the avatar. */
+  onNetworkFrame?: (position: [number, number, number], rotation: number) => void;
 };
 
 export function CampusScene(props: SceneProps) {
@@ -52,6 +59,10 @@ export function CampusScene(props: SceneProps) {
         {!profile.quietWorld && CAMPUS_PEOPLE.map((person) => (
           <HumanAvatar key={person.id} person={person} reducedMotion={profile.reducedMotion} />
         ))}
+        {/* Real people from the multiplayer server. Rendered outside the quietWorld gate that
+            hides scripted NPCs: a low-stimulation preference is about ambient background
+            activity, and hiding the actual humans you came to study with would be wrong. */}
+        <RemoteAvatars peers={props.peers ?? []} showLabels={!profile.quietWorld} />
         <PlayerController
           profile={profile}
           touch={props.touch}
@@ -59,7 +70,10 @@ export function CampusScene(props: SceneProps) {
           paused={props.paused}
           onRoomChange={props.onRoomChange}
           onBoardProximity={props.onBoardProximity}
-          onPlayerUpdate={props.onPlayerUpdate}
+          onPlayerUpdate={(position, state, rotation) => {
+            props.onPlayerUpdate(position, state, rotation);
+            props.onNetworkFrame?.(position, rotation);
+          }}
           onInteract={(room) => {
             onSelectRoom(room.id);
             onOpenBoard();

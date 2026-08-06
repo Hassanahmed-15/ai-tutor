@@ -41,7 +41,7 @@ type PlayerProps = {
   onRoomChange: (room: CampusRoom) => void;
   onBoardProximity: (room: CampusRoom | null) => void;
   onInteract: (room: CampusRoom) => void;
-  onPlayerUpdate: (position: [number, number, number], state: "idle" | "walking" | "running") => void;
+  onPlayerUpdate: (position: [number, number, number], state: "idle" | "walking" | "running", rotation: number) => void;
 };
 
 const PLAYER_HEIGHT = 1.78;
@@ -184,12 +184,17 @@ export function PlayerController({ profile, touch, teleport, paused, onRoomChang
     jumpHeld.current = jumpPressed;
     rigidBody.setLinvel({ x: nextX, y: nextY, z: nextZ }, true);
 
+    // 0.05s (~20Hz) rather than 0.12s: this callback now also feeds multiplayer position sync and
+    // the spatial-audio listener, both of which need to track the avatar closely. The network
+    // layer applies its own rate limiting and change-gating on top, so this does not translate
+    // into 20 messages/sec on the wire.
     lastPlayerUpdate.current += delta;
-    if (lastPlayerUpdate.current >= 0.12) {
+    if (lastPlayerUpdate.current >= 0.05) {
       lastPlayerUpdate.current = 0;
       onPlayerUpdate(
         [translation.x, translation.y, translation.z],
         moving ? (running ? "running" : "walking") : "idle",
+        modelRoot.current?.rotation.y ?? 0,
       );
     }
 

@@ -1,12 +1,13 @@
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, Loader } from "@react-three/drei";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Hand, Zap } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Hand, Mic, MicOff, Users, Zap } from "lucide-react";
 import { CampusScene } from "./CampusScene";
 import { CampusHud } from "./Hud";
 import { PLAYER_CONTROL_MAP, type TeleportRequest, type TouchInput } from "./PlayerController";
 import { SmartboardWorkspace } from "./Smartboard";
 import { CAMPUS_ROOMS } from "./campus";
+import { useCampusNetwork } from "./net/useCampusNetwork";
 import type { AccessibilityProfile } from "./types";
 
 const DEFAULT_ACCESSIBILITY: AccessibilityProfile = {
@@ -37,10 +38,74 @@ export default function App() {
     position: [0, 1, 14],
     state: "idle",
   });
+  /** Seat id the player currently occupies, or null when standing. Synced to peers so everyone
+   *  sees who is actually sitting where. */
+  const [seatedAt, setSeatedAt] = useState<string | null>(null);
   const selectedRoom = useMemo(
     () => CAMPUS_ROOMS.find((room) => room.id === selectedRoomId) ?? CAMPUS_ROOMS[0],
     [selectedRoomId],
   );
+
+  // ── Multiplayer ───────────────────────────────────────────────────────────
+  // A stable display name per browser session, so peers see a consistent person rather than a
+  // new stranger on every reconnect.
+  const displayName = useMemo(() => {
+    const stored = window.localStorage.getItem("aria-campus-name");
+    if (stored) return stored;
+    const generated = `Student ${Math.floor(1000 + Math.random() * 9000)}`;
+    window.localStorage.setItem("aria-campus-name", generated);
+    return generated;
+  }, []);
+  const displayColor = useMemo(() => {
+    const stored = window.localStorage.getItem("aria-campus-color");
+    if (stored) return stored;
+    // Colourblind-safe (Okabe-Ito) so peers stay distinguishable across colour-vision types.
+    const palette = ["#0072b2", "#d55e00", "#009e73", "#cc79a7", "#e69f00", "#56b4e9"];
+    const generated = palette[Math.floor(Math.random() * palette.length)];
+    window.localStorage.setItem("aria-campus-color", generated);
+    return generated;
+  }, []);
+
+  const network = useCampusNetwork({
+    enabled: true,
+    name: displayName,
+    color: displayColor,
+  });
+
+  const playerTransform = useRef<{ position: [number, number, number]; rotation: number }>({
+    position: [0, 1, 14],
+    rotation: 0,
+  });
+
+  const handleNetworkFrame = useCallback(
+    (position: [number, number, number], rotation: number) => {
+      playerTransform.current = { position, rotation };
+      network.reportMovement(
+        position,
+        rotation,
+        seatedAt ? "sitting" : player.state,
+        selectedRoomId,
+        seatedAt,
+      );
+      network.updateSpatialAudio(position, rotation);
+    },
+    // player.state/seatedAt are read through closure intentionally — this runs every frame and
+    // must not re-create on every state change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [network.reportMovement, network.updateSpatialAudio, selectedRoomId],
+  );
+
+  /**
+   * Microphone arbitration.
+   *
+   * The AI tutor (Gemini Live) and peer voice chat both want the microphone. Walking up to a
+   * smartboard hands the mic to the tutor and mutes the outgoing peer stream; walking away
+   * restores classroom conversation. Peer connections are only muted, never torn down, so the
+   * handoff back is instant rather than a fresh WebRTC negotiation.
+   */
+  useEffect(() => {
+    network.setMicMuted(boardOpen);
+  }, [boardOpen, network]);
 
   const travelToRoom = useCallback((roomId: string) => {
     const room = CAMPUS_ROOMS.find((candidate) => candidate.id === roomId) ?? CAMPUS_ROOMS[0];
@@ -96,6 +161,8 @@ export default function App() {
                 onRoomChange={(room) => setSelectedRoomId(room.id)}
                 onBoardProximity={setNearbyBoard}
                 onPlayerUpdate={(position, state) => setPlayer({ position, state })}
+                peers={network.peers}
+                onNetworkFrame={handleNetworkFrame}
               />
             </Suspense>
           </Canvas>
@@ -121,6 +188,62 @@ export default function App() {
         <button className="interaction-prompt" onClick={() => setBoardOpen(true)}>
           <span className="interaction-key">E</span>
           <span><strong>Use smartboard</strong><small>{nearbyBoard.name}</small></span>
+        </button>
+      )}
+
+      {/* Live presence + voice. Shows who is genuinely connected right now, not simulated NPCs. */}
+      <div className="presence-bar">
+        <div className={`presence-status${network.connected ? " is-online" : ""}`}>
+          <Users size={15} aria-hidden="true" />
+          <span>
+            {network.connected
+              ? `${network.peers.length + 1} in campus`
+              : "Offline — start the campus server"}
+          </span>
+        </div>
+
+        <button
+          className={`mic-button${network.micEnabled ? " is-live" : ""}${boardOpen ? " is-handed-over" : ""}`}
+          onClick={() => (network.micEnabled ? network.disableMic() : void network.enableMic())}
+          disabled={!network.connected}
+          aria-pressed={network.micEnabled}
+          title={
+            boardOpen
+              ? "Aria has the microphone while the smartboard is open"
+              : network.micEnabled
+                ? "Mute microphone"
+                : "Talk to people near you"
+          }
+        >
+          {network.micEnabled ? <Mic size={16} /> : <MicOff size={16} />}
+          <span>
+            {boardOpen
+              ? "Mic → Aria"
+              : network.micEnabled
+                ? "Voice on"
+                : "Talk nearby"}
+          </span>
+        </button>
+
+        {network.peers.length > 0 && (
+          <ul className="presence-list" aria-label="People nearby">
+            {network.peers.slice(0, 6).map((peer) => (
+              <li key={peer.id}>
+                <span className="peer-dot" style={{ background: peer.color }} aria-hidden="true" />
+                {peer.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {network.voiceError && (
+        <p className="voice-error" role="status">Microphone unavailable: {network.voiceError}</p>
+      )}
+
+      {seatedAt && (
+        <button className="stand-up-prompt" onClick={() => setSeatedAt(null)}>
+          Stand up
         </button>
       )}
 
