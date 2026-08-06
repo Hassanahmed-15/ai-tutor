@@ -45,6 +45,10 @@ type TutorBoardProps = {
   /** Portal target outside the aria-hidden canvas subtree, so the focusable iframe is reachable
    *  by assistive tech and keyboard without violating WCAG 4.1.2. */
   portal?: React.RefObject<HTMLElement | null>;
+  /** Uniform scale — 1 is an 86" classroom display; the auditorium uses ~1.8 for a hall-scale
+   *  presentation surface. Scaling the group scales the Html transform with it, so the CSS pixel
+   *  density (and therefore text legibility) is preserved exactly. */
+  scale?: number;
 };
 
 export function TutorBoard({
@@ -56,6 +60,7 @@ export function TutorBoard({
   focused,
   onRequestFocus,
   portal,
+  scale = 1,
 }: TutorBoardProps) {
   const bezel = useRef<THREE.Mesh>(null);
   const [loaded, setLoaded] = useState(false);
@@ -77,7 +82,7 @@ export function TutorBoard({
   const screenMaterial = useRef(makeEmissive("#0f1a18", 0.35));
 
   return (
-    <group position={position} rotation={[0, rotation, 0]}>
+    <group position={position} rotation={[0, rotation, 0]} scale={scale}>
       {/* Bezel + housing. A real display has depth, a frame, and a mount. */}
       <RoundedBox
         ref={bezel}

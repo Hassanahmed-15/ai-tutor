@@ -182,7 +182,11 @@ function RoomContents({
     <group>
       {board && meta && (
         <TutorBoard
-          position={board.position}
+          position={
+            shell.id === "auditorium"
+              ? [board.position[0], board.position[1] + 0.75, board.position[2]]
+              : board.position
+          }
           rotation={board.rotation}
           roomName={meta.name}
           tutorRoute={meta.tutorRoute}
@@ -190,6 +194,7 @@ function RoomContents({
           focused={focusedBoard}
           onRequestFocus={onFocusBoard}
           portal={boardPortal}
+          scale={shell.id === "auditorium" ? 1.8 : 1}
         />
       )}
 
