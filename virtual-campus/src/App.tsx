@@ -76,9 +76,12 @@ export default function App() {
       <div className="world" aria-hidden="true">
         <KeyboardControls map={PLAYER_CONTROL_MAP}>
           <Canvas
-            shadows={!profile.quietWorld}
-            dpr={[1, profile.quietWorld ? 1.25 : 1.8]}
-            camera={{ position: [0, 3.2, 19], fov: 54, near: 0.08, far: 160 }}
+            /* "soft" selects PCFSoftShadowMap — the baseline before SoftShadows' PCSS patch. */
+            shadows={profile.quietWorld ? false : "soft"}
+            dpr={[1, profile.quietWorld ? 1.25 : 2]}
+            /* fov 54 -> 50: a narrower lens is closer to how architectural photography is shot
+               and reduces the wide-angle distortion that made rooms feel like game levels. */
+            camera={{ position: [0, 3.2, 19], fov: 50, near: 0.1, far: 200 }}
             gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
           >
             <Suspense fallback={null}>

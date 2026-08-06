@@ -6,6 +6,8 @@ import * as THREE from "three";
 import { clone as cloneSkeleton } from "three/examples/jsm/utils/SkeletonUtils.js";
 import { CAMPUS_PEOPLE, CAMPUS_ROOMS } from "./campus";
 import { PlayerController, type TeleportRequest, type TouchInput } from "./PlayerController";
+import { GroundingShadow, Lighting } from "./scene/Lighting";
+import { M, applyHighContrast, applyLowStimulation } from "./scene/materials";
 import type { AccessibilityProfile, CampusPerson, CampusRoom } from "./types";
 
 type SceneProps = {
@@ -23,23 +25,26 @@ type SceneProps = {
 
 export function CampusScene(props: SceneProps) {
   const { selectedRoom, profile, onSelectRoom, onOpenBoard } = props;
+
+  // Accessibility preferences that are genuinely *rendering* modes rather than UI styling: they
+  // mutate the shared material library in place, so every surface in the building responds at
+  // once without threading props through the whole scene graph.
+  useEffect(() => {
+    applyLowStimulation(profile.quietWorld);
+  }, [profile.quietWorld]);
+  useEffect(() => {
+    applyHighContrast(profile.highContrast);
+  }, [profile.highContrast]);
+
   return (
     <>
-      <color attach="background" args={[profile.highContrast ? "#d9e8e7" : "#a9c2c0"]} />
-      <fog attach="fog" args={[profile.highContrast ? "#d9e8e7" : "#a9c2c0", 42, 92]} />
-      <ambientLight intensity={profile.quietWorld ? 1.15 : 0.9} color="#dce8e5" />
-      <hemisphereLight args={["#e8f5f3", "#61594e", 1.6]} />
-      <directionalLight
-        position={[-20, 28, 16]}
-        intensity={2.5}
-        color="#fff5df"
-        castShadow={!profile.quietWorld}
-        shadow-mapSize={[2048, 2048]}
-        shadow-camera-left={-32}
-        shadow-camera-right={32}
-        shadow-camera-top={30}
-        shadow-camera-bottom={-24}
-      />
+      {/* Sky. A single flat colour reads as a backdrop; a subtle vertical gradient reads as
+          atmosphere, and it is what the glass facade reflects. */}
+      <color attach="background" args={[profile.highContrast ? "#e8f1f4" : "#b9d2dd"]} />
+      {/* Fog pushed much further out. The previous 42-92 range greyed out the far side of the
+          campus, flattening depth; distance haze should be a subtle cue, not a wall. */}
+      <fog attach="fog" args={[profile.highContrast ? "#e8f1f4" : "#b9d2dd", 68, 145]} />
+      <Lighting profile={profile} />
 
       <Physics gravity={[0, -18, 0]} timeStep="vary">
         <WorldColliders />
@@ -116,13 +121,16 @@ function CampusArchitecture(props: SceneProps) {
 function Ground() {
   return (
     <>
+      {/* Landscape. Fully matte, no env contribution — grass should never look wet. */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.34, 3]} receiveShadow>
         <planeGeometry args={[72, 55]} />
-        <meshStandardMaterial color="#748d78" roughness={1} />
+        <meshStandardMaterial color="#5f7a58" roughness={1} metalness={0} envMapIntensity={0.35} />
       </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.28, 3]} receiveShadow>
+      {/* Building floor plate — polished concrete. This surface is doing a lot of the realism
+          work now: at roughness 0.25 with envMapIntensity 1.15 it picks up the window wall as a
+          soft vertical reflection, which is the signature look of a daylit concrete interior. */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.28, 3]} receiveShadow material={M.concreteFloor}>
         <planeGeometry args={[49, 32]} />
-        <meshStandardMaterial color="#d8d1c3" roughness={0.82} metalness={0.02} />
       </mesh>
       {[-1, 1].map((side) => (
         <group key={side} position={[side * 27, 0, 3]}>
@@ -143,19 +151,43 @@ function BuildingShell() {
       <Wall position={[24.2, 1.8, 3]} scale={[0.32, 3.9, 30.2]} color="#d8d2c8" />
       <Wall position={[-17, 1.8, 18]} scale={[14, 3.9, 0.32]} color="#dfd8cc" />
       <Wall position={[17, 1.8, 18]} scale={[14, 3.9, 0.32]} color="#dfd8cc" />
+      {/*
+        Entrance curtain wall. Previously 8 separate meshPhysicalMaterials with transmission —
+        each of which renders its own backbuffer pass. Now: one shared reflective glass material
+        across all panes (visually equivalent at this distance, ~8 render passes cheaper) plus
+        real aluminium mullions between them. The mullion grid is what actually makes glazing
+        read as a curtain wall rather than a blue rectangle.
+      */}
       <group position={[0, 3.75, 18]}>
         {Array.from({ length: 8 }, (_, index) => (
-          <mesh key={index} position={[-7.7 + index * 2.2, 0, 0]}>
-            <boxGeometry args={[1.9, 3.5, 0.12]} />
-            <meshPhysicalMaterial color="#93b9bd" transparent opacity={0.34} roughness={0.08} transmission={0.4} />
+          <mesh key={index} position={[-7.7 + index * 2.2, 0, 0]} material={M.glass}>
+            <boxGeometry args={[2.06, 3.5, 0.04]} />
+          </mesh>
+        ))}
+        {/* Vertical mullions on the structural grid. */}
+        {Array.from({ length: 9 }, (_, index) => (
+          <mesh key={`m${index}`} position={[-8.8 + index * 2.2, 0, 0]} castShadow material={M.aluminium}>
+            <boxGeometry args={[0.09, 3.62, 0.14]} />
+          </mesh>
+        ))}
+        {/* Head and sill transoms. */}
+        {[-1, 1].map((side) => (
+          <mesh key={side} position={[0, side * 1.79, 0]} castShadow material={M.aluminium}>
+            <boxGeometry args={[17.7, 0.1, 0.14]} />
           </mesh>
         ))}
       </group>
-      <group position={[0, 5.6, 4]} rotation={[0, 0, 0]}>
+      {/* Clerestory roof glazing — daylight into the atrium from above. */}
+      <group position={[0, 5.6, 4]}>
         {[-9, -3, 3, 9].map((x) => (
-          <mesh key={x} position={[x, 0, 0]} rotation={[0.1, 0, 0]}>
-            <boxGeometry args={[5.4, 0.14, 12]} />
-            <meshPhysicalMaterial color="#b8d1d2" transparent opacity={0.28} roughness={0.08} transmission={0.55} />
+          <mesh key={x} position={[x, 0, 0]} rotation={[0.1, 0, 0]} material={M.glass}>
+            <boxGeometry args={[5.4, 0.06, 12]} />
+          </mesh>
+        ))}
+        {/* Structural ribs between the roof lights. */}
+        {[-12, -6, 0, 6, 12].map((x) => (
+          <mesh key={`r${x}`} position={[x, 0.06, 0]} rotation={[0.1, 0, 0]} castShadow material={M.steel}>
+            <boxGeometry args={[0.16, 0.34, 12.2]} />
           </mesh>
         ))}
       </group>
@@ -432,15 +464,53 @@ function Tree({ position, scale }: { position: [number, number, number]; scale: 
 }
 
 function Column({ position }: { position: [number, number, number] }) {
-  return <mesh position={[position[0], 2.2, position[2]]} castShadow><cylinderGeometry args={[0.24, 0.3, 4.6, 20]} /><meshStandardMaterial color="#d8d3c8" roughness={0.8} /></mesh>;
+  return <mesh position={[position[0], 2.2, position[2]]} castShadow receiveShadow material={M.plaster}><cylinderGeometry args={[0.24, 0.3, 4.6, 20]} /></mesh>;
 }
 
-function Wall({ position, scale, color }: { position: [number, number, number]; scale: [number, number, number]; color: string }) {
-  return <mesh position={position} castShadow receiveShadow><boxGeometry args={scale} /><meshStandardMaterial color={color} roughness={0.88} /></mesh>;
+/**
+ * A wall with a base reveal — the ~90mm recessed shadow gap where wall meets floor that is
+ * standard in modern architectural detailing. It costs one extra thin box and does more for
+ * perceived realism than any texture: it gives the wall a visible thickness and catches a dark
+ * line of self-shadow, so the wall reads as a built element rather than a floating plane.
+ */
+function Wall({ position, scale }: { position: [number, number, number]; scale: [number, number, number]; color?: string }) {
+  const [w, h, d] = scale;
+  const horizontal = w >= d;
+  return (
+    <group position={position}>
+      <mesh castShadow receiveShadow material={M.plaster} position={[0, 0.05, 0]}>
+        <boxGeometry args={[w, h - 0.1, d]} />
+      </mesh>
+      {/* Recessed skirting reveal, inset on both faces. */}
+      <mesh receiveShadow material={M.concreteRaw} position={[0, -h / 2 + 0.045, 0]}>
+        <boxGeometry args={horizontal ? [w, 0.09, d * 0.72] : [w * 0.72, 0.09, d]} />
+      </mesh>
+    </group>
+  );
 }
 
+/**
+ * Room floor. Selection is signalled by a warmer, more reflective finish rather than a colour
+ * wash — colour alone must never carry meaning (accessibility), and the `SelectedMarker` ring
+ * provides the redundant non-colour cue.
+ */
 function RoomFloor({ position, size, color, selected, onClick }: { position: [number, number, number]; size: [number, number]; color: string; selected: boolean; onClick: () => void }) {
-  return <mesh position={position} rotation={[-Math.PI / 2, 0, 0]} receiveShadow onClick={(event) => { event.stopPropagation(); onClick(); }}><planeGeometry args={size} /><meshStandardMaterial color={color} roughness={selected ? 0.63 : 0.86} metalness={selected ? 0.08 : 0.02} /></mesh>;
+  return (
+    <mesh
+      position={position}
+      rotation={[-Math.PI / 2, 0, 0]}
+      receiveShadow
+      onClick={(event) => { event.stopPropagation(); onClick(); }}
+    >
+      <planeGeometry args={size} />
+      <meshStandardMaterial
+        color={color}
+        roughness={selected ? 0.3 : 0.42}
+        metalness={0}
+        envMapIntensity={selected ? 1.25 : 1.0}
+      />
+    </mesh>
+  );
 }
 
 function RoomSign({ room, position }: { room: CampusRoom; position: [number, number, number] }) {
