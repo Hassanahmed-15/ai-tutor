@@ -8,6 +8,7 @@ import { PLAYER_CONTROL_MAP, type TeleportRequest, type TouchInput } from "./Pla
 import { SmartboardWorkspace } from "./Smartboard";
 import { CAMPUS_ROOMS } from "./campus";
 import { useCampusNetwork } from "./net/useCampusNetwork";
+import { ROOMS, roomArrival } from "./scene/floorplan";
 import type { AccessibilityProfile } from "./types";
 
 const DEFAULT_ACCESSIBILITY: AccessibilityProfile = {
@@ -25,7 +26,7 @@ export default function App() {
   const [accessibilityOpen, setAccessibilityOpen] = useState(false);
   const [profile, setProfile] = useState(DEFAULT_ACCESSIBILITY);
   const [nearbyBoard, setNearbyBoard] = useState<(typeof CAMPUS_ROOMS)[number] | null>(null);
-  const [teleport, setTeleport] = useState<TeleportRequest>({ id: 0, position: [0, 1, 14] });
+  const [teleport, setTeleport] = useState<TeleportRequest>({ id: 0, position: [0, 1, 18] });
   const [touch, setTouch] = useState<TouchInput>({
     forward: false,
     back: false,
@@ -35,12 +36,24 @@ export default function App() {
     interactNonce: 0,
   });
   const [player, setPlayer] = useState<{ position: [number, number, number]; state: "idle" | "walking" | "running" }>({
-    position: [0, 1, 14],
+    position: [0, 1, 18],
     state: "idle",
   });
   /** Seat id the player currently occupies, or null when standing. Synced to peers so everyone
    *  sees who is actually sitting where. */
   const [seatedAt, setSeatedAt] = useState<string | null>(null);
+  /** Room whose in-world board currently has interaction focus. While focused, the board's DOM
+   *  receives pointer events and the player controller is frozen so WASD doesn't fight typing. */
+  const [focusedBoardRoomId, setFocusedBoardRoomId] = useState<string | null>(null);
+  /**
+   * Portal target for the in-3D board's DOM.
+   *
+   * The canvas wrapper is aria-hidden (it is a non-semantic 3D view), but the board contains a
+   * focusable iframe. Rendering focusable content inside an aria-hidden subtree is a WCAG 4.1.2
+   * violation, so drei's `portal` prop is used to mount that DOM here instead — outside the
+   * hidden subtree, where assistive tech and keyboard focus can reach it.
+   */
+  const boardPortalRef = useRef<HTMLElement | null>(null);
   const selectedRoom = useMemo(
     () => CAMPUS_ROOMS.find((room) => room.id === selectedRoomId) ?? CAMPUS_ROOMS[0],
     [selectedRoomId],
@@ -73,7 +86,7 @@ export default function App() {
   });
 
   const playerTransform = useRef<{ position: [number, number, number]; rotation: number }>({
-    position: [0, 1, 14],
+    position: [0, 1, 18],
     rotation: 0,
   });
 
@@ -104,14 +117,17 @@ export default function App() {
    * handoff back is instant rather than a fresh WebRTC negotiation.
    */
   useEffect(() => {
-    network.setMicMuted(boardOpen);
-  }, [boardOpen, network]);
+    network.setMicMuted(boardOpen || focusedBoardRoomId !== null);
+  }, [boardOpen, focusedBoardRoomId, network]);
 
   const travelToRoom = useCallback((roomId: string) => {
     const room = CAMPUS_ROOMS.find((candidate) => candidate.id === roomId) ?? CAMPUS_ROOMS[0];
-    const position: [number, number, number] = room.id === "atrium"
-      ? [0, 1, 14]
-      : [room.camera[0], 1, room.camera[2]];
+    // Arrive standing inside the room, a little back from its centre so the board/teacher is
+    // in view — derived from the floorplan rather than the old hand-tuned camera coordinates.
+    const shell = ROOMS.find((entry) => entry.id === room.id);
+    const position: [number, number, number] = shell
+      ? roomArrival(shell)
+      : [room.position[0], 1, room.position[2] + 2];
     setSelectedRoomId(room.id);
     setTeleport((request) => ({ id: request.id + 1, position }));
   }, []);
@@ -163,6 +179,19 @@ export default function App() {
                 onPlayerUpdate={(position, state) => setPlayer({ position, state })}
                 peers={network.peers}
                 onNetworkFrame={handleNetworkFrame}
+                seatedAt={seatedAt}
+                onSit={(seatId, seatPosition) => {
+                  setSeatedAt(seatId);
+                  // Move the avatar onto the seat. The controller is paused while seated, so this
+                  // teleport is what actually places them in the chair.
+                  setTeleport((request) => ({
+                    id: request.id + 1,
+                    position: [seatPosition[0], 1, seatPosition[2] + 0.1],
+                  }));
+                }}
+                focusedBoardRoomId={focusedBoardRoomId}
+                onFocusBoard={setFocusedBoardRoomId}
+                boardPortal={boardPortalRef}
               />
             </Suspense>
           </Canvas>
@@ -241,11 +270,40 @@ export default function App() {
         <p className="voice-error" role="status">Microphone unavailable: {network.voiceError}</p>
       )}
 
-      {seatedAt && (
+      {seatedAt && !focusedBoardRoomId && (
         <button className="stand-up-prompt" onClick={() => setSeatedAt(null)}>
           Stand up
         </button>
       )}
+
+      {/*
+        Exit control for the in-world board.
+
+        This must live OUTSIDE the board's own DOM and always be visible while focused. Once
+        keyboard focus moves into a cross-origin iframe the parent page stops receiving key
+        events entirely, so an Escape handler can never fire — a visible button is the only
+        reliable way back out. Slight cost to immersion, but the alternative is trapping people.
+      */}
+      {focusedBoardRoomId && (
+        <div className="board-focus-bar">
+          <span className="board-focus-label">
+            <span className="live-dot" aria-hidden="true" />
+            Teaching board · {selectedRoom.shortName}
+          </span>
+          <span className="board-focus-hint">Microphone is with Aria</span>
+          <button className="board-exit" onClick={() => setFocusedBoardRoomId(null)}>
+            Step back
+          </button>
+        </div>
+      )}
+
+      {/* Portal target for the in-3D board's DOM — see boardPortalRef above. */}
+      <div
+        ref={(node) => {
+          boardPortalRef.current = node;
+        }}
+        className="board-portal"
+      />
 
       <div
         className={`player-readout is-${player.state}`}
