@@ -136,7 +136,7 @@ export function CampusHud(props: HudProps) {
         <p className="accommodation">{selectedRoom.accommodation}</p>
         {classroom && (
           <button className="primary-action" onClick={props.onOpenBoard}>
-            <Maximize2 size={18} /> Enter class & open smartboard
+            <Maximize2 size={18} /> Open teaching board (2D)
           </button>
         )}
       </section>
@@ -201,7 +201,7 @@ function AccessibilityPanel({ profile, onChange, onClose }: { profile: Accessibi
         ))}
       </div>
       <div className="accessibility-note">
-        <Mic2 size={17} /> Voice and typed interaction remain available together on the classroom smartboard.
+        <Mic2 size={17} /> The board is also mounted in the classroom itself — walk up and press E. This 2D route is always available if you prefer not to navigate in 3D.
       </div>
     </aside>
   );

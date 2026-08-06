@@ -11,6 +11,7 @@ import { Lighting } from "./scene/Lighting";
 import { Postprocessing } from "./scene/Postprocessing";
 import { applyHighContrast, applyLowStimulation } from "./scene/materials";
 import { ROOMS, boardPlacement } from "./scene/floorplan";
+import { useAmbientAudio, type FloorMaterial } from "./scene/useAmbientAudio";
 import type { AccessibilityProfile, CampusRoom } from "./types";
 
 type SceneProps = {
@@ -55,6 +56,11 @@ export function CampusScene(props: SceneProps) {
   // running the full tutor app. The nearest board within range wins.
   const [liveBoardRoomId, setLiveBoardRoomId] = useState<string | null>(null);
 
+  // Environmental audio. Synthesised, so it costs no download; silenced entirely in quiet mode.
+  const audio = useAmbientAudio({ enabled: true, quiet: profile.quietWorld });
+  const currentFloor = useRef<FloorMaterial>("concrete");
+  const lastRoomForTone = useRef<string>("");
+
   const boardAnchors = useMemo(
     () =>
       ROOMS.flatMap((shell) => {
@@ -94,6 +100,7 @@ export function CampusScene(props: SceneProps) {
             touch={props.touch}
             teleport={props.teleport}
             paused={props.paused || props.focusedBoardRoomId !== null}
+            seated={props.seatedAt}
             onRoomChange={props.onRoomChange}
             onBoardProximity={props.onBoardProximity}
             onPlayerUpdate={(position, state, rotation) => {
@@ -116,6 +123,34 @@ export function CampusScene(props: SceneProps) {
                 }
               }
               setLiveBoardRoomId((current) => (current === nearest ? current : nearest));
+
+              // Footsteps take their character from whatever surface the player is actually
+              // standing on, so walking from the concrete corridor onto classroom carpet is
+              // audible. This is the kind of detail nobody consciously notices but everybody
+              // feels the absence of.
+              const inRoom = ROOMS.find((shell) => {
+                const [rx, rz] = shell.center;
+                const [rw, rd] = shell.size;
+                return (
+                  Math.abs(position[0] - rx) <= rw / 2 &&
+                  Math.abs(position[2] - rz) <= rd / 2
+                );
+              });
+              currentFloor.current = inRoom
+                ? (inRoom.floor as FloorMaterial)
+                : Math.abs(position[0]) < 2.2
+                  ? "concrete"
+                  : "grass";
+              if (state !== "idle") audio.footstep(currentFloor.current, state === "running");
+
+              // Room tone changes as you move between spaces.
+              const toneKey = inRoom?.id ?? "outside";
+              if (toneKey !== lastRoomForTone.current) {
+                lastRoomForTone.current = toneKey;
+                audio.setRoomTone(
+                  !inRoom ? "outdoor" : inRoom.height > 4.5 ? "large" : "small",
+                );
+              }
 
               props.onPlayerUpdate(position, state, rotation);
               props.onNetworkFrame?.(position, rotation);

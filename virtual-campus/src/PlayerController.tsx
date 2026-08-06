@@ -42,13 +42,16 @@ type PlayerProps = {
   onBoardProximity: (room: CampusRoom | null) => void;
   onInteract: (room: CampusRoom) => void;
   onPlayerUpdate: (position: [number, number, number], state: "idle" | "walking" | "running", rotation: number) => void;
+  /** Seat id when the player is sitting; movement is frozen and the camera drops to seated eye
+   *  height. Null when standing. */
+  seated?: string | null;
 };
 
 const PLAYER_HEIGHT = 1.78;
 const WALK_SPEED = 3.4;
 const RUN_SPEED = 6.2;
 
-export function PlayerController({ profile, touch, teleport, paused, onRoomChange, onBoardProximity, onInteract, onPlayerUpdate }: PlayerProps) {
+export function PlayerController({ profile, touch, teleport, paused, onRoomChange, onBoardProximity, onInteract, onPlayerUpdate, seated = null }: PlayerProps) {
   const body = useRef<RapierRigidBody>(null);
   const modelRoot = useRef<THREE.Group>(null);
   const [, getKeyboard] = useKeyboardControls<PlayerControl>();
@@ -162,6 +165,9 @@ export function PlayerController({ profile, touch, teleport, paused, onRoomChang
       (rightPressed ? 1 : 0) - (leftPressed ? 1 : 0),
       (forwardPressed ? 1 : 0) - (backPressed ? 1 : 0),
     );
+    // Sitting freezes locomotion: a seated avatar that can still walk breaks the illusion
+    // immediately. Standing up is an explicit action.
+    if (seated) input.set(0, 0);
     const moving = input.lengthSq() > 0;
     if (moving) input.normalize();
 
@@ -206,7 +212,10 @@ export function PlayerController({ profile, touch, teleport, paused, onRoomChang
     animateHumanoid(animatedBones, walkPhase, moving, running, profile.reducedMotion, delta);
 
     const playerPosition = new THREE.Vector3(translation.x, translation.y, translation.z);
-    const target = playerPosition.clone().add(new THREE.Vector3(0, 1.05, 0));
+    // Seated eye height (~1.2m) rather than standing (~1.78m). Getting this right matters for
+    // wheelchair users too, who experience the whole building from roughly this height.
+    const eyeOffset = seated ? 0.52 : 1.05;
+    const target = playerPosition.clone().add(new THREE.Vector3(0, eyeOffset, 0));
     const horizontalDistance = Math.cos(cameraPitch.current) * cameraDistance.current;
     const desiredCamera = new THREE.Vector3(
       target.x + Math.sin(yaw) * horizontalDistance,
@@ -254,7 +263,7 @@ export function PlayerController({ profile, touch, teleport, paused, onRoomChang
       ccd
     >
       <CapsuleCollider args={[0.57, 0.31]} friction={0} restitution={0} />
-      <group ref={modelRoot} position={[0, -PLAYER_HEIGHT / 2, 0]} rotation={[0, Math.PI, 0]}>
+      <group ref={modelRoot} position={[0, -PLAYER_HEIGHT / 2 - (seated ? 0.42 : 0), 0]} rotation={[0, Math.PI, 0]}>
         <primitive object={model} scale={0.92} />
       </group>
     </RigidBody>
