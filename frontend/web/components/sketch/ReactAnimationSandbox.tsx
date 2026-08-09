@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ANIM_SANDBOX_RUNTIME } from "../../lib/anim/sandboxRuntime";
+import { escapeStrayLessThan, type ParseLoc } from "../../lib/jsxRepair";
 
 /**
  * Renders an LLM-generated React component (a `reactAnimation` DrawOp's `code` string) live,
@@ -45,37 +46,114 @@ const transpileCache = new Map<string, string>();
 let reactRuntimePromise: Promise<{ react: string; reactDom: string }> | null = null;
 function loadReactRuntime(): Promise<{ react: string; reactDom: string }> {
   if (!reactRuntimePromise) {
+    /**
+     * `res.ok` is checked, and a failure is NEVER memoised — both matter.
+     *
+     * Without the status check a missing file returns Next's 404 HTML page, `.text()` happily
+     * yields it, and that HTML is inlined into the sandbox document as if it were JavaScript: the
+     * board renders blank with no error anyone can act on. And because the rejected promise used
+     * to be cached, the first failure poisoned every subsequent beat for the life of the page.
+     */
+    const get = async (url: string) => {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`${url} returned ${res.status} — the sandbox React runtime is missing from public/sandbox/`);
+      return res.text();
+    };
     reactRuntimePromise = Promise.all([
-      fetch("/sandbox/react.production.min.js").then((r) => r.text()),
-      fetch("/sandbox/react-dom.production.min.js").then((r) => r.text()),
-    ]).then(([react, reactDom]) => ({ react, reactDom }));
+      get("/sandbox/react.production.min.js"),
+      get("/sandbox/react-dom.production.min.js"),
+    ])
+      .then(([react, reactDom]) => ({ react, reactDom }))
+      .catch((err) => {
+        reactRuntimePromise = null;
+        throw err;
+      });
   }
   return reactRuntimePromise;
 }
+
+/**
+ * The `<Asset/>` runtime for a board, fetched by id.
+ *
+ * Cached per id-set because consecutive beats on the same subject usually request the same
+ * artwork. A failure resolves to empty rather than rejecting: a board that cannot load its
+ * illustration should still render its labels and motion, not disappear.
+ */
+const assetRuntimeCache = new Map<string, Promise<string>>();
+function loadAssetRuntime(assetIds?: string[]): Promise<string> {
+  if (!assetIds?.length) return Promise.resolve("");
+  const key = assetIds.join(",");
+  let pending = assetRuntimeCache.get(key);
+  if (!pending) {
+    pending = fetch(`/api/animation-assets?ids=${encodeURIComponent(key)}`)
+      .then((res) => (res.ok ? res.text() : ""))
+      .catch(() => "");
+    assetRuntimeCache.set(key, pending);
+  }
+  return pending;
+}
+
+/** How many stray `<` characters we are willing to fix before concluding the source is just broken. */
+const MAX_JSX_REPAIRS = 6;
 
 async function transpile(code: string): Promise<string> {
   const cached = transpileCache.get(code);
   if (cached) return cached;
   const Babel = await import("@babel/standalone");
-  // The "react" preset alone only strips JSX — it leaves `export default` as real ES module
-  // syntax, which a plain (non type="module") <script> tag cannot execute. transform-modules-
-  // commonjs rewrites it to `exports.default = Animation`, which the shim below reads after
-  // pre-declaring a bare `exports` object for it to assign onto.
-  const result = Babel.transform(code, {
-    // CLASSIC runtime, not automatic: the automatic runtime emits `require("react/jsx-runtime")`,
-    // a bare require the sandbox has no module loader for → "require is not defined" at runtime.
-    // Classic compiles JSX to `React.createElement(...)`, referencing the global React UMD that
-    // IS present in the sandbox. Explicit pragma keeps it deterministic across Babel versions.
-    presets: [["react", { runtime: "classic", pragma: "React.createElement", pragmaFrag: "React.Fragment" }]],
-    plugins: ["transform-modules-commonjs"],
-    filename: "animation.jsx",
-  });
-  const out = result.code ?? "";
-  transpileCache.set(code, out);
-  return out;
+
+  const compile = (source: string) =>
+    // The "react" preset alone only strips JSX — it leaves `export default` as real ES module
+    // syntax, which a plain (non type="module") <script> tag cannot execute. transform-modules-
+    // commonjs rewrites it to `exports.default = Animation`, which the shim below reads after
+    // pre-declaring a bare `exports` object for it to assign onto.
+    Babel.transform(source, {
+      // CLASSIC runtime, not automatic: the automatic runtime emits `require("react/jsx-runtime")`,
+      // a bare require the sandbox has no module loader for → "require is not defined" at runtime.
+      // Classic compiles JSX to `React.createElement(...)`, referencing the global React UMD that
+      // IS present in the sandbox. Explicit pragma keeps it deterministic across Babel versions.
+      presets: [["react", { runtime: "classic", pragma: "React.createElement", pragmaFrag: "React.Fragment" }]],
+      plugins: ["transform-modules-commonjs"],
+      filename: "animation.jsx",
+    });
+
+  /**
+   * Compile-guided repair of stray `<` in JSX text.
+   *
+   * `<text>BST Property: Left < Root < Right</text>` is a hard syntax error that fails the WHOLE
+   * board — a comparison operator in a caption costs the entire beat its diagram. Babel names the
+   * exact position, so each pass fixes that one character and asks again. Nothing is rewritten
+   * speculatively, which matters: a blanket regex would also rewrite `{progress < 0.5 ? … : …}`,
+   * which is in almost every generated component and is perfectly valid. A source that fails for
+   * any other reason reports its ORIGINAL error rather than a confusing downstream one.
+   */
+  let source = code;
+  let firstError: unknown = null;
+  for (let attempt = 0; attempt <= MAX_JSX_REPAIRS; attempt++) {
+    try {
+      const out = compile(source).code ?? "";
+      transpileCache.set(code, out);
+      return out;
+    } catch (err) {
+      if (!firstError) firstError = err;
+      const loc = (err as { loc?: ParseLoc }).loc;
+      const repaired = loc ? escapeStrayLessThan(source, loc) : null;
+      if (!repaired) throw firstError;
+      source = repaired;
+    }
+  }
+  throw firstError;
 }
 
-function buildSrcDoc(transpiledCode: string, runtime: { react: string; reactDom: string }): string {
+function buildSrcDoc(
+  transpiledCode: string,
+  runtime: { react: string; reactDom: string },
+  /**
+   * Defines <Asset/> and the artwork it can place. Injected AFTER the motion runtime and BEFORE
+   * the component, and it must match what lib/reactAnimationVisionCritic.ts prepends server-side —
+   * a critic that scores a board without its artwork is scoring a picture nobody sees.
+   */
+  assetRuntime = "",
+): string {
   // React/ReactDOM are UMD builds pinned at React 18, INLINED (not <script src>) because the
   // opaque-origin sandbox + strict CSP blocks external script tags — see loadReactRuntime above.
   // This is an isolated realm — the sandboxed component never interacts with the app's real
@@ -113,6 +191,7 @@ svg text{
   // Easing/composition helpers, declared before the generated component runs so it can call
   // them by name. Function declarations hoist, so they are in scope inside the try block below.
 ${ANIM_SANDBOX_RUNTIME}
+${assetRuntime}
 
   function postToParent(msg) {
     try { window.parent.postMessage(msg, "*"); } catch (e) {}
@@ -352,7 +431,17 @@ ${ANIM_SANDBOX_RUNTIME}
       if (!root) root = ReactDOM.createRoot(document.getElementById("root"));
       root.render(React.createElement(Animation, { progress: progress }));
       cancelAnimationFrame(timelineFrame);
-      timelineFrame = requestAnimationFrame(function () { applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal); });
+      // DOUBLE rAF, deliberately. root.render() is asynchronous, so on a single frame the
+      // timeline can run BEFORE React commits: it styles the old nodes, React then swaps in new
+      // ones, and those keep the stylesheet default of opacity 0. The board renders completely
+      // blank with no error, and it does so intermittently — the more elements the board has, the
+      // slower the commit and the likelier the miss, which is why small boards looked fine and
+      // detailed ones never appeared. Waiting a second frame puts this after commit and paint.
+      timelineFrame = requestAnimationFrame(function () {
+        timelineFrame = requestAnimationFrame(function () {
+          applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal);
+        });
+      });
     } catch (err) {
       reportError(err);
     }
@@ -385,6 +474,7 @@ export function ReactAnimationSandbox({
   sentenceIndex = 0,
   sentenceProgress = 0,
   sentenceTotal = 1,
+  assetIds,
   onError,
 }: {
   code: string;
@@ -392,6 +482,8 @@ export function ReactAnimationSandbox({
   sentenceIndex?: number;
   sentenceProgress?: number;
   sentenceTotal?: number;
+  /** Catalogue artwork this board places; resolved to markup via /api/animation-assets. */
+  assetIds?: string[];
   onError?: () => void;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -400,6 +492,9 @@ export function ReactAnimationSandbox({
   const [marker, setMarker] = useState<MarkerState>({ x: 50, y: 25, rotate: 18, visible: false });
   const erroredRef = useRef(false);
   const readyRef = useRef(false);
+  // Both a ref and state: the ref is read by the watchdog without re-rendering, the state is what
+  // makes the progress effect re-run once the sandbox is listening (see its dependency list).
+  const [ready, setReady] = useState(false);
 
   const reportFailure = useMemo(
     () => () => {
@@ -416,9 +511,9 @@ export function ReactAnimationSandbox({
   // component's whole lifetime — no need to react to it changing after mount.
   useEffect(() => {
     let cancelled = false;
-    Promise.all([transpile(code), loadReactRuntime()])
-      .then(([out, runtime]) => {
-        if (!cancelled) setSrcDoc(buildSrcDoc(out, runtime));
+    Promise.all([transpile(code), loadReactRuntime(), loadAssetRuntime(assetIds)])
+      .then(([out, runtime, assets]) => {
+        if (!cancelled) setSrcDoc(buildSrcDoc(out, runtime, assets));
       })
       .catch(() => {
         if (!cancelled) reportFailure();
@@ -452,14 +547,23 @@ export function ReactAnimationSandbox({
       sentenceProgress,
       sentenceTotal,
     }, "*");
-  }, [srcDoc, failed, progress, sentenceIndex, sentenceProgress, sentenceTotal]);
+    // `ready` is in the dependency list so this RE-POSTS once the sandbox is actually listening.
+    // The first post fires as soon as `srcDoc` exists, which is before the iframe has parsed its
+    // script and registered its message handler, so that one is dropped on the floor. Narration
+    // usually masks it here — progress ticks continuously and the next post lands milliseconds
+    // later — but a paused beat or a static board has nothing to follow up with, and then the
+    // board sits at opacity 0 forever with no error.
+  }, [srcDoc, failed, ready, progress, sentenceIndex, sentenceProgress, sentenceTotal]);
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
       if (event.source !== iframeRef.current?.contentWindow) return;
       const data = event.data;
       if (!data || typeof data !== "object") return;
-      if (data.type === "ready") readyRef.current = true;
+      if (data.type === "ready") {
+        readyRef.current = true;
+        setReady(true);
+      }
       if (data.type === "marker") {
         setMarker({
           x: Number.isFinite(data.x) ? data.x : 50,

@@ -30,6 +30,12 @@ type VisionCallout = {
   confidence: number;
 };
 
+/** What the board director learned about each beat. Without it, no beat qualifies for a photo. */
+export type ReferenceContext = {
+  specs?: Map<string, { subject: string; isPhysical: boolean }>;
+  forms?: Map<string, string>;
+};
+
 export type ReferenceImageStats = {
   costUsd: number;
   filled: number;
@@ -38,8 +44,10 @@ export type ReferenceImageStats = {
 
 const VISION_MODEL = process.env.OPENAI_REFERENCE_VISION_MODEL ?? "gpt-4o-mini";
 const MAX_IMAGE_BYTES = 2_200_000;
+// Kept ONLY to seed the Openverse search string once a beat has already qualified through the
+// director. It is no longer a gate — as a gate it matched "machine" in "Support Vector Machine"
+// and put a stamp vending machine in a lecture about classifiers.
 const REFERENCE_TERMS = /\b(?:anatomy|organ|heart|lung|brain|bone|muscle|skin|plant|leaf|flower|root|stem|animal|bird|fish|insect|species|specimen|microscope|telescope|laboratory|equipment|engine|machine|volcano|glacier|river|mountain|fossil|artifact|cell)\b/i;
-const ABSTRACT_TERMS = /\b(?:definition|equation|formula|principle|summary|recap|misconception|difference between|compare)\b/i;
 
 function stripHtml(value: unknown): string {
   return typeof value === "string"
@@ -47,15 +55,41 @@ function stripHtml(value: unknown): string {
     : "";
 }
 
-function candidateBeat(beats: Beat[]): { beat: Beat; index: number } | null {
+/**
+ * Which beat, if any, may carry a real photograph.
+ *
+ * THE KEYWORD GATE IS GONE, and it is worth recording why, because it looked reasonable. It tested
+ * the beat text against a list of physical nouns that included the word `machine`. A lecture on
+ * Support Vector Machines matched it, an Openverse full-text search for "SVM" returned a stamp
+ * vending machine, and the callout pass labelled its coin return slot — under narration about
+ * maximising the margin between two classes.
+ *
+ * No amount of extra words fixes that: a regex cannot tell "Support Vector Machine" from a machine,
+ * or a Random Forest from a forest, or a Decision Tree from a tree. Machine learning is full of
+ * names borrowed from physical objects, which is exactly the domain where a stock-photo search is
+ * most confidently wrong.
+ *
+ * So the gate is now the director's own judgement: a beat qualifies only when its visual
+ * specification says the subject is a REAL PHYSICAL THING (`isPhysical`) and the classifier agreed
+ * it is a `labelled-diagram`. Both come from a model that was asked the question directly, with the
+ * ambiguity named. And even then the image is vision-verified before use — see fillRealReferenceImage.
+ *
+ * With no director context (the pass is disabled, or planning failed) NO beat qualifies. That is
+ * deliberate: the previous default was "guess from keywords", and its failure mode was a vending
+ * machine in a lecture about classifiers.
+ */
+function candidateBeat(beats: Beat[], context: ReferenceContext): { beat: Beat; index: number } | null {
   let best: { beat: Beat; index: number; score: number } | null = null;
   for (let index = 0; index < beats.length; index += 1) {
     const beat = beats[index];
     if (beat.slideKind === "checkpoint" || !beat.draw) continue;
     if (beat.draw.ops.some((op) => op.kind === "image" || op.kind === "reactAnimation")) continue;
-    const text = `${beat.title} ${beat.teacherMove} ${beat.points.join(" ")} ${beat.script}`;
-    if (!REFERENCE_TERMS.test(text) || ABSTRACT_TERMS.test(beat.title)) continue;
-    const score = (REFERENCE_TERMS.test(beat.title) ? 5 : 0) + Math.min(4, beat.points.length) - (beat.slideKind === "recap" ? 4 : 0);
+
+    const spec = context.specs?.get(beat.id);
+    if (!spec?.isPhysical) continue;
+    if (context.forms?.get(beat.id) !== "labelled-diagram") continue;
+
+    const score = Math.min(4, beat.points.length) - (beat.slideKind === "recap" ? 4 : 0);
     if (!best || score > best.score) best = { beat, index, score };
   }
   return best ? { beat: best.beat, index: best.index } : null;
@@ -292,21 +326,93 @@ function imageBoard(beat: Beat, image: ReferenceImage, src: string, callouts: Vi
   return { caption: beat.title, durationMs: beat.draw?.durationMs ?? 25_000, surface: "paper", ops };
 }
 
+/**
+ * Does this photograph actually show what the beat is about?
+ *
+ * Nothing used to ask. A keyword search returns its best full-text match and the pipeline trusted
+ * it completely — which is how a lecture on Support Vector Machines acquired a photograph of a
+ * stamp vending machine, annotated with its coin return slot. The search cannot know it is wrong;
+ * only something that LOOKS at the result can.
+ *
+ * Deliberately strict, and deliberately fail-closed: an unreadable answer, a failed call or a
+ * missing model all mean "do not use this photo". A drawn board is always available as the
+ * alternative, so the cost of rejecting a good photo is small and the cost of accepting a bad one
+ * is a student being taught about a vending machine.
+ */
+async function depictsSubject(
+  client: OpenAI,
+  dataUrl: string,
+  subject: string,
+): Promise<{ ok: boolean; costUsd: number; reason?: string }> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: process.env.OPENAI_VISION_MODEL ?? "gpt-4o",
+      max_tokens: 200,
+      temperature: 0,
+      response_format: { type: "json_object" },
+      messages: [
+        {
+          role: "system",
+          content:
+            "You check whether a photograph is usable as the teaching illustration for a stated subject. " +
+            'Reply JSON: { "depicts": boolean, "reason": string }. ' +
+            "`depicts` is true ONLY if the photograph actually shows that subject. Technical names often " +
+            "collide with everyday objects — a photo of a vending machine is NOT a Support Vector Machine, " +
+            "a photo of woodland is NOT a Random Forest, a photo of network cabling is NOT a neural network. " +
+            "When the photograph shows the everyday object instead of the technical subject, answer false.",
+        },
+        {
+          role: "user",
+          content: [
+            { type: "text", text: `Subject this must illustrate: ${subject}` },
+            { type: "image_url", image_url: { url: dataUrl, detail: "low" } },
+          ],
+        },
+      ],
+    });
+    const usage = completion.usage;
+    const costUsd = usage
+      ? (usage.prompt_tokens * 2.5) / 1_000_000 + (usage.completion_tokens * 10) / 1_000_000
+      : 0;
+    const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
+    const ok = parsed.depicts === true;
+    return { ok, costUsd, reason: typeof parsed.reason === "string" ? parsed.reason : undefined };
+  } catch (err) {
+    console.error(`[reference-image] verification failed, rejecting: ${err instanceof Error ? err.message : "error"}`);
+    return { ok: false, costUsd: 0, reason: "verification call failed" };
+  }
+}
+
 export async function fillRealReferenceImage(
   client: OpenAI,
   beats: Beat[],
+  context: ReferenceContext = {},
   onFilled?: (update: { beat: Beat; beatIndex: number; costUsd: number }) => void
 ): Promise<ReferenceImageStats> {
-  const candidate = candidateBeat(beats);
+  const candidate = candidateBeat(beats, context);
   if (!candidate) return { costUsd: 0, filled: 0, failed: 0 };
+  const spec = context.specs?.get(candidate.beat.id);
   try {
     const queries = referenceQueries(candidate.beat);
     const image = await findOpenverseImage(queries) ?? await findCommonsImage(queries[0]);
     if (!image) return { costUsd: 0, filled: 0, failed: 0 };
     const dataUrl = await imageDataUrl(image.thumbUrl);
     if (!dataUrl) return { costUsd: 0, filled: 0, failed: 1 };
+
+    // Look at it before using it. The beat keeps whatever board it already had.
+    const subject = spec?.subject ?? candidate.beat.title;
+    const verdict = await depictsSubject(client, dataUrl, subject);
+    if (!verdict.ok) {
+      console.error(
+        `[reference-image] beat=${candidate.beat.id} REJECTED "${image.title}" for "${subject}"` +
+          (verdict.reason ? ` — ${verdict.reason}` : ""),
+      );
+      return { costUsd: verdict.costUsd, filled: 0, failed: 1 };
+    }
+
     const annotation = await annotateImage(client, candidate.beat, dataUrl);
-    if (annotation.callouts.length < 2) return { costUsd: annotation.costUsd, filled: 0, failed: 1 };
+    const costUsd = annotation.costUsd + verdict.costUsd;
+    if (annotation.callouts.length < 2) return { costUsd, filled: 0, failed: 1 };
     candidate.beat.draw = imageBoard(candidate.beat, image, dataUrl, annotation.callouts);
     onFilled?.({ beat: candidate.beat, beatIndex: candidate.index, costUsd: annotation.costUsd });
     return { costUsd: annotation.costUsd, filled: 1, failed: 0 };

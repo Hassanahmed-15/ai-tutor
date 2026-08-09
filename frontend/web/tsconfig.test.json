@@ -8,7 +8,11 @@
     "outDir": ".test-build",
     "noEmit": false,
     "incremental": false,
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./*"],
+      "vega-lite": ["../../node_modules/vega-lite/build/index.d.ts"]
+    }
   },
   "include": [
     "lib/anim/**/*.ts",
@@ -17,6 +21,14 @@
     "lib/manimSceneSpec.ts",
     "lib/structureSpec.ts",
     "lib/structureLayout.ts",
+    "lib/jsxRepair.ts",
+    "lib/assetCatalogue.ts",
+    "lib/equationSpec.ts",
+    "lib/plotSpec.ts",
+    "lib/director.ts",
+    "lib/beatVisualSpec.ts",
+    "lib/boardFallback.ts",
+    "lib/manimCacheKey.ts",
     "components/sketch/LiveSketch.tsx",
     "components/whiteboard/sketch.ts"
   ],

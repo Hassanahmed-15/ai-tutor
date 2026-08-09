@@ -127,6 +127,56 @@ TYPE F — STRUCTURAL DIAGRAM (ONE "structureScene" op ONLY — NO image, NO cal
  * Note what is absent: any mention of x, y, width, position or spacing. The model is never asked
  * where anything goes, which is precisely why it cannot put a label off the canvas.
  */
+/**
+ * The chart board. The model supplies DATA and encodings and nothing about geometry — no pixel
+ * positions, no tick placement — which is precisely why the output is exact.
+ */
+export const PLOT_BOARD_SYSTEM_PROMPT = `You write ONE Vega-Lite specification for a teaching chart. Output ONLY the JSON spec — no markdown, no commentary.
+
+{ "mark": "line" | "bar" | "point" | "area" | "circle" | "tick" | "rule",
+  "data": { "values": [ ... ] },
+  "encoding": { "x": {...}, "y": {...}, "color": {...}? } }
+
+RULES:
+- Data MUST be inline under "data".{"values"} — 8 to 40 rows. A "url" cannot be fetched here and renders an empty chart.
+- COMPUTE THE REAL NUMBERS yourself and put them in the rows. For "1000 at 8% over 20 years" that means the actual balances (1000, 1080, 1166.4, …), not a placeholder ramp.
+- Every encoding needs "field" and "type" ("quantitative" | "nominal" | "ordinal" | "temporal"). A wrong "type" is the one error that passes shape checks and still fails to compile.
+- Give each axis a real "title" with units, e.g. {"field":"year","type":"quantitative","title":"Years"}.
+- A "nominal" axis is sorted ALPHABETICALLY by default, which turns months into "Apr, Aug, Dec, Feb". Whenever the categories have a natural order, state it: "sort": ["Jan","Feb","Mar",…]. A chart in the wrong order teaches the wrong thing.
+- No "width", "height" or "$schema" — those are set for you.
+- Prefer one clear series. Use "color" only when comparing two or three genuinely different series.`;
+
+/**
+ * The derivation board.
+ *
+ * The escaping block leads because it is the rule that actually breaks this engine: `"\\frac"` is
+ * legal JSON (`\\f` is a valid escape), so a single backslash survives parsing as a form feed and
+ * KaTeX rejects the step with a message about a character nobody wrote. Every command starting
+ * \\f \\b \\n \\r \\t is exposed, which is most of real derivation TeX.
+ */
+export const EQUATION_BOARD_SYSTEM_PROMPT = `You lay out ONE derivation, step by step. Output ONLY JSON — no markdown.
+
+{ "title": string,
+  "steps": [ { "tex": string, "why": string } ] }
+
+ESCAPING — READ THIS FIRST. Every backslash inside the JSON string must be written TWICE.
+Correct:   "tex": "\\\\frac{a}{b} = \\\\times 2"
+Wrong:     "tex": "\\frac{a}{b}"        <- "\\f" is a JSON escape; this silently becomes a control
+                                          character and the step is thrown away.
+This applies to every command: \\\\frac \\\\text \\\\times \\\\theta \\\\to \\\\beta \\\\sqrt \\\\pm \\\\left \\\\right.
+
+RULES:
+- 2-6 steps. Each step is ONE line of maths that follows from the line above, under 120 characters.
+- "tex" is a LaTeX expression WITHOUT delimiters — write "a^2 + b^2 = c^2", never "$$a^2 + b^2 = c^2$$"
+  and never "\\[ ... \\]". It must compile in KaTeX; a step that does not is dropped.
+- KaTeX is not full LaTeX: no \\label, no \\eqref, no \\mbox. Write a percent sign as \\% — a bare
+  % starts a comment and silently swallows the rest of the line.
+- Use REAL numbers from the beat. If the script says a=3 and b=4, substitute them and carry the
+  arithmetic through to an actual answer — do not stop at the general form.
+- "why" is the short justification for THAT step ("Pythagoras", "substitute a=3, b=4", "take the
+  positive root"). This is the part a picture of an equation always loses, so it is required.
+- Start from the governing rule, end at the result. No prose, no commentary, no units inside the TeX.`;
+
 export const STRUCTURE_SCENE_SYSTEM_PROMPT = `You turn one teaching brief into a diagram spec, as JSON. Output ONLY the JSON object — no markdown, no commentary.
 
 { "kind": "cycle" | "flow" | "tree" | "state",
@@ -557,6 +607,7 @@ OUTPUT FORMAT:
 - Exact signature: \`export default function Animation({ progress }) { ... }\`.
 - No imports. React is already in scope. No network, storage, canvas, iframe, external assets, external fonts, timers, requestAnimationFrame, CSS keyframes, or autonomous transitions.
 - Use \`<svg viewBox="0 0 1000 560">\` and inline SVG/CSS only. Keep source below 48KB.
+- NEVER write a bare < inside element text — write &lt;. JSX reads < as the start of a tag, so "Left < Root" is a syntax error that fails the WHOLE board. Write "Left &lt; Root", "O(n) &lt; O(n^2)", "a &lt;= b". A > in text is fine.
 
 BOARD PLAN AND TEACHING TIMELINE — NON-NEGOTIABLE:
 - Inside the component define a boardPlan object with composition, readingPath, and reservedRegions fields. It is a real geometry plan, not decorative metadata.
@@ -622,6 +673,7 @@ OUTPUT FORMAT:
 - Exact signature: \`export default function Animation({ progress }) { ... }\`.
 - No imports. React is already in scope. No network, storage, canvas, iframe, external assets, external fonts, timers, requestAnimationFrame, CSS keyframes, or autonomous transitions.
 - Use \`<svg viewBox="0 0 1000 560">\` and inline SVG/CSS only. Keep source below 48KB.
+- NEVER write a bare < inside element text — write &lt;. JSX reads < as the start of a tag, so "Left < Root" is a syntax error that fails the WHOLE board. Write "Left &lt; Root", "O(n) &lt; O(n^2)", "a &lt;= b". A > in text is fine.
 
 BOARD PLAN AND TEACHING TIMELINE — NON-NEGOTIABLE (same as the physical engine):
 - Inside the component define a boardPlan object with composition, readingPath, and reservedRegions fields — a real geometry plan, not decorative metadata.

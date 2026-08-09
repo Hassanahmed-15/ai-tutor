@@ -222,6 +222,7 @@ export function ExplainOverlay({
           <ReactAnimationSandbox
             key={board.script.slice(0, 24)}
             code={animationOp.code}
+            assetIds={animationOp.assetIds}
             progress={effectiveProgress}
             sentenceProgress={effectiveProgress}
           />

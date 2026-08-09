@@ -14,7 +14,11 @@ import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
 import { ManimBoard } from "./sketch/ManimBoard";
 import { GsapSketch } from "./sketch/GsapSketch";
 import { StructureBoard } from "./sketch/StructureBoard";
+import { PlotBoard } from "./sketch/PlotBoard";
+import { EquationBoard } from "./sketch/EquationBoard";
 import type { StructureSpec } from "@/lib/structureSpec";
+import type { PlotSpec } from "@/lib/plotSpec";
+import type { EquationSpec } from "@/lib/equationSpec";
 import { RendererBadge } from "./sketch/RendererBadge";
 import { useManimPrefetch } from "@/lib/useManimPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
@@ -1180,6 +1184,7 @@ function VisualDirector({
           <ReactAnimationSandbox
             key={beat.id}
             code={animationOp.code}
+            assetIds={animationOp.assetIds}
             progress={drawProgress}
             sentenceIndex={sentenceTiming.index}
             sentenceProgress={sentenceTiming.progress}
@@ -1210,6 +1215,30 @@ function VisualDirector({
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
             <StructureBoard key={beat.id} spec={structureOp.spec as StructureSpec} progress={drawProgress} />
             <RendererBadge kind="structure" />
+          </section>
+        );
+      }
+    }
+    // The two spec-driven boards. Like `structure` above, both are only selected once their spec
+    // has validated against the renderer that draws it, so reaching here means the board renders.
+    if (rendererSelection?.renderer === "plot") {
+      const plotOp = beat.draw.ops.find((op) => op.kind === "plotBoard");
+      if (plotOp?.kind === "plotBoard" && plotOp.spec) {
+        return (
+          <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+            <PlotBoard key={beat.id} spec={plotOp.spec as PlotSpec} progress={drawProgress} />
+            <RendererBadge kind="plot" />
+          </section>
+        );
+      }
+    }
+    if (rendererSelection?.renderer === "equation") {
+      const equationOp = beat.draw.ops.find((op) => op.kind === "equationBoard");
+      if (equationOp?.kind === "equationBoard" && equationOp.spec) {
+        return (
+          <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+            <EquationBoard key={beat.id} spec={equationOp.spec as EquationSpec} progress={drawProgress} />
+            <RendererBadge kind="equation" />
           </section>
         );
       }

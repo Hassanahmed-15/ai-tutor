@@ -1,7 +1,7 @@
 import "server-only";
 
 import { execFile } from "node:child_process";
-import { createHash } from "node:crypto";
+import { manimCacheKey as cacheKey } from "./manimCacheKey";
 import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
@@ -62,13 +62,11 @@ export type ManimRenderResult = {
   bytes: number;
 };
 
-/** Stable cache key: same script + same renderer => same id, regardless of key order. */
+/** Stable cache key: same script + same renderer => same id, regardless of key order.
+ *  The hashing itself lives in lib/manimCacheKey.ts so it is reachable from the test build, which
+ *  cannot require anything marked `server-only`. */
 export function manimCacheKey(script: unknown, quality: ManimQuality): string {
-  const canonical = JSON.stringify(script, Object.keys(script as object).sort());
-  return createHash("sha256")
-    .update(`${RENDERER_VERSION}:${quality}:${canonical}`)
-    .digest("hex")
-    .slice(0, 32);
+  return cacheKey(script, quality, RENDERER_VERSION);
 }
 
 function videoPathFor(id: string): string {

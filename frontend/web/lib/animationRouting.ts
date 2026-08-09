@@ -17,7 +17,7 @@ type DrawOpLike = {
 
 type DrawScriptLike = { ops?: DrawOpLike[] };
 
-export type AnimationRenderer = "react-svg" | "manim" | "gsap" | "structure" | "live-svg";
+export type AnimationRenderer = "react-svg" | "manim" | "gsap" | "structure" | "plot" | "equation" | "live-svg";
 
 export type RendererSelection = {
   renderer: AnimationRenderer;
@@ -26,6 +26,8 @@ export type RendererSelection = {
     | "explicit-manim-scene"
     | "scrubbable-svg-morph"
     | "structural-diagram"
+    | "data-chart"
+    | "worked-derivation"
     | "diagram-or-motion"
     | "handwriting-or-unsupported";
 };
@@ -87,6 +89,17 @@ export function selectAnimationRenderer(
   // merely happens to also be present.
   if (ops.some((op) => op.kind === "structureScene" && op.spec)) {
     return { renderer: "structure", reason: "structural-diagram" };
+  }
+
+  // The two spec-driven boards sit at the same precedence and for the same reason: their geometry
+  // is computed by the renderer (Vega-Lite derives every axis and tick, KaTeX does the typesetting),
+  // so neither can overlap or clip, and neither should lose to a generated-code board that merely
+  // happens to also be present on the beat.
+  if (ops.some((op) => op.kind === "plotBoard" && op.spec)) {
+    return { renderer: "plot", reason: "data-chart" };
+  }
+  if (ops.some((op) => op.kind === "equationBoard" && op.spec)) {
+    return { renderer: "equation", reason: "worked-derivation" };
   }
 
   // A generated-code board cannot be translated safely or faithfully by another renderer.

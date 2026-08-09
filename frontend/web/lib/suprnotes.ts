@@ -353,7 +353,7 @@ export function composePromptedSuprnotesBoards(beats: Beat[]): number {
     // build and the diagram never reached the player at all.
     // Same for a TYPE E morph board: its shape/morph ops ARE the finished GSAP artwork, and no
     // later fill step rebuilds them, so composing a paper board over it loses the beat outright.
-    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene")) continue;
+    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) continue;
     const trustedReferenceImage = beat.draw?.ops.some(
       (op) => op.kind === "image"
         && typeof op.assetId === "string"
@@ -563,7 +563,7 @@ export function applySuprnotesPaperLayout(beats: Beat[], sourceDocument: Suprnot
     // A TYPE D diagram beat is rendered as Manim video from its scene spec — it has no paper text
     // to lay out. Without this escape it matches none of the cases above, falls through to
     // layoutPaperTextBoard below, and its single `manimScene` op is rewritten away entirely.
-    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene");
+    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard");
     if (diagramOp) continue;
 
     const hasStructuredInk = beat.draw.ops.some(
@@ -607,7 +607,7 @@ export function applyPaperLayout(beats: Beat[]): void {
     // A TYPE D diagram beat is rendered as Manim video from its scene spec — it has no paper text
     // to lay out. Without this escape it matches none of the cases above, falls through to
     // layoutPaperTextBoard below, and its single `manimScene` op is rewritten away entirely.
-    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene");
+    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard");
     if (diagramOp) continue;
 
     const hasStructuredInk = beat.draw.ops.some(

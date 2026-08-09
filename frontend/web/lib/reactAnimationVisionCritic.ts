@@ -74,7 +74,7 @@ async function loadBabel(): Promise<typeof import("@babel/standalone") | null> {
  *  the same finished-frame a student would see once the narration reaches the end of this beat.
  *  Returns null on any transpile/render failure rather than throwing, so the caller can skip the
  *  critic instead of blocking generation on a rendering bug in this file. */
-async function renderStaticFrame(code: string): Promise<string | null> {
+async function renderStaticFrame(code: string, assetRuntime?: string): Promise<string | null> {
   try {
     const Babel = await loadBabel();
     if (!Babel) return null;
@@ -101,7 +101,17 @@ async function renderStaticFrame(code: string): Promise<string | null> {
     // degraded to ok:true. The whole rendered-output quality layer was therefore silently inert
     // on every lecture ever generated, which is exactly how overlapping and clipped boards
     // reached the player. Prepending the same runtime the sandbox uses keeps the two in step.
-    const factory = new Function("module", "exports", "require", "React", `${ANIM_SANDBOX_RUNTIME}\n${transpiled}`);
+    //
+    // `assetRuntime` follows for the same reason: it defines <Asset/> and the artwork the board
+    // places. Rendering without it would throw or silently drop the illustration, and the score
+    // would then describe a picture the student never sees.
+    const factory = new Function(
+      "module",
+      "exports",
+      "require",
+      "React",
+      `${ANIM_SANDBOX_RUNTIME}\n${assetRuntime ?? ""}\n${transpiled}`,
+    );
     const ReactGlobal = { createElement };
     factory(fakeModule, fakeModule.exports, fakeRequire, ReactGlobal);
     const Animation = fakeModule.exports.default;
@@ -159,7 +169,19 @@ const SYSTEM_PROMPT =
   "'the leaf is drawn as a plain oval with no lobes or veins, it reads as a circle not a leaf'); empty " +
   "string if score is 5.";
 
-export type ShapeCritique = { ok: boolean; score: number; issue?: string; costUsd: number };
+/**
+ * `score: null` means NOT SCORED — the frame would not render, the rasteriser was missing, or the
+ * vision call failed.
+ *
+ * This distinction is the whole reliability of the measurement. The previous version returned 5
+ * for "no opinion", and in the lab that produced a flawless-looking 5.00/5 baseline across every
+ * board while resvg was not even loading — confident numbers about work nobody had looked at. A
+ * quality gate whose failure mode is "everything passes" is worse than no gate.
+ *
+ * `ok` still defaults to true when unscored: the critic must never block a beat over its own
+ * inability to look.
+ */
+export type ShapeCritique = { ok: boolean; score: number | null; issue?: string; costUsd: number };
 
 /* ── Layout critic ────────────────────────────────────────────────────────────
  * Geometry needs no vision model. The prompt already asks the model to reserve text as
@@ -225,9 +247,9 @@ export type LayoutCritique = { ok: boolean; issue?: string };
 
 /** Measures the rendered frame's text layout. Degrades to ok on any render failure, exactly like
  *  the shape critic — a bug in here must never block a lecture. */
-export async function critiqueLayout(code: string): Promise<LayoutCritique> {
+export async function critiqueLayout(code: string, assetRuntime?: string): Promise<LayoutCritique> {
   if (!ENABLED) return { ok: true };
-  const svg = await renderStaticFrame(code);
+  const svg = await renderStaticFrame(code, assetRuntime);
   if (!svg) return { ok: true };
   const boxes = textBoxes(svg);
   if (boxes.length === 0) return { ok: true };
@@ -268,12 +290,14 @@ export async function critiqueShapeRecognizability(
   beat: Beat,
   code: string,
   subject: string,
+  assetRuntime?: string,
 ): Promise<ShapeCritique> {
-  if (!ENABLED) return { ok: true, score: 5, costUsd: 0 };
-  const svg = await renderStaticFrame(code);
-  if (!svg) return { ok: true, score: 5, costUsd: 0 }; // couldn't render -> skip, don't block
+  // Every one of these is "could not look", which is NOT the same claim as "looks perfect".
+  if (!ENABLED) return { ok: true, score: null, costUsd: 0 };
+  const svg = await renderStaticFrame(code, assetRuntime);
+  if (!svg) return { ok: true, score: null, costUsd: 0 }; // couldn't render -> skip, don't block
   const png = await rasterize(svg);
-  if (!png) return { ok: true, score: 5, costUsd: 0 }; // rasterizer unavailable -> skip, don't block
+  if (!png) return { ok: true, score: null, costUsd: 0 }; // rasterizer unavailable -> skip, don't block
 
   try {
     const completion = await client.chat.completions.create({
@@ -307,6 +331,6 @@ export async function critiqueShapeRecognizability(
     };
   } catch (err) {
     console.error(`[anim-vision] beat=${beat.id} critic failed (skipping): ${err instanceof Error ? err.message : "error"}`);
-    return { ok: true, score: 5, costUsd: 0 };
+    return { ok: true, score: null, costUsd: 0 };
   }
 }

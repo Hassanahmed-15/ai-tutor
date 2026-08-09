@@ -21,7 +21,9 @@ import type { StructureSpec } from "../../lib/structureSpec";
  * once both of the nodes it connects are already on the board.
  */
 
-const NODE_FONT = 20;
+// Node label size now comes from the layout (`n.fontSize`), which measured the text against the
+// final box — see structureLayout.fittedFontSize. A constant here is exactly what let labels
+// overflow: the geometry was scaled to fit the frame and the type was not.
 const EDGE_FONT = 15;
 
 /** Math-ish labels get typeset. A plain domain term like "Magma" must NOT go through KaTeX — it
@@ -55,11 +57,36 @@ function labelAnchor(points: Array<{ x: number; y: number }>): { x: number; y: n
   return { x: mx + nx * 14 * dir, y: my + ny * 14 * dir - 2 };
 }
 
-function MathOrText({ text, x, y, size, fill }: { text: string; x: number; y: number; size: number; fill: string }) {
+function MathOrText({
+  text,
+  lines,
+  x,
+  y,
+  size,
+  boxW,
+  fill,
+}: {
+  text: string;
+  lines: string[];
+  x: number;
+  y: number;
+  size: number;
+  boxW: number;
+  fill: string;
+}) {
   if (!looksLikeMath(text)) {
+    // `lines` and `size` both come from the layout, which measured this exact string at this exact
+    // size against this exact box. Drawing anything else here — a constant font, the unwrapped
+    // label — is what put "Right Left Grandchild" outside its own rectangle.
+    const leading = size * 1.25;
+    const top = y - ((lines.length - 1) * leading) / 2;
     return (
-      <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" style={{ fontSize: size, fontWeight: 700, fill }}>
-        {text}
+      <text x={x} y={top} textAnchor="middle" dominantBaseline="middle" style={{ fontSize: size, fontWeight: 700, fill }}>
+        {lines.map((line, i) => (
+          <tspan key={i} x={x} dy={i === 0 ? 0 : leading}>
+            {line}
+          </tspan>
+        ))}
       </text>
     );
   }
@@ -78,7 +105,9 @@ function MathOrText({ text, x, y, size, fill }: { text: string; x: number; y: nu
       </text>
     );
   }
-  const w = 260;
+  // Sized to the node, not to a constant. A fixed 260px host overflowed every box narrower than
+  // that, which is most of them.
+  const w = boxW;
   const h = size * 2.2;
   return (
     <foreignObject x={x - w / 2} y={y - h / 2} width={w} height={h}>
@@ -111,7 +140,7 @@ export function StructureBoard({ spec, progress = 0 }: { spec: StructureSpec; pr
    * BOTH of its endpoints exist — an arrow pointing at nothing reads as a mistake rather than as
    * a relationship being drawn.
    */
-  const { ops, nodeAt, edgeAt } = useMemo(() => {
+  const { ops, edgeAt } = useMemo(() => {
     if (!layout) return { ops: [] as TimelineOp[], nodeAt: new Map<string, number>(), edgeAt: [] as number[] };
     const order = new Map<string, number>();
     layout.nodes.forEach((n, i) => order.set(n.id, i));
@@ -211,7 +240,15 @@ export function StructureBoard({ spec, progress = 0 }: { spec: StructureSpec; pr
               strokeWidth={2.6}
             />
             <g data-op={nodeLabelIndex(i)}>
-              <MathOrText text={n.label} x={n.x + n.w / 2} y={n.y + n.h / 2} size={NODE_FONT} fill="#1e293b" />
+              <MathOrText
+                text={n.label}
+                lines={n.lines}
+                x={n.x + n.w / 2}
+                y={n.y + n.h / 2}
+                size={n.fontSize}
+                boxW={n.w}
+                fill="#1e293b"
+              />
             </g>
           </g>
         ))}

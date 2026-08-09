@@ -10,6 +10,7 @@ import {
   type ReactAnimationOp,
 } from "./drawSanitize";
 import { critiqueLayout, critiqueShapeRecognizability, reactAnimationVisionCriticEnabled } from "./reactAnimationVisionCritic";
+import { findAssets, loadAssets, assetRuntimeFor, assetPromptBlock } from "./assetCatalogue";
 
 /**
  * Second step of the two-step generate-then-render pipeline for ANIMATION beats, mirroring
@@ -537,12 +538,31 @@ async function generateOne(
   // Abstract topics (algorithms/data-structures/math) draw as DIAGRAMS, not physical objects: use
   // the abstract system prompt + relaxed validator, and skip the physical shape-recognizability critic.
   const abstract = isAbstractTopic(op, beat);
-  const systemPrompt = abstract ? REACT_ANIMATION_ABSTRACT_SYSTEM_PROMPT : REACT_ANIMATION_SYSTEM_PROMPT;
+  const basePrompt = abstract ? REACT_ANIMATION_ABSTRACT_SYSTEM_PROMPT : REACT_ANIMATION_SYSTEM_PROMPT;
   const visualPlan = AI_VISUAL_PLANNING_ENABLED
     ? await planVisual(client, op, beat)
     : { blueprint: fallbackBlueprint(op, beat), costUsd: 0 };
   const blueprint = visualPlan.blueprint;
   let totalCostUsd = visualPlan.costUsd;
+
+  /**
+   * Real artwork for this subject, if the catalogue has any.
+   *
+   * This is the single change that moved the needle in anim-lab. Left to draw a subject itself the
+   * model produces generic shapes — measured at 2.60/5 recognisability, with the critic reporting
+   * "the mitochondrion is a plain oval without the characteristic cristae". Regenerating with that
+   * exact complaint attached produced another 2/5: being told what is wrong does not make a model
+   * able to draw an organelle. Handing it a real illustration to POSITION does.
+   *
+   * The runtime goes to the critics as well as to the browser — a critic scoring a board without
+   * the artwork the student sees is scoring a different picture.
+   */
+  const assets = await loadAssets(await findAssets(blueprint.subject));
+  const assetRuntime = assets.length ? assetRuntimeFor(assets) : undefined;
+  const systemPrompt = basePrompt + assetPromptBlock(assets);
+  if (assets.length) {
+    console.error(`[react-assets] beat=${beat.id} offering ${assets.length}: ${assets.map((a) => a.id).join(", ")}`);
+  }
   let previousFailure: PreviousFailure | undefined;
 
   // ACCEPT_BEST: track the richest RUNNABLE attempt so that if no attempt clears the full quality
@@ -612,13 +632,13 @@ async function generateOne(
         // Sub-floor candidates are the ones ACCEPT_BEST actually ships, so it is worth knowing
         // which of them at least render without overlapping or clipped text. No model call —
         // critiqueLayout only rasterises and measures.
-        if (candidate && candidate.code === code && (await critiqueLayout(code)).ok) {
+        if (candidate && candidate.code === code && (await critiqueLayout(code, assetRuntime)).ok) {
           bestLayoutClean = candidate;
         }
         const stalled = isStalled(previousFailure?.diagnostics, diagnostics);
         previousFailure = { issue: generationIssue, diagnostics, code, stalled };
         // Feed the layout fault back too, so the retry fixes placement as well as density.
-        const layoutOnFail = await critiqueLayout(code);
+        const layoutOnFail = await critiqueLayout(code, assetRuntime);
         if (!layoutOnFail.ok) {
           previousFailure.issue = `${generationIssue}. Also, the rendered board has a layout fault: ${layoutOnFail.issue}. A line of N characters at font-size F is about 0.62*F*N px wide, so on this 1000px board a 34px heading must stay under ~42 characters and a 24px body line under ~58. SHORTEN THE WORDING to fit — do not shrink the font, and do not let two text boxes intersect.`;
         }
@@ -673,7 +693,7 @@ async function generateOne(
       // SKIPPED for abstract topics: this critic judges whether the shape reads as a real physical
       // object, which is meaningless (and wrongly rejects) a concept diagram (timeline/array/tree/graph).
       if (!abstract && reactAnimationVisionCriticEnabled()) {
-        const shapeCritique = await critiqueShapeRecognizability(client, beat, code, blueprint.subject);
+        const shapeCritique = await critiqueShapeRecognizability(client, beat, code, blueprint.subject, assetRuntime);
         totalCostUsd += shapeCritique.costUsd;
         if (!shapeCritique.ok) {
           await saveDebugSvgCandidate(beat, op, code, shapeCritique.issue ?? "shape not recognizable");
@@ -692,7 +712,7 @@ async function generateOne(
       // pushed outside the safe frame. Unlike the shape critic above this runs for abstract
       // boards too — geometry is exactly as wrong on a maths board, and those were the only ones
       // with no rendered-output check at all. Costs nothing (no model call) and degrades to ok.
-      const layout = await critiqueLayout(code);
+      const layout = await critiqueLayout(code, assetRuntime);
       if (!layout.ok) {
         console.error(`[anim] beat=${beat.id} layout reject: ${layout.issue}`);
         await saveDebugSvgCandidate(beat, op, code, layout.issue ?? "layout violation");
@@ -709,6 +729,8 @@ async function generateOne(
       const validated = sanitizeReactAnimationOp({ ...op, code }, { abstract });
       if (validated.code) {
         op.code = validated.code;
+        // IDs only — the browser resolves them to markup via /api/animation-assets. See the op type.
+        op.assetIds = assets.length ? assets.map((a) => a.id) : undefined;
         op.status = "ready";
         op.error = undefined;
         return { costUsd: totalCostUsd, filled: true };
@@ -745,9 +767,31 @@ async function generateOne(
     const validated = sanitizeReactAnimationOp({ ...op, code: best.code }, { requireQuality: false, abstract });
     if (validated.code) {
       op.code = validated.code;
+      op.assetIds = assets.length ? assets.map((a) => a.id) : undefined;
       op.status = "ready";
       op.error = undefined;
       console.error(`[anim] beat=${beat.id} accepted best sub-floor attempt (score=${best.score}) after ${MAX_ATTEMPTS} attempts.`);
+
+      /**
+       * SCORE THE BOARD THAT ACTUALLY SHIPS.
+       *
+       * The shape critic above only runs on an attempt that already cleared the static density
+       * gate — and on a real nephron lecture no attempt ever did, so both beats shipped through
+       * this ACCEPT_BEST path with the critic never once looking at them. The measurement existed
+       * and was inert on exactly the boards students see.
+       *
+       * This cannot reject anything (the attempts are spent), so it is deliberately a measurement
+       * only: one vision call per sub-floor beat, and a logged score that says what went out.
+       * Without it "the animations are better now" has no evidence behind it either way.
+       */
+      if (!abstract && reactAnimationVisionCriticEnabled()) {
+        const shipped = await critiqueShapeRecognizability(client, beat, validated.code, blueprint.subject, assetRuntime);
+        totalCostUsd += shipped.costUsd;
+        console.error(
+          `[anim] beat=${beat.id} SHIPPED sub-floor board scored ${shipped.score ?? "not scored"}/5` +
+            (shipped.issue ? ` — ${shipped.issue}` : ""),
+        );
+      }
       return { costUsd: totalCostUsd, filled: true };
     }
   }

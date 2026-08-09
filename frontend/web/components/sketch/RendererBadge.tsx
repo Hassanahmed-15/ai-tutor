@@ -13,7 +13,7 @@
  * counter, and ManimBoard owns bottom-left with its unsupported-ops notice.
  */
 
-export type RendererKind = "manim" | "gsap" | "structure" | "sandbox" | "svg";
+export type RendererKind = "manim" | "gsap" | "structure" | "plot" | "equation" | "sandbox" | "svg";
 
 // Colour has to do the work at a glance: at this size the label text is what the eye reads,
 // so the tint sits at the -300 shade rather than a near-white -100. A pale label plus a 6px
@@ -30,6 +30,18 @@ const LABELS: Record<RendererKind, { text: string; dot: string; tint: string; ti
     dot: "bg-teal-300 shadow-[0_0_6px_rgba(94,234,212,0.9)]",
     tint: "text-teal-300 ring-teal-400/40",
     title: "Nodes and edges from the model, every position computed by the ELK layout engine",
+  },
+  plot: {
+    text: "Chart · Vega-Lite",
+    dot: "bg-lime-300 shadow-[0_0_6px_rgba(190,242,100,0.9)]",
+    tint: "text-lime-300 ring-lime-400/40",
+    title: "Data and encodings from the model, every axis and tick derived by Vega-Lite",
+  },
+  equation: {
+    text: "Derivation · KaTeX",
+    dot: "bg-sky-300 shadow-[0_0_6px_rgba(125,211,252,0.9)]",
+    tint: "text-sky-300 ring-sky-400/40",
+    title: "A worked derivation typeset by KaTeX, each step revealed with its justification",
   },
   // Key stays `gsap` (it is the renderer id threaded through animationRouting/LessonPlayer and
   // asserted in lib/anim/anim.test.ts); only the engine underneath changed. The LABEL must name

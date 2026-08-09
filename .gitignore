@@ -61,3 +61,8 @@ frontend/web/scripts/manim/_test_script.json
 
 # Dev-server logs written by the local runner
 frontend/web/.codex-dev.*.log
+
+# Downloaded + expanded Bioicons source (frontend/web/scripts/build-asset-catalogue.mjs).
+# The generated frontend/web/assets/ directory IS committed — it is the artwork the sandbox
+# places, and rebuilding it depends on an upstream repo that can change under you.
+frontend/web/.asset-build/

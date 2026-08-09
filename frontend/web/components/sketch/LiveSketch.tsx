@@ -208,6 +208,13 @@ type DrawOp =
       kind: "reactAnimation";
       teachingPoint?: string;
       code?: string;
+      /**
+       * Catalogue artwork this board places via <Asset/>. IDs only, never the markup: one board's
+       * asset runtime measured ~85KB, and inlining that into every lesson payload would add
+       * hundreds of KB to a lecture. ReactAnimationSandbox fetches the bodies from
+       * /api/animation-assets, the same way it already fetches its React runtime.
+       */
+      assetIds?: string[];
       status?: "ready" | "failed";
       error?: string;
       fallback?: DrawOp[];
@@ -247,6 +254,40 @@ type DrawOp =
        */
       kind: "structureScene";
       structureBrief?: string;
+      spec?: unknown;
+      status?: "ready" | "failed";
+      error?: string;
+      at: 0;
+      endAt: 1;
+    }
+  | {
+      /**
+       * A chart drawn by Vega-Lite from data.
+       *
+       * Same two-step shape as the boards above: the lecture call (or the director) writes
+       * `plotBrief`, lib/plotGen.ts fills `spec`, and PlotBoard embeds it. Like structureScene the
+       * spec carries NO GEOMETRY — only data values and encodings; axes, ticks and legends are
+       * derived by the grammar. That is what makes these charts exact rather than approximately
+       * right, and it is why a plot beat should never be hand-drawn SVG.
+       */
+      kind: "plotBoard";
+      plotBrief?: string;
+      spec?: unknown;
+      status?: "ready" | "failed";
+      error?: string;
+      at: 0;
+      endAt: 1;
+    }
+  | {
+      /**
+       * A derivation typeset by KaTeX, one step at a time, each with the reason it follows.
+       *
+       * `equationBrief` is the step-1 one-liner; lib/equationGen.ts fills `spec` with steps whose
+       * TeX has been compiled by KaTeX at validation time, so anything that reaches the board is
+       * renderable. A derivation is READ, so this board never becomes a video.
+       */
+      kind: "equationBoard";
+      equationBrief?: string;
       spec?: unknown;
       status?: "ready" | "failed";
       error?: string;
@@ -681,6 +722,11 @@ function anchorOf(op: DrawOp, elapsed: number, startMs: number, windowMs: number
     case "structureScene":
       // Rendered by StructureBoard from a layout-engine result; this board has no equivalent.
       return { x: 50, y: 50 };
+    case "plotBoard":
+    case "equationBoard":
+      // Rendered by PlotBoard / EquationBoard. They own their whole frame, so there is no pen
+      // position to report — the centre keeps the marker off the edges if anything ever asks.
+      return { x: 50, y: 50 };
     default:
       return { x: op.x, y: op.y };
   }
@@ -949,6 +995,10 @@ function OpRenderer({
   if (op.kind === "manimScene") return null;
   // `structureScene` is rendered by StructureBoard from computed geometry; same reasoning.
   if (op.kind === "structureScene") return null;
+  // Same again for the two spec-driven boards: PlotBoard embeds a Vega-Lite chart and
+  // EquationBoard typesets with KaTeX. Neither is expressible as pen strokes, which is the point
+  // of having them — this board draws, those two compute.
+  if (op.kind === "plotBoard" || op.kind === "equationBoard") return null;
 
   const paperSurface = surface === "paper";
   const color = op.color ?? (paperSurface ? "#6b7280" : INK);

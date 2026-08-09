@@ -24,15 +24,110 @@ export const BOARD_H = 560;
 /** Keeps the drawing clear of the frame edge and of LiveSketch's corner furniture. */
 const PADDING = 56;
 
-export type LaidOutNode = { id: string; label: string; x: number; y: number; w: number; h: number };
+export type LaidOutNode = {
+  id: string;
+  label: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  /** The label broken into the lines the board must draw — at most two. */
+  lines: string[];
+  /** The size those lines must be drawn at for the text to sit inside the box. */
+  fontSize: number;
+};
 export type LaidOutEdge = { from: string; to: string; label?: string; points: Array<{ x: number; y: number }> };
 export type StructureLayout = { nodes: LaidOutNode[]; edges: LaidOutEdge[] };
 
-/** Node box sized from its text so ELK reserves real space — the estimate mirrors the one the
- *  board prompts use (width ≈ 0.62 * fontSize * chars) at the 20px label size below. */
-function boxFor(label: string): { width: number; height: number } {
-  const width = Math.max(96, Math.min(230, 0.62 * 20 * label.length + 34));
-  return { width, height: 58 };
+/** The size a label is drawn at when it fits comfortably; shrunk per node when it does not. */
+export const NODE_FONT = 20;
+/** Clear space between the text and the box edge, on each side. */
+const LABEL_PADDING = 18;
+/** A single line wider than this gets wrapped rather than allowed to stretch the board. */
+const MAX_LINE_W = 260;
+
+/**
+ * Measures text the way it will actually be drawn.
+ *
+ * The old code guessed `0.62 * fontSize * chars` and then CLAMPED the result to 230px, while the
+ * board drew every label at a fixed 20px — so "Right Left Grandchild" asked for 294px, got 230,
+ * and spilled out of both sides of its box. A canvas measurement is exact and costs nothing.
+ *
+ * The estimate survives as a fallback because `layoutStructure` also runs server-side (the vision
+ * critics rasterise boards in Node), where there is no DOM to measure with.
+ */
+let measureContext: CanvasRenderingContext2D | null | undefined;
+export function measureLabel(text: string, fontSize: number): number {
+  if (measureContext === undefined) {
+    measureContext =
+      typeof document === "undefined" ? null : document.createElement("canvas").getContext("2d");
+  }
+  if (!measureContext) return 0.62 * fontSize * text.length;
+  measureContext.font = `700 ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
+  return measureContext.measureText(text).width;
+}
+
+/**
+ * Breaks a label onto at most two lines, at the most balanced space.
+ *
+ * Two lines and no more: a three-line node box is taller than the rows ELK allots and starts
+ * colliding with its own edges, and a label that long is a sentence someone should have shortened.
+ */
+export function wrapLabel(label: string, fontSize: number): string[] {
+  if (measureLabel(label, fontSize) <= MAX_LINE_W) return [label];
+
+  const words = label.split(/\s+/).filter(Boolean);
+  if (words.length < 2) return [label];
+
+  let best: [string, string] | null = null;
+  let bestDelta = Infinity;
+  for (let split = 1; split < words.length; split++) {
+    const a = words.slice(0, split).join(" ");
+    const b = words.slice(split).join(" ");
+    const delta = Math.abs(measureLabel(a, fontSize) - measureLabel(b, fontSize));
+    if (delta < bestDelta) {
+      bestDelta = delta;
+      best = [a, b];
+    }
+  }
+  return best ?? [label];
+}
+
+/**
+ * The node box, sized to hold its measured text.
+ *
+ * ELK reserves exactly this space, so the geometry it computes already accounts for the words —
+ * which is what makes "overlap and clipping are unreachable" a true claim rather than an aspiration.
+ */
+export function boxFor(label: string): { width: number; height: number; lines: string[] } {
+  const lines = wrapLabel(label, NODE_FONT);
+  const widest = Math.max(...lines.map((line) => measureLabel(line, NODE_FONT)));
+  return {
+    width: Math.max(96, Math.min(340, widest + LABEL_PADDING * 2)),
+    height: lines.length > 1 ? 78 : 58,
+    lines,
+  };
+}
+
+/**
+ * The font size at which `lines` fit inside a box of `w` x `h`.
+ *
+ * The last line of defence, and the one that was missing entirely: `layoutStructure` scales every
+ * box by `scale` to fit the frame, but the label was drawn at a constant 20px, so ANY layout that
+ * had to shrink guaranteed overflow. Scaling type with geometry fixes the common case; capping
+ * against the final box makes enclosure a guarantee.
+ */
+export function fittedFontSize(lines: string[], w: number, h: number, scale: number): number {
+  const scaled = NODE_FONT * Math.min(scale, 1.4);
+  const widest = Math.max(...lines.map((line) => measureLabel(line, scaled)));
+  // Padding shrinks with the box. A fixed 18px inset either side is sensible on a 200px box and
+  // most of the available width on a 60px one, where it would drive the fitted size to nothing.
+  const pad = Math.min(LABEL_PADDING, w * 0.09);
+  const byWidth = widest > 0 ? ((w - pad * 2) / widest) * scaled : scaled;
+  const byHeight = (h - 10) / (lines.length * 1.25);
+  // No floor above the fit. Enclosure is the invariant this function exists to guarantee, and a
+  // minimum size that overrides it would quietly reintroduce the overflow it was added to prevent.
+  return Math.max(6, Math.min(scaled, byWidth, byHeight));
 }
 
 /**
@@ -63,7 +158,10 @@ function elkGraphFor(spec: StructureSpec): ElkNode {
       "elk.layered.wrapping.strategy": "SINGLE_EDGE",
       "elk.layered.wrapping.additionalEdgeSpacing": "40",
     },
-    children: spec.nodes.map((n) => ({ id: n.id, ...boxFor(n.label) })),
+    children: spec.nodes.map((n) => {
+      const { width, height } = boxFor(n.label);
+      return { id: n.id, width, height };
+    }),
     edges: spec.edges.map((e, i) => ({ id: `e${i}`, sources: [e.from], targets: [e.to] })),
   };
 }
@@ -85,7 +183,7 @@ function circularLayout(spec: StructureSpec): StructureLayout {
 
   const nodes: LaidOutNode[] = spec.nodes.map((node, i) => {
     const angle = -Math.PI / 2 + (i * 2 * Math.PI) / n; // first node at the top, then clockwise
-    const { width, height } = boxFor(node.label);
+    const { width, height, lines } = boxFor(node.label);
     return {
       id: node.id,
       label: node.label,
@@ -93,6 +191,10 @@ function circularLayout(spec: StructureSpec): StructureLayout {
       y: cy + ry * Math.sin(angle) - height / 2,
       w: width,
       h: height,
+      lines,
+      // Nothing is scaled in the ring layout, so the box is already the measured size — but the
+      // fit is still computed rather than assumed, so this cannot drift from the ELK path.
+      fontSize: fittedFontSize(lines, width, height, 1),
     };
   });
 
@@ -154,14 +256,24 @@ export async function layoutStructure(spec: StructureSpec): Promise<StructureLay
     const ty = (y: number) => offsetY + y * scale;
 
     const labelFor = new Map(spec.nodes.map((n) => [n.id, n.label]));
-    const nodes: LaidOutNode[] = children.map((c) => ({
-      id: String(c.id),
-      label: labelFor.get(String(c.id)) ?? String(c.id),
-      x: tx(c.x ?? 0),
-      y: ty(c.y ?? 0),
-      w: (c.width ?? 120) * scale,
-      h: (c.height ?? 58) * scale,
-    }));
+    const nodes: LaidOutNode[] = children.map((c) => {
+      const label = labelFor.get(String(c.id)) ?? String(c.id);
+      const w = (c.width ?? 120) * scale;
+      const h = (c.height ?? 58) * scale;
+      const lines = wrapLabel(label, NODE_FONT);
+      return {
+        id: String(c.id),
+        label,
+        x: tx(c.x ?? 0),
+        y: ty(c.y ?? 0),
+        w,
+        h,
+        lines,
+        // The box was just scaled; the type has to be scaled with it, or a layout that shrinks to
+        // fit the frame pushes every label straight out through the sides of its own box.
+        fontSize: fittedFontSize(lines, w, h, scale),
+      };
+    });
 
     const centre = new Map(nodes.map((n) => [n.id, { x: n.x + n.w / 2, y: n.y + n.h / 2 }]));
     const edges: LaidOutEdge[] = spec.edges.map((e, i) => {

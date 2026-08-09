@@ -8,6 +8,9 @@ import { fillReactAnimationOps, type ReactAnimationFillStats } from "@/lib/react
 import { fillBlackboardOps, type BlackboardFillStats } from "@/lib/blackboardGen";
 import { fillManimSceneOps, type ManimSceneFillStats } from "@/lib/manimSceneGen";
 import { fillStructureSceneOps } from "@/lib/structureSceneGen";
+import { directBoards } from "@/lib/boardDirector";
+import { fillSpecBoardOps } from "@/lib/specBoardGen";
+import { rescueEmptyBoards } from "@/lib/boardFallback";
 import { fillRealReferenceImage, type ReferenceImageStats } from "@/lib/referenceImageGen";
 import { describeAssetsWithVision } from "@/lib/imageVision";
 import { fillImageCalloutOpsIncremental } from "@/lib/imageCalloutGen";
@@ -683,13 +686,26 @@ export async function POST(req: Request) {
     // labels teach the real picture instead of the upstream relevant_images.json text.
     const visionCostUsd = input.sourceDocument ? await describeAssetsWithVision(client, input.sourceDocument) : 0;
 
+    // Step 1.5: re-point each beat at the board its content actually calls for, BEFORE the fill
+    // passes below — they complete whatever placeholder a beat carries, so the swap has to happen
+    // first or the wrong generator does the work. Off unless BOARD_DIRECTOR=1; when off this is a
+    // no-op and board selection stays exactly as the lecture prompt wrote it.
+    const directorStats = await directBoards(client, base.beats);
+
     // Step 2: fill each "image" op placeholder with a real generated image, and (if enabled)
     // each "reactAnimation" op placeholder with generated component source — in parallel with
     // each other since they touch disjoint beats and are both I/O-bound. Individual failures
     // in either degrade gracefully (dropped image / explicit animation unavailable state).
-    const [imageCostUsd, referenceImageStats, reactAnimationStats, boardStats, manimSceneStats, structureStats] = await Promise.all([
+    const [imageCostUsd, referenceImageStats, reactAnimationStats, boardStats, manimSceneStats, structureStats, specBoardStats] = await Promise.all([
       IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages ? fillImageOps(client, base.beats) : Promise.resolve(disabledImageStats(base.beats).costUsd),
-      REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument ? fillRealReferenceImage(client, base.beats) : Promise.resolve(disabledReferenceImageStats()),
+      // The director's per-beat findings ARE the photo gate: a beat may carry a real photograph
+      // only when its visual specification says the subject is physical and the classifier called
+      // it a labelled diagram. Without that context no beat qualifies, which is the safe default —
+      // the previous gate guessed from keywords and put a stamp vending machine in a lecture on
+      // Support Vector Machines.
+      REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument
+        ? fillRealReferenceImage(client, base.beats, { specs: directorStats.specs, forms: directorStats.forms })
+        : Promise.resolve(disabledReferenceImageStats()),
       REACT_ANIMATIONS_ENABLED ? fillReactAnimationOps(client, base.beats) : Promise.resolve(disabledAnimationStats()),
       BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats, Boolean(input.sourceDocument)) : Promise.resolve(disabledBlackboardStats()),
       // TYPE D diagram boards. Gated on the same switch as rendering: with Manim off there is
@@ -699,6 +715,9 @@ export async function POST(req: Request) {
       // TYPE F structural diagrams. Ungated: unlike Manim there is nothing to install and no video
       // to render — the layout is computed in-process, so the only cost is one small spec call.
       fillStructureSceneOps(client, base.beats),
+      // Vega-Lite charts and KaTeX derivations. Ungated for the same reason as structure boards:
+      // nothing to install and nothing rendered out of process, so the only cost is one spec call.
+      fillSpecBoardOps(client, base.beats),
     ]);
 
     // Image-Explainer agent (sourceDocument only): label the real visible parts of each provided
@@ -708,11 +727,16 @@ export async function POST(req: Request) {
       ? await fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument)
       : { costUsd: 0 };
 
+    // Last line of defence, after every fill has had its turn: any teaching beat still without a
+    // usable board drops down its engine chain until something lands. This is what makes the
+    // "ANIMATION UNAVAILABLE" card unreachable rather than merely rare.
+    const fallbackStats = await rescueEmptyBoards(client, base.beats, directorStats.specs, directorStats.forms);
+
     repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
     repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     cleanProvidedImageBoards(base.beats, input.sourceDocument);
-    const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd + manimSceneStats.costUsd + structureStats.costUsd;
+    const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd + manimSceneStats.costUsd + structureStats.costUsd + specBoardStats.costUsd + directorStats.costUsd + fallbackStats.costUsd;
 
     if (input.sourceDocument) {
       await writeCachedLecture(cacheKey, { beats: base.beats, costUsd, topic: input.topic });
