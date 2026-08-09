@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Documentation
+
+- **[ANIMATIONS.md](./ANIMATIONS.md)** — the animation pipeline: how a teaching beat becomes a
+  picture, which engine draws which kind of visual and why, the quality controls that stop a bad
+  board shipping, and a record of the failures that shaped it.
+
 ## Getting Started
 
 First, run the development server:
