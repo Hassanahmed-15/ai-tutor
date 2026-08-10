@@ -44,10 +44,17 @@ const SCRIPT = path.join(process.cwd(), "scripts", "manim", "render_beat.py");
  * The venv interpreter. Note `python3` is deliberately NOT the default here (unlike
  * pdfPythonPipeline): on Windows `python3` is a Store alias stub that fails, and Manim needs
  * its own dependency set anyway.
+ *
+ * The venv's own layout differs by platform, though — `.venv/Scripts/python.exe` on Windows,
+ * `.venv/bin/python` everywhere else. This defaulted to the Windows path unconditionally, so on a
+ * macOS or Linux checkout the interpreter simply did not exist and Manim could never start, however
+ * correctly the venv had been created. `MANIM_PYTHON_BINARY` still overrides.
  */
 const PYTHON =
   process.env.MANIM_PYTHON_BINARY ??
-  path.join(process.cwd(), "scripts", "manim", ".venv", "Scripts", "python.exe");
+  (process.platform === "win32"
+    ? path.join(process.cwd(), "scripts", "manim", ".venv", "Scripts", "python.exe")
+    : path.join(process.cwd(), "scripts", "manim", ".venv", "bin", "python"));
 
 const CACHE_DIR = process.env.MANIM_CACHE_DIR ?? path.join(process.cwd(), ".manim-cache");
 

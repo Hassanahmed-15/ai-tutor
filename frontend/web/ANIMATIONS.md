@@ -162,3 +162,133 @@ them — `drawSanitize.ts` and `suprnotes.ts`.
   the model to draw.
 - **Vision scores are noisy** run to run (4.4, 3.5, 3.2 on identical prompts), because the model
   does not reliably use the asset it is offered. Expect improvement on average, not per board.
+
+---
+
+# Running this on macOS
+
+The pipeline has been developed and measured on Windows. Nothing here is Mac-hostile, but three of
+its dependencies are **native or platform-shaped**, and each fails quietly rather than loudly — which
+matters, because on this pipeline a silent failure looks like bad quality, not like a broken install.
+
+**Manim is optional.** It is a last resort now — no visual form routes to it — so skip that section
+entirely unless you are specifically working on Manim.
+
+## 1. Install
+
+```bash
+git clone https://github.com/Hassanahmed-15/ai-tutor && cd ai-tutor
+node --version          # 20+ (Next 16 / React 19)
+cd frontend/web
+
+# Install from THIS machine. Never copy node_modules between machines — see below.
+rm -rf node_modules
+npm install
+
+npx playwright install chromium   # the npm package does not download browsers
+```
+
+**Why `rm -rf node_modules` is not boilerplate here.** `@resvg/resvg-js` ships a per-platform native
+binary (`darwin-arm64` on Apple Silicon, `darwin-x64` on Intel). A `node_modules` copied, zipped or
+cloud-synced from a Windows machine carries the wrong one.
+
+That single dependency is the vision critic's rasteriser, and when it fails to load
+`critiqueShapeRecognizability` returns `{ score: null }` — "could not look". The pipeline treats that
+as *do not block*, by design, because a broken rasteriser must never reject good boards. The
+consequence on a bad install is that **the critic stops judging and nothing says so**: no error, no
+crash, just boards quietly getting worse. This exact failure already happened once on Windows and
+took a full investigation to find.
+
+Confirm it loaded: `npm run test:anim` includes a test that rasterises real catalogue artwork through
+resvg. If that passes, resvg is fine.
+
+## 2. `.env.local`
+
+Git-ignored, so it will not exist on a fresh clone. Create `frontend/web/.env.local`:
+
+```bash
+OPENAI_API_KEY=sk-...
+
+# Animation engine. WITHOUT THIS the code silently falls back to gpt-4o, and every board is
+# mediocre with no error anywhere — this was the single biggest quality bug in the pipeline.
+OPENAI_ANIMATION_MODEL=gpt-5.5
+
+REACT_ANIMATIONS_ENABLED=1
+NEXT_PUBLIC_REACT_ANIMATIONS_ENABLED=1
+BLACKBOARD_GEN_ENABLED=1
+```
+
+Everything the animation path actually reads, with its default:
+
+| Variable | Default | What it does |
+|---|---|---|
+| `OPENAI_API_KEY` | — | Required. |
+| `OPENAI_ANIMATION_MODEL` | `gpt-4o` | The board draughtsman. **Set it.** |
+| `OPENAI_ANIMATION_REASONING_EFFORT` | `low` | gpt-5.x only. Do not raise without reading §4. |
+| `OPENAI_ANIMATION_MAX_TOKENS` | `12000` | Output cap (3k-20k). |
+| `OPENAI_ANIMATION_ATTEMPTS` | `2` | Independent generation attempts (max 3). |
+| `REACT_REFINE_ROUNDS` | `3` | create → critique → improve rounds (0 disables). |
+| `REACT_REFINE_BUDGET_USD` | `0.60` | Hard spend cap for refinement, per beat. |
+| `REACT_ANIMATION_VISION_CRITIC` | on | `0` disables the critic entirely. |
+| `REACT_ANIMATION_VISION_MIN_SCORE` | `3` | Below this a board is refused, not shipped. |
+| `OPENAI_VISION_MODEL` | `gpt-4o` | Used by the critics. |
+| `BOARD_DIRECTOR` | off | `1` enables classify-and-route per beat. |
+| `MANIM_RENDER_ENABLED` | off | Leave off unless working on Manim. |
+| `MANIM_PYTHON_BINARY` | venv path | Overrides the interpreter. |
+| `SVG_DEBUG_SAVE` | off | `1` writes rejected boards to disk for inspection. |
+
+A lecture costs roughly **$0.5-1.5** depending on refinement, and takes **4-5 minutes**.
+
+## 3. Verify, in this order
+
+Each step proves one layer. Run them in sequence and stop at the first failure — that tells you which
+layer is broken instead of "animations don't work".
+
+| # | Command | Proves | Cost |
+|---|---|---|---|
+| 1 | `npm run test:anim` | install + resvg loads | free |
+| 2 | `npm run dev`, open `/board-lab` | Vega-Lite + KaTeX render, no model call | free |
+| 3 | `npm run verify:boards` | Playwright + browser rendering (16 checks) | free |
+| 4 | open `/sandbox-lab?topic=neuron&auto=1` | API key, model id, artwork, critic | ~$0.10 |
+| 5 | `npm run verify:lecture` | full lectures end to end | several $ |
+
+Steps 1-3 need no API key at all. If they pass, the install is sound and anything still wrong is
+configuration, not platform.
+
+## 4. When it breaks
+
+Read the dev-server console — this pipeline logs `[anim]`, `[anim-vision]`, `[anim-refine]`,
+`[react-assets]`, `[director]` and `[fallback]` lines that say exactly what happened.
+
+| Symptom | Cause |
+|---|---|
+| Boards render, quality is poor, no errors anywhere | `OPENAI_ANIMATION_MODEL` unset → silently `gpt-4o` |
+| `[anim-vision] score=not scored` | resvg did not load — wrong-arch binary, reinstall (§1) |
+| Every animation beat fails, `finish=length rawLen=0` | gpt-5.x reasoning tokens consumed the whole budget; needs `reasoning_effort` (already set to `low` in code) |
+| `Unsupported parameter: 'max_tokens'` | gpt-5.x call shape — `modelCallParams` handles it; you are on an older code path |
+| `Unsupported value: 'temperature'` | same family; gpt-5.x accepts only its default |
+| A prompt change appears to do nothing | bump `CACHE_VERSION` in `lib/lectureCache.ts` — a stale lecture is being served |
+| `verify:boards` hangs or times out | `npx playwright install chromium` was not run |
+| `npm run dev` cannot find a module after switching machines | `node_modules` came from another OS; `rm -rf` and reinstall |
+
+## 5. Manim (optional — skip unless you need it)
+
+```bash
+brew install ffmpeg cairo pango pkg-config
+cd frontend/web/scripts/manim
+python3 -m venv .venv && ./.venv/bin/pip install manim
+```
+
+Then set `MANIM_RENDER_ENABLED=1`. The interpreter path is chosen by platform
+(`.venv/bin/python` on macOS, `.venv/Scripts/python.exe` on Windows) — this used to be hard-coded to
+the Windows layout, so Manim could never start on a Mac however correctly the venv was built.
+
+## Not verified on macOS
+
+This guide was written by reading the dependency manifest, `next.config.ts` and every `process.env.*`
+the pipeline touches — not by running it on a Mac, which I do not have access to. The env-var table
+lists only flags the code actually reads.
+
+If a step in §3 fails, paste the first failing step and its console output rather than working
+around it: on this pipeline the interesting failures are the quiet ones, and a workaround usually
+hides the thing worth fixing.
