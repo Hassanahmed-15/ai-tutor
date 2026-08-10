@@ -290,3 +290,15 @@ test("every visual form has a fallback chain that ends at a board which cannot f
     assert.equal(chain[chain.length - 1], "chalkBoard", `${form}'s chain must end at chalkBoard`);
   }
 });
+
+test("Manim is a last resort — the director never routes a beat to it", async () => {
+  const { BOARD_FOR, VISUAL_FORMS } = await import("../director");
+  // Its scene vocabulary is six geometric primitives, so anything outside maths degrades to the
+  // nearest available shape — a breathing beat rendered as a bare orange rectangle, because a
+  // rectangle was the only container the spec could express. The sandbox draws these properly now.
+  for (const form of VISUAL_FORMS) {
+    assert.notEqual(BOARD_FOR[form], "manimScene", `${form} must not be directed to Manim`);
+  }
+  assert.equal(BOARD_FOR.construction, "reactAnimation");
+  assert.equal(BOARD_FOR["animated-maths"], "reactAnimation");
+});
