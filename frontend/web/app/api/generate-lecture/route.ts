@@ -81,9 +81,15 @@ const TEXT_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_
 // than running out of room. Raising this changes nothing; depth is recovered by deepenLectureScripts.
 const TEXT_MAX_TOKENS = Math.max(8_000, Math.min(16_000, Number(process.env.OPENAI_LECTURE_MAX_TOKENS ?? 14_000)));
 // This IS the depth lever. First-pass generation measures ~79 words/teaching beat against a gate
-// of 100; the deepen pass is what lifts it to ~102-110, so the shallow-lecture error the user sees
-// is a deepen pass running out of attempts, not the first pass being bad. 3 is the clamp ceiling.
-const DEEPEN_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 3)));
+// of 100; the deepen pass is what lifts it over, so the shallow-lecture error the user sees is a
+// deepen pass running out of attempts, not the first pass being bad.
+//
+// Ceiling raised 3 -> 5. Each attempt is one text call, and the alternative when they run out is a
+// hard user-facing rejection of an otherwise complete lecture that already cost ~$0.8 to build.
+// The per-beat word counts passed in the deepen payload matter more than the extra attempts:
+// an aggregate "110-140 words per beat" spread over ten beats returned 93, because the model had
+// nothing concrete to check itself against.
+const DEEPEN_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 5)));
 const PDF_BEATS_PER_GENERATION = Math.max(1, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 1)));
 const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
 
@@ -331,8 +337,26 @@ async function deepenLectureScripts(
               topic,
               mood,
               failedDepthStats: stats,
+              /**
+               * The per-beat shortfall, not just the aggregate.
+               *
+               * "Teaching beats need 110-140 words" and "total 1050-1450" were already in the system
+               * prompt, and the model still returned 93 words/beat and 820 total — an aggregate
+               * target spread over ten beats gives it nothing to check itself against. Handing it
+               * each beat's CURRENT count next to that beat's REQUIRED count turns one vague goal
+               * into ten concrete, verifiable ones.
+               */
+              hardFloor: {
+                minWordsPerTeachingBeat: 100,
+                note: "A lecture averaging under 100 words per teaching beat is REJECTED and thrown away. Aim for 120-140 so normal variation still clears it.",
+              },
+              currentWordCounts: beats.map((b) => ({
+                id: b.id,
+                words: scriptWordCount(b.script ?? ""),
+                required: b.slideKind === "checkpoint" ? 25 : b.id === "intro" ? 75 : 120,
+              })),
               instruction:
-                "Expand these scripts so every teaching board receives an unhurried, in-depth explanation. Keep the same beat ids, facts, and beat count, and return one script per beat.",
+                "Expand these scripts so every teaching board receives an unhurried, in-depth explanation. Every beat listed in currentWordCounts must MEET OR EXCEED its `required` count — check each one before returning. Keep the same beat ids, facts, and beat count, and return one script per beat.",
               beats: compactBeatsForDeepening(beats),
             }),
           },

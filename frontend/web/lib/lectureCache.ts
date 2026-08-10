@@ -15,7 +15,11 @@ import type { Beat } from "./lessonContent";
 
 // v1: multi-agent pipeline (director + chalkboard + animation + image-explainer + vision critic),
 // KaTeX math on the board, handwriting fonts, accept-best animations.
-const CACHE_VERSION = "v5";
+// v6: sandbox boards rebuilt — the animation prompt is now a fixed layout grid plus a worked
+//     example instead of a rule list, catalogue artwork is mandatory when it covers the subject
+//     (and labels anchor inside it), and the vision critic REFUSES a sub-floor board rather than
+//     shipping it. Not bumping this served pre-fix boards and made all of it look like a no-op.
+const CACHE_VERSION = "v6";
 
 const CACHE_DIR = path.join(process.cwd(), ".lecture-cache");
 

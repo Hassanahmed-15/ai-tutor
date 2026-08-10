@@ -334,3 +334,84 @@ export async function critiqueShapeRecognizability(
     return { ok: true, score: null, costUsd: 0 };
   }
 }
+
+/* ── Refinement critic ────────────────────────────────────────────────────────
+ * `critiqueShapeRecognizability` answers one question — does this read as the real subject — and
+ * that is the right gate for REFUSING a board. It is the wrong input for IMPROVING one, for two
+ * reasons measured here: it only fills `issue` when it rejects, so a 3/5 board yields no guidance
+ * at all; and "recognizable" is a low bar, so a board with a messy annotation cluster scored 5/5
+ * while visibly falling short of the reference standard.
+ *
+ * This scores against what actually separates a reference-quality board — internal structure,
+ * labels joined to their parts, the drawing filling its box, nothing clipped — and always returns
+ * defects, so the refiner has something concrete to act on even at 4/5.
+ */
+export type BoardDefect = { what: string; where: string; fix: string };
+export type RefinementCritique = { score: number | null; defects: BoardDefect[]; costUsd: number };
+
+const REFINE_SYSTEM_PROMPT = `You review a teaching whiteboard illustration and list what to fix. Output ONLY JSON:
+{ "score": 1-5, "defects": [ { "what": string, "where": string, "fix": string } ] }
+
+Score against a TEXTBOOK-QUALITY reference, not against "can I tell what it is":
+5 = internal structure is drawn (cartilage rings, lobes, branching, chambers, layers), every label
+    is joined by a leader line to a dot ON the part it names, the drawing fills its area, nothing
+    is clipped or overlapping, and the annotation is clean.
+4 = one clear shortcoming.
+3 = recognizable but essentially an outline: the named internal parts are missing.
+2 = generic shapes standing in for the subject (plain ovals, circles, bare lines).
+1 = unrecognizable.
+
+A board with NO internal structure cannot score above 3, however tidy it looks.
+
+"defects": up to 4, most damaging first. Be specific and positional — "the leader dot for Axon sits
+in blank space to the right of the drawing, not on the axon" and "the trachea is a plain tube with
+no cartilage rings", never "labels are wrong" or "add more detail". "fix" must name the concrete
+change to make. Return [] only when the board genuinely deserves 5.`;
+
+export async function critiqueForRefinement(
+  client: OpenAI,
+  beat: Beat,
+  code: string,
+  subject: string,
+  assetRuntime?: string,
+): Promise<RefinementCritique> {
+  // Same fail-open discipline as the other critics: "could not look" must never read as "perfect",
+  // so a null score tells the loop to stop rather than to declare success.
+  if (!ENABLED) return { score: null, defects: [], costUsd: 0 };
+  const svg = await renderStaticFrame(code, assetRuntime);
+  if (!svg) return { score: null, defects: [], costUsd: 0 };
+  const png = await rasterize(svg);
+  if (!png) return { score: null, defects: [], costUsd: 0 };
+
+  try {
+    const completion = await client.chat.completions.create({
+      model: MODEL,
+      messages: [
+        { role: "system", content: REFINE_SYSTEM_PROMPT },
+        {
+          role: "user",
+          content: [
+            { type: "text", text: `Beat: "${beat.title}". This board must depict: ${subject}.` },
+            { type: "image_url", image_url: { url: png, detail: "high" } },
+          ],
+        },
+      ],
+      max_tokens: 700,
+      response_format: { type: "json_object" },
+    });
+    const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
+    const score = typeof parsed.score === "number" ? parsed.score : null;
+    const defects = (Array.isArray(parsed.defects) ? parsed.defects : [])
+      .filter((d): d is Record<string, unknown> => !!d && typeof d === "object")
+      .map((d) => ({
+        what: String(d.what ?? "").slice(0, 300),
+        where: String(d.where ?? "").slice(0, 200),
+        fix: String(d.fix ?? "").slice(0, 300),
+      }))
+      .filter((d) => d.what && d.fix)
+      .slice(0, 4);
+    return { score, defects, costUsd: costUsd(completion.usage) };
+  } catch {
+    return { score: null, defects: [], costUsd: 0 };
+  }
+}

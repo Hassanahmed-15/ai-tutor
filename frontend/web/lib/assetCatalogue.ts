@@ -215,7 +215,26 @@ Place the one that matches the subject with <Asset/>, then do your own work AROU
 leader lines, arrows, highlights, and the progress-driven motion. Draw the subject by hand ONLY if
 none of the above is actually the thing being taught; a hand-drawn organelle reads as a plain oval
 and is the single biggest quality problem with these boards.
-An <Asset/> still needs its data-teach attributes on a wrapping <g>, like any other step.`;
+
+THIS OVERRIDES THE WORKED EXAMPLE. That example hand-draws its subject because no artwork existed
+for it. One does here, so the subject block becomes an <Asset/> and everything else stays:
+
+  {/* instead of hand-drawing the cell body, axon and dendrites: */}
+  <g data-teach-order="4" data-teach-kind="diagram" data-teach-weight="3" data-teach-sentence="1">
+    <Asset name="${assets[0]?.id ?? "id"}" x={380} y={130} w={320} h={360} />
+  </g>
+  {/* then YOUR leader lines, dots, labels, arrows and motion on top, exactly as before */}
+
+Hand-drawing a subject that appears in the list above is a FAILED BOARD. If one of them is the
+thing being taught, it must appear as an <Asset/>.
+An <Asset/> still needs its data-teach attributes on a wrapping <g>, like any other step.
+
+ANCHOR LABELS INSIDE THE ARTWORK. You cannot see where the artwork's internal parts sit, so every
+leader-line dot MUST land well inside the box you gave the <Asset/> — never past its edge and never
+in the margin between the artwork and the label column. For <Asset x={380} y={130} w={320} h={360} />
+put dots in roughly x=430..650, y=190..450, spread apart so they read as different parts, and run
+the leader line from the label LEFTWARD to that dot. A dot sitting in blank space beside the
+artwork is the most common way these boards fail, and it makes every label look wrong.`;
 }
 
 /** Attribution the CC-BY assets require, for the board footer. */

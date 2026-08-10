@@ -625,24 +625,142 @@ CONTENT:
 - Generic circles are forbidden unless they are actual atoms, particles, cells, nodes, or measured data. Generic cards, pills, bubbles, random icons, dotted filler, and abstract box-arrow diagrams are forbidden.
 - For a mechanism, show the real structure where it occurs plus the relevant moving material/force. For a comparison, use two clean, separated subject drawings. For a definition, show the concrete example that makes the definition visible.
 
-LAYOUT:
-- Background: #fbfbf8 or #ffffff. Add a subtle gray frame inside a 54px margin.
-- Choose the composition from the content before writing JSX: center-out mechanism, horizontal causal sequence, vertical derivation, zoom-in/cutaway, radial anatomy, equation spine with annotations, map/timeline, or a genuinely necessary comparison split. Do not default to two columns.
-- Place the title where the reading path begins; centered is optional. Let explanation wrap around, continue below, or sit close to the exact object it explains. Related items belong near each other.
-- Reserve future space in boardPlan.reservedRegions before placing the first item. Use NUMERIC {name,x,y,w,h} rectangles for every text line and diagram cluster, including the later annotation that returns to an earlier object.
-- Reserve the title inside x=54..946,y=30..104. Put teaching content only inside x=64..936,y=122..500. Estimate each text box as width=0.62*fontSize*characters and height=1.35*fontSize. Verify that no text rectangle intersects another text rectangle or any diagram rectangle.
-- Keep every element inside its safe region. Maintain 36px between text and diagram silhouettes, 28px between unrelated bounds, 18px between a label and its target, and 64px of horizontal safety after every line's last character. No overlap, clipping, ellipses, transcript paragraphs, title pills, floating cards, or arbitrary divider.
-- Use 4-7 concise text lines total, each at most 25 characters. Put labels outside silhouettes and connect nearby labels with clean leader lines.
-- No descriptive word may sit inside or on top of the main subject silhouette. Chemical symbols of 4 characters or fewer may sit inside their actual atom/part; every other diagram label stays outside the subject and uses a leader line whose endpoint touches the named part.
-- Deliberate whitespace is required, but the main teaching cluster should occupy roughly 58-76% of the usable frame.
+THE LAYOUT GRID — place into this skeleton, do not invent a composition.
+The frame is 1000x560. Background #fbfbf8, with a 1px #e2e2dc frame rect at x=40,y=24,w=920,h=512.
+
+  TITLE        x=76,  y=78          left-aligned, fontSize 34, fontWeight 800, fill #1b2440
+  TEXT COLUMN  x=76,  y=150..300    2-4 lines, fontSize 23, fill #1b2440, 46px line spacing
+                                    HARD CAP 26 CHARACTERS per line. At fontSize 23 a 26-char line
+                                    is ~370px and ends at x=446. A longer line runs under the
+                                    drawing and is unreadable — shorten the wording, never overflow.
+  EMPHASIS     x=76,  y=430..480    0-2 lines, fontSize 23, fill #d97706  (the "so what" note)
+  DRAWING      x=380..700, y=120..500   ONE subject, centred in this box, drawn LARGE
+  LABELS       x=740..940, y=140..470   right-aligned column, fontSize 22, fill #1b2440
+
+- The drawing must FILL its box. A subject under 240px tall in a 380px box reads as an accident.
+- Every part label lives in the LABELS column and is joined to its part by a leader line:
+  a 1.5px #8a91a3 line from the label to a 5px filled dot sitting exactly ON that part.
+  A label with no leader line, or a label overlapping the drawing, is a failed board.
+- Never put a descriptive word on top of the subject. Chemical symbols of <= 4 characters may sit
+  inside their own atom; nothing else may.
+- Nothing may cross x=40/x=960/y=24/y=536. Content clipped by the frame edge is a failed board.
+- Do not leave a whole quadrant empty. If the left column has one short line, the drawing moves
+  left and grows; balance the page.
+
+WORKED EXAMPLE — this is the target quality and structure. Match this level of anatomical detail,
+this labelling discipline, and this palette. Do NOT copy its subject.
+
+\`\`\`jsx
+export default function Animation({ progress }) {
+  const boardPlan = {
+    composition: "radial-anatomy: title and text left, one large cutaway centre, labels right",
+    readingPath: ["title", "claims", "cavity", "lungs", "trachea", "diaphragm", "flow", "labels"],
+    reservedRegions: [
+      { name: "title", x: 76, y: 50, w: 700, h: 40 },
+      { name: "claims", x: 76, y: 130, w: 330, h: 90 },
+      { name: "subject", x: 380, y: 120, w: 320, h: 380 },
+      { name: "labels", x: 740, y: 140, w: 200, h: 330 },
+      { name: "emphasis", x: 76, y: 430, w: 330, h: 34 },
+    ],
+  };
+  const draw = phase(progress, 0.10, 0.55);   // silhouettes trace on
+  const flow = phase(progress, 0.55, 1.00);   // the mechanism moves
+  const ink = "#1b2440", lead = "#8a91a3";
+  return (
+    <svg viewBox="0 0 1000 560" style={{ background: "#fbfbf8", fontFamily: "Gaegu, Comic Sans MS, cursive" }}>
+      <rect x="40" y="24" width="920" height="512" fill="none" stroke="#e2e2dc" />
+
+      <text x="76" y="78" fontSize="34" fontWeight="800" fill={ink}
+            data-teach-order="1" data-teach-kind="write" data-teach-weight="2" data-teach-sentence="0">Overview of the Respiratory System</text>
+
+      <text x="76" y="150" fontSize="23" fill={ink}
+            data-teach-order="2" data-teach-kind="write" data-teach-weight="1" data-teach-sentence="0">Breathing = vital network</text>
+      <text x="76" y="196" fontSize="23" fill={ink}
+            data-teach-order="3" data-teach-kind="write" data-teach-weight="1" data-teach-sentence="1">Main components</text>
+
+      {/* THE SUBJECT — real anatomy: torso cavity, ringed trachea, lobed lungs, domed diaphragm */}
+      <g data-teach-order="4" data-teach-kind="diagram" data-teach-weight="3" data-teach-sentence="1">
+        <path d="M470 150 q-90 40 -95 175 q-5 130 95 165 q80 25 160 0 q100 -35 95 -165 q-5 -135 -95 -175 z"
+              fill="#f7f9fb" stroke="#b9c0cc" strokeWidth="2" strokeDasharray="1200" strokeDashoffset={1200 * (1 - draw)} />
+        <path d="M520 190 q-55 55 -60 140 q-4 70 45 95 q35 16 45 -30 l6 -205 z" fill="#f9b8b8" stroke="#d9534f" strokeWidth="2.5" opacity={draw} />
+        <path d="M600 190 q55 55 60 140 q4 70 -45 95 q-35 16 -45 -30 l-6 -205 z" fill="#f9b8b8" stroke="#d9534f" strokeWidth="2.5" opacity={draw} />
+        <rect x="548" y="150" width="26" height="110" rx="10" fill="#eaf4fd" stroke="#4a90d9" strokeWidth="2.5" opacity={draw} />
+        {[0, 1, 2, 3].map((i) => (
+          <line key={i} x1="550" y1={168 + i * 22} x2="572" y2={168 + i * 22} stroke="#4a90d9" strokeWidth="2" opacity={lagged(draw, i, 4, { lagRatio: 0.3 })} />
+        ))}
+        <path d="M548 260 l-45 45 M574 260 l45 45" stroke="#4a90d9" strokeWidth="2.5" fill="none" opacity={draw} />
+        <path d="M485 430 q75 -40 155 0" fill="#dff2cd" stroke="#65a30d" strokeWidth="3"
+              transform={"translate(0 " + (8 * Math.sin(flow * Math.PI * 2)) + ")"} opacity={draw} />
+      </g>
+
+      {/* FLOW — the mechanism, in its real direction. NOTE every <text> carries its OWN four
+          attributes even inside a timed group: the host tracks each text's exact bounding box. */}
+      <g opacity={flow}>
+        <path d="M500 130 v60" stroke="#14b8a6" strokeWidth="3" markerEnd="url(#a1)" fill="none"
+              data-teach-order="5" data-teach-kind="arrow" data-teach-weight="2" data-teach-sentence="2" />
+        <text x="452" y="122" fontSize="21" fill="#14b8a6"
+              data-teach-order="6" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="2">O2 in</text>
+        <path d="M622 190 v-60" stroke="#d1345b" strokeWidth="3" markerEnd="url(#a2)" fill="none"
+              data-teach-order="7" data-teach-kind="arrow" data-teach-weight="2" data-teach-sentence="2" />
+        <text x="640" y="140" fontSize="21" fill="#d1345b"
+              data-teach-order="8" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="2">CO2 out</text>
+      </g>
+
+      {/* LABELS — right column, each on a leader line ending in a dot ON the part */}
+      <g>
+        <line x1="736" y1="214" x2="600" y2="214" stroke={lead} strokeWidth="1.5"
+              data-teach-order="9" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
+        <circle cx="600" cy="214" r="5" fill="#4a90d9"
+              data-teach-order="10" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
+        <text x="748" y="220" fontSize="22" fill={ink}
+              data-teach-order="11" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">Airways</text>
+        <line x1="736" y1="330" x2="655" y2="330" stroke={lead} strokeWidth="1.5"
+              data-teach-order="12" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
+        <circle cx="655" cy="330" r="5" fill="#d9534f"
+              data-teach-order="13" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
+        <text x="748" y="336" fontSize="22" fill={ink}
+              data-teach-order="14" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">Lungs</text>
+        <line x1="736" y1="436" x2="640" y2="436" stroke={lead} strokeWidth="1.5"
+              data-teach-order="15" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4" />
+        <circle cx="640" cy="436" r="5" fill="#65a30d"
+              data-teach-order="16" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4" />
+        <text x="748" y="442" fontSize="22" fill={ink}
+              data-teach-order="17" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4">Diaphragm</text>
+      </g>
+
+      <text x="76" y="452" fontSize="23" fill="#d97706"
+            data-teach-order="7" data-teach-kind="annotate" data-teach-weight="1" data-teach-sentence="4">Diaphragm drives airflow</text>
+
+      <defs>
+        <marker id="a1" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8 z" fill="#14b8a6" /></marker>
+        <marker id="a2" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8 z" fill="#d1345b" /></marker>
+      </defs>
+    </svg>
+  );
+}
+\`\`\`
 
 REALISTIC SVG DRAWING:
-- Build recognizable, proportionally credible silhouettes with path, ellipse, polygon, rect, line, and polyline primitives appropriate to the real subject. Aim for a professional textbook/BioRender-like educational illustration while keeping every part editable SVG.
-- Use believable subject colors with a base tone, shaded side, highlight, and clean outline. Use subtle depth only where it clarifies volume. Marker accents should come from teal #14b8a6, blue #3b82f6, rose #be185d, green #65a30d, and amber #d97706.
-- Scientific parts must look like the named structure, not interchangeable circles. Show correct relative scale, recognizable morphology, attachment points, directionality, and internal relationships. Molecules may use circles because atoms are spherical; cells, organs, plants, apparatus, maps, and machines require subject-specific paths and proportions.
-- Every shape must represent a real part, material, force, quantity, or annotation. Decoration does not count.
-- Include at least 5 meaningful <g> groups, at least 14 meaningful SVG primitive tags, at least 8 object/body primitives, at least 4 primitive tag types, and at least one path/polygon/ellipse silhouette. Meet these floors through real subject detail, never filler.
-- These are floors, not targets. Once the subject clearly reads and the mechanism is legible, STOP adding elements — do not keep building past what the concept needs just because more is possible. A simple, calm scene that teaches one idea plainly, with real objects and believable, subtle motion, beats a busier one that piles on extra parts or agents. Minimal and premium beats elaborate and artificial.
+- Draw the subject with CURVES that follow its real morphology. The example's lungs are tapered
+  lobes from a q-curve path, not ellipses; the trachea is a rounded rect with visible cartilage
+  rings; the diaphragm is a dome. Two ellipses and a rectangle would name the same three parts and
+  teach none of them — that is the single most common failure of this board and it is not acceptable.
+- Every shape must be a real part, material, force, quantity, or annotation. No decoration.
+- Palette: ink #1b2440, leader #8a91a3, tissue #f9b8b8 / stroke #d9534f, vessel/air #4a90d9,
+  plant or muscle #65a30d, emphasis #d97706, flow-in #14b8a6, flow-out #d1345b.
+- DRAW THE INTERNAL STRUCTURE, not just the outline. This is the whole difference between a board
+  that teaches and one that merely names parts. A trachea has visible cartilage rings; a lung has
+  lobes and a branching bronchial tree inside it; a nasal cavity has turbinates and fine hairs; a
+  volcano has layered strata and a conduit; a heart has four chambers with valves between them.
+  A plain pink blob is identifiably a lung and still teaches nothing.
+- TARGET 45-90 SVG primitives for a physical subject, met ENTIRELY through real anatomical detail:
+  every ring, lobe, branch, chamber, layer and particle is a real part. Hard floors: 5 meaningful
+  <g> groups, 4 primitive types, one path/polygon silhouette.
+  Filler does not count and is worse than nothing — repeated decorative dots, empty groups, or a
+  shape that names no real part. If you cannot reach the target with genuine structure, the drawing
+  is not detailed enough yet; add the parts the subject actually has.
+- Use <g> + map() for repeated real structures (rings up a trachea, alveoli on a bronchiole, strata
+  in a cone). That is how the detail target is reached without writing 90 tags by hand.
 
 NARRATION-SYNCED TEACHING MOTION:
 - Progress is the only clock. Derive all phases from progress with clamp/lerp/smoothstep-style values.

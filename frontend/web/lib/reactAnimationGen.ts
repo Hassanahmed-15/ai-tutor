@@ -9,7 +9,7 @@ import {
   type ReactAnimationCodeDiagnostics,
   type ReactAnimationOp,
 } from "./drawSanitize";
-import { critiqueLayout, critiqueShapeRecognizability, reactAnimationVisionCriticEnabled } from "./reactAnimationVisionCritic";
+import { critiqueLayout, critiqueShapeRecognizability, critiqueForRefinement, reactAnimationVisionCriticEnabled, type BoardDefect } from "./reactAnimationVisionCritic";
 import { findAssets, loadAssets, assetRuntimeFor, assetPromptBlock } from "./assetCatalogue";
 
 /**
@@ -35,6 +35,19 @@ const MAX_ATTEMPTS = Math.max(1, Math.min(3, Number(process.env.OPENAI_ANIMATION
 const AI_VISUAL_PLANNING_ENABLED = process.env.AI_VISUAL_PLANNING_ENABLED === "1";
 const AI_VISUAL_REVIEW_ENABLED = process.env.AI_VISUAL_REVIEW_ENABLED === "1";
 const DEBUG_SAVE_SVG = process.env.SVG_DEBUG_SAVE === "1";
+// Only consulted for gpt-5/o-series models. See modelCallParams for why this is not optional.
+// "minimal" is rejected by gpt-5.5, so the accepted set is deliberately narrow.
+type ReasoningEffort = "low" | "medium" | "high";
+// create -> critique -> improve the existing board -> repeat. Distinct from the older
+// regenerate-from-scratch retry (REACT_CRITIC_RETRY), which was measured NOT to work: it threw the
+// board away each round and the mean never moved off 2.60/5. This edits what is already there.
+const REFINE_ROUNDS = Math.max(0, Math.min(4, Number(process.env.REACT_REFINE_ROUNDS ?? 3)));
+const REFINE_BUDGET_USD = Math.max(0, Number(process.env.REACT_REFINE_BUDGET_USD ?? 0.6));
+
+const REASONING_EFFORT: ReasoningEffort = (() => {
+  const raw = process.env.OPENAI_ANIMATION_REASONING_EFFORT;
+  return raw === "medium" || raw === "high" ? raw : "low";
+})();
 
 // Cost estimate uses the same gpt-4o-era rates as generate-lecture; override models may differ.
 const INPUT_PRICE = 2.50 / 1_000_000;
@@ -102,6 +115,111 @@ async function transpileCheck(code: string): Promise<string | null> {
   }
 }
 
+/**
+ * One refinement round: hand the model its OWN component back with the defects found in the
+ * rendered image, and ask for a revision.
+ *
+ * THE DISTINCTION THAT MAKES THIS WORTH DOING. The pre-existing retry (REACT_CRITIC_RETRY, off by
+ * default) regenerated FROM SCRATCH with the complaint appended, and was measured not to work —
+ * mean stuck at 2.60/5, cost doubled. Starting over discards everything already correct and re-rolls
+ * the same dice. Editing keeps the parts that work and changes only what was wrong, which is what a
+ * person would do.
+ */
+async function refineBoard(
+  client: OpenAI,
+  code: string,
+  defects: BoardDefect[],
+  subject: string,
+): Promise<{ code: string | null; costUsd: number }> {
+  const defectList = defects.map((d, i) => `${i + 1}. ${d.what}\n   Where: ${d.where}\n   Fix: ${d.fix}`).join("\n");
+  try {
+    const completion = await client.chat.completions.create({
+      model: MODEL,
+      messages: [
+        {
+          role: "system",
+          content:
+            "You revise an existing teaching whiteboard component. Return ONE ```jsx fenced block containing the COMPLETE revised component and nothing else.\n" +
+            "Fix EXACTLY the listed defects and change nothing else. Keep the same export signature, the same viewBox, every data-teach-* attribute, every <Asset/>, and all correct existing structure.\n" +
+            "This is an edit, not a rewrite: preserve what already works. Never write a bare < in element text — write &lt;.",
+        },
+        {
+          role: "user",
+          content: `This board must depict: ${subject}\n\nDefects found in the rendered image:\n${defectList}\n\nCurrent component:\n\`\`\`jsx\n${code}\n\`\`\``,
+        },
+      ],
+      ...modelCallParams(MODEL, MAX_TOKENS, 0.3),
+    });
+    const revised = extractCodeFence(completion.choices[0]?.message?.content ?? "");
+    return { code: revised || null, costUsd: costUsd(completion.usage) };
+  } catch {
+    return { code: null, costUsd: 0 };
+  }
+}
+
+/**
+ * create -> critique -> improve -> repeat, until the board reaches the reference standard, stops
+ * improving, or runs out of rounds/budget. Returns the best code seen — never worse than the input.
+ */
+async function refineUntilGood(
+  client: OpenAI,
+  beat: Beat,
+  op: ReactAnimationOp,
+  startCode: string,
+  subject: string,
+  assetRuntime: string | undefined,
+  abstract: boolean,
+): Promise<{ code: string; costUsd: number }> {
+  // Abstract boards are excluded for the same reason the shape critic skips them: the standard here
+  // is physical structure, which wrongly condemns a timeline or an array diagram.
+  if (abstract || !reactAnimationVisionCriticEnabled() || REFINE_ROUNDS < 1) {
+    return { code: startCode, costUsd: 0 };
+  }
+
+  let bestCode = startCode;
+  let bestScore = -1;
+  let spent = 0;
+  const trail: string[] = [];
+
+  for (let round = 0; round <= REFINE_ROUNDS; round++) {
+    const critique = await critiqueForRefinement(client, beat, bestCode, subject, assetRuntime);
+    spent += critique.costUsd;
+    if (critique.score === null) break; // could not look — that is not the same claim as "perfect"
+    if (critique.score > bestScore) bestScore = critique.score;
+    trail.push(`r${round}=${critique.score}`);
+
+    if (critique.score >= 5 || critique.defects.length === 0) break;
+    if (round === REFINE_ROUNDS) break;
+    if (spent >= REFINE_BUDGET_USD) {
+      trail.push("budget-stop");
+      break;
+    }
+
+    const revision = await refineBoard(client, bestCode, critique.defects, subject);
+    spent += revision.costUsd;
+    if (!revision.code) break;
+
+    // A revision earns its place only by passing every gate the first draft passed AND scoring
+    // higher. Without that comparison a round can quietly walk a 4/5 board down to 2/5 and ship it,
+    // which is worse than never having refined at all.
+    if (await transpileCheck(revision.code)) continue;
+    const revalidated = sanitizeReactAnimationOp({ ...op, code: revision.code }, { requireQuality: false, abstract });
+    if (!revalidated.code) continue;
+    const rescored = await critiqueForRefinement(client, beat, revalidated.code, subject, assetRuntime);
+    spent += rescored.costUsd;
+    if (rescored.score !== null && rescored.score > bestScore) {
+      bestScore = rescored.score;
+      bestCode = revalidated.code;
+    } else {
+      trail.push("rejected");
+      break; // not improving — stop paying for rounds that do not move the score
+    }
+  }
+
+  console.error(`[anim-refine] beat=${beat.id} ${trail.join(" -> ")} final=${bestScore}/5 $${spent.toFixed(3)}`);
+  return { code: bestCode, costUsd: spent };
+}
+
 function extractCodeFence(text: string): string {
   // Closed fence (```jsx ... ```): take the inside.
   const closed = text.match(/```(?:jsx|tsx|js|javascript)?\s*\n?([\s\S]*?)```/);
@@ -157,10 +275,35 @@ type VisualReview = {
   revision: string;
 };
 
-function completionTokenParam(model: string, maxTokens: number) {
-  return /^(gpt-5|o[0-9])/.test(model)
-    ? { max_completion_tokens: maxTokens }
-    : { max_tokens: maxTokens };
+/**
+ * The parameters that differ by model family, as one spread.
+ *
+ * gpt-5.x / o-series need `max_completion_tokens` AND accept only their default temperature:
+ *   temperature: 0.55 -> 400 "does not support 0.55 with this model. Only the default (1)".
+ *
+ * The token half of this was already handled; the temperature half was not, which mattered because
+ * the retry loop RAISES temperature per attempt (0.55, 0.75, 0.95). Pointing OPENAI_ANIMATION_MODEL
+ * at a newer model without this would 400 every attempt, fail every beat, and drop each one to the
+ * fallback board — indistinguishable from a total quality collapse unless you read the logs.
+ */
+function modelCallParams(model: string, maxTokens: number, temperature: number) {
+  const modern = /^(gpt-5|o[0-9])/.test(model);
+  return modern
+    ? {
+        max_completion_tokens: maxTokens,
+        /**
+         * REQUIRED, not a tuning knob. On these models reasoning tokens are drawn from the SAME
+         * budget as the reply, and at the default effort a 12,000-token cap was consumed entirely
+         * by internal reasoning: `finish=length rawLen=0` on every attempt, three attempts, zero
+         * output, beat refused. It looked exactly like a catastrophic quality regression.
+         *
+         * At "low" the same call spends ~30 reasoning tokens and returns 5.4KB of component in
+         * ~21s. This board is a drawing task — the thinking that matters is in the layout grid and
+         * the worked example, not in deliberation. ("minimal" is rejected by gpt-5.5.)
+         */
+        reasoning_effort: REASONING_EFFORT,
+      }
+    : { max_tokens: maxTokens, temperature };
 }
 
 function parseJsonObject(text: string): Record<string, unknown> | null {
@@ -248,8 +391,7 @@ async function planVisual(
         },
       ],
       response_format: { type: "json_object" },
-      temperature: 0.2,
-      ...completionTokenParam(PLANNER_MODEL, 1_400),
+      ...modelCallParams(PLANNER_MODEL, 1_400, 0.2),
     });
     const parsed = parseJsonObject(completion.choices[0]?.message?.content ?? "");
     if (!parsed) return { blueprint: fallback, costUsd: costUsd(completion.usage) };
@@ -339,8 +481,7 @@ async function reviewGeneratedVisual(
         },
       ],
       response_format: { type: "json_object" },
-      temperature: 0,
-      ...completionTokenParam(REVIEW_MODEL, 1_200),
+      ...modelCallParams(REVIEW_MODEL, 1_200, 0),
     });
     const parsed = parseJsonObject(completion.choices[0]?.message?.content ?? "");
     if (!parsed) return { review: failedReview, costUsd: costUsd(completion.usage) };
@@ -530,6 +671,20 @@ function buildUserPrompt(
   ].filter(Boolean).join("\n\n");
 }
 
+
+/**
+ * The assets the board ACTUALLY renders, not the ones it was offered.
+ *
+ * These two diverge constantly: a beat is offered six neuron illustrations, uses none of them, and
+ * hand-draws a grey circle. Reporting the offered list made the sandbox fetch six SVGs the board
+ * never draws, and made the logs read as though artwork were in use when it was not — which is how
+ * "the boards use real artwork now" went unchallenged while every subject was still hand-drawn.
+ */
+function assetsUsedBy(code: string, offered: Array<{ id: string }>): string[] | undefined {
+  const used = offered.filter((a) => new RegExp(`name=["\x27]${a.id.replace(/[.*+?^${}()|[\]\\]/g, "\\async function generateOne(")}["\x27]`).test(code));
+  return used.length ? used.map((a) => a.id) : undefined;
+}
+
 async function generateOne(
   client: OpenAI,
   op: ReactAnimationOp,
@@ -599,16 +754,13 @@ async function generateOne(
         attempt === 0
           ? 0.55
           : Math.min(1.0, 0.55 + attempt * 0.2 + (previousFailure?.stalled ? 0.15 : 0));
-      // gpt-5.x models reject `max_tokens` (require `max_completion_tokens`); gpt-4.x/4o accept
-      // `max_tokens`. Pick the right key from the model name so either family works.
       const completion = await client.chat.completions.create({
         model: MODEL,
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: buildUserPrompt(op, beat, blueprint, previousFailure, abstract) },
         ],
-        temperature,
-        ...completionTokenParam(MODEL, MAX_TOKENS),
+        ...modelCallParams(MODEL, MAX_TOKENS, temperature),
       });
       totalCostUsd += costUsd(completion.usage);
 
@@ -728,9 +880,20 @@ async function generateOne(
 
       const validated = sanitizeReactAnimationOp({ ...op, code }, { abstract });
       if (validated.code) {
-        op.code = validated.code;
+        /**
+         * Refine on THIS path too — it is the one most boards now take.
+         *
+         * The loop was originally placed only on the ACCEPT_BEST path, where sub-floor boards land.
+         * Once the animation model was upgraded, boards started clearing the density floor and
+         * returning here instead, so the refinement never ran: the logs showed no [anim-refine]
+         * line at all. A quality pass that only runs on the failure path is a quality pass that
+         * stops running exactly when the pipeline starts working.
+         */
+        const refined = await refineUntilGood(client, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
+        totalCostUsd += refined.costUsd;
+        op.code = refined.code;
         // IDs only — the browser resolves them to markup via /api/animation-assets. See the op type.
-        op.assetIds = assets.length ? assets.map((a) => a.id) : undefined;
+        op.assetIds = assetsUsedBy(refined.code, assets);
         op.status = "ready";
         op.error = undefined;
         return { costUsd: totalCostUsd, filled: true };
@@ -767,26 +930,51 @@ async function generateOne(
     const validated = sanitizeReactAnimationOp({ ...op, code: best.code }, { requireQuality: false, abstract });
     if (validated.code) {
       op.code = validated.code;
-      op.assetIds = assets.length ? assets.map((a) => a.id) : undefined;
+      op.assetIds = assetsUsedBy(validated.code, assets);
       op.status = "ready";
       op.error = undefined;
       console.error(`[anim] beat=${beat.id} accepted best sub-floor attempt (score=${best.score}) after ${MAX_ATTEMPTS} attempts.`);
 
       /**
-       * SCORE THE BOARD THAT ACTUALLY SHIPS.
+       * SCORE THE BOARD THAT ACTUALLY SHIPS — AND REFUSE IT IF IT IS BAD.
        *
        * The shape critic above only runs on an attempt that already cleared the static density
        * gate — and on a real nephron lecture no attempt ever did, so both beats shipped through
        * this ACCEPT_BEST path with the critic never once looking at them. The measurement existed
        * and was inert on exactly the boards students see.
        *
-       * This cannot reject anything (the attempts are spent), so it is deliberately a measurement
-       * only: one vision call per sub-floor beat, and a logged score that says what went out.
-       * Without it "the animations are better now" has no evidence behind it either way.
+       * This check USED to be measurement-only, on the reasoning that the attempts were spent and a
+       * weak board still beat the "unavailable" card. That reasoning expired when lib/boardFallback.ts
+       * landed: a refused board is no longer a dead beat, it is a beat that drops to a structure or
+       * written board, both of which are guaranteed to render. So a board the critic rejects — an
+       * airways diagram drawn as three plain circles, scored 2/5 — must not go out. Shipping it was
+       * the exact compromise the fallback chain exists to make unnecessary.
        */
+      /**
+       * CREATE -> CRITIQUE -> IMPROVE -> REPEAT, on the board that is about to ship.
+       *
+       * Runs against a reference standard rather than "recognizable", because a board can be
+       * plainly identifiable and still be an outline with a messy annotation cluster — one such
+       * scored 5/5 from the recognizability critic while visibly falling short.
+       */
+      const refinedBest = await refineUntilGood(client, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
+      totalCostUsd += refinedBest.costUsd;
+      op.code = refinedBest.code;
+      validated.code = refinedBest.code;
+
       if (!abstract && reactAnimationVisionCriticEnabled()) {
         const shipped = await critiqueShapeRecognizability(client, beat, validated.code, blueprint.subject, assetRuntime);
         totalCostUsd += shipped.costUsd;
+        if (shipped.score !== null && !shipped.ok) {
+          console.error(
+            `[anim] beat=${beat.id} REFUSED sub-floor board scored ${shipped.score}/5 — ${shipped.issue ?? "below the recognisability floor"}. Falling back to another engine.`,
+          );
+          op.code = undefined;
+          op.assetIds = undefined;
+          op.status = "failed";
+          op.error = shipped.issue ?? `board scored ${shipped.score}/5 for recognisability`;
+          return { costUsd: totalCostUsd, filled: false, issue: op.error };
+        }
         console.error(
           `[anim] beat=${beat.id} SHIPPED sub-floor board scored ${shipped.score ?? "not scored"}/5` +
             (shipped.issue ? ` — ${shipped.issue}` : ""),
