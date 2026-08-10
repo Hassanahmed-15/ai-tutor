@@ -302,3 +302,18 @@ test("Manim is a last resort — the director never routes a beat to it", async 
   assert.equal(BOARD_FOR.construction, "reactAnimation");
   assert.equal(BOARD_FOR["animated-maths"], "reactAnimation");
 });
+
+test("a stray label cannot vouch for a beat whose board failed to fill", async () => {
+  const { hasUsableBoard } = await import("../boardFallback");
+  const beat = (ops: unknown[]) => ({ id: "b", title: "t", script: "s", draw: { ops } }) as never;
+
+  // The measured failure: an unfilled plotBoard plus one leftover label returned "usable" through
+  // the label, the rescue skipped the beat as healthy, and the renderer drew the dead placeholder.
+  assert.equal(hasUsableBoard(beat([{ kind: "plotBoard" }, { kind: "label", text: "Airways" }])), false);
+  assert.equal(hasUsableBoard(beat([{ kind: "reactAnimation" }, { kind: "shape" }])), false);
+
+  // A filled board alongside labels is still fine, and a beat with no board op at all is drawn
+  // directly by LiveSketch — neither should be dragged into the rescue.
+  assert.equal(hasUsableBoard(beat([{ kind: "plotBoard", spec: {} }, { kind: "label" }])), true);
+  assert.equal(hasUsableBoard(beat([{ kind: "label" }, { kind: "shape" }])), true);
+});
