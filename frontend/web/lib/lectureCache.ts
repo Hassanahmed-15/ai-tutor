@@ -19,7 +19,9 @@ import type { Beat } from "./lessonContent";
 //     example instead of a rule list, catalogue artwork is mandatory when it covers the subject
 //     (and labels anchor inside it), and the vision critic REFUSES a sub-floor board rather than
 //     shipping it. Not bumping this served pre-fix boards and made all of it look like a no-op.
-const CACHE_VERSION = "v6";
+// v7: sandbox prompt forbids text inside the drawing band (x=440..740) and requires each label its
+//     own row — the heart board had put eight labels across the chambers with crossing leader lines.
+const CACHE_VERSION = "v7";
 
 const CACHE_DIR = path.join(process.cwd(), ".lecture-cache");
 

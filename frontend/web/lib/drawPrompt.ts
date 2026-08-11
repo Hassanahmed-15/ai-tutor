@@ -641,8 +641,19 @@ The frame is 1000x560. Background #fbfbf8, with a 1px #e2e2dc frame rect at x=40
 - Every part label lives in the LABELS column and is joined to its part by a leader line:
   a 1.5px #8a91a3 line from the label to a 5px filled dot sitting exactly ON that part.
   A label with no leader line, or a label overlapping the drawing, is a failed board.
-- Never put a descriptive word on top of the subject. Chemical symbols of <= 4 characters may sit
-  inside their own atom; nothing else may.
+- NO TEXT ANYWHERE ON THE DRAWING. This is the rule broken most often, so check it explicitly before
+  you return: every <text> element must sit either in the LEFT TEXT COLUMN (x < 440) or in the RIGHT
+  LABELS COLUMN (x > 740). Nothing between x=440 and x=740 may be text — that band is the drawing,
+  and text placed there lands on top of the subject.
+  A label reaches its part by a LEADER LINE, never by being moved near it or onto it.
+- Two labels may not sit on the same line either. Give each one its own row at least 40px below the
+  last, down the right column. A board that names eight parts needs eight separated rows — if they
+  will not fit, name fewer parts. Overlapping labels teach nothing and look broken.
+  (Measured failure: a heart board put eight labels across the chambers with leader lines crossing
+  each other, and the whole diagram became unreadable.)
+- Chemical symbols of <= 4 characters may sit inside their own atom; nothing else may.
+- Flow arrows may cross the drawing — they are part of the mechanism. Their TEXT may not: put the
+  arrow's label at the edge of the drawing band, clear of the subject.
 - Nothing may cross x=40/x=960/y=24/y=536. Content clipped by the frame edge is a failed board.
 - Do not leave a whole quadrant empty. If the left column has one short line, the drawing moves
   left and grows; balance the page.
