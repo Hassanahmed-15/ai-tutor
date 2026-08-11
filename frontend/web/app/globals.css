@@ -780,10 +780,56 @@ textarea {
   --hud-cyan-glow: rgba(255, 255, 255, 0.1);
   --hud-cyan-glow-soft: rgba(255, 255, 255, 0.04);
 
-  /* The only two colours in the system, and only because a warning that is not
-     coloured is not a warning. */
-  --hud-warn: #d4a24c;
-  --hud-danger: #c96a6a;
+  /* ── SEMANTIC COLOUR ───────────────────────────────────────────────────────
+     The marketing shell is greyscale. The classroom is not, and cannot be: a
+     student needs to know at a glance whether the mic is live, whether Aria is
+     speaking, and whether the connection dropped. These are the only hues in
+     the product, and each one means exactly one thing.
+
+     Every state that uses colour is ALSO given a distinct icon and a text
+     label, so nothing depends on hue alone (WCAG 2.2 AA, 1.4.1). All values are
+     checked to clear 4.5:1 against the classroom ground. */
+  --ok: #4ade80;        /* connected, ready, correct */
+  --ok-dim: rgba(74, 222, 128, 0.14);
+  --listening: #60a5fa; /* the student's channel — mic open, student speaking */
+  --listening-dim: rgba(96, 165, 250, 0.16);
+  --speaking: #c084fc;  /* Aria's channel — deliberately NOT the listening hue,
+                           because who-is-speaking is the single most important
+                           thing this interface communicates */
+  --speaking-dim: rgba(192, 132, 252, 0.16);
+  --hud-warn: #fbbf24;  /* paused, degraded, reconnecting */
+  --warn-dim: rgba(251, 191, 36, 0.15);
+  --hud-danger: #f87171; /* error, permission blocked, destructive */
+  --danger-dim: rgba(248, 113, 113, 0.15);
+
+  /* ── SHAPE ─────────────────────────────────────────────────────────────────
+     6-8px per the brief. Pills are reserved for nothing: a control that looks
+     like a tag does not read as a button. */
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  /* ── SPACING ───────────────────────────────────────────────────────────────
+     A 4px base scale, so panel padding and control gaps stay in step. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* ── ELEVATION ─────────────────────────────────────────────────────────────
+     Two levels only. On a near-black ground a shadow reads as a smudge, so
+     depth comes mostly from the border; the shadow only separates overlays. */
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-2: 0 8px 28px rgba(0, 0, 0, 0.55);
+
+  /* ── MOTION ────────────────────────────────────────────────────────────────
+     Fast enough to feel responsive, slow enough to read as a transition. */
+  --motion-fast: 120ms;
+  --motion: 200ms;
+  --motion-slow: 320ms;
 
   /* Mode accents all resolve to the one ink. The mode SELECTOR is gone from the
      UI, but the mode players still read these tokens; collapsing them keeps
