@@ -739,6 +739,21 @@ export default function Animation({ progress }) {
               data-teach-order="17" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4">Diaphragm</text>
       </g>
 
+      {/*
+        MANY PARTS? SAME PATTERN — one row each, straight down the column. A subject with eight
+        nameable parts is labelled like this, NEVER by scattering names across the drawing:
+
+          y = 150, 190, 230, 270, 310, 350, 390, 430    (40px apart, all at x=748)
+          <line x1="736" y1="{y}" x2="{dot x}" y2="{y}" ... />
+          <circle cx="{dot x}" cy="{y}" r="5" ... />
+          <text x="748" y="{y+6}" fontSize="20" ...>Part name</text>
+
+        The leader line is what reaches the part. The label never moves toward it.
+        Eight rows at 40px is 320px and fits y=150..470 exactly — that is the ceiling.
+        A NINTH part does not get a smaller gap or a second column: leave it unlabelled. Naming
+        seven parts clearly teaches more than cramming ten into an unreadable tangle.
+      */}
+
       <text x="76" y="452" fontSize="23" fill="#d97706"
             data-teach-order="7" data-teach-kind="annotate" data-teach-weight="1" data-teach-sentence="4">Diaphragm drives airflow</text>
 

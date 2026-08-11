@@ -37,6 +37,28 @@ for (const topic of TOPICS) {
   const stage = await page.locator("[data-stage]");
   await stage.screenshot({ path: `${outDir}/${tag}-${topic}.png` });
 
+  // Where did every rendered label actually land? x=440..740 is the drawing band.
+  //
+  // Queried through a FRAME handle, not the parent document: the board renders in a srcDoc iframe
+  // and `iframe.contentDocument` is not reachable from page.evaluate, which silently returned null
+  // and reported "?" for every board — a check that cannot see is indistinguishable from a pass.
+  const boardFrame = page.frames().find((f) => f !== page.mainFrame());
+  const strayText = boardFrame
+    ? await boardFrame.evaluate(() => {
+        const svg = document.querySelector("svg");
+        if (!svg) return null;
+        const box = svg.getBoundingClientRect();
+        const scale = box.width ? 1000 / box.width : 1;
+        return [...svg.querySelectorAll("text")]
+          .filter((t) => (t.textContent ?? "").trim().length > 2)
+          .map((t) => {
+            const r = t.getBoundingClientRect();
+            return { text: t.textContent.trim().slice(0, 24), x: Math.round((r.left - box.left) * scale) };
+          })
+          .filter((t) => t.x > 440 && t.x < 740);
+      }).catch(() => null)
+    : null;
+
   const meta = await page.locator("[data-meta]").textContent().catch(() => null);
   let score = null;
   let status = null;
@@ -48,8 +70,9 @@ for (const topic of TOPICS) {
     } catch { /* meta is advisory only */ }
   }
 
-  results.push({ topic, ok, score, status, errors: errors.length });
-  console.log(`${ok ? "drew" : "FAILED"}  ${topic.padEnd(12)} score=${score ?? "-"} status=${status ?? "-"} pageerrors=${errors.length}`);
+  results.push({ topic, ok, score, status, errors: errors.length, stray: strayText?.length ?? 0 });
+  console.log(`${ok ? "drew" : "FAILED"}  ${topic.padEnd(12)} score=${score ?? "-"} status=${status ?? "-"} pageerrors=${errors.length} textOnDrawing=${strayText?.length ?? "?"}`);
+  if (strayText?.length) console.log("        on the drawing: " + strayText.map((t) => `"${t.text}"@x${t.x}`).join(", "));
   await page.close();
 }
 
@@ -58,3 +81,4 @@ const scored = results.filter((r) => typeof r.score === "number");
 if (scored.length) {
   console.log(`\nmean critic score ${(scored.reduce((s, r) => s + r.score, 0) / scored.length).toFixed(2)}/5 across ${scored.length}`);
 }
+
