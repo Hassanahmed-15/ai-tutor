@@ -130,6 +130,32 @@ async function renderStaticFrame(code: string, assetRuntime?: string): Promise<s
   }
 }
 
+const SVG_NS = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
+
+/**
+ * The exact document handed to resvg. Exported so tests exercise THIS string rather than one they
+ * built themselves — see the comment in rasterize() for why that distinction mattered.
+ *
+ * renderToStaticMarkup emits a bare `<svg viewBox="...">` with no namespaces at all: browsers do not
+ * need them inline, resvg refuses to parse without them.
+ */
+export function svgForRasterizer(markup: string): string {
+  const trimmed = markup.trim();
+  if (!/^<svg[\s>]/.test(trimmed)) {
+    return `<svg ${SVG_NS} viewBox="0 0 1000 560">${trimmed}</svg>`;
+  }
+  // A root that already declares the default namespace may still be missing xlink, which is the
+  // case that actually broke — so top it up rather than trusting the root wholesale.
+  let out = trimmed;
+  if (!/^<svg[^>]*\bxmlns\s*=/.test(out)) {
+    out = out.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+  }
+  if (!/^<svg[^>]*\bxmlns:xlink\s*=/.test(out)) {
+    out = out.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+  }
+  return out;
+}
+
 async function rasterize(svg: string): Promise<string | null> {
   try {
     const resvg = await loadResvg();
@@ -140,13 +166,22 @@ async function rasterize(svg: string): Promise<string | null> {
     // refuses to parse the document at all ("does not have a root node"). Inject it whenever the
     // root tag is missing that attribute; wrap entirely (with a viewBox fallback) if the component
     // didn't even emit a root <svg> tag, so this is never a fatal condition for the critic.
-    const isSvgRoot = /^<svg[\s>]/.test(trimmed);
-    const hasXmlns = /^<svg[^>]*\bxmlns\s*=/.test(trimmed);
-    const wrapped = !isSvgRoot
-      ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560">${trimmed}</svg>`
-      : hasXmlns
-        ? trimmed
-        : trimmed.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+    /**
+     * `xmlns:xlink` is declared here for a reason that cost a whole measured run to find.
+     *
+     * Catalogue artwork (lib/assetCatalogue.ts) legitimately contains `xlink:href`, and resvg's
+     * standalone XML parser rejects the WHOLE document over an undeclared prefix:
+     *   "SVG data parsing failed cause an unknown namespace prefix 'xlink'".
+     * rasterize() then returns null, the critic reports "could not look", and — by design, so a
+     * broken rasteriser never rejects good boards — the pipeline ships the board unjudged. So every
+     * board that placed real artwork, the ones most worth checking, went out with no quality gate at
+     * all and nothing said so. Measured: one of five fixtures scored `-1/5 $0.000`.
+     *
+     * The unit test did not catch it because it built its OWN wrapper with xmlns:xlink already
+     * declared, so it exercised a string this function never produces. A test that vouches for code
+     * it does not call is worth very little; it now calls svgForRasterizer directly.
+     */
+    const wrapped = svgForRasterizer(trimmed);
     const r = new resvg.Resvg(wrapped, { fitTo: { mode: "width", value: 1000 } });
     const png = r.render().asPng();
     return `data:image/png;base64,${Buffer.from(png).toString("base64")}`;

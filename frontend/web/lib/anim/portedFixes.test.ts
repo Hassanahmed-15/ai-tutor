@@ -119,8 +119,22 @@ test("asset markup survives a strict XML parser, not just a browser", async () =
   // exactly the boards that use artwork.
   assert.ok(!/\s(?!xlink:)[a-z][\w-]*:[\w-]+\s*=/i.test(asset.body), "no orphaned namespace prefixes survive");
   const { Resvg } = await import("@resvg/resvg-js");
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${asset.w} ${asset.h}">${asset.body}</svg>`;
+
+  // Rasterise through THE PRODUCTION WRAPPER, not one written here.
+  //
+  // This test used to build its own `<svg xmlns=... xmlns:xlink=...>` and passed happily, while the
+  // critic's wrapper declared only `xmlns`. Artwork containing `xlink:href` therefore parsed in the
+  // test and failed in production with "unknown namespace prefix 'xlink'", the critic returned "could
+  // not look", and every board using real artwork shipped unjudged. A test that vouches for a string
+  // the code never produces is worse than no test — it actively certifies the broken path.
+  const { svgForRasterizer } = await import("../reactAnimationVisionCritic");
+  const svg = svgForRasterizer(`<svg viewBox="0 0 ${asset.w} ${asset.h}">${asset.body}</svg>`);
+  assert.match(svg, /xmlns:xlink=/, "the production wrapper must declare xlink for catalogue artwork");
   assert.doesNotThrow(() => new Resvg(svg, { fitTo: { mode: "width", value: 120 } }).render().asPng());
+
+  // And the bare-markup path the sandbox actually produces (renderToStaticMarkup emits no xmlns).
+  const bare = svgForRasterizer(asset.body);
+  assert.doesNotThrow(() => new Resvg(bare, { fitTo: { mode: "width", value: 120 } }).render().asPng());
 });
 
 /* ── The spec boards: Vega-Lite charts and KaTeX derivations ──────────────── */
