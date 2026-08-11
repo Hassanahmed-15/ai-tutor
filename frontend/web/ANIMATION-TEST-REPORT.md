@@ -8,11 +8,11 @@ silently inert, and is described below with the evidence that proved it.
 
 | Layer | Result |
 |---|---|
-| Unit tests | **86/86** |
+| Unit tests | **87/87** |
 | Vega-Lite + KaTeX browser checks | **16/16** |
 | ELK + morph browser checks (new) | **13/13** |
 | Sandbox fixtures rendered | **5/5**, zero page errors |
-| End-to-end lectures | 1 clean, 1 with one unfilled board (open, below) |
+| End-to-end lectures | clean after the fix: 8 boards in, 8 out, 0 unfilled |
 
 ## Per engine
 
@@ -80,26 +80,62 @@ Fix: `svgForRasterizer()` is now the single exported wrapper, tops up a root tha
 but not `xlink`, and the test calls it instead of hand-rolling one. Verified — that board went from
 `-1/5 $0.000` to `r0=3 → r1=3 → rejected, final 4/5`, no rasterize failure.
 
-## Open, not fixed
+## The empty board — found and fixed (`16c8655`)
 
-**One beat in nine came back with an unfilled `reactAnimation`** ("How the Heart Pumps Blood",
-`beat5`). Reproduced once in two lectures. What the evidence says:
+This was the intermittent empty board **and** a large silent waste of what a lecture pays for.
 
-- The animation **succeeded**: `attempt=0 finish=stop issue=OK`, 51 primitives. No `REFUSED` line.
-- **No `[fallback]` line at all.** `rescueEmptyBoards` returns early without logging when nothing is
-  stranded, so `hasUsableBoard(beat5)` was **true** when the rescue ran — the code was present then.
-- Therefore something clears `op.code` **after** the rescue and before the response. The passes in
-  between are all `sourceDocument`-gated and this was a plain topic, so none should apply.
+`composePromptedSuprnotesBoards` skips beats carrying `manimScene`, `morph`, `structureScene`,
+`plotBoard` and `equationBoard` — the comment above the guard even explains why ("composing a paper
+board over it destroys the op"). **`reactAnimation` was never added to that list.** A finished
+animation got a paper board composed straight over it, and unlike `manimScene` nothing rebuilds one
+afterwards, so it was final.
 
-I stopped here rather than guess. The next step is a single log line recording `op.code` length for
-each animation beat immediately before the response is serialised — that will name the pass
-responsible in one run. Not fixed, because the cause is not yet proven and the standing instruction
-is not to change pipeline behaviour on a hunch.
+Found by measurement rather than reading — reading had ruled out every candidate and still left the
+evidence contradictory. Three snapshots through the real route:
 
-**Also noted, not acted on:** `REACT_ANIMATION_BEAT_CAP` (default 2) converts excess sandbox beats to
-chalk boards inside `sanitizeDrawLecture`, which runs *before* the director re-routes beats to
-`reactAnimation`. So the director can produce more sandbox beats than the cap intends. That is a
-design observation, not a proven defect.
+```
+after-fills      9 boards, 7 reactAnimation carrying 11k-17k chars each
+after-rescue     identical, nothing lost
+before-response  4 boards — five animations gone
+```
+
+Five boards per lecture generated, critiqued, refined and paid for, then overwritten. A beat left
+holding the stripped op rendered as nothing — the empty board seen about once every nine beats.
+
+After the fix the same lecture gives `after-rescue` and `before-response` **byte-identical**: 8
+boards in, 8 out, 0 unfilled. Pinned by a test **verified to fail** with the guard removed — a
+regression test nobody has watched fail is not yet a regression test.
+
+That also disposes of the earlier "REACT_ANIMATION_BEAT_CAP" theory: the cap was never the mechanism.
+
+## Labels on the drawing — fixed (`8ef7a92`)
+
+The prose rule was obeyed for a board's main labels and ignored for its secondary ones; the heart
+kept four valve names on the chambers. The worked example only ever showed three easy labels, so
+there was no pattern for a subject with eight nameable parts.
+
+The example now demonstrates the hard case: one row per label, 40px apart, down the right column,
+with a ninth part deliberately left unlabelled rather than crammed in.
+
+`shoot-sandbox.mjs` now **measures** it instead of trusting the picture — every rendered `<text>`
+x-position is read from the board and any landing in the drawing band is reported. It had to be
+queried through a *frame handle*: `iframe.contentDocument` is unreachable from `page.evaluate` and
+silently returned null, printing "?" for every board. A check that cannot see is indistinguishable
+from one that passes.
+
+`heart` and `airways` both report `textOnDrawing=0`, confirmed by eye.
+
+## The Set/Map warning — not reproducible
+
+Zero console errors across all five routes on a cold browser. Every `Set`/`Map` in the codebase sits
+*inside* a client component, and `DirectorStats` is server-only and never returned to the client.
+Recorded as HMR state from a long-running dev server rather than left as a silent known-unknown.
+
+## Still not verified
+
+**Two full lectures after both fixes.** The empty-board defect was intermittent (~1 beat in 9), so
+the single clean post-fix lecture above is suggestive, not conclusive. Before deployment, run at
+least two more lectures and confirm `unfilled=0` on each.
 
 ## Cost and latency
 
