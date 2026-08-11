@@ -38,9 +38,16 @@ export function QuizPrompt({
 
   return (
     <div className="beat-fade-in absolute inset-x-0 bottom-0 z-40 p-4 sm:p-6">
-      <div className="mx-auto max-w-2xl rounded-2xl border border-white/15 bg-slate-950/90 p-5 shadow-2xl backdrop-blur-md">
+      {/* A scrim under the panel. Without it the board — and the caption bar, which sits at the
+          same edge — showed through the translucent card, so the question competed with the text
+          behind it and neither was comfortably readable. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[140%] bg-gradient-to-t from-black/90 via-black/70 to-transparent" />
+      <div className="relative mx-auto max-w-2xl rounded-2xl border border-white/15 bg-slate-950 p-5 shadow-2xl">
+        {/* Both kinds now read "Quick check". The other label was "Let's pause a second", which
+            narrates the interruption instead of naming what it is — the panel appearing is already
+            the pause, so saying so adds a beat of chatter to every prompt. */}
         <p className="hud-eyebrow text-[0.65rem] tracking-[0.2em]" style={{ color: accentVar }}>
-          {quiz.kind === "understanding" ? "Quick check" : "Let's pause a second"}
+          Quick check
         </p>
 
         <p className="mt-2 text-lg font-bold leading-snug text-white">{quiz.question}</p>

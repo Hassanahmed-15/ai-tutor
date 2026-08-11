@@ -187,6 +187,9 @@ svg text{
   var Animation = null;
   var hasErrored = false;
   var timelineFrame = 0;
+  // Last progress value actually committed through React, quantised to 1%. Lets render() skip
+  // reconciliation on the ~60/sec messages that would produce an identical tree. See render().
+  var lastRenderedProgress = null;
 
   // Easing/composition helpers, declared before the generated component runs so it can call
   // them by name. Function declarations hoist, so they are in scope inside the try block below.
@@ -429,6 +432,37 @@ ${assetRuntime}
     if (hasErrored || typeof Animation !== "function") return;
     try {
       if (!root) root = ReactDOM.createRoot(document.getElementById("root"));
+
+      /**
+       * Re-render the component only when its output can actually differ, and let the teaching
+       * timeline run on every message.
+       *
+       * The player drives progress from the audio clock, so this handler fires ~60x/sec. Each call
+       * used to run a full React reconciliation of the whole board — 130+ SVG nodes — and then wait
+       * two animation frames before styling anything. That is far more work than a frame budget
+       * allows on a detailed board, so the drawing advanced in visible jumps rather than smoothly.
+       *
+       * Almost none of that work changed anything. Generated components read progress at coarse
+       * granularity (phase thresholds, step indices), while the SMOOTH part of the motion is the
+       * timeline below, which is plain attribute/style writes and costs a fraction as much. So the
+       * React pass is quantised to ~1% steps: visually identical, roughly 100 reconciliations
+       * across a beat instead of thousands.
+       *
+       * The double-rAF path is preserved exactly for the frames that do re-render, because it is
+       * load-bearing — see the comment below. Frames that skip the re-render need no such wait:
+       * the committed DOM is already on screen, so the timeline can style it immediately, which is
+       * also what makes the in-between frames cheap.
+       */
+      var quantised = Math.round(progress * 100) / 100;
+      var needsRender = lastRenderedProgress === null || quantised !== lastRenderedProgress;
+
+      if (!needsRender) {
+        cancelAnimationFrame(timelineFrame);
+        applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal);
+        return;
+      }
+      lastRenderedProgress = quantised;
+
       root.render(React.createElement(Animation, { progress: progress }));
       cancelAnimationFrame(timelineFrame);
       // DOUBLE rAF, deliberately. root.render() is asynchronous, so on a single frame the

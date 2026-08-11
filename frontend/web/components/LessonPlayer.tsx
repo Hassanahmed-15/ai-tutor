@@ -21,6 +21,7 @@ import type { PlotSpec } from "@/lib/plotSpec";
 import type { EquationSpec } from "@/lib/equationSpec";
 import { RendererBadge } from "./sketch/RendererBadge";
 import { useManimPrefetch } from "@/lib/useManimPrefetch";
+import { useNarrationPrefetch } from "@/lib/useNarrationPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
@@ -30,7 +31,6 @@ import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
-import { PastYouEcho } from "./experience/LearningExperiences";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -180,6 +180,16 @@ export function LessonPlayer({
     ),
     { enabled: MANIM_RENDER_ENABLED },
   );
+
+  // Same reasoning as the Manim prefetch above, applied to the voice. A cold /api/tts call is 6-8s
+  // for a beat-length script; the board is driven by the audio clock, so until that audio exists
+  // nothing moves and the lesson looks desynchronised from the narration. Warming the next couple
+  // of beats turns each of those into a ~12ms cache hit by the time the student arrives.
+  useNarrationPrefetch(
+    useMemo(() => beats.map((b) => b.script ?? ""), [beats]),
+    index,
+  );
+
   const isCheckpoint = beat.slideKind === "checkpoint";
   const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
   // The lecture only WAITS on a pending animation until the watchdog trips (see below); after that it
@@ -720,7 +730,10 @@ export function LessonPlayer({
             ) : (
               <div className="beat-fade-in relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
-                <PastYouEcho key={`past-you-${beat.id}`} topic={title} beat={beat} />
+                {/* The "From past you" echo is removed from the lesson surface. It replayed the
+                    student's own earlier wording as a floating card over the board, which
+                    interrupts the lesson rather than supporting it. The component and its stored
+                    explanations are untouched, so re-mounting this line restores the feature. */}
                 {deafMode && (
                   <div className="pointer-events-none absolute left-3 top-3 z-40 flex flex-wrap items-center gap-2 lg:left-5 lg:top-5">
                     <div className="flex items-center gap-2 rounded-full border border-[var(--accent-deaf)]/35 bg-black/70 px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] text-[var(--accent-deaf)] shadow-[0_0_28px_var(--accent-deaf-glow)] backdrop-blur-md">
@@ -732,7 +745,16 @@ export function LessonPlayer({
                     </div>
                   </div>
                 )}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5">
+                {/* Hidden while a question is on screen. QuizPrompt anchors to the same corner at
+                    the same z-index, so both rendered on top of each other: the caption showed
+                    through the panel and the two lines of text collided. The caption is narration
+                    the student has already heard by the time a question appears, so yielding is
+                    the right call — nothing is lost. */}
+                <div
+                  className={`pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5 ${
+                    quiz.phase !== "idle" ? "hidden" : ""
+                  }`}
+                >
                   <div
                     className={`mx-auto max-w-5xl rounded-2xl border px-5 py-3 font-bold leading-snug text-white shadow-2xl backdrop-blur-md ${
                       deafMode
