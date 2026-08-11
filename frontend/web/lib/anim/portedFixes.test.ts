@@ -331,3 +331,31 @@ test("a stray label cannot vouch for a beat whose board failed to fill", async (
   assert.equal(hasUsableBoard(beat([{ kind: "plotBoard", spec: {} }, { kind: "label" }])), true);
   assert.equal(hasUsableBoard(beat([{ kind: "label" }, { kind: "shape" }])), true);
 });
+
+test("a generated animation survives the paper-board composer", async () => {
+  const { composePromptedSuprnotesBoards } = await import("../suprnotes");
+
+  // THE BUG THIS PINS. composePromptedSuprnotesBoards skipped beats carrying manimScene, morph,
+  // structureScene, plotBoard and equationBoard — but not reactAnimation. So it composed a paper
+  // board over finished animation code and destroyed it. Measured through the real route: seven
+  // reactAnimation ops holding 11k-17k characters each went in, two came out. Already generated,
+  // critiqued, refined and paid for, then silently overwritten — and a beat left holding the
+  // stripped op rendered as an empty board.
+  const beats = [0, 1, 2, 3, 4, 5].map((i) => ({
+    id: `beat${i}`,
+    title: `Beat ${i}`,
+    script: "A sentence about the subject. And a second one to give it length.",
+    slideKind: "concept",
+    points: [],
+    draw: { caption: `Beat ${i}`, durationMs: 25_000, ops: [{ kind: "reactAnimation", code: `export default function Animation(){ return null } // ${i}`, at: 0, endAt: 1 }] },
+  })) as never[];
+
+  composePromptedSuprnotesBoards(beats);
+
+  for (const beat of beats) {
+    const ops = (beat as { draw?: { ops?: Array<{ kind?: string; code?: string }> } }).draw?.ops ?? [];
+    const anim = ops.find((o) => o.kind === "reactAnimation");
+    assert.ok(anim, `${(beat as { id: string }).id} lost its reactAnimation op entirely`);
+    assert.ok(anim.code && anim.code.length > 0, `${(beat as { id: string }).id} kept the op but lost its code`);
+  }
+});

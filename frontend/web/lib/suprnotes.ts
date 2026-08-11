@@ -353,7 +353,18 @@ export function composePromptedSuprnotesBoards(beats: Beat[]): number {
     // build and the diagram never reached the player at all.
     // Same for a TYPE E morph board: its shape/morph ops ARE the finished GSAP artwork, and no
     // later fill step rebuilds them, so composing a paper board over it loses the beat outright.
-    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) continue;
+    // `reactAnimation` belongs in this list for exactly the reason the comment above gives, and its
+    // absence was costing five generated boards per lecture.
+    //
+    // Measured with three snapshots through the route: after the fill passes a heart lecture held
+    // seven reactAnimation ops carrying 11k-17k characters of working component each; after this
+    // pass only two survived. The other five were overwritten by a composed paper board — already
+    // generated, already critiqued, already refined, already paid for, and then discarded. It also
+    // explains the intermittent "empty board": a beat left holding a reactAnimation op whose code
+    // this pass had just removed rendered as nothing at all.
+    //
+    // Unlike manimScene, no later fill rebuilds a reactAnimation, so destroying it here is final.
+    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "reactAnimation" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) continue;
     const trustedReferenceImage = beat.draw?.ops.some(
       (op) => op.kind === "image"
         && typeof op.assetId === "string"
