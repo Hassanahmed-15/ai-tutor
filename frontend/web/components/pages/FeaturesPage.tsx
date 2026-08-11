@@ -1,94 +1,54 @@
 "use client";
 
-import { HudPage, HudEyebrow, HudButton, HudPanel, type PageName } from "@/components/hud/HudKit";
+import { HudPage, HudButton, type PageName } from "@/components/hud/HudKit";
 
 /**
- * How it works — a walkthrough of the real capabilities (live whiteboard, warm voice,
- * attention camera, AI scribe, etc.), each as an alternating editorial section. Content only.
+ * THE CRAFT — five specimen lines.
+ *
+ * The predecessor ran five sections in five accent colours with a paragraph each, two of them
+ * describing mode-only behaviour that is no longer reachable. This is the same information at a
+ * tenth of the length: what it is, and the one technical fact that makes it true.
  */
-const FEATURES: { eyebrow: string; title: string; body: string; glyph: string; accent: string }[] = [
-  {
-    eyebrow: "The board",
-    title: "Drawn live, stroke by stroke",
-    body: "Concepts aren't dropped onscreen as finished slides — they're sketched in real time on a hand-drawn whiteboard, each shape appearing exactly as the teacher describes it, so the picture builds in your mind as fast as it builds on the screen.",
-    glyph: "✎",
-    accent: "#c9a86a",
-  },
-  {
-    eyebrow: "The voice",
-    title: "A teacher, not a reader",
-    body: "Narration is warm and paced — it pauses at the right moments, emphasizes what matters, and carries the lesson the way a person would. When the device's own voice fails, a cloud voice steps in seamlessly so the lesson never goes silent.",
-    glyph: "♪",
-    accent: "#818cf8",
-  },
-  {
-    eyebrow: "The camera",
-    title: "Attention, noticed gently",
-    body: "For the ADHD mode, a face-tracking model runs entirely on your device and watches engagement in real time. The instant focus drifts below threshold, the lesson stops and waits — no penalty, no lost place, just a calm pause until you're back.",
-    glyph: "◎",
-    accent: "#f472b6",
-  },
-  {
-    eyebrow: "The scribe",
-    title: "Speak it; it gets written",
-    body: "For dysgraphia, the hard part isn't knowing the answer — it's getting it onto the page. So you just talk it through, rambling and all, and an AI scribe restructures your spoken thought into a clean, organized written note, removing filler and fixing the order.",
-    glyph: "✦",
-    accent: "#c084fc",
-  },
-  {
-    eyebrow: "The translation",
-    title: "Every sense, served",
-    body: "A diagram becomes spoken structure and sonic cues for a blind learner; a dense paragraph becomes short icon-paired lines in a dyslexia-friendly font; a vague instruction becomes a literal checklist with a Now / Next / Later schedule. The same lesson, rendered for the channel that reaches you.",
-    glyph: "❧",
-    accent: "#34d399",
-  },
+const CRAFT = [
+  ["01", "Four engines", "Chart, proof, graph, or drawing — chosen per idea, not per lecture."],
+  ["02", "Drawn, not shown", "Each stroke lands as its sentence is spoken."],
+  ["03", "A critic that looks", "Boards are rendered, examined as images, and refused if unclear."],
+  ["04", "Your document", "Figures cropped from your pages, not invented from memory."],
+  ["05", "A real examination", "Marked against meaning. Rubric, not string-match."],
 ];
 
 export function FeaturesPage({ go, onStart }: { go: (p: PageName) => void; onStart: () => void }) {
   return (
     <HudPage current="features" go={go} onStart={onStart}>
-      <section className="mx-auto max-w-5xl px-6 pt-12">
-        <div className="text-center">
-          <HudEyebrow>How it works</HudEyebrow>
-          <h1 className="mt-5 font-display text-5xl font-light leading-tight sm:text-6xl">
-            Five quiet pieces of <span className="hud-text-glow italic">craft.</span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-[var(--hud-text-dim)]">
-            Underneath the calm surface, Aria is doing real work — drawing, speaking, watching,
-            writing, and translating the same lesson into whatever form fits you.
-          </p>
-        </div>
+      <section className="mx-auto max-w-4xl px-6 pt-24">
+        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] sm:text-[4.6rem]">
+          Five decisions that
+          <br />
+          took the <span className="italic text-[var(--hud-cyan)]">longest.</span>
+        </h1>
+      </section>
 
-        <div className="mt-20 space-y-20">
-          {FEATURES.map((f, i) => (
-            <div
-              key={f.title}
-              className={`hud-materialize grid items-center gap-10 md:grid-cols-2 ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}
-            >
-              {/* text */}
-              <div>
-                <p className="hud-eyebrow" style={{ color: f.accent }}>{f.eyebrow}</p>
-                <h2 className="mt-4 font-display text-3xl leading-tight text-[var(--hud-text)] sm:text-4xl">{f.title}</h2>
-                <p className="mt-5 leading-8 text-[var(--hud-text-dim)]">{f.body}</p>
-              </div>
-              {/* ornament */}
-              <HudPanel className="grid aspect-[4/3] place-items-center overflow-hidden">
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-30 blur-2xl"
-                  style={{ background: `radial-gradient(circle at 50% 40%, ${f.accent}, transparent 65%)` }}
-                />
-                <span className="hud-float relative text-7xl" style={{ color: f.accent }}>{f.glyph}</span>
-                <span className="absolute bottom-4 right-5 font-display text-7xl text-white/5">{i + 1}</span>
-              </HudPanel>
+      <section className="mx-auto max-w-4xl px-6 pt-16">
+        {CRAFT.map(([n, title, body], i) => (
+          <article
+            key={n}
+            className="hud-materialize grid grid-cols-[3.5rem_1fr] gap-6 border-t border-[var(--hud-line)] py-9"
+            style={{ animationDelay: `${0.05 * i}s` }}
+          >
+            <span className="hud-eyebrow pt-2 text-[var(--hud-cyan)]">{n}</span>
+            <div>
+              <h2 className="font-display text-[1.9rem] leading-tight tracking-[-0.015em]">{title}</h2>
+              <p className="mt-2.5 max-w-lg text-[0.95rem] leading-[1.7] text-[var(--hud-text-dim)]">{body}</p>
             </div>
-          ))}
-        </div>
+          </article>
+        ))}
+        <hr className="hud-rule" />
+      </section>
 
-        <div className="mt-24 text-center">
-          <HudButton onClick={() => go("tracks")} className="px-9 py-4 text-base">
-            Try it yourself →
-          </HudButton>
-        </div>
+      <section className="mx-auto max-w-4xl px-6 pt-16">
+        <HudButton onClick={() => go("learn")} className="px-9 py-4">
+          Begin
+        </HudButton>
       </section>
     </HudPage>
   );

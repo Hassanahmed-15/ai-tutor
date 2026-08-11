@@ -3,10 +3,17 @@
 import type { ReactNode } from "react";
 
 /**
- * Shared holographic-HUD UI primitives — replaces the sunset components/lux/LuxKit.tsx. The
- * design language: deep navy-black canvas, cyan-white emissive glow, corner-bracket "reticle"
- * chrome, monospace data-label type. Used across every redesigned page so the whole product
- * reads as one instrument, not a luxury brochure.
+ * Shared primitives for THE PRESS — the editorial rebuild.
+ *
+ * The predecessor was a holographic instrument panel: glass cards, corner reticles, emissive
+ * cyan, monospace data labels. This kit is its inverse. A page is paper, a panel is a block of
+ * type separated by a hairline rule, and hierarchy comes from the size of a serif rather than
+ * from glow or fill.
+ *
+ * Export names are unchanged (`Hud*`) even though nothing here is a HUD any more. They are
+ * imported across every page and by the out-of-scope mode players; renaming them would mean
+ * editing every call site for no user-visible gain. `HudCorners` in particular survives as a
+ * no-op for exactly that reason.
  */
 
 export type PageName =
@@ -16,38 +23,28 @@ export type PageName =
   | "features"
   | "complete"
   | "learn"
-  // lesson players (kept as routes so nav can return to them)
   | "demo"
+  // Mode player routes. Nothing in the UI navigates to these while only the standard lecture is
+  // offered, but the names stay in the union so those components still typecheck.
   | "blind-demo"
   | "adhd-demo"
   | "deaf-demo"
   | "dyslexia-demo";
 
-/** Four corner-bracket reticle marks, the HUD's signature motif. Purely static (no
- *  animation) — safe for every accessibility track, including ADHD and Autism. */
-export function HudCorners({ accent }: { accent?: string }) {
-  const style = accent ? { borderColor: accent } : undefined;
-  return (
-    <>
-      <span className="hud-corner hud-corner-tl" style={style} />
-      <span className="hud-corner hud-corner-tr" style={style} />
-      <span className="hud-corner hud-corner-bl" style={style} />
-      <span className="hud-corner hud-corner-br" style={style} />
-    </>
-  );
+/** Retired with the instrument-panel language. Kept because it is called from many components. */
+export function HudCorners(_props: { accent?: string }) {
+  return null;
 }
 
-/** The glass instrument panel — replaces .lux-card / <div className="lux-card"> one-for-one.
- *  `corners` is on by default (the signature motif). `scan` is OFF by default: the animated
- *  sweep is opt-in per panel, never ambient/global, so accessibility tracks that are sensitive
- *  to motion (ADHD, Autism) simply never pass it. */
+/**
+ * A block of paper. No fill, no blur, no shadow — a rule and its contents.
+ *
+ * `corners`, `scan` and `accent` are accepted and ignored so existing call sites keep compiling.
+ */
 export function HudPanel({
   children,
   className = "",
-  corners = true,
-  scan = false,
   hover = false,
-  accent,
 }: {
   children: ReactNode;
   className?: string;
@@ -57,68 +54,68 @@ export function HudPanel({
   accent?: string;
 }) {
   return (
-    <div className={`hud-panel relative ${hover ? "hud-panel-hover" : ""} ${scan ? "hud-scan" : ""} ${className}`}>
-      {corners && <HudCorners accent={accent} />}
+    <div className={`hud-panel relative ${hover ? "hud-panel-hover" : ""} ${className}`}>
       <div className="relative">{children}</div>
     </div>
   );
 }
 
-/** The animated logo mark — an interlocking 'A' rendered in cyan glow instead of gold. */
+/** The masthead. One word, set in the display serif — the logo IS the typography. */
 export function HudLogo({ size = 34, onClick }: { size?: number; onClick?: () => void }) {
   return (
-    <button onClick={onClick} className="group flex items-center gap-3" aria-label="Aria home">
-      <span className="relative grid place-items-center" style={{ width: size, height: size }}>
-        <svg viewBox="0 0 40 40" width={size} height={size} className="relative">
-          <defs>
-            <linearGradient id="hud-logo-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#aef5ec" />
-              <stop offset="100%" stopColor="#1f9e92" />
-            </linearGradient>
-          </defs>
-          <circle cx="20" cy="20" r="18.5" fill="none" stroke="url(#hud-logo-grad)" strokeWidth="1.2" opacity="0.6" />
-          <path d="M20 9 L29 30 L24.5 30 L20 19 L15.5 30 L11 30 Z" fill="url(#hud-logo-grad)" />
-          <circle cx="20" cy="24.5" r="1.6" fill="#06080d" />
-        </svg>
+    <button onClick={onClick} className="group flex items-baseline gap-2" aria-label="Aria home">
+      <span
+        className="font-display leading-none tracking-[-0.02em] text-[var(--hud-text)] transition-opacity group-hover:opacity-60"
+        style={{ fontSize: size * 0.72 }}
+      >
+        Aria
       </span>
-      <span className="font-display text-xl tracking-tight text-[var(--hud-text)]">Aria</span>
     </button>
   );
 }
 
-/** Top navigation bar shared by all marketing pages. */
+/**
+ * The masthead rule. A newspaper nameplate: wordmark left, sections right, a rule beneath the
+ * whole thing. The active section is marked by ink and an underline, not a pill or a glow.
+ */
 export function HudNav({ current, go, onStart }: { current: PageName; go: (p: PageName) => void; onStart: () => void }) {
   const links: { label: string; page: PageName }[] = [
-    { label: "Home", page: "landing" },
-    { label: "Modes", page: "tracks" },
-    { label: "How it works", page: "features" },
-    { label: "Manifesto", page: "about" },
+    { label: "The Method", page: "tracks" },
+    { label: "The Craft", page: "features" },
+    { label: "Position", page: "about" },
   ];
   return (
-    <nav className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-      <HudLogo onClick={() => go("landing")} />
-      <div className="hidden items-center gap-8 md:flex">
-        {links.map((l) => (
+    <nav className="relative z-20 mx-auto w-full max-w-6xl px-6 pt-8">
+      <div className="flex items-baseline justify-between gap-6">
+        <HudLogo onClick={() => go("landing")} />
+        <div className="hidden items-baseline gap-8 md:flex">
+          {links.map((l) => (
+            <button
+              key={l.page}
+              onClick={() => go(l.page)}
+              className={`pb-0.5 text-[0.82rem] tracking-wide transition-colors ${
+                current === l.page
+                  ? "border-b border-[var(--hud-cyan)] text-[var(--hud-cyan)]"
+                  : "border-b border-transparent text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
           <button
-            key={l.page}
-            onClick={() => go(l.page)}
-            className={`hud-eyebrow text-[0.68rem] normal-case tracking-[0.08em] transition-colors ${
-              current === l.page ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
-            }`}
-            style={{ fontWeight: 600 }}
+            onClick={onStart}
+            className="hud-btn-primary px-5 py-2 text-[0.82rem]"
           >
-            {l.label}
+            Begin
           </button>
-        ))}
+        </div>
       </div>
-      <button onClick={onStart} className="hud-btn-primary rounded-full px-5 py-2.5 text-sm font-bold">
-        Begin a lesson
-      </button>
+      <hr className="hud-rule mt-5" />
     </nav>
   );
 }
 
-/** Shared page shell: canvas + grain + nav + footer. */
+/** Page shell: paper, tooth, masthead, colophon. */
 export function HudPage({
   current,
   go,
@@ -143,30 +140,38 @@ export function HudPage({
   );
 }
 
+/** The colophon. */
 export function HudFooter({ go }: { go: (p: PageName) => void }) {
   return (
-    <footer className="relative z-10 mx-auto mt-24 w-full max-w-6xl px-6 pb-12">
-      <div className="h-px w-full bg-[var(--hud-line)]" />
-      <div className="flex flex-col items-center justify-between gap-6 pt-8 sm:flex-row">
-        <HudLogo onClick={() => go("landing")} size={28} />
-        <p className="hud-eyebrow text-[0.65rem] normal-case tracking-[0.04em] text-[var(--hud-text-faint)]">
-          One lesson, many minds. © {new Date().getFullYear()} Aria.
+    <footer className="relative z-10 mx-auto mt-32 w-full max-w-6xl px-6 pb-14">
+      <hr className="hud-rule" />
+      <div className="flex flex-col items-start justify-between gap-6 pt-7 sm:flex-row sm:items-baseline">
+        <HudLogo onClick={() => go("landing")} size={26} />
+        <p className="max-w-sm text-xs leading-6 text-[var(--hud-text-faint)]">
+          Composed on demand. No lecture here existed before someone asked for it.
         </p>
         <div className="flex gap-6 text-xs text-[var(--hud-text-dim)]">
-          <button onClick={() => go("tracks")} className="hover:text-[var(--hud-cyan)]">Modes</button>
-          <button onClick={() => go("features")} className="hover:text-[var(--hud-cyan)]">How it works</button>
-          <button onClick={() => go("about")} className="hover:text-[var(--hud-cyan)]">Manifesto</button>
+          <button onClick={() => go("tracks")} className="transition-colors hover:text-[var(--hud-text)]">
+            The Method
+          </button>
+          <button onClick={() => go("features")} className="transition-colors hover:text-[var(--hud-text)]">
+            The Craft
+          </button>
+          <button onClick={() => go("about")} className="transition-colors hover:text-[var(--hud-text)]">
+            Position
+          </button>
         </div>
       </div>
     </footer>
   );
 }
 
-/** `.hud-eyebrow` deliberately carries no color (see the comment in globals.css), so this
- *  component supplies the default cyan via inline style — inline styles always win the
- *  cascade regardless of source order, unlike stacking two same-specificity classes. Pass
- *  `color` to use a per-mode accent instead. */
-export function HudEyebrow({ children, color = "var(--hud-cyan)" }: { children: ReactNode; color?: string }) {
+/**
+ * A section mark. `.hud-eyebrow` deliberately sets no colour — a Tailwind text utility on the
+ * same element has identical specificity, so whichever rule loaded later would win at random.
+ * The colour is supplied here inline, which always wins the cascade.
+ */
+export function HudEyebrow({ children, color = "var(--hud-text-faint)" }: { children: ReactNode; color?: string }) {
   return (
     <span className="hud-eyebrow" style={{ color }}>
       {children}
@@ -174,6 +179,7 @@ export function HudEyebrow({ children, color = "var(--hud-cyan)" }: { children: 
   );
 }
 
+/** Square, letterspaced, unrounded. A printed button, not a pill. */
 export function HudButton({
   children,
   onClick,
@@ -194,7 +200,7 @@ export function HudButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-full px-7 py-3 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40 ${
+      className={`px-7 py-3 text-sm transition disabled:cursor-not-allowed disabled:opacity-30 ${
         variant === "primary" ? "hud-btn-primary" : "hud-btn-ghost"
       } ${className}`}
     >
@@ -203,13 +209,21 @@ export function HudButton({
   );
 }
 
-/** A thin animated divider rule with a centered cyan diamond. */
+/** A hairline rule. The accent diamond it used to carry has no place on a page like this. */
 export function HudDivider() {
+  return <hr className="hud-rule mx-auto mt-14 w-full max-w-2xl" />;
+}
+
+/**
+ * A numbered section heading: a rule with a numeral sitting on it and a label beside it. The
+ * device that makes a page read as a publication with parts rather than a scroll of sections.
+ */
+export function HudSection({ numeral, label }: { numeral: string; label: string }) {
   return (
-    <div className="mx-auto flex w-full max-w-xs items-center gap-4 py-2">
-      <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[var(--hud-line-strong)]" />
-      <span className="size-1.5 rotate-45 bg-[var(--hud-cyan)]" />
-      <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[var(--hud-line-strong)]" />
+    <div className="flex items-baseline gap-4">
+      <span className="hud-eyebrow text-[var(--hud-cyan)]">{numeral}</span>
+      <span className="hud-eyebrow text-[var(--hud-text-faint)]">{label}</span>
+      <span className="h-px flex-1 bg-[var(--hud-line)]" />
     </div>
   );
 }

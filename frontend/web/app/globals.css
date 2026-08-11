@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f1f5f9;
-  --foreground: #020617;
+  --background: #0a0a0b;
+  --foreground: #f4f1ec;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
-  --font-headline: var(--font-headline), var(--font-body), Arial, Helvetica, sans-serif;
-  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  /* `--font-headline` is aliased to the body face: the editorial system loads one serif and one
+     sans, and the only remaining consumers of `headline` are the out-of-scope mode players. */
+  --font-headline: var(--font-body), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-display), "Iowan Old Style", Georgia, "Times New Roman", serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --font-hud-mono: var(--font-hud-mono), "SFMono-Regular", Consolas, monospace;
 
@@ -53,8 +55,8 @@ textarea {
 }
 
 ::selection {
-  background: #bfdbfe;
-  color: #020617;
+  background: rgba(201, 162, 39, 0.28);
+  color: #f4f1ec;
 }
 
 /* Hand-drawn whiteboard draw-in: stroke animates from invisible to fully drawn,
@@ -720,65 +722,103 @@ textarea {
 }
 
 /* ============================================================================
-   HOLOGRAPHIC HUD DESIGN SYSTEM
-   Deep navy-black canvas, cyan-white emissive glow, corner-bracket chrome.
-   Replaces the dark-luxury system above (kept temporarily for migration safety).
+   THE PRESS — editorial design system
+   ----------------------------------------------------------------------------
+   Warm paper, ink, one oxidised-red rule. The predecessor was a dark emissive
+   HUD: glowing cyan on navy-black, corner brackets, scan-lines, monospace
+   labels. This is its deliberate inverse — a printed page rather than an
+   instrument. Nothing glows, nothing loops, and colour appears roughly twice
+   per screen.
+
+   Two rules hold it together:
+     1. TYPE CARRIES THE PAGE. One high-contrast serif at large sizes does the
+        work that colour and chrome used to. If a screen looks plain, the
+        headline is too small, not under-decorated.
+     2. INK IS SCARCE. The accent marks the primary action and the live step.
+        Everywhere else is paper, ink, and a hairline rule.
+
+   Token NAMES are unchanged on purpose. They are referenced several hundred
+   times across components — including the mode players, out of scope here — so
+   redefining values restyles everything without touching a call site. The
+   `--hud-*` prefix is now a historical artefact, not a description.
    ============================================================================ */
 :root {
-  /* Canvas */
-  --hud-bg: #06080d;
-  --hud-bg-2: #0a0f1a;
-  --hud-surface: #0d1420;
-  --hud-surface-2: #121b2c;
-  --hud-line: rgba(120, 200, 255, 0.14);
-  --hud-line-strong: rgba(120, 200, 255, 0.28);
-  --hud-grid: rgba(120, 200, 255, 0.05);
+  /* Ground. Near-black with a trace of warmth — a blue-black reads cold and
+     clinical, which is the failure mode of every dark UI that looks cheap. */
+  --hud-bg: #0a0a0b;
+  --hud-bg-2: #121213;
+  --hud-surface: rgba(255, 253, 250, 0.026);
+  --hud-surface-2: rgba(255, 253, 250, 0.052);
+  --hud-line: rgba(255, 253, 250, 0.09);
+  --hud-line-strong: rgba(255, 253, 250, 0.2);
+  --hud-grid: rgba(255, 253, 250, 0.02);
 
-  /* Text */
-  --hud-text: #eaf6ff;
-  --hud-text-dim: rgba(234, 246, 255, 0.62);
-  --hud-text-faint: rgba(234, 246, 255, 0.38);
+  /* Text. Warm off-white, never #fff: pure white on near-black glares. */
+  --hud-text: #f4f1ec;
+  --hud-text-dim: rgba(244, 241, 236, 0.58);
+  --hud-text-faint: rgba(244, 241, 236, 0.32);
 
-  /* Primary signature accent: cyan-white glow */
-  --hud-cyan: #5eead4;
-  --hud-cyan-bright: #aef5ec;
-  --hud-cyan-deep: #1f9e92;
-  --hud-cyan-glow: rgba(94, 234, 212, 0.55);
-  --hud-cyan-glow-soft: rgba(94, 234, 212, 0.22);
+  /* One accent: warm brass. Low saturation on purpose — a loud accent over a
+     dark ground is the fastest route to looking cheap. */
+  --hud-cyan: #c9a227;
+  --hud-cyan-bright: #e3c460;
+  --hud-cyan-deep: #8a6f18;
+  --hud-cyan-glow: rgba(201, 162, 39, 0.15);
+  --hud-cyan-glow-soft: rgba(201, 162, 39, 0.06);
 
-  /* Status/utility — semantic, not hue-locked to cyan */
-  --hud-warn: #fbbf24;
-  --hud-danger: #fb7185;
+  --hud-warn: #d4a24c;
+  --hud-danger: #c96a6a;
 
-  /* Per-mode emissive accents — same hue family as the original mode colors,
-     redefined as base + bright + glow triples for the holographic treatment. */
-  --accent-standard: #5eead4;
-  --accent-standard-bright: #aef5ec;
-  --accent-standard-glow: rgba(94, 234, 212, 0.5);
+  /* Mode accents all resolve to the one ink. The mode SELECTOR is gone from the
+     UI, but the mode players still read these tokens; collapsing them keeps
+     those screens coherent instead of reintroducing six competing hues. */
+  --accent-standard: #c9a227;
+  --accent-standard-bright: #e3c460;
+  --accent-standard-glow: rgba(201, 162, 39, 0.15);
 
-  --accent-blind: #818cf8;
-  --accent-blind-bright: #c7d2fe;
-  --accent-blind-glow: rgba(129, 140, 248, 0.5);
+  --accent-blind: #c9a227;
+  --accent-blind-bright: #e3c460;
+  --accent-blind-glow: rgba(201, 162, 39, 0.15);
 
-  --accent-adhd: #f472b6;
-  --accent-adhd-bright: #fbcfe8;
-  --accent-adhd-glow: rgba(244, 114, 182, 0.5);
+  --accent-adhd: #c9a227;
+  --accent-adhd-bright: #e3c460;
+  --accent-adhd-glow: rgba(201, 162, 39, 0.15);
 
-  --accent-autism: #34d399;
-  --accent-autism-bright: #a7f3d0;
-  --accent-autism-glow: rgba(52, 211, 153, 0.5);
+  --accent-autism: #c9a227;
+  --accent-autism-bright: #e3c460;
+  --accent-autism-glow: rgba(201, 162, 39, 0.15);
 
-  --accent-dyslexia: #fb923c;
-  --accent-dyslexia-bright: #fed7aa;
-  --accent-dyslexia-glow: rgba(251, 146, 60, 0.5);
+  --accent-dyslexia: #c9a227;
+  --accent-dyslexia-bright: #e3c460;
+  --accent-dyslexia-glow: rgba(201, 162, 39, 0.15);
 
-  --accent-dysgraphia: #c084fc;
-  --accent-dysgraphia-bright: #e9d5ff;
-  --accent-dysgraphia-glow: rgba(192, 132, 252, 0.5);
+  --accent-dysgraphia: #c9a227;
+  --accent-dysgraphia-bright: #e3c460;
+  --accent-dysgraphia-glow: rgba(201, 162, 39, 0.15);
 
-  --accent-deaf: #34d399;
-  --accent-deaf-bright: #a7f3d0;
-  --accent-deaf-glow: rgba(52, 211, 153, 0.5);
+  --accent-deaf: #c9a227;
+  --accent-deaf-bright: #e3c460;
+  --accent-deaf-glow: rgba(201, 162, 39, 0.15);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/**
+ * THE READING ROOM — the lesson player, one stop darker than the rest.
+ *
+ * The whole product is dark, so this is no longer a light/dark switch. It exists because the board
+ * is a surface the student watches for minutes at a time: dropping the ground to true black and
+ * pulling the lines back makes the drawn strokes the brightest thing on screen, which is what a
+ * cinema does to its walls. Same token names, so no component needs conditional styling.
+ */
+.reading-room {
+  --hud-bg: #060607;
+  --hud-bg-2: #0d0d0e;
+  --hud-line: rgba(255, 253, 250, 0.07);
+  --hud-line-strong: rgba(255, 253, 250, 0.16);
+
+  background-color: var(--hud-bg);
+  color: var(--hud-text);
 }
 
 /* Baseline OS-level respect for reduced motion. */
@@ -796,166 +836,173 @@ textarea {
   }
 }
 
-/* The HUD page canvas: faint instrument-panel grid instead of a warm radial glow. */
+/* ============================================================================
+   SURFACES AND MARKS
+   The old versions of these classes are what made the product look like an
+   instrument: a viewport grid, emissive text, glass panels, corner reticles, a
+   looping scan-line. Each is rebuilt here as its printed-page counterpart, and
+   the ones with no editorial equivalent are neutralised rather than deleted —
+   they are called from many components, several out of scope for this rebuild.
+   ============================================================================ */
+
 .hud-canvas {
   background-color: var(--hud-bg);
   color: var(--hud-text);
   position: relative;
 }
+
+/* Paper texture. The predecessor drew a 48px instrument grid across the whole
+   viewport — the single loudest element on every screen. This is a plain warm
+   ground; the sheet does not need ruling. */
 .hud-canvas::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, var(--hud-grid) 0 1px, transparent 1px 48px),
-    repeating-linear-gradient(90deg, var(--hud-grid) 0 1px, transparent 1px 48px),
-    radial-gradient(60% 50% at 50% -8%, rgba(94, 234, 212, 0.08), transparent 70%);
+  background-image: radial-gradient(110% 70% at 50% -15%, rgba(201, 162, 39, 0.045), transparent 72%);
   z-index: 0;
 }
-/* Much subtler grain than the luxury version — a pure-digital surface still wants a touch
-   of texture, but flat-vector-flat reads cheap; keep it nearly imperceptible. */
+
+/* A whisper of tooth, so large flat areas of paper do not read as flat vector. */
 .hud-grain::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.02;
+  opacity: 0.022;
   z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Genuine emissive text glow — replaces the gradient-clip-text gold treatment. */
+/* Emphasis by ink and italic, not by light. */
 .hud-text-glow {
-  color: var(--hud-cyan-bright);
-  text-shadow: 0 0 12px var(--hud-cyan-glow), 0 0 2px var(--hud-cyan-glow);
+  color: var(--hud-cyan);
+  font-style: italic;
 }
 
-/* Glass instrument panel. Sharper corners than lux's soft luxury card — reads as
-   hardware, not upholstery. Corner brackets and scan-line are separate, composable
-   pieces (rendered by HudKit's HudCorners / the .hud-scan class) so panels can opt in
-   or out of motion independently. */
+/* A panel is a block of paper: no fill, no blur, no shadow — just a rule that
+   separates it from the sheet. Depth on a printed page comes from whitespace. */
 .hud-panel {
-  background: linear-gradient(180deg, rgba(94, 234, 212, 0.04), rgba(255, 255, 255, 0.015));
+  background: transparent;
   border: 1px solid var(--hud-line);
-  border-radius: 0.75rem;
-  backdrop-filter: blur(16px);
+  border-radius: 0;
 }
 .hud-panel-hover {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.45s var(--ease), background-color 0.45s var(--ease);
 }
 .hud-panel-hover:hover {
   border-color: var(--hud-line-strong);
-  box-shadow: 0 0 40px -8px var(--hud-cyan-glow-soft);
+  background-color: var(--hud-surface);
 }
 
-/* Corner-bracket reticle chrome — the HUD's signature motif. */
-.hud-corner {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--hud-cyan);
-  opacity: 0.65;
-  pointer-events: none;
+/* Corner reticles: retired. Rendered from many call sites, so kept as a no-op
+   rather than removed from every component. */
+.hud-corner,
+.hud-corner-tl,
+.hud-corner-tr,
+.hud-corner-bl,
+.hud-corner-br {
+  display: none;
 }
-.hud-corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-.hud-corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
-.hud-corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
-.hud-corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
 
-/* Animated scan-line sweep — opt-in per panel via the .hud-scan class, NEVER applied
-   globally. Low alpha, slow duration: an ambient signal, not a flashing distraction. */
+/* The looping scan-line sweep is gone — a permanent animation on a reading
+   surface is the opposite of what this system is for. */
 .hud-scan {
   position: relative;
-  overflow: hidden;
-}
-.hud-scan::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent, var(--hud-cyan-glow-soft) 48%, transparent);
-  transform: translateY(-100%);
-  animation: hud-scan-sweep 5s linear infinite;
-  pointer-events: none;
-}
-@keyframes hud-scan-sweep {
-  to { transform: translateY(100%); }
 }
 
-/* Materialize-in: a digital flicker + clip-path wipe, replacing lux-reveal's smooth fade.
-   steps(1, end) keeps the flicker feeling discrete/digital rather than eased. */
+/* Entrances: text rises and settles, the way a page is set. */
 .hud-materialize {
   opacity: 0;
-  animation: hud-materialize 0.6s steps(1, end) forwards;
+  animation: hud-materialize 0.8s var(--ease) forwards;
 }
 @keyframes hud-materialize {
-  0% { opacity: 0; clip-path: inset(0 0 100% 0); }
-  8% { opacity: 0.4; }
-  16% { opacity: 0.1; }
-  24% { opacity: 1; clip-path: inset(0 0 60% 0); }
-  100% { opacity: 1; clip-path: inset(0 0 0% 0); }
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Primary HUD button: glow-on-hover instead of lift-on-hover. */
+/* The primary action: solid ink, square, letterspaced. The one place the accent
+   appears at full strength. */
 .hud-btn-primary {
-  background: linear-gradient(180deg, var(--hud-cyan-bright), var(--hud-cyan));
-  color: #03110f;
-  border: 1px solid var(--hud-cyan-bright);
-  box-shadow: 0 0 24px var(--hud-cyan-glow-soft), 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  transition: box-shadow 0.25s ease, filter 0.25s ease;
+  background: var(--hud-cyan);
+  color: var(--hud-bg);
+  border: 1px solid var(--hud-cyan);
+  border-radius: 0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
 }
 .hud-btn-primary:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 0 40px var(--hud-cyan-glow), 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-}
-.hud-btn-ghost {
-  border: 1px solid var(--hud-line-strong);
-  color: var(--hud-text-dim);
-  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
-}
-.hud-btn-ghost:hover {
-  border-color: var(--hud-cyan);
-  color: var(--hud-text);
-  background: rgba(94, 234, 212, 0.06);
+  background: var(--hud-cyan-bright);
+  border-color: var(--hud-cyan-bright);
 }
 
-/* Monospace data-label treatment — the single highest-impact typographic change for
-   the "instrument panel" feel; every eyebrow/tagline across the app uses this class. */
-/* Deliberately does NOT set color: a Tailwind text-color utility placed on the same element
-   (e.g. text-accent-autism) has identical specificity to a plain class selector, so whichever
-   rule loads later in the stylesheet would silently win regardless of which one the caller
-   "meant." Color must always come from an explicit utility/style at the call site — bare
-   `hud-eyebrow` usages default via the `text-[var(--hud-cyan)]` applied alongside it. */
+/* The secondary action is a rule and a word. */
+.hud-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--hud-line-strong);
+  border-radius: 0;
+  color: var(--hud-text);
+  transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease);
+}
+.hud-btn-ghost:hover {
+  border-color: var(--hud-text);
+  background: var(--hud-surface);
+}
+
+/* Section marks: small, letterspaced, quiet. Deliberately sets no colour — a
+   Tailwind text utility on the same element has equal specificity, so whichever
+   loaded later would win at random. Colour comes from the call site. */
 .hud-eyebrow {
   font-family: var(--font-hud-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.24em;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
-/* Cyan-tinted sweep highlight — replaces .lux-shimmer for CTA banners. */
-.hud-shimmer {
-  background: linear-gradient(110deg, transparent 30%, var(--hud-cyan-glow-soft) 50%, transparent 70%);
-  background-size: 220% 100%;
-  animation: hud-shimmer 6s ease-in-out infinite;
+/* Retired ambient loops. Between them, something on every screen was always
+   moving. Kept as inert classes so no component needs editing. */
+.hud-shimmer { background: none; }
+.hud-float { animation: none; }
+.hud-halo { animation: none; opacity: 0.3; }
+
+/* Indeterminate progress — the one animation kept, because it reports that a
+   long generation is still running rather than decorating anything. */
+.hud-progress {
+  animation: hud-progress 1.7s var(--ease) infinite;
 }
-@keyframes hud-shimmer {
-  0% { background-position: 180% 0; }
-  100% { background-position: -80% 0; }
+@keyframes hud-progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
 }
-/* Gentle bobbing — replaces .lux-float for decorative glyphs/ornaments. */
-.hud-float {
-  animation: hud-float 7s ease-in-out infinite alternate;
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-materialize {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .hud-progress {
+    animation: none;
+    width: 100%;
+    opacity: 0.5;
+  }
 }
-@keyframes hud-float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-12px); }
+
+/* A drop capital, for the opening paragraph of an editorial page. */
+.hud-dropcap::first-letter {
+  float: left;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 4.2em;
+  line-height: 0.78;
+  padding: 0.06em 0.09em 0 0;
+  color: var(--hud-text);
 }
-/* Slow conic rotation — replaces .lux-halo for hero/seal ornaments. */
-.hud-halo {
-  animation: hud-halo 24s linear infinite;
-}
-@keyframes hud-halo {
-  to { transform: rotate(360deg); }
+
+/* A numbered section rule: hairline across, numeral sitting on it. */
+.hud-rule {
+  border: 0;
+  border-top: 1px solid var(--hud-line);
+  margin: 0;
 }

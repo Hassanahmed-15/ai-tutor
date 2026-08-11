@@ -705,10 +705,16 @@ export function LessonPlayer({
   const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
   const currentCaption = sentenceCue.text || beat.script;
 
+  // `reading-room` re-points the design tokens to their dark values for this subtree only. The
+  // marketing pages are paper; the lesson is a darkened theatre, because the generated boards
+  // paint light strokes on a dark ground and inverting that would break every animation the
+  // pipeline produces. Every child keeps using the same token names.
   return (
-    <main className="relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(94,234,212,0.14),transparent_36%),radial-gradient(circle_at_88%_18%,rgba(94,234,212,0.07),transparent_34%),linear-gradient(180deg,#06080d_0%,#030407_72%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(rgba(120,200,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(120,200,255,0.1) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
+    <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
+      {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
+          directly behind the board — the busiest possible backdrop for the one surface the
+          student is meant to be reading. */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(232,168,124,0.05),transparent_55%),linear-gradient(180deg,#0c0a09_0%,#080605_78%)]" />
 
       <div className="absolute inset-0">
         {/* Board + side chat, with room at top for the floating header. The header now carries

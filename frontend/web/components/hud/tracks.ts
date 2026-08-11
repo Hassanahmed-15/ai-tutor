@@ -1,9 +1,16 @@
 import type { PageName } from "./HudKit";
 
 /**
- * The six learning modes, with the copy + accent used across the gallery, landing, and
- * track cards. Keeps a single source of truth so every page describes the modes the same
- * way. `page` is the route the mode opens.
+ * ── Only the standard lecture is offered. ──
+ *
+ * The accessibility modes are defined below in `PLANNED_TRACKS` but deliberately excluded from
+ * the exported `TRACKS`. Every mode surface in the app maps over `TRACKS`, so this one array is
+ * the whole switch — no page needs a conditional and no player component was touched. The players
+ * (BlindLessonPlayer, AdhdLessonPlayer, DyslexiaLessonPlayer, DysgraphiaLessonPlayer,
+ * AutismLessonPlayer) remain on disk and functional.
+ *
+ * To re-enable a mode: move its entry from PLANNED_TRACKS into TRACKS and restore its route case
+ * in app/page.tsx.
  */
 export interface TrackMeta {
   id: string;
@@ -30,6 +37,13 @@ export const TRACKS: TrackMeta[] = [
     glyph: "✦",
     page: "demo",
   },
+];
+
+/**
+ * Built and working, but not currently offered in the UI. Kept rather than deleted so the copy,
+ * accents and route names survive intact for when they are switched back on.
+ */
+export const PLANNED_TRACKS: TrackMeta[] = [
   {
     id: "blind",
     name: "Blind",
