@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0b;
-  --foreground: #f4f1ec;
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+/**
+ * The display treatment. One family throughout, so "display" is a weight and a tracking value
+ * rather than a different typeface: light, straight, and tightened so large sizes do not look
+ * gappy. Applied here rather than repeated as utility classes on every headline.
+ */
+.font-display {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
 }
 
 @theme inline {
@@ -12,7 +23,9 @@
   /* `--font-headline` is aliased to the body face: the editorial system loads one serif and one
      sans, and the only remaining consumers of `headline` are the out-of-scope mode players. */
   --font-headline: var(--font-body), Arial, Helvetica, sans-serif;
-  --font-display: var(--font-display), "Iowan Old Style", Georgia, "Times New Roman", serif;
+  /* One family throughout. `font-display` call sites resolve to the same sans; the "display"
+     treatment is weight 300 and tight tracking, not a different typeface. */
+  --font-display: var(--font-body), Arial, Helvetica, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --font-hud-mono: var(--font-hud-mono), "SFMono-Regular", Consolas, monospace;
 
@@ -55,8 +68,8 @@ textarea {
 }
 
 ::selection {
-  background: rgba(201, 162, 39, 0.28);
-  color: #f4f1ec;
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
 }
 
 /* Hand-drawn whiteboard draw-in: stroke animates from invisible to fully drawn,
@@ -743,62 +756,65 @@ textarea {
    `--hud-*` prefix is now a historical artefact, not a description.
    ============================================================================ */
 :root {
-  /* Ground. Near-black with a trace of warmth — a blue-black reads cold and
-     clinical, which is the failure mode of every dark UI that looks cheap. */
-  --hud-bg: #0a0a0b;
-  --hud-bg-2: #121213;
-  --hud-surface: rgba(255, 253, 250, 0.026);
-  --hud-surface-2: rgba(255, 253, 250, 0.052);
-  --hud-line: rgba(255, 253, 250, 0.09);
-  --hud-line-strong: rgba(255, 253, 250, 0.2);
-  --hud-grid: rgba(255, 253, 250, 0.02);
+  /* Pure black. No tint in either direction — the whole system is greyscale, so
+     a warm or cool cast would be the only colour on the page and would read as
+     a mistake rather than a choice. */
+  --hud-bg: #000000;
+  --hud-bg-2: #0a0a0a;
+  --hud-surface: rgba(255, 255, 255, 0.03);
+  --hud-surface-2: rgba(255, 255, 255, 0.06);
+  --hud-line: rgba(255, 255, 255, 0.1);
+  --hud-line-strong: rgba(255, 255, 255, 0.22);
+  --hud-grid: rgba(255, 255, 255, 0.02);
 
-  /* Text. Warm off-white, never #fff: pure white on near-black glares. */
-  --hud-text: #f4f1ec;
-  --hud-text-dim: rgba(244, 241, 236, 0.58);
-  --hud-text-faint: rgba(244, 241, 236, 0.32);
+  --hud-text: #ffffff;
+  --hud-text-dim: rgba(255, 255, 255, 0.55);
+  --hud-text-faint: rgba(255, 255, 255, 0.3);
 
-  /* One accent: warm brass. Low saturation on purpose — a loud accent over a
-     dark ground is the fastest route to looking cheap. */
-  --hud-cyan: #c9a227;
-  --hud-cyan-bright: #e3c460;
-  --hud-cyan-deep: #8a6f18;
-  --hud-cyan-glow: rgba(201, 162, 39, 0.15);
-  --hud-cyan-glow-soft: rgba(201, 162, 39, 0.06);
+  /* There is no accent colour. `--hud-cyan` is the emphasis token every component
+     already references, so it resolves to white: emphasis comes from contrast and
+     weight, not hue. Keeping the name means no call site needs editing. */
+  --hud-cyan: #ffffff;
+  --hud-cyan-bright: #ffffff;
+  --hud-cyan-deep: rgba(255, 255, 255, 0.5);
+  --hud-cyan-glow: rgba(255, 255, 255, 0.1);
+  --hud-cyan-glow-soft: rgba(255, 255, 255, 0.04);
 
+  /* The only two colours in the system, and only because a warning that is not
+     coloured is not a warning. */
   --hud-warn: #d4a24c;
   --hud-danger: #c96a6a;
 
   /* Mode accents all resolve to the one ink. The mode SELECTOR is gone from the
      UI, but the mode players still read these tokens; collapsing them keeps
      those screens coherent instead of reintroducing six competing hues. */
-  --accent-standard: #c9a227;
-  --accent-standard-bright: #e3c460;
-  --accent-standard-glow: rgba(201, 162, 39, 0.15);
+  --accent-standard: #ffffff;
+  --accent-standard-bright: #ffffff;
+  --accent-standard-glow: rgba(255, 255, 255, 0.1);
 
-  --accent-blind: #c9a227;
-  --accent-blind-bright: #e3c460;
-  --accent-blind-glow: rgba(201, 162, 39, 0.15);
+  --accent-blind: #ffffff;
+  --accent-blind-bright: #ffffff;
+  --accent-blind-glow: rgba(255, 255, 255, 0.1);
 
-  --accent-adhd: #c9a227;
-  --accent-adhd-bright: #e3c460;
-  --accent-adhd-glow: rgba(201, 162, 39, 0.15);
+  --accent-adhd: #ffffff;
+  --accent-adhd-bright: #ffffff;
+  --accent-adhd-glow: rgba(255, 255, 255, 0.1);
 
-  --accent-autism: #c9a227;
-  --accent-autism-bright: #e3c460;
-  --accent-autism-glow: rgba(201, 162, 39, 0.15);
+  --accent-autism: #ffffff;
+  --accent-autism-bright: #ffffff;
+  --accent-autism-glow: rgba(255, 255, 255, 0.1);
 
-  --accent-dyslexia: #c9a227;
-  --accent-dyslexia-bright: #e3c460;
-  --accent-dyslexia-glow: rgba(201, 162, 39, 0.15);
+  --accent-dyslexia: #ffffff;
+  --accent-dyslexia-bright: #ffffff;
+  --accent-dyslexia-glow: rgba(255, 255, 255, 0.1);
 
-  --accent-dysgraphia: #c9a227;
-  --accent-dysgraphia-bright: #e3c460;
-  --accent-dysgraphia-glow: rgba(201, 162, 39, 0.15);
+  --accent-dysgraphia: #ffffff;
+  --accent-dysgraphia-bright: #ffffff;
+  --accent-dysgraphia-glow: rgba(255, 255, 255, 0.1);
 
-  --accent-deaf: #c9a227;
-  --accent-deaf-bright: #e3c460;
-  --accent-deaf-glow: rgba(201, 162, 39, 0.15);
+  --accent-deaf: #ffffff;
+  --accent-deaf-bright: #ffffff;
+  --accent-deaf-glow: rgba(255, 255, 255, 0.1);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -859,7 +875,7 @@ textarea {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(110% 70% at 50% -15%, rgba(201, 162, 39, 0.045), transparent 72%);
+  background-image: radial-gradient(110% 70% at 50% -15%, rgba(255, 255, 255, 0.035), transparent 72%);
   z-index: 0;
 }
 

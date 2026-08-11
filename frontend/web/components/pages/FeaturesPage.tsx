@@ -21,10 +21,10 @@ export function FeaturesPage({ go, onStart }: { go: (p: PageName) => void; onSta
   return (
     <HudPage current="features" go={go} onStart={onStart}>
       <section className="mx-auto max-w-4xl px-6 pt-24">
-        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] sm:text-[4.6rem]">
+        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] text-[var(--hud-text-dim)] sm:text-[4.6rem]">
           Five decisions that
           <br />
-          took the <span className="italic text-[var(--hud-cyan)]">longest.</span>
+          took the <span className="text-[var(--hud-text)]">longest.</span>
         </h1>
       </section>
 

@@ -880,7 +880,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                   <h1 className="font-display text-[2.8rem] leading-[0.95] tracking-[-0.035em] sm:text-[4rem]">
                     Name what you do not
                     <br />
-                    <span className="italic text-[var(--hud-cyan)]">understand.</span>
+                    <span className="text-[var(--hud-text)]">understand.</span>
                   </h1>
                 </div>
 
@@ -1148,7 +1148,7 @@ function TestOfferScreen({
           <h1 className="mt-6 font-display text-[2.6rem] leading-[1.0] tracking-[-0.025em] sm:text-[3.4rem]">
             Now find out what
             <br />
-            actually <span className="italic text-[var(--hud-cyan)]">stuck.</span>
+            actually <span className="text-[var(--hud-text)]">stuck.</span>
           </h1>
           <p className="mt-7 border-t border-[var(--hud-line)] pt-6 text-[1.02rem] leading-[1.8] text-[var(--hud-text-dim)]">
             Real questions on <span className="text-[var(--hud-text)]">{topic}</span>, marked against

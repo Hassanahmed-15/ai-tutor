@@ -15,10 +15,10 @@ export function CompletePage({ go, onReplay }: { go: (p: PageName) => void; last
   return (
     <HudPage current="complete" go={go} onStart={() => go("learn")}>
       <section className="mx-auto flex min-h-[70vh] max-w-3xl flex-col justify-center px-6">
-        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] sm:text-[4.4rem]">
+        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] text-[var(--hud-text-dim)] sm:text-[4.4rem]">
           Finished.
           <br />
-          <span className="italic text-[var(--hud-cyan)]">It will not run</span> that way again.
+          <span className="text-[var(--hud-text)]">It will not run</span> that way again.
         </h1>
 
         <p

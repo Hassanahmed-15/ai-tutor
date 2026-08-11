@@ -24,10 +24,10 @@ export function LandingPage({ go, onStart }: { go: (p: PageName) => void; onStar
     <HudPage current="landing" go={go} onStart={onStart}>
       {/* HERO */}
       <section className="relative mx-auto flex min-h-[78vh] max-w-5xl flex-col justify-center px-6">
-        <h1 className="hud-materialize max-w-3xl font-display text-[3.4rem] leading-[0.92] tracking-[-0.035em] sm:text-[6rem]">
+        <h1 className="hud-materialize max-w-3xl font-display text-[3.4rem] leading-[0.92] tracking-[-0.035em] text-[var(--hud-text-dim)] sm:text-[6rem]">
           The lecture did not exist
           <br />
-          until you <span className="italic text-[var(--hud-cyan)]">asked.</span>
+          until you <span className="text-[var(--hud-text)]">asked.</span>
         </h1>
 
         <p

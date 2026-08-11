@@ -1,32 +1,26 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 /**
- * Typography for the editorial rebuild.
+ * Typography: one family, used lightly.
  *
- * The previous system was three sans faces — a geometric technical display (Space Grotesk) over
- * Lexend and Plus Jakarta. That trio is what made the product read as an instrument panel. An
- * editorial page needs the opposite: one serif doing all the talking at large sizes, and a plain
- * text face that gets out of its way.
+ * Everything is Inter. The display face is the same font at weight 300 with tight tracking — a
+ * large headline set light and straight, with no serif and no second family to argue with it.
+ * Loading one family also means the page has no flash of a mismatched fallback.
  *
- * Instrument Serif is a high-contrast display serif with a genuine italic — it carries a 96px
- * headline the way a masthead does, and it costs one weight rather than four.
+ * The previous attempts loaded three sans faces (which read as an instrument panel) and then a
+ * high-contrast serif (which read as a newspaper). Both were louder than the content.
  */
-const displayFont = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-/** Body and UI text. Neutral on purpose: the serif is the voice, this is the paper. */
 const bodyFont = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+  weight: ["300", "400", "500"],
   display: "swap",
 });
+
+// `--font-display` is aliased to the body face in globals.css: the whole system is one family, so
+// there is no second font to load.
 
 // Note: `--font-headline` is still read by the mode players, which are out of scope here. It is
 // aliased to the body face in globals.css rather than loading a fourth family for screens this
@@ -52,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${bodyFont.variable} ${displayFont.variable} ${hudMonoFont.variable}`}>
+    <html lang="en" className={`h-full antialiased ${bodyFont.variable} ${hudMonoFont.variable}`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

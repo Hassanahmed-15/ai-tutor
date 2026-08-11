@@ -24,10 +24,10 @@ export function TracksPage({ go, onStart }: { go: (p: PageName) => void; onStart
   return (
     <HudPage current="tracks" go={go} onStart={() => onStart(standard.page)}>
       <section className="mx-auto max-w-4xl px-6 pt-24">
-        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] sm:text-[4.6rem]">
+        <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] text-[var(--hud-text-dim)] sm:text-[4.6rem]">
           Four stages. You are
           <br />
-          present for <span className="italic text-[var(--hud-cyan)]">two.</span>
+          present for <span className="text-[var(--hud-text)]">two.</span>
         </h1>
       </section>
 
