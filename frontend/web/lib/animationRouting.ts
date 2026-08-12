@@ -83,23 +83,29 @@ export function selectAnimationRenderer(
   const gsapEnabled = availability.gsapEnabled !== false;
   const manimEnabled = availability.manimEnabled === true;
 
-  // FIRST, deliberately ahead of the reactAnimation rule below. A structural beat carries a
-  // validated spec whose geometry is computed by a layout engine, so it is the one board type
-  // guaranteed not to overlap or clip — it should never lose to a generated-code board that
-  // merely happens to also be present.
-  if (ops.some((op) => op.kind === "structureScene" && op.spec)) {
-    return { renderer: "structure", reason: "structural-diagram" };
-  }
+  /**
+   * The three spec-driven boards — structure (ELK), plot (Vega-Lite) and equation (KaTeX) — sit
+   * at the same precedence, ahead of the reactAnimation rule below. Each carries a validated spec
+   * whose geometry is computed by its renderer, so none of them can overlap or clip, and none
+   * should lose to a generated-code board that merely happens to also be present on the beat.
+   *
+   * BETWEEN them, LAST WINS rather than a fixed order, and that distinction was a real bug.
+   * The board director rewrites a beat's visual form when it judges a different one fits better
+   * ("beat=7 plot -> plotBoard (was structureScene)"), but it appends the new op without removing
+   * the old one. With a fixed order that checked structure first, a beat re-routed from a diagram
+   * to a chart kept rendering the diagram: the chart was generated, logged as ready, and never
+   * shown. Scanning from the end makes the director's most recent decision the one that counts.
+   */
+  const SPEC_RENDERERS = {
+    structureScene: { renderer: "structure", reason: "structural-diagram" },
+    plotBoard: { renderer: "plot", reason: "data-chart" },
+    equationBoard: { renderer: "equation", reason: "worked-derivation" },
+  } as const;
 
-  // The two spec-driven boards sit at the same precedence and for the same reason: their geometry
-  // is computed by the renderer (Vega-Lite derives every axis and tick, KaTeX does the typesetting),
-  // so neither can overlap or clip, and neither should lose to a generated-code board that merely
-  // happens to also be present on the beat.
-  if (ops.some((op) => op.kind === "plotBoard" && op.spec)) {
-    return { renderer: "plot", reason: "data-chart" };
-  }
-  if (ops.some((op) => op.kind === "equationBoard" && op.spec)) {
-    return { renderer: "equation", reason: "worked-derivation" };
+  for (let index = ops.length - 1; index >= 0; index -= 1) {
+    const op = ops[index];
+    const match = SPEC_RENDERERS[op.kind as keyof typeof SPEC_RENDERERS];
+    if (match && op.spec) return { ...match };
   }
 
   // A generated-code board cannot be translated safely or faithfully by another renderer.

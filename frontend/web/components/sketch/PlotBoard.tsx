@@ -25,14 +25,51 @@ export function PlotBoard({ spec, progress = 0 }: { spec: PlotSpec; progress?: n
   const host = useRef<HTMLDivElement | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  /**
+   * Serialise the spec for the dependency comparison.
+   *
+   * `spec` is an object read fresh off the beat on each render, so a raw `[spec]` dependency
+   * compares by reference and re-embeds whenever the parent re-renders — which the narration tick
+   * causes constantly. Comparing the CONTENT means the chart embeds once per actual spec and
+   * survives every unrelated re-render.
+   */
+  const specKey = JSON.stringify(spec);
+
   useEffect(() => {
     let alive = true;
     let view: { finalize: () => void } | null = null;
+    let raf = 0;
+
     (async () => {
       try {
         const embed = (await import("vega-embed")).default;
-        if (!alive || !host.current) return;
-        const res = await embed(host.current, spec as Parameters<typeof embed>[1], {
+        if (!alive) return;
+
+        /**
+         * Wait for the host element instead of giving up on it.
+         *
+         * The dynamic import of vega-embed resolves asynchronously, and on a cold chunk load it
+         * can land before the ref is attached — at which point the old code hit `if (!host.current)
+         * return` and silently never tried again. The chart then appeared only when something else
+         * forced a re-render, which is why pausing and resuming "started loading" a chart that
+         * should already have been there.
+         *
+         * A bounded rAF wait costs nothing when the ref is already set (the first check passes) and
+         * removes the race entirely when it is not.
+         */
+        const host_ = await new Promise<HTMLDivElement | null>((resolve) => {
+          let tries = 0;
+          const check = () => {
+            if (!alive) return resolve(null);
+            if (host.current) return resolve(host.current);
+            if (tries++ > 60) return resolve(null); // ~1s at 60fps, then give up honestly
+            raf = requestAnimationFrame(check);
+          };
+          check();
+        });
+        if (!alive || !host_) return;
+
+        const res = await embed(host_, spec as Parameters<typeof embed>[1], {
           actions: false,
           renderer: "svg",
         });
@@ -41,15 +78,21 @@ export function PlotBoard({ spec, progress = 0 }: { spec: PlotSpec; progress?: n
           return;
         }
         view = res.view;
+        setError(null);
       } catch (err) {
         if (alive) setError(err instanceof Error ? err.message : "vega-embed failed");
       }
     })();
+
     return () => {
       alive = false;
+      if (raf) cancelAnimationFrame(raf);
       view?.finalize();
     };
-  }, [spec]);
+    // `specKey` is the content hash of `spec`; depending on the object itself would re-embed on
+    // every parent render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [specKey]);
 
   if (error) {
     return (
