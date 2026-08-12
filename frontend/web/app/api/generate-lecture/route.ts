@@ -623,6 +623,37 @@ function finalizeSuprnotesBeats(beats: Beat[], sourceDocument: SuprnotesLessonIn
   applySuprnotesPaperLayout(beats, sourceDocument);
 }
 
+/**
+ * Board-state trace, kept on because it earns its place.
+ *
+ * The last empty-board defect was invisible to code reading — every candidate pass was ruled out and
+ * the evidence still contradicted itself — and one run of these lines named it immediately. It costs
+ * a few console lines per lecture and it is the difference between "a board went missing somewhere"
+ * and "a board went missing between these two calls".
+ *
+ * Reports each board op as its code length, `spec`, `ops`, or NONE.
+ */
+function snapshotBoards(tag: string, beats: Beat[]): void {
+  const BOARD = ["reactAnimation", "manimScene", "structureScene", "plotBoard", "equationBoard", "chalkBoard"];
+  const rows = beats.flatMap((b) => {
+    const ops = (b.draw?.ops ?? []) as unknown as Array<Record<string, unknown>>;
+    return ops
+      .filter((o) => BOARD.includes(String(o.kind)))
+      .map((o) => {
+        const state =
+          typeof o.code === "string" && o.code.length > 0
+            ? String(o.code.length)
+            : o.spec != null
+              ? "spec"
+              : Array.isArray(o.ops) && o.ops.length > 0
+                ? "ops"
+                : "NONE";
+        return String(b.id) + ":" + String(o.kind) + "=" + state;
+      });
+  });
+  console.error("[snapshot " + tag + "] " + rows.join("  "));
+}
+
 export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json(
@@ -751,15 +782,26 @@ export async function POST(req: Request) {
       ? await fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument)
       : { costUsd: 0 };
 
-    // Last line of defence, after every fill has had its turn: any teaching beat still without a
-    // usable board drops down its engine chain until something lands. This is what makes the
-    // "ANIMATION UNAVAILABLE" card unreachable rather than merely rare.
-    const fallbackStats = await rescueEmptyBoards(client, base.beats, directorStats.specs, directorStats.forms);
-
     repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
     repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     cleanProvidedImageBoards(base.beats, input.sourceDocument);
+    snapshotBoards("after-suprnotes", base.beats);
+
+    /**
+     * LAST LINE OF DEFENCE — and it has to be genuinely last.
+     *
+     * This used to run BEFORE the four suprnotes passes above, which meant the safety net sat
+     * upstream of code that can still strip a board. A beat those passes left holding a dead op was
+     * never rescued, because by the time anything could strip it the rescue had already run and
+     * found nothing wrong. That is structurally the same mistake as the plain-topic composer bug
+     * (16c8655): the thing that destroys boards ran after the thing that catches destroyed boards.
+     *
+     * A PDF lecture shows "ANIMATION UNAVAILABLE" on beats a plain-topic lecture never does, and
+     * these passes are the only difference between the two paths — so moving the net downstream is
+     * warranted on its own, independently of whichever pass turns out to be responsible.
+     */
+    const fallbackStats = await rescueEmptyBoards(client, base.beats, directorStats.specs, directorStats.forms);
     const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd + manimSceneStats.costUsd + structureStats.costUsd + specBoardStats.costUsd + directorStats.costUsd + fallbackStats.costUsd;
 
     if (input.sourceDocument) {

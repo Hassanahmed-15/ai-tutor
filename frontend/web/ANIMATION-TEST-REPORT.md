@@ -131,11 +131,32 @@ Zero console errors across all five routes on a cold browser. Every `Set`/`Map` 
 *inside* a client component, and `DirectorStats` is server-only and never returned to the client.
 Recorded as HMR state from a long-running dev server rather than left as a silent known-unknown.
 
-## Still not verified
+## Confirmed after the fixes
 
-**Two full lectures after both fixes.** The empty-board defect was intermittent (~1 beat in 9), so
-the single clean post-fix lecture above is suggestive, not conclusive. Before deployment, run at
-least two more lectures and confirm `unfilled=0` on each.
+The empty-board defect was intermittent (~1 beat in 9), so one clean lecture was never going to
+settle it. Two more were run on **fresh topics** — deliberately not the ones the fix was debugged
+against, since re-running those would partly be testing the fix on the case that produced it:
+
+| Lecture | Beats | Boards | unfilled | manim | Cost |
+|---|---|---|---|---|---|
+| Photosynthesis in plants | 9 | 5 animation + 4 structure | **0** | 0 | $1.30 |
+| How vaccines train the immune system | 9 | 4 animation + 5 structure | **0** | 0 | $0.79 |
+
+The surviving animation counts are the evidence that matters. Before `16c8655` a comparable lecture
+generated seven animations and two reached the response; five and four now survive intact.
+
+Deterministic ladder re-run from a cold server: **87/87** unit, **16/16** Vega-Lite + KaTeX,
+**13/13** ELK + morph.
+
+### Still worth knowing
+
+`REACT_ANIMATION_BEAT_CAP` (default 2) was written when excess sandbox beats were being discarded
+anyway. With animations no longer destroyed, more of them reach the player than that cap intends.
+Nothing measured badly because of it, but it is a behavioural change on a deployment branch.
+
+`BOARD_DIRECTOR=1` is **not** in `.env.local` — it is passed on the command line. A checkout that
+runs plain `npm run dev` gets different board routing, which is the most likely cause of two
+machines on this branch producing different output.
 
 ## Cost and latency
 
