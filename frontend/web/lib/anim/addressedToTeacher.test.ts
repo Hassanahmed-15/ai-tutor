@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { isAddressedToTeacher } from "../useGeminiLiveTutor";
+import {
+  classifyStudentTurn,
+  getTutorTurnCompletionActions,
+  isAddressedToTeacher,
+} from "../useGeminiLiveTutor";
 
 /**
  * The classifier decides whether finalised student speech should pause the lecture for a real
@@ -55,4 +59,20 @@ test("empty or whitespace transcripts never interrupt", () => {
 test("trailing punctuation does not turn an acknowledgement into a turn", () => {
   assert.equal(isAddressedToTeacher("okay."), false);
   assert.equal(isAddressedToTeacher("yeah!"), false);
+});
+
+test("student turns distinguish backchannels, controls, and questions", () => {
+  assert.equal(classifyStudentTurn("okay"), "incidental");
+  assert.equal(classifyStudentTurn("please pause the lecture"), "pause");
+  assert.equal(classifyStudentTurn("keep going"), "resume");
+  assert.equal(classifyStudentTurn("why did demand move left?"), "question");
+  assert.equal(classifyStudentTurn("draw the supply curve"), "drawing");
+  assert.equal(classifyStudentTurn("plot price against quantity on the board"), "drawing");
+});
+
+test("a Gemini resume tool call releases a deferred lecture resume after audio drains", () => {
+  assert.deepEqual(getTutorTurnCompletionActions(true, false), ["resume-lecture", "complete-turn"]);
+  assert.deepEqual(getTutorTurnCompletionActions(false, false), ["complete-turn"]);
+  assert.deepEqual(getTutorTurnCompletionActions(true, true), ["complete-turn"]);
+  assert.deepEqual(getTutorTurnCompletionActions(true, false, "pause"), ["complete-turn"]);
 });

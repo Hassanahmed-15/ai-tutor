@@ -270,7 +270,10 @@ export function LessonPlayer({
     },
     onStudentSpeechStarted: () => {
       setSessionActive(true);
-      lesson.enterChat();
+      // Freeze at the exact audio position immediately, then continue from that position after
+      // Gemini finishes the student's turn. If the final transcript is only a backchannel/noise,
+      // onIncidentalSpeech resumes straight away instead of waiting for a model answer.
+      lesson.enterChat({ resumeAfterAnswer: lesson.playing });
       if (slideTimer.current) {
         clearTimeout(slideTimer.current);
         slideTimer.current = null;
@@ -301,11 +304,19 @@ export function LessonPlayer({
      * derailed the lesson.
      */
     onIncidentalSpeech: () => {
+      lesson.flushDeferredResume();
+    },
+    onExplicitPause: () => {
+      lesson.pause("user");
+    },
+    onExplicitResume: () => {
       lesson.requestResume();
     },
 
     onPauseLecture: () => {
-      lesson.enterChat();
+      // Tool calls may arrive after speech-start already armed the question's automatic resume.
+      // Preserve that intent; a locally classified direct pause command cancels it above.
+      lesson.enterChat({ preserveResumeIntent: true });
       if (slideTimer.current) {
         clearTimeout(slideTimer.current);
         slideTimer.current = null;
@@ -400,10 +411,11 @@ export function LessonPlayer({
       slideTimer.current = null;
     }
     setSessionActive(true);
+    // This is deliberately before `start()`: while token/permission/socket setup is in flight there
+    // is no MediaStreamTrack yet, so the hook queues this intent and applies it when the track lands.
+    tutor.setMicEnabled(true);
     if (tutor.status === "idle" || tutor.status === "error" || tutor.status === "mic-denied") {
       void tutor.start();
-    } else {
-      tutor.setMicEnabled(true); // idempotent unmute — robust against stale `muted` state
     }
   }
   function endLiveTutor() {
@@ -647,6 +659,7 @@ export function LessonPlayer({
     }
     setSessionActive(true);
     setEngagingTutor(true);
+    tutor.setMicEnabled(true);
     // say() silently no-ops until the WebRTC data channel is actually open, which lags a moment
     // behind start() resolving — retry briefly (reading tutorRef, not the closed-over `tutor` from
     // this render, since status keeps changing across renders while we wait) rather than dropping
@@ -664,7 +677,6 @@ export function LessonPlayer({
       void tutor.start().then(() => sayWhenReady());
       return;
     }
-    tutor.setMicEnabled(true); // idempotent unmute — never skipped/double-toggled by stale state
     sayWhenReady();
   }
 

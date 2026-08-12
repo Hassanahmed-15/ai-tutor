@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { PlotSpec } from "@/lib/plotSpec";
 
 /**
- * A Vega-Lite chart, revealed with the beat's narration progress.
+ * A Vega-Lite chart, committed as one complete visual when Vega has finished rendering it.
  *
  * WHY VEGA-LITE OWNS PLOTS. It is a declarative grammar of graphics — the chart is described as
  * data plus encodings, and axes, ticks, binning and legends are DERIVED rather than drawn. Two
@@ -16,14 +16,16 @@ import type { PlotSpec } from "@/lib/plotSpec";
  * vega-embed is imported dynamically: vega-lite is ESM-only with a top-level await, so a static
  * import would drag it into the CommonJS test build and any server path that cannot load it.
  *
- * Progress drives a WIPE rather than a re-render. Re-embedding on every narration tick would re-run
- * the whole Vega dataflow many times a second; wiping the plotting area left-to-right gives the
- * same "being drawn" reading from one embed, and keeps the axes and legend present throughout —
- * which is what you want, since the axes are the context the curve is read against.
+ * Charts are not handwriting. Revealing one with a white wipe leaves an axis-only frame at the
+ * start of every beat, which looks exactly like failed data binding. The host stays invisible while
+ * Vega embeds, then the complete chart appears in one commit: axes, marks, labels and legend
+ * together. `progress` remains in the prop contract so every board renderer is interchangeable,
+ * but it deliberately does not control a chart's visibility.
  */
-export function PlotBoard({ spec, progress = 0 }: { spec: PlotSpec; progress?: number }) {
+export function PlotBoard({ spec }: { spec: PlotSpec; progress?: number }) {
   const host = useRef<HTMLDivElement | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [errorState, setErrorState] = useState<{ key: string; message: string } | null>(null);
+  const [readySpecKey, setReadySpecKey] = useState<string | null>(null);
 
   /**
    * Serialise the spec for the dependency comparison.
@@ -78,9 +80,19 @@ export function PlotBoard({ spec, progress = 0 }: { spec: PlotSpec; progress?: n
           return;
         }
         view = res.view;
-        setError(null);
+        // `embed` resolves only after the Vega view has run. One animation frame lets the browser
+        // commit that finished SVG before making the host visible, so an axis-only intermediate
+        // frame can never be presented to the student.
+        raf = requestAnimationFrame(() => {
+          if (alive) setReadySpecKey(specKey);
+        });
       } catch (err) {
-        if (alive) setError(err instanceof Error ? err.message : "vega-embed failed");
+        if (alive) {
+          setErrorState({
+            key: specKey,
+            message: err instanceof Error ? err.message : "vega-embed failed",
+          });
+        }
       }
     })();
 
@@ -94,6 +106,8 @@ export function PlotBoard({ spec, progress = 0 }: { spec: PlotSpec; progress?: n
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [specKey]);
 
+  const error = errorState?.key === specKey ? errorState.message : null;
+  const ready = readySpecKey === specKey;
   if (error) {
     return (
       <section className="flex h-full items-center rounded-xl border border-slate-200 bg-white p-4">
@@ -104,20 +118,22 @@ export function PlotBoard({ spec, progress = 0 }: { spec: PlotSpec; progress?: n
     );
   }
 
-  const shown = Math.max(0, Math.min(1, progress));
   return (
     <section
       data-board="plot"
+      data-plot-ready={ready ? "true" : "false"}
       className="relative h-full w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-3"
     >
-      <div ref={host} className="h-full w-full [&_svg]:!h-auto [&_svg]:!w-full" />
-      {/* Wipes the drawn marks left-to-right. Sits inside the plot area only, so the axes and
-          legend stay readable from the first frame rather than arriving with the data. */}
       <div
-        data-plot-wipe=""
-        className="pointer-events-none absolute inset-y-3 right-3 bg-white transition-[width] duration-150"
-        style={{ width: `${(1 - shown) * 88}%` }}
+        ref={host}
+        aria-hidden={!ready}
+        className={`h-full w-full [&_svg]:!h-auto [&_svg]:!w-full ${ready ? "opacity-100" : "opacity-0"}`}
       />
+      {!ready && (
+        <div className="absolute inset-0 grid place-items-center bg-white" role="status" aria-live="polite">
+          <span className="text-sm font-semibold text-slate-500">Preparing chart…</span>
+        </div>
+      )}
     </section>
   );
 }

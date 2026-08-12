@@ -37,7 +37,9 @@ async function open(board, p = 1) {
   await page.goto(`${BASE}/board-lab?board=${board}&p=${p}`, { waitUntil: "domcontentloaded" });
   // Vega embeds asynchronously and KaTeX typesets on mount; wait for the board itself, not a timer.
   await page.waitForSelector('[data-lab-stage] section', { timeout: 30_000 });
-  await page.waitForTimeout(1200);
+  if (board === "compound-interest" || board === "rainfall-by-month") {
+    await page.waitForSelector('[data-board="plot"][data-plot-ready="true"]', { timeout: 30_000 });
+  }
 }
 
 /* ── Vega-Lite ────────────────────────────────────────────────────────────── */
@@ -80,20 +82,18 @@ check(
   `y-axis ticks read: ${JSON.stringify(axisText.replace(/\s+/g, " ").slice(0, 80))}`,
 );
 
-// Progress drives the reveal. At p=0 most of the plotting area is covered; at p=1 none of it is.
-const wipeAt = async (p) => {
-  await open("compound-interest", p);
-  return page.evaluate(() => {
-    const el = document.querySelector("[data-plot-wipe]");
-    return el ? (el).getBoundingClientRect().width : -1;
-  });
-};
-const wipeStart = await wipeAt(0);
-const wipeEnd = await wipeAt(1);
+// A chart is one semantic object, so even at narration progress 0 its data marks, axes and labels
+// arrive together. An axis-only progressive wipe reads as a broken chart.
+await open("compound-interest", 0);
+const atomicChart = await page.evaluate(() => ({
+  ready: document.querySelector('[data-board="plot"]')?.getAttribute("data-plot-ready"),
+  wipes: document.querySelectorAll("[data-plot-wipe]").length,
+  paths: document.querySelectorAll('[data-board="plot"] svg path').length,
+}));
 check(
-  "progress reveals the chart rather than re-rendering it",
-  wipeStart > wipeEnd + 40,
-  `wipe width ${Math.round(wipeStart)}px at p=0 -> ${Math.round(wipeEnd)}px at p=1`,
+  "the complete chart is visible as soon as its slide appears",
+  atomicChart.ready === "true" && atomicChart.wipes === 0 && atomicChart.paths >= 2,
+  `ready=${atomicChart.ready}, wipes=${atomicChart.wipes}, paths=${atomicChart.paths} at p=0`,
 );
 
 await open("rainfall-by-month");

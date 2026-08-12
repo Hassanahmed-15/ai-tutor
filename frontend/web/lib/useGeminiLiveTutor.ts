@@ -2,6 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import {
+  isDrawingRequest,
+  PAUSE_LECTURE_TOOL,
+  RESUME_LECTURE_TOOL,
+  SHOW_BOARD_TOOL,
+} from "./geminiLiveContract";
 
 export type GeminiLiveStatus =
   | "idle"
@@ -36,6 +42,31 @@ const BACKCHANNEL = new Set([
 
 /** Openers that make an utterance an instruction even without a question mark. */
 const IMPERATIVE = /^(?:can|could|would|will|please|explain|show|draw|tell|repeat|say|go|stop|pause|resume|wait|hold|skip|slow|speed|why|what|how|when|where|who|which|is|are|does|do|did|should|am)\b/i;
+const PAUSE_COMMAND = /^(?:aria\s+|teacher\s+|please\s+)*(?:pause|stop|wait|hold(?:\s+on)?)(?:\s+(?:the\s+)?lecture)?[.!\s]*$/i;
+const RESUME_COMMAND = /^(?:aria\s+|teacher\s+|please\s+)*(?:continue|resume|keep\s+going|start\s+again|go\s+on)(?:\s+(?:the\s+)?lecture)?[.!\s]*$/i;
+
+export type StudentTurnKind = "incidental" | "pause" | "resume" | "drawing" | "question";
+
+export function classifyStudentTurn(raw: string): StudentTurnKind {
+  const text = raw.trim();
+  if (!text || !isAddressedToTeacher(text)) return "incidental";
+  if (PAUSE_COMMAND.test(text)) return "pause";
+  if (RESUME_COMMAND.test(text)) return "resume";
+  if (isDrawingRequest(text)) return "drawing";
+  return "question";
+}
+
+export type TutorTurnCompletionAction = "resume-lecture" | "complete-turn";
+
+export function getTutorTurnCompletionActions(
+  pendingLectureResume: boolean,
+  studentSpeaking: boolean,
+  studentTurnKind: StudentTurnKind = "question",
+): TutorTurnCompletionAction[] {
+  return pendingLectureResume && !studentSpeaking && studentTurnKind !== "pause"
+    ? ["resume-lecture", "complete-turn"]
+    : ["complete-turn"];
+}
 
 export function isAddressedToTeacher(raw: string): boolean {
   const text = raw.trim().toLowerCase().replace(/[.,!]+$/g, "");
@@ -77,6 +108,8 @@ export type UseGeminiLiveTutorOptions = {
    *  acknowledgement, someone else in the room). The caller should resume the lecture rather than
    *  stay paused for a turn that is not coming. */
   onIncidentalSpeech?: () => void;
+  onExplicitPause?: () => void;
+  onExplicitResume?: () => void;
   onTutorTurnComplete?: () => void;
   onPauseLecture?: () => void;
   onResumeLecture?: () => void;
@@ -126,52 +159,40 @@ type GeminiServerMessage = {
 
 type AudioWindow = Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext };
 
+/**
+ * Keeps the learner's latest microphone intent even before a MediaStreamTrack exists.
+ *
+ * Token minting, permission and the Live socket resolve independently. Previously an unmute during
+ * that window found no track and returned, then `startMicrophone` blindly applied `startMuted`.
+ * The UI said Listening while the physical track stayed disabled. This small state holder makes
+ * the eventual track consume the latest intent instead of the connection-time default.
+ */
+export class MicrophoneIntent {
+  private enabled: boolean;
+
+  constructor(startMuted: boolean) {
+    this.enabled = !startMuted;
+  }
+
+  set(next: boolean) {
+    this.enabled = next;
+  }
+
+  get() {
+    return this.enabled;
+  }
+
+  apply(track: Pick<MediaStreamTrack, "enabled">) {
+    track.enabled = this.enabled;
+  }
+}
+
 const INPUT_SAMPLE_RATE = 16_000;
 const OUTPUT_SAMPLE_RATE = 24_000;
 const IDLE_TIMEOUT_MS = 60_000;
 const MAX_SESSION_MS = 5 * 60_000;
 const EXAM_MAX_SESSION_MS = 12 * 60_000;
 const SETTLE_MS = 500;
-
-const SHOW_BOARD_TOOL = {
-  name: "show_board",
-  description:
-    "Create a fresh full teaching slide when a visual explanation will help. Always use this when " +
-    "the student explicitly asks to draw, sketch, diagram, visualize, graph, map, or show something.",
-  parametersJsonSchema: {
-    type: "object",
-    properties: {
-      concept: {
-        type: "string",
-        description: "The exact concept, process, structure, or worked example the new slide must teach.",
-      },
-      visual_mode: {
-        type: "string",
-        enum: ["annotated_board", "scientific_diagram", "worked_example", "real_reference_image"],
-      },
-      reuse_context: {
-        type: "boolean",
-        description: "True only when the new slide should visibly continue the current board's idea.",
-      },
-    },
-    required: ["concept", "visual_mode", "reuse_context"],
-    additionalProperties: false,
-  },
-};
-
-const PAUSE_LECTURE_TOOL = {
-  name: "pause_lecture",
-  description: "Pause the scripted lecture immediately and preserve its exact playback position.",
-  parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
-};
-
-const RESUME_LECTURE_TOOL = {
-  name: "resume_lecture",
-  description:
-    "Resume the scripted lecture from its preserved position. After calling this, stop speaking so " +
-    "the lecture is the only audible voice.",
-  parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
-};
 
 function getAudioContextConstructor() {
   return window.AudioContext || (window as AudioWindow).webkitAudioContext;
@@ -238,6 +259,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const micSourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const micProcessorRef = useRef<ScriptProcessorNode | null>(null);
   const silentGainRef = useRef<GainNode | null>(null);
+  const micIntentRef = useRef<MicrophoneIntent | null>(null);
+  if (micIntentRef.current === null) micIntentRef.current = new MicrophoneIntent(options.startMuted === true);
   const playingSourcesRef = useRef(new Set<AudioBufferSourceNode>());
   const nextPlayTimeRef = useRef(0);
   const responseInFlightRef = useRef(false);
@@ -259,6 +282,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const endedRef = useRef(false);
   const connectingRef = useRef(false);
   const toolAbortControllersRef = useRef(new Map<string, AbortController>());
+  const boardHandledThisTurnRef = useRef(false);
+  const fallbackDrawingRef = useRef<(concept: string) => Promise<void>>(async () => undefined);
 
   useEffect(() => {
     optionsRef.current = options;
@@ -275,16 +300,23 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const flushStudentTranscript = useCallback(() => {
     const text = studentTranscriptRef.current.trim();
+    let turnKind: StudentTurnKind = "incidental";
     if (text) {
       optionsRef.current.onTranscript?.("student", text, true);
-      if (!isAddressedToTeacher(text)) {
+      turnKind = classifyStudentTurn(text);
+      if (turnKind === "incidental") {
         // Not a question or an instruction — a cough, a "mm-hm", or someone else in the room. The
         // audio already stopped (see beginStudentSpeech), but the lecture should pick up rather
         // than sit paused waiting for a turn that is not coming.
         optionsRef.current.onIncidentalSpeech?.();
+      } else if (turnKind === "pause") {
+        optionsRef.current.onExplicitPause?.();
+      } else if (turnKind === "resume") {
+        optionsRef.current.onExplicitResume?.();
       }
     }
     studentTranscriptRef.current = "";
+    return { text, turnKind };
   }, []);
 
   const flushTutorTranscript = useCallback(() => {
@@ -312,14 +344,41 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     responseInFlightRef.current = false;
     turnCompleteRef.current = false;
     setSpeaking(false);
-    flushStudentTranscript();
+    const studentTurn = flushStudentTranscript();
     flushTutorTranscript();
-    if (pendingLectureResumeRef.current && !studentSpeakingRef.current) {
-      pendingLectureResumeRef.current = false;
-      optionsRef.current.onResumeLecture?.();
+
+    const completeTurn = () => {
+      const completionActions = getTutorTurnCompletionActions(
+        pendingLectureResumeRef.current,
+        studentSpeakingRef.current,
+        studentTurn.turnKind,
+      );
+      for (const action of completionActions) {
+        if (action === "resume-lecture") {
+          pendingLectureResumeRef.current = false;
+          optionsRef.current.onResumeLecture?.();
+        } else {
+          // requestResume can deliberately defer while React still mirrors the just-finished tutor
+          // audio as speaking. Always release that deferred request after the resume tool handoff.
+          optionsRef.current.onTutorTurnComplete?.();
+        }
+      }
+      if (studentTurn.turnKind === "pause") pendingLectureResumeRef.current = false;
+    };
+
+    if (studentTurn.turnKind === "drawing" && !boardHandledThisTurnRef.current) {
+      // Tool use is probabilistic even under a strict system instruction. Never let a model omit a
+      // board the student explicitly requested: hold completion/resume and run the same async board
+      // pipeline locally. This also prevents an early resume_lecture call from racing the drawing.
+      boardChainPendingRef.current = true;
+      void fallbackDrawingRef.current(studentTurn.text).finally(() => {
+        boardChainPendingRef.current = false;
+        completeTurn();
+      });
       return;
     }
-    optionsRef.current.onTutorTurnComplete?.();
+
+    completeTurn();
   }, [flushStudentTranscript, flushTutorTranscript]);
 
   const scheduleSettle = useCallback(() => {
@@ -389,6 +448,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     contextOnlyTurnRef.current = false;
     responseInFlightRef.current = false;
     turnCompletedRef.current = true;
+    boardHandledThisTurnRef.current = false;
     if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
     settleTimerRef.current = null;
 
@@ -440,6 +500,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       micSourceRef.current = null;
       micProcessorRef.current = null;
       silentGainRef.current = null;
+      micIntentRef.current = new MicrophoneIntent(optionsRef.current.startMuted === true);
       responseInFlightRef.current = false;
       turnCompleteRef.current = false;
       boardChainPendingRef.current = false;
@@ -487,6 +548,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       return { id, name, response: { error: `Unknown tool: ${name}` } };
     }
 
+    boardHandledThisTurnRef.current = true;
     optionsRef.current.onPauseLecture?.();
     const concept = typeof call.args?.concept === "string" ? call.args.concept.trim() : "";
     const visualMode = typeof call.args?.visual_mode === "string" ? call.args.visual_mode : "annotated_board";
@@ -556,6 +618,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (!endedRef.current) setStatus("live");
     }
   }, []);
+
+  useEffect(() => {
+    fallbackDrawingRef.current = async (concept: string) => {
+      await executeToolCall({
+        id: `local-drawing-${Date.now()}`,
+        name: "show_board",
+        args: { concept, visual_mode: "annotated_board", reuse_context: true },
+      });
+    };
+  }, [executeToolCall]);
 
   const handleToolCalls = useCallback(
     async (calls: GeminiFunctionCall[]) => {
@@ -657,7 +729,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   );
 
   const startMicrophone = useCallback(
-    async (stream: MediaStream, session: GeminiSession, startMuted: boolean) => {
+    async (stream: MediaStream, session: GeminiSession) => {
       const AudioContextCtor = getAudioContextConstructor();
       if (!AudioContextCtor) throw new Error("This browser does not support Web Audio.");
       const context = audioContextRef.current ?? new AudioContextCtor();
@@ -665,8 +737,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (context.state === "suspended") await context.resume();
 
       const track = stream.getAudioTracks()[0];
-      track.enabled = !startMuted;
-      setMuted(startMuted);
+      if (!track) throw new Error("The selected microphone did not provide an audio track.");
+      micIntentRef.current?.apply(track);
+      setMuted(!track.enabled);
       const source = context.createMediaStreamSource(stream);
       const processor = context.createScriptProcessor(4096, 1, 1);
       const silentGain = context.createGain();
@@ -827,7 +900,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       })) as GeminiSession;
 
       sessionRef.current = session;
-      await startMicrophone(stream, session, optionsRef.current.startMuted === true);
+      await startMicrophone(stream, session);
       connectingRef.current = false;
       setStatus("live");
       if (!optionsRef.current.alwaysOn) {
@@ -849,10 +922,19 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, [handleServerMessage, markTutorActive, resetIdleTimer, startMicrophone, teardown]);
 
   const setMicEnabled = useCallback((enabled: boolean) => {
-    const track = micStreamRef.current?.getAudioTracks()[0];
-    if (!track || track.enabled === enabled) return;
-    track.enabled = enabled;
+    // Record intent first. During connection there is intentionally no track yet; returning before
+    // this assignment is the race that intermittently left Gemini deaf after the learner clicked.
+    micIntentRef.current?.set(enabled);
     setMuted(!enabled);
+    const track = micStreamRef.current?.getAudioTracks()[0];
+    if (!track) return;
+    if (track.enabled === enabled) {
+      if (enabled && audioContextRef.current?.state === "suspended") {
+        void audioContextRef.current.resume().catch(() => setStatus("blocked"));
+      }
+      return;
+    }
+    track.enabled = enabled;
     if (!enabled) {
       sessionRef.current?.sendRealtimeInput({ audioStreamEnd: true });
       endStudentSpeech();
@@ -863,7 +945,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const toggleMute = useCallback(() => {
     const track = micStreamRef.current?.getAudioTracks()[0];
-    if (track) setMicEnabled(!track.enabled);
+    // While connecting, toggle the queued intent rather than doing nothing because the physical
+    // track has not arrived yet. This keeps the mute button honest in every connection phase.
+    const currentlyEnabled = track?.enabled ?? micIntentRef.current?.get() ?? false;
+    setMicEnabled(!currentlyEnabled);
   }, [setMicEnabled]);
 
   const say = useCallback(

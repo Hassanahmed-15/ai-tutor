@@ -45,7 +45,7 @@ export type LessonState = {
   /** Derived: the narration effect gates on this. */
   playing: boolean;
   startTeaching: () => void;
-  enterChat: (opts?: { resumeAfterAnswer?: boolean }) => void;
+  enterChat: (opts?: { resumeAfterAnswer?: boolean; preserveResumeIntent?: boolean }) => void;
   enterQuiz: () => void;
   pause: (reason: PauseReason) => void;
   /**
@@ -81,7 +81,7 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
   }, [go]);
 
   const enterChat = useCallback(
-    (opts?: { resumeAfterAnswer?: boolean }) => {
+    (opts?: { resumeAfterAnswer?: boolean; preserveResumeIntent?: boolean }) => {
       // The student is talking: everything the teacher was saying stops and the floor is hers.
       voice.stopUtterance();
       voice.pauseTeacher();
@@ -89,7 +89,7 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
       // arm a resume so the lecture picks back up on its own the moment she finishes answering. The
       // director makes this safe — it can't start under her voice. Aria talking unprompted (a drift
       // nudge, the opening greeting) passes nothing here, so those correctly stay paused.
-      deferredResumeRef.current = opts?.resumeAfterAnswer === true;
+      if (!opts?.preserveResumeIntent) deferredResumeRef.current = opts?.resumeAfterAnswer === true;
       go("chatting", null);
     },
     [voice, go]

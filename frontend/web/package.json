@@ -10,6 +10,7 @@
     "lint": "eslint",
     "test:anim": "tsc -p tsconfig.test.json && node --test \".test-build/**/*.test.js\" \"lib/anim/*.test.mjs\"",
     "verify:boards": "node scripts/verify-spec-boards.mjs",
+    "verify:gemini-live": "node scripts/verify-gemini-live.mjs",
     "verify:lecture": "node scripts/verify-lecture-boards.mjs"
   },
   "dependencies": {
