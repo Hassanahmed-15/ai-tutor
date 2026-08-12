@@ -1,0 +1,71 @@
+# Keep the build context small and the image clean.
+#
+# Everything here is either rebuilt inside the image, irrelevant to the server,
+# or must never be baked into a shipped artefact (secrets, caches, other apps).
+
+# Dependencies + build output — reinstalled/rebuilt in the image
+**/node_modules
+**/.next
+**/distZ
+**/build
+**/*.tsbuildinfo
+
+# Secrets. Critical: env files must reach the container through Azure's secret
+# store at runtime, never as a layer in a pushed image.
+**/.env
+**/.env.*
+!**/.env.example
+
+# Version control + editor
+.git
+.gitignore
+**/.DS_Store
+.vscode
+.idea
+
+# Other apps and scratch projects in this repo — not part of the Live Tutor image.
+# svg-test-lab in particular is ~1.2GB; leaving it in the build context meant uploading it to
+# Azure on every remote build, which stalled the build before it printed a single step.
+virtual-campus
+gemini-live-test-app
+svg-test-lab
+testfolder
+# unity-campus-poc is a 4GB game-engine prototype (Library/, Temp/ and imported art assets).
+# Nothing in it is served by the Live Tutor, and leaving it in the context makes every remote
+# build spend minutes uploading it before the first step runs.
+unity-campus-poc
+# direct-booking-rental is a separate client project living in this repo (~786MB with its own
+# node_modules and build output). It is not part of the tutor image and must not be uploaded.
+direct-booking-rental
+backend/packages/*/node_modules
+
+# Large binary assets at the repo root (design mockups, architecture renders, planning docs).
+# None are read at runtime; together they are ~12MB of pure upload cost.
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.docx
+*.pdf
+*.svg
+!frontend/web/public/**
+
+# Local caches and generated artefacts
+**/.vercel
+**/coverage
+**/manim-cache
+**/lecture-cache
+**/*.log
+**/tmp
+**/temp
+
+# Docs and planning material
+docs
+*.md
+!frontend/web/AGENTS.md
+!frontend/web/CLAUDE.md
+
+# Python bytecode
+**/__pycache__
+**/*.pyc
+**/.venv
