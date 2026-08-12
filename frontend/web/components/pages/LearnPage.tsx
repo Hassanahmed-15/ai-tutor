@@ -162,6 +162,29 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     };
   }, []);
 
+  /**
+   * Pick up a brief typed on the front page.
+   *
+   * The router passes only a page name, so the landing page leaves the topic in sessionStorage and
+   * this reads it once on mount. Consumed immediately (removeItem) so a later visit to this screen
+   * does not silently refill the field with a stale subject.
+   *
+   * A file cannot be serialised through storage, so only the topic travels; the landing page's
+   * attach control is a signal of intent, and the upload itself happens here where the parsing
+   * pipeline already lives.
+   */
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("aria:pending-brief");
+      if (!raw) return;
+      sessionStorage.removeItem("aria:pending-brief");
+      const parsed = JSON.parse(raw) as { topic?: string };
+      if (parsed.topic) setInput(parsed.topic);
+    } catch {
+      /* A malformed or unavailable store just means the field starts empty. */
+    }
+  }, []);
+
   async function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;

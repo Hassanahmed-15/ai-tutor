@@ -1,179 +1,151 @@
 "use client";
 
-import { ArrowRight, FileUp, Mic, PenLine, Play } from "lucide-react";
-import { HudPage, type PageName } from "@/components/hud/HudKit";
-import { DEMO_HARDCODED } from "@/lib/demo/demoLecture";
+import { useRef, useState } from "react";
+import { ArrowRight, Paperclip, X } from "lucide-react";
+import type { PageName } from "@/components/hud/HudKit";
 
 /**
- * The home page.
+ * The front page. One panel, centred, and nothing else.
  *
- * The previous pass reduced this to a dimmed headline on black with two thirds of the viewport
- * empty. It was minimal in the wrong sense — nothing to look at, nothing to understand, and no
- * sign of the actual product. Minimal should mean "nothing unnecessary", not "nothing".
+ * Everything else has been removed on purpose: no masthead, no navigation, no feature columns, no
+ * preview, no footer. Previous versions of this page carried all of that and the result was either
+ * empty-looking or busy — the actual product does one thing, so the door to it should offer one
+ * thing.
  *
- * This version keeps the restraint (one accent, no gradients, no glow, short copy) but earns its
- * space: the topic input is on the page rather than a click away, and a miniature of the classroom
- * shows what the thing produces. A student can start a lesson without scrolling or navigating.
+ * What is left is the wordmark and the way in: type a subject, or attach a PDF or deck. The
+ * handoff to LearnPage carries whatever was provided via sessionStorage, because the router only
+ * passes a page name and this page has no other channel to it. LearnPage owns the parsing pipeline
+ * and keeps owning it — nothing about upload handling is duplicated here.
  */
-const CAPABILITIES = [
-  { icon: Mic, title: "Speak to interrupt", body: "Talk over it mid-sentence. The audio stops and it answers you." },
-  { icon: PenLine, title: "Drawn as it explains", body: "Diagrams, charts and equations appear in time with the voice." },
-  { icon: FileUp, title: "Bring your own source", body: "Upload a PDF or deck; the lesson is built from its actual pages." },
-];
+const HANDOFF_KEY = "aria:pending-brief";
 
-export function LandingPage({ go, onStart }: { go: (p: PageName) => void; onStart: () => void }) {
+export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => void }) {
+  const [topic, setTopic] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const canStart = topic.trim().length > 0 || file !== null;
+
+  function start() {
+    if (!canStart) return;
+    try {
+      // A File cannot be serialised, so only the topic travels. A chosen file is announced to
+      // LearnPage, which opens its own picker — one extra click, but it keeps a single upload
+      // implementation rather than a second half-working one here.
+      sessionStorage.setItem(
+        HANDOFF_KEY,
+        JSON.stringify({ topic: topic.trim(), fileName: file?.name ?? null }),
+      );
+    } catch {
+      /* Private-mode storage failures must not block starting a lesson. */
+    }
+    go("learn");
+  }
+
   return (
-    <HudPage current="landing" go={go} onStart={onStart}>
-      {/* HERO — headline, the real entry input, and a preview of the output. */}
-      <section className="mx-auto grid max-w-6xl gap-14 px-6 pt-16 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16 lg:pt-20">
-        <div>
-          <h1 className="hud-materialize font-display text-[2.9rem] leading-[1.02] tracking-[-0.03em] text-[var(--hud-text)] sm:text-[3.9rem]">
-            A private tutor that
-            <br />
-            teaches it <span className="italic">live.</span>
-          </h1>
+    <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6">
+      <div className="relative z-10 w-full max-w-xl text-center">
+        <h1 className="hud-materialize font-display text-[3.6rem] leading-none tracking-[-0.04em] text-[var(--hud-text)] sm:text-[4.6rem]">
+          Aria
+        </h1>
+        <p
+          className="hud-materialize mt-3 text-[0.95rem] text-[var(--hud-text-dim)]"
+          style={{ animationDelay: "0.08s" }}
+        >
+          Teach me anything.
+        </p>
 
-          <p
-            className="hud-materialize mt-6 max-w-md text-[1.02rem] leading-[1.65] text-[var(--hud-text-dim)]"
-            style={{ animationDelay: "0.08s" }}
-          >
-            Name any subject. Aria plans the lesson, draws it on a board, and talks you through —
-            stopping the moment you have a question.
-          </p>
-
-          {/* The actual entry point, on the page. A student can start here rather than hunting for
-              a call to action. */}
-          <form
-            className="hud-materialize mt-9 flex flex-col gap-2.5 sm:flex-row"
-            style={{ animationDelay: "0.16s" }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              go("learn");
+        <form
+          className="hud-materialize mt-10"
+          style={{ animationDelay: "0.16s" }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            start();
+          }}
+        >
+          {/* One composed field: the text input and the attach control share a border so they read
+              as a single place to begin, rather than two competing entry points. */}
+          <div
+            className="flex items-center gap-2 rounded-[var(--radius-lg)] border px-2 py-2 transition-colors focus-within:border-[var(--hud-line-strong)]"
+            style={{
+              background: "var(--hud-surface)",
+              borderColor: "var(--hud-line)",
+              transitionDuration: "var(--motion-fast)",
             }}
           >
-            <label htmlFor="landing-topic" className="sr-only">
-              What do you want to learn?
+            <label htmlFor="brief" className="sr-only">
+              What should Aria teach?
             </label>
             <input
-              id="landing-topic"
+              id="brief"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
               placeholder="Explain the Krebs cycle…"
-              className="min-w-0 flex-1 rounded-[var(--radius)] border px-4 py-3 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--listening)]"
-              style={{
-                background: "var(--hud-surface)",
-                borderColor: "var(--hud-line)",
-                transitionDuration: "var(--motion-fast)",
-              }}
+              autoFocus
+              className="min-w-0 flex-1 bg-transparent px-3 py-2 text-[0.98rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
+            />
+
+            <input
+              ref={fileRef}
+              type="file"
+              accept=".pdf,.pptx,.ppt,.docx,.doc,.json"
+              className="sr-only"
+              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+              aria-label="Attach a PDF, slide deck, or document"
             />
             <button
-              type="submit"
-              className="hud-btn-primary inline-flex shrink-0 items-center justify-center gap-2 rounded-[var(--radius)] px-6 py-3 text-[0.95rem]"
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              aria-label="Attach a PDF, slide deck, or document"
+              className="grid size-9 shrink-0 place-items-center rounded-[var(--radius)] text-[var(--hud-text-faint)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)]"
+              style={{ transitionDuration: "var(--motion-fast)" }}
             >
-              Start <ArrowRight aria-hidden="true" size={16} strokeWidth={2} />
+              <Paperclip aria-hidden="true" size={17} strokeWidth={1.8} />
             </button>
-          </form>
 
-          <div className="hud-materialize mt-5 flex flex-wrap items-center gap-x-5 gap-y-2" style={{ animationDelay: "0.22s" }}>
             <button
-              onClick={onStart}
-              className="inline-flex items-center gap-1.5 text-[0.85rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+              type="submit"
+              disabled={!canStart}
+              aria-label="Start the lesson"
+              className="hud-btn-primary grid size-9 shrink-0 place-items-center disabled:cursor-not-allowed disabled:opacity-30"
             >
-              <Play aria-hidden="true" size={13} strokeWidth={2} /> Watch a finished lesson
+              <ArrowRight aria-hidden="true" size={17} strokeWidth={2.2} />
             </button>
-            <span className="text-[0.8rem] text-[var(--hud-text-faint)]">Around four minutes to compose</span>
-            {process.env.NODE_ENV !== "production" && DEMO_HARDCODED && (
-              <button
-                onClick={() => go("demo")}
-                className="text-[0.8rem] text-[var(--hud-text-faint)] transition-colors hover:text-[var(--hud-text)]"
+          </div>
+
+          {/* The attached file, once chosen. Occupies no space until it exists, so the panel does
+              not shift on load. */}
+          {file && (
+            <div className="mt-3 flex items-center justify-center">
+              <span
+                className="inline-flex max-w-full items-center gap-2 rounded-[var(--radius)] border px-3 py-1.5"
+                style={{ borderColor: "var(--hud-line)", background: "var(--hud-surface)" }}
               >
-                Dev · free demo
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* A real lesson plan, not an abstract mock.
-            The previous version drew grey bars pretending to be a chart, which read as a broken
-            placeholder rather than a preview — meaningless shapes tell a visitor nothing. This
-            shows the actual artefact the product puts in front of you before it teaches: named
-            parts, a current position, and the fact that you approve it. Static content, so it is
-            hidden from assistive tech; the same information is in the copy beside it. */}
-        <div
-          className="hud-materialize overflow-hidden rounded-[var(--radius-lg)] border"
-          style={{ borderColor: "var(--hud-line)", background: "var(--hud-bg-2)", animationDelay: "0.28s" }}
-          aria-hidden="true"
-        >
-          <div
-            className="flex items-center justify-between border-b px-4 py-3"
-            style={{ borderColor: "var(--hud-line)" }}
-          >
-            <span className="text-[0.78rem] font-medium text-[var(--hud-text)]">Cellular respiration</span>
-            <span className="text-[0.7rem] text-[var(--hud-text-faint)]">9 parts · 24 min</span>
-          </div>
-
-          <ol className="divide-y" style={{ borderColor: "var(--hud-line)" }}>
-            {[
-              ["01", "Why cells need ATP at all", "done"],
-              ["02", "Glycolysis, step by step", "done"],
-              ["03", "The link reaction", "now"],
-              ["04", "Krebs cycle", "next"],
-              ["05", "The electron transport chain", "next"],
-            ].map(([n, label, state]) => (
-              <li key={n} className="flex items-center gap-3 px-4 py-2.5" style={{ borderColor: "var(--hud-line)" }}>
-                <span
-                  className="text-[0.68rem] tabular-nums"
-                  style={{ color: state === "now" ? "var(--hud-cyan-bright)" : "var(--hud-text-faint)" }}
-                >
-                  {n}
-                </span>
-                <span
-                  className="flex-1 truncate text-[0.82rem]"
-                  style={{
-                    color:
-                      state === "now"
-                        ? "var(--hud-text)"
-                        : state === "done"
-                          ? "var(--hud-text-dim)"
-                          : "var(--hud-text-faint)",
+                <Paperclip aria-hidden="true" size={12} className="shrink-0 text-[var(--hud-text-faint)]" />
+                <span className="truncate text-[0.8rem] text-[var(--hud-text-dim)]">{file.name}</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFile(null);
+                    if (fileRef.current) fileRef.current.value = "";
                   }}
+                  aria-label={`Remove ${file.name}`}
+                  className="shrink-0 rounded-[var(--radius-sm)] p-0.5 text-[var(--hud-text-faint)] transition-colors hover:text-[var(--hud-text)]"
                 >
-                  {label}
-                </span>
-                {state === "now" && (
-                  <span
-                    className="rounded-[var(--radius-sm)] px-2 py-0.5 text-[0.62rem] font-medium"
-                    style={{ background: "var(--hud-cyan-glow)", color: "var(--hud-cyan-bright)" }}
-                  >
-                    teaching
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-
-          <div
-            className="flex items-center gap-2 border-t px-4 py-3"
-            style={{ borderColor: "var(--hud-line)" }}
-          >
-            <Mic aria-hidden="true" size={12} strokeWidth={2} style={{ color: "var(--hud-cyan-bright)" }} />
-            <span className="text-[0.72rem] text-[var(--hud-text-dim)]">
-              Speaking — interrupt any time
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* CAPABILITIES */}
-      <section className="mx-auto mt-24 max-w-6xl px-6">
-        <div className="grid gap-8 border-t pt-10 sm:grid-cols-3" style={{ borderColor: "var(--hud-line)" }}>
-          {CAPABILITIES.map(({ icon: Icon, title, body }, i) => (
-            <div key={title} className="hud-materialize" style={{ animationDelay: `${0.06 * i}s` }}>
-              <Icon aria-hidden="true" size={17} strokeWidth={1.8} className="text-[var(--hud-text-faint)]" />
-              <h2 className="mt-3.5 text-[0.98rem] font-medium text-[var(--hud-text)]">{title}</h2>
-              <p className="mt-1.5 text-[0.88rem] leading-[1.65] text-[var(--hud-text-dim)]">{body}</p>
+                  <X aria-hidden="true" size={13} />
+                </button>
+              </span>
             </div>
-          ))}
-        </div>
-      </section>
-    </HudPage>
+          )}
+        </form>
+
+        <p
+          className="hud-materialize mt-6 text-[0.78rem] text-[var(--hud-text-faint)]"
+          style={{ animationDelay: "0.24s" }}
+        >
+          PDF, slides, or a sentence
+        </p>
+      </div>
+    </main>
   );
 }
