@@ -2,6 +2,7 @@
 
 import {
   AlertTriangle,
+  PenTool,
   Loader2,
   MicOff,
   Pause,
@@ -31,6 +32,7 @@ export type VoicePhase =
   | "listening"
   | "student-speaking"
   | "thinking"
+  | "drawing"
   | "aria-speaking"
   | "paused"
   | "reconnecting"
@@ -43,6 +45,7 @@ const STATES: Record<VoicePhase, { label: string; hint: string; icon: LucideIcon
   listening:         { label: "Listening",       hint: "Your microphone is open",          icon: RadioTower,    fg: "var(--listening)",    bg: "var(--listening-dim)" },
   "student-speaking":{ label: "You're speaking", hint: "Aria has stopped to listen",       icon: RadioTower,    fg: "var(--listening)",    bg: "var(--listening-dim)" },
   thinking:          { label: "Thinking",        hint: "Aria is working out a reply",      icon: Loader2,       fg: "var(--speaking)",     bg: "var(--speaking-dim)" },
+  drawing:           { label: "Teacher is drawing… please wait", hint: "A new board is being generated", icon: PenTool, fg: "var(--speaking)", bg: "var(--speaking-dim)" },
   "aria-speaking":   { label: "Aria is speaking",hint: "Interrupt any time — just talk",   icon: Volume2,       fg: "var(--speaking)",     bg: "var(--speaking-dim)" },
   paused:            { label: "Paused",          hint: "The lecture is held",              icon: Pause,         fg: "var(--hud-warn)",     bg: "var(--warn-dim)" },
   reconnecting:      { label: "Reconnecting",    hint: "The connection dropped — retrying",icon: WifiOff,       fg: "var(--hud-warn)",     bg: "var(--warn-dim)" },
@@ -70,7 +73,7 @@ export function derivePhase(input: {
   if (status === "connecting") return "connecting";
   if (studentSpeaking) return "student-speaking";
   if (paused) return "paused";
-  if (status === "drawing") return "thinking";
+  if (status === "drawing") return "drawing";
   if (ariaSpeaking) return "aria-speaking";
   if (status === "live") return muted ? "ready" : "listening";
   return "ready";
@@ -79,7 +82,7 @@ export function derivePhase(input: {
 export function VoiceState({ phase, className = "" }: { phase: VoicePhase; className?: string }) {
   const s = STATES[phase];
   const Icon = s.icon;
-  const spins = phase === "connecting" || phase === "thinking";
+  const spins = phase === "connecting" || phase === "thinking" || phase === "drawing";
 
   return (
     <div

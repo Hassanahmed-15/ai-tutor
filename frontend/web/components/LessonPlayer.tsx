@@ -28,7 +28,7 @@ import { useNarrationPrefetch } from "@/lib/useNarrationPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
-import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
+import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import { useEngagementScore } from "@/lib/useEngagementScore";
 import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
@@ -229,7 +229,7 @@ export function LessonPlayer({
   // A board the realtime tutor draws via its show_board tool. Kept SEPARATE from chat.explainBoard
   // because the realtime model narrates the board itself — we must NOT run playNarration for it,
   // which would violate the single-speaker invariant.
-  const [liveBoard, setLiveBoard] = useState<RealtimeBoard | null>(null);
+  const [liveBoard, setLiveBoard] = useState<GeminiLiveBoard | null>(null);
   // `sessionActive` means the realtime tutor currently owns the floor. The underlying WebRTC
   // session can remain connected and privacy-muted while the scripted lecture continues.
   const [sessionActive, setSessionActive] = useState(false);
@@ -238,7 +238,19 @@ export function LessonPlayer({
     beatRef.current = beat;
   }, [beat]);
 
-  const tutor = useRealtimeTutor({
+  /**
+   * The live tutor is Gemini Live.
+   *
+   * This replaces useRealtimeTutor (OpenAI Realtime) rather than sitting alongside it — two live
+   * voice sessions competing for the microphone and the speaker is exactly the duplication that
+   * causes overlapping audio. The two hooks expose the same return surface, so this is a swap at
+   * one call site, not a rewrite.
+   *
+   * What Gemini adds over the previous hook is model-callable lecture control: it can decide to
+   * pause, to resume, and to draw, which is what makes "stop, answer, draw, carry on" work without
+   * the UI having to guess at intent from transcripts.
+   */
+  const tutor = useGeminiLiveTutor({
     topic: title,
     getBeatContext: () =>
       `${beatRef.current.title}: ${beatRef.current.script}` +
@@ -271,6 +283,39 @@ export function LessonPlayer({
       // session stays active through a multi-turn conversation; it ends only on a real end.
       lesson.flushDeferredResume();
     },
+
+    /**
+     * Model-driven lecture control.
+     *
+     * These fire when Gemini calls its `pause_lecture` / `resume_lecture` tools, which is the
+     * difference between a tutor that talks over the lecture and one that takes the floor
+     * properly. `enterChat` freezes narration at its current position rather than resetting it,
+     * so resuming continues the same beat mid-sentence instead of restarting it.
+     */
+    /**
+     * Speech that was not aimed at the teacher — a cough, "mm-hm", someone else in the room.
+     *
+     * The audio has already stopped by this point (that is unconditional, because two voices at
+     * once is the worst outcome). This just puts the lecture back rather than leaving it paused
+     * waiting for a turn that never comes, which is what made every stray noise feel like it
+     * derailed the lesson.
+     */
+    onIncidentalSpeech: () => {
+      lesson.requestResume();
+    },
+
+    onPauseLecture: () => {
+      lesson.enterChat();
+      if (slideTimer.current) {
+        clearTimeout(slideTimer.current);
+        slideTimer.current = null;
+      }
+    },
+    onResumeLecture: () => {
+      lesson.requestResume();
+    },
+    lectureControlTools: true,
+
     startMuted: true,
     alwaysOn: autoVoiceAssistant,
   });
