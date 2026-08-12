@@ -512,8 +512,25 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.script) throw new Error(data.error ?? "Could not create the slide.");
-      if (!controller.signal.aborted) {
-        optionsRef.current.onBoardRequest({ script: data.script, draw: data.draw });
+
+      /**
+       * Show the board even if the tool call was cancelled mid-flight.
+       *
+       * A drawing takes ~20s to generate. Gemini cancels its own outstanding tool calls whenever
+       * the student speaks (see toolCallCancellation below), so anything the student said during
+       * that wait — including "is it done yet?" — used to discard a finished board. The symptom
+       * was the sidebar sitting on "DRAWING…" while the board never changed, with a successful
+       * 200 from /api/explain in the server log and no error anywhere.
+       *
+       * Cancellation should stop Aria NARRATING a slide that is no longer relevant; it should not
+       * throw away a picture the student explicitly asked for and already paid for. So the board
+       * is always handed over, and only the spoken follow-up is suppressed below.
+       */
+      optionsRef.current.onBoardRequest({ script: data.script, draw: data.draw });
+
+      if (controller.signal.aborted) {
+        // Deliver silently: the student has the floor, so Aria must not start talking about it.
+        return { id, name, response: { output: "The slide is on the board. Do not describe it unless asked." } };
       }
       return {
         id,
