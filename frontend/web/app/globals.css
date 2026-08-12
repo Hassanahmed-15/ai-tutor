@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #0b0713;
+  --foreground: #f7f3ff;
 }
 
 /**
@@ -68,8 +68,8 @@ textarea {
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.22);
-  color: #ffffff;
+  background: rgba(232, 121, 249, 0.3);
+  color: #f7f3ff;
 }
 
 /* Hand-drawn whiteboard draw-in: stroke animates from invisible to fully drawn,
@@ -756,29 +756,32 @@ textarea {
    `--hud-*` prefix is now a historical artefact, not a description.
    ============================================================================ */
 :root {
-  /* Pure black. No tint in either direction — the whole system is greyscale, so
-     a warm or cool cast would be the only colour on the page and would read as
-     a mistake rather than a choice. */
-  --hud-bg: #000000;
-  --hud-bg-2: #0a0a0a;
-  --hud-surface: rgba(255, 255, 255, 0.03);
-  --hud-surface-2: rgba(255, 255, 255, 0.06);
-  --hud-line: rgba(255, 255, 255, 0.1);
-  --hud-line-strong: rgba(255, 255, 255, 0.22);
-  --hud-grid: rgba(255, 255, 255, 0.02);
+  /* Deep violet-black. Not pure black and not grey: the ground carries a real
+     purple cast, so surfaces lifted off it read as violet rather than as dirty
+     white. Every surface token is a violet tint rather than a neutral one,
+     which is what stops the "grey box on black" look of the previous pass. */
+  --hud-bg: #0b0713;
+  --hud-bg-2: #140d21;
+  --hud-surface: rgba(167, 121, 255, 0.06);
+  --hud-surface-2: rgba(167, 121, 255, 0.11);
+  --hud-line: rgba(167, 121, 255, 0.16);
+  --hud-line-strong: rgba(167, 121, 255, 0.34);
+  --hud-grid: rgba(167, 121, 255, 0.05);
 
-  --hud-text: #ffffff;
-  --hud-text-dim: rgba(255, 255, 255, 0.55);
-  --hud-text-faint: rgba(255, 255, 255, 0.3);
+  --hud-text: #f7f3ff;
+  --hud-text-dim: rgba(232, 221, 255, 0.62);
+  --hud-text-faint: rgba(232, 221, 255, 0.36);
 
-  /* There is no accent colour. `--hud-cyan` is the emphasis token every component
-     already references, so it resolves to white: emphasis comes from contrast and
-     weight, not hue. Keeping the name means no call site needs editing. */
-  --hud-cyan: #ffffff;
-  --hud-cyan-bright: #ffffff;
-  --hud-cyan-deep: rgba(255, 255, 255, 0.5);
-  --hud-cyan-glow: rgba(255, 255, 255, 0.1);
-  --hud-cyan-glow-soft: rgba(255, 255, 255, 0.04);
+  /* The accent runs violet → pink. `--hud-cyan` is the emphasis token every
+     component already references; keeping the name means no call site changes.
+     The gradient pair is used on the primary action and on emphasised words,
+     which is the only place two colours appear together. */
+  --hud-cyan: #a779ff;
+  --hud-cyan-bright: #f0abfc;
+  --hud-cyan-deep: #7c3aed;
+  --hud-cyan-glow: rgba(167, 121, 255, 0.22);
+  --hud-cyan-glow-soft: rgba(167, 121, 255, 0.09);
+  --accent-gradient: linear-gradient(100deg, #a779ff 0%, #e879f9 100%);
 
   /* ── SEMANTIC COLOUR ───────────────────────────────────────────────────────
      The marketing shell is greyscale. The classroom is not, and cannot be: a
@@ -834,33 +837,33 @@ textarea {
   /* Mode accents all resolve to the one ink. The mode SELECTOR is gone from the
      UI, but the mode players still read these tokens; collapsing them keeps
      those screens coherent instead of reintroducing six competing hues. */
-  --accent-standard: #ffffff;
-  --accent-standard-bright: #ffffff;
-  --accent-standard-glow: rgba(255, 255, 255, 0.1);
+  --accent-standard: #a779ff;
+  --accent-standard-bright: #f0abfc;
+  --accent-standard-glow: rgba(167, 121, 255, 0.22);
 
-  --accent-blind: #ffffff;
-  --accent-blind-bright: #ffffff;
-  --accent-blind-glow: rgba(255, 255, 255, 0.1);
+  --accent-blind: #a779ff;
+  --accent-blind-bright: #f0abfc;
+  --accent-blind-glow: rgba(167, 121, 255, 0.22);
 
-  --accent-adhd: #ffffff;
-  --accent-adhd-bright: #ffffff;
-  --accent-adhd-glow: rgba(255, 255, 255, 0.1);
+  --accent-adhd: #a779ff;
+  --accent-adhd-bright: #f0abfc;
+  --accent-adhd-glow: rgba(167, 121, 255, 0.22);
 
-  --accent-autism: #ffffff;
-  --accent-autism-bright: #ffffff;
-  --accent-autism-glow: rgba(255, 255, 255, 0.1);
+  --accent-autism: #a779ff;
+  --accent-autism-bright: #f0abfc;
+  --accent-autism-glow: rgba(167, 121, 255, 0.22);
 
-  --accent-dyslexia: #ffffff;
-  --accent-dyslexia-bright: #ffffff;
-  --accent-dyslexia-glow: rgba(255, 255, 255, 0.1);
+  --accent-dyslexia: #a779ff;
+  --accent-dyslexia-bright: #f0abfc;
+  --accent-dyslexia-glow: rgba(167, 121, 255, 0.22);
 
-  --accent-dysgraphia: #ffffff;
-  --accent-dysgraphia-bright: #ffffff;
-  --accent-dysgraphia-glow: rgba(255, 255, 255, 0.1);
+  --accent-dysgraphia: #a779ff;
+  --accent-dysgraphia-bright: #f0abfc;
+  --accent-dysgraphia-glow: rgba(167, 121, 255, 0.22);
 
-  --accent-deaf: #ffffff;
-  --accent-deaf-bright: #ffffff;
-  --accent-deaf-glow: rgba(255, 255, 255, 0.1);
+  --accent-deaf: #a779ff;
+  --accent-deaf-bright: #f0abfc;
+  --accent-deaf-glow: rgba(167, 121, 255, 0.22);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -921,7 +924,7 @@ textarea {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(110% 70% at 50% -15%, rgba(255, 255, 255, 0.035), transparent 72%);
+  background-image: radial-gradient(90% 60% at 15% -10%, rgba(167, 121, 255, 0.14), transparent 70%), radial-gradient(70% 50% at 90% 0%, rgba(232, 121, 249, 0.08), transparent 72%);
   z-index: 0;
 }
 
@@ -945,9 +948,9 @@ textarea {
 /* A panel is a block of paper: no fill, no blur, no shadow — just a rule that
    separates it from the sheet. Depth on a printed page comes from whitespace. */
 .hud-panel {
-  background: transparent;
+  background: var(--hud-surface);
   border: 1px solid var(--hud-line);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
 }
 .hud-panel-hover {
   transition: border-color 0.45s var(--ease), background-color 0.45s var(--ease);
@@ -986,24 +989,23 @@ textarea {
 /* The primary action: solid ink, square, letterspaced. The one place the accent
    appears at full strength. */
 .hud-btn-primary {
-  background: var(--hud-cyan);
-  color: var(--hud-bg);
-  border: 1px solid var(--hud-cyan);
-  border-radius: 0;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  background: var(--accent-gradient);
+  color: #150c22;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-weight: 600;
+  letter-spacing: 0;
   transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
 }
 .hud-btn-primary:hover {
-  background: var(--hud-cyan-bright);
-  border-color: var(--hud-cyan-bright);
+  filter: brightness(1.08);
 }
 
 /* The secondary action is a rule and a word. */
 .hud-btn-ghost {
   background: transparent;
   border: 1px solid var(--hud-line-strong);
-  border-radius: 0;
+  border-radius: var(--radius);
   color: var(--hud-text);
   transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease);
 }

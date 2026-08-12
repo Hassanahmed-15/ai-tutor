@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
 
 /**
  * Typography: one family, used lightly.
  *
- * Everything is Inter. The display face is the same font at weight 300 with tight tracking — a
- * large headline set light and straight, with no serif and no second family to argue with it.
+ * Sora — a geometric sans with slightly squared terminals and a distinctive lowercase. Inter and
+ * the earlier serif were both rejected: Inter is the default of every AI product and reads as
+ * anonymous, the serif read as a newspaper. Sora has a recognisable character at display sizes
+ * while staying completely plain in a paragraph, which is what a headline needs to carry.
  * Loading one family also means the page has no flash of a mismatched fallback.
  *
  * The previous attempts loaded three sans faces (which read as an instrument panel) and then a
  * high-contrast serif (which read as a newspaper). Both were louder than the content.
  */
-const bodyFont = Inter({
+const bodyFont = Sora({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 

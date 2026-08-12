@@ -91,41 +91,72 @@ export function LandingPage({ go, onStart }: { go: (p: PageName) => void; onStar
           </div>
         </div>
 
-        {/* A miniature of the classroom, drawn in markup. It shows what the product makes without
-            shipping a screenshot that will date, and without the decorative gradient artwork the
-            brief rules out. Purely illustrative, so it is hidden from assistive tech. */}
+        {/* A real lesson plan, not an abstract mock.
+            The previous version drew grey bars pretending to be a chart, which read as a broken
+            placeholder rather than a preview — meaningless shapes tell a visitor nothing. This
+            shows the actual artefact the product puts in front of you before it teaches: named
+            parts, a current position, and the fact that you approve it. Static content, so it is
+            hidden from assistive tech; the same information is in the copy beside it. */}
         <div
           className="hud-materialize overflow-hidden rounded-[var(--radius-lg)] border"
           style={{ borderColor: "var(--hud-line)", background: "var(--hud-bg-2)", animationDelay: "0.28s" }}
           aria-hidden="true"
         >
-          <div className="flex items-center gap-2 border-b px-3 py-2" style={{ borderColor: "var(--hud-line)" }}>
-            <span className="size-1.5 rounded-full" style={{ background: "var(--ok)" }} />
-            <span className="text-[0.7rem] text-[var(--hud-text-faint)]">Part 3 of 9 · Cellular respiration</span>
+          <div
+            className="flex items-center justify-between border-b px-4 py-3"
+            style={{ borderColor: "var(--hud-line)" }}
+          >
+            <span className="text-[0.78rem] font-medium text-[var(--hud-text)]">Cellular respiration</span>
+            <span className="text-[0.7rem] text-[var(--hud-text-faint)]">9 parts · 24 min</span>
           </div>
-          <div className="space-y-3 p-5">
-            <div className="h-2 w-1/3 rounded-full" style={{ background: "var(--hud-line-strong)" }} />
-            <div className="flex items-end gap-1.5 pt-2">
-              {[38, 62, 45, 80, 55, 92, 70].map((h, i) => (
-                <div
-                  key={i}
-                  className="flex-1 rounded-t-[2px]"
-                  style={{ height: h, background: i === 5 ? "var(--hud-text)" : "var(--hud-line-strong)" }}
-                />
-              ))}
-            </div>
-            <div className="h-px w-full" style={{ background: "var(--hud-line)" }} />
-            <div className="space-y-1.5">
-              <div className="h-1.5 w-full rounded-full" style={{ background: "var(--hud-line)" }} />
-              <div className="h-1.5 w-4/5 rounded-full" style={{ background: "var(--hud-line)" }} />
-            </div>
-          </div>
-          <div className="flex items-center gap-2 border-t px-3 py-2.5" style={{ borderColor: "var(--hud-line)" }}>
-            <span
-              className="inline-flex items-center gap-1.5 rounded-[var(--radius-sm)] px-2 py-1 text-[0.68rem]"
-              style={{ background: "var(--speaking-dim)", color: "var(--speaking)" }}
-            >
-              <Mic size={11} strokeWidth={2} /> Aria is speaking
+
+          <ol className="divide-y" style={{ borderColor: "var(--hud-line)" }}>
+            {[
+              ["01", "Why cells need ATP at all", "done"],
+              ["02", "Glycolysis, step by step", "done"],
+              ["03", "The link reaction", "now"],
+              ["04", "Krebs cycle", "next"],
+              ["05", "The electron transport chain", "next"],
+            ].map(([n, label, state]) => (
+              <li key={n} className="flex items-center gap-3 px-4 py-2.5" style={{ borderColor: "var(--hud-line)" }}>
+                <span
+                  className="text-[0.68rem] tabular-nums"
+                  style={{ color: state === "now" ? "var(--hud-cyan-bright)" : "var(--hud-text-faint)" }}
+                >
+                  {n}
+                </span>
+                <span
+                  className="flex-1 truncate text-[0.82rem]"
+                  style={{
+                    color:
+                      state === "now"
+                        ? "var(--hud-text)"
+                        : state === "done"
+                          ? "var(--hud-text-dim)"
+                          : "var(--hud-text-faint)",
+                  }}
+                >
+                  {label}
+                </span>
+                {state === "now" && (
+                  <span
+                    className="rounded-[var(--radius-sm)] px-2 py-0.5 text-[0.62rem] font-medium"
+                    style={{ background: "var(--hud-cyan-glow)", color: "var(--hud-cyan-bright)" }}
+                  >
+                    teaching
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+
+          <div
+            className="flex items-center gap-2 border-t px-4 py-3"
+            style={{ borderColor: "var(--hud-line)" }}
+          >
+            <Mic aria-hidden="true" size={12} strokeWidth={2} style={{ color: "var(--hud-cyan-bright)" }} />
+            <span className="text-[0.72rem] text-[var(--hud-text-dim)]">
+              Speaking — interrupt any time
             </span>
           </div>
         </div>
