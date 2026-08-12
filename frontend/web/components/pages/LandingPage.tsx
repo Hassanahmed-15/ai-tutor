@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, Paperclip, X } from "lucide-react";
+import { ArrowRight, FileUp, Paperclip, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
+import { setPendingBrief } from "@/lib/pendingBrief";
 
 /**
  * The front page. One panel, centred, and nothing else.
@@ -17,28 +18,19 @@ import type { PageName } from "@/components/hud/HudKit";
  * passes a page name and this page has no other channel to it. LearnPage owns the parsing pipeline
  * and keeps owning it — nothing about upload handling is duplicated here.
  */
-const HANDOFF_KEY = "aria:pending-brief";
-
 export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => void }) {
   const [topic, setTopic] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [dragging, setDragging] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const canStart = topic.trim().length > 0 || file !== null;
 
   function start() {
     if (!canStart) return;
-    try {
-      // A File cannot be serialised, so only the topic travels. A chosen file is announced to
-      // LearnPage, which opens its own picker — one extra click, but it keeps a single upload
-      // implementation rather than a second half-working one here.
-      sessionStorage.setItem(
-        HANDOFF_KEY,
-        JSON.stringify({ topic: topic.trim(), fileName: file?.name ?? null }),
-      );
-    } catch {
-      /* Private-mode storage failures must not block starting a lesson. */
-    }
+    // The file itself is handed over, not just its name — the student chose it here and must not
+    // be asked to choose it again on the next screen.
+    setPendingBrief({ topic: topic.trim(), file });
     go("learn");
   }
 
@@ -113,8 +105,45 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             </button>
           </div>
 
-          {/* The attached file, once chosen. Occupies no space until it exists, so the panel does
-              not shift on load. */}
+          {/* An explicit drop zone.
+              The paperclip alone was too quiet for something that is half the product — a student
+              who has a lecture PDF in hand should see that this accepts it without hunting for an
+              icon. Drag-and-drop AND a click target, because both are expected of an upload area,
+              and it collapses once a file is chosen so it never competes with the field above. */}
+          {!file && (
+            <div
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
+              onDragLeave={() => setDragging(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setDragging(false);
+                const dropped = e.dataTransfer.files?.[0];
+                if (dropped) setFile(dropped);
+              }}
+              onClick={() => fileRef.current?.click()}
+              className="mt-3 cursor-pointer rounded-[var(--radius-lg)] border border-dashed px-4 py-5 text-center transition-colors"
+              style={{
+                borderColor: dragging ? "var(--hud-cyan)" : "var(--hud-line)",
+                background: dragging ? "var(--hud-surface-2)" : "transparent",
+                transitionDuration: "var(--motion-fast)",
+              }}
+            >
+              <div className="flex items-center justify-center gap-2 text-[var(--hud-text-dim)]">
+                <FileUp aria-hidden="true" size={16} strokeWidth={1.8} />
+                <span className="text-[0.86rem]">
+                  Drop a PDF or slide deck, or <span className="text-[var(--hud-cyan-bright)]">browse</span>
+                </span>
+              </div>
+              <p className="mt-1.5 text-[0.72rem] text-[var(--hud-text-faint)]">
+                PDF · PPTX · DOCX — the lesson is built from its pages
+              </p>
+            </div>
+          )}
+
+          {/* The attached file, once chosen. Replaces the drop zone rather than adding to it. */}
           {file && (
             <div className="mt-3 flex items-center justify-center">
               <span
@@ -139,12 +168,6 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           )}
         </form>
 
-        <p
-          className="hud-materialize mt-6 text-[0.78rem] text-[var(--hud-text-faint)]"
-          style={{ animationDelay: "0.24s" }}
-        >
-          PDF, slides, or a sentence
-        </p>
       </div>
     </main>
   );

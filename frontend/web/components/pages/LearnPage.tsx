@@ -11,6 +11,7 @@ import { TestOralView } from "@/components/TestOralView";
 import { TestResultsView } from "@/components/TestResultsView";
 import { TRACKS, type TrackMeta } from "@/components/hud/tracks";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
+import { takePendingBrief } from "@/lib/pendingBrief";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
@@ -163,34 +164,62 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   }, []);
 
   /**
-   * Pick up a brief typed on the front page.
+   * Pick up the brief from the front page and act on it immediately.
    *
-   * The router passes only a page name, so the landing page leaves the topic in sessionStorage and
-   * this reads it once on mount. Consumed immediately (removeItem) so a later visit to this screen
-   * does not silently refill the field with a stale subject.
-   *
-   * A file cannot be serialised through storage, so only the topic travels; the landing page's
-   * attach control is a signal of intent, and the upload itself happens here where the parsing
-   * pipeline already lives.
+   * A typed subject goes straight into planning and a chosen file straight into the parser, so the
+   * student never sees this screen ask for what they already provided. Only someone who arrives
+   * here directly — via the nav rather than the front page — gets the capture form.
    */
   useEffect(() => {
-    try {
-      const raw = sessionStorage.getItem("aria:pending-brief");
-      if (!raw) return;
-      sessionStorage.removeItem("aria:pending-brief");
-      const parsed = JSON.parse(raw) as { topic?: string };
-      if (parsed.topic) setInput(parsed.topic);
-    } catch {
-      /* A malformed or unavailable store just means the field starts empty. */
+    const brief = takePendingBrief();
+    if (!brief) return;
+
+    if (brief.file) {
+      // Route through the same handler the on-page picker uses, so PDF/PPTX/JSON parsing, page
+      // limits and error reporting stay in exactly one place.
+      void ingestFile(brief.file);
+      if (brief.topic) setInput(brief.topic);
+      return;
     }
+    if (brief.topic) void startPlanning(brief.topic);
+    // Runs once on mount; takePendingBrief() is one-shot so a re-run could not double-fire anyway.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /**
+   * A finished upload goes straight to planning.
+   *
+   * The topic-capture screen used to be where you chose a source, so it had to stay on screen
+   * until you pressed a button. The front page now collects both the subject and the file, so
+   * stopping here to show the same choices again is a dead step — the student has already said
+   * what they want.
+   *
+   * Watches `uploadPhase` rather than being called from the four places that set "ready" (PDF,
+   * PPTX, Suprnotes JSON, task folder), so there is one rule instead of four copies of it. The
+   * parsers set a title as they finish, and that title is the topic to plan from.
+   */
+  const autoPlannedRef = useRef(false);
+  useEffect(() => {
+    if (uploadPhase !== "ready" || autoPlannedRef.current) return;
+    const subject = (topic || input).trim();
+    if (!subject) return;
+    autoPlannedRef.current = true;
+    void startPlanning(subject);
+    // startPlanning is stable for this purpose; re-running on its identity would re-fire the jump.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadPhase, topic, input]);
 
   async function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     // Reset file input so the same file can be re-selected if needed
     e.target.value = "";
+    await ingestFile(file);
+  }
 
+  /** The file pipeline itself, separated from the input event so a file handed over from the
+   *  front page goes through exactly the same parsing, limits and error handling. */
+  async function ingestFile(file: File) {
     setUploadPhase("reading");
     setUploadError(null);
     setSlideContext("");
