@@ -34,13 +34,17 @@ COPY backend/packages ./backend/packages
 # `npm ci` (not `install`) so the build is reproducible from the lockfile and
 # fails loudly if the lockfile is out of sync rather than silently resolving
 # different versions than you tested with.
-# The trailing lightningcss install is deliberate. Tailwind v4 pulls in lightningcss, whose
-# native binary ships as a per-platform optional dependency; npm sometimes skips it, and the
-# failure surfaces at build time as a missing .node binding. Installing the meta-package (rather
-# than a hardcoded lightningcss-linux-arm64-gnu) lets npm resolve whichever platform binary
-# matches the machine doing the build — arm64 on an Apple Silicon Mac, x64 on Azure's builders.
+# The trailing installs are deliberate. Tailwind v4 pulls in TWO native toolchains — lightningcss
+# and @tailwindcss/oxide — and each ships its real binary as a per-platform optional dependency.
+# npm skips those often enough that it cannot be relied on, and the failure surfaces only at build
+# time, as `Cannot find module '@tailwindcss/oxide-linux-x64-gnu'` or a missing .node binding. It
+# is invisible locally, because the Mac's arm64 binary installed fine.
+#
+# Installing the META-packages (not a hardcoded -linux-x64-gnu) lets npm resolve whichever platform
+# binary matches the machine doing the build — arm64 on an Apple Silicon Mac, x64 on Azure's
+# builders — so the same Dockerfile works in both places.
 RUN npm ci --workspaces --include-workspace-root --include=optional && \
-    npm install --no-save --force lightningcss
+    npm install --no-save --force lightningcss @tailwindcss/oxide
 
 # ─── Stage 2: build the Next app ─────────────────────────────────────────────
 FROM node:22-bookworm-slim AS builder
