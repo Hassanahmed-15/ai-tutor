@@ -29,7 +29,19 @@ const nextConfig: NextConfig = {
   // (lib/boardVisionCritic.ts), the PDF export route, and the PDF upload parser (parse-pdf route).
   serverExternalPackages: ["@resvg/resvg-js", "@napi-rs/canvas", "pdfjs-dist"],
   outputFileTracingIncludes: {
-    "/api/parse-pdf": ["./scripts/pdf_pipeline.py"],
+    /**
+     * pdf.worker.mjs is loaded by pdfjs at RUNTIME via a path it computes itself, so Next's
+     * static tracing never sees the import and drops it from the standalone bundle. The route
+     * then failed in production with "Cannot find module … pdf.worker.mjs" while working locally,
+     * where the full node_modules is on disk.
+     *
+     * The route also disables the worker (see parse-pdf), but tracing it in costs nothing and
+     * means a future pdfjs version that ignores that option still finds its file.
+     */
+    "/api/parse-pdf": [
+      "./scripts/pdf_pipeline.py",
+      "../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs",
+    ],
   },
 };
 

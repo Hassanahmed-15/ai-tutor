@@ -544,7 +544,27 @@ export async function POST(req: NextRequest) {
      */
     uploadedBytes = new Uint8Array(buffer.slice(0));
     pythonBytes = new Uint8Array(buffer.slice(0));
-    pdf = await pdfjs.getDocument({ data: uploadedBytes, verbosity: 0 }).promise;
+
+    /**
+     * `useWorkerFetch: false` + `isEvalSupported: false` keep pdfjs on the main thread.
+     *
+     * pdfjs spawns a worker by default and resolves it relative to its own module — a path that
+     * exists in node_modules but NOT in Next's standalone bundle, which traces only the modules it
+     * can see imported. In production that surfaced as:
+     *
+     *   Setting up fake worker failed: Cannot find module
+     *   '/app/node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs'
+     *
+     * …on every upload, while working locally where the full node_modules is present.
+     *
+     * A worker buys nothing here regardless: this is a server route that already runs off the
+     * request thread, and parsing is bounded by the vision calls that follow, not by pdfjs.
+     */
+    pdf = await pdfjs.getDocument({
+      data: uploadedBytes,
+      verbosity: 0,
+      useWorkerFetch: false,
+    }).promise;
   } catch (error) {
     // Report WHY. A bare catch here turned every distinct failure — an encrypted file, a truncated
     // upload, a detached buffer — into the same "make sure the file is valid", which is unhelpful
