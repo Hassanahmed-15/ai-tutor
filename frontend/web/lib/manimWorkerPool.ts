@@ -3,6 +3,7 @@ import "server-only";
 import { spawn, type ChildProcessWithoutNullStreams } from "node:child_process";
 import { cpus } from "node:os";
 import path from "node:path";
+import { appPath } from "./appPaths";
 
 /**
  * A pool of long-lived Manim render processes.
@@ -20,7 +21,7 @@ import path from "node:path";
  * beat rather than the feature.
  */
 
-const SCRIPT_DIR = path.join(process.cwd(), "scripts", "manim");
+const SCRIPT_DIR = appPath("scripts", "manim");
 const WORKER_SCRIPT = path.join(SCRIPT_DIR, "render_worker.py");
 const PYTHON =
   process.env.MANIM_PYTHON_BINARY ?? path.join(SCRIPT_DIR, ".venv", "Scripts", "python.exe");

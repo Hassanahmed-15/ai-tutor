@@ -6,6 +6,7 @@ import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import { manimPool } from "./manimWorkerPool";
+import { appPath } from "./appPaths";
 
 const execFileAsync = promisify(execFile);
 
@@ -39,7 +40,7 @@ const execFileAsync = promisify(execFile);
  */
 const RENDERER_VERSION = "5";
 
-const SCRIPT = path.join(process.cwd(), "scripts", "manim", "render_beat.py");
+const SCRIPT = appPath("scripts", "manim", "render_beat.py");
 /**
  * The venv interpreter. Note `python3` is deliberately NOT the default here (unlike
  * pdfPythonPipeline): on Windows `python3` is a Store alias stub that fails, and Manim needs
@@ -53,10 +54,10 @@ const SCRIPT = path.join(process.cwd(), "scripts", "manim", "render_beat.py");
 const PYTHON =
   process.env.MANIM_PYTHON_BINARY ??
   (process.platform === "win32"
-    ? path.join(process.cwd(), "scripts", "manim", ".venv", "Scripts", "python.exe")
-    : path.join(process.cwd(), "scripts", "manim", ".venv", "bin", "python"));
+    ? appPath("scripts", "manim", ".venv", "Scripts", "python.exe")
+    : appPath("scripts", "manim", ".venv", "bin", "python"));
 
-const CACHE_DIR = process.env.MANIM_CACHE_DIR ?? path.join(process.cwd(), ".manim-cache");
+const CACHE_DIR = process.env.MANIM_CACHE_DIR ?? appPath(".manim-cache");
 
 const RENDER_TIMEOUT_MS = Number(process.env.MANIM_RENDER_TIMEOUT_MS ?? 180_000);
 

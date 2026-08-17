@@ -11,6 +11,7 @@ import {
 } from "./drawSanitize";
 import { critiqueLayout, critiqueShapeRecognizability, critiqueForRefinement, reactAnimationVisionCriticEnabled, type BoardDefect } from "./reactAnimationVisionCritic";
 import { findAssets, loadAssets, assetRuntimeFor, assetPromptBlock } from "./assetCatalogue";
+import { appPath } from "./appPaths";
 
 /**
  * Second step of the two-step generate-then-render pipeline for ANIMATION beats, mirroring
@@ -583,7 +584,7 @@ function codeExcerpt(code: string): string {
 async function saveDebugSvgCandidate(beat: Beat, op: ReactAnimationOp, code: string, issue: string): Promise<void> {
   if (!DEBUG_SAVE_SVG) return;
   try {
-    const generatedDir = path.join(process.cwd(), "public", "generated");
+    const generatedDir = appPath("public", "generated");
     await mkdir(generatedDir, { recursive: true });
     await writeFile(
       path.join(generatedDir, "debug-latest-svg.json"),

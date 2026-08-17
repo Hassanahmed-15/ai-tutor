@@ -4,10 +4,11 @@ import os from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
 import type { PdfDetectedFigure, PdfTextSpan } from "./pdfLessonPipeline";
+import { appPath } from "./appPaths";
 
 const execFileAsync = promisify(execFile);
 const PYTHON = process.env.PDF_PYTHON_BINARY ?? "python3";
-const SCRIPT = path.join(process.cwd(), "scripts", "pdf_pipeline.py");
+const SCRIPT = appPath("scripts", "pdf_pipeline.py");
 const DPI = Math.max(300, Math.min(600, Number(process.env.PDF_RENDER_DPI ?? 400)));
 
 type RenderManifest = {

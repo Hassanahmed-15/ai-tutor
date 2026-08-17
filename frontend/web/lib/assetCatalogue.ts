@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { appPath } from "./appPaths";
 
 /*
  * Deliberately NOT marked `import "server-only"`, unlike manimRender.ts.
@@ -45,7 +46,7 @@ export type LoadedAsset = AssetMeta & {
   h: number;
 };
 
-const ASSET_DIR = path.join(process.cwd(), "assets");
+const ASSET_DIR = appPath("assets");
 
 let indexCache: AssetMeta[] | null = null;
 async function loadIndex(): Promise<AssetMeta[]> {
