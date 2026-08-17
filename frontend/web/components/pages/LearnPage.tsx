@@ -260,11 +260,21 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       setSourceDocument(data.sourceDocument);
 
       const focus = pageSelection.prompt.trim();
-      const seed = focus || (!topic && !input.trim() ? data.title : "");
-      if (seed) setInput(seed);
+      const subject = focus || topic.trim() || input.trim() || data.title || "this document";
       setPendingPdf(null);
       setDocumentPages([]);
       setUploadPhase("ready");
+
+      /**
+       * Go straight to building. The student has already said what they want twice — by choosing
+       * pages and by writing a prompt — so presenting an outline to approve asks a third time for
+       * information already given, and the outline is drafted from the document anyway.
+       *
+       * autoPlannedRef is set here so the upload-watching effect does not also fire; forceBuild
+       * skips the outline without depending on setUploadedFile having flushed first.
+       */
+      autoPlannedRef.current = true;
+      void startPlanning(subject, true);
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
       setUploadPhase("error");
@@ -607,7 +617,15 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   // main canvas (see the outline screen's `!outline` branch), never the side chat — the side
   // chat is reserved for what happens DURING/AFTER drafting starts (live reasoning, mid-build
   // scoping questions, freeform revise).
-  async function startPlanning(t: string) {
+  /**
+   * @param forceBuild Skip the outline step regardless of what state has flushed yet.
+   *
+   * shouldSkipPlanning() reads `uploadedFile`, which is set in the same tick as `uploadPhase`.
+   * A caller that has just parsed a document already KNOWS there is a source and should not
+   * depend on React having committed that state first — the failure mode is a document upload
+   * landing on the outline screen, which is exactly what it is meant to bypass.
+   */
+  async function startPlanning(t: string, forceBuild = false) {
     const trimmed = t.trim();
     if (!trimmed) return;
     setTopic(trimmed);
@@ -615,8 +633,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     setError(null);
     resetPlanning();
 
-    if (shouldSkipPlanning()) {
-      build(trimmed);
+    if (forceBuild || shouldSkipPlanning()) {
+      build(trimmed, undefined, forceBuild);
       return;
     }
 
@@ -715,7 +733,15 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     });
   }
 
-  async function build(t: string, approvedOutline?: PlanOutline) {
+  /**
+   * @param forceSkipSteering Bypass the build-time steering prompt.
+   *
+   * Same reason as startPlanning's forceBuild: shouldSkipPlanning() reads `uploadedFile`, which a
+   * caller that has just parsed a document sets in the same tick. Without this the steering panel
+   * opens and waits for a click that a document upload should never have been asked for — the
+   * lecture simply stops, with parse-pdf having returned 200 and nothing in the log.
+   */
+  async function build(t: string, approvedOutline?: PlanOutline, forceSkipSteering = false) {
     const trimmed = t.trim();
     if (!trimmed) return;
     buildAbortRef.current?.abort();
@@ -733,7 +759,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     // Structured uploads (PDF/PPT/task-folder/notes) must teach their source AS-IS — no planning and
     // no build-time steering choices. Only typed prompts get the steering step. This is why a PDF was
     // still showing "planning options" even though the outline step was already skipped.
-    if (!shouldSkipPlanning()) {
+    if (!forceSkipSteering && !shouldSkipPlanning()) {
       setBuildSteeringActive(true);
       try {
         await waitForBuildSteering(controller.signal);
