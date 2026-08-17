@@ -553,16 +553,44 @@ export async function POST(req: NextRequest) {
   }
 
   const pythonPages = await renderPdfWithPython(pythonBytes);
-  const pageNumbers = Array.from({ length: pdf.numPages }, (_, index) => index + 1);
+
+  /**
+   * Optional page scoping.
+   *
+   * `pages` is a comma-separated list of 1-based page numbers. When present, everything downstream
+   * — text extraction, figure cropping, vision calls — sees only those pages, so a student asking
+   * about the method section of a 40-page paper does not pay for the other 37 pages or get a
+   * lesson diluted by them.
+   *
+   * Absent or empty means the whole document, which is the existing behaviour and stays the
+   * default: every current caller is unaffected. Out-of-range and duplicate values are dropped
+   * rather than rejected, because a stale selection should degrade to "use everything" rather
+   * than fail an upload the student already waited for.
+   */
+  const requestedPages = String(formData.get("pages") ?? "")
+    .split(",")
+    .map((value) => Number.parseInt(value.trim(), 10))
+    .filter((value) => Number.isInteger(value) && value >= 1 && value <= pdf.numPages);
+  const scopedPages = [...new Set(requestedPages)].sort((a, b) => a - b);
+
+  const pageNumbers = scopedPages.length > 0
+    ? scopedPages
+    : Array.from({ length: pdf.numPages }, (_, index) => index + 1);
+  // The Python renderer always rasterises the whole document (one process is cheaper than one per
+  // page), so the scope has to be applied to its OUTPUT. Filtering here rather than only in
+  // `pageNumbers` matters: without it a scoped request would still run cropping and vision over
+  // every page, which is exactly the cost the selection exists to avoid.
   const renderedPages: RenderedPage[] = pythonPages?.length === pdf.numPages
-    ? pythonPages.map((page) => ({
-        pageNumber: page.pageNumber,
-        text: page.text,
-        blocks: structurePdfPage(page.spans, page.pageNumber, page.pageWidth, page.pageHeight),
-        png: page.png,
-        width: page.width,
-        height: page.height,
-      }))
+    ? pythonPages
+        .filter((page) => pageNumbers.includes(page.pageNumber))
+        .map((page) => ({
+          pageNumber: page.pageNumber,
+          text: page.text,
+          blocks: structurePdfPage(page.spans, page.pageNumber, page.pageWidth, page.pageHeight),
+          png: page.png,
+          width: page.width,
+          height: page.height,
+        }))
     : await mapLimit(pageNumbers, PAGE_CONCURRENCY, (pageNumber) => renderPage(pdf, pageNumber));
   const pageResults = await mapLimit(renderedPages, PAGE_CONCURRENCY, async (page) => {
     const pageBlocks = [...page.blocks];
@@ -733,6 +761,10 @@ export async function POST(req: NextRequest) {
     sourceDocument,
     title,
     pageCount: pdf.numPages,
+    // Which pages this parse actually covered. Equals every page unless the caller scoped the
+    // request; surfaced so the UI can say "built from pages 3, 7, 8" rather than implying the
+    // whole document was read.
+    pagesUsed: pageNumbers,
     blockCount: contentBlocks.length,
     assetCount: assets.length,
     figureCount: assets.length,
