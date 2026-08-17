@@ -12,6 +12,7 @@ import { TestResultsView } from "@/components/TestResultsView";
 import { TRACKS, type TrackMeta } from "@/components/hud/tracks";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
+import { PageSelector, type DocumentPage, type PageSelection } from "@/components/upload/PageSelector";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
@@ -142,7 +143,13 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
   const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
-  const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "ready" | "error">("idle");
+  const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
+  // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
+  const [pendingPdf, setPendingPdf] = useState<File | null>(null);
+  const [documentPages, setDocumentPages] = useState<DocumentPage[]>([]);
+  const [pagesLoading, setPagesLoading] = useState(false);
+  const [pagesUnavailable, setPagesUnavailable] = useState<string | null>(null);
+  const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "" });
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
@@ -219,6 +226,51 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
 
   /** The file pipeline itself, separated from the input event so a file handed over from the
    *  front page goes through exactly the same parsing, limits and error handling. */
+  /**
+   * Parse the pages the student chose, then continue into planning.
+   *
+   * Called from the selector's confirm button. An empty selection means the whole document, which
+   * is exactly what parse-pdf does when `pages` is absent — so "Use all pages" and the old
+   * behaviour are literally the same request.
+   *
+   * The student's prompt is folded into the topic rather than sent as a separate field: the
+   * planning pipeline already takes a topic string, and threading a second "focus" parameter
+   * through plan and generation would change several contracts for something a sentence conveys.
+   */
+  async function parseSelectedPages() {
+    const file = pendingPdf;
+    if (!file) return;
+    setUploadPhase("reading");
+    setUploadError(null);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      if (pageSelection.pages.length > 0) fd.append("pages", pageSelection.pages.join(","));
+      const res = await fetch("/api/parse-pdf", { method: "POST", body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.sourceDocument) {
+        throw new Error(data.error || "Couldn't read the PDF. Make sure it's a valid .pdf file.");
+      }
+      setUploadedFile({
+        name: file.name,
+        slideCount: Array.isArray(data.pagesUsed) ? data.pagesUsed.length : data.pageCount ?? 0,
+        kind: "pdf",
+        assetCount: data.assetCount ?? 0,
+      });
+      setSourceDocument(data.sourceDocument);
+
+      const focus = pageSelection.prompt.trim();
+      const seed = focus || (!topic && !input.trim() ? data.title : "");
+      if (seed) setInput(seed);
+      setPendingPdf(null);
+      setDocumentPages([]);
+      setUploadPhase("ready");
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "Could not read that file.");
+      setUploadPhase("error");
+    }
+  }
+
   async function ingestFile(file: File) {
     setUploadPhase("reading");
     setUploadError(null);
@@ -251,19 +303,32 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       }
 
       if (file.name.toLowerCase().endsWith(".pdf") || file.type === "application/pdf") {
-        const fd = new FormData();
-        fd.append("file", file);
-        const res = await fetch("/api/parse-pdf", { method: "POST", body: fd });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.sourceDocument) {
-          throw new Error(data.error || "Couldn't read the PDF. Make sure it's a valid .pdf file.");
+        /**
+         * A PDF stops here to let the student choose pages, instead of parsing immediately.
+         *
+         * Thumbnails are cheap (~0.3s, a few hundred KB) and the full parse is not — 25s and real
+         * money for a 7-page paper, far more for a textbook chapter. Rendering previews first means
+         * the expensive pass runs once, over the pages the student actually wants, rather than over
+         * everything and then again if they narrow it down.
+         *
+         * If previews are unavailable — no Python renderer on this server — the selector says so
+         * and parsing the whole document remains one click away, which is the old behaviour.
+         */
+        setPendingPdf(file);
+        setPagesLoading(true);
+        setUploadPhase("choosing");
+        const pageForm = new FormData();
+        pageForm.append("file", file);
+        const pageRes = await fetch("/api/document-pages", { method: "POST", body: pageForm });
+        const pageData = await pageRes.json().catch(() => ({}));
+        setPagesLoading(false);
+        if (pageData?.kind === "pages" && Array.isArray(pageData.pages)) {
+          setDocumentPages(pageData.pages);
+          setPagesUnavailable(null);
+        } else {
+          setDocumentPages([]);
+          setPagesUnavailable(pageData?.reason ?? "Page previews are unavailable.");
         }
-        setUploadedFile({ name: file.name, slideCount: data.pageCount ?? 0, kind: "pdf", assetCount: data.assetCount ?? 0 });
-        setSourceDocument(data.sourceDocument);
-        if (!topic && !input.trim() && data.title) {
-          setInput(data.title);
-        }
-        setUploadPhase("ready");
         return;
       }
 
@@ -869,6 +934,88 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     setInput("");
     setError(null);
     setPhase("ask");
+  }
+
+  /**
+   * Page selection is its own full screen rather than a panel inside the upload box.
+   *
+   * Thumbnails need room to be recognisable — a page shrunk into a sidebar card is a grey
+   * rectangle — and this is a real decision point in the flow, not a setting. It sits before the
+   * outline step and after upload, so it reads as "which parts of this document?" followed by
+   * "here is the plan".
+   */
+  if (uploadPhase === "choosing") {
+    return (
+      <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
+        <header
+          className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b px-5 py-3"
+          style={{ borderColor: "var(--hud-line)" }}
+        >
+          <div className="min-w-0">
+            <p className="text-[0.72rem] text-[var(--hud-text-faint)]">Uploaded</p>
+            <h1 className="truncate text-[0.95rem] font-medium">{pendingPdf?.name ?? "Document"}</h1>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                setPendingPdf(null);
+                setDocumentPages([]);
+                setUploadPhase("idle");
+              }}
+              className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={parseSelectedPages}
+              disabled={pagesLoading}
+              className="hud-btn-primary px-6 py-2.5 text-sm disabled:opacity-40"
+            >
+              {pageSelection.pages.length > 0
+                ? `Use ${pageSelection.pages.length} page${pageSelection.pages.length === 1 ? "" : "s"}`
+                : "Use all pages"}
+            </button>
+          </div>
+        </header>
+
+        <div className="grid min-h-0 flex-1 lg:grid-cols-[1fr_26rem]">
+          {/* A large preview of the first selected page, so the grid stays scannable while the
+              student can still read what they picked. */}
+          <section className="hidden min-h-0 items-center justify-center overflow-hidden p-6 lg:flex">
+            {(() => {
+              const focus = pageSelection.pages[0] ?? documentPages[0]?.pageNumber;
+              const page = documentPages.find((p) => p.pageNumber === focus);
+              if (!page) {
+                return (
+                  <p className="max-w-sm text-center text-[0.9rem] leading-relaxed text-[var(--hud-text-dim)]">
+                    Choose the pages Aria should teach from, or continue to use the whole document.
+                  </p>
+                );
+              }
+              return (
+                // eslint-disable-next-line @next/next/no-img-element -- data: URI, no host to optimise
+                <img
+                  src={page.thumbnail}
+                  alt={`Page ${page.pageNumber}`}
+                  className="max-h-full max-w-full rounded-[var(--radius)] border bg-white object-contain"
+                  style={{ borderColor: "var(--hud-line)" }}
+                />
+              );
+            })()}
+          </section>
+
+          <div className="min-h-0 border-l" style={{ borderColor: "var(--hud-line)" }}>
+            <PageSelector
+              pages={documentPages}
+              loading={pagesLoading}
+              unavailableReason={pagesUnavailable}
+              label="pages"
+              onChange={setPageSelection}
+            />
+          </div>
+        </div>
+      </main>
+    );
   }
 
   return (
