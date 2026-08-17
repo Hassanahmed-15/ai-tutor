@@ -530,18 +530,40 @@ export async function POST(req: NextRequest) {
   let pdf: Awaited<ReturnType<typeof pdfjs.getDocument>["promise"]>;
   try {
     const buffer = await fileObj.arrayBuffer();
-    uploadedBytes = new Uint8Array(buffer);
-    pythonBytes = new Uint8Array(uploadedBytes);
+
+    /**
+     * Two INDEPENDENT copies, not two views of one buffer.
+     *
+     * `pdfjs.getDocument({ data })` takes ownership of the array it is given and detaches the
+     * underlying ArrayBuffer once parsing begins. `new Uint8Array(uploadedBytes)` copies the
+     * elements but, when both are built from the same ArrayBuffer, the detach still empties what
+     * the Python pipeline later reads — so rendering silently receives zero bytes.
+     *
+     * Slicing the ArrayBuffer gives each consumer its own memory. A PDF here is at most 20 MB, so
+     * the duplicate is cheap next to a parse that already costs tens of seconds.
+     */
+    uploadedBytes = new Uint8Array(buffer.slice(0));
+    pythonBytes = new Uint8Array(buffer.slice(0));
     pdf = await pdfjs.getDocument({ data: uploadedBytes, verbosity: 0 }).promise;
-  } catch {
-    return NextResponse.json({ error: "Could not read this PDF. Make sure the file is valid." }, { status: 422 });
+  } catch (error) {
+    // Report WHY. A bare catch here turned every distinct failure — an encrypted file, a truncated
+    // upload, a detached buffer — into the same "make sure the file is valid", which is unhelpful
+    // to the student and actively misleading during debugging, because the file usually IS valid.
+    const detail = error instanceof Error ? error.message : "";
+    console.error(`[parse-pdf] could not open document: ${detail || "unknown error"}`);
+    const encrypted = /password|encrypt/i.test(detail);
+    return NextResponse.json(
+      {
+        error: encrypted
+          ? "This PDF is password-protected. Remove the password and upload it again."
+          : `Could not read this PDF${detail ? `: ${detail}` : ". Make sure the file is valid."}`,
+      },
+      { status: 422 },
+    );
   }
 
   if (pdf.numPages < 1) {
     return NextResponse.json({ error: "No pages found in the PDF." }, { status: 422 });
-  }
-  if (pdf.numPages > MAX_PAGES) {
-    return NextResponse.json({ error: `PDF has ${pdf.numPages} pages; the current limit is ${MAX_PAGES}.` }, { status: 413 });
   }
 
   let metadataTitle = "";
@@ -576,6 +598,25 @@ export async function POST(req: NextRequest) {
   const pageNumbers = scopedPages.length > 0
     ? scopedPages
     : Array.from({ length: pdf.numPages }, (_, index) => index + 1);
+
+  /**
+   * The limit applies to pages actually PROCESSED, not to the document's length.
+   *
+   * It used to reject the upload outright on numPages, which made a 108-page book unusable even
+   * to ask about three of its pages — and page selection now exists precisely so that a long
+   * document can be used. What the limit really protects is cost and runtime: every processed page
+   * is rendered, cropped and sent to a vision model. Scoped requests are bounded by the selection,
+   * so only an unscoped long document needs refusing, and the message now says how to proceed
+   * instead of just saying no.
+   */
+  if (pageNumbers.length > MAX_PAGES) {
+    return NextResponse.json(
+      {
+        error: `This PDF has ${pdf.numPages} pages, and up to ${MAX_PAGES} can be processed at once. Select the pages you want and try again.`,
+      },
+      { status: 413 },
+    );
+  }
   // The Python renderer always rasterises the whole document (one process is cheaper than one per
   // page), so the scope has to be applied to its OUTPUT. Filtering here rather than only in
   // `pageNumbers` matters: without it a scoped request would still run cropping and vision over
