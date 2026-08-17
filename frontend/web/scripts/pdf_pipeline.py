@@ -336,7 +336,14 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     if args.command == "render":
-        render_pdf(args.input, args.output_dir, int(clamp(args.dpi, 300, 600)))
+        # The floor is 24, not 300. The high floor existed to protect figure-cropping quality —
+        # cropping a diagram out of a low-resolution page produces a blurry asset — but the same
+        # renderer now also serves page THUMBNAILS, which want the opposite: ~40 DPI, a few KB, and
+        # a tenth of the work. Silently clamping 40 up to 300 made every thumbnail a 1.2 MB
+        # full-resolution page.
+        #
+        # Callers that need crop quality pass the pipeline default (400) and are unaffected.
+        render_pdf(args.input, args.output_dir, int(clamp(args.dpi, 24, 600)))
     else:
         crop_regions(args.page, args.regions, args.output_dir)
 

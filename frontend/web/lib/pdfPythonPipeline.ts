@@ -63,13 +63,22 @@ async function runPython(args: string[]): Promise<void> {
   });
 }
 
-export async function renderPdfWithPython(pdfBytes: Uint8Array): Promise<PythonRenderedPage[] | null> {
+/**
+ * @param dpi Render resolution. Defaults to the full-quality DPI used by the lesson pipeline.
+ *   Thumbnail callers pass something much lower — rendering small is far cheaper than rendering
+ *   at 400 DPI and downscaling afterwards, and it avoids pulling in a native image library just
+ *   to resize (which is its own deployment risk, as @tailwindcss/oxide demonstrated).
+ */
+export async function renderPdfWithPython(
+  pdfBytes: Uint8Array,
+  dpi: number = DPI,
+): Promise<PythonRenderedPage[] | null> {
   if (process.env.PDF_PYTHON_PIPELINE === "0") return null;
   const directory = await mkdtemp(path.join(os.tmpdir(), "aria-pdf-render-"));
   try {
     const inputPath = path.join(directory, "input.pdf");
     await writeFile(inputPath, pdfBytes);
-    await runPython(["render", "--input", inputPath, "--output-dir", directory, "--dpi", String(DPI)]);
+    await runPython(["render", "--input", inputPath, "--output-dir", directory, "--dpi", String(dpi)]);
     const manifest = JSON.parse(await readFile(path.join(directory, "manifest.json"), "utf8")) as RenderManifest;
     const pages = await Promise.all((manifest.pages ?? []).map(async (page, index) => {
       if (!page.path) throw new Error(`Missing rendered path for page ${index + 1}.`);
