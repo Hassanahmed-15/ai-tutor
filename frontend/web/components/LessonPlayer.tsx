@@ -599,14 +599,55 @@ export function LessonPlayer({
   // it does not advance the lecture. Only a correct answer (or explicitly giving up after
   // MAX_ATTEMPTS) moves on. This is the actual difference between a teaching checkpoint and
   // a quiz popup that continues regardless of what you typed.
-  function handleCheckpointAnswer(answer: string) {
-    const result = checkAnswer(beat, answer);
-    setCheckpointResult(result);
-    if (result?.correct) {
+  /**
+   * Grade a checkpoint answer on MEANING, not wording.
+   *
+   * The keyword check runs first because it is instant and free: when a student's answer happens to
+   * contain the expected terms, there is nothing to deliberate about. But it can only ever say
+   * "yes" — a student who writes "the plant makes sugar" when the keyword is "glucose" is right,
+   * and substring matching calls that wrong. Marking a correct answer wrong is the single most
+   * damaging thing a tutor can do, so every keyword MISS is escalated to the rubric grader that
+   * already exists at /api/grade-answer and was never wired up.
+   *
+   * If the grader is unavailable the keyword verdict stands, so a network failure degrades to the
+   * old behaviour instead of blocking the lesson.
+   */
+  async function handleCheckpointAnswer(answer: string) {
+    const keywordResult = checkAnswer(beat, answer);
+    if (keywordResult?.correct) {
+      setCheckpointResult(keywordResult);
       window.setTimeout(advanceFromCheckpoint, 2200);
-    } else {
+      return;
+    }
+
+    setCheckpointResult({ correct: false, feedback: "Checking that…" });
+    try {
+      const res = await fetch("/api/grade-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: beat.checkpoint?.prompt ?? beat.title,
+          expected: beat.checkpoint?.revealAnswer ?? "",
+          answer,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && typeof data.correct === "boolean") {
+        setCheckpointResult({
+          correct: data.correct,
+          feedback: data.feedback || (data.correct ? beat.checkpoint?.correctFeedback ?? "That's right." : beat.checkpoint?.hintFeedback ?? ""),
+        });
+        if (data.correct) {
+          window.setTimeout(advanceFromCheckpoint, 2200);
+          return;
+        }
+        setCheckpointAttempts((n) => n + 1);
+        return;
+      }
+      throw new Error("grader unavailable");
+    } catch {
+      setCheckpointResult(keywordResult);
       setCheckpointAttempts((n) => n + 1);
-      // stays on the checkpoint — waitingOnCheckpoint remains true, input re-opens for retry
     }
   }
 

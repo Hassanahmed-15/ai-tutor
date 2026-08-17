@@ -68,13 +68,30 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             <label htmlFor="brief" className="sr-only">
               What should Aria teach?
             </label>
-            <input
+            {/* A textarea, not an input, so a long brief stays visible.
+                A single-line input scrolls the beginning of the text out of sight the moment it
+                overflows — a student writing a real question could not read back what they had
+                written. This grows to a cap and then scrolls. Enter still submits (Shift+Enter for
+                a newline), so the quick path is unchanged. */}
+            <textarea
               id="brief"
               value={topic}
-              onChange={(e) => setTopic(e.target.value)}
+              onChange={(e) => {
+                setTopic(e.target.value);
+                const el = e.currentTarget;
+                el.style.height = "auto";
+                el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  start();
+                }
+              }}
+              rows={1}
               placeholder="Explain the Krebs cycle…"
               autoFocus
-              className="min-w-0 flex-1 bg-transparent px-3 py-2 text-[0.98rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
+              className="min-w-0 flex-1 resize-none self-center bg-transparent px-3 py-2 text-[0.98rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
             />
 
             <input

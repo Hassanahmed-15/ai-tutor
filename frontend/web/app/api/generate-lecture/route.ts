@@ -93,6 +93,29 @@ const DEEPEN_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTUR
 const PDF_BEATS_PER_GENERATION = Math.max(1, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 1)));
 const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
 
+/**
+ * Cache identity must include the complete quality profile, not only the lecture-writing model.
+ * Local and deployed runs commonly use different runtime env files; omitting these fields made a
+ * cached lecture survive a model/feature change and look like the deployment was running old code.
+ */
+const GENERATION_PROFILE: Record<string, string | number | boolean> = {
+  animationEnabled: REACT_ANIMATIONS_ENABLED,
+  animationModel: process.env.OPENAI_ANIMATION_MODEL ?? MODEL,
+  animationAttempts: Math.max(1, Math.min(3, Number(process.env.OPENAI_ANIMATION_ATTEMPTS ?? 2))),
+  animationMaxTokens: Math.max(3_000, Math.min(20_000, Number(process.env.OPENAI_ANIMATION_MAX_TOKENS ?? 12_000))),
+  animationReasoning: process.env.OPENAI_ANIMATION_REASONING_EFFORT ?? "low",
+  animationRefineRounds: Math.max(0, Math.min(4, Number(process.env.REACT_REFINE_ROUNDS ?? 3))),
+  blackboardEnabled: BLACKBOARD_GEN_ENABLED,
+  blackboardModel: process.env.OPENAI_BLACKBOARD_MODEL ?? MODEL,
+  boardDirector: process.env.BOARD_DIRECTOR === "1",
+  imageEnabled: IMAGE_GENERATION_ENABLED,
+  imageModel: process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1",
+  imageQuality: process.env.OPENAI_IMAGE_QUALITY ?? "medium",
+  manimEnabled: MANIM_RENDER_ENABLED,
+  referenceImagesEnabled: REAL_REFERENCE_IMAGES_ENABLED,
+  visionModel: process.env.OPENAI_VISION_MODEL ?? "gpt-4o",
+};
+
 // gpt-4o pricing for the text-generation step (as of 2025, source: openai.com/api/pricing).
 const TEXT_INPUT_PRICE  = 2.50 / 1_000_000;  // $2.50 per M input tokens
 const TEXT_OUTPUT_PRICE = 10.0 / 1_000_000;  // $10.00 per M output tokens
@@ -721,6 +744,7 @@ export async function POST(req: Request) {
     slideContext: input.slideContext,
     sourceDocument: input.sourceDocument,
     model: MODEL,
+    generationProfile: GENERATION_PROFILE,
   });
   if (!refresh) {
     const cached = await readCachedLecture(cacheKey);

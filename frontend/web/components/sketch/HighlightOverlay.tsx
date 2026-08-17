@@ -38,7 +38,7 @@ type Props = {
 };
 
 // Deliberately light + no darkening blend, so the marker TINTS the text without ever obscuring it.
-const MARKER = "rgba(250, 204, 21, 0.28)";
+const MARKER = "rgba(250, 204, 21, 0.45)";
 const MARKER_WIDTH = 22;
 
 /** The most specific text-bearing DOM element sitting under a screen point (skipping our own canvas). */
@@ -77,6 +77,19 @@ export function HighlightOverlay({ strokes, active, onCommitStroke, onHighlight,
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.restore();
+    /**
+     * `multiply` is what makes this a HIGHLIGHTER rather than paint.
+     *
+     * With the default source-over, every overlapping segment of a sweep composites its own alpha
+     * on top of the last — and a highlighter sweep overlaps itself constantly, so the marks
+     * compounded to near-opaque and buried the text underneath. Multiply darkens toward the marker
+     * colour instead of accumulating coverage, so the words stay readable no matter how many times
+     * a stroke crosses itself.
+     *
+     * The alpha is also raised (0.28 -> 0.45): under multiply a lighter value barely registers, and
+     * a highlight that cannot be seen is not a highlight.
+     */
+    ctx.globalCompositeOperation = "multiply";
     ctx.strokeStyle = MARKER;
     ctx.lineWidth = MARKER_WIDTH;
     ctx.lineCap = "round";
@@ -140,6 +153,9 @@ export function HighlightOverlay({ strokes, active, onCommitStroke, onHighlight,
     drawing.current = true;
     currentStroke.current = [norm(e)];
     const rect = e.currentTarget.getBoundingClientRect();
+    // Match the repaint path — without this the stroke being drawn looks opaque and only
+    // becomes translucent once the pointer lifts and repaint() runs.
+    ctx.globalCompositeOperation = "multiply";
     ctx.strokeStyle = MARKER;
     ctx.lineWidth = MARKER_WIDTH;
     ctx.beginPath();

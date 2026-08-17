@@ -183,17 +183,26 @@ export function PageSelector({
         <label htmlFor="page-prompt" className="sr-only">
           What should Aria explain about the selected {label}?
         </label>
+        {/* Grows with the text instead of hiding it.
+            A fixed 2-row box silently clipped anything longer, so a student writing a real
+            question could not see what they had typed. The height is driven off scrollHeight and
+            capped so the grid above never disappears. */}
         <textarea
           id="page-prompt"
           value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          onChange={(e) => {
+            setPrompt(e.target.value);
+            const el = e.currentTarget;
+            el.style.height = "auto";
+            el.style.height = `${Math.min(el.scrollHeight, 180)}px`;
+          }}
           rows={2}
           placeholder={
             selected.length > 0
               ? `What should Aria explain about ${selected.length === 1 ? "this page" : `these ${label}`}?`
               : `Ask about specific ${label}…`
           }
-          className="w-full resize-none rounded-[var(--radius)] border bg-transparent px-3 py-2 text-[0.85rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1"
+          className="max-h-[180px] w-full resize-none overflow-y-auto rounded-[var(--radius)] border bg-transparent px-3 py-2 text-[0.85rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1"
           style={{ borderColor: "var(--hud-line)" }}
         />
       </div>

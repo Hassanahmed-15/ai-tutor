@@ -1053,6 +1053,11 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
           status={buildStatus}
           steeringActive={buildSteeringActive}
           choices={buildSteeringChoices}
+          // The planner's own questions, grounded in this topic and any uploaded document.
+          questions={initialPlanningQuestions.map((q) => ({
+            question: q.question,
+            options: q.options.map((o) => ({ label: o.label, note: o.instruction })),
+          }))}
           onChoose={chooseBuildSteering}
           onContinue={continueBuildSteering}
         />
@@ -1415,6 +1420,7 @@ function BuildingState({
   status,
   steeringActive,
   choices,
+  questions,
   onChoose,
   onContinue,
 }: {
@@ -1423,9 +1429,24 @@ function BuildingState({
   status: string;
   steeringActive: boolean;
   choices: string[];
+  /** Topic-specific questions from the planner. Empty falls back to the generic set. */
+  questions?: { question: string; options: { label: string; note: string }[] }[];
   onChoose: (label: string, note: string) => void;
   onContinue: () => void;
 }) {
+  /**
+   * Prefer the planner's questions over the hardcoded ones.
+   *
+   * BUILD_STEERING_QUESTIONS asks the same three things about every subject — "should I spend
+   * extra time on the mechanism?" is a reasonable question about enzyme kinetics and a meaningless
+   * one about the causes of the French Revolution. /api/plan-lesson already generates questions
+   * grounded in the actual topic (and in an uploaded document, when there is one); they were
+   * fetched but never reached this screen, so the generic set was what students always saw.
+   *
+   * The hardcoded set remains as a fallback for when planning is skipped or returns nothing —
+   * asking something generic beats asking nothing.
+   */
+  const steeringQuestions = questions && questions.length > 0 ? questions : BUILD_STEERING_QUESTIONS;
   return (
     <div className="relative z-10 grid h-screen place-items-center p-6 text-center">
       <HudCorners />
@@ -1451,7 +1472,7 @@ function BuildingState({
               Pick anything that matters. Then continue and Aria will build the lesson with that direction.
             </p>
             <div className="mt-4 space-y-4">
-              {BUILD_STEERING_QUESTIONS.map((q) => (
+              {steeringQuestions.map((q) => (
                 <div key={q.question}>
                   <p className="text-sm font-semibold text-[var(--hud-text)]">{q.question}</p>
                   <div className="mt-2 flex flex-wrap gap-2">
