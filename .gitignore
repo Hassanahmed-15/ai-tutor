@@ -66,3 +66,6 @@ frontend/web/.codex-dev.*.log
 # The generated frontend/web/assets/ directory IS committed — it is the artwork the sandbox
 # places, and rebuilding it depends on an upstream repo that can change under you.
 frontend/web/.asset-build/
+
+# Local database + auth secrets — never committed.
+frontend/web/drizzle/
