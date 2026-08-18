@@ -26,6 +26,37 @@ export async function findUserByEmail(email: string): Promise<UserDoc | null> {
   return resources[0] ?? null;
 }
 
+/** Same cross-partition shape as the email lookup, and unavoidable for the same reason. */
+export async function findUserByUsername(username: string): Promise<UserDoc | null> {
+  const { resources } = await users().items
+    .query<UserDoc>({
+      query: "SELECT TOP 1 * FROM c WHERE c.username = @u",
+      parameters: [{ name: "@u", value: username }],
+    })
+    .fetchAll();
+  return resources[0] ?? null;
+}
+
+/**
+ * Usernames are lowercased and restricted to letters, digits, underscore and hyphen.
+ *
+ * Case-folding matters for more than tidiness: without it "Hassan" and "hassan" are different
+ * rows, so the uniqueness check passes and two people end up with names that look identical
+ * everywhere they are displayed.
+ */
+const USERNAME_RE = /^[a-z0-9_-]{3,24}$/;
+
+export function normaliseUsername(raw: unknown): string {
+  return typeof raw === "string" ? raw.trim().toLowerCase() : "";
+}
+
+export function usernameError(username: string): string | null {
+  if (!USERNAME_RE.test(username)) {
+    return "Usernames are 3–24 characters, using letters, numbers, hyphen or underscore.";
+  }
+  return null;
+}
+
 export async function POST(request: Request) {
   if (!databaseConfigured()) {
     return NextResponse.json({ error: "Accounts are unavailable — no database is configured." }, { status: 503 });
@@ -35,9 +66,14 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body.password === "string" ? body.password : "";
+  const username = normaliseUsername(body.username);
 
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
+  }
+  const usernameProblem = usernameError(username);
+  if (usernameProblem) {
+    return NextResponse.json({ error: usernameProblem }, { status: 400 });
   }
   if (password.length < MIN_PASSWORD) {
     return NextResponse.json(
@@ -54,10 +90,14 @@ export async function POST(request: Request) {
     // cannot be used to enumerate accounts.
     return NextResponse.json({ error: "That email is already registered. Try signing in." }, { status: 409 });
   }
+  if (await findUserByUsername(username)) {
+    return NextResponse.json({ error: "That username is taken. Try another." }, { status: 409 });
+  }
 
   const doc: UserDoc = {
     id: randomUUID(),
     email,
+    username,
     passwordHash: await hashPassword(password),
     createdAt: new Date().toISOString(),
     onboardedAt: null,

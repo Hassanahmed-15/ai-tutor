@@ -16,6 +16,7 @@ import { ArrowRight, Loader2 } from "lucide-react";
 export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void }) {
   const [mode, setMode] = useState<"login" | "signup">("signup");
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -31,7 +32,9 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void })
       const res = await fetch(`/api/auth/${mode}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        // Username only exists on signup — sending it to login would be meaningless, since login
+        // identifies by email.
+        body: JSON.stringify(isSignup ? { email, username, password } : { email, password }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Something went wrong. Try again.");
@@ -67,6 +70,30 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void })
               style={{ borderColor: "var(--hud-line)" }}
             />
           </div>
+          {/* Signup only. The field is unmounted rather than hidden on login so browsers do not
+              offer to autofill a username into a form that would ignore it. */}
+          {isSignup && (
+            <div>
+              <label htmlFor="username" className="sr-only">Username</label>
+              <input
+                id="username"
+                type="text"
+                required
+                autoComplete="username"
+                minLength={3}
+                maxLength={24}
+                // Mirrors the server rule so the browser catches it before a round trip; the
+                // server still validates, since this is only a hint.
+                pattern="[A-Za-z0-9_\-]{3,24}"
+                title="3–24 characters: letters, numbers, hyphen or underscore."
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                className="w-full rounded-[var(--radius)] border bg-[var(--hud-surface)] px-4 py-3 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1 focus:ring-[var(--hud-cyan)]"
+                style={{ borderColor: "var(--hud-line)" }}
+              />
+            </div>
+          )}
           <div>
             <label htmlFor="password" className="sr-only">Password</label>
             <input

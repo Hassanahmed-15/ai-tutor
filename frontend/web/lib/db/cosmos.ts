@@ -25,9 +25,40 @@ const DATABASE_ID = "aria";
 export const USERS_CONTAINER = "users";
 export const SESSIONS_CONTAINER = "sessions";
 
+/**
+ * The one accessibility profile a learner is currently using.
+ *
+ * SINGLE VALUE, NOT A SET OF FLAGS. Each of these drives a genuinely different lesson: the blind
+ * profile narrates every drawing and is keyboard-driven, ADHD watches attention and pauses,
+ * dyslexia rewrites dense text into short spoken lines. Those are not layers that compose — a
+ * lecture cannot be simultaneously audio-only and caption-first — so the model has to hold one at
+ * a time, and letting someone tick several would promise a combination the player cannot deliver.
+ *
+ * It is switchable from settings precisely because it is one choice: someone with low vision AND
+ * ADHD picks whichever matters more today, and changes it whenever that shifts.
+ */
+export type AccessibilityProfile =
+  | "none"
+  | "blind"
+  | "low-vision"
+  | "adhd"
+  | "dyslexia"
+  | "deaf";
+
+export const ACCESSIBILITY_PROFILES: AccessibilityProfile[] = [
+  "none",
+  "blind",
+  "low-vision",
+  "adhd",
+  "dyslexia",
+  "deaf",
+];
+
 export type UserDoc = {
   id: string;
   email: string;
+  /** Unique, lowercase. The public name; `displayName` is what Aria says out loud. */
+  username: string;
   passwordHash: string;
   createdAt: string;
   onboardedAt: string | null;
@@ -35,10 +66,16 @@ export type UserDoc = {
   profile: {
     displayName: string | null;
     age: number | null;
-    vision: string | null;
-    adhd: boolean | null;
-    dyslexia: boolean | null;
-    hearing: boolean | null;
+    /**
+     * The chosen profile. Null means onboarding has not run yet, which is NOT the same as "none":
+     * "none" is someone who actively said they need no accommodation.
+     */
+    accessibility: AccessibilityProfile | null;
+    /**
+     * Independent preferences, kept as separate flags on purpose — unlike the profile above, these
+     * genuinely do compose. Someone using the ADHD profile may also want captions and a slower
+     * pace, and none of the three contradict each other.
+     */
     reducedMotion: boolean | null;
     captions: boolean | null;
     slowerPace: boolean | null;
@@ -107,4 +144,67 @@ export async function ensureContainers(): Promise<void> {
     defaultTtl: -1,
   });
   ensured = true;
+}
+
+/**
+ * Bring a document written before usernames and the single-profile model up to the current shape.
+ *
+ * Applied on read rather than as a bulk migration script: Cosmos has no schema to alter, accounts
+ * are few, and a lazy upgrade cannot half-finish the way a batch job interrupted midway can.
+ *
+ * Two things need repairing, both of which otherwise surface as a confusing failure much later:
+ *
+ *  1. NO USERNAME. Derived from the email's local part, then scrubbed to the allowed alphabet —
+ *     `a.b+c@x.com` would otherwise yield "a.b+c", which fails validation, so the first settings
+ *     save a legacy user attempted would be rejected over a field they never filled in.
+ *
+ *  2. THE OLD PROFILE SHAPE (`vision`/`adhd`/`dyslexia`/`hearing`). Collapsed into the single
+ *     `accessibility` value, preferring the more specific accommodation when several were ticked,
+ *     because that is the one whose absence breaks the lesson hardest. The dead keys are dropped
+ *     rather than left in place — carrying two sources of truth for the same question is how the
+ *     wrong one eventually gets read.
+ */
+type LegacyProfile = {
+  vision?: string | null;
+  adhd?: boolean | null;
+  dyslexia?: boolean | null;
+  hearing?: boolean | null;
+};
+
+export function migrateUserDoc(raw: UserDoc): { doc: UserDoc; changed: boolean } {
+  let changed = false;
+  const doc = { ...raw };
+
+  if (!doc.username) {
+    const base = doc.email.split("@")[0].toLowerCase().replace(/[^a-z0-9_-]/g, "");
+    // Pad a too-short result so it satisfies the 3-character minimum.
+    doc.username = (base.length >= 3 ? base : `user-${base}`).slice(0, 24);
+    changed = true;
+  }
+
+  const legacy = doc.profile as (typeof doc.profile & LegacyProfile) | null;
+  if (legacy && ("vision" in legacy || "adhd" in legacy || "dyslexia" in legacy || "hearing" in legacy)) {
+    const { vision, adhd, dyslexia, hearing, ...rest } = legacy;
+    doc.profile = {
+      ...rest,
+      accessibility:
+        rest.accessibility ??
+        (vision === "blind"
+          ? "blind"
+          : vision === "low-vision"
+            ? "low-vision"
+            : hearing === true
+              ? "deaf"
+              : dyslexia === true
+                ? "dyslexia"
+                : adhd === true
+                  ? "adhd"
+                  : vision === "normal"
+                    ? "none"
+                    : null),
+    };
+    changed = true;
+  }
+
+  return { doc, changed };
 }

@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, FileUp, Paperclip, X } from "lucide-react";
+import { ArrowRight, FileUp, Paperclip, Settings, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
+import { useAuth } from "@/components/auth/AuthGate";
 
 /**
  * The front page. One panel, centred, and nothing else.
@@ -23,6 +24,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const { user, profile, openSettings } = useAuth();
 
   const canStart = topic.trim().length > 0 || file !== null;
 
@@ -36,6 +38,21 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
 
   return (
     <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6">
+      {/* The only chrome on the page, and deliberately in the corner: the door to the product is
+          the field below, and an account control should never compete with it. Absent entirely
+          when auth is disabled, so the no-database path still renders exactly as before. */}
+      {user && (
+        <button
+          type="button"
+          onClick={openSettings}
+          className="absolute right-5 top-5 z-20 inline-flex items-center gap-2 rounded-[var(--radius)] border px-3 py-1.5 text-[0.8rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+          style={{ borderColor: "var(--hud-line)", background: "var(--hud-surface)" }}
+        >
+          <Settings aria-hidden="true" size={14} strokeWidth={1.8} />
+          <span className="max-w-[10rem] truncate">{user.username}</span>
+        </button>
+      )}
+
       <div className="relative z-10 w-full max-w-xl text-center">
         <h1 className="hud-materialize font-display text-[3.6rem] leading-none tracking-[-0.04em] text-[var(--hud-text)] sm:text-[4.6rem]">
           Aria
@@ -44,8 +61,18 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           className="hud-materialize mt-3 text-[0.95rem] text-[var(--hud-text-dim)]"
           style={{ animationDelay: "0.08s" }}
         >
+          {/* The tagline is spoken TO Aria, so the learner's name cannot be folded into it — it
+              gets its own line above. */}
           Teach me anything.
         </p>
+        {profile?.displayName && (
+          <p
+            className="hud-materialize mt-1 text-[0.82rem] text-[var(--hud-text-faint)]"
+            style={{ animationDelay: "0.12s" }}
+          >
+            Welcome back, {profile.displayName}.
+          </p>
+        )}
 
         <form
           className="hud-materialize mt-10"
