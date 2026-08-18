@@ -503,9 +503,19 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
           (rawLecture as Record<string, unknown>).beats = beats;
         }
       }
-      if (!input.sourceDocument && (beats.length < 10 || beats.length > 12)) {
-        throw new Error(`Model returned ${beats.length} beats; prompted lessons must contain 10-12 complete beats.`);
-      }
+      /**
+       * No beat-count rejection.
+       *
+       * This used to throw unless a prompted lesson landed in 10-12 beats, which meant a genuinely
+       * small subject — one with five or six things worth saying — failed generation outright after
+       * the student had already waited minutes and paid for the tokens. A lecture that is shorter
+       * than average is not a broken lecture; it is a short topic.
+       *
+       * The repair pass above still runs, so a lesson that is thin because the model under-produced
+       * still gets its missing bridges added. What is gone is the hard refusal when the result is
+       * simply concise. Depth is still enforced per beat by assertInputLectureDepth below — quality
+       * is checked, quantity is not.
+       */
 
       // Tally the text-generation cost from actual token usage.
       try {
@@ -517,9 +527,8 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
         });
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
         applyPdfPlanMetadata(beats, input.sourceDocument);
-        if (!input.sourceDocument && (beats.length < 10 || beats.length > 12)) {
-          throw new Error(`Model returned ${beats.length} beats after deepening; prompted lessons must contain 10-12 complete beats.`);
-        }
+        // Same reasoning as above: deepening improves each beat's script, and a lecture that is
+        // still short afterwards is a short topic, not a failure.
         assertInputLectureDepth(beats, isPdfSource(input.sourceDocument));
       }
 

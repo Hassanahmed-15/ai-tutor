@@ -148,6 +148,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [pendingPdf, setPendingPdf] = useState<File | null>(null);
   const [documentPages, setDocumentPages] = useState<DocumentPage[]>([]);
   const [pagesLoading, setPagesLoading] = useState(false);
+  // True while the CHOSEN pages are being parsed — keeps the selection screen up instead of
+  // falling back to the capture form.
+  const [parsingPages, setParsingPages] = useState(false);
   const [pagesUnavailable, setPagesUnavailable] = useState<string | null>(null);
   const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "" });
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -240,7 +243,16 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   async function parseSelectedPages() {
     const file = pendingPdf;
     if (!file) return;
-    setUploadPhase("reading");
+    /**
+     * Stay on the selection screen while the chosen pages are parsed.
+     *
+     * Setting uploadPhase to "reading" here fell through to the topic-capture form — so pressing
+     * "Use 2 pages" bounced the student back to "Name what you do not understand" for the ~25
+     * seconds parsing takes, which reads as being thrown out of the flow rather than progressing
+     * through it. `parsing` keeps the page-selection screen mounted and simply shows that work is
+     * happening on the button they just pressed.
+     */
+    setParsingPages(true);
     setUploadError(null);
     try {
       const fd = new FormData();
@@ -263,6 +275,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       const subject = focus || topic.trim() || input.trim() || data.title || "this document";
       setPendingPdf(null);
       setDocumentPages([]);
+      setParsingPages(false);
       setUploadPhase("ready");
 
       /**
@@ -277,6 +290,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       void startPlanning(subject, true);
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
+      setParsingPages(false);
       setUploadPhase("error");
     }
   }
@@ -970,7 +984,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
    * outline step and after upload, so it reads as "which parts of this document?" followed by
    * "here is the plan".
    */
-  if (uploadPhase === "choosing") {
+  if (uploadPhase === "choosing" || parsingPages) {
     return (
       <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
@@ -994,12 +1008,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
             </button>
             <button
               onClick={parseSelectedPages}
-              disabled={pagesLoading}
+              disabled={pagesLoading || parsingPages}
               className="hud-btn-primary px-6 py-2.5 text-sm disabled:opacity-40"
             >
-              {pageSelection.pages.length > 0
-                ? `Use ${pageSelection.pages.length} page${pageSelection.pages.length === 1 ? "" : "s"}`
-                : "Use all pages"}
+              {parsingPages
+                ? "Reading those pages…"
+                : pageSelection.pages.length > 0
+                  ? `Use ${pageSelection.pages.length} page${pageSelection.pages.length === 1 ? "" : "s"}`
+                  : "Use all pages"}
             </button>
           </div>
         </header>
