@@ -9,8 +9,15 @@ import type { PageName } from "./HudKit";
  * (BlindLessonPlayer, AdhdLessonPlayer, DyslexiaLessonPlayer, DysgraphiaLessonPlayer,
  * AutismLessonPlayer) remain on disk and functional.
  *
- * To re-enable a mode: move its entry from PLANNED_TRACKS into TRACKS and restore its route case
- * in app/page.tsx.
+ * To re-enable a mode in the PICKER: move its entry from PLANNED_TRACKS into TRACKS and restore its
+ * route case in app/page.tsx.
+ *
+ * ── ADHD is different, and deliberately so. ──
+ *
+ * It is PROFILE-ROUTED, NOT PICKER-LISTED. `ADHD_TRACK` is exported on its own below and is
+ * intentionally absent from `TRACKS`, because every mode surface maps over `TRACKS` and adding it
+ * there would offer the track to everyone. It must appear only for a learner whose saved profile is
+ * `accessibility === "adhd"` — see `lib/adhd/gate.ts`, which owns that decision.
  */
 export interface TrackMeta {
   id: string;
@@ -57,18 +64,6 @@ export const PLANNED_TRACKS: TrackMeta[] = [
     page: "blind-demo",
   },
   {
-    id: "adhd",
-    name: "ADHD",
-    tagline: "Attention-aware, camera-guided",
-    description: "Real camera-based focus tracking that pauses the lesson the moment attention drifts.",
-    detail:
-      "A face-tracking model watches engagement in real time (entirely on your device). The instant focus drops below threshold, the lecture stops, holds, and waits for you to come back — no penalty, no lost place.",
-    accent: "var(--accent-adhd)",
-    glow: "var(--accent-adhd-glow)",
-    glyph: "◎",
-    page: "adhd-demo",
-  },
-  {
     id: "deaf",
     name: "Deaf",
     tagline: "Caption-first, fully visual",
@@ -93,3 +88,21 @@ export const PLANNED_TRACKS: TrackMeta[] = [
     page: "dyslexia-demo",
   },
 ];
+
+/**
+ * The ADHD track. Reached only through the profile (`lib/adhd/gate.ts`), never through a picker —
+ * see the note at the top of this file. Exported separately from both TRACKS and PLANNED_TRACKS so
+ * that its absence from the picker list cannot be "fixed" by someone who assumes it was an oversight.
+ */
+export const ADHD_TRACK: TrackMeta = {
+    id: "adhd",
+    name: "ADHD",
+    tagline: "Attention-aware, camera-guided",
+    description: "Real camera-based focus tracking that pauses the lesson the moment attention drifts.",
+    detail:
+      "A face-tracking model watches engagement in real time (entirely on your device). The instant focus drops below threshold, the lecture stops, holds, and waits for you to come back — no penalty, no lost place.",
+    accent: "var(--accent-adhd)",
+    glow: "var(--accent-adhd-glow)",
+    glyph: "◎",
+    page: "adhd-demo",
+};

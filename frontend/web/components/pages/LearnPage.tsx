@@ -5,11 +5,13 @@ import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/h
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
+import { useAuth } from "@/components/auth/AuthGate";
+import { trackForProfile } from "@/lib/adhd/gate";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
 import { TestOralView } from "@/components/TestOralView";
 import { TestResultsView } from "@/components/TestResultsView";
-import { TRACKS, type TrackMeta } from "@/components/hud/tracks";
+import { type TrackMeta } from "@/components/hud/tracks";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import { PageSelector, type DocumentPage, type PageSelection } from "@/components/upload/PageSelector";
@@ -161,10 +163,19 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const folderInputRef = useRef<HTMLInputElement>(null);
   const buildAbortRef = useRef<AbortController | null>(null);
 
-  // The standard lecture is the only mode offered. Kept as a named constant rather than inlined
-  // because it still supplies the `mood` string handed to lecture generation — changing that
-  // string would change the prompt the pipeline receives.
-  const selectedMode = TRACKS[0];
+  /**
+   * The track comes from the learner's SAVED PROFILE, not from a picker.
+   *
+   * This was `TRACKS[0]` — hardcoded to Standard — which is why an account with
+   * `profile.accessibility === "adhd"` in Cosmos still got the standard lecture. The value was
+   * being written at onboarding and read by nothing.
+   *
+   * `trackForProfile` is the single place that maps a profile to a track (lib/adhd/gate.ts), so the
+   * two vocabularies cannot drift apart. It still supplies the `mood` string handed to lecture
+   * generation, so the ADHD track also changes the prompt the pipeline receives — which is intended.
+   */
+  const { profile } = useAuth();
+  const selectedMode = trackForProfile(profile);
 
   useEffect(() => {
     return () => {
