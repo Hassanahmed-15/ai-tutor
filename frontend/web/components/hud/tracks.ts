@@ -104,5 +104,16 @@ export const ADHD_TRACK: TrackMeta = {
     accent: "var(--accent-adhd)",
     glow: "var(--accent-adhd-glow)",
     glyph: "◎",
-    page: "adhd-demo",
+    /**
+     * The STANDARD player, deliberately — not the separate `adhd-demo` one.
+     *
+     * ADHD does not change what a lecture looks like; it changes what happens around it. Routing to
+     * a second player meant a visually different lesson AND a second component to keep in step,
+     * and it silently cost the ADHD learner the Gemini Live tutor, which only LessonPlayer wires up.
+     *
+     * So the ADHD track renders the ordinary lesson and layers its own behaviour on top —
+     * see components/adhd/AdhdLayer.tsx. AdhdLessonPlayer stays on disk and reachable, but nothing
+     * routes to it.
+     */
+    page: "demo",
 };

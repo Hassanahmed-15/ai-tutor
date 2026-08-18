@@ -32,12 +32,14 @@ test("every other profile value is closed, including the ones that look empty", 
 });
 
 test("the resolver sends adhd to the ADHD track and everyone else to Standard", () => {
-  assert.equal(trackForProfile({ accessibility: "adhd" }).page, "adhd-demo");
+  // Asserted on `id`, not `page`. Both tracks now render the SAME player — ADHD deliberately uses
+  // the standard lesson UI and layers its behaviour on top — so `page` no longer distinguishes them
+  // and a test keyed on it would be checking an implementation detail that is expected to move.
+  assert.equal(trackForProfile({ accessibility: "adhd" }).id, "adhd");
 
   for (const profile of [null, { accessibility: null }, { accessibility: "none" as const }, { accessibility: "deaf" as const }]) {
-    const track = trackForProfile(profile);
-    assert.notEqual(track.page, "adhd-demo", `${JSON.stringify(profile)} must not reach the ADHD player`);
-    assert.equal(track.page, "demo", "and must land on the standard lecture");
+    assert.notEqual(trackForProfile(profile).id, "adhd", `${JSON.stringify(profile)} must not get the ADHD track`);
+    assert.equal(trackForProfile(profile).id, "none", "and must land on the standard lecture");
   }
 });
 
@@ -46,6 +48,10 @@ test("the ADHD track is reachable by profile but absent from the picker list", a
   // requirement is that it appears only for a saved adhd profile, never as something anyone can
   // select. If a future change "helpfully" adds it back, this fails.
   const { TRACKS, ADHD_TRACK } = await import("../../components/hud/tracks");
-  assert.equal(ADHD_TRACK.page, "adhd-demo", "still reachable for the resolver");
-  assert.ok(!TRACKS.some((t) => t.page === "adhd-demo"), "must not be offered in any picker");
+  assert.equal(ADHD_TRACK.id, "adhd", "still reachable for the resolver");
+  assert.ok(!TRACKS.some((t) => t.id === "adhd"), "must not be offered in any picker");
+  // And it renders the ordinary lesson: ADHD changes what happens AROUND the lecture, not how the
+  // lecture itself looks. This also means the ADHD learner gets the Gemini Live tutor, which only
+  // LessonPlayer wires up.
+  assert.equal(ADHD_TRACK.page, "demo", "ADHD renders the standard player");
 });
