@@ -367,6 +367,26 @@ function pageNumbersForBlocks(blockIds: string[], blocks: SuprnotesContentBlock[
 function titleForGroup(group: SuprnotesContentBlock[], pages: number[]): string {
   const heading = group.map((block) => clean(block.heading, 100)).find((value) => value && !/^Page \d+$/i.test(value));
   if (heading) return heading;
+
+  /**
+   * Fall back to the beat's own opening line before falling back to the page number.
+   *
+   * Beats are sub-page now, so several on one page would otherwise all be called "Page 1" — which
+   * tells a student nothing and makes the lecture outline unreadable. The first line of the first
+   * block is what a reader would call the section ("Step 2: Download HOL4"), so it is a far better
+   * name than the sheet of paper it happened to be printed on.
+   */
+  const opening = clean(group[0]?.text, 100);
+  if (opening) {
+    // Prefer the first sentence; a whole paragraph is not a title.
+    //
+    // A colon deliberately does NOT end the title: "Step 2: Download HOL4" splits at the colon into
+    // the bare label "Step 2", which is exactly as uninformative as the "Page 1" this replaces.
+    // Keeping the clause after it is what makes the outline readable.
+    const firstLine = opening.split(/(?<=[.?!])\s|\s{2,}/)[0]?.trim() ?? opening;
+    const candidate = firstLine.length >= 3 && firstLine.length <= 80 ? firstLine : opening.slice(0, 80).trim();
+    if (candidate) return candidate.replace(/[.:;,]\s*$/, "");
+  }
   return pages.length > 1 ? `Pages ${pages[0]}-${pages[pages.length - 1]}` : `Page ${pages[0] ?? 1}`;
 }
 
@@ -404,28 +424,150 @@ function selectAnimatedGroups(groups: SuprnotesContentBlock[][]): Set<number> {
   return selected;
 }
 
+
+/**
+ * Divide ordered blocks into teaching beats.
+ *
+ * WHY THIS IS NOT ONE-BEAT-PER-PAGE ANY MORE. It used to group strictly by `pageNumber`, which made
+ * the plan a function of where the PDF happened to break rather than of what it teaches. That has
+ * two failure modes, and both were reported:
+ *
+ *  1. A one-page upload became a ONE-BEAT lecture no matter how much was on it. A single page of
+ *     an install guide with four distinct steps, or a page deriving Simpson's 1/3 Rule across
+ *     sixteen blocks, collapsed into a single beat — the whole lesson, in one breath.
+ *  2. Generation failed outright. `applyPdfPlanMetadata` requires the model to return EXACTLY the
+ *     planned beat count, so when a page held obviously separable ideas the model would return
+ *     several beats, the count would mismatch, and the request died as "Couldn't build that
+ *     lecture" — after the student had already waited through the upload.
+ *
+ * Page boundaries still matter (a new page usually IS a new idea, and never merging across pages
+ * keeps citations honest), so they remain a hard split. Within a page we additionally split on
+ * headings, because a heading is the document's own statement that a new idea starts here.
+ *
+ * Splitting is bounded on both ends. A beat needs enough substance to be worth teaching, so groups
+ * below MIN_BLOCKS_PER_BEAT are merged back into the previous one; and a page with no headings but
+ * a lot of blocks is divided evenly rather than left as a single wall, since "no heading" usually
+ * means the author's structure is visual rather than absent.
+ */
+const MIN_BLOCKS_PER_BEAT = 2;
+const MAX_BLOCKS_PER_BEAT = 7;
+
+/**
+ * Recognises a block that starts a new idea.
+ *
+ * `heading` alone is not the signal it looks like. The PDF extractor stamps a PAGE LABEL — literally
+ * "Page 1" — onto every block of a page, so testing it either makes every block a boundary or none
+ * of them, and neither reflects the document. The structure of an unstyled PDF usually survives in
+ * the TEXT instead: "Step 3:", "4b.", "Chapter 2 —". Those enumerators are what a reader uses to see
+ * where one idea ends, so they are what this looks for.
+ *
+ * A distinct per-block heading, when the extractor provides one, is still honoured — it is a
+ * stronger signal than any pattern. The page-label case is excluded by the caller, which only trusts
+ * `heading` when it actually varies within the page.
+ */
+const ENUMERATOR = /^\s*(?:step\s+\d+|part\s+\d+|chapter\s+\d+|section\s+\d+|\d+[a-z]?[.)]|[ivx]+[.)]|[a-z][.)])\s*[:.\-\u2014]?\s+/i;
+
+function startsNewIdea(
+  block: SuprnotesContentBlock,
+  headingIsMeaningful: boolean,
+  previousHeading: string | null,
+): boolean {
+  // A heading marks a boundary only where it CHANGES. Consecutive blocks sharing one heading are
+  // that section's body, so treating each as a fresh start would shatter the section into
+  // single-block beats rather than keeping it whole.
+  if (headingIsMeaningful) {
+    const heading = (block.heading ?? "").trim();
+    if (heading && heading !== previousHeading) return true;
+  }
+  const text = (block.text ?? "").trimStart();
+  if (!text) return false;
+  // Headings and titles are their own boundary regardless of numbering.
+  if (block.type === "heading") return true;
+  return ENUMERATOR.test(text);
+}
+
+export function groupBlocksIntoBeats(orderedBlocks: SuprnotesContentBlock[]): SuprnotesContentBlock[][] {
+  // 1. Page boundaries are absolute: a beat never spans two pages.
+  const pages: SuprnotesContentBlock[][] = [];
+  const pageIndex = new Map<number | string, number>();
+  for (const block of orderedBlocks) {
+    const pageKey = typeof block.pageNumber === "number" ? block.pageNumber : `s${block.sourceOrder ?? 0}`;
+    let idx = pageIndex.get(pageKey);
+    if (idx === undefined) {
+      idx = pages.length;
+      pageIndex.set(pageKey, idx);
+      pages.push([]);
+    }
+    pages[idx].push(block);
+  }
+
+  const groups: SuprnotesContentBlock[][] = [];
+  for (const page of pages) {
+    // 2. Split on the document's own structure.
+    //    `heading` is only trusted when it VARIES within the page — a value repeated on every
+    //    block is the extractor's page label ("Page 1"), which says nothing about where ideas
+    //    begin. When it is uniform, the enumerators in the text carry the structure instead.
+    const headings = new Set(page.map((b) => (b.heading ?? "").trim()).filter(Boolean));
+    const headingIsMeaningful = headings.size > 1;
+
+    let sections: SuprnotesContentBlock[][] = [];
+    let previousHeading: string | null = null;
+    for (const block of page) {
+      const boundary = startsNewIdea(block, headingIsMeaningful, previousHeading);
+      previousHeading = (block.heading ?? "").trim() || previousHeading;
+      if (!sections.length || (boundary && sections[sections.length - 1].length)) {
+        sections.push([block]);
+      } else {
+        sections[sections.length - 1].push(block);
+      }
+    }
+
+    // 3. No headings but plenty of material: divide evenly rather than emit one oversized beat.
+    if (sections.length === 1 && sections[0].length > MAX_BLOCKS_PER_BEAT) {
+      const blocks = sections[0];
+      const partCount = Math.ceil(blocks.length / MAX_BLOCKS_PER_BEAT);
+      const perPart = Math.ceil(blocks.length / partCount);
+      sections = [];
+      for (let i = 0; i < blocks.length; i += perPart) sections.push(blocks.slice(i, i + perPart));
+    }
+
+    // 4. Merge back anything too thin to stand alone as a beat.
+    //
+    //    A section that OPENED with an explicit boundary is exempt. When a page is a list of short
+    //    numbered steps, every section is one block, and merging them on size alone would undo the
+    //    split entirely and hand back the single mega-beat this function exists to prevent. An
+    //    unlabelled fragment carries no such claim, so it still merges.
+    const openedExplicitly = new Set<SuprnotesContentBlock[]>();
+    for (const section of sections) {
+      if (section.length && startsNewIdea(section[0], headingIsMeaningful, null)) {
+        openedExplicitly.add(section);
+      }
+    }
+    for (const section of sections) {
+      const previous = groups[groups.length - 1];
+      const canMerge =
+        previous &&
+        !openedExplicitly.has(section) &&
+        section.length < MIN_BLOCKS_PER_BEAT &&
+        previous.length + section.length <= MAX_BLOCKS_PER_BEAT &&
+        // Only merge within the same page, so the page-boundary rule above still holds.
+        previous[0]?.pageNumber === section[0]?.pageNumber;
+      if (canMerge) previous.push(...section);
+      else groups.push(section);
+    }
+  }
+
+  return groups;
+}
+
 /**
  * Builds a complete semantic plan from the PDF. Content stays in source order, but pages are
  * divided into teachable concepts rather than becoming screenshot slides.
  */
 export function buildPdfLessonPlan(blocks: SuprnotesContentBlock[], assets: SuprnotesAsset[]) {
   const orderedBlocks = [...blocks].sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0));
-  // One teaching beat per source page, in document order. Blocks are already ordered by
-  // (pageNumber, y) via applyGlobalSourceOrder, so grouping by pageNumber keeps source order and
-  // yields a page-aligned plan (each page → exactly one beat). Blocks with no pageNumber fall back
-  // to their sourceOrder so nothing is dropped.
-  const groups: SuprnotesContentBlock[][] = [];
-  const groupIndexByPage = new Map<number | string, number>();
-  for (const block of orderedBlocks) {
-    const pageKey = typeof block.pageNumber === "number" ? block.pageNumber : `s${block.sourceOrder ?? 0}`;
-    let idx = groupIndexByPage.get(pageKey);
-    if (idx === undefined) {
-      idx = groups.length;
-      groupIndexByPage.set(pageKey, idx);
-      groups.push([]);
-    }
-    groups[idx].push(block);
-  }
+  // Teaching beats follow the CONTENT, not the page breaks — see groupBlocksIntoBeats.
+  const groups: SuprnotesContentBlock[][] = groupBlocksIntoBeats(orderedBlocks);
   const beats: PdfLessonPlanBeat[] = [];
   const usedAssets = new Set<string>();
   const maximumImageBeats = Math.min(3, Math.max(1, Math.round(groups.length * 0.22)));

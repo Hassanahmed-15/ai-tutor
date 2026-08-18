@@ -182,22 +182,80 @@ function plannedPdfBeats(sourceDocument: SuprnotesLessonInput | null): PlannedPd
 function applyPdfPlanMetadata(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): void {
   const planned = plannedPdfBeats(sourceDocument);
   if (!planned.length) return;
-  if (beats.length !== planned.length) {
-    throw new Error(`PDF plan requires exactly ${planned.length} beats in source order; model returned ${beats.length}.`);
-  }
+
+  /**
+   * The plan is a guide to coverage, not a quota.
+   *
+   * This used to demand `beats.length === planned.length` and throw otherwise, which surfaced to
+   * the student as "Couldn't build that lecture" after they had already waited through the upload.
+   * The mismatch it was rejecting is usually the model being RIGHT: asked to teach a page holding
+   * four install steps, it returns four beats rather than cramming them into the one the plan
+   * suggested. Killing a good lecture to defend an arbitrary count is the wrong trade.
+   *
+   * What actually matters is that every source block gets taught, and that is still enforced below.
+   * So plan metadata is applied positionally where the two line up, and extra beats simply inherit
+   * the coverage of the planned beat they follow — no beat is left without provenance, and nothing
+   * is dropped.
+   */
   const covered = new Set<string>();
   beats.forEach((beat, index) => {
-    const planBeat = planned[index];
-    if (planBeat.id) beat.id = planBeat.id;
-    if (planBeat.title) beat.title = planBeat.title;
+    const planBeat = planned[Math.min(index, planned.length - 1)];
+    // Only adopt the planned id/title where the beat genuinely corresponds to it. Beyond the
+    // planned range the model has split something, and reusing the id would create duplicates.
+    if (index < planned.length) {
+      if (planBeat.id) beat.id = planBeat.id;
+      if (planBeat.title) beat.title = planBeat.title;
+    }
+
     beat.sourceBlockIds = [...planBeat.sourceBlockIds];
     planBeat.sourceBlockIds.forEach((id) => covered.add(id));
   });
+
+  // Returning FEWER beats than planned is the one direction that is still a real failure: those
+  // blocks were never assigned to any beat, so the content is simply missing. It is deliberately
+  // left to the coverage check below rather than special-cased here — `covered` never received
+  // those ids, so the check reports exactly which blocks went untaught.
   const expected = new Set((sourceDocument?.contentBlocks ?? []).map((block) => block.id));
   const missing = [...expected].filter((id) => !covered.has(id));
   if (missing.length) {
     throw new Error(`PDF lesson plan omitted ${missing.length} source blocks.`);
   }
+}
+
+
+/**
+ * Guarantee distinct beat ids and titles across the WHOLE lecture.
+ *
+ * This runs after all beats exist, never per-chunk, and that placement is the entire point. Long
+ * PDFs are generated as parallel chunks (see generatePdfLectureInChunks) and each chunk applies its
+ * own slice of the plan, so chunk 2 legitimately names a beat `pdf-6` while chunk 3 does the same —
+ * the collision only becomes visible once the chunks are flattened together. On top of that the
+ * model tends to echo one planned title across every beat it split out of it, so a 10-beat plan
+ * answered with 24 beats arrives with "5. Simpson's 3/8 Rule" three times.
+ *
+ * Duplicated ids break every lookup keyed by beat id, and repeated titles make the outline read as
+ * though the lecture is stuck in a loop. The beats' CONTENT differs, so they are disambiguated and
+ * kept rather than dropped.
+ */
+function dedupeBeatIdentity(beats: Beat[]): void {
+  const usedIds = new Set<string>();
+  const usedTitles = new Set<string>();
+  beats.forEach((beat, index) => {
+    if (!beat.id || usedIds.has(beat.id)) beat.id = `pdf-x${index + 1}`;
+    usedIds.add(beat.id);
+
+    // Strip any suffix this function added on an earlier pass before considering a new one —
+    // otherwise a beat renamed once accumulates them and ends up as "Decision Guide (2) (2)".
+    const title = (beat.title ?? "").trim().replace(/\s+\(\d+\)$/, "");
+    if (title && usedTitles.has(title)) {
+      let suffix = 2;
+      while (usedTitles.has(`${title} (${suffix})`)) suffix += 1;
+      beat.title = `${title} (${suffix})`;
+    } else if (title) {
+      beat.title = title;
+    }
+    if (beat.title) usedTitles.add(beat.title);
+  });
 }
 
 function textCostUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
@@ -491,6 +549,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
       const minUsableBeats = pdfPlanCount || (input.sourceDocument ? 1 : 8);
       let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
       applyPdfPlanMetadata(beats, input.sourceDocument);
+      dedupeBeatIdentity(beats);
 
       // Eight or nine strong beats are recoverable. Add only the missing conceptual bridges instead of
       // discarding the entire lecture and paying for another full generation attempt.
@@ -527,6 +586,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
         });
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
         applyPdfPlanMetadata(beats, input.sourceDocument);
+        dedupeBeatIdentity(beats);
         // Same reasoning as above: deepening improves each beat's script, and a lecture that is
         // still short afterwards is a short topic, not a failure.
         assertInputLectureDepth(beats, isPdfSource(input.sourceDocument));
@@ -612,6 +672,8 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
 
   const beats = results.flatMap((result) => result.beats);
   applyPdfPlanMetadata(beats, sourceDocument);
+  // After the flatten: per-chunk ids collide by construction, so this must run on the merged list.
+  dedupeBeatIdentity(beats);
   return {
     beats,
     textCost: results.reduce((sum, result) => sum + result.textCost, 0),
@@ -819,6 +881,10 @@ export async function POST(req: Request) {
     repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     cleanProvidedImageBoards(base.beats, input.sourceDocument);
+    // LAST word on beat identity. Several passes above re-apply plan metadata (and with
+    // PDF_BEATS_PER_GENERATION=1 every beat is its own chunk, so each one re-derives an id from the
+    // same plan slice), which means deduping any earlier is undone before the response is built.
+    dedupeBeatIdentity(base.beats);
     snapshotBoards("after-suprnotes", base.beats);
 
     /**
