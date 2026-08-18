@@ -12,6 +12,7 @@ import { AboutPage } from "@/components/pages/AboutPage";
 import { FeaturesPage } from "@/components/pages/FeaturesPage";
 import { CompletePage } from "@/components/pages/CompletePage";
 import { LearnPage } from "@/components/pages/LearnPage";
+import { AuthGate } from "@/components/auth/AuthGate";
 
 /**
  * Central client-side router. Every page (marketing + the five lesson players) is a named
@@ -37,6 +38,14 @@ export default function Home() {
   // Players exit to the completion page (a real ending screen, vs. the old abrupt stop).
   const exitToComplete = useCallback(() => go("complete"), [go]);
 
+  /**
+   * Everything below is behind the auth gate.
+   *
+   * Wrapping the whole router rather than individual pages keeps one place that decides
+   * signed-out / needs-onboarding / ready, which matters because this app routes by component
+   * swap rather than by URL — there are no paths for middleware to guard.
+   */
+  const routed = (() => {
   switch (page) {
     case "demo":
       return <LessonPlayer onExit={exitToComplete} />;
@@ -63,4 +72,7 @@ export default function Home() {
     default:
       return <LandingPage go={go} onStart={() => go("tracks")} />;
   }
+  })();
+
+  return <AuthGate>{routed}</AuthGate>;
 }
