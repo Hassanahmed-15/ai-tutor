@@ -1,10 +1,9 @@
 import { hash, verify } from "@node-rs/argon2";
 import { SignJWT, jwtVerify } from "jose";
 import { createHash, randomBytes } from "node:crypto";
-import { and, eq, gt, isNull } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
-import { db } from "./db/client";
-import { sessions, users } from "./db/schema";
+import { ensureContainers, sessionsContainer, users, type SessionDoc, type UserDoc } from "./db/cosmos";
 
 /**
  * JWT access tokens with server-side refresh sessions.
@@ -73,10 +72,33 @@ function hashToken(token: string): string {
 }
 
 export async function createSession(userId: string): Promise<string> {
+  await ensureContainers();
   const token = randomBytes(32).toString("base64url");
   const expiresAt = new Date(Date.now() + REFRESH_TTL_DAYS * 86_400_000);
-  await db().insert(sessions).values({ userId, tokenHash: hashToken(token), expiresAt });
+  const doc: SessionDoc = {
+    id: randomUUID(),
+    tokenHash: hashToken(token),
+    userId,
+    expiresAt: expiresAt.toISOString(),
+    createdAt: new Date().toISOString(),
+    revokedAt: null,
+    // Cosmos removes the document itself once the refresh window closes, so revoked and expired
+    // sessions do not pile up and cost storage forever.
+    ttl: REFRESH_TTL_DAYS * 86_400,
+  };
+  await sessionsContainer().items.create(doc);
   return token;
+}
+
+/** Reads a session by its token hash — which is also the partition key, so this is a point read. */
+async function findSession(tokenHash: string): Promise<SessionDoc | null> {
+  const { resources } = await sessionsContainer().items
+    .query<SessionDoc>({
+      query: "SELECT * FROM c WHERE c.tokenHash = @h",
+      parameters: [{ name: "@h", value: tokenHash }],
+    }, { partitionKey: tokenHash })
+    .fetchAll();
+  return resources[0] ?? null;
 }
 
 /**
@@ -87,20 +109,24 @@ export async function createSession(userId: string): Promise<string> {
  * as silent indefinite access.
  */
 export async function rotateSession(token: string): Promise<{ userId: string; token: string } | null> {
-  const rows = await db()
-    .select()
-    .from(sessions)
-    .where(and(eq(sessions.tokenHash, hashToken(token)), isNull(sessions.revokedAt), gt(sessions.expiresAt, new Date())))
-    .limit(1);
-  const row = rows[0];
+  await ensureContainers();
+  const hash = hashToken(token);
+  const row = await findSession(hash);
   if (!row) return null;
-  await db().update(sessions).set({ revokedAt: new Date() }).where(eq(sessions.id, row.id));
+  // Validity is checked here rather than in the query: Cosmos has no partial index to make a
+  // filtered read cheaper, and the document is already in hand.
+  if (row.revokedAt || new Date(row.expiresAt) <= new Date()) return null;
+  await sessionsContainer().item(row.id, hash).replace({ ...row, revokedAt: new Date().toISOString() });
   const next = await createSession(row.userId);
   return { userId: row.userId, token: next };
 }
 
 export async function revokeSession(token: string): Promise<void> {
-  await db().update(sessions).set({ revokedAt: new Date() }).where(eq(sessions.tokenHash, hashToken(token)));
+  await ensureContainers();
+  const hash = hashToken(token);
+  const row = await findSession(hash);
+  if (!row) return;
+  await sessionsContainer().item(row.id, hash).replace({ ...row, revokedAt: new Date().toISOString() });
 }
 
 const COOKIE_BASE = {
@@ -140,8 +166,7 @@ export async function currentUser(): Promise<{ userId: string; email: string } |
   if (!refresh) return null;
   const rotated = await rotateSession(refresh);
   if (!rotated) return null;
-  const rows = await db().select().from(users).where(eq(users.id, rotated.userId)).limit(1);
-  const user = rows[0];
+  const { resource: user } = await users().item(rotated.userId, rotated.userId).read<UserDoc>();
   if (!user) return null;
   const nextAccess = await signAccessToken(user.id, user.email);
   await setAuthCookies(nextAccess, rotated.token);

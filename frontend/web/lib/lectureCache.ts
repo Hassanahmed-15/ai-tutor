@@ -36,6 +36,9 @@ export function lectureCacheKey(input: {
   slideContext?: string;
   sourceDocument: unknown;
   model: string;
+  /** Every model/flag that can materially change generated boards. Without this, changing the
+   *  deployment quality profile can still serve a lecture built under the previous profile. */
+  generationProfile?: Record<string, string | number | boolean>;
 }): string {
   const payload = JSON.stringify({
     v: CACHE_VERSION,
@@ -43,6 +46,7 @@ export function lectureCacheKey(input: {
     mood: input.mood,
     slideContext: input.slideContext ?? "",
     model: input.model,
+    generationProfile: input.generationProfile ?? {},
     source: input.sourceDocument ?? null,
   });
   return createHash("sha256").update(payload).digest("hex").slice(0, 40);

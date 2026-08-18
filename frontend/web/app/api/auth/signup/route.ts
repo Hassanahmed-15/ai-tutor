@@ -1,18 +1,37 @@
 import { NextResponse } from "next/server";
-import { eq } from "drizzle-orm";
-import { db, databaseConfigured } from "@/lib/db/client";
-import { users } from "@/lib/db/schema";
+import { randomUUID } from "node:crypto";
+import { databaseConfigured, ensureContainers, users, type UserDoc } from "@/lib/db/cosmos";
 import { createSession, hashPassword, setAuthCookies, signAccessToken } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
-/** Deliberately modest: length beats composition rules, which mostly produce P@ssw0rd1. */
+/** Length beats composition rules, which mostly produce P@ssw0rd1. */
 const MIN_PASSWORD = 10;
+
+/**
+ * Look a user up by email.
+ *
+ * This is a cross-partition query — users partition by `id`, not email — which is unavoidable when
+ * the only thing a person types at sign-in is their address. It is bounded to one result and runs
+ * once per auth attempt, so the RU cost is small; the alternative (a second container mapping
+ * email to id) would add a write to every signup to save a few RU on login.
+ */
+export async function findUserByEmail(email: string): Promise<UserDoc | null> {
+  const { resources } = await users().items
+    .query<UserDoc>({
+      query: "SELECT TOP 1 * FROM c WHERE c.email = @e",
+      parameters: [{ name: "@e", value: email }],
+    })
+    .fetchAll();
+  return resources[0] ?? null;
+}
 
 export async function POST(request: Request) {
   if (!databaseConfigured()) {
     return NextResponse.json({ error: "Accounts are unavailable — no database is configured." }, { status: 503 });
   }
+  await ensureContainers();
+
   const body = await request.json().catch(() => ({}));
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body.password === "string" ? body.password : "";
@@ -27,20 +46,25 @@ export async function POST(request: Request) {
     );
   }
 
-  const existing = await db().select({ id: users.id }).from(users).where(eq(users.email, email)).limit(1);
-  if (existing.length > 0) {
-    // Says the address is taken, which is unavoidable for a signup form: the user must be told why
-    // it failed. The login route deliberately does NOT distinguish, so an attacker cannot use it to
-    // enumerate accounts.
+  // Cosmos enforces unique keys only WITHIN a partition, and users partition by id, so the
+  // container's unique-key policy cannot guarantee a unique email on its own. This check is the
+  // real guard.
+  if (await findUserByEmail(email)) {
+    // Signup must say why it failed; the login route deliberately does not distinguish, so it
+    // cannot be used to enumerate accounts.
     return NextResponse.json({ error: "That email is already registered. Try signing in." }, { status: 409 });
   }
 
-  const [user] = await db()
-    .insert(users)
-    .values({ email, passwordHash: await hashPassword(password) })
-    .returning();
+  const doc: UserDoc = {
+    id: randomUUID(),
+    email,
+    passwordHash: await hashPassword(password),
+    createdAt: new Date().toISOString(),
+    onboardedAt: null,
+    profile: null,
+  };
+  await users().items.create(doc);
 
-  const refresh = await createSession(user.id);
-  await setAuthCookies(await signAccessToken(user.id, user.email), refresh);
-  return NextResponse.json({ id: user.id, email: user.email, onboarded: false }, { status: 201 });
+  await setAuthCookies(await signAccessToken(doc.id, doc.email), await createSession(doc.id));
+  return NextResponse.json({ id: doc.id, email: doc.email, onboarded: false }, { status: 201 });
 }
