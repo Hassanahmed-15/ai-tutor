@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createJob, failJob, finishJob, replicaHint, setJobStatus } from "@/lib/lectureJobs";
 import OpenAI from "openai";
 import { DRAW_LECTURE_SYSTEM_PROMPT, PPTX_LECTURE_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { outlineGroundingInstruction, type PlanOutline } from "@/lib/planPrompt";
@@ -824,6 +825,38 @@ export async function POST(req: Request) {
     }
   }
 
+  /**
+   * Generation runs in the background and this request returns a job id immediately.
+   *
+   * Azure Container Apps caps an inbound request at ~240s and that cap is not configurable, so a
+   * lecture that takes longer had its connection cut with a plain-text `504 stream timeout`. The
+   * client could not parse an error out of that, so every slow lecture became "Couldn't build that
+   * lecture. Try a different topic." — a message that blamed the topic for a platform limit.
+   *
+   * Callers that genuinely want to block (scripts, the debug route, curl) can pass `wait: true` and
+   * get the old synchronous behaviour, which is also what keeps the existing tests meaningful.
+   */
+  const job = createJob("Writing the lecture script and boards");
+  const run = generateLecture(client, input, cacheKey, job.id);
+
+  if (body.wait !== true) {
+    // Failures are recorded on the job; nothing is thrown into the void.
+    void run.catch(() => {});
+    return NextResponse.json({ jobId: job.id, replica: replicaHint(), status: "running" }, { status: 202 });
+  }
+  return run;
+}
+
+/**
+ * The whole generation pipeline, unchanged in substance — only moved into its own function so it
+ * can be awaited by a caller OR run detached behind a job id.
+ */
+async function generateLecture(
+  client: OpenAI,
+  input: LectureBuildInput,
+  cacheKey: string,
+  jobId: string,
+): Promise<NextResponse> {
   try {
     const base = isPdfSource(input.sourceDocument)
       ? await generatePdfLectureInChunks(client, input)
@@ -907,11 +940,12 @@ export async function POST(req: Request) {
       await writeCachedLecture(cacheKey, { beats: base.beats, costUsd, topic: input.topic });
     }
 
-    return NextResponse.json({ topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats });
+    const payload = { topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats };
+    finishJob(jobId, payload);
+    return NextResponse.json(payload);
   } catch (err) {
-    return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Lecture generation failed" },
-      { status: 502 }
-    );
+    const message = err instanceof Error ? err.message : "Lecture generation failed";
+    failJob(jobId, message);
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }

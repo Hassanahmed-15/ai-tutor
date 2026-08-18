@@ -5,6 +5,7 @@ import { ArrowRight, FileUp, Paperclip, Settings, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { useAuth } from "@/components/auth/AuthGate";
+import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 
 /**
  * The front page. One panel, centred, and nothing else.
@@ -120,6 +121,10 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
               autoFocus
               className="min-w-0 flex-1 resize-none self-center bg-transparent px-3 py-2 text-[0.98rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
             />
+
+            {/* Dictation sits with the other input affordances, before the attach control: it is a
+                way to fill the field, not a way to send it. */}
+            <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Speak your topic" />
 
             <input
               ref={fileRef}

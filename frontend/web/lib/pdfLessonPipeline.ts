@@ -376,7 +376,19 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[]): string 
    * block is what a reader would call the section ("Step 2: Download HOL4"), so it is a far better
    * name than the sheet of paper it happened to be printed on.
    */
-  const opening = clean(group[0]?.text, 100);
+  /**
+   * Skip blocks whose text cannot name anything.
+   *
+   * Figure labels leak into the text layer as fragments like "?" (a query point in a scatter plot)
+   * or a bare axis number, and using one as a beat title produces an outline entry literally called
+   * "?". Requiring a couple of word characters is enough to pass over them and reach the first
+   * block that actually says something.
+   */
+  const meaningful = group.find((block) => {
+    const text = clean(block.text, 100);
+    return text && /[A-Za-z]{3,}/.test(text);
+  });
+  const opening = clean(meaningful?.text ?? group[0]?.text, 100);
   if (opening) {
     // Prefer the first sentence; a whole paragraph is not a title.
     //

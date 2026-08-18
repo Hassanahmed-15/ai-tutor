@@ -820,8 +820,56 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         body: JSON.stringify(payload),
         signal: controller.signal,
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !Array.isArray(data.beats)) {
+      let data = await res.json().catch(() => ({}));
+
+      /**
+       * A 202 means generation is running in the background; poll until it finishes.
+       *
+       * The host cuts any single request at ~240s, so a long lecture used to die mid-flight with a
+       * plain-text `504 stream timeout` that carried no JSON error — which is why this screen used
+       * to blame the topic for what was really a platform timeout. Polling keeps every request
+       * short, so a lecture can take as long as it needs.
+       */
+      if (res.status === 202 && typeof data.jobId === "string") {
+        const jobId = data.jobId;
+        // Long enough to be cheap, short enough that the lecture starts promptly once ready.
+        const POLL_MS = 3000;
+        const DEADLINE_MS = 30 * 60 * 1000;
+        const startedAt = Date.now();
+        for (;;) {
+          if (controller.signal.aborted) return;
+          await new Promise((resolve) => setTimeout(resolve, POLL_MS));
+          if (controller.signal.aborted) return;
+          if (Date.now() - startedAt > DEADLINE_MS) {
+            throw new Error("This lecture is taking unusually long. Try again, or use fewer pages.");
+          }
+
+          const poll = await fetch(`/api/generate-lecture/status?id=${encodeURIComponent(jobId)}`, {
+            cache: "no-store",
+            signal: controller.signal,
+          }).catch(() => null);
+          // A dropped poll is not a failed lecture — the job keeps running, so just try again.
+          if (!poll?.ok) continue;
+          const state = await poll.json().catch(() => ({}));
+
+          if (state.state === "running") {
+            if (typeof state.status === "string") setBuildStatus(state.status);
+            continue;
+          }
+          if (state.state === "error") throw new Error(state.error || "Couldn't build that lecture.");
+          if (state.state === "unknown") {
+            throw new Error("That lecture job expired. Press build again to restart it.");
+          }
+          if (state.state === "done") {
+            data = state;
+            break;
+          }
+        }
+      } else if (!res.ok || !Array.isArray(data.beats)) {
+        throw new Error(data.error || "Couldn't build that lecture. Try a different topic.");
+      }
+
+      if (!Array.isArray(data.beats)) {
         throw new Error(data.error || "Couldn't build that lecture. Try a different topic.");
       }
       setBeats(data.beats);

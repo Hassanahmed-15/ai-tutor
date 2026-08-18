@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { Check, FileText, Loader2 } from "lucide-react";
 
 /**
@@ -205,6 +206,18 @@ export function PageSelector({
           className="max-h-[180px] w-full resize-none overflow-y-auto rounded-[var(--radius)] border bg-transparent px-3 py-2 text-[0.85rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1"
           style={{ borderColor: "var(--hud-line)" }}
         />
+        {/* Dictation for the same field. Placed under it rather than inside, because this textarea
+            is multi-line and grows — an absolutely positioned control would collide with the text
+            as it wraps. */}
+        <div className="mt-1.5 flex items-center gap-2">
+          <VoicePromptButton
+            baseText={prompt}
+            onTranscript={setPrompt}
+            title="Speak your question"
+            showLabel
+            className="inline-flex items-center gap-1.5 rounded-[var(--radius)] border px-2.5 py-1 text-[0.75rem] transition-colors"
+          />
+        </div>
       </div>
     </aside>
   );
