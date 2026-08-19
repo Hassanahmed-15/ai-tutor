@@ -914,7 +914,7 @@ export function LessonPlayer({
   // pipeline produces. Every child keeps using the same token names.
   return (
     <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
-      {adhd && <AdhdLayer index={index} beat={beats[index]} />}
+      {adhd && <AdhdLayer index={index} beat={beats[index]} gameActive={!!spec || !!round} />}
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
@@ -947,6 +947,7 @@ export function LessonPlayer({
                     <SorterGame
                       key={spec.beatId}
                       spec={spec}
+                      topic={title}
                       onDone={(passed) => {
                         emitAdhdEvent({ type: passed ? "answer-correct" : "answer-wrong" });
                         advanceFromCheckpoint();
@@ -984,12 +985,15 @@ export function LessonPlayer({
                 )}
                 {/* Hidden while a question is on screen. QuizPrompt anchors to the same corner at
                     the same z-index, so both rendered on top of each other: the caption showed
-                    through the panel and the two lines of text collided. The caption is narration
+                    through the panel and the two lines of text collided.
+                    A GAME ROUND EARNS THE SAME YIELD, for the same reason and one worse symptom:
+                    the caption sat across the bottom of the board directly over the sorter's two
+                    bins, hiding the one thing a player has to see to answer at all. The caption is narration
                     the student has already heard by the time a question appears, so yielding is
                     the right call — nothing is lost. */}
                 <div
                   className={`pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5 ${
-                    quiz.phase !== "idle" ? "hidden" : ""
+                    quiz.phase !== "idle" || spec || round ? "hidden" : ""
                   }`}
                 >
                   <div

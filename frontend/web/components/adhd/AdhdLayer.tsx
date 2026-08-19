@@ -37,9 +37,12 @@ const IDLE_FOCUS = initialFocus();
 export function AdhdLayer({
   index,
   beat,
+  gameActive = false,
 }: {
   index: number;
   beat: Beat | undefined;
+  /** A game round owns the board — this layer's overlays get out of its way. */
+  gameActive?: boolean;
 }) {
   const [consent, setConsent] = useState<Consent>("unknown");
   const [focus, setFocus] = useState<FocusTracker>(initialFocus);
@@ -301,7 +304,9 @@ export function AdhdLayer({
         measures to a bottom edge of ~138px. 108px put this row straight through it. ADHD chrome
         must not damage the standard lesson chrome, so this row moves, not the badge.
       */}
-      <div className="pointer-events-none absolute left-6 top-[150px] z-30 flex items-center gap-2">
+      {/* Hidden during a game: this row sits at the board's top-left, which is exactly where the
+          sorter draws its score/combo/lives HUD, and the park pill was printing over it. */}
+      <div className={`pointer-events-none absolute left-6 top-[150px] z-30 flex items-center gap-2 ${gameActive ? "hidden" : ""}`}>
         <FocusNote focus={shownFocus} cameraOn={cameraOn} />
 
         {/* The affordance has to be visible or nobody discovers the key. */}

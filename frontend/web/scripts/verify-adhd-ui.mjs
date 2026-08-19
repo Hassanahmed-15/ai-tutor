@@ -377,17 +377,30 @@ try {
    * checked HERE is only what unit tests structurally cannot: that the thing mounts, plays, and
    * reports back into the lesson.
    */
+  // Phaser boots asynchronously (dynamic import + sprite load), so wait for the canvas rather than
+  // sampling the instant the button was pressed.
+  await page.locator("[data-sorter-canvas] canvas").waitFor({ state: "attached", timeout: 20000 }).catch(() => {});
   const mounted = await page.evaluate(() => ({
     sorter: !!document.querySelector("[data-sorter-game]"),
     canvas: !!document.querySelector("[data-sorter-canvas] canvas"),
     quiz: document.querySelector("[data-game-round]")?.getAttribute("data-game-round") ?? null,
     state: document.querySelector("[data-sorter-state]")?.textContent ?? null,
+    backdrop: document.querySelector("[data-sorter-backdrop]")?.getAttribute("data-sorter-backdrop") ?? null,
   }));
   check("the board becomes a real game, not a question list",
         mounted.sorter && mounted.canvas,
         mounted.sorter
           ? `sorter mounted, canvas=${mounted.canvas}`
           : `no sorter — fell back to the ${mounted.quiz ?? "slide"}`);
+  /*
+   * The backdrop is DECORATION and the game must never wait for it. Generating one takes ten to
+   * twenty seconds; an earlier version gated the Phaser start on that fetch, and the learner sat
+   * looking at an empty box for the duration. So this asserts the game is playable regardless of
+   * whether the art has landed — "off" here is a pass, not a failure.
+   */
+  check("the game is playable whether or not the backdrop has arrived",
+        mounted.sorter && mounted.canvas,
+        `backdrop ${mounted.backdrop ?? "element missing"} — play must not depend on it`);
   check("and it reports its progress somewhere a test and a screen reader can both read",
         typeof mounted.state === "string" && /sorted|finished/.test(mounted.state),
         mounted.state ?? "no sr-only state");
@@ -407,6 +420,15 @@ try {
   const box = await page.locator("[data-sorter-canvas] canvas").boundingBox();
   const finish = page.locator("[data-sorter-continue]");
   if (box) {
+    // The round now opens on a start card naming the two bins, dismissed by a click. Without this
+    // the loop below would steer a game that never started and time out — a failure that would look
+    // like the game being broken rather than the test not pressing play.
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    await page.waitForTimeout(1400);
+    await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.45);
+    await page.waitForTimeout(900);
+    // Mid-play, before the end card veils the board.
+    await page.screenshot({ path: `${OUT}/ui-9-game-playing.png` });
     for (let i = 0; i < 90 && (await finish.count()) === 0; i++) {
       await page.mouse.move(box.x + box.width * (i % 2 === 0 ? 0.25 : 0.75), box.y + box.height * 0.5);
       await page.waitForTimeout(220);

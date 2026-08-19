@@ -1,0 +1,7 @@
+Kenney UI Pack — Creative Commons CC0 (public domain dedication).
+Source: https://kenney.nl/assets/ui-pack
+
+Only the four sprites used by Sorting Run are vendored here, not the full 870-file
+pack: a 9-sliceable tile panel, two bin panels, and one particle. They are kept in
+the repo rather than fetched at runtime so the game cannot fail to look right
+because a CDN was unreachable.
