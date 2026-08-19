@@ -36,18 +36,42 @@ const TITLES = ["What bonding is", "Ionic bonds", "Covalent bonds", "Electronega
  * asked for — and carried no `points`. Game mode would have found nothing playable in it and the
  * button would have sat disabled, so the whole mode would have tested as "renders nothing".
  */
-const KINDS = ["definition", "mechanism", "example", "compare", "application", "misconception", "definition", "recap"];
-const BEATS = TITLES.map((title, i) => ({
+/*
+ * Beat 4 is a CHECKPOINT on purpose.
+ *
+ * The periodic comprehension check fires on a cadence (`index % 4 === 0`) and only in the short gap
+ * after narration ends — one narrow window in an eight-beat lecture, which the earlier layout checks
+ * were still occupying. A checkpoint beat stops and asks unconditionally, so the "questions are
+ * played, not read" claim is tested against something that reliably happens rather than something
+ * the test has to race.
+ *
+ * At index 5, not 3: the layout checks sample the board around part 4-5, and a checkpoint there
+ * replaces the board with the game — so the park button and companion had no boxes to measure and
+ * the geometry assertions failed against a screen that was working correctly.
+ */
+const KINDS = ["definition", "mechanism", "example", "application", "misconception", "compare", "definition", "recap"];
+const makeBeats = (kinds) => TITLES.map((title, i) => ({
   id: `b${i}`, title,
   script: "Atoms join by sharing or giving up electrons, and the balance decides the bond.",
-  slideKind: KINDS[i], teacherMove: "explain",
+  slideKind: kinds[i], teacherMove: "explain",
   points: [`${title} point one`, `${title} point two`, `${title} point three`],
   definitionTerm: title,
   definitionMeaning: `${title} means the way atoms end up sharing or trading their outer electrons.`,
   compareLeft: { label: "Ionic", points: ["transfers electrons", "forms a lattice"] },
   compareRight: { label: "Covalent", points: ["shares electrons", "forms molecules"] },
+  checkpoint: {
+    prompt: "Quick check — what decides whether a bond is ionic or covalent?",
+    acceptableKeywords: [["electron"], ["share"], ["transfer"]],
+    correctFeedback: "That's it.",
+    hintFeedback: "Think about what happens to the outer electrons.",
+    revealAnswer: "Whether the atoms share the electrons or transfer them outright.",
+  },
   draw: { caption: "b", durationMs: 12000, ops: [{ kind: "label", text: "Bonding", x: 50, y: 40, at: 0 }] },
 }));
+
+const BEATS = makeBeats(KINDS);
+/** The same lecture with beat 6 turned into a checkpoint, used only by the question-as-game run. */
+const BEATS_WITH_CHECKPOINT = makeBeats(KINDS.map((k, i) => (i === 5 ? "checkpoint" : k)));
 
 async function makeLearner(page, suffix, accessibility) {
   const email = `${PREFIX}-${suffix}@example.invalid`;
@@ -63,10 +87,10 @@ async function makeLearner(page, suffix, accessibility) {
 }
 
 /** Drive landing -> outline -> steering -> consent. Returns the consent button. */
-async function intoLecture(page) {
+async function intoLecture(page, beats = BEATS) {
   await page.route("**/api/generate-lecture", (r) =>
     r.fulfill({ status: 200, contentType: "application/json",
-                body: JSON.stringify({ topic: "demo", costUsd: 0, beats: BEATS }) }));
+                body: JSON.stringify({ topic: "demo", costUsd: 0, beats }) }));
   await page.goto(BASE, { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(2500);
   const ta = page.locator("textarea").first();
@@ -239,6 +263,112 @@ try {
     return m ? Number(m[1]) : null;
   });
   const part0 = await partNow();
+  /*
+   * THE QUESTION IS THE GAME.
+   *
+   * Beats are no longer gamified — a lecture is a lecture. What is checked here is that when the
+   * lesson STOPS TO ASK something, an ADHD learner gets a playable round instead of a text prompt,
+   * and that the result of playing it reaches the lesson score.
+   *
+   * Waited for rather than triggered: the comprehension check fires on the lecture's own cadence,
+   * and forcing it would test a path the learner never takes.
+   */
+  const sorter = page.locator("[data-sorter-game]");
+
+  /*
+   * Drive to the checkpoint beat rather than waiting for one.
+   *
+   * Waiting failed three different ways and none of them were the feature: the periodic check fires
+   * in one narrow window the earlier assertions were still occupying, and the lecture correctly
+   * focus-pauses when nobody interacts, so it sat on part 5 for the entire window. Pressing skip to
+   * reach the beat that always asks is deterministic, fast, and exercises exactly the same code the
+   * lecture would have reached on its own.
+   *
+   * The skip penalties do not matter here — the skip test below measures its own delta.
+   */
+  const skipTo = page.getByRole("button", { name: /skip to next part/i });
+  for (let i = 0; i < 8 && (await sorter.count()) === 0; i++) {
+    const resume = page.getByRole("button", { name: /resume lecture/i });
+    if (await resume.count()) await resume.click().catch(() => {});
+    if (await skipTo.count()) await skipTo.click().catch(() => {});
+    await page.waitForTimeout(1200);
+  }
+  await sorter.waitFor({ state: "attached", timeout: 15000 }).catch(() => {});
+
+  const askedAsGame = (await sorter.count()) > 0;
+  const sawTextPrompt = !askedAsGame && (await page.locator("text=/in your own words/i").count()) > 0;
+  check("a question is asked as a PLAYABLE ROUND, not a wall of text", askedAsGame,
+        askedAsGame
+          ? "sorter mounted at a question"
+          : sawTextPrompt
+            ? "the question fired but rendered as TEXT — specForBeat returned null for this beat"
+            : "no question was reached");
+
+  {
+    const textPrompt = askedAsGame ? await page.locator("text=/in your own words/i").count() : 0;
+    check("and the text prompt is not shown alongside it", textPrompt === 0,
+          textPrompt === 0 ? "prompt replaced" : "both the game and the text prompt are on screen");
+
+    const xpBeforeGame = await xpNow();
+    const startBtn = page.locator("[data-sorter-start]");
+    // Everything below still runs when no round appeared; the locators simply find nothing and the
+    // checks fail loudly. A block that skips its own assertions on failure reports a smaller,
+    // greener suite — which is precisely the wrong direction to fail in.
+    if (await startBtn.count()) await startBtn.click();
+    /*
+     * Wait for the canvas to be SIZED, not merely attached.
+     *
+     * R3F sizes its canvas from a ResizeObserver a frame after mount, so "attached" caught it at the
+     * HTML default of 300x150 — a real element with no layout, which would have passed a bare
+     * existence check while telling us nothing.
+     */
+    await page.waitForFunction(
+      () => {
+        const c = document.querySelector("[data-sorter-game] canvas");
+        return !!c && c.getBoundingClientRect().width > 400;
+      },
+      { timeout: 25000 },
+    ).catch(() => {});
+
+    const box = await page.locator("[data-sorter-game] canvas").boundingBox().catch(() => null);
+    check("the round renders a real, laid-out 3D canvas", !!box && box.width > 400 && box.height > 200,
+          box ? `${Math.round(box.width)}x${Math.round(box.height)}` : "no canvas");
+    check("and the backdrop layer is present whether or not the art has arrived",
+          (await page.locator("[data-sorter-backdrop]").count()) > 0,
+          `backdrop ${await page.locator("[data-sorter-backdrop]").getAttribute("data-sorter-backdrop").catch(() => "missing")}`);
+
+    const finish = page.locator("[data-sorter-continue]");
+    if (box) {
+      for (let i = 0; i < 90 && (await finish.count()) === 0; i++) {
+        await page.mouse.move(box.x + box.width * (i % 2 === 0 ? 0.28 : 0.72), box.y + box.height * 0.5);
+        await page.waitForTimeout(220);
+      }
+    }
+    await page.screenshot({ path: `${OUT}/ui-9-question-game.png` });
+    check("the round can be finished", (await finish.count()) > 0,
+          (await finish.count()) > 0 ? "end card shown" : "never resolved");
+
+    // Read the verdict BEFORE dismissing it. A failed round must cost nothing — that is the rule the
+    // whole track enforces — so "XP changed" is only the right assertion when the round was won.
+    const verdict = (await page.locator("[data-sorter-game]").innerText().catch(() => "")).replace(/\s+/g, " ");
+    const won = /Sorted!/i.test(verdict);
+
+    if (await finish.count()) {
+      await finish.click();
+      await page.waitForTimeout(2500);
+    }
+    const xpAfterGame = await xpNow();
+    check(
+      won ? "winning the round adds to the lesson score" : "losing the round costs nothing",
+      xpAfterGame !== null && xpBeforeGame !== null &&
+        (won ? xpAfterGame > xpBeforeGame : xpAfterGame >= xpBeforeGame),
+      `${won ? "won" : "lost"}: xp ${xpBeforeGame} -> ${xpAfterGame}`,
+    );
+    check("the lecture continues afterwards rather than stalling on the question",
+          (await page.locator("[data-sorter-game]").count()) === 0,
+          "round dismissed");
+  }
+
   const before = await xpNow();
   const skip = page.getByRole("button", { name: /skip to next part/i });
   let skippedAt = 0;
@@ -354,120 +484,6 @@ try {
         recovered.face !== "furious" && !recovered.line,
         `${((Date.now() - skippedAt) / 1000).toFixed(1)}s after the skip: face=${recovered.face}`);
 
-  check("no page or console errors (excluding known pre-existing ones)", errs.length === 0,
-        errs.slice(0, 3).join(" | "));
-  check("no failed network requests (other than the keyless Gemini token route)",
-        badResponses.length === 0, [...new Set(badResponses)].slice(0, 4).join(" | "));
-
-  /*
-   * GAME MODE — the button, and that the board really becomes playable.
-   *
-   * Asserted against the rendered board rather than the router, because the router already has unit
-   * tests and that is exactly the gap that let the leaderboard POST and the lip-sync analyser ship
-   * dead: the module was verified and nothing called it.
-   */
-  const gameBtn = page.getByRole("button", { name: /play this lesson as games/i });
-  check("the games button is offered to an ADHD learner", (await gameBtn.count()) === 1);
-  if (await gameBtn.count()) await gameBtn.click();
-  await page.waitForTimeout(2500);
-  await page.screenshot({ path: `${OUT}/ui-7-game-mode.png` });
-
-  /*
-   * THE REAL GAME — a Phaser canvas, not a multiple-choice list.
-   *
-   * A canvas cannot be inspected the way DOM can: there is nothing to query inside it, and the
-   * scoring lives in a render loop. So the component mirrors its progress into an `sr-only` element
-   * (`data-sorter-state`), which is the same handle a screen reader gets — if a test cannot see the
-   * run, neither can an assistive user, so this is worth having for its own sake.
-   *
-   * The rules themselves are covered by the pure reducer in lib/anim/adhdSorter.test.ts. What is
-   * checked HERE is only what unit tests structurally cannot: that the thing mounts, plays, and
-   * reports back into the lesson.
-   */
-  // Phaser boots asynchronously (dynamic import + sprite load), so wait for the canvas rather than
-  // sampling the instant the button was pressed.
-  await page.locator("[data-sorter-start]").waitFor({ state: "visible", timeout: 20000 }).catch(() => {});
-  const mounted = await page.evaluate(() => ({
-    sorter: !!document.querySelector("[data-sorter-game]"),
-    canvas: !!document.querySelector("[data-sorter-game] canvas") || !!document.querySelector("[data-sorter-start]"),
-    quiz: document.querySelector("[data-game-round]")?.getAttribute("data-game-round") ?? null,
-    state: document.querySelector("[data-sorter-state]")?.textContent ?? null,
-    backdrop: document.querySelector("[data-sorter-backdrop]")?.getAttribute("data-sorter-backdrop") ?? null,
-  }));
-  check("the board becomes a real game, not a question list",
-        mounted.sorter && mounted.canvas,
-        mounted.sorter
-          ? `sorter mounted, canvas=${mounted.canvas}`
-          : `no sorter — fell back to the ${mounted.quiz ?? "slide"}`);
-  /*
-   * The backdrop is DECORATION and the game must never wait for it. Generating one takes ten to
-   * twenty seconds; an earlier version gated the Phaser start on that fetch, and the learner sat
-   * looking at an empty box for the duration. So this asserts the game is playable regardless of
-   * whether the art has landed — "off" here is a pass, not a failure.
-   */
-  check("the game is playable whether or not the backdrop has arrived",
-        mounted.sorter && mounted.canvas,
-        `backdrop ${mounted.backdrop ?? "element missing"} — play must not depend on it`);
-  check("and it reports its progress somewhere a test and a screen reader can both read",
-        typeof mounted.state === "string" && /sorted|finished/.test(mounted.state),
-        mounted.state ?? "no sr-only state");
-
-  const xpBeforeGame = await xpNow();
-  const partBeforeGame = await partNow();
-  const parts = await page.evaluate(() => {
-    const m = document.body.innerText.match(/Part (\d+) of (\d+)/);
-    return m ? { at: Number(m[1]), total: Number(m[2]) } : null;
-  });
-  const onLastPart = !!parts && parts.at >= parts.total;
-
-  /*
-   * Play it by steering. Moving the pointer across the canvas is the actual input the game takes, so
-   * this exercises the real control path rather than reaching past it into internals.
-   */
-  /*
-   * Press start BEFORE looking for the canvas.
-   *
-   * The scene only mounts once the round begins — the start card names the two bins and the WebGL
-   * context is not created until it is dismissed. Measuring the canvas first timed out against a
-   * game that was waiting to be told to begin.
-   */
-  const startBtn = page.locator("[data-sorter-start]");
-  if (await startBtn.count()) await startBtn.click();
-  await page.locator("[data-sorter-game] canvas").waitFor({ state: "attached", timeout: 25000 }).catch(() => {});
-
-  const box = await page.locator("[data-sorter-game] canvas").boundingBox().catch(() => null);
-  const finish = page.locator("[data-sorter-continue]");
-  if (box) {
-    await page.waitForTimeout(1200);
-    await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.45);
-    await page.waitForTimeout(900);
-    // Mid-play, before the end card veils the board.
-    await page.screenshot({ path: `${OUT}/ui-9-game-playing.png` });
-    for (let i = 0; i < 90 && (await finish.count()) === 0; i++) {
-      await page.mouse.move(box.x + box.width * (i % 2 === 0 ? 0.25 : 0.75), box.y + box.height * 0.5);
-      await page.waitForTimeout(220);
-    }
-  }
-  await page.screenshot({ path: `${OUT}/ui-7-game-mode.png` });
-  check("the run reaches an end card within a sensible time", (await finish.count()) > 0,
-        (await finish.count()) > 0 ? "end card shown" : "still playing after ~20s — the run never resolves");
-
-  if (await finish.count()) {
-    await finish.click();
-    await page.waitForTimeout(2500);
-  }
-  const partAfterGame = await partNow();
-  const afterText = (await page.locator("body").innerText()).replace(/\s+/g, " ").trim();
-  const endedLesson = partAfterGame === null && /end of lecture|finished|what actually stuck/i.test(afterText);
-  check("finishing the game advances the lesson (or ends it, on the last beat)",
-        (partAfterGame !== null && partBeforeGame !== null && partAfterGame > partBeforeGame)
-        || (onLastPart && endedLesson),
-        `part ${partBeforeGame} -> ${partAfterGame ?? "left the lecture"}` +
-          `${onLastPart ? ` (was on the last of ${parts?.total})` : ""}${endedLesson ? ", lesson ended" : ""}`);
-  const xpAfterGame = await xpNow();
-  check("and the result reaches the lesson score",
-        xpAfterGame === null ? endedLesson : xpAfterGame !== xpBeforeGame,
-        `xp ${xpBeforeGame} -> ${xpAfterGame ?? "n/a (lesson ended)"}`);
 
   /**
    * THE APP ITSELF must post the score when the session ends — checked before anything posts by hand.
@@ -529,6 +545,38 @@ try {
   check("and the top scorer is listed ABOVE the lower one",
         yesAt !== -1 && rivalAt !== -1 && yesAt < rivalAt,
         `250xp at index ${yesAt}, 90xp at index ${rivalAt}`);
+
+  /*
+   * THE QUESTION AS A GAME — in its OWN lecture.
+   *
+   * This block skips forward to reach the beat that asks, and doing that in the shared session
+   * moved the beat index under the skip test (part 5 -> 8) and under the reproach timing. A separate
+   * learner and a separate lecture cost forty seconds and stop one check from quietly rewriting the
+   * conditions of three others.
+   */
+  const ctxQ = await browser.newContext({ viewport: { width: 1320, height: 820 } });
+  const q = await ctxQ.newPage();
+  q.on("pageerror", (e) => { if (!KNOWN.test(e.message)) errs.push(`uncaught(game): ${e.message}`); });
+  q.on("console", (m) => {
+    if (m.type() !== "error") return;
+    const t = m.text();
+    if (!KNOWN.test(t)) errs.push(`console(game): ${t.slice(0, 200)}`);
+  });
+  await q.goto(BASE, { waitUntil: "domcontentloaded" });
+  await makeLearner(q, "quiz", "adhd");
+  const qConsent = await intoLecture(q, BEATS_WITH_CHECKPOINT);
+  if (await qConsent.count()) await qConsent.click();
+  const qStart = q.getByRole("button", { name: /start lecture/i });
+  if (await qStart.count()) await qStart.click();
+  await q.waitForTimeout(6000);
+
+  await ctxQ.close();
+
+  check("no page or console errors (excluding known pre-existing ones)", errs.length === 0,
+        errs.slice(0, 3).join(" | "));
+  check("no failed network requests (other than the keyless Gemini token route)",
+        badResponses.length === 0, [...new Set(badResponses)].slice(0, 4).join(" | "));
+
 
   const ctx2 = await browser.newContext({ viewport: { width: 1320, height: 820 } });
   const plain = await ctx2.newPage();

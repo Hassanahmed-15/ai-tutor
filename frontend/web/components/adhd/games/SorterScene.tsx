@@ -127,14 +127,24 @@ function Hero({ heroRef, mood }: { heroRef: React.RefObject<THREE.Group | null>;
 function Play({
   spec,
   reduced,
-  onState,
-  onEnd,
+  onState: rawOnState,
+  onEnd: rawOnEnd,
 }: {
   spec: GameSpec;
   reduced: boolean;
   onState: (s: SorterState) => void;
   onEnd: (s: SorterState) => void;
 }) {
+  /*
+   * Parent updates are deferred out of the frame loop.
+   *
+   * `useFrame` runs inside R3F's own reconciler pass, so calling setState on a component in the DOM
+   * tree from there is "update a component while rendering a different component" — React said so
+   * out loud, and the browser suite caught it as a console error. A microtask puts the update after
+   * the render that triggered it, which is where it belonged.
+   */
+  const onState = (s: SorterState) => queueMicrotask(() => rawOnState(s));
+  const onEnd = (s: SorterState) => queueMicrotask(() => rawOnEnd(s));
   const tileRef = useRef<THREE.Group | null>(null);
   const heroRef = useRef<THREE.Group | null>(null);
   const run = useRef<SorterState>(initialSorter());

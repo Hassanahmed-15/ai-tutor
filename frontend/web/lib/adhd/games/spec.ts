@@ -43,7 +43,7 @@ export const SPEC_RULES = {
   MAX_BIN_CHARS: 30,
 } as const;
 
-/** Mulberry32, matching gameRouting.ts — a seeded round is a round a test can replay. */
+/** Mulberry32 — a seeded round is a round a test can replay. */
 function rng(seed: number): () => number {
   let a = seed || 1;
   return () => {
@@ -76,9 +76,9 @@ function fit(text: string, max: number): string {
 /**
  * Build a playable spec for `beat`, or null when its content will not support one.
  *
- * NULL IS A FIRST-CLASS RESULT and the most important behaviour here — the same call
- * `gameRouting.ts` makes. A round with two items, or with one empty bin, is not a hard game; it is a
- * broken one, and it is worse than falling back to the narrated slide the lesson already renders.
+ * NULL IS A FIRST-CLASS RESULT and the most important behaviour here. A round with two items, or
+ * with one empty bin, is not a hard game; it is a broken one, and it is worse than simply asking the
+ * question as text, which is what the caller does when this returns null.
  */
 export function specForBeat(beat: Beat, allBeats: Beat[], seed: number): GameSpec | null {
   const next = rng(seed);
