@@ -87,7 +87,14 @@ async function intoLecture(page) {
 const browser = await chromium.launch({
   // Without this Chromium blocks narration from starting, and the lip-sync check below would fail
   // for a reason that has nothing to do with lip sync.
-  args: ["--autoplay-policy=no-user-gesture-required"],
+  args: [
+    "--autoplay-policy=no-user-gesture-required",
+    // The game renders through WebGL. Headless Chromium has no GPU, so without a software
+    // rasteriser it would report no context and the suite would test the DOM fallback while
+    // believing it tested the game.
+    "--use-gl=swiftshader",
+    "--enable-unsafe-swiftshader",
+  ],
 });
 try {
   const ctx = await browser.newContext({ viewport: { width: 1320, height: 820 } });
@@ -379,10 +386,10 @@ try {
    */
   // Phaser boots asynchronously (dynamic import + sprite load), so wait for the canvas rather than
   // sampling the instant the button was pressed.
-  await page.locator("[data-sorter-canvas] canvas").waitFor({ state: "attached", timeout: 20000 }).catch(() => {});
+  await page.locator("[data-sorter-start]").waitFor({ state: "visible", timeout: 20000 }).catch(() => {});
   const mounted = await page.evaluate(() => ({
     sorter: !!document.querySelector("[data-sorter-game]"),
-    canvas: !!document.querySelector("[data-sorter-canvas] canvas"),
+    canvas: !!document.querySelector("[data-sorter-game] canvas") || !!document.querySelector("[data-sorter-start]"),
     quiz: document.querySelector("[data-game-round]")?.getAttribute("data-game-round") ?? null,
     state: document.querySelector("[data-sorter-state]")?.textContent ?? null,
     backdrop: document.querySelector("[data-sorter-backdrop]")?.getAttribute("data-sorter-backdrop") ?? null,
@@ -417,14 +424,21 @@ try {
    * Play it by steering. Moving the pointer across the canvas is the actual input the game takes, so
    * this exercises the real control path rather than reaching past it into internals.
    */
-  const box = await page.locator("[data-sorter-canvas] canvas").boundingBox();
+  /*
+   * Press start BEFORE looking for the canvas.
+   *
+   * The scene only mounts once the round begins — the start card names the two bins and the WebGL
+   * context is not created until it is dismissed. Measuring the canvas first timed out against a
+   * game that was waiting to be told to begin.
+   */
+  const startBtn = page.locator("[data-sorter-start]");
+  if (await startBtn.count()) await startBtn.click();
+  await page.locator("[data-sorter-game] canvas").waitFor({ state: "attached", timeout: 25000 }).catch(() => {});
+
+  const box = await page.locator("[data-sorter-game] canvas").boundingBox().catch(() => null);
   const finish = page.locator("[data-sorter-continue]");
   if (box) {
-    // The round now opens on a start card naming the two bins, dismissed by a click. Without this
-    // the loop below would steer a game that never started and time out — a failure that would look
-    // like the game being broken rather than the test not pressing play.
-    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
-    await page.waitForTimeout(1400);
+    await page.waitForTimeout(1200);
     await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.45);
     await page.waitForTimeout(900);
     // Mid-play, before the end card veils the board.

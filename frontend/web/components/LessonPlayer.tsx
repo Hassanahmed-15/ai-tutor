@@ -252,9 +252,16 @@ export function LessonPlayer({
     () => (adhd && gameMode ? specForBeat(beat, beats, index + 1) : null),
     [adhd, gameMode, beat, beats, index],
   );
+  /**
+   * Set when the 3D renderer reports no WebGL context. The DOM round then takes over — it is
+   * already built and tested, so a machine that cannot run WebGL still gets a playable round
+   * instead of an empty board.
+   */
+  const [no3d, setNo3d] = useState(false);
+  const spec3d = no3d ? null : spec;
   const round = useMemo(
-    () => (adhd && gameMode && !spec ? roundForBeat(beat, beats, index + 1) : null),
-    [adhd, gameMode, spec, beat, beats, index],
+    () => (adhd && gameMode && (!spec || no3d) ? roundForBeat(beat, beats, index + 1) : null),
+    [adhd, gameMode, spec, no3d, beat, beats, index],
   );
   const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
   // The lecture only WAITS on a pending animation until the watchdog trips (see below); after that it
@@ -671,6 +678,14 @@ export function LessonPlayer({
   // (never rendered) rather than boolean state, so no reset-on-beat-change effect is needed.
   useEffect(() => {
     if (!lesson.playing || comprehensionAskedForRef.current === index || isCheckpoint || waitingOnCheckpoint) return;
+    /*
+     * Never interrupt a game round.
+     *
+     * The comprehension check fired mid-round and its panel printed straight over the bins — the
+     * same defect as the caption bar, and worse, because it also demands an answer while the learner
+     * is steering a falling tile. The round IS the comprehension check for this beat.
+     */
+    if (spec || round) return;
     const dueToEngagement = engagement.low && !engagement.critical;
     const dueToPeriod = index > 0 && index % UNDERSTANDING_CHECK_EVERY === 0 && stage === "board" && !speaking;
     if (!dueToEngagement && !dueToPeriod) return;
@@ -680,7 +695,7 @@ export function LessonPlayer({
       question: `Quick check — in your own words, what's the main idea of "${beat.title}" so far?`,
       expected: beat.script,
     });
-  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, engagement.low, engagement.critical, index, stage, speaking, quiz, beat.title, beat.script]);
+  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, engagement.low, engagement.critical, index, stage, speaking, quiz, spec, round, beat.title, beat.script]);
 
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
@@ -942,12 +957,13 @@ export function LessonPlayer({
               />
             ) : (
               <div className="beat-fade-in relative h-full">
-                {spec ? (
+                {spec3d ? (
                   <div className="absolute inset-0 bg-slate-950">
                     <SorterGame
-                      key={spec.beatId}
-                      spec={spec}
+                      key={spec3d.beatId}
+                      spec={spec3d}
                       topic={title}
+                      onUnsupported={() => setNo3d(true)}
                       onDone={(passed) => {
                         emitAdhdEvent({ type: passed ? "answer-correct" : "answer-wrong" });
                         advanceFromCheckpoint();
