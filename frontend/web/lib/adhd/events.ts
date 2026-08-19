@@ -56,6 +56,25 @@ export function publishAdhdFace(face: Expression): void {
   for (const fn of faceListeners) fn(face);
 }
 
+/* ── What the teacher says out loud ───────────────────────────────────────────
+ * Same structural reason as the face: the ADHD layer knows WHAT to say (it holds the skip count and
+ * the reaction), while `LessonPlayer` is the only place that owns the voice director and renders
+ * the avatar the bubble hangs off. So the layer publishes the line and the player performs it.
+ *
+ * `null` clears the bubble — the reaction has to end.
+ */
+type SpeechListener = (line: string | null) => void;
+const speechListeners = new Set<SpeechListener>();
+
+export function onAdhdSpeech(fn: SpeechListener): () => void {
+  speechListeners.add(fn);
+  return () => speechListeners.delete(fn);
+}
+
+export function publishAdhdSpeech(line: string | null): void {
+  for (const fn of speechListeners) fn(line);
+}
+
 /* ── The score snapshot ───────────────────────────────────────────────────────
  * Published for the same structural reason as the face: the chip renders in the lesson header,
  * above the layer that owns the numbers.

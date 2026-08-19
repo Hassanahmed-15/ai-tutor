@@ -6,7 +6,8 @@ import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { initialFocus, advanceFocus, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
 import { initialScore, applyScore, comboMultiplier, finalScore, SCORE_RULES, type ScoreState } from "@/lib/adhd/score";
 import { initialLoot, onBeatForLoot, type LootReward } from "@/lib/adhd/loot";
-import { onAdhdEvent, publishAdhdFace, publishAdhdScore, resetAdhdScore } from "@/lib/adhd/events";
+import { onAdhdEvent, publishAdhdFace, publishAdhdScore, publishAdhdSpeech, resetAdhdScore } from "@/lib/adhd/events";
+import { holdFor, lineFor } from "@/lib/adhd/reproach";
 import { expressionFor } from "@/lib/adhd/expression";
 
 /**
@@ -73,6 +74,8 @@ export function AdhdLayer({
   const indexRef = useRef(index);
   const beatRef = useRef(beat);
   const scoreRef = useRef(initialScore());
+  // Rotates the line within an escalation tier so the same sentence never repeats back to back.
+  const lineSeed = useRef(0);
   useEffect(() => {
     indexRef.current = index;
     beatRef.current = beat;
@@ -168,9 +171,23 @@ export function AdhdLayer({
     });
   }, []);
 
+  /**
+   * A reaction now HOLDS, and she says why.
+   *
+   * This was a flat 2200ms for every reaction, so the furious face was gone before it registered.
+   * The duration is per-reaction data now (`holdFor`) — praise can be brief, being told off cannot.
+   *
+   * `scoreRef` rather than `score`: the line escalates with the skip count, but putting `score` in
+   * the deps would restart the timer on every coin and cut the reaction short. The ref is synced by
+   * the effect declared above this one, so it already holds the post-commit value when this runs.
+   */
   useEffect(() => {
-    if (!flash) return;
-    const id = setTimeout(() => setFlash(null), 2200);
+    if (!flash) {
+      publishAdhdSpeech(null);
+      return;
+    }
+    publishAdhdSpeech(lineFor(flash, scoreRef.current.skipped, lineSeed.current++));
+    const id = setTimeout(() => setFlash(null), holdFor(flash));
     return () => clearTimeout(id);
   }, [flash]);
 
@@ -258,6 +275,7 @@ export function AdhdLayer({
       window.removeEventListener("pagehide", submit);
       submit();
       publishAdhdFace("neutral");
+      publishAdhdSpeech(null);
       resetAdhdScore();
     };
   }, []);
@@ -279,10 +297,11 @@ export function AdhdLayer({
         tuned against each other, which held only until the "breather?" note appeared and pushed one
         under the other.
 
-        top-[108px] clears the board's own RendererBadge at `left-3 top-3`. With the avatar moved to
-        the sidebar this row is now short, so it no longer needs the extra 150px of clearance.
+        top-[150px] sits BELOW the board's own RendererBadge, which occupies `left-3 top-3` and
+        measures to a bottom edge of ~138px. 108px put this row straight through it. ADHD chrome
+        must not damage the standard lesson chrome, so this row moves, not the badge.
       */}
-      <div className="pointer-events-none absolute left-6 top-[108px] z-30 flex items-center gap-2">
+      <div className="pointer-events-none absolute left-6 top-[150px] z-30 flex items-center gap-2">
         <FocusNote focus={shownFocus} cameraOn={cameraOn} />
 
         {/* The affordance has to be visible or nobody discovers the key. */}

@@ -5,7 +5,7 @@ import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { unlockAudio, splitNarrationSentences } from "@/lib/voice";
-import { useVoiceDirector } from "@/lib/useVoiceDirector";
+import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
@@ -22,7 +22,7 @@ import type { EquationSpec } from "@/lib/equationSpec";
 import { RendererBadge } from "./sketch/RendererBadge";
 import { AdhdLayer } from "./adhd/AdhdLayer";
 import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
-import { emitAdhdEvent, onAdhdFace } from "@/lib/adhd/events";
+import { emitAdhdEvent, onAdhdFace, onAdhdSpeech } from "@/lib/adhd/events";
 import type { Expression } from "@/lib/adhd/expression";
 import { Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -157,6 +157,15 @@ export function LessonPlayer({
   // the layer is a CHILD of this component and props only travel downward.
   const [face, setFace] = useState<Expression>("neutral");
   useEffect(() => (adhd ? onAdhdFace(setFace) : undefined), [adhd]);
+  /**
+   * What Aria says when she reacts. The ADHD layer decides the line; this renders and speaks it.
+   *
+   * Both channels, because neither is reliable alone: `speakAsTeacher` returns false and plays
+   * nothing whenever the chatbot holds the audio channel, and audio can be muted or autoplay-
+   * blocked besides — so a reaction that existed only as sound would silently not happen. The
+   * bubble is the guaranteed one.
+   */
+  const [reproach, setReproach] = useState<string | null>(null);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -358,6 +367,36 @@ export function LessonPlayer({
   // The director is the only owner of the teacher's voice vs. the realtime tutor's voice; the
   // lesson machine is the single "should the teacher be talking right now?" state, built on it.
   const voice = useVoiceDirector({ tutorSpeaking: tutor.speaking, isChatbotSpeakingNow: tutor.isSpeaking });
+
+  /*
+   * Read `voice` through a ref, and depend only on `adhd`.
+   *
+   * `useVoiceDirector` returns a fresh object every render, so listing it as a dependency tore the
+   * subscription down and rebuilt it on every single render — dozens of times a second during
+   * narration, with a window on each rebuild where a published line lands on nobody.
+   * `onAdhdSpeech` does not replay its last value, so anything published in that window is lost.
+   */
+  const voiceRef = useRef<VoiceDirector | null>(null);
+  // Synced in an effect, not assigned during render — the same latest-value-ref shape AdhdLayer
+  // uses, because assigning during render is impure and ESLint rejects it.
+  useEffect(() => {
+    voiceRef.current = voice;
+  });
+  useEffect(() => {
+    if (!adhd) return;
+    return onAdhdSpeech((line) => {
+      setReproach(line);
+      // "utterance", not "lecture": the same slot quiz verdicts use, so it never destroys a frozen
+      // lecture. A refusal is fine and expected — the bubble already carried the message.
+      if (line) {
+        voiceRef.current?.speakAsTeacher(
+          line,
+          { onStart: () => {}, onEnd: () => {}, onBlocked: () => {} },
+          "utterance",
+        );
+      }
+    });
+  }, [adhd]);
   const lesson = useLessonMachine(voice);
 
   const stopVoice = useCallback(() => {
@@ -997,8 +1036,22 @@ export function LessonPlayer({
               column to herself. Rendered outside ChatPanel so the standard player is untouched.
             */}
             {adhd && (
-              <div className="flex shrink-0 items-center justify-center rounded-[1.5rem] border border-[var(--hud-line)] bg-[var(--hud-bg-2)] py-3">
+              <div className="flex shrink-0 flex-col items-center gap-2 rounded-[1.5rem] border border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-3 py-3">
                 <TeacherAvatar speaking={speaking} size={150} expression={face} />
+                {reproach && (
+                  <p
+                    data-reproach
+                    className={`w-full rounded-xl px-3 py-2 text-center text-[0.78rem] font-semibold leading-snug beat-fade-in ${
+                      face === "furious"
+                        ? "bg-red-500/12 text-red-200 ring-1 ring-red-400/25"
+                        : face === "sad"
+                          ? "bg-amber-500/10 text-amber-100/90 ring-1 ring-amber-400/20"
+                          : "bg-emerald-500/10 text-emerald-100/90 ring-1 ring-emerald-400/20"
+                    }`}
+                  >
+                    {reproach}
+                  </p>
+                )}
               </div>
             )}
             {deafMode ? (

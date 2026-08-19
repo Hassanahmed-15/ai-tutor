@@ -221,7 +221,12 @@ try {
   const part0 = await partNow();
   const before = await xpNow();
   const skip = page.getByRole("button", { name: /skip to next part/i });
-  if (await skip.count()) { await skip.click(); await page.waitForTimeout(3000); }
+  let skippedAt = 0;
+  if (await skip.count()) {
+    await skip.click();
+    skippedAt = Date.now();
+    await page.waitForTimeout(3000);
+  }
   const after = await xpNow();
   const part1 = await partNow();
   check("exactly one part elapsed, so the skip is the only thing that moved the score",
@@ -233,8 +238,6 @@ try {
   check("and by roughly the skip penalty, not an arbitrary amount",
         before !== null && after !== null && before - after >= 20 && before - after <= 30,
         `dropped ${before !== null && after !== null ? before - after : "?"}`);
-  await page.screenshot({ path: `${OUT}/ui-3-after-skip.png` });
-
   /**
    * LIP SYNC — sampled from the rendered avatar, in the running app.
    *
@@ -290,6 +293,46 @@ try {
   check("and the lips change shape, not just the jaw",
         !!lip.found && !!lip.spoke && (lip.rx ?? []).length >= 3,
         `${(lip.rx ?? []).length} distinct rx values, ${(lip.rx ?? []).slice(0, 6).join(", ")}...`);
+
+  /*
+   * She holds the furious face AND says why.
+   *
+   * The reaction used to clear after a flat 2200ms, so this is checked shortly after the skip and
+   * again later: the point of the change is the DURATION, and a check that only sampled once could
+   * not tell a 9-second reaction from a 2-second one.
+   */
+  const reproachNow = () => page.evaluate(() => {
+    const el = document.querySelector("[data-reproach]");
+    const av = document.querySelector("[data-teacher-avatar]");
+    return { line: el?.textContent?.trim() ?? null, face: av?.getAttribute("data-teacher-avatar") ?? null };
+  });
+  const justAfter = await reproachNow();
+  check("she says something when a beat is skipped", !!justAfter.line, justAfter.line ?? "no bubble");
+  check("and the face is furious, not merely surprised", justAfter.face === "furious",
+        `face=${justAfter.face}`);
+
+  /*
+   * Measure ELAPSED TIME, do not assume it.
+   *
+   * The first version waited a fixed 4000ms and reported "after ~7s", but the screenshot and three
+   * `evaluate` round trips in between added over a second — so it sampled at ~9s against a 9s hold
+   * and reported a failure that was really a stopwatch error. The hold is read from the clock now,
+   * and the screenshot moved after the sample so it cannot push the measurement past the deadline.
+   */
+  await page.waitForTimeout(4000);
+  const stillCross = await reproachNow();
+  const heldFor = Date.now() - skippedAt;
+  check("the reaction HOLDS — still cross seconds later, not gone in a blink",
+        stillCross.face === "furious" && !!stillCross.line,
+        `${(heldFor / 1000).toFixed(1)}s after the skip: face=${stillCross.face} line=${stillCross.line ? "shown" : "gone"}`);
+  await page.screenshot({ path: `${OUT}/ui-3-after-skip.png` });
+
+  // ...and it still ENDS. A face that never resets is a verdict, not a reaction.
+  await page.waitForTimeout(Math.max(0, 16_000 - (Date.now() - skippedAt)));
+  const recovered = await reproachNow();
+  check("and it ends — the face recovers rather than glaring forever",
+        recovered.face !== "furious" && !recovered.line,
+        `${((Date.now() - skippedAt) / 1000).toFixed(1)}s after the skip: face=${recovered.face}`);
 
   check("no page or console errors (excluding known pre-existing ones)", errs.length === 0,
         errs.slice(0, 3).join(" | "));
