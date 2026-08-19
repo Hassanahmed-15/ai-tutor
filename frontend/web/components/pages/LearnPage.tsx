@@ -6,7 +6,7 @@ import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { useAuth } from "@/components/auth/AuthGate";
-import { trackForProfile } from "@/lib/adhd/gate";
+import { trackForProfile, isAdhdLearner } from "@/lib/adhd/gate";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
 import { TestOralView } from "@/components/TestOralView";
@@ -961,7 +961,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         break;
       case "demo":
       default:
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} mood={moodString} />;
+        // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
+        // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} />;
     }
     return (
       <div className="relative">

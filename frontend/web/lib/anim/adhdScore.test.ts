@@ -1,25 +1,78 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { initialScore, applyScore, applyAll, comboMultiplier, SCORE_RULES } from "../adhd/score";
+import { initialScore, applyScore, applyAll, comboMultiplier, finalScore, SCORE_RULES } from "../adhd/score";
 
-test("XP and coins can never fall, whatever happens", () => {
-  // The invariant that matters most. Loss aversion is a strong motivator and a bad idea for a brain
-  // that treats a lost total as a reason to stop opening the app — so it is asserted against EVERY
-  // event, not just the ones that look risky.
+test("SKIPPING is the only event that can reduce XP", () => {
+  // This file used to assert "XP can never fall". That invariant was reversed on purpose so the
+  // leaderboard has stakes — so the test is rewritten to pin the NEW rule rather than deleted,
+  // because the distinction it protects is the one that matters: the penalty must land on
+  // disengaging, never on getting something wrong.
   const events = [
     { type: "beat-complete" }, { type: "drift" }, { type: "answer-wrong" },
-    { type: "beat-complete" }, { type: "drift" }, { type: "drift" },
-    { type: "boss-cleared" }, { type: "answer-wrong" }, { type: "focus-minute" },
+    { type: "beat-complete" }, { type: "drift" }, { type: "boss-cleared" },
+    { type: "answer-correct" }, { type: "focus-minute" }, { type: "focus-bonus" },
   ] as const;
 
   let s = initialScore();
   for (const e of events) {
     const next = applyScore(s, e);
-    assert.ok(next.xp >= s.xp, `${e.type} must never reduce XP`);
+    assert.ok(next.xp >= s.xp, `${e.type} must not reduce XP — only a skip may`);
     assert.ok(next.coins >= s.coins, `${e.type} must never reduce coins`);
     s = next;
   }
+
+  const skipped = applyScore(s, { type: "beat-skipped" });
+  assert.ok(skipped.xp < s.xp, "and a skip genuinely costs");
+  assert.equal(skipped.coins, s.coins, "coins track attention, which is not something you spend");
+});
+
+test("a wrong answer is still free, and only withholds the perfect bonus", () => {
+  // The line that must not move. Charging for wrong answers is how a learner works out that the
+  // safe play is to stop answering at all.
+  const before = applyAll(initialScore(), [{ type: "beat-complete" }, { type: "answer-correct" }]);
+  const after = applyScore(before, { type: "answer-wrong" });
+  assert.equal(after.xp, before.xp, "no XP is taken for being wrong");
+  assert.equal(after.wrong, 1, "but it is remembered");
+  assert.ok(finalScore(after) < finalScore(before), "the all-correct bonus is simply not owed");
+});
+
+test("XP is floored at zero — a learner is never worth less than nothing", () => {
+  let s = initialScore();
+  for (let i = 0; i < 10; i++) s = applyScore(s, { type: "beat-skipped" });
+  assert.equal(s.xp, 0);
+  assert.equal(s.skipped, 10, "still counted, so the receipt can explain the score");
+});
+
+test("watching beats out-scores skipping them, which is the whole point", () => {
+  const watched = applyAll(initialScore(), [
+    { type: "beat-complete" }, { type: "beat-complete" }, { type: "beat-complete" },
+  ]);
+  const skipped = applyAll(initialScore(), [
+    { type: "beat-skipped" }, { type: "beat-skipped" }, { type: "beat-skipped" },
+  ]);
+  assert.ok(watched.xp > skipped.xp, "the fastest route to a high score must be to learn");
+});
+
+test("the perfect bonus needs answers, not merely an absence of wrong ones", () => {
+  // A learner who answered nothing has `wrong === 0` too. Paying them a perfection bonus would
+  // reward avoiding every checkpoint, which is the exact opposite of the intent.
+  const silent = applyAll(initialScore(), [{ type: "beat-complete" }]);
+  assert.equal(finalScore(silent), silent.xp, "no answers means no bonus");
+
+  const perfect = applyAll(initialScore(), [{ type: "beat-complete" }, { type: "answer-correct" }]);
+  assert.ok(finalScore(perfect) > perfect.xp, "answering everything correctly does pay");
+});
+
+test("not drifting is rewarded", () => {
+  // The brief asked for this directly: less drift should mean more points.
+  const focused = applyAll(initialScore(), [
+    { type: "beat-complete" }, { type: "focus-bonus" }, { type: "focus-bonus" },
+  ]);
+  const distracted = applyAll(initialScore(), [
+    { type: "beat-complete" }, { type: "drift" }, { type: "drift" },
+  ]);
+  assert.ok(focused.xp > distracted.xp);
 });
 
 test("a drift breaks the combo and costs nothing else", () => {
@@ -33,13 +86,7 @@ test("a drift breaks the combo and costs nothing else", () => {
   assert.equal(after.beats, before.beats, "a drift is not an un-completed beat");
 });
 
-test("a wrong answer is worth exactly zero penalty", () => {
-  const before = applyAll(initialScore(), [{ type: "beat-complete" }]);
-  const after = applyScore(before, { type: "answer-wrong" });
-  // Getting something wrong is information about what to revisit — the card scheduler uses it.
-  // Charging for it is how an ADHD learner learns to avoid answering at all.
-  assert.deepEqual(after, before);
-});
+
 
 test("the first beat pays 1.0x, not a retroactive streak bonus", () => {
   const s = applyScore(initialScore(), { type: "beat-complete" });

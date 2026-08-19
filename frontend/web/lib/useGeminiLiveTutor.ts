@@ -2,6 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+// RELATIVE, not "@/lib/adhd/mouth". This module is pulled into the CJS test build, where the "@/"
+// alias has no runtime resolver — the existing "@/components/..." line above survives only because
+// it is `import type` and erases at compile time. A value import must be relative or two unrelated
+// test files fail with "Cannot find module".
+import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
 import {
   isDrawingRequest,
   PAUSE_LECTURE_TOOL,
@@ -262,6 +267,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const micIntentRef = useRef<MicrophoneIntent | null>(null);
   if (micIntentRef.current === null) micIntentRef.current = new MicrophoneIntent(options.startMuted === true);
   const playingSourcesRef = useRef(new Set<AudioBufferSourceNode>());
+  /**
+   * A single node every reply chunk plays through, so the avatar's mouth follows the tutor's voice
+   * as well as the scripted narration.
+   *
+   * Per-chunk analysers would be wrong: replies arrive as a stream of short buffers, so the mouth
+   * would be re-attached and torn down several times a second. One persistent node on this context
+   * gives a continuous envelope across the whole reply.
+   */
+  const mouthBusRef = useRef<GainNode | null>(null);
+  const mouthTokenRef = useRef<MouthToken | undefined>(undefined);
   const nextPlayTimeRef = useRef(0);
   const responseInFlightRef = useRef(false);
   const turnCompleteRef = useRef(false);
@@ -336,6 +351,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     playingSourcesRef.current.clear();
     nextPlayTimeRef.current = audioContextRef.current?.currentTime ?? 0;
     setSpeaking(false);
+    // Interruption and teardown both land here. Detaching is idempotent — a token that no longer
+    // owns the analyser is ignored — so it is safe alongside the same call in `source.onended`.
+    detachMouthAnalyser(mouthTokenRef.current);
+    mouthTokenRef.current = undefined;
+    mouthBusRef.current = null;
   }, []);
 
   const finishTutorTurn = useCallback(() => {
@@ -421,13 +441,24 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const samples = base64ToFloat32(base64);
       const buffer = context.createBuffer(1, samples.length, OUTPUT_SAMPLE_RATE);
       buffer.copyToChannel(samples, 0);
+      // Build the mouth bus once per context, then route every chunk through it.
+      if (!mouthBusRef.current || mouthBusRef.current.context !== context) {
+        const bus = context.createGain();
+        bus.connect(context.destination);
+        mouthBusRef.current = bus;
+        mouthTokenRef.current = attachMouthAnalyser(context, bus);
+      }
       const source = context.createBufferSource();
       source.buffer = buffer;
-      source.connect(context.destination);
+      source.connect(mouthBusRef.current);
       source.onended = () => {
         playingSourcesRef.current.delete(source);
         if (playingSourcesRef.current.size === 0 && !responseInFlightRef.current) {
           setSpeaking(false);
+          // The reply is over — close the mouth rather than leaving it parked on the last chunk.
+          detachMouthAnalyser(mouthTokenRef.current);
+          mouthTokenRef.current = undefined;
+          mouthBusRef.current = null;
           scheduleSettle();
         }
       };

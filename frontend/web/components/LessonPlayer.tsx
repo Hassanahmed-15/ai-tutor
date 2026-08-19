@@ -20,6 +20,10 @@ import type { StructureSpec } from "@/lib/structureSpec";
 import type { PlotSpec } from "@/lib/plotSpec";
 import type { EquationSpec } from "@/lib/equationSpec";
 import { RendererBadge } from "./sketch/RendererBadge";
+import { AdhdLayer } from "./adhd/AdhdLayer";
+import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
+import { emitAdhdEvent, onAdhdFace } from "@/lib/adhd/events";
+import type { Expression } from "@/lib/adhd/expression";
 import { Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase } from "@/components/classroom/VoiceState";
@@ -126,6 +130,7 @@ export function LessonPlayer({
   mode = "standard",
   mood = "",
   autoVoiceAssistant = true,
+  adhd = false,
 }: {
   onExit?: () => void;
   /** Fired once, when the last beat finishes playing (natural end of lecture) — distinct from
@@ -138,8 +143,20 @@ export function LessonPlayer({
   mood?: string;
   /** Disable only for nested remediation players so one lesson never opens two mic sessions. */
   autoVoiceAssistant?: boolean;
+  /**
+   * Mounts the ADHD overlay — camera consent, score, companion, thought capture.
+   *
+   * ADHD deliberately renders THIS player rather than a separate one: the track changes what happens
+   * around a lecture, not what the lecture looks like, and a second player also meant no Gemini Live
+   * tutor. Default false, so nothing changes for any other learner.
+   */
+  adhd?: boolean;
 }) {
   const [index, setIndex] = useState(0);
+  // The ADHD layer decides the face; the header renders it. Subscribed rather than passed, because
+  // the layer is a CHILD of this component and props only travel downward.
+  const [face, setFace] = useState<Expression>("neutral");
+  useEffect(() => (adhd ? onAdhdFace(setFace) : undefined), [adhd]);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -368,10 +385,15 @@ export function LessonPlayer({
     rate,
     onPassed: () => {
       bumpInteraction();
+      // Scored by the ADHD layer if one is mounted; a no-op otherwise.
+      emitAdhdEvent({ type: "answer-correct" });
       lesson.requestResume();
     },
     onFailed: () => {
       bumpInteraction();
+      // Costs nothing — it only withholds the all-correct bonus. Charging for wrong answers is how
+      // a learner concludes the safe move is to stop answering.
+      emitAdhdEvent({ type: "answer-wrong" });
       lesson.pause("wrong-answer");
     },
   });
@@ -793,6 +815,8 @@ export function LessonPlayer({
     lesson.startTeaching();
   }
   function skipForward() {
+    // The disengagement signal, and the only thing that subtracts XP.
+    if (index < beats.length - 1) emitAdhdEvent({ type: "beat-skipped" });
     if (index < beats.length - 1) goTo(index + 1);
   }
   function cycleRate() {
@@ -812,6 +836,7 @@ export function LessonPlayer({
   // pipeline produces. Every child keeps using the same token names.
   return (
     <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
+      {adhd && <AdhdLayer index={index} beat={beats[index]} speaking={speaking} />}
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
@@ -998,7 +1023,7 @@ export function LessonPlayer({
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
               <AvatarRing progress={progressPct} speaking={speaking}>
-                <TeacherAvatar speaking={speaking} size={52} />
+                <TeacherAvatar speaking={speaking} size={52} expression={face} />
               </AvatarRing>
             </button>
             {/* min-w-0 lets the title truncate instead of pushing the controls off-screen — a
@@ -1011,6 +1036,11 @@ export function LessonPlayer({
                 {title}
               </h1>
             </div>
+
+            {/* The score sits INSIDE the header row rather than absolutely over the board. As an
+                overlay it clipped the board frame at every viewport; as a flow element the header
+                simply grows to hold it, which is what this header was built to do. */}
+            {adhd && <AdhdScoreChip />}
 
             {/* Who is speaking — the single most important thing this screen communicates. Derived
                 from state the tutor hook already owns, so nothing about the audio pipeline
