@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { TeacherAvatar } from "@/components/TeacherAvatar";
 import { FACE_SHAPES, expressionFor, type Expression } from "@/lib/adhd/expression";
 import { initialFocus, type FocusTracker } from "@/lib/adhd/focusState";
+import { SorterGame } from "@/components/adhd/games/SorterGame";
+import { specForBeat } from "@/lib/adhd/games/spec";
+import { beats } from "@/lib/lessonContent";
 
 /**
  * `/adhd-lab` — every teacher expression at full size, with no camera and no lecture.
@@ -19,6 +22,12 @@ import { initialFocus, type FocusTracker } from "@/lib/adhd/focusState";
  * measures the renderer and nothing else.
  *
  *   ?size=220     render larger, for judging line weights
+ *   ?game=1       play Sorting Run on real lesson content, with no lecture around it
+ *
+ * The game section is here for the same reason as the faces: whether a round FEELS good — whether
+ * the tiles fall at a readable speed, whether the bins are legible, whether a miss stings — is not
+ * something any assertion can settle, and reaching it through a live lecture means sitting through
+ * eight beats first.
  */
 
 /** Every expression, with the state that produces it — so the mapping is visible, not just the art. */
@@ -54,9 +63,19 @@ const MAPPING_CHECKS: { label: string; got: Expression; want: Expression }[] = [
 
 function AdhdLab() {
   const [speaking, setSpeaking] = useState(false);
+  const [lastResult, setLastResult] = useState<string | null>(null);
   // via useSearchParams, not window.location: reading location during render makes the server and
   // client disagree about `size`, which React reports as a hydration mismatch.
-  const size = Number(useSearchParams().get("size") || 150);
+  const params = useSearchParams();
+  const size = Number(params.get("size") || 150);
+  const showGame = params.get("game") === "1";
+  /*
+   * Prefer a `compare` beat: it produces two genuinely named bins ("Photosynthesis (plant)" vs
+   * "Respiration (you)") rather than the topic-vs-"Elsewhere" fallback, so the lab shows the
+   * mechanic at its best rather than at its most degraded. Falls back to whatever is playable.
+   */
+  const specs = beats.map((b, i) => ({ beat: b, spec: specForBeat(b, beats, i + 1) })).filter((x) => x.spec);
+  const gameSpec = (specs.find((x) => x.beat.compareLeft && x.beat.compareRight) ?? specs[0])?.spec ?? null;
 
   return (
     <main className="min-h-screen bg-slate-950 p-8 text-slate-200">
@@ -87,6 +106,26 @@ function AdhdLab() {
           </li>
         ))}
       </ul>
+
+      {showGame && (
+        <section className="mt-8">
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-teal-300">Sorting Run</h2>
+          <p className="mt-1 text-[12px] text-slate-400">
+            Built by <code>specForBeat</code> from a real lesson beat — the same call the player makes.
+            Steer with the pointer or the arrow keys.
+          </p>
+          <div className="mt-4 h-[560px] w-full max-w-[900px] overflow-hidden rounded-2xl border border-white/10">
+            {gameSpec ? (
+              <SorterGame spec={gameSpec} onDone={(passed) => setLastResult(passed ? "passed" : "failed")} />
+            ) : (
+              <p className="p-6 text-slate-400">No beat in the fixture can feed a sorter.</p>
+            )}
+          </div>
+          <p className="mt-2 text-[12px] text-slate-500" data-lab-game-result>
+            last run: {lastResult ?? "—"}
+          </p>
+        </section>
+      )}
 
       <div className="mt-8 flex flex-wrap gap-6">
         {CASES.map(({ expression, when }) => (

@@ -29,10 +29,23 @@ const check = (name, ok, detail) => {
 
 const TITLES = ["What bonding is", "Ionic bonds", "Covalent bonds", "Electronegativity",
                 "Lattice energy", "Bond polarity", "Metallic bonds", "Recap"];
+/*
+ * Kinds and fields matching what the GENERATOR emits, not a simplified stand-in.
+ *
+ * This fixture used `slideKind: "concept"` — not one of the kinds the app defines or the model is
+ * asked for — and carried no `points`. Game mode would have found nothing playable in it and the
+ * button would have sat disabled, so the whole mode would have tested as "renders nothing".
+ */
+const KINDS = ["definition", "mechanism", "example", "compare", "application", "misconception", "definition", "recap"];
 const BEATS = TITLES.map((title, i) => ({
   id: `b${i}`, title,
   script: "Atoms join by sharing or giving up electrons, and the balance decides the bond.",
-  slideKind: "concept", points: [], teacherMove: "explain",
+  slideKind: KINDS[i], teacherMove: "explain",
+  points: [`${title} point one`, `${title} point two`, `${title} point three`],
+  definitionTerm: title,
+  definitionMeaning: `${title} means the way atoms end up sharing or trading their outer electrons.`,
+  compareLeft: { label: "Ionic", points: ["transfers electrons", "forms a lattice"] },
+  compareRight: { label: "Covalent", points: ["shares electrons", "forms molecules"] },
   draw: { caption: "b", durationMs: 12000, ops: [{ kind: "label", text: "Bonding", x: 50, y: 40, at: 0 }] },
 }));
 
@@ -338,6 +351,87 @@ try {
         errs.slice(0, 3).join(" | "));
   check("no failed network requests (other than the keyless Gemini token route)",
         badResponses.length === 0, [...new Set(badResponses)].slice(0, 4).join(" | "));
+
+  /*
+   * GAME MODE — the button, and that the board really becomes playable.
+   *
+   * Asserted against the rendered board rather than the router, because the router already has unit
+   * tests and that is exactly the gap that let the leaderboard POST and the lip-sync analyser ship
+   * dead: the module was verified and nothing called it.
+   */
+  const gameBtn = page.getByRole("button", { name: /play this lesson as games/i });
+  check("the games button is offered to an ADHD learner", (await gameBtn.count()) === 1);
+  if (await gameBtn.count()) await gameBtn.click();
+  await page.waitForTimeout(2500);
+  await page.screenshot({ path: `${OUT}/ui-7-game-mode.png` });
+
+  /*
+   * THE REAL GAME — a Phaser canvas, not a multiple-choice list.
+   *
+   * A canvas cannot be inspected the way DOM can: there is nothing to query inside it, and the
+   * scoring lives in a render loop. So the component mirrors its progress into an `sr-only` element
+   * (`data-sorter-state`), which is the same handle a screen reader gets — if a test cannot see the
+   * run, neither can an assistive user, so this is worth having for its own sake.
+   *
+   * The rules themselves are covered by the pure reducer in lib/anim/adhdSorter.test.ts. What is
+   * checked HERE is only what unit tests structurally cannot: that the thing mounts, plays, and
+   * reports back into the lesson.
+   */
+  const mounted = await page.evaluate(() => ({
+    sorter: !!document.querySelector("[data-sorter-game]"),
+    canvas: !!document.querySelector("[data-sorter-canvas] canvas"),
+    quiz: document.querySelector("[data-game-round]")?.getAttribute("data-game-round") ?? null,
+    state: document.querySelector("[data-sorter-state]")?.textContent ?? null,
+  }));
+  check("the board becomes a real game, not a question list",
+        mounted.sorter && mounted.canvas,
+        mounted.sorter
+          ? `sorter mounted, canvas=${mounted.canvas}`
+          : `no sorter — fell back to the ${mounted.quiz ?? "slide"}`);
+  check("and it reports its progress somewhere a test and a screen reader can both read",
+        typeof mounted.state === "string" && /sorted|finished/.test(mounted.state),
+        mounted.state ?? "no sr-only state");
+
+  const xpBeforeGame = await xpNow();
+  const partBeforeGame = await partNow();
+  const parts = await page.evaluate(() => {
+    const m = document.body.innerText.match(/Part (\d+) of (\d+)/);
+    return m ? { at: Number(m[1]), total: Number(m[2]) } : null;
+  });
+  const onLastPart = !!parts && parts.at >= parts.total;
+
+  /*
+   * Play it by steering. Moving the pointer across the canvas is the actual input the game takes, so
+   * this exercises the real control path rather than reaching past it into internals.
+   */
+  const box = await page.locator("[data-sorter-canvas] canvas").boundingBox();
+  const finish = page.locator("[data-sorter-continue]");
+  if (box) {
+    for (let i = 0; i < 90 && (await finish.count()) === 0; i++) {
+      await page.mouse.move(box.x + box.width * (i % 2 === 0 ? 0.25 : 0.75), box.y + box.height * 0.5);
+      await page.waitForTimeout(220);
+    }
+  }
+  await page.screenshot({ path: `${OUT}/ui-7-game-mode.png` });
+  check("the run reaches an end card within a sensible time", (await finish.count()) > 0,
+        (await finish.count()) > 0 ? "end card shown" : "still playing after ~20s — the run never resolves");
+
+  if (await finish.count()) {
+    await finish.click();
+    await page.waitForTimeout(2500);
+  }
+  const partAfterGame = await partNow();
+  const afterText = (await page.locator("body").innerText()).replace(/\s+/g, " ").trim();
+  const endedLesson = partAfterGame === null && /end of lecture|finished|what actually stuck/i.test(afterText);
+  check("finishing the game advances the lesson (or ends it, on the last beat)",
+        (partAfterGame !== null && partBeforeGame !== null && partAfterGame > partBeforeGame)
+        || (onLastPart && endedLesson),
+        `part ${partBeforeGame} -> ${partAfterGame ?? "left the lecture"}` +
+          `${onLastPart ? ` (was on the last of ${parts?.total})` : ""}${endedLesson ? ", lesson ended" : ""}`);
+  const xpAfterGame = await xpNow();
+  check("and the result reaches the lesson score",
+        xpAfterGame === null ? endedLesson : xpAfterGame !== xpBeforeGame,
+        `xp ${xpBeforeGame} -> ${xpAfterGame ?? "n/a (lesson ended)"}`);
 
   /**
    * THE APP ITSELF must post the score when the session ends — checked before anything posts by hand.
