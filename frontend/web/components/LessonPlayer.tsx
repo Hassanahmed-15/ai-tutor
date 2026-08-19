@@ -836,7 +836,7 @@ export function LessonPlayer({
   // pipeline produces. Every child keeps using the same token names.
   return (
     <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
-      {adhd && <AdhdLayer index={index} beat={beats[index]} speaking={speaking} />}
+      {adhd && <AdhdLayer index={index} beat={beats[index]} />}
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
@@ -976,10 +976,31 @@ export function LessonPlayer({
 
             {focusPause && <FocusPauseOverlay state={focusPause} onResume={resumeFromFocusPause} />}
 
-            {quiz.phase !== "idle" && <QuizPrompt quiz={quiz} onSkip={() => { quiz.cancel(); lesson.requestResume(); }} />}
+            {quiz.phase !== "idle" && (
+              <QuizPrompt
+                quiz={quiz}
+                onSkip={() => {
+                  quiz.cancel();
+                  // Skipping the QUESTION, which is not the same as answering it wrong — a wrong
+                  // answer still costs nothing. See lib/adhd/score.ts.
+                  emitAdhdEvent({ type: "question-unanswered" });
+                  lesson.requestResume();
+                }}
+              />
+            )}
           </section>
 
-          <div className="hidden min-h-0 xl:block [&>*]:h-full">
+          <div className="hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1">
+            {/*
+              THE teacher, at a size that actually draws the eye.
+              She lived at 88px over the board and covered the slide title; here she has a 340px
+              column to herself. Rendered outside ChatPanel so the standard player is untouched.
+            */}
+            {adhd && (
+              <div className="flex shrink-0 items-center justify-center rounded-[1.5rem] border border-[var(--hud-line)] bg-[var(--hud-bg-2)] py-3">
+                <TeacherAvatar speaking={speaking} size={150} expression={face} />
+              </div>
+            )}
             {deafMode ? (
               <DeafAccessPanel
                 beat={beat}
@@ -1023,7 +1044,18 @@ export function LessonPlayer({
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
               <AvatarRing progress={progressPct} speaking={speaking}>
-                <TeacherAvatar speaking={speaking} size={52} expression={face} />
+                {/*
+                  ADHD mode renders ONE big avatar in the sidebar, so this slot drops the face and
+                  keeps only the control. The button, its ring and its aria-label are untouched —
+                  deleting the element outright would delete the exit affordance with it.
+                */}
+                {adhd ? (
+                  <span className="grid size-[52px] place-items-center text-lg text-[var(--hud-text-dim)]" aria-hidden="true">
+                    ←
+                  </span>
+                ) : (
+                  <TeacherAvatar speaking={speaking} size={52} expression={face} />
+                )}
               </AvatarRing>
             </button>
             {/* min-w-0 lets the title truncate instead of pushing the controls off-screen — a

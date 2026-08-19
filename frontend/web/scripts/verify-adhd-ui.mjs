@@ -130,8 +130,7 @@ try {
     const chip = all.find((e) => /\d+\s*XP/.test(txt(e)) && txt(e).length < 60);
     const park = all.find((e) => e.tagName === "BUTTON" && /park a thought/i.test(txt(e)));
     const caption = all.find((e) => /electrons/i.test(txt(e)) && txt(e).length < 400);
-    // Pip by its title, not its emoji: the face changes with focus state, the title does not.
-    const pip = all.find((e) => /^Pip is /.test(e.getAttribute("title") ?? ""));
+    const avatars = [...document.querySelectorAll("[data-teacher-avatar]")];
     // The board's renderer badge ("SVG", "React · SVG", ...) — standard chrome the ADHD row must
     // not cover. Selected by its distinctive tracking class, since its text varies by renderer.
     const badge = document.querySelector('[class*="tracking-[0.14em]"]');
@@ -142,7 +141,8 @@ try {
       return { x: b.x, y: b.y, right: b.right, bottom: b.bottom, w: b.width, h: b.height };
     };
     return { chip: box(chip), park: box(park), caption: box(caption), board: box(board),
-             pip: box(pip), badge: box(badge), chipText: txt(chip).slice(0, 40) };
+             avatar: box(avatars[0]), avatarCount: avatars.length,
+             badge: box(badge), chipText: txt(chip).slice(0, 40) };
   });
 
   const overlaps = (a, b) => !!a && !!b && a.x < b.right && a.right > b.x && a.y < b.bottom && a.bottom > b.y;
@@ -167,15 +167,22 @@ try {
   check("the park button is fully on screen, not clipped",
         !!geom.park && geom.park.x >= 0 && geom.park.y >= 0 && geom.park.w > 80,
         geom.park ? `x=${Math.round(geom.park.x)} w=${Math.round(geom.park.w)}` : "");
-  // Pip and the park button were two independently hand-placed absolutes at left-6 and left-[74px] —
-  // magic numbers tuned against each other, which held only while Pip stayed exactly one avatar
-  // wide. They are one flex row now; this pins that they stay laid out.
-  check("Pip renders and does NOT overlap the park button", !!geom.pip && !overlaps(geom.pip, geom.park),
-        geom.pip && geom.park ? `pip.right=${Math.round(geom.pip.right)} park.x=${Math.round(geom.park.x)}` : "Pip not found");
-  // The ADHD overlay must not damage the standard lesson chrome. An 88px Pip at top-[108px] sat
-  // squarely on the board's renderer badge and hid it.
-  check("the ADHD row does NOT cover the board's renderer badge", !overlaps(geom.pip, geom.badge),
-        geom.badge && geom.pip ? `badge.bottom=${Math.round(geom.badge.bottom)} pip.y=${Math.round(geom.pip.y)}` : "badge not found");
+  /*
+   * EXACTLY ONE teacher on screen.
+   *
+   * The track briefly rendered two — a 52px one in the header and an 88px one on the board — which
+   * made it ambiguous which was the teacher, and the board copy covered the slide title. The header
+   * slot keeps its exit BUTTON but drops the face, so this number is the whole fix in one assertion.
+   */
+  check("exactly ONE teacher avatar is on screen", geom.avatarCount === 1,
+        `found ${geom.avatarCount}`);
+  // It lives in the 340px sidebar now, so it cannot cover the board, the caption bar or the quiz.
+  check("the avatar does NOT overlap the lesson board", !overlaps(geom.avatar, geom.board),
+        geom.avatar && geom.board ? `avatar.x=${Math.round(geom.avatar.x)} board.right=${Math.round(geom.board.right)}` : "avatar not found");
+  check("the avatar is big enough to actually notice", !!geom.avatar && geom.avatar.w >= 120,
+        geom.avatar ? `${Math.round(geom.avatar.w)}px wide` : "avatar not found");
+  check("the ADHD row does NOT cover the board's renderer badge", !overlaps(geom.park, geom.badge),
+        geom.badge && geom.park ? `badge.bottom=${Math.round(geom.badge.bottom)} park.y=${Math.round(geom.park.y)}` : "badge not found");
   check("nothing is positioned off-screen", !geom.chip || (geom.chip.x >= 0 && geom.chip.y >= 0));
 
   /**
@@ -240,7 +247,7 @@ try {
    * samples the real <ellipse> over real narration and asserts the geometry actually changes.
    */
   const lip = await page.evaluate(async () => {
-    const mouth = () => document.querySelector('ellipse[fill="#7c2d12"]');
+    const mouth = () => document.querySelector('ellipse[fill="#8d2f2f"]');
     if (!mouth()) return { found: false };
     const ry = [];
     const rx = [];
@@ -252,7 +259,7 @@ try {
      * `new Audio(objectUrl)` and never appends it to the document. Matching the header text
      * "Teacher speaking" missed the window between beats.
      *
-     * `ry` settles this without either: TeacherAvatar renders `ry = speaking ? 1.4 + open * 6.4 : 0`,
+     * `ry` settles this without either: TeacherAvatar renders `ry = speaking ? 1.6 + open * 7.2 : 0`,
      * so ry > 0 means the app considers itself speaking, and that separates the two failure modes
      * this check exists to tell apart:
      *   - every sample 0.00  -> nothing ever spoke; the run proves nothing
@@ -270,13 +277,13 @@ try {
   });
 
   const ryVals = lip.ry ?? [];
-  const frozenAtRest = ryVals.length === 1 && ryVals[0] === "1.40";
+  const frozenAtRest = ryVals.length === 1 && ryVals[0] === "1.60";
   const lipWhy = !lip.found
     ? "no mouth ellipse in the DOM"
     : !lip.spoke
       ? "the mouth stayed at 0 the whole window — nothing ever spoke, so this proves nothing"
       : frozenAtRest
-        ? "mouth frozen at its 1.40 resting height while speaking — the analyser is not attached"
+        ? "mouth frozen at its 1.60 resting height while speaking — the analyser is not attached"
         : `${ryVals.length} distinct ry values, ${ryVals.slice(0, 6).join(", ")}...`;
   check("the avatar's mouth MOVES while narration plays (lip sync is actually wired up)",
         !!lip.found && !!lip.spoke && (lip.ry ?? []).length >= 3, lipWhy);
@@ -367,6 +374,25 @@ try {
   await plain.screenshot({ path: `${OUT}/ui-4-non-adhd-landing.png` });
   check("the prompt page shows no leaderboard for a non-ADHD learner",
         !/focus leaderboard/i.test(await plain.locator("body").innerText()));
+
+  /*
+   * NON-ADHD PARITY. ADHD mode empties the header avatar slot to keep exactly one teacher on
+   * screen; the standard player must be untouched by that. The exit button is the same element, so
+   * a change that removed the face for everyone would still pass every ADHD check above.
+   */
+  const plainConsent = await intoLecture(plain).catch(() => null);
+  if (plainConsent && (await plainConsent.count())) await plainConsent.click();
+  const plainStart = plain.getByRole("button", { name: /start lecture/i });
+  if (await plainStart.count()) await plainStart.click();
+  await plain.waitForTimeout(6000);
+  await plain.screenshot({ path: `${OUT}/ui-6-non-adhd-lecture.png` });
+  const plainAvatars = await plain.evaluate(() => ({
+    avatars: document.querySelectorAll("[data-teacher-avatar]").length,
+    exit: !!document.querySelector('button[aria-label="Exit lecture"]'),
+  }));
+  check("the STANDARD player still renders its header avatar", plainAvatars.avatars === 1,
+        `found ${plainAvatars.avatars}`);
+  check("and the exit button survives in both modes", plainAvatars.exit === true);
 
   await ctx.close();
   await ctx2.close();

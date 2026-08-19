@@ -9,13 +9,26 @@ const hold = (t: FocusTracker, e: number | null, ms: number) => {
   return t;
 };
 
-test("a skip gets SURPRISE, never disapproval", () => {
-  // The whole track is built so a negative signal never reads as judgement of the learner. A
-  // disappointed teacher staring back after a skip is exactly what makes someone with rejection
-  // sensitive dysphoria close the app.
-  const face = expressionFor({ focus: initialFocus(), streak: 0, flash: "skipped" });
-  assert.equal(face, "surprised");
-  assert.ok(FACE_SHAPES[face].curve >= 0, "and the mouth must not be a frown");
+test("a skip gets FURIOUS, and an unanswered question gets sad", () => {
+  // This asserted "surprised, never disapproval" — the track was built so a negative signal never
+  // read as judgement of the learner. Changed to furious as an explicit product decision, so the
+  // test is rewritten to pin the NEW rule rather than deleted.
+  assert.equal(expressionFor({ focus: initialFocus(), streak: 0, flash: "skipped" }), "furious");
+  assert.equal(expressionFor({ focus: initialFocus(), streak: 0, flash: "unanswered" }), "sad");
+
+  // What survives the change: both are FLASHES. The caller clears `flash`, so the face returns to
+  // the learner's actual state. A reaction decays; a verdict does not — and a permanent glare is
+  // the thing that makes someone with rejection sensitive dysphoria close the app.
+  assert.equal(expressionFor({ focus: initialFocus(), streak: 0, flash: null }), "neutral");
+});
+
+test("the two reproachful faces are distinguishable, not just both frowns", () => {
+  // Sad and furious differ by brow DIRECTION, which is the only cue that separates worried from
+  // cross. Height alone would make both read as sleepy.
+  assert.ok(FACE_SHAPES.furious.tilt > 0, "furious brows drive down toward the nose");
+  assert.ok(FACE_SHAPES.sad.tilt < 0, "sad brows lift at the nose — the worried shape");
+  assert.ok(FACE_SHAPES.furious.glasses > FACE_SHAPES.neutral.glasses,
+            "and furious peers over the top of the glasses");
 });
 
 test("a correct answer flashes delight, outranking the steady state", () => {
@@ -26,7 +39,8 @@ test("a correct answer flashes delight, outranking the steady state", () => {
 });
 
 test("focus states map to the faces you would expect", () => {
-  assert.equal(expressionFor({ focus: hold(initialFocus(), 0.95, 120_000), streak: 5 }), "delighted");
+  // Sustained high engagement is HAPPY — the brief's "happy when engagement is high".
+  assert.equal(expressionFor({ focus: hold(initialFocus(), 0.95, 120_000), streak: 5 }), "happy");
   assert.equal(expressionFor({ focus: hold(initialFocus(), 0.2, 5000), streak: 0 }), "bored");
 
   let crashed = hold(initialFocus(), 0.95, 120_000);

@@ -56,7 +56,15 @@ export type ScoreEvent =
   /** A checkpoint answered correctly. */
   | { type: "answer-correct" }
   /** A whole minute held above the drift threshold — rewards NOT drifting, per the brief. */
-  | { type: "focus-bonus" };
+  | { type: "focus-bonus" }
+  /**
+   * A checkpoint was dismissed without an answer.
+   *
+   * Costs NOTHING, exactly like `answer-wrong`. It exists so the teacher's face can react and the
+   * receipt can be honest — not to charge for it. The penalty in this track lands on skipping the
+   * LESSON, never on struggling with a question.
+   */
+  | { type: "question-unanswered" };
 
 export const SCORE_RULES = {
   BEAT_XP: 40,
@@ -110,6 +118,10 @@ export function applyScore(prev: ScoreState, event: ScoreEvent): ScoreState {
     case "drift":
       // The ONLY thing a drift does. Note what is absent: no XP change, no coin change.
       return { ...prev, streak: 0 };
+
+    case "question-unanswered":
+      // Deliberately inert in the score. The signal's whole job is the face.
+      return prev;
 
     case "answer-wrong":
       // Deliberately costs NOTHING. Getting something wrong is information about what to revisit, and

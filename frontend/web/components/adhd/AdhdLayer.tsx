@@ -7,8 +7,7 @@ import { initialFocus, advanceFocus, hyperfocusMinutes, type FocusTracker } from
 import { initialScore, applyScore, comboMultiplier, finalScore, SCORE_RULES, type ScoreState } from "@/lib/adhd/score";
 import { initialLoot, onBeatForLoot, type LootReward } from "@/lib/adhd/loot";
 import { onAdhdEvent, publishAdhdFace, publishAdhdScore, resetAdhdScore } from "@/lib/adhd/events";
-import { expressionFor, type Expression } from "@/lib/adhd/expression";
-import { TeacherAvatar } from "@/components/TeacherAvatar";
+import { expressionFor } from "@/lib/adhd/expression";
 
 /**
  * Everything the ADHD track adds, in one overlay.
@@ -37,12 +36,9 @@ const IDLE_FOCUS = initialFocus();
 export function AdhdLayer({
   index,
   beat,
-  speaking,
 }: {
   index: number;
   beat: Beat | undefined;
-  /** Passed down so Pip's mouth follows the same voice the header avatar does. */
-  speaking: boolean;
 }) {
   const [consent, setConsent] = useState<Consent>("unknown");
   const [focus, setFocus] = useState<FocusTracker>(initialFocus);
@@ -51,7 +47,7 @@ export function AdhdLayer({
   const [toast, setToast] = useState<{ text: string; tone: "card" | "loot" } | null>(null);
   const [captured, setCaptured] = useState<string[]>([]);
   const [capturing, setCapturing] = useState(false);
-  const [flash, setFlash] = useState<"correct" | "skipped" | null>(null);
+  const [flash, setFlash] = useState<"correct" | "skipped" | "unanswered" | null>(null);
 
   const cameraOn = consent === "granted";
   const attention = useAttentionMonitor(cameraOn);
@@ -162,6 +158,7 @@ export function AdhdLayer({
     return onAdhdEvent((event) => {
       setScore((sc) => applyScore(sc, event));
       if (event.type === "answer-correct") setFlash("correct");
+      if (event.type === "question-unanswered") setFlash("unanswered");
       if (event.type === "beat-skipped") {
         setFlash("skipped");
         // Emitted just BEFORE the lesson advances, so the beat being skipped into is the next one.
@@ -277,19 +274,16 @@ export function AdhdLayer({
           both of them buried behind a "Quick check" card. Top-left is free precisely because the
           score vacated it. */}
       {/*
-        ONE absolutely-positioned row, not two.
-        Pip and the park button used to be placed independently at left-6 and left-[74px], two magic
-        numbers tuned against each other. That holds only while Pip is exactly one avatar wide — the
-        moment the "breather?" note renders (drifting or crashing) the cluster grows to the right and
-        slides under the park pill. Putting them in one flex row means the browser does the spacing
-        and the collision cannot come back.
+        One flex row, so the browser does the spacing.
+        These were two independently hand-placed absolutes at left-6 and left-[74px] — magic numbers
+        tuned against each other, which held only until the "breather?" note appeared and pushed one
+        under the other.
 
-        top-[150px] rather than 108px because the board's own RendererBadge owns `left-3 top-3` of
-        the board — at 108px the 88px avatar sat directly on top of it and hid it. ADHD mode must not
-        damage the standard lesson chrome, so the ADHD row moves, not the badge.
+        top-[108px] clears the board's own RendererBadge at `left-3 top-3`. With the avatar moved to
+        the sidebar this row is now short, so it no longer needs the extra 150px of clearance.
       */}
-      <div className="pointer-events-none absolute left-6 top-[150px] z-30 flex items-center gap-2">
-        <Companion focus={shownFocus} cameraOn={cameraOn} face={face} speaking={speaking} />
+      <div className="pointer-events-none absolute left-6 top-[108px] z-30 flex items-center gap-2">
+        <FocusNote focus={shownFocus} cameraOn={cameraOn} />
 
         {/* The affordance has to be visible or nobody discovers the key. */}
         {!capturing && consent !== "unknown" && (
@@ -374,52 +368,27 @@ function ConsentCard({ onChoose }: { onChoose: (c: Consent) => void }) {
 }
 
 /**
- * Pip. Every negative signal in this track is delivered by this character, never aimed at the learner.
+ * The focus-state cue — a word, not a face.
  *
- * THIS IS THE AVATAR, not a decoration beside it. It used to be a 44px tile with an emoji in it,
- * which made the lip sync and the expression work effectively invisible: the only real face on
- * screen was the 52px one in the header, and at that size a mouth moving by six pixels reads as
- * nothing at all. An emoji also cannot lip sync — it is a static glyph — so the companion was
- * showing a *worse* face than the one the feature was built for, right next to it.
+ * This used to be `Companion`: a second `TeacherAvatar` at 88px on the board. There is now exactly
+ * ONE teacher, rendered large in the sidebar by `LessonPlayer`, because two faces on screen made it
+ * ambiguous which one was the teacher and the board copy covered the slide title.
  *
- * So Pip renders the real `TeacherAvatar`, big enough to actually watch, driven by the same
- * `expression` the header gets and the same live audio amplitude. The focus state still shapes the
- * face, just through the expression system rather than a lookup table of emoji.
+ * What is kept is the part the avatar could not say: a short status word. The rule it was built
+ * under still holds — the cue describes the SESSION ("still here", "breather?"), never the learner.
  */
-function Companion({
-  focus,
-  cameraOn,
-  face,
-  speaking,
-}: {
-  focus: FocusTracker;
-  cameraOn: boolean;
-  face: Expression;
-  speaking: boolean;
-}) {
-  // The note is the only thing the emoji table is still needed for: a word, not a face.
+function FocusNote({ focus, cameraOn }: { focus: FocusTracker; cameraOn: boolean }) {
   const note =
     !cameraOn ? ""
     : focus.state === "drifting" ? "still here"
     : focus.state === "crashing" ? "breather?"
     : "";
+  if (!note) return null;
 
   return (
-    // Positioned by the row above, not by itself — see the note there.
-    <div className="flex items-center gap-2">
-      <div
-        className="grid size-[88px] place-items-center rounded-full border border-white/12 bg-black/55 backdrop-blur transition-transform duration-500"
-        style={{ transform: focus.state === "drifting" ? "translateY(3px) rotate(-8deg)" : "none" }}
-        title={cameraOn ? "Pip is watching along with you" : "Pip is here (camera off)"}
-      >
-        <TeacherAvatar speaking={speaking} size={76} expression={face} />
-      </div>
-      {note && (
-        <span className="rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[0.66rem] font-bold text-white/60 backdrop-blur">
-          {note}
-        </span>
-      )}
-    </div>
+    <span className="rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[0.66rem] font-bold text-white/60 backdrop-blur">
+      {note}
+    </span>
   );
 }
 
