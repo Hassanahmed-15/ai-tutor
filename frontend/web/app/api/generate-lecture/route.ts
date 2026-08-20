@@ -35,7 +35,7 @@ import {
   suprnotesTitle,
   type SuprnotesLessonInput,
 } from "@/lib/suprnotes";
-import { focusPassages, focusPromptSection, focusedUserMessage, type PdfFocus } from "@/lib/pdfFocus";
+import { focusPassages, focusFromTranscript, focusPromptSection, focusedUserMessage, type PdfFocus } from "@/lib/pdfFocus";
 import type { Beat } from "@/lib/lessonContent";
 
 // Kill switch for generated image assets. The prompt can still plan image beats, but when this is
@@ -187,7 +187,23 @@ function plannedPdfBeats(sourceDocument: SuprnotesLessonInput | null): PlannedPd
   });
 }
 
-function applyPdfPlanMetadata(beats: Beat[], sourceDocument: SuprnotesLessonInput | null): void {
+function applyPdfPlanMetadata(
+  beats: Beat[],
+  sourceDocument: SuprnotesLessonInput | null,
+  focused = false,
+): void {
+  /*
+   * A FOCUSED lecture takes no plan metadata.
+   *
+   * This stamps the plan's titles onto beats positionally, which is right when the plan is the
+   * lecture — and actively mislabels one that is not. A focused lecture about a correlation matrix
+   * came back with its first two beats renamed "Fig" and "RESULTS Test 1: SMOTETomek with Class
+   * Weights (A+B)": the document's own first two plan titles, pasted over beats that were about
+   * something else entirely. Removing the plan from the PROMPT did not stop it, because this runs
+   * afterwards on the full document.
+   */
+  if (focused) return;
+
   const planned = plannedPdfBeats(sourceDocument);
   if (!planned.length) return;
 
@@ -488,10 +504,19 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
      * contract still demands complete coverage.
      */
     if (input.focus && focusSection) {
+      /*
+       * The plan is REMOVED, not merely overridden.
+       *
+       * Telling the model to ignore lessonPlan while still sending it left the document's own first
+       * beats leading the lecture: a focused question about one figure opened with "Fig" and
+       * "RESULTS Test 1: SMOTETomek with Class Weights (A+B)" before reaching the matrix. An
+       * instruction competes with the data; deleting the data does not.
+       */
+      const withoutPlan = { ...input.sourceDocument, lessonPlan: undefined, suggestedLecturePlan: undefined };
       return focusedUserMessage({
         base,
         focus: input.focus,
-        documentJson: compactSuprnotesForPrompt(input.sourceDocument),
+        documentJson: compactSuprnotesForPrompt(withoutPlan),
         retryGuidance,
       });
     }
@@ -574,7 +599,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
       const pdfPlanCount = plannedPdfBeats(input.sourceDocument).length;
       const minUsableBeats = pdfPlanCount || (input.sourceDocument ? 1 : 8);
       let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
-      applyPdfPlanMetadata(beats, input.sourceDocument);
+      applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
       dedupeBeatIdentity(beats);
 
       // Eight or nine strong beats are recoverable. Add only the missing conceptual bridges instead of
@@ -611,7 +636,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
           pdfSource: isPdfSource(input.sourceDocument),
         });
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
-        applyPdfPlanMetadata(beats, input.sourceDocument);
+        applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
         dedupeBeatIdentity(beats);
         // Same reasoning as above: deepening improves each beat's script, and a lecture that is
         // still short afterwards is a short topic, not a failure.
@@ -673,7 +698,16 @@ function chunkPdfSourceDocument(
 async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInput): Promise<BaseLecture> {
   const sourceDocument = input.sourceDocument;
   const planned = plannedPdfBeats(sourceDocument);
-  if (!sourceDocument || planned.length <= PDF_BEATS_PER_GENERATION) {
+  /*
+   * A FOCUSED question is one generation, not one per planned section.
+   *
+   * Chunking exists so a long document's plan is built a few beats at a time and concatenated —
+   * right for "teach me this paper". Running it for a focused question generates the focused
+   * message once per chunk, so a single question about one figure came back as sixteen beats with
+   * "RESULTS Test 1: SMOTETomek" appearing twice and one beat titled "Fig". The plan is not the
+   * subject any more, so there is nothing to chunk.
+   */
+  if (!sourceDocument || input.focus || planned.length <= PDF_BEATS_PER_GENERATION) {
     return generateBaseLecture(client, input);
   }
 
@@ -697,7 +731,7 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
   }));
 
   const beats = results.flatMap((result) => result.beats);
-  applyPdfPlanMetadata(beats, sourceDocument);
+  applyPdfPlanMetadata(beats, sourceDocument, !!input.focus);
   // After the flatten: per-chunk ids collide by construction, so this must run on the merged list.
   dedupeBeatIdentity(beats);
   return {
@@ -837,7 +871,15 @@ export async function POST(req: Request) {
    * stay on it. That is why a specific question came back as a general lecture.
    */
   const focusQuestion = typeof body.focus === "string" ? body.focus.trim().slice(0, 500) : "";
-  const focus = focusPassages(focusQuestion, sourceDocument);
+  /*
+   * A transcript of the rendered page WINS over retrieval.
+   *
+   * Retrieval can only search the text a PDF declares, and the thing being asked about is often not
+   * among it. When the pixels have been read, that reading is the better source by definition — it
+   * contains what the student can actually see.
+   */
+  const transcript = typeof body.transcript === "string" ? body.transcript.trim() : "";
+  const focus = focusFromTranscript(focusQuestion, transcript) ?? focusPassages(focusQuestion, sourceDocument);
 
   const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus };
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

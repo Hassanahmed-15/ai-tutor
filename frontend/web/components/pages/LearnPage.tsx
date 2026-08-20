@@ -91,6 +91,8 @@ type LecturePayload = {
   slideImages?: Array<{ slide: number; descriptions: string[] }>;
   suprnotes?: unknown;
   outline?: PlanOutline;
+  /** Read off the rendered pages. Takes precedence over retrieval, which can only search text. */
+  transcript?: string;
   /**
    * The student's own question about their upload, sent as itself.
    *
@@ -154,6 +156,13 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
   /** What the student asked about their upload, kept verbatim for the generator. */
   const [uploadFocus, setUploadFocus] = useState("");
+  /**
+   * What was read off the rendered pages — the region they pointed at, or the pages they chose.
+   *
+   * This is the content text extraction cannot reach: a formula drawn as vector strokes or a figure
+   * pasted as an image is not a text object, so it never appears in contentBlocks at all.
+   */
+  const [ocrTranscript, setOcrTranscript] = useState("");
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
   const [pendingPdf, setPendingPdf] = useState<File | null>(null);
@@ -163,7 +172,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   // falling back to the capture form.
   const [parsingPages, setParsingPages] = useState(false);
   const [pagesUnavailable, setPagesUnavailable] = useState<string | null>(null);
-  const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "" });
+  const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "", regions: [] });
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
@@ -274,6 +283,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       const fd = new FormData();
       fd.append("file", file);
       if (pageSelection.pages.length > 0) fd.append("pages", pageSelection.pages.join(","));
+      if (pageSelection.regions.length > 0) fd.append("regions", JSON.stringify(pageSelection.regions));
       const res = await fetch("/api/parse-pdf", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.sourceDocument) {
@@ -290,6 +300,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       const focus = pageSelection.prompt.trim();
       const subject = focus || topic.trim() || input.trim() || data.title || "this document";
       setUploadFocus(focus);
+      setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
       setPendingPdf(null);
       setDocumentPages([]);
       setParsingPages(false);
@@ -826,6 +837,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}`,
       ...(sourceDocument ? { suprnotes: sourceDocument } : slideContext ? { context: slideContext, diagramHints, slideImages } : {}),
       ...(sourceDocument && uploadFocus ? { focus: uploadFocus } : {}),
+      ...(sourceDocument && ocrTranscript ? { transcript: ocrTranscript } : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
     };
 

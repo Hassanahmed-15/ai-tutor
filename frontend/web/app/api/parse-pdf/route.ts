@@ -9,6 +9,10 @@ import {
   type PdfTextSpan,
 } from "@/lib/pdfLessonPipeline";
 import { cropFiguresWithPython, renderPdfWithPython } from "@/lib/pdfPythonPipeline";
+import {
+  planTranscription, pixelRect, assembleTranscript, TRANSCRIBE_PROMPT,
+  type PageRegion, type TranscriptPart,
+} from "@/lib/pdfOcr";
 import type {
   SuprnotesAsset,
   SuprnotesContentBlock,
@@ -615,6 +619,28 @@ export async function POST(req: NextRequest) {
     .filter((value) => Number.isInteger(value) && value >= 1 && value <= pdf.numPages);
   const scopedPages = [...new Set(requestedPages)].sort((a, b) => a - b);
 
+  /**
+   * Regions the student drew on the page thumbnails, in normalised (0-1) coordinates.
+   *
+   * Normalised because the selector draws on a thumbnail and the server crops a full-resolution
+   * render; passing pixels would crop the wrong part of the page the first time either size changed.
+   */
+  let regions: PageRegion[] = [];
+  try {
+    const raw = formData.get("regions");
+    if (typeof raw === "string" && raw.trim()) {
+      const parsed: unknown = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        regions = parsed
+          .filter((r): r is PageRegion => !!r && typeof r === "object" && typeof (r as PageRegion).page === "number")
+          .map((r) => ({ page: r.page, rect: r.rect }));
+      }
+    }
+  } catch {
+    // A malformed regions field means "no region", not a failed upload: the student still gets the
+    // whole-page transcription, which is the same thing they would have got by not drawing one.
+  }
+
   const pageNumbers = scopedPages.length > 0
     ? scopedPages
     : Array.from({ length: pdf.numPages }, (_, index) => index + 1);
@@ -653,6 +679,60 @@ export async function POST(req: NextRequest) {
           height: page.height,
         }))
     : await mapLimit(pageNumbers, PAGE_CONCURRENCY, (pageNumber) => renderPage(pdf, pageNumber));
+  /**
+   * READ THE PIXELS.
+   *
+   * Text extraction returns the text objects a PDF declares, and on a real paper that is often only
+   * the captions: measured on this repo's AblationStudy_V3.pdf, page 4 declares 985 characters, all
+   * of them "Fig. N: ..." lines, while the three images they refer to carry the actual content — the
+   * correlation matrix, the axis labels, the distributions. A student asking about that figure was
+   * being answered from its caption.
+   *
+   * So the region the student pointed at is transcribed from the RENDERED PAGE, which is the only
+   * representation that contains everything they can see. A drawn region is cropped exactly; with no
+   * region, the selected pages are read whole; with no selection at all, nothing is read, because
+   * that request is already served by the whole-document lecture.
+   */
+  const transcriptionPlan = planTranscription(scopedPages, regions);
+  const transcriptParts: TranscriptPart[] = client && transcriptionPlan.length > 0
+    ? (await mapLimit(transcriptionPlan, PAGE_CONCURRENCY, async (target): Promise<TranscriptPart | null> => {
+        const page = renderedPages.find((p) => p.pageNumber === target.page);
+        if (!page) return null;
+
+        // A page rendered without a PNG cannot be read; skip it rather than crop nothing.
+        if (!page.png) return null;
+        let png: Buffer = page.png;
+        if (target.rect) {
+          const box = pixelRect(target.rect, page.width, page.height);
+          const source = await canvasModule.loadImage(page.png);
+          const surface = canvasModule.createCanvas(box.width, box.height);
+          surface.getContext("2d").drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
+          png = surface.toBuffer("image/png");
+        }
+
+        try {
+          const completion = await client.chat.completions.create({
+            model: VISION_MODEL,
+            max_tokens: 2000,
+            messages: [{
+              role: "user",
+              content: [
+                { type: "text", text: TRANSCRIBE_PROMPT },
+                { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}`, detail: "high" } },
+              ],
+            }],
+          });
+          return { page: target.page, rect: target.rect, text: completion.choices[0]?.message?.content ?? "" };
+        } catch {
+          // One unreadable page must not lose the others, or a transient failure on page 3 throws
+          // away a transcription of the page the student actually asked about.
+          return null;
+        }
+      })).filter((part): part is TranscriptPart => part !== null)
+    : [];
+
+  const ocrTranscript = assembleTranscript(transcriptParts);
+
   const pageResults = await mapLimit(renderedPages, PAGE_CONCURRENCY, async (page) => {
     const pageBlocks = [...page.blocks];
     const pageAssets: SuprnotesAsset[] = [];
@@ -820,6 +900,14 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     sourceDocument,
+    /**
+     * What was read off the rendered pages, and the pages it came from.
+     *
+     * Empty when nothing was transcribed — no selection and no region — which the caller treats as
+     * "use the document as before" rather than as a failure.
+     */
+    ocrTranscript,
+    ocrPages: transcriptParts.map((p) => p.page),
     title,
     pageCount: pdf.numPages,
     // Which pages this parse actually covered. Equals every page unless the caller scoped the

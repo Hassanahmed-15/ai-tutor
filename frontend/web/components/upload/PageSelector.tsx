@@ -27,11 +27,21 @@ export type DocumentPage = {
   excerpt: string;
 };
 
+/** A rectangle on a page, 0-1 on both axes, origin top-left. */
+export type NormalisedRect = { x: number; y: number; width: number; height: number };
+
 export type PageSelection = {
   /** Page numbers in the order the student picked them. Empty means "use the whole document". */
   pages: number[];
   /** What the student wants done with them. Empty is allowed — the lesson prompt still applies. */
   prompt: string;
+  /**
+   * The part of a page the student pointed at, when they narrowed it further.
+   *
+   * Normalised rather than in pixels: this is drawn on a preview image whose size has nothing to do
+   * with the resolution the server renders the page at for reading.
+   */
+  regions: { page: number; rect: NormalisedRect }[];
 };
 
 export function PageSelector({
@@ -51,6 +61,16 @@ export function PageSelector({
 }) {
   const [selected, setSelected] = useState<number[]>([]);
   const [prompt, setPrompt] = useState("");
+  /** Regions by page number. A page can have at most one — a second drag replaces the first. */
+  const [regions, setRegions] = useState<Record<number, NormalisedRect>>({});
+  /**
+   * The page open in the area picker.
+   *
+   * Dragging on the grid thumbnail was the obvious approach and is the wrong one: at ~150px a
+   * drag over a formula lands several lines out, and cropping the wrong part of the page is the
+   * exact failure this feature exists to fix. The picker shows the page large enough to aim at.
+   */
+  const [pickingArea, setPickingArea] = useState<DocumentPage | null>(null);
 
   // Report upward without making the parent a dependency of the effect — a parent that recreates
   // its handler each render would otherwise loop.
@@ -59,8 +79,16 @@ export function PageSelector({
     onChangeRef.current = onChange;
   });
   useEffect(() => {
-    onChangeRef.current({ pages: selected, prompt: prompt.trim() });
-  }, [selected, prompt]);
+    onChangeRef.current({
+      pages: selected,
+      prompt: prompt.trim(),
+      // Only for pages still selected: deselecting a page must not leave its region behind to be
+      // read from a page the student has since taken out of the lesson.
+      regions: selected
+        .filter((page) => regions[page])
+        .map((page) => ({ page, rect: regions[page] })),
+    });
+  }, [selected, prompt, regions]);
 
   const order = useMemo(() => new Map(selected.map((n, i) => [n, i + 1])), [selected]);
 
@@ -173,7 +201,52 @@ export function PageSelector({
                       <Check size={12} strokeWidth={3} />
                     </span>
                   )}
+
+                  {/* The chosen area, drawn back onto the thumbnail so the choice is visible in the
+                      grid rather than only inside the picker that made it. */}
+                  {isSelected && regions[page.pageNumber] && (
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute border-2"
+                      style={{
+                        borderColor: "var(--hud-cyan)",
+                        background: "color-mix(in srgb, var(--hud-cyan) 18%, transparent)",
+                        left: `${regions[page.pageNumber].x * 100}%`,
+                        top: `${regions[page.pageNumber].y * 100}%`,
+                        width: `${regions[page.pageNumber].width * 100}%`,
+                        height: `${regions[page.pageNumber].height * 100}%`,
+                      }}
+                    />
+                  )}
                 </button>
+
+                {isSelected && (
+                  <div className="mt-1 flex items-center justify-between gap-1">
+                    <button
+                      type="button"
+                      data-pick-area={page.pageNumber}
+                      onClick={() => setPickingArea(page)}
+                      className="text-[0.66rem] underline underline-offset-2 transition-colors"
+                      style={{ color: "var(--hud-text-dim)" }}
+                    >
+                      {regions[page.pageNumber] ? "Change area" : "Select an area"}
+                    </button>
+                    {regions[page.pageNumber] && (
+                      <button
+                        type="button"
+                        onClick={() => setRegions((current) => {
+                          const next = { ...current };
+                          delete next[page.pageNumber];
+                          return next;
+                        })}
+                        className="text-[0.66rem] transition-colors"
+                        style={{ color: "var(--hud-text-faint)" }}
+                      >
+                        clear
+                      </button>
+                    )}
+                  </div>
+                )}
               </li>
             );
           })}
@@ -219,6 +292,151 @@ export function PageSelector({
           />
         </div>
       </div>
+
+      {pickingArea && (
+        <AreaPicker
+          page={pickingArea}
+          initial={regions[pickingArea.pageNumber]}
+          label={label}
+          onCancel={() => setPickingArea(null)}
+          onSave={(rect) => {
+            setRegions((current) => ({ ...current, [pickingArea.pageNumber]: rect }));
+            setPickingArea(null);
+          }}
+        />
+      )}
     </aside>
+  );
+}
+
+
+/**
+ * Drag a rectangle over one page.
+ *
+ * Shown large on purpose. The first version let the student drag on the grid thumbnail, which is
+ * about 150px wide — a drag over a formula there lands several lines out, and cropping the wrong
+ * part of the page is exactly the failure this feature exists to fix.
+ *
+ * The rectangle is reported NORMALISED (0-1). The image here is whatever size the viewport allows
+ * and the server reads the page at a far higher resolution, so pixels measured here would mean
+ * nothing there.
+ */
+function AreaPicker({
+  page,
+  initial,
+  label,
+  onSave,
+  onCancel,
+}: {
+  page: DocumentPage;
+  initial?: NormalisedRect;
+  label: "pages" | "slides";
+  onSave: (rect: NormalisedRect) => void;
+  onCancel: () => void;
+}) {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [rect, setRect] = useState<NormalisedRect | null>(initial ?? null);
+  const [dragFrom, setDragFrom] = useState<{ x: number; y: number } | null>(null);
+
+  /** Where a pointer sits within the image, 0-1, clamped so a drag off the edge still tracks. */
+  function pointIn(event: React.PointerEvent): { x: number; y: number } | null {
+    const box = imageRef.current?.getBoundingClientRect();
+    if (!box || box.width === 0 || box.height === 0) return null;
+    return {
+      x: Math.min(1, Math.max(0, (event.clientX - box.left) / box.width)),
+      y: Math.min(1, Math.max(0, (event.clientY - box.top) / box.height)),
+    };
+  }
+
+  function update(to: { x: number; y: number }, from: { x: number; y: number }) {
+    // Normalised here rather than at the end, so a drag in any direction produces a positive box.
+    setRect({
+      x: Math.min(from.x, to.x),
+      y: Math.min(from.y, to.y),
+      width: Math.abs(to.x - from.x),
+      height: Math.abs(to.y - from.y),
+    });
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-3 p-4"
+      style={{ background: "rgba(0,0,0,0.82)" }}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Select an area of ${label === "pages" ? "page" : "slide"} ${page.pageNumber}`}
+    >
+      <p className="text-[0.8rem]" style={{ color: "var(--hud-text-dim)" }}>
+        Drag over the part you want explained — a formula, a table, a figure.
+      </p>
+
+      <div className="relative max-h-[74vh] overflow-hidden rounded-[var(--radius)]">
+        {/* eslint-disable-next-line @next/next/no-img-element -- a data: URI has no remote host to
+            optimise, and next/image would only add overhead. */}
+        <img
+          ref={imageRef}
+          src={page.thumbnail}
+          alt={`${label === "pages" ? "Page" : "Slide"} ${page.pageNumber}`}
+          draggable={false}
+          className="block max-h-[74vh] w-auto select-none bg-white"
+          style={{ touchAction: "none", cursor: "crosshair" }}
+          onPointerDown={(event) => {
+            const at = pointIn(event);
+            if (!at) return;
+            event.currentTarget.setPointerCapture(event.pointerId);
+            setDragFrom(at);
+            setRect({ x: at.x, y: at.y, width: 0, height: 0 });
+          }}
+          onPointerMove={(event) => {
+            if (!dragFrom) return;
+            const at = pointIn(event);
+            if (at) update(at, dragFrom);
+          }}
+          onPointerUp={(event) => {
+            if (dragFrom) {
+              const at = pointIn(event);
+              if (at) update(at, dragFrom);
+            }
+            setDragFrom(null);
+          }}
+        />
+
+        {rect && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute border-2"
+            style={{
+              borderColor: "var(--hud-cyan)",
+              background: "color-mix(in srgb, var(--hud-cyan) 16%, transparent)",
+              left: `${rect.x * 100}%`,
+              top: `${rect.y * 100}%`,
+              width: `${rect.width * 100}%`,
+              height: `${rect.height * 100}%`,
+            }}
+          />
+        )}
+      </div>
+
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="rounded-full px-4 py-1.5 text-[0.8rem]"
+          style={{ background: "rgba(255,255,255,0.08)", color: "var(--hud-text-dim)" }}
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          data-save-area
+          disabled={!rect || rect.width < 0.02 || rect.height < 0.02}
+          onClick={() => rect && onSave(rect)}
+          className="rounded-full px-4 py-1.5 text-[0.8rem] font-semibold disabled:opacity-40"
+          style={{ background: "var(--hud-cyan)", color: "var(--hud-bg)" }}
+        >
+          Use this area
+        </button>
+      </div>
+    </div>
   );
 }

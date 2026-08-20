@@ -8,8 +8,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  parsePageRefs, wantedKind, scoreBlock, focusPassages, focusPromptSection, focusedUserMessage,
-  FOCUS_RULES,
+  parsePageRefs, wantedKind, scoreBlock, focusPassages, focusFromTranscript, focusPromptSection,
+  focusedUserMessage, FOCUS_RULES,
 } from "../pdfFocus";
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "../suprnotes";
 
@@ -173,6 +173,12 @@ test("a focused question OVERRIDES the whole-document beat plan", () => {
   assert.ok(msg.indexOf("d(x, y) = sqrt") < msg.indexOf("Build the complete focused lecture"),
             "the passage is not stated before the instructions that use it");
   assert.match(msg, /must appear in the lecture exactly as written/);
+  /*
+   * The depth guard rejects a PDF lecture averaging under 100 words per teaching beat. Asking for
+   * "110-140" produced 98 and was thrown out — aiming a model at the boundary lands it on both
+   * sides. The floor asked for is well clear of the bar it has to clear.
+   */
+  assert.match(msg, /AT LEAST 130 spoken words/);
 });
 
 test("the focused message leads with the passage, not the topic", () => {
@@ -181,4 +187,43 @@ test("the focused message leads with the passage, not the topic", () => {
   const msg = focusedUserMessage({ base: 'Teach this topic live: "KNN".', focus, documentJson: "{}" });
   assert.ok(msg.indexOf("THE STUDENT ASKED ABOUT ONE SPECIFIC THING") < msg.indexOf("Teach this topic live"),
             "the topic line comes before the question the student actually asked");
+});
+
+
+/* ── a transcript beats retrieval ────────────────────────────────────────── */
+
+test("a TRANSCRIPT of the page becomes the passage, verbatim", () => {
+  /*
+   * The case retrieval cannot serve. `contentBlocks` come from the text objects a PDF declares; a
+   * formula drawn as vector strokes or a figure pasted as an image leaves none behind, so the
+   * content is absent from the haystack entirely. Reading the pixels is the only way to get it.
+   */
+  const read = "D_p(x,y) = \left( \sum_{i=1}^{n} |x_i - y_i|^p \right)^{1/p}";
+  const focus = focusFromTranscript("explain this formula", read, [7])!;
+  assert.ok(focus, "a transcript produced no focus");
+  assert.equal(focus.passages.length, 1);
+  assert.match(focus.passages[0].text, /sum_\{i=1\}\^\{n\}/, "the LaTeX was not carried through intact");
+  assert.deepEqual(focus.pages, [7]);
+  assert.match(focusPromptSection(focus), /D_p\(x,y\)/);
+});
+
+test("an empty transcript falls back rather than pinning nothing", () => {
+  assert.equal(focusFromTranscript("explain this", "", [7]), null);
+  assert.equal(focusFromTranscript("explain this", "   " + String.fromCharCode(10) + "  ", [7]), null);
+});
+
+test("a transcript with no question still has a subject", () => {
+  // Selecting an area IS the question; requiring words as well would discard a clear request.
+  const focus = focusFromTranscript("", "Table II: DT 0.7078 SVM 0.7013", [5])!;
+  assert.ok(focus, "an area selected with no typed question produced no focus");
+  assert.match(focus.question, /\S/);
+});
+
+test("a transcript gets more room than a retrieved block", () => {
+  // It is one contiguous reading of what the student pointed at; truncating a formula's definitions
+  // off the end of it defeats the point of having read them.
+  const long = "y".repeat(FOCUS_RULES.MAX_PASSAGE_CHARS * 3);
+  const focus = focusFromTranscript("explain", long, [1])!;
+  assert.ok(focus.passages[0].text.length > FOCUS_RULES.MAX_PASSAGE_CHARS,
+            "the transcript was cut to a single block's budget");
 });

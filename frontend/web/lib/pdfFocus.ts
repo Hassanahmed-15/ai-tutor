@@ -51,6 +51,12 @@ export const FOCUS_RULES = {
   /** Below this a match is coincidence — a shared word like "the model" — and null is more honest. */
   MIN_SCORE: 2,
   MAX_PASSAGE_CHARS: 1800,
+  /**
+   * A transcript is allowed more room than a retrieved block: it is one contiguous reading of what
+   * the student pointed at, and truncating a formula's definitions off the end of it defeats the
+   * point of having read them.
+   */
+  OCR_PASSAGE_BUDGET: 4,
 } as const;
 
 /** Words that match everything and therefore mean nothing for ranking. */
@@ -180,6 +186,32 @@ export function scoreBlock(block: SuprnotesContentBlock, questionTerms: string[]
 }
 
 /**
+ * Build the focus from a TRANSCRIPT of the rendered page, when one was read.
+ *
+ * This outranks block retrieval and is not a refinement of it: retrieval searches `contentBlocks`,
+ * which come from the text objects a PDF declares, and the content being asked about is frequently
+ * not among them — a formula drawn as vector strokes or a figure pasted as an image leaves no text
+ * object behind. Measured on this repo's AblationStudy_V3.pdf, page 4 declares 985 characters and
+ * every one is a caption. Searching harder cannot find what was never there; reading the pixels can.
+ */
+export function focusFromTranscript(question: string, transcript: string, pages: number[] = []): PdfFocus | null {
+  const text = (transcript ?? "").trim();
+  if (!text) return null;
+  return {
+    question: (question ?? "").trim() || "Explain what is shown here.",
+    pages: [...new Set(pages)].sort((a, b) => a - b),
+    missingPages: [],
+    passages: [{
+      blockId: "ocr-transcript",
+      pageNumber: pages[0],
+      heading: "Read from the page",
+      text: text.slice(0, FOCUS_RULES.MAX_PASSAGE_CHARS * FOCUS_RULES.OCR_PASSAGE_BUDGET),
+      score: Number.MAX_SAFE_INTEGER,
+    }],
+  };
+}
+
+/**
  * The passages a question is about, or null when it is not about anything in particular.
  *
  * A named page HARD-FILTERS rather than merely boosting: if a student says page 7, an eloquent
@@ -296,6 +328,15 @@ export function focusedUserMessage(args: {
     "Use only facts from the document. Every symbol, subscript, index and operator in the passage must appear in the lecture exactly as written — reproducing it wrongly is worse than omitting it.",
     "Where a term in the passage is defined elsewhere in the document, bring that definition in; do not survey the rest of the document beyond that.",
     "Use a provided asset only when it is the passage itself or the figure it refers to, via its assetId. Otherwise build whiteboard SVG diagram beats from the passage's own content.",
+    /*
+     * Depth, stated explicitly.
+     *
+     * The first focused lecture was rejected by the depth guard at 83 words per beat. Narrowing the
+     * subject is not permission to say less about it — a focused question deserves MORE detail per
+     * beat, not less, and the whole-document contract states this length while the focused one did
+     * not. Matches the >=100-word average that guard enforces.
+     */
+    "Every teaching beat's script must be AT LEAST 130 spoken words, and 140-170 is better. Narrowing the subject means going deeper into it, not saying less: explain each symbol, each value and each relationship in full sentences, as a teacher speaking aloud. A beat under 130 words will be rejected.",
     `Build the complete focused lecture now.${retryGuidance}`,
   ].join("\n");
 }
