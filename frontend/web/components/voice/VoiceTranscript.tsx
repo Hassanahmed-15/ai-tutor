@@ -80,29 +80,62 @@ export function VoiceTranscript({
   const needsRetry = status === "error" || status === "mic-denied";
 
   /**
-   * The one gesture the browser requires.
+   * Starting without needing to FIND anything.
    *
-   * Microphone access cannot be requested without a user action, so the session genuinely cannot
-   * start on its own. Rather than a small "Reconnect" chip somewhere on the page, the whole screen
-   * becomes the button — impossible to miss with low vision, impossible to mis-tap, and reachable
-   * with a single Tab-then-Enter for anyone on a keyboard. It is autofocused so a screen reader
-   * lands on it and reads what it does immediately.
+   * A microphone still cannot be opened without a user gesture — that is a browser rule, not a
+   * design choice. But requiring someone to locate a button on screen was the wrong conclusion to
+   * draw from it. Three things fix that:
+   *
+   *   1. The page SPEAKS on arrival, via speechSynthesis, which needs no permission and no gesture.
+   *      The student is told what to do instead of having to discover it.
+   *   2. ANY key and a click ANYWHERE count as the gesture. There is nothing to aim at, so nothing
+   *      to miss — the whole window is the target.
+   *   3. The prompt is still rendered, large, for anyone who is looking.
+   *
+   * The listener is attached to the window rather than to a focused element so it works no matter
+   * where a screen reader has left focus.
    */
+  useEffect(() => {
+    if (status !== "idle") return;
+
+    const spoken =
+      "Aria is ready. Press any key, or tap anywhere, and tell me what you would like to learn.";
+    // Cancel anything queued from a previous visit, otherwise Chrome stacks utterances.
+    try {
+      window.speechSynthesis?.cancel();
+      const utterance = new SpeechSynthesisUtterance(spoken);
+      utterance.rate = 1;
+      window.speechSynthesis?.speak(utterance);
+    } catch {
+      // No speech synthesis: the on-screen text and the any-key handler still work.
+    }
+
+    const begin = () => {
+      window.speechSynthesis?.cancel();
+      onRetryConnect();
+    };
+    window.addEventListener("keydown", begin, { once: true });
+    window.addEventListener("pointerdown", begin, { once: true });
+    return () => {
+      window.removeEventListener("keydown", begin);
+      window.removeEventListener("pointerdown", begin);
+      window.speechSynthesis?.cancel();
+    };
+  }, [status, onRetryConnect]);
+
   if (status === "idle") {
     return (
-      <main className="flex min-h-screen items-center justify-center p-6" style={{ background: "#000", color: "#fff" }}>
-        <button
-          type="button"
-          autoFocus
-          onClick={onRetryConnect}
-          className="flex h-full min-h-[70vh] w-full max-w-3xl flex-col items-center justify-center gap-6 rounded-3xl border px-8 text-center"
-          style={{ borderColor: "#444", background: "#0a0a0a" }}
-        >
-          <span className="text-[3rem] font-semibold leading-tight">Start</span>
-          <span className="text-[1.6rem] leading-relaxed" style={{ color: "#c8c8c8" }}>
-            Press to begin talking with Aria. She will ask what you would like to learn.
-          </span>
-        </button>
+      <main
+        className="flex min-h-screen cursor-pointer items-center justify-center p-6 text-center"
+        style={{ background: "#000", color: "#fff" }}
+      >
+        {/* Announced immediately, so a screen reader reads it without the user going looking. */}
+        <div role="status" aria-live="assertive" className="max-w-3xl">
+          <p className="text-[3rem] font-semibold leading-tight">Aria is ready</p>
+          <p className="mt-6 text-[1.7rem] leading-relaxed" style={{ color: "#c8c8c8" }}>
+            Press any key, or tap anywhere, and tell me what you would like to learn.
+          </p>
+        </div>
       </main>
     );
   }

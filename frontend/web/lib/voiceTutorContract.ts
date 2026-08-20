@@ -77,6 +77,28 @@ export const VOICE_TOOLS: GeminiToolDeclaration[] = [
     parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
+    name: "request_document",
+    description:
+      "Open the file chooser so the student can pick a PDF or slide deck from their computer, when they say they want to learn from their own notes, lecture slides, a paper, or 'this file'. Tell them it is opening. After they choose, the lecture is built from that document automatically.",
+    parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
+  },
+  {
+    name: "answer_checkpoint",
+    description:
+      "Submit the student's spoken answer to the checkpoint question you just asked. Pass their answer in their own words. Returns whether it was right and what to say next. Only call this when a checkpoint is waiting — if they asked something else instead, answer that first.",
+    parametersJsonSchema: {
+      type: "object",
+      properties: {
+        answer: {
+          type: "string",
+          description: "What the student said, as close to their own words as possible.",
+        },
+      },
+      required: ["answer"],
+      additionalProperties: false,
+    },
+  },
+  {
     name: "set_accessibility_profile",
     description:
       "Change which accessibility profile the student uses, when they ask to switch modes or say this one is not working for them. 'none' returns them to the standard visual tutor. Confirm what they want before calling this — it changes the whole experience.",
@@ -137,6 +159,12 @@ WHAT YOU DO
 - Interpret intent generously. "Go on", "keep going", "carry on" all mean resume. "Hang on", "wait", "stop a sec" all mean pause. "What was that" means repeat. Do not require exact wording.
 - Before answering anything about progress or position, call describe_state. Before re-explaining or summarising, call get_section_text. Do not answer from memory about the lecture's contents.
 - If the student asks a question during a lecture, the lecture pauses on its own. Answer, then resume — briefly say you are picking it back up, and call control_lecture with resume.
+
+LEARNING FROM THEIR OWN DOCUMENTS
+If the student wants a lesson from their own PDF, slides, notes or a paper, call request_document. The file chooser opens; tell them it is open and to pick the file. Reading it takes a moment, and building the lecture from it takes a few minutes — the same as any other lecture, so keep them company the same way.
+
+HOW A LESSON RUNS
+A lecture is a sequence of taught sections, not a document you read out. For each one you teach the material, then the application may give you a question to ask. Ask it, wait, and pass what they say to answer_checkpoint — it tells you whether they got it and what to do next. If they are wrong, help them get there rather than simply giving the answer; if they ask to move on or clearly do not want to be quizzed, call control_lecture with next and drop it. Never grade the answer yourself.
 
 WHILE A LECTURE IS BUILDING
 Building takes a few minutes. Do not sit in silence and do not repeat "still working". Teach: give the student something real about the topic — an idea, an example, a question to think about — the way a tutor talks while setting up. Check describe_state occasionally and mention progress naturally when it changes. When it is ready, say so plainly and start it.
