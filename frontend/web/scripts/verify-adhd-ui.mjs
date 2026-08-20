@@ -500,16 +500,36 @@ try {
   const gateCount = await q.locator("[data-flappy-gate]").count();
   check("and it offers exactly three gates", gateCount === 3, `${gateCount} gates`);
   // The brief is ONE question type. A text prompt here means the periodic check still fires.
+  /*
+   * NO TYPED QUESTION OF ANY KIND.
+   *
+   * The first version only looked for the periodic check's wording and passed while a checkpoint
+   * BEAT was rendering its ordinary "Type your answer" panel a few beats later — the cadence was
+   * gamified and the beat the model actually marked as a checkpoint was not. Both forms are checked
+   * now, and the answer box is the one that matters.
+   */
   const strayPrompt = await q.locator("text=/in your own words/i").count();
-  check("no text question is asked anywhere in the ADHD lecture", strayPrompt === 0,
-        strayPrompt === 0 ? "none" : "the periodic comprehension check still fires");
+  const answerBox = await q.locator('input[placeholder*="answer" i], textarea[placeholder*="answer" i]').count();
+  check("no text question is asked anywhere in the ADHD lecture", strayPrompt === 0 && answerBox === 0,
+        strayPrompt ? "the periodic comprehension check still fires"
+                    : answerBox ? "a checkpoint beat is still asking for typed input" : "none");
 
   await q.screenshot({ path: `${OUT}/ui-9-checkpoint-game.png` });
 
+  // The checkpoint BEAT itself asks nothing: the cadence is the only trigger, so its typed panel
+  // must never appear and it must not stall the lecture waiting for one.
+  const checkpointChip = await q.locator("text=/^CHECKPOINT$/").count();
+  check("a checkpoint beat does not ask its own typed question", checkpointChip === 0,
+        checkpointChip === 0 ? "none" : "the checkpoint beat is still showing its panel");
+
+  const askedBeatId = await flappy.getAttribute("data-flappy-game").catch(() => null);
+
   const flyBtn = q.locator("[data-flappy-start]");
   if (await flyBtn.count()) await flyBtn.click();
+  let spokeDuringQuestion = false;
   const cont = q.locator("[data-flappy-continue]");
   for (let i = 0; i < 80 && (await cont.count()) === 0; i++) {
+    if (await q.locator("text=/Teacher speaking/i").count()) spokeDuringQuestion = true;
     await q.keyboard.press("Space").catch(() => {});
     await q.waitForTimeout(180);
   }
@@ -519,7 +539,25 @@ try {
     await cont.click();
     await q.waitForTimeout(2500);
   }
-  check("and the lecture continues afterwards", (await flappy.count()) === 0, "question dismissed");
+  /*
+   * "The question went away" was the wrong assertion.
+   *
+   * Answering at one cadence point can advance straight into the next, where a question is correctly
+   * due again — so a game still being on screen is right, and the check failed on correct behaviour.
+   * What must be true is that THIS question is finished: either the board is back, or a different
+   * question is up.
+   */
+  const nowShowing = await q.locator("[data-flappy-game]").getAttribute("data-flappy-game").catch(() => null);
+  check("this question is finished — the board returns or the next question begins",
+        nowShowing === null || nowShowing !== askedBeatId,
+        nowShowing === null ? "board returned" : `moved on to ${nowShowing}`);
+
+  /*
+   * Aria goes quiet for a question. Read from the header's own status text rather than guessed:
+   * being talked at while being asked to produce an answer is the opposite of a check.
+   */
+  check("the teacher was silent while the question was up", !spokeDuringQuestion,
+        spokeDuringQuestion ? "narration kept playing over the game" : "silent");
 
   /*
    * THOUGHTS — parked, persisted, removable.

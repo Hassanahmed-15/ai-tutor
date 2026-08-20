@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { Mcq } from "@/lib/adhd/games/mcq";
 import {
-  initialFlappy, applyFlappy, courseFor, seedFrom, gateAt,
-  FLAPPY_RULES, type FlappyState, type Obstacle,
+  initialFlappy, applyFlappy, pathsFor, seedFrom, gateAt,
+  type FlappyState, type TilePath,
 } from "@/lib/adhd/games/flappyRules";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 
@@ -48,7 +48,7 @@ export function FlappyGates({
   const doneRef = useRef(onDone);
   useEffect(() => { doneRef.current = onDone; });
 
-  const course = useRef<Obstacle[]>(courseFor(seedFrom(mcq.beatId)));
+  const paths = useRef<TilePath[]>(pathsFor(seedFrom(mcq.beatId)));
 
   /* Input: pointer, space and up-arrow all flap. */
   useEffect(() => {
@@ -85,7 +85,7 @@ export function FlappyGates({
       last = now;
 
       const before = runRef.current;
-      const next = applyFlappy(before, { type: "tick", dt, obstacles: course.current });
+      const next = applyFlappy(before, { type: "tick", dt, paths: paths.current });
       runRef.current = next;
       if (next !== before) setState(next);
 
@@ -93,7 +93,7 @@ export function FlappyGates({
         setResult({ picked: next.chosen, correct: next.chosen === mcq.answer });
       }
 
-      draw(canvasRef.current, next, course.current, mcq, bg, reduced);
+      draw(canvasRef.current, next, paths.current, mcq, bg, reduced);
     };
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
@@ -195,7 +195,7 @@ export function FlappyGates({
 function draw(
   canvas: HTMLCanvasElement | null,
   run: FlappyState,
-  obstacles: Obstacle[],
+  paths: TilePath[],
   mcq: Mcq,
   bg: HTMLImageElement | null,
   reduced: boolean,
@@ -248,24 +248,45 @@ function draw(
     ctx.stroke();
   }
 
-  /* Obstacles, scrolling toward the bird. */
-  const bandH = h * FLAPPY_RULES.GAP_HALF;
-  for (const o of obstacles) {
-    // Distance ahead of the bird, mapped into the field. Behind the bird it is off-screen left.
-    const x = fieldW * (0.22 + (o.at - run.progress) * 2.4);
-    if (x < -60 || x > fieldW) continue;
-    const pipe = ctx.createLinearGradient(x, 0, x + 30, 0);
-    pipe.addColorStop(0, "#1e293b");
-    pipe.addColorStop(0.45, "#475569");
-    pipe.addColorStop(1, "#0f172a");
-    ctx.fillStyle = pipe;
-    ctx.fillRect(x, 0, 30, h * o.gap - bandH);
-    ctx.fillRect(x, h * o.gap + bandH, 30, h);
-    // Lips on the gap edges: the eye tracks the opening, not the pipe.
-    ctx.fillStyle = "#94a3b8";
-    ctx.fillRect(x - 4, h * o.gap - bandH - 9, 38, 9);
-    ctx.fillRect(x - 4, h * o.gap + bandH, 38, 9);
-  }
+  /*
+   * The three trails.
+   *
+   * Drawn as routes rather than hazards: a faint line through each trail's tiles so the shape of
+   * the route reads at a glance, and the tiles themselves brighten as they are passed. The learner
+   * should be able to see which answer they are flying toward well before they arrive.
+   */
+  const px = (at: number) => fieldW * (0.22 + (at - run.progress) * 2.4);
+  paths.forEach((path) => {
+    const tint = GATE_TINTS[path.gate];
+    const aimed = gateAt(run.y) === path.gate;
+
+    ctx.strokeStyle = `${tint}${aimed ? "66" : "22"}`;
+    ctx.lineWidth = aimed ? 3 : 2;
+    ctx.beginPath();
+    path.tiles.forEach((t, i) => {
+      const x = px(t.at);
+      const y = h * t.y;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    path.tiles.forEach((t) => {
+      const x = px(t.at);
+      if (x < -40 || x > fieldW + 20) return;
+      const passed = run.progress > t.at;
+      const y = h * t.y;
+      ctx.fillStyle = passed ? tint : `${tint}${aimed ? "55" : "26"}`;
+      ctx.beginPath();
+      ctx.roundRect(x - 15, y - 7, 30, 14, 5);
+      ctx.fill();
+      if (passed) {
+        ctx.strokeStyle = `${tint}99`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+    });
+  });
 
   /* The three gate mouths at the right edge of the field, tinted to match the DOM cards. */
   for (let i = 0; i < 3; i++) {

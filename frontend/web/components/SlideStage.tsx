@@ -26,6 +26,7 @@ export function SlideStage({
   checkpointAttempts = 0,
   maxAttempts = 2,
   onRevealAnswer,
+  suppressCheckpoint = false,
 }: {
   beat: Beat;
   onCheckpointAnswer?: (answer: string) => void;
@@ -33,6 +34,13 @@ export function SlideStage({
   checkpointAttempts?: number;
   maxAttempts?: number;
   onRevealAnswer?: () => void;
+  /**
+   * Render a checkpoint beat as an ordinary slide, with no question and no answer box.
+   *
+   * Set by the ADHD track, where the only question is the flown one every third beat. Without it the
+   * beat still printed "Type your answer" — the exact typed form that track is meant to have none of.
+   */
+  suppressCheckpoint?: boolean;
 }) {
   return (
     <section className="beat-fade-in relative grid h-full min-h-0 place-items-center overflow-hidden rounded-[2rem] bg-[#07101f] p-6 text-white lg:p-10">
@@ -63,6 +71,7 @@ export function SlideStage({
           checkpointAttempts={checkpointAttempts}
           maxAttempts={maxAttempts}
           onRevealAnswer={onRevealAnswer}
+          suppressCheckpoint={suppressCheckpoint}
         />
       </div>
     </section>
@@ -76,6 +85,7 @@ function SlideBody({
   checkpointAttempts,
   maxAttempts,
   onRevealAnswer,
+  suppressCheckpoint = false,
 }: {
   beat: Beat;
   onCheckpointAnswer?: (answer: string) => void;
@@ -83,6 +93,13 @@ function SlideBody({
   checkpointAttempts: number;
   maxAttempts: number;
   onRevealAnswer?: () => void;
+  /**
+   * Render a checkpoint beat as an ordinary slide, with no question and no answer box.
+   *
+   * Set by the ADHD track, where the only question is the flown one every third beat. Without it the
+   * beat still printed "Type your answer" — the exact typed form that track is meant to have none of.
+   */
+  suppressCheckpoint?: boolean;
 }) {
   if (beat.slideKind === "definition") {
     return (
@@ -118,7 +135,7 @@ function SlideBody({
     );
   }
 
-  if (beat.slideKind === "checkpoint" && beat.checkpoint) {
+  if (beat.slideKind === "checkpoint" && beat.checkpoint && !suppressCheckpoint) {
     return (
       <CheckpointSlide
         checkpointPrompt={beat.checkpoint.prompt}
@@ -192,6 +209,13 @@ function CheckpointSlide({
   attempts: number;
   maxAttempts: number;
   onRevealAnswer?: () => void;
+  /**
+   * Render a checkpoint beat as an ordinary slide, with no question and no answer box.
+   *
+   * Set by the ADHD track, where the only question is the flown one every third beat. Without it the
+   * beat still printed "Type your answer" — the exact typed form that track is meant to have none of.
+   */
+  suppressCheckpoint?: boolean;
 }) {
   const [value, setValue] = useState("");
   // A wrong answer shows feedback but does NOT lock the form — the student can retry.

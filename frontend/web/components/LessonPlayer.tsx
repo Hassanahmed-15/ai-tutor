@@ -252,9 +252,19 @@ export function LessonPlayer({
    * an invented question is worse than no question.
    */
   const mcq = useMemo(() => {
-    if (!adhd || !checkpointDueAt(index) || checkpointDone[index]) return null;
+    if (!adhd || checkpointDone[index]) return null;
+    /*
+     * THE CADENCE IS THE ONLY TRIGGER — every third beat, and nothing else.
+     *
+     * A beat the model marked `slideKind: "checkpoint"` does NOT ask on its own: it would fire at
+     * whatever index it happened to sit on, which is not "after 3 beats". Its content is still the
+     * best source for the cadence question (`questionSourceFor` looks for it), which is where it
+     * earns its keep — but in this track it is otherwise a beat like any other, and it must not put
+     * a typed answer box on screen.
+     */
+    if (!checkpointDueAt(index)) return null;
     const source = questionSourceFor(index, beats);
-    return source ? mcqForCheckpoint(source, beats, index + 1) : null;
+    return source?.checkpoint ? mcqForCheckpoint(source, beats, index + 1) : null;
   }, [adhd, index, checkpointDone, beats]);
 
   useEffect(() => {
@@ -707,6 +717,23 @@ export function LessonPlayer({
     });
   }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, engagement.low, engagement.critical, index, stage, speaking, quiz, adhd, beat.title, beat.script]);
 
+  /**
+   * Aria goes quiet for the question.
+   *
+   * A checkpoint is the one moment the learner is being asked to produce something themselves, and
+   * being talked at while doing it is the opposite of a check. `stopVoice` also clears `speaking`,
+   * so the avatar stops mouthing along too.
+   */
+  useEffect(() => {
+    if (!mcq) return;
+    // Deferred: `stopVoice` sets `speaking`, and setState synchronously in an effect body cascades
+    // renders — the same rule that shaped AdhdLayer's single timer and the R3F frame loop.
+    queueMicrotask(() => {
+      stopVoice();
+      lesson.pause("focus");
+    });
+  }, [mcq, stopVoice, lesson]);
+
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
     setCheckpointAttempts(0);
@@ -958,6 +985,10 @@ export function LessonPlayer({
           <section className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
             {stage === "slide" || isCheckpoint ? (
               <SlideStage
+                /* In the ADHD track a checkpoint beat asks nothing — the flown question every third
+                   beat is the only question. Without this the beat still printed its "Type your
+                   answer" panel, which is exactly the form this track is meant to have none of. */
+                suppressCheckpoint={adhd}
                 beat={beat}
                 onCheckpointAnswer={handleCheckpointAnswer}
                 checkpointResult={checkpointResult}

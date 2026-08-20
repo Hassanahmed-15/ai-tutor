@@ -9,9 +9,10 @@
  * the same checkpoint replays identically. "Different each time" is a requirement, and a requirement
  * that depends on `Math.random()` is one nobody can test.
  *
- * FAILING IS NOT LOSING. Hitting an obstacle costs altitude and a moment, never the question: the
- * bird is nudged back and the flight continues. The learner is being asked what they know, and a
- * game that ends the question because their thumb was late is measuring the wrong thing.
+ * THE TILES ARE GUIDE RAILS, NOT GROUND. Three trails fan out toward the three answers; flying over
+ * a tile lights it, so the learner can SEE which answer they are committing to and correct early.
+ * Drifting off a trail costs nothing but the light. Nothing here can fail a learner who knew the
+ * answer and tapped late — that would measure dexterity, and the question is about the content.
  */
 
 export type FlappyState = {
@@ -21,8 +22,8 @@ export type FlappyState = {
   vy: number;
   /** How far along the course, 0 to 1. At 1 the bird reaches the gates. */
   progress: number;
-  /** Obstacles clipped this flight. Reported at the end, costs nothing. */
-  bumps: number;
+  /** Tiles lit, per trail — the running signal of which answer is being flown toward. */
+  lit: [number, number, number];
   /** Set once the bird has passed the gate line. */
   chosen: 0 | 1 | 2 | null;
   started: boolean;
@@ -37,27 +38,34 @@ export const FLAPPY_RULES = {
   MAX_RISE: -0.9,
   /** Course length in seconds at normal pace. Long enough to read three gates, short enough to keep. */
   DURATION_S: 11,
-  /** A clipped obstacle pushes the bird back toward the middle rather than ending the run. */
-  BUMP_RECOVER: 0.35,
-  /** Obstacle half-height, in field units. */
-  GAP_HALF: 0.17,
+  /** How close the bird must pass to a tile to light it. Generous — this is a guide, not a target. */
+  TILE_REACH: 0.11,
+  /** Tiles per trail. Enough to read as a route, few enough to stay uncluttered. */
+  TILES_PER_PATH: 7,
 } as const;
 
 export function initialFlappy(): FlappyState {
-  return { y: 0.5, vy: 0, progress: 0, bumps: 0, chosen: null, started: false };
+  return { y: 0.5, vy: 0, progress: 0, lit: [0, 0, 0], chosen: null, started: false };
 }
 
 export type FlappyEvent =
   | { type: "flap" }
-  | { type: "tick"; dt: number; obstacles: Obstacle[] }
+  | { type: "tick"; dt: number; paths: TilePath[] }
   | { type: "start" };
 
-/** A wall with a hole in it, at a point along the course. */
-export type Obstacle = {
+/** One tile on a trail. */
+export type Tile = {
   /** Position along the course, 0-1. */
   at: number;
-  /** Centre of the gap, 0-1 vertically. */
-  gap: number;
+  /** Height, 0-1. */
+  y: number;
+};
+
+/** The route to one answer: tiles fanning from a shared start toward that gate's height. */
+export type TilePath = {
+  /** Which answer this trail leads to. */
+  gate: 0 | 1 | 2;
+  tiles: Tile[];
 };
 
 /**
@@ -85,21 +93,31 @@ export function seedFrom(text: string): number {
 }
 
 /**
- * Build the course.
+ * Build the three trails.
  *
- * Obstacles stop well before the gates so the final approach is clear — the last thing a learner
- * should be doing before choosing an answer is reading, not dodging. Gaps are kept away from the
- * extremes because a gap at the very top or bottom is a reflex test, not a course.
+ * All three start together near the bird's spawn height and fan out to the centre of their own gate,
+ * so the choice is visibly open at the start and visibly committed by the end. The wobble is seeded,
+ * which is what makes each checkpoint a different-looking route without making any of them harder.
  */
-export function courseFor(seed: number, count = 6): Obstacle[] {
+export function pathsFor(seed: number): TilePath[] {
   const next = rng(seed);
-  const out: Obstacle[] = [];
-  for (let i = 0; i < count; i++) {
-    // Spread across 0.12-0.72 so there is room to settle before the gates at 1.0.
-    const at = 0.12 + (i / Math.max(1, count - 1)) * 0.6;
-    out.push({ at, gap: 0.22 + next() * 0.56 });
-  }
-  return out;
+  const gateCentres = [1 / 6, 1 / 2, 5 / 6];
+
+  return ([0, 1, 2] as const).map((gate) => {
+    // Each trail gets its own wobble, or all three would ripple in unison and read as one ribbon.
+    const wobble = 0.02 + next() * 0.04;
+    const phase = next() * Math.PI * 2;
+    const tiles: Tile[] = [];
+    for (let i = 0; i < FLAPPY_RULES.TILES_PER_PATH; i++) {
+      const t = i / (FLAPPY_RULES.TILES_PER_PATH - 1);
+      // Eased fan-out: together at the start, fully separated well before the gates so the last
+      // stretch is a clear run at one answer rather than a scramble between two.
+      const spread = t * t * (3 - 2 * t);
+      const y = 0.5 + (gateCentres[gate] - 0.5) * spread + Math.sin(phase + t * 5) * wobble * (1 - spread);
+      tiles.push({ at: 0.1 + t * 0.72, y: Math.max(0.08, Math.min(0.92, y)) });
+    }
+    return { gate, tiles };
+  });
 }
 
 export function applyFlappy(prev: FlappyState, event: FlappyEvent): FlappyState {
@@ -126,20 +144,19 @@ export function applyFlappy(prev: FlappyState, event: FlappyEvent): FlappyState 
 
       const progress = Math.min(1, prev.progress + dt / FLAPPY_RULES.DURATION_S);
 
-      // A clipped obstacle: nudge back toward its gap and count it. Never fatal.
-      let bumps = prev.bumps;
-      for (const o of event.obstacles) {
-        const crossing = prev.progress < o.at && progress >= o.at;
-        if (crossing && Math.abs(y - o.gap) > FLAPPY_RULES.GAP_HALF) {
-          bumps += 1;
-          y = y + (o.gap - y) * FLAPPY_RULES.BUMP_RECOVER;
-          vy = 0;
+      // Light any tile just flown past. Purely feedback: nothing here moves the bird or ends
+      // anything, which is what makes the trails a guide rather than an obstacle.
+      const lit: [number, number, number] = [...prev.lit];
+      for (const path of event.paths) {
+        for (const tile of path.tiles) {
+          const crossing = prev.progress < tile.at && progress >= tile.at;
+          if (crossing && Math.abs(y - tile.y) <= FLAPPY_RULES.TILE_REACH) lit[path.gate] += 1;
         }
       }
 
       // At the end of the course the bird's height picks the gate: thirds, top to bottom.
       const chosen = progress >= 1 ? ((y < 1 / 3 ? 0 : y < 2 / 3 ? 1 : 2) as 0 | 1 | 2) : null;
-      return { ...prev, y, vy, progress, bumps, chosen };
+      return { ...prev, y, vy, progress, lit, chosen };
     }
   }
 }
