@@ -328,7 +328,11 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
        * skips the outline without depending on setUploadedFile having flushed first.
        */
       autoPlannedRef.current = true;
-      void startPlanning(subject, true);
+      void startPlanning(subject, true, {
+        sourceDocument: data.sourceDocument,
+        focus,
+        transcript: typeof data.ocrTranscript === "string" ? data.ocrTranscript : "",
+      });
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
       setParsingPages(false);
@@ -683,7 +687,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
    * depend on React having committed that state first — the failure mode is a document upload
    * landing on the outline screen, which is exactly what it is meant to bypass.
    */
-  async function startPlanning(t: string, forceBuild = false) {
+  async function startPlanning(t: string, forceBuild = false, fresh?: FreshUpload) {
     const trimmed = t.trim();
     if (!trimmed) return;
     setTopic(trimmed);
@@ -692,7 +696,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     resetPlanning();
 
     if (forceBuild || shouldSkipPlanning()) {
-      build(trimmed, undefined, forceBuild);
+      build(trimmed, undefined, forceBuild, fresh);
       return;
     }
 
@@ -799,7 +803,24 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
    * opens and waits for a click that a document upload should never have been asked for — the
    * lecture simply stops, with parse-pdf having returned 200 and nothing in the log.
    */
-  async function build(t: string, approvedOutline?: PlanOutline, forceSkipSteering = false) {
+  /**
+   * What was just parsed, when the caller has it and React does not yet.
+   *
+   * The bug this exists for: `parseSelectedPages` set sourceDocument, uploadFocus and ocrTranscript
+   * and then called startPlanning in the same tick. React had not re-rendered, so `build` closed
+   * over the PREVIOUS values — every first build after an upload sent no document, no focus and no
+   * transcript at all. A lecture built with no source document is exactly the "generic lecture"
+   * that was reported, and no amount of work on grounding could reach a request that never carried
+   * any. State remains the source for later rebuilds; this only covers the moment before it lands.
+   */
+  type FreshUpload = { sourceDocument?: unknown; focus?: string; transcript?: string; slideContext?: string };
+
+  async function build(
+    t: string,
+    approvedOutline?: PlanOutline,
+    forceSkipSteering = false,
+    fresh?: FreshUpload,
+  ) {
     const trimmed = t.trim();
     if (!trimmed) return;
     buildAbortRef.current?.abort();
@@ -846,16 +867,22 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       return;
     }
 
-    setBuildStatus(sourceDocument ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
+    // Freshly parsed values win over state, which is stale for exactly one tick after an upload.
+    const doc = fresh?.sourceDocument ?? sourceDocument;
+    const focusText = fresh?.focus ?? uploadFocus;
+    const transcriptText = fresh?.transcript ?? ocrTranscript;
+    const slides = fresh?.slideContext ?? slideContext;
+
+    setBuildStatus(doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
 
     const payload: LecturePayload = {
       topic: trimmed,
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}`,
-      ...(sourceDocument ? { suprnotes: sourceDocument } : slideContext ? { context: slideContext, diagramHints, slideImages } : {}),
-      ...(sourceDocument && uploadFocus ? { focus: uploadFocus } : {}),
+      ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
+      ...(focusText ? { focus: focusText } : {}),
       // Sent whichever route the upload took: a deck reaches generation through `context` rather
       // than `suprnotes`, and the passage read from its slides is just as much the subject there.
-      ...(ocrTranscript ? { transcript: ocrTranscript } : {}),
+      ...(transcriptText ? { transcript: transcriptText } : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
     };
 

@@ -36,6 +36,8 @@ import {
   type SuprnotesLessonInput,
 } from "@/lib/suprnotes";
 import { focusPassages, focusFromTranscript, focusPromptSection, focusedUserMessage, type PdfFocus } from "@/lib/pdfFocus";
+import { embedTexts, EMBED_RULES } from "@/lib/embeddings";
+import { chunksFrom, rankChunks, contextPromptSection, type RankedChunk } from "@/lib/ragRetrieve";
 import type { Beat } from "@/lib/lessonContent";
 
 // Kill switch for generated image assets. The prompt can still plan image beats, but when this is
@@ -136,6 +138,12 @@ type LectureBuildInput = {
    * Null for a plain "teach me this document", which keeps the existing whole-document behaviour.
    */
   focus: PdfFocus | null;
+  /**
+   * Passages retrieved from elsewhere in the document that relate to the region.
+   *
+   * Empty for the ordinary whole-document case, and whenever retrieval was unavailable.
+   */
+  context: RankedChunk[];
 };
 
 type BaseLecture = {
@@ -493,6 +501,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
   const base = `Teach this topic live: "${input.topic}". ${moodLine}`;
   const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
   const focusSection = focusPromptSection(input.focus);
+  const contextSection = contextPromptSection(input.context);
 
   if (input.sourceDocument) {
     /*
@@ -517,6 +526,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
         base,
         focus: input.focus,
         documentJson: compactSuprnotesForPrompt(withoutPlan),
+        contextSection,
         retryGuidance,
       });
     }
@@ -555,6 +565,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
         base,
         focus: input.focus,
         documentJson: input.slideContext,
+        contextSection,
         retryGuidance,
       });
     }
@@ -614,7 +625,15 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
       const raw = completion.choices[0]?.message?.content ?? "";
       const rawLecture = JSON.parse(raw);
       const pdfPlanCount = plannedPdfBeats(input.sourceDocument).length;
-      const minUsableBeats = pdfPlanCount || (input.sourceDocument ? 1 : 8);
+      /*
+       * A FOCUSED lecture is not measured against the document's plan.
+       *
+       * The floor is normally the number of planned beats — right when the plan IS the lecture, and
+       * wrong when the student asked about one figure: a fifty-five-block paper demanded nine or
+       * more beats and threw away a perfectly good eight-beat answer about a correlation matrix.
+       * Being shorter is the entire point of asking a narrow question.
+       */
+      const minUsableBeats = input.focus ? 4 : pdfPlanCount || (input.sourceDocument ? 1 : 8);
       let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
       applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
       dedupeBeatIdentity(beats);
@@ -898,8 +917,38 @@ export async function POST(req: Request) {
   const transcript = typeof body.transcript === "string" ? body.transcript.trim() : "";
   const focus = focusFromTranscript(focusQuestion, transcript) ?? focusPassages(focusQuestion, sourceDocument);
 
-  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus };
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+  /**
+   * RETRIEVE the passages the region depends on.
+   *
+   * The region is the subject, and a formula taught without the paragraph defining its symbols is
+   * half a lesson. Ranking blends the typed question with the region's own text, because once
+   * someone has drawn a box they type "explain this", which as a query retrieves noise.
+   *
+   * Degrades rather than fails: no key, an embeddings error, or too little to chunk simply means no
+   * supporting context. A transient API failure must never turn a grounded lecture back into a
+   * generic one — that regression is the whole reason this line of work exists.
+   */
+  let ragContext: RankedChunk[] = [];
+  if (focus && client) {
+    const chunks = chunksFrom(sourceDocument, slideContext).slice(0, EMBED_RULES.MAX_CHUNKS);
+    if (chunks.length > 1) {
+      const regionText = focus.passages.map((p) => p.text).join("\n").slice(0, EMBED_RULES.MAX_CHARS_PER_CHUNK);
+      const vectors = await embedTexts(client, [...chunks.map((c) => c.text), focusQuestion, regionText]);
+      if (vectors) {
+        const chunkVectors = vectors.slice(0, chunks.length);
+        const queryVector = focusQuestion ? vectors[chunks.length] : null;
+        const regionVector = regionText ? vectors[chunks.length + 1] : null;
+        // The region's own blocks are already the subject; retrieving them back would stutter.
+        const exclude = new Set(focus.passages.map((p) => p.blockId));
+        ragContext = rankChunks(chunks, chunkVectors, queryVector, regionVector, exclude);
+      }
+    }
+  }
+
+  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus, context: ragContext };
+
   const refresh = body.refresh === true;
 
   // Lesson cache: replaying the SAME task folder/upload is instant and free instead of re-running

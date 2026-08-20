@@ -313,12 +313,22 @@ export function focusedUserMessage(args: {
   base: string;
   focus: PdfFocus;
   documentJson: string;
+  /**
+   * Passages retrieved from elsewhere in the same document because they relate to the region.
+   *
+   * The whole document is still below as reference, but a model handed a large JSON blob attends to
+   * the top of it; these are the parts that actually define the region's terms, lifted out and put
+   * next to it. See lib/ragRetrieve.ts.
+   */
+  contextSection?: string;
   retryGuidance?: string;
 }): string {
-  const { base, focus, documentJson, retryGuidance = "" } = args;
+  const { base, focus, documentJson, contextSection = "", retryGuidance = "" } = args;
   return [
     focusPromptSection(focus),
     "",
+    contextSection,
+    contextSection ? "" : null,
     base,
     "The student's own document is below. It is REFERENCE for the passage above, not a syllabus to cover:",
     documentJson,
