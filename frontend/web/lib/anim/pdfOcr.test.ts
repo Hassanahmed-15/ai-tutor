@@ -9,8 +9,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  pixelRect, isUsableRegion, planTranscription, assembleTranscript, TRANSCRIBE_PROMPT, OCR_RULES,
-  type PageRegion,
+  pixelRect, isUsableRegion, planTranscription, assembleTranscript, blocksFromTranscript,
+  TRANSCRIBE_PROMPT, OCR_RULES, type PageRegion,
 } from "../pdfOcr";
 
 /* ── geometry ────────────────────────────────────────────────────────────── */
@@ -138,4 +138,31 @@ test("a runaway transcript is truncated rather than sent whole", () => {
   const huge = assembleTranscript([{ page: 1, text: "x".repeat(50_000) }]);
   assert.ok(huge.length <= OCR_RULES.MAX_TRANSCRIPT_CHARS + 40, `transcript was ${huge.length} chars`);
   assert.match(huge, /transcript truncated/);
+});
+
+
+/* ── a scanned PDF still has a source ────────────────────────────────────── */
+
+test("a transcript becomes content blocks, so an image-only PDF is usable", () => {
+  /*
+   * The upload used to be rejected outright with "No readable text or teachable visuals were found
+   * in this PDF" — refusing the one kind of document that can ONLY be read by looking at it. What
+   * the pixels say is a perfectly good lesson source.
+   */
+  const blocks = blocksFromTranscript([
+    { page: 3, text: "Theorem 4.1 states that ..." },
+    { page: 4, rect: { x: 0, y: 0, width: 1, height: 1 }, text: "d(x,y) = ..." },
+  ]);
+  assert.equal(blocks.length, 2);
+  assert.equal(blocks[0].pageNumber, 3);
+  assert.match(blocks[1].heading, /selected area/, "a chosen region should say so on its block");
+  assert.match(blocks[1].text, /d\(x,y\)/);
+  // Source order has to be set or the lecture cannot order what it was given.
+  assert.deepEqual(blocks.map((b) => b.sourceOrder), [1, 2]);
+  assert.equal(new Set(blocks.map((b) => b.id)).size, 2, "block ids must be unique");
+});
+
+test("empty transcriptions produce no blocks", () => {
+  assert.deepEqual(blocksFromTranscript([{ page: 1, text: "  " }]), []);
+  assert.deepEqual(blocksFromTranscript([]), []);
 });

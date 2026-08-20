@@ -10,7 +10,7 @@ import {
 } from "@/lib/pdfLessonPipeline";
 import { cropFiguresWithPython, renderPdfWithPython } from "@/lib/pdfPythonPipeline";
 import {
-  planTranscription, pixelRect, assembleTranscript, TRANSCRIBE_PROMPT,
+  planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, TRANSCRIBE_PROMPT,
   type PageRegion, type TranscriptPart,
 } from "@/lib/pdfOcr";
 import type {
@@ -679,60 +679,6 @@ export async function POST(req: NextRequest) {
           height: page.height,
         }))
     : await mapLimit(pageNumbers, PAGE_CONCURRENCY, (pageNumber) => renderPage(pdf, pageNumber));
-  /**
-   * READ THE PIXELS.
-   *
-   * Text extraction returns the text objects a PDF declares, and on a real paper that is often only
-   * the captions: measured on this repo's AblationStudy_V3.pdf, page 4 declares 985 characters, all
-   * of them "Fig. N: ..." lines, while the three images they refer to carry the actual content — the
-   * correlation matrix, the axis labels, the distributions. A student asking about that figure was
-   * being answered from its caption.
-   *
-   * So the region the student pointed at is transcribed from the RENDERED PAGE, which is the only
-   * representation that contains everything they can see. A drawn region is cropped exactly; with no
-   * region, the selected pages are read whole; with no selection at all, nothing is read, because
-   * that request is already served by the whole-document lecture.
-   */
-  const transcriptionPlan = planTranscription(scopedPages, regions);
-  const transcriptParts: TranscriptPart[] = client && transcriptionPlan.length > 0
-    ? (await mapLimit(transcriptionPlan, PAGE_CONCURRENCY, async (target): Promise<TranscriptPart | null> => {
-        const page = renderedPages.find((p) => p.pageNumber === target.page);
-        if (!page) return null;
-
-        // A page rendered without a PNG cannot be read; skip it rather than crop nothing.
-        if (!page.png) return null;
-        let png: Buffer = page.png;
-        if (target.rect) {
-          const box = pixelRect(target.rect, page.width, page.height);
-          const source = await canvasModule.loadImage(page.png);
-          const surface = canvasModule.createCanvas(box.width, box.height);
-          surface.getContext("2d").drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
-          png = surface.toBuffer("image/png");
-        }
-
-        try {
-          const completion = await client.chat.completions.create({
-            model: VISION_MODEL,
-            max_tokens: 2000,
-            messages: [{
-              role: "user",
-              content: [
-                { type: "text", text: TRANSCRIBE_PROMPT },
-                { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}`, detail: "high" } },
-              ],
-            }],
-          });
-          return { page: target.page, rect: target.rect, text: completion.choices[0]?.message?.content ?? "" };
-        } catch {
-          // One unreadable page must not lose the others, or a transient failure on page 3 throws
-          // away a transcription of the page the student actually asked about.
-          return null;
-        }
-      })).filter((part): part is TranscriptPart => part !== null)
-    : [];
-
-  const ocrTranscript = assembleTranscript(transcriptParts);
-
   const pageResults = await mapLimit(renderedPages, PAGE_CONCURRENCY, async (page) => {
     const pageBlocks = [...page.blocks];
     const pageAssets: SuprnotesAsset[] = [];
@@ -844,10 +790,93 @@ export async function POST(req: NextRequest) {
     return { ...page, blocks: pageBlocks, assets: pageAssets };
   });
 
-  const contentBlocks = pageResults.flatMap((page) => page.blocks);
+  /**
+   * READ THE PIXELS.
+   *
+   * Text extraction returns the text objects a PDF declares, and on a real paper that is often only
+   * the captions: measured on this repo's AblationStudy_V3.pdf, page 4 declares 985 characters, all
+   * of them "Fig. N: ..." lines, while the three images they refer to carry the actual content — the
+   * correlation matrix, the axis labels, the distributions. A student asking about that figure was
+   * being answered from its caption.
+   *
+   * So the region the student pointed at is transcribed from the RENDERED PAGE, which is the only
+   * representation that contains everything they can see. A drawn region is cropped exactly; with no
+   * region, the selected pages are read whole; with no selection at all, nothing is read, because
+   * that request is already served by the whole-document lecture.
+   */
+  const extractedBlocks = pageResults.flatMap((page) => page.blocks);
+
+  /*
+   * A document with NO extractable text must be read, not refused.
+   *
+   * A scanned or image-only PDF produces no text objects, so this used to return "No readable text
+   * or teachable visuals were found in this PDF" — turning away the one kind of document that can
+   * only be read by looking at it. When extraction comes back empty, every page the student chose
+   * is transcribed regardless of the usual cost rule, because there is no cheaper way to read it
+   * and the alternative is the upload failing.
+   */
+  const requested = planTranscription(scopedPages, regions);
+  const transcriptionPlan = requested.length > 0
+    ? requested
+    : extractedBlocks.length === 0
+      ? planTranscription(renderedPages.map((page) => page.pageNumber), [])
+      : [];
+  const transcriptParts: TranscriptPart[] = client && transcriptionPlan.length > 0
+    ? (await mapLimit(transcriptionPlan, PAGE_CONCURRENCY, async (target): Promise<TranscriptPart | null> => {
+        const page = renderedPages.find((p) => p.pageNumber === target.page);
+        if (!page) return null;
+
+        // A page rendered without a PNG cannot be read; skip it rather than crop nothing.
+        if (!page.png) return null;
+        let png: Buffer = page.png;
+        if (target.rect) {
+          const box = pixelRect(target.rect, page.width, page.height);
+          const source = await canvasModule.loadImage(page.png);
+          const surface = canvasModule.createCanvas(box.width, box.height);
+          surface.getContext("2d").drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
+          png = surface.toBuffer("image/png");
+        }
+
+        try {
+          const completion = await client.chat.completions.create({
+            model: VISION_MODEL,
+            max_tokens: 2000,
+            messages: [{
+              role: "user",
+              content: [
+                { type: "text", text: TRANSCRIBE_PROMPT },
+                { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}`, detail: "high" } },
+              ],
+            }],
+          });
+          return { page: target.page, rect: target.rect, text: completion.choices[0]?.message?.content ?? "" };
+        } catch {
+          // One unreadable page must not lose the others, or a transient failure on page 3 throws
+          // away a transcription of the page the student actually asked about.
+          return null;
+        }
+      })).filter((part): part is TranscriptPart => part !== null)
+    : [];
+
+  const ocrTranscript = assembleTranscript(transcriptParts);
+
+  const contentBlocks = [
+    ...extractedBlocks,
+    // Blocks read off the pixels, used when extraction found nothing at all. On a document that
+    // does have text, the transcript is still carried separately as the focus passage — it does not
+    // need to be duplicated into the block list as well.
+    ...(extractedBlocks.length === 0 ? blocksFromTranscript(transcriptParts) : []),
+  ];
   const assets = pageResults.flatMap((page) => page.assets);
   if (!contentBlocks.length) {
-    return NextResponse.json({ error: "No readable text or teachable visuals were found in this PDF." }, { status: 422 });
+    return NextResponse.json(
+      {
+        error: client
+          ? "Nothing could be read from this PDF — no text, no figures, and the pages could not be transcribed."
+          : "No readable text was found in this PDF, and image reading is unavailable (no OPENAI_API_KEY).",
+      },
+      { status: 422 },
+    );
   }
   applyGlobalSourceOrder(contentBlocks);
 

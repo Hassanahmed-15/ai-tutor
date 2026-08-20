@@ -169,3 +169,33 @@ export function assembleTranscript(parts: TranscriptPart[]): string {
   }
   return out;
 }
+
+
+/**
+ * Turn a transcript into content blocks, so a document with no extractable text still has a source.
+ *
+ * The case this exists for: a scanned or image-only PDF yields no text objects at all, so
+ * `contentBlocks` comes back empty and the upload was rejected with "No readable text or teachable
+ * visuals were found in this PDF" — refusing the one kind of document that can ONLY be read by
+ * looking at it. What the pixels say is a perfectly good lesson source; it just arrives by a
+ * different route.
+ */
+export function blocksFromTranscript(parts: TranscriptPart[]): Array<{
+  id: string;
+  type: string;
+  heading: string;
+  text: string;
+  pageNumber: number;
+  sourceOrder: number;
+}> {
+  return parts
+    .filter((part) => part.text.trim().length > 0)
+    .map((part, index) => ({
+      id: `ocr-p${part.page}-${index}`,
+      type: "section",
+      heading: part.rect ? `Page ${part.page} (selected area)` : `Page ${part.page}`,
+      text: part.text.trim(),
+      pageNumber: part.page,
+      sourceOrder: index + 1,
+    }));
+}
