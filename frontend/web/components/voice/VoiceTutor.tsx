@@ -53,6 +53,15 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
 
   /** Set by the hook once connected; used to push narration text into the live session. */
   const speakRef = useRef<((text: string) => void) | null>(null);
+  /**
+   * True only while the turn currently being spoken is a SECTION being narrated.
+   *
+   * Without this, any turn finishing while a lecture was open advanced it — so answering a question
+   * mid-lecture both replayed the section and stepped forward, and the student heard the same
+   * paragraph twice. Status alone cannot tell the two apart: during an answer the lecture is
+   * legitimately still "playing".
+   */
+  const narratingRef = useRef(false);
   const buildAbortRef = useRef<AbortController | null>(null);
 
   /**
@@ -102,6 +111,7 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
       return;
     }
     setLecture((prev) => ({ ...prev, status: "playing", index }));
+    narratingRef.current = true;
     speakRef.current?.(
       `[SYSTEM] Read the following section aloud to the student, word for word, with natural teaching delivery. Do not add a preamble, do not summarise it, do not comment on it. Section ${index + 1} of ${state.beats.length}, titled "${beat.title}":\n\n${beat.script}`,
     );
@@ -193,6 +203,7 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
         }
         switch (action) {
           case "pause":
+            narratingRef.current = false;
             setLecture((prev) => ({ ...prev, status: "paused" }));
             return `Paused at section ${state.index + 1} of ${state.beats.length}. Stop speaking and wait for the student.`;
           case "resume": {
@@ -200,29 +211,32 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
             // never heard in full, and picking up from an arbitrary point is worse than repeating.
             const index = state.status === "finished" ? 0 : state.index;
             playSection(index);
-            return "Resuming now. Read the section that follows and nothing else.";
+            return "Resumed. The section text is being sent to you separately — say nothing now and read that when it arrives.";
           }
           case "repeat":
-            playSection(state.index);
-            return "Repeating the current section. Read it again as given.";
+            playSection(lectureRef.current.index);
+            return "Repeating. The section text is being sent to you separately — say nothing now and read that when it arrives.";
           case "next": {
-            const next = state.index + 1;
+            // Read the index fresh: narration advances it between tool calls, so the value captured
+            // when this handler was entered can already be a section behind.
+            const next = lectureRef.current.index + 1;
             if (next >= state.beats.length) {
               setLecture((prev) => ({ ...prev, status: "finished" }));
               return "That was the last section. Tell the student the lecture is finished.";
             }
             playSection(next);
-            return `Moving to section ${next + 1}. Read it as given.`;
+            return `Moving to section ${next + 1}. The text is being sent to you separately — say nothing now and read that when it arrives.`;
           }
           case "back": {
-            const prevIndex = Math.max(0, state.index - 1);
+            const prevIndex = Math.max(0, lectureRef.current.index - 1);
             playSection(prevIndex);
-            return `Going back to section ${prevIndex + 1}. Read it as given.`;
+            return `Going back to section ${prevIndex + 1}. The text is being sent to you separately — say nothing now and read that when it arrives.`;
           }
           case "restart":
             playSection(0);
-            return "Starting the lecture again from the beginning. Read section one as given.";
+            return "Restarted. The section text is being sent to you separately — say nothing now and read that when it arrives.";
           case "stop":
+            narratingRef.current = false;
             buildAbortRef.current?.abort();
             setLecture(IDLE);
             return "The lecture is stopped. You are back to open conversation.";
@@ -319,7 +333,10 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
       // A finished narration turn advances the lecture. Only while playing: when paused, mid-answer
       // or idle, a completed turn is just the end of a sentence.
       const state = lectureRef.current;
-      if (state.status !== "playing") return;
+      // Only a finished NARRATION turn advances the lecture. A turn that was an answer, a greeting
+      // or a progress update just ended a sentence.
+      if (!narratingRef.current || state.status !== "playing") return;
+      narratingRef.current = false;
       const next = state.index + 1;
       if (next < state.beats.length) playSection(next);
       else {
@@ -329,7 +346,10 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
         );
       }
     },
-    onExplicitPause: () => setLecture((prev) => (prev.status === "playing" ? { ...prev, status: "paused" } : prev)),
+    onExplicitPause: () => {
+      narratingRef.current = false;
+      setLecture((prev) => (prev.status === "playing" ? { ...prev, status: "paused" } : prev));
+    },
     alwaysOn: true,
     lectureControlTools: false,
     startMuted: false,
@@ -347,9 +367,14 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
    */
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_VOICE_TEST_HOOKS !== "1") return;
-    (window as unknown as Record<string, unknown>).__voiceTool = handleTool;
+    const w = window as unknown as Record<string, unknown>;
+    w.__voiceTool = handleTool;
+    // Lets a test speak to Gemini as if by microphone, so tool SELECTION can be exercised rather
+    // than only tool execution.
+    w.__voiceSay = (text: string) => speakRef.current?.(text);
     return () => {
-      delete (window as unknown as Record<string, unknown>).__voiceTool;
+      delete w.__voiceTool;
+      delete w.__voiceSay;
     };
   }, [handleTool]);
 
