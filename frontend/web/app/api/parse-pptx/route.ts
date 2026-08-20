@@ -4,6 +4,7 @@ import { XMLParser } from "fast-xml-parser";
 import OpenAI from "openai";
 import type { SuprnotesAsset, SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
 import { applyGlobalSourceOrder, buildPdfLessonPlan } from "@/lib/pdfLessonPipeline";
+import { assembleTranscript, TRANSCRIBE_PROMPT, OCR_RULES, type TranscriptPart } from "@/lib/pdfOcr";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -16,6 +17,8 @@ type SlideImage = {
    *  boards in the real picture instead of only GPT-4o's text description of it. Omitted if the
    *  media file couldn't be read from the zip. */
   dataUrl?: string;
+  /** What the picture actually SAYS, read at high detail. See transcribeImage. */
+  transcript?: string;
 };
 
 type ChartSeries = {
@@ -49,6 +52,14 @@ type ParsePptxResponse = {
    *  content-block-linked chalkboard boards) a task-folder upload already gets. */
   sourceDocument?: SuprnotesLessonInput;
   assetCount?: number;
+  /**
+   * What was read out of the slides' pictures, labelled by slide.
+   *
+   * The same field the PDF route returns, carrying the same thing: content that lives inside an
+   * image and therefore never appears in the extracted text. The lecture pins it as the passage the
+   * student asked about — see lib/pdfFocus.ts.
+   */
+  ocrTranscript?: string;
 };
 
 const parser = new XMLParser({
@@ -373,6 +384,39 @@ function mimeForExt(ext: string): string {
 }
 
 /** Ask GPT-4o Vision to describe a single slide image. */
+/**
+ * TRANSCRIBE a slide image, rather than describing it.
+ *
+ * `describeImage` below asks for "1-3 sentences" at low detail, which is right for an asset caption
+ * and wrong for content: a chart's numbers, a formula, or a table living inside a slide picture all
+ * come back as "a bar chart showing the class distribution". A deck hides content in images for the
+ * same reason a paper does, so it gets the same reading the PDF path gets — the identical prompt,
+ * at high detail.
+ *
+ * A slide cannot be rasterised here (that needs LibreOffice, which is not in the image), so this
+ * reads the embedded pictures rather than the whole slide. The slide's own text boxes are already
+ * extracted from the XML, so between them the gap is closed.
+ */
+async function transcribeImage(client: OpenAI, dataUri: string): Promise<string> {
+  try {
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o",
+      max_tokens: 1500,
+      messages: [{
+        role: "user",
+        content: [
+          { type: "text", text: TRANSCRIBE_PROMPT },
+          { type: "image_url", image_url: { url: dataUri, detail: "high" } },
+        ],
+      }],
+    });
+    return completion.choices[0]?.message?.content?.trim() ?? "";
+  } catch {
+    // One unreadable picture must not lose the rest of the deck.
+    return "";
+  }
+}
+
 async function describeImage(client: OpenAI, dataUri: string): Promise<string> {
   try {
     const completion = await client.chat.completions.create({
@@ -519,8 +563,16 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const describedMedia = new Map<string, { description: string; dataUrl: string }>();
+  const describedMedia = new Map<string, { description: string; dataUrl: string; transcript: string }>();
   if (uniqueImages.size > 0) {
+    /*
+     * Transcription is capped; description is not.
+     *
+     * A caption is cheap and every asset wants one. A full transcription is a high-detail vision
+     * call per picture, so a deck with sixty screenshots would be an expensive way to read six that
+     * matter. The cap is the same one the PDF path uses.
+     */
+    let transcriptionBudget = OCR_RULES.MAX_PAGES;
     await Promise.all(
       [...uniqueImages.values()].map(async ({ mediaPath, ext }) => {
         const imgFile = zip.file(mediaPath);
@@ -529,8 +581,13 @@ export async function POST(req: NextRequest) {
           const imgBuffer = await imgFile.async("uint8array");
           if (imgBuffer.length < 5000) return;
           const dataUrl = toDataUri(imgBuffer, mimeForExt(ext));
-          const description = client ? await describeImage(client, dataUrl) : "";
-          describedMedia.set(mediaPath, { description, dataUrl });
+          const mayTranscribe = client !== null && transcriptionBudget > 0;
+          if (mayTranscribe) transcriptionBudget -= 1;
+          const [description, transcript] = await Promise.all([
+            client ? describeImage(client, dataUrl) : Promise.resolve(""),
+            mayTranscribe ? transcribeImage(client!, dataUrl) : Promise.resolve(""),
+          ]);
+          describedMedia.set(mediaPath, { description, dataUrl, transcript });
         } catch {
           // Skip this image — it simply won't appear as an asset or a description.
         }
@@ -547,7 +604,7 @@ export async function POST(req: NextRequest) {
         .filter((p): p is string => !!p && describedMedia.has(p))
         .map((p) => {
           const media = describedMedia.get(p)!;
-          return { description: media.description, dataUrl: media.dataUrl };
+          return { description: media.description, dataUrl: media.dataUrl, transcript: media.transcript };
         });
 
       // Parse charts in parallel per slide
@@ -706,12 +763,34 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  /*
+   * One transcript for the deck, labelled by slide.
+   *
+   * Slides rather than pages, but otherwise identical to the PDF path — the same assembly, so the
+   * lecture receives the same shape of grounding whichever kind of file was uploaded.
+   */
+  const transcriptParts: TranscriptPart[] = assembledSlides.flatMap((slide) =>
+    (slide.images ?? [])
+      .map((image) => (image.transcript ?? "").trim())
+      .filter((text) => text.length > 0)
+      .map((text): TranscriptPart => ({ page: slide.index, text })),
+  );
+  const ocrTranscript = assembleTranscript(transcriptParts, "slide");
+
   const result: ParsePptxResponse = {
     topic: deckTitle,
     slideCount: slides.length,
     slides,
     fullText,
     diagramHints,
+    /**
+     * What was read out of the slides' pictures.
+     *
+     * The same field the PDF route returns, carrying the same thing: content that lives in an image
+     * and therefore never appears in the extracted text. The lecture pins it as the passage the
+     * student asked about — see lib/pdfFocus.ts.
+     */
+    ocrTranscript,
     sourceDocument,
     assetCount: sourceDocument?.assets?.length ?? 0,
   };

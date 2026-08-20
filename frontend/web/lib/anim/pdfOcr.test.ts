@@ -125,6 +125,13 @@ test("the transcript says which page each piece came from", () => {
   assert.match(out, /D_p\(x,y\)/);
 });
 
+test("a deck is labelled by SLIDE, not by page", () => {
+  // "page 1" of a PowerPoint is wrong, and the label is quoted into the lecture.
+  const deck = assembleTranscript([{ page: 3, text: "Feature correlations" }], "slide");
+  assert.match(deck, /slide 3/);
+  assert.doesNotMatch(deck, /page 3/);
+});
+
 test("empty transcriptions are dropped, and all-empty yields nothing", () => {
   // A blank crop must not become an empty "page N" heading that the lecture then tries to teach.
   assert.equal(assembleTranscript([{ page: 1, text: "   " }]), "");

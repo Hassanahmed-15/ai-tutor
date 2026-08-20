@@ -150,16 +150,17 @@ export const TRANSCRIBE_PROMPT = [
 /**
  * Assemble the parts into the passage the lecture will be about.
  *
- * Page-labelled, so a lecture can say where something came from, and so a student asking about
- * "page 7" can see that page 7 is what was read.
+ * Labelled by page or slide, so a lecture can say where something came from, and so a student
+ * asking about "page 7" can see that page 7 is what was read.
  */
-export function assembleTranscript(parts: TranscriptPart[]): string {
+export function assembleTranscript(parts: TranscriptPart[], unit: "page" | "slide" = "page"): string {
   const usable = parts.filter((p) => p.text.trim().length > 0);
   if (usable.length === 0) return "";
 
   let out = usable
     .map((p) => {
-      const where = p.rect ? `page ${p.page}, selected region` : `page ${p.page}`;
+      // "page 1" of a PowerPoint is wrong, and the label ends up quoted in the lecture.
+      const where = p.rect ? `${unit} ${p.page}, selected region` : `${unit} ${p.page}`;
       return `--- ${where} ---\n${p.text.trim()}`;
     })
     .join("\n\n");

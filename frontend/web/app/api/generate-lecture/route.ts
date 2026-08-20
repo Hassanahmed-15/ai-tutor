@@ -542,6 +542,23 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
   }
 
   if (input.slideContext) {
+    /*
+     * A deck asks focused questions too.
+     *
+     * A PowerPoint without embedded images reaches generation through `slideContext` rather than
+     * `suprnotes`, so the focused path above never saw it — the same question about the same
+     * content would be grounded from a PDF and not from a deck, purely because of which route the
+     * upload happened to take.
+     */
+    if (input.focus && focusSection) {
+      return focusedUserMessage({
+        base,
+        focus: input.focus,
+        documentJson: input.slideContext,
+        retryGuidance,
+      });
+    }
+
     // Build a compact image reference block so GPT-4o knows what images were in which slides.
     let imageRefBlock = "";
     if (input.slideImages.length > 0) {

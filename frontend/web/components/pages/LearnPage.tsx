@@ -407,6 +407,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       setUploadedFile({ name: file.name, slideCount: data.slideCount ?? 0, kind: "pptx", assetCount: data.assetCount ?? 0 });
       setSlideContext(data.fullText ?? "");
       setDiagramHints(data.diagramHints ?? "");
+      // A deck hides content in pictures for the same reason a paper does, and gets the same
+      // reading. Slides cannot be rasterised here, so this is what was read out of their images.
+      setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
       // A pptx with at least one readable embedded image now gets a real sourceDocument, which
       // routes it through the same grounded pipeline (vision verification, image-only mode,
       // content-block-linked chalkboard boards) task-folder uploads already get — the payload
@@ -850,7 +853,9 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}`,
       ...(sourceDocument ? { suprnotes: sourceDocument } : slideContext ? { context: slideContext, diagramHints, slideImages } : {}),
       ...(sourceDocument && uploadFocus ? { focus: uploadFocus } : {}),
-      ...(sourceDocument && ocrTranscript ? { transcript: ocrTranscript } : {}),
+      // Sent whichever route the upload took: a deck reaches generation through `context` rather
+      // than `suprnotes`, and the passage read from its slides is just as much the subject there.
+      ...(ocrTranscript ? { transcript: ocrTranscript } : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
     };
 
