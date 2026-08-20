@@ -35,6 +35,7 @@ import {
   suprnotesTitle,
   type SuprnotesLessonInput,
 } from "@/lib/suprnotes";
+import { focusPassages, focusPromptSection, focusedUserMessage, type PdfFocus } from "@/lib/pdfFocus";
 import type { Beat } from "@/lib/lessonContent";
 
 // Kill switch for generated image assets. The prompt can still plan image beats, but when this is
@@ -129,6 +130,12 @@ type LectureBuildInput = {
   slideImages: Array<{ slide: number; descriptions: string[] }>;
   sourceDocument: SuprnotesLessonInput | null;
   outline: PlanOutline | null;
+  /**
+   * The passage the student's question is about, when they asked about one.
+   *
+   * Null for a plain "teach me this document", which keeps the existing whole-document behaviour.
+   */
+  focus: PdfFocus | null;
 };
 
 type BaseLecture = {
@@ -469,8 +476,26 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
   const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
   const base = `Teach this topic live: "${input.topic}". ${moodLine}`;
   const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
+  const focusSection = focusPromptSection(input.focus);
 
   if (input.sourceDocument) {
+    /*
+     * A focused question SUPERSEDES the whole-document plan.
+     *
+     * The PDF contract below orders one beat per planned block, in order, covering the document —
+     * exactly right for "teach me this paper" and exactly wrong for "explain the formula on page 7",
+     * which it answers with a full survey. Grounding the passage is not enough on its own while the
+     * contract still demands complete coverage.
+     */
+    if (input.focus && focusSection) {
+      return focusedUserMessage({
+        base,
+        focus: input.focus,
+        documentJson: compactSuprnotesForPrompt(input.sourceDocument),
+        retryGuidance,
+      });
+    }
+
     const pdfRules = isPdfSource(input.sourceDocument)
       ? `This is an uploaded PDF with a deterministic semantic plan. Return EXACTLY the number of beats in lessonPlan.beats, in that exact order. Copy each plan beat's sourceBlockIds onto the matching output beat exactly. Do not merge, split, omit, or reorder planned beats. Explain every assigned source block and preserve formulas, table values, examples, qualifications, and definitions exactly. Match the SAME premium visual grammar and quality as a normal prompted lesson: content-specific animated whiteboard SVGs for every svg_diagram beat, sentence-synchronized marker boards for paper_whiteboard beats, and natural progressive teaching sequences rather than static text slides. Preserve reactAnimation placeholders exactly so the premium animation generator can build them after planning. Use a PDF image ONLY when that plan beat's recommendedVisual explicitly supplies an assetId; never force every extracted asset into the lecture. On an image beat, show the clean complete crop in context and add labels/arrows only when the recommended brief and narration genuinely need them. Do not turn chapter banners, question boxes, decorative graphics, or unrelated photos into teaching boards. `
       : `Ten detailed beats are acceptable and preferred over many thin beats. `;
@@ -804,7 +829,17 @@ export async function POST(req: Request) {
         }
       : null;
 
-  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline };
+  /*
+   * The student's own question, as a field rather than smuggled inside the topic string.
+   *
+   * It used to be folded into `topic` by the upload screen, which meant "explain the formula on
+   * page 7" reached the model as a title and nothing more — no passage attached, no instruction to
+   * stay on it. That is why a specific question came back as a general lecture.
+   */
+  const focusQuestion = typeof body.focus === "string" ? body.focus.trim().slice(0, 500) : "";
+  const focus = focusPassages(focusQuestion, sourceDocument);
+
+  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus };
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const refresh = body.refresh === true;
 

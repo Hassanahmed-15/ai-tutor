@@ -91,6 +91,15 @@ type LecturePayload = {
   slideImages?: Array<{ slide: number; descriptions: string[] }>;
   suprnotes?: unknown;
   outline?: PlanOutline;
+  /**
+   * The student's own question about their upload, sent as itself.
+   *
+   * It used to be folded into `topic`, which is why asking "explain the formula on page 7" produced
+   * a general lecture: the question arrived as a title, with nothing attached to it and nothing
+   * telling the model to stay on it. The server pairs this with the matching passage — see
+   * lib/pdfFocus.ts.
+   */
+  focus?: string;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
@@ -143,6 +152,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
   const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
+  /** What the student asked about their upload, kept verbatim for the generator. */
+  const [uploadFocus, setUploadFocus] = useState("");
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
   const [pendingPdf, setPendingPdf] = useState<File | null>(null);
@@ -236,9 +247,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
    * is exactly what parse-pdf does when `pages` is absent — so "Use all pages" and the old
    * behaviour are literally the same request.
    *
-   * The student's prompt is folded into the topic rather than sent as a separate field: the
-   * planning pipeline already takes a topic string, and threading a second "focus" parameter
-   * through plan and generation would change several contracts for something a sentence conveys.
+   * The student's prompt is BOTH the topic and a separate focus field.
+   *
+   * It used to be only the topic, on the reasoning that a sentence conveys it and threading a
+   * second parameter would change several contracts. That reasoning is what produced the bug:
+   * "explain the formula on page 7" reached the model as a lecture title, with no passage attached
+   * and nothing overriding the instruction to cover the whole document, so it came back as a
+   * general lecture on the paper's subject. The topic still drives planning; `focus` is what lets
+   * the server find the passage and pin the lecture to it.
    */
   async function parseSelectedPages() {
     const file = pendingPdf;
@@ -273,6 +289,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
 
       const focus = pageSelection.prompt.trim();
       const subject = focus || topic.trim() || input.trim() || data.title || "this document";
+      setUploadFocus(focus);
       setPendingPdf(null);
       setDocumentPages([]);
       setParsingPages(false);
@@ -808,6 +825,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       topic: trimmed,
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}`,
       ...(sourceDocument ? { suprnotes: sourceDocument } : slideContext ? { context: slideContext, diagramHints, slideImages } : {}),
+      ...(sourceDocument && uploadFocus ? { focus: uploadFocus } : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
     };
 
