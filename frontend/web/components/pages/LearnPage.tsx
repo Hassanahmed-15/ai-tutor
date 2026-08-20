@@ -12,7 +12,8 @@ import { TestResultsView } from "@/components/TestResultsView";
 import { TRACKS, type TrackMeta } from "@/components/hud/tracks";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
-import { PageSelector, type DocumentPage, type PageSelection } from "@/components/upload/PageSelector";
+import { PageSelector, type DocumentPage, type NormalisedRect, type PageSelection } from "@/components/upload/PageSelector";
+import { PageAreaSelect } from "@/components/upload/PageAreaSelect";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
@@ -172,7 +173,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   // falling back to the capture form.
   const [parsingPages, setParsingPages] = useState(false);
   const [pagesUnavailable, setPagesUnavailable] = useState<string | null>(null);
-  const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "", regions: [] });
+  const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "" });
+  /**
+   * The part of a page the student dragged over, by page number.
+   *
+   * Owned here rather than inside PageSelector because the surface you drag on is the big preview
+   * this page renders, not the selector's thumbnail grid — one owner for one piece of state.
+   */
+  const [pageRegions, setPageRegions] = useState<Record<number, NormalisedRect>>({});
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
@@ -283,7 +291,12 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       const fd = new FormData();
       fd.append("file", file);
       if (pageSelection.pages.length > 0) fd.append("pages", pageSelection.pages.join(","));
-      if (pageSelection.regions.length > 0) fd.append("regions", JSON.stringify(pageSelection.regions));
+      // Only for pages still selected: deselecting a page must not leave its region behind to be
+      // read from a page the student has since taken out of the lesson.
+      const regions = pageSelection.pages
+        .filter((page) => pageRegions[page])
+        .map((page) => ({ page, rect: pageRegions[page] }));
+      if (regions.length > 0) fd.append("regions", JSON.stringify(regions));
       const res = await fetch("/api/parse-pdf", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.sourceDocument) {
@@ -1113,12 +1126,18 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
                 );
               }
               return (
-                // eslint-disable-next-line @next/next/no-img-element -- data: URI, no host to optimise
-                <img
+                <PageAreaSelect
                   src={page.thumbnail}
                   alt={`Page ${page.pageNumber}`}
-                  className="max-h-full max-w-full rounded-[var(--radius)] border bg-white object-contain"
-                  style={{ borderColor: "var(--hud-line)" }}
+                  rect={pageRegions[page.pageNumber]}
+                  onChange={(rect) =>
+                    setPageRegions((current) => {
+                      const next = { ...current };
+                      if (rect) next[page.pageNumber] = rect;
+                      else delete next[page.pageNumber];
+                      return next;
+                    })
+                  }
                 />
               );
             })()}
@@ -1131,6 +1150,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
               unavailableReason={pagesUnavailable}
               label="pages"
               onChange={setPageSelection}
+              regionFor={(pageNumber) => pageRegions[pageNumber]}
             />
           </div>
         </div>
