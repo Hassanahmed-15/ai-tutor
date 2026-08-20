@@ -66,8 +66,19 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
   const pendingCheckpointRef = useRef<{ index: number; spec: NonNullable<Beat["checkpoint"]> } | null>(null);
   /** Sections whose checkpoint has already been asked, so replaying one does not re-quiz. */
   const answeredRef = useRef<Set<number>>(new Set());
-  /** True while the student is mid-utterance, so the build-wait prompts never talk over them. */
-  const studentSpeakingRef = useRef(false);
+  /**
+   * When the student was last detected speaking.
+   *
+   * A boolean flag was wrong here. "Speech started" is reliable, but "speech stopped" is not
+   * guaranteed to arrive — background noise, a cough, or a microphone that never goes fully quiet
+   * leaves a boolean stuck true forever, and the tutor then never speaks again. Measured: the
+   * build-wait prompt was skipped on every single tick with student=true, so a whole build passed
+   * in silence.
+   *
+   * A timestamp degrades safely instead: if no speech has been detected for a couple of seconds,
+   * the student is treated as finished whether or not a stop event ever came.
+   */
+  const studentSpokeAtRef = useRef(0);
   /**
    * Stable handle on "is the tutor speaking right now".
    *
@@ -588,10 +599,10 @@ ${beat.script}${definition}${points}${compare}`,
       advanceAfterNarration();
     },
     onStudentSpeechStarted: () => {
-      studentSpeakingRef.current = true;
+      studentSpokeAtRef.current = Date.now();
     },
     onStudentSpeechStopped: () => {
-      studentSpeakingRef.current = false;
+      studentSpokeAtRef.current = 0;
     },
     onExplicitPause: () => {
       narratingRef.current = false;
@@ -657,7 +668,9 @@ ${beat.script}${definition}${points}${compare}`,
       const state = lectureRef.current;
       if (state.status !== "building") return;
       // Never talk over the tutor or the student.
-      if (isSpeakingRef.current() || studentSpeakingRef.current) return;
+      // Treat speech older than 2.5s as finished, so a missing stop event cannot mute the tutor.
+      const studentActive = studentSpokeAtRef.current > 0 && Date.now() - studentSpokeAtRef.current < 2500;
+      if (isSpeakingRef.current() || studentActive) return;
 
       const seconds = Math.round((Date.now() - (state.startedAt ?? Date.now())) / 1000);
       const instruction = ANGLES[angle % ANGLES.length];
