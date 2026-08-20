@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { renderPdfWithPython } from "@/lib/pdfPythonPipeline";
+import { renderPptxSlides } from "@/lib/pptxRender";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -41,12 +42,46 @@ export async function POST(request: Request) {
 
   const name = file.name.toLowerCase();
   const isPdf = name.endsWith(".pdf") || file.type === "application/pdf";
-  if (!isPdf) {
-    // PowerPoint has no page raster to render without a converter (LibreOffice or similar), which
-    // is not in the image. Rather than fake it, say so — the caller falls back to listing slides
-    // by title, which is still selectable, just not visual.
+  const isPptx = name.endsWith(".pptx") || file.type.includes("presentationml");
+
+  if (isPptx) {
+    /*
+     * A DECK GETS PREVIEWS TOO.
+     *
+     * This used to answer "Slide previews are unavailable for PowerPoint files", so a deck could
+     * only be picked from a list of titles while a PDF got a page grid and a drag-a-region
+     * selector. That was never a decision — PowerPoint has no page raster, and rendering one
+     * properly means LibreOffice, which is not in this image.
+     *
+     * `renderPptxSlides` composes each slide from its text and its real embedded pictures instead.
+     * It is a map of the slide, not a facsimile — but the pictures in it ARE the file's own
+     * bitmaps, so pointing at a chart crops the actual chart, which is what the preview is for.
+     */
+    try {
+      const slides = await renderPptxSlides(new Uint8Array(await file.arrayBuffer()));
+      if (slides.length > 0) {
+        return NextResponse.json({
+          kind: "pages",
+          pageCount: slides.length,
+          pages: slides.map((slide) => ({
+            pageNumber: slide.slideNumber,
+            thumbnail: `data:image/png;base64,${slide.png.toString("base64")}`,
+            excerpt: slide.text.slice(0, 140),
+          })),
+        });
+      }
+    } catch {
+      // Fall through to the no-thumbnails answer below rather than failing the upload.
+    }
     return NextResponse.json(
-      { kind: "no-thumbnails", reason: "Slide previews are unavailable for PowerPoint files." },
+      { kind: "no-thumbnails", reason: "Slide previews could not be built for this deck." },
+      { status: 200 },
+    );
+  }
+
+  if (!isPdf) {
+    return NextResponse.json(
+      { kind: "no-thumbnails", reason: "Previews are only available for PDFs and PowerPoint decks." },
       { status: 200 },
     );
   }

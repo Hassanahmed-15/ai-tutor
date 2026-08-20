@@ -29,6 +29,20 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
 
   const canStart = topic.trim().length > 0 || file !== null;
 
+  /**
+   * A chosen file goes straight through.
+   *
+   * Attaching used to leave the student on this screen with a chip and a submit button, when the
+   * upload IS the request — the very next screen asks which pages and which part, which is the
+   * question they came here to answer. Typing a topic first was a step that asked for something
+   * they did not have.
+   */
+  function startWithFile(chosen: File) {
+    setFile(chosen);
+    setPendingBrief({ topic: topic.trim(), file: chosen });
+    go("learn");
+  }
+
   function start() {
     if (!canStart) return;
     // The file itself is handed over, not just its name — the student chose it here and must not
@@ -131,19 +145,14 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
               type="file"
               accept=".pdf,.pptx,.ppt,.docx,.doc,.json"
               className="sr-only"
-              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+              onChange={(e) => {
+                const chosen = e.target.files?.[0];
+                // Reset, so picking the same file twice still fires a change event.
+                e.target.value = "";
+                if (chosen) startWithFile(chosen);
+              }}
               aria-label="Attach a PDF, slide deck, or document"
             />
-            <button
-              type="button"
-              onClick={() => fileRef.current?.click()}
-              aria-label="Attach a PDF, slide deck, or document"
-              className="grid size-9 shrink-0 place-items-center rounded-[var(--radius)] text-[var(--hud-text-faint)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)]"
-              style={{ transitionDuration: "var(--motion-fast)" }}
-            >
-              <Paperclip aria-hidden="true" size={17} strokeWidth={1.8} />
-            </button>
-
             <button
               type="submit"
               disabled={!canStart}
@@ -170,7 +179,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
                 e.preventDefault();
                 setDragging(false);
                 const dropped = e.dataTransfer.files?.[0];
-                if (dropped) setFile(dropped);
+                if (dropped) startWithFile(dropped);
               }}
               onClick={() => fileRef.current?.click()}
               className="mt-3 cursor-pointer rounded-[var(--radius-lg)] border border-dashed px-4 py-5 text-center transition-colors"

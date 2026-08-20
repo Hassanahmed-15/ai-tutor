@@ -168,6 +168,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
   const [pendingPdf, setPendingPdf] = useState<File | null>(null);
+  /** Which parser the chosen pages go to. A deck takes the same road as a PDF now. */
+  const [pendingKind, setPendingKind] = useState<"pdf" | "pptx">("pdf");
   const [documentPages, setDocumentPages] = useState<DocumentPage[]>([]);
   const [pagesLoading, setPagesLoading] = useState(false);
   // True while the CHOSEN pages are being parsed — keeps the selection screen up instead of
@@ -298,18 +300,23 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         .filter((page) => pageRegions[page])
         .map((page) => ({ page, rect: pageRegions[page] }));
       if (regions.length > 0) fd.append("regions", JSON.stringify(regions));
-      const res = await fetch("/api/parse-pdf", { method: "POST", body: fd });
+      // Same request, same fields, different parser — that is what "treated exactly the same" means.
+      const res = await fetch(pendingKind === "pptx" ? "/api/parse-pptx" : "/api/parse-pdf", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.sourceDocument) {
-        throw new Error(data.error || "Couldn't read the PDF. Make sure it's a valid .pdf file.");
+      if (!res.ok || (!data.sourceDocument && !data.fullText)) {
+        throw new Error(data.error || (pendingKind === "pptx"
+          ? "Couldn't read the presentation. Make sure it's a valid .pptx file."
+          : "Couldn't read the PDF. Make sure it's a valid .pdf file."));
       }
       setUploadedFile({
         name: file.name,
-        slideCount: Array.isArray(data.pagesUsed) ? data.pagesUsed.length : data.pageCount ?? 0,
-        kind: "pdf",
+        slideCount: Array.isArray(data.pagesUsed) ? data.pagesUsed.length : data.pageCount ?? data.slideCount ?? 0,
+        kind: pendingKind,
         assetCount: data.assetCount ?? 0,
       });
-      setSourceDocument(data.sourceDocument);
+      setSourceDocument(data.sourceDocument ?? null);
+      // A deck without embedded pictures has no source document; its slide text is the source.
+      if (!data.sourceDocument && typeof data.fullText === "string") setSlideContext(data.fullText);
 
       const focus = pageSelection.prompt.trim();
       const readSubject = subjectFromTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
@@ -349,7 +356,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
        */
       autoPlannedRef.current = true;
       void startPlanning(subject, true, {
-        sourceDocument: data.sourceDocument,
+        sourceDocument: data.sourceDocument ?? undefined,
+        slideContext: typeof data.fullText === "string" ? data.fullText : undefined,
         focus,
         transcript: typeof data.ocrTranscript === "string" ? data.ocrTranscript : "",
       });
@@ -391,9 +399,15 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         return;
       }
 
-      if (file.name.toLowerCase().endsWith(".pdf") || file.type === "application/pdf") {
+      const lower = file.name.toLowerCase();
+      const isDeck = lower.endsWith(".pptx") || file.type.includes("presentationml");
+      if (lower.endsWith(".pdf") || file.type === "application/pdf" || isDeck) {
         /**
-         * A PDF stops here to let the student choose pages, instead of parsing immediately.
+         * A PDF *or a deck* stops here to let the student choose pages, instead of parsing at once.
+         *
+         * A deck used to skip this screen entirely and parse the whole file, because PowerPoint had
+         * no previews to choose from. It has them now (see lib/pptxRender.ts), so the two formats
+         * take the same road: pick the pages, point at a part, ask about it.
          *
          * Thumbnails are cheap (~0.3s, a few hundred KB) and the full parse is not — 25s and real
          * money for a 7-page paper, far more for a textbook chapter. Rendering previews first means
@@ -404,6 +418,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
          * and parsing the whole document remains one click away, which is the old behaviour.
          */
         setPendingPdf(file);
+        setPendingKind(isDeck ? "pptx" : "pdf");
         setPagesLoading(true);
         setUploadPhase("choosing");
         const pageForm = new FormData();
@@ -1200,7 +1215,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
               pages={documentPages}
               loading={pagesLoading}
               unavailableReason={pagesUnavailable}
-              label="pages"
+              label={pendingKind === "pptx" ? "slides" : "pages"}
               onChange={setPageSelection}
               regionFor={(pageNumber) => pageRegions[pageNumber]}
             />

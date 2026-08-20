@@ -4,7 +4,12 @@ import { XMLParser } from "fast-xml-parser";
 import OpenAI from "openai";
 import type { SuprnotesAsset, SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
 import { applyGlobalSourceOrder, buildPdfLessonPlan } from "@/lib/pdfLessonPipeline";
-import { assembleTranscript, TRANSCRIBE_PROMPT, OCR_RULES, type TranscriptPart } from "@/lib/pdfOcr";
+import {
+  assembleTranscript, planTranscription, pixelRect, TRANSCRIBE_PROMPT, OCR_RULES,
+  type PageRegion, type TranscriptPart,
+} from "@/lib/pdfOcr";
+import { renderPptxSlides } from "@/lib/pptxRender";
+import { createCanvas, loadImage } from "@napi-rs/canvas";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -473,8 +478,11 @@ export async function POST(req: NextRequest) {
   }
 
   let zip: JSZip;
+  // Kept, because composing slide previews for a region crop needs the file again later.
+  let deckBytes = new Uint8Array();
   try {
     const buffer = await fileObj.arrayBuffer();
+    deckBytes = new Uint8Array(buffer);
     zip = await JSZip.loadAsync(buffer);
   } catch {
     return NextResponse.json({ error: "Could not read the file as a .pptx. Make sure it's a valid PowerPoint file." }, { status: 422 });
@@ -483,6 +491,35 @@ export async function POST(req: NextRequest) {
   // Set up OpenAI client for vision (only used if API key is present)
   const openaiKey = process.env.OPENAI_API_KEY;
   const client = openaiKey ? new OpenAI({ apiKey: openaiKey }) : null;
+
+  /**
+   * Pages and regions, named and parsed exactly as the PDF route does.
+   *
+   * The upload screen sends one shape for both formats; anything else would mean the client having
+   * to know which parser it is talking to, which is how the two paths drifted apart in the first
+   * place.
+   */
+  const scopedSlides = [...new Set(
+    String(formData.get("pages") ?? "")
+      .split(",")
+      .map((value) => Number.parseInt(value.trim(), 10))
+      .filter((value) => Number.isInteger(value) && value >= 1),
+  )].sort((a, b) => a - b);
+
+  let slideRegions: PageRegion[] = [];
+  try {
+    const raw = formData.get("regions");
+    if (typeof raw === "string" && raw.trim()) {
+      const parsed: unknown = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        slideRegions = parsed
+          .filter((r): r is PageRegion => !!r && typeof r === "object" && typeof (r as PageRegion).page === "number")
+          .map((r) => ({ page: r.page, rect: r.rect }));
+      }
+    }
+  } catch {
+    // A malformed regions field means "no region", not a failed upload.
+  }
 
   // Discover all slide files sorted by slide number
   const slideFiles = Object.keys(zip.files)
@@ -764,6 +801,34 @@ export async function POST(req: NextRequest) {
   }
 
   /*
+   * A REGION on a slide is read exactly as a region on a page is.
+   *
+   * The deck's own pictures are transcribed above, which covers "what is in this chart". This
+   * covers the other half the PDF path already had: the student drew a box round part of a slide
+   * and wants that part explained. The box is in normalised coordinates over the composed preview
+   * (lib/pptxRender.ts), so it is cropped from a fresh render of the same slide at the same size.
+   */
+  const regionParts: TranscriptPart[] = [];
+  const usableRegions = planTranscription(scopedSlides, slideRegions).filter((t) => t.rect);
+  if (client && usableRegions.length > 0) {
+    try {
+      const rendered = await renderPptxSlides(deckBytes);
+      for (const target of usableRegions) {
+        const slide = rendered.find((r) => r.slideNumber === target.page);
+        if (!slide || !target.rect) continue;
+        const box = pixelRect(target.rect, slide.width, slide.height);
+        const source = await loadImage(slide.png);
+        const surface = createCanvas(box.width, box.height);
+        surface.getContext("2d").drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
+        const text = await transcribeImage(client, `data:image/png;base64,${surface.toBuffer("image/png").toString("base64")}`);
+        if (text.trim()) regionParts.push({ page: target.page, rect: target.rect, text });
+      }
+    } catch {
+      // A preview that will not re-render loses the region read, not the upload.
+    }
+  }
+
+  /*
    * One transcript for the deck, labelled by slide.
    *
    * Slides rather than pages, but otherwise identical to the PDF path — the same assembly, so the
@@ -775,7 +840,13 @@ export async function POST(req: NextRequest) {
       .filter((text) => text.length > 0)
       .map((text): TranscriptPart => ({ page: slide.index, text })),
   );
-  const ocrTranscript = assembleTranscript(transcriptParts, "slide");
+  /*
+   * A drawn region WINS over the whole-deck picture sweep.
+   *
+   * When the student pointed at something, that is the subject; the sweep of every embedded image
+   * would bury it under the rest of the deck.
+   */
+  const ocrTranscript = assembleTranscript(regionParts.length > 0 ? regionParts : transcriptParts, "slide");
 
   const result: ParsePptxResponse = {
     topic: deckTitle,
