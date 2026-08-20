@@ -85,11 +85,17 @@ WORKDIR /app
 #   libgl1 / libglib2.0  — OpenCV needs these even in the headless build
 #   fonts-liberation     — otherwise server-rendered SVG/PDF text falls back to
 #                          notdef boxes, which silently corrupts exported boards
+#   libreoffice-impress  — converts an uploaded .pptx to PDF so slides go through the SAME
+#                          rasteriser a paper does (lib/pptxToPdf.ts). Composing slides from
+#                          their XML cannot reproduce themes, masters, SmartArt or native
+#                          charts — PowerPoint draws those itself. Absent, the app degrades to
+#                          that composed preview, so a broken install costs fidelity not uploads.
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python3 python3-pip python3-venv \
       tesseract-ocr \
       libgl1 libglib2.0-0 \
       fonts-liberation \
+      libreoffice-impress \
       ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 

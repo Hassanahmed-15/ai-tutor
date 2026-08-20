@@ -41,6 +41,7 @@ export function PageSelector({
   pages,
   loading,
   unavailableReason,
+  approximate = false,
   label = "pages",
   onChange,
   regionFor,
@@ -49,6 +50,8 @@ export function PageSelector({
   loading?: boolean;
   /** Set when previews could not be produced — PowerPoint, or the Python renderer being off. */
   unavailableReason?: string | null;
+  /** True when these previews were composed rather than rendered — see lib/pptxToPdf.ts. */
+  approximate?: boolean;
   /** "pages" for a PDF, "slides" for a deck. Used in every visible string. */
   label?: "pages" | "slides";
   onChange: (selection: PageSelection) => void;
@@ -118,6 +121,13 @@ export function PageSelector({
               ? `Only these ${label} will be used`
               : `Choose ${label}, or leave empty to use all`}
           </p>
+          {/* Said out loud, because a redrawing that looks plausible is worse than one that admits
+              it: without this, a region cropped from an approximate preview looks simply wrong. */}
+          {approximate && (
+            <p className="mt-1 text-[0.7rem] text-amber-300/80">
+              These are rebuilt previews, not the real slides — layout and fonts will differ.
+            </p>
+          )}
         </div>
         <button
           type="button"

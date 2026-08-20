@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { renderPdfWithPython } from "@/lib/pdfPythonPipeline";
 import { renderPptxSlides } from "@/lib/pptxRender";
+import { convertPptxToPdf } from "@/lib/pptxToPdf";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -57,11 +58,49 @@ export async function POST(request: Request) {
      * It is a map of the slide, not a facsimile — but the pictures in it ARE the file's own
      * bitmaps, so pointing at a chart crops the actual chart, which is what the preview is for.
      */
+    const deckBytes = new Uint8Array(await file.arrayBuffer());
+
+    /*
+     * THE REAL SLIDES FIRST.
+     *
+     * LibreOffice converts the deck to PDF and the SAME rasteriser a paper uses renders the pages —
+     * one code path, so a deck is genuinely treated like a PDF rather than sent down something that
+     * resembles it. Composing slides from their XML (below) can never reproduce themes, masters,
+     * SmartArt or native charts, because PowerPoint draws those itself.
+     */
     try {
-      const slides = await renderPptxSlides(new Uint8Array(await file.arrayBuffer()));
+      const asPdf = await convertPptxToPdf(deckBytes);
+      if (asPdf) {
+        const pages = await renderPdfWithPython(asPdf, THUMB_DPI);
+        if (pages && pages.length > 0) {
+          return NextResponse.json({
+            kind: "pages",
+            fidelity: "rendered",
+            pageCount: pages.length,
+            pages: pages.map((page) => ({
+              pageNumber: page.pageNumber,
+              thumbnail: `data:image/png;base64,${Buffer.from(page.png).toString("base64")}`,
+              excerpt: page.text.replace(/\s+/g, " ").trim().slice(0, 140),
+            })),
+          });
+        }
+      }
+    } catch {
+      // Conversion is best-effort; the composed preview below still works.
+    }
+
+    /*
+     * Fall back to composing the slides.
+     *
+     * `fidelity: "approximate"` is reported so the UI can SAY so. A student who cannot tell a real
+     * slide from a redrawing of one cannot tell why the region they cropped looks unfamiliar.
+     */
+    try {
+      const slides = await renderPptxSlides(deckBytes);
       if (slides.length > 0) {
         return NextResponse.json({
           kind: "pages",
+          fidelity: "approximate",
           pageCount: slides.length,
           pages: slides.map((slide) => ({
             pageNumber: slide.slideNumber,

@@ -9,6 +9,8 @@ import {
   type PageRegion, type TranscriptPart,
 } from "@/lib/pdfOcr";
 import { renderPptxSlides } from "@/lib/pptxRender";
+import { convertPptxToPdf } from "@/lib/pptxToPdf";
+import { renderPdfWithPython } from "@/lib/pdfPythonPipeline";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 
 export const runtime = "nodejs";
@@ -812,7 +814,27 @@ export async function POST(req: NextRequest) {
   const usableRegions = planTranscription(scopedSlides, slideRegions).filter((t) => t.rect);
   if (client && usableRegions.length > 0) {
     try {
-      const rendered = await renderPptxSlides(deckBytes);
+      /*
+       * Crop the REAL slide when there is one.
+       *
+       * The region a student drags is drawn over whatever the preview showed them, so the crop has
+       * to come from the same rendering. LibreOffice's PDF gives the true slide; the composed
+       * preview is the fallback, and the two must not be mixed or the box would land somewhere
+       * other than where it was drawn.
+       */
+      let rendered: Array<{ slideNumber: number; png: Buffer; width: number; height: number }> = [];
+      const asPdf = await convertPptxToPdf(deckBytes);
+      if (asPdf) {
+        const pages = await renderPdfWithPython(asPdf);
+        rendered = (pages ?? []).map((page) => ({
+          slideNumber: page.pageNumber,
+          png: Buffer.from(page.png),
+          width: page.width,
+          height: page.height,
+        }));
+      }
+      if (rendered.length === 0) rendered = await renderPptxSlides(deckBytes);
+
       for (const target of usableRegions) {
         const slide = rendered.find((r) => r.slideNumber === target.page);
         if (!slide || !target.rect) continue;

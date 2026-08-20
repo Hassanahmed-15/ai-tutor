@@ -176,6 +176,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   // falling back to the capture form.
   const [parsingPages, setParsingPages] = useState(false);
   const [pagesUnavailable, setPagesUnavailable] = useState<string | null>(null);
+  /**
+   * Whether the previews are the real pages or a reconstruction.
+   *
+   * Only ever "approximate" for a deck with no LibreOffice to convert it. Surfaced because a student
+   * who cannot tell a real slide from a redrawing cannot tell why the region they cropped looks
+   * unfamiliar — and would reasonably conclude the crop was broken.
+   */
+  const [pagesFidelity, setPagesFidelity] = useState<"rendered" | "approximate">("rendered");
   const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "" });
   /**
    * The part of a page the student dragged over, by page number.
@@ -191,6 +199,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   // stays a plain single-file .pptx/.json picker exactly as it works today).
   const folderInputRef = useRef<HTMLInputElement>(null);
   const buildAbortRef = useRef<AbortController | null>(null);
+
 
   // The standard lecture is the only mode offered. Kept as a named constant rather than inlined
   // because it still supplies the `mood` string handed to lecture generation — changing that
@@ -428,6 +437,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         setPagesLoading(false);
         if (pageData?.kind === "pages" && Array.isArray(pageData.pages)) {
           setDocumentPages(pageData.pages);
+          setPagesFidelity(pageData.fidelity === "approximate" ? "approximate" : "rendered");
           setPagesUnavailable(null);
         } else {
           setDocumentPages([]);
@@ -1215,6 +1225,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
               pages={documentPages}
               loading={pagesLoading}
               unavailableReason={pagesUnavailable}
+              approximate={pagesFidelity === "approximate"}
               label={pendingKind === "pptx" ? "slides" : "pages"}
               onChange={setPageSelection}
               regionFor={(pageNumber) => pageRegions[pageNumber]}
