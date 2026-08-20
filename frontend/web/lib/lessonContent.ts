@@ -23,6 +23,16 @@ export interface CheckpointSpec {
   hintFeedback: string;
   /** Shown verbatim if the student gives up after repeated attempts. */
   revealAnswer: string;
+  /**
+   * Three choices for the ADHD track's gate game, and which one is right.
+   *
+   * Optional because every lecture generated before this field existed has none, and because the
+   * model can omit it. `lib/adhd/games/mcq.ts` derives a usable set when they are missing, so a
+   * lesson is never left without a question — but real distractors written against the content are
+   * the only thing that makes the choice worth making.
+   */
+  options?: string[];
+  correctOption?: number;
 }
 
 export interface Beat {

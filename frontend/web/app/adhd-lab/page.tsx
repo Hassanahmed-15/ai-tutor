@@ -5,8 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { TeacherAvatar } from "@/components/TeacherAvatar";
 import { FACE_SHAPES, expressionFor, type Expression } from "@/lib/adhd/expression";
 import { initialFocus, type FocusTracker } from "@/lib/adhd/focusState";
-import { SorterGame } from "@/components/adhd/games/SorterGame";
-import { specForBeat } from "@/lib/adhd/games/spec";
+import { FlappyGates } from "@/components/adhd/games/FlappyGates";
+import { mcqForCheckpoint } from "@/lib/adhd/games/mcq";
 import { beats } from "@/lib/lessonContent";
 
 /**
@@ -22,7 +22,7 @@ import { beats } from "@/lib/lessonContent";
  * measures the renderer and nothing else.
  *
  *   ?size=220     render larger, for judging line weights
- *   ?game=1       play Sorting Run on real lesson content, with no lecture around it
+ *   ?game=1       fly a real checkpoint question, with no lecture around it
  *
  * The game section is here for the same reason as the faces: whether a round FEELS good — whether
  * the tiles fall at a readable speed, whether the bins are legible, whether a miss stings — is not
@@ -74,8 +74,8 @@ function AdhdLab() {
    * "Respiration (you)") rather than the topic-vs-"Elsewhere" fallback, so the lab shows the
    * mechanic at its best rather than at its most degraded. Falls back to whatever is playable.
    */
-  const specs = beats.map((b, i) => ({ beat: b, spec: specForBeat(b, beats, i + 1) })).filter((x) => x.spec);
-  const gameSpec = (specs.find((x) => x.beat.compareLeft && x.beat.compareRight) ?? specs[0])?.spec ?? null;
+  // The first fixture beat that carries a real checkpoint — the same call the player makes.
+  const gameMcq = beats.map((b, i) => mcqForCheckpoint(b, beats, i + 1)).find(Boolean) ?? null;
 
   return (
     <main className="min-h-screen bg-slate-950 p-8 text-slate-200">
@@ -109,16 +109,16 @@ function AdhdLab() {
 
       {showGame && (
         <section className="mt-8">
-          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-teal-300">Sorting Run</h2>
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-teal-300">Flappy Gates</h2>
           <p className="mt-1 text-[12px] text-slate-400">
-            Built by <code>specForBeat</code> from a real lesson beat — the same call the player makes.
-            Steer with the pointer or the arrow keys.
+            Built by <code>mcqForCheckpoint</code> from a real lesson beat — the same call the player makes.
+            Tap or press space to fly.
           </p>
           <div className="mt-4 h-[560px] w-full max-w-[900px] overflow-hidden rounded-2xl border border-white/10">
-            {gameSpec ? (
-              <SorterGame spec={gameSpec} onDone={(passed) => setLastResult(passed ? "passed" : "failed")} />
+            {gameMcq ? (
+              <FlappyGates mcq={gameMcq} onDone={(correct) => setLastResult(correct ? "correct" : "wrong")} />
             ) : (
-              <p className="p-6 text-slate-400">No beat in the fixture can feed a sorter.</p>
+              <p className="p-6 text-slate-400">No beat in the fixture carries a checkpoint.</p>
             )}
           </div>
           <p className="mt-2 text-[12px] text-slate-500" data-lab-game-result>

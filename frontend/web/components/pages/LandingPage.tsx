@@ -6,6 +6,7 @@ import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { useAuth } from "@/components/auth/AuthGate";
 import { Leaderboard } from "@/components/adhd/Leaderboard";
+import { Thoughts } from "@/components/adhd/Thoughts";
 import { isAdhdLearner } from "@/lib/adhd/gate";
 
 /**
@@ -219,6 +220,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             seen. Gated on the profile — nobody outside the ADHD track is shown a board they can
             never appear on. The API gate is separate and independent; this one is only cosmetic. */}
         {adhd && <Leaderboard />}
+        {adhd && <Thoughts />}
       </div>
     </main>
   );

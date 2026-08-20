@@ -77,12 +77,15 @@ export function AdhdLayer({
   const indexRef = useRef(index);
   const beatRef = useRef(beat);
   const scoreRef = useRef(initialScore());
+  // The lesson a thought interrupted, so the dashboard can say where it came from.
+  const topicRef = useRef<string | null>(null);
   // Rotates the line within an escalation tier so the same sentence never repeats back to back.
   const lineSeed = useRef(0);
   useEffect(() => {
     indexRef.current = index;
     beatRef.current = beat;
     scoreRef.current = score;
+    topicRef.current = beat?.title ?? null;
   });
 
   /**
@@ -201,11 +204,24 @@ export function AdhdLayer({
   }, [toast]);
 
   /* ── Capture: one key, the lecture never pauses. ───────────────────────── */
+  /**
+   * Park a thought — locally for the toast, and to the server so it is still there tomorrow.
+   *
+   * The local update stays optimistic: the whole point of this affordance is that it costs no
+   * attention, and a learner waiting on a round trip mid-lecture has already been interrupted. A
+   * failed write is deliberately silent for the same reason — reporting it would be a second
+   * interruption about the first one.
+   */
   const capture = useCallback((thought: string) => {
     const text = thought.trim();
     if (!text) return;
     setCaptured((c) => [...c, text]);
     setToast({ text: `Saved — “${text.slice(0, 40)}”`, tone: "card" });
+    void fetch("/api/adhd/thoughts", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ text, topic: topicRef.current }),
+    }).catch(() => {});
   }, []);
 
   useEffect(() => {

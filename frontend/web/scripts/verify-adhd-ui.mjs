@@ -50,7 +50,7 @@ const TITLES = ["What bonding is", "Ionic bonds", "Covalent bonds", "Electronega
  * the geometry assertions failed against a screen that was working correctly.
  */
 const KINDS = ["definition", "mechanism", "example", "application", "misconception", "compare", "definition", "recap"];
-const makeBeats = (kinds) => TITLES.map((title, i) => ({
+const makeBeats = (kinds, withCheckpoints = false) => TITLES.map((title, i) => ({
   id: `b${i}`, title,
   script: "Atoms join by sharing or giving up electrons, and the balance decides the bond.",
   slideKind: kinds[i], teacherMove: "explain",
@@ -59,19 +59,32 @@ const makeBeats = (kinds) => TITLES.map((title, i) => ({
   definitionMeaning: `${title} means the way atoms end up sharing or trading their outer electrons.`,
   compareLeft: { label: "Ionic", points: ["transfers electrons", "forms a lattice"] },
   compareRight: { label: "Covalent", points: ["shares electrons", "forms molecules"] },
-  checkpoint: {
+  /*
+   * Only the dedicated question run carries checkpoint data.
+   *
+   * Every beat used to have it, and the cadence correctly found a question at beat 3 of the MAIN
+   * lecture — which then held the beat waiting for an answer nobody was giving, so every layout,
+   * skip and reproach check after it ran behind a game that was working exactly as designed.
+   */
+  checkpoint: withCheckpoints ? {
     prompt: "Quick check — what decides whether a bond is ionic or covalent?",
     acceptableKeywords: [["electron"], ["share"], ["transfer"]],
     correctFeedback: "That's it.",
     hintFeedback: "Think about what happens to the outer electrons.",
     revealAnswer: "Whether the atoms share the electrons or transfer them outright.",
-  },
+    options: [
+      "They share the outer electrons",
+      "They transfer the outer electrons outright",
+      "The atoms swap protons instead",
+    ],
+    correctOption: 1,
+  } : undefined,
   draw: { caption: "b", durationMs: 12000, ops: [{ kind: "label", text: "Bonding", x: 50, y: 40, at: 0 }] },
 }));
 
 const BEATS = makeBeats(KINDS);
 /** The same lecture with beat 6 turned into a checkpoint, used only by the question-as-game run. */
-const BEATS_WITH_CHECKPOINT = makeBeats(KINDS.map((k, i) => (i === 5 ? "checkpoint" : k)));
+const BEATS_WITH_CHECKPOINT = makeBeats(KINDS.map((k, i) => (i === 2 ? "checkpoint" : k)), true);
 
 async function makeLearner(page, suffix, accessibility) {
   const email = `${PREFIX}-${suffix}@example.invalid`;
@@ -263,112 +276,6 @@ try {
     return m ? Number(m[1]) : null;
   });
   const part0 = await partNow();
-  /*
-   * THE QUESTION IS THE GAME.
-   *
-   * Beats are no longer gamified — a lecture is a lecture. What is checked here is that when the
-   * lesson STOPS TO ASK something, an ADHD learner gets a playable round instead of a text prompt,
-   * and that the result of playing it reaches the lesson score.
-   *
-   * Waited for rather than triggered: the comprehension check fires on the lecture's own cadence,
-   * and forcing it would test a path the learner never takes.
-   */
-  const sorter = page.locator("[data-sorter-game]");
-
-  /*
-   * Drive to the checkpoint beat rather than waiting for one.
-   *
-   * Waiting failed three different ways and none of them were the feature: the periodic check fires
-   * in one narrow window the earlier assertions were still occupying, and the lecture correctly
-   * focus-pauses when nobody interacts, so it sat on part 5 for the entire window. Pressing skip to
-   * reach the beat that always asks is deterministic, fast, and exercises exactly the same code the
-   * lecture would have reached on its own.
-   *
-   * The skip penalties do not matter here — the skip test below measures its own delta.
-   */
-  const skipTo = page.getByRole("button", { name: /skip to next part/i });
-  for (let i = 0; i < 8 && (await sorter.count()) === 0; i++) {
-    const resume = page.getByRole("button", { name: /resume lecture/i });
-    if (await resume.count()) await resume.click().catch(() => {});
-    if (await skipTo.count()) await skipTo.click().catch(() => {});
-    await page.waitForTimeout(1200);
-  }
-  await sorter.waitFor({ state: "attached", timeout: 15000 }).catch(() => {});
-
-  const askedAsGame = (await sorter.count()) > 0;
-  const sawTextPrompt = !askedAsGame && (await page.locator("text=/in your own words/i").count()) > 0;
-  check("a question is asked as a PLAYABLE ROUND, not a wall of text", askedAsGame,
-        askedAsGame
-          ? "sorter mounted at a question"
-          : sawTextPrompt
-            ? "the question fired but rendered as TEXT — specForBeat returned null for this beat"
-            : "no question was reached");
-
-  {
-    const textPrompt = askedAsGame ? await page.locator("text=/in your own words/i").count() : 0;
-    check("and the text prompt is not shown alongside it", textPrompt === 0,
-          textPrompt === 0 ? "prompt replaced" : "both the game and the text prompt are on screen");
-
-    const xpBeforeGame = await xpNow();
-    const startBtn = page.locator("[data-sorter-start]");
-    // Everything below still runs when no round appeared; the locators simply find nothing and the
-    // checks fail loudly. A block that skips its own assertions on failure reports a smaller,
-    // greener suite — which is precisely the wrong direction to fail in.
-    if (await startBtn.count()) await startBtn.click();
-    /*
-     * Wait for the canvas to be SIZED, not merely attached.
-     *
-     * R3F sizes its canvas from a ResizeObserver a frame after mount, so "attached" caught it at the
-     * HTML default of 300x150 — a real element with no layout, which would have passed a bare
-     * existence check while telling us nothing.
-     */
-    await page.waitForFunction(
-      () => {
-        const c = document.querySelector("[data-sorter-game] canvas");
-        return !!c && c.getBoundingClientRect().width > 400;
-      },
-      { timeout: 25000 },
-    ).catch(() => {});
-
-    const box = await page.locator("[data-sorter-game] canvas").boundingBox().catch(() => null);
-    check("the round renders a real, laid-out 3D canvas", !!box && box.width > 400 && box.height > 200,
-          box ? `${Math.round(box.width)}x${Math.round(box.height)}` : "no canvas");
-    check("and the backdrop layer is present whether or not the art has arrived",
-          (await page.locator("[data-sorter-backdrop]").count()) > 0,
-          `backdrop ${await page.locator("[data-sorter-backdrop]").getAttribute("data-sorter-backdrop").catch(() => "missing")}`);
-
-    const finish = page.locator("[data-sorter-continue]");
-    if (box) {
-      for (let i = 0; i < 90 && (await finish.count()) === 0; i++) {
-        await page.mouse.move(box.x + box.width * (i % 2 === 0 ? 0.28 : 0.72), box.y + box.height * 0.5);
-        await page.waitForTimeout(220);
-      }
-    }
-    await page.screenshot({ path: `${OUT}/ui-9-question-game.png` });
-    check("the round can be finished", (await finish.count()) > 0,
-          (await finish.count()) > 0 ? "end card shown" : "never resolved");
-
-    // Read the verdict BEFORE dismissing it. A failed round must cost nothing — that is the rule the
-    // whole track enforces — so "XP changed" is only the right assertion when the round was won.
-    const verdict = (await page.locator("[data-sorter-game]").innerText().catch(() => "")).replace(/\s+/g, " ");
-    const won = /Sorted!/i.test(verdict);
-
-    if (await finish.count()) {
-      await finish.click();
-      await page.waitForTimeout(2500);
-    }
-    const xpAfterGame = await xpNow();
-    check(
-      won ? "winning the round adds to the lesson score" : "losing the round costs nothing",
-      xpAfterGame !== null && xpBeforeGame !== null &&
-        (won ? xpAfterGame > xpBeforeGame : xpAfterGame >= xpBeforeGame),
-      `${won ? "won" : "lost"}: xp ${xpBeforeGame} -> ${xpAfterGame}`,
-    );
-    check("the lecture continues afterwards rather than stalling on the question",
-          (await page.locator("[data-sorter-game]").count()) === 0,
-          "round dismissed");
-  }
-
   const before = await xpNow();
   const skip = page.getByRole("button", { name: /skip to next part/i });
   let skippedAt = 0;
@@ -570,6 +477,78 @@ try {
   if (await qStart.count()) await qStart.click();
   await q.waitForTimeout(6000);
 
+  const flappy = q.locator("[data-flappy-game]");
+  /*
+   * Skip forward to the cadence point.
+   *
+   * The lecture also focus-pauses when nobody interacts — correctly, since engagement decays from
+   * interaction recency — so this resumes as a learner would, rather than concluding the feature is
+   * broken while the lecture waits for a sign of life.
+   */
+  const qSkip = q.getByRole("button", { name: /skip to next part/i });
+  for (let i = 0; i < 6 && (await flappy.count()) === 0; i++) {
+    const r = q.getByRole("button", { name: /resume lecture/i });
+    if (await r.count()) await r.click().catch(() => {});
+    if (await qSkip.count()) await qSkip.click().catch(() => {});
+    await q.waitForTimeout(1500);
+  }
+  await flappy.waitFor({ state: "attached", timeout: 20000 }).catch(() => {});
+
+  const asked = (await flappy.count()) > 0;
+  check("a checkpoint is asked as a flown question", asked,
+        asked ? "flappy gates mounted" : "no checkpoint appeared within 6 beats");
+  const gateCount = await q.locator("[data-flappy-gate]").count();
+  check("and it offers exactly three gates", gateCount === 3, `${gateCount} gates`);
+  // The brief is ONE question type. A text prompt here means the periodic check still fires.
+  const strayPrompt = await q.locator("text=/in your own words/i").count();
+  check("no text question is asked anywhere in the ADHD lecture", strayPrompt === 0,
+        strayPrompt === 0 ? "none" : "the periodic comprehension check still fires");
+
+  await q.screenshot({ path: `${OUT}/ui-9-checkpoint-game.png` });
+
+  const flyBtn = q.locator("[data-flappy-start]");
+  if (await flyBtn.count()) await flyBtn.click();
+  const cont = q.locator("[data-flappy-continue]");
+  for (let i = 0; i < 80 && (await cont.count()) === 0; i++) {
+    await q.keyboard.press("Space").catch(() => {});
+    await q.waitForTimeout(180);
+  }
+  check("the flight resolves to an answer", (await cont.count()) > 0,
+        (await cont.count()) > 0 ? "result card shown" : "the course never finished");
+  if (await cont.count()) {
+    await cont.click();
+    await q.waitForTimeout(2500);
+  }
+  check("and the lecture continues afterwards", (await flappy.count()) === 0, "question dismissed");
+
+  /*
+   * THOUGHTS — parked, persisted, removable.
+   *
+   * Checked across a RELOAD, because that is the whole claim. For a long time this was `useState`
+   * and nothing else: every thought a learner set aside was gone the moment they refreshed.
+   */
+  const parked = await q.request.post(`${BASE}/api/adhd/thoughts`, {
+    data: { text: "check the mitochondria diagram again", topic: "demo" },
+  });
+  check("an ADHD learner can park a thought", parked.ok(), `status ${parked.status()}`);
+
+  await q.goto(BASE, { waitUntil: "domcontentloaded" });
+  await q.waitForTimeout(3500);
+  const onDash = await q.locator("[data-thought]").count();
+  check("it survives a reload and appears on the dashboard", onDash >= 1, `${onDash} on screen`);
+  await q.screenshot({ path: `${OUT}/ui-10-thoughts.png` });
+
+  const doneBtn = q.locator("[data-thought-done]").first();
+  if (await doneBtn.count()) await doneBtn.click();
+  await q.waitForTimeout(1500);
+  const afterDelete = await q.locator("[data-thought]").count();
+  check("and marking it done removes it", afterDelete < onDash, `${onDash} -> ${afterDelete}`);
+
+  await q.reload({ waitUntil: "domcontentloaded" });
+  await q.waitForTimeout(3000);
+  check("the removal is persisted, not just hidden",
+        (await q.locator("[data-thought]").count()) === afterDelete, "still gone after a reload");
+
   await ctxQ.close();
 
   check("no page or console errors (excluding known pre-existing ones)", errs.length === 0,
@@ -593,6 +572,10 @@ try {
   await plain.goto(BASE, { waitUntil: "domcontentloaded" });
   await plain.waitForTimeout(3000);
   await plain.screenshot({ path: `${OUT}/ui-4-non-adhd-landing.png` });
+  check("a non-ADHD learner is refused the thoughts API too",
+        (await plain.request.post(`${BASE}/api/adhd/thoughts`, { data: { text: "nope" } })).status() === 403,
+        "server-side, not merely hidden");
+
   check("the prompt page shows no leaderboard for a non-ADHD learner",
         !/focus leaderboard/i.test(await plain.locator("body").innerText()));
 
@@ -622,14 +605,32 @@ try {
   try {
     const conn = (readFileSync(".env.local", "utf8").match(/^COSMOS_CONNECTION_STRING=(.+)$/m) || [])[1].trim();
     const db = new CosmosClient(conn).database("aria");
+    const testUserIds = [];
     for (const [name, pk] of [["users", null], ["leaderboard", "adhd"]]) {
       const c = db.container(name);
       const { resources } = await c.items
         .query({ query: "SELECT c.id, c.username FROM c WHERE STARTSWITH(c.username, @p)",
                  parameters: [{ name: "@p", value: PREFIX }] })
         .fetchAll();
-      for (const r of resources) await c.item(r.id, pk ?? r.id).delete();
+      for (const r of resources) {
+        if (name === "users") testUserIds.push(r.id);
+        await c.item(r.id, pk ?? r.id).delete();
+      }
       if (resources.length) console.log(`cleaned ${resources.length} row(s) from ${name}`);
+    }
+
+    /*
+     * Thoughts are keyed by userId, not username, so the prefix sweep above cannot see them — they
+     * would have accumulated in the shared instance run after run. Deleted by the owning ids
+     * collected above.
+     */
+    const t = db.container("thoughts");
+    for (const userId of testUserIds) {
+      const { resources } = await t.items
+        .query({ query: "SELECT c.id FROM c WHERE c.userId = @u", parameters: [{ name: "@u", value: userId }] })
+        .fetchAll();
+      for (const r of resources) await t.item(r.id, userId).delete();
+      if (resources.length) console.log(`cleaned ${resources.length} thought(s)`);
     }
   } catch (e) {
     console.log(`cleanup failed — remove rows starting "${PREFIX}": ${e.message}`);

@@ -23,8 +23,8 @@ import { RendererBadge } from "./sketch/RendererBadge";
 import { AdhdLayer } from "./adhd/AdhdLayer";
 import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdFace, onAdhdSpeech } from "@/lib/adhd/events";
-import { specForBeat } from "@/lib/adhd/games/spec";
-import { SorterGame } from "@/components/adhd/games/SorterGame";
+import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
+import { FlappyGates } from "@/components/adhd/games/FlappyGates";
 import type { Expression } from "@/lib/adhd/expression";
 import { Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -168,13 +168,16 @@ export function LessonPlayer({
    * bubble is the guaranteed one.
    */
   const [reproach, setReproach] = useState<string | null>(null);
+  /** Checkpoints already answered, keyed by beat index, so one is never asked twice. */
+  const [checkpointDone, setCheckpointDone] = useState<Record<number, boolean>>({});
   /**
-   * WebGL support, latched from the game itself.
+   * One generated backdrop for the lesson's checkpoints, fetched once and reused.
    *
-   * When the 3D renderer reports no context the question falls back to its ordinary text prompt,
-   * which is always available. A learner on a locked-down machine still gets asked the question.
+   * Fetched here rather than inside the game so it is already cached by the time the first question
+   * arrives — generation takes ten to twenty seconds, and a learner must never wait on decoration.
+   * Null forever is a fine outcome; the flight looks right without it.
    */
-  const [no3d, setNo3d] = useState(false);
+  const [gameBackdrop, setGameBackdrop] = useState<string | null>(null);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -238,19 +241,40 @@ export function LessonPlayer({
    * rejected; being in scope is simpler than working around not being in scope.
    */
   /**
-   * The QUESTION as a game.
+   * ONE question type, on a fixed cadence, always played.
    *
-   * Beats are no longer gamified — a lecture is a lecture. What becomes a game is every point where
-   * the lesson stops to ask something: the periodic comprehension check and a checkpoint beat. That
-   * is where a learner is already being asked to retrieve, which is the moment a game is worth
-   * playing and the moment a wall of text loses people.
+   * Every third beat the ADHD track stops and asks a three-option question, flown rather than typed.
+   * The periodic comprehension check is suppressed for this track: two kinds of interruption asking
+   * the same thing was one more than a lecture can carry.
    *
-   * Null when the beat's content cannot build a real round, and then the ordinary prompt is used.
+   * Drawn from a generated `checkpoint` beat at or just before this point, because that carries a
+   * question written against this content. With none to be had it is null and the lecture plays on —
+   * an invented question is worse than no question.
    */
-  const questionGame = useMemo(
-    () => (adhd && !no3d ? specForBeat(beat, beats, index + 1) : null),
-    [adhd, no3d, beat, beats, index],
-  );
+  const mcq = useMemo(() => {
+    if (!adhd || !checkpointDueAt(index) || checkpointDone[index]) return null;
+    const source = questionSourceFor(index, beats);
+    return source ? mcqForCheckpoint(source, beats, index + 1) : null;
+  }, [adhd, index, checkpointDone, beats]);
+
+  useEffect(() => {
+    if (!adhd || !title) return;
+    let live = true;
+    fetch("/api/game-art", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ topic: title }),
+    })
+      .then((r) => (r.ok ? r.json() : { url: null }))
+      .then((d) => { if (live && typeof d.url === "string") setGameBackdrop(d.url); })
+      .catch(() => { /* a missing picture is not a missing question */ });
+    return () => { live = false; };
+  }, [adhd, title]);
+
+  // Read inside the narration callback, which captures its scope — same reason `lesson.modeRef`
+  // exists. Synced in an effect rather than assigned during render.
+  const mcqRef = useRef<ReturnType<typeof mcqForCheckpoint>>(null);
+  useEffect(() => { mcqRef.current = mcq; });
 
   const currentAnimationPending = isReactAnimationPending(beat) || isChalkBoardPending(beat);
   // The lecture only WAITS on a pending animation until the watchdog trips (see below); after that it
@@ -586,6 +610,9 @@ export function LessonPlayer({
           // freeze on the current beat. Read the LIVE mode (not the captured `lesson.playing`).
           if (lesson.modeRef.current !== "teaching") return;
           setDrawProgress(1);
+          // A pending question holds the beat the way a checkpoint does: the learner's answer
+          // advances it, not the end of the narration.
+          if (mcqRef.current) return;
           if (isCheckpoint) {
             setWaitingOnCheckpoint(true);
           } else {
@@ -664,6 +691,11 @@ export function LessonPlayer({
   // (never rendered) rather than boolean state, so no reset-on-beat-change effect is needed.
   useEffect(() => {
     if (!lesson.playing || comprehensionAskedForRef.current === index || isCheckpoint || waitingOnCheckpoint) return;
+    /*
+     * The ADHD track asks ONE kind of question: the flown checkpoint every third beat. Standard mode
+     * keeps this check exactly as it was — non-ADHD has seen no change throughout this work.
+     */
+    if (adhd) return;
     const dueToEngagement = engagement.low && !engagement.critical;
     const dueToPeriod = index > 0 && index % UNDERSTANDING_CHECK_EVERY === 0 && stage === "board" && !speaking;
     if (!dueToEngagement && !dueToPeriod) return;
@@ -673,22 +705,7 @@ export function LessonPlayer({
       question: `Quick check — in your own words, what's the main idea of "${beat.title}" so far?`,
       expected: beat.script,
     });
-  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, engagement.low, engagement.critical, index, stage, speaking, quiz, beat.title, beat.script]);
-
-  /**
-   * Finish a question that was played instead of typed.
-   *
-   * The lecture RESUMES either way. `onFailed` pauses so a learner can ask about a wrong typed
-   * answer, but a lost round has already explained itself — it showed which bin each item belonged
-   * in as it went. Stalling the lecture on top of that turns a game into a punishment, and the rule
-   * throughout this track is that the cost lands on disengaging, never on getting something wrong.
-   */
-  function resolveQuestionGame(passed: boolean) {
-    quiz.cancel();
-    bumpInteraction();
-    emitAdhdEvent({ type: passed ? "answer-correct" : "answer-wrong" });
-    lesson.requestResume();
-  }
+  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, engagement.low, engagement.critical, index, stage, speaking, quiz, adhd, beat.title, beat.script]);
 
   function advanceFromCheckpoint() {
     setCheckpointResult(null);
@@ -922,7 +939,7 @@ export function LessonPlayer({
   // pipeline produces. Every child keeps using the same token names.
   return (
     <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
-      {adhd && <AdhdLayer index={index} beat={beats[index]} gameActive={quiz.phase !== "idle" || (isCheckpoint && !!questionGame)} />}
+      {adhd && <AdhdLayer index={index} beat={beats[index]} gameActive={!!mcq} />}
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
@@ -939,21 +956,7 @@ export function LessonPlayer({
       <div className="absolute inset-0 flex flex-col">
         <div className="flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid xl:grid-cols-[minmax(0,1fr)_340px]">
           <section className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
-            {isCheckpoint && questionGame ? (
-              // A checkpoint is a question too, so it is played rather than typed.
-              <div className="absolute inset-0 bg-slate-950">
-                <SorterGame
-                  key={`cp-${questionGame.beatId}`}
-                  spec={questionGame}
-                  topic={title}
-                  onUnsupported={() => setNo3d(true)}
-                  onDone={(passed) => {
-                    emitAdhdEvent({ type: passed ? "answer-correct" : "answer-wrong" });
-                    advanceFromCheckpoint();
-                  }}
-                />
-              </div>
-            ) : stage === "slide" || isCheckpoint ? (
+            {stage === "slide" || isCheckpoint ? (
               <SlideStage
                 beat={beat}
                 onCheckpointAnswer={handleCheckpointAnswer}
@@ -1079,24 +1082,29 @@ export function LessonPlayer({
 
             {focusPause && <FocusPauseOverlay state={focusPause} onResume={resumeFromFocusPause} />}
 
+            {/* The checkpoint, flown. Owns the board while it is up. */}
+            {mcq && (
+              <div className="absolute inset-0 z-40">
+                <FlappyGates
+                  key={`cp-${index}`}
+                  mcq={mcq}
+                  backdrop={gameBackdrop}
+                  onDone={(correct) => {
+                    emitAdhdEvent({ type: correct ? "answer-correct" : "answer-wrong" });
+                    setCheckpointDone((d) => ({ ...d, [index]: true }));
+                    lesson.requestResume();
+                  }}
+                />
+              </div>
+            )}
+
             {/*
               An ADHD learner PLAYS the question; everyone else reads it.
               A round built from this beat's own content is the same retrieval the text prompt asks
               for, in a form that does not look like a wall of text at the exact moment attention is
               hardest to hold. When the content cannot build a round, the prompt is used unchanged.
             */}
-            {quiz.phase !== "idle" && questionGame && (
-              <div className="absolute inset-0 z-40 bg-slate-950">
-                <SorterGame
-                  key={`quiz-${questionGame.beatId}`}
-                  spec={questionGame}
-                  topic={title}
-                  onUnsupported={() => setNo3d(true)}
-                  onDone={(passed) => resolveQuestionGame(passed)}
-                />
-              </div>
-            )}
-            {quiz.phase !== "idle" && !questionGame && (
+            {quiz.phase !== "idle" && (
               <QuizPrompt
                 quiz={quiz}
                 onSkip={() => {

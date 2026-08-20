@@ -25,6 +25,7 @@ const DATABASE_ID = "aria";
 export const USERS_CONTAINER = "users";
 export const SESSIONS_CONTAINER = "sessions";
 export const LEADERBOARD_CONTAINER = "leaderboard";
+export const THOUGHTS_CONTAINER = "thoughts";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -102,6 +103,23 @@ export type UserDoc = {
  * Only ADHD learners are ever written here — the API enforces that server-side, because a check that
  * only exists in the client is not a check.
  */
+/**
+ * A thought a learner parked mid-lecture.
+ *
+ * Partitioned by `/userId` rather than by a single constant like the leaderboard: every read is
+ * "this learner's thoughts", so the partition key and the query filter are the same thing, and one
+ * learner's list can never cost a cross-partition fan-out over everyone else's.
+ */
+export type ThoughtDoc = {
+  id: string;
+  /** The partition key, and the only learner allowed to read or delete it. */
+  userId: string;
+  text: string;
+  /** The lesson it interrupted, so the dashboard can say where it came from. */
+  topic: string | null;
+  createdAt: string;
+};
+
 export type LeaderboardDoc = {
   id: string;
   /** Always ADHD_BOARD. The partition key. */
@@ -148,6 +166,10 @@ export function leaderboard(): Container {
   return client().database(DATABASE_ID).container(LEADERBOARD_CONTAINER);
 }
 
+export function thoughts(): Container {
+  return client().database(DATABASE_ID).container(THOUGHTS_CONTAINER);
+}
+
 export function sessionsContainer(): Container {
   return client().database(DATABASE_ID).container(SESSIONS_CONTAINER);
 }
@@ -180,6 +202,11 @@ export async function ensureContainers(): Promise<void> {
     id: LEADERBOARD_CONTAINER,
     // Partitioned by the board name, so reading the board is a single-partition query. See ADHD_BOARD.
     partitionKey: { paths: ["/board"] },
+  });
+  await database.containers.createIfNotExists({
+    id: THOUGHTS_CONTAINER,
+    // Partitioned by learner: a learner's list is one partition, and never a fan-out over everyone.
+    partitionKey: { paths: ["/userId"] },
   });
   ensured = true;
 }
