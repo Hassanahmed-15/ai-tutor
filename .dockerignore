@@ -3,8 +3,15 @@
 # Everything here is either rebuilt inside the image, irrelevant to the server,
 # or must never be baked into a shipped artefact (secrets, caches, other apps).
 
-# Dependencies + build output — reinstalled/rebuilt in the image
+# Dependencies + build output — reinstalled/rebuilt in the image.
+#
+# Both forms of each are needed: `**/node_modules` matches only NESTED copies, because the `**/`
+# prefix requires at least one parent directory. The repo root holds a hoisted 792MB node_modules
+# and frontend/web/.next is ~384MB, so the bare names were the difference between a small upload
+# and a 300MB+ archive that stalled `az acr build` before the build even started.
+node_modules
 **/node_modules
+.next
 **/.next
 **/distZ
 **/build
@@ -68,4 +75,8 @@ docs
 # Python bytecode
 **/__pycache__
 **/*.pyc
+# `**/.venv` alone does not match a suffixed name, and frontend/web/.venv-pdf is ~269MB — it was
+# being packed into the upload archive on every build. The interpreter is installed inside the
+# image, so no local virtualenv should ever travel with the context.
 **/.venv
+**/.venv-*

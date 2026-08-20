@@ -85,6 +85,11 @@ WORKDIR /app
 #   libgl1 / libglib2.0  — OpenCV needs these even in the headless build
 #   fonts-liberation     — otherwise server-rendered SVG/PDF text falls back to
 #                          notdef boxes, which silently corrupts exported boards
+#   fonts-crosextra-*    — metric-compatible stand-ins for Calibri and Cambria, which real decks
+#   fonts-dejavu-core      overwhelmingly use. Without them LibreOffice renders a converted deck in
+#                          whatever it can find: production came back in a MONOSPACE face with the
+#                          letters visibly spaced out, while the same deck was correct locally.
+#                          Liberation only covers Arial/Times/Courier, so it does not help here.
 #   libreoffice-impress  — converts an uploaded .pptx to PDF so slides go through the SAME
 #                          rasteriser a paper does (lib/pptxToPdf.ts). Composing slides from
 #                          their XML cannot reproduce themes, masters, SmartArt or native
@@ -95,6 +100,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       tesseract-ocr \
       libgl1 libglib2.0-0 \
       fonts-liberation \
+      fonts-crosextra-carlito fonts-crosextra-caladea \
+      fonts-dejavu-core \
       libreoffice-impress \
       ca-certificates \
     && rm -rf /var/lib/apt/lists/*
