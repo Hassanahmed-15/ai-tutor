@@ -70,13 +70,22 @@ function fit(text: string, max: number): string {
  * `allBeats` is only needed by the fallback, which borrows distractors from elsewhere in the lesson.
  */
 export function mcqForCheckpoint(beat: Beat, allBeats: Beat[], seed: number): Mcq | null {
+  const next = rng(seed);
   const cp = beat.checkpoint;
-  if (!cp) return null;
+
+  /*
+   * NO CHECKPOINT SPEC — build one from what the beat does have.
+   *
+   * "A question every three beats" is only true if a question can always be made. This used to
+   * return null whenever the model had put its checkpoints somewhere other than the cadence points,
+   * so the cadence silently passed and the learner was asked nothing at all.
+   */
+  if (!cp) return fromBeatContent(beat, allBeats, next);
+
   const question = fit(clean(cp.prompt), MCQ_RULES.MAX_QUESTION_CHARS);
-  if (!question) return null;
+  if (!question) return fromBeatContent(beat, allBeats, next);
 
   const reveal = clean(cp.revealAnswer);
-  const next = rng(seed);
 
   /* The model wrote them. Validate rather than trust: a bad index or a duplicated option makes the
      question unanswerable, and it is generated content. */
@@ -103,15 +112,14 @@ export function mcqForCheckpoint(beat: Beat, allBeats: Beat[], seed: number): Mc
   }
 
   /* Fallback: the reveal answer against borrowed lines. */
-  if (!reveal) return null;
+  if (!reveal) return fromBeatContent(beat, allBeats, next);
   const pool = [...new Set(
     allBeats
       .filter((b) => b.id !== beat.id)
       .flatMap((b) => [clean(b.checkpoint?.revealAnswer), clean(b.definitionMeaning), ...b.points.map(clean)])
       .filter((t) => t.length > 8 && t !== reveal),
   )];
-  if (pool.length < MCQ_RULES.OPTIONS - 1) return null;
-
+  if (pool.length < MCQ_RULES.OPTIONS - 1) return fromBeatContent(beat, allBeats, next);
   const picked = shuffle(pool, next).slice(0, MCQ_RULES.OPTIONS - 1);
   const options = shuffle([reveal, ...picked], next);
   return {
@@ -120,6 +128,55 @@ export function mcqForCheckpoint(beat: Beat, allBeats: Beat[], seed: number): Mc
     options: options.map((o) => fit(o, MCQ_RULES.MAX_OPTION_CHARS)) as [string, string, string],
     answer: options.indexOf(reveal) as 0 | 1 | 2,
     reveal,
+  };
+}
+
+/**
+ * Build a question out of an ordinary beat.
+ *
+ * A definition beat asks what the term means; anything else asks which line belongs to it, against
+ * lines borrowed from elsewhere in the lesson. Weaker than a question the model wrote for the
+ * content — but a weaker question is a great deal better than the cadence passing in silence.
+ */
+function fromBeatContent(beat: Beat, allBeats: Beat[], next: () => number): Mcq | null {
+  const term = clean(beat.definitionTerm);
+  const meaning = clean(beat.definitionMeaning);
+  const title = clean(beat.title);
+
+  const borrow = (exclude: string[]) => [...new Set(
+    allBeats
+      .filter((b) => b.id !== beat.id)
+      .flatMap((b) => [clean(b.definitionMeaning), ...b.points.map(clean)])
+      .filter((t) => t.length > 8 && !exclude.includes(t)),
+  )];
+
+  if (term && meaning) {
+    const pool = borrow([meaning]);
+    if (pool.length >= MCQ_RULES.OPTIONS - 1) {
+      const options = shuffle([meaning, ...shuffle(pool, next).slice(0, MCQ_RULES.OPTIONS - 1)], next);
+      return {
+        beatId: beat.id,
+        question: fit(`What does "${term}" mean?`, MCQ_RULES.MAX_QUESTION_CHARS),
+        options: options.map((o) => fit(o, MCQ_RULES.MAX_OPTION_CHARS)) as [string, string, string],
+        answer: options.indexOf(meaning) as 0 | 1 | 2,
+        reveal: meaning,
+      };
+    }
+  }
+
+  const mine = [...new Set(beat.points.map(clean).filter((p) => p.length > 8))];
+  if (!title || mine.length === 0) return null;
+  const correct = shuffle(mine, next)[0];
+  const pool = borrow(mine);
+  if (pool.length < MCQ_RULES.OPTIONS - 1) return null;
+
+  const options = shuffle([correct, ...shuffle(pool, next).slice(0, MCQ_RULES.OPTIONS - 1)], next);
+  return {
+    beatId: beat.id,
+    question: fit(`Which of these is part of "${title}"?`, MCQ_RULES.MAX_QUESTION_CHARS),
+    options: options.map((o) => fit(o, MCQ_RULES.MAX_OPTION_CHARS)) as [string, string, string],
+    answer: options.indexOf(correct) as 0 | 1 | 2,
+    reveal: correct,
   };
 }
 
@@ -140,8 +197,25 @@ export function checkpointDueAt(index: number): boolean {
 export function questionSourceFor(index: number, beats: Beat[]): Beat | null {
   // Look back over the beats just taught, nearest first: the question should be about what the
   // learner has this moment finished, not something from the start of the lecture.
-  for (let i = index; i >= Math.max(0, index - CHECKPOINT_EVERY); i--) {
+  const from = Math.max(0, index - CHECKPOINT_EVERY);
+  for (let i = index; i >= from; i--) {
     if (beats[i]?.checkpoint) return beats[i];
+  }
+  /*
+   * No checkpoint spec nearby — fall back to the most recent beat that has something to ask ABOUT.
+   *
+   * "The most recent beat" was not enough: a checkpoint beat stripped of its spec carries no points
+   * and no definition (its title is literally "Quick check"), so the cadence landed on it and
+   * produced nothing. Usable content is the requirement, not recency.
+   */
+  const usable = (b: Beat | undefined) =>
+    !!b && ((!!b.definitionTerm && !!b.definitionMeaning) || b.points.length > 0);
+  for (let i = index; i >= from; i--) {
+    if (usable(beats[i])) return beats[i];
+  }
+  // Widen beyond the window rather than ask nothing at all.
+  for (let i = index; i >= 0; i--) {
+    if (usable(beats[i])) return beats[i];
   }
   return null;
 }

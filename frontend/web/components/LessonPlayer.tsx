@@ -24,7 +24,7 @@ import { AdhdLayer } from "./adhd/AdhdLayer";
 import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdFace, onAdhdSpeech } from "@/lib/adhd/events";
 import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
-import { FlappyGates } from "@/components/adhd/games/FlappyGates";
+import { MazeGame } from "@/components/adhd/games/MazeGame";
 import type { Expression } from "@/lib/adhd/expression";
 import { Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -170,14 +170,6 @@ export function LessonPlayer({
   const [reproach, setReproach] = useState<string | null>(null);
   /** Checkpoints already answered, keyed by beat index, so one is never asked twice. */
   const [checkpointDone, setCheckpointDone] = useState<Record<number, boolean>>({});
-  /**
-   * One generated backdrop for the lesson's checkpoints, fetched once and reused.
-   *
-   * Fetched here rather than inside the game so it is already cached by the time the first question
-   * arrives — generation takes ten to twenty seconds, and a learner must never wait on decoration.
-   * Null forever is a fine outcome; the flight looks right without it.
-   */
-  const [gameBackdrop, setGameBackdrop] = useState<string | null>(null);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -266,20 +258,6 @@ export function LessonPlayer({
     const source = questionSourceFor(index, beats);
     return source?.checkpoint ? mcqForCheckpoint(source, beats, index + 1) : null;
   }, [adhd, index, checkpointDone, beats]);
-
-  useEffect(() => {
-    if (!adhd || !title) return;
-    let live = true;
-    fetch("/api/game-art", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ topic: title }),
-    })
-      .then((r) => (r.ok ? r.json() : { url: null }))
-      .then((d) => { if (live && typeof d.url === "string") setGameBackdrop(d.url); })
-      .catch(() => { /* a missing picture is not a missing question */ });
-    return () => { live = false; };
-  }, [adhd, title]);
 
   // Read inside the narration callback, which captures its scope — same reason `lesson.modeRef`
   // exists. Synced in an effect rather than assigned during render.
@@ -623,7 +601,15 @@ export function LessonPlayer({
           // A pending question holds the beat the way a checkpoint does: the learner's answer
           // advances it, not the end of the narration.
           if (mcqRef.current) return;
-          if (isCheckpoint) {
+          /*
+           * A checkpoint beat must not HOLD in the ADHD track.
+           *
+           * Its answer box is suppressed there, so waiting for an answer waits for one that can
+           * never be given — the lecture stopped dead on that beat and the browser suite sat at
+           * "Part 3 of 8" for six minutes. Removing the question without removing the wait for it
+           * is worse than leaving both.
+           */
+          if (isCheckpoint && !adhd) {
             setWaitingOnCheckpoint(true);
           } else {
             setIndex((i) => {
@@ -646,7 +632,7 @@ export function LessonPlayer({
       setSpeaking(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, deafMode, onComplete, animationBlocking]);
+  }, [index, startNonce, stage, isCheckpoint, adhd, beat.script, rate, beats.length, chat.busy, deafMode, onComplete, animationBlocking]);
 
   // Pause/resume IN PLACE, driven by the single mode value. Leaving `teaching` freezes the audio
   // (and with it the board reveal + sentence cue); returning to it continues from the exact same
@@ -1116,10 +1102,9 @@ export function LessonPlayer({
             {/* The checkpoint, flown. Owns the board while it is up. */}
             {mcq && (
               <div className="absolute inset-0 z-40">
-                <FlappyGates
+                <MazeGame
                   key={`cp-${index}`}
                   mcq={mcq}
-                  backdrop={gameBackdrop}
                   onDone={(correct) => {
                     emitAdhdEvent({ type: correct ? "answer-correct" : "answer-wrong" });
                     setCheckpointDone((d) => ({ ...d, [index]: true }));

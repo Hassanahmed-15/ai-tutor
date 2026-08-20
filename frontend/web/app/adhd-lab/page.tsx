@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { TeacherAvatar } from "@/components/TeacherAvatar";
 import { FACE_SHAPES, expressionFor, type Expression } from "@/lib/adhd/expression";
 import { initialFocus, type FocusTracker } from "@/lib/adhd/focusState";
-import { FlappyGates } from "@/components/adhd/games/FlappyGates";
+import { MazeGame } from "@/components/adhd/games/MazeGame";
 import { mcqForCheckpoint } from "@/lib/adhd/games/mcq";
 import { beats } from "@/lib/lessonContent";
 
@@ -22,7 +22,7 @@ import { beats } from "@/lib/lessonContent";
  * measures the renderer and nothing else.
  *
  *   ?size=220     render larger, for judging line weights
- *   ?game=1       fly a real checkpoint question, with no lecture around it
+ *   ?game=1       walk a real checkpoint question, with no lecture around it
  *
  * The game section is here for the same reason as the faces: whether a round FEELS good — whether
  * the tiles fall at a readable speed, whether the bins are legible, whether a miss stings — is not
@@ -109,14 +109,14 @@ function AdhdLab() {
 
       {showGame && (
         <section className="mt-8">
-          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-teal-300">Flappy Gates</h2>
+          <h2 className="text-sm font-black uppercase tracking-[0.15em] text-teal-300">Checkpoint maze</h2>
           <p className="mt-1 text-[12px] text-slate-400">
             Built by <code>mcqForCheckpoint</code> from a real lesson beat — the same call the player makes.
-            Tap or press space to fly.
+            Arrow keys or WASD to walk it.
           </p>
           <div className="mt-4 h-[560px] w-full max-w-[900px] overflow-hidden rounded-2xl border border-white/10">
             {gameMcq ? (
-              <FlappyGates mcq={gameMcq} onDone={(correct) => setLastResult(correct ? "correct" : "wrong")} />
+              <MazeGame mcq={gameMcq} onDone={(correct) => setLastResult(correct ? "correct" : "wrong")} />
             ) : (
               <p className="p-6 text-slate-400">No beat in the fixture carries a checkpoint.</p>
             )}

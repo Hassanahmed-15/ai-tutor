@@ -39,9 +39,6 @@ yarn-error.log*
 # generated lesson cache (see lib/lectureCache.ts)
 /.lecture-cache/
 
-# generated game backdrops (see app/api/game-art) — a per-topic cache, regenerable,
-# and binary; committing one blob per lesson anyone plays is not a repo.
-/public/generated/game-bg-*.png
 
 # typescript
 *.tsbuildinfo

@@ -477,87 +477,129 @@ try {
   if (await qStart.count()) await qStart.click();
   await q.waitForTimeout(6000);
 
-  const flappy = q.locator("[data-flappy-game]");
+  const maze = q.locator("[data-maze-game]");
   /*
-   * Skip forward to the cadence point.
+   * WAIT for the cadence, do not skip to it.
    *
-   * The lecture also focus-pauses when nobody interacts — correctly, since engagement decays from
-   * interaction recency — so this resumes as a learner would, rather than concluding the feature is
-   * broken while the lecture waits for a sign of life.
+   * The reported bug was "a checkpoint page appears, and the game only starts when I skip the
+   * beat" — so skipping to reach the question would hide exactly the fault being checked. The
+   * lecture is allowed to run; focus-pauses are resumed, because engagement decays from interaction
+   * recency and an automated run never interacts.
    */
-  const qSkip = q.getByRole("button", { name: /skip to next part/i });
-  for (let i = 0; i < 6 && (await flappy.count()) === 0; i++) {
+  let sawCheckpointPage = false;
+  let reachedPart = "?";
+  /*
+   * ~6 minutes, measured rather than guessed.
+   *
+   * A previous run reached only "Part 3 of 8" in three minutes: the lecture correctly focus-pauses
+   * when nobody interacts, and most of the wall clock goes on pause-then-resume cycles rather than
+   * narration. The cadence question is at Part 4, so the window has to be long enough to get there
+   * WITHOUT skipping — skipping is the very thing this check exists to prove unnecessary.
+   */
+  for (let i = 0; i < 300 && (await maze.count()) === 0; i++) {
     const r = q.getByRole("button", { name: /resume lecture/i });
     if (await r.count()) await r.click().catch(() => {});
-    if (await qSkip.count()) await qSkip.click().catch(() => {});
-    await q.waitForTimeout(1500);
+    // Any page announcing a checkpoint, at any moment, is the bug.
+    if (await q.locator("text=/^Checkpoint \d/").count()) sawCheckpointPage = true;
+    if (await q.locator("text=/Quick check/i").count()) sawCheckpointPage = true;
+    if (i % 10 === 0) {
+      reachedPart = await q.evaluate(() => (document.body.innerText.match(/Part \d+ of \d+/) || ["?"])[0]);
+    }
+    await q.waitForTimeout(1200);
   }
-  await flappy.waitFor({ state: "attached", timeout: 20000 }).catch(() => {});
+  await maze.waitFor({ state: "attached", timeout: 20000 }).catch(() => {});
 
-  const asked = (await flappy.count()) > 0;
-  check("a checkpoint is asked as a flown question", asked,
-        asked ? "flappy gates mounted" : "no checkpoint appeared within 6 beats");
-  const gateCount = await q.locator("[data-flappy-gate]").count();
-  check("and it offers exactly three gates", gateCount === 3, `${gateCount} gates`);
-  // The brief is ONE question type. A text prompt here means the periodic check still fires.
-  /*
-   * NO TYPED QUESTION OF ANY KIND.
-   *
-   * The first version only looked for the periodic check's wording and passed while a checkpoint
-   * BEAT was rendering its ordinary "Type your answer" panel a few beats later — the cadence was
-   * gamified and the beat the model actually marked as a checkpoint was not. Both forms are checked
-   * now, and the answer box is the one that matters.
-   */
+  const asked = (await maze.count()) > 0;
+  check("a maze checkpoint arrives on its own, with no skipping", asked,
+        asked ? "maze mounted while the lecture ran" : `no maze appeared; lecture reached ${reachedPart}`);
+  check("and no page announcing a checkpoint appears before it", !sawCheckpointPage,
+        sawCheckpointPage ? "a 'Checkpoint N' / 'Quick check' page was shown" : "none");
+
+  const options = await q.locator("[data-maze-option]").count();
+  check("the maze offers three labelled corners", options === 3, `${options} options`);
   const strayPrompt = await q.locator("text=/in your own words/i").count();
   const answerBox = await q.locator('input[placeholder*="answer" i], textarea[placeholder*="answer" i]').count();
-  check("no text question is asked anywhere in the ADHD lecture", strayPrompt === 0 && answerBox === 0,
-        strayPrompt ? "the periodic comprehension check still fires"
-                    : answerBox ? "a checkpoint beat is still asking for typed input" : "none");
+  check("no typed question of any kind in the ADHD lecture", strayPrompt === 0 && answerBox === 0,
+        strayPrompt ? "the periodic check still fires" : answerBox ? "an answer box is on screen" : "none");
 
-  await q.screenshot({ path: `${OUT}/ui-9-checkpoint-game.png` });
+  /*
+   * NOTHING MAY COVER THE MAZE.
+   *
+   * The reported "there is no solution, the path is closed" was this: the option cards were drawn
+   * over the grid and hid about three rows, including two answer cells and the corridors to them. A
+   * card on top of a corridor is indistinguishable from a wall. Measured, because every layout
+   * defect in this feature so far shipped with a green suite and was found by eye.
+   */
+  const overlap = await q.evaluate(() => {
+    const canvas = document.querySelector("[data-maze-canvas]");
+    if (!canvas) return { ok: false, why: "no maze canvas" };
+    const c = canvas.getBoundingClientRect();
+    const hits = [...document.querySelectorAll("[data-maze-option]")]
+      .map((el) => el.getBoundingClientRect())
+      .filter((b) => b.x < c.right && b.right > c.x && b.y < c.bottom && b.bottom > c.y);
+    return { ok: hits.length === 0, why: `${hits.length} label(s) over the grid` };
+  });
+  check("no option label covers any part of the maze", overlap.ok, overlap.why);
 
-  // The checkpoint BEAT itself asks nothing: the cadence is the only trigger, so its typed panel
-  // must never appear and it must not stall the lecture waiting for one.
-  const checkpointChip = await q.locator("text=/^CHECKPOINT$/").count();
-  check("a checkpoint beat does not ask its own typed question", checkpointChip === 0,
-        checkpointChip === 0 ? "none" : "the checkpoint beat is still showing its panel");
+  await q.screenshot({ path: `${OUT}/ui-9-maze.png` });
 
-  const askedBeatId = await flappy.getAttribute("data-flappy-game").catch(() => null);
+  /*
+   * Walk it with the ARROW KEYS, which is the control being claimed. Random-but-bounded: the maze is
+   * a tree, so a walk that keeps trying directions reaches a dead end eventually, and every answer
+   * is a dead end.
+   */
+  const askedBeatId = await maze.getAttribute("data-maze-game").catch(() => null);
+  const cont = q.locator("[data-maze-continue]");
 
-  const flyBtn = q.locator("[data-flappy-start]");
-  if (await flyBtn.count()) await flyBtn.click();
+  /*
+   * SOLVE the maze with a wall follower, rather than pressing keys at random.
+   *
+   * A random walk on a 13x13 perfect maze needs tens of thousands of steps to find one specific
+   * dead end — the previous run pressed 400 keys and reported "never reached a corner", which said
+   * nothing about the game and everything about the search. The left-hand rule traverses a perfect
+   * maze and is guaranteed to reach dead ends, and it uses only what a player can see: whether the
+   * position changed after a keypress.
+   */
+  const DIRS = ["up", "right", "down", "left"];
+  const KEY = { up: "ArrowUp", right: "ArrowRight", down: "ArrowDown", left: "ArrowLeft" };
+  const pos = async () => (await q.locator("[data-maze-state]").innerText().catch(() => "")).trim();
+
+  const posBefore = await pos();
   let spokeDuringQuestion = false;
-  const cont = q.locator("[data-flappy-continue]");
-  for (let i = 0; i < 80 && (await cont.count()) === 0; i++) {
-    if (await q.locator("text=/Teacher speaking/i").count()) spokeDuringQuestion = true;
-    await q.keyboard.press("Space").catch(() => {});
-    await q.waitForTimeout(180);
+  let moved = false;
+  let facing = 1; // start facing right
+
+  for (let i = 0; i < 600 && (await cont.count()) === 0; i++) {
+    if (i % 40 === 0 && (await q.locator("text=/Teacher speaking/i").count())) spokeDuringQuestion = true;
+    // Left, forward, right, back — the first that actually moves becomes the new facing.
+    for (const turn of [3, 0, 1, 2]) {
+      const dir = DIRS[(facing + turn) % 4];
+      const was = await pos();
+      await q.keyboard.press(KEY[dir]).catch(() => {});
+      await q.waitForTimeout(35);
+      if ((await pos()) !== was) {
+        facing = (facing + turn) % 4;
+        moved = true;
+        break;
+      }
+    }
   }
-  check("the flight resolves to an answer", (await cont.count()) > 0,
-        (await cont.count()) > 0 ? "result card shown" : "the course never finished");
+
+  check("arrow keys move the player through the maze", moved,
+        moved ? "position changed" : `still at: ${posBefore}`);
+  check("the walk reaches an answer corner", (await cont.count()) > 0,
+        (await cont.count()) > 0 ? "result card shown" : "wall-follower never reached an answer");
+  check("the teacher was silent while the maze was up", !spokeDuringQuestion,
+        spokeDuringQuestion ? "narration kept playing over the maze" : "silent");
+
   if (await cont.count()) {
     await cont.click();
     await q.waitForTimeout(2500);
   }
-  /*
-   * "The question went away" was the wrong assertion.
-   *
-   * Answering at one cadence point can advance straight into the next, where a question is correctly
-   * due again — so a game still being on screen is right, and the check failed on correct behaviour.
-   * What must be true is that THIS question is finished: either the board is back, or a different
-   * question is up.
-   */
-  const nowShowing = await q.locator("[data-flappy-game]").getAttribute("data-flappy-game").catch(() => null);
+  const nowShowing = await q.locator("[data-maze-game]").getAttribute("data-maze-game").catch(() => null);
   check("this question is finished — the board returns or the next question begins",
         nowShowing === null || nowShowing !== askedBeatId,
         nowShowing === null ? "board returned" : `moved on to ${nowShowing}`);
-
-  /*
-   * Aria goes quiet for a question. Read from the header's own status text rather than guessed:
-   * being talked at while being asked to produce an answer is the opposite of a check.
-   */
-  check("the teacher was silent while the question was up", !spokeDuringQuestion,
-        spokeDuringQuestion ? "narration kept playing over the game" : "silent");
 
   /*
    * THOUGHTS — parked, persisted, removable.
