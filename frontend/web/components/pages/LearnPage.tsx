@@ -328,7 +328,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       if (!data.sourceDocument && typeof data.fullText === "string") setSlideContext(data.fullText);
 
       const focus = pageSelection.prompt.trim();
-      const readSubject = subjectFromTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
+      const transcriptText = typeof data.ocrTranscript === "string" ? data.ocrTranscript : "";
+      const drewRegion = regions.length > 0;
 
       /*
        * The lecture's SUBJECT comes from what was read, when the words only point.
@@ -341,15 +342,27 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
        *
        * The typed words are still the question — they go on as `focus` untouched.
        */
+      /*
+       * A drawn region is called "Selected region", and nothing cleverer.
+       *
+       * Deriving a name from what was read sounds better than it is: the transcript of a table
+       * begins with its markup, so a lecture came out titled `egin{array}{l|l|l|}`. There is no
+       * good title hiding in a crop, and inventing one only produces confident nonsense on the
+       * screen the student stares at while they wait. What they selected is what it is about.
+       *
+       * Only when they typed nothing meaningful — the region IS the request. A real question they
+       * wrote is always a better title than this.
+       */
       const pointing = !focus || isPointingPhrase(focus);
-      const subject = (pointing && readSubject)
+      const subject = (pointing && drewRegion && "Selected region")
+        || (pointing && subjectFromTranscript(transcriptText))
         || focus
         || topic.trim()
         || input.trim()
         || data.title
         || "this document";
       setUploadFocus(focus);
-      setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
+      setOcrTranscript(transcriptText);
       setPendingPdf(null);
       setDocumentPages([]);
       setParsingPages(false);
@@ -368,7 +381,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
         sourceDocument: data.sourceDocument ?? undefined,
         slideContext: typeof data.fullText === "string" ? data.fullText : undefined,
         focus,
-        transcript: typeof data.ocrTranscript === "string" ? data.ocrTranscript : "",
+        transcript: transcriptText,
       });
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
@@ -457,7 +470,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       setSlideContext(data.fullText ?? "");
       setDiagramHints(data.diagramHints ?? "");
       // A deck hides content in pictures for the same reason a paper does, and gets the same
-      // reading. Slides cannot be rasterised here, so this is what was read out of their images.
+      // reading — this is what was read off its slides.
       setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
       // A pptx with at least one readable embedded image now gets a real sourceDocument, which
       // routes it through the same grounded pipeline (vision verification, image-only mode,

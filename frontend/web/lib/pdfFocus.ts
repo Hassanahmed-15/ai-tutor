@@ -418,7 +418,23 @@ export function subjectFromTranscript(transcript: string): string {
    * header row, which is the first thing in that transcript and a terrible name for a lesson. A
    * heading is short, mostly words, and not a row of figures.
    */
-  const candidates = body.filter((line) => /[a-z]/i.test(line));
+  /*
+   * Markup is not a subject.
+   *
+   * A transcribed table begins with its own scaffolding, so this happily returned
+   * `egin{array}{l|l|l|}` and the screen announced "Designing a live lesson on
+   * egin{array}{l|l|l|}…". A line that is mostly braces, pipes and backslashes is structure, not
+   * a name for anything.
+   */
+  const candidates = body.filter((line) => {
+    if (!/[a-z]/i.test(line)) return false;
+    if (/^\s*\\(begin|end|hline|documentclass)/i.test(line)) return false;
+    // A pipe-delimited row is a row. Its symbol ratio is low enough to pass the test below,
+    // and "| Model | Accuracy |" is no better a lecture title than the markup around it.
+    if (/^\s*\|.*\|\s*$/.test(line)) return false;
+    const symbols = (line.match(/[\\{}|_^&$]/g) ?? []).length;
+    return symbols <= line.length * 0.18;
+  });
   const score = (line: string): number => {
     const words = line.split(/\s+/).length;
     const digits = (line.match(/\d/g) ?? []).length;

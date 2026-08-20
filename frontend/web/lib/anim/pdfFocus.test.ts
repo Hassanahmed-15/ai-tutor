@@ -285,6 +285,22 @@ test("a HEADING is preferred over a row of data", () => {
   assert.equal(subjectFromFocus(focus), "Feature Correlation Heatmap");
 });
 
+test("MARKUP is never chosen as the subject", () => {
+  /*
+   * Seen on screen: "Designing a live lesson on \begin{array}{l|l|l|}…". A transcribed table
+   * starts with its own scaffolding, and a line that is mostly braces and pipes names nothing.
+   */
+  const focus = focusFromTranscript("explain this",
+    ["--- page 2, selected region ---",
+     "\begin{array}{l|l|l|}",
+     "| Model | Accuracy |",
+     "Ablation results by classifier",
+     "\end{array}"].join(String.fromCharCode(10)), [2])!;
+  const subject = subjectFromFocus(focus);
+  assert.doesNotMatch(subject, /begin\{array\}/, `markup became the subject: ${subject}`);
+  assert.match(subject, /Ablation results/);
+});
+
 test("no focus yields no subject, so the caller keeps what it had", () => {
   assert.equal(subjectFromFocus(null), "");
 });
