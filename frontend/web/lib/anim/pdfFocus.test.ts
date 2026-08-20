@@ -9,7 +9,7 @@ import assert from "node:assert/strict";
 
 import {
   parsePageRefs, wantedKind, scoreBlock, focusPassages, focusFromTranscript, focusPromptSection,
-  focusedUserMessage, FOCUS_RULES,
+  focusedUserMessage, isPointingPhrase, subjectFromFocus, FOCUS_RULES,
 } from "../pdfFocus";
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "../suprnotes";
 
@@ -226,4 +226,65 @@ test("a transcript gets more room than a retrieved block", () => {
   const focus = focusFromTranscript("explain", long, [1])!;
   assert.ok(focus.passages[0].text.length > FOCUS_RULES.MAX_PASSAGE_CHARS,
             "the transcript was cut to a single block's budget");
+});
+
+
+/* ── a pointing phrase is not a topic ────────────────────────────────────── */
+
+test("the words people type after drawing a box are recognised as POINTING", () => {
+  /*
+   * Reported verbatim: "if i select particular part and than in prompt explain me this it create a
+   * lec on explain me this". The build screen said "Designing a live lesson on explain me this…".
+   * Grounding was firing; the lecture was simply titled after a pronoun.
+   */
+  for (const phrase of [
+    "explain me this", "explain this", "what is this", "explain this part",
+    "tell me about this section", "what's this", "explain the highlighted region", "this",
+  ]) {
+    assert.equal(isPointingPhrase(phrase), true, `"${phrase}" should be pointing`);
+  }
+});
+
+test("a real subject is NOT treated as pointing", () => {
+  // Overreaching here would throw away a perfectly good topic the student did supply.
+  for (const phrase of [
+    "explain the Minkowski distance formula",
+    "what is the correlation between glucose and outcome",
+    "explain this SMOTETomek resampling step",
+    "how does k affect the decision boundary",
+  ]) {
+    assert.equal(isPointingPhrase(phrase), false, `"${phrase}" names a subject`);
+  }
+});
+
+test("an empty prompt points at whatever was selected", () => {
+  // "Select a region and press enter" — with no words at all, the region is the whole request.
+  assert.equal(isPointingPhrase(""), true);
+  assert.equal(isPointingPhrase("   "), true);
+});
+
+test("the subject is taken from what was READ, not from the phrase", () => {
+  const focus = focusFromTranscript("explain me this",
+    "--- page 4, selected region ---\nFeature Correlation Heatmap\nGlucose 0.47 Outcome", [4])!;
+  const subject = subjectFromFocus(focus);
+  assert.match(subject, /Feature Correlation Heatmap/);
+  assert.doesNotMatch(subject, /page 4|-{3}/, "the transcript's own page marker leaked into the title");
+});
+
+test("a HEADING is preferred over a row of data", () => {
+  /*
+   * Taking the transcript's first line outright titled a lecture "Pregnancies Glucose
+   * BloodPressure SkinThickness Insulin BMI DiabetesPedigreeFunction Age Outcome" — the matrix's
+   * header row, seen on screen in a real run.
+   */
+  const focus = focusFromTranscript("explain this",
+    ["--- page 4, selected region ---",
+     "Pregnancies Glucose BloodPressure SkinThickness Insulin BMI DiabetesPedigreeFunction Age Outcome",
+     "Feature Correlation Heatmap",
+     "Glucose 0.13 1.00 0.22 0.19 0.22 0.28 0.15 0.27 0.47"].join(String.fromCharCode(10)), [4])!;
+  assert.equal(subjectFromFocus(focus), "Feature Correlation Heatmap");
+});
+
+test("no focus yields no subject, so the caller keeps what it had", () => {
+  assert.equal(subjectFromFocus(null), "");
 });

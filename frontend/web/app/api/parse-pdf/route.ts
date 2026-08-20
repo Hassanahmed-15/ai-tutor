@@ -860,6 +860,25 @@ export async function POST(req: NextRequest) {
 
   const ocrTranscript = assembleTranscript(transcriptParts);
 
+  /*
+   * Dev-only trace of whether the page was actually READ.
+   *
+   * An OCR miss is otherwise invisible: the transcript comes back empty, grounding silently does
+   * not fire, and the lecture goes generic — which is exactly how this went unnoticed through
+   * several rounds of "fixed". One line here turns guessing into looking.
+   */
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[parse-pdf] ocr:", JSON.stringify({
+      pagesRequested: scopedPages,
+      regions: regions.length,
+      transcribed: transcriptionPlan.map((t) => ({ page: t.page, region: !!t.rect })),
+      parts: transcriptParts.length,
+      transcriptChars: ocrTranscript.length,
+      visionClient: !!client,
+      extractedBlocks: extractedBlocks.length,
+    }));
+  }
+
   const contentBlocks = [
     ...extractedBlocks,
     // Blocks read off the pixels, used when extraction found nothing at all. On a document that

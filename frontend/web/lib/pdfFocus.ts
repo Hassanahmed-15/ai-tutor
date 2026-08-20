@@ -350,3 +350,90 @@ export function focusedUserMessage(args: {
     `Build the complete focused lecture now.${retryGuidance}`,
   ].join("\n");
 }
+
+
+/**
+ * Is this a POINTING phrase rather than a subject?
+ *
+ * "Explain me this", "what is this", "explain this part" — once a student has drawn a box round
+ * something, that is what they type, and it is deixis: it refers to the region, it does not name a
+ * topic. Treating it as one produced a lecture literally titled "explain me this", with the build
+ * screen announcing "Designing a live lesson on explain me this…", which is exactly what was
+ * reported. The phrase is still the question; it is just not the subject.
+ */
+export function isPointingPhrase(text: string): boolean {
+  // Apostrophes are removed, not spaced: "what's" must tokenise as "whats", or the stray "s"
+  // survives the filter and the phrase looks like it names something.
+  const t = (text ?? "").toLowerCase().replace(/[’']/g, "").replace(/[^a-z\s]/g, " ").replace(/\s+/g, " ").trim();
+  if (!t) return true;
+  // Strip the words that only point or instruct; whatever is left is the subject, if anything is.
+  const rest = t
+    .split(" ")
+    .filter((w) => !POINTING_WORDS.has(w))
+    .join(" ")
+    .trim();
+  return rest.length === 0;
+}
+
+const POINTING_WORDS = new Set([
+  "a", "about", "and", "bit", "can", "could", "describe", "detail", "diagram", "explain", "figure",
+  "formula", "here", "highlighted", "image", "in", "is", "it", "me", "more", "of", "on", "one",
+  "part", "please", "portion", "region", "section", "selected", "shown", "table", "tell", "that",
+  "the", "these", "this", "to", "us", "what", "whats", "you",
+]);
+
+/**
+ * A short subject line taken from what was actually READ.
+ *
+ * Used as the lecture's topic when the student's words only point. Prefers the first substantial
+ * line of the passage — in a transcript that is usually the heading or the formula itself, which is
+ * a far better name for the lesson than either the pointing phrase or the file's title.
+ */
+export function subjectFromFocus(focus: PdfFocus | null): string {
+  if (!focus || focus.passages.length === 0) return "";
+  return subjectFromTranscript(focus.passages[0].text);
+}
+
+/**
+ * The same, straight from a transcript.
+ *
+ * Exported separately because the CLIENT needs it too: the upload screen sets the lecture's topic
+ * before any of this reaches the server, and that topic is what the build screen shows. Fixing only
+ * the server left "Designing a live lesson on explain me this…" on screen while the lecture
+ * underneath was correctly about the region.
+ */
+export function subjectFromTranscript(transcript: string): string {
+  const body = (transcript ?? "")
+    .split(/\n+/)
+    .filter((line) => !/^\s*(-{2,}|`{3})/.test(line) && !/^\s*(page|slide)\s+\d+/i.test(line))
+    // Scaffolding is dropped BEFORE punctuation is trimmed: stripping the leading dashes first
+    // turned "--- page 4, selected region ---" into an ordinary line, and it became the title.
+    .map((line) => line.replace(/^[-*#>\s]+/, "").trim())
+    .filter((line) => line.length > 3);
+  /*
+   * Prefer a line that reads like a HEADING over one that reads like data.
+   *
+   * Taking the first line outright titled a lecture "Pregnancies Glucose BloodPressure
+   * SkinThickness Insulin BMI DiabetesPedigreeFunction Age Outcome" — the correlation matrix's
+   * header row, which is the first thing in that transcript and a terrible name for a lesson. A
+   * heading is short, mostly words, and not a row of figures.
+   */
+  const candidates = body.filter((line) => /[a-z]/i.test(line));
+  const score = (line: string): number => {
+    const words = line.split(/\s+/).length;
+    const digits = (line.match(/\d/g) ?? []).length;
+    let n = 0;
+    if (line.length >= 8 && line.length <= 70) n += 3;
+    if (words <= 8) n += 2;
+    if (digits === 0) n += 2;
+    else if (digits <= 3) n += 1;
+    if (/[:—-]/.test(line)) n += 1;
+    return n;
+  };
+  const first = candidates.slice()
+    // Stable: among equally heading-like lines, the earliest wins, which is usually the real title.
+    .map((line, i) => ({ line, i, n: score(line) }))
+    .sort((a, b) => b.n - a.n || a.i - b.i)[0]?.line ?? "";
+  const tidy = first.replace(/[ 	]+/g, " ").trim();
+  return tidy.length > 90 ? `${tidy.slice(0, 90).trimEnd()}…` : tidy;
+}

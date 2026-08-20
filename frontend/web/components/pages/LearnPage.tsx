@@ -14,6 +14,7 @@ import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import { PageSelector, type DocumentPage, type NormalisedRect, type PageSelection } from "@/components/upload/PageSelector";
 import { PageAreaSelect } from "@/components/upload/PageAreaSelect";
+import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
@@ -311,7 +312,26 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       setSourceDocument(data.sourceDocument);
 
       const focus = pageSelection.prompt.trim();
-      const subject = focus || topic.trim() || input.trim() || data.title || "this document";
+      const readSubject = subjectFromTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
+
+      /*
+       * The lecture's SUBJECT comes from what was read, when the words only point.
+       *
+       * "Explain me this" is what a student types after drawing a box, and it was being used as the
+       * topic — the build screen announced "Designing a live lesson on explain me this…" and the
+       * lecture was titled after a pronoun. With no prompt at all the fallback was the FILE'S title,
+       * which is how "select a region and press enter" produced a lecture on the whole document.
+       * Both are the same mistake: a pointing phrase, and an absence, are not subjects.
+       *
+       * The typed words are still the question — they go on as `focus` untouched.
+       */
+      const pointing = !focus || isPointingPhrase(focus);
+      const subject = (pointing && readSubject)
+        || focus
+        || topic.trim()
+        || input.trim()
+        || data.title
+        || "this document";
       setUploadFocus(focus);
       setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
       setPendingPdf(null);

@@ -35,7 +35,7 @@ import {
   suprnotesTitle,
   type SuprnotesLessonInput,
 } from "@/lib/suprnotes";
-import { focusPassages, focusFromTranscript, focusPromptSection, focusedUserMessage, type PdfFocus } from "@/lib/pdfFocus";
+import { focusPassages, focusFromTranscript, focusPromptSection, focusedUserMessage, isPointingPhrase, subjectFromFocus, type PdfFocus } from "@/lib/pdfFocus";
 import { embedTexts, EMBED_RULES } from "@/lib/embeddings";
 import { chunksFrom, rankChunks, contextPromptSection, type RankedChunk } from "@/lib/ragRetrieve";
 import type { Beat } from "@/lib/lessonContent";
@@ -947,7 +947,48 @@ export async function POST(req: Request) {
     }
   }
 
-  const input: LectureBuildInput = { topic: effectiveTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus, context: ragContext };
+  /*
+   * Dev-only trace of whether GROUNDING fired.
+   *
+   * "Did the focused path run" is the question every wrong answer here has turned on, and it has
+   * been guessed at rather than observed. This reports what arrived and what was decided.
+   */
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[generate-lecture] grounding:", JSON.stringify({
+      topic: effectiveTopic.slice(0, 60),
+      focusQuestionChars: focusQuestion.length,
+      transcriptChars: transcript.length,
+      hasSuprnotes: !!sourceDocument,
+      hasSlideContext: slideContext.length > 0,
+      focusFired: !!focus,
+      focusSource: focus ? (transcript ? "transcript" : "block-retrieval") : "none",
+      retrievedChunks: ragContext.length,
+      pointingPhrase: focusQuestion ? isPointingPhrase(focusQuestion) : true,
+      subjectUsed: (focus && (!focusQuestion || isPointingPhrase(focusQuestion))
+        ? subjectFromFocus(focus) || effectiveTopic
+        : effectiveTopic).slice(0, 70),
+    }));
+  }
+
+  /*
+   * A POINTING PHRASE IS NOT A TOPIC.
+   *
+   * Once a student has drawn a box they type "explain me this", and that was being used as the
+   * lecture's subject — the build screen announced "Designing a live lesson on explain me this…"
+   * and the beats were framed around the phrase. It is deixis: it refers to the region, it does not
+   * name anything. Grounding was firing correctly all along and the lecture was still titled after a
+   * pronoun.
+   *
+   * With no typed prompt at all the fallback was the FILE'S title, which is how "select a region and
+   * press enter" produced a lecture on the whole document.
+   *
+   * So when the words only point, the subject comes from what was actually read.
+   */
+  const groundedTopic = focus && (!focusQuestion || isPointingPhrase(focusQuestion))
+    ? subjectFromFocus(focus) || effectiveTopic
+    : effectiveTopic;
+
+  const input: LectureBuildInput = { topic: groundedTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus, context: ragContext };
 
   const refresh = body.refresh === true;
 
