@@ -77,6 +77,23 @@ export const VOICE_TOOLS: GeminiToolDeclaration[] = [
     parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
+    name: "set_accessibility_profile",
+    description:
+      "Change which accessibility profile the student uses, when they ask to switch modes or say this one is not working for them. 'none' returns them to the standard visual tutor. Confirm what they want before calling this — it changes the whole experience.",
+    parametersJsonSchema: {
+      type: "object",
+      properties: {
+        profile: {
+          type: "string",
+          description: "The profile to switch to.",
+          enum: ["none", "blind", "low-vision", "adhd", "dyslexia", "deaf"],
+        },
+      },
+      required: ["profile"],
+      additionalProperties: false,
+    },
+  },
+  {
     name: "navigate",
     description:
       "Move around the application itself. 'home' returns to the start where a new topic can be chosen, 'settings' opens the student's profile and accessibility options, 'sign_out' ends the session.",

@@ -41,7 +41,7 @@ type LectureState = {
 const IDLE: LectureState = { status: "idle", topic: "", beats: [], index: 0 };
 
 export function VoiceTutor({ onExit }: { onExit: () => void }) {
-  const { profile, openSettings } = useAuth();
+  const { profile, openSettings, refresh } = useAuth();
   const [lecture, setLecture] = useState<LectureState>(IDLE);
   const [lines, setLines] = useState<TranscriptLine[]>([]);
   const [connected, setConnected] = useState(false);
@@ -279,6 +279,30 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
         return `"${state.topic}" has ${state.beats.length} sections: ${list}. Currently at ${state.index + 1}.`;
       }
 
+      if (name === "set_accessibility_profile") {
+        /**
+         * Changing the profile by voice, because the settings dialog is a visual form.
+         *
+         * `navigate` can open settings, but a student who cannot see it gains nothing from the
+         * dialog appearing — so the one setting that actually matters here is changeable by asking.
+         * Switching to a non-voice profile takes them out of this mode on the next load, which is
+         * exactly what someone means when they say this mode is not working for them.
+         */
+        const next = typeof args.profile === "string" ? args.profile : "";
+        const res = await fetch("/api/profile", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessibility: next }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) return `That did not save: ${data.error ?? "unknown error"}.`;
+        await refresh();
+        if (next !== "blind" && next !== "low-vision") {
+          return `Switched to the ${next} profile. Tell the student the visual tutor will load, then call navigate with destination "home".`;
+        }
+        return `Switched to the ${next} profile. Nothing else changes right now.`;
+      }
+
       if (name === "navigate") {
         const destination = typeof args.destination === "string" ? args.destination : "";
         if (destination === "settings") {
@@ -300,7 +324,7 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
 
       return `Unknown tool "${name}".`;
     },
-    [openSettings, playSection, startBuild],
+    [openSettings, playSection, refresh, startBuild],
   );
 
   const tutor = useGeminiLiveTutor({
