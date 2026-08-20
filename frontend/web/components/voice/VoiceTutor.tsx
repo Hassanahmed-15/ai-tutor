@@ -66,6 +66,17 @@ export function VoiceTutor({ onExit }: { onExit: () => void }) {
   const pendingCheckpointRef = useRef<{ index: number; spec: NonNullable<Beat["checkpoint"]> } | null>(null);
   /** Sections whose checkpoint has already been asked, so replaying one does not re-quiz. */
   const answeredRef = useRef<Set<number>>(new Set());
+  /** True while the student is mid-utterance, so the build-wait prompts never talk over them. */
+  const studentSpeakingRef = useRef(false);
+  /**
+   * Stable handle on "is the tutor speaking right now".
+   *
+   * The build-wait interval below must NOT depend on the hook's return object: that object is new
+   * on every render, so listing it as a dependency tore the interval down and recreated it
+   * continuously, and it never survived long enough to reach its 25-second tick. The symptom was
+   * total silence during a build — the exact problem the interval exists to prevent.
+   */
+  const isSpeakingRef = useRef<() => boolean>(() => false);
   const buildAbortRef = useRef<AbortController | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -350,7 +361,10 @@ ${beat.script}${definition}${points}${compare}`,
         if (!topic) return "No topic was given. Ask the student what they would like to learn.";
         if (state.status === "building") return `A lecture on "${state.topic}" is already being built.`;
         void startBuild(topic);
-        return `Started building a lecture on "${topic}". This takes a few minutes. Keep the student company and teach them something about it while they wait; check describe_state for progress.`;
+        // The FIRST thing the student must hear is confirmation that it started and how long it
+        // takes — before any teaching. Waiting without knowing a wait has begun is the worst
+        // version of this moment.
+        return `Started building a lecture on "${topic}". Tell the student immediately, in one sentence, that you are building it and that it takes about three to five minutes. Then keep them company by teaching them something about the topic — do not go quiet.`;
       }
 
       if (name === "control_lecture") {
@@ -573,6 +587,12 @@ ${beat.script}${definition}${points}${compare}`,
       // or idle, a completed turn is just the end of a sentence.
       advanceAfterNarration();
     },
+    onStudentSpeechStarted: () => {
+      studentSpeakingRef.current = true;
+    },
+    onStudentSpeechStopped: () => {
+      studentSpeakingRef.current = false;
+    },
     onExplicitPause: () => {
       narratingRef.current = false;
       setLecture((prev) => (prev.status === "playing" ? { ...prev, status: "paused" } : prev));
@@ -606,6 +626,51 @@ ${beat.script}${definition}${points}${compare}`,
   }, [handleTool]);
 
   /**
+   * Keep the student company while a lecture builds.
+   *
+   * THE PROBLEM THIS SOLVES. Generation takes three to five minutes. The persona asks Gemini to
+   * fill that time, but a single instruction at the start of the build is a suggestion the model
+   * drifts away from — after a couple of turns it falls silent, and silence during a long wait is
+   * indistinguishable from a crash for someone who cannot see a spinner.
+   *
+   * So the wait is driven rather than hoped for: every ~25 seconds of quiet, the app prompts Gemini
+   * to say something useful about the topic. The prompts ROTATE through different kinds of
+   * contribution — an idea, an example, a question back — because the same instruction repeated
+   * produces the same sentence repeated, which is its own kind of dead air.
+   *
+   * It only fires when Gemini is not already speaking, so it fills gaps instead of interrupting,
+   * and it never fires while the student is mid-sentence.
+   */
+  useEffect(() => {
+    if (lecture.status !== "building") return;
+
+    const ANGLES = [
+      "Explain one core idea behind this topic in two or three sentences — something they will actually use when the lecture starts.",
+      "Give a concrete everyday example of this topic. Keep it short and vivid.",
+      "Ask the student a light question about what they already know about this topic, then respond to whatever they say.",
+      "Mention what makes this topic trip people up, and one way to think about it that helps.",
+      "Say briefly how the build is going, then continue teaching something small about the topic.",
+    ];
+    let angle = 0;
+
+    const timer = setInterval(() => {
+      const state = lectureRef.current;
+      if (state.status !== "building") return;
+      // Never talk over the tutor or the student.
+      if (isSpeakingRef.current() || studentSpeakingRef.current) return;
+
+      const seconds = Math.round((Date.now() - (state.startedAt ?? Date.now())) / 1000);
+      const instruction = ANGLES[angle % ANGLES.length];
+      angle += 1;
+      speakRef.current?.(
+        `[SYSTEM] The lecture on "${state.topic}" is still building — ${seconds} seconds in, of roughly three to five minutes. Do not announce that you are waiting and do not repeat that it is still building unless it is natural. ${instruction}`,
+      );
+    }, 25000);
+
+    return () => clearInterval(timer);
+  }, [lecture.status]);
+
+  /**
    * Advance when narration audio stops.
    *
    * `speaking` goes true while Gemini's audio plays and false when it drains. A narrated section
@@ -629,6 +694,10 @@ ${beat.script}${definition}${points}${compare}`,
     }, 900);
     return () => clearTimeout(timer);
   }, [advanceAfterNarration, tutor]);
+
+  useEffect(() => {
+    isSpeakingRef.current = tutor.isSpeaking;
+  }, [tutor.isSpeaking]);
 
   // Expose the session's text channel to the tool handlers once it is live. `say` prompts a spoken
   // turn (unlike addContext, which stores something silently) — narration has to be heard.

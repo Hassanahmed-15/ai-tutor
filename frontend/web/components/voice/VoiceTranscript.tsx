@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { GeminiLiveStatus } from "@/lib/useGeminiLiveTutor";
 
 /**
@@ -31,6 +31,67 @@ type LectureSummary = {
   beats: unknown[];
   index: number;
 };
+
+/**
+ * Shows — and periodically announces — that a lecture is being built.
+ *
+ * Two audiences, one component. For low vision there is a large bar with a moving progress fill and
+ * a running elapsed count, so the screen visibly changes and the wait is legible at a glance. For a
+ * screen reader there is a separate polite live region that re-announces roughly every 20 seconds:
+ * a status that is written once is announced once, which is exactly the failure being fixed — after
+ * that, nothing tells the listener the system is still alive.
+ *
+ * The announcement text CHANGES each time ("about a minute in", "about two minutes in"). An
+ * aria-live region whose content is identical is often not re-announced at all, so a static
+ * "Still building" would be silently dropped by the very users who need it most.
+ */
+function BuildIndicator({ topic }: { topic: string }) {
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Roughly four minutes is typical; the bar is a reassurance that something is happening, not a
+  // precise estimate, and it eases toward the end rather than pretending to complete.
+  const fraction = Math.min(0.96, seconds / 240);
+
+  const announcement = (() => {
+    const minutes = Math.floor(seconds / 60);
+    if (seconds < 20) return `Building your lecture on ${topic}. This usually takes three to five minutes.`;
+    if (minutes < 1) return `Still building your lecture on ${topic}. Under a minute so far.`;
+    return `Still building your lecture on ${topic}. About ${minutes} minute${minutes === 1 ? "" : "s"} so far.`;
+  })();
+
+  return (
+    <div className="shrink-0 border-b px-6 py-5" style={{ borderColor: "#333", background: "#0c0c0c" }}>
+      <div className="mx-auto w-full max-w-3xl">
+        <p className="text-[1.5rem] font-semibold">Building your lecture</p>
+        <p className="mt-1 text-[1.15rem]" style={{ color: "#c8c8c8" }}>
+          {topic} — {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")} elapsed, usually three to five minutes
+        </p>
+
+        <div
+          className="mt-3 h-3 w-full overflow-hidden rounded-full"
+          style={{ background: "#242424" }}
+          role="progressbar"
+          aria-label="Lecture build progress"
+          aria-valuetext={announcement}
+        >
+          <div
+            className="h-full rounded-full"
+            style={{ width: `${fraction * 100}%`, background: "#3ee87f", transition: "width 1s linear" }}
+          />
+        </div>
+
+        {/* Re-announced on a slow cadence, keyed so the text genuinely changes. */}
+        <p aria-live="polite" className="sr-only">
+          {seconds % 20 === 0 ? announcement : ""}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export function VoiceTranscript({
   lines,
@@ -69,7 +130,9 @@ export function VoiceTranscript({
     if (status === "error") return error ?? "The connection failed.";
     if (status === "connecting") return "Connecting to the tutor.";
     if (status === "idle") return "Not connected.";
-    if (lecture.status === "building") return `Preparing a lecture on ${lecture.topic}. This takes a few minutes.`;
+    // Not repeated here: the build banner below carries this, with a live timer. Saying it twice
+    // means a screen reader announces the same fact from two places.
+    if (lecture.status === "building") return "Listening.";
     if (lecture.status === "playing") return `Lecture in progress — section ${lecture.index + 1} of ${lecture.beats.length}.`;
     if (lecture.status === "paused") return `Paused at section ${lecture.index + 1} of ${lecture.beats.length}.`;
     if (lecture.status === "finished") return "The lecture is complete.";
@@ -195,6 +258,11 @@ export function VoiceTranscript({
           </button>
         </div>
       </header>
+
+      {/* A build indicator that does NOT depend on the tutor talking.
+          If Gemini goes quiet, silence must not be indistinguishable from a crash — so the app
+          itself shows progress and, separately, announces it on a slow timer. */}
+      {lecture.status === "building" && <BuildIndicator topic={lecture.topic} />}
 
       {/* The conversation. `log` + polite so new lines are announced in order without stealing
           focus from whatever the user is doing. */}
