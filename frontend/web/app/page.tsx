@@ -12,7 +12,8 @@ import { AboutPage } from "@/components/pages/AboutPage";
 import { FeaturesPage } from "@/components/pages/FeaturesPage";
 import { CompletePage } from "@/components/pages/CompletePage";
 import { LearnPage } from "@/components/pages/LearnPage";
-import { AuthGate } from "@/components/auth/AuthGate";
+import { AuthGate, useAuth } from "@/components/auth/AuthGate";
+import { VoiceTutor } from "@/components/voice/VoiceTutor";
 
 /**
  * Central client-side router. Every page (marketing + the five lesson players) is a named
@@ -74,5 +75,30 @@ export default function Home() {
   }
   })();
 
-  return <AuthGate>{routed}</AuthGate>;
+  return (
+    <AuthGate>
+      <VoiceModeSwitch>{routed}</VoiceModeSwitch>
+    </AuthGate>
+  );
+}
+
+/**
+ * Sends blind and low-vision profiles to the voice-first tutor instead of the visual app.
+ *
+ * Inside the gate rather than beside it, because the decision needs the profile the gate has
+ * already loaded — and it is a swap of the entire experience, not a variant of it: the voice tutor
+ * has no board, no page router and no controls, so it replaces the router rather than rendering
+ * within it.
+ *
+ * "Leave" drops back to the normal UI for the rest of the session. Someone with low vision may want
+ * the visual app for a particular task, and their stored profile is unchanged by the detour — the
+ * mode returns on the next visit unless they change it in settings.
+ */
+function VoiceModeSwitch({ children }: { children: React.ReactNode }) {
+  const { profile } = useAuth();
+  const [overridden, setOverridden] = useState(false);
+  const voiceFirst = profile?.accessibility === "blind" || profile?.accessibility === "low-vision";
+
+  if (voiceFirst && !overridden) return <VoiceTutor onExit={() => setOverridden(true)} />;
+  return <>{children}</>;
 }

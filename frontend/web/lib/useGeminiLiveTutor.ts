@@ -120,6 +120,43 @@ export type UseGeminiLiveTutorOptions = {
   startMuted?: boolean;
   examMode?: boolean;
   examQuestions?: string[];
+
+  /**
+   * Extra tools this session can call, and the handler that runs them.
+   *
+   * Added so a caller can make Gemini the ORCHESTRATOR of the app rather than just the narrator of
+   * a lecture — the voice-first mode declares navigation, lecture control and status tools this
+   * way. They are additive: when omitted, the session offers exactly the tools it always did, so
+   * every existing player is unaffected.
+   *
+   * `onCustomToolCall` returns the string Gemini receives back as the tool's output. Returning a
+   * sentence rather than a status code matters: it is fed straight back into the conversation, so
+   * "The lecture is ready — 8 sections" lets Gemini say something useful, where "ok" leaves it
+   * guessing.
+   */
+  customTools?: GeminiToolDeclaration[];
+  onCustomToolCall?: (name: string, args: Record<string, unknown>) => Promise<string> | string;
+  /** Replaces the built-in system instruction when provided. */
+  systemInstruction?: string;
+  /** Overrides the prebuilt voice name. */
+  voiceName?: string;
+};
+
+/**
+ * The subset of Gemini's function-declaration schema this app uses.
+ *
+ * `parametersJsonSchema` rather than `parameters`, matching the built-in tools in
+ * geminiLiveContract.ts — the two forms are not interchangeable in the SDK.
+ */
+export type GeminiToolDeclaration = {
+  name: string;
+  description: string;
+  parametersJsonSchema?: {
+    type: "object";
+    properties?: Record<string, { type: string; description?: string; enum?: readonly string[] }>;
+    required?: readonly string[];
+    additionalProperties?: boolean;
+  };
 };
 
 type GeminiSession = {
@@ -545,6 +582,19 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       };
     }
     if (name !== "show_board") {
+      // Anything not built in goes to the caller's handler, which is how the voice-first mode
+      // implements navigation and lecture control without this file knowing about either.
+      const custom = optionsRef.current.onCustomToolCall;
+      if (custom) {
+        try {
+          const output = await custom(name, (call.args ?? {}) as Record<string, unknown>);
+          return { id, name, response: { output } };
+        } catch (err) {
+          // The error text is handed back verbatim so Gemini can tell the student what went wrong
+          // rather than silently doing nothing.
+          return { id, name, response: { error: err instanceof Error ? err.message : "That action failed." } };
+        }
+      }
       return { id, name, response: { error: `Unknown tool: ${name}` } };
     }
 
@@ -855,11 +905,15 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         apiKey: sessionData.token,
         httpOptions: { apiVersion: "v1alpha" },
       });
-      const functionDeclarations = optionsRef.current.examMode
+      const builtInDeclarations = optionsRef.current.examMode
         ? []
         : optionsRef.current.lectureControlTools
           ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
           : [SHOW_BOARD_TOOL];
+      const functionDeclarations = [
+        ...builtInDeclarations,
+        ...(optionsRef.current.customTools ?? []),
+      ];
 
       const session = (await client.live.connect({
         model: sessionData.model,
@@ -868,8 +922,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           inputAudioTranscription: {},
           outputAudioTranscription: {},
           thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL },
-          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } },
-          systemInstruction: { parts: [{ text: sessionData.instructions }] },
+          speechConfig: {
+            voiceConfig: { prebuiltVoiceConfig: { voiceName: optionsRef.current.voiceName ?? "Kore" } },
+          },
+          systemInstruction: {
+            parts: [{ text: optionsRef.current.systemInstruction ?? sessionData.instructions }],
+          },
           realtimeInputConfig: {
             automaticActivityDetection: {
               disabled: false,
