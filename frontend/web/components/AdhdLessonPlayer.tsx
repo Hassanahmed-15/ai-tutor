@@ -11,6 +11,7 @@ import { useLessonMachine } from "@/lib/lessonMachine";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
+import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
 import { DrawOverlay } from "./sketch/DrawOverlay";
@@ -77,6 +78,34 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   const isCheckpoint = beat.slideKind === "checkpoint";
 
   const attention = useAttentionMonitor(cameraEnabled);
+
+  /**
+   * HYPERFOCUS SHIELD.
+   *
+   * The monitor answers "is attention gone?". It cannot answer "is attention unusually strong, and
+   * for how long?" — and that state is the one worth protecting. ADHD is attention DYSREGULATION,
+   * not a uniform deficit: the same learner who drifts at ninety seconds can hold a long, valuable
+   * run, and the comprehension check below fires on a fixed beat count with no idea what it is
+   * interrupting.
+   *
+   * Sampled on an interval rather than derived during render, because the state machine is a
+   * function of elapsed TIME, and renders happen at unrelated moments.
+   */
+  const [focus, setFocus] = useState(initialFocus);
+  useEffect(() => {
+    if (!cameraEnabled) {
+      setFocus(initialFocus());
+      return;
+    }
+    const TICK_MS = 1000;
+    const id = setInterval(() => {
+      // `null` when the model has produced nothing yet — advanceFocus treats that as "unknown"
+      // rather than as calm, so the player never acts on a signal it does not have.
+      const engagement = attention.error ? null : attention.engagement;
+      setFocus((prev) => advanceFocus(prev, Number.isFinite(engagement) ? engagement : null, TICK_MS));
+    }, TICK_MS);
+    return () => clearInterval(id);
+  }, [cameraEnabled, attention.error, attention.engagement]);
 
   const chat = useLessonChat({
     topic: title,
@@ -314,13 +343,17 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     if (!lesson.playing || comprehensionAskedForRef.current === index || isCheckpoint || waitingOnCheckpoint) return;
     const due = index > 0 && index % UNDERSTANDING_CHECK_EVERY === 0 && stage === "board" && !speaking;
     if (!due) return;
+    // Not while they are locked in. This check is scheduled by US, on a beat count that knows
+    // nothing about the learner's state — and breaking a hyperfocus run to ask "are you following?"
+    // is the single most expensive moment to ask. It fires at the next eligible beat instead.
+    if (!mayInterrupt(focus)) return;
     comprehensionAskedForRef.current = index;
     quiz.ask({
       kind: "comprehension",
       question: `Quick check — in your own words, what's the main idea of "${beat.title}" so far?`,
       expected: beat.script,
     });
-  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, index, stage, speaking, quiz, beat.title, beat.script]);
+  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, index, stage, speaking, quiz, beat.title, beat.script, focus]);
 
   function resumeFromFocusPause() {
     if (holdTimer.current) clearTimeout(holdTimer.current);
@@ -553,7 +586,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <EngagementMeter attention={attention} cameraEnabled={cameraEnabled} />
+            <EngagementMeter attention={attention} cameraEnabled={cameraEnabled} focus={focus} />
             <button
               onClick={() => {
                 setHighlightMode(false);
@@ -655,13 +688,48 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   );
 }
 
-function EngagementMeter({ attention, cameraEnabled }: { attention: ReturnType<typeof useAttentionMonitor>; cameraEnabled: boolean }) {
+function EngagementMeter({
+  attention,
+  cameraEnabled,
+  focus,
+}: {
+  attention: ReturnType<typeof useAttentionMonitor>;
+  cameraEnabled: boolean;
+  focus: FocusTracker;
+}) {
   if (!cameraEnabled || attention.error) return null;
   const pct = Math.round(attention.engagement * 100);
+  const locked = focus.state === "hyperfocus";
+  const mins = hyperfocusMinutes(focus);
+
   return (
-    <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2" title="Live engagement (camera-based, processed on-device)">
-      <span className={`size-2 rounded-full ${attention.drifting ? "bg-amber-400" : "bg-accent-adhd"}`} />
-      <span className="text-xs font-black tabular-nums text-white/75">{attention.ready ? `${pct}% engaged` : "starting…"}</span>
+    <div className="flex items-center gap-2">
+      <div
+        className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2"
+        title="Live engagement (camera-based, processed on-device)"
+      >
+        <span className={`size-2 rounded-full ${attention.drifting ? "bg-amber-400" : "bg-accent-adhd"}`} />
+        <span className="text-xs font-black tabular-nums text-white/75">
+          {attention.ready ? `${pct}% engaged` : "starting…"}
+        </span>
+      </div>
+
+      {/*
+        The shield, made visible. It suppresses check-ins, so without a badge the only evidence it
+        works is an absence — and an absence is indistinguishable from the feature being broken.
+        Phrased as a state the learner is IN, never as something the app is doing to them.
+      */}
+      {locked && (
+        <div
+          className="flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-2"
+          title="You are in a focused stretch, so check-ins are paused until it ends."
+        >
+          <span className="size-2 rounded-full bg-emerald-300" />
+          <span className="text-xs font-black tabular-nums text-emerald-200">
+            {mins >= 1 ? `locked in · ${mins}m` : "locked in"}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

@@ -12,6 +12,8 @@
  *    "tap to enable sound" recovery action instead of just being mute.
  */
 
+import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
+
 export type NarrationHandle = {
   cancel: () => void;
   /** Freeze the active narration at its current media timestamp without destroying it. Returns
@@ -150,6 +152,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   let totalPausedMs = 0;
   let audio: HTMLAudioElement | null = null;
   let audioContext: AudioContext | null = null;
+  // Identifies this clip's claim on the shared mouth analyser, so a detach here cannot shut the
+  // mouth while the Gemini Live tutor is mid-sentence. See lib/adhd/mouth.ts.
+  let mouthToken: MouthToken | undefined;
   let cueTimers: ReturnType<typeof setTimeout>[] = [];
   let progressRaf = 0;
   let resumeProgressLoop: (() => void) | null = null;
@@ -171,6 +176,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       audio = null;
     }
     stopProgressLoop();
+    detachMouthAnalyser(mouthToken);
+    mouthToken = undefined;
     void audioContext?.close();
     audioContext = null;
     clearCues();
@@ -367,12 +374,26 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       try {
         const AudioContextCtor =
           window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        if (AudioContextCtor && CLOUD_TTS_GAIN > 1) {
+        /*
+         * NOTE THE CONDITION. This used to read `if (AudioContextCtor && CLOUD_TTS_GAIN > 1)`, so the
+         * whole Web Audio graph existed only as a side effect of wanting extra volume. The mouth
+         * analyser must not inherit that: setting the gain to 1 would silently kill lip sync, with
+         * nothing to connect the two facts. The context is now built whenever Web Audio exists, and
+         * the gain node is what is conditional.
+         */
+        if (AudioContextCtor) {
           audioContext = new AudioContextCtor();
           const source = audioContext.createMediaElementSource(audio);
-          const gain = audioContext.createGain();
-          gain.gain.value = CLOUD_TTS_GAIN;
-          source.connect(gain).connect(audioContext.destination);
+          let tail: AudioNode = source;
+          if (CLOUD_TTS_GAIN > 1) {
+            const gain = audioContext.createGain();
+            gain.gain.value = CLOUD_TTS_GAIN;
+            source.connect(gain);
+            tail = gain;
+          }
+          tail.connect(audioContext.destination);
+          // Drives the avatar's mouth. Tapped off the same chain rather than a second context.
+          mouthToken = attachMouthAnalyser(audioContext, tail);
           void audioContext.resume();
         }
       } catch {
@@ -386,6 +407,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           URL.revokeObjectURL(objectUrl);
           objectUrl = null;
         }
+        detachMouthAnalyser(mouthToken);
+        mouthToken = undefined;
         void audioContext?.close();
         audioContext = null;
         callbacks.onProgress?.(1, audio?.duration ? audio.duration * 1000 : 1, audio?.duration ? audio.duration * 1000 : 1);
@@ -399,6 +422,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           URL.revokeObjectURL(objectUrl);
           objectUrl = null;
         }
+        detachMouthAnalyser(mouthToken);
+        mouthToken = undefined;
         void audioContext?.close();
         audioContext = null;
         void browserFallback();

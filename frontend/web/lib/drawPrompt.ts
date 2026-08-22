@@ -271,7 +271,7 @@ BEAT SCHEMA (every field required unless marked optional):
   "slideKind": "intro"|"definition"|"checkpoint"|"compare"|"recap",
   "points": string[],
   "definitionTerm"?: string, "definitionMeaning"?: string,
-  "checkpoint"?: { "prompt": string, "acceptableKeywords": string[][], "correctFeedback": string, "hintFeedback": string, "revealAnswer": string },
+  "checkpoint"?: { "prompt": string, "acceptableKeywords": string[][], "correctFeedback": string, "hintFeedback": string, "revealAnswer": string, "options": [string, string, string], "correctOption": 0|1|2 },
   "script": string,   // what teacher SAYS — warm, spoken, detailed, 110-140 words on teaching beats
   "draw"?: DrawScript // omit only on checkpoint beats
 }
@@ -297,6 +297,7 @@ WHITEBOARD STYLE CONTRACT — match the clean Suprnotes paper-board output:
 INTERACTIVE TEACHING MOMENTS — plan these using the existing Beat schema only:
 - The lecture should feel live, not like a passive video. Every 60-90 seconds, Aria should briefly steer the next move by asking a planning question, not only a quiz. Use checkpoint beats for these "Live Lesson Steering" moments. Good checkpoint prompts: "I can go three ways from here. Which helps most: go deeper, show an example, check me, or move on?" / "Before we continue, do you want the mechanism, a real example, or a quick check?"
 - Include exactly ONE Mistake Ambush checkpoint: intentionally present a tempting wrong idea in the prompt and ask the learner to spot what is off. The checkpoint prompt should sound like: "Something here is off. Can you spot it?" The revealAnswer must clearly correct the misconception.
+- Checkpoint options: write exactly three, one right and two genuinely tempting wrongs drawn from real misconceptions about THIS content — not paraphrases of the answer, not obviously silly. Keep each under 60 characters so it fits on a gate a learner reads while moving. "correctOption" is the index of the right one.
 - Include exactly ONE Socratic Moment in a teaching beat immediately before or after a checkpoint. In that beat's script, Aria should refuse to directly give the answer for a few sentences and guide with questions like "What do we know?", "What changed?", and "What must be true?" Keep it warm, not punitive.
 - Include exactly ONE Two Explanations Duel in a teaching beat or checkpoint: give two short explanation styles for the same idea, then ask which made more sense. Use teacherMove to mark it, e.g. "Two explanations duel: analogy vs mechanism." Future script after that moment should lean toward the clearer style by briefly saying "I'll keep using that kind of explanation."
 - Support the persistent "I'm lost" / Doubt Button through wording: each major prerequisite beat should have a teacherMove that names the prerequisite it can rewind to, e.g. "Prerequisite anchor: electron sharing." In scripts, occasionally say "If you're lost, we'd rewind to..." and explain the same idea differently in one sentence. Do not add a new field; use teacherMove/script only.
@@ -416,7 +417,7 @@ BEAT SCHEMA (every field required unless marked optional):
   "slideKind": "intro"|"definition"|"checkpoint"|"compare"|"recap",
   "points": string[],
   "definitionTerm"?: string, "definitionMeaning"?: string,
-  "checkpoint"?: { "prompt": string, "acceptableKeywords": string[][], "correctFeedback": string, "hintFeedback": string, "revealAnswer": string },
+  "checkpoint"?: { "prompt": string, "acceptableKeywords": string[][], "correctFeedback": string, "hintFeedback": string, "revealAnswer": string, "options": [string, string, string], "correctOption": 0|1|2 },
   "script": string,   // what teacher SAYS — warm, spoken, detailed, 110-140 words on teaching beats
   "draw"?: DrawScript // omit only on checkpoint beats
 }
@@ -439,6 +440,7 @@ WHITEBOARD STYLE CONTRACT — match the clean Suprnotes paper-board output:
 INTERACTIVE TEACHING MOMENTS — plan these using the existing Beat schema only:
 - The lecture should feel live, not like a passive video. Every 60-90 seconds, Aria should briefly steer the next move by asking a planning question, not only a quiz. Use checkpoint beats for these "Live Lesson Steering" moments. Good checkpoint prompts: "I can go three ways from here. Which helps most: go deeper, show an example, check me, or move on?" / "Before we continue, do you want the mechanism, a real example, or a quick check?"
 - Include exactly ONE Mistake Ambush checkpoint grounded in the slide content: intentionally present a tempting wrong idea from the topic and ask the learner to spot what is off. The checkpoint prompt should sound like: "Something here is off. Can you spot it?" The revealAnswer must clearly correct the misconception using only slide-supported facts.
+- Checkpoint options: write exactly three, one right and two genuinely tempting wrongs drawn from real misconceptions about THIS content — not paraphrases of the answer, not obviously silly. Keep each under 60 characters so it fits on a gate a learner reads while moving. "correctOption" is the index of the right one.
 - Include exactly ONE Socratic Moment in a teaching beat immediately before or after a checkpoint. In that beat's script, Aria should refuse to directly give the answer for a few sentences and guide with questions like "What do we know?", "What changed?", and "What must be true?" Keep it warm, not punitive.
 - Include exactly ONE Two Explanations Duel in a teaching beat or checkpoint: give two short explanation styles for the same idea, then ask which made more sense. Use teacherMove to mark it, e.g. "Two explanations duel: analogy vs mechanism." Future script after that moment should lean toward the clearer style by briefly saying "I'll keep using that kind of explanation."
 - Support the persistent "I'm lost" / Doubt Button through wording: each major prerequisite beat should have a teacherMove that names the prerequisite it can rewind to, e.g. "Prerequisite anchor: electron sharing." In scripts, occasionally say "If you're lost, we'd rewind to..." and explain the same idea differently in one sentence. Do not add a new field; use teacherMove/script only.

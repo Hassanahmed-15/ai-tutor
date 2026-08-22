@@ -5,6 +5,9 @@ import { ArrowRight, FileUp, Paperclip, Settings, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { useAuth } from "@/components/auth/AuthGate";
+import { Leaderboard } from "@/components/adhd/Leaderboard";
+import { Thoughts } from "@/components/adhd/Thoughts";
+import { isAdhdLearner } from "@/lib/adhd/gate";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 
 /**
@@ -26,6 +29,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   const [dragging, setDragging] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const { user, profile, openSettings } = useAuth();
+  const adhd = isAdhdLearner(profile);
 
   const canStart = topic.trim().length > 0 || file !== null;
 
@@ -226,6 +230,11 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           )}
         </form>
 
+        {/* The prompt page is where a learner starts, so it is where a standings table is actually
+            seen. Gated on the profile — nobody outside the ADHD track is shown a board they can
+            never appear on. The API gate is separate and independent; this one is only cosmetic. */}
+        {adhd && <Leaderboard />}
+        {adhd && <Thoughts />}
       </div>
     </main>
   );

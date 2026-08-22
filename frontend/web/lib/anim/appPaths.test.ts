@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import path from "node:path";
 import { existsSync } from "node:fs";
 import { appPath, appRoot } from "../appPaths";
 
@@ -31,5 +32,9 @@ test("the resolved root is the app directory, not the repo root", () => {
 });
 
 test("appPath joins segments beneath a single root", () => {
-  assert.equal(appPath("a", "b"), `${appRoot()}/a/b`);
+  // Built with path.join, not a "/" template, because appPath itself uses path.join — on Windows
+  // that yields "root\a\b" and this assertion demanded "root/a/b", so the suite failed on every
+  // Windows checkout while passing on macOS and CI. A test that only holds on the author's OS
+  // reports the platform, not the behaviour.
+  assert.equal(appPath("a", "b"), path.join(appRoot(), "a", "b"));
 });
