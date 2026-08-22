@@ -120,6 +120,16 @@ export type UseGeminiLiveTutorOptions = {
   onResumeLecture?: () => void;
   alwaysOn?: boolean;
   adhdMode?: boolean;
+  /**
+   * Opens the session with the CASUAL check-in persona instead of the tutor one, and with
+   * `resume_lecture` as its only tool.
+   *
+   * Read at connect time, like every other option here, so flipping it on a live session does
+   * nothing — the caller must `stop()` and `start()` again to change persona. That is not a
+   * limitation to work around: the system instruction is fixed for the life of a Live socket, so a
+   * reconnect is the only honest way to change who is talking.
+   */
+  checkinMode?: boolean;
   boardTextOnly?: boolean;
   lectureControlTools?: boolean;
   startMuted?: boolean;
@@ -832,6 +842,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         lessonContext: optionsRef.current.getLessonContext?.() ?? "",
         mood: optionsRef.current.mood ?? "",
         adhdMode: optionsRef.current.adhdMode === true,
+        checkinMode: optionsRef.current.checkinMode === true,
         examMode: optionsRef.current.examMode === true,
         examQuestions: optionsRef.current.examMode ? optionsRef.current.examQuestions ?? [] : undefined,
       }),
@@ -888,9 +899,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       });
       const functionDeclarations = optionsRef.current.examMode
         ? []
-        : optionsRef.current.lectureControlTools
-          ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
-          : [SHOW_BOARD_TOOL];
+        // A check-in gets exactly one tool: the way back. No show_board, because the session has no
+        // lesson content to draw and offering the board invites her to start teaching; no
+        // pause_lecture, because the lecture is already paused and that is the whole premise.
+        : optionsRef.current.checkinMode
+          ? [RESUME_LECTURE_TOOL]
+          : optionsRef.current.lectureControlTools
+            ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
+            : [SHOW_BOARD_TOOL];
 
       const session = (await client.live.connect({
         model: sessionData.model,
@@ -921,11 +937,26 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             setErrorMessage(event.message ?? "Gemini Live connection error.");
             teardown("error");
           },
-          onclose: () => {
-            if (!endedRef.current) {
-              setErrorMessage("Gemini Live disconnected.");
-              teardown("error");
-            }
+          /**
+           * REPORT THE SERVER'S REASON, not just the fact of a close.
+           *
+           * This said "Gemini Live disconnected." for every close, which is the one thing the user
+           * can already see. The actual cause arrives right here in `reason` — a policy close
+           * (code 1008) carries text like "Your project has been denied access", which is
+           * diagnosable in one read; "disconnected" sends you looking through the client for a bug
+           * that is not there. Codes 1000/1005 are ordinary end-of-session closes and have nothing
+           * worth reporting.
+           */
+          onclose: (event?: { code?: number; reason?: string }) => {
+            if (endedRef.current) return;
+            const reason = event?.reason?.trim();
+            const clean = event?.code === 1000 || event?.code === 1005;
+            setErrorMessage(
+              reason && !clean
+                ? `Gemini Live disconnected: ${reason}`
+                : "Gemini Live disconnected.",
+            );
+            teardown("error");
           },
         },
       })) as GeminiSession;
@@ -938,6 +969,19 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         resetIdleTimer();
         const cap = optionsRef.current.examMode ? EXAM_MAX_SESSION_MS : MAX_SESSION_MS;
         maxTimerRef.current = setTimeout(() => teardown("timeout"), cap);
+      }
+      /*
+       * A check-in must OPEN the conversation, never wait to be spoken to.
+       *
+       * The learner arrived here by disengaging; a silent overlay waiting for them to talk first is
+       * the same dead air they were already skipping through, and they will simply sit in it. Aria
+       * speaks the moment the socket is up, exactly as she does for an oral exam.
+       */
+      if (optionsRef.current.checkinMode) {
+        markTutorActive();
+        session.sendRealtimeInput({
+          text: "The lecture is paused and you are with the student now. Greet them warmly and ask how they're doing — one or two sentences, nothing about the lesson.",
+        });
       }
       if (optionsRef.current.examMode) {
         markTutorActive();
