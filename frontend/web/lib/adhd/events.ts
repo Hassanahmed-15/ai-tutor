@@ -107,4 +107,33 @@ export function publishAdhdScore(s: AdhdScoreSnapshot): void {
 /** Called when a session ends so the next lecture does not open showing the last one's total. */
 export function resetAdhdScore(): void {
   currentScore = null;
+  // A latched check-in must not outlive the lecture that opened it, or the next lesson starts with
+  // the overlay already up and the lecture soft-locked before its first beat.
+  checkinActive = false;
+}
+
+/* ── The check-in request ─────────────────────────────────────────────────────
+ * Published when a run of skipped beats says the learner has stopped watching. It travels the same
+ * direction and for the same reason as the face and the score: `AdhdLayer` owns the score state and
+ * therefore notices, but only `LessonPlayer` can stop the lecture and open a live session.
+ *
+ * A bare boolean, not an event, because the request LATCHES. The overlay must survive re-renders and
+ * a late subscriber (the player mounts this layer, so its listener attaches after the first publish
+ * on a fast skip run) must still learn that a check-in is open — which a fire-and-forget event bus
+ * cannot do.
+ */
+type CheckinListener = (active: boolean) => void;
+const checkinListeners = new Set<CheckinListener>();
+let checkinActive = false;
+
+export function onAdhdCheckin(fn: CheckinListener): () => void {
+  checkinListeners.add(fn);
+  fn(checkinActive);
+  return () => checkinListeners.delete(fn);
+}
+
+export function publishAdhdCheckin(active: boolean): void {
+  if (checkinActive === active) return;
+  checkinActive = active;
+  for (const fn of checkinListeners) fn(active);
 }

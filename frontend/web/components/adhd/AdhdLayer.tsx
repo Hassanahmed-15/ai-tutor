@@ -4,9 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Beat } from "@/lib/lessonContent";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { initialFocus, advanceFocus, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
-import { initialScore, applyScore, comboMultiplier, finalScore, SCORE_RULES, type ScoreState } from "@/lib/adhd/score";
+import { initialScore, applyScore, comboMultiplier, finalScore, needsCheckin, type ScoreState } from "@/lib/adhd/score";
 import { initialLoot, onBeatForLoot, type LootReward } from "@/lib/adhd/loot";
-import { onAdhdEvent, publishAdhdFace, publishAdhdScore, publishAdhdSpeech, resetAdhdScore } from "@/lib/adhd/events";
+import { onAdhdEvent, publishAdhdCheckin, publishAdhdFace, publishAdhdScore, publishAdhdSpeech, resetAdhdScore } from "@/lib/adhd/events";
 import { holdFor, lineFor } from "@/lib/adhd/reproach";
 import { expressionFor } from "@/lib/adhd/expression";
 
@@ -173,9 +173,23 @@ export function AdhdLayer({
         // Emitted just BEFORE the lesson advances, so the beat being skipped into is the next one.
         skippedInto.current = indexRef.current + 1;
       }
-      if (event.type === "beat-skipped") setToast({ text: `Skipped — −${SCORE_RULES.SKIP_PENALTY} XP`, tone: "card" });
+      // No number in this toast any more, because there is no longer a number to report: a skip
+      // costs nothing. Saying "no points for that one" states what happened without printing a
+      // negative at the learner, which is the same reason the penalty itself went.
+      if (event.type === "beat-skipped") setToast({ text: "Skipped — no points for that one", tone: "card" });
     });
   }, []);
+
+  /**
+   * A run of skipped beats stops the lecture and hands the floor to the companion.
+   *
+   * Published rather than handled here: this layer knows the score, but only `LessonPlayer` can
+   * freeze narration and open a live session. The latch is cleared by the player when the learner
+   * comes back, via a `checkin-cleared` event that resets the run.
+   */
+  useEffect(() => {
+    if (needsCheckin(score)) publishAdhdCheckin(true);
+  }, [score]);
 
   /**
    * A reaction now HOLDS, and she says why.

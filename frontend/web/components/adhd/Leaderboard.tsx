@@ -57,8 +57,11 @@ export function Leaderboard() {
       {entries.length === 0 && (
         <p className="px-2.5 py-1.5 text-[0.8rem] leading-relaxed text-white/45">
           No scores yet — finish a lesson to take the top spot.{" "}
+          {/* Concrete numbers, now that there are only two and neither ever goes down. The whole
+              point of a flat scale is that a learner can predict it, which they cannot do from a
+              description of where points "come from". */}
           <span className="text-white/30">
-            Points come from completing parts, answering checkpoints, and staying with it.
+            5 points a part, 20 for a checkpoint you get right. Nothing is ever taken away.
           </span>
         </p>
       )}

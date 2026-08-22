@@ -245,9 +245,11 @@ try {
   /**
    * Read the HEADER CHIP, not the page text.
    *
-   * The first version matched /(\d+)\s*XP/ against document.body.innerText and picked up the toast
-   * "Skipped — −25 XP" instead of the score. It reported 144 -> 25 and passed, while the chip
-   * actually read 119. A test that can pass by reading the wrong element is worse than no test.
+   * The first version matched /(\d+)\s*XP/ against document.body.innerText and picked up the skip
+   * toast instead of the score. It reported 144 -> 25 and passed, while the chip actually read 119.
+   * A test that can pass by reading the wrong element is worse than no test. (The toast no longer
+   * carries a number at all — see lib/adhd/score.ts — but the exact-match anchor stays: the reason
+   * it was wrong to read loose page text has nothing to do with what the toast happens to say.)
    */
   const xpNow = () => page.evaluate(() => {
     const chip = [...document.querySelectorAll("header span")]
@@ -258,19 +260,23 @@ try {
   /*
    * PAUSE BEFORE MEASURING.
    *
-   * This read 144 -> 183 on one run and 208 -> 183 on another, from identical code: a beat
-   * completed in the gap between reading `before` and clicking skip, so the delta was
-   * +64 (beat) -25 (skip) = +39 instead of -25. Both runs were "correct"; the measurement was not.
-   * Pausing stops the lecture advancing, which makes the skip the only thing that can move the
-   * score — the difference between measuring one rule and measuring a race.
+   * This read 144 -> 183 on one run and 208 -> 183 on another, from identical code: a beat completed
+   * in the gap between reading `before` and clicking skip, so the delta included that beat's award
+   * as well as the skip. Both runs were "correct"; the measurement was not. Pausing stops the
+   * lecture advancing, which makes the skip the only thing that can move the score — the difference
+   * between measuring one rule and measuring a race.
+   *
+   * Still required now that a skip is worth zero. "Nothing changed" is only evidence of the rule if
+   * nothing else could have changed it, and an advancing lecture would mask a regression by adding
+   * exactly the +5 a broken skip might have taken.
    */
   const pause = page.getByRole("button", { name: /^pause$/i });
   if (await pause.count()) { await pause.click(); await page.waitForTimeout(1500); }
 
   // Read the part number either side of the skip. A skip advances EXACTLY one part, so if the
-  // lecture also completed a beat on its own, this shows it — which is the confound that made the
-  // delta read +39 instead of -25. Checking the part counter measures that directly, rather than
-  // inferring it from whatever the pause button happens to be labelled.
+  // lecture also completed a beat on its own, this shows it — the confound that contaminated the
+  // delta above. Checking the part counter measures that directly, rather than inferring it from
+  // whatever the pause button happens to be labelled.
   const partNow = () => page.evaluate(() => {
     const m = document.body.innerText.match(/Part (\d+) of/);
     return m ? Number(m[1]) : null;
@@ -289,12 +295,17 @@ try {
   check("exactly one part elapsed, so the skip is the only thing that moved the score",
         part0 !== null && part1 !== null && part1 - part0 === 1,
         `part ${part0} -> ${part1}${part1 - part0 > 1 ? " — a beat also completed; the delta below is contaminated" : ""}`);
-  check("skipping a beat reduces XP", before !== null && after !== null && after < before, `${before} -> ${after}`);
-  // Pin the SIZE of the drop too. "went down" was satisfied by reading the wrong element entirely,
-  // and a skip that cost 119 instead of 25 would also have passed.
-  check("and by roughly the skip penalty, not an arbitrary amount",
-        before !== null && after !== null && before - after >= 20 && before - after <= 30,
-        `dropped ${before !== null && after !== null ? before - after : "?"}`);
+  /*
+   * A SKIP IS WORTH EXACTLY NOTHING — it must neither add nor subtract.
+   *
+   * This previously asserted the opposite (a drop of roughly 25). The rule was reversed on purpose:
+   * not earning the beat's +5 is already the entire incentive to watch, and a total that visibly
+   * falls is the feedback that ends sessions for a learner with rejection sensitive dysphoria.
+   * Asserting equality rather than deleting the check, because BOTH failure directions matter — a
+   * reinstated penalty and an accidental award are each a real regression.
+   */
+  check("skipping a beat costs nothing", before !== null && after !== null && after === before,
+        `${before} -> ${after}`);
   /**
    * LIP SYNC — sampled from the rendered avatar, in the running app.
    *

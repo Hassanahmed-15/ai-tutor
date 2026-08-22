@@ -5,20 +5,34 @@
  * `focusState.ts` is one: every rule here is a claim about behaviour, and a claim you cannot test
  * without a webcam and a four-minute lecture is a claim nobody will ever check.
  *
- * THE PENALTY LANDS ON DISENGAGING, NEVER ON GETTING IT WRONG.
+ * XP ONLY EVER GOES UP, AND EVERY BEAT IS WORTH THE SAME.
  *
- * This file previously enforced "XP can never fall", and that was reversed deliberately: a
- * leaderboard needs stakes, and skipping through a lecture had to cost something real. Recording the
- * trade-off, because the invariant existed for a reason — for a learner with rejection sensitive
- * dysphoria a visibly dropping total is exactly the feedback that ends sessions.
+ * The scale is deliberately tiny and flat: a completed beat is +5, a correct checkpoint is +20, and
+ * a skipped beat is worth exactly nothing. Not a penalty — nothing. Three rules a learner can hold
+ * in their head, which is the whole point; a score you cannot predict cannot motivate you.
  *
- * What survives the reversal is the distinction that actually matters:
+ * This reverses an earlier design in which a skip subtracted 25. Recording why, because the reversal
+ * is the substance of this file:
  *
- *  - SKIPPING subtracts. It is the disengagement signal — the learner chose to stop watching.
- *  - A WRONG ANSWER still costs nothing. It is information about what to revisit, not a failure.
- *    Charging for wrong answers is how a learner concludes the safe move is to stop answering.
+ *  - A SKIP now costs nothing. It earns nothing either, which is already the entire incentive — the
+ *    learner who skips watches their total sit still while the lecture moves on. Subtracting on top
+ *    of that made a visibly dropping number the feedback for disengaging, and for a learner with
+ *    rejection sensitive dysphoria that is precisely the feedback that ends sessions.
+ *  - A WRONG ANSWER still costs nothing, as it always has. It is information about what to revisit,
+ *    not a failure. Charging for it is how a learner concludes the safe move is to stop answering.
  *
- * Coins still never fall. They track attention, which is not something anyone chooses to spend.
+ * So nothing in here subtracts any more, and `xp` is monotonic by construction.
+ *
+ * WHAT REPLACED THE PENALTY. Skipping is still the disengagement signal, and ignoring it entirely
+ * would be its own failure. It is now answered by `skipRun` — consecutive beats skipped — which at
+ * `SKIP_RUN_FOR_CHECKIN` asks the lecture to stop and the companion to actually talk to the learner
+ * (see `needsCheckin`). A conversation is a better response to "this person has checked out" than a
+ * smaller number is.
+ *
+ * THE COMBO MOVED TO COINS. A streak used to multiply beat XP, which is incompatible with "a beat is
+ * always +5" — the fifth beat paying 8 and the first paying 5 is exactly the unpredictability the
+ * flat scale exists to remove. The multiplier still exists and still rewards an unbroken run; it is
+ * paid in coins, which are a separate currency that tracks attention rather than progress.
  *
  * The award sizes are deliberately small integers. The point is that something happens THE INSTANT a
  * beat ends — delay is exactly what an ADHD reward system discounts, so a summary screen twenty
@@ -34,6 +48,14 @@ export type ScoreState = {
   wrong: number;
   /** Beats skipped. Surfaced in the receipt so the score is explainable. */
   skipped: number;
+  /**
+   * Consecutive beats skipped, reset by any completed beat.
+   *
+   * Separate from `skipped` because the total says how the session went and this says how it is
+   * going. Five skips spread over a long lecture is a learner choosing what to watch; five in a row
+   * is a learner who has left, and only the second one is worth interrupting for.
+   */
+  skipRun: number;
   /** Consecutive beats completed without a drift. Drives the multiplier. */
   streak: number;
   /** Beats completed this session — what the end-of-session receipt counts. */
@@ -47,11 +69,16 @@ export type ScoreEvent =
   | { type: "boss-cleared" }
   /** A drift breaks the combo. It does NOT cost anything already earned. */
   | { type: "drift" }
+  /**
+   * The learner has come back from a check-in conversation. Clears `skipRun` so the same
+   * conversation cannot immediately re-trigger on the run that caused it.
+   */
+  | { type: "checkin-cleared" }
   /** Recorded so the receipt can be honest, but worth zero penalty by design. */
   | { type: "answer-wrong" }
   /** Sustained attention pays a coin. Emitted by the focus tracker, not by the lecture. */
   | { type: "focus-minute" }
-  /** The learner skipped past a beat. The one event that subtracts. */
+  /** The learner skipped past a beat. Earns nothing, costs nothing, and breaks the combo. */
   | { type: "beat-skipped" }
   /** A checkpoint answered correctly. */
   | { type: "answer-correct" }
@@ -67,24 +94,44 @@ export type ScoreEvent =
   | { type: "question-unanswered" };
 
 export const SCORE_RULES = {
-  BEAT_XP: 40,
-  BOSS_XP: 90,
+  /** Every completed beat, flat. No multiplier — see the combo note in the file header. */
+  BEAT_XP: 5,
+  BOSS_XP: 15,
   BEAT_COINS: 4,
   FOCUS_MINUTE_COINS: 2,
-  /** Skipping costs less than watching earns, so the fastest route to a high score is still to learn. */
-  SKIP_PENALTY: 25,
-  ANSWER_XP: 30,
+  /** A correct checkpoint is worth four beats: answering is harder than watching, and rarer. */
+  ANSWER_XP: 20,
   /** Paid at session end only if nothing was answered wrong. */
-  ALL_CORRECT_BONUS: 100,
+  ALL_CORRECT_BONUS: 25,
   /** Per minute of sustained attention. Not drifting is the thing being rewarded. */
-  FOCUS_BONUS_XP: 15,
-  /** Each unbroken beat adds this much multiplier, so 3 in a row is 1.6x. */
+  FOCUS_BONUS_XP: 3,
+  /** Each unbroken beat adds this much multiplier, so 3 in a row is 1.6x. Paid in COINS. */
   COMBO_STEP: 0.2,
   COMBO_MAX: 3,
+  /**
+   * Consecutive skipped beats before the lecture stops and the companion asks what is going on.
+   *
+   * Three, because two in a row is plausibly "I already know this bit" and three is a pattern. It is
+   * a run and not a total: a learner who skips three, watches five, then skips three more gets asked
+   * twice, and rightly — both runs are moments they left.
+   */
+  SKIP_RUN_FOR_CHECKIN: 3,
 } as const;
 
 export function initialScore(): ScoreState {
-  return { xp: 0, coins: 0, correct: 0, wrong: 0, skipped: 0, streak: 0, beats: 0, bosses: 0 };
+  return { xp: 0, coins: 0, correct: 0, wrong: 0, skipped: 0, skipRun: 0, streak: 0, beats: 0, bosses: 0 };
+}
+
+/**
+ * Has the learner skipped enough in a row to be worth interrupting for?
+ *
+ * Deliberately a function of `skipRun` and not of `xp`. "Stop the lecture when XP is zero" was the
+ * obvious first rule and is unusable: XP starts at zero, so it fires on beat one of every session,
+ * and — now that nothing subtracts — it can never fire again afterwards. A run of skips is the
+ * signal that was actually meant.
+ */
+export function needsCheckin(s: ScoreState): boolean {
+  return s.skipRun >= SCORE_RULES.SKIP_RUN_FOR_CHECKIN;
 }
 
 /** The live multiplier for the current streak. 1.0 with no streak, capped so it cannot run away. */
@@ -95,22 +142,27 @@ export function comboMultiplier(s: ScoreState): number {
 export function applyScore(prev: ScoreState, event: ScoreEvent): ScoreState {
   switch (event.type) {
     case "beat-complete": {
-      // The multiplier in force is the one EARNED BEFORE this beat, so the first beat of a session
-      // pays 1.0x rather than retroactively crediting a streak it just created.
-      const gained = Math.round(SCORE_RULES.BEAT_XP * comboMultiplier(prev));
+      // FLAT. Every beat is worth the same +5, whatever the streak. The multiplier in force — the one
+      // EARNED BEFORE this beat, so the first beat pays 1.0x rather than retroactively crediting a
+      // streak it just created — is applied to coins instead.
       return {
         ...prev,
-        xp: prev.xp + gained,
-        coins: prev.coins + SCORE_RULES.BEAT_COINS,
+        xp: prev.xp + SCORE_RULES.BEAT_XP,
+        coins: prev.coins + Math.round(SCORE_RULES.BEAT_COINS * comboMultiplier(prev)),
         streak: prev.streak + 1,
+        skipRun: 0,
         beats: prev.beats + 1,
       };
     }
 
-    case "boss-cleared": {
-      const gained = Math.round(SCORE_RULES.BOSS_XP * comboMultiplier(prev));
-      return { ...prev, xp: prev.xp + gained, streak: prev.streak + 1, bosses: prev.bosses + 1 };
-    }
+    case "boss-cleared":
+      return {
+        ...prev,
+        xp: prev.xp + SCORE_RULES.BOSS_XP,
+        streak: prev.streak + 1,
+        skipRun: 0,
+        bosses: prev.bosses + 1,
+      };
 
     case "focus-minute":
       return { ...prev, coins: prev.coins + SCORE_RULES.FOCUS_MINUTE_COINS };
@@ -137,15 +189,21 @@ export function applyScore(prev: ScoreState, event: ScoreEvent): ScoreState {
       return { ...prev, xp: prev.xp + SCORE_RULES.FOCUS_BONUS_XP };
 
     case "beat-skipped":
-      // The only subtracting event. Floored at zero: a leaderboard needs stakes, but a negative
-      // total is a scoreboard telling a learner they are worth less than nothing, which helps
-      // no one and is not what stakes means.
+      // Nothing is added and nothing is taken. Not earning the +5 IS the consequence; a number that
+      // visibly falls is the feedback that ends sessions, and it was never needed to make watching
+      // the better move. What a skip does do is break the combo and extend the run that eventually
+      // stops the lecture for a conversation — see `needsCheckin`.
       return {
         ...prev,
-        xp: Math.max(0, prev.xp - SCORE_RULES.SKIP_PENALTY),
         skipped: prev.skipped + 1,
+        skipRun: prev.skipRun + 1,
         streak: 0,
       };
+
+    case "checkin-cleared":
+      // The run is answered, not forgiven: `skipped` keeps its count for the receipt. Only the
+      // consecutive run resets, so the next check-in needs a fresh run of its own.
+      return { ...prev, skipRun: 0 };
   }
 }
 
@@ -158,8 +216,8 @@ export function applyAll(prev: ScoreState, events: ScoreEvent[]): ScoreState {
  * The figure that goes on the leaderboard.
  *
  * Separate from the running `xp` because the all-correct bonus can only be known once the session is
- * over — paying it early would mean withdrawing it the moment someone gets one wrong, which is
- * precisely the visibly-dropping-total problem the skip penalty was carefully limited to avoid.
+ * over — paying it early would mean withdrawing it the moment someone gets one wrong, and a total
+ * that visibly falls is the one thing this scale is built to never do.
  */
 export function finalScore(s: ScoreState): number {
   const perfect = s.correct > 0 && s.wrong === 0;

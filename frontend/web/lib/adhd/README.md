@@ -32,6 +32,29 @@ Migrate them in their own commit once this branch is proven to run, not as a sid
 **New ADHD work goes in the new folders.** That way the module grows correctly from the start and the
 migration, when it happens, is only about the three legacy files.
 
+## Scoring, in one place
+
+A completed beat is **+5**. A correct checkpoint is **+20**. A skipped beat is **0** — not a penalty,
+zero. Nothing in `score.ts` subtracts, so `xp` is monotonic by construction.
+
+A skip used to cost 25. That was reversed: not earning the +5 is already the whole incentive to
+watch, and a visibly dropping total is the single most reliable way to end a session for a learner
+with rejection sensitive dysphoria. What replaced it is `skipRun` — three skipped beats **in a row**
+stops the lecture and opens a **check-in**, which is a conversation rather than a smaller number.
+
+The check-in spans three files, because no one of them can do it alone:
+
+- `lib/adhd/score.ts` — `needsCheckin()` decides, from the run.
+- `components/adhd/AdhdLayer.tsx` — owns the score, so it notices; publishes the request.
+- `components/LessonPlayer.tsx` — owns the lecture and the live session, so it acts: pauses,
+  reconnects Gemini Live with the check-in persona from `lib/geminiLiveContract.ts`, and holds the
+  board behind `CheckinOverlay` until the learner says out loud that they want to carry on.
+
+That overlay has no dismiss button on purpose — someone who has skipped three beats will skip a
+fourth thing. It **does** grow a manual Resume control when the live session cannot be established
+at all, because a soft lock whose only key is a session that will never connect is a bricked lesson,
+not a design decision.
+
 ## The one rule that is not about file layout
 
 Every negative signal is routed through the companion, never at the learner. "Pip looks sleepy" and
