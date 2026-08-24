@@ -32,6 +32,8 @@ export function CheckinOverlay({
   fallback,
   speaking,
   transcript,
+  muted,
+  onToggleMute,
   onManualResume,
   accentVar = "var(--accent-adhd)",
   accentBrightVar = "var(--accent-adhd-bright)",
@@ -44,13 +46,23 @@ export function CheckinOverlay({
   speaking: boolean;
   /** The last thing either of them said, so the learner can see the mic is actually working. */
   transcript: string | null;
+  /**
+   * Mute lives HERE and nowhere else during a check-in.
+   *
+   * The lesson's own mute button is behind this overlay, and it was never safe anyway: muting
+   * removes the only exit — speaking to Aria — while the overlay stays un-dismissable, and the
+   * fallback never fires because the session is still healthily `live`. Offering it here keeps the
+   * learner in control of their microphone without that becoming a way to get stuck.
+   */
+  muted: boolean;
+  onToggleMute: () => void;
   onManualResume: () => void;
   accentVar?: string;
   accentBrightVar?: string;
   accentGlowVar?: string;
 }) {
   return (
-    <div className="beat-fade-in absolute inset-0 z-[60] grid place-items-center bg-slate-950/90 p-10 text-center backdrop-blur-md">
+    <div className="beat-fade-in absolute inset-0 z-[80] grid place-items-center bg-slate-950/95 p-10 text-center backdrop-blur-md">
       <div className="max-w-xl">
         <p className="hud-eyebrow text-[0.7rem] tracking-[0.2em]" style={{ color: accentVar }}>
           {fallback ? "Taking a break" : speaking ? "Aria is talking" : "Aria is listening"}
@@ -78,6 +90,19 @@ export function CheckinOverlay({
             {transcript && (
               <p className="mx-auto mt-5 max-w-lg text-base font-semibold italic text-white/40">“{transcript}”</p>
             )}
+            {/* The ONLY control here. Nothing that ends the session or touches the lecture — the way
+                out is agreeing out loud, and a button would just be a fourth thing to skip. */}
+            <button
+              onClick={onToggleMute}
+              aria-pressed={muted}
+              className={`mt-7 rounded-full border px-5 py-2 text-sm font-bold transition ${
+                muted
+                  ? "border-rose-400/40 bg-rose-500/15 text-rose-200"
+                  : "border-white/15 bg-white/5 text-white/60 hover:text-white/85"
+              }`}
+            >
+              {muted ? "🔇 Mic off — tap to talk" : "🎙 Mic on"}
+            </button>
           </>
         )}
 

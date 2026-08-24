@@ -25,6 +25,9 @@ type Price = { input: number; output: number };
 const PRICES: Record<string, Price> = {
   "gpt-4o": { input: 2.5, output: 10.0 },
   "gpt-4o-mini": { input: 0.15, output: 0.6 },
+  "gpt-5.6-luna": { input: 0.2, output: 1.2 },
+  "gpt-5.6-terra": { input: 2.0, output: 12.0 },
+  "gpt-5.6-sol": { input: 4.0, output: 20.0 },
   "gpt-5.5": { input: 5.0, output: 30.0 },
   "gpt-5.5-pro": { input: 5.0, output: 30.0 },
   "gpt-5.4": { input: 5.0, output: 30.0 },

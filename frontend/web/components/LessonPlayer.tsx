@@ -520,7 +520,11 @@ export function LessonPlayer({
       setReproach(line);
       // "utterance", not "lecture": the same slot quiz verdicts use, so it never destroys a frozen
       // lecture. A refusal is fine and expected — the bubble already carried the message.
-      if (line) {
+      //
+      // Silent during a check-in. The skip run that publishes this line is the SAME run that opens
+      // the check-in, so without the guard the teacher's reproach is spoken straight over Aria's
+      // opening greeting — two voices, and the wrong one is scolding.
+      if (line && !checkinRef.current) {
         voiceRef.current?.speakAsTeacher(
           line,
           { onStart: () => {}, onEnd: () => {}, onBlocked: () => {} },
@@ -555,12 +559,16 @@ export function LessonPlayer({
     setMicEnabled: tutor.setMicEnabled,
     rate,
     onPassed: () => {
+      // A check-in owns the pause; nothing about the lesson may move it. See beginCheckin.
+      if (checkinRef.current) return;
       bumpInteraction();
       // Scored by the ADHD layer if one is mounted; a no-op otherwise.
       emitAdhdEvent({ type: "answer-correct" });
       lesson.requestResume();
     },
     onFailed: () => {
+      // A check-in owns the pause; nothing about the lesson may move it. See beginCheckin.
+      if (checkinRef.current) return;
       bumpInteraction();
       // Costs nothing — it only withholds the all-correct bonus. Charging for wrong answers is how
       // a learner concludes the safe move is to stop answering.
@@ -576,6 +584,10 @@ export function LessonPlayer({
     topic: title,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     pausePlayer: () => {
+      // Hard stop during a check-in. This is the path behind "Aria talks about the lesson": ask()
+      // speaks its answer through playNarration directly (LessonChat.tsx), bypassing the voice
+      // director entirely, so it lands ON TOP of her live audio and nothing can mute it afterwards.
+      if (checkinRef.current) return;
       bumpInteraction();
       setBeatQuestions((n) => n + 1);
       lesson.enterChat({ resumeAfterAnswer: true });
@@ -596,6 +608,8 @@ export function LessonPlayer({
             : "";
 
   function startLiveTutor() {
+    // The check-in owns the session; taking the floor from it would drop the lecture out of paused.
+    if (checkinRef.current) return;
     // The session is normally preconnected and muted. Taking the floor pauses the existing beat,
     // preserving its timestamp so it can continue exactly after the tutor's response.
     lesson.enterChat();
@@ -612,6 +626,14 @@ export function LessonPlayer({
     }
   }
   function endLiveTutor() {
+    /*
+     * THE BUG THIS GUARD FIXES. During a check-in `sessionActive` is true, so the ChatPanel mic
+     * button resolves here — and this function's whole job is to end the call and resume. It did
+     * exactly that: the lecture restarted and narrated on while the overlay still read "the
+     * lecture's paused", because `checkin` was never cleared. A check-in ends by agreement, not by
+     * hanging up.
+     */
+    if (checkinRef.current) return;
     tutor.stop(); // onSessionEnded resumes the lecture in the normal case
     // Safety net: if the realtime session errored out earlier and its internal teardown guard
     // already fired once (silently, e.g. on a dropped connection), tutor.stop() here is a no-op
@@ -641,6 +663,16 @@ export function LessonPlayer({
     // Clear every other thing that could be holding the board. A check-in outranks all of them: they
     // are all about the lesson, and the premise here is that the lesson is not what is needed.
     quiz.cancel();
+    /*
+     * The checkpoint has to GO, not merely be covered.
+     *
+     * MazeGame binds its arrow keys to `window` (components/adhd/games/MazeGame.tsx), so it keeps
+     * playing underneath any overlay however high its z-index — a window listener is not a pointer
+     * target. Reaching an answer cell fires onDone -> requestResume and ends the check-in silently,
+     * with nothing on screen to explain why. Marking the beat done stops it re-arming on the next
+     * render.
+     */
+    setCheckpointDone((d) => ({ ...d, [index]: true }));
     setFocusPause(null);
     setLiveBoard(null);
     setCheckinLine(null);
@@ -756,6 +788,30 @@ export function LessonPlayer({
     const id = setTimeout(() => setCheckinFallback(true), CHECKIN_CONNECT_GRACE_MS);
     return () => clearTimeout(id);
   }, [checkin, checkinFallback, tutor.status]);
+
+  /**
+   * THE INVARIANT: while a check-in is open, the lecture is paused. Full stop.
+   *
+   * Every guard above closes a door I found. This closes the ones I did not, and the ones added
+   * later — an audit of this file turned up eleven unguarded ways back into `teaching`, which is
+   * eleven chances to be wrong once and a certainty of being wrong eventually. Rather than trust
+   * that the list is complete, anything that un-pauses gets corrected on the next render.
+   *
+   * Keyed on `checkin`, deliberately NOT on `lesson.pauseReason`. The mcq effect below lists
+   * `[mcq, stopVoice, lesson]` as dependencies and both `lesson` and `voice` are fresh object
+   * literals every render, so while a checkpoint exists it re-runs constantly and overwrites the
+   * reason from "checkin" to "focus". A guard reading the reason would look right and do nothing.
+   */
+  useEffect(() => {
+    if (!checkin || !lesson.playing) return;
+    // Deferred like the checkpoint pause below: stopVoice sets state, and setState synchronously in
+    // an effect body cascades renders.
+    queueMicrotask(() => {
+      if (!checkinRef.current) return;
+      stopVoice();
+      lesson.pause("checkin");
+    });
+  }, [checkin, lesson.playing, stopVoice, lesson]);
 
   // Watchdog: reset the timed-out flag on every new beat, then — while this beat's animation/board op
   // is still pending and the lecture is playing — start a timer. If it fires, stop waiting so the
@@ -1053,6 +1109,9 @@ export function LessonPlayer({
    * prompts her to respond right away instead of silently waiting for the student to ask by voice.
    */
   function explainWithTutor(prompt: string) {
+    // Feeds lecture content into the session and calls say() with it — the one thing a check-in
+    // must not carry.
+    if (checkinRef.current) return;
     bumpInteraction();
     lesson.enterChat({ resumeAfterAnswer: true });
     if (slideTimer.current) {
@@ -1121,6 +1180,9 @@ export function LessonPlayer({
   function retryVoice() {
     unlockAudio();
     setVoiceBlocked(false);
+    // `startTeaching` is a full un-pause. The banner that calls this renders outside the board and
+    // outside the inert transport row, so before the overlay was hoisted it was reachable mid-check-in.
+    if (checkinRef.current) return;
     setStage("slide");
     lesson.startTeaching();
   }
@@ -1176,6 +1238,32 @@ export function LessonPlayer({
   return (
     <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
       {adhd && <AdhdLayer index={index} beat={beats[index]} gameActive={!!mcq} />}
+
+      {/*
+        MOUNTED AGAINST <main>, NOT THE BOARD. It used to be `absolute inset-0` inside the board
+        <section>, which covered the board and nothing else — so the whole right-hand column stayed
+        live, and its mic button (which reads as "end call" while a session is active) called
+        endLiveTutor -> requestResume and restarted the lecture underneath an overlay still saying
+        it was paused. The escape was not that the guard was missing; it was that the surface was
+        the wrong size.
+
+        Here it covers the board, the chat panel, the transport row, the exit avatar and the
+        "Enable sound" banner together. z-[80] clears AdhdLayer's own chrome (z-30..z-50).
+
+        What it still cannot cover is a `window` keydown listener — see beginCheckin, which
+        dismisses the checkpoint rather than trusting z-index to stop MazeGame's arrow keys.
+      */}
+      {checkin && (
+        <CheckinOverlay
+          phase={checkin}
+          fallback={checkinFallback}
+          speaking={tutor.speaking}
+          transcript={checkinLine}
+          muted={tutor.muted}
+          onToggleMute={tutor.toggleMute}
+          onManualResume={endCheckin}
+        />
+      )}
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
@@ -1321,19 +1409,6 @@ export function LessonPlayer({
             )}
 
             {focusPause && <FocusPauseOverlay state={focusPause} onResume={resumeFromFocusPause} />}
-
-            {/* Above every other overlay (z-60) and with no dismiss control: while a check-in is open
-                it is the only thing on the board, because everything underneath it is the lesson the
-                learner has just demonstrated they are not watching. */}
-            {checkin && (
-              <CheckinOverlay
-                phase={checkin}
-                fallback={checkinFallback}
-                speaking={tutor.speaking}
-                transcript={checkinLine}
-                onManualResume={endCheckin}
-              />
-            )}
 
             {/* The checkpoint, flown. Owns the board while it is up. */}
             {mcq && (
