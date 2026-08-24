@@ -12,6 +12,7 @@ import {
 import { critiqueLayout, critiqueShapeRecognizability, critiqueForRefinement, reactAnimationVisionCriticEnabled, type BoardDefect } from "./reactAnimationVisionCritic";
 import { findAssets, loadAssets, assetRuntimeFor, assetPromptBlock } from "./assetCatalogue";
 import { appPath } from "./appPaths";
+import { costFor } from "./modelPricing";
 
 /**
  * Second step of the two-step generate-then-render pipeline for ANIMATION beats, mirroring
@@ -51,8 +52,6 @@ const REASONING_EFFORT: ReasoningEffort = (() => {
 })();
 
 // Cost estimate uses the same gpt-4o-era rates as generate-lecture; override models may differ.
-const INPUT_PRICE = 2.50 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export type ReactAnimationFillStats = {
   costUsd: number;
@@ -69,8 +68,16 @@ export type ReactAnimationFillUpdate = {
   status: "ready" | "failed";
 };
 
-function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+/**
+ * Priced by the model that produced the usage, not by a constant sitting next to the call.
+ *
+ * This file is why lib/modelPricing.ts exists: OPENAI_ANIMATION_MODEL was pointed at gpt-5.5 while
+ * the constants here still read gpt-4o's rates, so the most expensive calls in the app reported a
+ * third of their real output cost and nothing failed. MODEL, PLANNER_MODEL and REVIEW_MODEL can all
+ * be pointed at different models, so each call site names the one it used.
+ */
+function costUsd(model: string, usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
+  return costFor(model, usage);
 }
 
 // Deterministic classifier: is this beat an ABSTRACT/conceptual topic (algorithm, data structure,
@@ -152,7 +159,7 @@ async function refineBoard(
       ...modelCallParams(MODEL, MAX_TOKENS, 0.3),
     });
     const revised = extractCodeFence(completion.choices[0]?.message?.content ?? "");
-    return { code: revised || null, costUsd: costUsd(completion.usage) };
+    return { code: revised || null, costUsd: costUsd(MODEL, completion.usage) };
   } catch {
     return { code: null, costUsd: 0 };
   }
@@ -395,7 +402,7 @@ async function planVisual(
       ...modelCallParams(PLANNER_MODEL, 1_400, 0.2),
     });
     const parsed = parseJsonObject(completion.choices[0]?.message?.content ?? "");
-    if (!parsed) return { blueprint: fallback, costUsd: costUsd(completion.usage) };
+    if (!parsed) return { blueprint: fallback, costUsd: costUsd(PLANNER_MODEL, completion.usage) };
     const requiredParts = Array.isArray(parsed.requiredParts)
       ? parsed.requiredParts.flatMap((item) => {
           if (!item || typeof item !== "object") return [];
@@ -426,7 +433,7 @@ async function planVisual(
           readingPath: typeof composition.readingPath === "string" ? composition.readingPath.trim().slice(0, 220) : fallback.composition.readingPath,
         },
       },
-      costUsd: costUsd(completion.usage),
+      costUsd: costUsd(PLANNER_MODEL, completion.usage),
     };
   } catch {
     return { blueprint: fallback, costUsd: 0 };
@@ -485,7 +492,7 @@ async function reviewGeneratedVisual(
       ...modelCallParams(REVIEW_MODEL, 1_200, 0),
     });
     const parsed = parseJsonObject(completion.choices[0]?.message?.content ?? "");
-    if (!parsed) return { review: failedReview, costUsd: costUsd(completion.usage) };
+    if (!parsed) return { review: failedReview, costUsd: costUsd(REVIEW_MODEL, completion.usage) };
     const rawScores = parsed.scores && typeof parsed.scores === "object"
       ? parsed.scores as Record<string, unknown>
       : {};
@@ -508,7 +515,7 @@ async function reviewGeneratedVisual(
           ? parsed.revision.trim().slice(0, 900)
           : failedReview.revision,
       },
-      costUsd: costUsd(completion.usage),
+      costUsd: costUsd(REVIEW_MODEL, completion.usage),
     };
   } catch {
     return { review: failedReview, costUsd: 0 };
@@ -763,7 +770,7 @@ async function generateOne(
         ],
         ...modelCallParams(MODEL, MAX_TOKENS, temperature),
       });
-      totalCostUsd += costUsd(completion.usage);
+      totalCostUsd += costUsd(MODEL, completion.usage);
 
       const raw = completion.choices[0]?.message?.content ?? "";
       const code = extractCodeFence(raw);

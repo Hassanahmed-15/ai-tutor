@@ -4,6 +4,7 @@ import { PLOT_BOARD_SYSTEM_PROMPT, EQUATION_BOARD_SYSTEM_PROMPT } from "./drawPr
 import { validatePlotSpec, compilesAsVegaLite } from "./plotSpec";
 import { parseEquationSpec } from "./equationSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import { costFor } from "./modelPricing";
 
 type DrawOp = DrawScript["ops"][number];
 type PlotBoardOp = Extract<DrawOp, { kind: "plotBoard" }>;
@@ -35,8 +36,6 @@ const MODEL = process.env.OPENAI_SPEC_BOARD_MODEL ?? process.env.OPENAI_LECTURE_
 const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_SPEC_BOARD_MAX_TOKENS ?? 2_500)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_SPEC_BOARD_ATTEMPTS ?? 2)));
 
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export type SpecBoardFillStats = {
   costUsd: number;
@@ -47,7 +46,7 @@ export type SpecBoardFillStats = {
 };
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 export function findSpecBoardOp(draw: DrawScript | undefined): SpecBoardOp | null {

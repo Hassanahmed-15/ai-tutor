@@ -39,6 +39,7 @@ import { focusPassages, focusFromTranscript, focusPromptSection, focusedUserMess
 import { embedTexts, EMBED_RULES } from "@/lib/embeddings";
 import { chunksFrom, rankChunks, contextPromptSection, type RankedChunk } from "@/lib/ragRetrieve";
 import type { Beat } from "@/lib/lessonContent";
+import { costFor } from "@/lib/modelPricing";
 
 // Kill switch for generated image assets. The prompt can still plan image beats, but when this is
 // off the server converts those placeholders into no-cost written boards instead of calling the
@@ -116,13 +117,17 @@ const GENERATION_PROFILE: Record<string, string | number | boolean> = {
   imageModel: process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1",
   imageQuality: process.env.OPENAI_IMAGE_QUALITY ?? "medium",
   manimEnabled: MANIM_RENDER_ENABLED,
+  // The board generators are part of the quality profile too. Without them a lecture cached
+  // before these models were retargeted survives the change and looks like the new config
+  // never took effect - the exact failure this profile was introduced to prevent.
+  manimSceneModel: process.env.OPENAI_MANIM_SCENE_MODEL ?? MODEL,
+  structureModel: process.env.OPENAI_STRUCTURE_MODEL ?? MODEL,
+  specBoardModel: process.env.OPENAI_SPEC_BOARD_MODEL ?? MODEL,
   referenceImagesEnabled: REAL_REFERENCE_IMAGES_ENABLED,
   visionModel: process.env.OPENAI_VISION_MODEL ?? "gpt-4o",
 };
 
 // gpt-4o pricing for the text-generation step (as of 2025, source: openai.com/api/pricing).
-const TEXT_INPUT_PRICE  = 2.50 / 1_000_000;  // $2.50 per M input tokens
-const TEXT_OUTPUT_PRICE = 10.0 / 1_000_000;  // $10.00 per M output tokens
 
 type LectureBuildInput = {
   topic: string;
@@ -291,7 +296,7 @@ function dedupeBeatIdentity(beats: Beat[]): void {
 }
 
 function textCostUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * TEXT_INPUT_PRICE + usage.completion_tokens * TEXT_OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 async function addMissingPromptedBeat(

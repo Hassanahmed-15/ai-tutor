@@ -3,6 +3,7 @@ import type { Beat } from "./lessonContent";
 import { splitNarrationSentences } from "./voice";
 import { layoutCalloutAroundImage, type SuprnotesLessonInput } from "./suprnotes";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import { costFor } from "./modelPricing";
 
 /**
  * Image-Explainer agent — the multi-agent step that makes provided images "explained properly".
@@ -37,14 +38,12 @@ type FocusRegion = { label: string; x: number; y: number; width: number; height:
 
 const MODEL = process.env.OPENAI_IMAGE_EXPLAINER_MODEL ?? "gpt-4o-mini";
 const MAX_TOKENS = 1_200;
-const INPUT_PRICE = 0.15 / 1_000_000; // gpt-4o-mini
-const OUTPUT_PRICE = 0.6 / 1_000_000;
 
 export type ImageCalloutFillStats = { costUsd: number; pending: number; filled: number; rejected: number; issues: string[] };
 export type ImageCalloutFillUpdate = { beat: Beat; beatIndex: number; costUsd: number; status: "ready" | "failed" };
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 async function generateOne(

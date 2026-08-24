@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { fallbackExplanationDraw, fallbackWrittenDraw, hasUsefulExplanationVisual } from "./drawSanitize";
+import { priceFor } from "./modelPricing";
 
 /**
  * Second step of the two-step generate-then-render pipeline. Takes beats whose DrawScript
@@ -50,8 +51,6 @@ export type ImageFillUpdate = {
 // We use actual per-token usage from the API response when available, falling back to the
 // flat per-image rate when the response omits usage data.
 // Source: https://openai.com/api/pricing/
-const IMAGE_INPUT_TOKEN_PRICE = 10 / 1_000_000;  // $10 per M input tokens
-const IMAGE_OUTPUT_TOKEN_PRICE = 40 / 1_000_000; // $40 per M output tokens
 const IMAGE_FLAT_RATE = 0.011;                    // conservative fallback for one low-quality image
 // "gpt-image-1" is the only OpenAI image model that exists today (confirmed against the
 // installed SDK's ImageModel union: 'dall-e-2' | 'dall-e-3' | 'gpt-image-1' — there is no
@@ -61,6 +60,9 @@ const IMAGE_FLAT_RATE = 0.011;                    // conservative fallback for o
 // size (its size enum is 1024x1024 | 1536x1024 | 1024x1536 | auto — NOT 1792x1024, which is a
 // dall-e-3-only size and would have errored too).
 const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1";
+// Priced from the shared table so a change of IMAGE_MODEL cannot leave a stale rate behind.
+const IMAGE_INPUT_TOKEN_PRICE = priceFor(IMAGE_MODEL).input / 1_000_000;
+const IMAGE_OUTPUT_TOKEN_PRICE = priceFor(IMAGE_MODEL).output / 1_000_000;
 type ImageSize = "auto" | "1536x1024" | "1024x1024" | "1024x1536" | "256x256" | "512x512";
 const IMAGE_SIZE: ImageSize = (process.env.OPENAI_IMAGE_SIZE as ImageSize | undefined) ?? "1536x1024";
 const IMAGE_ATTEMPTS = [{ model: IMAGE_MODEL, size: IMAGE_SIZE }];

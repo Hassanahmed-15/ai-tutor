@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import type { SuprnotesLessonInput } from "./suprnotes";
+import { costFor } from "./modelPricing";
 
 /**
  * Vision descriptor — "give the image to the teacher". For each provided image asset, one gpt-4o
@@ -14,8 +15,6 @@ import type { SuprnotesLessonInput } from "./suprnotes";
 const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
 const MAX_TOKENS = 400;
 const PER_IMAGE_TIMEOUT_MS = 25_000;
-const INPUT_PRICE = 2.5 / 1_000_000; // gpt-4o
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 const SYSTEM_PROMPT =
   "You are describing a single teaching image (a diagram, chart, infographic, or photo) so a teacher " +
@@ -26,7 +25,7 @@ const SYSTEM_PROMPT =
   "markdown. If text is visible in the image, quote the key labels exactly.";
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 async function describeOne(client: OpenAI, dataUri: string, caption: string): Promise<{ description: string | null; costUsd: number }> {

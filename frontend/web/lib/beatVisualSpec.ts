@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
+import { costFor } from "./modelPricing";
 
 /**
  * Stage one of board planning: what must this beat's visual actually CONTAIN?
@@ -20,8 +21,6 @@ import type { Beat } from "./lessonContent";
 
 const MODEL = process.env.OPENAI_VISUAL_SPEC_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
 
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export type BeatVisualSpec = {
   /** The exact thing to depict, with the plausible wrong reading ruled out. */
@@ -61,7 +60,7 @@ process of reasoning, a schedule, a proof and a data structure are all false. Wh
 a photograph of the wrong thing teaches worse than a drawing of the right thing.`;
 
 function costOf(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 /** Returns a clean spec, or null. Never throws — planning must degrade, never break a lecture. */
