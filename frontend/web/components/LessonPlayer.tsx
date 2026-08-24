@@ -655,7 +655,19 @@ export function LessonPlayer({
 
   function beginCheckin() {
     if (checkinRef.current) return;
-    stopVoice();
+    /*
+     * setSpeaking, NOT stopVoice — and the difference is the whole "it replays from the start" bug.
+     *
+     * stopVoice is voice.stopTeacher(), which CANCELS the narration and nulls the handle. The
+     * lesson.pause("checkin") below then calls pauseTeacher() to FREEZE that handle and finds
+     * nothing left to freeze, so on the way back resumeTeacher() returns false and the mode effect
+     * bumps startNonce — restarting the beat from its first sentence instead of continuing.
+     *
+     * pause() already does the right pair (stopUtterance + pauseTeacher), so calling stopVoice
+     * first was not redundant, it was destructive. All that is left to do here is stop the avatar
+     * mouthing along.
+     */
+    setSpeaking(false);
     if (slideTimer.current) {
       clearTimeout(slideTimer.current);
       slideTimer.current = null;
@@ -808,7 +820,10 @@ export function LessonPlayer({
     // an effect body cascades renders.
     queueMicrotask(() => {
       if (!checkinRef.current) return;
-      stopVoice();
+      // Same reason as beginCheckin: stopVoice here would discard the frozen lecture on every
+      // correction, so a check-in that had to re-assert itself even once could no longer resume
+      // in place.
+      setSpeaking(false);
       lesson.pause("checkin");
     });
   }, [checkin, lesson.playing, stopVoice, lesson]);
@@ -1164,9 +1179,16 @@ export function LessonPlayer({
   }
   function togglePlay() {
     if (lesson.playing) {
-      // Pausing: stop narration immediately so audio + the sentence-cue timeline halt at once,
-      // and cancel the slide→board timer so the beat can't flip stage while paused.
-      stopVoice();
+      /*
+       * Pausing halts the audio and the sentence-cue timeline at once, and cancels the slide→board
+       * timer so the beat can't flip stage while paused.
+       *
+       * It does NOT call stopVoice. That cancels the narration outright, and pause() immediately
+       * after can then find nothing to freeze — so pressing Pause and then Resume replayed the part
+       * from its first sentence rather than continuing. pauseTeacher() (inside pause) already stops
+       * the audio, by freezing it, which is the point.
+       */
+      setSpeaking(false);
       if (slideTimer.current) {
         clearTimeout(slideTimer.current);
         slideTimer.current = null;
