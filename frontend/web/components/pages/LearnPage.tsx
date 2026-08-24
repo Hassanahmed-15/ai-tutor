@@ -115,7 +115,22 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
   const [builtTopic, setBuiltTopic] = useState("");
-  const [costUsd, setCostUsd] = useState<number | null>(null);
+/**
+ * What the post-generation badge is allowed to claim.
+ *
+ * This was a bare `number | null`, and a bare number cannot tell "this was free" apart from "we did
+ * not measure this" — which is exactly how the badge came to announce $0.0000 for a PDF re-upload
+ * that had just paid full price to re-parse the document. Reused and demo lectures are their own
+ * states now, so neither can borrow a dollar figure that was never true of them.
+ */
+type BuildCost =
+  /** A real generation happened and `usd` is what IT cost — not what the lecture cost. */
+  | { kind: "generated"; usd: number }
+  /** Served from .lecture-cache. No generation spend this time; the document was still re-read. */
+  | { kind: "cached" }
+  /** DEMO_HARDCODED short-circuit — no model was called at all. */
+  | { kind: "demo" };
+  const [buildCost, setBuildCost] = useState<BuildCost | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [buildStatus, setBuildStatus] = useState("Writing the lecture script and boards");
   const [buildSteeringActive, setBuildSteeringActive] = useState(false);
@@ -897,7 +912,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     buildAbortRef.current = controller;
     setPhase("building");
     setError(null);
-    setCostUsd(null);
+    setBuildCost(null);
     setBeats([]);
     setBuiltTopic("");
     setBuildStatus("Choosing the teaching route");
@@ -930,7 +945,8 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       setBuildStatus("Applying your steering choices");
       setBeats(demoLectureBeats);
       setBuiltTopic(demoLectureTopic);
-      setCostUsd(0);
+      // Not "$0.00" — nothing was generated, and a zero would read as "a lecture, for free".
+      setBuildCost({ kind: "demo" });
       // A short delay so the "building" screen shows briefly, then reveal — feels responsive/real.
       setTimeout(() => setPhase("teaching"), 500);
       return;
@@ -1018,7 +1034,14 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
       }
       setBeats(data.beats);
       setBuiltTopic(data.topic ?? trimmed);
-      if (typeof data.costUsd === "number") setCostUsd(data.costUsd);
+      /*
+       * `cached` is sent by the server (generate-lecture returns it on a cache hit) and was being
+       * dropped here, which is what let a reused lecture display costUsd: 0 as though generating it
+       * had been free. A cache hit only ever happens for a source-document run, so the document was
+       * necessarily re-parsed at full price on the way to it.
+       */
+      if (data.cached) setBuildCost({ kind: "cached" });
+      else if (typeof data.costUsd === "number") setBuildCost({ kind: "generated", usd: data.costUsd });
       setPhase("teaching");
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
@@ -1149,11 +1172,41 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
     return (
       <div className="relative">
         {player}
-        {costUsd !== null && (
+        {/*
+            It used to say "This lecture cost $X.XXXX", which was wrong in every case and worst in
+            the one that looked best: re-uploading a PDF skips generation (cache hit -> costUsd 0)
+            but still re-parses the document through up to 60 vision calls, so the badge announced
+            $0.0000 for about a dollar of spend.
+
+            It now names the ONE stage it measures and says what it leaves out, so the gap is
+            visible instead of implied. Reused and demo builds carry no figure at all — quoting a
+            number that was never true of this build is the whole failure being fixed.
+        */}
+        {buildCost !== null && (
           <div className="pointer-events-none absolute left-0 right-0 top-0 z-[60] flex justify-center pt-2">
             <div className="hud-eyebrow flex items-center gap-1.5 rounded-full border border-[var(--hud-line-strong)] bg-black/70 px-3.5 py-1.5 text-[0.65rem] backdrop-blur-md">
-              <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">This lecture cost</span>
-              <span className="text-[var(--hud-cyan)]">${costUsd.toFixed(4)}</span>
+              {buildCost.kind === "generated" ? (
+                <>
+                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Generation</span>
+                  <span className="text-[var(--hud-cyan)]">${buildCost.usd.toFixed(4)}</span>
+                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">
+                    excludes document &amp; playback
+                  </span>
+                </>
+              ) : buildCost.kind === "cached" ? (
+                <>
+                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Reused</span>
+                  <span className="text-[var(--hud-cyan)]">no new generation cost</span>
+                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">
+                    document was re-read
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Demo lecture</span>
+                  <span className="text-[var(--hud-cyan)]">nothing generated</span>
+                </>
+              )}
             </div>
           </div>
         )}
