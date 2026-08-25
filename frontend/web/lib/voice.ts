@@ -43,6 +43,20 @@ export interface NarrationCallbacks {
   onSentenceStart?: (index: number, sentence: string, total: number) => void;
   /** Fired from the active audio/timeline clock. `progress` is 0..1 for the current beat. */
   onProgress?: (progress: number, currentTimeMs: number, durationMs: number) => void;
+  /**
+   * Fired as narration passes each word, for reading along.
+   *
+   * ESTIMATED, NOT MEASURED. Cloud TTS returns audio with a real clock but no word timings, so the
+   * position is interpolated inside the current sentence using the same weights that drive
+   * `onSentenceStart`. Mid-sentence it can be a word or two out; the error is bounded by the
+   * sentence and resets at every sentence boundary, which is what keeps it usable. Weighting is by
+   * vowel groups rather than characters, because "2019" is four characters and about five syllables
+   * spoken and generated lectures are full of numbers.
+   *
+   * Consumers should render this forgivingly — a soft trailing highlight rather than a hard box, so
+   * a one-word error is invisible instead of looking broken.
+   */
+  onWordStart?: (wordIndex: number, sentenceIndex: number) => void;
   /** Playback speed multiplier (1 = normal). Applies to both the OpenAI audio element and
    *  the browser TTS fallback's base rate. Defaults to 1. */
   rate?: number;
@@ -342,6 +356,32 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         return acc;
       }, []);
       let lastCueIndex = initialSentences.length > 0 ? 0 : -1;
+
+      /**
+       * Per-sentence word weights, for the reading-along cue.
+       *
+       * Only built when a caller asked for word cues — every other narration in the app pays
+       * nothing for this.
+       */
+      const wantWords = typeof callbacks.onWordStart === "function";
+      const wordPlans = wantWords
+        ? sentences.map((sentence) => {
+            const words = sentence.split(/\s+/).filter(Boolean);
+            // Vowel groups approximate spoken length far better than character count, and digits are
+            // spoken far longer than they are written ("2019").
+            const weights = words.map((word) => {
+              const vowels = word.match(/[aeiouy]+/gi)?.length ?? 1;
+              const digits = (word.match(/\d/g)?.length ?? 0) * 1.5;
+              return Math.max(1, vowels + digits);
+            });
+            const total = weights.reduce((sum, w) => sum + w, 0) || 1;
+            let running = 0;
+            const cumulative = weights.map((w) => (running += w));
+            return { total, cumulative };
+          })
+        : [];
+      let lastWordKey = "";
+
       const estimatedDurationMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
       const emitAudioClock = () => {
         if (cancelled || !audio) return;
@@ -358,6 +398,22 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           if (cueIndex !== lastCueIndex) {
             lastCueIndex = cueIndex;
             callbacks.onSentenceStart?.(cueIndex, sentences[cueIndex], sentences.length);
+          }
+
+          // Where inside the current sentence the clock has reached, mapped onto its words.
+          const plan = wordPlans[cueIndex];
+          if (plan) {
+            const sentenceStart = cumulative[cueIndex - 1] ?? 0;
+            const spanned = Math.max(0.0001, weights[cueIndex]);
+            const within = Math.max(0, Math.min(1, (currentWeight - sentenceStart) / spanned));
+            const target = within * plan.total;
+            let wordIndex = plan.cumulative.findIndex((boundary) => target < boundary);
+            if (wordIndex === -1) wordIndex = plan.cumulative.length - 1;
+            const key = `${cueIndex}:${wordIndex}`;
+            if (key !== lastWordKey) {
+              lastWordKey = key;
+              callbacks.onWordStart?.(wordIndex, cueIndex);
+            }
           }
         }
 

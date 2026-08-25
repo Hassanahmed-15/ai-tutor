@@ -16,6 +16,7 @@ import {
 import { heuristicChunks } from "@/lib/dyslexiaChunking";
 import { prefsToCssVars, TINT_COLORS, useDyslexiaPrefs } from "@/lib/dyslexiaPrefs";
 import { ComfortControls } from "./dyslexia/ComfortControls";
+import { KaraokeLine } from "./dyslexia/KaraokeLine";
 import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
@@ -66,6 +67,15 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   const [phase, setPhase] = useState<Phase>("dense");
   // Which chunk lines are currently revealed/narrated (0..n).
   const [revealed, setRevealed] = useState(0);
+  /**
+   * The word being spoken, as {line, word}.
+   *
+   * The narration is one string of every chunk joined, and the voice engine reports position as
+   * (word, sentence) within that string — and each chunk is exactly one sentence, so the sentence
+   * index IS the line index. Kept as a pair rather than a global counter so a line only ever
+   * highlights when it is the line being read.
+   */
+  const [spokenWord, setSpokenWord] = useState<{ line: number; word: number }>({ line: -1, word: -1 });
 
   /**
    * Mirror of `revealed` for the rewrite effect.
@@ -254,8 +264,11 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
       const handle = playNarration(fullText, {
         onStart: () => setSpeaking(true),
         onSentenceStart: (sentenceIndex) => setRevealed(sentenceIndex + 1),
+        onWordStart: (wordIndex, sentenceIndex) => setSpokenWord({ line: sentenceIndex, word: wordIndex }),
         onEnd: () => {
           setSpeaking(false);
+          // Clear the highlight — a word left lit after the voice stops reads as stuck.
+          setSpokenWord({ line: -1, word: -1 });
           cancelRef.current = null;
           setRevealed(chunks.length);
           phaseTimers.current.push(
@@ -472,7 +485,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
                 </div>
               </div>
             ) : hasLines ? (
-              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} />
+              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} spokenWord={spokenWord} />
             ) : (
               <div className="grid place-items-center p-6 lg:p-10">
                 <p className="text-center text-2xl font-black text-white/80">{beat.title}</p>
@@ -528,7 +541,9 @@ function BeatStage({
   phase,
   revealed,
   speaking,
+  spokenWord,
 }: {
+  spokenWord: { line: number; word: number };
   beat: Beat;
   dense: string;
   chunks: DyslexiaChunk[];
@@ -584,7 +599,12 @@ function BeatStage({
               <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-stone-900/80 text-2xl" aria-hidden>
                 {chunk.icon}
               </span>
-              <span className="text-xl font-bold leading-snug text-white">{chunk.text}</span>
+              <KaraokeLine
+                text={chunk.text}
+                // Only the line actually being narrated tracks a word; the rest render plainly.
+                activeWord={spokenWord.line === i && speaking ? spokenWord.word : -1}
+                className="text-xl font-bold leading-snug text-white"
+              />
             </div>
           );
         })}
