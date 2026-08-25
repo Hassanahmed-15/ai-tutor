@@ -10,6 +10,7 @@ import {
 import { splitNarrationSentences } from "./voice";
 import { critiqueBoard, boardVisionCriticEnabled } from "./boardVisionCritic";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import { costFor } from "./modelPricing";
 
 type DrawOp = DrawScript["ops"][number];
 
@@ -34,8 +35,6 @@ const MAX_TOKENS = Math.max(2_000, Math.min(8_000, Number(process.env.OPENAI_BLA
 const MAX_ATTEMPTS = Math.max(1, Math.min(6, Number(process.env.OPENAI_BLACKBOARD_ATTEMPTS ?? 4)));
 
 // Cost estimate uses the same gpt-4o-era rates as generate-lecture; override models may differ.
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export type BlackboardFillStats = {
   costUsd: number;
@@ -52,8 +51,9 @@ export type BlackboardFillUpdate = {
   status: "ready" | "failed";
 };
 
-function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+/** Takes the model because the board and its verifier are deliberately different models. */
+function costUsd(model: string, usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
+  return costFor(model, usage);
 }
 
 function buildUserPrompt(op: ChalkBoardOp, beat: Beat, sentences: string[], previousIssue?: string): string {
@@ -131,7 +131,7 @@ async function checkGrounding(
       max_tokens: 300,
       response_format: { type: "json_object" },
     });
-    const c = costUsd(completion.usage);
+    const c = costUsd(VERIFIER_MODEL, completion.usage);
     const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
     const grounded = parsed.grounded !== false;
     const issue = typeof parsed.issue === "string" ? parsed.issue.trim() : "";
@@ -168,7 +168,7 @@ async function generateOne(
         response_format: { type: "json_object" },
         ...tokenParam,
       });
-      totalCostUsd += costUsd(completion.usage);
+      totalCostUsd += costUsd(MODEL, completion.usage);
 
       const raw = completion.choices[0]?.message?.content ?? "{}";
       let parsedOps: unknown = [];

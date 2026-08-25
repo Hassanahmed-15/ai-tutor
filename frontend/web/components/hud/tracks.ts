@@ -9,8 +9,15 @@ import type { PageName } from "./HudKit";
  * (BlindLessonPlayer, AdhdLessonPlayer, DyslexiaLessonPlayer, DysgraphiaLessonPlayer,
  * AutismLessonPlayer) remain on disk and functional.
  *
- * To re-enable a mode: move its entry from PLANNED_TRACKS into TRACKS and restore its route case
- * in app/page.tsx.
+ * To re-enable a mode in the PICKER: move its entry from PLANNED_TRACKS into TRACKS and restore its
+ * route case in app/page.tsx.
+ *
+ * ── ADHD is different, and deliberately so. ──
+ *
+ * It is PROFILE-ROUTED, NOT PICKER-LISTED. `ADHD_TRACK` is exported on its own below and is
+ * intentionally absent from `TRACKS`, because every mode surface maps over `TRACKS` and adding it
+ * there would offer the track to everyone. It must appear only for a learner whose saved profile is
+ * `accessibility === "adhd"` — see `lib/adhd/gate.ts`, which owns that decision.
  */
 export interface TrackMeta {
   id: string;
@@ -57,18 +64,6 @@ export const PLANNED_TRACKS: TrackMeta[] = [
     page: "blind-demo",
   },
   {
-    id: "adhd",
-    name: "ADHD",
-    tagline: "Attention-aware, camera-guided",
-    description: "Real camera-based focus tracking that pauses the lesson the moment attention drifts.",
-    detail:
-      "A face-tracking model watches engagement in real time (entirely on your device). The instant focus drops below threshold, the lecture stops, holds, and waits for you to come back — no penalty, no lost place.",
-    accent: "var(--accent-adhd)",
-    glow: "var(--accent-adhd-glow)",
-    glyph: "◎",
-    page: "adhd-demo",
-  },
-  {
     id: "deaf",
     name: "Deaf",
     tagline: "Caption-first, fully visual",
@@ -95,26 +90,30 @@ export const PLANNED_TRACKS: TrackMeta[] = [
 ];
 
 /**
- * Accessibility profiles that route to their own player for a GENERATED lecture.
- *
- * Deliberately narrow. Every planned track above has a player on disk, but only the dyslexia one
- * has been made to survive an arbitrary beat — the rest still read from hand-authored content keyed
- * by the twelve demo beat ids, so pointing a real lecture at them would reproduce exactly the freeze
- * this set exists to avoid. Widening it later is one entry, once that player has been given the same
- * treatment.
- *
- * `blind` and `low-vision` are absent on purpose: they are handled far earlier, by VoiceModeSwitch
- * in app/page.tsx, which replaces the whole router rather than choosing a player.
+ * The ADHD track. Reached only through the profile (`lib/adhd/gate.ts`), never through a picker —
+ * see the note at the top of this file. Exported separately from both TRACKS and PLANNED_TRACKS so
+ * that its absence from the picker list cannot be "fixed" by someone who assumes it was an oversight.
  */
-const PROFILE_ROUTED_TRACKS = new Set(["dyslexia"]);
-
-/**
- * The track a learner's stored accessibility profile should open.
- *
- * Returns the Standard track for anyone signed out, without a profile, or on a profile whose player
- * is not ready — so the default path is unchanged for everyone it does not apply to.
- */
-export function trackForProfile(accessibility?: string | null): TrackMeta {
-  if (!accessibility || !PROFILE_ROUTED_TRACKS.has(accessibility)) return TRACKS[0];
-  return [...TRACKS, ...PLANNED_TRACKS].find((track) => track.id === accessibility) ?? TRACKS[0];
-}
+export const ADHD_TRACK: TrackMeta = {
+    id: "adhd",
+    name: "ADHD",
+    tagline: "Attention-aware, camera-guided",
+    description: "Real camera-based focus tracking that pauses the lesson the moment attention drifts.",
+    detail:
+      "A face-tracking model watches engagement in real time (entirely on your device). The instant focus drops below threshold, the lecture stops, holds, and waits for you to come back — no penalty, no lost place.",
+    accent: "var(--accent-adhd)",
+    glow: "var(--accent-adhd-glow)",
+    glyph: "◎",
+    /**
+     * The STANDARD player, deliberately — not the separate `adhd-demo` one.
+     *
+     * ADHD does not change what a lecture looks like; it changes what happens around it. Routing to
+     * a second player meant a visually different lesson AND a second component to keep in step,
+     * and it silently cost the ADHD learner the Gemini Live tutor, which only LessonPlayer wires up.
+     *
+     * So the ADHD track renders the ordinary lesson and layers its own behaviour on top —
+     * see components/adhd/AdhdLayer.tsx. AdhdLessonPlayer stays on disk and reachable, but nothing
+     * routes to it.
+     */
+    page: "demo",
+};

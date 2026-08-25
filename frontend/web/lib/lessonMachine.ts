@@ -37,6 +37,7 @@ export type PauseReason =
   | "draw" // drawing on the board
   | "checkpoint" // waiting on a checkpoint answer
   | "wrong-answer" // missed the teacher's question — offered a re-explanation
+  | "checkin" // a run of skipped beats — the companion has the floor until the learner comes back
   | "complete"; // lesson finished
 
 export type LessonState = {

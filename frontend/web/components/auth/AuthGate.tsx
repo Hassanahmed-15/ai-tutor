@@ -68,23 +68,41 @@ export function useAuth(): AuthValue {
  * has no dependency on knowing who you are.
  */
 export function AuthGate({ children }: { children: React.ReactNode }) {
-  const [state, setState] = useState<"loading" | "anon" | "onboarding" | "ready" | "disabled">("loading");
+  /**
+   * "disabled" and "unavailable" both render the app with no account chrome, and they are separate
+   * on purpose. "disabled" means the deployment genuinely has no database and never had accounts.
+   * "unavailable" means it should have them and the endpoint is not answering — which used to be
+   * indistinguishable from the first, so a broken backend presented itself as a deliberately
+   * auth-free build. Same pixels, different truth; only the second says anything.
+   */
+  const [state, setState] = useState<"loading" | "anon" | "onboarding" | "ready" | "disabled" | "unavailable">("loading");
   const [user, setUser] = useState<SessionUser | null>(null);
   const [profile, setProfile] = useState<LearnerProfile>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [noticeDismissed, setNoticeDismissed] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
       const res = await fetch("/api/auth/me", { cache: "no-store" });
-      const data = await res.json().catch(() => ({}));
+      /*
+       * `res.ok` FIRST. Without it a 404 HTML page fails .json(), the catch yields {}, and {} reads
+       * as `databaseConfigured: false` — so every auth control vanished silently and the app looked
+       * like it had been built without accounts. That is exactly what happened when a stale route
+       * cache 404'd every API endpoint: nothing on screen said anything was wrong.
+       */
+      if (!res.ok) return setState("unavailable");
+      const data = await res.json().catch(() => null);
+      if (!data) return setState("unavailable");
+      // Only an explicit answer from a healthy endpoint counts as "this deployment has no accounts".
       if (!data.databaseConfigured) return setState("disabled");
       if (!data.user) return setState("anon");
       setUser(data.user);
       setProfile(data.profile ?? null);
       setState(data.user.onboarded ? "ready" : "onboarding");
     } catch {
-      // A network failure must not lock a student out of a lesson they were mid-way through.
-      setState("disabled");
+      // Still degrades open — a network failure must not lock a student out of a lesson they were
+      // mid-way through — but it is reported now rather than mimicking a no-database deployment.
+      setState("unavailable");
     }
   }, []);
 
@@ -116,6 +134,28 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
           onClose={() => setSettingsOpen(false)}
           onSaved={refresh}
         />
+      )}
+
+      {/* Says the quiet part. The app still works — this is a notice, not a gate — but "we cannot
+          reach accounts right now" and "this build has no accounts" no longer look identical.
+          Dismissible, because a student mid-lecture does not need it a second time. */}
+      {state === "unavailable" && !noticeDismissed && (
+        <div className="fixed bottom-4 left-1/2 z-[100] w-[min(92vw,30rem)] -translate-x-1/2 rounded-[var(--radius)] border border-amber-400/30 bg-amber-500/10 px-4 py-3 backdrop-blur-xl">
+          <div className="flex items-start gap-3">
+            <p className="flex-1 text-[0.8rem] leading-relaxed text-amber-100/85">
+              <span className="font-bold">Accounts are unavailable.</span>{" "}
+              Signing in, settings and your saved learning profile can’t be reached — lessons still
+              work, but progress won’t be saved.
+            </p>
+            <button
+              type="button"
+              onClick={() => setNoticeDismissed(true)}
+              className="shrink-0 rounded-[var(--radius-sm)] px-2 py-0.5 text-[0.75rem] font-bold text-amber-200/70 transition-colors hover:text-amber-100"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
       )}
     </AuthContext.Provider>
   );

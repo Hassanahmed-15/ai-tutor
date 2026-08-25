@@ -2,6 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+// RELATIVE, not "@/lib/adhd/mouth". This module is pulled into the CJS test build, where the "@/"
+// alias has no runtime resolver — the existing "@/components/..." line above survives only because
+// it is `import type` and erases at compile time. A value import must be relative or two unrelated
+// test files fail with "Cannot find module".
+import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
 import {
   isDrawingRequest,
   PAUSE_LECTURE_TOOL,
@@ -115,6 +120,16 @@ export type UseGeminiLiveTutorOptions = {
   onResumeLecture?: () => void;
   alwaysOn?: boolean;
   adhdMode?: boolean;
+  /**
+   * Opens the session with the CASUAL check-in persona instead of the tutor one, and with
+   * `resume_lecture` as its only tool.
+   *
+   * Read at connect time, like every other option here, so flipping it on a live session does
+   * nothing — the caller must `stop()` and `start()` again to change persona. That is not a
+   * limitation to work around: the system instruction is fixed for the life of a Live socket, so a
+   * reconnect is the only honest way to change who is talking.
+   */
+  checkinMode?: boolean;
   boardTextOnly?: boolean;
   lectureControlTools?: boolean;
   startMuted?: boolean;
@@ -299,6 +314,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const micIntentRef = useRef<MicrophoneIntent | null>(null);
   if (micIntentRef.current === null) micIntentRef.current = new MicrophoneIntent(options.startMuted === true);
   const playingSourcesRef = useRef(new Set<AudioBufferSourceNode>());
+  /**
+   * A single node every reply chunk plays through, so the avatar's mouth follows the tutor's voice
+   * as well as the scripted narration.
+   *
+   * Per-chunk analysers would be wrong: replies arrive as a stream of short buffers, so the mouth
+   * would be re-attached and torn down several times a second. One persistent node on this context
+   * gives a continuous envelope across the whole reply.
+   */
+  const mouthBusRef = useRef<GainNode | null>(null);
+  const mouthTokenRef = useRef<MouthToken | undefined>(undefined);
   const nextPlayTimeRef = useRef(0);
   const responseInFlightRef = useRef(false);
   const turnCompleteRef = useRef(false);
@@ -373,6 +398,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     playingSourcesRef.current.clear();
     nextPlayTimeRef.current = audioContextRef.current?.currentTime ?? 0;
     setSpeaking(false);
+    // Interruption and teardown both land here. Detaching is idempotent — a token that no longer
+    // owns the analyser is ignored — so it is safe alongside the same call in `source.onended`.
+    detachMouthAnalyser(mouthTokenRef.current);
+    mouthTokenRef.current = undefined;
+    mouthBusRef.current = null;
   }, []);
 
   const finishTutorTurn = useCallback(() => {
@@ -458,13 +488,24 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const samples = base64ToFloat32(base64);
       const buffer = context.createBuffer(1, samples.length, OUTPUT_SAMPLE_RATE);
       buffer.copyToChannel(samples, 0);
+      // Build the mouth bus once per context, then route every chunk through it.
+      if (!mouthBusRef.current || mouthBusRef.current.context !== context) {
+        const bus = context.createGain();
+        bus.connect(context.destination);
+        mouthBusRef.current = bus;
+        mouthTokenRef.current = attachMouthAnalyser(context, bus);
+      }
       const source = context.createBufferSource();
       source.buffer = buffer;
-      source.connect(context.destination);
+      source.connect(mouthBusRef.current);
       source.onended = () => {
         playingSourcesRef.current.delete(source);
         if (playingSourcesRef.current.size === 0 && !responseInFlightRef.current) {
           setSpeaking(false);
+          // The reply is over — close the mouth rather than leaving it parked on the last chunk.
+          detachMouthAnalyser(mouthTokenRef.current);
+          mouthTokenRef.current = undefined;
+          mouthBusRef.current = null;
           scheduleSettle();
         }
       };
@@ -851,6 +892,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         lessonContext: optionsRef.current.getLessonContext?.() ?? "",
         mood: optionsRef.current.mood ?? "",
         adhdMode: optionsRef.current.adhdMode === true,
+        checkinMode: optionsRef.current.checkinMode === true,
         examMode: optionsRef.current.examMode === true,
         examQuestions: optionsRef.current.examMode ? optionsRef.current.examQuestions ?? [] : undefined,
       }),
@@ -907,13 +949,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       });
       const builtInDeclarations = optionsRef.current.examMode
         ? []
-        : optionsRef.current.lectureControlTools
-          ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
-          : [SHOW_BOARD_TOOL];
-      const functionDeclarations = [
-        ...builtInDeclarations,
-        ...(optionsRef.current.customTools ?? []),
-      ];
+        // A check-in gets exactly one tool: the way back. No show_board, because the session has no
+        // lesson content to draw and offering the board invites her to start teaching; no
+        // pause_lecture, because the lecture is already paused and that is the whole premise.
+        : optionsRef.current.checkinMode
+          ? [RESUME_LECTURE_TOOL]
+          : optionsRef.current.lectureControlTools
+            ? [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL]
+            : [SHOW_BOARD_TOOL];
+      // Custom tools are deliberately withheld from a check-in. A caller that makes Gemini the
+      // orchestrator of the app (the voice-first mode) hands over navigation and lecture-control
+      // tools; handing those to the check-in persona would give her ways out of the conversation
+      // that bypass the learner agreeing to come back, which is the one thing it exists to require.
+      const functionDeclarations = optionsRef.current.checkinMode
+        ? builtInDeclarations
+        : [...builtInDeclarations, ...(optionsRef.current.customTools ?? [])];
 
       const session = (await client.live.connect({
         model: sessionData.model,
@@ -948,11 +998,26 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             setErrorMessage(event.message ?? "Gemini Live connection error.");
             teardown("error");
           },
-          onclose: () => {
-            if (!endedRef.current) {
-              setErrorMessage("Gemini Live disconnected.");
-              teardown("error");
-            }
+          /**
+           * REPORT THE SERVER'S REASON, not just the fact of a close.
+           *
+           * This said "Gemini Live disconnected." for every close, which is the one thing the user
+           * can already see. The actual cause arrives right here in `reason` — a policy close
+           * (code 1008) carries text like "Your project has been denied access", which is
+           * diagnosable in one read; "disconnected" sends you looking through the client for a bug
+           * that is not there. Codes 1000/1005 are ordinary end-of-session closes and have nothing
+           * worth reporting.
+           */
+          onclose: (event?: { code?: number; reason?: string }) => {
+            if (endedRef.current) return;
+            const reason = event?.reason?.trim();
+            const clean = event?.code === 1000 || event?.code === 1005;
+            setErrorMessage(
+              reason && !clean
+                ? `Gemini Live disconnected: ${reason}`
+                : "Gemini Live disconnected.",
+            );
+            teardown("error");
           },
         },
       })) as GeminiSession;
@@ -965,6 +1030,19 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         resetIdleTimer();
         const cap = optionsRef.current.examMode ? EXAM_MAX_SESSION_MS : MAX_SESSION_MS;
         maxTimerRef.current = setTimeout(() => teardown("timeout"), cap);
+      }
+      /*
+       * A check-in must OPEN the conversation, never wait to be spoken to.
+       *
+       * The learner arrived here by disengaging; a silent overlay waiting for them to talk first is
+       * the same dead air they were already skipping through, and they will simply sit in it. Aria
+       * speaks the moment the socket is up, exactly as she does for an oral exam.
+       */
+      if (optionsRef.current.checkinMode) {
+        markTutorActive();
+        session.sendRealtimeInput({
+          text: "The lecture is paused and you are with the student now. Greet them warmly and ask how they're doing — one or two sentences, nothing about the lesson.",
+        });
       }
       if (optionsRef.current.examMode) {
         markTutorActive();

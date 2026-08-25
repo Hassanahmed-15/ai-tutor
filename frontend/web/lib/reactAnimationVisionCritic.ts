@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import { createElement, type ReactNode } from "react";
 import type { Beat } from "./lessonContent";
 import { ANIM_SANDBOX_RUNTIME } from "./anim/sandboxRuntime";
+import { costFor } from "./modelPricing";
 
 /**
  * Vision-based shape-recognizability critic for generated `reactAnimation` whiteboard SVGs.
@@ -34,15 +35,13 @@ import { ANIM_SANDBOX_RUNTIME } from "./anim/sandboxRuntime";
 const ENABLED = process.env.REACT_ANIMATION_VISION_CRITIC !== "0";
 const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
 const REJECT_BELOW = Number(process.env.REACT_ANIMATION_VISION_MIN_SCORE ?? 3); // 1-5 scale
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export function reactAnimationVisionCriticEnabled(): boolean {
   return ENABLED;
 }
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 // Lazily loaded so a missing/incompatible native binary or Babel bundle degrades this critic to a

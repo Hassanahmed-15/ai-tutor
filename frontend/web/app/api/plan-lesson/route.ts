@@ -9,6 +9,7 @@ import {
   type PlanningAngleId,
 } from "@/lib/planPrompt";
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
+import { costFor } from "@/lib/modelPricing";
 
 /**
  * Compact, planning-sized summary of an uploaded source document (PDF/PPTX) — just enough for
@@ -60,11 +61,9 @@ function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
 const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
 
 // gpt-4o-mini pricing (source: openai.com/api/pricing).
-const INPUT_PRICE = 0.15 / 1_000_000;
-const OUTPUT_PRICE = 0.60 / 1_000_000;
 
 function costUsd(usage: { prompt_tokens?: number; completion_tokens?: number } | undefined): number {
-  return usage ? (usage.prompt_tokens ?? 0) * INPUT_PRICE + (usage.completion_tokens ?? 0) * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 type ClarifyQuestion = { question: string; options: string[] };

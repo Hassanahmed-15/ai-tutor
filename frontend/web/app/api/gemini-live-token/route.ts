@@ -21,6 +21,7 @@ export async function POST(request: Request) {
   const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 20_000) : "";
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 500) : "";
   const adhdMode = body.adhdMode === true;
+  const checkinMode = body.checkinMode === true;
   const examMode = body.examMode === true;
   const examQuestions = examMode && Array.isArray(body.examQuestions)
     ? body.examQuestions
@@ -66,7 +67,7 @@ export async function POST(request: Request) {
       {
         token: data.name,
         model: GEMINI_LIVE_MODEL,
-        instructions: buildGeminiLiveInstructions({ topic, beatContext, lessonContext, mood, adhdMode, examQuestions }),
+        instructions: buildGeminiLiveInstructions({ topic, beatContext, lessonContext, mood, adhdMode, checkinMode, examQuestions }),
       },
       { headers: { "Cache-Control": "no-store" } },
     );

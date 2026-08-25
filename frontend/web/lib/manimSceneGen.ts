@@ -3,6 +3,7 @@ import type { Beat } from "./lessonContent";
 import { MANIM_SCENE_SYSTEM_PROMPT } from "./drawPrompt";
 import { validateManimSceneSpec, type ManimSceneSpec } from "./manimSceneSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import { costFor } from "./modelPricing";
 
 type DrawOp = DrawScript["ops"][number];
 type ManimSceneOp = Extract<DrawOp, { kind: "manimScene" }>;
@@ -29,8 +30,6 @@ const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_MANIM
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_MANIM_SCENE_ATTEMPTS ?? 2)));
 
 // Same gpt-4o-era rates the other generators assume; override models may differ.
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export type ManimSceneFillStats = {
   costUsd: number;
@@ -48,7 +47,7 @@ export type ManimSceneFillUpdate = {
 };
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 export function findManimSceneOp(draw: DrawScript | undefined): ManimSceneOp | null {

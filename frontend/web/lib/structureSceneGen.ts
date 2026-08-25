@@ -3,6 +3,7 @@ import type { Beat } from "./lessonContent";
 import { STRUCTURE_SCENE_SYSTEM_PROMPT } from "./drawPrompt";
 import { validateStructureSpec, type StructureSpec } from "./structureSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import { costFor } from "./modelPricing";
 
 type DrawOp = DrawScript["ops"][number];
 type StructureSceneOp = Extract<DrawOp, { kind: "structureScene" }>;
@@ -27,8 +28,6 @@ const MODEL = process.env.OPENAI_STRUCTURE_MODEL ?? process.env.OPENAI_LECTURE_M
 const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_STRUCTURE_MAX_TOKENS ?? 1_200)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_STRUCTURE_ATTEMPTS ?? 2)));
 
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export type StructureFillStats = {
   costUsd: number;
@@ -39,7 +38,7 @@ export type StructureFillStats = {
 };
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 export function findStructureSceneOp(draw: DrawScript | undefined): StructureSceneOp | null {

@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
 import { boardToSvg } from "./boardSvgSerializer";
+import { costFor } from "./modelPricing";
 
 /**
  * Vision board critic — the Clarix-paper idea (multimodal LLMs read boards at F1≈0.85 vs OCR≈0.33):
@@ -18,15 +19,13 @@ import { boardToSvg } from "./boardSvgSerializer";
 const ENABLED = process.env.BOARD_VISION_CRITIC !== "0";
 const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
 const REJECT_BELOW = Number(process.env.BOARD_VISION_MIN_SCORE ?? 3); // 1-5 scale; reject if below
-const INPUT_PRICE = 2.5 / 1_000_000;
-const OUTPUT_PRICE = 10.0 / 1_000_000;
 
 export function boardVisionCriticEnabled(): boolean {
   return ENABLED;
 }
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
-  return usage ? usage.prompt_tokens * INPUT_PRICE + usage.completion_tokens * OUTPUT_PRICE : 0;
+  return costFor(MODEL, usage);
 }
 
 // Lazily load the native rasterizer so a missing/incompatible binary degrades gracefully (same

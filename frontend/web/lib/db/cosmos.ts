@@ -24,6 +24,17 @@ import { CosmosClient, type Container } from "@azure/cosmos";
 const DATABASE_ID = "aria";
 export const USERS_CONTAINER = "users";
 export const SESSIONS_CONTAINER = "sessions";
+export const LEADERBOARD_CONTAINER = "leaderboard";
+export const THOUGHTS_CONTAINER = "thoughts";
+
+/**
+ * One board, so `board` is a constant rather than a real dimension.
+ *
+ * That is deliberate: it makes every read name its partition. A leaderboard query that cannot name
+ * one fans out across all of them, which is the single most common way a Cosmos bill and its latency
+ * both go wrong — and a leaderboard is read on every visit to the prompt page.
+ */
+export const ADHD_BOARD = "adhd";
 
 /**
  * The one accessibility profile a learner is currently using.
@@ -85,6 +96,42 @@ export type UserDoc = {
   } | null;
 };
 
+/**
+ * One row per ADHD learner. `id` is the user id, so a session-end write is an upsert rather than a
+ * read-modify-write, and a learner can never end up with two rows.
+ *
+ * Only ADHD learners are ever written here — the API enforces that server-side, because a check that
+ * only exists in the client is not a check.
+ */
+/**
+ * A thought a learner parked mid-lecture.
+ *
+ * Partitioned by `/userId` rather than by a single constant like the leaderboard: every read is
+ * "this learner's thoughts", so the partition key and the query filter are the same thing, and one
+ * learner's list can never cost a cross-partition fan-out over everyone else's.
+ */
+export type ThoughtDoc = {
+  id: string;
+  /** The partition key, and the only learner allowed to read or delete it. */
+  userId: string;
+  text: string;
+  /** The lesson it interrupted, so the dashboard can say where it came from. */
+  topic: string | null;
+  createdAt: string;
+};
+
+export type LeaderboardDoc = {
+  id: string;
+  /** Always ADHD_BOARD. The partition key. */
+  board: string;
+  username: string;
+  displayName: string | null;
+  /** Accumulated across sessions. */
+  xp: number;
+  sessions: number;
+  updatedAt: string;
+};
+
 export type SessionDoc = {
   id: string;
   tokenHash: string;
@@ -115,6 +162,14 @@ export function users(): Container {
   return client().database(DATABASE_ID).container(USERS_CONTAINER);
 }
 
+export function leaderboard(): Container {
+  return client().database(DATABASE_ID).container(LEADERBOARD_CONTAINER);
+}
+
+export function thoughts(): Container {
+  return client().database(DATABASE_ID).container(THOUGHTS_CONTAINER);
+}
+
 export function sessionsContainer(): Container {
   return client().database(DATABASE_ID).container(SESSIONS_CONTAINER);
 }
@@ -142,6 +197,16 @@ export async function ensureContainers(): Promise<void> {
     partitionKey: { paths: ["/tokenHash"] },
     // TTL enabled so expired sessions delete themselves instead of accumulating forever.
     defaultTtl: -1,
+  });
+  await database.containers.createIfNotExists({
+    id: LEADERBOARD_CONTAINER,
+    // Partitioned by the board name, so reading the board is a single-partition query. See ADHD_BOARD.
+    partitionKey: { paths: ["/board"] },
+  });
+  await database.containers.createIfNotExists({
+    id: THOUGHTS_CONTAINER,
+    // Partitioned by learner: a learner's list is one partition, and never a fan-out over everyone.
+    partitionKey: { paths: ["/userId"] },
   });
   ensured = true;
 }
