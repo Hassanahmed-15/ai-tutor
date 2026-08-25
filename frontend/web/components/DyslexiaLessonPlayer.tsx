@@ -14,6 +14,8 @@ import {
   type ReadingLevel,
 } from "@/lib/dyslexiaLectureContent";
 import { heuristicChunks } from "@/lib/dyslexiaChunking";
+import { prefsToCssVars, TINT_COLORS, useDyslexiaPrefs } from "@/lib/dyslexiaPrefs";
+import { ComfortControls } from "./dyslexia/ComfortControls";
 import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
@@ -35,7 +37,6 @@ import { HudCorners } from "./hud/HudKit";
  * splits into short lines as the font morphs -> each line gets an icon as it's narrated ->
  * the read-level dial calibrates -> final state of short lines + icons, audio-led.
  */
-const READ_LEVEL_KEY = "aria.dyslexia.readlevel";
 /**
  * How long the opening dense/calibrating moment may wait for the model's rewrite.
  *
@@ -45,16 +46,6 @@ const READ_LEVEL_KEY = "aria.dyslexia.readlevel";
 const REWRITE_GRACE_MS = 2800;
 type Phase = "dense" | "calibrating" | "chunks";
 
-function loadReadLevel(): ReadingLevel {
-  if (typeof window === "undefined") return "simple";
-  try {
-    const v = localStorage.getItem(READ_LEVEL_KEY);
-    return v && (READING_LEVELS as string[]).includes(v) ? (v as ReadingLevel) : "simple";
-  } catch {
-    return "simple";
-  }
-}
-
 export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -63,8 +54,14 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   const [checkpointResult, setCheckpointResult] = useState<CheckpointResult>(null);
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
 
-  // The student's measured/selected reading level (the "read level" dial), persisted.
-  const [readLevel, setReadLevel] = useState<ReadingLevel>(loadReadLevel);
+  /**
+   * Reading level and comfort settings, from one persisted store.
+   *
+   * The level used to live in its own localStorage key. It now shares the comfort preferences —
+   * they are all "how this student wants to read", and two keys for one idea is how they drift.
+   */
+  const { prefs, update: updatePrefs, reset: resetPrefs } = useDyslexiaPrefs();
+  const readLevel = prefs.readLevel;
   // Per-beat reveal: dense sentence -> calibrating dial -> chunked lines.
   const [phase, setPhase] = useState<Phase>("dense");
   // Which chunk lines are currently revealed/narrated (0..n).
@@ -147,15 +144,6 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
     pausePlayer: stopVoice,
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
-
-  function persistReadLevel(level: ReadingLevel) {
-    setReadLevel(level);
-    try {
-      localStorage.setItem(READ_LEVEL_KEY, level);
-    } catch {
-      /* ignore */
-    }
-  }
 
   /**
    * Fetch this beat's rewrite, and warm the next one.
@@ -379,7 +367,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   }
 
   function changeReadLevel(level: ReadingLevel) {
-    persistReadLevel(level);
+    updatePrefs({ readLevel: level });
     // Re-run the current beat at the new level so the effect re-chunks.
     stopVoice();
     clearTimers();
@@ -392,7 +380,10 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   const statusText = speaking ? "reading to you" : isCheckpoint ? "your turn" : phase === "calibrating" ? "checking your reading level" : "making it simpler";
 
   return (
-    <main className="font-dyslexic hud-canvas hud-grain relative h-screen overflow-hidden">
+    <main
+      className="font-dyslexic hud-canvas hud-grain relative h-screen overflow-hidden"
+      style={prefsToCssVars(prefs)}
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_0%,rgba(251,146,60,0.16),transparent_34%),radial-gradient(circle_at_88%_14%,rgba(217,119,87,0.14),transparent_34%),linear-gradient(180deg,#100a06_0%,#0a0603_74%)]" />
 
       <div className="absolute inset-0 flex flex-col gap-3 p-3 lg:p-5">
@@ -434,8 +425,17 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
           </div>
         </header>
 
-        {/* Read-level dial — student-controllable, also auto-calibrates per beat */}
-        <ReadLevelDial level={readLevel} calibrating={phase === "calibrating"} onChange={changeReadLevel} />
+        {/* Read-level dial — student-controllable, also auto-calibrates per beat. The comfort
+            controls sit beside it: both answer "how do you want to read this?", so separating them
+            would mean hunting in two places. */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <ReadLevelDial level={readLevel} calibrating={phase === "calibrating"} onChange={changeReadLevel} />
+          </div>
+          <div className="shrink-0 pt-1">
+            <ComfortControls prefs={prefs} update={updatePrefs} reset={resetPrefs} />
+          </div>
+        </div>
 
         {voiceBlocked && (
           <div className="flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3">
@@ -477,6 +477,23 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
               <div className="grid place-items-center p-6 lg:p-10">
                 <p className="text-center text-2xl font-black text-white/80">{beat.title}</p>
               </div>
+            )}
+
+            {/* Page tint.
+                Scoped to the lesson stage rather than <main>, so it never washes out the chat panel
+                or the hand-drawn board — those are not what anyone is decoding. `multiply` keeps the
+                text darker than the wash instead of veiling it, and pointer-events-none means the
+                overlay cannot swallow a click meant for the stage. */}
+            {prefs.tint !== "none" && (
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-20"
+                style={{
+                  background: TINT_COLORS[prefs.tint],
+                  opacity: prefs.tintOpacity,
+                  mixBlendMode: "multiply",
+                }}
+              />
             )}
 
             {chat.explainBoard && (

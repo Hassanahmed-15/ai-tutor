@@ -700,12 +700,18 @@ textarea {
    carefully-sized/positioned text baked into each scene; overriding their font broke
    layout (text overflowing its shapes) without helping readability, since those labels are
    short callouts, not body text the student needs to decode. */
+/* The three spacing values are variables, not constants, because the student can adjust them.
+   Spacing has better evidence behind it than the typeface itself does, and preference varies a lot
+   person to person — so these are controls, with the old hardcoded numbers as the defaults. Written
+   as var(--x, fallback) so the rule still works anywhere the variables are not set.
+   The font is a variable too: OpenDyslexic helps many readers and suits some no better than a plain
+   sans, and being unable to turn it off makes the track unusable for them. */
 .font-dyslexic,
 .font-dyslexic *:not(svg *) {
-  font-family: "OpenDyslexic", "Comic Sans MS", var(--font-body), sans-serif !important;
-  letter-spacing: 0.02em;
-  word-spacing: 0.08em;
-  line-height: 1.7;
+  font-family: var(--dys-font-family, "OpenDyslexic", "Comic Sans MS", var(--font-body), sans-serif) !important;
+  letter-spacing: var(--dys-letter-spacing, 0.02em);
+  word-spacing: var(--dys-word-spacing, 0.08em);
+  line-height: var(--dys-line-height, 1.7);
 }
 
 /* Dyslexia track: the dense->chunk text-splitting reveal */
