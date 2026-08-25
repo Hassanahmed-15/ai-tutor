@@ -77,6 +77,16 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
    * highlights when it is the line being read.
    */
   const [spokenWord, setSpokenWord] = useState<{ line: number; word: number }>({ line: -1, word: -1 });
+  /**
+   * How far through the beat the narration is, 0..1.
+   *
+   * THE MISSING DIAGRAMS. `Board` takes an optional `drawProgress` and this player never passed it,
+   * so it defaulted to 0 — and the spec-driven boards SEEK their timeline to that value rather than
+   * playing on their own clock. An ELK structure diagram was therefore drawn at 0% and stayed
+   * blank, as did the plot and equation boards. Standard mode drives this from the same narration
+   * callback; this track simply never wired it up.
+   */
+  const [drawProgress, setDrawProgress] = useState(0);
   /** The word the student tapped, if any. */
   const [wordHelp, setWordHelp] = useState<WordHelpTarget | null>(null);
   /** Whether the beat narration was paused BY the popover, so it is only resumed if it was. */
@@ -244,6 +254,8 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
     const t = setTimeout(() => {
       setPhase("dense");
       setRevealed(0);
+      // A new beat starts an undrawn board; without this the next diagram opens already finished.
+      setDrawProgress(0);
     }, 0);
     return () => clearTimeout(t);
   }, [index, clearTimers]);
@@ -291,9 +303,12 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
       const handle = playNarration(fullText, {
         onStart: () => setSpeaking(true),
         onSentenceStart: (sentenceIndex) => setRevealed(sentenceIndex + 1),
+        onProgress: (progress) => setDrawProgress(Math.max(0, progress)),
         onWordStart: (wordIndex, sentenceIndex) => setSpokenWord({ line: sentenceIndex, word: wordIndex }),
         onEnd: () => {
           setSpeaking(false);
+          // The board follows the voice, so when the voice is done the diagram is done.
+          setDrawProgress(1);
           // Clear the highlight — a word left lit after the voice stops reads as stuck.
           setSpokenWord({ line: -1, word: -1 });
           cancelRef.current = null;
@@ -512,7 +527,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
                 </div>
               </div>
             ) : hasLines ? (
-              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} spokenWord={spokenWord} onWordTap={openWordHelp} />
+              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} spokenWord={spokenWord} onWordTap={openWordHelp} drawProgress={drawProgress} />
             ) : (
               <div className="grid place-items-center p-6 lg:p-10">
                 <p className="text-center text-2xl font-black text-white/80">{beat.title}</p>
@@ -579,7 +594,9 @@ function BeatStage({
   speaking,
   spokenWord,
   onWordTap,
+  drawProgress,
 }: {
+  drawProgress: number;
   spokenWord: { line: number; word: number };
   onWordTap: (word: string, sentence: string) => void;
   beat: Beat;
@@ -615,7 +632,7 @@ function BeatStage({
         {/* Capped to the diagrams' native ~900:560 ratio so the hand-drawn scenes (which
          *  stretch to fill their box on both axes) don't distort in this split-panel. */}
         <div className="aspect-[900/560] h-full max-h-full w-full max-w-full">
-          <Board key={beat.id} beat={beat} sentenceCue={boardCue} />
+          <Board key={beat.id} beat={beat} sentenceCue={boardCue} drawProgress={drawProgress} />
         </div>
       </div>
       <div className="flex min-h-0 flex-col justify-center gap-3 overflow-y-auto p-5 lg:p-7">
