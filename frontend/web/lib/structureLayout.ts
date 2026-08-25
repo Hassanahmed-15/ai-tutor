@@ -246,9 +246,23 @@ export async function layoutStructure(spec: StructureSpec): Promise<StructureLay
     // stops a three-node graph from becoming cartoonish.
     const rawW = Math.max(1, res.width ?? 1);
     const rawH = Math.max(1, res.height ?? 1);
-    const scale = Math.max(
-      0.5,
-      Math.min((BOARD_W - PADDING * 2) / rawW, (BOARD_H - PADDING * 2) / rawH, 2.2),
+    /*
+     * Fit, and never refuse to fit.
+     *
+     * This used to floor the scale at 0.5, which meant a graph more than twice the board's size was
+     * drawn at 0.5 anyway and hung out over both edges — measured: a 2200-wide layout drew 1100px
+     * into a 1000px board, so the first and last nodes were sliced in half. Reported as exactly
+     * that: "AWS" cut off on the left and "Access from Anywhere" on the right.
+     *
+     * The floor was there to stop a big graph becoming unreadably small, but a node that is off the
+     * board is not readable at any size. Legibility is defended by the font fitter below and by the
+     * spec's node cap, not by refusing to shrink. Scaling UP is still capped, so a three-node graph
+     * does not become cartoonish.
+     */
+    const scale = Math.min(
+      (BOARD_W - PADDING * 2) / rawW,
+      (BOARD_H - PADDING * 2) / rawH,
+      2.2,
     );
     const offsetX = (BOARD_W - rawW * scale) / 2;
     const offsetY = (BOARD_H - rawH * scale) / 2;

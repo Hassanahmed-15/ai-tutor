@@ -106,8 +106,22 @@ export function CheckinOverlay({
           </>
         )}
 
-        {/* Only ever rendered when the conversation itself is impossible. See the header note. */}
-        {fallback && (
+        {/*
+          * The manual way back, once Aria has invited them.
+          *
+          * Resuming used to depend ENTIRELY on the model calling its `resume_lecture` tool, with a
+          * button offered only when the live session was impossible. Reported from production, and
+          * visible in the transcript: Aria said "Okay, sure, if you're ready" and never called the
+          * tool, so the overlay had no exit at all — a learner who had already agreed out loud sat
+          * looking at a screen with nothing on it but a microphone toggle.
+          *
+          * Deliberately NOT shown during "chatting". The two-minute floor is the point of the
+          * feature — a button there would let someone click straight past the conversation the
+          * check-in exists to have. Once the phase is "closing" the invitation has been made, so
+          * a way to accept it by hand costs nothing and is the difference between a soft lock and
+          * a lesson.
+          */}
+        {(fallback || phase === "closing") && (
           <button
             onClick={onManualResume}
             className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-slate-950 transition"

@@ -422,9 +422,6 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
             ? visibleElapsed - t.startMs < t.windowMs
             : visibleElapsed - t.startMs < STROKE_WINDOW
     );
-  const penAnchor = drawingNow
-    ? anchorOf(drawingNow.op, visibleElapsed, drawingNow.startMs, drawingNow.windowMs, duration, paperSurface)
-    : null;
   const progressValue = Math.min(1, visibleElapsed / duration);
 
   // Camera: interpolate between the frame the previous focus op established and the one the
@@ -506,7 +503,10 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
         {visibleDrawing.map((t) => (
           <OpRenderer key={t.i} op={t.op} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
         ))}
-        {penAnchor && <Pen x={penAnchor.x} y={penAnchor.y} />}
+        {/* The pen nib is gone deliberately. The DRAWING is the point — strokes appearing and text
+            being written on — and a glowing stylus hovering over it is decoration that competes with
+            what the student is meant to be reading. Removing it changes nothing about how anything
+            appears; `Pen` and `anchorOf` are kept because other surfaces may want a cursor later. */}
       </svg>
 
       <span className={`hud-eyebrow pointer-events-none absolute right-3 top-3 z-20 rounded-full px-3 py-1.5 text-xs shadow-2xl backdrop-blur-md sm:right-4 sm:top-4 sm:px-4 sm:py-2 sm:text-sm ${
