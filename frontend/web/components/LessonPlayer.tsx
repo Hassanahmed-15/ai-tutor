@@ -53,6 +53,13 @@ const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED ==
  * effectively instant on a developer machine.
  */
 const CHECKIN_RECONNECT_GAP_MS = 250;
+/**
+ * How many times a dropped check-in socket is re-dialled before offering the manual way back.
+ *
+ * Gemini Live drops sessions on its own. Three attempts covers the ordinary case without spinning
+ * forever on a session that genuinely cannot stay open.
+ */
+const MAX_CHECKIN_RECONNECTS = 3;
 // Sustained attention drift must persist this long before the lesson reacts, so a brief glance
 // away never stops the lecture; the board then freezes for a beat before offering Resume.
 const DRIFT_HOLD_MS = 2000;
@@ -352,6 +359,8 @@ export function LessonPlayer({
    */
   /** The beat index whose checkpoint a check-in suppressed, so it can be restored on close. */
   const checkinStoleCheckpointRef = useRef<number | null>(null);
+  /** Reconnect attempts spent on the current check-in, reset when one opens. */
+  const checkinReconnectsRef = useRef(0);
   const checkinRef = useRef<null | "chatting" | "closing">(null);
   useEffect(() => {
     checkinRef.current = checkin;
@@ -407,7 +416,34 @@ export function LessonPlayer({
       if (checkinRef.current) {
         // Unless WE closed it, to change persona — that teardown is a step in opening the check-in,
         // not the check-in failing.
-        if (!checkinRestartRef.current) setCheckinFallback(true);
+        if (checkinRestartRef.current) return;
+
+        /*
+         * A DROPPED SOCKET IS NOT THE END OF THE CONVERSATION.
+         *
+         * Gemini Live closes sessions on its own — routinely, and more often over a real network
+         * than on a developer machine. There was no reconnect at all: one close and the check-in
+         * gave up, leaving the learner with a manual button and the distinct impression that Aria
+         * had hung up on them. Reported as "gemini keeps getting disconnected a lot".
+         *
+         * So a drop reconnects, up to a few times, and only then falls back to the manual control.
+         * The attempts are counted rather than unlimited: a socket that cannot stay open is a real
+         * failure and the learner deserves a way out rather than a spinner that never settles.
+         */
+        if (checkinReconnectsRef.current >= MAX_CHECKIN_RECONNECTS) {
+          setCheckinFallback(true);
+          return;
+        }
+        checkinReconnectsRef.current += 1;
+        checkinRestartRef.current = true;
+        window.setTimeout(() => {
+          checkinRestartRef.current = false;
+          // The learner may have resumed while this was pending; do not dial into a closed check-in.
+          if (!checkinRef.current) return;
+          setSessionActive(true);
+          tutorRef.current.setMicEnabled(true);
+          void tutorRef.current.start();
+        }, CHECKIN_RECONNECT_GAP_MS);
         return;
       }
       lesson.requestResume();
@@ -478,15 +514,19 @@ export function LessonPlayer({
       }
     },
     /**
-     * The learner said yes.
+     * The learner said yes — and that is always enough.
      *
-     * This is the ONLY door out of a check-in, which is what makes the overlay a conversation rather
-     * than a wait. It is refused during "chatting": the two-minute floor is enforced here, in code,
-     * rather than trusted to the model honouring its instruction not to ask early.
+     * This used to be REFUSED during the first two minutes: the floor was enforced here in code, so
+     * a learner who said "resume the lecture" thirty seconds in was ignored, and Aria carried on
+     * chatting at someone who had already asked to leave. Reported as exactly that, and it is the
+     * wrong trade. The floor exists to stop ARIA cutting the conversation short, not to hold a
+     * student in one against their will.
+     *
+     * So the two minutes now govern only when Aria may INVITE them back (the cue timer below).
+     * Asking to go, at any moment, works immediately.
      */
     onResumeLecture: () => {
       if (checkinRef.current) {
-        if (checkinRef.current === "chatting") return;
         endCheckin();
         return;
       }
@@ -714,6 +754,7 @@ export function LessonPlayer({
     setCheckinFallback(false);
     // Written synchronously as well as through state: a socket callback can fire before React has
     // committed, and every guard below reads the ref.
+    checkinReconnectsRef.current = 0;
     checkinRef.current = "chatting";
     setCheckin("chatting");
     lesson.pause("checkin");
@@ -1283,6 +1324,19 @@ export function LessonPlayer({
     lesson.startTeaching();
   }
   function skipForward() {
+    /*
+     * A pending assessment is not skippable.
+     *
+     * The maze appeared "sometimes" because skipping walked straight past it. The checkpoint
+     * cadence and the skip run are both three, so a learner skipping repeatedly lands ON a maze beat
+     * and then skips off it before it is answered — the question is due, it mounts, and the next tap
+     * of the same button advances past it. From the outside that reads as Aria arbitrarily choosing
+     * to skip the assessment.
+     *
+     * The maze owns the beat while it is up, exactly as the check-in overlay owns the pause. Answer
+     * it — right or wrong, both advance — and skipping works again immediately afterwards.
+     */
+    if (mcqRef.current) return;
     // The disengagement signal, and the only thing that subtracts XP.
     if (index < beats.length - 1) emitAdhdEvent({ type: "beat-skipped" });
     if (index < beats.length - 1) goTo(index + 1);
