@@ -9,7 +9,8 @@ import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
 import { TestOralView } from "@/components/TestOralView";
 import { TestResultsView } from "@/components/TestResultsView";
-import { TRACKS, type TrackMeta } from "@/components/hud/tracks";
+import { trackForProfile, type TrackMeta } from "@/components/hud/tracks";
+import { useAuth } from "@/components/auth/AuthGate";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import { PageSelector, type DocumentPage, type NormalisedRect, type PageSelection } from "@/components/upload/PageSelector";
@@ -201,10 +202,21 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const buildAbortRef = useRef<AbortController | null>(null);
 
 
-  // The standard lecture is the only mode offered. Kept as a named constant rather than inlined
-  // because it still supplies the `mood` string handed to lecture generation — changing that
-  // string would change the prompt the pipeline receives.
-  const selectedMode = TRACKS[0];
+  /**
+   * The lecture mode, chosen by the learner's stored accessibility profile.
+   *
+   * This was hardcoded to `TRACKS[0]`, which meant a student who selected "I have dyslexia" during
+   * onboarding got the identical Standard lecture as everyone else — the profile was written to the
+   * database and then read by nothing. The `case "dyslexia-demo"` further down was correct, live
+   * code that could never execute.
+   *
+   * `trackForProfile` returns Standard for anyone signed out, without a profile, or on a profile
+   * whose player is not yet ready for generated beats, so the default path is untouched. It also
+   * still supplies the `mood` string handed to generation — that string now varies for a routed
+   * profile, which is intended.
+   */
+  const { profile } = useAuth();
+  const selectedMode = trackForProfile(profile?.accessibility);
 
   useEffect(() => {
     return () => {

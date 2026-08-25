@@ -93,3 +93,28 @@ export const PLANNED_TRACKS: TrackMeta[] = [
     page: "dyslexia-demo",
   },
 ];
+
+/**
+ * Accessibility profiles that route to their own player for a GENERATED lecture.
+ *
+ * Deliberately narrow. Every planned track above has a player on disk, but only the dyslexia one
+ * has been made to survive an arbitrary beat — the rest still read from hand-authored content keyed
+ * by the twelve demo beat ids, so pointing a real lecture at them would reproduce exactly the freeze
+ * this set exists to avoid. Widening it later is one entry, once that player has been given the same
+ * treatment.
+ *
+ * `blind` and `low-vision` are absent on purpose: they are handled far earlier, by VoiceModeSwitch
+ * in app/page.tsx, which replaces the whole router rather than choosing a player.
+ */
+const PROFILE_ROUTED_TRACKS = new Set(["dyslexia"]);
+
+/**
+ * The track a learner's stored accessibility profile should open.
+ *
+ * Returns the Standard track for anyone signed out, without a profile, or on a profile whose player
+ * is not ready — so the default path is unchanged for everyone it does not apply to.
+ */
+export function trackForProfile(accessibility?: string | null): TrackMeta {
+  if (!accessibility || !PROFILE_ROUTED_TRACKS.has(accessibility)) return TRACKS[0];
+  return [...TRACKS, ...PLANNED_TRACKS].find((track) => track.id === accessibility) ?? TRACKS[0];
+}

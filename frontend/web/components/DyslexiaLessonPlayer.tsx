@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { Board, AvatarRing, checkAnswer, MAX_ATTEMPTS, type CheckpointResult } from "./LessonPlayer";
@@ -13,6 +13,7 @@ import {
   type DyslexiaChunk,
   type ReadingLevel,
 } from "@/lib/dyslexiaLectureContent";
+import { heuristicChunks } from "@/lib/dyslexiaChunking";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 
@@ -65,8 +66,28 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   const phaseTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const beat = beats[index];
   const isCheckpoint = beat.slideKind === "checkpoint";
-  const content = dyslexiaBeatContent[beat.id];
-  const chunks: DyslexiaChunk[] = content ? content.chunks[readLevel] : [];
+  /**
+   * Lines for this beat, from the best source available.
+   *
+   * THE FREEZE THIS FIXES. This used to be `dyslexiaBeatContent[beat.id]` alone — a hand-authored
+   * map keyed by the twelve demo beat ids. A generated lecture has ids like `pdf-1`, so the lookup
+   * returned undefined, the narration effect below returned early on `!content`, and the lesson sat
+   * on beat one with no audio and no way forward. The student saw a title on an empty panel and a
+   * header that read "making it simpler…" indefinitely.
+   *
+   * So the map becomes an override rather than the only source: it is still preferred where it
+   * exists, because those twelve beats are hand-tuned, and everything else falls back to splitting
+   * the beat's own script. That fallback needs no network and cannot fail, which is what makes the
+   * freeze structurally impossible rather than merely less likely.
+   */
+  const authored = dyslexiaBeatContent[beat.id];
+  const chunks: DyslexiaChunk[] = useMemo(
+    () => (authored ? authored.chunks[readLevel] : heuristicChunks(beat.script ?? "", readLevel)),
+    [authored, beat.script, readLevel],
+  );
+  /** The dense line shown before the split. Falls back to the beat's own opening sentence. */
+  const dense = authored?.dense ?? (beat.script ?? "").split(/(?<=[.!?])\s+/)[0] ?? beat.title;
+  const hasLines = chunks.length > 0;
 
   const clearTimers = useCallback(() => {
     phaseTimers.current.forEach((t) => clearTimeout(t));
@@ -110,7 +131,9 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   // then split into short chunk lines narrated one at a time. Audio-led: each line is spoken,
   // and revealing the next line follows the narration. Advances to the next beat at the end.
   useEffect(() => {
-    if (!playing || isCheckpoint || !content || chat.busy) return;
+    // `hasLines`, not `content`: a beat with no authored entry is now playable from its own script,
+    // and gating on the authored map is precisely what froze every generated lecture.
+    if (!playing || isCheckpoint || !hasLines || chat.busy) return;
     clearTimers();
 
     // Beat 1: dense sentence appears. Beat 4: read-level dial calibrates. Then chunks.
@@ -151,7 +174,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
       setSpeaking(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, playing, isCheckpoint, content, readLevel, chat.busy]);
+  }, [index, playing, isCheckpoint, hasLines, chunks, readLevel, chat.busy]);
 
   // Checkpoint beats: narrate the question, then wait for an answer (same as other tracks).
   useEffect(() => {
@@ -329,8 +352,8 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
                   </p>
                 </div>
               </div>
-            ) : content ? (
-              <BeatStage beat={beat} dense={content.dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} />
+            ) : hasLines ? (
+              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} />
             ) : (
               <div className="grid place-items-center p-6 lg:p-10">
                 <p className="text-center text-2xl font-black text-white/80">{beat.title}</p>
