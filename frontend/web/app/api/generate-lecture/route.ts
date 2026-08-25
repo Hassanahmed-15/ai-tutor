@@ -514,7 +514,16 @@ async function deepenLectureScripts(
     }
   }
 
-  throw new Error(lastError);
+  /*
+   * Out of attempts, but NOT out of a lecture.
+   *
+   * Every pass here rewrites scripts in place on `rawLecture`, so whatever the last attempt managed
+   * is already there — longer than what came in, even if it never cleared the floor. Throwing threw
+   * that away too, turning "not as deep as we wanted" into "no lesson at all" for a student who had
+   * been waiting minutes. The caller re-reads the beats and ships them.
+   */
+  console.warn(`[generate-lecture] deepening fell short after ${DEEPEN_ATTEMPTS} attempts: ${lastError}`);
+  return extraCostUsd;
 }
 
 function buildUserMessage(input: LectureBuildInput, retryGuidance: string): string {
@@ -696,9 +705,26 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
         applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
         dedupeBeatIdentity(beats);
-        // Same reasoning as above: deepening improves each beat's script, and a lecture that is
-        // still short afterwards is a short topic, not a failure.
-        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument), !!input.focus);
+        /*
+         * DO NOT THROW AFTER DEEPENING.
+         *
+         * The comment here already said a lecture still short after a deepen pass is a short topic
+         * rather than a failure — and then threw anyway, which is how a usable 111-word answer
+         * reached the student as "Model returned shallow PDF teaching beats (125 required)" after
+         * they had waited minutes for it. A depth floor is there to STEER generation, not to
+         * discard a finished lecture: one more retry has already been spent, the beats are complete
+         * and grounded, and slightly shorter beats are worth immeasurably more than an error
+         * message.
+         *
+         * The first check above still stands, and is what triggers the deepen pass. This one only
+         * reports.
+         */
+        const after = lectureDepthStats(beats);
+        if (after.avgTeachingWords < (input.focus ? FOCUSED_DEPTH_FLOOR_WORDS : DEPTH_FLOOR_WORDS)) {
+          console.warn(
+            `[generate-lecture] shipping at ${Math.round(after.avgTeachingWords)} words/beat after deepening — below the target, above nothing.`,
+          );
+        }
       }
 
       return { beats, textCost };
