@@ -14,6 +14,7 @@ import {
   type ReadingLevel,
 } from "@/lib/dyslexiaLectureContent";
 import { heuristicChunks } from "@/lib/dyslexiaChunking";
+import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 
@@ -35,6 +36,13 @@ import { HudCorners } from "./hud/HudKit";
  * the read-level dial calibrates -> final state of short lines + icons, audio-led.
  */
 const READ_LEVEL_KEY = "aria.dyslexia.readlevel";
+/**
+ * How long the opening dense/calibrating moment may wait for the model's rewrite.
+ *
+ * Matched to the 3s the screen already spends there, so nothing is slower than before — the pause
+ * simply stops being decorative.
+ */
+const REWRITE_GRACE_MS = 2800;
 type Phase = "dense" | "calibrating" | "chunks";
 
 function loadReadLevel(): ReadingLevel {
@@ -62,6 +70,17 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   // Which chunk lines are currently revealed/narrated (0..n).
   const [revealed, setRevealed] = useState(0);
 
+  /**
+   * Mirror of `revealed` for the rewrite effect.
+   *
+   * That effect is registered once per beat, so reading `revealed` from its closure would give the
+   * value at registration time — always 0 — and a rewrite arriving mid-narration would be swapped in
+   * exactly when it must not be.
+   */
+  const revealedRef = useRef(0);
+  /** Beats whose opening grace window has already been spent, so it runs at most once each. */
+  const rewriteWaitedRef = useRef<Set<string>>(new Set());
+
   const cancelRef = useRef<NarrationHandle | null>(null);
   const phaseTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const beat = beats[index];
@@ -81,13 +100,35 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
    * freeze structurally impossible rather than merely less likely.
    */
   const authored = dyslexiaBeatContent[beat.id];
-  const chunks: DyslexiaChunk[] = useMemo(
-    () => (authored ? authored.chunks[readLevel] : heuristicChunks(beat.script ?? "", readLevel)),
-    [authored, beat.script, readLevel],
+
+  /**
+   * The model's rewrite for this beat, once it arrives.
+   *
+   * Held in state rather than read from the cache during render so that a rewrite landing mid-beat
+   * re-renders the stage. `rewriteGeneration` exists only to force that re-read — the cache itself
+   * is not reactive.
+   */
+  const [rewriteGeneration, setRewriteGeneration] = useState(0);
+  const rewrite = useMemo(
+    () => (authored ? null : cachedRewrite(beat.id)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- rewriteGeneration is the cache signal
+    [authored, beat.id, rewriteGeneration],
   );
+
+  const chunks: DyslexiaChunk[] = useMemo(() => {
+    if (authored) return authored.chunks[readLevel];
+    if (rewrite?.chunks[readLevel]?.length) return rewrite.chunks[readLevel];
+    return heuristicChunks(beat.script ?? "", readLevel);
+  }, [authored, rewrite, beat.script, readLevel]);
+
   /** The dense line shown before the split. Falls back to the beat's own opening sentence. */
-  const dense = authored?.dense ?? (beat.script ?? "").split(/(?<=[.!?])\s+/)[0] ?? beat.title;
+  const dense =
+    authored?.dense ?? rewrite?.dense ?? (beat.script ?? "").split(/(?<=[.!?])\s+/)[0] ?? beat.title;
   const hasLines = chunks.length > 0;
+
+  useEffect(() => {
+    revealedRef.current = revealed;
+  }, [revealed]);
 
   const clearTimers = useCallback(() => {
     phaseTimers.current.forEach((t) => clearTimeout(t));
@@ -116,6 +157,61 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
     }
   }
 
+  /**
+   * Fetch this beat's rewrite, and warm the next one.
+   *
+   * ONLY SWAPPED IN BEFORE NARRATION STARTS. A rewrite that lands mid-beat would change the lines
+   * under a student who is part-way through hearing them, and would re-run the narration effect
+   * against different text — so an arriving rewrite is only allowed to take effect while nothing has
+   * been revealed yet. Otherwise it stays in the cache and is used the next time the beat is shown.
+   *
+   * Prefetching the following beat is what makes that almost always true: narration runs 15-40s and
+   * a rewrite takes 1-2s, so by the time the student arrives the lines are already there. In
+   * practice only the very first beat is ever taught from the local split.
+   */
+  useEffect(() => {
+    if (authored) return;
+    const controller = new AbortController();
+    let cancelled = false;
+
+    void fetchRewrite(
+      { beatId: beat.id, title: beat.title, script: beat.script ?? "", points: beat.points },
+      controller.signal,
+    ).then((result) => {
+      if (cancelled || !result) return;
+      // Only upgrade the text before narration has revealed anything. Mid-beat the student is
+      // part-way through hearing these exact lines, and swapping them would also re-run the
+      // narration effect against different text.
+      if (revealedRef.current === 0) setRewriteGeneration((n) => n + 1);
+    });
+
+    /**
+     * Re-read the cache on every beat change, even when nothing was fetched.
+     *
+     * The prefetch above means beat N+1's rewrite usually lands while beat N is still being taught —
+     * so by the time the student arrives it is sitting in the cache with no request in flight, and
+     * nothing would otherwise tell the component to look. Without this the rewrite is fetched,
+     * cached, and never shown, which is exactly what the first run did: two successful calls and
+     * heuristic lines on screen.
+     */
+    setRewriteGeneration((n) => n + 1);
+
+    const next = beats[index + 1];
+    if (next && !dyslexiaBeatContent[next.id]) {
+      void fetchRewrite({
+        beatId: next.id,
+        title: next.title,
+        script: next.script ?? "",
+        points: next.points,
+      });
+    }
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [authored, beat.id, beat.title, beat.script, beat.points, beats, index]);
+
   // Reset the per-beat reveal whenever the beat changes. The state writes run on a 0ms
   // timer so they're not synchronous in the effect body (avoids the cascading-render lint).
   useEffect(() => {
@@ -134,7 +230,30 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
     // `hasLines`, not `content`: a beat with no authored entry is now playable from its own script,
     // and gating on the authored map is precisely what froze every generated lecture.
     if (!playing || isCheckpoint || !hasLines || chat.busy) return;
+    let pendingGrace = false;
+
+    /**
+     * Hold the opening moment until the rewrite lands.
+     *
+     * The screen already pauses here — a dense line appears, then the reading-level dial animates —
+     * and that window used to be pure theatre, claiming to "check your reading level" while
+     * measuring nothing. It is now the window in which the model's rewrite arrives, so the wait buys
+     * something real and the student is taught from simplified language rather than a punctuation
+     * split of the original.
+     *
+     * Bounded, and only for a beat that has nothing cached: if the rewrite is slow or fails, the
+     * local split is already on screen and the lesson proceeds on time. Never applied once narration
+     * has begun.
+     */
+    if (!authored && !rewrite && revealedRef.current === 0 && !rewriteWaitedRef.current.has(beat.id)) {
+      rewriteWaitedRef.current.add(beat.id);
+      pendingGrace = true;
+    }
+
     clearTimers();
+    if (pendingGrace) {
+      phaseTimers.current.push(setTimeout(() => setRewriteGeneration((n) => n + 1), REWRITE_GRACE_MS));
+    }
 
     // Beat 1: dense sentence appears. Beat 4: read-level dial calibrates. Then chunks.
     phaseTimers.current.push(setTimeout(() => setPhase("calibrating"), 1500));
