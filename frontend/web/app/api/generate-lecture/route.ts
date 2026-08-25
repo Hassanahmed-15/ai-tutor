@@ -405,16 +405,32 @@ function applyScriptPatchesToRawLecture(rawLecture: unknown, patches: unknown) {
   }
 }
 
-function assertInputLectureDepth(beats: Beat[], pdfSource: boolean): void {
+/**
+ * How deep a beat must be, in spoken words.
+ *
+ * A FOCUSED LECTURE IS HELD TO A HIGHER FLOOR. When a student asks about one specific thing, the
+ * subject is narrower — and narrowing it is not permission to say less about it. The focused prompt
+ * already asks for 130-170 words a beat for exactly that reason, but the guard only enforced 100,
+ * so a model that answered at 94 passed and the answer came back thinner than the question
+ * deserved. Measured on a real focused build before this changed: median 94 words, min 82.
+ *
+ * The whole-document floor stays where it is. There a beat is one of a dozen covering a paper, and
+ * demanding 130 words of each would pad the survey rather than deepen it.
+ */
+const DEPTH_FLOOR_WORDS = 100;
+const FOCUSED_DEPTH_FLOOR_WORDS = 125;
+
+function assertInputLectureDepth(beats: Beat[], pdfSource: boolean, focused = false): void {
   if (!pdfSource) {
     assertLectureDepth(beats);
     return;
   }
   const stats = lectureDepthStats(beats);
   const maxShortBeats = Math.max(1, Math.floor(stats.teachingBeatCount * 0.15));
-  if (stats.avgTeachingWords < 100 || stats.shortTeachingBeatCount > maxShortBeats) {
+  const floor = focused ? FOCUSED_DEPTH_FLOOR_WORDS : DEPTH_FLOOR_WORDS;
+  if (stats.avgTeachingWords < floor || stats.shortTeachingBeatCount > maxShortBeats) {
     throw new Error(
-      `Model returned shallow PDF teaching beats (${Math.round(stats.avgTeachingWords)} words per teaching beat).`
+      `Model returned shallow PDF teaching beats (${Math.round(stats.avgTeachingWords)} words per teaching beat; ${floor} required).`
     );
   }
 }
@@ -425,7 +441,7 @@ async function deepenLectureScripts(
   mood: string,
   rawLecture: unknown,
   beats: Beat[],
-  options: { minUsableBeats?: number; pdfSource?: boolean } = {},
+  options: { minUsableBeats?: number; pdfSource?: boolean; focused?: boolean } = {},
 ): Promise<number> {
   let extraCostUsd = 0;
   let lastError = "Could not deepen the generated lecture.";
@@ -491,7 +507,7 @@ async function deepenLectureScripts(
         enforceDepth: false,
         minUsableBeats: options.minUsableBeats,
       });
-      assertInputLectureDepth(deepenedBeats, options.pdfSource === true);
+      assertInputLectureDepth(deepenedBeats, options.pdfSource === true, options.focused === true);
       return extraCostUsd;
     } catch (err) {
       lastError = err instanceof Error ? err.message : "Could not deepen the generated lecture.";
@@ -670,18 +686,19 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
 
       // Tally the text-generation cost from actual token usage.
       try {
-        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument));
+        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument), !!input.focus);
       } catch {
         textCost += await deepenLectureScripts(client, input.topic, input.mood, rawLecture, beats, {
           minUsableBeats,
           pdfSource: isPdfSource(input.sourceDocument),
+          focused: !!input.focus,
         });
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
         applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
         dedupeBeatIdentity(beats);
         // Same reasoning as above: deepening improves each beat's script, and a lecture that is
         // still short afterwards is a short topic, not a failure.
-        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument));
+        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument), !!input.focus);
       }
 
       return { beats, textCost };

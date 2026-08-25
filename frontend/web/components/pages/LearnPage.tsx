@@ -354,7 +354,20 @@ type BuildCost =
       // A deck without embedded pictures has no source document; its slide text is the source.
       if (!data.sourceDocument && typeof data.fullText === "string") setSlideContext(data.fullText);
 
-      const focus = pageSelection.prompt.trim();
+      /**
+       * The question, from wherever the student actually asked it.
+       *
+       * THE BUG THIS FIXES. This read `pageSelection.prompt` alone — the small box on the
+       * page-chooser. Someone who typed their question on the LANDING page (the main way in, and
+       * the one that says "Teach me anything") sent no focus at all, so `focusPassages` returned
+       * null, retrieval was skipped entirely, and the whole-document contract produced a survey of
+       * the paper instead of an answer. The question was captured, used as the lecture's TITLE, and
+       * then thrown away for the one purpose that mattered.
+       *
+       * The page-chooser box wins when both exist: it is the more specific of the two, typed with
+       * the pages already in view.
+       */
+      const focus = pageSelection.prompt.trim() || topic.trim() || input.trim();
       const transcriptText = typeof data.ocrTranscript === "string" ? data.ocrTranscript : "";
       const drewRegion = regions.length > 0;
 
