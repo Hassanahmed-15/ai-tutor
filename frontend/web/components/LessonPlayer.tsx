@@ -45,6 +45,14 @@ import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
+/**
+ * How long to let the old Live socket close before dialling the new persona.
+ *
+ * Changing persona means a reconnect, because the system instruction is fixed for the life of a
+ * session. The previous value was 0ms, which held only because teardown and connection are both
+ * effectively instant on a developer machine.
+ */
+const CHECKIN_RECONNECT_GAP_MS = 250;
 // Sustained attention drift must persist this long before the lesson reacts, so a brief glance
 // away never stops the lecture; the board then freezes for a beat before offering Resume.
 const DRIFT_HOLD_MS = 2000;
@@ -342,6 +350,8 @@ export function LessonPlayer({
    * whatever the closure captured. `onSessionEnded` in particular MUST see the current value —
    * see the guard in it.
    */
+  /** The beat index whose checkpoint a check-in suppressed, so it can be restored on close. */
+  const checkinStoleCheckpointRef = useRef<number | null>(null);
   const checkinRef = useRef<null | "chatting" | "closing">(null);
   useEffect(() => {
     checkinRef.current = checkin;
@@ -684,6 +694,19 @@ export function LessonPlayer({
      * with nothing on screen to explain why. Marking the beat done stops it re-arming on the next
      * render.
      */
+    /*
+     * Suppress this beat's checkpoint FOR THE CHECK-IN, and give it back afterwards.
+     *
+     * MazeGame binds its arrow keys to `window`, so it keeps playing underneath any overlay however
+     * high the z-index — reaching an answer cell would end the check-in silently with nothing on
+     * screen explaining why. Marking the beat done is what stops that.
+     *
+     * But three consecutive skips is exactly the cadence that lands on a maze beat, so marking it
+     * done permanently meant the assessment the learner skipped INTO never appeared at all. It is
+     * remembered here and restored when the check-in closes: the conversation happens, then the
+     * question they were due still gets asked.
+     */
+    checkinStoleCheckpointRef.current = checkpointDone[index] ? null : index;
     setCheckpointDone((d) => ({ ...d, [index]: true }));
     setFocusPause(null);
     setLiveBoard(null);
@@ -707,6 +730,18 @@ export function LessonPlayer({
     setCheckinFallback(false);
     publishAdhdCheckin(false);
     emitAdhdEvent({ type: "checkin-cleared" });
+
+    // Hand the checkpoint back, if the check-in was what took it away.
+    const stolen = checkinStoleCheckpointRef.current;
+    checkinStoleCheckpointRef.current = null;
+    if (stolen !== null) {
+      setCheckpointDone((d) => {
+        const next = { ...d };
+        delete next[stolen];
+        return next;
+      });
+    }
+
     lesson.requestResume();
   }
 
@@ -746,8 +781,18 @@ export function LessonPlayer({
 
     checkinRestartRef.current = true;
     tutorRef.current.stop();
-    // Next tick: `stop()` tears down synchronously, and `start()` returns immediately if a session
-    // is still attached — so calling them back to back would silently leave no session at all.
+    /*
+     * A real gap, not one tick.
+     *
+     * `stop()` clears the refs synchronously, so `start()` will not refuse — but the socket it just
+     * asked to close is still closing, and dialling a second session into the same audio context
+     * while the first unwinds is what made the check-in look like a disconnect in production. Zero
+     * milliseconds was enough locally, where teardown and the network are both instant, and is not
+     * enough over a real connection.
+     *
+     * The hook now also invalidates any in-flight connect (see connectAttemptRef), so this delay is
+     * belt and braces rather than the only thing holding the sequence together.
+     */
     const id = setTimeout(() => {
       checkinRestartRef.current = false;
       const t = tutorRef.current;
@@ -762,7 +807,7 @@ export function LessonPlayer({
         // Back to the ordinary preconnected-and-muted lecture session.
         if (autoVoiceAssistant) void t.start();
       }
-    }, 0);
+    }, CHECKIN_RECONNECT_GAP_MS);
     return () => clearTimeout(id);
   }, [checkin, autoVoiceAssistant]);
 

@@ -343,6 +343,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const noiseFloorRef = useRef(0.008);
   const endedRef = useRef(false);
   const connectingRef = useRef(false);
+  /** Bumped on every start() and every teardown, so a stale in-flight connect can abandon itself. */
+  const connectAttemptRef = useRef(0);
   const toolAbortControllersRef = useRef(new Map<string, AbortController>());
   const boardHandledThisTurnRef = useRef(false);
   const fallbackDrawingRef = useRef<(concept: string) => Promise<void>>(async () => undefined);
@@ -587,6 +589,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       connectingRef.current = false;
+      // Any connect still awaiting its mic or token is now stale.
+      connectAttemptRef.current += 1;
       flushStudentTranscript();
       flushTutorTranscript();
       setSpeaking(false);
@@ -880,6 +884,20 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     if (sessionRef.current || connectingRef.current) return;
     connectingRef.current = true;
     endedRef.current = false;
+    /*
+     * Which connect attempt this is.
+     *
+     * `start()` awaits a microphone and a token before it dials, and a `stop()` during those awaits
+     * used to be invisible to it: teardown cleared the refs, the in-flight attempt carried on, and
+     * a socket opened that nothing owned. The ADHD check-in does exactly that pair — stop, then
+     * start one tick later to change persona — so on a slow network it reconnected into a session
+     * the app had already abandoned. Gemini looked disconnected and resume never took.
+     *
+     * Locally the awaits resolve in a few milliseconds and the window never opens, which is why
+     * this only ever appeared once deployed.
+     */
+    const attempt = ++connectAttemptRef.current;
+    const superseded = () => attempt !== connectAttemptRef.current || endedRef.current;
     setErrorMessage(null);
     setStatus("connecting");
 
@@ -965,6 +983,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         ? builtInDeclarations
         : [...builtInDeclarations, ...(optionsRef.current.customTools ?? [])];
 
+      // A teardown during the mic/token awaits means this attempt is stale: dialling now would open
+      // a socket nothing is holding.
+      if (superseded()) {
+        stream.getTracks().forEach((track) => track.stop());
+        connectingRef.current = false;
+        return;
+      }
+
       const session = (await client.live.connect({
         model: sessionData.model,
         config: {
@@ -1021,6 +1047,22 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           },
         },
       })) as GeminiSession;
+
+      /*
+       * And again after the handshake. `client.live.connect` resolves over the network too, so a
+       * teardown can land between the check above and this line — attaching here would resurrect a
+       * session the app has already torn down, and the next stop() would not know about it.
+       */
+      if (superseded()) {
+        try {
+          session.close();
+        } catch {
+          // Already closing.
+        }
+        stream.getTracks().forEach((track) => track.stop());
+        connectingRef.current = false;
+        return;
+      }
 
       sessionRef.current = session;
       await startMicrophone(stream, session);
