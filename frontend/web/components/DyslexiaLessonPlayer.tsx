@@ -17,6 +17,7 @@ import { heuristicChunks } from "@/lib/dyslexiaChunking";
 import { prefsToCssVars, TINT_COLORS, useDyslexiaPrefs } from "@/lib/dyslexiaPrefs";
 import { ComfortControls } from "./dyslexia/ComfortControls";
 import { KaraokeLine } from "./dyslexia/KaraokeLine";
+import { WordHelp, type WordHelpTarget } from "./dyslexia/WordHelp";
 import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
@@ -76,6 +77,10 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
    * highlights when it is the line being read.
    */
   const [spokenWord, setSpokenWord] = useState<{ line: number; word: number }>({ line: -1, word: -1 });
+  /** The word the student tapped, if any. */
+  const [wordHelp, setWordHelp] = useState<WordHelpTarget | null>(null);
+  /** Whether the beat narration was paused BY the popover, so it is only resumed if it was. */
+  const pausedForWordRef = useRef(false);
 
   /**
    * Mirror of `revealed` for the rewrite effect.
@@ -136,6 +141,28 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
   useEffect(() => {
     revealedRef.current = revealed;
   }, [revealed]);
+
+  /**
+   * Tapping a word pauses the lesson; closing the popover resumes it.
+   *
+   * `pause()` rather than `cancel()`: the narration must come back from the same timestamp, not
+   * restart the beat. It returns false when the active narration cannot be paused, in which case
+   * nothing is resumed later either — better a lesson that keeps playing under the popover than one
+   * that jumps back to the top of the beat.
+   */
+  const openWordHelp = useCallback((word: string, sentence: string) => {
+    if (!word) return;
+    pausedForWordRef.current = cancelRef.current?.pause() === true;
+    setWordHelp({ word, sentence });
+  }, []);
+
+  const closeWordHelp = useCallback(() => {
+    setWordHelp(null);
+    if (pausedForWordRef.current) {
+      cancelRef.current?.resume();
+      pausedForWordRef.current = false;
+    }
+  }, []);
 
   const clearTimers = useCallback(() => {
     phaseTimers.current.forEach((t) => clearTimeout(t));
@@ -485,7 +512,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
                 </div>
               </div>
             ) : hasLines ? (
-              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} spokenWord={spokenWord} />
+              <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} spokenWord={spokenWord} onWordTap={openWordHelp} />
             ) : (
               <div className="grid place-items-center p-6 lg:p-10">
                 <p className="text-center text-2xl font-black text-white/80">{beat.title}</p>
@@ -527,6 +554,15 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
           </div>
         </div>
       </div>
+      {/* Tap-a-word. Syllables come from this beat's rewrite, so the split is on screen the
+          moment the popover opens rather than after a second request. */}
+      {wordHelp && (
+        <WordHelp
+          target={wordHelp}
+          syllables={rewrite?.syllables?.[wordHelp.word.toLowerCase()]}
+          onClose={closeWordHelp}
+        />
+      )}
     </main>
   );
 }
@@ -542,8 +578,10 @@ function BeatStage({
   revealed,
   speaking,
   spokenWord,
+  onWordTap,
 }: {
   spokenWord: { line: number; word: number };
+  onWordTap: (word: string, sentence: string) => void;
   beat: Beat;
   dense: string;
   chunks: DyslexiaChunk[];
@@ -603,6 +641,7 @@ function BeatStage({
                 text={chunk.text}
                 // Only the line actually being narrated tracks a word; the rest render plainly.
                 activeWord={spokenWord.line === i && speaking ? spokenWord.word : -1}
+                onWordTap={onWordTap}
                 className="text-xl font-bold leading-snug text-white"
               />
             </div>
