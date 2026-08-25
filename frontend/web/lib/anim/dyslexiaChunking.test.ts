@@ -87,3 +87,14 @@ test("icons follow what a line is about, and never come back empty", () => {
   assert.equal(iconForText("Water travels up the roots"), "💧");
   assert.ok(iconForText("Nothing in particular here").length > 0);
 });
+
+test("the fallback icon is a real emoji, not punctuation", () => {
+  // A bullet in the icon slot renders as a blank box next to lines that have a real picture, which
+  // reads as a failed image rather than a neutral mark. Seen on screen before it was fixed.
+  for (let position = 0; position < 6; position += 1) {
+    const icon = iconForText("nothing matches this line at all", position);
+    assert.ok(!/^[•\-*·.]$/.test(icon), `punctuation used as an icon: ${JSON.stringify(icon)}`);
+    // Emoji sit outside the BMP or carry a variation selector; ASCII punctuation does not.
+    assert.ok([...icon].some((ch) => ch.codePointAt(0)! > 0x2000), `not an emoji: ${JSON.stringify(icon)}`);
+  }
+});

@@ -61,14 +61,21 @@ const ICON_RULES: Array<[RegExp, string]> = [
   [/\b(remember|important|key|note)\b/i, "⭐"],
 ];
 
-/** A neutral mark for a line that matches nothing — never an empty string, which renders as a gap. */
-const DEFAULT_ICON = "•";
+/**
+ * Icons for lines that match no rule.
+ *
+ * NOT a bullet. `•` is punctuation, not an emoji, and in the icon slot it renders as a blank box
+ * beside lines that have a real picture — which reads as a missing image rather than a neutral
+ * mark. These are deliberately generic and cycled by position, so a beat looks paced rather than
+ * captioned with the same symbol five times over.
+ */
+const NEUTRAL_ICONS = ["📘", "🧩", "🔎", "🗂️", "🧠"];
 
-export function iconForText(text: string): string {
+export function iconForText(text: string, position = 0): string {
   for (const [pattern, icon] of ICON_RULES) {
     if (pattern.test(text)) return icon;
   }
-  return DEFAULT_ICON;
+  return NEUTRAL_ICONS[position % NEUTRAL_ICONS.length];
 }
 
 /**
@@ -212,5 +219,5 @@ export function heuristicChunks(script: string, level: ReadingLevel): DyslexiaCh
   // A script with no sentence-ending punctuation yields nothing above; fall back to the raw text so
   // the beat still speaks.
   const kept = (lines.length ? lines : [tidy(source)]).filter(Boolean).slice(0, maxLines);
-  return kept.map((text) => ({ text, icon: iconForText(text) }));
+  return kept.map((text, i) => ({ text, icon: iconForText(text, i) }));
 }
