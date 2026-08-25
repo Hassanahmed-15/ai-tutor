@@ -622,23 +622,13 @@ export function ReactAnimationSandbox({
         sandbox="allow-scripts"
         className="h-full w-full border-0"
       />
-      <div
-        className="pointer-events-none absolute z-20 drop-shadow-[0_8px_12px_rgba(20,184,166,0.26)]"
-        style={{
-          left: `${marker.x}%`,
-          top: `${marker.y}%`,
-          opacity: marker.visible ? 1 : 0,
-          transform: `translate(-10%, -88%) rotate(${marker.rotate}deg)`,
-          transition: "left 28ms linear, top 28ms linear, transform 28ms linear, opacity 45ms linear",
-        }}
-        aria-hidden="true"
-      >
-        <svg width="48" height="58" viewBox="0 0 48 58">
-          <path d="M 12 52 L 24 18 L 38 24 L 19 56 Z" fill="#0f766e" />
-          <path d="M 24 18 L 38 24 L 44 10 L 30 4 Z" fill="#5eead4" />
-          <circle cx="13" cy="52" r="4" fill="#0f766e" />
-        </svg>
-      </div>
+      {/* The marker is gone deliberately — a teal stylus used to hover here, following the writing.
+          The board is what the student reads, and a hand drawn over it competes with exactly the
+          thing it is meant to be helping them read. The ink reveal is untouched: text still writes
+          on word by word, strokes still draw. Only the hand is removed.
+
+          The iframe still POSTS marker positions; ignoring them here is cheaper than changing the
+          sandbox contract, and leaves the position available if a surface ever wants a cursor. */}
     </div>
   );
 }

@@ -626,6 +626,61 @@ function BeatStage({
   // other, revealed in time with the narration. Audio still carries most of the meaning —
   // the diagram is a visual anchor, not more text.
   const boardCue = { index: Math.max(0, revealed - 1), total: Math.max(1, chunks.length), text: chunks[revealed - 1]?.text ?? "" };
+
+  /**
+   * A structure diagram gets the whole stage.
+   *
+   * ELK lays a graph out horizontally — a chain of stages, a hierarchy fanning into its leaves — so
+   * it comes back wide. Squeezed into half a split panel it scales down until the node labels are a
+   * few pixels tall, which is unreadable for anyone and absurd in the track built for people who
+   * find reading hard. Reported as exactly that: a diagram flattened into a thin strip.
+   *
+   * The lines stay, below rather than beside, so the student still gets the short chunked text and
+   * the narration keeps its anchor. Every other board keeps the split, where the side-by-side is
+   * genuinely better: a drawn scene and its lines read together.
+   */
+  const isStructure = (beat.draw?.ops ?? []).some((op) => op.kind === "structureScene");
+
+  if (isStructure) {
+    return (
+      <div className="flex h-full min-h-0 flex-col">
+        <div className="relative min-h-0 flex-[3] overflow-hidden border-b border-white/10 bg-slate-950">
+          <Board key={beat.id} beat={beat} sentenceCue={boardCue} drawProgress={drawProgress} />
+        </div>
+        {/* Kept to a third of the height and scrollable: the diagram is the subject here, and the
+            lines are its caption rather than the other way round. */}
+        <div className="flex min-h-0 flex-[1] flex-col gap-2 overflow-y-auto p-4">
+          {chunks.map((chunk, i) => {
+            const shown = i < revealed;
+            const current = i === revealed - 1 && speaking;
+            return (
+              <div
+                key={i}
+                className={`flex items-center gap-3 rounded-xl border px-4 py-2.5 transition-all ${
+                  shown
+                    ? current
+                      ? "chunk-line-in border-accent-dyslexia/60 bg-accent-dyslexia/15"
+                      : "chunk-line-in border-white/12 bg-white/[0.05]"
+                    : "border-white/5 bg-white/[0.01] opacity-25"
+                }`}
+              >
+                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-stone-900/80 text-xl" aria-hidden>
+                  {chunk.icon}
+                </span>
+                <KaraokeLine
+                  text={chunk.text}
+                  activeWord={spokenWord.line === i && speaking ? spokenWord.word : -1}
+                  onWordTap={onWordTap}
+                  className="text-lg font-bold leading-snug text-white"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="grid h-full min-h-0 lg:grid-cols-[1.1fr_1fr]">
       <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden border-b border-white/10 bg-slate-950 lg:min-h-[480px] lg:border-b-0 lg:border-r">
