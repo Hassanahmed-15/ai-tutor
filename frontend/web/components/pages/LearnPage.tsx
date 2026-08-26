@@ -111,7 +111,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [topic, setTopic] = useState("");
   const [input, setInput] = useState("");
   const [phase, setPhase] = useState<
-    "ask" | "outline" | "building" | "teaching" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
+    "ask" | "outline" | "building" | "teaching" | "finished" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
   const [builtTopic, setBuiltTopic] = useState("");
@@ -1109,12 +1109,75 @@ type BuildCost =
     setPhase("test-results");
   }
 
+  /**
+   * Leaving a lecture ends it HERE, not on a different page.
+   *
+   * `onExit` navigated to the app-level completion screen, whose Replay routes back through
+   * `startLesson(lastTrack)` — and that mounts a player with no beats, so it fell through to the
+   * hardcoded photosynthesis demo. The lecture the student had just built lives in this component's
+   * state, and once the router left this page there was nothing left to replay.
+   *
+   * Ending here keeps `beats` and `builtTopic` in scope, so Replay is genuinely a replay. "Something
+   * new" still leaves, because that is the one case where losing the lecture is the intent.
+   */
+  function endLecture() {
+    setPhase("finished");
+  }
+
+  function replayLecture() {
+    // Same beats, from the top. The player keys off its own index, so re-entering "teaching"
+    // restarts it without regenerating anything.
+    setPhase("teaching");
+  }
+
   function backToLectureFromTest() {
     setTestBank(null);
     setTestResults(null);
     setTestAnswers(undefined);
     setTestError(null);
-    onExit();
+    // Back to the end of the lecture, not out of it — the beats are still here and still replayable.
+    endLecture();
+  }
+
+  if (phase === "finished") {
+    return (
+      <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6">
+        <section className="relative z-10 mx-auto flex max-w-3xl flex-col justify-center">
+          <h1 className="hud-materialize font-display text-[3rem] leading-[0.94] tracking-[-0.035em] text-[var(--hud-text-dim)] sm:text-[4.4rem]">
+            Finished.
+            <br />
+            <span className="text-[var(--hud-text)]">It will not run</span> that way again.
+          </h1>
+          <p
+            className="hud-materialize mt-9 max-w-md text-[1.02rem] leading-[1.7] text-[var(--hud-text-dim)]"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Replay gives you this recording of {builtTopic || "your lecture"}. Asking again writes a new one.
+          </p>
+          <div className="hud-materialize mt-11 flex flex-wrap items-center gap-7" style={{ animationDelay: "0.18s" }}>
+            <button
+              onClick={replayLecture}
+              className="hud-btn-primary rounded-[var(--radius)] px-9 py-4 text-[0.95rem]"
+            >
+              Replay
+            </button>
+            <button
+              onClick={() => setPhase("test-offer")}
+              className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+            >
+              Test me on it
+            </button>
+            {/* The one door that genuinely discards the lecture, so it is the one that leaves. */}
+            <button
+              onClick={onExit}
+              className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+            >
+              Something new
+            </button>
+          </div>
+        </section>
+      </main>
+    );
   }
 
   if (phase === "test-offer") {
@@ -1127,7 +1190,7 @@ type BuildCost =
         forceOral={selectedMode.page === "blind-demo"}
         onWritten={startWrittenTest}
         onOral={startOralTest}
-        onSkip={onExit}
+        onSkip={endLecture}
       />
     );
   }
@@ -1166,22 +1229,22 @@ type BuildCost =
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
     switch (selectedMode.page) {
       case "blind-demo":
-        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} autoStart />;
+        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} mood={moodString} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} mode="deaf" mood={moodString} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={onExit} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} />;
     }
     return (
       <div className="relative">
