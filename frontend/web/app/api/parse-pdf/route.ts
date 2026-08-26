@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import {
   applyGlobalSourceOrder,
   buildPdfLessonPlan,
+  focusRegionsInsidePixelCrop,
   sanitizeDetectedFigures,
   structurePdfPage,
   type PdfDetectedFigure,
@@ -343,23 +344,6 @@ function expandedPixelBox(
     width: Math.ceil(right - left),
     height: Math.ceil(bottom - top),
   };
-}
-
-function focusRegionsInsideCrop(
-  figure: PdfDetectedFigure,
-  cropBox: { x: number; y: number; width: number; height: number },
-) {
-  return figure.focusRegions.map((region) => {
-    const pageX = figure.x + region.x * figure.width;
-    const pageY = figure.y + region.y * figure.height;
-    return {
-      label: region.label,
-      x: clamp((pageX - cropBox.x) / cropBox.width, 0, 1),
-      y: clamp((pageY - cropBox.y) / cropBox.height, 0, 1),
-      width: clamp((region.width * figure.width) / cropBox.width, 0, 1),
-      height: clamp((region.height * figure.height) / cropBox.height, 0, 1),
-    };
-  });
 }
 
 function sourceBlockIdsNearFigure(
@@ -752,7 +736,7 @@ export async function POST(req: NextRequest) {
         if (!verdict.keep) continue;
         const resolvedType = verdict.type;
         const id = `p${page.pageNumber}-figure-${index + 1}`;
-        const focusRegions = focusRegionsInsideCrop(figure, crop.cropBox);
+        const focusRegions = focusRegionsInsidePixelCrop(figure, crop.cropBox, page.width, page.height);
         const labels = focusRegions.map((region) => region.label).filter(Boolean);
         const sourceBlockIds = sourceBlockIdsNearFigure(pageBlocks, figure);
         pageAssets.push({

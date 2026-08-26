@@ -83,6 +83,36 @@ function clamp01(value: number): number {
   return Math.max(0, Math.min(1, value));
 }
 
+/**
+ * Rebase page-detected focus regions into an expanded pixel crop.
+ *
+ * The detector returns page-normalized figure/region coordinates, while cropBox is in rendered
+ * pixels. Mixing those units collapses every target toward the crop's top-left corner. Convert the
+ * full rectangle to page pixels first, then normalize it inside the actual crop.
+ */
+export function focusRegionsInsidePixelCrop(
+  figure: PdfDetectedFigure,
+  cropBox: { x: number; y: number; width: number; height: number },
+  pageWidth: number,
+  pageHeight: number,
+): PdfFigureRegion[] {
+  if (pageWidth <= 0 || pageHeight <= 0 || cropBox.width <= 0 || cropBox.height <= 0) return [];
+  return figure.focusRegions.flatMap((region) => {
+    const pageLeft = (figure.x + region.x * figure.width) * pageWidth;
+    const pageTop = (figure.y + region.y * figure.height) * pageHeight;
+    const pageRight = pageLeft + region.width * figure.width * pageWidth;
+    const pageBottom = pageTop + region.height * figure.height * pageHeight;
+    const left = clamp01((pageLeft - cropBox.x) / cropBox.width);
+    const top = clamp01((pageTop - cropBox.y) / cropBox.height);
+    const right = clamp01((pageRight - cropBox.x) / cropBox.width);
+    const bottom = clamp01((pageBottom - cropBox.y) / cropBox.height);
+    const width = right - left;
+    const height = bottom - top;
+    if (!region.label.trim() || width <= 0 || height <= 0) return [];
+    return [{ label: region.label.trim(), x: left, y: top, width, height }];
+  });
+}
+
 function lineFromSpans(spans: PdfTextSpan[]): TextLine {
   const ordered = [...spans].sort((a, b) => a.x - b.x);
   let text = "";

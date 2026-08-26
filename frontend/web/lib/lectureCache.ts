@@ -23,7 +23,9 @@ import type { Beat } from "./lessonContent";
 //     own row — the heart board had put eight labels across the chambers with crossing leader lines.
 // v8: worked example now demonstrates eight labels stacked down the right column at 40px, which is
 //     the case the prose rule alone never got the model to handle (valve names stayed on the heart).
-const CACHE_VERSION = "v8";
+// v9: provided-image arrows are fail-closed and use pixel-correct verified focus regions; stale
+//     image boards may contain confidently wrong targets and must never be replayed.
+const CACHE_VERSION = "v9";
 
 const CACHE_DIR = path.join(process.cwd(), ".lecture-cache");
 

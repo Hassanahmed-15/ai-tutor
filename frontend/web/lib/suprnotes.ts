@@ -847,8 +847,8 @@ export function layoutPaperImageBoard(
   const asset = imageOp.assetId ? assets.get(imageOp.assetId) : undefined;
   const aspect = asset?.width && asset?.height ? asset.width / asset.height : 1.45;
   const box = aspect >= 1.45
-    ? { x: 57, y: 53, w: 60, h: 48 }
-    : { x: 56, y: 53, w: 46, h: 58 };
+    ? { x: 50, y: 53, w: 52, h: 48 }
+    : { x: 50, y: 53, w: 42, h: 58 };
 
   const laidImage: ImageOp = {
     ...imageOp,
@@ -871,8 +871,21 @@ export function layoutPaperImageBoard(
     at: 0.02,
   };
 
-  const callouts = ops.filter((op): op is CalloutOp => op.kind === "callout");
-  const laidCallouts = callouts.slice(0, 4).map((op, index) => layoutCalloutAroundImage(op, index, box));
+  // A provided image is allowed to have an arrow only when it carries a verified in-image target.
+  // Ungrounded callouts are plausible text attached to arbitrary pixels, which is worse than no label.
+  const originalBox = {
+    x: typeof imageOp.x === "number" ? imageOp.x : box.x,
+    y: typeof imageOp.y === "number" ? imageOp.y : box.y,
+    w: typeof imageOp.w === "number" ? imageOp.w : box.w,
+    h: typeof imageOp.h === "number" ? imageOp.h : box.h,
+  };
+  const callouts = ops
+    .filter((op): op is CalloutOp => op.kind === "callout" && op.grounded === true)
+    .flatMap((op) => {
+      const rebased = rebaseGroundedCallout(op, originalBox, box);
+      return rebased ? [rebased] : [];
+    });
+  const laidCallouts = layoutGroundedCalloutsAroundImage(callouts.slice(0, 4), box);
 
   const notes = otherText
     .filter((op) => !(op.kind === "label" && op.y <= 16))
@@ -897,10 +910,10 @@ export function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x:
     { x: box.x + box.w * 0.22, y: box.y + box.h * 0.22 },
   ];
   const labelSlots = [
-    { x: 18, y: 28 },
-    { x: 86, y: 28 },
-    { x: 18, y: 76 },
-    { x: 86, y: 76 },
+    { x: 8, y: 28 },
+    { x: 92, y: 28 },
+    { x: 8, y: 76 },
+    { x: 92, y: 76 },
   ];
   const imageLeft = box.x - box.w / 2;
   const imageRight = box.x + box.w / 2;
@@ -927,6 +940,68 @@ export function layoutCalloutAroundImage(op: CalloutOp, index: number, box: { x:
     labelY: label.y,
     color: op.color ?? markerColor(index),
     at: hasGroundedTarget ? op.at : 0.18 + index * 0.13,
+  };
+}
+
+/**
+ * Put labels on the nearest outer side and preserve target order vertically. Leader lines on the
+ * same side therefore cannot cross one another, and labels never sit over the supplied image.
+ */
+export function layoutGroundedCalloutsAroundImage(
+  callouts: CalloutOp[],
+  box: { x: number; y: number; w: number; h: number },
+): CalloutOp[] {
+  const imageLeft = box.x - box.w / 2;
+  const imageRight = box.x + box.w / 2;
+  const imageTop = box.y - box.h / 2;
+  const imageBottom = box.y + box.h / 2;
+  const valid = callouts.filter((op) => (
+    op.grounded === true &&
+    Number.isFinite(op.x) && Number.isFinite(op.y) &&
+    op.x >= imageLeft && op.x <= imageRight && op.y >= imageTop && op.y <= imageBottom
+  ));
+  const bySide = {
+    left: valid.filter((op) => op.x < box.x).sort((a, b) => a.y - b.y),
+    right: valid.filter((op) => op.x >= box.x).sort((a, b) => a.y - b.y),
+  };
+  const positions = new Map<CalloutOp, { x: number; y: number }>();
+  for (const [side, ops] of Object.entries(bySide) as Array<["left" | "right", CalloutOp[]]>) {
+    ops.forEach((op, index) => {
+      const y = ops.length === 1 ? clamp(op.y, 24, 82) : 24 + index * (58 / (ops.length - 1));
+      positions.set(op, { x: side === "left" ? 8 : 92, y });
+    });
+  }
+  return valid.map((op, index) => {
+    const label = positions.get(op)!;
+    return {
+      ...op,
+      text: shortText(op.text, 24),
+      x: clamp(op.x, imageLeft + 1, imageRight - 1),
+      y: clamp(op.y, imageTop + 1, imageBottom - 1),
+      labelX: label.x,
+      labelY: label.y,
+      color: op.color ?? markerColor(index),
+    };
+  });
+}
+
+/** Preserve a callout's normalized location when the image is moved or resized on the board. */
+export function rebaseGroundedCallout(
+  op: CalloutOp,
+  from: { x: number; y: number; w: number; h: number },
+  to: { x: number; y: number; w: number; h: number },
+): CalloutOp | null {
+  if (
+    op.grounded !== true || ![op.x, op.y, from.x, from.y, from.w, from.h, to.x, to.y, to.w, to.h].every(Number.isFinite) ||
+    from.w <= 0 || from.h <= 0 || to.w <= 0 || to.h <= 0
+  ) return null;
+  const nx = (op.x - (from.x - from.w / 2)) / from.w;
+  const ny = (op.y - (from.y - from.h / 2)) / from.h;
+  if (nx < 0 || nx > 1 || ny < 0 || ny > 1) return null;
+  return {
+    ...op,
+    x: to.x - to.w / 2 + nx * to.w,
+    y: to.y - to.h / 2 + ny * to.h,
   };
 }
 
@@ -996,12 +1071,7 @@ function providedAssetBoard(beat: Beat, asset: SuprnotesAsset, src: string): Dra
         y: imageBox.y - imageBox.h / 2 + (region.y + region.height / 2) * imageBox.h,
         grounded: true,
       }))
-    : assetCalloutLabels(asset).slice(0, 4).map((text) => ({
-        text,
-        x: imageBox.x,
-        y: imageBox.y,
-        grounded: false,
-      }));
+    : [];
   const callouts = calloutSeeds.map((item, index): CalloutOp => ({
     kind: "callout",
     text: item.text,
@@ -1110,25 +1180,6 @@ function bestBeatForAsset(beats: Beat[], asset: SuprnotesAsset, blocks: Map<stri
   return beats.findIndex((beat, index) => index > 0 && beat.slideKind !== "checkpoint" && !(beat.draw?.ops.some((op) => op.kind === "image") ?? false));
 }
 
-function assetCalloutLabels(asset: SuprnotesAsset): string[] {
-  const teachingUse = asset.teachingUse;
-  if (teachingUse && typeof teachingUse === "object") {
-    const record = teachingUse as UnknownRecord;
-    const suggested = Array.isArray(record.suggestedCallouts) ? record.suggestedCallouts : [];
-    const labels = suggested
-      .map((item) => {
-        if (typeof item === "string") return item;
-        if (item && typeof item === "object") return clean((item as UnknownRecord).label) || clean((item as UnknownRecord).target);
-        return "";
-      })
-      .filter(Boolean);
-    if (labels.length) return labels;
-    const concepts = Array.isArray(record.concepts) ? record.concepts.map(clean).filter(Boolean) : [];
-    if (concepts.length) return concepts;
-  }
-  return [asset.caption, asset.description].map(clean).filter(Boolean).slice(0, 3);
-}
-
 function assetFocusRegions(asset: SuprnotesAsset): Array<{ label: string; x: number; y: number; width: number; height: number }> {
   if (!asset.teachingUse || typeof asset.teachingUse !== "object") return [];
   const raw = (asset.teachingUse as UnknownRecord).focusRegions;
@@ -1141,13 +1192,16 @@ function assetFocusRegions(asset: SuprnotesAsset): Array<{ label: string; x: num
     const y = Number(region.y);
     const width = Number(region.width);
     const height = Number(region.height);
-    if (!label || ![x, y, width, height].every(Number.isFinite)) return [];
+    if (
+      !label || ![x, y, width, height].every(Number.isFinite) ||
+      x < 0 || y < 0 || width <= 0 || height <= 0 || x + width > 1 || y + height > 1
+    ) return [];
     return [{
       label,
-      x: clamp(x, 0, 1),
-      y: clamp(y, 0, 1),
-      width: clamp(width, 0, 1),
-      height: clamp(height, 0, 1),
+      x,
+      y,
+      width,
+      height,
     }];
   }).slice(0, 4);
 }

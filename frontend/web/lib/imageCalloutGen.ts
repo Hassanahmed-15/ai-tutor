@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
 import { splitNarrationSentences } from "./voice";
-import { layoutCalloutAroundImage, type SuprnotesLessonInput } from "./suprnotes";
+import { layoutGroundedCalloutsAroundImage, type SuprnotesLessonInput } from "./suprnotes";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
 
@@ -18,29 +18,80 @@ import { costFor } from "./modelPricing";
 
 // Kept local to this file (not in lib/drawPrompt.ts) so that file's prompt text stays byte-for-byte
 // unchanged — it backs the existing topic-based and PPTX/Suprnotes-JSON lecture generation.
-const IMAGE_EXPLAINER_SYSTEM_PROMPT = `You are Aria's image-explainer. A real teaching image (a photo, diagram, or infographic slide) is on the board, and the teacher is talking the student through it. Pick 2-4 SHORT labels that name REAL things VISIBLE in THIS specific image, so the teacher can point at each part as they explain it.
+const IMAGE_EXPLAINER_SYSTEM_PROMPT = `You are Aria's image-explainer. A real teaching image is on the board with numbered, coordinate-verified focus regions. Select only the regions the spoken explanation actually discusses.
 
-You are given the image's DESCRIPTION, optional numbered FOCUS REGIONS, and the spoken script split into NUMBERED SENTENCES (0..N-1). Output JSON: { "callouts": [ { "text": string, "group": number, "regionIndex": number } ] }.
+You are given the image's DESCRIPTION, numbered FOCUS REGIONS, and the spoken script split into NUMBERED SENTENCES (0..N-1). Output JSON: { "callouts": [ { "group": number, "regionIndex": number } ] }.
 
 RULES:
-- Ground every label ONLY in the DESCRIPTION. Name a concrete thing that is actually shown (a curve, a point, an axis, a region, a labeled part, an object, a value). NEVER invent a label the description does not support. If the description names fewer than 2 distinct visible parts, return FEWER callouts (even zero) rather than making things up.
-- "text": <= 24 characters, a real visible part — NOT a concept, formula, or a restatement of the sentence.
+- Select only supplied focus regions. Their verified labels and coordinates are applied by code; do not rename or reinterpret them.
 - "group": the index of the sentence that explains/mentions that part, so the label appears exactly when the teacher talks about it. Order callouts so their groups increase (top-to-bottom reveal).
-- "regionIndex": the matching numbered focus region when focus regions are supplied. Never point a label at a different region.
-- 2-4 callouts maximum. Sparse and accurate beats many. No duplicates. No label may repeat the board title.
+- "regionIndex": the exact matching numbered focus region. Never substitute, clamp, or guess another region.
+- 2-4 callouts maximum. Sparse and accurate beats many. No duplicate regionIndex values.
 
 Output ONLY the JSON object.`;
 
 type DrawOp = DrawScript["ops"][number];
 type ImageOp = Extract<DrawOp, { kind: "image" }> & { assetId?: string; src?: string };
 type CalloutOp = Extract<DrawOp, { kind: "callout" }>;
-type FocusRegion = { label: string; x: number; y: number; width: number; height: number };
+export type FocusRegion = { label: string; x: number; y: number; width: number; height: number };
 
 const MODEL = process.env.OPENAI_IMAGE_EXPLAINER_MODEL ?? "gpt-4o-mini";
 const MAX_TOKENS = 1_200;
 
 export type ImageCalloutFillStats = { costUsd: number; pending: number; filled: number; rejected: number; issues: string[] };
 export type ImageCalloutFillUpdate = { beat: Beat; beatIndex: number; costUsd: number; status: "ready" | "failed" };
+
+export function sanitizeFocusRegions(rawRegions: unknown): FocusRegion[] {
+  if (!Array.isArray(rawRegions)) return [];
+  return rawRegions.flatMap((raw) => {
+    if (!raw || typeof raw !== "object") return [];
+    const region = raw as Record<string, unknown>;
+    const label = typeof region.label === "string" ? region.label.replace(/\s+/g, " ").trim() : "";
+    const x = Number(region.x);
+    const y = Number(region.y);
+    const width = Number(region.width);
+    const height = Number(region.height);
+    if (
+      !label || ![x, y, width, height].every(Number.isFinite) ||
+      x < 0 || y < 0 || width <= 0 || height <= 0 || x + width > 1 || y + height > 1
+    ) return [];
+    return [{ label: label.slice(0, 24), x, y, width, height }];
+  }).slice(0, 8);
+}
+
+/** Turn model selections into arrows only when they name an exact, verified region. */
+export function buildGroundedImageCallouts(
+  rawCallouts: unknown,
+  focusRegions: FocusRegion[],
+  sentenceCount: number,
+  box: { x: number; y: number; w: number; h: number },
+): CalloutOp[] {
+  if (!Array.isArray(rawCallouts) || focusRegions.length === 0) return [];
+  const n = Math.max(1, sentenceCount);
+  const usedRegions = new Set<number>();
+  const callouts: CalloutOp[] = [];
+  for (const raw of rawCallouts.slice(0, 4)) {
+    if (!raw || typeof raw !== "object") continue;
+    const rec = raw as Record<string, unknown>;
+    const regionIndex = Number(rec.regionIndex);
+    if (!Number.isInteger(regionIndex) || regionIndex < 0 || regionIndex >= focusRegions.length || usedRegions.has(regionIndex)) continue;
+    const region = focusRegions[regionIndex];
+    const rawGroup = Number(rec.group);
+    const group = Number.isFinite(rawGroup) ? Math.max(0, Math.min(n - 1, Math.floor(rawGroup))) : 0;
+    usedRegions.add(regionIndex);
+    callouts.push({
+      kind: "callout",
+      // The region detector owns both the label and target. The explainer may select it, not rename it.
+      text: region.label,
+      x: box.x - box.w / 2 + (region.x + region.width / 2) * box.w,
+      y: box.y - box.h / 2 + (region.y + region.height / 2) * box.h,
+      at: (group + 1) / n,
+      group,
+      grounded: true,
+    });
+  }
+  return layoutGroundedCalloutsAroundImage(callouts, box);
+}
 
 function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
   return costFor(MODEL, usage);
@@ -89,38 +140,7 @@ async function generateOne(
       h: typeof imageOp.h === "number" ? imageOp.h : 54,
     };
 
-    const callouts: CalloutOp[] = [];
-    list.slice(0, 4).forEach((raw, index) => {
-      if (!raw || typeof raw !== "object") return;
-      const rec = raw as Record<string, unknown>;
-      const text = typeof rec.text === "string" ? rec.text.trim() : "";
-      if (!text) return;
-      const g = Number(rec.group);
-      const group = Number.isFinite(g) ? Math.max(0, Math.min(n - 1, Math.floor(g))) : index;
-      const rawRegionIndex = Number(rec.regionIndex);
-      const regionIndex = Number.isFinite(rawRegionIndex)
-        ? Math.max(0, Math.min(focusRegions.length - 1, Math.floor(rawRegionIndex)))
-        : index % Math.max(1, focusRegions.length);
-      const region = focusRegions[regionIndex];
-      const targetX = region
-        ? box.x - box.w / 2 + (region.x + region.width / 2) * box.w
-        : box.x;
-      const targetY = region
-        ? box.y - box.h / 2 + (region.y + region.height / 2) * box.h
-        : box.y;
-      const base: CalloutOp = {
-        kind: "callout",
-        text,
-        x: targetX,
-        y: targetY,
-        at: (group + 1) / n,
-        grounded: Boolean(region),
-      };
-      const laid = layoutCalloutAroundImage(base, index, box);
-      // layoutCalloutAroundImage overwrites `at` with an even spread — re-assert sentence timing so
-      // the label appears exactly as its sentence is spoken, and mark it grounded so it survives.
-      callouts.push({ ...laid, at: (group + 1) / n, group, grounded: true });
-    });
+    const callouts = buildGroundedImageCallouts(list, focusRegions, n, box);
 
     if (!callouts.length) return { costUsd: cost, filled: false };
     beat.draw?.ops.push(...callouts);
@@ -155,19 +175,9 @@ export async function fillImageCalloutOpsIncremental(
       ? asset.teachingUse as Record<string, unknown>
       : null;
     if (teachingUse?.annotationNeeded === false) continue;
-    const focusRegions = Array.isArray(teachingUse?.focusRegions)
-      ? teachingUse.focusRegions.flatMap((raw) => {
-          if (!raw || typeof raw !== "object") return [];
-          const region = raw as Record<string, unknown>;
-          const label = typeof region.label === "string" ? region.label.trim() : "";
-          const x = Number(region.x);
-          const y = Number(region.y);
-          const width = Number(region.width);
-          const height = Number(region.height);
-          if (!label || ![x, y, width, height].every(Number.isFinite)) return [];
-          return [{ label, x, y, width, height }];
-        }).slice(0, 8)
-      : [];
+    const focusRegions = sanitizeFocusRegions(teachingUse?.focusRegions);
+    // No verified target means no arrow. Keep the source image clean rather than guessing.
+    if (focusRegions.length === 0) continue;
     pending.push({ beat, beatIndex, imageOp, description, focusRegions });
   }
 
