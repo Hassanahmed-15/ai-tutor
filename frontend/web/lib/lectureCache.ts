@@ -25,7 +25,9 @@ import type { Beat } from "./lessonContent";
 //     the case the prose rule alone never got the model to handle (valve names stayed on the heart).
 // v9: provided-image arrows are fail-closed and use pixel-correct verified focus regions; stale
 //     image boards may contain confidently wrong targets and must never be replayed.
-const CACHE_VERSION = "v9";
+// v10: the student's exact upload question, selected-page transcript, and approved outline are
+//      part of cache identity. Different questions about one PDF must never replay one lecture.
+const CACHE_VERSION = "v10";
 
 const CACHE_DIR = path.join(process.cwd(), ".lecture-cache");
 
@@ -37,6 +39,9 @@ export function lectureCacheKey(input: {
   mood: string;
   slideContext?: string;
   sourceDocument: unknown;
+  focus?: string;
+  transcript?: string;
+  outline?: unknown;
   model: string;
   /** Every model/flag that can materially change generated boards. Without this, changing the
    *  deployment quality profile can still serve a lecture built under the previous profile. */
@@ -50,6 +55,9 @@ export function lectureCacheKey(input: {
     model: input.model,
     generationProfile: input.generationProfile ?? {},
     source: input.sourceDocument ?? null,
+    focus: input.focus ?? "",
+    transcript: input.transcript ?? "",
+    outline: input.outline ?? null,
   });
   return createHash("sha256").update(payload).digest("hex").slice(0, 40);
 }

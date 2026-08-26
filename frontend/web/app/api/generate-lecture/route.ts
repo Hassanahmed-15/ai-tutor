@@ -609,6 +609,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
         base,
         focus: input.focus,
         documentJson: compactSuprnotesForPrompt(excerpt),
+        outline: input.outline ?? undefined,
         contextSection,
         retryGuidance,
       });
@@ -648,6 +649,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
         base,
         focus: input.focus,
         documentJson: input.slideContext,
+        outline: input.outline ?? undefined,
         contextSection,
         retryGuidance,
       });
@@ -1102,6 +1104,9 @@ export async function POST(req: Request) {
     mood: input.mood,
     slideContext: input.slideContext,
     sourceDocument: input.sourceDocument,
+    focus: focusQuestion,
+    transcript,
+    outline: input.outline,
     model: MODEL,
     generationProfile: GENERATION_PROFILE,
   });

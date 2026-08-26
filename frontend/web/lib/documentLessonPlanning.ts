@@ -70,7 +70,10 @@ export function isSpecificDocumentRequest(value: string, sourceDocument?: unknow
   if (sourceTitle && text.toLowerCase() === sourceTitle) return false;
 
   const asksQuestion = /\?|\b(what|why|how|when|where|which|compare|difference|derive|prove|solve|explain how|explain why)\b/i.test(text);
-  return asksQuestion || text.split(/\s+/).length >= 6;
+  // Short deictic requests can still name an exact object in the selected pages. Treating
+  // "explain this particular example" as broad used to open a whole-document scope survey.
+  const namesSourceObject = /\b(example|worked example|case|exercise|problem|equation|formula|proof|derivation|algorithm|figure|diagram|chart|table|code|snippet)\b/i.test(text);
+  return asksQuestion || namesSourceObject || text.split(/\s+/).length >= 6;
 }
 
 /** Ask only when the selected source genuinely contains several teachable concepts. */

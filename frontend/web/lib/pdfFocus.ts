@@ -1,4 +1,5 @@
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "./suprnotes";
+import type { PlanOutline } from "./planPrompt";
 
 /**
  * Find the passage a student's question is actually about.
@@ -142,6 +143,9 @@ function terms(question: string): string[] {
   )];
 }
 
+const SOURCE_OBJECT = /\b(example|worked\s+example|case|exercise|problem|equation|formula|proof|derivation|algorithm|figure|diagram|chart|table|code|snippet)\b/i;
+const SINGLE_SOURCE_OBJECT = /\b(?:this|that|particular|specific|selected|highlighted|following|above|below)\b[^.!?]{0,50}\b(?:example|case|exercise|problem|equation|formula|proof|derivation|algorithm|figure|diagram|chart|table|code|snippet)\b/i;
+
 type TranscriptSegment = {
   pageNumber?: number;
   sourceIndex: number;
@@ -216,24 +220,39 @@ function focusedTranscriptSegments(question: string, transcript: string): Transc
     .sort((a, b) => b.score - a.score || a.index - b.index);
   const best = ranked[0];
   if (!best || best.score < FOCUS_RULES.MIN_SCORE) return segments;
+  const singleObject = SINGLE_SOURCE_OBJECT.test(question);
 
   const chosen = new Set<number>([best.index]);
   // Captions/figure titles immediately precede the explanatory paragraph and often contain the
-  // exact operation name. Include that neighbour, but never cross into another page.
+  // exact operation name. Do not include an arbitrary preceding paragraph: for a worked-example
+  // request that pulled an unrelated definition into an otherwise exact answer.
   const previous = segments[best.index - 1];
-  if (previous?.pageNumber === best.segment.pageNumber) chosen.add(best.index - 1);
+  const previousLooksLikeCaption = previous
+    && previous.text.length <= 280
+    && /^(?:fig(?:ure)?|table|worked\s+example|example|diagram|chart|equation|formula)\b/i.test(previous.text);
+  const previousScore = previous ? transcriptScore(previous.text, question, questionTerms, want) : 0;
+  if (
+    previous?.pageNumber === best.segment.pageNumber
+    && (previousLooksLikeCaption || previousScore >= Math.max(FOCUS_RULES.MIN_SCORE, best.score * 0.6))
+  ) {
+    chosen.add(best.index - 1);
+  }
   const next = segments[best.index + 1];
   if (
+    !singleObject
+    &&
     next?.pageNumber === best.segment.pageNumber
     && transcriptScore(next.text, question, questionTerms, want) >= FOCUS_RULES.MIN_SCORE
   ) {
     chosen.add(best.index + 1);
   }
-  for (const candidate of ranked.slice(1)) {
-    if (chosen.size >= FOCUS_RULES.MAX_PASSAGES) break;
-    if (candidate.segment.pageNumber !== best.segment.pageNumber) continue;
-    if (candidate.score < Math.max(FOCUS_RULES.MIN_SCORE, best.score * 0.6)) continue;
-    chosen.add(candidate.index);
+  if (!singleObject) {
+    for (const candidate of ranked.slice(1)) {
+      if (chosen.size >= FOCUS_RULES.MAX_PASSAGES) break;
+      if (candidate.segment.pageNumber !== best.segment.pageNumber) continue;
+      if (candidate.score < Math.max(FOCUS_RULES.MIN_SCORE, best.score * 0.6)) continue;
+      chosen.add(candidate.index);
+    }
   }
   return [...chosen].sort((a, b) => a - b).map((index) => segments[index]);
 }
@@ -358,7 +377,7 @@ export function focusPassages(question: string, doc: SuprnotesLessonInput | null
    * wording shares no vocabulary with it — "explain the formula on page 7" often has nothing in
    * common with the text of page 7 beyond the formula itself. Scoring only orders them.
    */
-  const chosen = usablePages.length > 0
+  const chosen = usablePages.length > 0 && !SOURCE_OBJECT.test(q)
     ? ranked
     : ranked.filter((r) => r.score >= FOCUS_RULES.MIN_SCORE);
 
@@ -368,7 +387,7 @@ export function focusPassages(question: string, doc: SuprnotesLessonInput | null
     question: q,
     pages: usablePages,
     missingPages,
-    passages: chosen.slice(0, FOCUS_RULES.MAX_PASSAGES).map(({ block, score }) => ({
+    passages: chosen.slice(0, SINGLE_SOURCE_OBJECT.test(q) ? 1 : FOCUS_RULES.MAX_PASSAGES).map(({ block, score }) => ({
       blockId: block.id,
       pageNumber: block.pageNumber,
       heading: block.heading,
@@ -460,6 +479,8 @@ export function focusedUserMessage(args: {
   base: string;
   focus: PdfFocus;
   documentJson: string;
+  /** The approved plan for this exact question. It structures the answer, never broadens it. */
+  outline?: PlanOutline;
   /**
    * Passages retrieved from elsewhere in the same document because they relate to the region.
    *
@@ -470,10 +491,20 @@ export function focusedUserMessage(args: {
   contextSection?: string;
   retryGuidance?: string;
 }): string {
-  const { base, focus, documentJson, contextSection = "", retryGuidance = "" } = args;
+  const { base, focus, documentJson, outline, contextSection = "", retryGuidance = "" } = args;
+  const focusedPlan = outline?.subtopics.length
+    ? [
+        "QUESTION-SPECIFIC APPROVED PLAN:",
+        ...outline.subtopics.map((subtopic, index) => `${index + 1}. ${subtopic.title} — ${subtopic.caption}`),
+        "Follow these steps in order. Every step must answer the exact question above; do not add any topic outside this plan.",
+        "This focused plan overrides ordinary 10-12 beat, intro, recap, checkpoint, and whole-document outline rules.",
+      ].join("\n")
+    : "";
   return [
     focusPromptSection(focus),
     "",
+    focusedPlan,
+    focusedPlan ? "" : null,
     contextSection,
     contextSection ? "" : null,
     base,

@@ -52,6 +52,20 @@ Create exactly 1 or 2 concise questions:
 
 Questions must be specific enough that they would make no sense for a different document. Labels are <=7 words. Each instruction is a complete directive that preserves source grounding and excludes unrelated material. Do not ask open-ended questions. Output only JSON.`;
 
+export const DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT = `You are Aria planning a focused explanation from selected pages of an uploaded PDF or PowerPoint.
+Return JSON only: { "topic": string, "subtopics": [{ "title": string, "caption": string, "reason": string }] }
+
+The student's exact question and the only permitted source passages appear below. Plan ONLY the answer to that question.
+- Create 3-6 subtopics, each required to answer the exact question. Never survey the document or add adjacent sections.
+- Do not add a generic introduction, history, applications, recap, quiz, prerequisite survey, or unrelated examples.
+- If the student asks about one example, plan only that example: identify its givens/setup, work through its actual steps in source order, explain why each step works, and interpret its result. Do not add other examples.
+- If the student asks about a formula, figure, table, proof, or code fragment, unpack only that object and the source definitions strictly necessary to understand it.
+- Keep all page/slide references and factual claims grounded in the permitted passages. Do not use outside knowledge to fill gaps.
+- "title" is <=7 words. "caption" is one precise sentence describing what that step explains. "reason" is a <=16-word first-person planning thought tied to the student's question.
+- The question is already resolved by the quoted passage. Never say you need clarification, need to decide the scope, or are unsure what the student means.
+- Set "topic" to the precise concept or example being explained, never the filename, raw page/figure locator, or the words "explain this".
+Do not emit safety nets or scoping questions. Output ONLY the JSON object.`;
+
 export const PLANNING_ANGLES = [
   { id: "standard", label: "Standard", instruction: "Use the clearest, most conventional teaching order for this topic — hook, mechanism, comparison, recap." },
   { id: "historical", label: "Historical", instruction: "Frame the lesson as a story of how this idea was discovered or developed over time — who ran into the problem first, what they got wrong, how understanding evolved." },

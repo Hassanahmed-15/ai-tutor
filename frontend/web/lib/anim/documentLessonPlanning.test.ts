@@ -40,7 +40,10 @@ test("a broad multi-section source asks for scope", () => {
 
 test("a precise source question and an explicit whole-document request bypass planning", () => {
   assert.equal(isSpecificDocumentRequest("How does two-child deletion use the inorder successor?", source), true);
+  assert.equal(isSpecificDocumentRequest("Explain this particular example", source), true);
+  assert.equal(isSpecificDocumentRequest("Explain this formula", source), true);
   assert.equal(shouldPlanDocumentScope(source, "How does two-child deletion use the inorder successor?"), false);
+  assert.equal(shouldPlanDocumentScope(source, "Explain this particular example"), false);
   assert.equal(isWholeDocumentRequest("Teach the entire PDF"), true);
   assert.equal(shouldPlanDocumentScope(source, "Teach the entire PDF"), false);
 });

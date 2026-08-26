@@ -255,6 +255,60 @@ test("THE DELL FIXTURE: a two-page OCR upload narrows to node 2 deletion only", 
   assert.equal(focusedLectureTitle(focus), "Deletion of node 2 with two children");
 });
 
+test("a particular-example request retrieves that example rather than the selected-page survey", () => {
+  const transcript = [
+    "--- page 4 ---",
+    "Definition: a binary search tree keeps smaller keys on the left.",
+    "",
+    "Worked Example: Delete node 2, which has two children.",
+    "Replace 2 with the smallest key in its right subtree, node 3, then remove the old node 3.",
+    "",
+    "Complexity: deletion follows the height of the tree.",
+  ].join("\n");
+  const focus = focusFromTranscript("Explain this particular example", transcript)!;
+  const selected = focus.passages.map((passage) => passage.text).join(" ");
+  assert.match(selected, /Worked Example.*Delete node 2/i);
+  assert.match(selected, /smallest key in its right subtree/i);
+  assert.doesNotMatch(selected, /Definition:|Complexity:/i);
+});
+
+test("a particular-example request admits only one example when a page contains several", () => {
+  const focus = focusFromTranscript(
+    "Explain this particular example",
+    [
+      "--- page 5 ---",
+      "Worked Example: Delete node 2 by replacing it with node 3.",
+      "",
+      "Worked Example: Delete leaf node 9 directly.",
+    ].join("\n"),
+  )!;
+  const selected = focus.passages.map((passage) => passage.text).join(" ");
+  assert.match(selected, /node 2/i);
+  assert.doesNotMatch(selected, /node 9/i);
+});
+
+test("an approved focused plan is carried into generation without broadening the scope", () => {
+  const focus = focusFromTranscript(
+    "Explain this particular example",
+    "Worked Example: Replace node 2 with node 3, then remove the old node 3.",
+  )!;
+  const msg = focusedUserMessage({
+    base: 'Teach this topic live: "BST deletion".',
+    focus,
+    documentJson: "{}",
+    outline: {
+      topic: "Two-child deletion example",
+      subtopics: [
+        { title: "Identify the case", caption: "Establish why node 2 has two children." },
+        { title: "Choose node 3", caption: "Trace the smallest key in the right subtree." },
+      ],
+    },
+  });
+  assert.match(msg, /QUESTION-SPECIFIC APPROVED PLAN/);
+  assert.match(msg, /Identify the case/);
+  assert.match(msg, /do not add any topic outside this plan/i);
+});
+
 test("raw figure/page locators are rejected as slide titles", () => {
   for (const title of ["Figure 19.4", "Fig. 3", "Page 2", "Slide 4", "?"]) {
     assert.equal(isWeakSlideTitle(title), true, `${title} should not reach the student`);

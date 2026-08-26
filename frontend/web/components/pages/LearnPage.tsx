@@ -23,6 +23,7 @@ import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 import {
   fallbackDocumentScopeQuestion,
+  isSpecificDocumentRequest,
   isWholeDocumentRequest,
   shouldPlanDocumentScope,
   type DocumentPlanningOption,
@@ -157,6 +158,8 @@ type BuildCost =
   const [initialPlanningQuestions, setInitialPlanningQuestions] = useState<ScopingQuestion[]>([]);
   const [planningAnswers, setPlanningAnswers] = useState<Array<{ question: string; label: string; instruction: string; focus?: string | null }>>([]);
   const [documentPlanningActive, setDocumentPlanningActive] = useState(false);
+  const [focusedDocumentPlanningActive, setFocusedDocumentPlanningActive] = useState(false);
+  const focusedPlanningFreshRef = useRef<FreshUpload | null>(null);
   const [clarifyAnswers, setClarifyAnswers] = useState<{ question: string; answer: string }[]>([]);
   const [outline, setOutline] = useState<PlanOutline | null>(null);
   const [planLoading, setPlanLoading] = useState(false);
@@ -654,6 +657,8 @@ type BuildCost =
     setPlanScopingQuestions([]);
     setPlanAngle("standard");
     setDocumentPlanningActive(false);
+    setFocusedDocumentPlanningActive(false);
+    focusedPlanningFreshRef.current = null;
   }
 
   async function callPlanApi(body: Record<string, unknown>): Promise<Record<string, unknown> | null> {
@@ -765,6 +770,18 @@ type BuildCost =
    *  instead of the default structure, so the same topic can produce a genuinely different lesson. */
   function rerollAngle(angle: PlanningAngleId) {
     setPlanAngle(angle);
+    if (focusedDocumentPlanningActive) {
+      const fresh = focusedPlanningFreshRef.current;
+      streamOutlineRequest({
+        mode: "document-question",
+        topic,
+        question: fresh?.focus ?? uploadFocus,
+        transcript: fresh?.transcript ?? ocrTranscript,
+        angle,
+        sourceDocument: fresh?.sourceDocument ?? sourceDocument,
+      }, topic);
+      return;
+    }
     streamOutlineRequest({ mode: "outline", topic, clarifications: clarifyAnswers, angle, sourceDocument }, topic);
   }
 
@@ -808,6 +825,29 @@ type BuildCost =
     const planningFocus = fresh?.focus ?? uploadFocus;
     const planningKind = fresh?.kind ?? uploadedFile?.kind;
     const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
+
+    const shouldPlanExactQuestion = isPdfOrDeck
+      && !isWholeDocumentRequest(planningFocus)
+      && (Boolean(fresh?.scopeSelected) || isSpecificDocumentRequest(planningFocus, planningDocument));
+
+    if (!forceBuild && shouldPlanExactQuestion) {
+      setFocusedDocumentPlanningActive(true);
+      focusedPlanningFreshRef.current = {
+        ...fresh,
+        sourceDocument: planningDocument ?? undefined,
+        focus: planningFocus,
+        kind: planningKind,
+      };
+      setPhase("outline");
+      await streamOutlineRequest({
+        mode: "document-question",
+        topic: trimmed,
+        question: planningFocus,
+        transcript: fresh?.transcript ?? ocrTranscript,
+        sourceDocument: planningDocument,
+      }, trimmed);
+      return;
+    }
 
     if (!forceBuild && isPdfOrDeck && !fresh?.scopeSelected && shouldPlanDocumentScope(planningDocument, planningFocus)) {
       setDocumentPlanningActive(true);
@@ -902,7 +942,17 @@ type BuildCost =
 
   async function reviseOutline(instruction: string) {
     if (!outline || !instruction.trim()) return;
-    await streamOutlineRequest({ mode: "revise", outline, instruction: instruction.trim(), sourceDocument }, outline.topic);
+    const fresh = focusedPlanningFreshRef.current;
+    await streamOutlineRequest({
+      mode: "revise",
+      outline,
+      instruction: instruction.trim(),
+      sourceDocument: fresh?.sourceDocument ?? sourceDocument,
+      ...(focusedDocumentPlanningActive ? {
+        question: fresh?.focus ?? uploadFocus,
+        transcript: fresh?.transcript ?? ocrTranscript,
+      } : {}),
+    }, outline.topic);
   }
 
   function backToAsk() {
@@ -912,7 +962,7 @@ type BuildCost =
   }
 
   function approveOutline() {
-    build(topic, outline ?? undefined);
+    build(topic, outline ?? undefined, focusedDocumentPlanningActive, focusedPlanningFreshRef.current ?? undefined);
   }
 
   function chooseBuildSteering(label: string, note: string) {

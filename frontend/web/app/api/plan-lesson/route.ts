@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import {
   CLARIFY_TOPIC_SYSTEM_PROMPT,
+  DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT,
   DOCUMENT_SCOPE_SYSTEM_PROMPT,
   OUTLINE_LESSON_SYSTEM_PROMPT,
   REVISE_OUTLINE_SYSTEM_PROMPT,
@@ -12,6 +13,7 @@ import {
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
+import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
 
 /**
  * Compact, planning-sized summary of an uploaded source document (PDF/PPTX) — just enough for
@@ -163,6 +165,19 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
 function sanitizeSingleSubtopic(raw: unknown): PlanOutline["subtopics"][number] | undefined {
   const outline = sanitizeOutline({ topic: "partial", subtopics: [raw] }, "partial");
   return outline.subtopics[0];
+}
+
+function focusedSubtopic(subtopic: PlanOutline["subtopics"][number], index: number): PlanOutline["subtopics"][number] {
+  const uncertain = /\b(?:clarif\w*|unsure|uncertain|need to (?:know|decide|ask)|what the student means)\b/i.test(subtopic.reason ?? "");
+  return {
+    title: subtopic.title,
+    caption: subtopic.caption,
+    reason: uncertain
+      ? (index === 0
+          ? "I will establish the exact source setup before tracing its steps."
+          : "This source-grounded step is required to answer the student's question.")
+      : subtopic.reason,
+  };
 }
 
 async function ensureSafetyNets(client: OpenAI, outline: PlanOutline): Promise<{ outline: PlanOutline; costUsd: number }> {
@@ -336,7 +351,13 @@ function angleInstructionLine(angleId: string | undefined): string {
  *  while subtopic 4 is still being drafted, genuine mid-build engagement rather than a batch of
  *  questions tacked onto the finished outline), then a final {type:"outline", ...PlanOutline,
  *  costUsd}. The draft never pauses for a question — streaming continues regardless. */
-function streamOutline(client: OpenAI, systemPrompt: string, userContent: string, fallbackTopic: string): Response {
+function streamOutline(
+  client: OpenAI,
+  systemPrompt: string,
+  userContent: string,
+  fallbackTopic: string,
+  focused = false,
+): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
@@ -366,12 +387,20 @@ function streamOutline(client: OpenAI, systemPrompt: string, userContent: string
           if (chunk.usage) usage = chunk.usage;
 
           const { subtopics, total: subtopicTotal } = extractNewSubtopics(buffer, emittedSubtopics);
-          for (const subtopic of subtopics) send({ type: "subtopic", index: emittedSubtopics++, subtopic });
+          for (const subtopic of subtopics) {
+            const index = emittedSubtopics++;
+            send({ type: "subtopic", index, subtopic: focused ? focusedSubtopic(subtopic, index) : subtopic });
+          }
           emittedSubtopics = Math.max(emittedSubtopics, subtopicTotal);
 
           const reasonMatches = findReasonMatches(buffer);
           const { reasons, total } = extractNewReasons(reasonMatches, emittedReasons);
-          for (const reason of reasons) send({ type: "thought", text: reason });
+          for (const [offset, reason] of reasons.entries()) {
+            const text = focused
+              ? focusedSubtopic({ title: "", caption: "", reason }, emittedReasons + offset).reason
+              : reason;
+            send({ type: "thought", text });
+          }
           emittedReasons = total;
 
           const { questions, total: scopingTotal } = extractNewScopingQuestions(buffer, emittedScopingQuestions);
@@ -379,11 +408,17 @@ function streamOutline(client: OpenAI, systemPrompt: string, userContent: string
           emittedScopingQuestions = scopingTotal;
         }
 
-        const outline = sanitizeOutline(JSON.parse(buffer || "{}"), fallbackTopic);
+        const rawOutline = sanitizeOutline(JSON.parse(buffer || "{}"), fallbackTopic);
+        const outline = focused
+          ? {
+              topic: rawOutline.topic || fallbackTopic,
+              subtopics: rawOutline.subtopics.slice(0, 6).map(focusedSubtopic),
+            }
+          : rawOutline;
         if (outline.subtopics.length === 0) {
           send({ type: "error", error: "Could not plan an outline for that topic." });
         } else {
-          const enriched = await ensureSafetyNets(client, outline);
+          const enriched = focused ? { outline, costUsd: 0 } : await ensureSafetyNets(client, outline);
           send({ type: "outline", ...enriched.outline, costUsd: costUsd(usage) + enriched.costUsd });
         }
       } catch (err) {
@@ -405,8 +440,8 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "clarify" && mode !== "document-scope" && mode !== "outline" && mode !== "revise") {
-    return NextResponse.json({ error: "mode must be clarify, document-scope, outline, or revise" }, { status: 400 });
+  if (mode !== "clarify" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
+    return NextResponse.json({ error: "mode must be clarify, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -440,6 +475,21 @@ export async function POST(req: Request) {
     } catch (err) {
       return NextResponse.json({ error: err instanceof Error ? err.message : "Document planning failed" }, { status: 502 });
     }
+  }
+
+  if (mode === "document-question") {
+    if (!sourceDocument) return NextResponse.json({ error: "sourceDocument is required" }, { status: 400 });
+    const question = typeof body.question === "string" ? body.question.trim().slice(0, 500) : "";
+    const transcript = typeof body.transcript === "string" ? body.transcript.trim() : "";
+    if (!question && !transcript) return NextResponse.json({ error: "question or selected-page transcript is required" }, { status: 400 });
+    const focus = focusFromTranscript(question, transcript) ?? focusPassages(question, sourceDocument);
+    if (!focus) {
+      return NextResponse.json({ error: "I could not locate that request in the selected pages. Select the example or name it more precisely." }, { status: 422 });
+    }
+    const fallbackTopic = subjectFromFocus(focus) || (typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "Focused explanation");
+    const angle = typeof body.angle === "string" ? body.angle : undefined;
+    const userContent = `${focusPromptSection(focus)}${angleInstructionLine(angle)}\n\nPlan the answer now. The quoted passages above are the complete permitted planning scope.`;
+    return streamOutline(client, DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT, userContent, fallbackTopic, true);
   }
 
   if (mode === "clarify") {
@@ -486,6 +536,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "outline and instruction are required" }, { status: 400 });
   }
   const currentOutline = sanitizeOutline(rawOutline, typeof (rawOutline as Record<string, unknown>).topic === "string" ? (rawOutline as Record<string, unknown>).topic as string : "");
-  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${sourceDocLine}`;
-  return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, userContent, currentOutline.topic);
+  const revisionQuestion = typeof body.question === "string" ? body.question.trim().slice(0, 500) : "";
+  const revisionTranscript = typeof body.transcript === "string" ? body.transcript.trim() : "";
+  const revisionFocus = sourceDocument && (revisionQuestion || revisionTranscript)
+    ? focusFromTranscript(revisionQuestion, revisionTranscript) ?? focusPassages(revisionQuestion, sourceDocument)
+    : null;
+  const focusedRevisionLine = revisionFocus
+    ? `\n\nThis is a question-specific document outline. It must continue to answer ONLY this question and use ONLY these passages:\n${focusPromptSection(revisionFocus)}`
+    : sourceDocLine;
+  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}`;
+  return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, userContent, currentOutline.topic, Boolean(revisionFocus));
 }
