@@ -21,6 +21,12 @@ import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
+import {
+  fallbackDocumentScopeQuestion,
+  isWholeDocumentRequest,
+  shouldPlanDocumentScope,
+  type DocumentPlanningOption,
+} from "@/lib/documentLessonPlanning";
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
@@ -66,7 +72,11 @@ const BUILD_STEERING_QUESTIONS = [
     ],
   },
 ] as const;
-type ScopingQuestion = { question: string; options: { label: string; instruction: string }[] };
+type ScopingQuestion = {
+  kind?: "scope" | "emphasis";
+  question: string;
+  options: DocumentPlanningOption[];
+};
 type PlanSafetyNet = {
   prerequisite: string;
   diagnostic: string;
@@ -145,7 +155,8 @@ type BuildCost =
   // scoping questions + freeform revise.
   const [initialAmbiguityQuestions, setInitialAmbiguityQuestions] = useState<ClarifyQuestion[]>([]);
   const [initialPlanningQuestions, setInitialPlanningQuestions] = useState<ScopingQuestion[]>([]);
-  const [planningAnswers, setPlanningAnswers] = useState<{ question: string; label: string; instruction: string }[]>([]);
+  const [planningAnswers, setPlanningAnswers] = useState<Array<{ question: string; label: string; instruction: string; focus?: string | null }>>([]);
+  const [documentPlanningActive, setDocumentPlanningActive] = useState(false);
   const [clarifyAnswers, setClarifyAnswers] = useState<{ question: string; answer: string }[]>([]);
   const [outline, setOutline] = useState<PlanOutline | null>(null);
   const [planLoading, setPlanLoading] = useState(false);
@@ -409,19 +420,19 @@ type BuildCost =
       setUploadPhase("ready");
 
       /**
-       * Go straight to building. The student has already said what they want twice — by choosing
-       * pages and by writing a prompt — so presenting an outline to approve asks a third time for
-       * information already given, and the outline is drafted from the document anyway.
-       *
-       * autoPlannedRef is set here so the upload-watching effect does not also fire; forceBuild
-       * skips the outline without depending on setUploadedFile having flushed first.
+       * Continue with the scope already supplied. A precise question or dragged region builds
+       * immediately; a broad multi-section selection gets the short source-specific planning gate.
+       * Neither route lets the general outline planner reorder the parser's grounded source plan.
+       * autoPlannedRef prevents the upload-watching effect from starting the same transition twice.
        */
       autoPlannedRef.current = true;
-      void startPlanning(subject, true, {
+      void startPlanning(subject, false, {
         sourceDocument: data.sourceDocument ?? undefined,
         slideContext: typeof data.fullText === "string" ? data.fullText : undefined,
         focus,
         transcript: transcriptText,
+        kind: pendingKind,
+        scopeSelected: drewRegion,
       });
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
@@ -642,6 +653,7 @@ type BuildCost =
     setPlanThoughts([]);
     setPlanScopingQuestions([]);
     setPlanAngle("standard");
+    setDocumentPlanningActive(false);
   }
 
   async function callPlanApi(body: Record<string, unknown>): Promise<Record<string, unknown> | null> {
@@ -756,8 +768,8 @@ type BuildCost =
     streamOutlineRequest({ mode: "outline", topic, clarifications: clarifyAnswers, angle, sourceDocument }, topic);
   }
 
-  // Structured uploads already carry an explicit source-grounded lesson plan. Re-planning them
-  // here can reorder or omit source material, so they skip directly to lecture generation.
+  // Structured uploads already carry an explicit source-grounded lesson plan. PDF/PPT uploads may
+  // pause for scope choices before reaching this check, but their source plan is never rewritten.
   function shouldSkipPlanning(): boolean {
     const structuredUpload =
       uploadedFile?.kind === "suprnotes" ||
@@ -781,9 +793,8 @@ type BuildCost =
    * @param forceBuild Skip the outline step regardless of what state has flushed yet.
    *
    * shouldSkipPlanning() reads `uploadedFile`, which is set in the same tick as `uploadPhase`.
-   * A caller that has just parsed a document already KNOWS there is a source and should not
-   * depend on React having committed that state first — the failure mode is a document upload
-   * landing on the outline screen, which is exactly what it is meant to bypass.
+   * A caller that has just parsed a document already knows its source and scope before React has
+   * committed state. `fresh` carries those values into either document planning or generation.
    */
   async function startPlanning(t: string, forceBuild = false, fresh?: FreshUpload) {
     const trimmed = t.trim();
@@ -793,8 +804,33 @@ type BuildCost =
     setError(null);
     resetPlanning();
 
+    const planningDocument = fresh?.sourceDocument ?? sourceDocument;
+    const planningFocus = fresh?.focus ?? uploadFocus;
+    const planningKind = fresh?.kind ?? uploadedFile?.kind;
+    const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
+
+    if (!forceBuild && isPdfOrDeck && !fresh?.scopeSelected && shouldPlanDocumentScope(planningDocument, planningFocus)) {
+      setDocumentPlanningActive(true);
+      setPhase("outline");
+      setPlanLoading(true);
+      const data = await callPlanApi({ mode: "document-scope", topic: trimmed, sourceDocument: planningDocument });
+      setPlanLoading(false);
+      const questions = data && Array.isArray(data.planningQuestions)
+        ? data.planningQuestions as ScopingQuestion[]
+        : [];
+      const fallback = fallbackDocumentScopeQuestion(planningDocument);
+      if (!questions.length && fallback) setPlanError(null);
+      setInitialPlanningQuestions(questions.length ? questions : fallback ? [fallback] : []);
+      if (questions.length || fallback) return;
+      build(trimmed, undefined, true, fresh);
+      return;
+    }
+
     if (forceBuild || shouldSkipPlanning()) {
-      build(trimmed, undefined, forceBuild, fresh);
+      const normalizedFresh = isPdfOrDeck && isWholeDocumentRequest(planningFocus)
+        ? { ...fresh, sourceDocument: planningDocument, focus: "", kind: planningKind }
+        : fresh;
+      build(trimmed, undefined, forceBuild || isPdfOrDeck, normalizedFresh);
       return;
     }
 
@@ -828,13 +864,23 @@ type BuildCost =
   /** Records/replaces an answer to one pre-draft planning question (main-canvas panel shows all
    *  of them at once, like a short form) — drafting only starts once every question has an
    *  answer (or the student explicitly skips), via submitPlanningQuestions below. */
-  function choosePlanningAnswer(question: string, label: string, instruction: string) {
-    setPlanningAnswers((prev) => [...prev.filter((a) => a.question !== question), { question, label, instruction }]);
+  function choosePlanningAnswer(question: string, label: string, instruction: string, focus?: string | null) {
+    setPlanningAnswers((prev) => [...prev.filter((a) => a.question !== question), { question, label, instruction, focus }]);
   }
 
   /** All planning questions answered — fold them into clarifyAnswers (same grounding mechanism
    *  ambiguity answers use) and start the first draft. */
   function submitPlanningQuestions() {
+    if (documentPlanningActive) {
+      const scopeAnswer = planningAnswers.find((answer) => Object.hasOwn(answer, "focus"));
+      const nextFocus = scopeAnswer ? scopeAnswer.focus ?? "" : "";
+      const notes = planningAnswers.map((answer) => answer.instruction);
+      setUploadFocus(nextFocus);
+      setInitialPlanningQuestions([]);
+      setPlanningAnswers([]);
+      build(topic, undefined, true, { focus: nextFocus }, notes);
+      return;
+    }
     const next = [...clarifyAnswers, ...planningAnswers.map((a) => ({ question: a.question, answer: `${a.label}: ${a.instruction}` }))];
     setClarifyAnswers(next);
     setInitialPlanningQuestions([]);
@@ -846,6 +892,11 @@ type BuildCost =
   function skipPlanningQuestions() {
     setInitialPlanningQuestions([]);
     setPlanningAnswers([]);
+    if (documentPlanningActive) {
+      setUploadFocus("");
+      build(topic, undefined, true, { focus: "" });
+      return;
+    }
     requestOutline(topic, clarifyAnswers, planAngle);
   }
 
@@ -911,13 +962,22 @@ type BuildCost =
    * that was reported, and no amount of work on grounding could reach a request that never carried
    * any. State remains the source for later rebuilds; this only covers the moment before it lands.
    */
-  type FreshUpload = { sourceDocument?: unknown; focus?: string; transcript?: string; slideContext?: string };
+  type FreshUpload = {
+    sourceDocument?: unknown;
+    focus?: string;
+    transcript?: string;
+    slideContext?: string;
+    kind?: "pdf" | "pptx" | "suprnotes" | "task-folder";
+    /** A dragged page region is already an explicit scope choice; never ask the student again. */
+    scopeSelected?: boolean;
+  };
 
   async function build(
     t: string,
     approvedOutline?: PlanOutline,
     forceSkipSteering = false,
     fresh?: FreshUpload,
+    documentPlanningNotes: string[] = [],
   ) {
     const trimmed = t.trim();
     if (!trimmed) return;
@@ -952,6 +1012,9 @@ type BuildCost =
     const buildSteeringLine = buildSteeringNotes.length
       ? ` Build-time student steering: ${buildSteeringNotes.join(" ")}`
       : " Build-time student steering: no extra preference selected, use best judgment.";
+    const documentPlanningLine = documentPlanningNotes.length
+      ? ` Uploaded-source plan chosen by the student: ${documentPlanningNotes.join(" ")}`
+      : "";
 
     // DEMO MODE: only bypass the API for plain topic demos. Uploaded sources must always exercise
     // the real generation path, otherwise Suprnotes/PPTX changes never show up in the lecture.
@@ -976,7 +1039,7 @@ type BuildCost =
 
     const payload: LecturePayload = {
       topic: trimmed,
-      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}`,
+      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}`,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
       ...(focusText ? { focus: focusText } : {}),
       // Sent whichever route the upload took: a deck reaches generation through `context` rather
@@ -1421,6 +1484,7 @@ type BuildCost =
           initialAmbiguityQuestions={initialAmbiguityQuestions}
           initialPlanningQuestions={initialPlanningQuestions}
           planningAnswers={planningAnswers}
+          documentPlanning={documentPlanningActive}
           onChoosePlanningAnswer={choosePlanningAnswer}
           onSubmitPlanningQuestions={submitPlanningQuestions}
           onSkipPlanningQuestions={skipPlanningQuestions}
@@ -1930,6 +1994,7 @@ function OutlineReviewState({
   initialAmbiguityQuestions,
   initialPlanningQuestions,
   planningAnswers,
+  documentPlanning,
   onChoosePlanningAnswer,
   onSubmitPlanningQuestions,
   onSkipPlanningQuestions,
@@ -1956,8 +2021,9 @@ function OutlineReviewState({
   /** The ONE pre-draft gate, shown in the MAIN CANVAS (not the side chat) — topic-specific
    *  planning questions worth answering before drafting starts. Empty for most topics. */
   initialPlanningQuestions: ScopingQuestion[];
-  planningAnswers: { question: string; label: string; instruction: string }[];
-  onChoosePlanningAnswer: (question: string, label: string, instruction: string) => void;
+  planningAnswers: Array<{ question: string; label: string; instruction: string; focus?: string | null }>;
+  documentPlanning: boolean;
+  onChoosePlanningAnswer: (question: string, label: string, instruction: string, focus?: string | null) => void;
   onSubmitPlanningQuestions: () => void;
   onSkipPlanningQuestions: () => void;
   onAnswerAmbiguity: (question: string, answer: string) => void;
@@ -2092,7 +2158,9 @@ function OutlineReviewState({
       <div className="max-w-2xl rounded-xl border border-[var(--hud-cyan)]/40 bg-[var(--hud-cyan)]/[0.06] p-5">
         <p className="text-xs font-semibold uppercase tracking-wider text-[var(--hud-cyan)]">Aria is planning with you</p>
         <p className="mt-2 text-sm leading-6 text-[var(--hud-text-dim)]">
-          A couple of things worth deciding before drafting this specific outline.
+          {documentPlanning
+            ? "Choose exactly what Aria should teach from this source before the lecture is built."
+            : "A couple of things worth deciding before drafting this specific outline."}
         </p>
         <div className="mt-4 space-y-5">
           {initialPlanningQuestions.map((q) => {
@@ -2106,7 +2174,7 @@ function OutlineReviewState({
                     return (
                       <button
                         key={option.label}
-                        onClick={() => onChoosePlanningAnswer(q.question, option.label, option.instruction)}
+                        onClick={() => onChoosePlanningAnswer(q.question, option.label, option.instruction, option.focus)}
                         disabled={loading}
                         className={`rounded-md border px-4 py-2 text-sm font-semibold transition disabled:opacity-50 ${
                           active
@@ -2129,14 +2197,16 @@ function OutlineReviewState({
             disabled={!allAnswered || loading}
             className="flex-1 rounded-md bg-[var(--hud-text)] py-3 text-sm font-semibold text-[#08090c] transition hover:opacity-90 disabled:opacity-35"
           >
-            {allAnswered ? "Draft outline with these choices →" : `Answer ${initialPlanningQuestions.length - planningAnswers.length} more to draft`}
+            {allAnswered
+              ? documentPlanning ? "Build this source lesson →" : "Draft outline with these choices →"
+              : `Answer ${initialPlanningQuestions.length - planningAnswers.length} more to continue`}
           </button>
           <button
             onClick={onSkipPlanningQuestions}
             disabled={loading}
             className="text-sm font-medium text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40"
           >
-            Use your judgment →
+            {documentPlanning ? "Teach the whole source →" : "Use your judgment →"}
           </button>
         </div>
       </div>
@@ -2147,7 +2217,9 @@ function OutlineReviewState({
     <section className="relative z-10 min-h-screen w-full bg-[#08090c]">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between border-b border-[var(--hud-line)] px-6 py-4 lg:px-10">
         <div className="min-w-0">
-          <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">Lesson outline</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">
+            {documentPlanning ? "Plan from your source" : "Lesson outline"}
+          </p>
           <h1 className="mt-1 truncate text-lg font-medium text-[var(--hud-text)]">{topic}</h1>
         </div>
         <button onClick={onBack} className="shrink-0 rounded-md border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]">

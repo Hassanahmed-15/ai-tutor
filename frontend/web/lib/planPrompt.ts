@@ -43,6 +43,15 @@ STEP 2 — planningQuestions: ONLY when ambiguous:false (never ask both at once 
 Each planningQuestions option's "instruction" is a complete, ready-to-send instruction in Aria's voice describing what to do when drafting the outline if picked (e.g. { "label": "Add a primer", "instruction": "Assume no prior knowledge of embeddings — include a short primer subtopic before retrieval." }). If an option should change nothing, still write a no-op instruction like "No special handling needed — plan normally."
 Output ONLY the JSON object, nothing else.`;
 
+export const DOCUMENT_SCOPE_SYSTEM_PROMPT = `You are Aria planning a lesson from an uploaded PDF or PowerPoint. The source summary below is authoritative.
+Return JSON only: { "planningQuestions": [{ "kind": "scope"|"emphasis", "question": string, "options": [{ "label": string, "instruction": string, "focus"?: string|null }] }] }
+
+Create exactly 1 or 2 concise questions:
+1. The FIRST question MUST have kind "scope". Name the real concepts or section titles found in this source and ask whether to teach the complete source or a specific coherent portion. Give 3-4 options. One option must cover the complete selected source and use "focus": null. Every other option must target an actual named source portion and use "focus" containing the exact section terms and, when supplied, its page/slide reference. Never invent a section.
+2. Add ONE kind "emphasis" question only when the source itself supports a meaningful choice, such as proof versus worked examples, mechanism versus application, or two contrasting cases that are genuinely present. Its options omit "focus". Do not ask about learner level, desired depth, lesson length, teaching style, visuals, quizzes, or any generic preference.
+
+Questions must be specific enough that they would make no sense for a different document. Labels are <=7 words. Each instruction is a complete directive that preserves source grounding and excludes unrelated material. Do not ask open-ended questions. Output only JSON.`;
+
 export const PLANNING_ANGLES = [
   { id: "standard", label: "Standard", instruction: "Use the clearest, most conventional teaching order for this topic — hook, mechanism, comparison, recap." },
   { id: "historical", label: "Historical", instruction: "Frame the lesson as a story of how this idea was discovered or developed over time — who ran into the problem first, what they got wrong, how understanding evolved." },

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import {
   CLARIFY_TOPIC_SYSTEM_PROMPT,
+  DOCUMENT_SCOPE_SYSTEM_PROMPT,
   OUTLINE_LESSON_SYSTEM_PROMPT,
   REVISE_OUTLINE_SYSTEM_PROMPT,
   PLANNING_ANGLES,
@@ -10,6 +11,7 @@ import {
 } from "@/lib/planPrompt";
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
 import { costFor } from "@/lib/modelPricing";
+import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 
 /**
  * Compact, planning-sized summary of an uploaded source document (PDF/PPTX) — just enough for
@@ -28,7 +30,8 @@ function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
     .map((b) => {
       const heading = (b.heading ?? "").trim();
       const gist = (b.text ?? "").trim().slice(0, 220);
-      return `- ${heading || "(untitled section)"}: ${gist}`;
+      const location = typeof b.pageNumber === "number" ? ` [page/slide ${b.pageNumber}]` : "";
+      return `- ${heading || "(untitled section)"}${location}: ${gist}`;
     })
     .join("\n");
   return blocks || "(no readable content extracted)";
@@ -402,8 +405,8 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "clarify" && mode !== "outline" && mode !== "revise") {
-    return NextResponse.json({ error: "mode must be clarify, outline, or revise" }, { status: 400 });
+  if (mode !== "clarify" && mode !== "document-scope" && mode !== "outline" && mode !== "revise") {
+    return NextResponse.json({ error: "mode must be clarify, document-scope, outline, or revise" }, { status: 400 });
   }
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -415,6 +418,29 @@ export async function POST(req: Request) {
   const sourceDocLine = sourceDocument
     ? `\n\nThe student uploaded a source document. Its actual content (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${summarizeSourceDocumentForPlanning(sourceDocument)}`
     : "";
+
+  if (mode === "document-scope") {
+    if (!sourceDocument) return NextResponse.json({ error: "sourceDocument is required" }, { status: 400 });
+    try {
+      const completion = await client.chat.completions.create({
+        model: MODEL,
+        messages: [
+          { role: "system", content: DOCUMENT_SCOPE_SYSTEM_PROMPT },
+          { role: "user", content: `Uploaded source topic: "${typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "Document lesson"}"${sourceDocLine}` },
+        ],
+        temperature: 0.2,
+        max_tokens: 850,
+        response_format: { type: "json_object" },
+      });
+      const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
+      return NextResponse.json({
+        planningQuestions: sanitizeDocumentPlanningQuestions(parsed, sourceDocument),
+        costUsd: costUsd(completion.usage),
+      });
+    } catch (err) {
+      return NextResponse.json({ error: err instanceof Error ? err.message : "Document planning failed" }, { status: 502 });
+    }
+  }
 
   if (mode === "clarify") {
     const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
