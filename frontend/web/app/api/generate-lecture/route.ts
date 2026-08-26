@@ -35,7 +35,7 @@ import {
   suprnotesTitle,
   type SuprnotesLessonInput,
 } from "@/lib/suprnotes";
-import { focusPassages, focusFromTranscript, focusPromptSection, focusedUserMessage, isPointingPhrase, subjectFromFocus, type PdfFocus } from "@/lib/pdfFocus";
+import { focusPassages, focusFromTranscript, focusPromptSection, focusedLectureTitle, focusedUserMessage, isPointingPhrase, isWeakSlideTitle, subjectFromFocus, type PdfFocus } from "@/lib/pdfFocus";
 import { embedTexts, EMBED_RULES } from "@/lib/embeddings";
 import { chunksFrom, rankChunks, contextPromptSection, type RankedChunk } from "@/lib/ragRetrieve";
 import type { Beat } from "@/lib/lessonContent";
@@ -125,6 +125,10 @@ const GENERATION_PROFILE: Record<string, string | number | boolean> = {
   specBoardModel: process.env.OPENAI_SPEC_BOARD_MODEL ?? MODEL,
   referenceImagesEnabled: REAL_REFERENCE_IMAGES_ENABLED,
   visionModel: process.env.OPENAI_VISION_MODEL ?? "gpt-4o",
+  // Pure-code quality changes must invalidate lectures produced before them. Otherwise the same
+  // upload/question can keep replaying a cached "Figure 19.4" error board after the fix ships.
+  focusedRetrievalVersion: 2,
+  deterministicBoardFallbackVersion: 2,
 };
 
 // gpt-4o pricing for the text-generation step (as of 2025, source: openai.com/api/pricing).
@@ -259,6 +263,42 @@ function applyPdfPlanMetadata(
   }
 }
 
+function focusedSourceExcerpt(sourceDocument: SuprnotesLessonInput, focus: PdfFocus): SuprnotesLessonInput {
+  const originals = new Map((sourceDocument.contentBlocks ?? []).map((block) => [block.id, block]));
+  const grouped = new Map<string, typeof focus.passages>();
+  for (const passage of focus.passages) {
+    const current = grouped.get(passage.blockId) ?? [];
+    current.push(passage);
+    grouped.set(passage.blockId, current);
+  }
+  // OCR image-only PDFs produce one content block per whole page. Copying that original block would
+  // put the following C++ section straight back into a focus narrowed to the deletion paragraph.
+  // Keep the source identity/asset links, but replace its text with only the selected passages.
+  const contentBlocks = [...grouped.entries()].map(([id, passages], index) => {
+    const original = originals.get(id);
+    return {
+      ...(original ?? {}),
+      id,
+      type: original?.type ?? "section",
+      heading: passages[0]?.heading ?? original?.heading,
+      text: passages.map((passage) => passage.text).join("\n\n"),
+      pageNumber: passages[0]?.pageNumber ?? original?.pageNumber,
+      sourceOrder: original?.sourceOrder ?? index + 1,
+    };
+  });
+  const selectedIds = new Set(contentBlocks.map((block) => block.id));
+  const assets = (sourceDocument.assets ?? []).filter((asset) =>
+    asset.sourceBlockIds?.some((id) => selectedIds.has(id)),
+  );
+  return {
+    ...sourceDocument,
+    contentBlocks,
+    assets,
+    lessonPlan: undefined,
+    suggestedLecturePlan: undefined,
+  };
+}
+
 
 /**
  * Guarantee distinct beat ids and titles across the WHOLE lecture.
@@ -293,6 +333,19 @@ function dedupeBeatIdentity(beats: Beat[]): void {
     }
     if (beat.title) usedTitles.add(beat.title);
   });
+}
+
+function repairFocusedTitles(beats: Beat[], focus: PdfFocus | null): void {
+  if (!focus) return;
+  const concept = focusedLectureTitle(focus);
+  beats.forEach((beat, index) => {
+    if (!isWeakSlideTitle(beat.title)) return;
+    const point = (beat.points ?? []).find((value) => /[A-Za-z]{3,}/.test(value ?? ""))?.replace(/[.!?]+$/, "").trim();
+    beat.title = index === 0 || !point
+      ? concept
+      : point.slice(0, 72);
+  });
+  dedupeBeatIdentity(beats);
 }
 
 function textCostUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
@@ -551,11 +604,11 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
        * "RESULTS Test 1: SMOTETomek with Class Weights (A+B)" before reaching the matrix. An
        * instruction competes with the data; deleting the data does not.
        */
-      const withoutPlan = { ...input.sourceDocument, lessonPlan: undefined, suggestedLecturePlan: undefined };
+      const excerpt = focusedSourceExcerpt(input.sourceDocument, input.focus);
       return focusedUserMessage({
         base,
         focus: input.focus,
-        documentJson: compactSuprnotesForPrompt(withoutPlan),
+        documentJson: compactSuprnotesForPrompt(excerpt),
         contextSection,
         retryGuidance,
       });
@@ -726,6 +779,8 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
           );
         }
       }
+
+      repairFocusedTitles(beats, input.focus);
 
       return { beats, textCost };
     } catch (err) {

@@ -365,7 +365,10 @@ function pageNumbersForBlocks(blockIds: string[], blocks: SuprnotesContentBlock[
 }
 
 function titleForGroup(group: SuprnotesContentBlock[], pages: number[]): string {
-  const heading = group.map((block) => clean(block.heading, 100)).find((value) => value && !/^Page \d+$/i.test(value));
+  const rawLocator = /^(?:fig(?:ure)?|table|chart|diagram|page|slide)\s*[#.]?\s*[\divxlcdm.-]+[:.]?$/i;
+  const heading = group
+    .map((block) => clean(block.heading, 100))
+    .find((value) => value && !/^Page \d+$/i.test(value) && !rawLocator.test(value));
   if (heading) return heading;
 
   /**
@@ -388,7 +391,13 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[]): string 
     const text = clean(block.text, 100);
     return text && /[A-Za-z]{3,}/.test(text);
   });
-  const opening = clean(meaningful?.text ?? group[0]?.text, 100);
+  let opening = clean(meaningful?.text ?? group[0]?.text, 240);
+  // A caption's locator is provenance, not a title. Keep its descriptive clause: the Dell fixture
+  // must read "Deletion of node 2 with two children", never merely "Figure 19.4".
+  opening = opening
+    .replace(/^\s*(?:fig(?:ure)?|table|chart|diagram)\s*[#.]?\s*[\divxlcdm.-]+\s*[:.-]?\s*/i, "")
+    .replace(/\s*\([a-z]\)\s*(?:before|after)[\s\S]*$/i, "")
+    .trim();
   if (opening) {
     // Prefer the first sentence; a whole paragraph is not a title.
     //

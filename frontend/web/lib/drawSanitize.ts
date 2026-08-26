@@ -407,6 +407,48 @@ export function sanitizeChalkBoardOps(rawOps: unknown): DrawOp[] {
     .sort((a, b) => a.at - b.at);
 }
 
+/**
+ * Re-lay generated blackboard text into one deterministic column.
+ *
+ * The model often returns the right words with a label and note sharing the same y-coordinate.
+ * Rejecting that content and asking the model to count grid units again can fail identically on
+ * every retry. Geometry is not a language task: keep the authored text/reveal timing, but assign
+ * rows here so overlap and right-edge clipping are impossible by construction.
+ */
+export function layoutBlackboardTextRows(ops: DrawOp[]): DrawOp[] {
+  type TextOp = Extract<DrawOp, { kind: "label" | "note" }>;
+  const rows = ops
+    .filter((op): op is TextOp => op.kind === "label" || op.kind === "note")
+    .slice(0, 8);
+  if (rows.length === 0) return [];
+
+  const left = 8;
+  const top = 9;
+  const bottom = 88;
+  const gap = rows.length > 1 ? (bottom - top) / (rows.length - 1) : 0;
+  const clip = (text: string, max: number): string => {
+    const cleanText = text.replace(/\s+/g, " ").trim();
+    if (cleanText.length <= max) return cleanText;
+    const candidate = cleanText.slice(0, max + 1);
+    const space = candidate.lastIndexOf(" ");
+    return candidate.slice(0, space >= Math.floor(max * 0.6) ? space : max).replace(/[,:;\-]+$/, "").trim();
+  };
+
+  return rows.map((op, index) => {
+    if (op.kind === "note") {
+      return { ...op, text: clip(op.text, 86), x: left, y: top + index * gap };
+    }
+    const size = index === 0 ? "md" : "sm";
+    return {
+      ...op,
+      text: clip(op.text, index === 0 ? 60 : 86),
+      size,
+      x: left,
+      y: top + index * gap,
+    };
+  });
+}
+
 export type BlackboardDiagnostics = { issue: string | null; labelCount: number; noteCount: number; diagramCount: number; opCount: number };
 
 /** Quality bar for a generated chalk board — deliberately NOT the animation density validator

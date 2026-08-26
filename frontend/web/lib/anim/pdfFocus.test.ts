@@ -9,7 +9,7 @@ import assert from "node:assert/strict";
 
 import {
   parsePageRefs, wantedKind, scoreBlock, focusPassages, focusFromTranscript, focusPromptSection,
-  focusedUserMessage, isPointingPhrase, subjectFromFocus, FOCUS_RULES,
+  focusedLectureTitle, focusedUserMessage, isPointingPhrase, isWeakSlideTitle, subjectFromFocus, FOCUS_RULES,
 } from "../pdfFocus";
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "../suprnotes";
 
@@ -226,6 +226,40 @@ test("a transcript gets more room than a retrieved block", () => {
   const focus = focusFromTranscript("explain", long, [1])!;
   assert.ok(focus.passages[0].text.length > FOCUS_RULES.MAX_PASSAGE_CHARS,
             "the transcript was cut to a single block's budget");
+});
+
+test("THE DELL FIXTURE: a two-page OCR upload narrows to node 2 deletion only", () => {
+  const transcript = [
+    "--- page 1 ---",
+    "Figure 19.3 Deletion of node 5 with one child: (a) before and (b) after.",
+    "If the node has only one child, adjust its parent's child link to bypass the node.",
+    "",
+    "--- page 2 ---",
+    "Figure 19.4 Deletion of node 2 with two children: (a) before and (b) after.",
+    "",
+    "The complicated case deals with a node having two children. Replace the item in this node with the smallest item in the right subtree and then remove that node. We replace node 2 with the smallest node (3) in its right subtree and then remove 3 from the right subtree.",
+    "",
+    "19.1.2 C++ Implementation",
+    "In principle, the binary search tree is easy to implement. The BinaryNode class keeps its fields private and uses a friend declaration.",
+  ].join("\n");
+  const focus = focusFromTranscript(
+    "I am confused how does 2 node deletion work in a binary search tree",
+    transcript,
+  );
+  assert.ok(focus);
+  assert.deepEqual(focus.pages, [2], "the one-child page leaked into the focused answer");
+  const answerSource = focus.passages.map((passage) => passage.text).join(" ");
+  assert.match(answerSource, /smallest item in the right subtree/i);
+  assert.match(answerSource, /replace node 2.*node \(3\)/i);
+  assert.doesNotMatch(answerSource, /only one child|C\+\+ Implementation|friend declaration/i);
+  assert.equal(focusedLectureTitle(focus), "Deletion of node 2 with two children");
+});
+
+test("raw figure/page locators are rejected as slide titles", () => {
+  for (const title of ["Figure 19.4", "Fig. 3", "Page 2", "Slide 4", "?"]) {
+    assert.equal(isWeakSlideTitle(title), true, `${title} should not reach the student`);
+  }
+  assert.equal(isWeakSlideTitle("Deletion of Node 2 with Two Children"), false);
 });
 
 

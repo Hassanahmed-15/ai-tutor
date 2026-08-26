@@ -61,10 +61,10 @@ export const FOCUS_RULES = {
 
 /** Words that match everything and therefore mean nothing for ranking. */
 const STOPWORDS = new Set([
-  "a", "an", "and", "are", "as", "at", "be", "by", "can", "could", "do", "does", "explain", "for",
+  "a", "an", "and", "are", "as", "at", "be", "by", "can", "confused", "could", "do", "does", "explain", "for",
   "from", "give", "how", "i", "in", "is", "it", "its", "me", "of", "on", "or", "page", "pages",
   "please", "shown", "slide", "slides", "that", "the", "their", "there", "these", "they", "this",
-  "to", "understand", "was", "what", "when", "where", "which", "why", "with", "you", "your",
+  "to", "understand", "was", "what", "when", "where", "which", "why", "with", "work", "working", "you", "your",
 ]);
 
 /** Characters that only turn up in mathematics. Cheap, and a formula is mostly made of them. */
@@ -138,8 +138,104 @@ function terms(question: string): string[] {
       .replace(/[^a-z0-9\s.+-]/g, " ")
       .split(/\s+/)
       .map((t) => t.replace(/^[.+-]+|[.+-]+$/g, ""))
-      .filter((t) => t.length > 2 && !STOPWORDS.has(t)),
+      .filter((t) => (t.length > 2 || /^\d+$/.test(t)) && !STOPWORDS.has(t)),
   )];
+}
+
+type TranscriptSegment = {
+  pageNumber?: number;
+  sourceIndex: number;
+  text: string;
+};
+
+/** Split a page-labelled OCR transcript into paragraphs while retaining the source block id that
+ * `blocksFromTranscript` assigns to that page. */
+function transcriptSegments(transcript: string): TranscriptSegment[] {
+  const source = (transcript ?? "").trim();
+  if (!source) return [];
+  const marker = /^---\s*page\s+(\d+)(?:[^-]*)---\s*$/gim;
+  const matches = [...source.matchAll(marker)];
+  const parts = matches.length > 0
+    ? matches.map((match, index) => ({
+        pageNumber: Number(match[1]),
+        sourceIndex: index,
+        body: source.slice((match.index ?? 0) + match[0].length, matches[index + 1]?.index ?? source.length).trim(),
+      }))
+    : [{ pageNumber: undefined, sourceIndex: 0, body: source }];
+
+  return parts.flatMap((part) => {
+    let paragraphs = part.body.split(/\n\s*\n+/).map((text) => text.replace(/\s+/g, " ").trim()).filter(Boolean);
+    // Some OCR responses use only soft line breaks. Build sentence-sized paragraphs rather than
+    // treating a whole page, including the next section, as the student's requested passage.
+    if (paragraphs.length <= 1 && part.body.length > 900) {
+      const sentences = part.body.replace(/\s+/g, " ").match(/[^.!?]+[.!?]+|[^.!?]+$/g) ?? [];
+      paragraphs = [];
+      for (let index = 0; index < sentences.length; index += 3) {
+        paragraphs.push(sentences.slice(index, index + 3).join(" ").trim());
+      }
+    }
+    return paragraphs.map((text) => ({ pageNumber: part.pageNumber, sourceIndex: part.sourceIndex, text }));
+  });
+}
+
+function transcriptScore(text: string, question: string, questionTerms: string[], want: Wanted): number {
+  const hay = text.toLowerCase();
+  let score = 0;
+  for (const term of questionTerms) {
+    const root = stem(term);
+    if (hay.includes(root)) score += 2;
+  }
+  // Deletion questions are often worded with "delete" while the book says "remove", or vice
+  // versa. This is a relationship, not broad semantic guessing, and keeps the algorithm local.
+  if (questionTerms.some((term) => /^(?:delet|remov)/.test(stem(term))) && /\b(?:delet|remov)\w*/.test(hay)) score += 4;
+  const numberedNode = question.toLowerCase().match(/\b(\d+)\s+(?:child\s+)?node\s+(?:delet|remov)\w*/);
+  if (numberedNode && new RegExp(`(?:delet\\w*\\s+(?:of\\s+)?node\\s+${numberedNode[1]}|node\\s+${numberedNode[1]}[^.]{0,40}(?:delet|remov))`, "i").test(text)) score += 10;
+  if (/\b(?:two|2)[-\s]+child(?:ren)?\b/i.test(question) && /\btwo\s+children\b/i.test(text)) score += 8;
+  if (want === "figure" && /\b(?:fig(?:ure)?|diagram|graph|chart)\b/.test(hay)) score += 3;
+  if (want === "formula" && (MATH_CHARS.test(text) || MATH_SHAPE.test(text))) score += 3;
+  if (want === "table" && /\|[^\n]+\||\btable\b/.test(hay)) score += 3;
+  return score;
+}
+
+/**
+ * Find the OCR paragraphs that answer a specific typed question.
+ *
+ * Selecting two pages is not the same as asking about everything on those pages. Previously the
+ * entire 12k-character transcript became one focus passage, so a question about two-child deletion
+ * also taught one-child deletion and the following C++ implementation section. The top matching
+ * paragraph and its preceding caption carry the exact answer without opening that scope back up.
+ */
+function focusedTranscriptSegments(question: string, transcript: string): TranscriptSegment[] {
+  const segments = transcriptSegments(transcript);
+  if (segments.length <= 1 || isPointingPhrase(question)) return segments;
+  const questionTerms = terms(question);
+  if (questionTerms.length === 0) return segments;
+  const want = wantedKind(question);
+  const ranked = segments
+    .map((segment, index) => ({ segment, index, score: transcriptScore(segment.text, question, questionTerms, want) }))
+    .sort((a, b) => b.score - a.score || a.index - b.index);
+  const best = ranked[0];
+  if (!best || best.score < FOCUS_RULES.MIN_SCORE) return segments;
+
+  const chosen = new Set<number>([best.index]);
+  // Captions/figure titles immediately precede the explanatory paragraph and often contain the
+  // exact operation name. Include that neighbour, but never cross into another page.
+  const previous = segments[best.index - 1];
+  if (previous?.pageNumber === best.segment.pageNumber) chosen.add(best.index - 1);
+  const next = segments[best.index + 1];
+  if (
+    next?.pageNumber === best.segment.pageNumber
+    && transcriptScore(next.text, question, questionTerms, want) >= FOCUS_RULES.MIN_SCORE
+  ) {
+    chosen.add(best.index + 1);
+  }
+  for (const candidate of ranked.slice(1)) {
+    if (chosen.size >= FOCUS_RULES.MAX_PASSAGES) break;
+    if (candidate.segment.pageNumber !== best.segment.pageNumber) continue;
+    if (candidate.score < Math.max(FOCUS_RULES.MIN_SCORE, best.score * 0.6)) continue;
+    chosen.add(candidate.index);
+  }
+  return [...chosen].sort((a, b) => a - b).map((index) => segments[index]);
 }
 
 const blockText = (block: SuprnotesContentBlock): string =>
@@ -197,17 +293,34 @@ export function scoreBlock(block: SuprnotesContentBlock, questionTerms: string[]
 export function focusFromTranscript(question: string, transcript: string, pages: number[] = []): PdfFocus | null {
   const text = (transcript ?? "").trim();
   if (!text) return null;
+  const pointing = isPointingPhrase(question);
+  const parsed = transcriptSegments(text);
+  // A pointing phrase refers to the whole crop/page the student selected. Preserve the original
+  // line structure (titles, table rows, formula lines) and the larger OCR budget in this branch.
+  const selected = pointing
+    ? [{
+        pageNumber: parsed[0]?.pageNumber ?? pages[0],
+        sourceIndex: parsed[0]?.sourceIndex ?? 0,
+        text,
+      }]
+    : focusedTranscriptSegments(question, text);
+  const selectedPages = [...new Set([
+    ...pages,
+    ...selected.map((segment) => segment.pageNumber).filter((page): page is number => typeof page === "number"),
+  ])].sort((a, b) => a - b);
   return {
     question: (question ?? "").trim() || "Explain what is shown here.",
-    pages: [...new Set(pages)].sort((a, b) => a - b),
+    pages: selectedPages,
     missingPages: [],
-    passages: [{
-      blockId: "ocr-transcript",
-      pageNumber: pages[0],
+    passages: selected.slice(0, FOCUS_RULES.OCR_PASSAGE_BUDGET).map((segment, index) => ({
+      blockId: typeof segment.pageNumber === "number" ? `ocr-p${segment.pageNumber}-${segment.sourceIndex}` : "ocr-transcript",
+      pageNumber: segment.pageNumber ?? pages[0],
       heading: "Read from the page",
-      text: text.slice(0, FOCUS_RULES.MAX_PASSAGE_CHARS * FOCUS_RULES.OCR_PASSAGE_BUDGET),
-      score: Number.MAX_SAFE_INTEGER,
-    }],
+      text: segment.text.slice(0, pointing
+        ? FOCUS_RULES.MAX_PASSAGE_CHARS * FOCUS_RULES.OCR_PASSAGE_BUDGET
+        : FOCUS_RULES.MAX_PASSAGE_CHARS),
+      score: Number.MAX_SAFE_INTEGER - index,
+    })),
   };
 }
 
@@ -291,6 +404,8 @@ export function focusPromptSection(focus: PdfFocus | null): string {
     "",
     "Rules for this lecture, which override any general instruction to survey the topic:",
     "- The lecture is ABOUT this passage. Do not write a broad introduction to the wider subject.",
+    "- Answer only the student's exact question. Stop when it is answered; do not append nearby sections, background surveys, implementation details, or alternative methods.",
+    "- Every factual statement must be supported by the quoted passage or the explicitly retrieved supporting context. If the upload does not say it, omit it.",
     "- Reproduce the passage EXACTLY — every symbol, subscript and term. Never paraphrase a formula.",
     "- Open on it, then unpack it: what each symbol means, why it is that shape, what it computes.",
     "- Use the rest of the document only where it explains a term used here.",
@@ -298,6 +413,38 @@ export function focusPromptSection(focus: PdfFocus | null): string {
       ? `- The student also mentioned page ${focus.missingPages.join(", ")}, which is not in what they uploaded. Say so plainly in the opening rather than inventing its contents.`
       : "",
   ].filter(Boolean).join("\n");
+}
+
+/** Raw document labels identify where content appeared, not what a student will learn. */
+export function isWeakSlideTitle(title: string): boolean {
+  const cleanTitle = (title ?? "").replace(/\s+/g, " ").trim();
+  return !cleanTitle
+    || /^(?:fig(?:ure)?|table|chart|diagram|page|slide)\s*[#.]?\s*[\divxlcdm.-]+[:.]?$/i.test(cleanTitle)
+    || !/[A-Za-z]{3,}/.test(cleanTitle);
+}
+
+/** A deterministic concept title for the focused lecture, used only when the model returns a raw
+ * source label such as "Figure 19.4". Prefer the source's own caption wording over inventing one. */
+export function focusedLectureTitle(focus: PdfFocus | null): string {
+  if (!focus) return "Focused explanation";
+  const source = focus.passages.map((passage) => passage.text).join("\n");
+  const caption = source.match(/\b(?:fig(?:ure)?|table|chart|diagram)\s*[#.]?\s*[\divxlcdm.-]+\s*[:.-]?\s*([^\n.]{8,120})/i)?.[1]
+    ?.replace(/\s*\([a-z]\)\s*(?:before|after)[\s\S]*$/i, "")
+    .replace(/\s*[:;]\s*$/, "")
+    .trim();
+  if (caption && /[A-Za-z]{3,}/.test(caption)) {
+    return caption.charAt(0).toUpperCase() + caption.slice(1);
+  }
+
+  const cleanedQuestion = focus.question
+    .replace(/^\s*(?:i\s+(?:am|'m)\s+(?:confused|unsure)(?:\s+about)?|please|can\s+you|could\s+you)\s*[,.:;-]?\s*/i, "")
+    .replace(/^\s*(?:explain|tell\s+me|how\s+does|how\s+do|what\s+is)\s+/i, "")
+    .replace(/\?+$/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const candidate = cleanedQuestion || focus.passages[0]?.heading || "Focused explanation";
+  const clipped = candidate.length <= 72 ? candidate : `${candidate.slice(0, 69).trim()}...`;
+  return clipped.charAt(0).toUpperCase() + clipped.slice(1);
 }
 
 /**
@@ -330,13 +477,15 @@ export function focusedUserMessage(args: {
     contextSection,
     contextSection ? "" : null,
     base,
-    "The student's own document is below. It is REFERENCE for the passage above, not a syllabus to cover:",
+    "The permitted source excerpt is below. It is evidence for the answer above, not a syllabus to cover:",
     documentJson,
     "",
     "Because the student asked about one specific thing, the lessonPlan/suggestedLecturePlan beat order and targetBeatCount DO NOT APPLY. Ignore them. Build the beats this explanation needs and no others.",
-    "Six to ten beats, all of them about the passage above: state it exactly, then take it apart term by term, then show it working on a concrete example, then name what it is for and where it breaks down.",
-    "Use only facts from the document. Every symbol, subscript, index and operator in the passage must appear in the lecture exactly as written — reproducing it wrongly is worse than omitting it.",
-    "Where a term in the passage is defined elsewhere in the document, bring that definition in; do not survey the rest of the document beyond that.",
+    "Four to seven teaching beats, all of them answering the exact question above. Start directly with the answer, unpack each required step or relationship in depth, and stop. Do not add a generic introduction, a whole-document recap, nearby sections, quizzes, or tangential examples.",
+    "Use ONLY facts in the quoted focus passage and explicitly retrieved supporting context. The rest of the subject and your own background knowledge are out of scope. If the permitted source does not support a detail, omit it rather than filling the gap.",
+    "Every beat title must name the precise concept or step being taught. Never use a raw source locator such as 'Figure 19.4', 'Page 2', 'Slide 3', or 'Overview' as a title.",
+    "Every symbol, subscript, index and operator in the passage must appear in the lecture exactly as written — reproducing it wrongly is worse than omitting it.",
+    "Where retrieved context defines a term used by the passage, use only that definition; do not teach the retrieved passage as another topic.",
     "Use a provided asset only when it is the passage itself or the figure it refers to, via its assetId. Otherwise build whiteboard SVG diagram beats from the passage's own content.",
     /*
      * Depth, stated explicitly.

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { groupBlocksIntoBeats } from "../pdfLessonPipeline";
+import { buildPdfLessonPlan, groupBlocksIntoBeats } from "../pdfLessonPipeline";
 import type { SuprnotesContentBlock } from "../suprnotes";
 
 /**
@@ -98,4 +98,16 @@ test("blocks with no pageNumber are still grouped, not dropped", () => {
     { id: "y", sourceOrder: 1, text: "t" },
   ];
   assert.equal(groupBlocksIntoBeats(blocks).flat().length, 2);
+});
+
+test("a raw Figure 19.4 locator becomes the caption's concept title", () => {
+  const blocks: SuprnotesContentBlock[] = [{
+    id: "dell-p2",
+    pageNumber: 2,
+    sourceOrder: 1,
+    heading: "Figure 19.4",
+    text: "Figure 19.4 Deletion of node 2 with two children: (a) before and (b) after.",
+  }];
+  const plan = buildPdfLessonPlan(blocks, []);
+  assert.equal(plan.beats[0]?.title, "Deletion of node 2 with two children");
 });

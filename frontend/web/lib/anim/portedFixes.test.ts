@@ -332,6 +332,33 @@ test("a stray label cannot vouch for a beat whose board failed to fill", async (
   assert.equal(hasUsableBoard(beat([{ kind: "label" }, { kind: "shape" }])), true);
 });
 
+test("overlapping model text is laid out into non-overlapping deterministic rows", async () => {
+  const { getBlackboardDiagnostics, layoutBlackboardTextRows } = await import("../drawSanitize");
+  const overlapping = [
+    { kind: "label", text: "Two-child deletion", x: 8, y: 10, size: "md", at: 0 },
+    { kind: "label", text: "Find successor", x: 8, y: 30, size: "sm", at: 0.2 },
+    { kind: "note", text: "Choose the smallest item in the right subtree", x: 35, y: 30, at: 0.2 },
+    { kind: "label", text: "Replace item", x: 8, y: 50, size: "sm", at: 0.5 },
+    { kind: "note", text: "Remove the old successor node", x: 35, y: 50, at: 0.5 },
+  ] as never;
+  assert.match(getBlackboardDiagnostics(overlapping).issue ?? "", /overlap/);
+  const laidOut = layoutBlackboardTextRows(overlapping);
+  assert.equal(getBlackboardDiagnostics(laidOut).issue, null);
+});
+
+test("the final board fallback is model-free and always renderable", async () => {
+  const { hasUsableBoard, installDeterministicWrittenBoard } = await import("../boardFallback");
+  const beat = {
+    id: "dell-delete",
+    title: "Deletion of Node 2 with Two Children",
+    script: "Replace the item with the smallest item in the right subtree, then remove that minimum node.",
+    draw: { ops: [{ kind: "chalkBoard", status: "failed", error: "rows overlap" }] },
+  } as never;
+  assert.equal(hasUsableBoard(beat), false);
+  installDeterministicWrittenBoard(beat);
+  assert.equal(hasUsableBoard(beat), true);
+});
+
 test("a generated animation survives the paper-board composer", async () => {
   const { composePromptedSuprnotesBoards } = await import("../suprnotes");
 

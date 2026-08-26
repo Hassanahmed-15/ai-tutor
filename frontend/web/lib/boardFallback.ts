@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
+import { fallbackWrittenDraw } from "./drawSanitize";
 import { fillBlackboardOps } from "./blackboardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { fillSpecBoardOps } from "./specBoardGen";
@@ -93,6 +94,12 @@ export function hasUsableBoard(beat: Beat): boolean {
   return true;
 }
 
+/** Install the final, model-free board. It contains ordinary LiveSketch ops, so there is no
+ * placeholder, compiler, network call, or retry left that can turn it into an error card. */
+export function installDeterministicWrittenBoard(beat: Beat): void {
+  beat.draw = { ...fallbackWrittenDraw(beat.title, beat.script), surface: "paper" };
+}
+
 export type FallbackStats = { costUsd: number; rescued: number; stillEmpty: number };
 
 /**
@@ -139,8 +146,14 @@ export async function rescueEmptyBoards(
     }
 
     if (!hasUsableBoard(beat)) {
-      stats.stillEmpty++;
-      console.error(`[fallback] beat=${beat.id} STILL has no board after its whole chain`);
+      installDeterministicWrittenBoard(beat);
+      if (hasUsableBoard(beat)) {
+        stats.rescued++;
+        console.error(`[fallback] beat=${beat.id} rescued with deterministic written board`);
+      } else {
+        stats.stillEmpty++;
+        console.error(`[fallback] beat=${beat.id} STILL has no board after deterministic fallback`);
+      }
     }
   }
 

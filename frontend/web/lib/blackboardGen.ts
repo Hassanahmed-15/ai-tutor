@@ -3,6 +3,7 @@ import type { Beat } from "./lessonContent";
 import { BLACKBOARD_SYSTEM_PROMPT } from "./drawPrompt";
 import {
   getBlackboardDiagnostics,
+  layoutBlackboardTextRows,
   sanitizeChalkBoardOps,
   type BlackboardDiagnostics,
   type ChalkBoardOp,
@@ -181,8 +182,14 @@ async function generateOne(
       }
 
       const quantized = quantizeAtToSentences(parsedOps, sentences.length);
-      const ops = sanitizeChalkBoardOps(quantized);
-      const diagnostics: BlackboardDiagnostics = getBlackboardDiagnostics(ops);
+      let ops = sanitizeChalkBoardOps(quantized);
+      let diagnostics: BlackboardDiagnostics = getBlackboardDiagnostics(ops);
+      // Preserve good authored content and solve row geometry deterministically. Retrying the same
+      // prompt cannot guarantee that a language model will stop placing a label and note together.
+      if (diagnostics.issue?.includes("overlap")) {
+        ops = layoutBlackboardTextRows(ops);
+        diagnostics = getBlackboardDiagnostics(ops);
+      }
       console.error(
         `[board] beat=${beat.id} attempt=${attempt} ops=${ops.length} labels=${diagnostics.labelCount} notes=${diagnostics.noteCount} diagram=${diagnostics.diagramCount} issue=${diagnostics.issue ?? "OK"}`
       );
