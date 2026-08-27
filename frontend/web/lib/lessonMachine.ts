@@ -36,7 +36,6 @@ export type PauseReason =
   | "focus" // sustained attention drift
   | "draw" // drawing on the board
   | "checkpoint" // waiting on a checkpoint answer
-  | "wrong-answer" // missed the teacher's question — offered a re-explanation
   | "checkin" // a run of skipped beats — the companion has the floor until the learner comes back
   | "complete"; // lesson finished
 
@@ -116,6 +115,26 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
     [voice, go]
   );
 
+  /**
+   * Into `teaching`, and ACTUALLY audible.
+   *
+   * `go("teaching")` from `teaching` sets both pieces of state to values React already holds, so it
+   * re-renders nothing and the players' `[lesson.mode]` effect — the only thing that continues frozen
+   * narration — never runs. But a lecture CAN be frozen while the mode never left `teaching`: the
+   * chatbot taking the channel, or the teacher's own question playing over the top of it. Every
+   * "carry on now" in the app went through here, so every one of them silently did nothing, and the
+   * lecture sat frozen while the UI still said it was playing. Skipping the quick question was the
+   * clearest case — a guaranteed lock.
+   *
+   * So resume the audio explicitly rather than hoping a mode transition happens. Safe at every call
+   * site: they all intend the lecture to run, and `resumeTeacher()` no-ops when there is nothing
+   * frozen (and refuses outright while the chatbot holds the channel).
+   */
+  const goTeaching = useCallback(() => {
+    if (modeRef.current === "teaching") voice.resumeTeacher();
+    go("teaching", null);
+  }, [voice, go]);
+
   const requestResume = useCallback(() => {
     if (voice.isChatbotSpeaking()) {
       // Remember the request and honour it the moment she stops — never talk over her.
@@ -123,9 +142,9 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
       return false;
     }
     deferredResumeRef.current = false;
-    go("teaching", null);
+    goTeaching();
     return true;
-  }, [voice, go]);
+  }, [voice, goTeaching]);
 
   /**
    * Honour a resume the student already asked for, now that the answer is finished.
@@ -138,8 +157,8 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
   const flushDeferredResume = useCallback(() => {
     if (!deferredResumeRef.current) return;
     deferredResumeRef.current = false;
-    go("teaching", null);
-  }, [go]);
+    goTeaching();
+  }, [goTeaching]);
 
   const cancelDeferredResume = useCallback(() => {
     deferredResumeRef.current = false;

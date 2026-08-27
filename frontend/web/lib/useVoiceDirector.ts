@@ -55,6 +55,13 @@ export type VoiceDirector = {
   stopUtterance: () => void;
   /** True when there is a frozen lecture that `resumeTeacher` could continue. */
   hasFrozenTeacher: () => boolean;
+  /**
+   * True while a transient utterance is in flight — from the moment it is REQUESTED, not from the
+   * moment it makes sound. Cloud TTS fetches for seconds before `onStart`, and `owner` says nothing
+   * during that window; anything reconciling "should the lecture be audible?" has to see the
+   * interjection that is about to speak, or it resumes the lecture underneath it.
+   */
+  hasPendingUtterance: () => boolean;
   /** Synchronous read of whether the chatbot holds the channel (for use inside event handlers). */
   isChatbotSpeaking: () => boolean;
 };
@@ -211,7 +218,20 @@ export function useVoiceDirector({
   useEffect(() => () => cancelActiveNarrations(), []);
 
   const hasFrozenTeacher = useCallback(() => frozenRef.current, []);
+  // `utteranceRef` is assigned SYNCHRONOUSLY by playNarration (it returns its handle before any
+  // audio exists), which is what makes this true across the whole fetch.
+  const hasPendingUtterance = useCallback(() => utteranceRef.current !== null, []);
   const isChatbotSpeaking = useCallback(() => chatbotHoldsChannel(), [chatbotHoldsChannel]);
 
-  return { owner, speakAsTeacher, pauseTeacher, resumeTeacher, stopTeacher, stopUtterance, hasFrozenTeacher, isChatbotSpeaking };
+  return {
+    owner,
+    speakAsTeacher,
+    pauseTeacher,
+    resumeTeacher,
+    stopTeacher,
+    stopUtterance,
+    hasFrozenTeacher,
+    hasPendingUtterance,
+    isChatbotSpeaking,
+  };
 }

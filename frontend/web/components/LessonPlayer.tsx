@@ -7,6 +7,7 @@ import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { unlockAudio, splitNarrationSentences } from "@/lib/voice";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
 import { useLessonMachine } from "@/lib/lessonMachine";
+import { narrationRecovery } from "@/lib/narrationRecovery";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
@@ -97,6 +98,10 @@ const SLIDE_MS = 1500;
 // server that didn't generate it) would otherwise hold the lecture on its slide forever. After this
 // long we stop waiting and let the lecture proceed (the board shows its status card meanwhile).
 const ANIMATION_PENDING_TIMEOUT_MS = 10_000;
+// Same shape of safety net, for the voice: how long a lecture may sit frozen while the tutor hook's
+// React state says nobody is speaking, before we conclude its refs are lying and continue anyway.
+// Long enough that a real hand-off (she stops, the turn settles, the resume lands) finishes first.
+const NARRATION_STALL_MS = 6_000;
 /**
  * How long the check-in talks about anything BUT the lesson before Aria may invite the learner back.
  *
@@ -217,6 +222,15 @@ export function LessonPlayer({
   // (fresh beat, or the browser-TTS fallback that can't be frozen). Pausing does NOT touch this — a
   // pause freezes the audio and a resume continues it, so the beat never replays from the top.
   const [startNonce, setStartNonce] = useState(0);
+  /**
+   * The beat `speakAsTeacher` REFUSED to start, so the recovery effect can retry it.
+   *
+   * The beat index rather than a boolean: a flag would still read true on the NEXT beat if that beat
+   * never reached the narration effect (still on its slide, still waiting on an animation), and the
+   * retry would fire against a beat that was never refused anything. Storing which beat it belongs to
+   * makes it impossible to go stale, with no dependence on the order effects happen to run in.
+   */
+  const startRefusedForRef = useRef<number | null>(null);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -623,7 +637,14 @@ export function LessonPlayer({
       // Costs nothing — it only withholds the all-correct bonus. Charging for wrong answers is how
       // a learner concludes the safe move is to stop answering.
       emitAdhdEvent({ type: "answer-wrong" });
-      lesson.pause("wrong-answer");
+      /*
+       * A MISSED ANSWER CARRIES ON. It used to `pause("wrong-answer")`, and nothing in the app ever
+       * read that reason — the re-explanation it was named for was never built. So the lecture
+       * stopped dead with no prompt and no stated way back, which is indistinguishable from the
+       * freeze bug this file has been chasing. Aria has just spoken the correction; that is the
+       * teaching moment, and the lesson continues past it.
+       */
+      lesson.requestResume();
     },
   });
 
@@ -1005,7 +1026,18 @@ export function LessonPlayer({
       },
       "lecture"
     );
-    if (!started) return;
+    /*
+     * A REFUSAL IS NOT A DEAD END.
+     *
+     * `speakAsTeacher` plays nothing while the chatbot holds the channel, and this used to simply
+     * return — so a beat that happened to reach the board under her voice never narrated at all, and
+     * nothing retried when she went quiet. The recovery effect below picks this up.
+     */
+    if (!started) {
+      startRefusedForRef.current = index;
+      return;
+    }
+    startRefusedForRef.current = null;
 
     return () => {
       voice.stopTeacher();
@@ -1027,6 +1059,62 @@ export function LessonPlayer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode]);
+
+  /**
+   * THE LECTURE IS SUPPOSED TO BE AUDIBLE, AND IS NOT.
+   *
+   * The effect above is the ONLY thing that ever continued frozen narration, and it is keyed on a
+   * mode CHANGE. But three things freeze the lecture without the lesson leaving `teaching` — the
+   * chatbot taking the channel, a comprehension question, a reproach line — and every path back was
+   * `lesson.requestResume()`, whose `go("teaching")` from `teaching` sets state React already holds.
+   * React bails out, `lesson.mode` never changes, that effect never re-runs, and the audio stays
+   * frozen forever. That is the reported "stops at the whiteboard until I pause and resume": pause
+   * then resume is two REAL transitions, which is why it, and only it, un-stuck the lecture.
+   *
+   * So the invariant is asserted here rather than trusted to each caller. The deps are the signals
+   * that a hold actually ended: the director's wrapped onEnd clears the utterance and releases the
+   * channel (`owner` -> "none"), and Gemini's teardown sets `speaking` false and `status` to
+   * "error" — the dropped-socket case.
+   */
+  useEffect(() => {
+    const action = narrationRecovery({
+      mode: lesson.mode,
+      chatbotHoldsChannel: voice.owner === "chatbot" || voice.isChatbotSpeaking(),
+      utteranceInFlight: voice.hasPendingUtterance(),
+      lectureFrozen: voice.hasFrozenTeacher(),
+      startRefused: startRefusedForRef.current === index,
+    });
+    if (action === "resume") {
+      voice.resumeTeacher();
+    } else if (action === "restart") {
+      startRefusedForRef.current = null;
+      setStartNonce((n) => n + 1);
+    }
+    // `quiz.phase` is in here for a reason that is easy to delete by accident: cancelling an
+    // utterance (skipping the question) calls the handle's `cancel()`, which never fires `onEnd`, so
+    // the director never releases the channel and `voice.owner` does NOT change. The phase going
+    // back to "idle" is the only observable signal that the question is over.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);
+
+  /**
+   * The backstop, for the stall no render announces.
+   *
+   * `isChatbotSpeaking()` reads live refs inside the tutor hook. If one of those is left set — a
+   * response abandoned mid-flight, a board chain that never settled — the recovery above keeps
+   * correctly bowing out and the lecture stays frozen with nothing to fix it. The cross-check is the
+   * point: the refs say she holds the channel, React state says she is silent, and several seconds
+   * have passed. Then the refs are wrong.
+   *
+   * It only ever RESUMES — never restarts a beat — so the worst case is a no-op and it cannot loop.
+   */
+  useEffect(() => {
+    if (lesson.mode !== "teaching" || tutor.speaking) return;
+    if (!voice.hasFrozenTeacher() || voice.hasPendingUtterance()) return;
+    const t = setTimeout(() => voice.resumeTeacher(), NARRATION_STALL_MS);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);
 
   // Focus/engagement bands: below 30 the lecture pauses outright (focus-pause overlay, manual
   // resume only); 30-50 the TEACHER stops and asks a quick comprehension question instead of
@@ -1101,6 +1189,10 @@ export function LessonPlayer({
   }, [mcq, stopVoice, lesson]);
 
   function advanceFromCheckpoint() {
+    // Cleared here as well as in goTo/restart: without it the flag stayed true for the rest of the
+    // lecture once a single checkpoint was answered, which permanently early-returned the periodic
+    // comprehension check below and pinned the header to "waiting on you".
+    setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });

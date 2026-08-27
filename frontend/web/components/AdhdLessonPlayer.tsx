@@ -8,6 +8,7 @@ import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { unlockAudio } from "@/lib/voice";
 import { useVoiceDirector } from "@/lib/useVoiceDirector";
 import { useLessonMachine } from "@/lib/lessonMachine";
+import { narrationRecovery } from "@/lib/narrationRecovery";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
@@ -37,6 +38,9 @@ const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED ==
 const SLIDE_MS = 1500;
 const FOCUS_HOLD_MS = 5000; // how long the lecture stays frozen after a focus drop, before the Resume button appears
 const DRIFT_HOLD_MS = 2000; // drift must persist this long before the tutor/pause reacts (avoids a fleeting glance)
+// How long a lecture may sit frozen while the tutor hook's React state says nobody is speaking,
+// before we conclude its refs are lying and continue anyway. See the backstop effect below.
+const NARRATION_STALL_MS = 6_000;
 type Stage = "slide" | "board";
 
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string; mood?: string }) {
@@ -54,6 +58,15 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   // (Re)starts narration for the current beat only when there's nothing to resume in place; pausing
   // never bumps it, so a pause freezes and a resume continues instead of replaying the beat.
   const [startNonce, setStartNonce] = useState(0);
+  /**
+   * The beat `speakAsTeacher` REFUSED to start, so the recovery effect can retry it.
+   *
+   * The beat index rather than a boolean: a flag would still read true on the NEXT beat if that beat
+   * never reached the narration effect (still on its slide, still waiting on an animation), and the
+   * retry would fire against a beat that was never refused anything. Storing which beat it belongs to
+   * makes it impossible to go stale, with no dependence on the order effects happen to run in.
+   */
+  const startRefusedForRef = useRef<number | null>(null);
 
   // Focus-pause flow: when attention drops to/below the threshold, the lecture STOPS
   // immediately, holds frozen for FOCUS_HOLD_MS (nothing happens), then shows a Resume
@@ -201,7 +214,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     setMicEnabled: tutor.setMicEnabled,
     rate,
     onPassed: () => lesson.requestResume(),
-    onFailed: () => lesson.pause("wrong-answer"),
+    // A missed answer carries on — see the note in LessonPlayer. `pause("wrong-answer")` stopped the
+    // lecture dead on a reason nothing in the app ever read, which read as the freeze bug.
+    onFailed: () => lesson.requestResume(),
   });
 
   const liveMicLabel =
@@ -280,7 +295,12 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
       },
       "lecture"
     );
-    if (!started) return;
+    // A refusal is not a dead end — see the same note in LessonPlayer. The recovery effect retries.
+    if (!started) {
+      startRefusedForRef.current = index;
+      return;
+    }
+    startRefusedForRef.current = null;
 
     return () => {
       voice.stopTeacher();
@@ -300,6 +320,44 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode]);
+
+  /**
+   * THE LECTURE IS SUPPOSED TO BE AUDIBLE, AND IS NOT.
+   *
+   * The effect above only fires on a mode CHANGE, but the chatbot and the teacher's own interjections
+   * freeze the lecture without the lesson leaving `teaching` — and `requestResume()` from `teaching`
+   * is a state no-op React never re-renders for, so nothing ever continued the frozen audio. See the
+   * full account in LessonPlayer; this player has the identical structure and the identical bug.
+   */
+  useEffect(() => {
+    const action = narrationRecovery({
+      mode: lesson.mode,
+      chatbotHoldsChannel: voice.owner === "chatbot" || voice.isChatbotSpeaking(),
+      utteranceInFlight: voice.hasPendingUtterance(),
+      lectureFrozen: voice.hasFrozenTeacher(),
+      startRefused: startRefusedForRef.current === index,
+    });
+    if (action === "resume") {
+      voice.resumeTeacher();
+    } else if (action === "restart") {
+      startRefusedForRef.current = null;
+      setStartNonce((n) => n + 1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);
+
+  /**
+   * The backstop, for the stall no render announces: the tutor hook's refs say she holds the channel,
+   * its React state says she is silent, and seconds have passed — so the refs are wrong. Only ever
+   * resumes, never restarts a beat, so the worst case is a no-op.
+   */
+  useEffect(() => {
+    if (lesson.mode !== "teaching" || tutor.speaking) return;
+    if (!voice.hasFrozenTeacher() || voice.hasPendingUtterance()) return;
+    const t = setTimeout(() => voice.resumeTeacher(), NARRATION_STALL_MS);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);
 
   // Effect 3: the ADHD focus mechanism. After DRIFT_HOLD_MS of SUSTAINED drift:
   //  - If the live tutor mic is open (sessionActive): the tutor VERBALLY nudges the student and
@@ -363,6 +421,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
   }
 
   function advanceFromCheckpoint() {
+    // Cleared here as well as in restart: without it the flag stayed true for the rest of the lecture
+    // once a single checkpoint was answered. Same defect as the standard player.
+    setWaitingOnCheckpoint(false);
     setCheckpointResult(null);
     setCheckpointAttempts(0);
     setSentenceCue({ index: 0, total: 1, text: "" });
