@@ -326,17 +326,22 @@ type BuildCost =
   const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
   const voiceStart = planningVoice.start;
   const voiceStop = planningVoice.stop;
-  const voiceSay = planningVoice.say;
 
   /*
-   * One session for planning and building, and NONE once teaching starts.
+   * PLANNING ONLY — exactly one live session exists on this page at any moment.
    *
-   * Stopping at "teaching" is not tidiness. LessonPlayer opens its own Gemini Live session, so
-   * leaving this one running would put two live sockets on one page — two microphones open, two
-   * voices talking over each other, and both billing.
+   * Three screens can each open a Gemini Live socket: this one while planning, LessonDesignMode
+   * while the lesson builds, and LessonPlayer once teaching starts. Two of them open at once means
+   * two microphones, two Arias talking over each other, and both billing.
+   *
+   * `building` used to be in this list, which is precisely what produced two voices: the design
+   * screen mounts in that phase and opens its own session with its own persona, so this one was
+   * still holding a socket while Aria was already talking through the build. The handover is at the
+   * phase boundary — planning ends, the design screen takes over, and the player takes over from
+   * there.
    */
   useEffect(() => {
-    if (phase === "outline" || phase === "building") {
+    if (phase === "outline") {
       void voiceStart();
       return;
     }
@@ -1277,16 +1282,14 @@ type BuildCost =
     buildAbortRef.current = controller;
     setPhase("building");
     /*
-     * Tell her the wait has started, the way VoiceTutor does.
+     * The build hand-off is SILENT here, deliberately.
      *
-     * `say` rather than `addContext` because this is the one moment she should speak unprompted:
-     * the screen changes, nothing appears to happen for several minutes, and silence there reads as
-     * the app having frozen. She is asked to keep teaching rather than to narrate progress she
-     * cannot see.
+     * This used to tell the planning voice to keep the student company through the build. That job
+     * now belongs to LessonDesignMode, which opens its own session with a persona written for it
+     * and its own progress tools. Asking this session to do it as well is what put two Arias on the
+     * screen talking over each other — and the effect below stops this one the moment the phase
+     * changes, so the instruction would be shouted at a socket that is closing anyway.
      */
-    voiceSay(
-      "[SYSTEM] The student approved the plan and the lecture is building now. It takes a few minutes. Tell them briefly that it has started, then stay with them and teach something useful from their material while they wait. Do not guess at progress or time remaining.",
-    );
     setError(null);
     setBuildCost(null);
     setBeats([]);
