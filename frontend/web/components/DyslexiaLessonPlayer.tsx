@@ -19,6 +19,7 @@ import { ComfortControls } from "./dyslexia/ComfortControls";
 import { KaraokeLine } from "./dyslexia/KaraokeLine";
 import { WordHelp, type WordHelpTarget } from "./dyslexia/WordHelp";
 import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
+import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 
@@ -48,7 +49,11 @@ import { HudCorners } from "./hud/HudKit";
 const REWRITE_GRACE_MS = 2800;
 type Phase = "dense" | "calibrating" | "chunks";
 
-export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string }) {
+export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
+  sourceDocument = null,
+  slideContext = "", title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  sourceDocument?: unknown;
+  slideContext?: string; title?: string }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -187,6 +192,9 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats, ti
 
   const chat = useLessonChat({
     topic: title,
+    // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
+    getLessonContext: () => buildLessonContext(beats, index),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext),
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     pausePlayer: stopVoice,
     onVoiceBlocked: () => setVoiceBlocked(true),

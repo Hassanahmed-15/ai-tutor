@@ -13,6 +13,7 @@ import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
+import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
 import { DrawOverlay } from "./sketch/DrawOverlay";
@@ -43,7 +44,11 @@ const DRIFT_HOLD_MS = 2000; // drift must persist this long before the tutor/pau
 const NARRATION_STALL_MS = 6_000;
 type Stage = "slide" | "board";
 
-export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[]; title?: string; mood?: string }) {
+export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
+  sourceDocument = null,
+  slideContext = "", title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  sourceDocument?: unknown;
+  slideContext?: string; title?: string; mood?: string }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
   const [speaking, setSpeaking] = useState(false);
@@ -122,6 +127,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats, title 
 
   const chat = useLessonChat({
     topic: title,
+    // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
+    getLessonContext: () => buildLessonContext(beats, index),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext),
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     // Same unification as the standard LessonPlayer: a chat question pauses/resumes in place via
     // the lesson machine instead of destroying and restarting the beat's narration.

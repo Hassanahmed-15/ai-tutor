@@ -26,12 +26,34 @@ export async function POST(req: Request) {
   const textOnly = body.textOnly === true;
   const visualMode = typeof body.visualMode === "string" ? body.visualMode.trim() : "annotated_board";
   const reuseContext = body.reuseContext === true;
+
+  /**
+   * The rest of the lesson, and the document it came from.
+   *
+   * WHAT THIS FIXES. The panel sent only the CURRENT beat, so the tutor answering a question knew
+   * the sentence being spoken and nothing else. "What are we covering after this?" was unanswerable,
+   * "you said earlier…" was unanswerable, and a question about the student's own uploaded PDF was
+   * answered from the model's general knowledge rather than from their document — which is worse
+   * than a refusal, because it looks like an answer.
+   *
+   * Both are capped. A whole lecture plus a parsed paper is far more than this call needs, and a
+   * prompt that large costs latency on every question asked mid-lesson.
+   */
+  const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 8000) : "";
+  const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 12000) : "";
+
   if (!question) return NextResponse.json({ error: "question is required" }, { status: 400 });
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userMsg =
     `The lecture topic is "${topic || "this subject"}". ` +
-    (beatContext ? `The student is on this part: "${beatContext}". ` : "") +
+    (lessonContext
+      ? `The whole lesson, in order, so you can answer about what is coming or what has already been covered:\n${lessonContext}\n\n`
+      : "") +
+    (documentContext
+      ? `The student's own uploaded document. Answer from THIS when the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${documentContext}\n\n`
+      : "") +
+    (beatContext ? `The student is on this part right now: "${beatContext}". ` : "") +
     `They asked: "${question}". ` +
     `Preferred visual mode: "${visualMode}". ` +
     (reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +

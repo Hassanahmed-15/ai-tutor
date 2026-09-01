@@ -1345,19 +1345,19 @@ type BuildCost =
         player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} />;
     }
     return (
       <div className="relative">

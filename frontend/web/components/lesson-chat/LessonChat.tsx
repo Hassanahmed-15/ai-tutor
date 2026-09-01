@@ -44,6 +44,18 @@ export interface LessonChatState {
 export function useLessonChat(opts: {
   topic: string;
   getBeatContext: () => string;
+  /**
+   * The whole lesson and the student's document, read at ask time.
+   *
+   * Functions rather than values because the lecture moves: reading them when the question is asked
+   * gives the beat the student is actually on, where a captured value would be whichever beat was
+   * playing when the panel first mounted.
+   *
+   * Optional so every existing caller keeps working — a player that supplies neither asks exactly
+   * the question it asked before.
+   */
+  getLessonContext?: () => string;
+  getDocumentContext?: () => string;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
   /** Called when the explanation closes, so the player can re-open its clarity gate. */
@@ -79,7 +91,13 @@ export function useLessonChat(opts: {
         const res = await fetch("/api/explain", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ topic: opts.topic, beatContext: opts.getBeatContext(), question: trimmed }),
+          body: JSON.stringify({
+            topic: opts.topic,
+            beatContext: opts.getBeatContext(),
+            lessonContext: opts.getLessonContext?.() ?? "",
+            documentContext: opts.getDocumentContext?.() ?? "",
+            question: trimmed,
+          }),
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");

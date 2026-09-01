@@ -26,6 +26,7 @@ import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdCheckin } from "@/lib/adhd/events";
 import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
 import { MazeGame } from "@/components/adhd/games/MazeGame";
+import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import type { Expression } from "@/lib/adhd/expression";
 import { Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -173,6 +174,15 @@ export function LessonPlayer({
   mood = "",
   autoVoiceAssistant = true,
   adhd = false,
+  /**
+   * The parsed document this lecture came from, when there was one.
+   *
+   * Only the side chat uses it: a student asking about their own PDF mid-lesson was being answered
+   * from the model's general knowledge, because the panel had no way to see the document at all.
+   * Optional, so a topic-only lecture behaves exactly as before.
+   */
+  sourceDocument = null,
+  slideContext = "",
 }: {
   onExit?: () => void;
   /** Fired once, when the last beat finishes playing (natural end of lecture) — distinct from
@@ -193,6 +203,8 @@ export function LessonPlayer({
    * tutor. Default false, so nothing changes for any other learner.
    */
   adhd?: boolean;
+  sourceDocument?: unknown;
+  slideContext?: string;
 }) {
   const [index, setIndex] = useState(0);
   // The ADHD layer decides the face; the header renders it. Subscribed rather than passed, because
@@ -386,6 +398,11 @@ export function LessonPlayer({
   useEffect(() => {
     beatRef.current = beat;
   }, [beat]);
+  /** Same reason as beatRef: the chat's context getters run long after they were registered. */
+  const indexRef = useRef(index);
+  useEffect(() => {
+    indexRef.current = index;
+  }, [index]);
 
   /**
    * The live tutor is Gemini Live.
@@ -654,6 +671,9 @@ export function LessonPlayer({
   const chat = useLessonChat({
     topic: title,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
+    // Read at ask time, not captured: the lecture moves while the panel is open.
+    getLessonContext: () => buildLessonContext(beats, indexRef.current),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext),
     pausePlayer: () => {
       // Hard stop during a check-in. This is the path behind "Aria talks about the lesson": ask()
       // speaks its answer through playNarration directly (LessonChat.tsx), bypassing the voice
