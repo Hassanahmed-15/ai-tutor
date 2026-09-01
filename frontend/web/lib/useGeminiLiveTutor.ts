@@ -130,6 +130,20 @@ export type UseGeminiLiveTutorOptions = {
    * reconnect is the only honest way to change who is talking.
    */
   checkinMode?: boolean;
+  /**
+   * Opens the session with the LESSON-DESIGN persona: the tutor who keeps the student company while
+   * their lesson is generated, with no lecture and no board to talk about.
+   *
+   * Read at connect time like checkinMode above, and for the same reason — a Live socket's system
+   * instruction is fixed for its lifetime, so changing persona means reconnecting.
+   */
+  designMode?: boolean;
+  /** Design mode only: the student cannot see the screen, so progress must be spoken. */
+  blindMode?: boolean;
+  /** Design mode only: what the lesson is being built from, so the persona can refer to it. */
+  sourceKind?: "pdf" | "pptx" | "pages" | "topic";
+  /** Optional first name, so the tutor can address the student naturally. */
+  studentName?: string;
   boardTextOnly?: boolean;
   lectureControlTools?: boolean;
   startMuted?: boolean;
@@ -302,6 +316,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const [status, setStatus] = useState<GeminiLiveStatus>("idle");
   const [speaking, setSpeaking] = useState(false);
   const [muted, setMuted] = useState(false);
+  const [micAvailable, setMicAvailable] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const optionsRef = useRef(options);
@@ -332,6 +347,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const pendingLectureResumeRef = useRef(false);
   const studentSpeakingRef = useRef(false);
   const suppressCurrentTurnRef = useRef(false);
+  /**
+   * Output mute: the tutor's VOICE is silenced, the session stays fully alive.
+   *
+   * Distinct from `muted`, which is the microphone. Muting the mic stops Gemini hearing the
+   * student; it does nothing about Gemini talking, so a "Mute" button wired only to the mic leaves
+   * the tutor audibly speaking over someone who just asked for quiet. Both exist because they are
+   * genuinely different requests, and the UI now offers each by name.
+   */
+  const outputMutedRef = useRef(false);
+  const [outputMuted, setOutputMuted] = useState(false);
   const contextOnlyTurnRef = useRef(false);
   const studentTranscriptRef = useRef("");
   const tutorTranscriptRef = useRef("");
@@ -479,6 +504,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const playAudioChunk = useCallback(
     (base64: string) => {
       if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current) return;
+      // Dropped rather than buffered: a queue flushed on unmute would replay a turn the
+      // conversation has already moved past.
+      if (outputMutedRef.current) return;
       const AudioContextCtor = getAudioContextConstructor();
       if (!AudioContextCtor) throw new Error("This browser does not support Web Audio.");
       const context = audioContextRef.current ?? new AudioContextCtor();
@@ -595,6 +623,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       flushTutorTranscript();
       setSpeaking(false);
       setMuted(false);
+      setMicAvailable(true);
       setStatus(reason === "error" ? "error" : "idle");
       optionsRef.current.onSessionEnded?.(reason);
     },
@@ -779,7 +808,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const outputText = content?.outputTranscription?.text;
       if (outputText) {
         tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
-        if (!contextOnlyTurnRef.current) optionsRef.current.onTranscript?.("tutor", outputText, false);
+        if (!contextOnlyTurnRef.current && !suppressCurrentTurnRef.current) {
+          optionsRef.current.onTranscript?.("tutor", outputText, false);
+        }
       }
 
       for (const part of content?.modelTurn?.parts ?? []) {
@@ -911,6 +942,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         mood: optionsRef.current.mood ?? "",
         adhdMode: optionsRef.current.adhdMode === true,
         checkinMode: optionsRef.current.checkinMode === true,
+        designMode: optionsRef.current.designMode === true,
+        blindMode: optionsRef.current.blindMode === true,
+        sourceKind: optionsRef.current.sourceKind ?? "topic",
+        studentName: optionsRef.current.studentName ?? "",
         examMode: optionsRef.current.examMode === true,
         examQuestions: optionsRef.current.examMode ? optionsRef.current.examQuestions ?? [] : undefined,
       }),
@@ -920,38 +955,25 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       return data as { token: string; model: string; instructions: string };
     });
 
-    if (!navigator.mediaDevices?.getUserMedia) {
-      tokenPromise.catch(() => undefined);
-      setErrorMessage("This browser does not support microphone capture.");
-      setStatus("error");
-      connectingRef.current = false;
-      return;
-    }
-    const micPromise = navigator.mediaDevices.getUserMedia({
-      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-    });
+    // Microphone permission is OPTIONAL for connection. Token minting and the Live handshake must
+    // not wait behind a permission dialog: a denied or unavailable mic still gets a fully live text
+    // conversation, and the student can retry voice later without replacing the session.
+    const micPromise: Promise<MediaStream | null> = navigator.mediaDevices?.getUserMedia
+      ? navigator.mediaDevices.getUserMedia({
+          audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        }).catch(() => null)
+      : Promise.resolve(null);
 
-    let stream: MediaStream;
     let sessionData: { token: string; model: string; instructions: string };
-    try {
-      stream = await micPromise;
-    } catch {
-      tokenPromise.catch(() => undefined);
-      setStatus("mic-denied");
-      connectingRef.current = false;
-      return;
-    }
     try {
       sessionData = await tokenPromise;
     } catch (error) {
-      stream.getTracks().forEach((track) => track.stop());
+      void micPromise.then((stream) => stream?.getTracks().forEach((track) => track.stop()));
       setErrorMessage(error instanceof Error ? error.message : "Could not start Gemini Live.");
       setStatus("error");
       connectingRef.current = false;
       return;
     }
-
-    micStreamRef.current = stream;
     try {
       const {
         GoogleGenAI,
@@ -986,7 +1008,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       // A teardown during the mic/token awaits means this attempt is stale: dialling now would open
       // a socket nothing is holding.
       if (superseded()) {
-        stream.getTracks().forEach((track) => track.stop());
+        void micPromise.then((stream) => stream?.getTracks().forEach((track) => track.stop()));
         connectingRef.current = false;
         return;
       }
@@ -1017,7 +1039,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           tools: functionDeclarations.length > 0 ? [{ functionDeclarations }] : undefined,
         },
         callbacks: {
-          onopen: () => setStatus("live"),
+          // Do not publish "live" here. The callback can run before connect() resolves, and an
+          // effect responding to it can send the proactive opening while sessionRef is still null.
+          onopen: () => undefined,
           onmessage: (message: GeminiServerMessage) => handleServerMessage(message),
           onerror: (event: { message?: string }) => {
             if (endedRef.current) return;
@@ -1059,15 +1083,40 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         } catch {
           // Already closing.
         }
-        stream.getTracks().forEach((track) => track.stop());
+        void micPromise.then((stream) => stream?.getTracks().forEach((track) => track.stop()));
         connectingRef.current = false;
         return;
       }
 
       sessionRef.current = session;
-      await startMicrophone(stream, session);
       connectingRef.current = false;
       setStatus("live");
+      // Attach voice when permission resolves, independently of the already-live text session.
+      void micPromise.then(async (stream) => {
+        if (!stream) {
+          if (sessionRef.current === session && !endedRef.current) {
+            micIntentRef.current?.set(false);
+            setMuted(true);
+            setMicAvailable(false);
+          }
+          return;
+        }
+        if (sessionRef.current !== session || endedRef.current) {
+          stream.getTracks().forEach((track) => track.stop());
+          return;
+        }
+        micStreamRef.current = stream;
+        try {
+          await startMicrophone(stream, session);
+          setMicAvailable(true);
+        } catch {
+          stream.getTracks().forEach((track) => track.stop());
+          micStreamRef.current = null;
+          micIntentRef.current?.set(false);
+          setMuted(true);
+          setMicAvailable(false);
+        }
+      });
       if (!optionsRef.current.alwaysOn) {
         resetIdleTimer();
         const cap = optionsRef.current.examMode ? EXAM_MAX_SESSION_MS : MAX_SESSION_MS;
@@ -1093,7 +1142,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         });
       }
     } catch (error) {
-      stream.getTracks().forEach((track) => track.stop());
+      void micPromise.then((stream) => stream?.getTracks().forEach((track) => track.stop()));
       setErrorMessage(error instanceof Error ? error.message : "Gemini Live connection failed.");
       teardown("error");
     }
@@ -1121,6 +1170,55 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     }
   }, [endStudentSpeech]);
 
+  /** Retry microphone capture for an already-live text session. */
+  const requestMicrophone = useCallback(async (): Promise<boolean> => {
+    const session = sessionRef.current;
+    if (!session || !navigator.mediaDevices?.getUserMedia) {
+      setMicAvailable(false);
+      return false;
+    }
+    const existing = micStreamRef.current?.getAudioTracks()[0];
+    if (existing) {
+      setMicEnabled(true);
+      setMicAvailable(true);
+      return true;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+      });
+      if (sessionRef.current !== session || endedRef.current) {
+        stream.getTracks().forEach((track) => track.stop());
+        return false;
+      }
+      micIntentRef.current?.set(true);
+      micStreamRef.current = stream;
+      await startMicrophone(stream, session);
+      setMicAvailable(true);
+      return true;
+    } catch {
+      micIntentRef.current?.set(false);
+      setMuted(true);
+      setMicAvailable(false);
+      return false;
+    }
+  }, [setMicEnabled, startMicrophone]);
+
+  /**
+   * Silence (or restore) the tutor's voice without touching the session or the microphone.
+   *
+   * Muting also stops whatever is playing right now — a mute that waits for the current sentence to
+   * finish is not a mute.
+   */
+  const setOutputMutedPublic = useCallback((next: boolean) => {
+    outputMutedRef.current = next;
+    setOutputMuted(next);
+    if (next) {
+      suppressCurrentTurnRef.current = true;
+      stopPlayback();
+    }
+  }, [stopPlayback]);
+
   const toggleMute = useCallback(() => {
     const track = micStreamRef.current?.getAudioTracks()[0];
     // While connecting, toggle the queued intent rather than doing nothing because the physical
@@ -1138,6 +1236,29 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       sessionRef.current.sendRealtimeInput({ text: prompt.trim() });
     },
     [markTutorActive],
+  );
+
+  /**
+   * Send a typed message as a genuine student turn.
+   *
+   * Not `addContext`, which explicitly instructs Gemini NOT to reply — that is for background facts,
+   * so routing typed chat through it produced silence and looked like the box was broken. This is
+   * the same conversation as the voice: one session, one history, so a question typed while Aria is
+   * speaking lands in context exactly as if it had been spoken.
+   */
+  const sendText = useCallback(
+    (text: string) => {
+      const trimmed = text.trim();
+      if (!sessionRef.current || !trimmed) return;
+      // A typed turn interrupts, like speaking would: whatever is playing is abandoned.
+      stopPlayback();
+      suppressCurrentTurnRef.current = false;
+      contextOnlyTurnRef.current = false;
+      markTutorActive();
+      optionsRef.current.onTranscript?.("student", trimmed, true);
+      sessionRef.current.sendRealtimeInput({ text: trimmed });
+    },
+    [markTutorActive, stopPlayback],
   );
 
   const addContext = useCallback((text: string) => {
@@ -1173,11 +1294,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     status,
     speaking,
     muted,
+    micAvailable,
     errorMessage,
     start,
     stop,
     toggleMute,
     setMicEnabled,
+    requestMicrophone,
+    outputMuted,
+    setOutputMuted: setOutputMutedPublic,
+    sendText,
     say,
     addContext,
     silence,

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/hud/HudKit";
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
+import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -144,6 +145,38 @@ type BuildCost =
   const [buildCost, setBuildCost] = useState<BuildCost | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [buildStatus, setBuildStatus] = useState("Writing the lecture script and boards");
+  /**
+   * Live generation progress for the design screen.
+   *
+   * Kept beside `buildStatus` rather than replacing it: the status prose is still what the demo and
+   * pre-job phases write ("Choosing the teaching route"), and it is the fallback the design header
+   * shows before the first poll returns a stage.
+   */
+  const [buildProgress, setBuildProgress] = useState<DesignProgress>({
+    stage: "analyzing",
+    stageFraction: 0,
+    detail: null,
+    status: "Starting",
+    elapsedMs: 0,
+  });
+  const [buildJobId, setBuildJobId] = useState<string | null>(null);
+  /**
+   * The built lecture, held back until the student (or Aria's hand-off) starts it.
+   *
+   * The old flow jumped straight to `teaching` the instant generation finished. That is the abrupt
+   * switch the design mode exists to remove: the lesson now reaches "ready", Aria announces it, and
+   * the player begins on the hand-off rather than mid-sentence.
+   */
+  const [builtLesson, setBuiltLesson] = useState<{ beats: Beat[]; topic: string } | null>(null);
+  /**
+   * Mirrors `builtLesson` for the hand-off.
+   *
+   * The hand-off can be triggered from a timer inside the design screen, which closes over the
+   * state it was created with; reading the ref means a click and an announcement racing to start
+   * the same lesson cannot start it twice, because clearing the ref is what makes the second one a
+   * no-op.
+   */
+  const builtLessonRef = useRef<{ beats: Beat[]; topic: string } | null>(null);
   const [buildSteeringActive, setBuildSteeringActive] = useState(false);
   const [buildSteeringChoices, setBuildSteeringChoices] = useState<string[]>([]);
   const buildSteeringNotesRef = useRef<string[]>([]);
@@ -245,6 +278,21 @@ type BuildCost =
    */
   const { profile } = useAuth();
   const selectedMode = trackForProfile(profile);
+  /**
+   * What the lesson is being built FROM, for the design tutor's opening line.
+   *
+   * Derived from the upload that is actually in play rather than stored, so it cannot go stale
+   * against `uploadedFile` the way a second piece of state would. "pages" wins over the raw file
+   * kind when a selection exists, because "the pages you picked" is the more specific true thing.
+   */
+  const designSourceKind: "pdf" | "pptx" | "pages" | "topic" =
+    pageSelection.pages.length > 0
+      ? "pages"
+      : uploadedFile?.kind === "pdf"
+        ? "pdf"
+        : uploadedFile?.kind === "pptx"
+          ? "pptx"
+          : "topic";
 
 
   useEffect(() => {
@@ -1040,6 +1088,9 @@ type BuildCost =
     setBeats([]);
     setBuiltTopic("");
     setBuildStatus("Choosing the teaching route");
+    setBuildJobId(null);
+    setBuiltLesson(null);
+    setBuildProgress({ stage: "analyzing", stageFraction: 0, detail: null, status: "Starting", elapsedMs: 0 });
     setBuildSteeringChoices([]);
     buildSteeringNotesRef.current = [];
 
@@ -1070,12 +1121,14 @@ type BuildCost =
     // the real generation path, otherwise Suprnotes/PPTX changes never show up in the lecture.
     if (DEMO_HARDCODED && !sourceDocument && !slideContext) {
       setBuildStatus("Applying your steering choices");
-      setBeats(demoLectureBeats);
-      setBuiltTopic(demoLectureTopic);
       // Not "$0.00" — nothing was generated, and a zero would read as "a lecture, for free".
       setBuildCost({ kind: "demo" });
-      // A short delay so the "building" screen shows briefly, then reveal — feels responsive/real.
-      setTimeout(() => setPhase("teaching"), 500);
+      // Routed through the same ready/hand-off path as a real build so the demo exercises the
+      // transition students actually see, rather than a shortcut that hides it.
+      const demo = { beats: demoLectureBeats, topic: demoLectureTopic };
+      builtLessonRef.current = demo;
+      setBuiltLesson(demo);
+      setBuildProgress({ stage: "finalizing", stageFraction: 1, detail: null, status: "Ready", elapsedMs: 500 });
       return;
     }
 
@@ -1119,6 +1172,8 @@ type BuildCost =
        */
       if (res.status === 202 && typeof data.jobId === "string") {
         const jobId = data.jobId;
+        // Published so the live tutor's adapt_lesson tool can steer THIS build.
+        setBuildJobId(jobId);
         // Long enough to be cheap, short enough that the lecture starts promptly once ready.
         const POLL_MS = 3000;
         const DEADLINE_MS = 30 * 60 * 1000;
@@ -1141,6 +1196,23 @@ type BuildCost =
 
           if (state.state === "running") {
             if (typeof state.status === "string") setBuildStatus(state.status);
+            /**
+             * Stage data drives the design screen's bar, checklist and time estimate. Guarded
+             * rather than assumed: the debug route and any older replica still answer with the
+             * status-only shape, and a missing stage must leave the last real one standing rather
+             * than resetting the bar to zero.
+             */
+            if (typeof state.stage === "string") {
+              setBuildProgress({
+                stage: state.stage,
+                stageFraction: typeof state.stageFraction === "number" ? state.stageFraction : 0,
+                detail: typeof state.detail === "string" ? state.detail : null,
+                status: typeof state.status === "string" ? state.status : "Working",
+                elapsedMs: typeof state.elapsedMs === "number" ? state.elapsedMs : 0,
+              });
+            } else if (typeof state.elapsedMs === "number") {
+              setBuildProgress((prev) => ({ ...prev, elapsedMs: state.elapsedMs, status: state.status ?? prev.status }));
+            }
             continue;
           }
           if (state.state === "error") throw new Error(state.error || "Couldn't build that lecture.");
@@ -1159,8 +1231,26 @@ type BuildCost =
       if (!Array.isArray(data.beats)) {
         throw new Error(data.error || "Couldn't build that lecture. Try a different topic.");
       }
-      setBeats(data.beats);
-      setBuiltTopic(data.topic ?? trimmed);
+      /**
+       * READY, not teaching.
+       *
+       * The lecture is complete here, but the screen no longer changes on its own: the design mode
+       * shows 100%, Aria announces it, and the player starts on the hand-off. Snapping straight
+       * into the lecture is the abrupt transition this whole flow exists to remove — and doing it
+       * mid-sentence while she is still speaking was the worst version of it.
+       */
+      const lesson = { beats: data.beats as Beat[], topic: data.topic ?? trimmed };
+      builtLessonRef.current = lesson;
+      /*
+       * Drive the checklist to fully complete alongside the lesson itself.
+       *
+       * A cache hit returns the finished lecture on the FIRST response, before any poll reported a
+       * stage, so without this the screen would say "ready" in the header while the stage list
+       * still showed the build sitting in "Analyzing your material" — the two halves of the same
+       * screen contradicting each other.
+       */
+      setBuildProgress((prev) => ({ ...prev, stage: "finalizing", stageFraction: 1, detail: null, status: "Ready" }));
+      setBuiltLesson(lesson);
       /*
        * `cached` is sent by the server (generate-lecture returns it on a cache hit) and was being
        * dropped here, which is what let a reused lecture display costUsd: 0 as though generating it
@@ -1169,12 +1259,28 @@ type BuildCost =
        */
       if (data.cached) setBuildCost({ kind: "cached" });
       else if (typeof data.costUsd === "number") setBuildCost({ kind: "generated", usd: data.costUsd });
-      setPhase("teaching");
+      // No setPhase here — the design screen now owns the hand-off (see startBuiltLesson).
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
       setError(err instanceof Error ? err.message : "Generation failed.");
       setPhase("error");
     }
+  }
+
+  /**
+   * Commit the finished lesson and begin the lecture.
+   *
+   * Called by the design screen — either when Aria finishes announcing that the lesson is ready, or
+   * when the student presses Start. Idempotent, because both can happen: the hand-off timer and an
+   * impatient click race by design, and the loser must be a no-op rather than a second start.
+   */
+  function startBuiltLesson() {
+    const lesson = builtLessonRef.current;
+    if (!lesson) return;
+    builtLessonRef.current = null;
+    setBeats(lesson.beats);
+    setBuiltTopic(lesson.topic);
+    setPhase("teaching");
   }
 
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.
@@ -1508,20 +1614,41 @@ type BuildCost =
   return (
     <main className="hud-canvas hud-grain relative min-h-screen overflow-x-hidden text-[var(--hud-text)]">
       {phase === "building" ? (
-        <BuildingState
-          topic={topic}
-          mode={selectedMode.name}
-          status={buildStatus}
-          steeringActive={buildSteeringActive}
-          choices={buildSteeringChoices}
-          // The planner's own questions, grounded in this topic and any uploaded document.
-          questions={initialPlanningQuestions.map((q) => ({
-            question: q.question,
-            options: q.options.map((o) => ({ label: o.label, note: o.instruction })),
-          }))}
-          onChoose={chooseBuildSteering}
-          onContinue={continueBuildSteering}
-        />
+        buildSteeringActive ? (
+          /*
+           * The steering step still comes first when there is one. It is a BLOCKING question the
+           * student answers before generation starts, so it is not part of the design screen —
+           * which exists to accompany work that is already running.
+           */
+          <BuildingState
+            topic={topic}
+            mode={selectedMode.name}
+            status={buildStatus}
+            steeringActive={buildSteeringActive}
+            choices={buildSteeringChoices}
+            // The planner's own questions, grounded in this topic and any uploaded document.
+            questions={initialPlanningQuestions.map((q) => ({
+              question: q.question,
+              options: q.options.map((o) => ({ label: o.label, note: o.instruction })),
+            }))}
+            onChoose={chooseBuildSteering}
+            onContinue={continueBuildSteering}
+          />
+        ) : (
+          <LessonDesignMode
+            topic={topic}
+            mode={selectedMode.name}
+            progress={{ ...buildProgress, status: buildProgress.status || buildStatus }}
+            ready={builtLesson !== null}
+            sourceKind={designSourceKind}
+            mood={`${selectedMode.name} learning mode: ${selectedMode.detail}`}
+            blindMode={selectedMode.page === "blind-demo"}
+            studentName={profile?.displayName ?? undefined}
+            jobId={buildJobId}
+            onStop={backToAsk}
+            onStart={startBuiltLesson}
+          />
+        )
       ) : phase === "outline" ? (
         <OutlineReviewState
           topic={topic}

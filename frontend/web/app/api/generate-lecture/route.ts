@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createJob, failJob, finishJob, replicaHint, setJobStatus } from "@/lib/lectureJobs";
+import { createJob, failJob, finishJob, jobSteering, LectureJobCancelledError, replicaHint, setJobStage, waitForJobRunnable } from "@/lib/lectureJobs";
 import OpenAI from "openai";
 import { DRAW_LECTURE_SYSTEM_PROMPT, PPTX_LECTURE_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { outlineGroundingInstruction, type PlanOutline } from "@/lib/planPrompt";
@@ -685,12 +685,40 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
   return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, one or two TYPE D diagram beats (a "manimScene" op) for the curve or staged process at the heart of the topic, one TYPE E morph beat (a "morph" op) if anything in the topic literally turns into something else, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}`;
 }
 
-async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Promise<BaseLecture> {
+/**
+ * Fold any voice steering recorded on the job into the lesson's mood line.
+ *
+ * The mood line is already how every build-time preference reaches the writer (the steering
+ * buttons on the old build screen wrote into the same string), so spoken steering joins the
+ * existing channel rather than inventing a second one. Anything the student says after a section
+ * is written cannot change that section — it changes the ones still to come, which is the honest
+ * limit of adapting mid-build and is what the tutor is told to promise.
+ */
+function moodWithSteering(mood: string, jobId?: string): string {
+  if (!jobId) return mood;
+  const notes = jobSteering(jobId);
+  if (notes.length === 0) return mood;
+  return `${mood} Spoken instructions from the student while this lesson was being built (follow these): ${notes.join(" ")}`;
+}
+
+async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, jobId?: string): Promise<BaseLecture> {
+  /**
+   * Concepts, then structuring. Both are reported before the call rather than after, because they
+   * describe what the call is DOING — the model reads the material, picks what matters, and writes
+   * the structure inside one completion, so a boundary between them after the fact would be
+   * fiction. The stage the student sees is the stage the pipeline is in.
+   */
+  if (jobId) {
+    await waitForJobRunnable(jobId);
+    setJobStage(jobId, "concepts", { status: "Picking out the key concepts" });
+    setJobStage(jobId, "structuring", { status: "Writing the lesson structure" });
+  }
   // Step 1: generate script + beat structure + DrawScript op layouts (text only, fast).
   // Retry malformed/too-short JSON responses before image generation runs. These text-only
   // retries are cheap compared with generating images and prevent spending money on bad shapes.
   let lastError = "The model did not return a usable lecture.";
   for (let attempt = 0; attempt < TEXT_ATTEMPTS; attempt++) {
+    if (jobId) await waitForJobRunnable(jobId);
     try {
       const retryGuidance = attempt > 0 ? ` Previous attempt failed: ${lastError}. Fix that failure in this attempt.` : "";
       const systemPrompt = input.slideContext ? PPTX_LECTURE_SYSTEM_PROMPT : DRAW_LECTURE_SYSTEM_PROMPT;
@@ -700,7 +728,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
           { role: "system", content: systemPrompt },
           {
             role: "user",
-            content: buildUserMessage(input, retryGuidance),
+            content: buildUserMessage({ ...input, mood: moodWithSteering(input.mood, jobId) }, retryGuidance),
           },
         ],
         temperature: 0.55,
@@ -836,7 +864,7 @@ function chunkPdfSourceDocument(
   };
 }
 
-async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInput): Promise<BaseLecture> {
+async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInput, jobId?: string): Promise<BaseLecture> {
   const sourceDocument = input.sourceDocument;
   const planned = plannedPdfBeats(sourceDocument);
   /*
@@ -849,7 +877,7 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
    * subject any more, so there is nothing to chunk.
    */
   if (!sourceDocument || input.focus || planned.length <= PDF_BEATS_PER_GENERATION) {
-    return generateBaseLecture(client, input);
+    return generateBaseLecture(client, input, jobId);
   }
 
   const chunks = Array.from(
@@ -858,8 +886,23 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
   );
   const results = new Array<BaseLecture>(chunks.length);
   let cursor = 0;
+  /**
+   * REAL sub-progress. This is the only place in the build that can honestly count itself: the
+   * document's plan says how many sections there are, and each finished chunk is one of them. That
+   * is why `stageFraction` exists at all — everywhere else the pipeline is inside a single opaque
+   * model call and reports stage boundaries only, rather than inventing a number.
+   */
+  let finished = 0;
+  if (jobId) {
+    setJobStage(jobId, "structuring", {
+      fraction: 0,
+      detail: `Section 1 of ${planned.length}`,
+      status: "Writing the lesson section by section",
+    });
+  }
   await Promise.all(Array.from({ length: Math.min(PDF_GENERATION_CONCURRENCY, chunks.length) }, async () => {
     while (cursor < chunks.length) {
+      if (jobId) await waitForJobRunnable(jobId);
       const chunkIndex = cursor++;
       const start = chunks[chunkIndex];
       const chunkSource = chunkPdfSourceDocument(sourceDocument, start, PDF_BEATS_PER_GENERATION);
@@ -867,7 +910,18 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
         ...input,
         topic: `${input.topic} (document section ${start + 1}-${Math.min(start + PDF_BEATS_PER_GENERATION, planned.length)} of ${planned.length})`,
         sourceDocument: chunkSource,
-      });
+        // Re-read per chunk, so steering the student gives by voice mid-build reaches every
+        // section not yet written. See addJobSteering for why this is worth threading through.
+        mood: moodWithSteering(input.mood, jobId),
+      }, jobId);
+      finished += 1;
+      if (jobId) {
+        const done = Math.min(planned.length, finished * PDF_BEATS_PER_GENERATION);
+        setJobStage(jobId, "structuring", {
+          fraction: finished / chunks.length,
+          detail: `Section ${done} of ${planned.length}`,
+        });
+      }
     }
   }));
 
@@ -1128,7 +1182,7 @@ export async function POST(req: Request) {
    * Callers that genuinely want to block (scripts, the debug route, curl) can pass `wait: true` and
    * get the old synchronous behaviour, which is also what keeps the existing tests meaningful.
    */
-  const job = createJob("Writing the lecture script and boards");
+  const job = createJob("Reading your material");
   const run = generateLecture(client, input, cacheKey, job.id);
 
   if (body.wait !== true) {
@@ -1150,9 +1204,25 @@ async function generateLecture(
   jobId: string,
 ): Promise<NextResponse> {
   try {
+    /**
+     * STAGE REPORTING. Every setJobStage call below sits at a point where real work has finished
+     * and the next call has not started, so the bar only ever moves because the pipeline moved.
+     * Nothing here is on a timer — see lib/lessonDesignStages.ts for why that rule matters more
+     * than a smooth-looking bar.
+     */
+    await waitForJobRunnable(jobId);
+    setJobStage(jobId, "analyzing", {
+      status: input.sourceDocument ? "Reading your document" : "Working out what to teach",
+    });
+
     const base = isPdfSource(input.sourceDocument)
-      ? await generatePdfLectureInChunks(client, input)
-      : await generateBaseLecture(client, input);
+      ? await generatePdfLectureInChunks(client, input, jobId)
+      : await generateBaseLecture(client, input, jobId);
+
+    // The script, its beat structure and its checkpoint questions all exist now — they are written
+    // by the same call, which is why they are one stage rather than three.
+    await waitForJobRunnable(jobId);
+    setJobStage(jobId, "explanations", { status: "Shaping the explanations" });
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
     const useOnlyProvidedImages = shouldUseOnlyProvidedImages(input.sourceDocument);
 
@@ -1160,6 +1230,8 @@ async function generateLecture(
     // description from the actual pixels, so the director's script and the image-explainer's
     // labels teach the real picture instead of the upstream relevant_images.json text.
     const visionCostUsd = input.sourceDocument ? await describeAssetsWithVision(client, input.sourceDocument) : 0;
+    await waitForJobRunnable(jobId);
+    setJobStage(jobId, "visuals", { status: "Preparing the board content" });
 
     // Step 1.5: re-point each beat at the board its content actually calls for, BEFORE the fill
     // passes below — they complete whatever placeholder a beat carries, so the swap has to happen
@@ -1198,10 +1270,14 @@ async function generateLecture(
     // Image-Explainer agent (sourceDocument only): label the real visible parts of each provided
     // image, sentence-synced to the narration. Runs after the fills above so it labels the
     // hydrated/finalized image, and before the final cleanup pass so its grounded callouts survive.
+    await waitForJobRunnable(jobId);
+    setJobStage(jobId, "activities", { status: "Setting up the interactive parts" });
     const calloutStats = input.sourceDocument
       ? await fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument)
       : { costUsd: 0 };
 
+    await waitForJobRunnable(jobId);
+    setJobStage(jobId, "finalizing", { status: "Finishing your lesson" });
     repairMissingSuprnotesSvgCode(base.beats, input.sourceDocument);
     repairMissingSuprnotesBoards(base.beats, input.sourceDocument);
     finalizeSuprnotesBeats(base.beats, input.sourceDocument);
@@ -1226,6 +1302,7 @@ async function generateLecture(
      * warranted on its own, independently of whichever pass turns out to be responsible.
      */
     const fallbackStats = await rescueEmptyBoards(client, base.beats, directorStats.specs, directorStats.forms);
+    await waitForJobRunnable(jobId);
     const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd + manimSceneStats.costUsd + structureStats.costUsd + specBoardStats.costUsd + directorStats.costUsd + fallbackStats.costUsd;
 
     if (input.sourceDocument) {
@@ -1236,6 +1313,9 @@ async function generateLecture(
     finishJob(jobId, payload);
     return NextResponse.json(payload);
   } catch (err) {
+    if (err instanceof LectureJobCancelledError) {
+      return NextResponse.json({ error: err.message, cancelled: true }, { status: 499 });
+    }
     const message = err instanceof Error ? err.message : "Lecture generation failed";
     failJob(jobId, message);
     return NextResponse.json({ error: message }, { status: 502 });

@@ -37,9 +37,21 @@ export async function GET(request: Request) {
   if (job.state === "error") {
     return NextResponse.json({ state: "error", error: job.error ?? "Lecture generation failed" });
   }
+  if (job.state === "cancelled") {
+    return NextResponse.json({ state: "cancelled" });
+  }
+  /**
+   * Stage fields are ADDITIVE. `status` and `elapsedMs` are still returned exactly as before, so a
+   * client that knows nothing about stages (and the existing tests) keeps working unchanged; the
+   * design screen reads the new fields on top.
+   */
   return NextResponse.json({
     state: "running",
     status: job.status ?? "Working",
-    elapsedMs: Date.now() - job.createdAt,
+    elapsedMs: Date.now() - job.createdAt - job.pausedMs - (job.pausedAt ? Date.now() - job.pausedAt : 0),
+    stage: job.stage,
+    stageFraction: job.stageFraction,
+    detail: job.detail ?? null,
+    paused: job.state === "paused",
   });
 }

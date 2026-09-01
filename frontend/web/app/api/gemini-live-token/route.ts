@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildGeminiLiveInstructions } from "@/lib/geminiLiveContract";
+import { buildLessonDesignInstructions } from "@/lib/lessonDesignContract";
 
 const GEMINI_LIVE_MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
 
@@ -23,6 +24,15 @@ export async function POST(request: Request) {
   const adhdMode = body.adhdMode === true;
   const checkinMode = body.checkinMode === true;
   const examMode = body.examMode === true;
+  /**
+   * The lesson-DESIGN session: the tutor who keeps the student company while their lesson is being
+   * generated. Handled here rather than in the client so every persona in the app is built in one
+   * place — the same reason checkinMode and examMode live here.
+   */
+  const designMode = body.designMode === true;
+  const blindMode = body.blindMode === true;
+  const sourceKind = ["pdf", "pptx", "pages", "topic"].includes(body.sourceKind) ? body.sourceKind : "topic";
+  const studentName = typeof body.studentName === "string" ? body.studentName.trim().slice(0, 80) : "";
   const examQuestions = examMode && Array.isArray(body.examQuestions)
     ? body.examQuestions
         .filter((question: unknown): question is string => typeof question === "string" && question.trim().length > 0)
@@ -67,7 +77,9 @@ export async function POST(request: Request) {
       {
         token: data.name,
         model: GEMINI_LIVE_MODEL,
-        instructions: buildGeminiLiveInstructions({ topic, beatContext, lessonContext, mood, adhdMode, checkinMode, examQuestions }),
+        instructions: designMode
+          ? buildLessonDesignInstructions({ topic, sourceKind, mood, blindMode, studentName: studentName || undefined })
+          : buildGeminiLiveInstructions({ topic, beatContext, lessonContext, mood, adhdMode, checkinMode, examQuestions }),
       },
       { headers: { "Cache-Control": "no-store" } },
     );
