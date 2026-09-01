@@ -100,6 +100,81 @@ test("a huge document is capped rather than sent whole", () => {
     text: "A sentence of source material that repeats many times over. ".repeat(6),
   }));
   const context = buildDocumentContext({ contentBlocks: blocks });
-  assert.ok(context.length <= 12000, `document context was ${context.length} chars`);
+  assert.ok(context.length <= 30000, `document context was ${context.length} chars`);
   assert.ok(context.length > 0, "capping must not empty it");
+});
+
+/* ── what was read off the pixels ────────────────────────────────────────── */
+
+test("the OCR transcript reaches the chat", () => {
+  /*
+   * The gap this closes. contentBlocks are the text objects a PDF DECLARES, which on a real paper
+   * is frequently just the captions — so a chat given blocks alone answers a question about a
+   * formula from the sentence describing it. That is the same failure the OCR pass exists to
+   * prevent, reappearing one layer up in the side panel.
+   */
+  const doc = { contentBlocks: [{ id: "b1", pageNumber: 4, text: "Fig. 3: Lower-triangular Pearson correlation matrix." }] };
+  const context = buildDocumentContext(doc, "", "Glucose vs Outcome r = 0.49; BMI vs Age r = 0.03");
+  assert.match(context, /r = 0\.49/, "the transcript is missing");
+  assert.match(context, /correlation matrix/, "the extracted text was dropped");
+});
+
+test("the transcript survives when the extracted text would fill the cap", () => {
+  /*
+   * Ordering is the whole protection here. The cap truncates the tail, and the transcript is the
+   * one part that cannot be recovered from anywhere else — so if it were appended, the document
+   * most in need of it (a long one) is exactly the document that would lose it.
+   */
+  const blocks = Array.from({ length: 400 }, (_, i) => ({
+    id: `b${i}`,
+    pageNumber: i,
+    text: "Filler source material that repeats and repeats. ".repeat(8),
+  }));
+  const context = buildDocumentContext({ contentBlocks: blocks }, "", "UNIQUE-TRANSCRIPT-MARKER d(x,y) = sqrt(sum)");
+  assert.match(context, /UNIQUE-TRANSCRIPT-MARKER/, "the transcript was truncated away");
+  assert.ok(context.length <= 30000, `context was ${context.length} chars`);
+});
+
+test("a deck's slide text still works alongside a transcript", () => {
+  const context = buildDocumentContext(null, "Slide 1: Cloud layers", "read from slide 1: IaaS sits below PaaS");
+  assert.match(context, /IaaS sits below PaaS/);
+  assert.match(context, /Cloud layers/);
+});
+
+test("no transcript leaves the previous behaviour untouched", () => {
+  // Every existing caller passes two arguments; the third must not change what they get.
+  const doc = { contentBlocks: [{ id: "b1", pageNumber: 1, text: "Only the declared text." }] };
+  assert.equal(buildDocumentContext(doc, ""), buildDocumentContext(doc, "", ""));
+  assert.match(buildDocumentContext(doc, ""), /Only the declared text/);
+});
+
+/* ── the whole document, not just the pages they picked ──────────────────── */
+
+test("the full document supersedes the pages that survived parsing", () => {
+  /*
+   * The defect this closes. parse-pdf renders every page and gets every page's text back for free,
+   * then discards everything outside the student's selection — correct for cropping and vision,
+   * which the selection exists to bound, and wrong for text that cost nothing. The consequence was
+   * that selecting page 4 made page 7 unaskable: the chat had never seen it and answered from
+   * general knowledge instead, just as fluently.
+   */
+  const scoped = { contentBlocks: [{ id: "b1", pageNumber: 4, text: "Only page four survived parsing." }] };
+  const context = buildDocumentContext(scoped, "", "", "[page 4] Only page four survived parsing.\n\n[page 7] UNSELECTED-PAGE-MARKER on page seven.");
+  assert.match(context, /UNSELECTED-PAGE-MARKER/, "a page outside the selection is still unreachable");
+});
+
+test("the transcript stays ahead of the full document", () => {
+  // The transcript is what was read off the PIXELS, and is still the only source for anything the
+  // extracted text cannot contain — so it must not be the part a cap truncates away.
+  const huge = Array.from({ length: 900 }, (_, i) => `[page ${i}] Filler text that repeats. `).join("");
+  const context = buildDocumentContext(null, "", "TRANSCRIPT-MARKER d(x,y) = sqrt(sum)", huge);
+  assert.match(context, /TRANSCRIPT-MARKER/);
+  assert.ok(context.length <= 30000, `context was ${context.length} chars`);
+});
+
+test("without a full document the scoped blocks are still used", () => {
+  // A deck, or a server with no Python renderer, produces no whole-document text. That must degrade
+  // to what the chat had before rather than to nothing.
+  const scoped = { contentBlocks: [{ id: "b1", pageNumber: 1, text: "Scoped block text." }] };
+  assert.match(buildDocumentContext(scoped, "", "", ""), /Scoped block text/);
 });

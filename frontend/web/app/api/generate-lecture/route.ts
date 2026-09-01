@@ -535,7 +535,7 @@ function assertInputLectureDepth(
    * Because nothing throws here, `deepenLectureScripts` never runs for a concise answer. That is
    * the intended behaviour, not an oversight: it is reached only from this function's catch.
    */
-  if (shape?.mode === "concise-answer") {
+  if (shape?.mode === "focused-answer") {
     const stats = lectureDepthStats(beats);
     if (stats.avgTeachingWords < shape.wordFloor) {
       throw new Error(
@@ -565,7 +565,7 @@ async function deepenLectureScripts(
   mood: string,
   rawLecture: unknown,
   beats: Beat[],
-  options: { minUsableBeats?: number; pdfSource?: boolean; focused?: boolean } = {},
+  options: { minUsableBeats?: number; pdfSource?: boolean; focused?: boolean; wordTarget?: [number, number] } = {},
 ): Promise<number> {
   let extraCostUsd = 0;
   let lastError = "Could not deepen the generated lecture.";
@@ -581,7 +581,16 @@ async function deepenLectureScripts(
             content:
               "You deepen AI tutor lecture scripts. Return JSON only: {\"beats\":[{\"id\":string,\"script\":string}]}. " +
               "Preserve every id exactly. Do not change titles, visuals, checkpoints, or order. " +
-              "Rewrite only the spoken script. Teaching beats need 110-140 words each. Intro needs 75-95 words. " +
+              /*
+               * The target comes from the SHAPE, not from a constant here.
+               *
+               * This said "110-140 words each" unconditionally. A focused answer now asks for
+               * 180-260, so a thin one reaching this pass would have been "deepened" to a length
+               * still below what was requested — the pass reporting success while leaving the
+               * lecture short of its own instruction. Exactly the instruction-versus-enforcement
+               * split the shape abstraction exists to prevent.
+               */
+              `Rewrite only the spoken script. Teaching beats need ${options.wordTarget ? `${options.wordTarget[0]}-${options.wordTarget[1]}` : "110-140"} words each. Intro needs 75-95 words. ` +
               `Checkpoint scripts need 25-45 words. Recap needs 110-135 words. ${options.pdfSource ? "This is one ordered PDF section, so deepen every supplied beat without trying to reach a whole-lecture word total. " : "Total output should create 1050-1450 spoken words without changing the number of beats. "}` +
               "Use warm natural spoken language, concrete examples, misconception warnings, and smooth transitions. " +
               "Deepen each existing board in layers: claim, mechanism or reasoning, one concrete example, misconception contrast, and connection forward. Do not introduce facts absent from the existing scripts. " +
@@ -690,7 +699,7 @@ function buildFullContextMessage(input: LectureBuildInput, retryGuidance: string
    * made a request specific; it is one of two ways of being specific.
    */
   const shape = lectureShape({ hasRegions, question });
-  const isFocused = shape.mode === "concise-answer";
+  const isFocused = shape.mode === "focused-answer";
 
   const opening = [
     // A focused request must not be framed as "teach this topic" — that is the framing that
@@ -726,6 +735,26 @@ function buildFullContextMessage(input: LectureBuildInput, retryGuidance: string
       : isFocused
         ? ["Teach exactly what the student selected above, and nothing else."]
         : []),
+    /*
+     * THE APPROVED PLAN, WHEN THE STUDENT MADE ONE.
+     *
+     * A whole-document upload now goes through the same planning screen a typed topic does, where
+     * Aria drafts an outline and the student can steer it before approving. Without this the screen
+     * would be theatre: they would reorder and revise a plan that generation never reads, and the
+     * lecture would come back ignoring every change they made.
+     *
+     * Only for the full lecture. A focused answer deliberately overrides the plan — see
+     * shapeInstructions — so handing it one here would reintroduce the survey it exists to prevent.
+     */
+    ...(shape.mode === "full-lecture" && input.outline?.subtopics.length
+      ? [
+          "",
+          "THE STUDENT APPROVED THIS PLAN. Follow it in order, one or more beats per step:",
+          ...input.outline.subtopics.map((subtopic, index) => `${index + 1}. ${subtopic.title} — ${subtopic.caption}`),
+          "Teach every step. Do not add topics outside it, and do not reorder it.",
+          "",
+        ]
+      : []),
     ...shapeInstructions(shape, unit),
     `Every beat title must name the precise concept being taught. Never use a raw source locator such as "Figure 19.4", "${unit === "slide" ? "Slide 3" : "Page 2"}", or "Overview" as a title.`,
     "Reproduce every symbol, subscript, index, operator and numeric value exactly as it appears. Reproducing one wrongly is worse than omitting it.",
@@ -915,8 +944,8 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
         hasRegions: (input.fullContext?.regions.length ?? 0) > 0,
         question: input.question || input.focus?.question || "",
       });
-      const conciseAnswer = shape.mode === "concise-answer";
-      const minUsableBeats = conciseAnswer
+      const focusedAnswer = shape.mode === "focused-answer";
+      const minUsableBeats = focusedAnswer
         ? shape.minBeats
         : input.focus || fullDocumentPass
           ? (input.focus ? 4 : 8)
@@ -963,6 +992,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput): Pr
           minUsableBeats,
           pdfSource: isPdfSource(input.sourceDocument),
           focused: !!input.focus,
+          wordTarget: shape.wordTarget as [number, number],
         });
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
         applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);

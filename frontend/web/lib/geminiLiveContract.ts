@@ -134,6 +134,15 @@ export function buildGeminiLiveInstructions(input: {
   topic: string;
   beatContext: string;
   lessonContext: string;
+  /**
+   * The student's own uploaded document, when there is one.
+   *
+   * Added because the VOICE tutor never had it while the text side-chat did — so the same student
+   * asking the same question about their own paper got a grounded answer by typing and a confident
+   * general one by speaking. Both now read it through `buildDocumentContext`, so the two cannot
+   * drift apart.
+   */
+  documentContext?: string;
   mood: string;
   adhdMode: boolean;
   checkinMode: boolean;
@@ -152,6 +161,17 @@ export function buildGeminiLiveInstructions(input: {
   }
 
   const parts = [TUTOR_PERSONA, `Lesson topic: ${input.topic || "the current lesson"}.`];
+  /*
+   * The document comes BEFORE the lesson and the beat.
+   *
+   * It is the source the lecture was written from, so when it and a paraphrase in a script disagree,
+   * it wins. Placing it first is the cheapest way to say so.
+   */
+  if (input.documentContext) {
+    parts.push(
+      `The student's own uploaded document. Answer from THIS whenever the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${input.documentContext}`,
+    );
+  }
   if (input.lessonContext) parts.push(`Whole-lesson context:\n${input.lessonContext}`);
   if (input.beatContext) parts.push(`Current lecture position:\n${input.beatContext}`);
   if (input.mood) parts.push(`Learner context: ${input.mood}`);

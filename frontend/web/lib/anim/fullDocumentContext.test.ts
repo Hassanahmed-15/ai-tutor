@@ -49,13 +49,13 @@ test("typing a question asks for an ANSWER, even with nothing drawn", () => {
    * many professors were in a list got a twelve-beat tour of their own document.
    */
   const shape = lectureShape({ hasRegions: false, question: "how many professors are in the list" });
-  assert.equal(shape.mode, "concise-answer");
-  assert.ok(shape.maxBeats <= 2);
+  assert.equal(shape.mode, "focused-answer");
+  assert.ok(shape.maxBeats <= 3, "a focused answer must not sprawl into a survey");
 });
 
 test("dragging a box asks for an answer too, with or without words", () => {
-  assert.equal(lectureShape({ hasRegions: true, question: "" }).mode, "concise-answer");
-  assert.equal(lectureShape({ hasRegions: true, question: "explain this" }).mode, "concise-answer");
+  assert.equal(lectureShape({ hasRegions: true, question: "" }).mode, "focused-answer");
+  assert.equal(lectureShape({ hasRegions: true, question: "explain this" }).mode, "focused-answer");
 });
 
 test("whitespace is not a question", () => {
@@ -69,24 +69,51 @@ test("the concise floor sits well below what the prompt asks for", () => {
    * exactly how the previous 125-word floor turned a good short answer into a rejection followed by
    * five paid attempts to pad it back out.
    */
-  const { wordFloor, wordTarget } = LECTURE_SHAPES.conciseAnswer;
+  const { wordFloor, wordTarget } = LECTURE_SHAPES.focusedAnswer;
   assert.ok(wordFloor < wordTarget[0], "a floor at or above the target rejects what we asked for");
 });
 
 /* ── the instructions those shapes produce ───────────────────────────────── */
 
-test("a concise answer is told to lead with the answer and stop", () => {
-  const lines = shapeInstructions(LECTURE_SHAPES.conciseAnswer).join("\n");
+test("a focused answer leads with the answer, then goes deep on it", () => {
+  const lines = shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n");
   assert.match(lines, /LEAD WITH THE ANSWER/);
   assert.match(lines, /FIRST SENTENCE/);
-  assert.match(lines, /1 or 2 teaching beats/);
+  assert.match(lines, /2 to 3 teaching beats/);
   assert.match(lines, /do not survey/i);
 });
 
-test("a concise answer explicitly overrides the system prompt's 10-12 beats", () => {
+test("narrow scope is not an instruction to be brief", () => {
+  /*
+   * THIS ASSERTION IS THE SECOND CORRECTION, AND BOTH ARE RECORDED ON PURPOSE.
+   *
+   * This shape did not exist at first, so a specific question was answered with a whole-document
+   * survey. The fix asked for 1-2 beats of 40-70 words and told the model "say the thing, say
+   * briefly why, and stop" - which traded a survey for a reply too thin to teach anything.
+   * Scope and depth are separate dials, and that fix moved both when only one was wrong.
+   */
+  const lines = shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n");
+  assert.match(lines, /180-260 spoken words/);
+  assert.match(lines, /GO DEEP/);
+  assert.match(lines, /not permission to be brief/);
+  assert.match(lines, /misconception/);
+  // The line that caused the shallowness must be GONE, not merely outweighed.
+  assert.doesNotMatch(lines, /say briefly why or where it comes from, and stop/);
+  assert.doesNotMatch(lines, /40-70 spoken words/);
+});
+
+test("scope rules survived the depth change untouched", () => {
+  // Depth moved; what the answer is allowed to be ABOUT did not.
+  const lines = shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n");
+  assert.match(lines, /Do NOT add an introduction, a recap/);
+  assert.match(lines, /different facet of the SAME thing/);
+  assert.match(lines, /Never invent it/);
+});
+
+test("a focused answer explicitly overrides the system prompt's 10-12 beats", () => {
   // That line is the strongest competing instruction in the request; declining to repeat it is not
   // enough to displace it.
-  assert.match(shapeInstructions(LECTURE_SHAPES.conciseAnswer).join("\n"), /IGNORE the instruction[\s\S]*10-12 beats/);
+  assert.match(shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n"), /IGNORE the instruction[\s\S]*10-12 beats/);
 });
 
 test("a full lecture is still asked for at full length", () => {
@@ -97,7 +124,7 @@ test("a full lecture is still asked for at full length", () => {
 });
 
 test("a deck is described in deck words, not document words", () => {
-  const lines = shapeInstructions(LECTURE_SHAPES.conciseAnswer, "slide").join("\n");
+  const lines = shapeInstructions(LECTURE_SHAPES.focusedAnswer, "slide").join("\n");
   assert.match(lines, /deck/);
   assert.doesNotMatch(lines, /survey the document/);
 });

@@ -69,7 +69,7 @@ export const FULL_CONTEXT_RULES = {
  * — is a request for an answer, and an answer that arrives as a twelve-beat lesson is not an answer.
  */
 export type LectureShape = {
-  mode: "concise-answer" | "full-lecture";
+  mode: "focused-answer" | "full-lecture";
   minBeats: number;
   maxBeats: number;
   /** Words per beat the prompt asks for. */
@@ -80,21 +80,29 @@ export type LectureShape = {
 
 export const LECTURE_SHAPES = {
   /**
-   * A direct answer. Roughly 15-25 seconds of speech per beat: long enough to say the thing and
-   * why it is so, short enough that nobody sits through a lesson to hear a number.
+   * ONE THING, TREATED PROPERLY.
+   *
+   * Narrow scope, generous depth — and those are two separate dials that have each been wrong once.
+   * First this shape did not exist, so a specific question was answered with a whole-document
+   * survey: the scope was wrong. The fix set it to one or two beats of forty to seventy words, and
+   * the depth became wrong instead — an answer so clipped it was no longer teaching anything.
+   *
+   * The scope rules below are unchanged from that fix; only the length moved. Two to three beats at
+   * this length is roughly four hundred to eight hundred spoken words spent entirely on the thing
+   * that was asked about, which is what "be specific, and go deep on it" actually requires.
    */
-  conciseAnswer: {
-    mode: "concise-answer",
-    minBeats: 1,
-    maxBeats: 2,
-    wordTarget: [40, 70],
+  focusedAnswer: {
+    mode: "focused-answer",
+    minBeats: 2,
+    maxBeats: 3,
+    wordTarget: [180, 260],
     /*
-     * Well under the target, because this floor exists only to catch an empty or one-line script.
-     * Set it near the target and it becomes the thing that rejects a perfectly good short answer —
-     * which is precisely how the previous 125-word floor turned concision into a failed generation
-     * followed by five paid attempts to pad it back out.
+     * Well under the target, because this floor exists to catch a thin or empty script, not to
+     * police length. Set it near the target and it becomes the thing that rejects good output —
+     * which is exactly how the old 125-word floor turned a usable answer into a failed generation
+     * followed by five paid attempts to pad it out. At 120 a solid 150-word beat ships untouched.
      */
-    wordFloor: 25,
+    wordFloor: 120,
   },
   /** Being taught the material, which is what page selection with no question asks for. */
   fullLecture: {
@@ -109,7 +117,7 @@ export const LECTURE_SHAPES = {
 /** Which shape this request wants. */
 export function lectureShape(args: { hasRegions: boolean; question: string }): LectureShape {
   const asked = (args.question ?? "").trim().length > 0;
-  return args.hasRegions || asked ? LECTURE_SHAPES.conciseAnswer : LECTURE_SHAPES.fullLecture;
+  return args.hasRegions || asked ? LECTURE_SHAPES.focusedAnswer : LECTURE_SHAPES.fullLecture;
 }
 
 /**
@@ -130,9 +138,11 @@ export function shapeInstructions(shape: LectureShape, unit: "page" | "slide" = 
   }
   return [
     "IGNORE the instruction in your system prompt to produce a 7-9 minute lecture of 10-12 beats. It does not apply here. The lessonPlan/suggestedLecturePlan beat order and targetBeatCount DO NOT APPLY either. Ignore them.",
-    `Write ${shape.minBeats === shape.maxBeats ? `${shape.maxBeats}` : `${shape.minBeats} or ${shape.maxBeats}`} teaching beats. Not three, not five.`,
+    `Write ${shape.minBeats} to ${shape.maxBeats} teaching beats — no more. Each one must be about a different facet of the SAME thing, never about a different thing.`,
     `LEAD WITH THE ANSWER. If it is a number, a name, a count, a date or a list, state it in the FIRST SENTENCE — do not build up to it, do not restate the question first, and do not open with background.`,
-    `Each beat's script must be about ${shape.wordTarget[0]}-${shape.wordTarget[1]} spoken words. This is a direct answer, not a lesson: say the thing, say briefly why or where it comes from, and stop.`,
+    `Each beat's script must be ${shape.wordTarget[0]}-${shape.wordTarget[1]} spoken words. Being specific is not permission to be brief: narrow the SUBJECT, then treat that subject thoroughly. A four-sentence reply is not an answer to a question worth asking.`,
+    "GO DEEP on it, in this order: state the answer; then unpack the mechanism step by step, naming each part; then quote the concrete values, labels, axis names or terms exactly as they appear in the source; then explain WHY it is that way rather than only what it is; then name the misconception someone is most likely to hold about it and correct it.",
+    "Fill those words with substance drawn from the source, never with padding, restatement, or a preamble about what you are going to explain.",
     `Do NOT add an introduction, a recap, a summary beat, a checkpoint, neighbouring sections, or tangential examples. Do not survey the ${where}.`,
     `If the ${where} genuinely does not contain the answer, say so plainly in the first sentence and point at the closest thing it does contain. Never invent it.`,
   ];

@@ -103,6 +103,13 @@ export type UseGeminiLiveTutorOptions = {
   topic: string;
   getBeatContext: () => string;
   getLessonContext?: () => string;
+  /**
+   * The student's uploaded document, read when the session connects.
+   *
+   * Added because the voice tutor had no document at all while the text chat did — so the same
+   * question about the same paper got a grounded answer typed and a general one spoken.
+   */
+  getDocumentContext?: () => string;
   mood?: string;
   onBoardRequest: (board: GeminiLiveBoard) => void;
   onTranscript?: (role: TranscriptRole, text: string, final: boolean) => void;
@@ -908,6 +915,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         topic: optionsRef.current.topic,
         beatContext: optionsRef.current.getBeatContext(),
         lessonContext: optionsRef.current.getLessonContext?.() ?? "",
+        documentContext: optionsRef.current.getDocumentContext?.() ?? "",
         mood: optionsRef.current.mood ?? "",
         adhdMode: optionsRef.current.adhdMode === true,
         checkinMode: optionsRef.current.checkinMode === true,

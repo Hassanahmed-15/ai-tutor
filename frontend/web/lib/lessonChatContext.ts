@@ -21,7 +21,14 @@ const SCRIPT_PREVIEW_CHARS = 260;
 const NEARBY_WINDOW = 2;
 /** Hard ceilings, mirrored by the endpoint so neither side can be surprised by the other. */
 const MAX_LESSON_CHARS = 8000;
-const MAX_DOCUMENT_CHARS = 12000;
+/**
+ * Raised from 12,000.
+ *
+ * At 12k a twenty-page paper was truncated to roughly a fifth of itself, so "the chat can see your
+ * document" was not true for any document big enough to need saying. 30k carries a realistic paper
+ * whole, at a cost of about 7.5k extra input tokens on a question that asks for it.
+ */
+const MAX_DOCUMENT_CHARS = 30000;
 
 const clean = (s: string | undefined): string => (s ?? "").replace(/\s+/g, " ").trim();
 
@@ -57,9 +64,45 @@ export function buildLessonContext(beats: Beat[], currentIndex: number): string 
  * needs at generation time; this hands the model the document so a live question can be answered
  * from it at all.
  */
-export function buildDocumentContext(sourceDocument: unknown, slideContext = ""): string {
+export function buildDocumentContext(
+  sourceDocument: unknown,
+  slideContext = "",
+  transcript = "",
+  fullDocumentText = "",
+): string {
   const doc = sourceDocument as { contentBlocks?: unknown[] } | null;
   const blocks = Array.isArray(doc?.contentBlocks) ? doc.contentBlocks : [];
+
+  /*
+   * WHAT WAS READ OFF THE PIXELS GOES FIRST.
+   *
+   * `contentBlocks` are the text objects the PDF declares, and on a real paper that is frequently
+   * only the captions — the formula drawn as vector strokes, the values inside a chart and anything
+   * scanned leave no text object behind. So a chat given blocks alone answers a question about a
+   * figure from the sentence describing it, which is the exact failure the OCR pass exists to
+   * prevent, reappearing in the side panel.
+   *
+   * First rather than appended, because the cap below truncates the tail: the transcript is the part
+   * that cannot be recovered from anywhere else, so it must not be what gets cut.
+   */
+  const read = clean(transcript).slice(0, MAX_DOCUMENT_CHARS);
+  const readSection = read ? `Read directly from the page images (this is content the extracted text below does NOT contain):
+${read}` : "";
+  // The blank line joining the two sections counts toward the cap as well; without it the result
+  // lands two characters over, which is the kind of miss a cap exists to prevent in the first place.
+  const room = MAX_DOCUMENT_CHARS - readSection.length - (readSection ? 2 : 0);
+  if (room <= 0) return readSection.slice(0, MAX_DOCUMENT_CHARS);
+
+  /*
+   * THE WHOLE DOCUMENT WINS OVER THE PARSED BLOCKS.
+   *
+   * `contentBlocks` only ever contain the pages the student selected — everything else is dropped
+   * during parsing, before a source document is built. So a chat given blocks alone cannot answer
+   * anything about the rest of the file, and answers from general knowledge instead. This text is a
+   * superset of them, so where it exists it replaces them rather than being appended alongside.
+   */
+  const whole = clean(fullDocumentText).slice(0, room);
+  if (whole) return [readSection, whole].filter(Boolean).join("\n\n");
 
   if (blocks.length > 0) {
     const parts: string[] = [];
@@ -81,11 +124,13 @@ export function buildDocumentContext(sourceDocument: unknown, slideContext = "")
       const where = typeof block.pageNumber === "number" ? `[page ${block.pageNumber}]` : "";
       parts.push(`${where} ${text}`.trim());
       // Stop building once the cap is reached rather than assembling megabytes and slicing after.
-      if (parts.join("\n").length > MAX_DOCUMENT_CHARS) break;
+      if (parts.join("\n").length > room) break;
     }
-    return parts.join("\n").slice(0, MAX_DOCUMENT_CHARS);
+    const extracted = parts.join("\n").slice(0, room);
+    return [readSection, extracted].filter(Boolean).join("\n\n");
   }
 
   // A deck with no embedded images arrives as slide text rather than a parsed document.
-  return clean(slideContext).slice(0, MAX_DOCUMENT_CHARS);
+  const slides = clean(slideContext).slice(0, room);
+  return [readSection, slides].filter(Boolean).join("\n\n");
 }

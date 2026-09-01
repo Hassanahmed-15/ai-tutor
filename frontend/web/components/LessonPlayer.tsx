@@ -183,6 +183,10 @@ export function LessonPlayer({
    */
   sourceDocument = null,
   slideContext = "",
+  ocrTranscript = "",
+  documentId = "",
+  lessonQuestion = "",
+  fullDocumentText = "",
 }: {
   onExit?: () => void;
   /** Fired once, when the last beat finishes playing (natural end of lecture) — distinct from
@@ -205,6 +209,19 @@ export function LessonPlayer({
   adhd?: boolean;
   sourceDocument?: unknown;
   slideContext?: string;
+  /** What was read off the page images. The chat cannot answer about a formula without it. */
+  ocrTranscript?: string;
+  /** Handle for the parked page images, so the chat can LOOK at the page it is asked about. */
+  documentId?: string;
+  /** The question this lecture was built to answer, so the chat knows what it is FOR. */
+  lessonQuestion?: string;
+  /**
+   * Every page's text, including pages the student did NOT select.
+   *
+   * The lecture is built only from the selection; questions asked during it are not restricted to
+   * it, because a student reading page 4 will ask about page 7.
+   */
+  fullDocumentText?: string;
 }) {
   const [index, setIndex] = useState(0);
   // The ADHD layer decides the face; the header renders it. Subscribed rather than passed, because
@@ -421,6 +438,17 @@ export function LessonPlayer({
     getBeatContext: () =>
       `${beatRef.current.title}: ${beatRef.current.script}` +
       (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
+    /*
+     * THE SAME TWO SOURCES THE TEXT CHAT ALREADY USES.
+     *
+     * This session had neither. It knew the beat it was on and nothing else — not what the lesson
+     * covered, and not the document the lesson was written from — so asking Aria aloud about your
+     * own paper got a fluent answer from general knowledge, while typing the identical question
+     * into the panel beside her got one quoted from the document. Reading through the same two
+     * functions is what stops the voice and the text drifting apart again.
+     */
+    getLessonContext: () => buildLessonContext(beats, indexRef.current),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
     onTranscript: (role, text, final) => {
@@ -673,7 +701,9 @@ export function LessonPlayer({
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     // Read at ask time, not captured: the lecture moves while the panel is open.
     getLessonContext: () => buildLessonContext(beats, indexRef.current),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
+    documentId,
+    lessonQuestion,
     pausePlayer: () => {
       // Hard stop during a check-in. This is the path behind "Aria talks about the lesson": ask()
       // speaks its answer through playNarration directly (LessonChat.tsx), bypassing the voice

@@ -28,6 +28,13 @@ export const maxDuration = 300;
 const MAX_BYTES = DOCUMENT_LIMITS.MAX_BYTES;
 const MAX_PAGES = DOCUMENT_LIMITS.MAX_PAGES;
 const MIN_PNG_BYTES = 1_000;
+/**
+ * Ceiling on the whole-document text carried for question answering.
+ *
+ * Larger than the per-question cap downstream because this is the raw material that cap selects
+ * from; the consumers trim it to what they can afford to send.
+ */
+const FULL_TEXT_CHARS = 60_000;
 const RENDER_SCALE = 2;
 /**
  * How many pages are worked on at once.
@@ -714,6 +721,28 @@ export async function POST(req: NextRequest) {
   if (pageNumbers.length > MAX_PAGES) {
     return NextResponse.json({ error: tooManyPagesMessage(pdf.numPages) }, { status: 413 });
   }
+  /**
+   * THE WHOLE DOCUMENT'S TEXT, KEPT BEFORE THE SCOPE FILTER THROWS IT AWAY.
+   *
+   * Python rasterises every page and hands back every page's text already extracted — PyMuPDF, no
+   * model calls, already paid for. The filter below then discards everything outside the student's
+   * selection, which is correct for the EXPENSIVE work (cropping and vision are what page selection
+   * exists to bound) and wrong for text that cost nothing.
+   *
+   * The consequence of discarding it was that a student who selected page 4 could not ask the chat
+   * or the voice tutor anything about page 7 — neither had ever seen it, and both answered from
+   * general knowledge instead, just as fluently. This keeps the text so questions can range over
+   * the whole document while the LECTURE stays scoped to what they chose.
+   */
+  const fullDocumentText = (pythonPages ?? [])
+    .map((page) => {
+      const text = (page.text ?? "").replace(/\s+/g, " ").trim();
+      return text ? `[page ${page.pageNumber}] ${text}` : "";
+    })
+    .filter(Boolean)
+    .join("\n\n")
+    .slice(0, FULL_TEXT_CHARS);
+
   // The Python renderer always rasterises the whole document (one process is cheaper than one per
   // page), so the scope has to be applied to its OUTPUT. Filtering here rather than only in
   // `pageNumbers` matters: without it a scoped request would still run cropping and vision over
@@ -1112,6 +1141,13 @@ export async function POST(req: NextRequest) {
      * the lecture from text alone.
      */
     documentId,
+    /**
+     * Every page's text, including pages the student did not select.
+     *
+     * The lecture is still built only from the selection; this exists so a question asked during
+     * the lecture can be about any part of the document they uploaded.
+     */
+    fullDocumentText,
     pageImageCount: storedPages.length,
     regionImageCount: storedRegions.length,
     title,

@@ -19,6 +19,11 @@ export async function POST(request: Request) {
   const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
   const beatContext = typeof body.beatContext === "string" ? body.beatContext.trim().slice(0, 4000) : "";
   const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 20_000) : "";
+  /*
+   * The student's uploaded document. Capped like the lesson context: a Live session's instruction is
+   * fixed for the life of its socket, so anything sent here is carried for the whole conversation.
+   */
+  const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 30_000) : "";
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 500) : "";
   const adhdMode = body.adhdMode === true;
   const checkinMode = body.checkinMode === true;
@@ -67,7 +72,7 @@ export async function POST(request: Request) {
       {
         token: data.name,
         model: GEMINI_LIVE_MODEL,
-        instructions: buildGeminiLiveInstructions({ topic, beatContext, lessonContext, mood, adhdMode, checkinMode, examQuestions }),
+        instructions: buildGeminiLiveInstructions({ topic, beatContext, lessonContext, documentContext, mood, adhdMode, checkinMode, examQuestions }),
       },
       { headers: { "Cache-Control": "no-store" } },
     );

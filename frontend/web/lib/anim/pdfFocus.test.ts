@@ -188,10 +188,13 @@ test("a focused question OVERRIDES the whole-document beat plan", () => {
    * taught the same shape (see assertInputLectureDepth's concise branch), so the two cannot
    * disagree; asking for 130 words here would now be the contradiction.
    */
-  assert.match(msg, /1 or 2 teaching beats/);
-  assert.match(msg, /40-70 spoken words/);
+  assert.match(msg, /2 to 3 teaching beats/);
+  assert.match(msg, /180-260 spoken words/);
   assert.match(msg, /LEAD WITH THE ANSWER/);
+  assert.match(msg, /GO DEEP/);
+  // Neither the whole-document floor nor the over-corrected short one belongs here.
   assert.doesNotMatch(msg, /AT LEAST 130 spoken words/);
+  assert.doesNotMatch(msg, /40-70 spoken words/);
 });
 
 test("the focused message leads with the passage, not the topic", () => {

@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getDocumentImages } from "@/lib/pageImageStore";
+import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import OpenAI from "openai";
 import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation, sanitizeTextExplanation } from "@/lib/drawSanitize";
@@ -40,7 +42,29 @@ export async function POST(req: Request) {
    * prompt that large costs latency on every question asked mid-lesson.
    */
   const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 8000) : "";
-  const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 12000) : "";
+  const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 30000) : "";
+  /*
+   * The question this whole lesson exists to answer.
+   *
+   * Without it the chat knows what is being taught but not what it is FOR, so "why are we covering
+   * this?" has no answer and a reply that quietly drifts off the student's actual question still
+   * reads as authoritative. Empty for a lecture built from a plain topic, where there was no
+   * question in the first place.
+   */
+  const lessonQuestion = typeof body.lessonQuestion === "string" ? body.lessonQuestion.trim().slice(0, 500) : "";
+
+  /**
+   * The uploaded pages, so a mid-lesson question can be answered by LOOKING at the document.
+   *
+   * The text context above is the document's extracted words plus what OCR read; this is the pages
+   * themselves. It matters for the same reason it mattered at generation time — a question about a
+   * chart's values or a formula's subscripts cannot be answered from prose about them.
+   *
+   * A miss is ordinary and silent: no upload, an expired store, a restarted server. The answer then
+   * comes from the text context alone, which is what this endpoint did before.
+   */
+  const documentId = typeof body.documentId === "string" ? body.documentId : "";
+  const pageImages = getDocumentImages(documentId);
 
   if (!question) return NextResponse.json({ error: "question is required" }, { status: 400 });
 
@@ -52,6 +76,11 @@ export async function POST(req: Request) {
       : "") +
     (documentContext
       ? `The student's own uploaded document. Answer from THIS when the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${documentContext}\n\n`
+      : "") +
+    (lessonQuestion
+      ? `This whole lesson was built to answer one question the student asked: "${lessonQuestion}". Keep that in view — if their new question relates to it, connect the two rather than answering in isolation.
+
+`
       : "") +
     (beatContext ? `The student is on this part right now: "${beatContext}". ` : "") +
     `They asked: "${question}". ` +
@@ -66,7 +95,18 @@ export async function POST(req: Request) {
         model: MODEL,
         messages: [
           { role: "system", content: textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT },
-          { role: "user", content: userMsg },
+          {
+            role: "user",
+            /*
+             * Text first, then the pages. One question is being asked about a document the student
+             * is looking at, so the pictures are evidence for that question rather than a second
+             * subject — and a model handed images before it is told what to do with them tends to
+             * describe them instead of answering.
+             */
+            content: pageImages
+              ? ([{ type: "text", text: userMsg }, ...buildImageParts(pageImages.pages, pageImages.regions, pageImages.unit)] as ContentPart[])
+              : userMsg,
+          },
         ],
         temperature: 0.7,
         response_format: { type: "json_object" },

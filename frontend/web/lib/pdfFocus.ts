@@ -512,7 +512,7 @@ export function focusedUserMessage(args: {
     "The permitted source excerpt is below. It is evidence for the answer above, not a syllabus to cover:",
     documentJson,
     "",
-    ...shapeInstructions(LECTURE_SHAPES.conciseAnswer),
+    ...shapeInstructions(LECTURE_SHAPES.focusedAnswer),
     "Use ONLY facts in the quoted focus passage and explicitly retrieved supporting context. The rest of the subject and your own background knowledge are out of scope. If the permitted source does not support a detail, omit it rather than filling the gap.",
     "Every beat title must name the precise concept or step being taught. Never use a raw source locator such as 'Figure 19.4', 'Page 2', 'Slide 3', or 'Overview' as a title.",
     "Every symbol, subscript, index and operator in the passage must appear in the lecture exactly as written — reproducing it wrongly is worse than omitting it.",
