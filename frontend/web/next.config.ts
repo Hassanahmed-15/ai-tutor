@@ -42,6 +42,18 @@ const nextConfig: NextConfig = {
       "./scripts/pdf_pipeline.py",
       "../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs",
     ],
+    /*
+     * These two routes run the SAME Python renderer, and needed tracing of their own.
+     *
+     * Tracing is per-route, so listing the script under parse-pdf put it in that route's bundle
+     * only. `document-pages` has always shelled out to it for thumbnails, and `parse-pptx` now does
+     * too on every parse — it renders the real slides so the lecture can look at them, where before
+     * it only did so when a region had been dragged. Without an entry here both fail in the
+     * standalone build with a missing script, while working locally where the repo is on disk —
+     * the same trap the pdf.worker.mjs comment below describes.
+     */
+    "/api/document-pages": ["./scripts/pdf_pipeline.py"],
+    "/api/parse-pptx": ["./scripts/pdf_pipeline.py"],
   },
 };
 

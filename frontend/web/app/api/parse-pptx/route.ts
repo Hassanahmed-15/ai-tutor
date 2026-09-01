@@ -10,8 +10,10 @@ import {
 } from "@/lib/pdfOcr";
 import { renderPptxSlides } from "@/lib/pptxRender";
 import { convertPptxToPdf } from "@/lib/pptxToPdf";
-import { renderPdfWithPython } from "@/lib/pdfPythonPipeline";
+import { renderPdfWithPython, VISION_DPI } from "@/lib/pdfPythonPipeline";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
+import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -67,6 +69,14 @@ type ParsePptxResponse = {
    * student asked about — see lib/pdfFocus.ts.
    */
   ocrTranscript?: string;
+  /**
+   * Handle for the slide images parked for the generation call, or null when none could be
+   * rendered. The caller forwards it untouched; generation treats a missing id like an expired one
+   * and writes the lecture from text alone.
+   */
+  documentId?: string | null;
+  pageImageCount?: number;
+  regionImageCount?: number;
 };
 
 const parser = new XMLParser({
@@ -474,7 +484,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Only .pptx files are supported." }, { status: 400 });
   }
 
-  const MAX_BYTES = 20 * 1024 * 1024;
+  const MAX_BYTES = DOCUMENT_LIMITS.MAX_BYTES;
   if (fileObj.size > MAX_BYTES) {
     return NextResponse.json({ error: "File too large. Maximum size is 20 MB." }, { status: 413 });
   }
@@ -534,6 +544,16 @@ export async function POST(req: NextRequest) {
 
   if (slideFiles.length === 0) {
     return NextResponse.json({ error: "No slides found in the uploaded file." }, { status: 422 });
+  }
+
+  /*
+   * A deck is capped exactly like a paper, for exactly the same reason: the lecture is written from
+   * the whole thing — every slide's text and every slide's picture in one call — so the whole thing
+   * has to fit. Two formats, one road, one limit; a number that differed between them would be a
+   * difference the student has to discover rather than one the product means.
+   */
+  if (exceedsPageLimit(slideFiles.length)) {
+    return NextResponse.json({ error: tooManyPagesMessage(slideFiles.length, "slide") }, { status: 413 });
   }
 
   // Extract deck title from core properties
@@ -810,30 +830,63 @@ export async function POST(req: NextRequest) {
    * and wants that part explained. The box is in normalised coordinates over the composed preview
    * (lib/pptxRender.ts), so it is cropped from a fresh render of the same slide at the same size.
    */
+  /**
+   * Render the deck ONCE, for everything that needs to look at it.
+   *
+   * This used to run only when the student had dragged a box, because cropping that box was the
+   * only thing that needed real pixels. The lecture now reads the slides itself, so the render has
+   * to happen on every parse — and doing it here rather than twice keeps one LibreOffice conversion
+   * per upload, which is by far the slowest step in this route.
+   *
+   * Crop the REAL slide when there is one. The region a student drags is drawn over whatever the
+   * preview showed them, so the crop has to come from the same rendering. LibreOffice's PDF gives
+   * the true slide; the composed preview is the fallback, and the two must not be mixed or the box
+   * would land somewhere other than where it was drawn.
+   */
+  type RenderedSlide = {
+    slideNumber: number;
+    png: Buffer;
+    width: number;
+    height: number;
+    visionImage: Buffer | null;
+    visionMime: string;
+  };
+  let renderedSlides: RenderedSlide[] = [];
+  try {
+    const asPdf = await convertPptxToPdf(deckBytes);
+    if (asPdf) {
+      const pages = await renderPdfWithPython(asPdf, undefined, VISION_DPI);
+      renderedSlides = (pages ?? []).map((page) => ({
+        slideNumber: page.pageNumber,
+        png: Buffer.from(page.png),
+        width: page.width,
+        height: page.height,
+        visionImage: page.visionImage,
+        visionMime: page.visionMime,
+      }));
+    }
+    if (renderedSlides.length === 0) {
+      // The composed preview is already small enough to send as-is, so it doubles as its own
+      // vision copy rather than being re-encoded to save bytes that are not there.
+      renderedSlides = (await renderPptxSlides(deckBytes)).map((slide) => ({
+        slideNumber: slide.slideNumber,
+        png: slide.png,
+        width: slide.width,
+        height: slide.height,
+        visionImage: slide.png,
+        visionMime: "image/png",
+      }));
+    }
+  } catch {
+    // A deck that will not render loses its pictures, not the upload: the slide text still teaches.
+    renderedSlides = [];
+  }
+
   const regionParts: TranscriptPart[] = [];
   const usableRegions = planTranscription(scopedSlides, slideRegions).filter((t) => t.rect);
   if (client && usableRegions.length > 0) {
     try {
-      /*
-       * Crop the REAL slide when there is one.
-       *
-       * The region a student drags is drawn over whatever the preview showed them, so the crop has
-       * to come from the same rendering. LibreOffice's PDF gives the true slide; the composed
-       * preview is the fallback, and the two must not be mixed or the box would land somewhere
-       * other than where it was drawn.
-       */
-      let rendered: Array<{ slideNumber: number; png: Buffer; width: number; height: number }> = [];
-      const asPdf = await convertPptxToPdf(deckBytes);
-      if (asPdf) {
-        const pages = await renderPdfWithPython(asPdf);
-        rendered = (pages ?? []).map((page) => ({
-          slideNumber: page.pageNumber,
-          png: Buffer.from(page.png),
-          width: page.width,
-          height: page.height,
-        }));
-      }
-      if (rendered.length === 0) rendered = await renderPptxSlides(deckBytes);
+      const rendered = renderedSlides;
 
       for (const target of usableRegions) {
         const slide = rendered.find((r) => r.slideNumber === target.page);
@@ -870,6 +923,44 @@ export async function POST(req: NextRequest) {
    */
   const ocrTranscript = assembleTranscript(regionParts.length > 0 ? regionParts : transcriptParts, "slide");
 
+  /**
+   * Park the slide images for generation, exactly as the PDF route parks its pages.
+   *
+   * Scoped to the slides the student kept, so a deselected slide is never shown to the model. The
+   * region crops are re-cut from the vision-sized copy rather than reusing the full-resolution crop
+   * made for transcription above: the model rescales anything larger anyway, and carrying the big
+   * one would multiply the stored bytes for no gain.
+   */
+  const keptSlides = new Set(scopedSlides);
+  const storedSlides: StoredPageImage[] = renderedSlides
+    .filter((slide) => slide.visionImage !== null && (keptSlides.size === 0 || keptSlides.has(slide.slideNumber)))
+    .map((slide) => ({
+      pageNumber: slide.slideNumber,
+      dataUrl: `data:${slide.visionMime};base64,${slide.visionImage!.toString("base64")}`,
+    }));
+
+  const storedRegions: StoredRegionImage[] = [];
+  for (const target of usableRegions) {
+    const slide = renderedSlides.find((candidate) => candidate.slideNumber === target.page);
+    if (!slide?.visionImage || !target.rect) continue;
+    try {
+      const source = await loadImage(slide.visionImage);
+      const box = pixelRect(target.rect, source.width, source.height);
+      if (box.width < 2 || box.height < 2) continue;
+      const surface = createCanvas(box.width, box.height);
+      surface.getContext("2d").drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
+      storedRegions.push({
+        pageNumber: target.page,
+        dataUrl: `data:image/jpeg;base64,${surface.toBuffer("image/jpeg", 0.82).toString("base64")}`,
+        rect: target.rect,
+      });
+    } catch {
+      // One uncroppable selection costs its emphasis image; the whole slide is still attached.
+    }
+  }
+
+  const documentId = putDocumentImages(storedSlides, storedRegions, "slide");
+
   const result: ParsePptxResponse = {
     topic: deckTitle,
     slideCount: slides.length,
@@ -884,6 +975,10 @@ export async function POST(req: NextRequest) {
      * student asked about — see lib/pdfFocus.ts.
      */
     ocrTranscript,
+    /** Handle for the slide images this parse rendered. See the PDF route for the contract. */
+    documentId,
+    pageImageCount: storedSlides.length,
+    regionImageCount: storedRegions.length,
     sourceDocument,
     assetCount: sourceDocument?.assets?.length ?? 0,
   };

@@ -56,6 +56,16 @@ export function useLessonChat(opts: {
    */
   getLessonContext?: () => string;
   getDocumentContext?: () => string;
+  /**
+   * Handle for the uploaded document's page images, parked server-side at parse time.
+   *
+   * A plain string rather than a getter because it does not change while a lecture plays. Empty for
+   * a prompted lesson, and empty once the store has expired — the endpoint treats both as "no
+   * pictures" and answers from text, so a stale handle costs nothing.
+   */
+  documentId?: string;
+  /** The question the lecture was built to answer, when it was built from one. */
+  lessonQuestion?: string;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
   /** Called when the explanation closes, so the player can re-open its clarity gate. */
@@ -96,6 +106,9 @@ export function useLessonChat(opts: {
             beatContext: opts.getBeatContext(),
             lessonContext: opts.getLessonContext?.() ?? "",
             documentContext: opts.getDocumentContext?.() ?? "",
+            // Lets the endpoint attach the page images themselves; see app/api/explain/route.ts.
+            documentId: opts.documentId ?? "",
+            lessonQuestion: opts.lessonQuestion ?? "",
             question: trimmed,
           }),
         });

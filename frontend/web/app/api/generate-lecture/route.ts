@@ -39,6 +39,12 @@ import {
 import { focusPassages, focusFromTranscript, focusPromptSection, focusedLectureTitle, focusedUserMessage, isPointingPhrase, isWeakSlideTitle, subjectFromFocus, type PdfFocus } from "@/lib/pdfFocus";
 import { embedTexts, EMBED_RULES } from "@/lib/embeddings";
 import { chunksFrom, rankChunks, contextPromptSection, type RankedChunk } from "@/lib/ragRetrieve";
+import { getDocumentImages, type StoredDocumentImages } from "@/lib/pageImageStore";
+import {
+  buildImageParts, documentImagesSection, regionEmphasisSection, questionSection,
+  lectureShape, shapeInstructions,
+  type ContentPart, type LectureShape,
+} from "@/lib/fullDocumentContext";
 import type { Beat } from "@/lib/lessonContent";
 import { costFor } from "@/lib/modelPricing";
 
@@ -154,7 +160,40 @@ type LectureBuildInput = {
    * Empty for the ordinary whole-document case, and whenever retrieval was unavailable.
    */
   context: RankedChunk[];
+  /**
+   * The document as PICTURES — every page the student kept, plus any area they dragged a box round.
+   *
+   * Null when nothing was rendered, when the id expired, or when the upload never produced images.
+   * That is a normal state, not an error: the lecture falls back to the excerpt-and-retrieval path
+   * that predates this, so losing the pictures costs grounding rather than the lesson.
+   */
+  fullContext: StoredDocumentImages | null;
+  /**
+   * The student's question exactly as they typed it, independent of whether a passage was pinned.
+   *
+   * Separate from `focus` on purpose: `focus` is null whenever the lexical ranker failed to locate
+   * the question in the text, which is common and says nothing about whether a question was asked.
+   * Reading the question off `focus` alone silently dropped it in exactly those cases.
+   */
+  question: string;
 };
+
+/**
+ * Is this lecture being written with the document's pages in view?
+ *
+ * One predicate, used by every decision that turns on the answer — the prompt shape, the beat-count
+ * floor, the chunking guard, the cache key and the dev trace. They were four separate conditions
+ * that all had to agree, which is exactly the kind of thing that silently stops agreeing: a deck
+ * with no embedded pictures has slide text but no source document, and a gate that checked for the
+ * document would have cached it under the wrong key while prompting it under the right one.
+ */
+function hasFullDocumentContext(input: {
+  fullContext: StoredDocumentImages | null;
+  sourceDocument: SuprnotesLessonInput | null;
+  slideContext: string;
+}): boolean {
+  return Boolean(input.fullContext && (input.sourceDocument || input.slideContext));
+}
 
 type BaseLecture = {
   beats: Beat[];
@@ -474,7 +513,39 @@ function applyScriptPatchesToRawLecture(rawLecture: unknown, patches: unknown) {
 const DEPTH_FLOOR_WORDS = 100;
 const FOCUSED_DEPTH_FLOOR_WORDS = 125;
 
-function assertInputLectureDepth(beats: Beat[], pdfSource: boolean, focused = false): void {
+function assertInputLectureDepth(
+  beats: Beat[],
+  pdfSource: boolean,
+  focused = false,
+  shape?: LectureShape,
+): void {
+  /**
+   * A CONCISE ANSWER IS NOT A SHALLOW LECTURE.
+   *
+   * This guard exists to stop the model summarising when it was asked to teach. Applied to a direct
+   * answer it does the opposite of its job: a two-beat reply of fifty words each fails on both
+   * counts — the average is a third of the focused floor, and *every* beat is "short" by the 95-word
+   * definition, so the 15%-short allowance can never be met at this size. The throw is then caught
+   * and answered with up to five paid deepening passes whose own prompt demands 110-140 words a
+   * beat, which is precisely the padding the student asked us not to do.
+   *
+   * So the short shape gets a floor that only catches an empty or one-line script, and the
+   * short-beat RATIO is skipped rather than loosened — at one or two beats that ratio is not a
+   * lenient check, it is a meaningless one.
+   *
+   * Because nothing throws here, `deepenLectureScripts` never runs for a concise answer. That is
+   * the intended behaviour, not an oversight: it is reached only from this function's catch.
+   */
+  if (shape?.mode === "focused-answer") {
+    const stats = lectureDepthStats(beats);
+    if (stats.avgTeachingWords < shape.wordFloor) {
+      throw new Error(
+        `Model returned an empty answer (${Math.round(stats.avgTeachingWords)} words per beat; ${shape.wordFloor} required).`
+      );
+    }
+    return;
+  }
+
   if (!pdfSource) {
     assertLectureDepth(beats);
     return;
@@ -495,7 +566,7 @@ async function deepenLectureScripts(
   mood: string,
   rawLecture: unknown,
   beats: Beat[],
-  options: { minUsableBeats?: number; pdfSource?: boolean; focused?: boolean } = {},
+  options: { minUsableBeats?: number; pdfSource?: boolean; focused?: boolean; wordTarget?: [number, number] } = {},
 ): Promise<number> {
   let extraCostUsd = 0;
   let lastError = "Could not deepen the generated lecture.";
@@ -511,7 +582,16 @@ async function deepenLectureScripts(
             content:
               "You deepen AI tutor lecture scripts. Return JSON only: {\"beats\":[{\"id\":string,\"script\":string}]}. " +
               "Preserve every id exactly. Do not change titles, visuals, checkpoints, or order. " +
-              "Rewrite only the spoken script. Teaching beats need 110-140 words each. Intro needs 75-95 words. " +
+              /*
+               * The target comes from the SHAPE, not from a constant here.
+               *
+               * This said "110-140 words each" unconditionally. A focused answer now asks for
+               * 180-260, so a thin one reaching this pass would have been "deepened" to a length
+               * still below what was requested — the pass reporting success while leaving the
+               * lecture short of its own instruction. Exactly the instruction-versus-enforcement
+               * split the shape abstraction exists to prevent.
+               */
+              `Rewrite only the spoken script. Teaching beats need ${options.wordTarget ? `${options.wordTarget[0]}-${options.wordTarget[1]}` : "110-140"} words each. Intro needs 75-95 words. ` +
               `Checkpoint scripts need 25-45 words. Recap needs 110-135 words. ${options.pdfSource ? "This is one ordered PDF section, so deepen every supplied beat without trying to reach a whole-lecture word total. " : "Total output should create 1050-1450 spoken words without changing the number of beats. "}` +
               "Use warm natural spoken language, concrete examples, misconception warnings, and smooth transitions. " +
               "Deepen each existing board in layers: claim, mechanism or reasoning, one concrete example, misconception contrast, and connection forward. Do not introduce facts absent from the existing scripts. " +
@@ -580,7 +660,117 @@ async function deepenLectureScripts(
   return extraCostUsd;
 }
 
-function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope?: LessonScope): string {
+/**
+ * The user message when the WHOLE document is available as text and pictures.
+ *
+ * WHY THIS REPLACES THE EXCERPT. Everything below this function selects a fragment — the passage
+ * retrieval ranked highest, six supporting chunks, captions standing in for figures — because a
+ * sixty-page document could not be sent. Uploads are capped at twenty pages now precisely so that
+ * it can be, and sending a summary of a source that is sitting right there means answering from the
+ * summary. A question about a figure was being answered from the sentence describing it, which is
+ * the exact failure the OCR stage exists to prevent, reappearing one stage later.
+ *
+ * ORDER MATTERS. The selection goes near the top, before the pages, because a model handed twenty
+ * page images and the words "explain this" will otherwise answer about the pages. The document text
+ * goes last: it is corroboration for what the images show, not the primary source, and putting it
+ * first is what made the old prompt read as a syllabus to cover.
+ */
+function buildFullContextMessage(input: LectureBuildInput, retryGuidance: string): ContentPart[] {
+  const full = input.fullContext!;
+  const unit = full.unit;
+  const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
+  const hasRegions = full.regions.length > 0;
+  /*
+   * The question comes from the REQUEST, not only from the focus object.
+   *
+   * `focus` is null whenever the lexical ranker could not pin a passage — which happens constantly
+   * for a perfectly good question, since a one-word subject scores below its own threshold. Reading
+   * the question off `focus` alone meant those questions reached the model as nothing at all, and
+   * the lecture answered the document instead of the student.
+   */
+  const question = (input.question || input.focus?.question || "").trim();
+  /*
+   * ASKING SOMETHING IS BEING FOCUSED, WHETHER OR NOT A BOX WAS DRAWN.
+   *
+   * This branched on `hasRegions` alone, so typing "how many professors are in the list" and
+   * drawing nothing landed in the whole-document branch below — which instructs the model to teach
+   * every substantial idea in the document across ten to sixteen beats. Those instructions are the
+   * LAST thing the model reads, so they quietly overrode the question stated at the top, and the
+   * student got a survey of their own upload instead of an answer. A drawn region was never what
+   * made a request specific; it is one of two ways of being specific.
+   */
+  const shape = lectureShape({ hasRegions, question });
+  const isFocused = shape.mode === "focused-answer";
+
+  const opening = [
+    // A focused request must not be framed as "teach this topic" — that is the framing that
+    // produces a survey. The question below is the job; the topic is only a label for it.
+    isFocused ? `The student uploaded this and asked about it. ${moodLine}` : `Teach this live: "${input.topic}". ${moodLine}`,
+    "",
+    documentImagesSection(full.pages, unit, hasRegions),
+    "",
+    regionEmphasisSection(full.regions, unit),
+    hasRegions ? "" : null,
+    questionSection(question, hasRegions),
+  ].filter((line) => line !== null).join("\n");
+
+  /*
+   * The text half, from whichever route this upload took.
+   *
+   * A deck with no embedded pictures never gets a source document — its slide text arrives as
+   * `slideContext` instead. Requiring the structured document here would have meant those decks
+   * stored their slide images and then never sent them: images rendered, cost paid, model still
+   * reading text. The pictures are the same either way; only the accompanying text differs.
+   */
+  const documentText = input.sourceDocument
+    ? compactSuprnotesForPrompt(input.sourceDocument)
+    : input.slideContext;
+
+  const closing = [
+    "",
+    `The extracted text of the same ${unit === "slide" ? "deck" : "document"} follows. It is a convenience, not the source — it is missing everything that exists only as pixels, so where it is silent or disagrees, trust the ${unit} images above.`,
+    documentText,
+    "",
+    ...(isFocused && question
+      ? [`ANSWER THIS, AND ONLY THIS: "${question}".`]
+      : isFocused
+        ? ["Teach exactly what the student selected above, and nothing else."]
+        : []),
+    /*
+     * THE APPROVED PLAN, WHEN THE STUDENT MADE ONE.
+     *
+     * A whole-document upload now goes through the same planning screen a typed topic does, where
+     * Aria drafts an outline and the student can steer it before approving. Without this the screen
+     * would be theatre: they would reorder and revise a plan that generation never reads, and the
+     * lecture would come back ignoring every change they made.
+     *
+     * Only for the full lecture. A focused answer deliberately overrides the plan — see
+     * shapeInstructions — so handing it one here would reintroduce the survey it exists to prevent.
+     */
+    ...(shape.mode === "full-lecture" && input.outline?.subtopics.length
+      ? [
+          "",
+          "THE STUDENT APPROVED THIS PLAN. Follow it in order, one or more beats per step:",
+          ...input.outline.subtopics.map((subtopic, index) => `${index + 1}. ${subtopic.title} — ${subtopic.caption}`),
+          "Teach every step. Do not add topics outside it, and do not reorder it.",
+          "",
+        ]
+      : []),
+    ...shapeInstructions(shape, unit),
+    `Every beat title must name the precise concept being taught. Never use a raw source locator such as "Figure 19.4", "${unit === "slide" ? "Slide 3" : "Page 2"}", or "Overview" as a title.`,
+    "Reproduce every symbol, subscript, index, operator and numeric value exactly as it appears. Reproducing one wrongly is worse than omitting it.",
+    "Use a provided asset only via its assetId, and only when that figure is genuinely what the beat teaches. Otherwise build whiteboard SVG diagram beats from the document's own content.",
+    `Build the complete lecture now.${retryGuidance}`,
+  ].join("\n");
+
+  return [
+    { type: "text", text: opening },
+    ...buildImageParts(full.pages, full.regions, unit),
+    { type: "text", text: closing },
+  ];
+}
+
+function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope?: LessonScope): string | ContentPart[] {
   const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
   const base = `Teach this topic live: "${input.topic}". ${moodLine}`;
   const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
@@ -594,6 +784,17 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope
   const scopeLine = scope ? scopeInstruction(scope) : "";
   const focusSection = focusPromptSection(input.focus);
   const contextSection = contextPromptSection(input.context);
+
+  /*
+   * The whole document, when we have it.
+   *
+   * Either text source will do — a structured source document, or the raw slide text a picture-less
+   * deck arrives with. What this must not do is run on pictures alone: without the text there are
+   * no asset ids, and image beats are built from those.
+   */
+  if (hasFullDocumentContext(input)) {
+    return buildFullContextMessage(input, retryGuidance);
+  }
 
   if (input.sourceDocument) {
     /*
@@ -766,19 +967,53 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, job
        * more beats and threw away a perfectly good eight-beat answer about a correlation matrix.
        * Being shorter is the entire point of asking a narrow question.
        */
-      /**
-       * How long this lesson should be, decided by how much the subject actually contains.
+      /*
+       * Nor is a WHOLE-DOCUMENT lecture, once the document arrives as one call.
        *
-       * The old rule was a flat 8-beat floor for every typed topic, which is what made a narrow
-       * question ("why are there infinitely many primes?") pad itself out to a survey course. The
-       * planner has already worked out how many subtopics the subject genuinely needs, so that
-       * count — not a constant — sets the floor. Document paths keep their existing behaviour.
+       * The planned count is a floor because the plan used to be executed a beat at a time, so
+       * every planned beat really did get its own generation and its own response. One call for the
+       * whole document cannot honour that: a twenty-page paper plans twenty to forty beats, and a
+       * single response capped at 16k output tokens will not emit them at the depth each needs. It
+       * would fail the floor, retry, fail again, and end up throwing away a good lecture.
+       *
+       * So in this mode the plan becomes advisory. That is a real weakening of
+       * `requireCompleteCoverage` and it is the direct price of the single call — bought
+       * deliberately, because a lecture written while LOOKING at every page is worth more than one
+       * that provably touched every block without being able to see any of them.
        */
-      const minUsableBeats = input.focus
-        ? FOCUSED_SCOPE.minBeats
-        : pdfPlanCount || (input.sourceDocument ? 1 : scope.minBeats);
+      const fullDocumentPass = hasFullDocumentContext(input);
+      /*
+       * The shape this request asked for, read from the same function the PROMPT read it from.
+       *
+       * Without this the sanitiser would reject the very thing we requested: a concise answer is one
+       * or two beats, and the focused minimum was four.
+       */
+      const shape = lectureShape({
+        hasRegions: (input.fullContext?.regions.length ?? 0) > 0,
+        question: input.question || input.focus?.question || "",
+      });
+      const focusedAnswer = shape.mode === "focused-answer";
+      /**
+       * The floor, from whichever signal actually describes this request.
+       *
+       * Three sources, in order of specificity. A focused ANSWER about an uploaded document knows
+       * its own length. A whole-document pass uses the advisory floor above. Everything else is a
+       * typed topic, where the planner's subtopic count decides — that last case is what stops a
+       * narrow question ("why are there infinitely many primes?") being padded into a survey
+       * course by a flat eight-beat floor.
+       */
+      const minUsableBeats = focusedAnswer
+        ? shape.minBeats
+        : input.focus || fullDocumentPass
+          ? (input.focus ? FOCUSED_SCOPE.minBeats : 8)
+          : pdfPlanCount || (input.sourceDocument ? 1 : scope.minBeats);
       let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
-      applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
+      /*
+       * The plan's titles are not stamped on in this mode either, for the same reason its count is
+       * not enforced: those titles are positional, and a single response that grouped six planned
+       * beats into two would get the sixth beat's title pasted onto the second.
+       */
+      applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus || fullDocumentPass);
       dedupeBeatIdentity(beats);
 
       // Eight or nine strong beats are recoverable. Add only the missing conceptual bridges instead of
@@ -808,12 +1043,13 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, job
 
       // Tally the text-generation cost from actual token usage.
       try {
-        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument), !!input.focus);
+        assertInputLectureDepth(beats, isPdfSource(input.sourceDocument), !!input.focus, shape);
       } catch {
         textCost += await deepenLectureScripts(client, input.topic, input.mood, rawLecture, beats, {
           minUsableBeats,
           pdfSource: isPdfSource(input.sourceDocument),
           focused: !!input.focus,
+          wordTarget: shape.wordTarget as [number, number],
         });
         beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
         applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
@@ -906,7 +1142,16 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
    * "RESULTS Test 1: SMOTETomek" appearing twice and one beat titled "Fig". The plan is not the
    * subject any more, so there is nothing to chunk.
    */
-  if (!sourceDocument || input.focus || planned.length <= PDF_BEATS_PER_GENERATION) {
+  /*
+   * A document sent WHOLE is one generation, by definition.
+   *
+   * Chunking exists to feed a plan through a few beats at a time when the document itself cannot be
+   * carried. Once every page is attached, splitting would mean re-sending all twenty images on every
+   * chunk — roughly fifteen times the image cost for a long paper — to produce beats that each saw
+   * the same thing anyway. The point of the single call is that one response is written with the
+   * entire document in view.
+   */
+  if (!sourceDocument || input.focus || hasFullDocumentContext(input) || planned.length <= PDF_BEATS_PER_GENERATION) {
     return generateBaseLecture(client, input, jobId);
   }
 
@@ -1106,6 +1351,17 @@ export async function POST(req: Request) {
   const transcript = typeof body.transcript === "string" ? body.transcript.trim() : "";
   const focus = focusFromTranscript(focusQuestion, transcript) ?? focusPassages(focusQuestion, sourceDocument);
 
+  /**
+   * The document's pages, as pictures, if the parse that produced them is still in memory.
+   *
+   * A miss here is ordinary — the process restarted, the entry aged out, the upload predates this
+   * feature — and is handled by simply not having it: everything below falls back to the excerpt
+   * and retrieval path. That is the same lecture the app produced before page images existed, so
+   * the worst case of a store miss is the old behaviour rather than a failure.
+   */
+  const documentId = typeof body.documentId === "string" ? body.documentId : "";
+  const fullContext = getDocumentImages(documentId);
+
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   /**
@@ -1120,7 +1376,16 @@ export async function POST(req: Request) {
    * generic one — that regression is the whole reason this line of work exists.
    */
   let ragContext: RankedChunk[] = [];
-  if (focus && client) {
+  /*
+   * Retrieval is SKIPPED when the whole document is going anyway.
+   *
+   * Its entire job is to pull the few passages a region depends on out of a document too large to
+   * send. With every page attached, those passages are already in the prompt — retrieving them
+   * again would restate content the model can see, and worse, restate it under a heading that says
+   * "supporting context, do not teach these in their own right", which contradicts the instruction
+   * to treat the document as the source. It stays exactly as it was for the fallback path.
+   */
+  if (focus && client && !hasFullDocumentContext({ fullContext, sourceDocument, slideContext })) {
     const chunks = chunksFrom(sourceDocument, slideContext).slice(0, EMBED_RULES.MAX_CHUNKS);
     if (chunks.length > 1) {
       const regionText = focus.passages.map((p) => p.text).join("\n").slice(0, EMBED_RULES.MAX_CHARS_PER_CHUNK);
@@ -1152,6 +1417,25 @@ export async function POST(req: Request) {
       focusFired: !!focus,
       focusSource: focus ? (transcript ? "transcript" : "block-retrieval") : "none",
       retrievedChunks: ragContext.length,
+      /*
+       * Whether the model can actually SEE this document. The single most useful thing to check
+       * when a lecture comes back vague: `pageImages: 0` means it was written from text alone,
+       * which usually means the store missed rather than that the upload had no pictures.
+       */
+      /*
+       * These two are reported SEPARATELY on purpose.
+       *
+       * When the store was per-bundle, the trace said `pageImages: 0` and nothing else — which
+       * reads as "this upload had no pictures" when the truth was "the id arrived and the lookup
+       * missed". One boolean tells those two apart, and they have completely different causes.
+       */
+      documentIdSent: documentId ? "yes" : "no",
+      documentIdResolved: fullContext ? "hit" : "miss",
+      pageImages: fullContext?.pages.length ?? 0,
+      regionImages: fullContext?.regions.length ?? 0,
+      contextMode: hasFullDocumentContext({ fullContext, sourceDocument, slideContext })
+        ? "full-document"
+        : "excerpt+retrieval",
       pointingPhrase: focusQuestion ? isPointingPhrase(focusQuestion) : true,
       subjectUsed: (focus && (!focusQuestion || isPointingPhrase(focusQuestion))
         ? subjectFromFocus(focus) || effectiveTopic
@@ -1177,7 +1461,7 @@ export async function POST(req: Request) {
     ? subjectFromFocus(focus) || effectiveTopic
     : effectiveTopic;
 
-  const input: LectureBuildInput = { topic: groundedTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus, context: ragContext };
+  const input: LectureBuildInput = { topic: groundedTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus, context: ragContext, fullContext, question: focusQuestion };
 
   const refresh = body.refresh === true;
 
@@ -1193,6 +1477,17 @@ export async function POST(req: Request) {
     outline: input.outline,
     model: MODEL,
     generationProfile: GENERATION_PROFILE,
+    /*
+     * Part of the key, because it changes the prompt.
+     *
+     * The same document and question produce a materially different lecture depending on whether
+     * the model could see the pages. Without this, a cached text-only lecture would be served to a
+     * later request that DID have the images — silently withholding the better answer, and looking
+     * exactly like the images never worked.
+     */
+    contextMode: hasFullDocumentContext({ fullContext, sourceDocument, slideContext }) && fullContext
+      ? `full-${fullContext.pages.length}-${fullContext.regions.length}`
+      : "text",
   });
   if (!refresh) {
     const cached = await readCachedLecture(cacheKey);

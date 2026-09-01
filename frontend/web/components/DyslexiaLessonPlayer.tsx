@@ -51,9 +51,9 @@ type Phase = "dense" | "calibrating" | "chunks";
 
 export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null,
-  slideContext = "", title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
-  slideContext?: string; title?: string }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string }) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
@@ -194,7 +194,9 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
     getLessonContext: () => buildLessonContext(beats, index),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
+    documentId,
+    lessonQuestion,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     pausePlayer: stopVoice,
     onVoiceBlocked: () => setVoiceBlocked(true),

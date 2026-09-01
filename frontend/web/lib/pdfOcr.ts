@@ -104,10 +104,31 @@ export function isUsableRegion(rect: NormalisedRect | undefined): rect is Normal
  * transcribe the pages they selected; and taking the whole document while drawing nothing means
  * transcribe nothing, because that is a request for the existing whole-document lecture and running
  * a vision call per page over it buys no precision at all.
+ *
+ * @param pagesGoToModelAsImages
+ *   True when the lecture will receive these pages as PICTURES. Then transcribing them whole is
+ *   reading the same pixels twice — once here, once again at generation — for two bills and, on a
+ *   nine-page upload, about twenty extra seconds. Measured: a nine-page parse spent ~20-25s of its
+ *   59s on eight transcription calls whose 12,023-character output was then truncated at
+ *   MAX_TRANSCRIPT_CHARS anyway.
+ *
+ *   It narrows what is transcribed; it never disables it. A DRAWN REGION is still transcribed,
+ *   because verbatim precision on the one thing the student pointed at is worth a call, and it is
+ *   what pins the subject through `focusFromTranscript`. And the caller's separate fallback for a
+ *   document with no extractable text still asks for every page — a scanned PDF has no content
+ *   blocks without `blocksFromTranscript`, and would be refused outright.
  */
-export function planTranscription(selectedPages: number[], regions: PageRegion[]): PageRegion[] {
+export function planTranscription(
+  selectedPages: number[],
+  regions: PageRegion[],
+  pagesGoToModelAsImages = false,
+): PageRegion[] {
   const usable = regions.filter((r) => isUsableRegion(r.rect));
   if (usable.length > 0) return usable.slice(0, OCR_RULES.MAX_PAGES);
+
+  // Nothing was pointed at, and the model can see the pages itself. Transcribing them would buy a
+  // second, worse reading of what it is already looking at.
+  if (pagesGoToModelAsImages) return [];
 
   /*
    * No region: transcribe the pages the student selected.

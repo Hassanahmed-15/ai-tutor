@@ -1,5 +1,6 @@
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "./suprnotes";
 import type { PlanOutline } from "./planPrompt";
+import { LECTURE_SHAPES, shapeInstructions } from "./fullDocumentContext";
 
 /**
  * Find the passage a student's question is actually about.
@@ -511,23 +512,24 @@ export function focusedUserMessage(args: {
     "The permitted source excerpt is below. It is evidence for the answer above, not a syllabus to cover:",
     documentJson,
     "",
-    "Because the student asked about one specific thing, the lessonPlan/suggestedLecturePlan beat order and targetBeatCount DO NOT APPLY. Ignore them. Build the beats this explanation needs and no others.",
-    "Four to seven teaching beats, all of them answering the exact question above. Start directly with the answer, unpack each required step or relationship in depth, and stop. Do not add a generic introduction, a whole-document recap, nearby sections, quizzes, or tangential examples.",
+    ...shapeInstructions(LECTURE_SHAPES.focusedAnswer),
     "Use ONLY facts in the quoted focus passage and explicitly retrieved supporting context. The rest of the subject and your own background knowledge are out of scope. If the permitted source does not support a detail, omit it rather than filling the gap.",
     "Every beat title must name the precise concept or step being taught. Never use a raw source locator such as 'Figure 19.4', 'Page 2', 'Slide 3', or 'Overview' as a title.",
     "Every symbol, subscript, index and operator in the passage must appear in the lecture exactly as written — reproducing it wrongly is worse than omitting it.",
     "Where retrieved context defines a term used by the passage, use only that definition; do not teach the retrieved passage as another topic.",
     "Use a provided asset only when it is the passage itself or the figure it refers to, via its assetId. Otherwise build whiteboard SVG diagram beats from the passage's own content.",
     /*
-     * Depth, stated explicitly.
+     * The 130-word floor that used to live here is gone, and its removal is the point.
      *
-     * The first focused lecture was rejected by the depth guard at 83 words per beat. Narrowing the
-     * subject is not permission to say less about it — a focused question deserves MORE detail per
-     * beat, not less, and the whole-document contract states this length while the focused one did
-     * not. Matches the >=100-word average that guard enforces.
+     * It was added because an early focused lecture came back at 83 words per beat and was rejected
+     * by the depth guard — so the prompt was made to demand more. That reasoning held while a
+     * "focused" answer still meant a four-to-seven beat mini-lecture. It stopped holding once a
+     * focused request became a direct ANSWER: someone asking how many professors are in a list is
+     * owed a number, not five hundred words leading to one. The length rules now come from
+     * `shapeInstructions` above, and the depth guard was taught the same shape so the two cannot
+     * disagree again.
      */
-    "Every teaching beat's script must be AT LEAST 130 spoken words, and 140-170 is better. Narrowing the subject means going deeper into it, not saying less: explain each symbol, each value and each relationship in full sentences, as a teacher speaking aloud. A beat under 130 words will be rejected.",
-    `Build the complete focused lecture now.${retryGuidance}`,
+    `Answer now.${retryGuidance}`,
   ].join("\n");
 }
 
@@ -560,6 +562,19 @@ const POINTING_WORDS = new Set([
   "formula", "here", "highlighted", "image", "in", "is", "it", "me", "more", "of", "on", "one",
   "part", "please", "portion", "region", "section", "selected", "shown", "table", "tell", "that",
   "the", "these", "this", "to", "us", "what", "whats", "you",
+  /*
+   * Fillers and abbreviations, added after "just explain me this eg" slipped through.
+   *
+   * Every word above was already stripped from that phrase — "explain", "me", "this" — leaving only
+   * "just" and "eg", which was enough to make it look like it named a subject. The lecture was then
+   * titled "just explain me this eg". A list like this only works if it covers the words people
+   * actually pad a request with, not only the ones that do the pointing.
+   *
+   * "eg" and "ie" appear because the tokeniser strips punctuation, so "e.g." arrives split; the bare
+   * forms are what survive when someone types them without dots.
+   */
+  "just", "eg", "ie", "quickly", "simply", "briefly", "kindly", "pls", "plz", "now", "again",
+  "thing", "stuff", "also", "some", "little", "bit", "give",
 ]);
 
 /**

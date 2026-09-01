@@ -46,9 +46,9 @@ type Stage = "slide" | "board";
 
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null,
-  slideContext = "", title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
-  slideContext?: string; title?: string; mood?: string }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
   const [speaking, setSpeaking] = useState(false);
@@ -129,7 +129,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
     getLessonContext: () => buildLessonContext(beats, index),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
+    documentId,
+    lessonQuestion,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     // Same unification as the standard LessonPlayer: a chat question pauses/resumes in place via
     // the lesson machine instead of destroying and restarting the beat's narration.

@@ -24,7 +24,39 @@ def write_json(path: Path, value: Any) -> None:
     path.write_text(json.dumps(value, ensure_ascii=True), encoding="utf-8")
 
 
-def render_pdf(input_path: Path, output_dir: Path, dpi: int) -> None:
+def write_vision_image(page: Any, output_dir: Path, index: int, dpi: int) -> dict[str, Any]:
+    """Render the SECOND, much smaller copy of the page that gets sent to the lecture model.
+
+    Two sizes, one document open. The 400 DPI raster exists so a cropped figure is still sharp when
+    it is blown up on a board; a vision model never sees that detail, because it rescales anything
+    it is given down to a 768px short edge before tiling it. Sending the big one would cost the same
+    tokens, transfer ~1.2 MB a page, and be thrown away on arrival.
+
+    JPEG rather than PNG for the same reason: a photograph of a page compresses roughly ten times
+    better than it does losslessly, and the model is reading glyph shapes, not pixel values.
+    Falls back to PNG when this build of PyMuPDF cannot encode JPEG, because a slightly larger
+    image is a far better outcome than no image at all.
+    """
+    scale = dpi / 72.0
+    pixmap = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False, colorspace=fitz.csRGB)
+    try:
+        data = pixmap.tobytes("jpeg", jpg_quality=78)
+        name = f"vision-{index + 1}.jpg"
+        mime = "image/jpeg"
+    except Exception:
+        data = pixmap.tobytes("png")
+        name = f"vision-{index + 1}.png"
+        mime = "image/png"
+    (output_dir / name).write_bytes(data)
+    return {
+        "visionPath": name,
+        "visionMime": mime,
+        "visionWidth": pixmap.width,
+        "visionHeight": pixmap.height,
+    }
+
+
+def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0) -> None:
     document = fitz.open(input_path)
     pages: list[dict[str, Any]] = []
     scale = dpi / 72.0
@@ -34,6 +66,15 @@ def render_pdf(input_path: Path, output_dir: Path, dpi: int) -> None:
         pixmap = page.get_pixmap(matrix=matrix, alpha=False, colorspace=fitz.csRGB)
         output_path = output_dir / f"page-{index + 1}.png"
         pixmap.save(output_path)
+
+        vision: dict[str, Any] = {}
+        if vision_dpi > 0:
+            try:
+                vision = write_vision_image(page, output_dir, index, vision_dpi)
+            except Exception:
+                # The lecture can still be written from text and crops alone; losing the whole
+                # render because one page would not re-rasterise is the worse trade.
+                vision = {}
 
         spans: list[dict[str, Any]] = []
         text_dict = page.get_text("dict", flags=fitz.TEXTFLAGS_TEXT)
@@ -69,6 +110,7 @@ def render_pdf(input_path: Path, output_dir: Path, dpi: int) -> None:
                 "pageHeight": float(page.rect.height),
                 "text": " ".join(span["text"] for span in spans),
                 "spans": spans,
+                **vision,
             }
         )
 
@@ -253,16 +295,14 @@ def clean_image(image: np.ndarray) -> np.ndarray:
     return cv2.addWeighted(image, 1.16, blurred, -0.16, 0)
 
 
-def crop_regions(page_path: Path, regions_path: Path, output_dir: Path) -> None:
-    page = cv2.imread(str(page_path), cv2.IMREAD_COLOR)
-    if page is None:
-        raise RuntimeError(f"Could not read page image: {page_path}")
-    page_height, page_width = page.shape[:2]
-    raw = json.loads(regions_path.read_text(encoding="utf-8"))
-    regions = raw.get("regions", [])
-    # Normalized text rectangles -> pixel boxes, so expansion never crosses body text.
+def text_boxes_to_pixels(
+    raw_boxes: list[dict[str, Any]] | None,
+    page_width: int,
+    page_height: int,
+) -> list[tuple[int, int, int, int]]:
+    """Normalized text rectangles -> pixel boxes, so expansion never crosses body text."""
     text_boxes_px: list[tuple[int, int, int, int]] = []
-    for tb in raw.get("textBoxes", []) or []:
+    for tb in raw_boxes or []:
         try:
             tx = clamp(float(tb.get("x", 0)), 0, 1)
             ty = clamp(float(tb.get("y", 0)), 0, 1)
@@ -278,6 +318,23 @@ def crop_regions(page_path: Path, regions_path: Path, output_dir: Path) -> None:
             math.ceil((tx + tw) * page_width),
             math.ceil((ty + th) * page_height),
         ))
+    return text_boxes_px
+
+
+def crop_one_page(
+    page_path: Path,
+    regions: list[dict[str, Any]],
+    raw_text_boxes: list[dict[str, Any]] | None,
+    output_dir: Path,
+    name_prefix: str,
+    page_index: int,
+) -> list[dict[str, Any]]:
+    """Every crop for ONE page image. Named by prefix so several pages can share an output dir."""
+    page = cv2.imread(str(page_path), cv2.IMREAD_COLOR)
+    if page is None:
+        raise RuntimeError(f"Could not read page image: {page_path}")
+    page_height, page_width = page.shape[:2]
+    text_boxes_px = text_boxes_to_pixels(raw_text_boxes, page_width, page_height)
     crops: list[dict[str, Any]] = []
 
     for index, region in enumerate(regions):
@@ -300,11 +357,12 @@ def crop_regions(page_path: Path, regions_path: Path, output_dir: Path) -> None:
         x1 = x0 + (tx1 - tx0)
         y1 = y0 + (ty1 - ty0)
         crop = clean_image(crop)
-        output_path = output_dir / f"crop-{index + 1}.png"
+        output_path = output_dir / f"{name_prefix}{index + 1}.png"
         cv2.imwrite(str(output_path), crop, [cv2.IMWRITE_PNG_COMPRESSION, 3])
         crops.append(
             {
                 "index": index,
+                "pageIndex": page_index,
                 "path": output_path.name,
                 "width": int(crop.shape[1]),
                 "height": int(crop.shape[0]),
@@ -318,6 +376,45 @@ def crop_regions(page_path: Path, regions_path: Path, output_dir: Path) -> None:
             }
         )
 
+    return crops
+
+
+def crop_regions(page_path: Path | None, regions_path: Path, output_dir: Path) -> None:
+    """Crop one page, or every page of a document, from a single process.
+
+    ONE SPAWN, NOT ONE PER PAGE. Importing cv2, fitz, numpy and pytesseract costs ~1.4s, and the
+    route used to pay that once per page — about twelve seconds of pure interpreter start-up on a
+    nine-page upload, for work that is milliseconds once the modules are loaded.
+
+    Both manifest shapes are accepted. `{"pages": [...]}` is the batched form; the older
+    `{"regions": [...]}` with a `--page` argument still works, so any caller that has not been
+    moved over keeps functioning rather than failing on an unrecognised key.
+    """
+    raw = json.loads(regions_path.read_text(encoding="utf-8"))
+    crops: list[dict[str, Any]] = []
+
+    if isinstance(raw.get("pages"), list):
+        for page_index, job in enumerate(raw["pages"]):
+            image = job.get("path")
+            if not image:
+                continue
+            crops.extend(
+                crop_one_page(
+                    regions_path.parent / str(image),
+                    job.get("regions", []) or [],
+                    job.get("textBoxes"),
+                    output_dir,
+                    f"crop-p{page_index}-",
+                    page_index,
+                )
+            )
+    else:
+        if page_path is None:
+            raise RuntimeError("Single-page crop needs --page.")
+        crops = crop_one_page(
+            page_path, raw.get("regions", []) or [], raw.get("textBoxes"), output_dir, "crop-", 0
+        )
+
     write_json(output_dir / "crops.json", {"crops": crops})
 
 
@@ -328,8 +425,12 @@ def main() -> None:
     render.add_argument("--input", required=True, type=Path)
     render.add_argument("--output-dir", required=True, type=Path)
     render.add_argument("--dpi", type=int, default=400)
+    # 0 means "do not produce one". Thumbnail callers want nothing extra; the lesson pipeline
+    # passes a real value and gets a page image sized for a vision model.
+    render.add_argument("--vision-dpi", type=int, default=0)
     crop = subparsers.add_parser("crop")
-    crop.add_argument("--page", required=True, type=Path)
+    # Optional: a batched manifest names its own page images, so only the single-page form needs it.
+    crop.add_argument("--page", type=Path, default=None)
     crop.add_argument("--regions", required=True, type=Path)
     crop.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
@@ -343,7 +444,8 @@ def main() -> None:
         # full-resolution page.
         #
         # Callers that need crop quality pass the pipeline default (400) and are unaffected.
-        render_pdf(args.input, args.output_dir, int(clamp(args.dpi, 24, 600)))
+        vision_dpi = int(clamp(args.vision_dpi, 0, 200)) if args.vision_dpi > 0 else 0
+        render_pdf(args.input, args.output_dir, int(clamp(args.dpi, 24, 600)), vision_dpi)
     else:
         crop_regions(args.page, args.regions, args.output_dir)
 

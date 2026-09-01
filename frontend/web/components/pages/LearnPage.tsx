@@ -18,6 +18,9 @@ import { takePendingBrief } from "@/lib/pendingBrief";
 import { PageSelector, type DocumentPage, type NormalisedRect, type PageSelection } from "@/components/upload/PageSelector";
 import { PageAreaSelect } from "@/components/upload/PageAreaSelect";
 import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
+import { buildDocumentContext } from "@/lib/lessonChatContext";
+import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
+import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
 import type { Beat } from "@/lib/lessonContent";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
@@ -118,6 +121,15 @@ type LecturePayload = {
    * lib/pdfFocus.ts.
    */
   focus?: string;
+  /**
+   * Handle for the page images the parse rendered, so the lecture is written while LOOKING at the
+   * document rather than at a text extraction of it.
+   *
+   * Only the id crosses the wire. The images themselves stay on the server (lib/pageImageStore.ts)
+   * because they are several megabytes that the server produced and will consume itself moments
+   * later. An id the server no longer recognises is not an error — generation falls back to text.
+   */
+  documentId?: string;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
@@ -229,6 +241,132 @@ type BuildCost =
    * pasted as an image is not a text object, so it never appears in contentBlocks at all.
    */
   const [ocrTranscript, setOcrTranscript] = useState("");
+  /**
+   * Handle for the page images the parse rendered and parked server-side.
+   *
+   * The images themselves never come here — they are megabytes the server produced and will use
+   * itself — so this is the whole of what the client carries between parsing and generation.
+   */
+  const [documentId, setDocumentId] = useState<string | null>(null);
+  /**
+   * Every page's text, including pages the student did not select.
+   *
+   * Separate from `sourceDocument`, which is deliberately scoped to the selection so the LECTURE
+   * stays about what they chose. This exists purely so questions asked during the lecture are not
+   * confined to it.
+   */
+  const [fullDocumentText, setFullDocumentText] = useState("");
+
+  /**
+   * ARIA, OUT LOUD, FROM PLANNING UNTIL THE LECTURE IS READY.
+   *
+   * Lives at this level and not inside the outline screen, which is the whole point: that screen
+   * unmounts the moment a plan is approved, so a session owned by it fell silent exactly when the
+   * student began the several-minute wait it exists to keep them company through. LearnPage spans
+   * both screens, so one socket covers the entire arc.
+   *
+   * The persona is fixed for a socket's life (the hook is explicit that a reconnect is the only
+   * honest way to change who is talking), so it is written to cover planning AND building up front
+   * rather than being swapped at the transition.
+   */
+  const voiceOutlineRef = useRef<PlanOutline | null>(null);
+  const voiceDocContext = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
+
+  const planningVoice = useGeminiLiveTutor({
+    topic: topic || "this lesson",
+    // Read when called, never captured: the outline is revised while the session is open, and a
+    // captured value would leave her discussing the draft as it stood when she started speaking.
+    getBeatContext: () => {
+      const current = voiceOutlineRef.current;
+      if (!current?.subtopics.length) return "The plan is still being drafted.";
+      return current.subtopics.map((sub, i) => `${i + 1}. ${sub.title} — ${sub.caption}`).join("\n");
+    },
+    systemInstruction: buildPlanningVoiceInstruction({
+      topic: topic || "this lesson",
+      documentContext: voiceDocContext,
+    }),
+    customTools: PLANNING_TOOLS,
+    onCustomToolCall: async (name, args) => {
+      if (name === "revise_plan") {
+        const instruction = typeof args.instruction === "string" ? args.instruction : "";
+        if (!instruction.trim()) return "No change was described, so nothing was revised.";
+        await reviseOutline(instruction);
+        return "The plan was revised and the student can see the new version.";
+      }
+      if (name === "approve_plan") {
+        approveOutline();
+        return "Building has started. It takes a few minutes.";
+      }
+      return `Unknown tool: ${name}`;
+    },
+    onBoardRequest: () => {
+      // Planning and building have no board. Declared because the hook requires it; VoiceTutor does
+      // the same for the same reason.
+    },
+    onTranscript: (role, text, final) => {
+      if (!final || !text.trim()) return;
+      setVoiceLines((prev) => [...prev.slice(-40), { role: role === "student" ? "you" : "aria", text: text.trim() }]);
+    },
+    /**
+     * KEEP THE SOCKET OPEN THROUGH A SILENT WAIT.
+     *
+     * Without this the hook ends the session after 60 seconds of student silence (IDLE_TIMEOUT_MS)
+     * and caps it at five minutes regardless (MAX_SESSION_MS). Both are sensible for a session that
+     * exists to answer a question and stop; both are exactly wrong here, where the student is meant
+     * to be quiet while a lecture builds for several minutes. She delivered her opening line, the
+     * student said nothing, and a minute later the voice was simply off.
+     */
+    alwaysOn: true,
+    onSessionEnded: (reason) => {
+      // Surfaced rather than swallowed: a dropped socket and a deliberate stop look identical on
+      // screen otherwise, which is what made the idle teardown so hard to see.
+      if (reason !== "user") console.warn(`[planning-voice] session ended: ${reason}`);
+    },
+  });
+
+  const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
+  const voiceStart = planningVoice.start;
+  const voiceStop = planningVoice.stop;
+  const voiceSay = planningVoice.say;
+
+  /*
+   * One session for planning and building, and NONE once teaching starts.
+   *
+   * Stopping at "teaching" is not tidiness. LessonPlayer opens its own Gemini Live session, so
+   * leaving this one running would put two live sockets on one page — two microphones open, two
+   * voices talking over each other, and both billing.
+   */
+  useEffect(() => {
+    if (phase === "outline" || phase === "building") {
+      void voiceStart();
+      return;
+    }
+    voiceStop();
+  }, [phase, voiceStart, voiceStop]);
+
+  /*
+   * Stop ONLY on unmount — never because `stop` got a new identity.
+   *
+   * `useEffect(() => () => voiceStop(), [voiceStop])` looks like an unmount cleanup and is not one:
+   * React runs the cleanup whenever the dependency changes, and `stop` is a useCallback over
+   * `teardown`, which itself has four callback dependencies. Any of them changing killed a live
+   * session mid-conversation for no reason the student could see.
+   */
+  const voiceStopRef = useRef(voiceStop);
+  useEffect(() => {
+    voiceStopRef.current = voiceStop;
+  }, [voiceStop]);
+  useEffect(() => () => voiceStopRef.current(), []);
+
+  /** One object handed to both screens, so the readout cannot drift between them. */
+  const voice: VoiceState = {
+    status: planningVoice.status,
+    speaking: planningVoice.speaking,
+    muted: planningVoice.muted,
+    errorMessage: planningVoice.errorMessage,
+    toggleMute: planningVoice.toggleMute,
+    lastLine: voiceLines.length ? voiceLines[voiceLines.length - 1] : null,
+  };
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
   const [pendingPdf, setPendingPdf] = useState<File | null>(null);
@@ -415,6 +553,9 @@ type BuildCost =
       setSourceDocument(data.sourceDocument ?? null);
       // A deck without embedded pictures has no source document; its slide text is the source.
       if (!data.sourceDocument && typeof data.fullText === "string") setSlideContext(data.fullText);
+      const parsedDocumentId = typeof data.documentId === "string" ? data.documentId : null;
+      setDocumentId(parsedDocumentId);
+      setFullDocumentText(typeof data.fullDocumentText === "string" ? data.fullDocumentText : "");
 
       /**
        * The question, from wherever the student actually asked it.
@@ -484,6 +625,7 @@ type BuildCost =
         transcript: transcriptText,
         kind: pendingKind,
         scopeSelected: drewRegion,
+        documentId: parsedDocumentId,
       });
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
@@ -550,6 +692,21 @@ type BuildCost =
         const pageRes = await fetch("/api/document-pages", { method: "POST", body: pageForm });
         const pageData = await pageRes.json().catch(() => ({}));
         setPagesLoading(false);
+        /*
+         * A REFUSAL is not a missing preview.
+         *
+         * A document over the page limit comes back 413 with an explanation of what to do about it.
+         * Falling through to the branch below would file that under "previews are unavailable" and
+         * still show the selector, so the student would pick pages from a document that is going to
+         * be rejected — and never see the sentence telling them to split it.
+         */
+        if (!pageRes.ok) {
+          setPendingPdf(null);
+          setDocumentPages([]);
+          setUploadError(typeof pageData?.error === "string" ? pageData.error : "Could not read that file.");
+          setUploadPhase("error");
+          return;
+        }
         if (pageData?.kind === "pages" && Array.isArray(pageData.pages)) {
           setDocumentPages(pageData.pages);
           setPagesFidelity(pageData.fidelity === "approximate" ? "approximate" : "rendered");
@@ -571,6 +728,8 @@ type BuildCost =
       setUploadedFile({ name: file.name, slideCount: data.slideCount ?? 0, kind: "pptx", assetCount: data.assetCount ?? 0 });
       setSlideContext(data.fullText ?? "");
       setDiagramHints(data.diagramHints ?? "");
+      setDocumentId(typeof data.documentId === "string" ? data.documentId : null);
+      setFullDocumentText(typeof data.fullDocumentText === "string" ? data.fullDocumentText : "");
       // A deck hides content in pictures for the same reason a paper does, and gets the same
       // reading — this is what was read off its slides.
       setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
@@ -914,6 +1073,39 @@ type BuildCost =
       return;
     }
 
+    /**
+     * A WHOLE-DOCUMENT UPLOAD GETS THE PLANNING SCREEN TOO.
+     *
+     * It used to fall straight through to build(), so selecting pages and asking nothing produced a
+     * silent wait behind a fixed status line — while typing a topic got Aria drafting an outline
+     * section by section in a chat you could steer. Same product, two completely different levels of
+     * involvement, decided by whether the material arrived as a file or as a sentence.
+     *
+     * `mode: "outline"` already grounds itself in the uploaded document (see the sourceDocLine in
+     * app/api/plan-lesson/route.ts), so this is the identical call a typed topic makes, with the
+     * document attached — not a second planning path that can drift from the first.
+     *
+     * The approved outline is now read by generation for the full-lecture shape, so steering it here
+     * actually changes the lecture. A focused question keeps its own path above and is untouched.
+     */
+    if (!forceBuild && isPdfOrDeck) {
+      setDocumentPlanningActive(true);
+      focusedPlanningFreshRef.current = {
+        ...fresh,
+        sourceDocument: planningDocument ?? undefined,
+        focus: "",
+        kind: planningKind,
+      };
+      setPhase("outline");
+      await streamOutlineRequest({
+        mode: "outline",
+        topic: trimmed,
+        clarifications: [],
+        sourceDocument: planningDocument,
+      }, trimmed);
+      return;
+    }
+
     if (forceBuild || shouldSkipPlanning()) {
       const normalizedFresh = isPdfOrDeck && isWholeDocumentRequest(planningFocus)
         ? { ...fresh, sourceDocument: planningDocument, focus: "", kind: planningKind }
@@ -1068,6 +1260,8 @@ type BuildCost =
     kind?: "pdf" | "pptx" | "suprnotes" | "task-folder";
     /** A dragged page region is already an explicit scope choice; never ask the student again. */
     scopeSelected?: boolean;
+    /** Handle for the page images this parse rendered. Null when none were produced. */
+    documentId?: string | null;
   };
 
   async function build(
@@ -1083,6 +1277,17 @@ type BuildCost =
     const controller = new AbortController();
     buildAbortRef.current = controller;
     setPhase("building");
+    /*
+     * Tell her the wait has started, the way VoiceTutor does.
+     *
+     * `say` rather than `addContext` because this is the one moment she should speak unprompted:
+     * the screen changes, nothing appears to happen for several minutes, and silence there reads as
+     * the app having frozen. She is asked to keep teaching rather than to narrate progress she
+     * cannot see.
+     */
+    voiceSay(
+      "[SYSTEM] The student approved the plan and the lecture is building now. It takes a few minutes. Tell them briefly that it has started, then stay with them and teach something useful from their material while they wait. Do not guess at progress or time remaining.",
+    );
     setError(null);
     setBuildCost(null);
     setBeats([]);
@@ -1123,8 +1328,13 @@ type BuildCost =
       setBuildStatus("Applying your steering choices");
       // Not "$0.00" — nothing was generated, and a zero would read as "a lecture, for free".
       setBuildCost({ kind: "demo" });
-      // Routed through the same ready/hand-off path as a real build so the demo exercises the
-      // transition students actually see, rather than a shortcut that hides it.
+      /*
+       * Routed through the same ready/hand-off path as a real build, so the demo exercises the
+       * transition students actually see rather than a shortcut that hides it.
+       *
+       * No voiceSay here: the design screen announces readiness itself (DESIGN_CUES.ready) and
+       * starts the lecture once Aria stops speaking. Announcing it here too would say it twice.
+       */
       const demo = { beats: demoLectureBeats, topic: demoLectureTopic };
       builtLessonRef.current = demo;
       setBuiltLesson(demo);
@@ -1137,6 +1347,9 @@ type BuildCost =
     const focusText = fresh?.focus ?? uploadFocus;
     const transcriptText = fresh?.transcript ?? ocrTranscript;
     const slides = fresh?.slideContext ?? slideContext;
+    // Same freshness rule as everything else here: a just-parsed value beats state, which is stale
+    // for exactly one tick after an upload.
+    const docImagesId = fresh?.documentId ?? documentId;
 
     setBuildStatus(doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
 
@@ -1149,6 +1362,8 @@ type BuildCost =
       // than `suprnotes`, and the passage read from its slides is just as much the subject there.
       ...(transcriptText ? { transcript: transcriptText } : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
+      // What lets the model read the pages instead of only a text extraction of them.
+      ...(docImagesId ? { documentId: docImagesId } : {}),
     };
 
     try {
@@ -1451,19 +1666,19 @@ type BuildCost =
         player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
     }
     return (
       <div className="relative">
@@ -1633,6 +1848,7 @@ type BuildCost =
             }))}
             onChoose={chooseBuildSteering}
             onContinue={continueBuildSteering}
+            voice={voice}
           />
         ) : (
           <LessonDesignMode
@@ -1671,6 +1887,7 @@ type BuildCost =
           onBack={backToAsk}
           onOutlineChange={setOutline}
           onRerollAngle={rerollAngle}
+          voice={voice}
         />
       ) : (
         <section className="hud-canvas hud-grain relative z-10 min-h-screen w-full overflow-y-auto p-6 lg:p-10">
@@ -2012,10 +2229,13 @@ function BuildingState({
   questions,
   onChoose,
   onContinue,
+  voice,
 }: {
   topic: string;
   mode: string;
   status: string;
+  /** Aria's live session, still running from planning — this screen is where she keeps company. */
+  voice?: VoiceState;
   steeringActive: boolean;
   choices: string[];
   /** Topic-specific questions from the planner. Empty falls back to the generic set. */
@@ -2053,6 +2273,13 @@ function BuildingState({
           Mode: {mode}. Aria is choosing the script, visuals, and interaction moments.
         </p>
         <p className="mt-3 text-xs font-black uppercase tracking-[0.18em] text-[var(--hud-cyan)]/70">{status}</p>
+        {/* The wait is the reason the voice exists. Showing her state here is what tells the
+            student the silence is a pause in a conversation, not the app having stopped. */}
+        {voice && (
+          <div className="mt-4 flex justify-center">
+            <VoiceStrip voice={voice} />
+          </div>
+        )}
 
         {steeringActive && (
           <div className="mt-8 w-full rounded-2xl border border-[var(--hud-cyan)]/45 bg-[var(--hud-cyan)]/[0.075] p-5 text-left shadow-[0_0_60px_rgba(94,234,212,0.13)]">
@@ -2160,6 +2387,68 @@ type OutlineChatMessage = {
  *  - The angle picker ("teach it differently"): rerolls the WHOLE outline through a different
  *    pedagogical framing (historical, first-principles, via a failure case, via analogy)
  *    instead of only letting the student add/remove rows from the same default structure. */
+/** What Aria's live session is doing, and the way to silence it. */
+type VoiceState = {
+  status: string;
+  speaking: boolean;
+  muted: boolean;
+  errorMessage: string | null;
+  toggleMute: () => void;
+  /** The most recent thing said, by either side. Shown so the voice is readable as well as audible. */
+  lastLine: { role: "you" | "aria"; text: string } | null;
+};
+
+/**
+ * One readout, used on the planning screen and the build screen.
+ *
+ * Shared rather than written twice because the two screens are one continuous session: showing
+ * "listening" on one and nothing on the other would make a single conversation look like it had
+ * stopped and started.
+ */
+function VoiceStrip({ voice }: { voice: VoiceState }) {
+  const label =
+    voice.status === "live"
+      ? voice.muted
+        ? "Muted"
+        : voice.speaking
+          ? "Aria is speaking…"
+          : "Listening — just talk"
+      : voice.status === "connecting"
+        ? "Connecting to Aria…"
+        : voice.status === "mic-denied"
+          ? "Microphone blocked — Aria can't hear you"
+          : voice.errorMessage ?? "Aria's voice is off";
+  const live = voice.status === "live";
+
+  return (
+    <div className="flex items-center gap-2 px-1 pb-2">
+      <span
+        aria-hidden
+        className={`h-2 w-2 rounded-full ${live && !voice.muted ? "bg-[var(--hud-accent,#7c5cff)]" : "bg-[var(--hud-text-faint,#888)]"}`}
+      />
+      <span className="text-xs text-[var(--hud-text-faint)]">{label}</span>
+      {live && (
+        <button
+          type="button"
+          onClick={voice.toggleMute}
+          aria-pressed={voice.muted}
+          className="rounded-full border border-[var(--hud-line,#333)] px-2.5 py-1 text-[11px] text-[var(--hud-text-faint)] transition hover:text-[var(--hud-text)]"
+        >
+          {voice.muted ? "Unmute" : "Mute"}
+        </button>
+      )}
+      {/* Captions, in effect. Spoken words vanish, and a student who missed one should not have to
+          ask her to repeat herself — nor be left unsure whether she said anything at all. */}
+      {voice.lastLine && (
+        <span className="max-w-[42ch] truncate text-xs italic text-[var(--hud-text-faint)]" title={voice.lastLine.text}>
+          {voice.lastLine.role === "aria" ? "" : "You: "}
+          {voice.lastLine.text}
+        </span>
+      )}
+    </div>
+  );
+}
+
 function OutlineReviewState({
   topic,
   outline,
@@ -2181,8 +2470,11 @@ function OutlineReviewState({
   onBack,
   onOutlineChange,
   onRerollAngle,
+  voice,
 }: {
   topic: string;
+  /** Aria's live session state, owned by LearnPage so it survives into the build screen. */
+  voice: VoiceState;
   outline: PlanOutline | null;
   loading: boolean;
   error: string | null;
@@ -2213,6 +2505,15 @@ function OutlineReviewState({
   const [chatInput, setChatInput] = useState("");
   const [chatLog, setChatLog] = useState<OutlineChatMessage[]>([]);
   const [sending, setSending] = useState(false);
+
+  /*
+   * The live session used to live HERE, and that was the bug.
+   *
+   * This component renders only while phase === "outline", so approving the plan unmounted it and
+   * took the session with it — the voice died at exactly the build screen where the student was
+   * waiting and most wanted company. It now lives in LearnPage, which spans both screens, and
+   * arrives here as props.
+   */
   const lastThoughtCountRef = useRef(0);
   const lastScopingCountRef = useRef(0);
   const seededAmbiguityRef = useRef(false);
@@ -2647,6 +2948,10 @@ function OutlineReviewState({
             </div>
             <div ref={chatEndRef} />
           </div>
+          {/* Aria is already talking by the time this screen appears; this reports her state and
+              offers the way out. A microphone that opened on its own must at minimum be visible
+              and mutable, or it is something done TO the student rather than for them. */}
+          <VoiceStrip voice={voice} />
           <form
             onSubmit={(e) => {
               e.preventDefault();
