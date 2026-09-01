@@ -3,6 +3,7 @@ import { createJob, failJob, finishJob, jobSteering, LectureJobCancelledError, r
 import OpenAI from "openai";
 import { DRAW_LECTURE_SYSTEM_PROMPT, PPTX_LECTURE_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { outlineGroundingInstruction, type PlanOutline } from "@/lib/planPrompt";
+import { FOCUSED_SCOPE, STANDARD_SCOPE, scopeFromOutline, scopeInstruction, type LessonScope } from "@/lib/lessonScope";
 import { assertLectureDepth, lectureDepthStats, sanitizeDrawLecture, scriptWordCount } from "@/lib/drawSanitize";
 import { fillImageOps, pauseImageOps, type ImageFillStats } from "@/lib/imageGen";
 import { fillReactAnimationOps, type ReactAnimationFillStats } from "@/lib/reactAnimationGen";
@@ -579,10 +580,18 @@ async function deepenLectureScripts(
   return extraCostUsd;
 }
 
-function buildUserMessage(input: LectureBuildInput, retryGuidance: string): string {
+function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope?: LessonScope): string {
   const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
   const base = `Teach this topic live: "${input.topic}". ${moodLine}`;
   const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
+  /**
+   * The length budget, stated last so it is the most recent instruction before the model writes.
+   *
+   * It has to override the system prompt's own "10-12 beats", which is still the right default for
+   * a broad topic; a later, more specific instruction is how the two coexist without the system
+   * prompt needing a branch for every possible lesson shape.
+   */
+  const scopeLine = scope ? scopeInstruction(scope) : "";
   const focusSection = focusPromptSection(input.focus);
   const contextSection = contextPromptSection(input.context);
 
@@ -675,14 +684,14 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string): stri
       `${base}\nThe student uploaded a presentation. Slide content:\n---\n${input.slideContext}\n---\n` +
       `Use the slide text and data as your factual source (do not invent content). Choose board types in the same Suprnotes-style paper-whiteboard grammar: mostly whiteboard SVG diagrams and blackboards, with slide images only when they are truly useful evidence.` +
       `${diagramLine}${imageRefBlock}` +
-      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, one or two TYPE D diagram beats (a "manimScene" op) where the deck contains a curve or staged process, one TYPE E morph beat (a "morph" op) if anything in the deck literally turns into something else, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}`
+      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, one or two TYPE D diagram beats (a "manimScene" op) where the deck contains a curve or staged process, one TYPE E morph beat (a "morph" op) if anything in the deck literally turns into something else, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}${scopeLine}`
     );
   }
 
   // The closing enumeration is the last thing the model reads, so it must name every board type
   // that should appear. Omitting TYPE D here suppressed diagram beats entirely even when the
   // system prompt required one — the model built exactly the three board types this line listed.
-  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, one or two TYPE D diagram beats (a "manimScene" op) for the curve or staged process at the heart of the topic, one TYPE E morph beat (a "morph" op) if anything in the topic literally turns into something else, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}`;
+  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, one or two TYPE D diagram beats (a "manimScene" op) for the curve or staged process at the heart of the topic, one TYPE E morph beat (a "morph" op) if anything in the topic literally turns into something else, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}${scopeLine}`;
 }
 
 /**
@@ -702,6 +711,17 @@ function moodWithSteering(mood: string, jobId?: string): string {
 }
 
 async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, jobId?: string): Promise<BaseLecture> {
+  /**
+   * The length budget for this lecture.
+   *
+   * A focused question about a document is its own shape; otherwise the approved outline decides,
+   * and with no outline at all this is the standard 9-12 beats the app always produced.
+   */
+  const scope: LessonScope = input.focus
+    ? FOCUSED_SCOPE
+    : input.sourceDocument
+      ? STANDARD_SCOPE
+      : scopeFromOutline(input.outline);
   /**
    * Concepts, then structuring. Both are reported before the call rather than after, because they
    * describe what the call is DOING — the model reads the material, picks what matters, and writes
@@ -728,7 +748,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, job
           { role: "system", content: systemPrompt },
           {
             role: "user",
-            content: buildUserMessage({ ...input, mood: moodWithSteering(input.mood, jobId) }, retryGuidance),
+            content: buildUserMessage({ ...input, mood: moodWithSteering(input.mood, jobId) }, retryGuidance, scope),
           },
         ],
         temperature: 0.55,
@@ -746,7 +766,17 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, job
        * more beats and threw away a perfectly good eight-beat answer about a correlation matrix.
        * Being shorter is the entire point of asking a narrow question.
        */
-      const minUsableBeats = input.focus ? 4 : pdfPlanCount || (input.sourceDocument ? 1 : 8);
+      /**
+       * How long this lesson should be, decided by how much the subject actually contains.
+       *
+       * The old rule was a flat 8-beat floor for every typed topic, which is what made a narrow
+       * question ("why are there infinitely many primes?") pad itself out to a survey course. The
+       * planner has already worked out how many subtopics the subject genuinely needs, so that
+       * count — not a constant — sets the floor. Document paths keep their existing behaviour.
+       */
+      const minUsableBeats = input.focus
+        ? FOCUSED_SCOPE.minBeats
+        : pdfPlanCount || (input.sourceDocument ? 1 : scope.minBeats);
       let beats = sanitizeDrawLecture(rawLecture, { enforceDepth: false, minUsableBeats });
       applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus);
       dedupeBeatIdentity(beats);

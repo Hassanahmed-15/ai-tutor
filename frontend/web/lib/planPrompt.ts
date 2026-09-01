@@ -146,7 +146,9 @@ export function outlineGroundingInstruction(outline: PlanOutline): string {
   return (
     `\n\nAPPROVED OUTLINE — the student reviewed and approved this exact subtopic structure and order. ` +
     `You MUST cover every subtopic in this order, but this is a CONTENT CHECKLIST, not a one-subtopic-one-beat rule. ` +
-    `Combine adjacent subtopics on one coherent board whenever necessary so the complete lecture stays within exactly 10-12 beats including intro, recap, and checkpoints. ` +
+    `Combine adjacent subtopics on one coherent board whenever necessary. ` +
+    `The lecture's length is set by the LESSON LENGTH instruction below — follow that, not a fixed beat count: ` +
+    `a short outline should produce a short lecture rather than being stretched to fill a quota. ` +
     `Do not invent, drop, or reorder subtopics. Use the Suprnotes paper-board rhythm and decide pacing within that structure.${angleLine}\n${lines}` +
     (safetyNets
       ? `\n\nCONDITIONAL TEACHING ROUTE — implement these using the EXISTING checkpoint schema, not extra UI or extra beats. These checkpoints replace ordinary checkpoints. Put the rescueMove in hintFeedback/revealAnswer and the masterySignal in acceptableKeywords. The later reinforcementPrompt belongs naturally in the later beat's spoken script. A prepared learner follows the normal route; only a learner who struggles receives the prerequisite bridge.${safetyNets}`

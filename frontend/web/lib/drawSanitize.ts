@@ -2623,9 +2623,19 @@ export function lectureDepthStats(beats: Beat[]): LectureDepthStats {
 export function assertLectureDepth(beats: Beat[]): LectureDepthStats {
   const stats = lectureDepthStats(beats);
   const maxShortBeats = Math.max(1, Math.floor(stats.teachingBeatCount * 0.15));
-  // Judge depth relative to the number of surviving teaching beats. Beat count is preserved;
-  // each board now earns enough narration time for a layered explanation rather than a summary.
-  const minTotalWords = Math.min(1250, Math.max(900, stats.teachingBeatCount * 100));
+  /**
+   * Depth is PER BEAT, and the total simply follows from how many there are.
+   *
+   * This used to carry a flat 900-word floor, which quietly made length mandatory: a genuinely
+   * focused lesson — five boards that answer one question completely — was rejected as "shallow"
+   * for the sole reason that five good boards cannot reach 900 words. The model's only way to pass
+   * was to pad, which is exactly the behaviour we are trying to remove.
+   *
+   * The two real quality bars below are untouched: every teaching beat still averages 100+ words,
+   * and no more than 15% may be short. So a short lesson must still be taught just as thoroughly
+   * as a long one — it covers less ground, it does not explain less well.
+   */
+  const minTotalWords = Math.min(1250, stats.teachingBeatCount * 100);
 
   if (stats.totalWords < minTotalWords || stats.avgTeachingWords < 100 || stats.shortTeachingBeatCount > maxShortBeats) {
     throw new Error(
