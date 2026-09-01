@@ -64,6 +64,7 @@ function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
  * costs). Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
 const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
+const OUTLINE_MAX_TOKENS = Math.max(1_700, Math.min(16_000, Number(process.env.OPENAI_PLAN_MAX_TOKENS ?? 8_000)));
 
 // gpt-4o-mini pricing (source: openai.com/api/pricing).
 
@@ -157,7 +158,6 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
     const scopingQuestion = scopingQuestionCount < 3 ? sanitizeScopingQuestion(rec.scopingQuestion) : undefined;
     if (scopingQuestion) scopingQuestionCount++;
     if (title.trim()) subtopics.push({ title: title.trim().slice(0, 80), caption: caption.trim().slice(0, 160), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
-    if (subtopics.length >= 10) break;
   }
   return { topic, subtopics };
 }
@@ -370,7 +370,7 @@ function streamOutline(
             { role: "user", content: userContent },
           ],
           temperature: 0.6,
-          max_tokens: 1700,
+          max_tokens: OUTLINE_MAX_TOKENS,
           response_format: { type: "json_object" },
           stream: true,
           stream_options: { include_usage: true },
@@ -412,7 +412,7 @@ function streamOutline(
         const outline = focused
           ? {
               topic: rawOutline.topic || fallbackTopic,
-              subtopics: rawOutline.subtopics.slice(0, 6).map(focusedSubtopic),
+              subtopics: rawOutline.subtopics.map(focusedSubtopic),
             }
           : rawOutline;
         if (outline.subtopics.length === 0) {

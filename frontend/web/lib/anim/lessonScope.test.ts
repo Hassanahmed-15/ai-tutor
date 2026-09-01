@@ -32,7 +32,7 @@ test("a narrow question produces a short lesson", () => {
   // "Why are there infinitely many primes?" — one proof, a worked example, a check.
   const scope = scopeFromOutline(outline(3));
   assert.equal(scope.label, "focused");
-  assert.ok(scope.maxBeats <= 8, `focused lessons must stay short, got max ${scope.maxBeats}`);
+  assert.equal(scope.minBeats, 5);
 });
 
 test("a broad topic still produces a full lesson", () => {
@@ -79,10 +79,11 @@ test("a focused lesson is told to stop early rather than pad", () => {
   assert.match(text, /same depth per board|never explain less well/i);
 });
 
-test("every scope states a real range the model can follow", () => {
+test("every scope has a minimum but never imposes a maximum", () => {
   for (const count of [2, 4, 6, 9, 12]) {
     const scope = scopeFromOutline(outline(count));
-    assert.ok(scope.maxBeats > scope.minBeats, `scope for ${count} subtopics has no range`);
-    assert.match(scopeInstruction(scope), new RegExp(`${scope.minBeats}-${scope.maxBeats}`));
+    assert.match(scopeInstruction(scope), new RegExp(`at least ${scope.minBeats}`));
+    assert.match(scopeInstruction(scope), /NO maximum beat count/);
+    assert.equal("maxBeats" in scope, false);
   }
 });

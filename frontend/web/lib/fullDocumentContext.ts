@@ -71,7 +71,6 @@ export const FULL_CONTEXT_RULES = {
 export type LectureShape = {
   mode: "focused-answer" | "full-lecture";
   minBeats: number;
-  maxBeats: number;
   /** Words per beat the prompt asks for. */
   wordTarget: [number, number];
   /** Words per beat below which the result is treated as too thin to ship. */
@@ -94,7 +93,6 @@ export const LECTURE_SHAPES = {
   focusedAnswer: {
     mode: "focused-answer",
     minBeats: 2,
-    maxBeats: 3,
     wordTarget: [180, 260],
     /*
      * Well under the target, because this floor exists to catch a thin or empty script, not to
@@ -108,7 +106,6 @@ export const LECTURE_SHAPES = {
   fullLecture: {
     mode: "full-lecture",
     minBeats: 10,
-    maxBeats: 16,
     wordTarget: [130, 170],
     wordFloor: 100,
   },
@@ -123,22 +120,20 @@ export function lectureShape(args: { hasRegions: boolean; question: string }): L
 /**
  * The beat-count and length rules, worded for the model.
  *
- * Includes an explicit override of the system prompt's opening line. That prompt begins "Produce a
- * full, unhurried 7-9 minute lecture using the same 10-12 beats", which is the single strongest
- * competing instruction in the request — declining to repeat it is not enough to displace it.
+ * Includes an explicit reminder that the selected scope wins over generic lecture scaffolding.
  */
 export function shapeInstructions(shape: LectureShape, unit: "page" | "slide" = "page"): string[] {
   const where = unit === "slide" ? "deck" : "document";
   if (shape.mode === "full-lecture") {
     return [
       `Teach the whole ${where}, in its order, as one coherent lesson. Cover every substantial idea in it — but you are writing ONE response for the entire ${where}, so group related material into beats rather than emitting one beat per paragraph.`,
-      `${shape.minBeats} to ${shape.maxBeats} teaching beats. Prefer fewer, deeper beats over many thin ones.`,
+      `Use at least ${shape.minBeats} teaching beats and continue for as many as complete coverage requires. There is no maximum beat count. Prefer deeper beats over thin fragmentation.`,
       `Every teaching beat's script must be AT LEAST ${shape.wordTarget[0]} spoken words, and ${shape.wordTarget[0]}-${shape.wordTarget[1]} is better: explain each symbol, each value and each relationship in full sentences, as a teacher speaking aloud.`,
     ];
   }
   return [
-    "IGNORE the instruction in your system prompt to produce a 7-9 minute lecture of 10-12 beats. It does not apply here. The lessonPlan/suggestedLecturePlan beat order and targetBeatCount DO NOT APPLY either. Ignore them.",
-    `Write ${shape.minBeats} to ${shape.maxBeats} teaching beats — no more. Each one must be about a different facet of the SAME thing, never about a different thing.`,
+    "IGNORE any generic fixed beat-count instruction. The lessonPlan/suggestedLecturePlan beat order and targetBeatCount DO NOT APPLY either. The exact question determines the scope.",
+    `Write at least ${shape.minBeats} teaching beats and as many additional beats as the exact answer requires. There is no maximum beat count, but every beat must address a different facet of the SAME requested thing, never a tangent.`,
     `LEAD WITH THE ANSWER. If it is a number, a name, a count, a date or a list, state it in the FIRST SENTENCE — do not build up to it, do not restate the question first, and do not open with background.`,
     `Each beat's script must be ${shape.wordTarget[0]}-${shape.wordTarget[1]} spoken words. Being specific is not permission to be brief: narrow the SUBJECT, then treat that subject thoroughly. A four-sentence reply is not an answer to a question worth asking.`,
     "GO DEEP on it, in this order: state the answer; then unpack the mechanism step by step, naming each part; then quote the concrete values, labels, axis names or terms exactly as they appear in the source; then explain WHY it is that way rather than only what it is; then name the misconception someone is most likely to hold about it and correct it.",

@@ -27,8 +27,6 @@ import type { PlanOutline } from "./planPrompt";
 export type LessonScope = {
   /** Fewest beats that can still teach this properly. Enforced by the sanitizer. */
   minBeats: number;
-  /** The upper end of the range given to the model. Not a hard rejection — see route.ts. */
-  maxBeats: number;
   /**
    * Total spoken words expected across the lecture. Derived from the beat budget rather than fixed,
    * because the old flat floor (~1050 words) is precisely what forced a short subject to ramble.
@@ -76,11 +74,8 @@ export function scopeFromOutline(outline: PlanOutline | null): LessonScope {
   // the minimum sits below the sum rather than exactly on it.
   const target = subtopics + scaffold;
   const minBeats = Math.max(ABSOLUTE_MIN_BEATS, Math.round(target * 0.75));
-  const maxBeats = Math.max(minBeats + 1, target + 1);
-
   return {
     minBeats,
-    maxBeats,
     minTotalWords: minBeats * WORDS_PER_TEACHING_BEAT,
     label: subtopics <= 4 ? "focused" : subtopics <= 7 ? "standard" : "broad",
   };
@@ -94,7 +89,6 @@ export function scopeFromOutline(outline: PlanOutline | null): LessonScope {
  */
 export const STANDARD_SCOPE: LessonScope = {
   minBeats: 9,
-  maxBeats: 12,
   minTotalWords: 900,
   label: "standard",
 };
@@ -107,7 +101,6 @@ export const STANDARD_SCOPE: LessonScope = {
  */
 export const FOCUSED_SCOPE: LessonScope = {
   minBeats: ABSOLUTE_MIN_BEATS,
-  maxBeats: 8,
   minTotalWords: ABSOLUTE_MIN_BEATS * WORDS_PER_TEACHING_BEAT,
   label: "focused",
 };
@@ -115,17 +108,15 @@ export const FOCUSED_SCOPE: LessonScope = {
 /**
  * The length instruction handed to the lecture prompt.
  *
- * Phrased as "as many as the subject needs, within this range" rather than a quota. The distinction
- * matters: told to produce exactly N beats, a model that runs out of material pads to reach N,
- * which is the behaviour being fixed. Told a range and given explicit permission to finish early,
- * it stops when the explanation is complete.
+ * There is deliberately no upper beat count. The content determines when the lesson is complete;
+ * the minimum only prevents an incomplete stub from passing validation.
  */
 export function scopeInstruction(scope: LessonScope): string {
   if (scope.label === "focused") {
     return (
       `\n\nLESSON LENGTH — THIS IS A FOCUSED QUESTION, NOT A SURVEY COURSE.\n` +
-      `Produce ${scope.minBeats}-${scope.maxBeats} beats: exactly as many as it takes to answer it completely, and no more. ` +
-      `A complete answer in ${scope.minBeats} beats is a SUCCESS, not a lecture that fell short — do not pad to reach the upper number.\n` +
+      `Produce at least ${scope.minBeats} beats and continue for as many beats as the answer genuinely requires. There is NO maximum beat count. ` +
+      `A complete answer in ${scope.minBeats} beats is a SUCCESS — do not pad, but never compress required reasoning to stay under a quota.\n` +
       `- Teach the actual reasoning: the claim, why it is true, a worked concrete example, and the misconception that usually gets in the way.\n` +
       `- Do NOT restate the same explanation from a second angle to fill space.\n` +
       `- Do NOT add history, applications, adjacent topics, or a prerequisite survey unless answering the question genuinely requires them.\n` +
@@ -136,12 +127,12 @@ export function scopeInstruction(scope: LessonScope): string {
   }
   if (scope.label === "broad") {
     return (
-      `\n\nLESSON LENGTH: produce ${scope.minBeats}-${scope.maxBeats} beats. This is a broad subject, so use the room ` +
-      `to cover it properly, but do not repeat an explanation you have already given.`
+      `\n\nLESSON LENGTH: produce at least ${scope.minBeats} beats and as many additional beats as the subject needs. ` +
+      `There is NO maximum beat count. Cover every approved subtopic properly without repeating an explanation.`
     );
   }
   return (
-    `\n\nLESSON LENGTH: produce ${scope.minBeats}-${scope.maxBeats} beats — as many as the subject genuinely needs. ` +
-    `If it is fully taught in ${scope.minBeats}, stop there rather than padding to the upper number.`
+    `\n\nLESSON LENGTH: produce at least ${scope.minBeats} beats and continue for as many beats as the subject genuinely needs. ` +
+    `There is NO maximum beat count. If it is fully taught at the minimum, stop rather than padding.`
   );
 }

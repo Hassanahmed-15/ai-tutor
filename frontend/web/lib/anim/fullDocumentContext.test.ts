@@ -50,7 +50,7 @@ test("typing a question asks for an ANSWER, even with nothing drawn", () => {
    */
   const shape = lectureShape({ hasRegions: false, question: "how many professors are in the list" });
   assert.equal(shape.mode, "focused-answer");
-  assert.ok(shape.maxBeats <= 3, "a focused answer must not sprawl into a survey");
+  assert.equal("maxBeats" in shape, false, "a focused answer must not have a hard beat cap");
 });
 
 test("dragging a box asks for an answer too, with or without words", () => {
@@ -79,7 +79,8 @@ test("a focused answer leads with the answer, then goes deep on it", () => {
   const lines = shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n");
   assert.match(lines, /LEAD WITH THE ANSWER/);
   assert.match(lines, /FIRST SENTENCE/);
-  assert.match(lines, /2 to 3 teaching beats/);
+  assert.match(lines, /at least 2 teaching beats/);
+  assert.match(lines, /no maximum beat count/i);
   assert.match(lines, /do not survey/i);
 });
 
@@ -106,19 +107,20 @@ test("scope rules survived the depth change untouched", () => {
   // Depth moved; what the answer is allowed to be ABOUT did not.
   const lines = shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n");
   assert.match(lines, /Do NOT add an introduction, a recap/);
-  assert.match(lines, /different facet of the SAME thing/);
+  assert.match(lines, /different facet of the SAME requested thing/);
   assert.match(lines, /Never invent it/);
 });
 
-test("a focused answer explicitly overrides the system prompt's 10-12 beats", () => {
+test("a focused answer explicitly overrides any generic fixed beat count", () => {
   // That line is the strongest competing instruction in the request; declining to repeat it is not
   // enough to displace it.
-  assert.match(shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n"), /IGNORE the instruction[\s\S]*10-12 beats/);
+  assert.match(shapeInstructions(LECTURE_SHAPES.focusedAnswer).join("\n"), /IGNORE any generic fixed beat-count instruction/);
 });
 
-test("a full lecture is still asked for at full length", () => {
+test("a full lecture keeps its depth floor without a beat ceiling", () => {
   const lines = shapeInstructions(LECTURE_SHAPES.fullLecture).join("\n");
-  assert.match(lines, /10 to 16 teaching beats/);
+  assert.match(lines, /at least 10 teaching beats/);
+  assert.match(lines, /no maximum beat count/i);
   assert.match(lines, /AT LEAST 130 spoken words/);
   assert.doesNotMatch(lines, /LEAD WITH THE ANSWER/);
 });

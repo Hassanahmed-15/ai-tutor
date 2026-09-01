@@ -104,6 +104,7 @@ const TEXT_MAX_TOKENS = Math.max(8_000, Math.min(16_000, Number(process.env.OPEN
 const DEEPEN_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 5)));
 const PDF_BEATS_PER_GENERATION = Math.max(1, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 1)));
 const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
+const OUTLINE_SUBTOPICS_PER_GENERATION = Math.max(3, Number(process.env.OUTLINE_SUBTOPICS_PER_GENERATION ?? 8));
 
 /**
  * Cache identity must include the complete quality profile, not only the lecture-writing model.
@@ -136,6 +137,7 @@ const GENERATION_PROFILE: Record<string, string | number | boolean> = {
   // upload/question can keep replaying a cached "Figure 19.4" error board after the fix ships.
   focusedRetrievalVersion: 2,
   deterministicBoardFallbackVersion: 2,
+  unboundedLessonLengthVersion: 1,
 };
 
 // gpt-4o pricing for the text-generation step (as of 2025, source: openai.com/api/pricing).
@@ -198,11 +200,6 @@ function hasFullDocumentContext(input: {
 type BaseLecture = {
   beats: Beat[];
   textCost: number;
-};
-
-type BeatCountRepair = {
-  beats: Beat[];
-  costUsd: number;
 };
 
 type PlannedPdfBeat = {
@@ -390,76 +387,6 @@ function repairFocusedTitles(beats: Beat[], focus: PdfFocus | null): void {
 
 function textCostUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefined): number {
   return costFor(MODEL, usage);
-}
-
-async function addMissingPromptedBeat(
-  client: OpenAI,
-  topic: string,
-  mood: string,
-  beats: Beat[]
-): Promise<BeatCountRepair> {
-  const nextCount = beats.length + 1;
-  const completion = await client.chat.completions.create({
-    model: MODEL,
-    messages: [
-      {
-        role: "system",
-        content:
-          `You repair an otherwise strong AI tutor lecture that has ${beats.length} beats. Return JSON only: ` +
-          "{\"insertAfterId\":string,\"beat\":Beat}. Add exactly ONE substantive teaching beat at the weakest conceptual transition. " +
-          "Preserve the existing lecture; do not rewrite or repeat an existing beat. The new beat needs a unique id, a precise title, " +
-          "a teacherMove, 2-4 concise points, and a warm 110-140 word script that deeply explains one idea and connects the surrounding beats. " +
-          "Use slideKind definition, mechanism, example, compare, application, misconception, or recap. Do not add a checkpoint. " +
-          "Its draw must contain exactly one reactAnimation op with at:0, endAt:1, and a dense teachingPoint describing a content-driven " +
-          "paper-whiteboard composition plus the natural order in which the teacher writes, draws, labels, connects, and annotates it. " +
-          "Ground every fact in the supplied beats. No markdown and no commentary.",
-      },
-      {
-        role: "user",
-        content: JSON.stringify({
-          topic,
-          mood,
-          instruction: `Add one missing beat so this becomes a coherent ${nextCount}-beat draft on the way to a full ten-beat lecture.`,
-          existingBeats: beats.map((beat) => ({
-            id: beat.id,
-            title: beat.title,
-            slideKind: beat.slideKind,
-            teacherMove: beat.teacherMove,
-            points: beat.points,
-            script: beat.script,
-          })),
-        }),
-      },
-    ],
-    temperature: 0.35,
-    max_tokens: 2_000,
-    response_format: { type: "json_object" },
-  });
-
-  const payload = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
-  const insertAfterId = typeof payload.insertAfterId === "string" ? payload.insertAfterId : "";
-  const insertAfterIndex = beats.findIndex((beat) => beat.id === insertAfterId);
-  const recapIndex = beats.findIndex((beat) => beat.slideKind === "recap");
-  const fallbackIndex = recapIndex >= 0 ? recapIndex : Math.max(0, beats.length - 1);
-  const insertionIndex = insertAfterIndex >= 0 ? insertAfterIndex + 1 : fallbackIndex;
-  const combined = [...beats];
-  combined.splice(insertionIndex, 0, payload.beat);
-  const repaired = sanitizeDrawLecture({ beats: combined }, { enforceDepth: false, minUsableBeats: nextCount });
-  if (repaired.length !== nextCount) {
-    throw new Error(`Beat-count repair produced ${repaired.length} beats instead of ${nextCount}.`);
-  }
-  return { beats: repaired, costUsd: textCostUsd(completion.usage) };
-}
-
-async function repairPromptedBeatCount(client: OpenAI, topic: string, mood: string, beats: Beat[]): Promise<BeatCountRepair> {
-  let repaired = beats;
-  let costUsd = 0;
-  while (repaired.length < 10) {
-    const repair = await addMissingPromptedBeat(client, topic, mood, repaired);
-    repaired = repair.beats;
-    costUsd += repair.costUsd;
-  }
-  return { beats: repaired, costUsd };
 }
 
 function compactBeatsForDeepening(beats: Beat[]) {
@@ -777,9 +704,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope
   /**
    * The length budget, stated last so it is the most recent instruction before the model writes.
    *
-   * It has to override the system prompt's own "10-12 beats", which is still the right default for
-   * a broad topic; a later, more specific instruction is how the two coexist without the system
-   * prompt needing a branch for every possible lesson shape.
+   * Kept last so the content-derived minimum is the most recent instruction before writing starts.
    */
   const scopeLine = scope ? scopeInstruction(scope) : "";
   const focusSection = focusPromptSection(input.focus);
@@ -1016,17 +941,7 @@ async function generateBaseLecture(client: OpenAI, input: LectureBuildInput, job
       applyPdfPlanMetadata(beats, input.sourceDocument, !!input.focus || fullDocumentPass);
       dedupeBeatIdentity(beats);
 
-      // Eight or nine strong beats are recoverable. Add only the missing conceptual bridges instead of
-      // discarding the entire lecture and paying for another full generation attempt.
       let textCost = textCostUsd(completion.usage);
-      if (!input.sourceDocument && beats.length >= 8 && beats.length < 10) {
-        const repair = await repairPromptedBeatCount(client, input.topic, input.mood, beats);
-        beats = repair.beats;
-        textCost += repair.costUsd;
-        if (rawLecture && typeof rawLecture === "object") {
-          (rawLecture as Record<string, unknown>).beats = beats;
-        }
-      }
       /**
        * No beat-count rejection.
        *
@@ -1210,6 +1125,70 @@ async function generatePdfLectureInChunks(client: OpenAI, input: LectureBuildInp
   };
 }
 
+/**
+ * Generate arbitrarily long approved outlines without asking one completion to hold the entire
+ * lecture JSON. The outline is divided for transport only; all generated beats are merged back into
+ * one lesson, so there is no application-level beat ceiling.
+ */
+async function generateOutlinedLectureInChunks(client: OpenAI, input: LectureBuildInput, jobId?: string): Promise<BaseLecture> {
+  const outline = input.outline;
+  if (!outline || outline.subtopics.length <= OUTLINE_SUBTOPICS_PER_GENERATION) {
+    return generateBaseLecture(client, input, jobId);
+  }
+
+  const chunks: PlanOutline[] = [];
+  for (let start = 0; start < outline.subtopics.length; start += OUTLINE_SUBTOPICS_PER_GENERATION) {
+    chunks.push({
+      ...outline,
+      subtopics: outline.subtopics.slice(start, start + OUTLINE_SUBTOPICS_PER_GENERATION),
+    });
+  }
+
+  const results: BaseLecture[] = [];
+  for (const [index, chunk] of chunks.entries()) {
+    if (jobId) {
+      await waitForJobRunnable(jobId);
+      setJobStage(jobId, "structuring", {
+        fraction: index / chunks.length,
+        detail: `Lesson section ${index + 1} of ${chunks.length}`,
+        status: "Writing the complete lesson section by section",
+      });
+    }
+
+    const positionInstruction = index === 0
+      ? "This is the first section of a longer lesson: open naturally, but do not write the final recap yet."
+      : index === chunks.length - 1
+        ? "This continues an existing lesson: do not repeat an introduction, and finish with the one final recap."
+        : "This is a middle section of an existing lesson: do not repeat an introduction and do not write a final recap.";
+    const result = await generateBaseLecture(client, {
+      ...input,
+      outline: chunk,
+      topic: input.topic,
+      mood: `${moodWithSteering(input.mood, jobId)} ${positionInstruction}`.trim(),
+    }, jobId);
+
+    // The model may still emit its normal local scaffolding despite the section instruction. Remove
+    // only explicit intro/recap beats at internal boundaries; substantive teaching beats survive.
+    const beats = [...result.beats];
+    if (index > 0 && beats[0]?.slideKind === "intro") beats.shift();
+    if (index < chunks.length - 1 && beats.at(-1)?.slideKind === "recap") beats.pop();
+    results.push({ ...result, beats });
+  }
+
+  const beats = results.flatMap((result) => result.beats);
+  dedupeBeatIdentity(beats);
+  if (jobId) {
+    setJobStage(jobId, "structuring", {
+      fraction: 1,
+      detail: `${outline.subtopics.length} planned topics completed`,
+    });
+  }
+  return {
+    beats,
+    textCost: results.reduce((sum, result) => sum + result.textCost, 0),
+  };
+}
+
 function disabledAnimationStats(): ReactAnimationFillStats {
   return { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: ["REACT_ANIMATIONS_ENABLED is not 1"] };
 }
@@ -1328,8 +1307,7 @@ export async function POST(req: Request) {
                   }
                 : undefined,
             }))
-            .filter((s) => s.title.trim().length > 0)
-            .slice(0, 10),
+            .filter((s) => s.title.trim().length > 0),
         }
       : null;
 
@@ -1542,7 +1520,7 @@ async function generateLecture(
 
     const base = isPdfSource(input.sourceDocument)
       ? await generatePdfLectureInChunks(client, input, jobId)
-      : await generateBaseLecture(client, input, jobId);
+      : await generateOutlinedLectureInChunks(client, input, jobId);
 
     // The script, its beat structure and its checkpoint questions all exist now — they are written
     // by the same call, which is why they are one stage rather than three.

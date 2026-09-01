@@ -39,8 +39,8 @@ export function isAdhdLearner(profile: ProfileLike): boolean {
  * and the track vocabulary (`TrackMeta`) meet in exactly one place. `LearnPage` previously hardcoded
  * `TRACKS[0]`, which is why a profile of `"adhd"` sat in Cosmos doing nothing at all.
  *
- * Everything that is not `"adhd"` resolves to Standard — including `null` and `"none"` — because the
- * other accessibility tracks are still withheld from the UI (see components/hud/tracks.ts).
+ * Accessibility profiles that use a production-ready player resolve to that player even though the
+ * tracks remain absent from the public picker. `null`, `"none"`, and unfinished modes stay Standard.
  */
 export function trackForProfile(profile: ProfileLike): TrackMeta {
   if (isAdhdLearner(profile)) return ADHD_TRACK;
@@ -61,8 +61,8 @@ export function trackForProfile(profile: ProfileLike): TrackMeta {
    * `blind` and `low-vision` are absent on purpose: they are handled far earlier by VoiceModeSwitch
    * in app/page.tsx, which replaces the whole router rather than choosing a track.
    */
-  if (profile?.accessibility === "dyslexia") {
-    return [...TRACKS, ...PLANNED_TRACKS].find((track) => track.id === "dyslexia") ?? TRACKS[0];
+  if (profile?.accessibility === "dyslexia" || profile?.accessibility === "deaf") {
+    return [...TRACKS, ...PLANNED_TRACKS].find((track) => track.id === profile.accessibility) ?? TRACKS[0];
   }
 
   return TRACKS[0];

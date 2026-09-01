@@ -44,6 +44,7 @@ import { CheckinOverlay } from "./adhd/CheckinOverlay";
 import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
+import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -348,6 +349,11 @@ export function LessonPlayer({
   const [animationTimedOut, setAnimationTimedOut] = useState(false);
   const animationBlocking = currentAnimationPending && !animationTimedOut;
   const deafMode = mode === "deaf";
+  // Signing-only mirror of Gemini's streaming tutor transcript. It never enters the caption log or
+  // chat state, so enabling the isolated hand cannot alter either existing transcript surface.
+  const [liveSigningCaption, setLiveSigningCaption] = useState("");
+  const liveSigningCaptionRef = useRef("");
+  const liveSigningTurnFinishedRef = useRef(true);
 
   // Engagement + confusion signals (Confusion Radar / adaptive check-ins).
   const [beatQuestions, setBeatQuestions] = useState(0);
@@ -452,6 +458,20 @@ export function LessonPlayer({
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
     onTranscript: (role, text, final) => {
+      if (deafMode && role === "tutor" && text.trim()) {
+        if (final) {
+          liveSigningCaptionRef.current = text.trim();
+          liveSigningTurnFinishedRef.current = true;
+        } else {
+          const delta = text.trim();
+          const previous = liveSigningTurnFinishedRef.current ? "" : liveSigningCaptionRef.current;
+          liveSigningCaptionRef.current = previous
+            ? /^[,.;:!?]/.test(delta) ? `${previous}${delta}` : `${previous} ${delta}`
+            : delta;
+          liveSigningTurnFinishedRef.current = false;
+        }
+        setLiveSigningCaption(liveSigningCaptionRef.current);
+      }
       // Finalized lines flow into the chat log so the live conversation shows up in the chat
       // panel (not a separate bottom bar). student -> "you", tutor -> "aria".
       if (!final || !text.trim()) return;
@@ -523,6 +543,7 @@ export function LessonPlayer({
       }
     },
     onTutorTurnComplete: () => {
+      liveSigningTurnFinishedRef.current = true;
       if (checkinRef.current) return; // nothing is deferred during a check-in, and nothing may resume
       // Do NOT auto-mute after each answer — once the student has unmuted, the mic stays live so they
       // can keep talking (a natural back-and-forth). Auto-muting here (and reading the laggy `muted`
@@ -1739,6 +1760,8 @@ export function LessonPlayer({
                 caption={currentCaption}
                 captionLog={captionLog}
                 speaking={speaking}
+                signingTranscript={tutor.speaking && liveSigningCaption ? liveSigningCaption : currentCaption}
+                signingActive={speaking || tutor.speaking}
                 waitingOnCheckpoint={waitingOnCheckpoint}
                 stage={stage}
               />
@@ -1969,6 +1992,8 @@ function DeafAccessPanel({
   caption,
   captionLog,
   speaking,
+  signingTranscript,
+  signingActive,
   waitingOnCheckpoint,
   stage,
 }: {
@@ -1976,6 +2001,8 @@ function DeafAccessPanel({
   caption: string;
   captionLog: string[];
   speaking: boolean;
+  signingTranscript: string;
+  signingActive: boolean;
   waitingOnCheckpoint: boolean;
   stage: Stage;
 }) {
@@ -1984,13 +2011,15 @@ function DeafAccessPanel({
   const lines = captionLog.length ? captionLog : [caption];
 
   return (
-    <aside className="relative flex h-full min-h-0 flex-col gap-3 overflow-hidden rounded-xl border border-[var(--accent-deaf)]/25 bg-slate-950/86 p-4 shadow-[0_32px_110px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+    <aside className="relative flex h-full min-h-0 flex-col gap-3 overflow-y-auto rounded-xl border border-[var(--accent-deaf)]/25 bg-slate-950/86 p-4 shadow-[0_32px_110px_rgba(0,0,0,0.34)] backdrop-blur-xl">
       <HudCorners accent="var(--accent-deaf)" />
 
       <div className="rounded-lg border border-[var(--accent-deaf)]/25 bg-[var(--accent-deaf-glow)] px-4 py-3">
         <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-[var(--accent-deaf)]">Deaf mode</p>
         <h2 className="mt-1 text-lg font-black text-white">Caption-first lesson</h2>
       </div>
+
+      <DeafSigningExtension transcript={signingTranscript} active={signingActive} />
 
       <div className="rounded-lg border border-white/10 bg-black/30 p-4">
         <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Visual sound cue</p>

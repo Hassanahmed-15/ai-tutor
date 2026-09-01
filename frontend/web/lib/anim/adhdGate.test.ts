@@ -31,13 +31,17 @@ test("every other profile value is closed, including the ones that look empty", 
   }
 });
 
-test("the resolver sends adhd to the ADHD track and everyone else to Standard", () => {
+test("the resolver sends supported accessibility profiles to their real tracks", () => {
   // Asserted on `id`, not `page`. Both tracks now render the SAME player — ADHD deliberately uses
   // the standard lesson UI and layers its behaviour on top — so `page` no longer distinguishes them
   // and a test keyed on it would be checking an implementation detail that is expected to move.
   assert.equal(trackForProfile({ accessibility: "adhd" }).id, "adhd");
 
-  for (const profile of [null, { accessibility: null }, { accessibility: "none" as const }, { accessibility: "deaf" as const }]) {
+  assert.equal(trackForProfile({ accessibility: "deaf" }).id, "deaf");
+  assert.equal(trackForProfile({ accessibility: "deaf" }).page, "deaf-demo");
+  assert.equal(trackForProfile({ accessibility: "dyslexia" }).id, "dyslexia");
+
+  for (const profile of [null, { accessibility: null }, { accessibility: "none" as const }]) {
     assert.notEqual(trackForProfile(profile).id, "adhd", `${JSON.stringify(profile)} must not get the ADHD track`);
     assert.equal(trackForProfile(profile).id, "none", "and must land on the standard lecture");
   }

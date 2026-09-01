@@ -56,7 +56,7 @@ export default function Home() {
       return <AdhdLessonPlayer onExit={exitToComplete} />;
     case "deaf-demo":
       // Deaf mode uses the Standard player: captions carry every line on-screen.
-      return <LessonPlayer onExit={exitToComplete} />;
+      return <LessonPlayer onExit={exitToComplete} mode="deaf" />;
     case "dyslexia-demo":
       return <DyslexiaLessonPlayer onExit={exitToComplete} />;
     case "learn":

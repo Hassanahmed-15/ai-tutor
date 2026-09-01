@@ -167,7 +167,7 @@ test("a focused question OVERRIDES the whole-document beat plan", () => {
   const msg = focusedUserMessage({ base: 'Teach this topic live: "KNN".', focus, documentJson: "{}" });
 
   assert.match(msg, /lessonPlan\/suggestedLecturePlan beat order and targetBeatCount DO NOT APPLY/);
-  assert.match(msg, /Ignore them/);
+  assert.match(msg, /DO NOT APPLY/);
   assert.match(msg, /not a syllabus to cover/);
   // The passage still has to be in there verbatim, above everything else.
   // The closing line is now "Answer now." — a focused request became a direct ANSWER rather than a
@@ -188,7 +188,8 @@ test("a focused question OVERRIDES the whole-document beat plan", () => {
    * taught the same shape (see assertInputLectureDepth's concise branch), so the two cannot
    * disagree; asking for 130 words here would now be the contradiction.
    */
-  assert.match(msg, /2 to 3 teaching beats/);
+  assert.match(msg, /at least 2 teaching beats/);
+  assert.match(msg, /no maximum beat count/i);
   assert.match(msg, /180-260 spoken words/);
   assert.match(msg, /LEAD WITH THE ANSWER/);
   assert.match(msg, /GO DEEP/);

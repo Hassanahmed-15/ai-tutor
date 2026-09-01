@@ -41,9 +41,8 @@ import {
 const SUGGESTIONS = ["How vaccines work", "Why the sky is blue", "How a black hole forms", "Supply and demand", "How memory works"];
 
 type ModeId = TrackMeta["id"];
-// Midpoint of OUTLINE_LESSON_SYSTEM_PROMPT's "5-9 subtopics" — used only to give the live
-// drafting progress bar a denominator; the real count may land a little above or below this,
-// which is fine since the bar just needs to feel like real progress, not be exact.
+// An early visual estimate only; the streamed outline itself has no upper subtopic limit. It gives
+// the drafting progress bar a denominator, and the visible count can continue beyond it.
 const ESTIMATED_SUBTOPICS = 7;
 type PlanningAngleId = "standard" | "historical" | "first-principles" | "failure-case" | "analogy";
 const PLANNING_ANGLES: { id: PlanningAngleId; label: string }[] = [
