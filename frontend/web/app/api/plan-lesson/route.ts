@@ -483,12 +483,43 @@ export async function POST(req: Request) {
     const transcript = typeof body.transcript === "string" ? body.transcript.trim() : "";
     if (!question && !transcript) return NextResponse.json({ error: "question or selected-page transcript is required" }, { status: 400 });
     const focus = focusFromTranscript(question, transcript) ?? focusPassages(question, sourceDocument);
-    if (!focus) {
-      return NextResponse.json({ error: "I could not locate that request in the selected pages. Select the example or name it more precisely." }, { status: 422 });
-    }
-    const fallbackTopic = subjectFromFocus(focus) || (typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "Focused explanation");
+
+    /**
+     * A LEXICAL MISS IS NOT AN UNANSWERABLE QUESTION.
+     *
+     * This used to refuse outright — "I could not locate that request in the selected pages" —
+     * whenever `focusPassages` came back null. That gate assumed a miss meant the student had asked
+     * about something absent from their document. Usually it meant the opposite: they named the one
+     * distinctive thing in it.
+     *
+     * "What does lexquery do" reduces to a single term after stopwords, and `scoreBlock` awards one
+     * point for a body match against a MIN_SCORE of two — so a question naming exactly one thing
+     * scores below the floor unless that word happens to sit in a heading. The document was full of
+     * the answer; the ranker simply had one term to work with and no way to clear its own bar.
+     *
+     * Refusing was never right, and it is now actively wrong: generation reads the WHOLE document,
+     * text and page images together, so nothing needs locating in advance. Planning falls back to
+     * the same footing — plan against everything, and let the model find what string matching could
+     * not. Grounding is unaffected either way, because the document itself travels with the request.
+     */
     const angle = typeof body.angle === "string" ? body.angle : undefined;
-    const userContent = `${focusPromptSection(focus)}${angleInstructionLine(angle)}\n\nPlan the answer now. The quoted passages above are the complete permitted planning scope.`;
+    const topicFromBody = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
+    const fallbackTopic = (focus ? subjectFromFocus(focus) : "") || topicFromBody || "Focused explanation";
+    const userContent = focus
+      ? `${focusPromptSection(focus)}${angleInstructionLine(angle)}\n\nPlan the answer now. The quoted passages above are the complete permitted planning scope.`
+      : [
+          "THE STUDENT ASKED ONE SPECIFIC QUESTION ABOUT THE DOCUMENT BELOW.",
+          `Their question: "${question || "Explain what this document covers."}"`,
+          "",
+          // The planning-sized summary, not the generation-sized one: this is a cheap gpt-4o-mini
+          // call that needs each section's heading and gist, not the complete text and assets.
+          "Their document, section by section:",
+          summarizeSourceDocumentForPlanning(sourceDocument),
+          angleInstructionLine(angle),
+          "",
+          "Plan an answer to that exact question, using only this document.",
+          "If the document genuinely does not address the question, plan the closest thing it DOES cover and make that the opening step, rather than inventing material.",
+        ].join("\n");
     return streamOutline(client, DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT, userContent, fallbackTopic, true);
   }
 

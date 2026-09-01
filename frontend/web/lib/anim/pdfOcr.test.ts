@@ -97,6 +97,54 @@ test("the number of pages read is capped", () => {
   assert.equal(planTranscription([], manyRegions).length, OCR_RULES.MAX_PAGES);
 });
 
+/* ── not reading the same pixels twice ───────────────────────────────────── */
+
+test("pages the MODEL will see are not transcribed as well", () => {
+  /*
+   * The saving. Once every selected page is attached to the lecture prompt as a picture,
+   * transcribing those pages here is a second, lossier reading of what the model is already
+   * looking at — measured at ~20-25s and eight vision calls on a nine-page upload.
+   */
+  assert.deepEqual(planTranscription([1, 2, 3], [], true), []);
+});
+
+test("a DRAWN REGION is still transcribed even when the pages are attached", () => {
+  /*
+   * The exception that makes the saving safe. A region is one call, and verbatim precision on the
+   * one thing the student pointed at is what pins the subject through focusFromTranscript.
+   */
+  const regions: PageRegion[] = [{ page: 4, rect: { x: 0.1, y: 0.1, width: 0.5, height: 0.4 } }];
+  const plan = planTranscription([2, 4, 6], regions, true);
+  assert.equal(plan.length, 1);
+  assert.equal(plan[0].page, 4);
+  assert.ok(plan[0].rect);
+});
+
+test("a stray click with pages attached reads nothing, not the whole selection", () => {
+  // The unusable region is discarded, and the whole-page fallback is suppressed — so this must
+  // come back empty rather than quietly transcribing every selected page.
+  const plan = planTranscription([2, 3], [{ page: 9, rect: { x: 0.5, y: 0.5, width: 0.0001, height: 0.0001 } }], true);
+  assert.deepEqual(plan, []);
+});
+
+test("the flag defaults off, so every existing caller is unaffected", () => {
+  assert.deepEqual(
+    planTranscription([2, 3], []).map((p) => p.page),
+    planTranscription([2, 3], [], false).map((p) => p.page),
+  );
+  assert.equal(planTranscription([2, 3], []).length, 2);
+});
+
+test("the no-extractable-text fallback still reads every page", () => {
+  /*
+   * The caller passes no flag for a scanned PDF, because blocksFromTranscript is the ONLY source of
+   * contentBlocks for one — without it that upload is refused outright. Attaching pictures does not
+   * change that: the lecture needs blocks, not just something to look at.
+   */
+  const everyPage = [1, 2, 3, 4];
+  assert.equal(planTranscription(everyPage, []).length, 4);
+});
+
 /* ── what the model is asked ─────────────────────────────────────────────── */
 
 test("the model is told to TRANSCRIBE, never to summarise", () => {

@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import { renderPdfWithPython } from "@/lib/pdfPythonPipeline";
 import { renderPptxSlides } from "@/lib/pptxRender";
 import { convertPptxToPdf } from "@/lib/pptxToPdf";
+import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
 
-const MAX_BYTES = 20 * 1024 * 1024;
+const MAX_BYTES = DOCUMENT_LIMITS.MAX_BYTES;
 /**
  * Thumbnails are rendered directly at this DPI rather than rendered large and downscaled.
  * 40 DPI puts a Letter page at roughly 340x440 — recognisable at preview size, a few KB on the
@@ -72,6 +73,10 @@ export async function POST(request: Request) {
       const asPdf = await convertPptxToPdf(deckBytes);
       if (asPdf) {
         const pages = await renderPdfWithPython(asPdf, THUMB_DPI);
+        // A deck is held to the same length as a paper, and finds out at the same point in the flow.
+        if (pages && exceedsPageLimit(pages.length)) {
+          return NextResponse.json({ error: tooManyPagesMessage(pages.length, "slide") }, { status: 413 });
+        }
         if (pages && pages.length > 0) {
           return NextResponse.json({
             kind: "pages",
@@ -97,6 +102,9 @@ export async function POST(request: Request) {
      */
     try {
       const slides = await renderPptxSlides(deckBytes);
+      if (exceedsPageLimit(slides.length)) {
+        return NextResponse.json({ error: tooManyPagesMessage(slides.length, "slide") }, { status: 413 });
+      }
       if (slides.length > 0) {
         return NextResponse.json({
           kind: "pages",
@@ -127,6 +135,18 @@ export async function POST(request: Request) {
 
   const bytes = new Uint8Array(await file.arrayBuffer());
   const pages = await renderPdfWithPython(bytes, THUMB_DPI);
+
+  /*
+   * Refuse an over-long document HERE, at the first thing that touches it.
+   *
+   * This route is where an upload actually begins, so this is where the student finds out. Leaving
+   * the check to parsing would show them a grid of forty thumbnails, let them choose pages and type
+   * a question, and only then say no — after the one step in the flow that feels like progress.
+   */
+  if (pages && exceedsPageLimit(pages.length)) {
+    return NextResponse.json({ error: tooManyPagesMessage(pages.length) }, { status: 413 });
+  }
+
   if (!pages) {
     // renderPdfWithPython returns null when the Python pipeline is disabled or unavailable. That
     // is a degradation, not an error: the caller can still select pages by number.

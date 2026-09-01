@@ -223,6 +223,18 @@ Same Lesson Graph, same step 1–4. At step 5, the **Visual Impairment Lens** in
 - Every factual claim in a Lesson Graph node carries a citation pointer back to source material where possible.
 - Confidence Scorer flags ungrounded claims for hedged phrasing rather than confident assertion.
 
+#### 7.2.1 Uploaded documents (PDF / PPTX)
+
+An uploaded document is taught from the **whole** of itself: every page's extracted text *and* every page rendered as an image go into one generation call, together with the student's question.
+
+- **Limit: 20 pages or slides**, enforced at upload (`lib/documentLimits.ts`). A longer file is refused with a message asking the student to split it. This is a hard cap rather than a processing budget on purpose — "the whole document is in context" has to be literally true, and accepting a 40-page file to teach 20 of it would break that invisibly.
+- **Two renders, one pass.** `scripts/pdf_pipeline.py` rasterises each page at 400 DPI (so cropped figures stay sharp) and again at `PDF_VISION_PAGE_DPI` (default 110, ~935×1210 for Letter) as a JPEG for the model. A vision model rescales anything larger to a 768px short edge, so the big render would cost identical tokens and be discarded.
+- **Why images at all.** Extracted text is only what a PDF *declares*. Measured on this repo's `AblationStudy_V3.pdf`, page 4 declares 964 characters — every one a figure caption — while the correlation matrix, axis labels and cell values it refers to exist only as pixels.
+- **A dragged selection is the subject.** The cropped region is attached as its own image directly after its page, and the prompt states plainly that the student selected it and that everything else is background (`lib/fullDocumentContext.ts`).
+- **Page images never cross the wire twice.** They are parked server-side (`lib/pageImageStore.ts`, in-process, 45-minute TTL) and referenced by a `documentId`. A miss — restart, expiry, an older upload — degrades to the text-only excerpt-and-retrieval path rather than failing.
+- **Cost:** ~15k extra input tokens (~$0.04) per lecture for a full 20-page document.
+- **`PDF_BEATS_PER_GENERATION` does not apply** on this path. It splits a plan across several calls, which would re-send every page image on each one; a document sent whole is one call by definition.
+
 ### 7.3 Voice I/O Layer
 - STT + TTS providers chosen for low latency and expressive, natural-sounding output (a flat robotic voice undermines the entire "feels like a real teacher" thesis).
 - Turn-detection: in MVP, a push-to-talk or explicit "wake" interrupt rather than always-on voice-activity-detection, to avoid false-positive interrupts breaking the lecture flow.

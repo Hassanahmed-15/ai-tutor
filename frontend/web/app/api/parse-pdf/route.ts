@@ -9,10 +9,12 @@ import {
   type PdfDetectedFigure,
   type PdfTextSpan,
 } from "@/lib/pdfLessonPipeline";
-import { cropFiguresWithPython, renderPdfWithPython } from "@/lib/pdfPythonPipeline";
+import { cropFigurePagesWithPython, renderPdfWithPython, VISION_DPI, type PythonCrop } from "@/lib/pdfPythonPipeline";
+import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
+import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
 import {
-  planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, TRANSCRIBE_PROMPT,
-  type PageRegion, type TranscriptPart,
+  planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, isUsableRegion,
+  TRANSCRIBE_PROMPT, type PageRegion, type TranscriptPart,
 } from "@/lib/pdfOcr";
 import type {
   SuprnotesAsset,
@@ -23,11 +25,21 @@ import type {
 export const runtime = "nodejs";
 export const maxDuration = 300;
 
-const MAX_BYTES = 20 * 1024 * 1024;
-const MAX_PAGES = 60;
+const MAX_BYTES = DOCUMENT_LIMITS.MAX_BYTES;
+const MAX_PAGES = DOCUMENT_LIMITS.MAX_PAGES;
 const MIN_PNG_BYTES = 1_000;
 const RENDER_SCALE = 2;
-const PAGE_CONCURRENCY = 3;
+/**
+ * How many pages are worked on at once.
+ *
+ * Raised from 3. This changes only how many of the same calls are in flight, never how many are
+ * made, so it costs nothing and buys wall-clock: a nine-page document ran figure detection in three
+ * sequential waves of three, and each wave is a full gpt-4o round trip.
+ *
+ * Env-overridable because the ceiling is really OpenAI's rate limit, which varies by account tier —
+ * dial it back rather than editing code if a large upload starts seeing 429s.
+ */
+const PAGE_CONCURRENCY = Math.max(1, Math.min(12, Number(process.env.PDF_PAGE_CONCURRENCY ?? 6)));
 const VISION_MODEL = process.env.OPENAI_PDF_VISION_MODEL ?? "gpt-4o";
 
 type RenderedPage = {
@@ -37,6 +49,9 @@ type RenderedPage = {
   png: Buffer | null;
   width: number;
   height: number;
+  /** Small copy of the page, sized for a vision model. Null when it could not be produced. */
+  visionImage: Buffer | null;
+  visionMime: string;
 };
 
 type CropResult = {
@@ -261,6 +276,41 @@ function positionedSpans(items: unknown[], pageWidth: number, pageHeight: number
   return spans;
 }
 
+/**
+ * Cut the student's dragged box out of a page image.
+ *
+ * Cropped from the VISION-sized copy, not the 400 DPI raster. The crop is going to a model that
+ * rescales its input to a 768px short edge anyway, so cutting it from the big render would mean
+ * carrying several megabytes to produce an image the model immediately shrinks. Cropping the small
+ * copy lands at the right size with no downscale step and no second encode.
+ *
+ * Returns null rather than throwing: a selection that cannot be cropped costs the emphasis image,
+ * and the full page carrying that selection is still attached.
+ */
+async function cropRegionForVision(
+  visionImage: Buffer,
+  rect: { x: number; y: number; width: number; height: number },
+  loadImage: (source: Buffer) => Promise<{ width: number; height: number }>,
+  createCanvas: (w: number, h: number) => {
+    getContext: (kind: "2d") => { drawImage: (...args: unknown[]) => void };
+    toBuffer: (mime: "image/jpeg", quality?: number) => Buffer;
+  },
+): Promise<Buffer | null> {
+  try {
+    const source = await loadImage(visionImage);
+    const box = pixelRect(rect, source.width, source.height);
+    if (box.width < 2 || box.height < 2) return null;
+    const surface = createCanvas(box.width, box.height);
+    surface
+      .getContext("2d")
+      .drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
+    return surface.toBuffer("image/jpeg", 0.82);
+  } catch (error) {
+    console.error(`[parse-pdf] region crop failed: ${error instanceof Error ? error.message : "unknown error"}`);
+    return null;
+  }
+}
+
 async function mapLimit<T, R>(
   values: T[],
   limit: number,
@@ -324,7 +374,15 @@ async function renderPage(
     png = null;
   }
 
-  return { pageNumber, text, blocks, png, width, height };
+  /*
+   * No vision-sized copy on this path.
+   *
+   * This is the fallback that runs when the Python renderer is unavailable, and it exists to keep
+   * uploads working at all rather than to match the primary path feature for feature. Downscaling
+   * here would mean a second canvas render per page for an image the lecture can do without —
+   * grounding simply falls back to the extracted text, which is the pre-existing behaviour.
+   */
+  return { pageNumber, text, blocks, png, width, height, visionImage: null, visionMime: "image/jpeg" };
 }
 
 function expandedPixelBox(
@@ -574,6 +632,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "No pages found in the PDF." }, { status: 422 });
   }
 
+  /**
+   * The length limit binds on the DOCUMENT, before any work happens.
+   *
+   * This deliberately reverses the previous rule, which let a document of any length through and
+   * capped only the pages processed. That rule existed to make a 108-page book usable by asking
+   * about three of its pages, and it was the right trade while the lecture was written from an
+   * excerpt. It is the wrong one now: the lecture is written from the WHOLE document — every page's
+   * text and every page's image in one call — and accepting a file we can only partly carry would
+   * quietly teach a fraction of it while claiming to have read it all.
+   *
+   * Refusing here rather than after rendering also means the student waits for nothing.
+   */
+  if (exceedsPageLimit(pdf.numPages)) {
+    return NextResponse.json({ error: tooManyPagesMessage(pdf.numPages) }, { status: 413 });
+  }
+
   let metadataTitle = "";
   try {
     const metadata = await pdf.getMetadata();
@@ -582,7 +656,9 @@ export async function POST(req: NextRequest) {
     metadataTitle = "";
   }
 
-  const pythonPages = await renderPdfWithPython(pythonBytes);
+  // The third argument asks for the small per-page copy that the lecture model reads. One document
+  // open produces both sizes, so this costs a JPEG encode per page and no extra parse.
+  const pythonPages = await renderPdfWithPython(pythonBytes, undefined, VISION_DPI);
 
   /**
    * Optional page scoping.
@@ -629,23 +705,14 @@ export async function POST(req: NextRequest) {
     ? scopedPages
     : Array.from({ length: pdf.numPages }, (_, index) => index + 1);
 
-  /**
-   * The limit applies to pages actually PROCESSED, not to the document's length.
-   *
-   * It used to reject the upload outright on numPages, which made a 108-page book unusable even
-   * to ask about three of its pages — and page selection now exists precisely so that a long
-   * document can be used. What the limit really protects is cost and runtime: every processed page
-   * is rendered, cropped and sent to a vision model. Scoped requests are bounded by the selection,
-   * so only an unscoped long document needs refusing, and the message now says how to proceed
-   * instead of just saying no.
+  /*
+   * The document-length check above already guarantees `pageNumbers.length <= MAX_PAGES`, because a
+   * scope is a subset of the pages and the document itself was refused if it had more. This is kept
+   * as a cheap assertion of that invariant rather than as a user-facing rule — if it ever fires,
+   * the scoping logic has a bug, and silently sending 40 images would be the worse failure.
    */
   if (pageNumbers.length > MAX_PAGES) {
-    return NextResponse.json(
-      {
-        error: `This PDF has ${pdf.numPages} pages, and up to ${MAX_PAGES} can be processed at once. Select the pages you want and try again.`,
-      },
-      { status: 413 },
-    );
+    return NextResponse.json({ error: tooManyPagesMessage(pdf.numPages) }, { status: 413 });
   }
   // The Python renderer always rasterises the whole document (one process is cheaper than one per
   // page), so the scope has to be applied to its OUTPUT. Filtering here rather than only in
@@ -661,11 +728,23 @@ export async function POST(req: NextRequest) {
           png: page.png,
           width: page.width,
           height: page.height,
+          visionImage: page.visionImage,
+          visionMime: page.visionMime,
         }))
     : await mapLimit(pageNumbers, PAGE_CONCURRENCY, (pageNumber) => renderPage(pdf, pageNumber));
-  const pageResults = await mapLimit(renderedPages, PAGE_CONCURRENCY, async (page) => {
+  /*
+   * DETECTION FIRST, CROPPING SECOND.
+   *
+   * These were one pass, which meant the Python cropper was invoked inside the per-page loop — a
+   * fresh interpreter per page, each paying ~1.4s to import cv2, fitz, numpy and pytesseract. On a
+   * nine-page upload that was about twelve seconds of pure start-up.
+   *
+   * Splitting them lets every page's figures be cropped by ONE process. Detection still runs
+   * concurrently per page, because those are independent network calls where concurrency is the
+   * whole win.
+   */
+  const detectedPages = await mapLimit(renderedPages, PAGE_CONCURRENCY, async (page) => {
     const pageBlocks = [...page.blocks];
-    const pageAssets: SuprnotesAsset[] = [];
     let figures: PdfDetectedFigure[] = [];
     // Normalized rectangles of the page's extracted TEXT — handed to the vision detector (so it
     // excludes paragraphs) AND to the Python cropper (so a crop never grows across body text).
@@ -706,8 +785,31 @@ export async function POST(req: NextRequest) {
         role: "visual",
       });
     }
-    const verifiedCrops = page.png ? await cropFiguresWithPython(page.png, figures, textRegions) : null;
-    const verifiedByIndex = new Map((verifiedCrops ?? []).map((crop) => [crop.index, crop]));
+    return { page, pageBlocks, figures, textRegions };
+  });
+
+  /*
+   * Every page's crops, from a single Python process.
+   *
+   * Null when the pipeline is disabled or the batch failed; each page then falls back to the
+   * canvas cropper below exactly as it did before, so losing this costs crop quality, never crops.
+   */
+  const croppablePages = detectedPages.filter((entry) => entry.page.png !== null);
+  const batchedCrops = await cropFigurePagesWithPython(
+    croppablePages.map((entry) => ({
+      pagePng: entry.page.png as Buffer,
+      figures: entry.figures,
+      textBoxes: entry.textRegions,
+    })),
+  );
+  const cropsByPage = new Map<number, PythonCrop[]>();
+  croppablePages.forEach((entry, index) => {
+    cropsByPage.set(entry.page.pageNumber, batchedCrops?.[index] ?? []);
+  });
+
+  const pageResults = await mapLimit(detectedPages, PAGE_CONCURRENCY, async ({ page, pageBlocks, figures }) => {
+    const pageAssets: SuprnotesAsset[] = [];
+    const verifiedByIndex = new Map((cropsByPage.get(page.pageNumber) ?? []).map((crop) => [crop.index, crop]));
     if (page.png) {
       for (let index = 0; index < figures.length; index += 1) {
         const figure = figures[index];
@@ -799,10 +901,24 @@ export async function POST(req: NextRequest) {
    * is transcribed regardless of the usual cost rule, because there is no cheaper way to read it
    * and the alternative is the upload failing.
    */
-  const requested = planTranscription(scopedPages, regions);
+  /*
+   * Whether the lecture will be able to LOOK at these pages.
+   *
+   * Decides whether a whole-page transcription is worth its call. When the pictures are going to
+   * the model anyway, transcribing the same pages here is a second, lossier reading of what it is
+   * already looking at — and the slowest part of the parse.
+   *
+   * Computed from what was actually rendered rather than from intent, so a document whose render
+   * failed still gets transcribed: the fallback must key off the pictures existing, not off our
+   * having meant to make them.
+   */
+  const pagesReachModelAsImages = renderedPages.some((page) => page.visionImage !== null);
+  const requested = planTranscription(scopedPages, regions, pagesReachModelAsImages);
   const transcriptionPlan = requested.length > 0
     ? requested
     : extractedBlocks.length === 0
+      // No text at all: read every page regardless of cost. `blocksFromTranscript` is the only
+      // source of contentBlocks for a scan, and without them the upload is refused outright.
       ? planTranscription(renderedPages.map((page) => page.pageNumber), [])
       : [];
   const transcriptParts: TranscriptPart[] = client && transcriptionPlan.length > 0
@@ -844,6 +960,49 @@ export async function POST(req: NextRequest) {
 
   const ocrTranscript = assembleTranscript(transcriptParts);
 
+  /**
+   * Park the page images for the generation call.
+   *
+   * These are the pictures the lecture is written from. They do not travel back through the browser
+   * because they are three to five megabytes that the server produced itself and will consume
+   * itself thirty seconds later; a `documentId` crosses the wire instead. See lib/pageImageStore.ts
+   * for what that costs (an in-process map, so a restart loses them) and why every read of it is
+   * allowed to come back empty.
+   *
+   * Only the pages actually in scope are stored — the same scope everything else downstream sees,
+   * so the model is never shown a page the student took out of the lesson.
+   */
+  const storedPages: StoredPageImage[] = renderedPages
+    .filter((page): page is RenderedPage & { visionImage: Buffer } => page.visionImage !== null)
+    .map((page) => ({
+      pageNumber: page.pageNumber,
+      dataUrl: `data:${page.visionMime};base64,${page.visionImage.toString("base64")}`,
+    }));
+
+  const storedRegions: StoredRegionImage[] = (
+    await Promise.all(
+      regions.map(async (region): Promise<StoredRegionImage | null> => {
+        if (!isUsableRegion(region.rect)) return null;
+        const page = renderedPages.find((candidate) => candidate.pageNumber === region.page);
+        if (!page?.visionImage) return null;
+        const cropped = await cropRegionForVision(
+          page.visionImage,
+          region.rect,
+          canvasModule.loadImage as unknown as (source: Buffer) => Promise<{ width: number; height: number }>,
+          canvasModule.createCanvas as unknown as Parameters<typeof cropRegionForVision>[3],
+        );
+        if (!cropped) return null;
+        return {
+          pageNumber: region.page,
+          dataUrl: `data:image/jpeg;base64,${cropped.toString("base64")}`,
+          rect: region.rect,
+        };
+      }),
+    )
+  ).filter((region): region is StoredRegionImage => region !== null);
+
+  const documentId = putDocumentImages(storedPages, storedRegions, "page");
+
   /*
    * Dev-only trace of whether the page was actually READ.
    *
@@ -860,6 +1019,11 @@ export async function POST(req: NextRequest) {
       transcriptChars: ocrTranscript.length,
       visionClient: !!client,
       extractedBlocks: extractedBlocks.length,
+      // Whether the lecture will actually be able to LOOK at this document, which is otherwise
+      // invisible until the lecture comes back vague.
+      pageImages: storedPages.length,
+      regionImages: storedRegions.length,
+      documentId: documentId ? "stored" : "none",
     }));
   }
 
@@ -940,6 +1104,16 @@ export async function POST(req: NextRequest) {
      */
     ocrTranscript,
     ocrPages: transcriptParts.map((p) => p.page),
+    /**
+     * Handle for the page images this parse rendered, to be passed straight to generation.
+     *
+     * Null when nothing could be rendered (no Python pipeline, or every page failed), which the
+     * caller forwards as-is: generation treats a missing id exactly like an expired one and writes
+     * the lecture from text alone.
+     */
+    documentId,
+    pageImageCount: storedPages.length,
+    regionImageCount: storedRegions.length,
     title,
     pageCount: pdf.numPages,
     // Which pages this parse actually covered. Equals every page unless the caller scoped the

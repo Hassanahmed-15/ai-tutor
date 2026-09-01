@@ -170,15 +170,28 @@ test("a focused question OVERRIDES the whole-document beat plan", () => {
   assert.match(msg, /Ignore them/);
   assert.match(msg, /not a syllabus to cover/);
   // The passage still has to be in there verbatim, above everything else.
-  assert.ok(msg.indexOf("d(x, y) = sqrt") < msg.indexOf("Build the complete focused lecture"),
+  // The closing line is now "Answer now." — a focused request became a direct ANSWER rather than a
+  // shortened lecture. The structural claim is unchanged: the passage precedes the instructions.
+  assert.ok(msg.indexOf("d(x, y) = sqrt") < msg.indexOf("Answer now."),
             "the passage is not stated before the instructions that use it");
+  assert.ok(msg.indexOf("Answer now.") > 0, "the closing instruction is missing entirely");
   assert.match(msg, /must appear in the lecture exactly as written/);
   /*
-   * The depth guard rejects a PDF lecture averaging under 100 words per teaching beat. Asking for
-   * "110-140" produced 98 and was thrown out — aiming a model at the boundary lands it on both
-   * sides. The floor asked for is well clear of the bar it has to clear.
+   * THIS ASSERTION WAS INVERTED ON PURPOSE.
+   *
+   * It used to require "AT LEAST 130 spoken words", because the depth guard rejected a focused PDF
+   * lecture averaging under 125 and aiming at the boundary landed on both sides of it. That was the
+   * right rule while a focused request still meant a shortened LECTURE.
+   *
+   * It no longer does. A focused request is now a direct ANSWER — someone asking how many
+   * professors are in a list is owed a number, not five hundred words arriving at one. The guard was
+   * taught the same shape (see assertInputLectureDepth's concise branch), so the two cannot
+   * disagree; asking for 130 words here would now be the contradiction.
    */
-  assert.match(msg, /AT LEAST 130 spoken words/);
+  assert.match(msg, /1 or 2 teaching beats/);
+  assert.match(msg, /40-70 spoken words/);
+  assert.match(msg, /LEAD WITH THE ANSWER/);
+  assert.doesNotMatch(msg, /AT LEAST 130 spoken words/);
 });
 
 test("the focused message leads with the passage, not the topic", () => {
@@ -328,6 +341,13 @@ test("the words people type after drawing a box are recognised as POINTING", () 
   for (const phrase of [
     "explain me this", "explain this", "what is this", "explain this part",
     "tell me about this section", "what's this", "explain the highlighted region", "this",
+    /*
+     * Padded with fillers. "just explain me this eg" reached generation as a SUBJECT, so the lecture
+     * came back titled "just explain me this eg" — every pointing word in it was already stripped,
+     * and the two leftovers ("just", "eg") were enough to make it look like it named something.
+     */
+    "just explain me this eg", "pls explain this", "can you just explain this bit",
+    "explain this thing quickly", "give me a bit more detail on this",
   ]) {
     assert.equal(isPointingPhrase(phrase), true, `"${phrase}" should be pointing`);
   }

@@ -117,6 +117,15 @@ type LecturePayload = {
    * lib/pdfFocus.ts.
    */
   focus?: string;
+  /**
+   * Handle for the page images the parse rendered, so the lecture is written while LOOKING at the
+   * document rather than at a text extraction of it.
+   *
+   * Only the id crosses the wire. The images themselves stay on the server (lib/pageImageStore.ts)
+   * because they are several megabytes that the server produced and will consume itself moments
+   * later. An id the server no longer recognises is not an error — generation falls back to text.
+   */
+  documentId?: string;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
@@ -196,6 +205,13 @@ type BuildCost =
    * pasted as an image is not a text object, so it never appears in contentBlocks at all.
    */
   const [ocrTranscript, setOcrTranscript] = useState("");
+  /**
+   * Handle for the page images the parse rendered and parked server-side.
+   *
+   * The images themselves never come here — they are megabytes the server produced and will use
+   * itself — so this is the whole of what the client carries between parsing and generation.
+   */
+  const [documentId, setDocumentId] = useState<string | null>(null);
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
   // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
   const [pendingPdf, setPendingPdf] = useState<File | null>(null);
@@ -367,6 +383,8 @@ type BuildCost =
       setSourceDocument(data.sourceDocument ?? null);
       // A deck without embedded pictures has no source document; its slide text is the source.
       if (!data.sourceDocument && typeof data.fullText === "string") setSlideContext(data.fullText);
+      const parsedDocumentId = typeof data.documentId === "string" ? data.documentId : null;
+      setDocumentId(parsedDocumentId);
 
       /**
        * The question, from wherever the student actually asked it.
@@ -436,6 +454,7 @@ type BuildCost =
         transcript: transcriptText,
         kind: pendingKind,
         scopeSelected: drewRegion,
+        documentId: parsedDocumentId,
       });
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
@@ -502,6 +521,21 @@ type BuildCost =
         const pageRes = await fetch("/api/document-pages", { method: "POST", body: pageForm });
         const pageData = await pageRes.json().catch(() => ({}));
         setPagesLoading(false);
+        /*
+         * A REFUSAL is not a missing preview.
+         *
+         * A document over the page limit comes back 413 with an explanation of what to do about it.
+         * Falling through to the branch below would file that under "previews are unavailable" and
+         * still show the selector, so the student would pick pages from a document that is going to
+         * be rejected — and never see the sentence telling them to split it.
+         */
+        if (!pageRes.ok) {
+          setPendingPdf(null);
+          setDocumentPages([]);
+          setUploadError(typeof pageData?.error === "string" ? pageData.error : "Could not read that file.");
+          setUploadPhase("error");
+          return;
+        }
         if (pageData?.kind === "pages" && Array.isArray(pageData.pages)) {
           setDocumentPages(pageData.pages);
           setPagesFidelity(pageData.fidelity === "approximate" ? "approximate" : "rendered");
@@ -523,6 +557,7 @@ type BuildCost =
       setUploadedFile({ name: file.name, slideCount: data.slideCount ?? 0, kind: "pptx", assetCount: data.assetCount ?? 0 });
       setSlideContext(data.fullText ?? "");
       setDiagramHints(data.diagramHints ?? "");
+      setDocumentId(typeof data.documentId === "string" ? data.documentId : null);
       // A deck hides content in pictures for the same reason a paper does, and gets the same
       // reading — this is what was read off its slides.
       setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
@@ -1020,6 +1055,8 @@ type BuildCost =
     kind?: "pdf" | "pptx" | "suprnotes" | "task-folder";
     /** A dragged page region is already an explicit scope choice; never ask the student again. */
     scopeSelected?: boolean;
+    /** Handle for the page images this parse rendered. Null when none were produced. */
+    documentId?: string | null;
   };
 
   async function build(
@@ -1084,6 +1121,9 @@ type BuildCost =
     const focusText = fresh?.focus ?? uploadFocus;
     const transcriptText = fresh?.transcript ?? ocrTranscript;
     const slides = fresh?.slideContext ?? slideContext;
+    // Same freshness rule as everything else here: a just-parsed value beats state, which is stale
+    // for exactly one tick after an upload.
+    const docImagesId = fresh?.documentId ?? documentId;
 
     setBuildStatus(doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
 
@@ -1096,6 +1136,8 @@ type BuildCost =
       // than `suprnotes`, and the passage read from its slides is just as much the subject there.
       ...(transcriptText ? { transcript: transcriptText } : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
+      // What lets the model read the pages instead of only a text extraction of them.
+      ...(docImagesId ? { documentId: docImagesId } : {}),
     };
 
     try {

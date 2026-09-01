@@ -290,7 +290,16 @@ ${beat.script}${definition}${points}${compare}`,
       );
 
       await runGeneration(
-        { topic: label, suprnotes: sourceDocument },
+        {
+          topic: label,
+          suprnotes: sourceDocument,
+          // The same handle the visual app sends, so a voice upload is written from the pages
+          // rather than from a text extraction of them. Omitted when the parse rendered none.
+          ...(typeof parsed.documentId === "string" ? { documentId: parsed.documentId } : {}),
+          ...(typeof parsed.ocrTranscript === "string" && parsed.ocrTranscript
+            ? { transcript: parsed.ocrTranscript }
+            : {}),
+        },
         label,
         controller,
       );

@@ -46,6 +46,15 @@ export function lectureCacheKey(input: {
   /** Every model/flag that can materially change generated boards. Without this, changing the
    *  deployment quality profile can still serve a lecture built under the previous profile. */
   generationProfile?: Record<string, string | number | boolean>;
+  /**
+   * Whether the lecture was written with the document's PAGE IMAGES in context, and how many.
+   *
+   * The same document and question produce a materially different lecture depending on whether the
+   * model could see the pages, so the two must not share a cache entry. Without this a text-only
+   * lecture cached during a store miss would keep being served to later requests that did have the
+   * images — withholding the better answer, and looking exactly like the images never worked.
+   */
+  contextMode?: string;
 }): string {
   const payload = JSON.stringify({
     v: CACHE_VERSION,
@@ -58,6 +67,7 @@ export function lectureCacheKey(input: {
     focus: input.focus ?? "",
     transcript: input.transcript ?? "",
     outline: input.outline ?? null,
+    contextMode: input.contextMode ?? "text",
   });
   return createHash("sha256").update(payload).digest("hex").slice(0, 40);
 }
