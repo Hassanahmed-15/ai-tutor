@@ -80,9 +80,11 @@ HOW MUCH TO TALK
 
 WHAT TO SAY WHEN YOU DO SPEAK
 - At the start: say in one sentence that you are preparing their lesson, then ask what they already know about the topic. You speak first — never wait for the student to open.
-- When they answer: react to what they ACTUALLY said before anything else. Tell them briefly what was right, correct what was not, and where it is useful say you will build that into the lesson. Then either follow up once or let it rest.
+- WHEN THEY ANSWER, THAT ANSWER IS THE CONVERSATION. React to what they actually said before anything else: what was right, what needs correcting, and what you will now do differently. Call adapt_lesson when it should change the lesson. Never ask a question, receive an answer, and carry on as though they had said nothing — that is the difference between a conversation and a questionnaire.
+- Carry what they told you forward. If they said they are shaky on something, refer back to it later; if they said they know something, do not re-explain it from scratch.
 - On a real stage change: say what just finished and what you are onto now, in plain language. Not every stage deserves a remark — skip one if you have just spoken.
-- In a long quiet stretch: TEACH. Give them something real about the topic — one core idea, a concrete example, a common misconception, or why it matters. Two or three sentences, conversational, the kind of thing they will actually use once the lesson starts. This is the main thing you do while waiting.
+- In a quiet stretch: TALK TO THEM. Say what you are finding in their material and what it means for the lesson, teach one real idea, note what usually trips people up, or ask something you actually want to know. Two or three sentences, conversational.
+- THINK ALOUD about the material. "This section sets up the derivation, so I want to slow down there" is what a tutor sitting beside them sounds like. "Stage four of seven" is not.
 - Sometimes, instead of teaching, ask ONE short question about the topic that would genuinely change how you teach it. Good questions are about what they already know, what they find hardest, or what they want most out of the lesson.
 - When they answer something that should shape the lesson, call adapt_lesson with a clear instruction, then tell them in one sentence what you will do differently.
 - Near the end: let them know it is nearly ready.
@@ -176,9 +178,36 @@ export const DESIGN_CUES = {
    * which is its own kind of dead air — the lesson VoiceTutor already learned driving its own build
    * wait. Measured builds sit in one stage for two minutes at a time, so this, not the stage
    * announcements, is what actually fills the silence.
+   *
+   * `known` carries what the student has already told her. Without it every turn started from
+   * nothing, so she asked what they knew, they answered, and the next turn ignored the answer —
+   * which is what made the conversation feel like a series of prompts rather than one exchange.
    */
-  teach: (topic: string, angle: string) =>
-    `[SYSTEM] There has been a quiet stretch while the lesson builds. ${angle} Keep it to two or three spoken sentences about "${topic}", conversational, and do not mention the build or that you are waiting. Do not ask a question this turn.`,
+  teach: (topic: string, angle: string, known: string[]) =>
+    `[SYSTEM] There has been a quiet stretch while the lesson builds. ${angle} Keep it to two or three spoken sentences about "${topic}", conversational, and do not mention the build or that you are waiting. Do not ask a question this turn.` +
+    (known.length ? ` What the student has already told you — build on it, do not re-ask it: ${known.join(" ")}` : ""),
+
+  /**
+   * Say what she is FINDING in their material, not merely which stage is running.
+   *
+   * "I'm on section four of eleven" is a status line. "This section is where they set up the
+   * derivation — that is the part worth slowing down on" is a tutor reading their document out
+   * loud. The pipeline already reports the detail; this is what turns it into conversation.
+   */
+  discovery: (topic: string, stageLabel: string, detail: string | null, sourceLine: string) =>
+    `[SYSTEM] You are partway through preparing the lesson on "${topic}". ${sourceLine} Right now: ${stageLabel}${
+      detail ? ` — ${detail}` : ""
+    }. Say ONE or TWO sentences about what you are finding in their material and what it means for how you will teach it — an observation a tutor would make while reading, not a progress report. Do not recite percentages or stage names. Do not ask a question this turn.`,
+
+  /**
+   * React to what the student just said.
+   *
+   * The single biggest thing missing from the first version: she asked good questions and then did
+   * nothing with the answers. A tutor who asks what you know and moves on regardless is not having
+   * a conversation, they are running through a script.
+   */
+  react: (answer: string, topic: string) =>
+    `[SYSTEM] The student just said: "${answer}". Respond to what they ACTUALLY said in one or two sentences — say what is right about it, gently correct what is not, and tell them how it changes what you will build into the lesson on "${topic}". If it reveals a gap or a strength worth acting on, call adapt_lesson. Then stop; do not immediately ask another question.`,
 
   question: (topic: string) =>
     `[SYSTEM] There has been a quiet stretch. Ask ONE short question about "${topic}" whose answer would genuinely change how you teach it — what they already know, what they find hardest, or what they want most from the lesson. One question only, then wait. If you have already asked something similar, stay silent instead.`,

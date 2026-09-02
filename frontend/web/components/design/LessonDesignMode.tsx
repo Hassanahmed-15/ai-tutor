@@ -74,9 +74,9 @@ export type LessonDesignModeProps = {
  * silences of roughly two minutes each. At 30s this puts three or four remarks into a gap that
  * previously had none, which is the difference between a companion and a dead screen.
  */
-const QUIET_GAP_MS = 30_000;
+const QUIET_GAP_MS = 12_000;
 /** Minimum spacing between ANY two prompted remarks, so a stage change cannot stack onto a lesson. */
-const MIN_SPEAK_GAP_MS = 18_000;
+const MIN_SPEAK_GAP_MS = 7_000;
 
 /**
  * What Aria contributes during a wait, in rotation.
@@ -87,11 +87,14 @@ const MIN_SPEAK_GAP_MS = 18_000;
  * requirement expressed as a ratio rather than as a hope.
  */
 const WAIT_ANGLES = [
+  "DISCOVERY",
   "Explain one core idea behind this topic in a couple of sentences — something they will actually use once the lesson starts.",
-  "Give a concrete, everyday example of this topic. Keep it short and vivid.",
-  "Mention the thing people most often get wrong about this topic, and the way of thinking about it that fixes it.",
-  "Say briefly why this topic is worth knowing — where it shows up or what it unlocks.",
   "ASK_QUESTION",
+  "DISCOVERY",
+  "Mention the thing people most often get wrong about this topic, and the way of thinking about it that fixes it.",
+  "Give a concrete, everyday example of this topic. Keep it short and vivid.",
+  "ASK_QUESTION",
+  "Say briefly why this topic is worth knowing — where it shows up or what it unlocks.",
 ] as const;
 
 export function LessonDesignMode({
@@ -125,6 +128,10 @@ export function LessonDesignMode({
   const [draft, setDraft] = useState("");
   const [controlError, setControlError] = useState<string | null>(null);
   const captionEndRef = useRef<HTMLDivElement | null>(null);
+  /** What the student has told us so far — threaded into later prompts so turns build on each other. */
+  const knownRef = useRef<string[]>([]);
+  /** An answer that has arrived but not yet been reacted to. Cleared once Aria responds to it. */
+  const pendingAnswerRef = useRef<string | null>(null);
 
   const percent = ready ? 1 : progressFor(progress.stage, progress.stageFraction);
   const remainingMs = ready ? 0 : estimateRemainingMs(progress.elapsedMs, percent);
@@ -235,6 +242,18 @@ export function LessonDesignMode({
         }
         return [...prev.slice(-14), { role, text, final }];
       });
+      /*
+       * Remember what the student says, so later turns can build on it.
+       *
+       * The first version displayed the transcript and did nothing else with it, which is why the
+       * conversation felt one-sided: Aria asked what they knew, they answered, and the next prompted
+       * turn started from nothing. Anything long enough to carry meaning is kept; "yeah" and "mm" are
+       * not worth threading into a prompt.
+       */
+      if (role === "student" && final && text.trim().length > 8) {
+        knownRef.current = [...knownRef.current.slice(-4), text.trim()];
+        pendingAnswerRef.current = text.trim();
+      }
     },
     onTutorTurnComplete: () => {
       lastSpokeAtRef.current = Date.now();
@@ -462,25 +481,54 @@ export function LessonDesignMode({
   useEffect(() => {
     if (liveStatus !== "live" || ready) return;
     const timer = setInterval(() => {
-      if (silencedRef.current || pausedRef.current) return;
+      if (pausedRef.current) return;
+
+      /*
+       * REACTING BEATS EVERYTHING ELSE.
+       *
+       * An unanswered answer is checked first and on a much shorter clock than a prompted remark,
+       * because the gap that makes this feel like a chatbot is the one between the student
+       * finishing a sentence and Aria acknowledging it. Gemini often replies on its own; this only
+       * fires when it did not, so a reply is never simply lost.
+       */
+      const answer = pendingAnswerRef.current;
+      if (answer) {
+        const sinceAnswer = Date.now() - studentSpokeAtRef.current;
+        if (sinceAnswer > 1200 && maybeSpeak(DESIGN_CUES.react(answer, topic), { force: true })) {
+          pendingAnswerRef.current = null;
+        }
+        return;
+      }
+
+      if (silencedRef.current) return;
       if (Date.now() - lastSpokeAtRef.current < QUIET_GAP_MS) return;
 
       const angle = WAIT_ANGLES[angleRef.current % WAIT_ANGLES.length];
-      // "Questions off" stops the asking, not the teaching — a student who does not want to be
-      // quizzed usually still wants the company. Full silence is `stop_asking`, which the student
-      // reaches by saying so out loud or by muting.
+      // "Questions off" stops the asking, not the talking — a student who does not want to be
+      // quizzed usually still wants the company. Full silence is `stop_asking`.
       if (angle === "ASK_QUESTION" && questionsOffRef.current) {
         angleRef.current += 1;
         return;
       }
+
+      const state = progressRef.current;
       const spoke =
         angle === "ASK_QUESTION"
           ? maybeSpeak(DESIGN_CUES.question(topic))
-          : maybeSpeak(DESIGN_CUES.teach(topic, angle));
+          : angle === "DISCOVERY"
+            ? maybeSpeak(
+                DESIGN_CUES.discovery(
+                  topic,
+                  stageById(state.stage)?.label ?? state.status,
+                  state.detail,
+                  sourceLine,
+                ),
+              )
+            : maybeSpeak(DESIGN_CUES.teach(topic, angle, knownRef.current));
       if (spoke) angleRef.current += 1;
-    }, 5_000);
+    }, 2_000);
     return () => clearInterval(timer);
-  }, [liveStatus, ready, topic, maybeSpeak]);
+  }, [liveStatus, ready, topic, sourceLine, maybeSpeak]);
 
   /** Nearly-done heads-up, once. */
   const nearlyRef = useRef(false);
