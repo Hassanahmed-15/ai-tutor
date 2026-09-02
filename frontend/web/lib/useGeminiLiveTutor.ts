@@ -267,6 +267,38 @@ const MAX_SESSION_MS = 5 * 60_000;
 const EXAM_MAX_SESSION_MS = 12 * 60_000;
 const SETTLE_MS = 500;
 
+/**
+ * Automatic recovery from a dropped Live socket.
+ *
+ * WHY THIS EXISTS. Every close was terminal: `onclose` called teardown, nothing dialled again, and
+ * the student was left with a dead microphone and "Gemini Live disconnected." A lesson build runs
+ * four to six minutes, and a Live session does not reliably last that long — the dev logs for a
+ * single planning session show twenty separate token mints, which is this failure happening over
+ * and over and being papered over by the student pressing the button again.
+ *
+ * ONLY FOR `alwaysOn` SESSIONS. Those are the ones whose whole purpose is to stay up across a long
+ * wait (lesson design, planning, voice-first). A session that ends because the student stopped it,
+ * went idle, or hit its cap SHOULD stay ended — reconnecting there would resurrect a conversation
+ * nobody asked for, and bill for it.
+ *
+ * BACKOFF, AND A CEILING. A server refusing connections (bad key, revoked project, quota) must not
+ * be hammered: each attempt waits longer, and after MAX_RECONNECTS the session stays down with the
+ * real reason on screen. Recovery is for transient drops, not for a misconfiguration that will
+ * never succeed however many times it is retried.
+ */
+const RECONNECT_DELAYS_MS = [1_000, 2_000, 4_000, 8_000, 15_000];
+const MAX_RECONNECTS = RECONNECT_DELAYS_MS.length;
+
+/**
+ * Close codes that mean "do not bother trying again".
+ *
+ * 1000/1005 are ordinary end-of-session closes. 1008 is a policy close — denied access, revoked
+ * key, quota — and retrying it produces the same refusal five more times while telling the student
+ * it is reconnecting. Everything else (1006 abnormal, 1011 server error, network drops) is exactly
+ * what recovery is for.
+ */
+const FATAL_CLOSE_CODES = new Set([1000, 1005, 1008]);
+
 function getAudioContextConstructor() {
   return window.AudioContext || (window as AudioWindow).webkitAudioContext;
 }
@@ -363,6 +395,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * genuinely different requests, and the UI now offers each by name.
    */
   const outputMutedRef = useRef(false);
+  /** How many times this session has auto-reconnected. Reset by a successful connect. */
+  const reconnectCountRef = useRef(0);
+  const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** True while a recovery is pending, so the UI can say "reconnecting" rather than "error". */
+  const [reconnecting, setReconnecting] = useState(false);
   const [outputMuted, setOutputMuted] = useState(false);
   const contextOnlyTurnRef = useRef(false);
   const studentTranscriptRef = useRef("");
@@ -389,9 +426,49 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     if (maxTimerRef.current) clearTimeout(maxTimerRef.current);
     if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    // A pending reconnect is a timer like any other: an explicit stop must cancel it, or the
+    // session the student just ended dials itself back a second later.
+    if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
     idleTimerRef.current = null;
     maxTimerRef.current = null;
     settleTimerRef.current = null;
+    reconnectTimerRef.current = null;
+  }, []);
+
+  /**
+   * Called via a ref because `start` is defined below this point and the close handler is created
+   * above it. A ref is the smallest way to break that cycle without reordering the whole hook.
+   */
+  const startRef = useRef<(() => Promise<void>) | null>(null);
+
+  /**
+   * Bring a dropped session back, or give up honestly.
+   *
+   * Returns true when a retry was scheduled, so the caller knows whether to report an error to the
+   * student or to say it is reconnecting. Only `alwaysOn` sessions recover — see the constants
+   * above for why a stopped, idle or capped session must stay stopped.
+   */
+  const scheduleReconnect = useCallback((closeCode?: number): boolean => {
+    if (!optionsRef.current.alwaysOn) return false;
+    if (closeCode !== undefined && FATAL_CLOSE_CODES.has(closeCode)) return false;
+    if (reconnectCountRef.current >= MAX_RECONNECTS) return false;
+
+    const delay = RECONNECT_DELAYS_MS[reconnectCountRef.current];
+    reconnectCountRef.current += 1;
+    setReconnecting(true);
+    setStatus("connecting");
+
+    if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+    reconnectTimerRef.current = setTimeout(() => {
+      reconnectTimerRef.current = null;
+      /*
+       * `endedRef` is cleared by start() itself. Reaching here means the drop was not the
+       * student's doing, so the session is allowed to come back — but if something tore it down
+       * deliberately in the meantime, clearTimers above has already cancelled this.
+       */
+      void startRef.current?.();
+    }, delay);
+    return true;
   }, []);
 
   const flushStudentTranscript = useCallback(() => {
@@ -637,7 +714,13 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     [clearTimers, flushStudentTranscript, flushTutorTranscript, stopPlayback],
   );
 
-  const stop = useCallback(() => teardown("user"), [teardown]);
+  const stop = useCallback(() => {
+    // An explicit stop must also abandon the recovery budget, so a later legitimate start()
+    // begins with a full one rather than inheriting this session's failures.
+    reconnectCountRef.current = 0;
+    setReconnecting(false);
+    teardown("user");
+  }, [teardown]);
 
   const resetIdleTimer = useCallback(() => {
     if (optionsRef.current.alwaysOn) return;
@@ -1053,7 +1136,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           onmessage: (message: GeminiServerMessage) => handleServerMessage(message),
           onerror: (event: { message?: string }) => {
             if (endedRef.current) return;
-            setErrorMessage(event.message ?? "Gemini Live connection error.");
+            // Same recovery path as a close: a transport error on a long-running session is the
+            // thing most worth surviving, since the student is mid-conversation when it lands.
+            const recovering = scheduleReconnect();
+            setErrorMessage(recovering ? null : event.message ?? "Gemini Live connection error.");
             teardown("error");
           },
           /**
@@ -1070,10 +1156,25 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             if (endedRef.current) return;
             const reason = event?.reason?.trim();
             const clean = event?.code === 1000 || event?.code === 1005;
+
+            /*
+             * Try to come back before reporting a failure.
+             *
+             * A dropped socket used to end the session outright, which is why a lesson build —
+             * four to six minutes, longer than a Live session reliably lasts — kept leaving the
+             * student with a dead microphone. The teardown still happens either way; what is new
+             * is that an `alwaysOn` session dials again afterwards instead of staying dead.
+             *
+             * The message is chosen by whether recovery is actually coming: promising a
+             * reconnection that will not happen is worse than the blunt error it replaced.
+             */
+            const recovering = scheduleReconnect(event?.code);
             setErrorMessage(
-              reason && !clean
-                ? `Gemini Live disconnected: ${reason}`
-                : "Gemini Live disconnected.",
+              recovering
+                ? null
+                : reason && !clean
+                  ? `Gemini Live disconnected: ${reason}`
+                  : "Gemini Live disconnected.",
             );
             teardown("error");
           },
@@ -1125,6 +1226,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           setMicAvailable(false);
         }
       });
+      /*
+       * A working connection clears the recovery budget.
+       *
+       * Without this the counter only ever climbs, so a session that dropped four times over an
+       * hour — recovering fully each time — would refuse the fifth. The budget is meant to stop a
+       * hopeless retry loop against a refusing server, not to ration a long healthy session.
+       */
+      reconnectCountRef.current = 0;
+      setReconnecting(false);
+
       if (!optionsRef.current.alwaysOn) {
         resetIdleTimer();
         const cap = optionsRef.current.examMode ? EXAM_MAX_SESSION_MS : MAX_SESSION_MS;
@@ -1154,7 +1265,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       setErrorMessage(error instanceof Error ? error.message : "Gemini Live connection failed.");
       teardown("error");
     }
-  }, [handleServerMessage, markTutorActive, resetIdleTimer, startMicrophone, teardown]);
+  }, [handleServerMessage, markTutorActive, resetIdleTimer, scheduleReconnect, startMicrophone, teardown]);
 
   const setMicEnabled = useCallback((enabled: boolean) => {
     // Record intent first. During connection there is intentionally no track yet; returning before
@@ -1235,6 +1346,17 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     setMicEnabled(!currentlyEnabled);
   }, [setMicEnabled]);
 
+  /*
+   * Published for the close handler, which is constructed before `start` exists.
+   *
+   * In an effect rather than during render: writing a ref while rendering is what React forbids,
+   * and nothing here needs it sooner. Every reconnect goes through a timer of at least a second,
+   * so the ref is always populated long before it is read.
+   */
+  useEffect(() => {
+    startRef.current = start;
+  }, [start]);
+
   const say = useCallback(
     (prompt: string) => {
       if (!sessionRef.current || !prompt.trim()) return;
@@ -1311,6 +1433,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     requestMicrophone,
     outputMuted,
     setOutputMuted: setOutputMutedPublic,
+    /** True while a dropped session is waiting to dial again — distinct from a hard error. */
+    reconnecting,
     sendText,
     say,
     addContext,

@@ -282,7 +282,7 @@ export function LessonDesignMode({
     startMuted: false,
   });
 
-  const { start, stop, say, status: liveStatus, outputMuted, errorMessage } = tutor;
+  const { start, stop, say, status: liveStatus, outputMuted, errorMessage, reconnecting } = tutor;
   const sayRef = useRef(say);
   const isSpeakingRef = useRef(tutor.isSpeaking);
   const liveStatusRef = useRef(liveStatus);
@@ -355,8 +355,10 @@ export function LessonDesignMode({
 
   const liveLabel = paused
     ? "Paused"
-    : liveStatus === "connecting"
-      ? "Connecting…"
+    : reconnecting
+      ? "Reconnecting…"
+      : liveStatus === "connecting"
+        ? "Connecting…"
       : liveStatus === "mic-denied"
         ? "Microphone unavailable — you can still type"
         : liveStatus === "blocked"
