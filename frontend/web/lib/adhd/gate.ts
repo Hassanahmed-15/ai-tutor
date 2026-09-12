@@ -39,30 +39,25 @@ export function isAdhdLearner(profile: ProfileLike): boolean {
  * and the track vocabulary (`TrackMeta`) meet in exactly one place. `LearnPage` previously hardcoded
  * `TRACKS[0]`, which is why a profile of `"adhd"` sat in Cosmos doing nothing at all.
  *
- * Everything that is not `"adhd"` resolves to Standard — including `null` and `"none"` — because the
- * other accessibility tracks are still withheld from the UI (see components/hud/tracks.ts).
+ * Deaf and dyslexia profiles route to their generated-lecture-compatible players. Blind and
+ * low-vision are handled earlier by VoiceModeSwitch, and all remaining values use Standard.
  */
 export function trackForProfile(profile: ProfileLike): TrackMeta {
   if (isAdhdLearner(profile)) return ADHD_TRACK;
 
   /**
-   * Dyslexia routes to its own player, for the same reason ADHD routes to its own layer: the
+   * Deaf and dyslexia route to their own player variants, for the same reason ADHD routes to its own layer: the
    * profile is the only thing that decides, and there is no picker.
    *
    * Kept in THIS function rather than a second one beside it. Two functions both answering "which
    * track is this learner on" is precisely the drift the note above warns about — the ninth caller
    * picks the wrong one and a learner gets the wrong lesson.
    *
-   * Deliberately narrow. Every other planned track still reads its lines from content hand-authored
-   * for the twelve demo beat ids, so pointing a generated lecture at one would freeze it on beat
-   * one — which is exactly the bug the dyslexia player had to be fixed for. Widening this is one
-   * entry, once that player has had the same treatment.
-   *
    * `blind` and `low-vision` are absent on purpose: they are handled far earlier by VoiceModeSwitch
    * in app/page.tsx, which replaces the whole router rather than choosing a track.
    */
-  if (profile?.accessibility === "dyslexia") {
-    return [...TRACKS, ...PLANNED_TRACKS].find((track) => track.id === "dyslexia") ?? TRACKS[0];
+  if (profile?.accessibility === "dyslexia" || profile?.accessibility === "deaf") {
+    return [...TRACKS, ...PLANNED_TRACKS].find((track) => track.id === profile.accessibility) ?? TRACKS[0];
   }
 
   return TRACKS[0];

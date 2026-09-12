@@ -21,6 +21,8 @@ import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
 import type { Beat } from "@/lib/lessonContent";
+import type { LectureMode } from "@/lib/db/cosmos";
+import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
@@ -104,6 +106,8 @@ type OutlineStreamEvent =
 type LecturePayload = {
   topic: string;
   mood: string;
+  sourceType: "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder";
+  mode: LectureMode;
   context?: string;
   diagramHints?: string;
   slideImages?: Array<{ slide: number; descriptions: string[] }>;
@@ -403,6 +407,11 @@ type BuildCost =
    * here directly — via the nav rather than the front page — gets the capture form.
    */
   useEffect(() => {
+    const savedLecture = takePendingLecture();
+    if (savedLecture) {
+      openSavedLecture(savedLecture);
+      return;
+    }
     const brief = takePendingBrief();
     if (!brief) return;
 
@@ -1302,6 +1311,8 @@ type BuildCost =
     const payload: LecturePayload = {
       topic: trimmed,
       mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}`,
+      sourceType: fresh?.kind ?? uploadedFile?.kind ?? "prompt",
+      mode: selectedMode.id === "none" ? "standard" : selectedMode.id as LectureMode,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
       ...(focusText ? { focus: focusText } : {}),
       // Sent whichever route the upload took: a deck reaches generation through `context` rather
@@ -1389,6 +1400,25 @@ type BuildCost =
       setError(err instanceof Error ? err.message : "Generation failed.");
       setPhase("error");
     }
+  }
+
+  function openSavedLecture(lecture: { topic: string; beats: Beat[] }) {
+    // A replay package is self-contained. Clear transient upload context so follow-up tools do not
+    // accidentally read a different document that happened to be selected earlier in this tab.
+    setSourceDocument(null);
+    setSlideContext("");
+    setDiagramHints("");
+    setSlideImages([]);
+    setUploadFocus("");
+    setOcrTranscript("");
+    setDocumentId(null);
+    setFullDocumentText("");
+    setUploadedFile(null);
+    setBeats(lecture.beats);
+    setBuiltTopic(lecture.topic);
+    setBuildCost(null);
+    setError(null);
+    setPhase("teaching");
   }
 
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.

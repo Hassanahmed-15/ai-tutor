@@ -26,6 +26,8 @@ export type LectureJobState = "running" | "done" | "error";
 
 export type LectureJob = {
   id: string;
+  /** Owner copied from the authenticated request; polling must present the same account. */
+  userId: string;
   state: LectureJobState;
   createdAt: number;
   updatedAt: number;
@@ -70,10 +72,12 @@ function sweep(): void {
   }
 }
 
-export function createJob(status = "Starting"): LectureJob {
+export function createJob(userId: string, status = "Starting"): LectureJob {
+  if (!userId) throw new Error("Lecture jobs require an authenticated owner.");
   sweep();
   const job: LectureJob = {
     id: randomUUID(),
+    userId,
     state: "running",
     createdAt: Date.now(),
     updatedAt: Date.now(),

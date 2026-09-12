@@ -9,6 +9,8 @@ import { Leaderboard } from "@/components/adhd/Leaderboard";
 import { Thoughts } from "@/components/adhd/Thoughts";
 import { isAdhdLearner } from "@/lib/adhd/gate";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
+import { LectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
+import { setPendingLecture } from "@/lib/pendingLecture";
 
 /**
  * The front page. One panel, centred, and nothing else.
@@ -52,6 +54,11 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
     // The file itself is handed over, not just its name — the student chose it here and must not
     // be asked to choose it again on the next screen.
     setPendingBrief({ topic: topic.trim(), file });
+    go("learn");
+  }
+
+  function replayLecture(lecture: ReplayPackage) {
+    setPendingLecture({ ...lecture, mode: lecture.mode ?? "standard" });
     go("learn");
   }
 
@@ -229,6 +236,10 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             </div>
           )}
         </form>
+
+        <div className="mt-10 text-left">
+          <LectureHistory onReplay={replayLecture} />
+        </div>
 
         {/* The prompt page is where a learner starts, so it is where a standings table is actually
             seen. Gated on the profile — nobody outside the ADHD track is shown a board they can

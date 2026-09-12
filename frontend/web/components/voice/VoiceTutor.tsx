@@ -187,6 +187,7 @@ ${beat.script}${definition}${points}${compare}`,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mood: "Voice-first mode: spoken narration only, no visual board.",
+          mode: profile?.accessibility === "low-vision" ? "low-vision" : "blind",
           ...payload,
         }),
         signal: controller.signal,
@@ -224,7 +225,7 @@ ${beat.script}${definition}${points}${compare}`,
         `[SYSTEM] The lecture on "${label}" is ready — ${beats.length} sections. Tell the student briefly, then begin it by calling control_lecture with action "resume".`,
       );
     },
-    [],
+    [profile?.accessibility],
   );
 
   /** Kick off generation from a spoken topic. */
@@ -236,7 +237,7 @@ ${beat.script}${definition}${points}${compare}`,
       setLecture({ status: "building", topic, beats: [], index: 0, startedAt: Date.now() });
 
       try {
-        await runGeneration({ topic }, topic, controller);
+        await runGeneration({ topic, sourceType: "prompt" }, topic, controller);
       } catch (err) {
         if (controller.signal.aborted) return;
         const message = err instanceof Error ? err.message : "The lecture could not be built.";
@@ -292,6 +293,7 @@ ${beat.script}${definition}${points}${compare}`,
       await runGeneration(
         {
           topic: label,
+          sourceType: isDeck ? "pptx" : "pdf",
           suprnotes: sourceDocument,
           // The same handle the visual app sends, so a voice upload is written from the pages
           // rather than from a text extraction of them. Omitted when the parse rendered none.
