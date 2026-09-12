@@ -32,17 +32,24 @@ export function ManimBoard({
   script,
   progress,
   quality = "medium",
+  savedUrl,
   onError,
 }: {
   script: unknown;
   progress?: number;
   quality?: "low" | "medium" | "high";
+  /** Authenticated Blob-backed URL supplied by a replay package. */
+  savedUrl?: string;
   onError?: () => void;
 }) {
   // Starts in "rendering" rather than being set there by the effect: VisualDirector mounts
   // this with key={beat.id}, so a new beat is a fresh component and the initial state is
   // already correct. Setting it synchronously in the effect would just be a wasted render.
-  const [state, setState] = useState<RenderState>({ status: "rendering" });
+  const [state, setState] = useState<RenderState>(() =>
+    savedUrl
+      ? { status: "ready", url: savedUrl, unsupportedOps: [] }
+      : { status: "rendering" },
+  );
   const videoRef = useRef<HTMLVideoElement | null>(null);
   // Where progress wants the video to be, recorded while a seek is already in flight.
   const pendingSeekRef = useRef<number | null>(null);
@@ -64,6 +71,10 @@ export function ManimBoard({
 
   // Ask the server to render (or serve from cache). Aborted if the beat changes mid-flight.
   useEffect(() => {
+    if (savedUrl) {
+      return;
+    }
+
     const controller = new AbortController();
 
     (async () => {
@@ -107,7 +118,7 @@ export function ManimBoard({
     // `scriptKey` is `script` by content — depending on the object itself would refetch on
     // every parent render, which is the loop this exists to kill.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scriptKey, quality]);
+  }, [scriptKey, quality, savedUrl]);
 
   // Scrub. Uses the video's OWN duration rather than the requested one: Manim quantises each
   // animation to whole frames, so the real file is a few tens of milliseconds longer than
@@ -199,6 +210,10 @@ export function ManimBoard({
         playsInline
         preload="auto"
         aria-hidden="true"
+        onError={() => {
+          setState({ status: "failed", reason: "Saved video could not be loaded." });
+          onErrorRef.current?.();
+        }}
       />
       <RendererBadge kind="manim" />
       {state.unsupportedOps.length > 0 && (

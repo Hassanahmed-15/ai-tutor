@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { manimCacheKey, renderBeat, unsupportedOpKinds, type ManimQuality } from "@/lib/manimRender";
 import { MANIM_POOL_SIZE } from "@/lib/manimWorkerPool";
+import { currentUser } from "@/lib/auth";
 
 /**
  * Renders a DrawScript beat to MP4 with Manim and returns its cache id.
@@ -18,6 +19,11 @@ const MANIM_RENDER_ENABLED = process.env.MANIM_RENDER_ENABLED === "1";
 const QUALITIES = new Set<ManimQuality>(["low", "medium", "high"]);
 
 export async function POST(req: Request) {
+  const session = await currentUser();
+  if (!session) {
+    return NextResponse.json({ error: "Authentication required." }, { status: 401 });
+  }
+
   if (!MANIM_RENDER_ENABLED) {
     return NextResponse.json(
       { error: "Manim rendering is turned off. Set MANIM_RENDER_ENABLED=1 to enable it." },

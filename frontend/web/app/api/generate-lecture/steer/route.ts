@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { addJobSteering, getJob } from "@/lib/lectureJobs";
+import { currentUser } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,6 +19,9 @@ export const dynamic = "force-dynamic";
  * their request landed.
  */
 export async function POST(request: Request) {
+  const session = await currentUser();
+  if (!session) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
+
   const body = await request.json().catch(() => ({}));
   const id = typeof body.jobId === "string" ? body.jobId : "";
   const note = typeof body.note === "string" ? body.note : "";
@@ -27,6 +31,9 @@ export async function POST(request: Request) {
 
   const job = getJob(id);
   if (!job) return NextResponse.json({ applied: false, reason: "expired" }, { status: 200 });
+  if (job.userId !== session.userId) {
+    return NextResponse.json({ error: "Lecture job not found." }, { status: 404 });
+  }
   if (job.state !== "running" && job.state !== "paused") {
     return NextResponse.json({ applied: false, reason: "finished" }, { status: 200 });
   }

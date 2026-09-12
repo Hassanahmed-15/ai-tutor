@@ -2273,7 +2273,13 @@ function VisualDirector({
         <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
           {/* ManimBoard renders its own badge: only it knows whether the video is ready or it
               is currently falling back to the live SVG board. */}
-          <ManimBoard key={beat.id} script={beat.draw} progress={drawProgress} onError={() => setManimFailed(true)} />
+          <ManimBoard
+            key={beat.id}
+            script={beat.draw}
+            progress={drawProgress}
+            savedUrl={beat.manimVideoUrl}
+            onError={() => setManimFailed(true)}
+          />
         </section>
       );
     }

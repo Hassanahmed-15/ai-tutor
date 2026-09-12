@@ -46,17 +46,12 @@ export function trackForProfile(profile: ProfileLike): TrackMeta {
   if (isAdhdLearner(profile)) return ADHD_TRACK;
 
   /**
-   * Dyslexia routes to its own player, for the same reason ADHD routes to its own layer: the
+   * Deaf and dyslexia route to their own player variants, for the same reason ADHD routes to its own layer: the
    * profile is the only thing that decides, and there is no picker.
    *
    * Kept in THIS function rather than a second one beside it. Two functions both answering "which
    * track is this learner on" is precisely the drift the note above warns about — the ninth caller
    * picks the wrong one and a learner gets the wrong lesson.
-   *
-   * Deliberately narrow. Every other planned track still reads its lines from content hand-authored
-   * for the twelve demo beat ids, so pointing a generated lecture at one would freeze it on beat
-   * one — which is exactly the bug the dyslexia player had to be fixed for. Widening this is one
-   * entry, once that player has had the same treatment.
    *
    * `blind` and `low-vision` are absent on purpose: they are handled far earlier by VoiceModeSwitch
    * in app/page.tsx, which replaces the whole router rather than choosing a track.
