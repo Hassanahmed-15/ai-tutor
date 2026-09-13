@@ -17,6 +17,7 @@ import {
   type LectureVideoDoc,
 } from "./db/cosmos";
 import type { Beat } from "./lessonContent";
+import type { LearnerProfileSnapshot } from "./progressiveLectureTypes";
 import { selectAnimationRenderer } from "./animationRouting";
 import {
   manimCacheKey,
@@ -26,12 +27,13 @@ import {
 } from "./manimRender";
 
 export type LecturePackage = {
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
   lectureId: string;
   userId: string;
   topic: string;
   sourceType: LectureSourceType;
   mode: LectureMode;
+  learnerProfile?: LearnerProfileSnapshot;
   createdAt: string;
   updatedAt: string;
   beats: Beat[];
@@ -137,26 +139,30 @@ export type ArchivedLecture = {
  * eligible beats concurrently in the background.
  */
 export async function archiveLecture(input: {
+  /** Optional stable id for idempotent queue-driven finalization. */
+  lectureId?: string;
   userId: string;
   topic: string;
   sourceType: LectureSourceType;
   mode: LectureMode;
   beats: Beat[];
+  learnerProfile?: LearnerProfileSnapshot;
 }): Promise<ArchivedLecture> {
   await ensureContainers();
 
-  const lectureId = randomUUID();
+  const lectureId = input.lectureId ?? randomUUID();
   const now = new Date().toISOString();
   const packageBlobName = lecturePackageBlobName(input.userId, lectureId);
   const quality = configuredQuality();
   const targets = collectVideoTargets(input.beats, quality);
   const initialPackage: LecturePackage = {
-    schemaVersion: 1,
+    schemaVersion: input.learnerProfile ? 2 : 1,
     lectureId,
     userId: input.userId,
     topic: input.topic,
     sourceType: input.sourceType,
     mode: input.mode,
+    learnerProfile: input.learnerProfile,
     createdAt: now,
     updatedAt: now,
     beats: cloneBeats(input.beats),
@@ -170,6 +176,7 @@ export async function archiveLecture(input: {
     topic: input.topic,
     sourceType: input.sourceType,
     mode: input.mode,
+    learnerProfile: input.learnerProfile,
     packageBlobName,
     status: targets.length > 0 ? "processing-videos" : "ready",
     beatCount: input.beats.length,
@@ -181,7 +188,7 @@ export async function archiveLecture(input: {
     error: null,
   };
 
-  await lectures().items.create(doc);
+  await lectures().items.upsert(doc);
   try {
     const packageBytes = await uploadJsonBlob(packageBlobName, initialPackage);
     doc = { ...doc, packageBytes };

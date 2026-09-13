@@ -68,6 +68,8 @@ export function useLessonChat(opts: {
   lessonQuestion?: string;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
+  /** Lets the progressive planner learn from the question without adding separate adaptation UI. */
+  onQuestionAsked?: (question: string) => void;
   /** Called when the explanation closes, so the player can re-open its clarity gate. */
   onExplanationClosed?: () => void;
   /** Surface autoplay-blocked so the player can show its banner. */
@@ -94,6 +96,7 @@ export function useLessonChat(opts: {
       if (!trimmed || explaining) return;
       unlockAudio();
       opts.pausePlayer();
+      opts.onQuestionAsked?.(trimmed);
       stopNarration();
       setChat((c) => [...c, { role: "you", text: trimmed }]);
       setExplaining(true);
@@ -125,6 +128,10 @@ export function useLessonChat(opts: {
             setDrawProgress(1);
           },
           onBlocked: () => opts.onVoiceBlocked?.(),
+          // `pausePlayer` has already frozen the current lecture. Preserve that audio handle while
+          // this one-off answer speaks so "continue" can resume at its exact timestamp instead of
+          // recreating the beat narration from the beginning.
+          preserveActive: true,
         });
         cancelRef.current = handle;
       } catch (err) {

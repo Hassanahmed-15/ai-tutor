@@ -5,13 +5,9 @@ import Image from "next/image";
 import type { Beat } from "@/lib/lessonContent";
 
 /**
- * Teacher slides — five distinct layouts a real teacher actually uses, not one
- * title+bullets template repeated forever:
- *  - intro: sets up the next idea (title + a couple of supporting points)
- *  - definition: one term, one meaning, big and isolated (vocabulary-first teaching)
- *  - checkpoint: an actual question with a text input + checked feedback
- *  - compare: two columns side by side (contrast reinforces understanding)
- *  - recap: a checklist summary of the whole lecture
+ * A short section card shown before the board for each beat. Teaching content belongs on the
+ * animated board, so ordinary section cards deliberately contain the title and nothing else.
+ * Checkpoint beats remain interactive because the question is the purpose of that beat.
  */
 interface CheckpointResultData {
   correct: boolean;
@@ -101,58 +97,10 @@ function SlideBody({
    */
   suppressCheckpoint?: boolean;
 }) {
-  if (beat.slideKind === "definition") {
-    return (
-      <div className="text-center">
-        <Chip>{beat.stepLabel}</Chip>
-        <h2 className="mt-8 text-7xl font-black tracking-tight">{beat.definitionTerm}</h2>
-        <p className="mx-auto mt-6 max-w-xl text-2xl font-bold leading-snug text-white/75">{beat.definitionMeaning}</p>
-      </div>
-    );
-  }
-
-  if (beat.slideKind === "compare" && beat.compareLeft && beat.compareRight) {
-    return (
-      <div className="text-center">
-        <Chip>{beat.stepLabel}</Chip>
-        <h2 className="mt-6 text-4xl font-black tracking-tight">{beat.title}</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
-          {[beat.compareLeft, beat.compareRight].map((col) => (
-            <div key={col.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
-              <p className="text-sm font-black uppercase tracking-wide text-indigo-300">{col.label}</p>
-              <div className="mt-4 flex flex-col gap-2.5">
-                {col.points.map((p) => (
-                  <p key={p} className="flex items-center gap-2.5 text-lg font-bold text-white/80">
-                    <span className="size-1.5 shrink-0 rounded-full bg-fuchsia-400" />
-                    {p}
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  /*
-   * A suppressed checkpoint beat is skipped entirely, not merely stripped of its answer box.
-   *
-   * Leaving the rest of the slide in place still gave the learner a page headed "Checkpoint 1" with
-   * the title "Quick check" that asked nothing — an announcement for a question that was not coming,
-   * which then only arrived after they skipped the beat. In this track a checkpoint beat is not a
-   * page at all.
-   */
+  // Tracks with their own checkpoint cadence still get the same title-only section card, never a
+  // second question or a preview of the teaching content.
   if (beat.slideKind === "checkpoint" && suppressCheckpoint) {
-    // Nothing that names a checkpoint: not the "Checkpoint 1" chip, not the "Quick check" title.
-    // Aria keeps narrating over it; the real question arrives on its own cadence.
-    return (
-      <div className="text-center">
-        <p className="mx-auto max-w-2xl text-2xl font-bold leading-snug text-white/55">
-          {beat.points[0] ?? ""}
-        </p>
-      </div>
-    );
+    return <BeatTitleCard title={beat.title} />;
   }
 
   if (beat.slideKind === "checkpoint" && beat.checkpoint && !suppressCheckpoint) {
@@ -168,49 +116,13 @@ function SlideBody({
     );
   }
 
-  if (beat.slideKind === "recap") {
-    return (
-      <div className="text-center">
-        <Chip>{beat.stepLabel}</Chip>
-        <h2 className="mt-6 text-5xl font-black tracking-tight">{beat.title}</h2>
-        <div className="mx-auto mt-8 flex max-w-xl flex-col gap-3 text-left">
-          {beat.points.map((p, i) => (
-            <p
-              key={p}
-              className="beat-fade-in flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-lg font-bold text-white/85"
-              style={{ animationDelay: `${200 + i * 160}ms` }}
-            >
-              <span className="grid size-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-indigo-400 to-fuchsia-400 text-xs font-black text-white">
-                {i + 1}
-              </span>
-              {p}
-            </p>
-          ))}
-        </div>
-      </div>
-    );
-  }
+  return <BeatTitleCard title={beat.title} />;
+}
 
-  // intro (default)
+function BeatTitleCard({ title }: { title: string }) {
   return (
     <div className="text-center">
-      <Chip>{beat.stepLabel}</Chip>
-      <h2 className="mt-7 text-6xl font-black leading-[1.02] tracking-tight">{beat.title}</h2>
-      {beat.points.length > 0 && (
-        <div className="mt-9 flex flex-col items-center gap-3">
-          {beat.points.map((p, i) => (
-            <p
-              key={p}
-              className="beat-fade-in flex items-center gap-3 text-2xl font-bold text-white/75"
-              style={{ animationDelay: `${250 + i * 220}ms` }}
-            >
-              <span className="size-2 rounded-full bg-gradient-to-r from-indigo-400 to-fuchsia-400" />
-              {p}
-            </p>
-          ))}
-        </div>
-      )}
-      <p className="mt-10 text-sm font-bold uppercase tracking-[0.2em] text-white/30">Watch me draw it →</p>
+      <h2 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">{title}</h2>
     </div>
   );
 }

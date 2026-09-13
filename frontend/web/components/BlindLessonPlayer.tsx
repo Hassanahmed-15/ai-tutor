@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { getBlindBeatContent } from "@/lib/blindLectureContent";
@@ -66,14 +67,24 @@ export function BlindLessonPlayer({
   beats = demoBeats,
   title = "Photosynthesis",
   autoStart = false,
+  hasMoreBeats = false,
+  totalBeatCount,
+  onBeatIndexChange,
+  onLearnerInteraction,
 }: {
   onExit?: () => void;
   onComplete?: () => void;
   beats?: Beat[];
   title?: string;
   autoStart?: boolean;
+  hasMoreBeats?: boolean;
+  totalBeatCount?: number;
+  onBeatIndexChange?: (index: number) => void;
+  onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
 }) {
   const [index, setIndex] = useState(0);
+  const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
+  const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [phase, setPhase] = useState<Phase>("script");
   const [announcement, setAnnouncement] = useState("Press Space to begin the lecture.");
@@ -88,6 +99,23 @@ export function BlindLessonPlayer({
   const [micOn, setMicOn] = useState(false);
   const [heard, setHeard] = useState("");
   const [micSupported, setMicSupported] = useState<boolean>(() => getSpeechRecognition() !== null);
+  useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
+  useEffect(() => {
+    if (!waitingForNextBeat) return;
+    queueMicrotask(() => {
+      if (index < beats.length - 1) {
+        setWaitingForNextBeat(false);
+        setIndex(index + 1);
+        setPhase("script");
+        setAnnouncement("The next part is ready.");
+      } else if (!hasMoreBeats) {
+        setWaitingForNextBeat(false);
+        setPhase("done");
+        setAnnouncement("That's the end of the lecture. Press R to restart, or Escape to exit.");
+        onComplete?.();
+      }
+    });
+  }, [waitingForNextBeat, index, beats.length, hasMoreBeats, onComplete]);
   const [vadState, setVadState] = useState<VadState>("idle");
   const [conversationState, setConversationState] = useState<ConversationState>("lecture");
 
@@ -221,9 +249,14 @@ export function BlindLessonPlayer({
       setIndex((i) => i + 1);
       setPhase("script");
     } else {
-      setPhase("done");
-      setAnnouncement("That's the end of the lecture. Press R to restart, or Escape to exit.");
-      onComplete?.();
+      if (hasMoreBeats) {
+        setWaitingForNextBeat(true);
+        setAnnouncement("Aria is preparing the next part. It will continue automatically.");
+      } else {
+        setPhase("done");
+        setAnnouncement("That's the end of the lecture. Press R to restart, or Escape to exit.");
+        onComplete?.();
+      }
     }
   }
 
@@ -494,6 +527,7 @@ export function BlindLessonPlayer({
           runCommand(data.action);
           return;
         case "answer":
+          onLearnerInteraction?.({ kind: "question", detail: phrase });
           if (data.answer) {
             setConversationState("responding");
             speak(data.answer, () => {});
@@ -925,7 +959,7 @@ export function BlindLessonPlayer({
         <header className="relative flex items-center justify-between">
           <HudCorners accent="var(--accent-blind)" />
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent-blind">Audio-first lecture · beat {index + 1} of {beats.length}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent-blind">Audio-first lecture · beat {index + 1} of {displayBeatCount}</p>
             <h1 className="text-2xl font-black tracking-tight">{title}</h1>
           </div>
           {onExit && (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { Board, AvatarRing, checkAnswer, MAX_ATTEMPTS, type CheckpointResult } from "./LessonPlayer";
@@ -46,11 +47,13 @@ type Stage = "slide" | "board";
 
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null,
-  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
-  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
+  const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
+  const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
   const [voiceBlocked, setVoiceBlocked] = useState(false);
@@ -60,6 +63,20 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const [sentenceCue, setSentenceCue] = useState({ index: 0, total: 1, text: "" });
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate] = useState(1);
+  useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
+  useEffect(() => {
+    if (!waitingForNextBeat) return;
+    queueMicrotask(() => {
+      if (index < beats.length - 1) {
+        setWaitingForNextBeat(false);
+        setIndex(index + 1);
+        setStage("slide");
+      } else if (!hasMoreBeats) {
+        setWaitingForNextBeat(false);
+        onComplete?.();
+      }
+    });
+  }, [waitingForNextBeat, index, beats.length, hasMoreBeats, onComplete]);
   // (Re)starts narration for the current beat only when there's nothing to resume in place; pausing
   // never bumps it, so a pause freezes and a resume continues instead of replaying the beat.
   const [startNonce, setStartNonce] = useState(0);
@@ -93,6 +110,12 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
+  // Progressive generation appends future beats during playback. Read that changing tail state at
+  // narration completion without letting it invalidate and restart the current audio effect.
+  const playbackTailRef = useRef({ beatsLength: beats.length, hasMoreBeats, onComplete });
+  useEffect(() => {
+    playbackTailRef.current = { beatsLength: beats.length, hasMoreBeats, onComplete };
+  }, [beats.length, hasMoreBeats, onComplete]);
   const isCheckpoint = beat.slideKind === "checkpoint";
 
   const attention = useAttentionMonitor(cameraEnabled);
@@ -136,6 +159,8 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     // Same unification as the standard LessonPlayer: a chat question pauses/resumes in place via
     // the lesson machine instead of destroying and restarting the beat's narration.
     pausePlayer: () => lesson.enterChat({ resumeAfterAnswer: true }),
+    onQuestionAsked: (question) => onLearnerInteraction?.({ kind: "question", detail: question }),
+    onExplanationClosed: () => lesson.requestResume(),
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
@@ -170,6 +195,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     onTranscript: (role, text, final) => {
       if (!final || !text.trim()) return;
       chat.appendTurn(role === "student" ? "you" : "aria", text);
+      if (role === "student") onLearnerInteraction?.({ kind: "question", detail: text.trim() });
     },
     // The tutor's pause_lecture / resume_lecture tools control the scripted lecture.
     onPauseLecture: () => lesson.pause("user"),
@@ -293,11 +319,15 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
             setWaitingOnCheckpoint(true);
           } else {
             setIndex((i) => {
-              if (i < beats.length - 1) return i + 1;
-              onComplete?.();
+              const tail = playbackTailRef.current;
+              if (i < tail.beatsLength - 1) {
+                setStage("slide");
+                return i + 1;
+              }
+              if (tail.hasMoreBeats) setWaitingForNextBeat(true);
+              else tail.onComplete?.();
               return i;
             });
-            setStage("slide");
           }
         },
         onBlocked: () => setVoiceBlocked(true),
@@ -316,8 +346,11 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       voice.stopTeacher();
       setSpeaking(false);
     };
+    // `chat.busy` is deliberately only the start-time guard above. Making it a dependency runs this
+    // effect's cleanup as soon as a question opens, which cancels (rather than pauses) the preserved
+    // lecture handle and makes the eventual resume restart the beat from line one.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, stage, isCheckpoint, beat.script, rate, beats.length, chat.busy, onComplete]);
+  }, [index, startNonce, stage, isCheckpoint, beat.script, rate]);
 
   // Pause/resume IN PLACE (same as the standard player): leaving `teaching` freezes the audio;
   // returning continues from the exact spot. `startNonce` starts a fresh beat when nothing is frozen.
@@ -440,7 +473,8 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     setDrawProgress(0);
     setIndex((i) => {
       if (i < beats.length - 1) return i + 1;
-      onComplete?.();
+      if (hasMoreBeats) setWaitingForNextBeat(true);
+      else onComplete?.();
       return i;
     });
     setStage("slide");
@@ -505,7 +539,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   }
 
   const hasStarted = lesson.mode !== "idle" || index > 0 || stage === "board";
-  const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / beats.length) * 100;
+  const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / displayBeatCount) * 100;
   const statusText = focusPause
     ? "paused — focus check"
     : speaking
@@ -650,7 +684,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
             </button>
             <div>
               <p className="hud-eyebrow text-[11px] tracking-[0.16em] text-accent-adhd">
-                {hasStarted ? <span className="capitalize">{statusText}…</span> : "ADHD-aware tutor"} · beat {index + 1}/{beats.length}
+                {hasStarted ? <span className="capitalize">{statusText}…</span> : "ADHD-aware tutor"} · beat {index + 1}/{displayBeatCount}
               </p>
               <h1 className="max-w-[36ch] truncate text-xl font-black tracking-tight">{title}</h1>
             </div>

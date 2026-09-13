@@ -73,7 +73,10 @@ function SandboxLab() {
   const key = params.get("topic") ?? "respiration";
   const auto = params.get("auto") === "1";
   const [progress, setProgress] = useState(() => {
-    const p = Number(params.get("p"));
+    const requested = params.get("p");
+    // `Number(null)` is 0. Opening the lab without `p` therefore used to hide every
+    // sentence-synchronised element and make a healthy generated board look completely blank.
+    const p = requested === null ? 1 : Number(requested);
     return Number.isFinite(p) && p >= 0 ? Math.min(1, p) : 1;
   });
 

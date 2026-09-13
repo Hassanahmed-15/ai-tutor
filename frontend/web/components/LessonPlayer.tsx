@@ -34,6 +34,7 @@ import { VoiceState, derivePhase } from "@/components/classroom/VoiceState";
 import { useManimPrefetch } from "@/lib/useManimPrefetch";
 import { useNarrationPrefetch } from "@/lib/useNarrationPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
+import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
@@ -187,6 +188,10 @@ export function LessonPlayer({
   documentId = "",
   lessonQuestion = "",
   fullDocumentText = "",
+  hasMoreBeats = false,
+  totalBeatCount,
+  onBeatIndexChange,
+  onLearnerInteraction,
 }: {
   onExit?: () => void;
   /** Fired once, when the last beat finishes playing (natural end of lecture) — distinct from
@@ -222,8 +227,16 @@ export function LessonPlayer({
    * it, because a student reading page 4 will ask about page 7.
    */
   fullDocumentText?: string;
+  /** True while the progressive worker is still appending future beats. */
+  hasMoreBeats?: boolean;
+  totalBeatCount?: number;
+  onBeatIndexChange?: (index: number) => void;
+  onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
 }) {
   const [index, setIndex] = useState(0);
+  const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
+  const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
+  useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
   // The ADHD layer decides the face; the header renders it. Subscribed rather than passed, because
   // the layer is a CHILD of this component and props only travel downward.
   const [face, setFace] = useState<Expression>("neutral");
@@ -241,6 +254,19 @@ export function LessonPlayer({
   const [checkpointDone, setCheckpointDone] = useState<Record<number, boolean>>({});
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
+  useEffect(() => {
+    if (!waitingForNextBeat) return;
+    queueMicrotask(() => {
+      if (index < beats.length - 1) {
+        setWaitingForNextBeat(false);
+        setIndex(index + 1);
+        setStage("slide");
+      } else if (!hasMoreBeats) {
+        setWaitingForNextBeat(false);
+        onComplete?.();
+      }
+    });
+  }, [waitingForNextBeat, index, beats.length, hasMoreBeats, onComplete]);
   const [voiceBlocked, setVoiceBlocked] = useState(false);
   const [checkpointResult, setCheckpointResult] = useState<CheckpointResult>(null);
   const [waitingOnCheckpoint, setWaitingOnCheckpoint] = useState(false);
@@ -264,6 +290,13 @@ export function LessonPlayer({
   const [rate, setRate] = useState(1);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
+  // Future beats arrive while the current one is playing. Keep tail state current without making
+  // the current narration effect depend on it: changing `beats.length`, `hasMoreBeats`, or an
+  // inline parent callback must never cancel and replay the audio already in progress.
+  const playbackTailRef = useRef({ beatsLength: beats.length, hasMoreBeats, onComplete });
+  useEffect(() => {
+    playbackTailRef.current = { beatsLength: beats.length, hasMoreBeats, onComplete };
+  }, [beats.length, hasMoreBeats, onComplete]);
 
   // Start rendering every Manim beat the moment the lecture loads, not when it is reached.
   // A render takes seconds and the narration does not wait, so on-demand rendering always
@@ -459,6 +492,7 @@ export function LessonPlayer({
       // it a silent model looks identical to a dead session, and they have no reason to keep talking.
       if (checkinRef.current) setCheckinLine(text.trim());
       chat.appendTurn(role === "student" ? "you" : "aria", text);
+      if (role === "student") onLearnerInteraction?.({ kind: "question", detail: text.trim() });
     },
     onSessionEnded: () => {
       setSessionActive(false);
@@ -673,6 +707,7 @@ export function LessonPlayer({
       bumpInteraction();
       // Scored by the ADHD layer if one is mounted; a no-op otherwise.
       emitAdhdEvent({ type: "answer-correct" });
+      onLearnerInteraction?.({ kind: "checkpoint", correct: true });
       lesson.requestResume();
     },
     onFailed: () => {
@@ -682,6 +717,7 @@ export function LessonPlayer({
       // Costs nothing — it only withholds the all-correct bonus. Charging for wrong answers is how
       // a learner concludes the safe move is to stop answering.
       emitAdhdEvent({ type: "answer-wrong" });
+      onLearnerInteraction?.({ kind: "checkpoint", correct: false });
       /*
        * A MISSED ANSWER CARRIES ON. It used to `pause("wrong-answer")`, and nothing in the app ever
        * read that reason — the re-explanation it was named for was never built. So the lecture
@@ -713,6 +749,8 @@ export function LessonPlayer({
       setBeatQuestions((n) => n + 1);
       lesson.enterChat({ resumeAfterAnswer: true });
     },
+    onQuestionAsked: (question) => onLearnerInteraction?.({ kind: "question", detail: question }),
+    onExplanationClosed: () => lesson.requestResume(),
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
@@ -1064,11 +1102,15 @@ export function LessonPlayer({
             setWaitingOnCheckpoint(true);
           } else {
             setIndex((i) => {
-              if (i < beats.length - 1) return i + 1;
-              onComplete?.();
+              const tail = playbackTailRef.current;
+              if (i < tail.beatsLength - 1) {
+                setStage("slide");
+                return i + 1;
+              }
+              if (tail.hasMoreBeats) setWaitingForNextBeat(true);
+              else tail.onComplete?.();
               return i;
             });
-            setStage("slide");
           }
         },
         onBlocked: () => setVoiceBlocked(true),
@@ -1093,8 +1135,11 @@ export function LessonPlayer({
       voice.stopTeacher();
       setSpeaking(false);
     };
+    // `chat.busy` is deliberately only the start-time guard above. Making it a dependency runs this
+    // effect's cleanup as soon as a question opens, which cancels (rather than pauses) the preserved
+    // lecture handle and makes the eventual resume restart the beat from line one.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, stage, isCheckpoint, adhd, beat.script, rate, beats.length, chat.busy, deafMode, onComplete, animationBlocking]);
+  }, [index, startNonce, stage, isCheckpoint, adhd, beat.script, rate, deafMode, animationBlocking]);
 
   // Pause/resume IN PLACE, driven by the single mode value. Leaving `teaching` freezes the audio
   // (and with it the board reveal + sentence cue); returning to it continues from the exact same
@@ -1249,7 +1294,8 @@ export function LessonPlayer({
     setDrawProgress(0);
     setIndex((i) => {
       if (i < beats.length - 1) return i + 1;
-      onComplete?.();
+      if (hasMoreBeats) setWaitingForNextBeat(true);
+      else onComplete?.();
       return i;
     });
     setStage("slide");
@@ -1276,6 +1322,7 @@ export function LessonPlayer({
     const keywordResult = checkAnswer(beat, answer);
     if (keywordResult?.correct) {
       setCheckpointResult(keywordResult);
+      onLearnerInteraction?.({ kind: "checkpoint", correct: true, detail: answer });
       window.setTimeout(advanceFromCheckpoint, 2200);
       return;
     }
@@ -1298,16 +1345,19 @@ export function LessonPlayer({
           feedback: data.feedback || (data.correct ? beat.checkpoint?.correctFeedback ?? "That's right." : beat.checkpoint?.hintFeedback ?? ""),
         });
         if (data.correct) {
+          onLearnerInteraction?.({ kind: "checkpoint", correct: true, detail: answer });
           window.setTimeout(advanceFromCheckpoint, 2200);
           return;
         }
         setCheckpointAttempts((n) => n + 1);
+        onLearnerInteraction?.({ kind: "checkpoint", correct: false, detail: answer });
         return;
       }
       throw new Error("grader unavailable");
     } catch {
       setCheckpointResult(keywordResult);
       setCheckpointAttempts((n) => n + 1);
+      onLearnerInteraction?.({ kind: "checkpoint", correct: false, detail: answer });
     }
   }
 
@@ -1480,17 +1530,28 @@ export function LessonPlayer({
      */
     if (mcqRef.current) return;
     // The disengagement signal, and the only thing that subtracts XP.
-    if (index < beats.length - 1) emitAdhdEvent({ type: "beat-skipped" });
-    if (index < beats.length - 1) goTo(index + 1);
+    if (index < beats.length - 1) {
+      emitAdhdEvent({ type: "beat-skipped" });
+      goTo(index + 1);
+      return;
+    }
+    // The planned next beat exists but has not reached the contiguous playback buffer yet. Stop
+    // this beat once and wait at its completed frame; changing stage/index here used to restart the
+    // same narration, while disabling Skip left the learner trapped on it.
+    if (hasMoreBeats) {
+      stopVoice();
+      setDrawProgress(1);
+      setWaitingForNextBeat(true);
+    }
   }
   function cycleRate() {
     setRate((r) => (r >= 1.5 ? 0.85 : r === 0.85 ? 1 : 1.25));
   }
 
   const hasStarted = lesson.mode !== "idle" || index > 0 || stage === "board";
-  const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / beats.length) * 100;
+  const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / displayBeatCount) * 100;
 
-  const statusText = speaking ? "explaining" : waitingOnCheckpoint ? "waiting on you" : stage === "slide" ? "setting up" : "drawing";
+  const statusText = waitingForNextBeat ? "preparing next part" : speaking ? "explaining" : waitingOnCheckpoint ? "waiting on you" : stage === "slide" ? "setting up" : "drawing";
   const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
   const currentCaption = sentenceCue.text || beat.script;
 
@@ -1802,7 +1863,7 @@ export function LessonPlayer({
                 generated lesson title can be arbitrarily long. */}
             <div className="min-w-0">
               <p className="text-[0.72rem] leading-none text-[var(--hud-text-faint)]">
-                Part {index + 1} of {beats.length}
+                Part {index + 1} of {displayBeatCount}
               </p>
               <h1 className="mt-1 max-w-[38ch] truncate text-[0.95rem] font-medium leading-tight text-[var(--hud-text)]">
                 {title}
@@ -1919,7 +1980,7 @@ export function LessonPlayer({
               icon={SkipForward}
               label="Skip to next part"
               onClick={skipForward}
-              disabled={index >= beats.length - 1}
+              disabled={waitingForNextBeat || (!hasMoreBeats && index >= beats.length - 1)}
             />
 
             {/* The primary action keeps its words. Everything else on this bar is an icon, which
