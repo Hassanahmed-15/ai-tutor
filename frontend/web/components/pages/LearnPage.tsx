@@ -23,6 +23,12 @@ import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
 import type { Beat } from "@/lib/lessonContent";
 import type { LectureMode } from "@/lib/db/cosmos";
+import {
+  shouldIncludeCodeExamples,
+  type LearnerAdaptiveSignal,
+  type LearnerProfileSnapshot,
+  type ProgressiveLectureSnapshot,
+} from "@/lib/progressiveLectureTypes";
 import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
@@ -37,8 +43,8 @@ import {
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
- * learn, generates a full demo-shaped lecture for that topic (/api/generate-lecture), then
- * mounts the same LessonPlayer used by the curated demo. Hud-styled chat-style intro.
+ * learn, starts a progressively generated lecture, then mounts the same LessonPlayer used by the
+ * curated demo as soon as the opening buffer is ready. Hud-styled chat-style intro.
  */
 const SUGGESTIONS = ["How vaccines work", "Why the sky is blue", "How a black hole forms", "Supply and demand", "How memory works"];
 
@@ -54,30 +60,15 @@ const PLANNING_ANGLES: { id: PlanningAngleId; label: string }[] = [
   { id: "failure-case", label: "Through a failure" },
   { id: "analogy", label: "Through an analogy" },
 ];
-const BUILD_STEERING_QUESTIONS = [
-  {
-    question: "Should I spend extra time on the mechanism?",
-    options: [
-      { label: "Go deeper", note: "The student chose deeper technical mechanism explanations during build." },
-      { label: "Keep it crisp", note: "The student chose concise mechanism explanations during build." },
-    ],
-  },
-  {
-    question: "Should I include the common trap?",
-    options: [
-      { label: "Add the trap", note: "The student wants a Mistake Ambush/common misconception included during the lecture." },
-      { label: "Skip traps", note: "The student prefers not to spend extra time on misconception traps." },
-    ],
-  },
-  {
-    question: "What should Aria use when things get hard?",
-    options: [
-      { label: "Real example", note: "When the topic gets difficult, use a concrete real-world example." },
-      { label: "Quick check", note: "When the topic gets difficult, use a short active recall check." },
-      { label: "Analogy", note: "When the topic gets difficult, use a compact analogy." },
-    ],
-  },
-] as const;
+const DEFAULT_LEARNER_PROFILE: LearnerProfileSnapshot = {
+  expertise: "intermediate",
+  depth: "balanced",
+  goal: "curiosity",
+  codeExamples: false,
+  preferredExamples: "mixed",
+  rationale: "Aria suggested a balanced lesson from the planning conversation.",
+  confirmedAt: "",
+};
 type ScopingQuestion = {
   kind?: "scope" | "emphasis";
   question: string;
@@ -133,6 +124,7 @@ type LecturePayload = {
    * later. An id the server no longer recognises is not an error — generation falls back to text.
    */
   documentId?: string;
+  learnerProfile: LearnerProfileSnapshot;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
@@ -193,9 +185,14 @@ type BuildCost =
    */
   const builtLessonRef = useRef<{ beats: Beat[]; topic: string } | null>(null);
   const [buildSteeringActive, setBuildSteeringActive] = useState(false);
-  const [buildSteeringChoices, setBuildSteeringChoices] = useState<string[]>([]);
-  const buildSteeringNotesRef = useRef<string[]>([]);
+  const [learnerProfile, setLearnerProfile] = useState<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
+  const learnerProfileRef = useRef<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
   const buildSteeringResolveRef = useRef<(() => void) | null>(null);
+  const [progressiveSessionId, setProgressiveSessionId] = useState<string | null>(null);
+  const [progressiveComplete, setProgressiveComplete] = useState(true);
+  const [progressivePlannedBeatCount, setProgressivePlannedBeatCount] = useState(0);
+  const [progressiveStreamRevision, setProgressiveStreamRevision] = useState(0);
+  const lecturePlayheadRef = useRef(-1);
 
   // Interactive planning: ONE pre-draft gate in the main canvas (ambiguity questions if the
   // topic is genuinely ambiguous, OR topic-specific planning questions if there are real
@@ -273,6 +270,9 @@ type BuildCost =
    * rather than being swapped at the transition.
    */
   const voiceOutlineRef = useRef<PlanOutline | null>(null);
+  const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
+  const voiceLinesRef = useRef<{ role: "you" | "aria"; text: string }[]>([]);
+  const planningRevisionRef = useRef<string[]>([]);
   const voiceDocContext = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
 
   const planningVoice = useGeminiLiveTutor({
@@ -308,7 +308,10 @@ type BuildCost =
     },
     onTranscript: (role, text, final) => {
       if (!final || !text.trim()) return;
-      setVoiceLines((prev) => [...prev.slice(-40), { role: role === "student" ? "you" : "aria", text: text.trim() }]);
+      const line = { role: role === "student" ? "you" as const : "aria" as const, text: text.trim() };
+      const next = [...voiceLinesRef.current.slice(-40), line];
+      voiceLinesRef.current = next;
+      setVoiceLines(next);
     },
     /**
      * KEEP THE SOCKET OPEN THROUGH A SILENT WAIT.
@@ -327,7 +330,6 @@ type BuildCost =
     },
   });
 
-  const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
   const voiceStart = planningVoice.start;
   const voiceStop = planningVoice.stop;
 
@@ -439,6 +441,51 @@ type BuildCost =
         : uploadedFile?.kind === "pptx"
           ? "pptx"
           : "topic";
+
+  useEffect(() => {
+    if (!progressiveSessionId) return;
+    const events = new EventSource(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/events`);
+    const onSnapshot = (event: MessageEvent<string>) => {
+      const snapshot = JSON.parse(event.data) as ProgressiveLectureSnapshot;
+      setProgressivePlannedBeatCount(snapshot.plannedBeatCount);
+      setBuildStatus(snapshot.complete
+        ? "Lecture saved to your history"
+        : snapshot.starterReady
+          ? `Playing now · ${snapshot.contiguousReadyCount}/${snapshot.plannedBeatCount} beats ready`
+          : `Preparing your opening · ${snapshot.contiguousReadyCount}/${snapshot.plannedBeatCount} beats ready`);
+      if (snapshot.beats.length > 0) {
+        setBeats((current) => {
+          const next = [...current];
+          snapshot.beats.forEach((beat, index) => {
+            // Progressive enrichment keeps the beat id and script stable and replaces only its
+            // provisional draw payload. Apply that replacement even to the active beat: narration
+            // continues from the same audio clock while the board upgrades to its sandbox version.
+            // Adaptive script rewrites cannot reach the active beat because the server freezes
+            // played/current plan positions before creating a new revision.
+            next[index] = beat;
+          });
+          return next;
+        });
+      }
+      if (snapshot.starterReady) setPhase((current) => current === "building" ? "teaching" : current);
+      if (snapshot.complete) {
+        setProgressiveComplete(true);
+        setBuildCost({ kind: "generated", usd: snapshot.costUsd });
+        events.close();
+      } else if (snapshot.status === "failed") {
+        setProgressiveComplete(true);
+        if (snapshot.beats.length === 0) {
+          setError(snapshot.error || "Progressive lecture generation failed.");
+          setPhase("error");
+        }
+        events.close();
+      }
+    };
+    events.addEventListener("snapshot", onSnapshot as EventListener);
+    events.addEventListener("stream-error", () => setBuildStatus("Reconnecting to the generation worker"));
+    events.onerror = () => setBuildStatus("Reconnecting to the generation worker");
+    return () => events.close();
+  }, [progressiveSessionId, progressiveStreamRevision]);
 
 
   useEffect(() => {
@@ -879,6 +926,9 @@ type BuildCost =
     setDocumentPlanningActive(false);
     setFocusedDocumentPlanningActive(false);
     focusedPlanningFreshRef.current = null;
+    planningRevisionRef.current = [];
+    voiceLinesRef.current = [];
+    setVoiceLines([]);
   }
 
   async function callPlanApi(body: Record<string, unknown>): Promise<Record<string, unknown> | null> {
@@ -990,6 +1040,7 @@ type BuildCost =
    *  instead of the default structure, so the same topic can produce a genuinely different lesson. */
   function rerollAngle(angle: PlanningAngleId) {
     setPlanAngle(angle);
+    planningRevisionRef.current = [...planningRevisionRef.current.slice(-19), `Selected teaching angle: ${angle}.`];
     if (focusedDocumentPlanningActive) {
       const fresh = focusedPlanningFreshRef.current;
       streamOutlineRequest({
@@ -1195,6 +1246,7 @@ type BuildCost =
 
   async function reviseOutline(instruction: string) {
     if (!outline || !instruction.trim()) return;
+    planningRevisionRef.current = [...planningRevisionRef.current.slice(-19), instruction.trim()];
     const fresh = focusedPlanningFreshRef.current;
     await streamOutlineRequest({
       mode: "revise",
@@ -1218,17 +1270,23 @@ type BuildCost =
     build(topic, outline ?? undefined, focusedDocumentPlanningActive, focusedPlanningFreshRef.current ?? undefined);
   }
 
-  function chooseBuildSteering(label: string, note: string) {
+  function updateLearnerProfile(patch: Partial<LearnerProfileSnapshot>) {
     if (!buildSteeringActive) return;
-    if (!buildSteeringNotesRef.current.includes(note)) {
-      buildSteeringNotesRef.current = [...buildSteeringNotesRef.current, note];
-    }
-    setBuildSteeringChoices((prev) => (prev.includes(label) ? prev : [...prev, label]));
-    setBuildStatus(`Noted: ${label}`);
+    const merged = { ...learnerProfileRef.current, ...patch };
+    const next = { ...merged, codeExamples: shouldIncludeCodeExamples(merged) };
+    learnerProfileRef.current = next;
+    setLearnerProfile(next);
   }
 
   function continueBuildSteering() {
     if (!buildSteeringActive) return;
+    const confirmed = {
+      ...learnerProfileRef.current,
+      codeExamples: shouldIncludeCodeExamples(learnerProfileRef.current),
+      confirmedAt: new Date().toISOString(),
+    };
+    learnerProfileRef.current = confirmed;
+    setLearnerProfile(confirmed);
     buildSteeringResolveRef.current?.();
     buildSteeringResolveRef.current = null;
   }
@@ -1280,7 +1338,7 @@ type BuildCost =
   async function build(
     t: string,
     approvedOutline?: PlanOutline,
-    forceSkipSteering = false,
+    _forceSkipSteering = false,
     fresh?: FreshUpload,
     documentPlanningNotes: string[] = [],
   ) {
@@ -1307,28 +1365,50 @@ type BuildCost =
     setBuildJobId(null);
     setBuiltLesson(null);
     setBuildProgress({ stage: "analyzing", stageFraction: 0, detail: null, status: "Starting", elapsedMs: 0 });
-    setBuildSteeringChoices([]);
-    buildSteeringNotesRef.current = [];
+    setProgressiveSessionId(null);
+    setProgressiveComplete(true);
+    setProgressivePlannedBeatCount(0);
+    lecturePlayheadRef.current = -1;
 
-    // Structured uploads (PDF/PPT/task-folder/notes) must teach their source AS-IS — no planning and
-    // no build-time steering choices. Only typed prompts get the steering step. This is why a PDF was
-    // still showing "planning options" even though the outline step was already skipped.
-    if (!forceSkipSteering && !shouldSkipPlanning()) {
-      setBuildSteeringActive(true);
-      try {
-        await waitForBuildSteering(controller.signal);
-      } catch (err) {
-        if (err instanceof DOMException && err.name === "AbortError") return;
-        throw err;
-      } finally {
-        setBuildSteeringActive(false);
-      }
+    // This confirmation controls teaching depth and examples. It never changes the facts or scope
+    // selected from an uploaded source.
+    setBuildStatus("Understanding how you want to learn");
+    let suggested = DEFAULT_LEARNER_PROFILE;
+    try {
+      const suggestionResponse = await fetch("/api/learner-profile/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: trimmed,
+          outline: approvedOutline,
+          planningConversation: JSON.stringify({
+            clarificationAnswers: clarifyAnswers,
+            outlineRevisions: planningRevisionRef.current,
+            voiceConversation: voiceLinesRef.current,
+          }),
+        }),
+        signal: controller.signal,
+      });
+      const suggestionData = await suggestionResponse.json().catch(() => ({}));
+      if (suggestionData.suggestion) suggested = suggestionData.suggestion as LearnerProfileSnapshot;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
+    }
+    suggested = { ...suggested, codeExamples: shouldIncludeCodeExamples(suggested) };
+    learnerProfileRef.current = suggested;
+    setLearnerProfile(suggested);
+    setBuildSteeringActive(true);
+    try {
+      await waitForBuildSteering(controller.signal);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
+      throw err;
+    } finally {
+      setBuildSteeringActive(false);
     }
 
-    const buildSteeringNotes = buildSteeringNotesRef.current;
-    const buildSteeringLine = buildSteeringNotes.length
-      ? ` Build-time student steering: ${buildSteeringNotes.join(" ")}`
-      : " Build-time student steering: no extra preference selected, use best judgment.";
+    const confirmedProfile = learnerProfileRef.current;
+    const buildSteeringLine = ` Confirmed learner profile: ${confirmedProfile.expertise}, ${confirmedProfile.depth} depth, ${confirmedProfile.goal} goal, ${confirmedProfile.preferredExamples} examples, code examples ${confirmedProfile.codeExamples ? "enabled" : "disabled"}.`;
     const documentPlanningLine = documentPlanningNotes.length
       ? ` Uploaded-source plan chosen by the student: ${documentPlanningNotes.join(" ")}`
       : "";
@@ -1377,12 +1457,32 @@ type BuildCost =
       ...(approvedOutline ? { outline: approvedOutline } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
+      learnerProfile: confirmedProfile,
     };
 
     try {
       const useFixture = process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_USE_FIXTURE === "1";
 
-      const res = await fetch(useFixture ? "/api/generate-lecture-debug" : "/api/generate-lecture", {
+      if (!useFixture) {
+        setBuildStatus("Sending the opening beats to the generation worker");
+        const progressive = await fetch("/api/progressive-lectures", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        const started = await progressive.json().catch(() => ({}));
+        if (!progressive.ok || typeof started.sessionId !== "string") {
+          throw new Error(started.error || "Could not start progressive lecture generation.");
+        }
+        setBuiltTopic(trimmed);
+        setProgressiveComplete(false);
+        setProgressiveSessionId(started.sessionId);
+        setBuildStatus("Preparing your opening beats");
+        return;
+      }
+
+      const res = await fetch("/api/generate-lecture-debug", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -1523,6 +1623,10 @@ type BuildCost =
     setDocumentId(null);
     setFullDocumentText("");
     setUploadedFile(null);
+    setProgressiveSessionId(null);
+    setProgressiveComplete(true);
+    setProgressivePlannedBeatCount(0);
+    lecturePlayheadRef.current = -1;
     setBeats(lecture.beats);
     setBuiltTopic(lecture.topic);
     setBuildCost(null);
@@ -1534,7 +1638,34 @@ type BuildCost =
   // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
   // every other mode gets to choose written or oral on the offer screen.
   function onLectureComplete() {
+    if (!progressiveComplete) return;
     setPhase("test-offer");
+  }
+
+  function onLectureBeatChange(index: number) {
+    if (index === lecturePlayheadRef.current) return;
+    lecturePlayheadRef.current = index;
+    if (!progressiveSessionId) return;
+    void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kind: "playhead", playhead: index }),
+    });
+  }
+
+  function captureLearnerInteraction(signal: LearnerAdaptiveSignal) {
+    if (!progressiveSessionId) return;
+    const streamNeedsRestart = progressiveComplete;
+    void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...signal, playhead: lecturePlayheadRef.current }),
+    }).then(async (response) => {
+      const result = await response.json().catch(() => ({})) as { adapted?: boolean };
+      if (!response.ok || result.adapted === false || !streamNeedsRestart) return;
+      setProgressiveComplete(false);
+      setProgressiveStreamRevision((revision) => revision + 1);
+    }).catch(() => {});
   }
 
   async function generateTestBank(): Promise<TestBank | null> {
@@ -1695,22 +1826,22 @@ type BuildCost =
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
     switch (selectedMode.page) {
       case "blind-demo":
-        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart />;
+        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
     }
     return (
       <div className="relative">
@@ -1872,13 +2003,8 @@ type BuildCost =
             mode={selectedMode.name}
             status={buildStatus}
             steeringActive={buildSteeringActive}
-            choices={buildSteeringChoices}
-            // The planner's own questions, grounded in this topic and any uploaded document.
-            questions={initialPlanningQuestions.map((q) => ({
-              question: q.question,
-              options: q.options.map((o) => ({ label: o.label, note: o.instruction })),
-            }))}
-            onChoose={chooseBuildSteering}
+            learnerProfile={learnerProfile}
+            onProfileChange={updateLearnerProfile}
             onContinue={continueBuildSteering}
             voice={voice}
           />
@@ -2257,9 +2383,8 @@ function BuildingState({
   mode,
   status,
   steeringActive,
-  choices,
-  questions,
-  onChoose,
+  learnerProfile,
+  onProfileChange,
   onContinue,
   voice,
 }: {
@@ -2269,25 +2394,11 @@ function BuildingState({
   /** Aria's live session, still running from planning — this screen is where she keeps company. */
   voice?: VoiceState;
   steeringActive: boolean;
-  choices: string[];
-  /** Topic-specific questions from the planner. Empty falls back to the generic set. */
-  questions?: { question: string; options: { label: string; note: string }[] }[];
-  onChoose: (label: string, note: string) => void;
+  learnerProfile: LearnerProfileSnapshot;
+  onProfileChange: (patch: Partial<LearnerProfileSnapshot>) => void;
   onContinue: () => void;
 }) {
-  /**
-   * Prefer the planner's questions over the hardcoded ones.
-   *
-   * BUILD_STEERING_QUESTIONS asks the same three things about every subject — "should I spend
-   * extra time on the mechanism?" is a reasonable question about enzyme kinetics and a meaningless
-   * one about the causes of the French Revolution. /api/plan-lesson already generates questions
-   * grounded in the actual topic (and in an uploaded document, when there is one); they were
-   * fetched but never reached this screen, so the generic set was what students always saw.
-   *
-   * The hardcoded set remains as a fallback for when planning is skipped or returns nothing —
-   * asking something generic beats asking nothing.
-   */
-  const steeringQuestions = questions && questions.length > 0 ? questions : BUILD_STEERING_QUESTIONS;
+  // One compact confirmation surface: the inference is visible, editable, and never silently used.
   return (
     <div className="relative z-10 grid h-screen place-items-center p-6 text-center">
       <HudCorners />
@@ -2317,38 +2428,30 @@ function BuildingState({
           <div className="mt-8 w-full rounded-2xl border border-[var(--hud-cyan)]/45 bg-[var(--hud-cyan)]/[0.075] p-5 text-left shadow-[0_0_60px_rgba(94,234,212,0.13)]">
             <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--hud-cyan)]">Aria needs your call</p>
             <p className="mt-2 text-sm leading-6 text-[var(--hud-text-dim)]">
-              Pick anything that matters. Then continue and Aria will build the lesson with that direction.
+              I inferred this from our planning conversation. Confirm it or make a quick change before I generate the opening.
+            </p>
+            <p className="mt-3 rounded-lg border border-[var(--hud-line)] px-3 py-2 text-xs leading-5 text-[var(--hud-text-dim)]">
+              {learnerProfile.rationale}
             </p>
             <div className="mt-4 space-y-4">
-              {steeringQuestions.map((q) => (
-                <div key={q.question}>
-                  <p className="text-sm font-semibold text-[var(--hud-text)]">{q.question}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {q.options.map((option) => {
-                      const selected = choices.includes(option.label);
-                      return (
-                        <button
-                          key={option.label}
-                          onClick={() => onChoose(option.label, option.note)}
-                          className={`rounded-full border px-3 py-1.5 text-xs font-black transition ${
-                            selected
-                              ? "border-transparent bg-[var(--hud-cyan)] text-black"
-                              : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
-                          }`}
-                        >
-                          {option.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
+              <ProfileChoice label="Your level" value={learnerProfile.expertise} options={[
+                ["beginner", "New to this"], ["intermediate", "Know the basics"], ["advanced", "Advanced"],
+              ]} onChange={(expertise) => onProfileChange({ expertise })} />
+              <ProfileChoice label="How much depth" value={learnerProfile.depth} options={[
+                ["concise", "Concise"], ["balanced", "Balanced"], ["deep", "Detailed"],
+              ]} onChange={(depth) => onProfileChange({ depth })} />
+              <ProfileChoice label="Your goal" value={learnerProfile.goal} options={[
+                ["school", "School"], ["exam", "Exam"], ["curiosity", "Curiosity"], ["practical", "Practical"], ["professional", "Professional"],
+              ]} onChange={(goal) => onProfileChange({ goal })} />
+              <ProfileChoice label="Example style" value={learnerProfile.preferredExamples} options={[
+                ["visual", "Visual"], ["real-world", "Real world"], ["worked", "Worked"], ["mixed", "Mixed"],
+              ]} onChange={(preferredExamples) => onProfileChange({ preferredExamples })} />
             </div>
             <button
               onClick={onContinue}
               className="mt-5 w-full rounded-full bg-[var(--hud-cyan)] px-4 py-3 text-sm font-black text-black transition hover:brightness-110"
             >
-              {choices.length > 0 ? "Continue with my choices →" : "Use Aria’s choice →"}
+              Confirm and start lecture →
             </button>
           </div>
         )}
@@ -2364,6 +2467,37 @@ function BuildingState({
 /** A row of quiet, flat quick-reply buttons — used inline under a chat bubble for both the rare
  *  ambiguity questions and the model-authored scoping questions. Deliberately no glow/gradient:
  *  a thin border, a filled state on hover, nothing decorative. */
+function ProfileChoice<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: Array<readonly [T, string]>;
+  onChange: (value: T) => void;
+}) {
+  return (
+    <div>
+      <p className="text-sm font-semibold text-[var(--hud-text)]">{label}</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {options.map(([id, text]) => (
+          <button
+            key={id}
+            onClick={() => onChange(id)}
+            className={`rounded-full border px-3 py-1.5 text-xs font-black transition ${value === id
+              ? "border-transparent bg-[var(--hud-cyan)] text-black"
+              : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"}`}
+          >
+            {text}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function QuickReplyChips({ options, onSelect, disabled }: { options: string[]; onSelect: (value: string) => void; disabled?: boolean }) {
   return (
     <div className="flex flex-wrap gap-2">

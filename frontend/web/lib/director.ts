@@ -61,22 +61,11 @@ export const BOARD_FOR: Record<VisualForm, BoardKind> = {
   equation: "equationBoard",
   transformation: "morph",
   "labelled-diagram": "reactAnimation",
-  // MANIM IS NO LONGER A FIRST CHOICE — it is a last resort, reachable only through
-  // lib/boardFallback.ts when the preferred engine fails.
-  //
-  // Its scene vocabulary is six geometric primitives (graph, rect, circle, vector, angle, brace).
-  // That is a maths vocabulary, and anything outside it degrades to the nearest available shape:
-  // a "Mechanics of Breathing" beat rendered as a bare orange rectangle, because a rectangle was
-  // the only container the spec could express. The empty box was the correct answer to an
-  // impossible ask.
-  //
-  // The React sandbox now draws these subjects properly — measured this session, the airways board
-  // went from a refused 2/5 to 5/5 with cartilage rings and branching bronchi — and it costs no
-  // Python render. So construction and animated-maths route there too. A geometry beat the sandbox
-  // genuinely cannot draw still reaches Manim via the fallback chain, which is exactly "only when
-  // it is the only choice".
-  construction: "reactAnimation",
-  "animated-maths": "reactAnimation",
+  // Keep Manim narrow rather than disabled: measured geometry and mathematical motion fit its
+  // vocabulary. Real-world labelled subjects remain with the sandbox so they cannot degrade into
+  // a generic geometric container.
+  construction: "manimScene",
+  "animated-maths": "manimScene",
   text: "chalkBoard",
 };
 

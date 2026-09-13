@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { Board, AvatarRing, checkAnswer, MAX_ATTEMPTS, type CheckpointResult } from "./LessonPlayer";
@@ -51,15 +52,30 @@ type Phase = "dense" | "calibrating" | "chunks";
 
 export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null,
-  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis" }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
-  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [index, setIndex] = useState(0);
+  const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
+  const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [voiceBlocked, setVoiceBlocked] = useState(false);
   const [checkpointResult, setCheckpointResult] = useState<CheckpointResult>(null);
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
+  useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
+  useEffect(() => {
+    if (!waitingForNextBeat) return;
+    queueMicrotask(() => {
+      if (index < beats.length - 1) {
+        setWaitingForNextBeat(false);
+        setIndex(index + 1);
+      } else if (!hasMoreBeats) {
+        setWaitingForNextBeat(false);
+        onComplete?.();
+      }
+    });
+  }, [waitingForNextBeat, index, beats.length, hasMoreBeats, onComplete]);
 
   /**
    * Reading level and comfort settings, from one persisted store.
@@ -199,6 +215,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     lessonQuestion,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
     pausePlayer: stopVoice,
+    onQuestionAsked: (question) => onLearnerInteraction?.({ kind: "question", detail: question }),
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
@@ -327,7 +344,8 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
             setTimeout(() => {
               setIndex((i) => {
                 if (i < beats.length - 1) return i + 1;
-                onComplete?.();
+                if (hasMoreBeats) setWaitingForNextBeat(true);
+                else onComplete?.();
                 return i;
               });
             }, 900)
@@ -372,7 +390,8 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     setCheckpointAttempts(0);
     setIndex((i) => {
       if (i < beats.length - 1) return i + 1;
-      onComplete?.();
+      if (hasMoreBeats) setWaitingForNextBeat(true);
+      else onComplete?.();
       return i;
     });
   }
@@ -441,7 +460,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
   }
 
   const hasStarted = playing || index > 0;
-  const progressPct = (index / beats.length) * 100;
+  const progressPct = (index / displayBeatCount) * 100;
   const statusText = speaking ? "reading to you" : isCheckpoint ? "your turn" : phase === "calibrating" ? "checking your reading level" : "making it simpler";
 
   return (
@@ -463,7 +482,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
             </button>
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-accent-dyslexia">
-                {hasStarted ? <span className="capitalize">{statusText}…</span> : "Reading-light tutor"} · step {index + 1}/{beats.length}
+                {hasStarted ? <span className="capitalize">{statusText}…</span> : "Reading-light tutor"} · step {index + 1}/{displayBeatCount}
               </p>
               <h1 className="max-w-[34ch] truncate text-xl font-black tracking-tight">{title}</h1>
             </div>

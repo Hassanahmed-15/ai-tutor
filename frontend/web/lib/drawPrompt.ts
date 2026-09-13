@@ -836,13 +836,14 @@ CHOOSE THE RIGHT DIAGRAM (pick the one that teaches THIS concept; do not default
 - Tree/recursion/heap/hierarchy: nodes connected by edges in levels, with labels; expand or traverse with progress.
 - Graph/network/state machine: labeled nodes and directed/undirected edges routed as smooth non-crossing curves; light up a path/traversal with progress.
 - Function/relation/growth/complexity: a labeled coordinate plane with axes and a real plotted curve/points; trace it with progress.
-- Process/procedure/pipeline: clearly separated ordered stages with directional arrows and a concrete example flowing through.
+- Process/procedure/pipeline: animate a concrete token, value, request, or object through a spatial path with meaningful boundaries and state changes. Use stage boxes only when the stages themselves are the concept.
+- Security/network/protocol: show concrete packets or data tokens crossing trust boundaries, attack and defence paths, encryption/transformation states, and layered zones. Do not reduce the idea to a row of UI-card rectangles.
 - Math derivation/equation: an equation spine with each term/step annotated progressively.
 - Comparison: two clean, separated structures side by side, only when comparison is the actual idea.
 
 CONTENT:
 - Ground every visible value, label, node, cell, and edge in the supplied title, spoken script, and brief. Use REAL example values from the narration (actual numbers, names, intervals) — not placeholders like "A/B/C" unless the narration itself is generic.
-- Boxes, cells, rows, arrows, edges, axes, and lines are ENCOURAGED here — they are the concept, not filler. What is still forbidden: decorative dotted clusters, random icons, floating cards/pills, a lone endpoint-to-endpoint arrow with two labels and nothing else, or a wall of prose.
+- Cells and nodes are appropriate for arrays, grids, trees, graphs, and state machines, but rectangles are not a universal visual language. For conceptual security, networking, and processes prefer paths, boundaries, zones, moving tokens, and transformations. Unless the concept is inherently a grid/table/array, use at most two large rectangular containers. Still forbidden: decorative dotted clusters, random icons, floating cards/pills, a lone endpoint-to-endpoint arrow with two labels and nothing else, or a wall of prose.
 - The diagram must be understandable as a static figure at progress=1: a reader should see the structure and its relationships without the narration.
 
 LAYOUT (same discipline as the physical engine):

@@ -53,6 +53,10 @@ export function lectureVideoBlobName(userId: string, lectureId: string, videoId:
   return `users/${requireSafeSegment(userId, "user id")}/lectures/${requireSafeSegment(lectureId, "lecture id")}/manim/${requireSafeSegment(videoId, "video id")}.mp4`;
 }
 
+export function progressiveLectureInputBlobName(userId: string, sessionId: string): string {
+  return `users/${requireSafeSegment(userId, "user id")}/progressive-lectures/${requireSafeSegment(sessionId, "session id")}/input.json`;
+}
+
 export async function uploadJsonBlob(blobName: string, value: unknown): Promise<number> {
   const body = Buffer.from(JSON.stringify(value), "utf8");
   const container = await lectureBlobContainer();
