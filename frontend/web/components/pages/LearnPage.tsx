@@ -5,7 +5,7 @@ import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/h
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
-import { emptyProfile, learnerInstruction, profileSummary, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
+import { applyDiagnostic, emptyProfile, learnerInstruction, profileSummary, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
 import { openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
@@ -1635,10 +1635,53 @@ type BuildCost =
     setPhase("teaching");
   }
 
+  /**
+   * Keep the learner model updating WHILE the lesson runs.
+   *
+   * The pre-lesson conversation decides where to start; these are the corrections. A student who
+   * answers every checkpoint has demonstrated more than the conversation suggested, and one who
+   * needs answers revealed has demonstrated less — recorded either way, so the next lesson on a
+   * related topic opens from what actually happened rather than from the original estimate.
+   */
+  function recordCheckpointGrade(result: { concept: string; correct: boolean; revealed: boolean }) {
+    const current = learnerProfileRef.current;
+    if (!current) return;
+    const next = applyDiagnostic(current, {
+      question: result.concept,
+      answer: result.revealed ? "(revealed)" : "(checkpoint)",
+      verdict: result.correct ? "correct" : "incorrect",
+      concept: result.concept,
+    });
+    learnerProfileRef.current = next;
+    setLearnerProfile(next);
+  }
+
+  /**
+   * Remember what this learner was taught, for the next conversation.
+   *
+   * Best-effort and never awaited anywhere that matters: the route already no-ops when signed out
+   * or when no database is configured, and a failed write must not affect a finished lesson.
+   */
+  function rememberLesson() {
+    const current = learnerProfileRef.current;
+    if (!current || !builtTopic) return;
+    void fetch("/api/learned-topics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        topic: builtTopic,
+        depth: learnerDepth ?? 2,
+        mastered: current.masteredConcepts,
+        objective: current.objective,
+      }),
+    }).catch(() => {});
+  }
+
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.
   // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
   // every other mode gets to choose written or oral on the offer screen.
   function onLectureComplete() {
+    rememberLesson();
     setPhase("test-offer");
   }
 
@@ -1809,13 +1852,13 @@ type BuildCost =
         player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
     }
     return (
       <div className="relative">

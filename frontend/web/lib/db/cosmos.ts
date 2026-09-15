@@ -94,7 +94,36 @@ export type UserDoc = {
     notes: string | null;
     updatedAt: string;
   } | null;
+  /**
+   * What this learner has been taught before, newest first.
+   *
+   * WHY ON THE USER DOCUMENT. It is small, bounded (see LEARNED_TOPIC_LIMIT), and only ever read as
+   * "this learner's history" — the same access pattern as `profile`, so a separate container would
+   * add a second round-trip and a second thing to keep consistent for no benefit.
+   *
+   * WHAT IT IS FOR. A second lesson on a related topic should not re-ask what the first one already
+   * established. Storing the resolved depth and the concepts they demonstrated means the next
+   * conversation can open from what is known rather than from nothing — the cross-session half of
+   * the learner model.
+   *
+   * DELIBERATELY NOT THE WHOLE PROFILE. Diagnostics and misconceptions are about one topic at one
+   * moment; carrying a months-old misconception forward would correct something the learner has
+   * since fixed, which is worse than asking again.
+   */
+  learnedTopics?: {
+    topic: string;
+    /** The depth the lesson was eventually taught at, 1-5. */
+    depth: number;
+    /** Concepts they demonstrated during that lesson's planning conversation. */
+    mastered: string[];
+    objective: string;
+    at: string;
+  }[];
 };
+
+/** How many past topics to keep. Enough to recognise a returning learner, small enough that the
+ *  user document stays a single cheap read. */
+export const LEARNED_TOPIC_LIMIT = 20;
 
 /**
  * One row per ADHD learner. `id` is the user id, so a session-end write is an upsert rather than a
