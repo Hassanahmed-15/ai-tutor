@@ -5,6 +5,8 @@ import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/h
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
+import { emptyProfile, learnerInstruction, profileSummary, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
+import { openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -205,6 +207,21 @@ type BuildCost =
   const [focusedDocumentPlanningActive, setFocusedDocumentPlanningActive] = useState(false);
   const focusedPlanningFreshRef = useRef<FreshUpload | null>(null);
   const [clarifyAnswers, setClarifyAnswers] = useState<{ question: string; answer: string }[]>([]);
+  /**
+   * The pre-lesson conversation about what the student already knows.
+   *
+   * Held here rather than on the server because it is per-topic and dies with the planning session:
+   * the route is stateless and takes the profile back on each turn (see mode "diagnose"). The
+   * profile is what makes the lecture different for different students; `learnerDepth` is the
+   * decision computed from it, and both travel on to the outline call and the lecture prompt.
+   */
+  const [learnerProfile, setLearnerProfile] = useState<LearnerProfile | null>(null);
+  const [learnerDepth, setLearnerDepth] = useState<DepthLevel | null>(null);
+  const [diagnosticQuestion, setDiagnosticQuestion] = useState<{ question: string; options: string[] } | null>(null);
+  const [diagnosticExchanges, setDiagnosticExchanges] = useState<{ question: string; answer: string }[]>([]);
+  const [diagnosticBusy, setDiagnosticBusy] = useState(false);
+  /** Mirrors the profile for callbacks that must not re-subscribe on every answer. */
+  const learnerProfileRef = useRef<LearnerProfile | null>(null);
   const [outline, setOutline] = useState<PlanOutline | null>(null);
   const [planLoading, setPlanLoading] = useState(false);
   const [planError, setPlanError] = useState<string | null>(null);
@@ -867,6 +884,12 @@ type BuildCost =
     setPlanThoughts([]);
     setPlanScopingQuestions([]);
     setPlanAngle("standard");
+    setLearnerProfile(null);
+    setLearnerDepth(null);
+    setDiagnosticQuestion(null);
+    setDiagnosticExchanges([]);
+    setDiagnosticBusy(false);
+    learnerProfileRef.current = null;
     setDocumentPlanningActive(false);
     setFocusedDocumentPlanningActive(false);
     focusedPlanningFreshRef.current = null;
@@ -974,7 +997,23 @@ type BuildCost =
   async function requestOutline(t: string, clarifications: { question: string; answer: string }[], angle: PlanningAngleId = "standard") {
     setPhase("outline");
     setPlanAngle(angle);
-    await streamOutlineRequest({ mode: "outline", topic: t, clarifications, angle, sourceDocument }, t);
+    /*
+     * The profile travels with the outline request, not just with the lecture.
+     *
+     * Adjusting depth after the structure is fixed cannot undo an outline whose first three
+     * subtopics define terms this student already demonstrated — the subtopic list has to be
+     * planned for them. Null when the conversation was skipped, and the route treats its absence
+     * as "plan as before".
+     */
+    await streamOutlineRequest({
+      mode: "outline",
+      topic: t,
+      clarifications,
+      angle,
+      sourceDocument,
+      ...(learnerProfileRef.current ? { learnerProfile: learnerProfileRef.current } : {}),
+      ...(learnerDepth ? { depth: learnerDepth } : {}),
+    }, t);
   }
 
   /** "Teach it differently" — rerolls the entire outline through a different pedagogical angle
@@ -1132,8 +1171,93 @@ type BuildCost =
       setInitialPlanningQuestions(data.planningQuestions as ScopingQuestion[]);
       return;
     }
-    // Nothing to ask — start drafting immediately, no gate.
-    requestOutline(trimmed, []);
+    /*
+     * Ask who this is for before planning what to teach.
+     *
+     * Only on the typed-topic path: an uploaded document returns above with its own planning, and a
+     * demo/skip path never reaches here. The opening question is asked locally rather than by a
+     * round-trip, so the conversation starts the instant the screen does.
+     */
+    setLearnerProfile(emptyProfile(trimmed));
+    learnerProfileRef.current = emptyProfile(trimmed);
+    setDiagnosticQuestion({ question: openingQuestion(trimmed), options: [] });
+  }
+
+  /**
+   * One turn of the pre-lesson conversation.
+   *
+   * Answer in, updated profile out, and either the next question or the outline. The server is
+   * stateless about this — the profile round-trips on every turn — so this function is the only
+   * place the conversation's state lives.
+   *
+   * NEVER BLOCKS THE LESSON. Every failure path here falls through to drafting the outline: a
+   * diagnostic that errors, times out, or returns nothing leaves the student with exactly the
+   * lecture they would have had before this feature existed. The stage is an enhancement, and an
+   * enhancement that can strand someone on a question screen is worse than no enhancement.
+   */
+  async function runDiagnostic(answer: string) {
+    const question = diagnosticQuestion?.question ?? openingQuestion(topic);
+    const exchanges = [...diagnosticExchanges, { question, answer }];
+    setDiagnosticExchanges(exchanges);
+    setDiagnosticQuestion(null);
+
+    /*
+     * The student's override, checked before the model is consulted.
+     *
+     * "just teach me" must not wait on a round-trip to find out whether the model agreed to stop —
+     * and a model told to be curious will occasionally ask one more anyway.
+     */
+    if (wantsToStart(answer)) {
+      setDiagnosticBusy(false);
+      requestOutline(topic, clarifyAnswers, planAngle);
+      return;
+    }
+
+    setDiagnosticBusy(true);
+    const data = await callPlanApi({
+      mode: "diagnose",
+      topic,
+      profile: learnerProfileRef.current ?? emptyProfile(topic),
+      exchanges,
+      accountContext: accountContextLine(),
+    });
+    setDiagnosticBusy(false);
+
+    if (!data) {
+      // callPlanApi already surfaced the error; teach rather than strand them on a question.
+      requestOutline(topic, clarifyAnswers, planAngle);
+      return;
+    }
+
+    const profile = (data.profile as LearnerProfile | undefined) ?? null;
+    if (profile) {
+      setLearnerProfile(profile);
+      learnerProfileRef.current = profile;
+    }
+    const depth = typeof data.depth === "number" ? (data.depth as DepthLevel) : null;
+    if (depth) setLearnerDepth(depth);
+
+    const next = data.nextQuestion as { question: string; options?: string[] } | null | undefined;
+    if (next?.question) {
+      setDiagnosticQuestion({ question: next.question, options: Array.isArray(next.options) ? next.options : [] });
+      return;
+    }
+    requestOutline(topic, clarifyAnswers, planAngle);
+  }
+
+  /**
+   * What the account already knows, so the conversation never asks for it again.
+   *
+   * Deliberately narrow. Age and accessibility pace genuinely change how something should be
+   * taught; anything else on the profile would be personalisation for its own sake, which reads as
+   * surveillance rather than teaching.
+   */
+  function accountContextLine(): string {
+    const bits: string[] = [];
+    if (profile?.age) bits.push(`age ${profile.age}`);
+    if (profile?.simplerLanguage) bits.push("prefers simpler language");
+    if (profile?.slowerPace) bits.push("prefers a slower pace");
+    return bits.join(", ");
   }
 
   /** Applies an answer to a pre-draft ambiguity question — starts the FIRST draft now that the
@@ -1355,9 +1479,20 @@ type BuildCost =
 
     setBuildStatus(doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
 
+    /*
+     * The learner profile reaches the lecture writer through `mood`, which is already the channel
+     * every build-time preference travels on (steering choices, document plan, spoken steering).
+     * Using it rather than a new field means generation, its cache key, and every existing
+     * consumer pick this up with no change — and a lesson planned for a student is cached
+     * separately from the same topic planned for someone else, which is correct.
+     */
+    const learnerLine = learnerProfileRef.current && learnerDepth
+      ? learnerInstruction(learnerProfileRef.current, learnerDepth)
+      : "";
+
     const payload: LecturePayload = {
       topic: trimmed,
-      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}`,
+      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}${learnerLine}`,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
       ...(focusText ? { focus: focusText } : {}),
       // Sent whichever route the upload took: a deck reaches generation through `context` rather
@@ -1876,6 +2011,10 @@ type BuildCost =
           thoughts={planThoughts}
           scopingQuestions={planScopingQuestions}
           angle={planAngle}
+          diagnosticQuestion={diagnosticQuestion}
+          diagnosticBusy={diagnosticBusy}
+          onAnswerDiagnostic={runDiagnostic}
+          learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
           initialAmbiguityQuestions={initialAmbiguityQuestions}
           initialPlanningQuestions={initialPlanningQuestions}
           planningAnswers={planningAnswers}
@@ -2363,6 +2502,9 @@ type OutlineChatMessage = {
    *  (onAnswerAmbiguity) instead of patching it in place (onRevise), since the answer changes
    *  what subject the outline should even be about. */
   isAmbiguity?: boolean;
+  /** True for a pre-lesson question about what the student knows — its answer goes to the
+   *  diagnostic turn rather than to the revise pipeline, since there is no outline to revise yet. */
+  isDiagnostic?: boolean;
 };
 
 /** Draft-first planning: Aria's best-guess outline appears immediately, then a live planning
@@ -2459,6 +2601,10 @@ function OutlineReviewState({
   thoughts,
   scopingQuestions,
   angle,
+  diagnosticQuestion,
+  diagnosticBusy,
+  onAnswerDiagnostic,
+  learnerSummary,
   initialAmbiguityQuestions,
   initialPlanningQuestions,
   planningAnswers,
@@ -2488,6 +2634,12 @@ function OutlineReviewState({
   angle: PlanningAngleId;
   /** Rare — seeded into the side chat as the first bubbles when the topic is genuinely
    *  ambiguous. Mutually exclusive with initialPlanningQuestions (see startPlanning). */
+  /** The one open question in the pre-lesson conversation, or null when there is nothing to ask. */
+  diagnosticQuestion: { question: string; options: string[] } | null;
+  diagnosticBusy: boolean;
+  onAnswerDiagnostic: (answer: string) => void;
+  /** "intermediate, skipping gradient descent" — what Aria concluded, in the student's terms. */
+  learnerSummary: string;
   initialAmbiguityQuestions: ClarifyQuestion[];
   /** The ONE pre-draft gate, shown in the MAIN CANVAS (not the side chat) — topic-specific
    *  planning questions worth answering before drafting starts. Empty for most topics. */
@@ -2537,6 +2689,30 @@ function OutlineReviewState({
     ]);
   }, [initialAmbiguityQuestions]);
 
+  /*
+   * The pre-lesson conversation appears as chat bubbles, in the same place Aria already asks
+   * everything else. Deliberately NOT a separate gate screen: this is a teacher asking a question
+   * before class, and routing it through a different surface would make it feel like a form.
+   *
+   * Keyed by question text so re-renders cannot duplicate a bubble, and so a NEW question always
+   * seeds even though the previous one is still in the log.
+   */
+  const seededDiagnosticRef = useRef<string>("");
+  useEffect(() => {
+    const q = diagnosticQuestion?.question;
+    if (!q || seededDiagnosticRef.current === q) return;
+    seededDiagnosticRef.current = q;
+    setChatLog((prev) => [
+      ...prev,
+      {
+        role: "aria",
+        text: q,
+        chips: (diagnosticQuestion?.options ?? []).map((label) => ({ label, instruction: label })),
+        isDiagnostic: true,
+      },
+    ]);
+  }, [diagnosticQuestion]);
+
   // Stream Aria's per-subtopic planning reasoning into the chat log as it arrives, instead of a
   // separate floating panel — same underlying data (streamOutlineRequest), one conversation.
   useEffect(() => {
@@ -2573,6 +2749,15 @@ function OutlineReviewState({
     const trimmed = instruction.trim();
     if (!trimmed || loading || sending) return;
     setChatLog((prev) => [...prev, { role: "you", text: trimmed }]);
+    /*
+     * While a pre-lesson question is open, what the student types is its ANSWER — there is no
+     * outline to revise yet, so sending it down the revise pipeline would fail on an empty outline
+     * and lose what they said.
+     */
+    if (diagnosticQuestion) {
+      onAnswerDiagnostic(trimmed);
+      return;
+    }
     setSending(true);
     await onRevise(trimmed);
     setSending(false);
@@ -2583,10 +2768,14 @@ function OutlineReviewState({
    *  scratch (the answer changes what subject it's even about, via onAnswerAmbiguity); scoping
    *  chips patch the same outline in place via the normal revise pipeline (onRevise). Either
    *  way the source bubble is marked answered so its chips disable without vanishing. */
-  function sendChip(bubbleIndex: number, questionText: string, label: string, instruction: string, isAmbiguity: boolean) {
+  function sendChip(bubbleIndex: number, questionText: string, label: string, instruction: string, isAmbiguity: boolean, isDiagnostic = false) {
     if (sending || loading) return;
     setChatLog((prev) => prev.map((m, i) => (i === bubbleIndex ? { ...m, answered: true } : m)));
     setChatLog((prev) => [...prev, { role: "you", text: label }]);
+    if (isDiagnostic) {
+      onAnswerDiagnostic(label);
+      return;
+    }
     if (isAmbiguity) {
       onAnswerAmbiguity(questionText, label);
       return;
@@ -2710,7 +2899,26 @@ function OutlineReviewState({
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_360px]">
         {/* Outline canvas */}
         <div className="min-w-0 border-r border-[var(--hud-line)] px-6 py-8 lg:px-10">
-          {!outline && initialPlanningQuestions.length > 0 ? (
+          {!outline && diagnosticQuestion ? (
+            /*
+             * Before class, not a form. The question itself lives in the chat on the right — this
+             * pane says why it is being asked, so the screen is never an empty box with a question
+             * floating beside it.
+             */
+            <div>
+              <p className="text-sm text-[var(--hud-text-dim)]">
+                Aria is working out where to start with &ldquo;{topic}&rdquo; — answer on the right, or just say
+                &ldquo;start&rdquo; and she will get going.
+              </p>
+              {learnerSummary && (
+                <p className="mt-3 text-xs font-medium uppercase tracking-wider text-[var(--hud-cyan)]/80">
+                  So far: {learnerSummary}
+                </p>
+              )}
+            </div>
+          ) : !outline && diagnosticBusy ? (
+            <p className="text-sm text-[var(--hud-text-dim)]">Working out where to start…</p>
+          ) : !outline && initialPlanningQuestions.length > 0 ? (
             renderPlanningQuestionsPanel()
           ) : !outline && initialAmbiguityQuestions.length > 0 ? (
             <p className="text-sm text-[var(--hud-text-dim)]">
@@ -2935,7 +3143,7 @@ function OutlineReviewState({
                         disabled={m.answered || sending || loading}
                         onSelect={(label) => {
                           const chip = m.chips!.find((c) => c.label === label);
-                          if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity));
+                          if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic));
                         }}
                       />
                     </div>

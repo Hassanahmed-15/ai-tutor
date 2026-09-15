@@ -124,6 +124,25 @@ export type PlanOutline = {
 };
 
 /** Additive instruction appended to the existing generate-lecture user message when an approved outline is present. */
+/**
+ * The learner profile, folded into the outline planner's user message.
+ *
+ * Separate from `outlineGroundingInstruction` because they answer different questions: that one
+ * says WHAT to cover, this says WHO it is for. An outline planned without it produces the same
+ * subtopic list for a professor and a first-year — "What is a neural network?" as step one either
+ * way — and no amount of depth instruction downstream can recover a structure that already spent
+ * its first three subtopics on material the student demonstrated they hold.
+ */
+export function outlineLearnerInstruction(instruction: string): string {
+  if (!instruction.trim()) return "";
+  return (
+    `${instruction}\n\nPLAN THE OUTLINE FOR THIS STUDENT. The subtopic list itself must reflect the ` +
+    `profile above: omit subtopics covering what they already know, add subtopics for missing ` +
+    `prerequisites and for correcting any misconception, and pitch every caption at the stated depth. ` +
+    `Do not produce a generic survey of the topic and rely on later wording to adjust it.`
+  );
+}
+
 export function outlineGroundingInstruction(outline: PlanOutline): string {
   const lines = outline.subtopics.map((s, i) => `${i + 1}. ${s.title} — ${s.caption}`).join("\n");
   const safetyNets = outline.subtopics

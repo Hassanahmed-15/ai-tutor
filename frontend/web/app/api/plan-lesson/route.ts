@@ -24,6 +24,8 @@ import {
   type LearningObjective,
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
+import { learnerInstruction } from "@/lib/learnerProfile";
+import { outlineLearnerInstruction } from "@/lib/planPrompt";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
@@ -782,7 +784,23 @@ export async function POST(req: Request) {
       ? `\nClarification from the student:\n${clarifications.map((c: { question: string; answer: string }) => `Q: ${c.question}\nA: ${c.answer}`).join("\n")}`
       : "";
 
-    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}`;
+    /*
+     * The learner profile reaches the PLANNER, not only the lecture writer.
+     *
+     * Adjusting depth after the outline is fixed cannot undo an outline that already spent its
+     * first subtopics defining terms the student demonstrated they know — the structure has to be
+     * planned for them in the first place.
+     */
+    const learnerLine = body.learnerProfile
+      ? outlineLearnerInstruction(
+          learnerInstruction(
+            sanitizeLearnerProfile(body.learnerProfile, topic),
+            topicComplexity(body.depth),
+          ),
+        )
+      : "";
+
+    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, userContent, topic);
   }
 
