@@ -222,6 +222,14 @@ type BuildCost =
   const [diagnosticBusy, setDiagnosticBusy] = useState(false);
   /** Mirrors the profile for callbacks that must not re-subscribe on every answer. */
   const learnerProfileRef = useRef<LearnerProfile | null>(null);
+  /**
+   * What this learner has been taught before, loaded once per session.
+   *
+   * The WRITE side of this already existed; without the read it was a diary nobody opened. Held in
+   * a ref because it never needs to re-render anything — it exists to be folded into the
+   * conversation's opening context so Aria does not re-ask what a previous lesson established.
+   */
+  const learnedTopicsRef = useRef<{ topic: string; depth: number; mastered: string[]; objective: string }[]>([]);
   const [outline, setOutline] = useState<PlanOutline | null>(null);
   const [planLoading, setPlanLoading] = useState(false);
   const [planError, setPlanError] = useState<string | null>(null);
@@ -458,6 +466,23 @@ type BuildCost =
     return () => {
       buildAbortRef.current?.abort();
       planAbortRef.current?.abort();
+    };
+  }, []);
+
+  /*
+   * Load past lessons once. Best-effort: the route returns an empty list when signed out or when no
+   * database is configured, so a failure here costs personalisation and never the lesson.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    void fetch("/api/learned-topics")
+      .then((r) => (r.ok ? r.json() : { topics: [] }))
+      .then((d) => {
+        if (!cancelled && Array.isArray(d?.topics)) learnedTopicsRef.current = d.topics;
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
     };
   }, []);
 
@@ -1257,7 +1282,20 @@ type BuildCost =
     if (profile?.age) bits.push(`age ${profile.age}`);
     if (profile?.simplerLanguage) bits.push("prefers simpler language");
     if (profile?.slowerPace) bits.push("prefers a slower pace");
-    return bits.join(", ");
+
+    /*
+     * Past lessons, so the conversation opens from what is already known.
+     *
+     * Only the few most recent, and only what stays true: a student who demonstrated a concept in
+     * an earlier lesson should not be asked about it again. The prompt is separately told never to
+     * re-ask anything in this line.
+     */
+    const past = learnedTopicsRef.current.slice(0, 3);
+    for (const t of past) {
+      const mastered = t.mastered.length ? `, demonstrated ${t.mastered.slice(0, 3).join(", ")}` : "";
+      bits.push(`previously taught "${t.topic}" at depth ${t.depth}/5${mastered}`);
+    }
+    return bits.join("; ");
   }
 
   /** Applies an answer to a pre-draft ambiguity question — starts the FIRST draft now that the

@@ -158,6 +158,25 @@ export function resolveDepth(profile: LearnerProfile, topicComplexity: DepthLeve
   if (wrong >= 2) depth -= 1;
 
   /*
+   * CONCEPTS DEMONSTRATED IN AN EARLIER LESSON RAISE THE FLOOR.
+   *
+   * Without this, cross-session memory was incoherent: a learner returning after a lesson on
+   * gradient descent had those concepts correctly carried into masteredConcepts, and was then
+   * taught at Foundation anyway — the lecture was simultaneously told "skip gradient descent" and
+   * "define every term on first use". The cause is that `claimedLevel` reflects what they said
+   * about TODAY's topic ("not much about backprop yet"), which is true and not evidence of being a
+   * beginner overall.
+   *
+   * Fixed here rather than in the prompt. Relying on the model to remember to raise `claimedLevel`
+   * is exactly the kind of instruction that is followed most of the time, and a depth decision
+   * should not be probabilistic when the evidence is sitting in the profile. Held to Beginner
+   * rather than higher because prior mastery of the PREREQUISITES says nothing about this topic.
+   */
+  if (profile.masteredConcepts.length >= 2 && profile.prerequisiteGaps.length === 0) {
+    depth = Math.max(depth, 2);
+  }
+
+  /*
    * A missing prerequisite is a hard floor, not a nudge. There is no version of a good lecture that
    * builds on an idea the student does not have, so this caps depth at Beginner and the outline is
    * separately told to teach the prerequisite first.

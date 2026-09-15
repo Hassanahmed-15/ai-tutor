@@ -48,6 +48,7 @@ GRADING THE LAST ANSWER (set "gradedAnswer" whenever the student just answered s
 - "skipped" — they declined, said "just teach me", or gave nothing usable. Never penalise this, never ask it again.
 - "selfReport": TRUE when they described their own level rather than used an idea ("I'm advanced", "I know this well", "I'm a total beginner"). FALSE when they actually explained, predicted, or applied something. This matters: describing yourself as an expert is not evidence that you are one, so a self-report never counts as verification of a claim. Set it on every gradedAnswer.
 - Recognition is NOT mastery. "I've heard of backprop" is weakConcepts, not masteredConcepts. Only credit an idea they actually USED or explained.
+- PAST LESSONS COUNT AS DEMONSTRATED. If the account context says they were previously taught something and demonstrated specific concepts, put those concepts straight into masteredConcepts and set claimedLevel to at least the depth they reached. They earned that in an earlier lesson; making them prove it again is exactly the repetitive questioning to avoid. Saying "not much about THIS topic yet" does not erase what a previous lesson established about a prerequisite — treat the two separately.
 
 CHOOSING THE NEXT QUESTION — ask at most one, and prefer none:
 - Return null for "nextQuestion" the moment another answer would not change the lesson. Stopping early is the correct outcome, not a failure.
@@ -91,7 +92,12 @@ export function buildDiagnosticUserMessage(input: {
   const { topic, profile, exchanges, accountContext } = input;
   const lines: string[] = [`Topic the student asked to learn: "${topic}"`];
 
-  if (accountContext) lines.push(`\nWhat their account already tells you (do not re-ask any of this): ${accountContext}`);
+  if (accountContext) {
+    lines.push(
+      `\nWhat their account already tells you (do not re-ask any of this): ${accountContext}` +
+        `\nAnything listed there as previously demonstrated belongs in masteredConcepts — it is established, not a blank slate.`,
+    );
+  }
 
   if (exchanges.length) {
     lines.push("\nThe conversation so far:");

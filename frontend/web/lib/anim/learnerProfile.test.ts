@@ -250,6 +250,40 @@ test("questioning stops as soon as another answer would not change the lesson", 
   );
 });
 
+test("a returning learner is not taught from scratch again", () => {
+  /*
+   * Cross-session memory was incoherent without this: concepts demonstrated in an earlier lesson
+   * were carried into masteredConcepts, and the lecture was then pitched at Foundation anyway — so
+   * it was told to skip gradient descent AND to define every term on first use.
+   *
+   * `claimedLevel` is low here on purpose: it reflects what they said about TODAY's topic ("not
+   * much about backprop yet"), which is true and is not evidence of being a beginner overall.
+   */
+  const returning = profile({
+    claimedLevel: 1,
+    masteredConcepts: ["gradient descent", "loss functions", "partial derivatives"],
+  });
+  assert.ok(
+    resolveDepth(returning, 5) >= 2,
+    "prior demonstrated concepts must lift the floor above Foundation",
+  );
+
+  // But prior mastery of the PREREQUISITES says nothing about this topic, so it stops at Beginner.
+  assert.ok(resolveDepth(returning, 5) <= 3, "inherited mastery must not vault them to Advanced");
+});
+
+test("a genuine beginner gains no phantom mastery", () => {
+  // The floor above must not fire for someone who has demonstrated nothing.
+  assert.ok(resolveDepth(profile({ claimedLevel: 1 }), 5) <= 2);
+  // Nor when a prerequisite is actually missing, whatever else they know.
+  const gap = profile({
+    claimedLevel: 1,
+    masteredConcepts: ["a", "b", "c"],
+    prerequisiteGaps: ["derivatives"],
+  });
+  assert.ok(resolveDepth(gap, 5) <= 2, "a real gap still floors them");
+});
+
 test("a boast is not its own verification", () => {
   /*
    * THE BUG THIS PINS. Saying "I know everything about neural networks" is a turn, so the model
