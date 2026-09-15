@@ -11,6 +11,19 @@ import {
   type PlanningAngleId,
 } from "@/lib/planPrompt";
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
+import {
+  MAX_DIAGNOSTIC_QUESTIONS,
+  applyDiagnostic,
+  emptyProfile,
+  hasEnoughSignal,
+  profileSummary,
+  resolveDepth,
+  type Confidence,
+  type DepthLevel,
+  type LearnerProfile,
+  type LearningObjective,
+} from "@/lib/learnerProfile";
+import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
@@ -135,6 +148,142 @@ function sanitizeSafetyNet(raw: unknown): PlanOutline["subtopics"][number]["safe
   const reinforceAfter = Math.max(1, Math.min(3, rawAfter)) as 1 | 2 | 3;
   if (!prerequisite || !diagnostic || !masterySignal || !rescueMove || !reinforcementPrompt) return undefined;
   return { prerequisite, diagnostic, masterySignal, rescueMove, reinforceAfter, reinforcementPrompt };
+}
+
+
+/**
+ * Accept a learner profile from the client without trusting any of it.
+ *
+ * The client owns the profile across a conversation (it is per-topic and dies with the planning
+ * session), so it arrives over the wire each turn and every field has to be re-checked. Anything
+ * unrecognised degrades to the empty profile rather than throwing: a malformed profile must cost
+ * the student a slightly less personalised lesson, never the lesson itself.
+ */
+function sanitizeLearnerProfile(raw: unknown, topic: string): LearnerProfile {
+  const base = emptyProfile(topic);
+  if (!raw || typeof raw !== "object") return base;
+  const rec = raw as Record<string, unknown>;
+
+  const strings = (value: unknown, cap = 8): string[] =>
+    Array.isArray(value)
+      ? value.filter((v): v is string => typeof v === "string" && v.trim().length > 0).map((v) => v.trim().slice(0, 120)).slice(0, cap)
+      : [];
+
+  const level = typeof rec.claimedLevel === "number" && rec.claimedLevel >= 1 && rec.claimedLevel <= 5
+    ? (Math.round(rec.claimedLevel) as DepthLevel)
+    : null;
+
+  const CONFIDENCES = ["low", "medium", "high", "unknown"];
+  const OBJECTIVES = ["exam", "fundamentals", "project", "interview", "curiosity", "unknown"];
+
+  return {
+    ...base,
+    topic,
+    claimedLevel: level,
+    confidence: typeof rec.confidence === "string" && CONFIDENCES.includes(rec.confidence)
+      ? (rec.confidence as Confidence)
+      : "unknown",
+    objective: typeof rec.objective === "string" && OBJECTIVES.includes(rec.objective)
+      ? (rec.objective as LearningObjective)
+      : "unknown",
+    masteredConcepts: strings(rec.masteredConcepts),
+    weakConcepts: strings(rec.weakConcepts),
+    misconceptions: strings(rec.misconceptions, 5),
+    prerequisiteGaps: strings(rec.prerequisiteGaps, 5),
+    preferredStyle: typeof rec.preferredStyle === "string" ? rec.preferredStyle.trim().slice(0, 200) || null : null,
+    background: typeof rec.background === "string" ? rec.background.trim().slice(0, 300) || null : null,
+    diagnostics: Array.isArray(rec.diagnostics)
+      ? (rec.diagnostics as unknown[])
+          .filter((d): d is Record<string, unknown> => Boolean(d) && typeof d === "object")
+          .map((d) => ({
+            question: typeof d.question === "string" ? d.question.slice(0, 300) : "",
+            answer: typeof d.answer === "string" ? d.answer.slice(0, 500) : "",
+            verdict: (["correct", "partial", "incorrect", "misconception", "skipped"] as const).includes(d.verdict as never)
+              ? (d.verdict as LearnerProfile["diagnostics"][number]["verdict"])
+              : "skipped",
+            concept: typeof d.concept === "string" ? d.concept.slice(0, 120) : undefined,
+            misconception: typeof d.misconception === "string" ? d.misconception.slice(0, 200) : undefined,
+            selfReport: d.selfReport === true,
+          }))
+          .slice(0, MAX_DIAGNOSTIC_QUESTIONS)
+      : [],
+  };
+}
+
+/**
+ * Fold the model's assessment of this turn into the profile the client sent.
+ *
+ * MERGE, NEVER REPLACE. The model sees the conversation but the client holds the accumulated truth,
+ * so overwriting would let one turn's omission erase a misconception found two turns earlier. Every
+ * list is unioned, and the graded answer goes through `applyDiagnostic` so a concept cannot end up
+ * in both mastered and weak.
+ */
+function mergeAssessment(
+  profile: LearnerProfile,
+  raw: unknown,
+  exchanges: { question: string; answer: string }[],
+): LearnerProfile {
+  if (!raw || typeof raw !== "object") return profile;
+  const assessed = sanitizeLearnerProfile(raw, profile.topic);
+  const union = (a: string[], b: string[], cap: number) => {
+    const seen = new Set(a.map((v) => v.toLowerCase()));
+    return [...a, ...b.filter((v) => !seen.has(v.toLowerCase()))].slice(0, cap);
+  };
+
+  let next: LearnerProfile = {
+    ...profile,
+    // A later self-report supersedes an earlier one; everything else accumulates.
+    claimedLevel: assessed.claimedLevel ?? profile.claimedLevel,
+    confidence: assessed.confidence !== "unknown" ? assessed.confidence : profile.confidence,
+    objective: assessed.objective !== "unknown" ? assessed.objective : profile.objective,
+    masteredConcepts: union(profile.masteredConcepts, assessed.masteredConcepts, 8),
+    weakConcepts: union(profile.weakConcepts, assessed.weakConcepts, 8),
+    misconceptions: union(profile.misconceptions, assessed.misconceptions, 5),
+    prerequisiteGaps: union(profile.prerequisiteGaps, assessed.prerequisiteGaps, 5),
+    preferredStyle: assessed.preferredStyle ?? profile.preferredStyle,
+    background: assessed.background ?? profile.background,
+    updatedAt: new Date().toISOString(),
+  };
+
+  const graded = (raw as Record<string, unknown>).gradedAnswer;
+  const last = exchanges[exchanges.length - 1];
+  if (graded && typeof graded === "object" && last) {
+    const g = graded as Record<string, unknown>;
+    const verdict = (["correct", "partial", "incorrect", "misconception", "skipped"] as const).includes(g.verdict as never)
+      ? (g.verdict as LearnerProfile["diagnostics"][number]["verdict"])
+      : "skipped";
+    next = applyDiagnostic(next, {
+      question: last.question,
+      answer: last.answer,
+      verdict,
+      concept: typeof g.concept === "string" ? g.concept.trim().slice(0, 120) || undefined : undefined,
+      misconception: typeof g.misconception === "string" ? g.misconception.trim().slice(0, 200) || undefined : undefined,
+      // Carried through so a boast cannot count as its own verification — see hasEnoughSignal.
+      selfReport: g.selfReport === true,
+    });
+  }
+  return next;
+}
+
+/** One question, or none. Anything malformed becomes none — a bad question is worse than silence. */
+function sanitizeDiagnosticQuestion(raw: unknown): { question: string; kind: string; options: string[] } | null {
+  if (!raw || typeof raw !== "object") return null;
+  const rec = raw as Record<string, unknown>;
+  const question = typeof rec.question === "string" ? rec.question.trim() : "";
+  if (!question) return null;
+  const options = Array.isArray(rec.options)
+    ? rec.options.filter((o): o is string => typeof o === "string" && o.trim().length > 0).map((o) => o.trim().slice(0, 40)).slice(0, 4)
+    : [];
+  const kind = typeof rec.kind === "string" && ["open", "diagnostic", "goal"].includes(rec.kind) ? rec.kind : "open";
+  // A single option is not a choice; either offer real quick replies or let them type.
+  return { question: question.slice(0, 240), kind, options: options.length >= 2 ? options : [] };
+}
+
+/** How deep the SUBJECT can go, independent of the student. Caps depth so a simple topic cannot be
+ *  taught at expert level — see resolveDepth. Defaults to 3 when the client has no estimate. */
+function topicComplexity(raw: unknown): DepthLevel {
+  const n = typeof raw === "number" ? Math.round(raw) : 3;
+  return Math.max(1, Math.min(5, n)) as DepthLevel;
 }
 
 function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
@@ -440,8 +589,8 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "clarify" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
-    return NextResponse.json({ error: "mode must be clarify, document-scope, document-question, outline, or revise" }, { status: 400 });
+  if (mode !== "clarify" && mode !== "diagnose" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
+    return NextResponse.json({ error: "mode must be clarify, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -521,6 +670,83 @@ export async function POST(req: Request) {
           "If the document genuinely does not address the question, plan the closest thing it DOES cover and make that the opening step, rather than inventing material.",
         ].join("\n");
     return streamOutline(client, DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT, userContent, fallbackTopic, true);
+  }
+
+  /**
+   * ONE TURN of the pre-lesson conversation: grade what the student just said, update the learner
+   * model, and decide whether a further question is genuinely worth asking.
+   *
+   * A turn rather than a questionnaire. The client holds the profile and sends it back each time,
+   * so the model always sees what has already been established and is told never to ask it again —
+   * which is what stops the repetitive questioning this feature is specified against.
+   *
+   * Cheap on purpose: the same gpt-4o-mini as the other planning calls, a few hundredths of a cent
+   * per turn against the lecture's own gpt-4o call.
+   */
+  if (mode === "diagnose") {
+    const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
+    if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
+
+    const incoming = sanitizeLearnerProfile(body.profile, topic);
+    const exchanges = Array.isArray(body.exchanges)
+      ? (body.exchanges as unknown[])
+          .filter((e): e is { question: string; answer: string } =>
+            Boolean(e) && typeof e === "object"
+            && typeof (e as Record<string, unknown>).question === "string"
+            && typeof (e as Record<string, unknown>).answer === "string")
+          .map((e) => ({ question: e.question.slice(0, 300), answer: e.answer.slice(0, 1000) }))
+          .slice(-MAX_DIAGNOSTIC_QUESTIONS)
+      : [];
+    const accountContext = typeof body.accountContext === "string" ? body.accountContext.slice(0, 400) : "";
+
+    try {
+      const completion = await client.chat.completions.create({
+        model: MODEL,
+        messages: [
+          { role: "system", content: DIAGNOSTIC_SYSTEM_PROMPT },
+          {
+            role: "user",
+            content: buildDiagnosticUserMessage({ topic, profile: incoming, exchanges, accountContext })
+              + sourceDocLine,
+          },
+        ],
+        temperature: 0.4,
+        max_tokens: 700,
+        response_format: { type: "json_object" },
+      });
+      const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as Record<string, unknown>;
+      const profile = mergeAssessment(incoming, parsed.assessment, exchanges);
+      const depth = resolveDepth(profile, topicComplexity(body.topicComplexity));
+
+      /*
+       * The ceiling is enforced HERE, not only in the prompt. A model asked to be curious will
+       * occasionally want one more question, and "do not ask ten questions before teaching" has to
+       * hold even when it does.
+       */
+      const forced = exchanges.length >= MAX_DIAGNOSTIC_QUESTIONS || hasEnoughSignal(profile);
+      const nextQuestion = forced ? null : sanitizeDiagnosticQuestion(parsed.nextQuestion);
+
+      return NextResponse.json({
+        profile,
+        depth,
+        nextQuestion,
+        summary: profileSummary(profile, depth),
+        costUsd: costUsd(completion.usage),
+      });
+    } catch (err) {
+      /*
+       * A failed diagnostic must never block the lesson. The whole stage is an enhancement: if it
+       * breaks, the student gets the lecture they would have got before this feature existed.
+       */
+      return NextResponse.json({
+        profile: incoming,
+        depth: resolveDepth(incoming, topicComplexity(body.topicComplexity)),
+        nextQuestion: null,
+        summary: "",
+        costUsd: 0,
+        degraded: err instanceof Error ? err.message : "diagnostic unavailable",
+      });
+    }
   }
 
   if (mode === "clarify") {
