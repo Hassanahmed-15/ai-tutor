@@ -67,6 +67,11 @@ frontend/web/.codex-dev.*.log
 # places, and rebuilding it depends on an upstream repo that can change under you.
 frontend/web/.asset-build/
 
+# pdfjs-dist's worker script, copied into public/ at dev/build time by
+# scripts/copy-pdf-worker.mjs — always sourced from the installed package version so it can
+# never drift from the pdfjs-dist build the client bundle actually loads.
+frontend/web/public/pdf.worker.min.mjs
+
 # Local database + auth secrets — never committed.
 frontend/web/drizzle/
 

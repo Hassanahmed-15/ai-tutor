@@ -2245,13 +2245,23 @@ type BuildCost =
                           <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
                         </span>
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => folderInputRef.current?.click()}
-                        className="w-full px-6 text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
-                      >
-                        or upload a task folder →
-                      </button>
+                      <div className="flex items-center gap-4 px-6">
+                        <button
+                          type="button"
+                          onClick={() => folderInputRef.current?.click()}
+                          className="text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
+                        >
+                          or upload a task folder →
+                        </button>
+                        <span className="text-[var(--hud-text-faint)]/40">·</span>
+                        <button
+                          type="button"
+                          onClick={() => go("viewer")}
+                          className="text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
+                        >
+                          just want to read it? open in the document viewer →
+                        </button>
+                      </div>
                     </div>
                   ) : uploadPhase === "reading" ? (
                     <div className="flex items-center gap-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] px-6 py-5">

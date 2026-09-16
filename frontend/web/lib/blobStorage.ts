@@ -53,6 +53,11 @@ export function lectureVideoBlobName(userId: string, lectureId: string, videoId:
   return `users/${requireSafeSegment(userId, "user id")}/lectures/${requireSafeSegment(lectureId, "lecture id")}/manim/${requireSafeSegment(videoId, "video id")}.mp4`;
 }
 
+/** The PDF a viewer document was built from — original for a PDF upload, converted for a PPT/PPTX. */
+export function viewerDocumentBlobName(userId: string, documentId: string): string {
+  return `users/${requireSafeSegment(userId, "user id")}/viewer/${requireSafeSegment(documentId, "document id")}.pdf`;
+}
+
 export async function uploadJsonBlob(blobName: string, value: unknown): Promise<number> {
   const body = Buffer.from(JSON.stringify(value), "utf8");
   const container = await lectureBlobContainer();
@@ -89,6 +94,39 @@ export async function uploadVideoBlob(
   });
 }
 
+/**
+ * Parses an HTTP `Range: bytes=...` header against a known total size.
+ *
+ * Factored out of the video-streaming route so the viewer document route (which needs the exact
+ * same byte-range serving for a large PDF) does not duplicate it. Returns `null` for "no range
+ * requested — send the whole thing", and the string `"invalid"` for a range the caller cannot
+ * satisfy, which the route turns into a 416.
+ */
+export function parseByteRange(
+  header: string | null,
+  size: number,
+): { start: number; end: number } | "invalid" | null {
+  if (!header) return null;
+  const match = /^bytes=(\d*)-(\d*)$/.exec(header.trim());
+  if (!match || (!match[1] && !match[2])) return "invalid";
+
+  let start: number;
+  let end: number;
+  if (!match[1]) {
+    const suffix = Number(match[2]);
+    if (!Number.isFinite(suffix) || suffix <= 0) return "invalid";
+    start = Math.max(0, size - suffix);
+    end = size - 1;
+  } else {
+    start = Number(match[1]);
+    end = match[2] ? Math.min(Number(match[2]), size - 1) : size - 1;
+  }
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start > end || start >= size) {
+    return "invalid";
+  }
+  return { start, end };
+}
+
 export type DownloadedBlobRange = {
   body: Buffer;
   totalBytes: number;
@@ -107,7 +145,11 @@ export async function storedBlobProperties(blobName: string): Promise<{
   };
 }
 
-/** Downloads only the requested byte interval, preserving seekable video playback. */
+/**
+ * Downloads only the requested byte interval, preserving seekable video playback (and, for a
+ * viewer document, letting the browser's own PDF range-fetching skip straight to the pages it
+ * needs on a large file instead of pulling the whole thing first).
+ */
 export async function downloadBlobRange(
   blobName: string,
   range?: { start: number; end: number },
@@ -116,12 +158,12 @@ export async function downloadBlobRange(
   const client = container.getBlobClient(blobName);
   const properties = await client.getProperties();
   const totalBytes = properties.contentLength ?? 0;
-  if (totalBytes <= 0) throw new Error("Stored video is empty.");
+  if (totalBytes <= 0) throw new Error("Stored blob is empty.");
 
   const response = range
     ? await client.download(range.start, range.end - range.start + 1)
     : await client.download();
-  if (!response.readableStreamBody) throw new Error("Stored video has no readable body.");
+  if (!response.readableStreamBody) throw new Error("Stored blob has no readable body.");
 
   const chunks: Buffer[] = [];
   for await (const chunk of response.readableStreamBody) {
@@ -132,4 +174,29 @@ export async function downloadBlobRange(
     totalBytes,
     contentType: properties.contentType || "video/mp4",
   };
+}
+
+/**
+ * Uploads raw bytes with an explicit content type — the general form `uploadVideoBlob` and
+ * `uploadJsonBlob` are each one fixed shape of. Used for viewer documents, where the content type
+ * is always `application/pdf` (a PPTX is converted to PDF before it ever reaches storage — see
+ * lib/pptxToPdf.ts — so the viewer only ever stores and serves one format).
+ */
+export async function uploadRawBlob(
+  blobName: string,
+  body: Buffer,
+  contentType: string,
+): Promise<void> {
+  const container = await lectureBlobContainer();
+  await container.getBlockBlobClient(blobName).uploadData(body, {
+    blobHTTPHeaders: {
+      blobContentType: contentType,
+      blobCacheControl: "private, max-age=31536000, immutable",
+    },
+  });
+}
+
+export async function deleteBlob(blobName: string): Promise<void> {
+  const container = await lectureBlobContainer();
+  await container.getBlobClient(blobName).deleteIfExists();
 }

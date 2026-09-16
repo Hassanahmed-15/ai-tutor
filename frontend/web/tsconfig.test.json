@@ -46,7 +46,9 @@
     "lib/reactAnimationVisionCritic.ts",
     "lib/manimCacheKey.ts",
     "components/sketch/LiveSketch.tsx",
-    "components/whiteboard/sketch.ts"
+    "components/whiteboard/sketch.ts",
+    "lib/viewerDocumentLimits.ts",
+    "lib/viewerSearch.ts"
   ],
   "exclude": ["node_modules"]
 }

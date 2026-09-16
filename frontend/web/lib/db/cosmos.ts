@@ -27,6 +27,7 @@ export const SESSIONS_CONTAINER = "sessions";
 export const LEADERBOARD_CONTAINER = "leaderboard";
 export const THOUGHTS_CONTAINER = "thoughts";
 export const LECTURES_CONTAINER = "lectures";
+export const VIEWER_DOCUMENTS_CONTAINER = "viewer-documents";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -210,6 +211,20 @@ export type LectureDoc = {
   error: string | null;
 };
 
+/** A document opened in the standalone PDF/PPT viewer — not a lecture, just something to read. */
+export type ViewerDocumentDoc = {
+  id: string;
+  userId: string;
+  /** Original filename, shown in the UI — never used as a path segment. */
+  name: string;
+  /** What was uploaded. A PPT/PPTX is converted to PDF before storage; this records the source. */
+  sourceKind: "pdf" | "pptx";
+  blobName: string;
+  pageCount: number;
+  bytes: number;
+  createdAt: string;
+};
+
 const globalForCosmos = globalThis as unknown as { ariaCosmos?: CosmosClient };
 
 function client(): CosmosClient {
@@ -243,6 +258,10 @@ export function sessionsContainer(): Container {
 
 export function lectures(): Container {
   return client().database(DATABASE_ID).container(LECTURES_CONTAINER);
+}
+
+export function viewerDocuments(): Container {
+  return client().database(DATABASE_ID).container(VIEWER_DOCUMENTS_CONTAINER);
 }
 
 /**
@@ -282,6 +301,11 @@ export async function ensureContainers(): Promise<void> {
   await database.containers.createIfNotExists({
     id: LECTURES_CONTAINER,
     // Every history lookup is scoped to the signed-in learner.
+    partitionKey: { paths: ["/userId"] },
+  });
+  await database.containers.createIfNotExists({
+    id: VIEWER_DOCUMENTS_CONTAINER,
+    // Same reasoning as LECTURES_CONTAINER: "this learner's documents" is the only query shape.
     partitionKey: { paths: ["/userId"] },
   });
   ensured = true;
