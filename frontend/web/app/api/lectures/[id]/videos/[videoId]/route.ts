@@ -1,34 +1,9 @@
 import { currentUser } from "@/lib/auth";
-import { downloadBlobRange, storedBlobProperties } from "@/lib/blobStorage";
+import { downloadBlobRange, parseByteRange, storedBlobProperties } from "@/lib/blobStorage";
 import { lectureForUser } from "@/lib/lectureArchive";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function parseRange(
-  header: string | null,
-  size: number,
-): { start: number; end: number } | "invalid" | null {
-  if (!header) return null;
-  const match = /^bytes=(\d*)-(\d*)$/.exec(header.trim());
-  if (!match || (!match[1] && !match[2])) return "invalid";
-
-  let start: number;
-  let end: number;
-  if (!match[1]) {
-    const suffix = Number(match[2]);
-    if (!Number.isFinite(suffix) || suffix <= 0) return "invalid";
-    start = Math.max(0, size - suffix);
-    end = size - 1;
-  } else {
-    start = Number(match[1]);
-    end = match[2] ? Math.min(Number(match[2]), size - 1) : size - 1;
-  }
-  if (!Number.isFinite(start) || !Number.isFinite(end) || start > end || start >= size) {
-    return "invalid";
-  }
-  return { start, end };
-}
 
 /** Streams a saved Manim asset only when it belongs to one of the learner's lectures. */
 export async function GET(
@@ -49,7 +24,7 @@ export async function GET(
     if (!lecture || !video) return new Response("Not found", { status: 404 });
 
     const properties = await storedBlobProperties(video.blobName);
-    const range = parseRange(request.headers.get("range"), properties.totalBytes);
+    const range = parseByteRange(request.headers.get("range"), properties.totalBytes);
     const baseHeaders: Record<string, string> = {
       "Content-Type": properties.contentType,
       "Accept-Ranges": "bytes",

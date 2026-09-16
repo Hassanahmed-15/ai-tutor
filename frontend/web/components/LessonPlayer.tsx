@@ -169,6 +169,7 @@ function isChalkBoardPending(beat: Beat) {
 
 export function LessonPlayer({
   onExit,
+  onCheckpointGraded,
   onComplete,
   beats = demoBeats,
   title = "Photosynthesis",
@@ -195,6 +196,17 @@ export function LessonPlayer({
   onLearnerInteraction,
 }: {
   onExit?: () => void;
+  /**
+   * Fired whenever a checkpoint is graded, so the learner model keeps updating while teaching.
+   *
+   * MICRO-ADAPTATION. The profile built before the lesson decides where it starts; this is what
+   * keeps it honest afterwards. A student who sails through every checkpoint has demonstrated more
+   * than their pre-lesson conversation suggested, and one who struggles has demonstrated less —
+   * either way the NEXT lesson should not repeat the same misjudgement.
+   *
+   * Optional, and never awaited: a failure to record must not interrupt a lecture in progress.
+   */
+  onCheckpointGraded?: (result: { concept: string; correct: boolean; revealed: boolean }) => void;
   /** Fired once, when the last beat finishes playing (natural end of lecture) — distinct from
    *  onExit, which fires on a manual exit at any point. */
   onComplete?: () => void;
@@ -1344,6 +1356,7 @@ export function LessonPlayer({
     if (keywordResult?.correct) {
       setCheckpointResult(keywordResult);
       onLearnerInteraction?.({ kind: "checkpoint", correct: true, detail: answer });
+      onCheckpointGraded?.({ concept: beat.title, correct: true, revealed: false });
       window.setTimeout(advanceFromCheckpoint, 2200);
       return;
     }
@@ -1365,6 +1378,7 @@ export function LessonPlayer({
           correct: data.correct,
           feedback: data.feedback || (data.correct ? beat.checkpoint?.correctFeedback ?? "That's right." : beat.checkpoint?.hintFeedback ?? ""),
         });
+        onCheckpointGraded?.({ concept: beat.title, correct: data.correct, revealed: false });
         if (data.correct) {
           onLearnerInteraction?.({ kind: "checkpoint", correct: true, detail: answer });
           window.setTimeout(advanceFromCheckpoint, 2200);
@@ -1384,6 +1398,9 @@ export function LessonPlayer({
 
   function revealCheckpointAnswer() {
     if (!beat.checkpoint) return;
+    // Revealed, not answered. Recorded as NOT correct: needing the answer shown is evidence about
+    // this concept, and counting it as mastery would inflate the next lesson's starting depth.
+    onCheckpointGraded?.({ concept: beat.title, correct: false, revealed: true });
     setCheckpointResult({ correct: true, feedback: beat.checkpoint.revealAnswer, revealed: true });
     window.setTimeout(advanceFromCheckpoint, 2800);
   }

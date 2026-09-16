@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-pdf-worker.mjs",
     "dev": "next dev",
     "dev:fixture": "LECTURE_FIXTURE=${LECTURE_FIXTURE:-/tmp/lecture_v4.json} NEXT_PUBLIC_USE_FIXTURE=1 next dev",
+    "prebuild": "node scripts/copy-pdf-worker.mjs",
     "build": "next build",
     "start": "next start",
     "worker:lecture": "node --conditions=react-server --import tsx scripts/progressive-lecture-worker.ts",

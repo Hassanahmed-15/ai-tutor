@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Check, MessageCircleQuestion, Trash2 } from "lucide-react";
 
 /**
  * Highlighter tool — the student drags a translucent marker over anything on the board (a term, a
@@ -200,29 +201,52 @@ export function HighlightOverlay({ strokes, active, onCommitStroke, onHighlight,
         style={{ cursor: active ? "crosshair" : "default" }}
       />
       {active && (
+        /*
+         * COMPACT AND CORNER-ANCHORED, ON PURPOSE.
+         *
+         * The previous toolbar spanned up to 44rem (704px) at top-3, centred — on the board's
+         * typical narrower widths (mobile, or before the xl breakpoint adds the side chat panel)
+         * that is most or all of the board's own width, sitting exactly where a beat's heading
+         * usually lives. A highlighter's control chrome should never compete with the board for
+         * space; it only needs to be reachable, not prominent.
+         *
+         * Bottom-right rather than top-center: the top is where board content most often starts
+         * (a title, an opening label), so the toolbar claims the one corner nothing else uses.
+         * Icon-first with a title attribute for the label — the FULL highlighted-text preview is
+         * still shown, but truncated much tighter, because confirming what was captured matters
+         * more than reading it back in full; the student can see the actual highlight on the board.
+         */
         <div
           data-highlight-ui
-          className="absolute left-1/2 top-3 flex max-w-[min(94%,44rem)] -translate-x-1/2 flex-wrap items-center gap-2 rounded-2xl border border-amber-300/30 bg-slate-950/90 px-3 py-2 backdrop-blur"
+          className="absolute bottom-3 right-3 flex max-w-[min(88%,20rem)] items-center gap-1 rounded-full border border-amber-300/30 bg-slate-950/90 px-2 py-1.5 shadow-lg backdrop-blur"
         >
-          <span className="text-[11px] font-black uppercase tracking-wider text-amber-200">Highlight</span>
-          <span className="max-w-[22rem] truncate text-xs font-semibold text-white/70">
-            {highlighted ? `“${highlighted}”` : "Drag over anything on the board"}
+          <span className="max-w-[8rem] truncate px-1 text-[11px] font-semibold text-white/70" title={highlighted || undefined}>
+            {highlighted ? `“${highlighted}”` : "Drag to highlight"}
           </span>
           <button
             onClick={() => highlighted && onExplain(highlighted)}
             disabled={!highlighted || busy}
-            className="rounded-full bg-amber-300/25 px-3 py-1 text-[11px] font-black text-amber-50 transition hover:bg-amber-300/40 disabled:opacity-40"
+            title={busy ? "Explaining…" : "Explain this in detail"}
+            aria-label={busy ? "Explaining…" : "Explain this in detail"}
+            className="grid size-7 shrink-0 place-items-center rounded-full bg-amber-300/25 text-amber-50 transition hover:bg-amber-300/40 disabled:opacity-40"
           >
-            {busy ? "Explaining…" : "Explain this in detail"}
+            <MessageCircleQuestion className="size-3.5" />
           </button>
-          <button onClick={clear} className="rounded-full border border-white/20 px-2 py-1 text-[11px] font-bold text-white/80">
-            Clear
+          <button
+            onClick={clear}
+            title="Clear highlights"
+            aria-label="Clear highlights"
+            className="grid size-7 shrink-0 place-items-center rounded-full border border-white/20 text-white/80 transition hover:bg-white/10"
+          >
+            <Trash2 className="size-3.5" />
           </button>
           <button
             onClick={onClose}
-            className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-black text-white/85 transition hover:bg-white/20"
+            title="Done highlighting"
+            aria-label="Done highlighting"
+            className="grid size-7 shrink-0 place-items-center rounded-full bg-white/10 text-white/85 transition hover:bg-white/20"
           >
-            Done
+            <Check className="size-3.5" />
           </button>
         </div>
       )}

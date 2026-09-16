@@ -23,6 +23,7 @@ export type PageName =
   | "features"
   | "complete"
   | "learn"
+  | "viewer"
   | "demo"
   // Mode player routes. Nothing in the UI navigates to these while only the standard lecture is
   // offered, but the names stay in the union so those components still typecheck.

@@ -15,6 +15,10 @@ const eslintConfig = defineConfig([
     // Vendored third-party UMD builds for the sandboxed React-animation iframe — not app
     // source, never authored or edited here. See components/sketch/ReactAnimationSandbox.tsx.
     "public/sandbox/**",
+    // pdfjs-dist's own minified worker script, copied into public/ at dev/build time by
+    // scripts/copy-pdf-worker.mjs — a vendored build artifact, not source written here, and
+    // also gitignored for the same reason (see .gitignore).
+    "public/pdf.worker.min.mjs",
   ]),
 ]);
 

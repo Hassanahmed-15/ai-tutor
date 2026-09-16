@@ -5,6 +5,8 @@ import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/h
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
+import { applyDiagnostic, emptyProfile, learnerInstruction, profileSummary, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
+import { openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -185,8 +187,8 @@ type BuildCost =
    */
   const builtLessonRef = useRef<{ beats: Beat[]; topic: string } | null>(null);
   const [buildSteeringActive, setBuildSteeringActive] = useState(false);
-  const [learnerProfile, setLearnerProfile] = useState<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
-  const learnerProfileRef = useRef<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
+  const [generationProfile, setGenerationProfile] = useState<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
+  const generationProfileRef = useRef<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
   const buildSteeringResolveRef = useRef<(() => void) | null>(null);
   const [progressiveSessionId, setProgressiveSessionId] = useState<string | null>(null);
   const [progressiveComplete, setProgressiveComplete] = useState(true);
@@ -206,6 +208,37 @@ type BuildCost =
   const [focusedDocumentPlanningActive, setFocusedDocumentPlanningActive] = useState(false);
   const focusedPlanningFreshRef = useRef<FreshUpload | null>(null);
   const [clarifyAnswers, setClarifyAnswers] = useState<{ question: string; answer: string }[]>([]);
+  /**
+   * The pre-lesson conversation about what the student already knows.
+   *
+   * Held here rather than on the server because it is per-topic and dies with the planning session:
+   * the route is stateless and takes the profile back on each turn (see mode "diagnose"). The
+   * profile is what makes the lecture different for different students; `learnerDepth` is the
+   * decision computed from it, and both travel on to the outline call and the lecture prompt.
+   */
+  const [learnerProfile, setLearnerProfile] = useState<LearnerProfile | null>(null);
+  const [learnerDepth, setLearnerDepth] = useState<DepthLevel | null>(null);
+  const [diagnosticQuestion, setDiagnosticQuestion] = useState<{ question: string; options: string[] } | null>(null);
+  const [diagnosticExchanges, setDiagnosticExchanges] = useState<{ question: string; answer: string }[]>([]);
+  const [diagnosticBusy, setDiagnosticBusy] = useState(false);
+  /**
+   * "This is what I'm noticing" — an occasional, one-sentence aside from the model, surfaced as
+   * its own chat bubble ahead of the next question (if any). Keyed with a counter rather than the
+   * text itself, because unlike a question a remark can legitimately repeat similar wording turn
+   * to turn ("Good, that confirms it") without that meaning it is stale.
+   */
+  const [diagnosticRemark, setDiagnosticRemark] = useState<{ text: string; turn: number } | null>(null);
+  const diagnosticTurnRef = useRef(0);
+  /** Mirrors the profile for callbacks that must not re-subscribe on every answer. */
+  const learnerProfileRef = useRef<LearnerProfile | null>(null);
+  /**
+   * What this learner has been taught before, loaded once per session.
+   *
+   * The WRITE side of this already existed; without the read it was a diary nobody opened. Held in
+   * a ref because it never needs to re-render anything — it exists to be folded into the
+   * conversation's opening context so Aria does not re-ask what a previous lesson established.
+   */
+  const learnedTopicsRef = useRef<{ topic: string; depth: number; mastered: string[]; objective: string }[]>([]);
   const [outline, setOutline] = useState<PlanOutline | null>(null);
   const [planLoading, setPlanLoading] = useState(false);
   const [planError, setPlanError] = useState<string | null>(null);
@@ -492,6 +525,23 @@ type BuildCost =
     return () => {
       buildAbortRef.current?.abort();
       planAbortRef.current?.abort();
+    };
+  }, []);
+
+  /*
+   * Load past lessons once. Best-effort: the route returns an empty list when signed out or when no
+   * database is configured, so a failure here costs personalisation and never the lesson.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    void fetch("/api/learned-topics")
+      .then((r) => (r.ok ? r.json() : { topics: [] }))
+      .then((d) => {
+        if (!cancelled && Array.isArray(d?.topics)) learnedTopicsRef.current = d.topics;
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
     };
   }, []);
 
@@ -923,6 +973,12 @@ type BuildCost =
     setPlanThoughts([]);
     setPlanScopingQuestions([]);
     setPlanAngle("standard");
+    setLearnerProfile(null);
+    setLearnerDepth(null);
+    setDiagnosticQuestion(null);
+    setDiagnosticExchanges([]);
+    setDiagnosticBusy(false);
+    learnerProfileRef.current = null;
     setDocumentPlanningActive(false);
     setFocusedDocumentPlanningActive(false);
     focusedPlanningFreshRef.current = null;
@@ -1033,7 +1089,23 @@ type BuildCost =
   async function requestOutline(t: string, clarifications: { question: string; answer: string }[], angle: PlanningAngleId = "standard") {
     setPhase("outline");
     setPlanAngle(angle);
-    await streamOutlineRequest({ mode: "outline", topic: t, clarifications, angle, sourceDocument }, t);
+    /*
+     * The profile travels with the outline request, not just with the lecture.
+     *
+     * Adjusting depth after the structure is fixed cannot undo an outline whose first three
+     * subtopics define terms this student already demonstrated — the subtopic list has to be
+     * planned for them. Null when the conversation was skipped, and the route treats its absence
+     * as "plan as before".
+     */
+    await streamOutlineRequest({
+      mode: "outline",
+      topic: t,
+      clarifications,
+      angle,
+      sourceDocument,
+      ...(learnerProfileRef.current ? { learnerProfile: learnerProfileRef.current } : {}),
+      ...(learnerDepth ? { depth: learnerDepth } : {}),
+    }, t);
   }
 
   /** "Teach it differently" — rerolls the entire outline through a different pedagogical angle
@@ -1192,8 +1264,112 @@ type BuildCost =
       setInitialPlanningQuestions(data.planningQuestions as ScopingQuestion[]);
       return;
     }
-    // Nothing to ask — start drafting immediately, no gate.
-    requestOutline(trimmed, []);
+    /*
+     * Ask who this is for before planning what to teach.
+     *
+     * Only on the typed-topic path: an uploaded document returns above with its own planning, and a
+     * demo/skip path never reaches here. The opening question is asked locally rather than by a
+     * round-trip, so the conversation starts the instant the screen does.
+     */
+    setLearnerProfile(emptyProfile(trimmed));
+    learnerProfileRef.current = emptyProfile(trimmed);
+    setDiagnosticQuestion({ question: openingQuestion(trimmed), options: [] });
+  }
+
+  /**
+   * One turn of the pre-lesson conversation.
+   *
+   * Answer in, updated profile out, and either the next question or the outline. The server is
+   * stateless about this — the profile round-trips on every turn — so this function is the only
+   * place the conversation's state lives.
+   *
+   * NEVER BLOCKS THE LESSON. Every failure path here falls through to drafting the outline: a
+   * diagnostic that errors, times out, or returns nothing leaves the student with exactly the
+   * lecture they would have had before this feature existed. The stage is an enhancement, and an
+   * enhancement that can strand someone on a question screen is worse than no enhancement.
+   */
+  async function runDiagnostic(answer: string) {
+    const question = diagnosticQuestion?.question ?? openingQuestion(topic);
+    const exchanges = [...diagnosticExchanges, { question, answer }];
+    setDiagnosticExchanges(exchanges);
+    setDiagnosticQuestion(null);
+
+    /*
+     * The student's override, checked before the model is consulted.
+     *
+     * "just teach me" must not wait on a round-trip to find out whether the model agreed to stop —
+     * and a model told to be curious will occasionally ask one more anyway.
+     */
+    if (wantsToStart(answer)) {
+      setDiagnosticBusy(false);
+      requestOutline(topic, clarifyAnswers, planAngle);
+      return;
+    }
+
+    setDiagnosticBusy(true);
+    const data = await callPlanApi({
+      mode: "diagnose",
+      topic,
+      profile: learnerProfileRef.current ?? emptyProfile(topic),
+      exchanges,
+      accountContext: accountContextLine(),
+    });
+    setDiagnosticBusy(false);
+
+    if (!data) {
+      // callPlanApi already surfaced the error; teach rather than strand them on a question.
+      requestOutline(topic, clarifyAnswers, planAngle);
+      return;
+    }
+
+    const profile = (data.profile as LearnerProfile | undefined) ?? null;
+    if (profile) {
+      setLearnerProfile(profile);
+      learnerProfileRef.current = profile;
+    }
+    const depth = typeof data.depth === "number" ? (data.depth as DepthLevel) : null;
+    if (depth) setLearnerDepth(depth);
+
+    const remark = typeof data.remark === "string" ? data.remark.trim() : "";
+    if (remark) {
+      diagnosticTurnRef.current += 1;
+      setDiagnosticRemark({ text: remark, turn: diagnosticTurnRef.current });
+    }
+
+    const next = data.nextQuestion as { question: string; options?: string[] } | null | undefined;
+    if (next?.question) {
+      setDiagnosticQuestion({ question: next.question, options: Array.isArray(next.options) ? next.options : [] });
+      return;
+    }
+    requestOutline(topic, clarifyAnswers, planAngle);
+  }
+
+  /**
+   * What the account already knows, so the conversation never asks for it again.
+   *
+   * Deliberately narrow. Age and accessibility pace genuinely change how something should be
+   * taught; anything else on the profile would be personalisation for its own sake, which reads as
+   * surveillance rather than teaching.
+   */
+  function accountContextLine(): string {
+    const bits: string[] = [];
+    if (profile?.age) bits.push(`age ${profile.age}`);
+    if (profile?.simplerLanguage) bits.push("prefers simpler language");
+    if (profile?.slowerPace) bits.push("prefers a slower pace");
+
+    /*
+     * Past lessons, so the conversation opens from what is already known.
+     *
+     * Only the few most recent, and only what stays true: a student who demonstrated a concept in
+     * an earlier lesson should not be asked about it again. The prompt is separately told never to
+     * re-ask anything in this line.
+     */
+    const past = learnedTopicsRef.current.slice(0, 3);
+    for (const t of past) {
+      const mastered = t.mastered.length ? `, demonstrated ${t.mastered.slice(0, 3).join(", ")}` : "";
+      bits.push(`previously taught "${t.topic}" at depth ${t.depth}/5${mastered}`);
+    }
+    return bits.join("; ");
   }
 
   /** Applies an answer to a pre-draft ambiguity question — starts the FIRST draft now that the
@@ -1272,21 +1448,21 @@ type BuildCost =
 
   function updateLearnerProfile(patch: Partial<LearnerProfileSnapshot>) {
     if (!buildSteeringActive) return;
-    const merged = { ...learnerProfileRef.current, ...patch };
+    const merged = { ...generationProfileRef.current, ...patch };
     const next = { ...merged, codeExamples: shouldIncludeCodeExamples(merged) };
-    learnerProfileRef.current = next;
-    setLearnerProfile(next);
+    generationProfileRef.current = next;
+    setGenerationProfile(next);
   }
 
   function continueBuildSteering() {
     if (!buildSteeringActive) return;
     const confirmed = {
-      ...learnerProfileRef.current,
-      codeExamples: shouldIncludeCodeExamples(learnerProfileRef.current),
+      ...generationProfileRef.current,
+      codeExamples: shouldIncludeCodeExamples(generationProfileRef.current),
       confirmedAt: new Date().toISOString(),
     };
-    learnerProfileRef.current = confirmed;
-    setLearnerProfile(confirmed);
+    generationProfileRef.current = confirmed;
+    setGenerationProfile(confirmed);
     buildSteeringResolveRef.current?.();
     buildSteeringResolveRef.current = null;
   }
@@ -1395,8 +1571,8 @@ type BuildCost =
       if (err instanceof DOMException && err.name === "AbortError") return;
     }
     suggested = { ...suggested, codeExamples: shouldIncludeCodeExamples(suggested) };
-    learnerProfileRef.current = suggested;
-    setLearnerProfile(suggested);
+    generationProfileRef.current = suggested;
+    setGenerationProfile(suggested);
     setBuildSteeringActive(true);
     try {
       await waitForBuildSteering(controller.signal);
@@ -1407,7 +1583,7 @@ type BuildCost =
       setBuildSteeringActive(false);
     }
 
-    const confirmedProfile = learnerProfileRef.current;
+    const confirmedProfile = generationProfileRef.current;
     const buildSteeringLine = ` Confirmed learner profile: ${confirmedProfile.expertise}, ${confirmedProfile.depth} depth, ${confirmedProfile.goal} goal, ${confirmedProfile.preferredExamples} examples, code examples ${confirmedProfile.codeExamples ? "enabled" : "disabled"}.`;
     const documentPlanningLine = documentPlanningNotes.length
       ? ` Uploaded-source plan chosen by the student: ${documentPlanningNotes.join(" ")}`
@@ -1444,9 +1620,20 @@ type BuildCost =
 
     setBuildStatus(doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
 
+    /*
+     * The learner profile reaches the lecture writer through `mood`, which is already the channel
+     * every build-time preference travels on (steering choices, document plan, spoken steering).
+     * Using it rather than a new field means generation, its cache key, and every existing
+     * consumer pick this up with no change — and a lesson planned for a student is cached
+     * separately from the same topic planned for someone else, which is correct.
+     */
+    const learnerLine = learnerProfileRef.current && learnerDepth
+      ? learnerInstruction(learnerProfileRef.current, learnerDepth)
+      : "";
+
     const payload: LecturePayload = {
       topic: trimmed,
-      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}`,
+      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}${learnerLine}`,
       sourceType: fresh?.kind ?? uploadedFile?.kind ?? "prompt",
       mode: selectedMode.id === "none" ? "standard" : selectedMode.id as LectureMode,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
@@ -1611,6 +1798,48 @@ type BuildCost =
     setPhase("teaching");
   }
 
+  /**
+   * Keep the learner model updating WHILE the lesson runs.
+   *
+   * The pre-lesson conversation decides where to start; these are the corrections. A student who
+   * answers every checkpoint has demonstrated more than the conversation suggested, and one who
+   * needs answers revealed has demonstrated less — recorded either way, so the next lesson on a
+   * related topic opens from what actually happened rather than from the original estimate.
+   */
+  function recordCheckpointGrade(result: { concept: string; correct: boolean; revealed: boolean }) {
+    const current = learnerProfileRef.current;
+    if (!current) return;
+    const next = applyDiagnostic(current, {
+      question: result.concept,
+      answer: result.revealed ? "(revealed)" : "(checkpoint)",
+      verdict: result.correct ? "correct" : "incorrect",
+      concept: result.concept,
+    });
+    learnerProfileRef.current = next;
+    setLearnerProfile(next);
+  }
+
+  /**
+   * Remember what this learner was taught, for the next conversation.
+   *
+   * Best-effort and never awaited anywhere that matters: the route already no-ops when signed out
+   * or when no database is configured, and a failed write must not affect a finished lesson.
+   */
+  function rememberLesson() {
+    const current = learnerProfileRef.current;
+    if (!current || !builtTopic) return;
+    void fetch("/api/learned-topics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        topic: builtTopic,
+        depth: learnerDepth ?? 2,
+        mastered: current.masteredConcepts,
+        objective: current.objective,
+      }),
+    }).catch(() => {});
+  }
+
   function openSavedLecture(lecture: { topic: string; beats: Beat[] }) {
     // A replay package is self-contained. Clear transient upload context so follow-up tools do not
     // accidentally read a different document that happened to be selected earlier in this tab.
@@ -1639,6 +1868,7 @@ type BuildCost =
   // every other mode gets to choose written or oral on the offer screen.
   function onLectureComplete() {
     if (!progressiveComplete) return;
+    rememberLesson();
     setPhase("test-offer");
   }
 
@@ -1721,6 +1951,25 @@ type BuildCost =
     setPhase("finished");
   }
 
+  /**
+   * A DIFFERENT door than endLecture: pressing "End lesson" mid-lecture must return to the actual
+   * Home page with the normal site UI restored — not detour through the "Finished." interstitial,
+   * and not the separate app-level completion screen either.
+   *
+   * WHY THIS EXISTS. The interstitial ("It will not run that way again", Replay / Test me / Something
+   * new) is a genuine end-of-lecture summary and stays for when a lecture completes naturally — that
+   * moment is worth a beat. But the player's own exit control fires the same instant the student
+   * decides to leave, mid-lesson, having asked for nothing but out. Routing that through a second
+   * screen before a third screen (CompletePage) reaches Home was the actual bug: two hops of UI the
+   * student never asked to see stood between "I want to leave" and being home.
+   *
+   * `go("landing")` directly is what "the normal home UI restored" means concretely in this app's
+   * router — see components/hud/HudKit.tsx's PageName union and HudLogo's own onClick.
+   */
+  function endLectureToHome() {
+    go("landing");
+  }
+
   function replayLecture() {
     // Same beats, from the top. The player keys off its own index, so re-entering "teaching"
     // restarts it without regenerating anything.
@@ -1770,6 +2019,15 @@ type BuildCost =
               className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
             >
               Something new
+            </button>
+            {/* A direct, undramatic way home — distinct from "Something new" (which re-enters the
+                ask flow to start another lesson) and from Replay/Test (which stay with this one).
+                Goes straight to the landing page with the normal site UI, no interstitial in between. */}
+            <button
+              onClick={() => go("landing")}
+              className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+            >
+              Home
             </button>
           </div>
         </section>
@@ -1826,22 +2084,22 @@ type BuildCost =
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
     switch (selectedMode.page) {
       case "blind-demo":
-        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
     }
     return (
       <div className="relative">
@@ -2003,7 +2261,7 @@ type BuildCost =
             mode={selectedMode.name}
             status={buildStatus}
             steeringActive={buildSteeringActive}
-            learnerProfile={learnerProfile}
+            learnerProfile={generationProfile}
             onProfileChange={updateLearnerProfile}
             onContinue={continueBuildSteering}
             voice={voice}
@@ -2032,6 +2290,11 @@ type BuildCost =
           thoughts={planThoughts}
           scopingQuestions={planScopingQuestions}
           angle={planAngle}
+          diagnosticQuestion={diagnosticQuestion}
+          diagnosticBusy={diagnosticBusy}
+          diagnosticRemark={diagnosticRemark}
+          onAnswerDiagnostic={runDiagnostic}
+          learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
           initialAmbiguityQuestions={initialAmbiguityQuestions}
           initialPlanningQuestions={initialPlanningQuestions}
           planningAnswers={planningAnswers}
@@ -2151,13 +2414,23 @@ type BuildCost =
                           <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
                         </span>
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => folderInputRef.current?.click()}
-                        className="w-full px-6 text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
-                      >
-                        or upload a task folder →
-                      </button>
+                      <div className="flex items-center gap-4 px-6">
+                        <button
+                          type="button"
+                          onClick={() => folderInputRef.current?.click()}
+                          className="text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
+                        >
+                          or upload a task folder →
+                        </button>
+                        <span className="text-[var(--hud-text-faint)]/40">·</span>
+                        <button
+                          type="button"
+                          onClick={() => go("viewer")}
+                          className="text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
+                        >
+                          just want to read it? open in the document viewer →
+                        </button>
+                      </div>
                     </div>
                   ) : uploadPhase === "reading" ? (
                     <div className="flex items-center gap-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] px-6 py-5">
@@ -2527,6 +2800,9 @@ type OutlineChatMessage = {
    *  (onAnswerAmbiguity) instead of patching it in place (onRevise), since the answer changes
    *  what subject the outline should even be about. */
   isAmbiguity?: boolean;
+  /** True for a pre-lesson question about what the student knows — its answer goes to the
+   *  diagnostic turn rather than to the revise pipeline, since there is no outline to revise yet. */
+  isDiagnostic?: boolean;
 };
 
 /** Draft-first planning: Aria's best-guess outline appears immediately, then a live planning
@@ -2623,6 +2899,11 @@ function OutlineReviewState({
   thoughts,
   scopingQuestions,
   angle,
+  diagnosticQuestion,
+  diagnosticRemark,
+  diagnosticBusy,
+  onAnswerDiagnostic,
+  learnerSummary,
   initialAmbiguityQuestions,
   initialPlanningQuestions,
   planningAnswers,
@@ -2652,6 +2933,15 @@ function OutlineReviewState({
   angle: PlanningAngleId;
   /** Rare — seeded into the side chat as the first bubbles when the topic is genuinely
    *  ambiguous. Mutually exclusive with initialPlanningQuestions (see startPlanning). */
+  /** The one open question in the pre-lesson conversation, or null when there is nothing to ask. */
+  diagnosticQuestion: { question: string; options: string[] } | null;
+  /** An occasional teacher-style aside from the diagnostic ("noticing you're solid on X, let's
+   *  focus on Y") — seeded as its own chat bubble just before the next question, when present. */
+  diagnosticRemark: { text: string; turn: number } | null;
+  diagnosticBusy: boolean;
+  onAnswerDiagnostic: (answer: string) => void;
+  /** "intermediate, skipping gradient descent" — what Aria concluded, in the student's terms. */
+  learnerSummary: string;
   initialAmbiguityQuestions: ClarifyQuestion[];
   /** The ONE pre-draft gate, shown in the MAIN CANVAS (not the side chat) — topic-specific
    *  planning questions worth answering before drafting starts. Empty for most topics. */
@@ -2701,6 +2991,38 @@ function OutlineReviewState({
     ]);
   }, [initialAmbiguityQuestions]);
 
+  /*
+   * The pre-lesson conversation appears as chat bubbles, in the same place Aria already asks
+   * everything else. Deliberately NOT a separate gate screen: this is a teacher asking a question
+   * before class, and routing it through a different surface would make it feel like a form.
+   *
+   * Keyed by question text so re-renders cannot duplicate a bubble, and so a NEW question always
+   * seeds even though the previous one is still in the log.
+   */
+  const seededDiagnosticRef = useRef<string>("");
+  const seededRemarkTurnRef = useRef<number>(0);
+  useEffect(() => {
+    const q = diagnosticQuestion?.question;
+    if (!q || seededDiagnosticRef.current === q) return;
+    seededDiagnosticRef.current = q;
+    // The remark (an occasional teacher-style aside — "noticing you're solid on X, let's focus on
+    // Y") is seeded as its OWN bubble immediately before the question bubble it accompanies, in the
+    // same update, so it always reads as a lead-in rather than appearing out of order.
+    const remarkForThisTurn =
+      diagnosticRemark && diagnosticRemark.turn > seededRemarkTurnRef.current ? diagnosticRemark.text : null;
+    if (remarkForThisTurn) seededRemarkTurnRef.current = diagnosticRemark!.turn;
+    setChatLog((prev) => [
+      ...prev,
+      ...(remarkForThisTurn ? [{ role: "aria" as const, text: remarkForThisTurn }] : []),
+      {
+        role: "aria",
+        text: q,
+        chips: (diagnosticQuestion?.options ?? []).map((label) => ({ label, instruction: label })),
+        isDiagnostic: true,
+      },
+    ]);
+  }, [diagnosticQuestion, diagnosticRemark]);
+
   // Stream Aria's per-subtopic planning reasoning into the chat log as it arrives, instead of a
   // separate floating panel — same underlying data (streamOutlineRequest), one conversation.
   useEffect(() => {
@@ -2737,6 +3059,15 @@ function OutlineReviewState({
     const trimmed = instruction.trim();
     if (!trimmed || loading || sending) return;
     setChatLog((prev) => [...prev, { role: "you", text: trimmed }]);
+    /*
+     * While a pre-lesson question is open, what the student types is its ANSWER — there is no
+     * outline to revise yet, so sending it down the revise pipeline would fail on an empty outline
+     * and lose what they said.
+     */
+    if (diagnosticQuestion) {
+      onAnswerDiagnostic(trimmed);
+      return;
+    }
     setSending(true);
     await onRevise(trimmed);
     setSending(false);
@@ -2747,10 +3078,14 @@ function OutlineReviewState({
    *  scratch (the answer changes what subject it's even about, via onAnswerAmbiguity); scoping
    *  chips patch the same outline in place via the normal revise pipeline (onRevise). Either
    *  way the source bubble is marked answered so its chips disable without vanishing. */
-  function sendChip(bubbleIndex: number, questionText: string, label: string, instruction: string, isAmbiguity: boolean) {
+  function sendChip(bubbleIndex: number, questionText: string, label: string, instruction: string, isAmbiguity: boolean, isDiagnostic = false) {
     if (sending || loading) return;
     setChatLog((prev) => prev.map((m, i) => (i === bubbleIndex ? { ...m, answered: true } : m)));
     setChatLog((prev) => [...prev, { role: "you", text: label }]);
+    if (isDiagnostic) {
+      onAnswerDiagnostic(label);
+      return;
+    }
     if (isAmbiguity) {
       onAnswerAmbiguity(questionText, label);
       return;
@@ -2874,7 +3209,26 @@ function OutlineReviewState({
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_360px]">
         {/* Outline canvas */}
         <div className="min-w-0 border-r border-[var(--hud-line)] px-6 py-8 lg:px-10">
-          {!outline && initialPlanningQuestions.length > 0 ? (
+          {!outline && diagnosticQuestion ? (
+            /*
+             * Before class, not a form. The question itself lives in the chat on the right — this
+             * pane says why it is being asked, so the screen is never an empty box with a question
+             * floating beside it.
+             */
+            <div>
+              <p className="text-sm text-[var(--hud-text-dim)]">
+                Aria is working out where to start with &ldquo;{topic}&rdquo; — answer on the right, or just say
+                &ldquo;start&rdquo; and she will get going.
+              </p>
+              {learnerSummary && (
+                <p className="mt-3 text-xs font-medium uppercase tracking-wider text-[var(--hud-cyan)]/80">
+                  So far: {learnerSummary}
+                </p>
+              )}
+            </div>
+          ) : !outline && diagnosticBusy ? (
+            <p className="text-sm text-[var(--hud-text-dim)]">Working out where to start…</p>
+          ) : !outline && initialPlanningQuestions.length > 0 ? (
             renderPlanningQuestionsPanel()
           ) : !outline && initialAmbiguityQuestions.length > 0 ? (
             <p className="text-sm text-[var(--hud-text-dim)]">
@@ -2896,6 +3250,24 @@ function OutlineReviewState({
             </div>
           ) : outline ? (
             <>
+              {/*
+                THE LESSON PREVIEW. Once a diagnostic ran, this is the "concise Lesson Preview" the
+                student confirms or edits before Phase 2 begins — not a separate screen, but this
+                same editable outline framed as what it now is: the co-designed plan that came out
+                of the conversation, not just a generic draft. Nothing renders here for a path with
+                no diagnostic (a document upload, a revise, a fresh outline with no profile yet) —
+                the framing only appears where there is something to frame.
+              */}
+              {learnerSummary && (
+                <div className="mb-6 rounded-md border border-[var(--hud-cyan)]/25 bg-[var(--hud-cyan)]/[0.04] px-4 py-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Lesson preview, from what you told Aria</p>
+                  <p className="mt-1 text-sm text-[var(--hud-text-dim)]">{learnerSummary}</p>
+                  <p className="mt-1.5 text-xs text-[var(--hud-text-faint)]">
+                    Edit anything below, or tell Aria in the chat if this should go differently.
+                  </p>
+                </div>
+              )}
+
               {loading && (
                 <div className="mb-6 rounded-md border border-[var(--hud-line)] bg-white/[0.025] px-4 py-3">
                   <div className="flex items-center justify-between gap-4">
@@ -3099,7 +3471,7 @@ function OutlineReviewState({
                         disabled={m.answered || sending || loading}
                         onSelect={(label) => {
                           const chip = m.chips!.find((c) => c.label === label);
-                          if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity));
+                          if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic));
                         }}
                       />
                     </div>

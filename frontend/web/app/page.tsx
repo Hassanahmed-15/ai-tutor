@@ -12,6 +12,7 @@ import { AboutPage } from "@/components/pages/AboutPage";
 import { FeaturesPage } from "@/components/pages/FeaturesPage";
 import { CompletePage } from "@/components/pages/CompletePage";
 import { LearnPage } from "@/components/pages/LearnPage";
+import { ViewerPage } from "@/components/pages/ViewerPage";
 import { AuthGate, useAuth } from "@/components/auth/AuthGate";
 import { VoiceTutor } from "@/components/voice/VoiceTutor";
 
@@ -61,6 +62,8 @@ export default function Home() {
       return <DyslexiaLessonPlayer onExit={exitToComplete} />;
     case "learn":
       return <LearnPage go={go} onExit={() => go("complete")} />;
+    case "viewer":
+      return <ViewerPage onExit={() => go("learn")} />;
     case "tracks":
       return <TracksPage go={go} onStart={startLesson} />;
     case "about":

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Check, Eraser, MessageCircleQuestion, Trash2 } from "lucide-react";
 
 /**
  * Student drawing surface — the board becomes two-way. A transparent canvas sits over the lesson
@@ -145,51 +146,79 @@ export function DrawOverlay({ onDrawingChange, onClose, busy, seenLabel, onExpla
         onPointerLeave={end}
         className="h-full w-full cursor-crosshair touch-none"
       />
-      <div className="absolute left-1/2 top-3 flex -translate-x-1/2 flex-wrap items-center gap-2 rounded-full border border-white/15 bg-slate-950/85 px-3 py-2 backdrop-blur">
-        {COLORS.map((c) => (
-          <button
-            key={c}
-            onClick={() => {
-              setColor(c);
-              setErasing(false);
-            }}
-            aria-label={`Pen colour ${c}`}
-            className={`size-5 rounded-full border-2 transition ${color === c && !erasing ? "border-white scale-110" : "border-white/30"}`}
-            style={{ background: c }}
-          />
-        ))}
+      {/*
+        COMPACT AND CORNER-ANCHORED, ON PURPOSE.
+        The previous toolbar had no width cap at all — `flex flex-wrap` at top-3, centred — so on a
+        narrower board it wrapped to two or three rows and became a genuinely large block of chrome
+        sitting where a beat's own heading usually lives. This version fits five colour dots, four
+        icon actions and a status dot into one row that never exceeds a small fixed width, anchored
+        to a bottom corner nothing else on the board uses. The status text collapses to a single
+        coloured dot with the full sentence as a title/tooltip — the student does not need to read
+        "draw, then ask Aria out loud" in full every time the tool is open.
+      */}
+      <div className="absolute bottom-3 right-3 flex max-w-[min(92%,22rem)] flex-wrap items-center gap-1 rounded-full border border-white/15 bg-slate-950/90 px-2 py-1.5 shadow-lg backdrop-blur">
+        <div className="flex items-center gap-1 px-0.5">
+          {COLORS.map((c) => (
+            <button
+              key={c}
+              onClick={() => {
+                setColor(c);
+                setErasing(false);
+              }}
+              aria-label={`Pen colour ${c}`}
+              className={`size-4 rounded-full border-2 transition ${color === c && !erasing ? "scale-110 border-white" : "border-white/30"}`}
+              style={{ background: c }}
+            />
+          ))}
+        </div>
         <button
           onClick={() => setWidth((w) => (w === 4 ? 8 : 4))}
-          className="rounded-full border border-white/20 px-2 py-1 text-[11px] font-bold text-white/80"
+          title={width === 4 ? "Thin stroke — tap for thick" : "Thick stroke — tap for thin"}
+          aria-label="Toggle stroke width"
+          className="grid size-7 shrink-0 place-items-center rounded-full border border-white/20 text-white/80 transition hover:bg-white/10"
         >
-          {width === 4 ? "Thin" : "Thick"}
+          <span className="rounded-full bg-current" style={{ width: width === 4 ? 5 : 9, height: width === 4 ? 5 : 9 }} />
         </button>
         <button
           onClick={() => setErasing((e) => !e)}
-          className={`rounded-full border px-2 py-1 text-[11px] font-bold ${erasing ? "border-cyan-300/50 bg-cyan-300/15 text-cyan-100" : "border-white/20 text-white/80"}`}
+          title="Eraser"
+          aria-label="Eraser"
+          aria-pressed={erasing}
+          className={`grid size-7 shrink-0 place-items-center rounded-full border transition ${erasing ? "border-cyan-300/50 bg-cyan-300/15 text-cyan-100" : "border-white/20 text-white/80 hover:bg-white/10"}`}
         >
-          Eraser
+          <Eraser className="size-3.5" />
         </button>
-        <button onClick={clear} className="rounded-full border border-white/20 px-2 py-1 text-[11px] font-bold text-white/80">
-          Clear
+        <button
+          onClick={clear}
+          title="Clear drawing"
+          aria-label="Clear drawing"
+          className="grid size-7 shrink-0 place-items-center rounded-full border border-white/20 text-white/80 transition hover:bg-white/10"
+        >
+          <Trash2 className="size-3.5" />
         </button>
-        <span className={`rounded-full px-2 py-1 text-[11px] font-bold ${busy ? "text-cyan-200" : "text-white/50"}`}>
-          {busy ? "Aria is looking…" : seenLabel ? "Aria can see this — just ask" : hasInk ? "…" : "Draw, then ask Aria out loud"}
-        </span>
+        <span
+          title={busy ? "Aria is looking…" : seenLabel ? "Aria can see this — just ask" : "Draw, then ask Aria out loud"}
+          aria-label={busy ? "Aria is looking" : seenLabel ? "Aria can see this" : "Not yet shared"}
+          className={`size-2 shrink-0 rounded-full ${busy ? "animate-pulse bg-cyan-300" : seenLabel ? "bg-cyan-300/70" : "bg-white/25"}`}
+        />
         {onExplain && (
           <button
             onClick={onExplain}
             disabled={!hasInk || busy}
-            className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-[11px] font-black text-cyan-100 transition hover:bg-cyan-300/20 disabled:cursor-not-allowed disabled:opacity-40"
+            title="Explain this in detail"
+            aria-label="Explain this in detail"
+            className="grid size-7 shrink-0 place-items-center rounded-full border border-cyan-300/40 bg-cyan-300/10 text-cyan-100 transition hover:bg-cyan-300/20 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Explain this in detail
+            <MessageCircleQuestion className="size-3.5" />
           </button>
         )}
         <button
           onClick={onClose}
-          className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-black text-white/85 transition hover:bg-white/20"
+          title="Done drawing"
+          aria-label="Done drawing"
+          className="grid size-7 shrink-0 place-items-center rounded-full bg-white/10 text-white/85 transition hover:bg-white/20"
         >
-          Done
+          <Check className="size-3.5" />
         </button>
       </div>
     </div>
