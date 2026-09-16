@@ -33,7 +33,8 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
   const [fitWidthBase, setFitWidthBase] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [scrollToPage, setScrollToPage] = useState<number | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [collectedPanelOpen, setCollectedPanelOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeMatch, setActiveMatch] = useState<SearchMatch | null>(null);
 
@@ -229,8 +230,30 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
     );
   }
 
+  const hasCollected = collected.length > 0;
+
   return (
-    <div className="flex h-full flex-col">
+    /*
+     * FULL-BLEED READER. The page stack is the ONLY permanent layout element — it fills the whole
+     * screen edge to edge, the way a native PDF viewer does. Everything else (toolbar, search,
+     * thumbnails, collected text) is an overlay that floats ON TOP of the reader and can be
+     * dismissed, rather than a panel that permanently claims a slice of the screen's width. This is
+     * a deliberate change from the original three-column layout, which read as "an app with a PDF
+     * embedded in it" rather than "a PDF, with tools available when wanted".
+     */
+    <div className="relative h-full">
+      <div ref={scrollAreaRef} className="h-full bg-[var(--hud-bg)]">
+        <PageList
+          doc={pdfState.doc}
+          pageCount={pdfState.pageCount}
+          scale={scale}
+          activeMatch={activeMatch}
+          highlightsByPage={highlightsByPage}
+          scrollToPage={scrollToPage}
+          onCurrentPageChange={setCurrentPage}
+        />
+      </div>
+
       <ViewerToolbar
         documentName={uploadedDoc.name}
         currentPage={currentPage}
@@ -248,56 +271,79 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
       />
 
       {searchOpen && (
-        <div className="flex justify-center border-b border-[var(--hud-line)] bg-[var(--hud-bg)] px-3 py-2">
-          <SearchPanel
-            doc={pdfState.doc}
-            pageCount={pdfState.pageCount}
-            textCache={textCache}
-            onClose={() => {
-              setSearchOpen(false);
-              setActiveMatch(null);
-            }}
-            onMatchChange={(match) => {
-              setActiveMatch(match);
-              if (match) setScrollToPage(match.pageNumber);
-            }}
-          />
+        <div className="absolute inset-x-0 top-16 z-30 flex justify-center px-3">
+          <div className="rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/95 px-3 py-2 shadow-xl backdrop-blur-md">
+            <SearchPanel
+              doc={pdfState.doc}
+              pageCount={pdfState.pageCount}
+              textCache={textCache}
+              onClose={() => {
+                setSearchOpen(false);
+                setActiveMatch(null);
+              }}
+              onMatchChange={(match) => {
+                setActiveMatch(match);
+                if (match) setScrollToPage(match.pageNumber);
+              }}
+            />
+          </div>
         </div>
       )}
 
-      <div className="flex min-h-0 flex-1">
-        {sidebarOpen && (
-          <aside className="hidden w-40 shrink-0 border-r border-[var(--hud-line)] bg-[var(--hud-bg-2)] sm:block">
+      {/* Thumbnails — a slide-out overlay, not a permanent column, so the page keeps the full
+          screen width until the student actually asks to see them. */}
+      {sidebarOpen && (
+        <>
+          <button
+            aria-label="Close thumbnails"
+            onClick={() => setSidebarOpen(false)}
+            className="absolute inset-0 z-30 bg-black/40 backdrop-blur-[1px]"
+          />
+          <aside className="absolute inset-y-0 left-0 z-40 w-40 overflow-hidden border-r border-[var(--hud-line)] bg-[var(--hud-bg-2)] shadow-2xl">
             <ThumbnailSidebar
               doc={pdfState.doc}
               pageCount={pdfState.pageCount}
               currentPage={currentPage}
-              onSelect={setScrollToPage}
+              onSelect={(p) => {
+                setScrollToPage(p);
+                setSidebarOpen(false);
+              }}
             />
           </aside>
-        )}
+        </>
+      )}
 
-        <div ref={scrollAreaRef} className="min-w-0 flex-1 bg-[var(--hud-bg)]">
-          <PageList
-            doc={pdfState.doc}
-            pageCount={pdfState.pageCount}
-            scale={scale}
-            activeMatch={activeMatch}
-            highlightsByPage={highlightsByPage}
-            scrollToPage={scrollToPage}
-            onCurrentPageChange={setCurrentPage}
-          />
-        </div>
-
-        <aside className="hidden w-72 shrink-0 border-l border-[var(--hud-line)] bg-[var(--hud-bg-2)] lg:block">
-          <CollectedTextPanel
-            snippets={collected}
-            onRemove={(id) => setCollected((prev) => prev.filter((s) => s.id !== id))}
-            onClear={() => setCollected([])}
-            onAskAboutAll={handleAskAboutCollection}
-          />
-        </aside>
-      </div>
+      {/* Collected text — a floating panel toggled from the selection toolbar's "Add to
+          Collection" action, not a permanent column. Only ever mounted once there's something to
+          show, or the student is mid-collecting (open state tracked by the button below). */}
+      {(hasCollected || collectedPanelOpen) && (
+        <>
+          {collectedPanelOpen && (
+            <button
+              aria-label="Close collected text"
+              onClick={() => setCollectedPanelOpen(false)}
+              className="absolute inset-0 z-30 bg-black/40 backdrop-blur-[1px]"
+            />
+          )}
+          {!collectedPanelOpen ? (
+            <button
+              onClick={() => setCollectedPanelOpen(true)}
+              className="absolute bottom-4 right-4 z-30 rounded-full border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/90 px-3 py-2 text-xs font-semibold text-[var(--hud-text-dim)] shadow-lg backdrop-blur-md transition hover:text-[var(--hud-text)]"
+            >
+              Collected ({collected.length})
+            </button>
+          ) : (
+            <aside className="absolute inset-y-0 right-0 z-40 w-72 max-w-[85vw] overflow-hidden border-l border-[var(--hud-line)] bg-[var(--hud-bg-2)] shadow-2xl">
+              <CollectedTextPanel
+                snippets={collected}
+                onRemove={(id) => setCollected((prev) => prev.filter((s) => s.id !== id))}
+                onClear={() => setCollected([])}
+                onAskAboutAll={handleAskAboutCollection}
+              />
+            </aside>
+          )}
+        </>
+      )}
 
       <SelectionToolbar
         anchorRect={selectionRect}

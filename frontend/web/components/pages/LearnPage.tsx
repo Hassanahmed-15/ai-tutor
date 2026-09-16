@@ -1208,17 +1208,15 @@ type BuildCost =
       setInitialAmbiguityQuestions(data.questions as ClarifyQuestion[]);
       return;
     }
-    if (data && Array.isArray(data.planningQuestions) && data.planningQuestions.length > 0) {
-      // Not ambiguous, but has real topic-specific planning decisions worth asking first.
-      setInitialPlanningQuestions(data.planningQuestions as ScopingQuestion[]);
-      return;
-    }
     /*
      * Ask who this is for before planning what to teach.
      *
      * Only on the typed-topic path: an uploaded document returns above with its own planning, and a
      * demo/skip path never reaches here. The opening question is asked locally rather than by a
-     * round-trip, so the conversation starts the instant the screen does.
+     * round-trip, so the conversation starts the instant the screen does. This is the ONE pre-draft
+     * conversation for a typed topic now — the old "planningQuestions" chip questionnaire (prior
+     * knowledge / focus / structure dropdowns) has been retired in favor of this adaptive diagnostic;
+     * see CLARIFY_TOPIC_SYSTEM_PROMPT's doc comment for why it no longer proposes those.
      */
     setLearnerProfile(emptyProfile(trimmed));
     learnerProfileRef.current = emptyProfile(trimmed);
@@ -2992,10 +2990,11 @@ function OutlineReviewState({
     updateSubtopics(outline.subtopics.map((s, idx) => (idx === i ? { ...s, [field]: value } : s)));
   }
 
-  /** The ONE pre-draft gate — shown only while `!outline`, unmounts for good once drafting
-   *  starts (never lingers in a compact form, unlike the old always-present panel). Questions
-   *  are model-generated and topic-specific (see CLARIFY_TOPIC_SYSTEM_PROMPT's planningQuestions
-   *  field), not a fixed generic set. */
+  /** The document-scope gate for an uploaded PDF/PPT ONLY (see shouldPlanDocumentScope) — shown
+   *  only while `!outline`, unmounts for good once drafting starts. A typed topic never reaches
+   *  this; it goes through the adaptive diagnostic conversation instead (diagnosticQuestion).
+   *  Questions here are model-generated and grounded in the actual source document (see
+   *  DOCUMENT_SCOPE_SYSTEM_PROMPT), not a fixed generic set. */
   function renderPlanningQuestionsPanel() {
     if (initialPlanningQuestions.length === 0) return null;
     const allAnswered = planningAnswers.length >= initialPlanningQuestions.length;

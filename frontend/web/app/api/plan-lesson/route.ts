@@ -56,10 +56,10 @@ function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
 
 /**
  * Cheap, fast pre-generation planning calls: "clarify" checks whether a typed topic is
- * genuinely ambiguous (proposes quick-reply disambiguation questions if so) AND, when NOT
- * ambiguous, whether it has genuine topic-specific pre-draft planning decisions worth asking
- * about ("planningQuestions" — shown as ONE panel in the main canvas before drafting starts,
- * replacing any old generic/hardcoded steering questions). "outline"/"revise" sketch or edit
+ * genuinely ambiguous and, if so, proposes quick-reply disambiguation questions. It no longer
+ * decides pre-draft planning questions (prior knowledge, scope, emphasis) — that is now the
+ * adaptive diagnostic conversation ("diagnose", driven by diagnosticPrompt.ts), which fires for
+ * every non-ambiguous typed topic. "outline"/"revise" sketch or edit
  * subtopic titles/captions/reasons/confidence, and 2-3 individual subtopics ALSO carry their
  * own optional "scopingQuestion" — grounded in that specific subtopic, not the whole lecture.
  * Each question's options carry a ready-to-send revise instruction the client sends straight
@@ -89,7 +89,7 @@ function costUsd(usage: { prompt_tokens?: number; completion_tokens?: number } |
 
 type ClarifyQuestion = { question: string; options: string[] };
 
-function sanitizeClarify(raw: unknown): { ambiguous: boolean; questions: ClarifyQuestion[]; planningQuestions: { question: string; options: { label: string; instruction: string }[] }[] } {
+function sanitizeClarify(raw: unknown): { ambiguous: boolean; questions: ClarifyQuestion[] } {
   const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const rawQuestions = Array.isArray(obj.questions) ? obj.questions : [];
   const questions: ClarifyQuestion[] = [];
@@ -103,18 +103,7 @@ function sanitizeClarify(raw: unknown): { ambiguous: boolean; questions: Clarify
   }
   const ambiguous = obj.ambiguous === true && questions.length > 0;
 
-  // planningQuestions only apply when NOT ambiguous — resolve the subject first (see prompt).
-  const planningQuestions: { question: string; options: { label: string; instruction: string }[] }[] = [];
-  if (!ambiguous) {
-    const rawPlanning = Array.isArray(obj.planningQuestions) ? obj.planningQuestions : [];
-    for (const q of rawPlanning) {
-      const sanitized = sanitizeScopingQuestion(q);
-      if (sanitized) planningQuestions.push(sanitized);
-      if (planningQuestions.length >= 3) break;
-    }
-  }
-
-  return { ambiguous, questions, planningQuestions };
+  return { ambiguous, questions };
 }
 
 function sanitizeScopingQuestion(raw: unknown): { question: string; options: { label: string; instruction: string }[] } | undefined {
