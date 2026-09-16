@@ -69,3 +69,11 @@ frontend/web/.asset-build/
 
 # Local database + auth secrets — never committed.
 frontend/web/drizzle/
+
+# Unrelated scratch/sibling projects that live inside this repo checkout but are not part of it —
+# each has its own separate history (direct-booking-rental has its own .git) or is a throwaway
+# prototype (unity-campus-poc, gemini-live-test-app). `git add -A` has pulled these in as an
+# embedded gitlink / thousands of stray files more than once; ignoring them here is the fix.
+/direct-booking-rental/
+/gemini-live-test-app/
+/unity-campus-poc/
