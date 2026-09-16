@@ -54,6 +54,12 @@ export interface Beat {
   draw?: DrawScript;
   /** Full-bleed real photo behind the slide (scene-setting beats only — hook/recap). Path under /public. */
   photoBackdrop?: string;
+  /**
+   * Present only when this replay package has a persisted Manim render in private Blob Storage.
+   * It lives on the beat rather than inside `draw`, because `draw` is content-hashed to produce the
+   * Manim cache id; putting a delivery URL inside it would change that id and force a new render.
+   */
+  manimVideoUrl?: string;
 }
 
 const GREEN = "#15803d";

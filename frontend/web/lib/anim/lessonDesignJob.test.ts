@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
   addJobSteering,
   cancelJob,
-  createJob,
+  createJob as createJobForOwner,
   finishJob,
   getJob,
   jobSteering,
@@ -13,6 +13,8 @@ import {
   setJobStage,
   waitForJobRunnable,
 } from "../lectureJobs";
+
+const createJob = () => createJobForOwner("test-user");
 
 /**
  * The job's stage bookkeeping.

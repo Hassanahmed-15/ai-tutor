@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getJob, replicaHint } from "@/lib/lectureJobs";
+import { currentUser } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,6 +16,9 @@ export const dynamic = "force-dynamic";
  * is unchanged — it just arrives via a different door.
  */
 export async function GET(request: Request) {
+  const session = await currentUser();
+  if (!session) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
+
   const id = new URL(request.url).searchParams.get("id") ?? "";
   if (!id) return NextResponse.json({ error: "id is required" }, { status: 400 });
 
@@ -29,6 +33,11 @@ export async function GET(request: Request) {
      * multi-replica case identifiable instead of looking like random flakiness.
      */
     return NextResponse.json({ state: "unknown", replica: replicaHint() }, { status: 200 });
+  }
+
+  // A UUID is not authorization. Never reveal another learner's progress or finished package.
+  if (job.userId !== session.userId) {
+    return NextResponse.json({ error: "Lecture job not found." }, { status: 404 });
   }
 
   if (job.state === "done") {

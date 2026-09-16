@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import { cancelJob, getJob, pauseJob, resumeJob } from "@/lib/lectureJobs";
+import { currentUser } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  const session = await currentUser();
+  if (!session) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
+
   const body = await request.json().catch(() => ({}));
   const id = typeof body.jobId === "string" ? body.jobId : "";
   const action = body.action === "pause" || body.action === "resume" || body.action === "cancel"
@@ -16,6 +20,9 @@ export async function POST(request: Request) {
 
   const job = getJob(id);
   if (!job) return NextResponse.json({ applied: false, reason: "expired" });
+  if (job.userId !== session.userId) {
+    return NextResponse.json({ error: "Lecture job not found." }, { status: 404 });
+  }
 
   const applied = action === "pause"
     ? pauseJob(id)

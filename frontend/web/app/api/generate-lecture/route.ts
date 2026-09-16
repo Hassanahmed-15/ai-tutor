@@ -47,6 +47,10 @@ import {
 } from "@/lib/fullDocumentContext";
 import type { Beat } from "@/lib/lessonContent";
 import { costFor } from "@/lib/modelPricing";
+import { currentUser } from "@/lib/auth";
+import { blobStorageConfigured } from "@/lib/blobStorage";
+import { databaseConfigured } from "@/lib/db/cosmos";
+import { archiveLecture, normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureArchive";
 
 // Kill switch for generated image assets. The prompt can still plan image beats, but when this is
 // off the server converts those placeholders into no-cost written boards instead of calling the
@@ -1258,6 +1262,17 @@ function snapshotBoards(tag: string, beats: Beat[]): void {
 }
 
 export async function POST(req: Request) {
+  const session = await currentUser();
+  if (!session) {
+    return NextResponse.json({ error: "Authentication required." }, { status: 401 });
+  }
+  if (!databaseConfigured() || !blobStorageConfigured()) {
+    return NextResponse.json(
+      { error: "Lecture history storage is not configured." },
+      { status: 503 },
+    );
+  }
+
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json(
       { error: "OPENAI_API_KEY not set — add it to frontend/web/.env.local to generate lectures." },
@@ -1266,6 +1281,8 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json().catch(() => ({}));
+  const sourceType = normalizeLectureSourceType(body.sourceType);
+  const mode = normalizeLectureMode(body.mode);
   const topic = typeof body.topic === "string" ? body.topic.trim() : "";
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 160) : "";
   // Optional slide context from a parsed PPTX — up to 4000 chars of structured slide text
@@ -1470,7 +1487,23 @@ export async function POST(req: Request) {
   if (!refresh) {
     const cached = await readCachedLecture(cacheKey);
     if (cached) {
-      return NextResponse.json({ topic: cached.topic || input.topic, beats: cached.beats, costUsd: 0, cached: true });
+      const archived = await archiveLecture({
+        userId: session.userId,
+        topic: cached.topic || input.topic,
+        sourceType,
+        mode,
+        beats: cached.beats,
+      });
+      void archived.finishVideos().catch((error) => {
+        console.error(`[lecture-archive] cached lecture ${archived.lectureId}: ${error instanceof Error ? error.message : "video persistence failed"}`);
+      });
+      return NextResponse.json({
+        lectureId: archived.lectureId,
+        topic: cached.topic || input.topic,
+        beats: cached.beats,
+        costUsd: 0,
+        cached: true,
+      });
     }
   }
 
@@ -1485,8 +1518,8 @@ export async function POST(req: Request) {
    * Callers that genuinely want to block (scripts, the debug route, curl) can pass `wait: true` and
    * get the old synchronous behaviour, which is also what keeps the existing tests meaningful.
    */
-  const job = createJob("Reading your material");
-  const run = generateLecture(client, input, cacheKey, job.id);
+  const job = createJob(session.userId, "Reading your material");
+  const run = generateLecture(client, input, cacheKey, job.id, session.userId, sourceType, mode);
 
   if (body.wait !== true) {
     // Failures are recorded on the job; nothing is thrown into the void.
@@ -1505,6 +1538,9 @@ async function generateLecture(
   input: LectureBuildInput,
   cacheKey: string,
   jobId: string,
+  userId: string,
+  sourceType: ReturnType<typeof normalizeLectureSourceType>,
+  mode: ReturnType<typeof normalizeLectureMode>,
 ): Promise<NextResponse> {
   try {
     /**
@@ -1612,8 +1648,19 @@ async function generateLecture(
       await writeCachedLecture(cacheKey, { beats: base.beats, costUsd, topic: input.topic });
     }
 
-    const payload = { topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats };
+    setJobStage(jobId, "finalizing", { status: "Saving your replayable lecture" });
+    const archived = await archiveLecture({
+      userId,
+      topic: input.topic,
+      sourceType,
+      mode,
+      beats: base.beats,
+    });
+    const payload = { lectureId: archived.lectureId, topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats };
     finishJob(jobId, payload);
+    void archived.finishVideos().catch((error) => {
+      console.error(`[lecture-archive] lecture ${archived.lectureId}: ${error instanceof Error ? error.message : "video persistence failed"}`);
+    });
     return NextResponse.json(payload);
   } catch (err) {
     if (err instanceof LectureJobCancelledError) {

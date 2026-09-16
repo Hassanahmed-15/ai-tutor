@@ -26,6 +26,7 @@ export const USERS_CONTAINER = "users";
 export const SESSIONS_CONTAINER = "sessions";
 export const LEADERBOARD_CONTAINER = "leaderboard";
 export const THOUGHTS_CONTAINER = "thoughts";
+export const LECTURES_CONTAINER = "lectures";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -172,6 +173,43 @@ export type SessionDoc = {
   ttl: number;
 };
 
+export type LectureSourceType = "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder";
+export type LectureMode = "standard" | "blind" | "low-vision" | "adhd" | "dyslexia" | "deaf";
+
+export type LectureVideoDoc = {
+  id: string;
+  beatIds: string[];
+  blobName: string;
+  durationMs: number;
+  bytes: number;
+};
+
+/**
+ * Searchable ownership and lifecycle data for a replayable lecture.
+ *
+ * The full lesson deliberately does not live in Cosmos: generated boards can contain large data
+ * URLs and component source, while Cosmos should stay a small, cheap index. `packageBlobName`
+ * points at the private Blob object holding the complete replay payload. Every operation supplies
+ * `userId` as the partition key, so one learner's history never becomes a cross-partition query.
+ */
+export type LectureDoc = {
+  id: string;
+  userId: string;
+  topic: string;
+  sourceType: LectureSourceType;
+  /** The actual player/accessibility mode used when this lecture was generated. */
+  mode: LectureMode;
+  packageBlobName: string;
+  status: "processing-videos" | "ready" | "ready-with-errors" | "failed";
+  beatCount: number;
+  packageBytes: number;
+  manimVideoCount: number;
+  manimVideos: LectureVideoDoc[];
+  createdAt: string;
+  updatedAt: string;
+  error: string | null;
+};
+
 const globalForCosmos = globalThis as unknown as { ariaCosmos?: CosmosClient };
 
 function client(): CosmosClient {
@@ -201,6 +239,10 @@ export function thoughts(): Container {
 
 export function sessionsContainer(): Container {
   return client().database(DATABASE_ID).container(SESSIONS_CONTAINER);
+}
+
+export function lectures(): Container {
+  return client().database(DATABASE_ID).container(LECTURES_CONTAINER);
 }
 
 /**
@@ -235,6 +277,11 @@ export async function ensureContainers(): Promise<void> {
   await database.containers.createIfNotExists({
     id: THOUGHTS_CONTAINER,
     // Partitioned by learner: a learner's list is one partition, and never a fan-out over everyone.
+    partitionKey: { paths: ["/userId"] },
+  });
+  await database.containers.createIfNotExists({
+    id: LECTURES_CONTAINER,
+    // Every history lookup is scoped to the signed-in learner.
     partitionKey: { paths: ["/userId"] },
   });
   ensured = true;

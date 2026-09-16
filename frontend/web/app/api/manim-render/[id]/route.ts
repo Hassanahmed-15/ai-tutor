@@ -1,4 +1,5 @@
 import { readCachedRender, readCachedVideo } from "@/lib/manimRender";
+import { currentUser } from "@/lib/auth";
 
 /**
  * Serves a rendered beat video out of the render cache.
@@ -45,6 +46,9 @@ function parseRange(header: string | null, size: number): { start: number; end: 
 }
 
 export async function GET(req: Request, ctx: RouteContext<"/api/manim-render/[id]">) {
+  const session = await currentUser();
+  if (!session) return new Response("Authentication required", { status: 401 });
+
   const { id } = await ctx.params;
 
   const meta = await readCachedRender(id);
