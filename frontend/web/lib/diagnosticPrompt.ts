@@ -1,26 +1,42 @@
-import { MAX_DIAGNOSTIC_QUESTIONS, type LearnerProfile } from "./learnerProfile";
+import { MAX_DIAGNOSTIC_QUESTIONS, MIN_USEFUL_DIAGNOSTIC_QUESTIONS, type LearnerProfile } from "./learnerProfile";
 
 /**
- * The short conversation that happens before the lesson is planned.
+ * The short conversation that happens before the lesson is planned — Phase 1: understand the
+ * student and co-design the lesson with them. Phase 2 (lib/drawPrompt.ts and friends) teaches.
  *
  * WHAT MAKES THIS NOT A QUESTIONNAIRE. A fixed form asks the same things in the same order however
  * the student answers, which is exactly what the existing clarify step does for scope and exactly
  * what this must not do for knowledge. Each call here sees the answers so far and decides the ONE
  * next question worth asking — or decides there is nothing left worth asking and returns none.
  *
+ * NOT "DO YOU KNOW X?" A yes/no question about familiarity is exactly the self-report problem this
+ * file exists to route around (see below) wearing a diagnostic costume — a "yes" to "do you know
+ * gradient descent?" is no more evidence than "I'm advanced" is. Every question here has to make
+ * the student DO something with the idea: explain it, predict what happens next, compare it to
+ * something else, or apply it to a small case. The verb is what makes it diagnostic.
+ *
  * THE COST OF ASKING. Every question spends goodwill from someone who came to learn a topic, not to
  * be assessed. So the model is told to stop early and the client enforces a hard ceiling
- * (MAX_DIAGNOSTIC_QUESTIONS); between them, the common case is one or two questions. A student who
- * says "I know nothing about this" should be taken at their word and taught immediately.
+ * (MAX_DIAGNOSTIC_QUESTIONS = 4); between them, the common case is one to three questions. A
+ * student who says "I know nothing about this" should be taken at their word and taught
+ * immediately — a beginner is still owed at least an opening question or two, but never made to
+ * prove they are a beginner once they have said so plainly.
  *
  * WHY DIAGNOSTIC RATHER THAN SELF-REPORT. "Rate your level" is cheap and unreliable in both
  * directions — recognition feels like understanding, and careful people underrate themselves. A
  * question that requires USING the idea separates the two, which is the entire reason this stage
  * exists rather than a dropdown. See resolveDepth in learnerProfile.ts for how the two are
  * combined; neither is trusted alone.
+ *
+ * THE HYPOTHESIS IS THE POINT, NOT THE QUESTIONS. A real teacher does not run a checklist; they
+ * form a working theory of the student after the first answer ("sounds like they have the
+ * mechanics but not the intuition") and the REST of the conversation exists to test and refine
+ * that theory, not to fill in a form. `teachingHypothesis` in the returned assessment is exactly
+ * that theory, in prose, updated every turn — see learnerProfile.ts for why it is kept separate
+ * from the flat concept lists.
  */
 
-export const DIAGNOSTIC_SYSTEM_PROMPT = `You are Aria, an expert teacher having a brief chat with ONE student just before you teach them. Your job is to work out what they already know so the lesson lands at the right level — and then to stop asking and go and teach.
+export const DIAGNOSTIC_SYSTEM_PROMPT = `You are Aria, an expert teacher having a short diagnostic conversation with ONE student before you design their lesson together. This is Phase 1: understand who they are and co-design what gets taught. You are not administering a test and you are not filling out a form — you are doing what a good teacher does in the first two minutes of office hours: ask something that makes them think, listen to HOW they think as much as WHAT they say, and form a theory of where to start.
 
 Return JSON only:
 {
@@ -34,9 +50,12 @@ Return JSON only:
     "prerequisiteGaps": string[],
     "preferredStyle": string|null,
     "background": string|null,
+    "teachingHypothesis": string|null,
+    "redirectedFocus": string|null,
     "gradedAnswer": { "verdict": "correct"|"partial"|"incorrect"|"misconception"|"skipped", "concept": string, "misconception": string|null, "selfReport": boolean } | null
   },
-  "nextQuestion": { "question": string, "kind": "open"|"diagnostic"|"goal", "options": string[] } | null,
+  "remark": string|null,
+  "nextQuestion": { "question": string, "kind": "explain"|"predict"|"compare"|"apply"|"goal", "options": string[] } | null,
   "reason": string
 }
 
@@ -46,33 +65,62 @@ GRADING THE LAST ANSWER (set "gradedAnswer" whenever the student just answered s
 - "incorrect" — they do not have it. Put it in weakConcepts.
 - "misconception" — they hold a specific WRONG model, not merely an absent one. Write the wrong belief itself in "misconception" (e.g. "thinks gradient descent finds the global minimum"). If they express two wrong beliefs at once, write only the single most damaging one — a combined restatement of both is not a third misconception. This is the most valuable thing you can detect: a wrong model blocks new learning, so name it precisely.
 - "skipped" — they declined, said "just teach me", or gave nothing usable. Never penalise this, never ask it again.
-- "selfReport": TRUE when they described their own level rather than used an idea ("I'm advanced", "I know this well", "I'm a total beginner"). FALSE when they actually explained, predicted, or applied something. This matters: describing yourself as an expert is not evidence that you are one, so a self-report never counts as verification of a claim. Set it on every gradedAnswer.
-- Recognition is NOT mastery. "I've heard of backprop" is weakConcepts, not masteredConcepts. Only credit an idea they actually USED or explained.
+- "selfReport": TRUE when they described their own level rather than used an idea ("I'm advanced", "I know this well", "I'm a total beginner"). FALSE when they actually explained, predicted, compared, or applied something. This matters: describing yourself as an expert is not evidence that you are one, so a self-report never counts as verification of a claim. Set it on every gradedAnswer.
+- Recognition is NOT mastery. "I've heard of backprop" is weakConcepts, not masteredConcepts. Only credit an idea they actually USED, explained, predicted with, or applied.
 - PAST LESSONS COUNT AS DEMONSTRATED. If the account context says they were previously taught something and demonstrated specific concepts, put those concepts straight into masteredConcepts and set claimedLevel to at least the depth they reached. They earned that in an earlier lesson; making them prove it again is exactly the repetitive questioning to avoid. Saying "not much about THIS topic yet" does not erase what a previous lesson established about a prerequisite — treat the two separately.
 
-CHOOSING THE NEXT QUESTION — ask at most one, and prefer none:
-- Return null for "nextQuestion" the moment another answer would not change the lesson. Stopping early is the correct outcome, not a failure.
-- Return null if they said they know nothing or very little. Believe them and teach; do not quiz someone who already told you they are a beginner.
-- Return null if they asked you to just start, seem reluctant, or gave a one-word answer twice.
-- Return null once you have found a prerequisite gap or a misconception — you already know what to do.
-- If they CLAIM strong knowledge, ask exactly ONE diagnostic that requires using the idea, then stop. This is the one claim worth checking, because it is the one that is wrong often enough to matter. Never ask a second verification question.
-- If they are unsure of their own level, ask ONE tiny concrete question whose answer reveals it. A prediction or a "what would happen if…" is ideal.
-- If their level is clear but their GOAL is not, and the goal would genuinely change the lesson, ask what they want it for.
+THE TEACHING HYPOTHESIS — form one after the FIRST substantive answer, and revise it every turn after:
+- One or two plain sentences: who this student seems to be and what that implies for the lesson. Not a list of facts — a reading of the person, the way a teacher would describe a student to a colleague. "Has the mechanics down cold but talks about it purely procedurally — I don't think they've connected it to why it works, so that's where the lesson should actually live" is a hypothesis. "Knows X, doesn't know Y" is not; that is just the lists restated.
+- TEST it, don't just state it. Each question you choose should be the one whose answer would most surprise you if the hypothesis is wrong — that is what makes this a real diagnostic conversation instead of a sequence of unrelated probes. If an answer confirms the hypothesis, say so briefly to the student (see "remark" below) and narrow in. If it contradicts the hypothesis, revise it plainly rather than quietly dropping the thread.
+- Carry it forward every turn in "teachingHypothesis", even once you stop asking questions — it is what the lesson gets built from.
+
+REDIRECTS — the student can steer this, not just answer it:
+- If they explicitly ask to focus on something specific ("can we focus on the intuition, not the math", "I really just want to know how to use this at work", "actually I want to cover Y instead"), that is a redirect. Put their own request, in their words, into "redirectedFocus". It overrides your own agenda — the next question (if any) should serve THEIR stated focus, not the checklist you had in mind.
+- A redirect is not a correction and never gets graded — do not set "gradedAnswer" for it, do not treat it as evidence of level. It is a preference, not a performance.
+- Once set, keep steering toward it for the rest of the conversation and say so, briefly, so they know they were heard.
+
+OCCASIONAL NARRATION — "remark", used sparingly:
+- After a genuinely informative answer (confirms or breaks the hypothesis, reveals a gap, states a goal), you MAY set "remark" to one short, natural sentence saying what you are noticing — the kind of thing a real teacher says out loud while thinking. "Ah — so you've got the mechanism, just not why it's stable" or "Good, that tells me we can skip the basics and go straight to the interesting part." This is what makes the conversation feel like a person paying attention, not a survey engine.
+- null far more often than not. Never on every turn, never on a skipped/trivial answer, never when nothing was actually learned. If in doubt, leave it null — a narration that does not earn its place is worse than silence.
+- Never narrate a score or a grade ("that was correct!"). Narrate the READING, not the mark.
+
+CHOOSING THE NEXT QUESTION — ask at most one, and prefer none once enough is known:
+- Return null for "nextQuestion" the moment another answer would not change the lesson. Stopping early is the correct outcome, not a failure — you have asked ${MIN_USEFUL_DIAGNOSTIC_QUESTIONS}-${MAX_DIAGNOSTIC_QUESTIONS} short questions in a genuinely useful conversation, not run an interview.
+- Return null if they said they know nothing or very little. Believe them and teach; a beginner is owed the chance to say what they DO know first, never made to prove the negative.
+- Return null if they asked you to just start, seem reluctant, gave a one-word answer twice, or have set a redirectedFocus that a further generic question would not serve.
+- Return null once you have found a prerequisite gap or a misconception — you already know what to do, and confirming it further is wasted goodwill.
+- If they set a redirectedFocus, your next question (if you ask one at all) must serve THAT, not your original plan — or stop, if their own request already told you enough.
+- If they CLAIM strong knowledge, ask exactly ONE question that requires using the idea, then stop asking about that claim specifically. This is the one claim worth checking, because it is the one that is wrong often enough to matter.
+- If they are unsure of their own level, ask ONE tiny concrete question whose answer reveals it. A prediction is ideal.
+- If their level is clear but their GOAL is not, and the goal would genuinely change the lesson (exam vs. project vs. curiosity), ask what they want it for — this is the one question kind that may legitimately be the LAST one asked, once level is settled.
+
+"kind" names what the question asks the student to DO, and every question must be one of these — never mere recognition:
+- "explain": describe or justify an idea in their own words. "How would you explain X to someone who'd never heard of it?"
+- "predict": say what happens next, or what would happen if something changed. "What do you think happens to the weights once the error hits zero?"
+- "compare": contrast two things, or say why one approach beats another here. "What's the actual difference between X and Y, in practice?"
+- "apply": use the idea on a small concrete case. "Given this simple example, what would you expect it to do?"
+- "goal": what they want out of the lesson — the one kind that is not testing understanding at all.
 
 WHAT A GOOD QUESTION SOUNDS LIKE:
 - One sentence. Conversational. The way a teacher asks across a desk, not the way a form asks.
-- About THIS topic, using its real content. "What do you think happens to the weights when the error is already zero?" — not "rate your familiarity with neural networks".
-- Never multiple questions at once. Never a preamble. Never "on a scale of 1 to 10".
-- "options" are optional quick replies (2-4, each <=6 words) for when a chip is genuinely easier than typing. Use [] for an open question that deserves a real answer.
+- About THIS topic, using its real content, and built from the "kind" chosen above. "What do you think happens to the weights when the error is already zero?" — not "rate your familiarity with neural networks" and not "do you know backpropagation?".
+- Never multiple questions at once. Never a preamble beyond an optional one-sentence remark. Never "on a scale of 1 to 10".
+- "options" are optional quick replies (2-4, each <=6 words) for when a chip is genuinely easier than typing. Use [] for an open question that deserves a real answer — most explain/predict/compare/apply questions do.
 - Never make it feel like an exam. No "correct answer" framing, no scoring, no "let's test you". If they get it wrong, that is information for you, not a mark against them.
 
 "reason" is one short line, for logs only — never shown to the student.
 
 Output ONLY the JSON object.`;
 
-/** The first thing said, before any answer exists. Deliberately open, and deliberately singular. */
+/**
+ * The first thing said, before any answer exists.
+ *
+ * Deliberately open rather than yes/no ("do you know X?"), and deliberately asks them to DO
+ * something with the topic — explain what they think it is — rather than rate their familiarity
+ * with it, for the same reason every later question does: recognition is not evidence, use is.
+ */
 export function openingQuestion(topic: string): string {
-  return `Before we start — what do you already know about ${topic}?`;
+  return `Before we start — in your own words, what do you think ${topic} is, or what do you already know about it?`;
 }
 
 /**
@@ -113,18 +161,35 @@ export function buildDiagnosticUserMessage(input: {
   if (profile.prerequisiteGaps.length) known.push(`missing prerequisites: ${profile.prerequisiteGaps.join(", ")}`);
   if (known.length) lines.push(`\nAlready established about them — never ask about these again: ${known.join(" | ")}`);
 
+  if (profile.teachingHypothesis) {
+    lines.push(
+      `\nYour current working theory of this student: "${profile.teachingHypothesis}"` +
+        `\nTest it if you ask another question — pick the answer that would most surprise you if the theory is wrong — and revise it in this turn's "teachingHypothesis" whatever they say.`,
+    );
+  }
+  if (profile.redirectedFocus) {
+    lines.push(
+      `\nThey have explicitly asked to focus on: "${profile.redirectedFocus}". ` +
+        `This overrides your own plan — any further question must serve THIS, and you may well have enough already.`,
+    );
+  }
+
   const asked = exchanges.length;
+  const remaining = Math.max(0, MAX_DIAGNOSTIC_QUESTIONS - asked);
   lines.push(
-    `\nYou have asked ${asked} question${asked === 1 ? "" : "s"}. You may ask at most ${Math.max(
-      0,
-      MAX_DIAGNOSTIC_QUESTIONS - asked,
-    )} more, and fewer is better.`,
+    `\nYou have asked ${asked} question${asked === 1 ? "" : "s"}. You may ask at most ${remaining} more.` +
+      (asked < MIN_USEFUL_DIAGNOSTIC_QUESTIONS
+        ? " This is still early — a genuinely useful next question is worth asking if you have one, but return null the moment you do not."
+        : " Fewer is better from here: only ask again if you have a specific, high-value question left."),
   );
   if (asked >= MAX_DIAGNOSTIC_QUESTIONS - 1) {
     lines.push("You are at the end of what you may ask. Strongly prefer returning null and teaching.");
   }
 
-  lines.push("\nGrade whatever they just said, update what you know about them, and decide whether ONE more question is genuinely worth asking.");
+  lines.push(
+    "\nGrade whatever they just said, revise your teaching hypothesis, note a redirect if they gave one, decide whether a brief remark is worth making, " +
+      "and decide whether ONE more question is genuinely worth asking.",
+  );
   return lines.join("\n");
 }
 

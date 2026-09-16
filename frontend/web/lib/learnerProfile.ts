@@ -100,6 +100,32 @@ export type LearnerProfile = {
   preferredStyle: string | null;
   /** The student's own words about their background, when they gave any. */
   background: string | null;
+  /**
+   * The model's running, revisable theory of who this student is — one or two sentences, in
+   * plain language, updated after every exchange.
+   *
+   * WHY THIS EXISTS SEPARATELY FROM THE LISTS ABOVE. masteredConcepts/weakConcepts/etc. are
+   * DATA — individually true, but a list is not a picture of a person. "Knows gradient descent,
+   * shaky on chain rule, wants project help" is three facts; "has the calculus but hasn't
+   * connected it to how networks actually learn yet, and just wants to ship something" is a
+   * THEORY that explains the facts and predicts what will land next. That prose is what a real
+   * teacher forms in their head during office hours and revises as the conversation goes — this
+   * field is that, made explicit so it can be tested (does the next answer fit it?) and handed to
+   * the lecture writer as a synthesis rather than a table it has to re-derive.
+   *
+   * Null until the first exchange gives the model something to theorise about.
+   */
+  teachingHypothesis: string | null;
+  /**
+   * What the student explicitly asked to focus on instead of, or within, the topic — in their own
+   * words. Set only when they actually redirected ("can we focus on X instead", "I really just
+   * want to understand Y"), never inferred from an ordinary answer.
+   *
+   * A student's own stated interest overrides the diagnostic's own agenda: the conversation is
+   * co-designing the lesson WITH them, not administering a fixed assessment they can only answer
+   * within. See wantsToRedirect in diagnosticPrompt.ts for how this is detected.
+   */
+  redirectedFocus: string | null;
   updatedAt: string;
 };
 
@@ -116,8 +142,35 @@ export function emptyProfile(topic: string): LearnerProfile {
     diagnostics: [],
     preferredStyle: null,
     background: null,
+    teachingHypothesis: null,
+    redirectedFocus: null,
     updatedAt: new Date().toISOString(),
   };
+}
+
+/**
+ * The concept-level picture of this student, presented as one structure rather than four separate
+ * lists — this is the "Concept Map" the diagnostic conversation builds.
+ *
+ * DELIBERATELY A VIEW, NOT A SEPARATE DATA STRUCTURE. A graph of concept nodes and prerequisite
+ * edges is the textbook shape for a concept map, and it is the wrong shape here: populating one
+ * honestly needs either a pre-built domain ontology (this app teaches arbitrary topics — there is
+ * no fixed graph to populate) or many more interactions than a 2-4 question conversation produces
+ * to infer relationships with any confidence. What the conversation CAN honestly produce — and
+ * does, via masteredConcepts/weakConcepts/misconceptions/prerequisiteGaps — is exactly what a
+ * concept map is FOR: which concepts are solid, which are shaky, which are simply missing, and
+ * which are actively wrong. This function names that existing data as the concept map it already
+ * is, rather than asking the model to also produce a graph it cannot populate reliably.
+ */
+export type ConceptMapEntry = { concept: string; status: "mastered" | "weak" | "missing" | "misconception" };
+
+export function conceptMap(profile: LearnerProfile): ConceptMapEntry[] {
+  return [
+    ...profile.masteredConcepts.map((concept): ConceptMapEntry => ({ concept, status: "mastered" })),
+    ...profile.weakConcepts.map((concept): ConceptMapEntry => ({ concept, status: "weak" })),
+    ...profile.prerequisiteGaps.map((concept): ConceptMapEntry => ({ concept, status: "missing" })),
+    ...profile.misconceptions.map((concept): ConceptMapEntry => ({ concept, status: "misconception" })),
+  ];
 }
 
 /**
@@ -286,6 +339,18 @@ export function learnerInstruction(profile: LearnerProfile, depth: DepthLevel): 
   }
   if (profile.background) {
     parts.push(`THEIR BACKGROUND, IN THEIR WORDS: "${profile.background}". Use it for examples where it genuinely helps.`);
+  }
+  if (profile.teachingHypothesis) {
+    parts.push(
+      `TEACHING HYPOTHESIS, FORMED DURING THE DIAGNOSTIC: ${profile.teachingHypothesis} ` +
+        `Teach this lesson as the confirmation or correction of that read — it is your best current theory of this student, not a fact to restate.`,
+    );
+  }
+  if (profile.redirectedFocus) {
+    parts.push(
+      `THE STUDENT ASKED TO FOCUS ON: ${profile.redirectedFocus}. This overrides the default scope of the topic — ` +
+        `build the lesson around what they actually asked for, not a generic treatment of the original topic.`,
+    );
   }
 
   /*
@@ -456,5 +521,13 @@ function verifyingDiagnostics(profile: LearnerProfile): number {
   ).length;
 }
 
-/** Hard ceiling on questions, whatever the model wants. Nine is an interview; three is a chat. */
-export const MAX_DIAGNOSTIC_QUESTIONS = 3;
+/**
+ * Hard ceiling on questions, whatever the model wants. Nine is an interview; four is a chat — the
+ * high end of "a short diagnostic conversation", never reached unless the topic and the answers
+ * genuinely warrant it (a straightforward beginner is usually taught after one).
+ */
+export const MAX_DIAGNOSTIC_QUESTIONS = 4;
+/** The floor a genuinely uncertain profile is nudged toward before settling for "enough" — not
+ *  enforced (hasEnoughSignal can still stop earlier when the evidence is already conclusive), just
+ *  the number below which "I could ask one more useful thing" should usually win the argument. */
+export const MIN_USEFUL_DIAGNOSTIC_QUESTIONS = 2;

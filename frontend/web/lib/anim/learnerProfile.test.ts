@@ -3,8 +3,10 @@ import assert from "node:assert/strict";
 import {
   DEPTH_NAMES,
   MAX_DIAGNOSTIC_QUESTIONS,
+  MIN_USEFUL_DIAGNOSTIC_QUESTIONS,
   applyDiagnostic,
   cognitiveLoad,
+  conceptMap,
   emptyProfile,
   hasEnoughSignal,
   learnerInstruction,
@@ -330,7 +332,7 @@ test("two wordings of one wrong belief are corrected once", () => {
 });
 
 test("the question ceiling is a chat, not an interview", () => {
-  assert.ok(MAX_DIAGNOSTIC_QUESTIONS <= 3, `${MAX_DIAGNOSTIC_QUESTIONS} questions before teaching is an intake form`);
+  assert.ok(MAX_DIAGNOSTIC_QUESTIONS <= 4, `${MAX_DIAGNOSTIC_QUESTIONS} questions before teaching is an intake form`);
 });
 
 test("the student can always end the questioning themselves", () => {
@@ -370,4 +372,53 @@ test("an empty profile produces a short instruction, not a page of 'none'", () =
 test("every depth level says something genuinely different about teaching", () => {
   const texts = ([1, 2, 3, 4, 5] as DepthLevel[]).map((d) => learnerInstruction(profile(), d));
   assert.equal(new Set(texts).size, 5, "two depth levels produced identical instructions");
+});
+
+test("the minimum is strictly below the maximum, so 'ask one more' can ever win", () => {
+  assert.ok(
+    MIN_USEFUL_DIAGNOSTIC_QUESTIONS < MAX_DIAGNOSTIC_QUESTIONS,
+    "if min >= max there is no room for the model to judge when enough is enough",
+  );
+});
+
+test("a fresh profile carries no hypothesis or redirect yet", () => {
+  const p = emptyProfile("Neural networks");
+  assert.equal(p.teachingHypothesis, null);
+  assert.equal(p.redirectedFocus, null);
+});
+
+test("the concept map names every list entry with its own status, nothing invented", () => {
+  const p = profile({
+    masteredConcepts: ["forward pass"],
+    weakConcepts: ["chain rule"],
+    prerequisiteGaps: ["derivatives"],
+    misconceptions: ["thinks gradients are literal arrows"],
+  });
+  const map = conceptMap(p);
+  assert.deepEqual(
+    map,
+    [
+      { concept: "forward pass", status: "mastered" },
+      { concept: "chain rule", status: "weak" },
+      { concept: "derivatives", status: "missing" },
+      { concept: "thinks gradients are literal arrows", status: "misconception" },
+    ],
+  );
+});
+
+test("an empty profile has an empty concept map, not placeholder entries", () => {
+  assert.deepEqual(conceptMap(profile()), []);
+});
+
+test("the teaching hypothesis reaches the lecture writer as a theory to test, not a fact to restate", () => {
+  const p = profile({ teachingHypothesis: "has the mechanics but hasn't connected them to why it works" });
+  const text = learnerInstruction(p, 3);
+  assert.match(text, /TEACHING HYPOTHESIS/i);
+  assert.match(text, /has the mechanics but hasn't connected them to why it works/);
+});
+
+test("a student redirect overrides the default scope in the lecture instruction", () => {
+  const p = profile({ redirectedFocus: "just wants to understand attention, not the whole transformer" });
+  const text = learnerInstruction(p, 3);
+  assert.match(text, /just wants to understand attention, not the whole transformer/);
 });

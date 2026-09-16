@@ -224,6 +224,14 @@ type BuildCost =
   const [diagnosticQuestion, setDiagnosticQuestion] = useState<{ question: string; options: string[] } | null>(null);
   const [diagnosticExchanges, setDiagnosticExchanges] = useState<{ question: string; answer: string }[]>([]);
   const [diagnosticBusy, setDiagnosticBusy] = useState(false);
+  /**
+   * "This is what I'm noticing" — an occasional, one-sentence aside from the model, surfaced as
+   * its own chat bubble ahead of the next question (if any). Keyed with a counter rather than the
+   * text itself, because unlike a question a remark can legitimately repeat similar wording turn
+   * to turn ("Good, that confirms it") without that meaning it is stale.
+   */
+  const [diagnosticRemark, setDiagnosticRemark] = useState<{ text: string; turn: number } | null>(null);
+  const diagnosticTurnRef = useRef(0);
   /** Mirrors the profile for callbacks that must not re-subscribe on every answer. */
   const learnerProfileRef = useRef<LearnerProfile | null>(null);
   /**
@@ -1271,6 +1279,12 @@ type BuildCost =
     const depth = typeof data.depth === "number" ? (data.depth as DepthLevel) : null;
     if (depth) setLearnerDepth(depth);
 
+    const remark = typeof data.remark === "string" ? data.remark.trim() : "";
+    if (remark) {
+      diagnosticTurnRef.current += 1;
+      setDiagnosticRemark({ text: remark, turn: diagnosticTurnRef.current });
+    }
+
     const next = data.nextQuestion as { question: string; options?: string[] } | null | undefined;
     if (next?.question) {
       setDiagnosticQuestion({ question: next.question, options: Array.isArray(next.options) ? next.options : [] });
@@ -1806,6 +1820,25 @@ type BuildCost =
     setPhase("finished");
   }
 
+  /**
+   * A DIFFERENT door than endLecture: pressing "End lesson" mid-lecture must return to the actual
+   * Home page with the normal site UI restored — not detour through the "Finished." interstitial,
+   * and not the separate app-level completion screen either.
+   *
+   * WHY THIS EXISTS. The interstitial ("It will not run that way again", Replay / Test me / Something
+   * new) is a genuine end-of-lecture summary and stays for when a lecture completes naturally — that
+   * moment is worth a beat. But the player's own exit control fires the same instant the student
+   * decides to leave, mid-lesson, having asked for nothing but out. Routing that through a second
+   * screen before a third screen (CompletePage) reaches Home was the actual bug: two hops of UI the
+   * student never asked to see stood between "I want to leave" and being home.
+   *
+   * `go("landing")` directly is what "the normal home UI restored" means concretely in this app's
+   * router — see components/hud/HudKit.tsx's PageName union and HudLogo's own onClick.
+   */
+  function endLectureToHome() {
+    go("landing");
+  }
+
   function replayLecture() {
     // Same beats, from the top. The player keys off its own index, so re-entering "teaching"
     // restarts it without regenerating anything.
@@ -1855,6 +1888,15 @@ type BuildCost =
               className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
             >
               Something new
+            </button>
+            {/* A direct, undramatic way home — distinct from "Something new" (which re-enters the
+                ask flow to start another lesson) and from Replay/Test (which stay with this one).
+                Goes straight to the landing page with the normal site UI, no interstitial in between. */}
+            <button
+              onClick={() => go("landing")}
+              className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+            >
+              Home
             </button>
           </div>
         </section>
@@ -1911,22 +1953,22 @@ type BuildCost =
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
     switch (selectedMode.page) {
       case "blind-demo":
-        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} autoStart />;
+        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLecture} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
     }
     return (
       <div className="relative">
@@ -2124,6 +2166,7 @@ type BuildCost =
           angle={planAngle}
           diagnosticQuestion={diagnosticQuestion}
           diagnosticBusy={diagnosticBusy}
+          diagnosticRemark={diagnosticRemark}
           onAnswerDiagnostic={runDiagnostic}
           learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
           initialAmbiguityQuestions={initialAmbiguityQuestions}
@@ -2723,6 +2766,7 @@ function OutlineReviewState({
   scopingQuestions,
   angle,
   diagnosticQuestion,
+  diagnosticRemark,
   diagnosticBusy,
   onAnswerDiagnostic,
   learnerSummary,
@@ -2757,6 +2801,9 @@ function OutlineReviewState({
    *  ambiguous. Mutually exclusive with initialPlanningQuestions (see startPlanning). */
   /** The one open question in the pre-lesson conversation, or null when there is nothing to ask. */
   diagnosticQuestion: { question: string; options: string[] } | null;
+  /** An occasional teacher-style aside from the diagnostic ("noticing you're solid on X, let's
+   *  focus on Y") — seeded as its own chat bubble just before the next question, when present. */
+  diagnosticRemark: { text: string; turn: number } | null;
   diagnosticBusy: boolean;
   onAnswerDiagnostic: (answer: string) => void;
   /** "intermediate, skipping gradient descent" — what Aria concluded, in the student's terms. */
@@ -2819,12 +2866,20 @@ function OutlineReviewState({
    * seeds even though the previous one is still in the log.
    */
   const seededDiagnosticRef = useRef<string>("");
+  const seededRemarkTurnRef = useRef<number>(0);
   useEffect(() => {
     const q = diagnosticQuestion?.question;
     if (!q || seededDiagnosticRef.current === q) return;
     seededDiagnosticRef.current = q;
+    // The remark (an occasional teacher-style aside — "noticing you're solid on X, let's focus on
+    // Y") is seeded as its OWN bubble immediately before the question bubble it accompanies, in the
+    // same update, so it always reads as a lead-in rather than appearing out of order.
+    const remarkForThisTurn =
+      diagnosticRemark && diagnosticRemark.turn > seededRemarkTurnRef.current ? diagnosticRemark.text : null;
+    if (remarkForThisTurn) seededRemarkTurnRef.current = diagnosticRemark!.turn;
     setChatLog((prev) => [
       ...prev,
+      ...(remarkForThisTurn ? [{ role: "aria" as const, text: remarkForThisTurn }] : []),
       {
         role: "aria",
         text: q,
@@ -2832,7 +2887,7 @@ function OutlineReviewState({
         isDiagnostic: true,
       },
     ]);
-  }, [diagnosticQuestion]);
+  }, [diagnosticQuestion, diagnosticRemark]);
 
   // Stream Aria's per-subtopic planning reasoning into the chat log as it arrives, instead of a
   // separate floating panel — same underlying data (streamOutlineRequest), one conversation.
@@ -3061,6 +3116,24 @@ function OutlineReviewState({
             </div>
           ) : outline ? (
             <>
+              {/*
+                THE LESSON PREVIEW. Once a diagnostic ran, this is the "concise Lesson Preview" the
+                student confirms or edits before Phase 2 begins — not a separate screen, but this
+                same editable outline framed as what it now is: the co-designed plan that came out
+                of the conversation, not just a generic draft. Nothing renders here for a path with
+                no diagnostic (a document upload, a revise, a fresh outline with no profile yet) —
+                the framing only appears where there is something to frame.
+              */}
+              {learnerSummary && (
+                <div className="mb-6 rounded-md border border-[var(--hud-cyan)]/25 bg-[var(--hud-cyan)]/[0.04] px-4 py-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Lesson preview, from what you told Aria</p>
+                  <p className="mt-1 text-sm text-[var(--hud-text-dim)]">{learnerSummary}</p>
+                  <p className="mt-1.5 text-xs text-[var(--hud-text-faint)]">
+                    Edit anything below, or tell Aria in the chat if this should go differently.
+                  </p>
+                </div>
+              )}
+
               {loading && (
                 <div className="mb-6 rounded-md border border-[var(--hud-line)] bg-white/[0.025] px-4 py-3">
                   <div className="flex items-center justify-between gap-4">

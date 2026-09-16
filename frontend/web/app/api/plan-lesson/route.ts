@@ -194,6 +194,8 @@ function sanitizeLearnerProfile(raw: unknown, topic: string): LearnerProfile {
     prerequisiteGaps: strings(rec.prerequisiteGaps, 5),
     preferredStyle: typeof rec.preferredStyle === "string" ? rec.preferredStyle.trim().slice(0, 200) || null : null,
     background: typeof rec.background === "string" ? rec.background.trim().slice(0, 300) || null : null,
+    teachingHypothesis: typeof rec.teachingHypothesis === "string" ? rec.teachingHypothesis.trim().slice(0, 400) || null : null,
+    redirectedFocus: typeof rec.redirectedFocus === "string" ? rec.redirectedFocus.trim().slice(0, 200) || null : null,
     diagnostics: Array.isArray(rec.diagnostics)
       ? (rec.diagnostics as unknown[])
           .filter((d): d is Record<string, unknown> => Boolean(d) && typeof d === "object")
@@ -244,6 +246,13 @@ function mergeAssessment(
     prerequisiteGaps: union(profile.prerequisiteGaps, assessed.prerequisiteGaps, 5),
     preferredStyle: assessed.preferredStyle ?? profile.preferredStyle,
     background: assessed.background ?? profile.background,
+    // The hypothesis is a SYNTHESIS the model re-forms each turn from everything it now knows, so
+    // (unlike the lists above, which accumulate) a fresh one supersedes the old one outright — the
+    // whole point is that it is allowed to be revised, not merely appended to.
+    teachingHypothesis: assessed.teachingHypothesis ?? profile.teachingHypothesis,
+    // A redirect, once set, holds — the student is not going to un-redirect by the model simply
+    // not mentioning it on a later turn where nothing about the redirect changed.
+    redirectedFocus: assessed.redirectedFocus ?? profile.redirectedFocus,
     updatedAt: new Date().toISOString(),
   };
 
@@ -276,7 +285,9 @@ function sanitizeDiagnosticQuestion(raw: unknown): { question: string; kind: str
   const options = Array.isArray(rec.options)
     ? rec.options.filter((o): o is string => typeof o === "string" && o.trim().length > 0).map((o) => o.trim().slice(0, 40)).slice(0, 4)
     : [];
-  const kind = typeof rec.kind === "string" && ["open", "diagnostic", "goal"].includes(rec.kind) ? rec.kind : "open";
+  const kind = typeof rec.kind === "string" && ["explain", "predict", "compare", "apply", "goal"].includes(rec.kind)
+    ? rec.kind
+    : "explain";
   // A single option is not a choice; either offer real quick replies or let them type.
   return { question: question.slice(0, 240), kind, options: options.length >= 2 ? options : [] };
 }
@@ -727,11 +738,15 @@ export async function POST(req: Request) {
        */
       const forced = exchanges.length >= MAX_DIAGNOSTIC_QUESTIONS || hasEnoughSignal(profile);
       const nextQuestion = forced ? null : sanitizeDiagnosticQuestion(parsed.nextQuestion);
+      // "This is what I'm noticing" — occasional, model-chosen, never every turn (see the prompt's
+      // own restraint rules). null far more often than not; the client only shows it when present.
+      const remark = typeof parsed.remark === "string" ? parsed.remark.trim().slice(0, 240) || null : null;
 
       return NextResponse.json({
         profile,
         depth,
         nextQuestion,
+        remark,
         summary: profileSummary(profile, depth),
         costUsd: costUsd(completion.usage),
       });
