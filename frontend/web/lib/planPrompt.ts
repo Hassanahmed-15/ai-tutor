@@ -6,7 +6,10 @@
  *   1. Clarify — decide if the typed topic is genuinely ambiguous (different possible
  *      subjects, not just different depths) and if so, propose 1-3 quick-reply questions.
  *      Rare; when it fires, its questions are seeded as the first chat messages on the
- *      outline screen rather than a separate blocking screen.
+ *      outline screen rather than a separate blocking screen. Everything else about how to
+ *      plan the lesson (depth, scope, prior knowledge, emphasis) is decided by the adaptive
+ *      diagnostic conversation in diagnosticPrompt.ts, not here — this step ONLY resolves what
+ *      the topic even refers to, so it never competes with or shadows that conversation.
  *   2. Outline — sketch topic + subtopic titles/captions/reasons/confidence (no scripts,
  *      no draw ops) so the student can add/remove/reorder before the expensive full lecture
  *      is built. Each subtopic carries a one-line "reason" that the client streams in as
@@ -30,17 +33,14 @@
  * outlineGroundingInstruction below), used from app/api/generate-lecture/route.ts.
  */
 
-export const CLARIFY_TOPIC_SYSTEM_PROMPT = `You are Aria, preparing to plan a lesson. Decide (1) if the topic needs disambiguation before anything else, and (2) if it has genuine pre-draft planning decisions worth asking about.
-Return JSON only: { "ambiguous": boolean, "questions": [{ "question": string, "options": string[] }], "planningQuestions"?: [{ "question": string, "options": [{ "label": string, "instruction": string }] }] }
+export const CLARIFY_TOPIC_SYSTEM_PROMPT = `You are Aria, preparing to plan a lesson. Decide only whether the typed topic needs disambiguation before anything else.
+Return JSON only: { "ambiguous": boolean, "questions": [{ "question": string, "options": string[] }] }
 
-STEP 1 — ambiguity: only mark ambiguous:true if the phrase could reasonably mean genuinely DIFFERENT subjects or fields a lesson could teach differently — not different depths or angles of the same subject.
+Only mark ambiguous:true if the phrase could reasonably mean genuinely DIFFERENT subjects or fields a lesson could teach differently — not different depths or angles of the same subject.
 Examples of genuine ambiguity: "RAG" (retrieval-augmented generation in AI vs. a rag rug/textile craft), "cells" (biology vs. battery cells vs. spreadsheet cells), "waves" (physics vs. ocean/surfing vs. hair styling).
-Do NOT ask about depth, audience level, teaching style, or how much detail to include in "questions" — only about WHAT the topic actually refers to.
+Do NOT ask about depth, audience level, teaching style, prior knowledge, or how much detail to include — only about WHAT the topic actually refers to. Every other pre-draft planning decision (depth, scope, emphasis, prior knowledge) is handled separately by a live diagnostic conversation with the student, not by this step — do not duplicate that here.
 Most topics are clear. Default to { "ambiguous": false, "questions": [] } unless the ambiguity is real and would lead to a genuinely different lesson.
 When ambiguous, produce 1-3 questions. Each question is short and each has 2-4 short "options" (each <=6 words) meant as quick-reply chips — never open-ended text.
-
-STEP 2 — planningQuestions: ONLY when ambiguous:false (never ask both at once — resolve the subject first), you MUST propose 2-3 real planning questions for almost every topic — this is a live planning CONVERSATION, the student explicitly wants to be asked before the outline drafts, not silently skipped. Every topic has SOME genuine planning decision: prior-knowledge assumptions ("should I assume you already know X?"), scope boundaries ("focus on A and B, or also cover C?"), emphasis ("more on the mechanism, or more on real-world use?"), framing ("teach it chronologically, or by concept?"). Ground each question in the ACTUAL topic (not a copy-pasted template phrase), but do not be shy about asking — an empty "planningQuestions" should be rare, reserved only for a topic so narrow there is truly nothing to decide (e.g. "what is 7 times 8").
-Each planningQuestions option's "instruction" is a complete, ready-to-send instruction in Aria's voice describing what to do when drafting the outline if picked (e.g. { "label": "Add a primer", "instruction": "Assume no prior knowledge of embeddings — include a short primer subtopic before retrieval." }). If an option should change nothing, still write a no-op instruction like "No special handling needed — plan normally."
 Output ONLY the JSON object, nothing else.`;
 
 export const DOCUMENT_SCOPE_SYSTEM_PROMPT = `You are Aria planning a lesson from an uploaded PDF or PowerPoint. The source summary below is authoritative.
