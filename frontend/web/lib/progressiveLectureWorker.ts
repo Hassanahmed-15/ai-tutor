@@ -7,6 +7,7 @@ import { planBeatVisual, specToBrief } from "./beatVisualSpec";
 import { direct, type BoardKind } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
+import { polishBeatPlan, transitionSentence } from "./beatPresentation";
 import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
@@ -35,6 +36,7 @@ import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLesson
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
 type GeneratedBeatPayload = {
   title?: unknown;
+  transitionIn?: unknown;
   teacherMove?: unknown;
   slideKind?: unknown;
   points?: unknown;
@@ -90,11 +92,11 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
       objective: `Explain a distinct, useful part of ${input.topic} with a concrete example.`,
     });
   }
-  const entries = [
+  const entries = polishBeatPlan([
     { title: `Why ${input.topic} matters`, objective: `Open with a concrete puzzle or use case that makes ${input.topic} worth learning.` },
     ...middle,
     { title: `${input.topic}: put it together`, objective: `Connect the core ideas, correct the main misconception, and give the learner a usable recap.` },
-  ].slice(0, requested);
+  ].slice(0, requested), input.topic);
 
   const plan = entries.map((entry, sequence) => ({
     id: `beat-${sequence + 1}-${slug(entry.title)}`,
@@ -144,7 +146,7 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
       sourceBlockIds: [block.id],
       visualKind: "react-animation" as ProgressiveVisualKind,
     }));
-  return fallback.map((item, sequence) => ({
+  return polishBeatPlan(fallback, input.topic).map((item, sequence) => ({
     id: `beat-${sequence + 1}-${slug(item.title)}`,
     sequence,
     title: item.title,
@@ -275,13 +277,14 @@ async function generateOneBeat(
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". Omit transitionIn on the first beat. The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
       content: JSON.stringify({
         topic: input.topic,
         beat: planned,
+        previousBeat: planned.sequence > 0 ? session.plan[planned.sequence - 1] : null,
         fullPlan: session.plan.map(({ sequence, title, objective }) => ({ sequence, title, objective })),
         adaptation: session.adaptationNotes,
         preferredExamples: input.learnerProfile.preferredExamples,
@@ -317,7 +320,10 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   const checkpoint = slideKind === "checkpoint" ? sanitizeCheckpoint(payload.checkpoint, planned) : undefined;
   return {
     id: planned.id,
-    title: clean(payload.title) || planned.title,
+    title: planned.title,
+    transitionIn: planned.sequence > 0
+      ? transitionSentence(payload.transitionIn, session.plan[planned.sequence - 1]?.title ?? session.topic, planned.title)
+      : undefined,
     teacherMove: clean(payload.teacherMove) || planned.objective,
     stepLabel: `${planned.sequence + 1} · ${planned.sequence === 0 ? "Start" : slideKind === "checkpoint" ? "Check" : "Learn"}`,
     slideKind,
@@ -353,6 +359,9 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
   return {
     id: planned.id,
     title: planned.title,
+    transitionIn: sequence > 0
+      ? transitionSentence(undefined, session.plan[sequence - 1]?.title ?? session.topic, planned.title)
+      : undefined,
     teacherMove: "Keep the lesson moving with a clear, visual explanation.",
     stepLabel: `${sequence + 1} · Learn`,
     slideKind: sequence === session.plan.length - 1 ? "recap" : "intro",

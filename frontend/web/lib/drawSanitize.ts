@@ -1,4 +1,5 @@
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
+import { transitionSentence } from "./beatPresentation";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { validateManimSceneSpec } from "./manimSceneSpec";
 import { validateStructureSpec } from "./structureSpec";
@@ -1337,6 +1338,7 @@ export function sanitizeBeat(raw: unknown, index: number): Beat | null {
   const beat: Beat = {
     id: str(o.id, `beat-${index}`),
     title,
+    transitionIn: index > 0 && typeof o.transitionIn === "string" ? str(o.transitionIn) : undefined,
     teacherMove: str(o.teacherMove, "I keep teaching."),
     stepLabel: str(o.stepLabel, `${index + 1}`),
     slideKind,
@@ -2152,6 +2154,17 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   const minUsableBeats = options.minUsableBeats ?? 9;
   if (beats.length < minUsableBeats) {
     throw new Error(`Model only returned ${beats.length} usable beats — too few for a real lecture. Try again.`);
+  }
+
+  // The transition is authored with the beat, but older cached/generated lectures predate that
+  // field. Fill those deterministically so a replay and a fresh lecture have the same smooth handoff.
+  delete beats[0]?.transitionIn;
+  for (let index = 1; index < beats.length; index++) {
+    beats[index].transitionIn = transitionSentence(
+      beats[index].transitionIn,
+      beats[index - 1].title,
+      beats[index].title,
+    );
   }
 
   // BLACKBOARD GUARANTEE: the first teaching beat after the intro is a clean written board.

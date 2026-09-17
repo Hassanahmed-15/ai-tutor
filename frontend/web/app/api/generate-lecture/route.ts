@@ -51,6 +51,7 @@ import { currentUser } from "@/lib/auth";
 import { blobStorageConfigured } from "@/lib/blobStorage";
 import { databaseConfigured } from "@/lib/db/cosmos";
 import { archiveLecture, normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureArchive";
+import { polishBeatPlan, transitionSentence } from "@/lib/beatPresentation";
 
 // Kill switch for generated image assets. The prompt can still plan image beats, but when this is
 // off the server converts those placeholders into no-cost written boards instead of calling the
@@ -357,23 +358,31 @@ function focusedSourceExcerpt(sourceDocument: SuprnotesLessonInput, focus: PdfFo
  */
 function dedupeBeatIdentity(beats: Beat[]): void {
   const usedIds = new Set<string>();
-  const usedTitles = new Set<string>();
+  const titleChanged = new Set<number>();
+  const polished = polishBeatPlan(
+    beats.map((beat) => ({
+      title: beat.title ?? "",
+      objective: [beat.teacherMove, ...(beat.points ?? [])].filter(Boolean).join(" "),
+    })),
+    beats[0]?.title ?? "the lesson",
+  );
   beats.forEach((beat, index) => {
     if (!beat.id || usedIds.has(beat.id)) beat.id = `pdf-x${index + 1}`;
     usedIds.add(beat.id);
 
     // Strip any suffix this function added on an earlier pass before considering a new one —
-    // otherwise a beat renamed once accumulates them and ends up as "Decision Guide (2) (2)".
-    const title = (beat.title ?? "").trim().replace(/\s+\(\d+\)$/, "");
-    if (title && usedTitles.has(title)) {
-      let suffix = 2;
-      while (usedTitles.has(`${title} (${suffix})`)) suffix += 1;
-      beat.title = `${title} (${suffix})`;
-    } else if (title) {
-      beat.title = title;
-    }
-    if (beat.title) usedTitles.add(beat.title);
+    // Specific titles survive; generic templates and repeats use the beat's teaching objective.
+    const nextTitle = polished[index]?.title ?? beat.title;
+    if (nextTitle !== beat.title) titleChanged.add(index);
+    beat.title = nextTitle;
   });
+  for (let index = 1; index < beats.length; index++) {
+    beats[index].transitionIn = transitionSentence(
+      titleChanged.has(index) ? undefined : beats[index].transitionIn,
+      beats[index - 1].title,
+      beats[index].title,
+    );
+  }
 }
 
 function repairFocusedTitles(beats: Beat[], focus: PdfFocus | null): void {

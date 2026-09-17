@@ -38,6 +38,8 @@ export interface CheckpointSpec {
 export interface Beat {
   id: string;
   title: string;
+  /** Spoken over this beat's incoming title card. Omitted on the opening beat. */
+  transitionIn?: string;
   teacherMove: string;
   stepLabel: string;
   slideKind: SlideKind;

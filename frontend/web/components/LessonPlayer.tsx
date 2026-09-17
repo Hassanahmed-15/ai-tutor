@@ -46,6 +46,7 @@ import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
+import { transitionSentence } from "@/lib/beatPresentation";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -338,12 +339,18 @@ export function LessonPlayer({
     { enabled: MANIM_RENDER_ENABLED },
   );
 
+  const standardTransitionsEnabled = mode === "standard" && !adhd;
+
   // Same reasoning as the Manim prefetch above, applied to the voice. A cold /api/tts call is 6-8s
   // for a beat-length script; the board is driven by the audio clock, so until that audio exists
   // nothing moves and the lesson looks desynchronised from the narration. Warming the next couple
   // of beats turns each of those into a ~12ms cache hit by the time the student arrives.
   useNarrationPrefetch(
-    useMemo(() => beats.map((b) => b.script ?? ""), [beats]),
+    useMemo(() => beats.map((b, beatIndex) => {
+      if (!standardTransitionsEnabled || beatIndex === 0) return b.script ?? "";
+      const bridge = transitionSentence(b.transitionIn, beats[beatIndex - 1]?.title ?? title, b.title);
+      return `${bridge} ${b.script ?? ""}`.trim();
+    }), [beats, standardTransitionsEnabled, title]),
     index,
   );
 
@@ -394,6 +401,14 @@ export function LessonPlayer({
   const [animationTimedOut, setAnimationTimedOut] = useState(false);
   const animationBlocking = currentAnimationPending && !animationTimedOut;
   const deafMode = mode === "deaf";
+  const transitionIn = standardTransitionsEnabled && index > 0
+    ? transitionSentence(beat.transitionIn, beats[index - 1]?.title ?? title, beat.title)
+    : "";
+  const narrationText = transitionIn ? `${transitionIn} ${beat.script}` : beat.script;
+  const transitionShare = transitionIn
+    ? Math.min(0.45, Math.max(0.08, transitionIn.length / Math.max(1, narrationText.length)))
+    : 0;
+  const transitionBoardShownRef = useRef(false);
   // Signing-only mirror of Gemini's streaming tutor transcript. It never enters the caption log or
   // chat state, so enabling the isolated hand cannot alter either existing transcript surface.
   const [liveSigningCaption, setLiveSigningCaption] = useState("");
@@ -1060,7 +1075,10 @@ export function LessonPlayer({
   // is still pending and the lecture is playing — start a timer. If it fires, stop waiting so the
   // lecture can move on instead of freezing on the slide forever (a never-filled op, a server that
   // didn't generate it, etc.). A ready op is never pending, so this never delays a normal beat.
-  useEffect(() => setAnimationTimedOut(false), [beat.id]);
+  useEffect(() => {
+    transitionBoardShownRef.current = false;
+    queueMicrotask(() => setAnimationTimedOut(false));
+  }, [beat.id]);
   useEffect(() => {
     if (!currentAnimationPending || !lesson.playing || animationTimedOut) return;
     const t = setTimeout(() => setAnimationTimedOut(true), ANIMATION_PENDING_TIMEOUT_MS);
@@ -1074,13 +1092,18 @@ export function LessonPlayer({
   // for checkpoints, which narrate right on the slide). This effect ONLY sets `stage` — it
   // never starts narration itself, so it can't race with the narration effect's cleanup.
   useEffect(() => {
-    if (!lesson.playing || stage !== "slide" || isCheckpoint || animationBlocking) return;
+    if (!lesson.playing || stage !== "slide" || isCheckpoint || transitionIn || animationBlocking) return;
     if (slideTimer.current) clearTimeout(slideTimer.current);
-    slideTimer.current = setTimeout(() => setStage("board"), SLIDE_MS);
+    slideTimer.current = setTimeout(() => {
+      setStage("board");
+      // The narration effect does not depend on stage because a bridge changes slide -> board
+      // without interrupting its audio. This nonce starts an ordinary beat after its title delay.
+      setStartNonce((value) => value + 1);
+    }, SLIDE_MS);
     return () => {
       if (slideTimer.current) clearTimeout(slideTimer.current);
     };
-  }, [index, lesson.playing, stage, isCheckpoint, animationBlocking]);
+  }, [index, lesson.playing, stage, isCheckpoint, transitionIn, animationBlocking]);
 
   // Effect 2: start narration exactly once per (beat, stage) — when a checkpoint's slide
   // appears, or once a normal beat reaches "board". Separate from effect 1 so flipping
@@ -1092,16 +1115,20 @@ export function LessonPlayer({
     // replayed the beat from the top. Pause/resume is handled by the mode effect below, which freezes
     // and continues the SAME audio in place. This effect only (re)starts a beat fresh.
     if (lesson.modeRef.current !== "teaching" || chat.busy) return;
-    const narrateOnBoard = !isCheckpoint && stage === "board";
-    const narrateOnCheckpointSlide = isCheckpoint && stage === "slide";
-    if (!narrateOnBoard && !narrateOnCheckpointSlide) return;
-    if (narrateOnBoard && animationBlocking) return;
+    const narrateOnBoard = !isCheckpoint && !transitionIn && stage === "board";
+    const narrateOnSlide = (isCheckpoint || Boolean(transitionIn)) && stage === "slide";
+    if (!narrateOnBoard && !narrateOnSlide) return;
+    if (!isCheckpoint && animationBlocking) return;
     window.setTimeout(() => setDrawProgress(0), 0);
     const started = voice.speakAsTeacher(
-      beat.script,
+      narrationText,
       {
         onStart: () => setSpeaking(true),
         onSentenceStart: (sentenceIndex, sentence, total) => {
+          if (transitionIn && !isCheckpoint && sentenceIndex > 0 && !transitionBoardShownRef.current) {
+            transitionBoardShownRef.current = true;
+            setStage("board");
+          }
           setSentenceCue({ index: sentenceIndex, text: sentence, total });
           if (deafMode) {
             const caption = sentence.trim();
@@ -1113,7 +1140,17 @@ export function LessonPlayer({
         },
         // The media element's clock is the source of truth for board progress. This keeps the
         // live marker, generated SVG progress, and beat advancement pinned to the actual voice.
-        onProgress: (progress) => setDrawProgress(Math.max(0, progress)),
+        onProgress: (progress) => {
+          if (!transitionIn) {
+            setDrawProgress(Math.max(0, progress));
+            return;
+          }
+          if (!isCheckpoint && progress >= transitionShare && !transitionBoardShownRef.current) {
+            transitionBoardShownRef.current = true;
+            setStage("board");
+          }
+          setDrawProgress(Math.max(0, Math.min(1, (progress - transitionShare) / (1 - transitionShare))));
+        },
         onEnd: () => {
           setSpeaking(false);
           // If playback was paused between the last cue and this onEnd firing, do NOT advance —
@@ -1172,7 +1209,7 @@ export function LessonPlayer({
     // effect's cleanup as soon as a question opens, which cancels (rather than pauses) the preserved
     // lecture handle and makes the eventual resume restart the beat from line one.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, stage, isCheckpoint, adhd, beat.script, rate, deafMode, animationBlocking]);
+  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, transitionShare, rate, deafMode, animationBlocking]);
 
   // Pause/resume IN PLACE, driven by the single mode value. Leaving `teaching` freezes the audio
   // (and with it the board reveal + sentence cue); returning to it continues from the exact same
