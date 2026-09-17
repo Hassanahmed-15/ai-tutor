@@ -165,7 +165,11 @@ export async function progressiveSnapshot(
   const docs = await progressiveBeats(sessionId);
   const contiguous: ProgressiveBeatDoc[] = [];
   for (const doc of docs) {
-    if (doc.sequence !== contiguous.length || !doc.beat || !["playable", "ready"].includes(doc.state)) break;
+    // A `playable` document still contains the temporary SVG used while premium enrichment runs.
+    // Publishing it made a newly generated lecture look fundamentally different from its archived
+    // replay. Only expose a beat after its chosen renderer has completed (or has definitively
+    // fallen back), so live playback and history always consume the same payload.
+    if (doc.sequence !== contiguous.length || !doc.beat || doc.state !== "ready" || doc.enrichmentState !== "ready") break;
     contiguous.push(doc);
   }
   const beats = contiguous.flatMap((doc) => (doc.beat ? [doc.beat] : []));

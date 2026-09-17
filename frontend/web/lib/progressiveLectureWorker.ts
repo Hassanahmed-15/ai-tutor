@@ -7,7 +7,7 @@ import { planBeatVisual, specToBrief } from "./beatVisualSpec";
 import { direct, type BoardKind } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
-import { polishBeatPlan, transitionSentence } from "./beatPresentation";
+import { polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
 import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
@@ -79,24 +79,25 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
   const sourcePlan = sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
+  const subject = topicKeywords(input.topic);
   const requested = input.learnerProfile.depth === "deep" ? 10 : input.learnerProfile.depth === "concise" ? 6 : 8;
   const supplied = (input.outline?.subtopics ?? [])
     .map((item) => ({ title: clean(item.title), objective: clean(item.caption || item.reason || item.title) }))
     .filter((item) => item.title);
-  const foundations = supplied.length > 0 ? supplied : defaultObjectives(input.topic, requested - 2);
+  const foundations = supplied.length > 0 ? supplied : defaultObjectives(subject, requested - 2);
   const middle = foundations.slice(0, Math.max(2, requested - 2));
   while (middle.length < requested - 2) {
     const index = middle.length + 1;
     middle.push({
-      title: `${input.topic}: idea ${index}`,
-      objective: `Explain a distinct, useful part of ${input.topic} with a concrete example.`,
+      title: `${subject}: idea ${index}`,
+      objective: `Explain a distinct, useful part of ${subject} with a concrete example.`,
     });
   }
   const entries = polishBeatPlan([
-    { title: `Why ${input.topic} matters`, objective: `Open with a concrete puzzle or use case that makes ${input.topic} worth learning.` },
+    { title: subject, objective: `Open with a concrete puzzle or use case that makes ${subject} worth learning.` },
     ...middle,
-    { title: `${input.topic}: put it together`, objective: `Connect the core ideas, correct the main misconception, and give the learner a usable recap.` },
-  ].slice(0, requested), input.topic);
+    { title: `${subject} Recap`, objective: `Connect the core ideas, correct the main misconception, and give the learner a usable recap.` },
+  ].slice(0, requested), subject);
 
   const plan = entries.map((entry, sequence) => ({
     id: `beat-${sequence + 1}-${slug(entry.title)}`,

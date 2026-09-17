@@ -1,5 +1,5 @@
-const MAX_TITLE_CHARS = 60;
-const MAX_TITLE_WORDS = 9;
+const MAX_TITLE_CHARS = 42;
+const MAX_TITLE_WORDS = 5;
 const MAX_TRANSITION_WORDS = 18;
 
 type PlannedBeat = { title: string; objective: string };
@@ -21,6 +21,41 @@ function trimTitle(value: string): string {
   return fitted.replace(/[A-Za-z]/, (letter) => letter.toUpperCase());
 }
 
+/** Turns a user's request into the subject label used on title cards. */
+export function topicKeywords(value: string): string {
+  const subject = compact(value)
+    .replace(/^(?:please\s+)*(?:(?:can|could|would)\s+you\s+)?(?:explain|teach|show|tell|help)\s+(?:me|us)?\s*(?:about\s+)?/i, "")
+    .replace(/\b(?:please|plz)\b/gi, "")
+    .replace(/\b(?:step[- ]by[- ]step|in detail|from scratch|for beginners?)\b.*$/i, "")
+    .replace(/\s+(?:to|for)\s+(?:a|an|the)?\s*$/i, "")
+    .replace(/^[\s:,-]+|[\s:,-]+$/g, "");
+  return trimTitle(subject || value)
+    .split(" ")
+    .map((word, index) => {
+      if (/^(?:a|an|and|as|at|by|for|in|of|on|or|the|to|vs\.?)$/i.test(word) && index > 0) return word.toLowerCase();
+      if (/[A-Z].*[A-Z]|[a-z][A-Z]/.test(word)) return word;
+      return word.replace(/[A-Za-z]/, (letter) => letter.toUpperCase());
+    })
+    .join(" ");
+}
+
+function keywordTitle(value: string, topic: string): string {
+  const subject = topicKeywords(topic);
+  const stripped = compact(value)
+    .replace(/^(?:why|how|what)\s+/i, "")
+    .replace(/^(?:explain|teach|show|tell)\s+(?:me|us)?\s*/i, "")
+    .replace(/\b(?:step[- ]by[- ]step|in detail)\b.*$/i, "")
+    .replace(/\s+(?:matters?|works?)\??$/i, "")
+    .replace(new RegExp(`^${escapeRegExp(compact(topic))}\\s*:\\s*`, "i"), "")
+    .replace(/^(?:a|an|the)\s+/i, "");
+  const candidate = topicKeywords(stripped);
+  return candidate || subject;
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function weakTitle(value: string, topic: string): boolean {
   const title = compact(value).toLowerCase();
   const normalizedTopic = compact(topic).toLowerCase();
@@ -39,22 +74,22 @@ function objectiveTitle(objective: string): string {
     .replace(/^(?:open with|define|explain|show|demonstrate|apply|trace|teach|introduce|connect|contrast|compare|expose and repair|give)\s+/i, "")
     .split(/[.;!?]/, 1)[0]
     .replace(/^(?:that|how|why)\s+/i, "");
-  return trimTitle(stripped);
+  return trimTitle(stripped.replace(/^(?:a|an|the)\s+/i, ""));
 }
 
 function roleTitle(topic: string, sequence: number, total: number): string {
-  const subject = trimTitle(topic) || "This Idea";
-  if (sequence === 0) return trimTitle(`What Makes ${subject} Matter?`);
-  if (sequence === total - 1) return "Putting It All Together";
+  const subject = topicKeywords(topic) || "Core Concept";
+  if (sequence === 0) return subject;
+  if (sequence === total - 1) return trimTitle(`${subject} Recap`);
   const roles = [
-    `The Idea Behind ${subject}`,
-    `How ${subject} Works`,
-    `${subject} in Action`,
-    "A Mistake to Avoid",
-    `Where ${subject} Fits`,
-    `Try ${subject} Yourself`,
-    "One Level Deeper",
-    `${subject} in a New Setting`,
+    `${subject} Fundamentals`,
+    `${subject} Mechanism`,
+    "Worked Example",
+    "Common Pitfalls",
+    "Concept Connections",
+    "Practice",
+    "Advanced Concepts",
+    "Applications",
   ];
   return trimTitle(roles[(sequence - 1) % roles.length]);
 }
@@ -67,15 +102,17 @@ function roleTitle(topic: string, sequence: number, total: number): string {
 export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: string): T[] {
   const used = new Set<string>();
   return entries.map((entry, sequence) => {
-    const original = trimTitle(entry.title);
+    const original = keywordTitle(entry.title, topic);
     const objective = objectiveTitle(entry.objective);
     const role = roleTitle(topic, sequence, entries.length);
-    const candidates = weakTitle(original, topic)
-      ? [objective, role]
-      : [original, objective, role];
+    const candidates = sequence === 0 || sequence === entries.length - 1
+      ? [role, original, objective]
+      : weakTitle(original, topic)
+        ? [objective, role]
+        : [original, objective, role];
     let title = candidates.find((candidate) => candidate && !used.has(candidate.toLowerCase())) ?? role;
     if (used.has(title.toLowerCase())) {
-      title = trimTitle(sequence === entries.length - 1 ? "The Complete Mental Model" : `The Next Step in ${topic}`);
+      title = trimTitle(sequence === entries.length - 1 ? `${topicKeywords(topic)} Recap` : role);
     }
     used.add(title.toLowerCase());
     return { ...entry, title };

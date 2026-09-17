@@ -2234,11 +2234,25 @@ export function Board({
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
 }) {
+  // Enrichment keeps a beat id stable while replacing its provisional drawing. Key the visual
+  // subtree by the actual payload as well, so a sandbox/Manim upgrade resets renderer-local state
+  // without remounting the player or restarting narration.
+  const visualRevision = visualFingerprint(beat);
   return (
     <div className="absolute inset-0 bg-slate-950">
-      <VisualDirector key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+      <VisualDirector key={`${beat.id}:${visualRevision}`} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
     </div>
   );
+}
+
+function visualFingerprint(beat: Beat): string {
+  const value = JSON.stringify({ draw: beat.draw, manimVideoUrl: beat.manimVideoUrl });
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
 }
 
 function VisualDirector({
