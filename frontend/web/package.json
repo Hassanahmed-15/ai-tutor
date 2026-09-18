@@ -9,7 +9,7 @@
     "prebuild": "node scripts/copy-pdf-worker.mjs",
     "build": "next build",
     "start": "next start",
-    "worker:lecture": "node --conditions=react-server --import tsx scripts/progressive-lecture-worker.mts",
+    "worker:lecture": "node --import ./scripts/worker-register.mjs --import tsx scripts/progressive-lecture-worker.mts",
     "lint": "eslint",
     "test:anim": "tsc -p tsconfig.test.json && node --test \".test-build/**/*.test.js\" \"lib/anim/*.test.mjs\"",
     "verify:boards": "node scripts/verify-spec-boards.mjs",

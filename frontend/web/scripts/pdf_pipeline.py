@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import math
 import os
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -115,6 +117,57 @@ def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0
         )
 
     write_json(output_dir / "manifest.json", {"dpi": dpi, "pages": pages})
+
+
+def stream_thumbnails(input_path: Path, dpi: int) -> None:
+    """Render page previews and emit each one as NDJSON the moment it is ready.
+
+    WHY THIS EXISTS SEPARATELY FROM render_pdf. The page picker used to wait for render_pdf to
+    rasterise the WHOLE document, write every PNG to disk, write a manifest, hand it all back to
+    Node, and only then base64 the lot into one JSON response. Nothing appeared on screen until
+    the last page of the last file was done, so a twenty-page upload showed a spinner for the
+    entire time even though page one was ready almost immediately.
+
+    Rendering was never the slow part — measured at 0.66s for twenty pages at 150 DPI, of which
+    0.55s is PNG encoding. The cost was structural: 5.3 MB of PNG becomes 7.0 MB of base64 in a
+    single response that cannot start until it is complete. Emitting one JSON line per page lets
+    the browser paint page one while the rest are still encoding, which is the whole difference
+    between "slow" and "fast" here regardless of the total bytes.
+
+    Base64 is written inline rather than to temp files: the caller needs a data URI anyway, and a
+    file round-trip would add an unlink-per-page for no benefit.
+    """
+    document = fitz.open(input_path)
+    scale = dpi / 72.0
+    matrix = fitz.Matrix(scale, scale)
+
+    # A count-first line lets the client build the right number of placeholders before any image
+    # arrives, so the page list does not grow and reflow underneath the reader.
+    sys.stdout.write(json.dumps({"type": "count", "pageCount": document.page_count}) + "\n")
+    sys.stdout.flush()
+
+    for index, page in enumerate(document):
+        pixmap = page.get_pixmap(matrix=matrix, alpha=False, colorspace=fitz.csRGB)
+        png = pixmap.tobytes("png")
+        text = page.get_text("text", flags=fitz.TEXTFLAGS_TEXT) or ""
+        sys.stdout.write(
+            json.dumps(
+                {
+                    "type": "page",
+                    "pageNumber": index + 1,
+                    "width": pixmap.width,
+                    "height": pixmap.height,
+                    "pageWidth": float(page.rect.width),
+                    "pageHeight": float(page.rect.height),
+                    "excerpt": " ".join(text.split())[:140],
+                    "png": base64.b64encode(png).decode("ascii"),
+                }
+            )
+            + "\n"
+        )
+        # Without this the lines sit in Python's buffer and arrive in one burst at exit, which is
+        # exactly the all-at-once behaviour this function exists to avoid.
+        sys.stdout.flush()
 
 
 def ink_mask(image: np.ndarray) -> np.ndarray:
@@ -428,13 +481,22 @@ def main() -> None:
     # 0 means "do not produce one". Thumbnail callers want nothing extra; the lesson pipeline
     # passes a real value and gets a page image sized for a vision model.
     render.add_argument("--vision-dpi", type=int, default=0)
+    # Streams page previews as NDJSON on stdout. No --output-dir: nothing is written to disk.
+    thumbs = subparsers.add_parser("thumbs")
+    thumbs.add_argument("--input", required=True, type=Path)
+    thumbs.add_argument("--dpi", type=int, default=150)
     crop = subparsers.add_parser("crop")
     # Optional: a batched manifest names its own page images, so only the single-page form needs it.
     crop.add_argument("--page", type=Path, default=None)
     crop.add_argument("--regions", required=True, type=Path)
     crop.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
-    args.output_dir.mkdir(parents=True, exist_ok=True)
+    if getattr(args, "output_dir", None) is not None:
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.command == "thumbs":
+        stream_thumbnails(args.input, int(clamp(args.dpi, 24, 600)))
+        return
 
     if args.command == "render":
         # The floor is 24, not 300. The high floor existed to protect figure-cropping quality —

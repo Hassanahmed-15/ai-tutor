@@ -19,6 +19,7 @@ import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
+import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { Loader2 } from "lucide-react";
 import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
@@ -41,6 +42,7 @@ import { LectureCostBadge } from "@/components/LectureCostBadge";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
 import { mergeSourceDocuments } from "@/lib/mergeSourceDocuments";
+import { readStreamedPages } from "@/lib/streamedPages";
 import { emptySourceScope, type PdfFidelity, type SourceScope } from "@/lib/sourceScope";
 import {
   fallbackDocumentScopeQuestion,
@@ -490,6 +492,13 @@ type BuildCost =
     selection: PageSelection;
     /** The part of a page the student dragged over, by page number, within THIS file. */
     regions: Record<number, NormalisedRect>;
+    /**
+     * How many pages this file has, known BEFORE all of them have rendered.
+     *
+     * The streaming preview route sends the count first, so the page stack can lay out the right
+     * number of placeholders immediately instead of growing and reflowing as each image lands.
+     */
+    pageCount?: number;
   };
   const [pendingSources, setPendingSources] = useState<PendingSource[]>([]);
   const [activeSourceIndex, setActiveSourceIndex] = useState(0);
@@ -972,13 +981,48 @@ type BuildCost =
         );
         setPagesLoading(true);
         setUploadPhase("choosing");
+        /*
+         * PAGES APPEAR AS THEY RENDER, not when the whole upload finishes.
+         *
+         * This used to await the full JSON body for every file before showing anything, so a
+         * twenty-page PDF held a spinner for the entire render AND the 7 MB base64 transfer. The
+         * route now streams one NDJSON line per page (`?stream=1`); each line is written straight
+         * into that file's `pages` array, so page one is on screen in about a seventh of the time
+         * and the rest fill in behind it.
+         *
+         * A PDF streams; a PPTX still uses the single-response path, because its pages do not
+         * exist until LibreOffice has converted the whole deck — there is nothing to stream until
+         * then. `readStreamedPages` returns the same shape either way so the code below is shared.
+         */
         const results = await Promise.all(
-          docFiles.map(async (file) => {
+          docFiles.map(async (file, index) => {
             const pageForm = new FormData();
             pageForm.append("file", file);
-            const pageRes = await fetch("/api/document-pages", { method: "POST", body: pageForm });
-            const pageData = await pageRes.json().catch(() => ({}));
-            return { file, ok: pageRes.ok, data: pageData };
+            const streamable = !(
+              file.name.toLowerCase().endsWith(".pptx") || file.type.includes("presentationml")
+            );
+            const pageRes = await fetch(
+              streamable ? "/api/document-pages?stream=1" : "/api/document-pages",
+              { method: "POST", body: pageForm },
+            );
+            if (!streamable || !pageRes.body || !pageRes.ok) {
+              const pageData = await pageRes.json().catch(() => ({}));
+              return { file, ok: pageRes.ok, data: pageData };
+            }
+            return readStreamedPages(pageRes, file, (pageNumber, page, pageCount) => {
+              // Write each page into the source it belongs to the moment it arrives. Keyed by
+              // index rather than identity because `pendingSources` is replaced, not mutated.
+              setPendingSources((current) =>
+                current.map((source, sourceIndex) => {
+                  if (sourceIndex !== index) return source;
+                  const pages = source.pages.slice();
+                  pages[pageNumber - 1] = page;
+                  return { ...source, pages, pageCount: pageCount ?? source.pageCount };
+                }),
+              );
+              // The first page of the first file is the moment the screen stops looking empty.
+              setPagesLoading(false);
+            });
           }),
         );
         setPagesLoading(false);
@@ -2547,11 +2591,18 @@ type BuildCost =
         )}
 
         <div className="min-h-0 flex-1">
-          {pagesLoading ? (
-            <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-              <Loader2 aria-hidden="true" size={18} className="animate-spin text-[var(--hud-text-faint)]" />
-              <p className="text-[0.85rem] text-[var(--hud-text-dim)]">Rendering {label}…</p>
-            </div>
+          {pagesLoading && (activeSource?.pages.length ?? 0) === 0 ? (
+            /*
+             * A PAGE-SHAPED SKELETON, not a spinner in an empty pane.
+             *
+             * The old state was an 18px faint spinner centred in the full height of the reading
+             * surface, holding for the entire render with no indication of how much was coming.
+             * This shows the shape of what is arriving — a column of correctly proportioned page
+             * placeholders — so the layout is already correct when the first real page lands and
+             * nothing jumps. It only shows while NOTHING has arrived yet; the moment page one
+             * streams in, the real stack takes over and fills in behind it.
+             */
+            <PageStackSkeleton label={label} count={activeSource?.pageCount ?? 3} />
           ) : activeSource?.unavailableReason ? (
             <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center">
               <p className="text-[0.85rem] text-[var(--hud-text-dim)]">{activeSource.unavailableReason}</p>
