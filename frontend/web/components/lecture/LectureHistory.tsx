@@ -122,8 +122,7 @@ export function LectureHistory({
     <section className="mb-12" aria-labelledby="lecture-history-heading">
       <div className="mb-4 flex items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Saved in Azure</p>
-          <h2 id="lecture-history-heading" className="mt-1 font-display text-2xl text-[var(--hud-text)]">
+          <h2 id="lecture-history-heading" className="font-display text-2xl text-[var(--hud-text)]">
             Lecture history
           </h2>
         </div>

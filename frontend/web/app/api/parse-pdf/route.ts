@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
+import { createCostMeter } from "@/lib/costMeter";
 import {
   applyGlobalSourceOrder,
   buildPdfLessonPlan,
@@ -576,7 +577,9 @@ export async function POST(req: NextRequest) {
   const canvasModule = await import("@napi-rs/canvas");
   const openaiKey = process.env.OPENAI_API_KEY;
   const visionEnabled = process.env.PDF_VISION_ENABLED !== "0";
-  const client = openaiKey && visionEnabled ? new OpenAI({ apiKey: openaiKey }) : null;
+  // Every vision call this upload makes is priced from its own usage; see lib/costMeter.ts.
+  const meter = createCostMeter();
+  const client = openaiKey && visionEnabled ? meter.wrap(new OpenAI({ apiKey: openaiKey })) : null;
 
   let uploadedBytes: Uint8Array;
   let pythonBytes: Uint8Array;
@@ -1125,6 +1128,9 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     sourceDocument,
+    /** Measured spend on reading this document, and calls that returned no usage to price. */
+    costUsd: meter.totalUsd,
+    unpricedCalls: meter.unpricedCalls,
     /**
      * What was read off the rendered pages, and the pages it came from.
      *

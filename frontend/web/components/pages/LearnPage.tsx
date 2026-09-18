@@ -27,9 +27,17 @@ import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
 import type { Beat } from "@/lib/lessonContent";
 import type { LectureMode } from "@/lib/db/cosmos";
+import {
+  shouldIncludeCodeExamples,
+  type LearnerAdaptiveSignal,
+  type LearnerProfileSnapshot,
+  type ProgressiveLectureSnapshot,
+} from "@/lib/progressiveLectureTypes";
 import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
+import { addCost, recordJsonCost, resetCostLedger, setCost } from "@/lib/costLedger";
+import { LectureCostBadge } from "@/components/LectureCostBadge";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
 import { mergeSourceDocuments } from "@/lib/mergeSourceDocuments";
@@ -44,8 +52,8 @@ import {
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
- * learn, generates a full demo-shaped lecture for that topic (/api/generate-lecture), then
- * mounts the same LessonPlayer used by the curated demo. Hud-styled chat-style intro.
+ * learn, starts a progressively generated lecture, then mounts the same LessonPlayer used by the
+ * curated demo as soon as the opening buffer is ready. Hud-styled chat-style intro.
  */
 const SUGGESTIONS = ["How vaccines work", "Why the sky is blue", "How a black hole forms", "Supply and demand", "How memory works"];
 
@@ -61,6 +69,15 @@ const PLANNING_ANGLES: { id: PlanningAngleId; label: string }[] = [
   { id: "failure-case", label: "Through a failure" },
   { id: "analogy", label: "Through an analogy" },
 ];
+const DEFAULT_LEARNER_PROFILE: LearnerProfileSnapshot = {
+  expertise: "intermediate",
+  depth: "balanced",
+  goal: "curiosity",
+  codeExamples: false,
+  preferredExamples: "mixed",
+  rationale: "Aria suggested a balanced lesson from the planning conversation.",
+  confirmedAt: "",
+};
 type ScopingQuestion = {
   kind?: "scope" | "emphasis" | "fidelity" | "depth";
   question: string;
@@ -119,6 +136,7 @@ type LecturePayload = {
   /** Whether the lecture must stay strictly inside the uploaded material or may use it as a
    *  springboard — see lib/sourceScope.ts. Absent for a topic with no upload. */
   sourceScope?: SourceScope;
+  learnerProfile: LearnerProfileSnapshot;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
@@ -178,6 +196,13 @@ type BuildCost =
    * no-op.
    */
   const builtLessonRef = useRef<{ beats: Beat[]; topic: string } | null>(null);
+  const [generationProfile, setGenerationProfile] = useState<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
+  const generationProfileRef = useRef<LearnerProfileSnapshot>(DEFAULT_LEARNER_PROFILE);
+  const [progressiveSessionId, setProgressiveSessionId] = useState<string | null>(null);
+  const [progressiveComplete, setProgressiveComplete] = useState(true);
+  const [progressivePlannedBeatCount, setProgressivePlannedBeatCount] = useState(0);
+  const [progressiveStreamRevision, setProgressiveStreamRevision] = useState(0);
+  const lecturePlayheadRef = useRef(-1);
 
   // Interactive planning: ONE pre-draft gate in the main canvas (ambiguity questions if the
   // topic is genuinely ambiguous, OR topic-specific planning questions if there are real
@@ -305,6 +330,9 @@ type BuildCost =
    * rather than being swapped at the transition.
    */
   const voiceOutlineRef = useRef<PlanOutline | null>(null);
+  const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
+  const voiceLinesRef = useRef<{ role: "you" | "aria"; text: string }[]>([]);
+  const planningRevisionRef = useRef<string[]>([]);
   const voiceDocContext = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
   /** Aria's own last spoken line, used as the "question" a spoken student answer is graded
    *  against — see onTranscript below. Voice turn-taking is Gemini Live's own, not gated on
@@ -345,7 +373,12 @@ type BuildCost =
     },
     onTranscript: (role, text, final) => {
       if (!final || !text.trim()) return;
-      setVoiceLines((prev) => [...prev.slice(-40), { role: role === "student" ? "you" : "aria", text: text.trim() }]);
+      // Remote's ref-backed list (voiceLinesRef) rather than the setState updater: the ref is what
+      // the reconnect path reads, so the two must not diverge.
+      const line = { role: role === "student" ? "you" as const : "aria" as const, text: text.trim() };
+      const next = [...voiceLinesRef.current.slice(-40), line];
+      voiceLinesRef.current = next;
+      setVoiceLines(next);
 
       if (role === "tutor") {
         lastVoiceQuestionRef.current = text.trim();
@@ -388,7 +421,6 @@ type BuildCost =
     },
   });
 
-  const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
   const voiceStart = planningVoice.start;
   const voiceStop = planningVoice.stop;
 
@@ -542,6 +574,53 @@ type BuildCost =
           ? "pptx"
           : "topic";
 
+  useEffect(() => {
+    if (!progressiveSessionId) return;
+    const events = new EventSource(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/events`);
+    const onSnapshot = (event: MessageEvent<string>) => {
+      const snapshot = JSON.parse(event.data) as ProgressiveLectureSnapshot;
+      // The worker keeps a running total, so each snapshot replaces the last rather than adding.
+      if (typeof snapshot.costUsd === "number") setCost("generation", snapshot.costUsd);
+      setProgressivePlannedBeatCount(snapshot.plannedBeatCount);
+      setBuildStatus(snapshot.complete
+        ? "Lecture saved to your history"
+        : snapshot.starterReady
+          ? `Playing now · ${snapshot.contiguousReadyCount}/${snapshot.plannedBeatCount} beats ready`
+          : `Preparing your opening · ${snapshot.contiguousReadyCount}/${snapshot.plannedBeatCount} beats ready`);
+      if (snapshot.beats.length > 0) {
+        setBeats((current) => {
+          const next = [...current];
+          snapshot.beats.forEach((beat, index) => {
+            // Progressive enrichment keeps the beat id and script stable and replaces only its
+            // provisional draw payload. Apply that replacement even to the active beat: narration
+            // continues from the same audio clock while the board upgrades to its sandbox version.
+            // Adaptive script rewrites cannot reach the active beat because the server freezes
+            // played/current plan positions before creating a new revision.
+            next[index] = beat;
+          });
+          return next;
+        });
+      }
+      if (snapshot.starterReady) setPhase((current) => current === "building" ? "teaching" : current);
+      if (snapshot.complete) {
+        setProgressiveComplete(true);
+        setBuildCost({ kind: "generated", usd: snapshot.costUsd });
+        events.close();
+      } else if (snapshot.status === "failed") {
+        setProgressiveComplete(true);
+        if (snapshot.beats.length === 0) {
+          setError(snapshot.error || "Progressive lecture generation failed.");
+          setPhase("error");
+        }
+        events.close();
+      }
+    };
+    events.addEventListener("snapshot", onSnapshot as EventListener);
+    events.addEventListener("stream-error", () => setBuildStatus("Reconnecting to the generation worker"));
+    events.onerror = () => setBuildStatus("Reconnecting to the generation worker");
+    return () => events.close();
+  }, [progressiveSessionId, progressiveStreamRevision]);
+
 
   useEffect(() => {
     return () => {
@@ -690,6 +769,9 @@ type BuildCost =
           // Same request, same fields, different parser — that is what "treated exactly the same" means.
           const res = await fetch(source.kind === "pptx" ? "/api/parse-pptx" : "/api/parse-pdf", { method: "POST", body: fd });
           const data = await res.json().catch(() => ({}));
+          // Each parsed file bills its own tokens; with several in flight this must be recorded
+          // per response rather than once for the batch.
+          recordJsonCost("document", data);
           return { source, data, ok: res.ok, drewRegion: regions.length > 0 };
         }),
       );
@@ -697,6 +779,7 @@ type BuildCost =
       const failed = parsed.find((p) => !p.ok || (!p.data.sourceDocument && !p.data.fullText));
       if (failed) {
         throw new Error(failed.data.error || (failed.source.kind === "pptx"
+
           ? "Couldn't read the presentation. Make sure it's a valid .pptx file."
           : "Couldn't read the PDF. Make sure it's a valid .pdf file."));
       }
@@ -816,6 +899,8 @@ type BuildCost =
     if (!files.length) return;
     setUploadPhase("reading");
     setUploadError(null);
+    // A new document is a new lecture: its cost starts here, with the reading of it.
+    resetCostLedger();
     setSlideContext("");
     setDiagramHints("");
     setSlideImages([]);
@@ -937,6 +1022,7 @@ type BuildCost =
       fd.append("file", file);
       const res = await fetch("/api/parse-pptx", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
+      recordJsonCost("document", data);
       if (!res.ok || !data.topic) {
         throw new Error(data.error || "Couldn't read the presentation. Make sure it's a valid .pptx file.");
       }
@@ -998,6 +1084,8 @@ type BuildCost =
 
     setUploadPhase("reading");
     setUploadError(null);
+    // A new document is a new lecture: its cost starts here, with the reading of it.
+    resetCostLedger();
     setSlideContext("");
     setDiagramHints("");
     setSlideImages([]);
@@ -1087,6 +1175,9 @@ type BuildCost =
     setDocumentPlanningActive(false);
     setFocusedDocumentPlanningActive(false);
     focusedPlanningFreshRef.current = null;
+    planningRevisionRef.current = [];
+    voiceLinesRef.current = [];
+    setVoiceLines([]);
   }
 
   async function callPlanApi(body: Record<string, unknown>): Promise<Record<string, unknown> | null> {
@@ -1101,6 +1192,7 @@ type BuildCost =
         signal: controller.signal,
       });
       const data = await res.json().catch(() => ({}));
+      recordJsonCost("planning", data);
       if (!res.ok) throw new Error(data.error || "Planning failed.");
       return data;
     } catch (err) {
@@ -1158,6 +1250,7 @@ type BuildCost =
         if (event.type === "scoping-question" && typeof event.subtopicIndex === "number" && event.question && Array.isArray(event.options)) {
           setPlanScopingQuestions((prev) => [...prev, { subtopicIndex: event.subtopicIndex as number, question: event.question as string, options: event.options as { label: string; instruction: string }[] }]);
         }
+        if (event.type === "outline" && typeof event.costUsd === "number") addCost("planning", event.costUsd);
         if (event.type === "outline" && Array.isArray(event.subtopics)) {
           setOutline({
             topic: typeof event.topic === "string" ? event.topic : fallbackTopic,
@@ -1217,6 +1310,7 @@ type BuildCost =
    *  instead of the default structure, so the same topic can produce a genuinely different lesson. */
   function rerollAngle(angle: PlanningAngleId) {
     setPlanAngle(angle);
+    planningRevisionRef.current = [...planningRevisionRef.current.slice(-19), `Selected teaching angle: ${angle}.`];
     if (focusedDocumentPlanningActive) {
       const fresh = focusedPlanningFreshRef.current;
       streamOutlineRequest({
@@ -1669,6 +1763,7 @@ type BuildCost =
 
   async function reviseOutline(instruction: string) {
     if (!outline || !instruction.trim()) return;
+    planningRevisionRef.current = [...planningRevisionRef.current.slice(-19), instruction.trim()];
     const fresh = focusedPlanningFreshRef.current;
     await streamOutlineRequest({
       mode: "revise",
@@ -1686,6 +1781,20 @@ type BuildCost =
     planAbortRef.current?.abort();
     resetPlanning();
     setPhase("ask");
+  }
+
+  /**
+   * The learner profile the generation request will carry.
+   *
+   * The build-time steering CARD that used to gate this is gone (it blocked generation on a click
+   * while its answers were truncated out of the prompt), so there is no `buildSteeringActive` to
+   * check — the profile is simply kept current and read by `build()` when it runs.
+   */
+  function updateLearnerProfile(patch: Partial<LearnerProfileSnapshot>) {
+    const merged = { ...generationProfileRef.current, ...patch };
+    const next = { ...merged, codeExamples: shouldIncludeCodeExamples(merged) };
+    generationProfileRef.current = next;
+    setGenerationProfile(next);
   }
 
   /**
@@ -1763,7 +1872,48 @@ type BuildCost =
     setBuildJobId(null);
     setBuiltLesson(null);
     setBuildProgress({ stage: "analyzing", stageFraction: 0, detail: null, status: "Starting", elapsedMs: 0 });
+    setProgressiveSessionId(null);
+    setProgressiveComplete(true);
+    setProgressivePlannedBeatCount(0);
+    lecturePlayheadRef.current = -1;
 
+    /*
+     * The suggested learner profile is still fetched — it controls teaching depth and examples,
+     * and never the facts or scope taken from an uploaded source.
+     *
+     * What is gone is the CONFIRMATION GATE that used to follow it: `setBuildSteeringActive(true)`
+     * and `await waitForBuildSteering(...)` held generation until the student clicked a card whose
+     * answers were then truncated out of the prompt anyway. The suggestion is now applied directly,
+     * so the build starts immediately and the profile still reaches the request below.
+     */
+    setBuildStatus("Understanding how you want to learn");
+    let suggested = DEFAULT_LEARNER_PROFILE;
+    try {
+      const suggestionResponse = await fetch("/api/learner-profile/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: trimmed,
+          outline: approvedOutline,
+          planningConversation: JSON.stringify({
+            clarificationAnswers: clarifyAnswers,
+            outlineRevisions: planningRevisionRef.current,
+            voiceConversation: voiceLinesRef.current,
+          }),
+        }),
+        signal: controller.signal,
+      });
+      const suggestionData = await suggestionResponse.json().catch(() => ({}));
+      if (suggestionData.suggestion) suggested = suggestionData.suggestion as LearnerProfileSnapshot;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
+    }
+    suggested = { ...suggested, codeExamples: shouldIncludeCodeExamples(suggested) };
+    generationProfileRef.current = suggested;
+    setGenerationProfile(suggested);
+
+    const confirmedProfile = generationProfileRef.current;
+    const buildSteeringLine = ` Confirmed learner profile: ${confirmedProfile.expertise}, ${confirmedProfile.depth} depth, ${confirmedProfile.goal} goal, ${confirmedProfile.preferredExamples} examples, code examples ${confirmedProfile.codeExamples ? "enabled" : "disabled"}.`;
     const documentPlanningLine = documentPlanningNotes.length
       ? ` Uploaded-source plan chosen by the student: ${documentPlanningNotes.join(" ")}`
       : "";
@@ -1812,7 +1962,7 @@ type BuildCost =
 
     const payload: LecturePayload = {
       topic: trimmed,
-      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${documentPlanningLine}${learnerLine}`,
+      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}${learnerLine}`,
       sourceType: fresh?.kind ?? uploadedFile?.kind ?? "prompt",
       mode: selectedMode.id === "none" ? "standard" : selectedMode.id as LectureMode,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
@@ -1826,12 +1976,32 @@ type BuildCost =
       // Absent (defaults to "reference") for a topic with no upload — matches today's existing,
       // unlabeled behavior exactly.
       ...(doc || slides ? { sourceScope: sourceScopeRef.current } : {}),
+      learnerProfile: confirmedProfile,
     };
 
     try {
       const useFixture = process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_USE_FIXTURE === "1";
 
-      const res = await fetch(useFixture ? "/api/generate-lecture-debug" : "/api/generate-lecture", {
+      if (!useFixture) {
+        setBuildStatus("Sending the opening beats to the generation worker");
+        const progressive = await fetch("/api/progressive-lectures", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        const started = await progressive.json().catch(() => ({}));
+        if (!progressive.ok || typeof started.sessionId !== "string") {
+          throw new Error(started.error || "Could not start progressive lecture generation.");
+        }
+        setBuiltTopic(trimmed);
+        setProgressiveComplete(false);
+        setProgressiveSessionId(started.sessionId);
+        setBuildStatus("Preparing your opening beats");
+        return;
+      }
+
+      const res = await fetch("/api/generate-lecture-debug", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -1940,6 +2110,7 @@ type BuildCost =
        */
       if (data.cached) setBuildCost({ kind: "cached" });
       else if (typeof data.costUsd === "number") setBuildCost({ kind: "generated", usd: data.costUsd });
+      if (!data.cached && typeof data.costUsd === "number") setCost("generation", data.costUsd);
       // No setPhase here — the design screen now owns the hand-off (see startBuiltLesson).
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
@@ -2007,6 +2178,8 @@ type BuildCost =
   }
 
   function openSavedLecture(lecture: { topic: string; beats: Beat[] }) {
+    // Replaying costs only what is spent from here (narration, questions); its build was paid before.
+    resetCostLedger();
     // A replay package is self-contained. Clear transient upload context so follow-up tools do not
     // accidentally read a different document that happened to be selected earlier in this tab.
     setSourceDocument(null);
@@ -2018,6 +2191,10 @@ type BuildCost =
     setDocumentId(null);
     setFullDocumentText("");
     setUploadedFile(null);
+    setProgressiveSessionId(null);
+    setProgressiveComplete(true);
+    setProgressivePlannedBeatCount(0);
+    lecturePlayheadRef.current = -1;
     setBeats(lecture.beats);
     setBuiltTopic(lecture.topic);
     setBuildCost(null);
@@ -2029,8 +2206,35 @@ type BuildCost =
   // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
   // every other mode gets to choose written or oral on the offer screen.
   function onLectureComplete() {
+    if (!progressiveComplete) return;
     rememberLesson();
     setPhase("test-offer");
+  }
+
+  function onLectureBeatChange(index: number) {
+    if (index === lecturePlayheadRef.current) return;
+    lecturePlayheadRef.current = index;
+    if (!progressiveSessionId) return;
+    void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kind: "playhead", playhead: index }),
+    });
+  }
+
+  function captureLearnerInteraction(signal: LearnerAdaptiveSignal) {
+    if (!progressiveSessionId) return;
+    const streamNeedsRestart = progressiveComplete;
+    void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...signal, playhead: lecturePlayheadRef.current }),
+    }).then(async (response) => {
+      const result = await response.json().catch(() => ({})) as { adapted?: boolean };
+      if (!response.ok || result.adapted === false || !streamNeedsRestart) return;
+      setProgressiveComplete(false);
+      setProgressiveStreamRevision((revision) => revision + 1);
+    }).catch(() => {});
   }
 
   async function generateTestBank(): Promise<TestBank | null> {
@@ -2102,6 +2306,7 @@ type BuildCost =
    * router — see components/hud/HudKit.tsx's PageName union and HudLogo's own onClick.
    */
   function endLectureToHome() {
+    resetCostLedger();
     go("landing");
   }
 
@@ -2219,64 +2424,37 @@ type BuildCost =
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
     switch (selectedMode.page) {
       case "blind-demo":
-        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart />;
+        player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
     }
     return (
       <div className="relative">
         {player}
         {/*
-            It used to say "This lecture cost $X.XXXX", which was wrong in every case and worst in
-            the one that looked best: re-uploading a PDF skips generation (cache hit -> costUsd 0)
-            but still re-parses the document through up to 60 vision calls, so the badge announced
-            $0.0000 for about a dollar of spend.
-
-            It now names the ONE stage it measures and says what it leaves out, so the gap is
-            visible instead of implied. Reused and demo builds carry no figure at all — quoting a
-            number that was never true of this build is the whole failure being fixed.
+            The whole lecture's cost, not one stage of it: document, planning, generation, narration,
+            questions and the live tutor each report what they measured (lib/costLedger.ts). The old
+            badge showed generation alone and said so; that was honest but it was not the cost of
+            the lecture — a re-uploaded PDF showed $0.0000 for about a dollar of document reading.
         */}
-        {buildCost !== null && (
-          <div className="pointer-events-none absolute left-0 right-0 top-0 z-[60] flex justify-center pt-2">
-            <div className="hud-eyebrow flex items-center gap-1.5 rounded-full border border-[var(--hud-line-strong)] bg-black/70 px-3.5 py-1.5 text-[0.65rem] backdrop-blur-md">
-              {buildCost.kind === "generated" ? (
-                <>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Generation</span>
-                  <span className="text-[var(--hud-cyan)]">${buildCost.usd.toFixed(4)}</span>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">
-                    excludes document &amp; playback
-                  </span>
-                </>
-              ) : buildCost.kind === "cached" ? (
-                <>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Reused</span>
-                  <span className="text-[var(--hud-cyan)]">no new generation cost</span>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">
-                    document was re-read
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Demo lecture</span>
-                  <span className="text-[var(--hud-cyan)]">nothing generated</span>
-                </>
-              )}
-            </div>
-          </div>
-        )}
+        <LectureCostBadge
+          reused={buildCost?.kind === "cached"}
+          demo={buildCost?.kind === "demo"}
+          generating={Boolean(progressiveSessionId) && !progressiveComplete}
+        />
       </div>
     );
   }
@@ -2858,6 +3036,37 @@ function TestOfferScreen({
 /** A row of quiet, flat quick-reply buttons — used inline under a chat bubble for both the rare
  *  ambiguity questions and the model-authored scoping questions. Deliberately no glow/gradient:
  *  a thin border, a filled state on hover, nothing decorative. */
+function ProfileChoice<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T;
+  options: Array<readonly [T, string]>;
+  onChange: (value: T) => void;
+}) {
+  return (
+    <div>
+      <p className="text-sm font-semibold text-[var(--hud-text)]">{label}</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {options.map(([id, text]) => (
+          <button
+            key={id}
+            onClick={() => onChange(id)}
+            className={`rounded-full border px-3 py-1.5 text-xs font-black transition ${value === id
+              ? "border-transparent bg-[var(--hud-cyan)] text-black"
+              : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"}`}
+          >
+            {text}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function QuickReplyChips({ options, onSelect, disabled }: { options: string[]; onSelect: (value: string) => void; disabled?: boolean }) {
   return (
     <div className="flex flex-wrap gap-2">

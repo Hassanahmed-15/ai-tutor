@@ -270,7 +270,7 @@ BEFORE ANYTHING ELSE — TWO NON-NEGOTIABLES.
 Plan the lecture around those two. They are different boards and must be different beats — TYPE D animates travel between stages, TYPE E animates one shape becoming another. Neither may be traded against requirement (A): a diagram beat still needs its full 110-140 words of narration.
 
 BEAT SCHEMA (every field required unless marked optional):
-{ "id": string, "title": string, "teacherMove": string, "stepLabel": string,
+{ "id": string, "title": string, "transitionIn"?: string, "teacherMove": string, "stepLabel": string,
   "slideKind": "intro"|"definition"|"checkpoint"|"compare"|"recap",
   "points": string[],
   "definitionTerm"?: string, "definitionMeaning"?: string,
@@ -279,6 +279,11 @@ BEAT SCHEMA (every field required unless marked optional):
   "draw"?: DrawScript // omit only on checkpoint beats
 }
 DrawScript = { "caption": string, "durationMs": 42000-56000, "ops": DrawOp[] }
+
+TITLE AND TRANSITION CONTRACT:
+- Titles are 3-9 words and name the exact insight on that beat. Vary them by role: a curiosity hook, a causal/action title for a mechanism, a concrete worked-example title, a contrast title, then a synthesis title.
+- Never use generic titles such as "Introduction", "Overview", "Core idea", "How it works", "Idea 2", "Quick check", or a raw page/slide/figure locator. Do not prefix every title with the lecture topic. Every title must be distinct without numbered suffixes.
+- Beat 0 omits transitionIn. Every later beat has one 8-18 word transitionIn sentence connecting the previous insight to this one. Make the relationship explicit; never repeat stock phrases such as "Now let's move on".
 
 LECTURE DEPTH REQUIREMENTS:
 - This is NOT a demo outline. Teach each board slowly and in depth.
@@ -416,7 +421,7 @@ SLIDE-GROUNDING RULES (read these first):
 - The closing recap must reference the actual slide topics in order, not generic bullets.
 
 BEAT SCHEMA (every field required unless marked optional):
-{ "id": string, "title": string, "teacherMove": string, "stepLabel": string,
+{ "id": string, "title": string, "transitionIn"?: string, "teacherMove": string, "stepLabel": string,
   "slideKind": "intro"|"definition"|"checkpoint"|"compare"|"recap",
   "points": string[],
   "definitionTerm"?: string, "definitionMeaning"?: string,
@@ -425,6 +430,11 @@ BEAT SCHEMA (every field required unless marked optional):
   "draw"?: DrawScript // omit only on checkpoint beats
 }
 DrawScript = { "caption": string, "durationMs": 42000-56000, "ops": DrawOp[] }
+
+TITLE AND TRANSITION CONTRACT:
+- Titles are 3-9 words and name the exact insight on that beat. Use curiosity, mechanism, worked-example, contrast, and synthesis titles according to the beat's role.
+- Never use generic titles such as "Introduction", "Overview", "Core idea", "How it works", "Idea 2", "Quick check", or a raw page/slide/figure locator. Do not prefix every title with the deck topic. Every title must be distinct without numbered suffixes.
+- Beat 0 omits transitionIn. Every later beat has one 8-18 word transitionIn sentence connecting the previous insight to this one. Make the relationship explicit; never repeat stock phrases such as "Now let's move on".
 
 LECTURE DEPTH REQUIREMENTS:
 - This is NOT a demo outline. Use as many beats as the selected slide content genuinely requires, with no hard maximum, and teach each board slowly and in depth.
@@ -574,7 +584,7 @@ HARD REQUIREMENTS:
 LAYOUT & COMPOSITION (this is graded as strictly as density — a correct but messy scene is a FAILURE):
 - CLARITY OVER DENSITY. Density minimums are a floor, not a target. Once met, STOP adding elements. A calm, well-spaced scene with ~20 elements beats a crammed one with 60+. Do not fill every pixel.
 - Plan a clear spatial grid FIRST. Divide the 1000x560 board into deliberate zones (e.g. left third / center / right third, or top row / main stage / bottom gauge row). Assign each labeled part its own zone with breathing room. Never let two distinct subsystems occupy the same region.
-- WIRES/PATHS MUST NOT CROSS OR ZIGZAG. Route every connecting wire, arrow, or flow path as a smooth, gentle curve (or clean orthogonal L-shape) between its endpoints. Never let two paths overlap, tangle, or kink at sharp random angles. If two circuits exist (e.g. charger-side and load-side), keep them on physically separate routes — one clearly above/left, the other below/right — that never touch. Parametrize path points deliberately so the geometry is intentional, not scattered.
+- WIRES/PATHS MUST NOT CROSS OR ZIGZAG. Route every connecting wire, arrow, or flow path as a smooth, gentle curve (or clean orthogonal L-shape) between its endpoints. Never let two paths overlap, tangle, or kink at sharp random angles. If two circuits exist (e.g. charger-side and load-side), keep them on physically separate routes — one clearly above/left, the other below/right — that never touch. Parametrize path points deliberately so the geometry is intentional, not scattered. A CONNECTOR MAY NEVER CROSS TEXT — a stroke drawn through a label overprints it and both become unreadable, which is a hard failure, not a blemish. Route the line around every label, or move the label clear of the line. EVERY ARROW MUST JOIN TWO NAMED THINGS, and its direction must state the real relation between them (S0 -> S1 means S0 becomes S1; reverse it and the diagram now says something false). An arrow, curve or leader that ends in blank space is making no claim at all — delete it. Do not draw decorative, duplicated or symmetrical connectors to balance the composition, and never leave a node floating with no relation drawn: if a node has nothing to connect to, it does not belong on the board.
 - NO OVERLAPPING TEXT (a very common failure — two label pills landing on top of each other so one is half-hidden behind the other). Every label sits in clear space with padding around it; no label's bounding box (pill included) may overlap another label's bounding box, a shape, or a moving particle. Maintain an explicit list of every label's rectangle {x, y, width≈0.6*fontSize*charCount, height≈fontSize*1.4} and before placing each new label, verify its rectangle does not intersect ANY already-placed label's rectangle — if it would, move it (at least ~30px away on the axis with more room). Do NOT stack labels in the same small area; spread them to the parts they annotate. Never place a faint/low-opacity label behind another label (the "ghost label peeking out" bug). Keep total labels sparse (fewer than the object primitives) — if you have more than ~7 text labels, cut the least important ones.
 - DEPLETING GAUGES MUST STILL READ AS "OK", NOT "BROKEN". If a bar/gauge decreases over progress (e.g. stored energy draining), keep its fill in a clearly intentional color the whole time (e.g. a cyan-to-blue or green-to-amber gradient) — never let it fade into a dull brown/gray/muddy tone, which reads as an error or a UI bug rather than a deliberate decrease. The bar's outline/track must stay visible even when the fill is nearly empty so it's obviously an intentional depleting gauge, not a rendering glitch.
 - KEEP EVERYTHING INSIDE THE FRAME. All shapes AND all text must stay well within the viewBox with a ~24px safe margin on ALL FOUR edges (top, bottom, LEFT, and RIGHT) — nothing clipped on any side, no caption running off the side, bottom, or left edge. Text-anchor/x-position errors that push a label's LEFT edge past x=0 are just as bad as overflowing the right or bottom — always compute the label's full width from its x-anchor (start/middle/end) and verify BOTH ends stay inside the margin. Keep label text short (a few words); if a phrase is long, shorten it rather than let it overflow. Estimate text width (~0.55*fontSize per character) and position so it never extends past the safe margin on either side.
@@ -837,13 +847,14 @@ CHOOSE THE RIGHT DIAGRAM (pick the one that teaches THIS concept; do not default
 - Tree/recursion/heap/hierarchy: nodes connected by edges in levels, with labels; expand or traverse with progress.
 - Graph/network/state machine: labeled nodes and directed/undirected edges routed as smooth non-crossing curves; light up a path/traversal with progress.
 - Function/relation/growth/complexity: a labeled coordinate plane with axes and a real plotted curve/points; trace it with progress.
-- Process/procedure/pipeline: clearly separated ordered stages with directional arrows and a concrete example flowing through.
+- Process/procedure/pipeline: animate a concrete token, value, request, or object through a spatial path with meaningful boundaries and state changes. Use stage boxes only when the stages themselves are the concept.
+- Security/network/protocol: show concrete packets or data tokens crossing trust boundaries, attack and defence paths, encryption/transformation states, and layered zones. Do not reduce the idea to a row of UI-card rectangles.
 - Math derivation/equation: an equation spine with each term/step annotated progressively.
 - Comparison: two clean, separated structures side by side, only when comparison is the actual idea.
 
 CONTENT:
 - Ground every visible value, label, node, cell, and edge in the supplied title, spoken script, and brief. Use REAL example values from the narration (actual numbers, names, intervals) — not placeholders like "A/B/C" unless the narration itself is generic.
-- Boxes, cells, rows, arrows, edges, axes, and lines are ENCOURAGED here — they are the concept, not filler. What is still forbidden: decorative dotted clusters, random icons, floating cards/pills, a lone endpoint-to-endpoint arrow with two labels and nothing else, or a wall of prose.
+- Cells and nodes are appropriate for arrays, grids, trees, graphs, and state machines, but rectangles are not a universal visual language. For conceptual security, networking, and processes prefer paths, boundaries, zones, moving tokens, and transformations. Unless the concept is inherently a grid/table/array, use at most two large rectangular containers. Still forbidden: decorative dotted clusters, random icons, floating cards/pills, a lone endpoint-to-endpoint arrow with two labels and nothing else, or a wall of prose.
 - The diagram must be understandable as a static figure at progress=1: a reader should see the structure and its relationships without the narration.
 
 LAYOUT (same discipline as the physical engine):

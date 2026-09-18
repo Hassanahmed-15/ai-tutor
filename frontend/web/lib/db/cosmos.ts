@@ -27,6 +27,9 @@ export const SESSIONS_CONTAINER = "sessions";
 export const LEADERBOARD_CONTAINER = "leaderboard";
 export const THOUGHTS_CONTAINER = "thoughts";
 export const LECTURES_CONTAINER = "lectures";
+export const PROGRESSIVE_LECTURE_SESSIONS_CONTAINER = "progressive-lecture-sessions";
+export const PROGRESSIVE_LECTURE_BEATS_CONTAINER = "progressive-lecture-beats";
+export const LEARNER_PROFILES_CONTAINER = "learner-profiles";
 export const VIEWER_DOCUMENTS_CONTAINER = "viewer-documents";
 export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
 
@@ -236,6 +239,16 @@ export type LectureDoc = {
   sourceType: LectureSourceType;
   /** The actual player/accessibility mode used when this lecture was generated. */
   mode: LectureMode;
+  /** Confirmed teaching preferences used for this immutable lecture generation. */
+  learnerProfile?: {
+    expertise: "beginner" | "intermediate" | "advanced";
+    depth: "concise" | "balanced" | "deep";
+    goal: "school" | "exam" | "curiosity" | "practical" | "professional";
+    codeExamples: boolean;
+    preferredExamples: "visual" | "real-world" | "worked" | "mixed";
+    rationale: string;
+    confirmedAt: string;
+  };
   packageBlobName: string;
   status: "processing-videos" | "ready" | "ready-with-errors" | "failed";
   beatCount: number;
@@ -296,6 +309,18 @@ export function lectures(): Container {
   return client().database(DATABASE_ID).container(LECTURES_CONTAINER);
 }
 
+export function progressiveLectureSessions(): Container {
+  return client().database(DATABASE_ID).container(PROGRESSIVE_LECTURE_SESSIONS_CONTAINER);
+}
+
+export function progressiveLectureBeats(): Container {
+  return client().database(DATABASE_ID).container(PROGRESSIVE_LECTURE_BEATS_CONTAINER);
+}
+
+export function learnerProfiles(): Container {
+  return client().database(DATABASE_ID).container(LEARNER_PROFILES_CONTAINER);
+}
+
 export function viewerDocuments(): Container {
   return client().database(DATABASE_ID).container(VIEWER_DOCUMENTS_CONTAINER);
 }
@@ -341,6 +366,21 @@ export async function ensureContainers(): Promise<void> {
   await database.containers.createIfNotExists({
     id: LECTURES_CONTAINER,
     // Every history lookup is scoped to the signed-in learner.
+    partitionKey: { paths: ["/userId"] },
+  });
+  await database.containers.createIfNotExists({
+    id: PROGRESSIVE_LECTURE_SESSIONS_CONTAINER,
+    // Session reads are always authenticated-user scoped, just like lecture history.
+    partitionKey: { paths: ["/userId"] },
+  });
+  await database.containers.createIfNotExists({
+    id: PROGRESSIVE_LECTURE_BEATS_CONTAINER,
+    // Workers and the player always read one lecture's ordered beat stream.
+    partitionKey: { paths: ["/sessionId"] },
+  });
+  await database.containers.createIfNotExists({
+    id: LEARNER_PROFILES_CONTAINER,
+    // One reusable learning preference document per user.
     partitionKey: { paths: ["/userId"] },
   });
   await database.containers.createIfNotExists({

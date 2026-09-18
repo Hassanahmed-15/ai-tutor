@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1
+FROM node:22-bookworm-slim
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      python3 python3-venv python3-pip build-essential pkg-config \
+      libcairo2-dev libpango1.0-dev ffmpeg ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY package.json package-lock.json ./
+COPY frontend/web/package.json ./frontend/web/
+COPY backend/packages ./backend/packages
+RUN npm ci --workspaces --include-workspace-root
+
+COPY frontend/web ./frontend/web
+RUN python3 -m venv /opt/manim \
+    && /opt/manim/bin/pip install --no-cache-dir -r frontend/web/scripts/manim/requirements.txt
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV MANIM_PYTHON_BINARY=/opt/manim/bin/python
+ENV MANIM_CACHE_DIR=/tmp/aria-manim-cache
+
+RUN groupadd --system --gid 1001 worker \
+    && useradd --system --uid 1001 --gid worker worker \
+    && mkdir -p /tmp/aria-manim-cache \
+    && chown -R worker:worker /app /tmp/aria-manim-cache
+
+USER worker
+CMD ["npm", "run", "worker:lecture", "--workspace=frontend/web"]

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getDocumentImages } from "@/lib/pageImageStore";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import OpenAI from "openai";
+import { createCostMeter } from "@/lib/costMeter";
 import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation, sanitizeTextExplanation } from "@/lib/drawSanitize";
 import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
@@ -68,7 +69,9 @@ export async function POST(req: Request) {
 
   if (!question) return NextResponse.json({ error: "question is required" }, { status: 400 });
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  // Priced across every attempt, including failed ones and the animation built for the answer.
+  const meter = createCostMeter();
+  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   const userMsg =
     `The lecture topic is "${topic || "this subject"}". ` +
     (lessonContext
@@ -115,7 +118,7 @@ export async function POST(req: Request) {
       // TEXT-ONLY (ADHD tutor): dedicated sanitizer keeps ONLY label/note ops and never substitutes
       // the shape/scene diagram fallback — guaranteeing a clean chalk-text board.
       if (textOnly) {
-        return NextResponse.json(sanitizeTextExplanation(JSON.parse(raw), { question }));
+        return NextResponse.json({ ...sanitizeTextExplanation(JSON.parse(raw), { question }), costUsd: meter.totalUsd });
       }
 
       const result = sanitizeExplanation(JSON.parse(raw), { question });
@@ -138,10 +141,10 @@ export async function POST(req: Request) {
         result.draw = syntheticBeat.draw;
       }
 
-      return NextResponse.json(result);
+      return NextResponse.json({ ...result, costUsd: meter.totalUsd });
     } catch (err) {
       lastError = err instanceof Error ? err.message : "Explanation failed";
     }
   }
-  return NextResponse.json({ error: lastError }, { status: 502 });
+  return NextResponse.json({ error: lastError, costUsd: meter.totalUsd }, { status: 502 });
 }

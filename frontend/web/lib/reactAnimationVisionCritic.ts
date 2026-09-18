@@ -3,6 +3,14 @@ import { createElement, type ReactNode } from "react";
 import type { Beat } from "./lessonContent";
 import { ANIM_SANDBOX_RUNTIME } from "./anim/sandboxRuntime";
 import { costFor } from "./modelPricing";
+import {
+  arrowheadOnLabelIssue,
+  connectorCrossingIssue,
+  danglingConnectorIssue,
+  parseArrowheads,
+  parseAnchors,
+  parseConnectors,
+} from "./boardConnectorGeometry";
 
 /**
  * Vision-based shape-recognizability critic for generated `reactAnimation` whiteboard SVGs.
@@ -311,6 +319,39 @@ export async function critiqueLayout(code: string, assetRuntime?: string): Promi
       }
     }
   }
+
+  /*
+   * NOW THE LINES.
+   *
+   * Everything above measures text against text, which is why a stroke drawn straight through a
+   * label was invisible to every check this project has: the deterministic one only knew about
+   * `<text>`, one vision critic judges only whether the subject is recognizable, and the other is
+   * scored against textbook internal structure. A reinforcement-learning board shipped with its
+   * leader line printed across the words "state = position" for exactly that reason.
+   *
+   * Geometry rather than another vision call, because a line crossing a rectangle is arithmetic —
+   * cheaper, faster and more certain than asking a model to look.
+   */
+  const segments = parseConnectors(svg);
+  if (segments.length === 0) return { ok: true };
+
+  const crossing = connectorCrossingIssue(segments, boxes);
+  if (crossing) return { ok: false, issue: crossing };
+
+  const dangling = danglingConnectorIssue(segments, boxes, parseAnchors(svg));
+  if (dangling) return { ok: false, issue: dangling };
+
+  /*
+   * The HEAD, separately from the stroke.
+   *
+   * An arrowhead is a filled triangle, and filled paths are skipped above as artwork. Measured on a
+   * generated state diagram, the stroke stopped politely short of the label while the head sat
+   * squarely on the words "next state" — the arrow still collided with the text, and every
+   * line-based check passed it.
+   */
+  const heads = arrowheadOnLabelIssue(parseArrowheads(svg), boxes);
+  if (heads) return { ok: false, issue: heads };
+
   return { ok: true };
 }
 
@@ -396,6 +437,19 @@ Score against a TEXTBOOK-QUALITY reference, not against "can I tell what it is":
 1 = unrecognizable.
 
 A board with NO internal structure cannot score above 3, however tidy it looks.
+
+JUDGE THE SUBJECT ON ITS OWN TERMS. "Internal structure" means the named parts of a drawn THING
+(cartilage rings, lobes, chambers). When the subject IS a set of relationships — a state machine,
+a cycle, a pipeline, a hierarchy — it has no internal parts to draw, and scoring it as though it
+does measures the wrong thing entirely. For that kind of board, the equivalent of internal
+structure is the relationships themselves: are they the RIGHT ones, does every connection carry a
+meaning, and can each be read without tracing it through something else.
+
+CONNECTORS ARE SCORED AS HARD AS CONTENT. Report each of these as a defect when present:
+- a line, arrow or leader drawn through a label, so the words and the stroke overprint;
+- an arrow whose direction contradicts the relation it is meant to show;
+- an arrow, curve or leader that ends in blank space, joins nothing, or merely duplicates another;
+- a node or element left with no relation drawn to anything, when the board is about relations.
 
 "defects": up to 4, most damaging first. Be specific and positional — "the leader dot for Axon sits
 in blank space to the right of the drawing, not on the axon" and "the trachea is a plain tube with

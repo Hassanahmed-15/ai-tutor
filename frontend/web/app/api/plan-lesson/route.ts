@@ -26,6 +26,7 @@ import {
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
 import { outlineLearnerInstruction } from "@/lib/planPrompt";
+import { polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
@@ -334,7 +335,17 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
     if (scopingQuestion) scopingQuestionCount++;
     if (title.trim()) subtopics.push({ title: title.trim().slice(0, 80), caption: caption.trim().slice(0, 160), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
   }
-  return { topic, subtopics };
+  const polished = polishBeatPlan(
+    subtopics.map((subtopic) => ({ title: subtopic.title, objective: subtopic.caption })),
+    topic,
+  );
+  return {
+    topic,
+    subtopics: subtopics.map((subtopic, index) => ({
+      ...subtopic,
+      title: polished[index]?.title ?? subtopic.title,
+    })),
+  };
 }
 
 function sanitizeSingleSubtopic(raw: unknown): PlanOutline["subtopics"][number] | undefined {

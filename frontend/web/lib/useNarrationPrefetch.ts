@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { splitNarrationSentences } from "./voice";
+import { recordTtsResponse } from "./costLedger";
 
 /**
  * Warms the server-side TTS cache for beats the student has not reached yet.
@@ -34,10 +36,19 @@ export function useNarrationPrefetch(scripts: string[], currentIndex: number, lo
     if (typeof window === "undefined") return;
     let cancelled = false;
 
+    /*
+     * Warm each SENTENCE, not the whole script.
+     *
+     * Narration now plays one clip per sentence (see lib/voice.ts), and the server cache keys on the
+     * exact text it is asked for. Warming the whole script would fill the cache with an entry the
+     * player never requests — every lookahead fetch wasted, and every upcoming sentence still a cold
+     * synthesis of several seconds.
+     */
     const pending: string[] = [];
     for (let i = currentIndex + 1; i <= currentIndex + lookahead && i < scripts.length; i += 1) {
-      const text = scripts[i]?.trim();
-      if (text && !requested.current.has(text)) pending.push(text);
+      for (const sentence of splitNarrationSentences(scripts[i] ?? "")) {
+        if (sentence && !requested.current.has(sentence)) pending.push(sentence);
+      }
     }
     if (pending.length === 0) return;
 
@@ -56,7 +67,11 @@ export function useNarrationPrefetch(scripts: string[], currentIndex: number, lo
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text }),
           })
-            .then((r) => r.blob())
+            .then((r) => {
+              // Warming spends real money on a miss, so it is this lecture's cost too.
+              recordTtsResponse(r);
+              return r.blob();
+            })
             .catch(() => undefined);
         }
       } finally {

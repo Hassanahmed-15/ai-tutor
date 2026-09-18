@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
+import { addCost, addUnpriced, recordJsonCost } from "./costLedger";
+import { realtimeCostFor, type RealtimeUsage } from "./modelPricing";
 
 /**
  * Full-duplex live voice tutor over the OpenAI Realtime API (WebRTC, speech-to-speech).
@@ -316,6 +318,7 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           }),
         });
         const data = await res.json().catch(() => ({}));
+        recordJsonCost("questions", data);
         if (!res.ok || !data.script) throw new Error(data.error || "explain failed");
         optsRef.current.onBoardRequest({ script: data.script, draw: data.draw });
         outcome = `board shown for "${concept}"`;
@@ -394,6 +397,8 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           if (typeof evt.transcript === "string") optsRef.current.onTranscript?.("tutor", evt.transcript, true);
           break;
         case "response.done":
+          // Each response reports its own usage; see realtimeCostFor.
+          addCost("liveTutor", realtimeCostFor((evt.response as { usage?: RealtimeUsage } | undefined)?.usage));
           // Generation is complete, but her audio may still be PLAYING. Reassess: if audio has also
           // drained, arm the settle; otherwise output_audio_buffer.stopped will. This correctly ends
           // silent terminal responses (a bare resume_lecture / pause_lecture tool call) too.
@@ -404,6 +409,9 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           if (typeof evt.delta === "string") optsRef.current.onTranscript?.("student", evt.delta, false);
           break;
         case "conversation.item.input_audio_transcription.completed":
+          // Transcription is billed separately and its audio rate is not in the price table: shown as
+          // unpriced rather than guessed (about $0.003 a minute).
+          addUnpriced("liveTutor");
           if (typeof evt.transcript === "string") optsRef.current.onTranscript?.("student", evt.transcript, true);
           break;
         case "response.function_call_arguments.done": {

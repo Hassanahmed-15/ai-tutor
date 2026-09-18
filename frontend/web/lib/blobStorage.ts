@@ -53,6 +53,10 @@ export function lectureVideoBlobName(userId: string, lectureId: string, videoId:
   return `users/${requireSafeSegment(userId, "user id")}/lectures/${requireSafeSegment(lectureId, "lecture id")}/manim/${requireSafeSegment(videoId, "video id")}.mp4`;
 }
 
+export function progressiveLectureInputBlobName(userId: string, sessionId: string): string {
+  return `users/${requireSafeSegment(userId, "user id")}/progressive-lectures/${requireSafeSegment(sessionId, "session id")}/input.json`;
+}
+
 /** The PDF a viewer document was built from — original for a PDF upload, converted for a PPT/PPTX. */
 export function viewerDocumentBlobName(userId: string, documentId: string): string {
   return `users/${requireSafeSegment(userId, "user id")}/viewer/${requireSafeSegment(documentId, "document id")}.pdf`;

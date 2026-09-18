@@ -17,7 +17,7 @@
  * place, and over-reporting is the safe direction to be wrong in.
  */
 
-export type TokenUsage = { prompt_tokens?: number; completion_tokens?: number } | undefined | null;
+export type TokenUsage = { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number } | undefined | null;
 
 type Price = { input: number; output: number };
 
@@ -39,6 +39,9 @@ const PRICES: Record<string, Price> = {
   // Image tokens, not per-image. gpt-image-1 also bills $5.00/1M for text input.
   "gpt-image-1": { input: 10.0, output: 40.0 },
   "text-embedding-3-small": { input: 0.02, output: 0 },
+  // Narration. Text input and AUDIO output tokens, from the speech endpoint's SSE usage event.
+  // Checked 2026-09-18 on developers.openai.com/api/docs/pricing.
+  "gpt-4o-mini-tts": { input: 0.6, output: 12.0 },
 };
 
 /** The most expensive entry, used when a model id is unrecognised. See the header note. */
@@ -65,10 +68,100 @@ export function priceFor(model: string): Price {
 export function costFor(model: string, usage: TokenUsage): number {
   if (!usage) return 0;
   const { input, output } = priceFor(model);
-  return ((usage.prompt_tokens ?? 0) * input + (usage.completion_tokens ?? 0) * output) / 1_000_000;
+  const prompt = usage.prompt_tokens ?? 0;
+  /*
+   * Output is billed on everything generated, thinking included. OpenAI folds reasoning into
+   * `completion_tokens`, so total = prompt + completion and this changes nothing for it. A provider
+   * that reports thinking only inside `total_tokens` would otherwise have its thinking priced at $0,
+   * so the larger of the two readings is used.
+   */
+  const generated = Math.max(usage.completion_tokens ?? 0, (usage.total_tokens ?? 0) - prompt);
+  return (prompt * input + generated * output) / 1_000_000;
 }
 
 /** True when a model needs `max_completion_tokens` and refuses a non-default `temperature`. */
 export function isModernModel(model: string): boolean {
   return /^(gpt-5|o[0-9])/.test(model);
+}
+
+/* ── Gemini Live ─────────────────────────────────────────────────────────── */
+
+type ModalityCount = { modality?: string; tokenCount?: number };
+export type GeminiLiveUsage = {
+  promptTokenCount?: number;
+  responseTokenCount?: number;
+  promptTokensDetails?: ModalityCount[];
+  responseTokensDetails?: ModalityCount[];
+} | null | undefined;
+
+/**
+ * USD per 1M tokens for gemini-3.1-flash-live-preview, paid tier, by modality.
+ * From ai.google.dev/gemini-api/docs/pricing, checked 2026-09-18.
+ */
+const GEMINI_LIVE_PRICES = {
+  input: { TEXT: 0.75, AUDIO: 3.0, IMAGE: 1.0, VIDEO: 1.0 } as Record<string, number>,
+  output: { TEXT: 4.5, AUDIO: 12.0 } as Record<string, number>,
+};
+
+/**
+ * Cost of ONE Live `usageMetadata` message.
+ *
+ * Measured on the real API (2026-09-18): usage arrives once per turn and is NOT cumulative — a
+ * second turn reported 57 response tokens, not 109 — so callers must SUM these. Each turn's prompt
+ * re-counts the whole conversation so far, including the tutor's earlier audio, which is why a long
+ * Live session gets steadily more expensive per turn.
+ *
+ * Tokens the modality breakdown does not account for (the totals can exceed the details) are priced
+ * as text — the cheapest reading — and never dropped.
+ */
+export function geminiLiveCostFor(usage: GeminiLiveUsage): number {
+  if (!usage) return 0;
+  const side = (total: number | undefined, details: ModalityCount[] | undefined, prices: Record<string, number>) => {
+    let usd = 0;
+    let counted = 0;
+    for (const d of details ?? []) {
+      const n = Math.max(0, d.tokenCount ?? 0);
+      counted += n;
+      usd += n * (prices[String(d.modality ?? "TEXT").toUpperCase()] ?? prices.TEXT);
+    }
+    usd += Math.max(0, (total ?? 0) - counted) * prices.TEXT;
+    return usd;
+  };
+  return (
+    side(usage.promptTokenCount, usage.promptTokensDetails, GEMINI_LIVE_PRICES.input) +
+    side(usage.responseTokenCount, usage.responseTokensDetails, GEMINI_LIVE_PRICES.output)
+  ) / 1_000_000;
+}
+
+/* ── OpenAI Realtime ─────────────────────────────────────────────────────── */
+
+export type RealtimeUsage = {
+  input_token_details?: { text_tokens?: number; audio_tokens?: number; cached_tokens?: number; cached_tokens_details?: { text_tokens?: number; audio_tokens?: number } };
+  output_token_details?: { text_tokens?: number; audio_tokens?: number };
+} | null | undefined;
+
+/** USD per 1M tokens for gpt-realtime. From developers.openai.com/api/docs/pricing, checked 2026-09-18. */
+const REALTIME_PRICES = { textIn: 4.0, audioIn: 32.0, cachedIn: 0.4, textOut: 16.0, audioOut: 64.0 };
+
+/**
+ * Cost of one Realtime `response.done`, from its `response.usage`. Each response reports its own
+ * usage, so callers SUM these. Cached input is billed at the cached rate and removed from the
+ * uncached counts it is included in.
+ */
+export function realtimeCostFor(usage: RealtimeUsage): number {
+  if (!usage) return 0;
+  const inp = usage.input_token_details ?? {};
+  const out = usage.output_token_details ?? {};
+  const cachedText = inp.cached_tokens_details?.text_tokens ?? 0;
+  const cachedAudio = inp.cached_tokens_details?.audio_tokens ?? 0;
+  const cached = inp.cached_tokens_details ? cachedText + cachedAudio : inp.cached_tokens ?? 0;
+  const text = Math.max(0, (inp.text_tokens ?? 0) - cachedText);
+  const audio = Math.max(0, (inp.audio_tokens ?? 0) - cachedAudio);
+  return (
+    text * REALTIME_PRICES.textIn +
+    audio * REALTIME_PRICES.audioIn +
+    cached * REALTIME_PRICES.cachedIn +
+    (out.text_tokens ?? 0) * REALTIME_PRICES.textOut +
+    (out.audio_tokens ?? 0) * REALTIME_PRICES.audioOut
+  ) / 1_000_000;
 }

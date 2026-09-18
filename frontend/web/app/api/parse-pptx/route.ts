@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import JSZip from "jszip";
 import { XMLParser } from "fast-xml-parser";
 import OpenAI from "openai";
+import { createCostMeter } from "@/lib/costMeter";
 import type { SuprnotesAsset, SuprnotesContentBlock, SuprnotesLessonInput } from "@/lib/suprnotes";
 import { applyGlobalSourceOrder, buildPdfLessonPlan } from "@/lib/pdfLessonPipeline";
 import {
@@ -502,7 +503,9 @@ export async function POST(req: NextRequest) {
 
   // Set up OpenAI client for vision (only used if API key is present)
   const openaiKey = process.env.OPENAI_API_KEY;
-  const client = openaiKey ? new OpenAI({ apiKey: openaiKey }) : null;
+  // Every vision call this upload makes is priced from its own usage; see lib/costMeter.ts.
+  const meter = createCostMeter();
+  const client = openaiKey ? meter.wrap(new OpenAI({ apiKey: openaiKey })) : null;
 
   /**
    * Pages and regions, named and parsed exactly as the PDF route does.
@@ -983,5 +986,5 @@ export async function POST(req: NextRequest) {
     assetCount: sourceDocument?.assets?.length ?? 0,
   };
 
-  return NextResponse.json(result);
+  return NextResponse.json({ ...result, costUsd: meter.totalUsd, unpricedCalls: meter.unpricedCalls });
 }

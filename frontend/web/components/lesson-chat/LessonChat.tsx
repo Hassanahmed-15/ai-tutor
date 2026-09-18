@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
+import { recordJsonCost } from "@/lib/costLedger";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
 
@@ -68,6 +69,8 @@ export function useLessonChat(opts: {
   lessonQuestion?: string;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
+  /** Lets the progressive planner learn from the question without adding separate adaptation UI. */
+  onQuestionAsked?: (question: string) => void;
   /** Called when the explanation closes, so the player can re-open its clarity gate. */
   onExplanationClosed?: () => void;
   /** Surface autoplay-blocked so the player can show its banner. */
@@ -94,6 +97,7 @@ export function useLessonChat(opts: {
       if (!trimmed || explaining) return;
       unlockAudio();
       opts.pausePlayer();
+      opts.onQuestionAsked?.(trimmed);
       stopNarration();
       setChat((c) => [...c, { role: "you", text: trimmed }]);
       setExplaining(true);
@@ -113,6 +117,7 @@ export function useLessonChat(opts: {
           }),
         });
         const data = await res.json().catch(() => ({}));
+        recordJsonCost("questions", data);
         if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
         setChat((c) => [...c, { role: "aria", text: data.script }]);
         setExplainBoard({ script: data.script, draw: data.draw });
@@ -125,6 +130,10 @@ export function useLessonChat(opts: {
             setDrawProgress(1);
           },
           onBlocked: () => opts.onVoiceBlocked?.(),
+          // `pausePlayer` has already frozen the current lecture. Preserve that audio handle while
+          // this one-off answer speaks so "continue" can resume at its exact timestamp instead of
+          // recreating the beat narration from the beginning.
+          preserveActive: true,
         });
         cancelRef.current = handle;
       } catch (err) {

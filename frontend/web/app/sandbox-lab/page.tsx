@@ -13,6 +13,23 @@ import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox
  */
 
 const FIXTURES: Record<string, { title: string; teachingPoint: string; script: string }> = {
+  /*
+   * THE ONLY ABSTRACT FIXTURE.
+   *
+   * Every other fixture here is a physical thing with parts to draw — lungs, a neuron, a heart. A
+   * board whose content IS relationships behaves differently and fails differently: it has no
+   * internal structure to render, so the refinement rubric could not score it, and its meaning lives
+   * entirely in connectors, which nothing measured. The reported failure (leader lines through
+   * labels, arrows joining nothing, a floating node) came from precisely this shape, and without a
+   * fixture for it the quality loop had never once been run against it.
+   */
+  markov: {
+    title: "Markov State in RL",
+    teachingPoint:
+      "A Markov state: the current state alone determines the next action, so an agent moves from one state to the next without needing the history of how it arrived. Draw the states as labelled nodes and the transitions as directed arrows between them.",
+    script:
+      "In reinforcement learning the state captures everything the agent needs right now. The current position guides the action it chooses. From one state the agent moves to the next. Past moves are not needed once the state is known. That is what makes the process Markov.",
+  },
   respiration: {
     title: "Overview of the Respiratory System",
     teachingPoint:
@@ -73,7 +90,10 @@ function SandboxLab() {
   const key = params.get("topic") ?? "respiration";
   const auto = params.get("auto") === "1";
   const [progress, setProgress] = useState(() => {
-    const p = Number(params.get("p"));
+    const requested = params.get("p");
+    // `Number(null)` is 0. Opening the lab without `p` therefore used to hide every
+    // sentence-synchronised element and make a healthy generated board look completely blank.
+    const p = requested === null ? 1 : Number(requested);
     return Number.isFinite(p) && p >= 0 ? Math.min(1, p) : 1;
   });
 

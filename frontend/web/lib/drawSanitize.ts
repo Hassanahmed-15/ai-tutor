@@ -1,4 +1,5 @@
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
+import { transitionSentence } from "./beatPresentation";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { validateManimSceneSpec } from "./manimSceneSpec";
 import { validateStructureSpec } from "./structureSpec";
@@ -827,6 +828,25 @@ export function getReactAnimationCodeIssue(rawCode: string, opts: { abstract?: b
   return getReactAnimationCodeDiagnostics(rawCode, opts).issue;
 }
 
+/** A board's generation record (lib/animationTrials.ts), kept only if every field is well-formed. */
+export function sanitizeTrial(raw: unknown): ReactAnimationOp["trial"] {
+  const t = raw as Record<string, unknown> | null;
+  if (!t || typeof t !== "object") return undefined;
+  const num = (v: unknown) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? v : null);
+  const score = t.score === null ? null : num(t.score);
+  const attempts = num(t.attempts);
+  const costUsd = num(t.costUsd);
+  const ms = num(t.ms);
+  if (attempts === null || costUsd === null || ms === null || (t.score !== null && score === null)) return undefined;
+  return {
+    score: score === null ? null : Math.min(5, score),
+    attempts,
+    refineTrail: typeof t.refineTrail === "string" ? t.refineTrail.slice(0, 120) : "",
+    costUsd,
+    ms,
+  };
+}
+
 /** Validates a `reactAnimation` op's `code` field. Returns the op unchanged if the code passes,
  *  or the op with `code` stripped if it fails any check. Deliberately does NOT touch
  *  `teachingPoint` because it is safe plain data regardless of what happened to `code`. Exported
@@ -1040,6 +1060,10 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
         : undefined,
       status: r.status === "ready" || r.status === "failed" ? r.status : undefined,
       error: typeof r.error === "string" ? r.error.slice(0, 180) : undefined,
+      // Who drew the board and how it went. Same reason as assetIds: anything not named here is
+      // dropped when a filled script is re-sanitised, and the chip would stop naming the model.
+      model: typeof r.model === "string" && /^[a-z0-9.-]{1,60}$/i.test(r.model) ? r.model : undefined,
+      trial: sanitizeTrial(r.trial),
       at: 0,
       endAt: 1,
     };
@@ -1337,6 +1361,7 @@ export function sanitizeBeat(raw: unknown, index: number): Beat | null {
   const beat: Beat = {
     id: str(o.id, `beat-${index}`),
     title,
+    transitionIn: index > 0 && typeof o.transitionIn === "string" ? str(o.transitionIn) : undefined,
     teacherMove: str(o.teacherMove, "I keep teaching."),
     stepLabel: str(o.stepLabel, `${index + 1}`),
     slideKind,
@@ -2152,6 +2177,17 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   const minUsableBeats = options.minUsableBeats ?? 9;
   if (beats.length < minUsableBeats) {
     throw new Error(`Model only returned ${beats.length} usable beats — too few for a real lecture. Try again.`);
+  }
+
+  // The transition is authored with the beat, but older cached/generated lectures predate that
+  // field. Fill those deterministically so a replay and a fresh lecture have the same smooth handoff.
+  delete beats[0]?.transitionIn;
+  for (let index = 1; index < beats.length; index++) {
+    beats[index].transitionIn = transitionSentence(
+      beats[index].transitionIn,
+      beats[index - 1].title,
+      beats[index].title,
+    );
   }
 
   // BLACKBOARD GUARANTEE: the first teaching beat after the intro is a clean written board.
