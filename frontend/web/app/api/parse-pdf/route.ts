@@ -553,7 +553,61 @@ async function cropFigure(
   }
 }
 
+/**
+ * Report what actually went wrong, instead of blaming the file.
+ *
+ * WHY THIS EXISTS. Everything past the early validation in `parsePdfRequest` ran with no top-level
+ * catch: a Python timeout, an OOM while holding twenty 400-DPI pages in the Node heap, a vision
+ * call that exceeded the 300 s budget — each became an unhandled rejection, which Next turns into
+ * a bare 500 with no JSON body. The client reads no `error` field and falls back to "Couldn't read
+ * the PDF. Make sure it's a valid .pdf file."
+ *
+ * That message is wrong in the way that costs the most time: it is confidently about the file, so
+ * the student re-exports a perfectly good PDF and tries again while the real cause — a timeout, or
+ * memory — repeats. These are the "unexplained errors on long PDFs".
+ *
+ * The status codes matter as much as the text. A timeout is 504 and a memory failure is 507, so
+ * they are distinguishable in logs and monitoring rather than all being 500.
+ */
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
+  try {
+    const response = await parsePdfRequest(req);
+    console.log(`[parse-pdf] completed in ${Date.now() - startedAt}ms status=${response.status}`);
+    return response;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    const ms = Date.now() - startedAt;
+    console.error(`[parse-pdf] failed after ${ms}ms:`, error);
+
+    if (/timed? ?out|ETIMEDOUT|ESRCH|SIGTERM|SIGKILL/i.test(detail)) {
+      return NextResponse.json({
+        error: "This PDF took too long to process. Try selecting fewer pages, or splitting it into a smaller file.",
+        detail,
+      }, { status: 504 });
+    }
+    if (/heap out of memory|ENOMEM|Array buffer allocation failed|maxBuffer/i.test(detail)) {
+      return NextResponse.json({
+        error: "This PDF was too large to process at full quality. Try selecting fewer pages.",
+        detail,
+      }, { status: 507 });
+    }
+    if (/ENOENT|spawn|python/i.test(detail)) {
+      return NextResponse.json({
+        error: "The document processor is unavailable on this server. The lecture can still be built from the text.",
+        detail,
+      }, { status: 503 });
+    }
+    return NextResponse.json({
+      // The real message, not a guess about the file. `detail` is kept separate so the UI can show
+      // a sentence while a bug report still carries the specifics.
+      error: `Could not finish reading this PDF: ${detail}`,
+      detail,
+    }, { status: 500 });
+  }
+}
+
+async function parsePdfRequest(req: NextRequest) {
   let formData: FormData;
   try {
     formData = await req.formData();

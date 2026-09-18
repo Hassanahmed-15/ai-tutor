@@ -181,6 +181,30 @@ export async function* streamPdfThumbnails(
     const onAbort = () => child.kill("SIGTERM");
     signal?.addEventListener("abort", onAbort, { once: true });
 
+    /*
+     * A WATCHDOG, because `spawn` has no `timeout` the way `execFile` does.
+     *
+     * `runPython` passes `timeout: 180_000`; this path deliberately uses spawn to stream, and in
+     * doing so lost that protection entirely. A Python process wedged on a malformed or enormous
+     * PDF would then hold the request open for the route's whole 300 s budget and return nothing
+     * useful — one of the ways a long PDF "just fails" with no explanation.
+     *
+     * The timer is per-PAGE, not for the whole render: a long document legitimately takes longer
+     * than a short one, so a fixed total would punish exactly the documents most likely to be
+     * fine. Each emitted line resets it, so this fires only when Python genuinely stops producing.
+     */
+    const PAGE_STALL_MS = 45_000;
+    let stallTimer: NodeJS.Timeout | null = null;
+    let timedOut = false;
+    const resetStallTimer = () => {
+      if (stallTimer) clearTimeout(stallTimer);
+      stallTimer = setTimeout(() => {
+        timedOut = true;
+        child.kill("SIGKILL");
+      }, PAGE_STALL_MS);
+    };
+    resetStallTimer();
+
     let stderr = "";
     child.stderr.on("data", (chunk: Buffer) => {
       stderr += chunk.toString();
@@ -207,6 +231,8 @@ export async function* streamPdfThumbnails(
           buffer = buffer.slice(newline + 1);
           newline = buffer.indexOf("\n");
           if (!line) continue;
+          // Progress means Python is alive; only a genuine stall should trip the watchdog.
+          resetStallTimer();
           try {
             yield JSON.parse(line);
           } catch {
@@ -216,15 +242,26 @@ export async function* streamPdfThumbnails(
         }
       }
       const code = await exited;
+      if (timedOut) {
+        // Thrown, not logged: the route's catch turns this into a 504 that says what happened,
+        // rather than the generator ending quietly and the picker reporting "previews unavailable"
+        // — which reads as a server misconfiguration instead of a stuck render.
+        throw new Error(`PDF rendering timed out after ${PAGE_STALL_MS}ms with no output.`);
+      }
       if (code !== 0) {
         console.error(`[pdf-python] thumbs exited ${code}: ${stderr.slice(0, 400)}`);
+        throw new Error(`PDF rendering failed (exit ${code}). ${stderr.slice(0, 200)}`);
       }
     } finally {
+      if (stallTimer) clearTimeout(stallTimer);
       signal?.removeEventListener("abort", onAbort);
       if (child.exitCode === null) child.kill("SIGTERM");
     }
   } catch (error) {
     console.error(`[pdf-python] thumbs failed: ${error instanceof Error ? error.message : "unknown"}`);
+    // Re-thrown so the route can tell a stall or a crash apart from "the pipeline is disabled".
+    // Swallowing it here is what made a 180-second hang look like a benign config state.
+    throw error;
   } finally {
     await rm(directory, { recursive: true, force: true }).catch(() => undefined);
   }

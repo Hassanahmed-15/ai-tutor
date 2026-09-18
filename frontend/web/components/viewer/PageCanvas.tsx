@@ -93,7 +93,27 @@ export const PageCanvas = memo(function PageCanvas({
       if (!canvas) return;
       // Device pixel ratio makes text crisp on a retina display instead of upscaled and blurry —
       // the canvas is drawn at native resolution and shrunk back down with CSS.
-      const dpr = window.devicePixelRatio || 1;
+      /*
+       * DPR IS CAPPED, and the total pixel count with it.
+       *
+       * The raw ratio was used unbounded, multiplied onto a fit-width scale that can itself reach
+       * 3.5. On a retina display that is a 7x linear multiplier — roughly 57 million pixels for one
+       * page, ~228 MB of backing store, for a page displayed a few hundred CSS pixels wide. Several
+       * of those render at once inside the 100% observer margin.
+       *
+       * 2 is the point past which more pixels stop being visible on screen; a 3x phone display
+       * gains nothing legible from the third multiple at this physical size. The area cap then
+       * catches the other direction — a big zoom on a large page — by scaling the ratio down just
+       * enough to stay under budget, so the page still renders sharp rather than failing or
+       * freezing the tab.
+       */
+      const MAX_DPR = 2;
+      const MAX_CANVAS_PIXELS = 16_000_000;
+      let dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
+      const wanted = viewport.width * viewport.height * dpr * dpr;
+      if (wanted > MAX_CANVAS_PIXELS) {
+        dpr = Math.max(1, dpr * Math.sqrt(MAX_CANVAS_PIXELS / wanted));
+      }
       canvas.width = Math.ceil(viewport.width * dpr);
       canvas.height = Math.ceil(viewport.height * dpr);
       canvas.style.width = `${viewport.width}px`;
@@ -134,6 +154,30 @@ export const PageCanvas = memo(function PageCanvas({
       cancelled = true;
       pageRequest.cancel();
       renderTask?.cancel();
+
+      /*
+       * ACTUALLY RELEASE THE PAGE. Cancelling the render was never enough.
+       *
+       * PageList's own comment claims "PageCanvas can drop its canvas/text-layer content and the
+       * browser reclaims that memory" — it did not. The canvas kept its full backing store and the
+       * text layer kept its thousands of positioned spans for the life of the document, so
+       * scrolling a long PDF accumulated every page ever rendered: at devicePixelRatio 2 that is
+       * roughly 4-8 MB per page, hundreds of megabytes over a few hundred pages. That is the
+       * "long PDFs become unstable" symptom.
+       *
+       * Setting width/height to 0 is what actually frees a canvas's memory — clearRect only paints
+       * over it. Resetting `rendered` matters too: it was left true, so the placeholder never came
+       * back and a freed page showed a blank canvas instead of its skeleton.
+       */
+      if (!visible) {
+        const canvas = canvasRef.current;
+        if (canvas) {
+          canvas.width = 0;
+          canvas.height = 0;
+        }
+        textLayerRef.current?.replaceChildren();
+        setRendered(false);
+      }
     };
   }, [queue, pageNumber, scale, visible, naturalSize]);
 

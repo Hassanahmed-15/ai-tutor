@@ -32,7 +32,37 @@ const THUMB_DPI = 150;
  * scheme, all of which are real work for something that lives for one screen. The container
  * filesystem is also ephemeral, so files written here would not survive a restart anyway.
  */
+/**
+ * Same reasoning as parse-pdf's wrapper: an uncaught throw here became a bare 500 that the page
+ * picker reported as an unreadable file. `arrayBuffer()` on a 20 MB upload and the LibreOffice
+ * conversion are both capable of it.
+ */
 export async function POST(request: Request) {
+  const startedAt = Date.now();
+  try {
+    const response = await documentPagesRequest(request);
+    console.log(`[document-pages] completed in ${Date.now() - startedAt}ms status=${response.status}`);
+    return response;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.error(`[document-pages] failed after ${Date.now() - startedAt}ms:`, error);
+    if (/timed? ?out|ETIMEDOUT|SIGTERM|SIGKILL/i.test(detail)) {
+      return NextResponse.json({
+        error: "Rendering these pages took too long. Try a shorter document.",
+        detail,
+      }, { status: 504 });
+    }
+    if (/heap out of memory|ENOMEM|Array buffer allocation failed/i.test(detail)) {
+      return NextResponse.json({
+        error: "This document was too large to preview. Try a smaller file.",
+        detail,
+      }, { status: 507 });
+    }
+    return NextResponse.json({ error: `Could not render these pages: ${detail}`, detail }, { status: 500 });
+  }
+}
+
+async function documentPagesRequest(request: Request) {
   const form = await request.formData().catch(() => null);
   const file = form?.get("file");
   if (!(file instanceof File)) {
