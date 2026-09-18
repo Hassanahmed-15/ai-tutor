@@ -46,10 +46,43 @@ type GeneratedBeatPayload = {
   checkpoint?: unknown;
 };
 
+/**
+ * Per-task timing, logged in one parseable line.
+ *
+ * WHY THIS EXISTS. There was no instrumentation anywhere in this pipeline, so "the lecture takes
+ * about a minute" could not be attributed to anything: plan, script generation, premium rendering
+ * and queue hops were indistinguishable in the logs. Optimising without this is guessing.
+ *
+ * The shape is deliberately greppable — `[timing] kind=... ms=...` — so a build's critical path can
+ * be reconstructed from `az containerapp logs` without adding a tracing dependency.
+ */
+function logTiming(kind: string, sessionId: string, startedAt: number, extra = ""): void {
+  const ms = Math.round(performance.now() - startedAt);
+  console.log(`[timing] kind=${kind} session=${sessionId} ms=${ms}${extra ? ` ${extra}` : ""}`);
+}
+
 export async function processProgressiveLectureTask(task: ProgressiveLectureTask): Promise<void> {
-  if (task.type === "plan") await planLecture(task.userId, task.sessionId);
-  else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision);
-  else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision);
+  const startedAt = performance.now();
+  /*
+   * Queue latency, measured rather than assumed.
+   *
+   * Every task carries the time it was enqueued, so the gap between dispatch and pickup is visible
+   * on its own. That gap is pure overhead — the worker polls on a 1s idle sleep and waits for a
+   * whole batch to finish before dequeuing again — and the critical path for the first beat
+   * crosses it three times (plan → generate-beat → enrich-beat).
+   */
+  const queuedFor = typeof task.enqueuedAt === "number" ? Date.now() - task.enqueuedAt : null;
+  const seq = "sequence" in task ? `seq=${task.sequence}` : "";
+  if (queuedFor !== null) {
+    console.log(`[timing] kind=queue-wait session=${task.sessionId} ms=${queuedFor} type=${task.type} ${seq}`);
+  }
+  try {
+    if (task.type === "plan") await planLecture(task.userId, task.sessionId);
+    else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision);
+    else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision);
+  } finally {
+    logTiming(task.type, task.sessionId, startedAt, seq);
+  }
 }
 
 async function planLecture(userId: string, sessionId: string): Promise<void> {
@@ -299,7 +332,12 @@ async function generateOneBeat(
     response_format: { type: "json_object" },
     ...(isModernModel(MODEL) ? { max_completion_tokens: 2_000 } : { max_tokens: 2_000, temperature: 0.35 }),
   };
+  const scriptStartedAt = performance.now();
   const completion = await client.chat.completions.create(request);
+  // The beat's script call. Separating this from the premium render above is the whole point of the
+  // instrumentation: they are different models doing different work, and only one of them is worth
+  // parallelising if it turns out to dominate.
+  logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}`);
   const payload = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as GeneratedBeatPayload;
   return {
     beat: sanitizeGeneratedBeat(payload, planned, session),
@@ -420,7 +458,12 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       // neighbouring beats always get different models. Not the count of planned animation beats:
       // a prompted lecture plans few of those and picks the real board kind later (above), so that
       // count would hand nearly every animated beat to the same model.
+      const premiumStartedAt = performance.now();
       const result = await fillPremium(client, candidate, visualKind, session.sourceType !== "prompt", sequence);
+      // The single most expensive call in the pipeline — an animation generation plus its vision
+      // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
+      // (Cosmos reads/writes, the visual-kind choice) can be told apart from the model work.
+      logTiming("premium", sessionId, premiumStartedAt, `seq=${sequence} kind=${visualKind}`);
       costUsd += result.costUsd;
       success = result.success;
       error = result.error;

@@ -111,10 +111,17 @@ export type ProgressiveBeatDoc = {
   error: string | null;
 };
 
+/**
+ * `enqueuedAt` is stamped at dispatch so the worker can log how long a task WAITED, separately
+ * from how long it took to run. Optional because tasks already on the queue from an older build
+ * will not carry it, and a missing timestamp must not break a task that is otherwise valid.
+ */
+type TaskBase = { version: 1; sessionId: string; userId: string; enqueuedAt?: number };
+
 export type ProgressiveLectureTask =
-  | { version: 1; type: "plan"; sessionId: string; userId: string }
-  | { version: 1; type: "generate-beat"; sessionId: string; userId: string; sequence: number; revision: number }
-  | { version: 1; type: "enrich-beat"; sessionId: string; userId: string; sequence: number; revision: number };
+  | ({ type: "plan" } & TaskBase)
+  | ({ type: "generate-beat"; sequence: number; revision: number } & TaskBase)
+  | ({ type: "enrich-beat"; sequence: number; revision: number } & TaskBase);
 
 export type ProgressiveLectureSnapshot = {
   sessionId: string;

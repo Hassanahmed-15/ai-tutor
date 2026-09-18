@@ -77,8 +77,11 @@ function serviceBusClient(): ServiceBusClient {
   return globalForQueue.ariaServiceBus;
 }
 
-export async function dispatchProgressiveTasks(tasks: ProgressiveLectureTask[]): Promise<void> {
-  if (tasks.length === 0) return;
+export async function dispatchProgressiveTasks(input: ProgressiveLectureTask[]): Promise<void> {
+  if (input.length === 0) return;
+  // Stamped here, at the one place every task passes through, so queue wait is measurable without
+  // every caller having to remember to set it.
+  const tasks = input.map((task) => ({ ...task, enqueuedAt: task.enqueuedAt ?? Date.now() }));
   const transport = progressiveQueueTransport();
   if (transport === "in-process-development") {
     enqueueLocal(tasks);
