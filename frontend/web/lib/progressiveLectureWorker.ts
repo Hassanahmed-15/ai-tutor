@@ -518,20 +518,30 @@ async function chooseProgressiveVisual(
   beat: Beat,
   fallback: ProgressiveVisualKind,
 ): Promise<{ kind: ProgressiveVisualKind; costUsd: number }> {
+  /*
+   * DO NOT PAY FOR A CLASSIFICATION WHOSE ANSWER IS ALREADY DECIDED.
+   *
+   * When the provisional plan reserved this beat for the sandbox, the branch below returns
+   * `fallback` unchanged no matter what the classifier says — the comment there explains why, and
+   * it is correct. But the two model calls still ran first: `planBeatVisual` then `direct`, both
+   * sequential, both on the critical path to first play, and both discarded.
+   *
+   * `visualKindFor` makes "react-animation" the default for prompted lectures, so this was the
+   * COMMON case, not an edge one. Returning early removes two round trips per animated beat while
+   * changing no decision the pipeline would have made — the chosen kind is identical either way.
+   */
+  if (fallback === "react-animation") {
+    return { kind: fallback, costUsd: 0 };
+  }
+
   try {
     const visual = await planBeatVisual(client, beat);
     if (!visual.spec) return { kind: fallback, costUsd: visual.costUsd };
     const selected = await direct(client, specToBrief(visual.spec));
     const board = selected.plan?.board;
     if (!board) return { kind: fallback, costUsd: visual.costUsd + selected.costUsd };
-    // The synchronous plan deliberately reserves some process/application beats for the sandbox.
-    // A later broad classifier (especially "structure") must not erase that renderer diversity.
-    // The provisional planner has already identified equation and plot beats. Once it reserves a
-    // beat for the sandbox, preserve that decision so a broad semantic brief cannot silently turn
-    // every animation into ELK or another static renderer.
-    if (fallback === "react-animation") {
-      return { kind: fallback, costUsd: visual.costUsd + selected.costUsd };
-    }
+    // (The "fallback is already react-animation" case is handled by the early return above, before
+    // these two calls are made at all — it used to be checked here, after paying for both.)
     // A broad technical topic can make every visual specification mention "connections", causing
     // an independent per-beat classifier to turn definitions, benefits and recaps into the same ELK
     // network. Structure is accepted only when the beat title itself says relationships/stages are

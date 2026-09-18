@@ -401,7 +401,21 @@ type BuildCost =
        * already concluded — once the lecture is being planned in earnest, an aside spoken during
        * the build is genuine conversation, not one more diagnostic turn to score.
        */
-      if (phase === "outline" && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
+      /*
+       * PREVIEW COUNTS TOO.
+       *
+       * This was gated on `phase === "outline"` alone, but the voice session deliberately spans
+       * outline AND preview (see the effect that starts it), so everything a student said on the
+       * preview screen was transcribed, stored in voiceLines, and then never graded — the profile
+       * simply did not hear it. "Actually I've never done calculus" spoken while looking at the
+       * lesson preview is exactly the correction that should reshape the lesson, and it was the
+       * one moment the system ignored.
+       *
+       * `hasEnoughSignal` still stops the grading once the diagnostic has genuinely concluded, so
+       * this widens WHERE speech is heard without removing the stop condition.
+       */
+      const planningPhase = phase === "outline" || phase === "preview";
+      if (planningPhase && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
         const question = lastVoiceQuestionRef.current || openingQuestion(topic);
         void submitDiagnosticAnswer(question, text.trim(), "voice");
       }
@@ -552,6 +566,8 @@ type BuildCost =
   // stays a plain single-file .pptx/.json picker exactly as it works today).
   const folderInputRef = useRef<HTMLInputElement>(null);
   const buildAbortRef = useRef<AbortController | null>(null);
+  /** When the current build started, so elapsed time (and the remaining estimate) is real. */
+  const buildStartedAtRef = useRef<number | null>(null);
 
 
   /**
@@ -596,6 +612,44 @@ type BuildCost =
         : snapshot.starterReady
           ? `Playing now · ${snapshot.contiguousReadyCount}/${snapshot.plannedBeatCount} beats ready`
           : `Preparing your opening · ${snapshot.contiguousReadyCount}/${snapshot.plannedBeatCount} beats ready`);
+
+      /*
+       * THE PROGRESS BAR NOW MOVES ON REAL WORK.
+       *
+       * `setBuildProgress` was only ever called by the debug/fixture polling loop. On the
+       * production path `build()` set it once to {stage:"analyzing", stageFraction:0} and nothing
+       * touched it again, so `progressFor("analyzing", 0)` returned 0 and the bar sat pinned at its
+       * 2% floor for the entire build while the one honest signal — how many beats are actually
+       * finished — was formatted into a sentence and thrown away.
+       *
+       * Beats completed out of beats planned is the truest progress this pipeline has: each one is
+       * a real unit of finished work, written by the worker only after its script AND its premium
+       * visual have landed. Mapping it onto the existing stage weights keeps the stage checklist
+       * meaningful rather than replacing it with a bare fraction.
+       */
+      const planned = Math.max(1, snapshot.plannedBeatCount);
+      const done = Math.min(snapshot.contiguousReadyCount, planned);
+      const fraction = done / planned;
+      setBuildProgress((current) => ({
+        ...current,
+        // The named stage tracks what the worker is really doing: planning until the plan exists,
+        // then writing/illustrating beats, then finalising once they are all in.
+        stage: snapshot.plannedBeatCount === 0
+          ? "analyzing"
+          : snapshot.complete
+            ? "finalizing"
+            : fraction > 0
+              ? "visuals"
+              : "structuring",
+        stageFraction: snapshot.complete ? 1 : fraction,
+        detail: snapshot.plannedBeatCount === 0
+          ? "Planning the lesson"
+          : `${done} of ${planned} sections ready`,
+        status: snapshot.complete ? "Finished" : "Building",
+        // A real elapsed clock, so estimateRemainingMs can extrapolate honestly instead of
+        // dividing by a zero that never changes.
+        elapsedMs: buildStartedAtRef.current ? Date.now() - buildStartedAtRef.current : 0,
+      }));
       if (snapshot.beats.length > 0) {
         setBeats((current) => {
           const next = [...current];
@@ -1930,6 +1984,7 @@ type BuildCost =
     setBuildStatus("Choosing the teaching route");
     setBuildJobId(null);
     setBuiltLesson(null);
+    buildStartedAtRef.current = Date.now();
     setBuildProgress({ stage: "analyzing", stageFraction: 0, detail: null, status: "Starting", elapsedMs: 0 });
     setProgressiveSessionId(null);
     setProgressiveComplete(true);
