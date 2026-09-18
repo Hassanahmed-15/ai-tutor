@@ -854,8 +854,23 @@ type BuildCost =
        * wrote is always a better title than this.
        */
       const pointing = !focus || isPointingPhrase(focus);
-      const subject = (pointing && drewRegion && "Selected region")
-        || (pointing && subjectFromTranscript(transcriptText))
+      /*
+       * TRY THE TRANSCRIPT BEFORE FALLING BACK TO "Selected region".
+       *
+       * The region branch used to come first, so a dragged crop was ALWAYS titled "Selected
+       * region" — `subjectFromTranscript` was unreachable whenever `drewRegion` was true. On the
+       * build screen that is merely vague; in Lecture History it is actively broken, because every
+       * lecture built from a crop becomes an identical card and none of them says what it was
+       * about.
+       *
+       * The original reasoning for the literal — that a crop's transcript yields nonsense titles
+       * like `egin{array}{l|l|l|}` — was sound when written, but it is `subjectFromTranscript`'s
+       * own job to reject that, and it now does: markup, pipe-delimited rows, figure-only lines and
+       * heading-less data all fail its candidate test and return "". So the literal stays exactly
+       * where it belongs — as the fallback for when there genuinely is no name in the crop.
+       */
+      const subject = (pointing && subjectFromTranscript(transcriptText))
+        || (pointing && drewRegion && "Selected region")
         || focus
         || topic.trim()
         || input.trim()

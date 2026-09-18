@@ -641,10 +641,26 @@ export function subjectFromTranscript(transcript: string): string {
     if (/[:—-]/.test(line)) n += 1;
     return n;
   };
-  const first = candidates.slice()
+  const best = candidates.slice()
     // Stable: among equally heading-like lines, the earliest wins, which is usually the real title.
     .map((line, i) => ({ line, i, n: score(line) }))
-    .sort((a, b) => b.n - a.n || a.i - b.i)[0]?.line ?? "";
-  const tidy = first.replace(/[ 	]+/g, " ").trim();
+    .sort((a, b) => b.n - a.n || a.i - b.i)[0];
+  /*
+   * RANKING ALONE IS NOT ENOUGH — a bad line still wins if it is the only line.
+   *
+   * `score` was built to choose BETWEEN candidates, so when a crop contains exactly one candidate
+   * it was returned however unheading-like it was. A bare column header came back as the title
+   * "Pregnancies Glucose BloodPressure SkinThickness Insulin BMI Age Outcome": nine words of data
+   * with no verb, which reads as a malfunction on a lecture card.
+   *
+   * A floor of 5 is the cheapest correct fix rather than a new heuristic: every genuine heading in
+   * the fixtures clears it comfortably (a short, wordy, digit-free line scores 3+2+2 = 7), while
+   * that header row scores 3 — long, nine words, and only saved from zero by having no digits.
+   * Below the floor the caller falls back, which for a dragged crop means "Selected region" — the
+   * honest answer when the crop genuinely contains no name.
+   */
+  const MIN_HEADING_SCORE = 5;
+  if (!best || best.n < MIN_HEADING_SCORE) return "";
+  const tidy = best.line.replace(/[ \t]+/g, " ").trim();
   return tidy.length > 90 ? `${tidy.slice(0, 90).trimEnd()}…` : tidy;
 }

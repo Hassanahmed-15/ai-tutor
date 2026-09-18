@@ -9,7 +9,8 @@ import assert from "node:assert/strict";
 
 import {
   parsePageRefs, wantedKind, scoreBlock, focusPassages, focusFromTranscript, focusPromptSection,
-  focusedLectureTitle, focusedUserMessage, isPointingPhrase, isWeakSlideTitle, subjectFromFocus, FOCUS_RULES,
+  focusedLectureTitle, focusedUserMessage, isPointingPhrase, isWeakSlideTitle, subjectFromFocus,
+  subjectFromTranscript, FOCUS_RULES,
 } from "../pdfFocus";
 import type { SuprnotesContentBlock, SuprnotesLessonInput } from "../suprnotes";
 
@@ -395,6 +396,29 @@ test("a HEADING is preferred over a row of data", () => {
      "Feature Correlation Heatmap",
      "Glucose 0.13 1.00 0.22 0.19 0.22 0.28 0.15 0.27 0.47"].join(String.fromCharCode(10)), [4])!;
   assert.equal(subjectFromFocus(focus), "Feature Correlation Heatmap");
+});
+
+test("a data row is rejected outright when it is the ONLY candidate", () => {
+  /*
+   * The ranking test above proves a heading BEATS a data row. This proves a data row loses even
+   * with nothing to lose to.
+   *
+   * `score` was written to choose between candidates, so a crop containing exactly one weak line
+   * returned it however unheading-like it was — a bare column header became the lecture title
+   * "Pregnancies Glucose BloodPressure … Outcome". That only became visible once titles started
+   * appearing on Lecture History cards, where every crop-built lecture is read back later.
+   *
+   * Returning "" is the correct answer: the caller then falls back to "Selected region", which is
+   * honest about a crop that genuinely contains no name.
+   */
+  assert.equal(
+    subjectFromTranscript(
+      "Pregnancies Glucose BloodPressure SkinThickness Insulin BMI DiabetesPedigreeFunction Age Outcome",
+    ),
+    "",
+  );
+  // A real heading on its own must still survive — the floor rejects weak lines, not lone ones.
+  assert.equal(subjectFromTranscript("Gradient Descent Convergence"), "Gradient Descent Convergence");
 });
 
 test("MARKUP is never chosen as the subject", () => {
