@@ -78,8 +78,24 @@ export async function createProgressiveLectureSession(
     lastAdaptedAt: null,
     playhead: -1,
     frozenThrough: 1,
-    starterBeatCount: 3,
-    starterBufferMs: 90_000,
+    /*
+     * TIME TO FIRST PLAY IS TWO BEATS, NOT THREE.
+     *
+     * This was 3 beats / 90 s of buffer, and since a beat plans for 35-55 s, both conditions
+     * effectively demanded three fully enriched beats before a single word could be spoken.
+     * Production timings show why that hurts: a react-animation beat's premium render measured
+     * 66-206 s, so the student waited for the SLOWEST of three such renders before anything
+     * started — while beats 4+ generate perfectly well during playback.
+     *
+     * Two beats is the smallest number that still protects against a stall: the first beat plays
+     * (35-55 s of speech) while the third is generating, so the buffer keeps refilling ahead of the
+     * playhead. Starting on one beat would leave no margin if beat 2 ran long.
+     *
+     * 50 s of buffer is the same idea expressed in time, so a lecture of unusually short beats
+     * still waits for enough runway rather than for a count.
+     */
+    starterBeatCount: 2,
+    starterBufferMs: 50_000,
     lectureId: null,
     costUsd: 0,
     createdAt: now,

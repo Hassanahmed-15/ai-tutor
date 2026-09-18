@@ -47,6 +47,22 @@ type ReasoningEffort = "low" | "medium" | "high";
 // regenerate-from-scratch retry (REACT_CRITIC_RETRY), which was measured NOT to work: it threw the
 // board away each round and the mean never moved off 2.60/5. This edits what is already there.
 const REFINE_ROUNDS = Math.max(0, Math.min(4, Number(process.env.REACT_REFINE_ROUNDS ?? 3)));
+
+/**
+ * How long the refine loop may keep improving one board before shipping the best it has.
+ *
+ * 45 s is set from measurement, not taste: production timings showed react-animation beats taking
+ * 66-206 s almost entirely inside this loop, against 2.6-4.9 s for the beat's script. Three beats
+ * must finish before the lecture can start, so a 200 s board is most of the wait the student feels.
+ *
+ * Deliberately generous enough that a board reaching 5/5 in one or two rounds — the common case —
+ * is never interrupted. It truncates only the long tail that was spending minutes to move a 4 to
+ * a 5, and the loop keeps the best-scoring version it found rather than discarding the work.
+ */
+const REFINE_TIME_BUDGET_MS = Math.max(
+  10_000,
+  Math.min(180_000, Number(process.env.REACT_REFINE_TIME_BUDGET_MS ?? 45_000)),
+);
 const REFINE_BUDGET_USD = Math.max(0, Number(process.env.REACT_REFINE_BUDGET_USD ?? 0.6));
 
 const REASONING_EFFORT: ReasoningEffort = (() => {
@@ -202,7 +218,30 @@ async function refineUntilGood(
   let spent = 0;
   const trail: string[] = [];
 
+  /*
+   * A WALL-CLOCK BUDGET, alongside the existing round and dollar budgets.
+   *
+   * Measured in production, this loop is where a lecture's minute goes: `[timing] kind=premium`
+   * reported 66 s, 112 s, 128 s and 206 s for react-animation beats while the beat's own script
+   * call took 2.6-4.9 s and a plot board took 3.5 s. Each round is up to three sequential model
+   * calls (critique → refine → re-critique), and with two generation attempts on top the worst
+   * case is over twenty round trips for one board.
+   *
+   * Rounds are the wrong unit to cap: one slow round can outlast three fast ones, so a round limit
+   * bounds cost but not time. This bounds time directly and keeps the best board found so far —
+   * the loop already tracks `bestCode`/`bestScore` and only ever accepts a strict improvement, so
+   * stopping early degrades gracefully to "the best version we had" rather than to nothing.
+   *
+   * Quality is not being traded away in the general case: the loop still exits the moment a board
+   * scores 5/5 or has no defects, which is the common path. This only truncates the tail that was
+   * spending three more minutes to move a 4 to a 5.
+   */
+  const startedAt = Date.now();
   for (let round = 0; round <= REFINE_ROUNDS; round++) {
+    if (round > 0 && Date.now() - startedAt >= REFINE_TIME_BUDGET_MS) {
+      trail.push(`time-stop@${Math.round((Date.now() - startedAt) / 1000)}s`);
+      break;
+    }
     const critique = await critiqueForRefinement(client, beat, bestCode, subject, assetRuntime);
     spent += critique.costUsd;
     if (critique.score === null) break; // could not look — that is not the same claim as "perfect"

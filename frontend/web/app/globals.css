@@ -1090,3 +1090,9 @@ textarea {
   border-top: 1px solid var(--hud-line);
   margin: 0;
 }
+
+/* The boot ring in components/auth/AuthGate.tsx. A sweep around the wordmark, so the app's first
+   frame reads as alive rather than as a blank screen with grey text on it. */
+@keyframes aria-boot-spin {
+  to { transform: rotate(360deg); }
+}

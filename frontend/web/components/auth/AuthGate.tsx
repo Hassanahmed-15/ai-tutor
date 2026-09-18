@@ -82,8 +82,21 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   const [noticeDismissed, setNoticeDismissed] = useState(false);
 
   const refresh = useCallback(async () => {
+    /*
+     * A CEILING ON THE BOOT SCREEN.
+     *
+     * There was no timeout here, and this gate renders instead of the entire app — so a request
+     * that never settled (Cosmos cold start, a hung proxy) left the student on the loading screen
+     * indefinitely with no way forward. Eight seconds is well past a healthy response and well
+     * short of the point where a person assumes the product is broken.
+     *
+     * The abort lands in the existing catch, which sets "unavailable" — a state that deliberately
+     * degrades OPEN and renders the app. Timing out therefore shows the lesson, not an error page.
+     */
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8_000);
     try {
-      const res = await fetch("/api/auth/me", { cache: "no-store" });
+      const res = await fetch("/api/auth/me", { cache: "no-store", signal: controller.signal });
       /*
        * `res.ok` FIRST. Without it a 404 HTML page fails .json(), the catch yields {}, and {} reads
        * as `databaseConfigured: false` — so every auth control vanished silently and the app looked
@@ -103,6 +116,8 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       // Still degrades open — a network failure must not lock a student out of a lesson they were
       // mid-way through — but it is reported now rather than mimicking a no-database deployment.
       setState("unavailable");
+    } finally {
+      clearTimeout(timeout);
     }
   }, []);
 
@@ -113,9 +128,33 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   const openSettings = useCallback(() => setSettingsOpen(true), []);
 
   if (state === "loading") {
+    /*
+     * THE APP'S FIRST IMPRESSION, and it was one line of faint grey text.
+     *
+     * AuthGate wraps everything, so until /api/auth/me answers, this IS the product — no logo, no
+     * motion, nothing to say the app is alive rather than broken. On a Cosmos cold start that can
+     * last seconds, and it also had no timeout: a request that never returned left the entire app
+     * on this screen forever, with no way out. The watchdog below degrades to the same
+     * "unavailable" state the catch already uses, which renders the app rather than locking the
+     * student out.
+     */
     return (
-      <main className="hud-canvas grid min-h-screen place-items-center">
-        <p className="text-sm text-[var(--hud-text-faint)]">Checking your session…</p>
+      <main className="hud-canvas grid min-h-screen place-items-center" role="status" aria-live="polite">
+        <div className="flex flex-col items-center gap-5">
+          <div className="relative grid h-16 w-16 place-items-center">
+            {/* A ring that sweeps rather than a spinner glyph — the wordmark stays still and legible
+                while the motion happens around it. */}
+            <span
+              aria-hidden
+              className="absolute inset-0 rounded-full border-2 border-[var(--hud-line)] border-t-[var(--hud-cyan)]"
+              style={{ animation: "aria-boot-spin 900ms linear infinite" }}
+            />
+            <span className="font-display text-xl leading-none tracking-[-0.02em] text-[var(--hud-text)]">
+              A
+            </span>
+          </div>
+          <p className="text-[0.82rem] font-medium text-[var(--hud-text-dim)]">Starting Aria…</p>
+        </div>
       </main>
     );
   }
