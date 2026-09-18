@@ -118,7 +118,24 @@ export async function rescueEmptyBoards(
   if (stranded.length === 0) return stats;
   console.error(`[fallback] ${stranded.length} beat(s) have no usable board: ${stranded.map((b) => b.id).join(", ")}`);
 
-  for (const beat of stranded) {
+  /**
+   * Rescues run CONCURRENTLY, because this pass was measured as the single slowest stage of a build
+   * — 75.7s of a 192.4s lecture, longer than generating the lecture text itself. It was one
+   * `await fillOne` per stranded beat in series, and on a 19-beat document that is 18 sequential
+   * model calls appended to the end of every build, each of which succeeds on its first attempt.
+   *
+   * Each beat's chain is self-contained: it mutates only its OWN `beat.draw.ops`, `specs`/`forms`
+   * are read-only lookups, and `fillOne` hands a single-element `[beat]` to each filler. The only
+   * shared mutable state was the `stats` accumulator, so each task now returns its own tally and
+   * they are reduced after the fact rather than incremented from concurrent tasks.
+   *
+   * Bounded, not unbounded: eighteen simultaneous completions would trade this bottleneck for rate
+   * limiting. The cap matches the chunk pools in the generate-lecture route.
+   */
+  const RESCUE_CONCURRENCY = Math.max(1, Math.min(6, Number(process.env.BOARD_FALLBACK_CONCURRENCY ?? 4)));
+
+  async function rescueOne(beat: Beat): Promise<FallbackStats> {
+    const own: FallbackStats = { costUsd: 0, rescued: 0, stillEmpty: 0 };
     const spec = specs.get(beat.id);
     const form = forms.get(beat.id);
     // With no specification to re-brief from, the beat title is still a real instruction — thin,
@@ -137,9 +154,9 @@ export async function rescueEmptyBoards(
       draw.ops = [placeholderFor(board, brief), ...keep] as typeof draw.ops;
 
       const filled = await fillOne(client, board, beats, beat);
-      stats.costUsd += filled;
+      own.costUsd += filled;
       if (hasUsableBoard(beat)) {
-        stats.rescued++;
+        own.rescued++;
         console.error(`[fallback] beat=${beat.id} rescued with ${board}`);
         break;
       }
@@ -148,13 +165,29 @@ export async function rescueEmptyBoards(
     if (!hasUsableBoard(beat)) {
       installDeterministicWrittenBoard(beat);
       if (hasUsableBoard(beat)) {
-        stats.rescued++;
+        own.rescued++;
         console.error(`[fallback] beat=${beat.id} rescued with deterministic written board`);
       } else {
-        stats.stillEmpty++;
+        own.stillEmpty++;
         console.error(`[fallback] beat=${beat.id} STILL has no board after deterministic fallback`);
       }
     }
+    return own;
+  }
+
+  let cursor = 0;
+  const tallies: FallbackStats[] = [];
+  await Promise.all(
+    Array.from({ length: Math.min(RESCUE_CONCURRENCY, stranded.length) }, async () => {
+      while (cursor < stranded.length) {
+        tallies.push(await rescueOne(stranded[cursor++]));
+      }
+    }),
+  );
+  for (const tally of tallies) {
+    stats.costUsd += tally.costUsd;
+    stats.rescued += tally.rescued;
+    stats.stillEmpty += tally.stillEmpty;
   }
 
   console.error(`[fallback] rescued ${stats.rescued}, still empty ${stats.stillEmpty}, $${stats.costUsd.toFixed(4)}`);

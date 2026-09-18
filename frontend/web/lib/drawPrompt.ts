@@ -143,8 +143,9 @@ RULES:
 - Every encoding needs "field" and "type" ("quantitative" | "nominal" | "ordinal" | "temporal"). A wrong "type" is the one error that passes shape checks and still fails to compile.
 - Give each axis a real "title" with units, e.g. {"field":"year","type":"quantitative","title":"Years"}.
 - A "nominal" axis is sorted ALPHABETICALLY by default, which turns months into "Apr, Aug, Dec, Feb". Whenever the categories have a natural order, state it: "sort": ["Jan","Feb","Mar",…]. A chart in the wrong order teaches the wrong thing.
-- No "width", "height" or "$schema" — those are set for you.
-- Prefer one clear series. Use "color" only when comparing two or three genuinely different series.`;
+- No "width", "height", "$schema" or "config" — sizing, colours, fonts and grid are set for you. A palette you choose yourself will clash with the board and is discarded.
+- Prefer one clear series. Use "color" only when comparing two or three genuinely different series — never more than three, which is the limit at which the colours stay distinguishable to a colour-blind reader.
+- Keep category names SHORT (about 12 characters, e.g. "Training" not "Training Data"). Axis labels are never rotated, so a long name is dropped rather than turned sideways.`;
 
 /**
  * The derivation board.

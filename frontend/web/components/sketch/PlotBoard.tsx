@@ -118,16 +118,39 @@ export function PlotBoard({ spec }: { spec: PlotSpec; progress?: number }) {
     );
   }
 
+  /*
+   * `pb-16` clears the caption bar.
+   *
+   * The caption is a SIBLING of the board, floating at `bottom-0 z-40`, so it does not push layout
+   * — it simply lands on top. That was harmless while the chart was short and top-anchored, but a
+   * chart that now fills its frame would have its x-axis title covered by it. The bespoke scene
+   * branches in LessonPlayer already reserve this space the same way.
+   */
   return (
     <section
       data-board="plot"
       data-plot-ready={ready ? "true" : "false"}
-      className="relative h-full w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-3"
+      className="relative h-full w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-3 pb-16"
     >
+      {/*
+        CENTRED, AND A DEFINITE BOX FOR VEGA TO FILL.
+
+        Two bugs lived here. The host was a plain block container, so Vega's wrapper stacked at the
+        TOP and left the rest of a tall board empty — the chart looked like it had failed to load.
+        And `[&_svg]:!h-auto` threw away whatever height Vega computed, so `height: "container"`
+        could never work even once the spec asked for it.
+
+        Now: a flex box that centres its child, with `min-h-0` so it can actually shrink inside the
+        board's flex column, and an SVG rule that lets the chart fill the frame in both axes. Note
+        the error and loading states in this same file were ALREADY centred, which is what made the
+        chart's top-anchoring look like the oversight it was.
+      */}
       <div
         ref={host}
         aria-hidden={!ready}
-        className={`h-full w-full [&_svg]:!h-auto [&_svg]:!w-full ${ready ? "opacity-100" : "opacity-0"}`}
+        className={`flex h-full min-h-0 w-full items-center justify-center [&_.vega-embed]:h-full [&_.vega-embed]:w-full [&_svg]:!h-full [&_svg]:!w-full ${
+          ready ? "opacity-100" : "opacity-0"
+        }`}
       />
       {!ready && (
         <div className="absolute inset-0 grid place-items-center bg-white" role="status" aria-live="polite">

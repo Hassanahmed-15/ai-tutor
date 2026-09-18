@@ -29,6 +29,7 @@ import { outlineLearnerInstruction } from "@/lib/planPrompt";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
+import { sourceScopeInstruction, type SourceScope } from "@/lib/sourceScope";
 
 /**
  * Compact, planning-sized summary of an uploaded source document (PDF/PPTX) — just enough for
@@ -263,6 +264,29 @@ function mergeAssessment(
     });
   }
   return next;
+}
+
+/** Accept a source scope from the client without trusting any of it. Anything malformed degrades
+ *  to null (treated as "no scope constraint" by the caller) rather than throwing. */
+function sanitizeSourceScope(raw: unknown): SourceScope | null {
+  if (!raw || typeof raw !== "object") return null;
+  const rec = raw as Record<string, unknown>;
+  const fidelity = rec.fidelity === "strict" ? "strict" : rec.fidelity === "reference" ? "reference" : null;
+  if (!fidelity) return null;
+
+  const rawBreadth = rec.breadth && typeof rec.breadth === "object" ? (rec.breadth as Record<string, unknown>) : null;
+  const breadthKind = rawBreadth?.kind;
+  const focus = typeof rawBreadth?.focus === "string" ? rawBreadth.focus.trim().slice(0, 240) : "";
+  const breadth: SourceScope["breadth"] =
+    (breadthKind === "section" || breadthKind === "question") && focus
+      ? { kind: breadthKind, focus }
+      : { kind: "whole" };
+
+  const documentLabels = Array.isArray(rec.documentLabels)
+    ? rec.documentLabels.filter((v): v is string => typeof v === "string" && v.trim().length > 0).map((v) => v.trim().slice(0, 120)).slice(0, 8)
+    : [];
+
+  return { breadth, fidelity, documentLabels };
 }
 
 /** One question, or none. Anything malformed becomes none — a bad question is worse than silence. */
@@ -804,7 +828,15 @@ export async function POST(req: Request) {
         )
       : "";
 
-    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}`;
+    /*
+     * The chosen source scope reaches the PLANNER, not only the lecture writer — same reasoning
+     * as the learner profile above. A "strictly from source" outline must not draft subtopics
+     * that assume outside material the lecture will then be forbidden from using.
+     */
+    const scope = sanitizeSourceScope(body.sourceScope);
+    const scopeLine = scope ? sourceScopeInstruction(scope) : "";
+
+    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${scopeLine}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, userContent, topic);
   }
 

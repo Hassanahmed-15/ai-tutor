@@ -1,14 +1,21 @@
 import type { SuprnotesLessonInput } from "./suprnotes";
+import type { PdfFidelity } from "./sourceScope";
+import type { DepthLevel } from "./learnerProfile";
+import { DEPTH_OPTIONS } from "./diagnosticPrompt";
 
 export type DocumentPlanningOption = {
   label: string;
   instruction: string;
   /** Present only on the scope question. null means the complete selected source. */
   focus?: string | null;
+  /** Present only on the fidelity question. */
+  fidelity?: PdfFidelity;
+  /** Present only on the depth question. */
+  depthLevel?: DepthLevel;
 };
 
 export type DocumentPlanningQuestion = {
-  kind: "scope" | "emphasis";
+  kind: "scope" | "emphasis" | "fidelity" | "depth";
   question: string;
   options: DocumentPlanningOption[];
 };
@@ -82,6 +89,58 @@ export function shouldPlanDocumentScope(sourceDocument: unknown, request: string
   const doc = record(sourceDocument);
   const blocks = Array.isArray(doc?.contentBlocks) ? doc.contentBlocks.length : 0;
   return documentSectionTitles(sourceDocument).length >= 4 || blocks >= 6;
+}
+
+/**
+ * The depth question — how deep the student wants the lesson to go, asked directly the same way
+ * the typed-topic diagnostic asks it (see depthQuestion/DEPTH_OPTIONS in diagnosticPrompt.ts,
+ * whose labels and DepthLevel mapping this reuses verbatim so the two paths stay in sync). A
+ * document upload never runs the adaptive knowledge diagnostic — it has its own scope/emphasis/
+ * fidelity questions instead — so without this, depth for an uploaded source was only ever
+ * whatever resolveDepth's default (claimedLevel ?? 2) produced: never asked.
+ *
+ * FIXED CONTENT, NEVER MODEL-GENERATED — same reasoning as fallbackFidelityQuestion below: a
+ * fixed set of options needs no per-document generation, which removes one way for it to come
+ * out malformed or missing entirely.
+ */
+export function fallbackDepthQuestion(): DocumentPlanningQuestion {
+  return {
+    kind: "depth",
+    question: "How deep do you want this lesson to go?",
+    options: DEPTH_OPTIONS.map((o) => ({
+      label: o.label,
+      instruction: `Teach at ${o.label.split(" — ")[0]} depth as the student explicitly requested.`,
+      depthLevel: o.level,
+    })),
+  };
+}
+
+/**
+ * The fidelity question — whether the lesson must stay strictly inside the uploaded material or
+ * may use it as a springboard and expand with outside knowledge.
+ *
+ * FIXED CONTENT, NEVER MODEL-GENERATED. Unlike the scope question, this needs no per-document
+ * generation — it is the same binary choice for every upload — so it is always appended directly
+ * rather than asked of the planning model, which removes one way for it to come out malformed or
+ * missing entirely.
+ */
+export function fallbackFidelityQuestion(): DocumentPlanningQuestion {
+  return {
+    kind: "fidelity",
+    question: "How should Aria use what you uploaded?",
+    options: [
+      {
+        label: "Strictly from this",
+        instruction: "Teach only what the uploaded material contains — no outside facts or examples.",
+        fidelity: "strict",
+      },
+      {
+        label: "Use as reference",
+        instruction: "Use the uploaded material as the foundation, and expand with outside knowledge and examples where it helps.",
+        fidelity: "reference",
+      },
+    ],
+  };
 }
 
 /** Guaranteed scope question if the planning model returns malformed or generic output. */
@@ -172,5 +231,10 @@ export function sanitizeDocumentPlanningQuestions(
       question: `Within ${labels.join(" and ")}, what should receive the most attention?`,
     });
   }
+  // Always asked, never model-generated — see fallbackFidelityQuestion's doc comment.
+  result.push(fallbackFidelityQuestion());
+  // Same reasoning, and asked for the same underlying reason the typed-topic diagnostic always
+  // opens with depthQuestion — see fallbackDepthQuestion's doc comment.
+  result.push(fallbackDepthQuestion());
   return result;
 }

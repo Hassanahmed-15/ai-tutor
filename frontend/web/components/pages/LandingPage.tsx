@@ -63,7 +63,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   }
 
   return (
-    <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6">
+    <main className="hud-canvas hud-grain relative flex min-h-screen justify-center overflow-y-auto px-6 pt-[12vh] pb-16">
       {/* The only chrome on the page, and deliberately in the corner: the door to the product is
           the field below, and an account control should never compete with it. Absent entirely
           when auth is disabled, so the no-database path still renders exactly as before. */}

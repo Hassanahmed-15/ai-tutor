@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getJob, replicaHint } from "@/lib/lectureJobs";
+import { getJob, readPersistedJob, replicaHint } from "@/lib/lectureJobs";
 import { currentUser } from "@/lib/auth";
 
 export const runtime = "nodejs";
@@ -25,13 +25,36 @@ export async function GET(request: Request) {
   const job = getJob(id);
   if (!job) {
     /**
-     * An unknown id is reported as its own state rather than a 404 error.
+     * Not in this process — so ask the durable record what became of it.
      *
-     * It means one of three things — the job expired, the replica restarted, or the poll landed on
-     * a different replica than the one generating — and none of them are the student's fault or
-     * worth showing as a raw error. The client treats it as "start again", and `replica` makes the
-     * multi-replica case identifiable instead of looking like random flakiness.
+     * This used to answer "unknown" immediately, which the client showed as "That lecture job
+     * expired". That was a guess, and usually the wrong one: the common cause is the invocation
+     * being reaped or the replica restarting mid-build, not anything expiring. lectureJobs.ts now
+     * mirrors the transitions that matter to Cosmos, so a job that finished or failed elsewhere can
+     * be reported as what it actually was.
      */
+    const persisted = await readPersistedJob(id, session.userId);
+    if (persisted?.state === "error") {
+      return NextResponse.json({ state: "error", error: persisted.error ?? "Lecture generation failed" });
+    }
+    if (persisted?.state === "cancelled") {
+      return NextResponse.json({ state: "cancelled" });
+    }
+    /**
+     * A row still marked "running" that this process does not hold means the build was killed
+     * partway — the heartbeat stopped without a terminal transition ever being written. Reported as
+     * an error naming the stage it died in, because "interrupted at Preparing the board content" is
+     * something a person can act on, and silence is not.
+     *
+     * `done` lands here too: the result package is deliberately not stored on the job row (it is
+     * already durable in blob storage), so there is nothing to hand back and restarting is right.
+     */
+    if (persisted?.state === "running" || persisted?.state === "paused") {
+      return NextResponse.json({
+        state: "error",
+        error: `The build stopped unexpectedly while ${persisted.status || "preparing your lesson"}. The server may have restarted — press build to try again.`,
+      });
+    }
     return NextResponse.json({ state: "unknown", replica: replicaHint() }, { status: 200 });
   }
 

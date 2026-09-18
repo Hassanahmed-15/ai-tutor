@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Mic, MicOff, Pause, Play, Send, Square, Volume2, VolumeX } from "lucide-react";
+import { Check, Mic, MicOff, Pause, Play, Send, Square, Volume2, VolumeX } from "lucide-react";
 import { HudCorners } from "../hud/HudKit";
 import { TeacherAvatar } from "../TeacherAvatar";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
@@ -569,7 +569,16 @@ export function LessonDesignMode({
   }, [ready, paused, liveStatus, topic, maybeSpeak, stop, onStart]);
 
   return (
-    <div className="relative z-10 grid min-h-screen place-items-center p-6">
+    /*
+     * NOT VERTICALLY CENTERED ANYMORE. `place-items-center` on a `min-h-screen` grid re-centers
+     * the ENTIRE column every time anything inside it changes height — the transcript box
+     * (bounded now, see below) and the "Adapted: …" list this screen grows live during a build
+     * both changed height constantly, and every one of those changes visibly moved the teacher
+     * avatar and heading well above them. A fixed top offset instead means the page can grow
+     * downward as the conversation and adaptation list fill in without moving anything that was
+     * already on screen.
+     */
+    <div className="relative z-10 flex min-h-screen justify-center overflow-y-auto p-6 pt-[12vh]">
       <HudCorners />
 
       {/*
@@ -598,36 +607,99 @@ export function LessonDesignMode({
           <h2 className="mt-2 font-display text-2xl font-light leading-tight">
             <span className="hud-text-glow italic">{topic}</span>
           </h2>
-          <p className="mt-2 text-xs font-medium text-[var(--hud-text-faint)]">
-            {liveLabel}
-            {!ready && !paused && remainingLabel ? ` · about ${remainingLabel} left` : ""}
-          </p>
+          {/*
+            One status line, not two competing ones.
+
+            The live state and the time estimate used to be concatenated into a sentence
+            ("Listening… · about 50 sec left"), which read as a single ambiguous phrase and left the
+            reader to work out that the two halves were unrelated. A dot separator between two
+            visually distinct spans says the same thing without the sentence.
+          */}
+          <div className="mt-2.5 flex items-center justify-center gap-2.5 text-[11px]">
+            <span className="inline-flex items-center gap-1.5 font-medium text-[var(--hud-text-dim)]">
+              <span
+                aria-hidden
+                className={`h-1.5 w-1.5 rounded-full ${
+                  liveStatus === "live" && !paused
+                    ? "bg-[var(--hud-cyan)] shadow-[0_0_6px_var(--hud-cyan)]"
+                    : "bg-[var(--hud-text-faint)]"
+                }`}
+              />
+              {liveLabel}
+            </span>
+            {!ready && !paused && remainingLabel ? (
+              <>
+                <span aria-hidden className="text-[var(--hud-text-faint)]/50">·</span>
+                <span className="tabular-nums text-[var(--hud-text-faint)]">about {remainingLabel} left</span>
+              </>
+            ) : null}
+          </div>
         </div>
 
-        {/* THE CONVERSATION. The transcript is the main surface, not a side panel. */}
-        <div className="mt-7 min-h-[9.5rem] rounded-lg border border-[var(--hud-line)] bg-black/25 p-5">
+        {/*
+          THE CONVERSATION. The transcript is the main surface, not a side panel.
+
+          A FIXED HEIGHT, NOT JUST A MINIMUM. This box used to be min-h-only, so its real rendered
+          height changed every time a caption arrived or wrapped onto a different number of lines
+          — and because the whole column above it sits in a `place-items-center` grid, any change
+          to this box's height re-centers the ENTIRE page, including the teacher avatar and
+          heading well above it. That is what reads as "Aria going up": nothing about the avatar
+          moved on its own, the box below it changed size and recentering did the rest. A fixed
+          height with internal scroll (auto-scrolled to the newest line via captionEndRef) keeps
+          this box's footprint constant regardless of how much text is in it, so the page around
+          it stops moving.
+        */}
+        {/*
+          A BOUNDED RANGE, NOT A FIXED HEIGHT. The box was locked to 9.5rem whether it held four
+          lines or none, so the usual case — Aria's one opening question — was a short sentence
+          floating in a large empty panel, and the emptiness read as something failing to load.
+          A min/max range keeps the footprint stable enough that the page does not jump (the
+          original reason for a fixed height) while letting a nearly-empty transcript occupy the
+          space it actually needs.
+        */}
+        <div className="mt-7 max-h-[13rem] min-h-[6.5rem] overflow-y-auto rounded-xl border border-[var(--hud-line)] bg-black/25 px-5 py-4">
           {errorMessage || controlError ? (
             <p className="rounded-md bg-rose-500/10 px-3 py-2 text-xs font-medium text-rose-300">{errorMessage ?? controlError}</p>
           ) : captions.length === 0 ? (
-            <p className="text-center text-sm text-[var(--hud-text-faint)]">
+            <div className="flex min-h-[4.5rem] items-center justify-center gap-2 text-sm text-[var(--hud-text-faint)]">
+              {/* Three dots that actually animate, so "connecting" looks like waiting rather than
+                  like a screen that has stopped. */}
+              <span aria-hidden className="flex gap-1">
+                {[0, 1, 2].map((dot) => (
+                  <span
+                    key={dot}
+                    className="h-1 w-1 animate-pulse rounded-full bg-[var(--hud-text-faint)]"
+                    style={{ animationDelay: `${dot * 180}ms`, animationDuration: "1.4s" }}
+                  />
+                ))}
+              </span>
               {liveStatus === "connecting" ? "Aria is joining…" : "Aria will start talking in a moment."}
-            </p>
+            </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {captions.slice(-4).map((line, index) => (
-                <p
-                  key={index}
-                  className={
-                    line.role === "tutor"
-                      ? "text-[15px] leading-7 text-[var(--hud-text)]"
-                      : "text-[15px] leading-7 text-[var(--hud-cyan)]"
-                  }
-                >
-                  <span className="mr-2 text-[10px] font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">
+                /*
+                  The speaker label sits ABOVE the line, not inline with it. Inline, a four-character
+                  "ARIA" pushed the first line of every paragraph in by a different amount than the
+                  wrapped lines below it, so the left edge of the text was ragged and the label read
+                  as the sentence's first word.
+                */
+                <div key={index}>
+                  <p
+                    className={`text-[10px] font-black uppercase tracking-[0.16em] ${
+                      line.role === "tutor" ? "text-[var(--hud-cyan)]/70" : "text-[var(--hud-text-faint)]"
+                    }`}
+                  >
                     {line.role === "tutor" ? "Aria" : "You"}
-                  </span>
-                  {line.text}
-                </p>
+                  </p>
+                  <p
+                    className={`mt-1 text-[15px] leading-7 ${
+                      line.role === "tutor" ? "text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"
+                    }`}
+                  >
+                    {line.text}
+                  </p>
+                </div>
               ))}
               <div ref={captionEndRef} />
             </div>
@@ -652,14 +724,14 @@ export function LessonDesignMode({
             placeholder={paused ? "Resume to continue the conversation" : liveStatus === "live" ? "Type an answer instead…" : "Connecting…"}
             aria-label="Type a message to your tutor"
             disabled={liveStatus !== "live" || paused}
-            className="min-w-0 flex-1 rounded-md border border-[var(--hud-line)] bg-black/30 px-4 py-2 text-sm text-[var(--hud-text)] outline-none transition placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)]/60 disabled:opacity-40"
+            className="min-w-0 flex-1 rounded-lg border border-[var(--hud-line)] bg-black/30 px-4 py-2.5 text-sm text-[var(--hud-text)] outline-none transition placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)]/60 disabled:opacity-40"
           />
           <button
             type="submit"
             disabled={liveStatus !== "live" || paused || !draft.trim()}
             title="Send message"
             aria-label="Send message"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-[var(--hud-cyan)] text-black transition hover:brightness-110 disabled:opacity-35"
+            className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-lg bg-[var(--hud-cyan)] text-black transition hover:brightness-110 disabled:opacity-35"
           >
             <Send size={17} aria-hidden />
           </button>
@@ -667,49 +739,78 @@ export function LessonDesignMode({
 
         {/* SUBTLE STATUS. Stages, not a giant percentage — a thin bar carries the same information
             without dominating the screen. */}
-        <div className="mt-7 rounded-lg border border-[var(--hud-line)] px-5 py-4">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[var(--hud-text-faint)]">
-              {ready ? "Finished" : "Preparing your lesson"}
+        <div className="mt-7 rounded-xl border border-[var(--hud-line)] px-5 py-4">
+          <div className="flex items-baseline justify-between gap-3">
+            {/* The stage NAME leads, because that is the answer to "what is it doing". The old
+                header repeated the screen title here and put the stage in small faint text on the
+                right, which buried the only line that changes. */}
+            <p className="text-[13px] font-semibold text-[var(--hud-text)]">
+              {ready ? "Finished" : paused ? "Paused" : (current?.label ?? progress.status)}
             </p>
-            <p className="text-[10px] font-medium text-[var(--hud-text-faint)]">
-              {ready ? "done" : paused ? "Paused after the current operation" : progress.detail ?? current?.label ?? progress.status}
+            <p className="shrink-0 text-[11px] font-medium tabular-nums text-[var(--hud-text-faint)]">
+              {ready ? "100%" : `${Math.round(percent * 100)}%`}
             </p>
           </div>
+          {/* The sub-detail only renders when it says something the stage name does not, instead of
+              falling back to a duplicate of the line above it. */}
+          {!ready && !paused && progress.detail && progress.detail !== current?.label ? (
+            <p className="mt-1 text-[11px] leading-5 text-[var(--hud-text-faint)]">{progress.detail}</p>
+          ) : paused ? (
+            <p className="mt-1 text-[11px] leading-5 text-[var(--hud-text-faint)]">
+              Holding after the current operation.
+            </p>
+          ) : null}
           <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white/8">
             <div
-              className="h-full rounded-full bg-[var(--hud-cyan)]/70 transition-[width] duration-700 ease-out"
+              className="h-full rounded-full bg-[var(--hud-cyan)] transition-[width] duration-700 ease-out"
               style={{ width: `${Math.max(2, Math.round(percent * 100))}%` }}
             />
           </div>
           {adaptations.length > 0 && (
             /* Visible proof that answering actually changed the lesson. Without this the student
                tells Aria something, hears "I'll build that in", and has nothing to show for it. */
-            <ul className="mt-3 space-y-1 border-t border-[var(--hud-line)] pt-3">
+            <ul className="mt-3.5 space-y-1.5 border-t border-[var(--hud-line)] pt-3">
               {adaptations.map((note) => (
-                <li key={note} className="text-[11px] leading-5 text-[var(--hud-cyan)]/85">
-                  Adapted: {note}
+                <li key={note} className="flex items-start gap-2 text-[11px] leading-5 text-[var(--hud-cyan)]/85">
+                  {/* A check rather than the word "Adapted:" on every row — the icon carries the
+                      "this was applied" meaning once per line without repeating the label. */}
+                  <Check size={12} strokeWidth={3} className="mt-[3px] shrink-0" aria-hidden />
+                  <span>{note}</span>
                 </li>
               ))}
             </ul>
           )}
-          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+          {/*
+            A COLUMN, NOT A WRAPPING ROW. Seven variable-length labels in a flex-wrap row broke into
+            a ragged two lines with no aligned left edge, so finding the current stage meant reading
+            all seven. A column gives every stage the same start position and turns the sequence
+            into something scannable, with the markers forming a single vertical rail.
+          */}
+          <ul className="mt-3.5 space-y-1">
             {LESSON_DESIGN_STAGES.map((stage, index) => {
               const stageDone = ready || index < currentIndex;
               const active = !ready && index === currentIndex;
               return (
                 <li
                   key={stage.id}
-                  className={`text-[11px] leading-5 ${
+                  aria-current={active ? "step" : undefined}
+                  className={`flex items-center gap-2 text-[11px] leading-5 transition-colors ${
                     stageDone
                       ? "text-[var(--hud-text-dim)]"
                       : active
-                        ? "font-bold text-[var(--hud-cyan)]"
-                        : "text-[var(--hud-text-faint)]/45"
+                        ? "font-semibold text-[var(--hud-cyan)]"
+                        : "text-[var(--hud-text-faint)]/40"
                   }`}
                 >
-                  <span aria-hidden className="mr-1">
-                    {stageDone ? "✓" : active ? "●" : "○"}
+                  <span aria-hidden className="grid h-3 w-3 shrink-0 place-items-center">
+                    {stageDone ? (
+                      <Check size={11} strokeWidth={3} />
+                    ) : active ? (
+                      // The only moving marker on the list, so the eye lands on it directly.
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--hud-cyan)] shadow-[0_0_6px_var(--hud-cyan)]" />
+                    ) : (
+                      <span className="h-1.5 w-1.5 rounded-full border border-current" />
+                    )}
                   </span>
                   {stage.label}
                 </li>
@@ -720,16 +821,30 @@ export function LessonDesignMode({
 
         {/* CONTROLS. Every one of these drives the real session — see the handlers above. */}
         <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-          <DockButton label={outputMuted ? "Unmute teacher" : "Mute teacher"} onClick={() => tutor.setOutputMuted(!outputMuted)} disabled={liveStatus !== "live"}>
-            {outputMuted ? <Volume2 size={17} /> : <VolumeX size={17} />}
+          {/* `active` marks a control that is currently CHANGING the session's behaviour — muted
+              output, a held build. Without it, mute and unmute looked identical apart from a glyph
+              swap, and a muted tutor was indistinguishable from a silent one. */}
+          <DockButton
+            label={outputMuted ? "Unmute teacher" : "Mute teacher"}
+            onClick={() => tutor.setOutputMuted(!outputMuted)}
+            disabled={liveStatus !== "live"}
+            active={outputMuted}
+          >
+            {outputMuted ? <VolumeX size={17} /> : <Volume2 size={17} />}
           </DockButton>
-          <DockButton label={paused ? "Resume lesson preparation" : "Pause lesson preparation"} onClick={() => void togglePause()} disabled={ready}>
+          <DockButton
+            label={paused ? "Resume lesson preparation" : "Pause lesson preparation"}
+            onClick={() => void togglePause()}
+            disabled={ready}
+            active={paused}
+          >
             {paused ? <Play size={17} /> : <Pause size={17} />}
           </DockButton>
           <DockButton
             label={liveStatus === "error" || liveStatus === "idle" ? "Reconnect tutor" : tutor.micAvailable ? "Talk to tutor" : "Enable microphone"}
             onClick={() => void talkToTutor()}
             disabled={liveStatus === "connecting"}
+            active={tutor.micAvailable && !tutor.muted && liveStatus === "live"}
           >
             {tutor.micAvailable && !tutor.muted ? <Mic size={17} /> : <MicOff size={17} />}
           </DockButton>
@@ -747,8 +862,11 @@ export function LessonDesignMode({
           )}
         </div>
 
-        <p className="mt-4 text-center text-[11px] text-[var(--hud-text-faint)]">
-          Questions never block lesson preparation. Pause holds the next generation stage until you resume.
+        {/* Two separate facts, so they are not read as one run-on sentence. The second only appears
+            while pausing is still possible — once the lesson is ready it is no longer true. */}
+        <p className="mt-4 text-center text-[11px] leading-5 text-[var(--hud-text-faint)]">
+          Ask anything while Aria works — questions never pause the build.
+          {!ready ? " Pause holds the next stage until you resume." : ""}
         </p>
       </div>
     </div>
@@ -761,11 +879,14 @@ function DockButton({
   label,
   onClick,
   disabled,
+  active,
   children,
 }: {
   label: string;
   onClick: () => void;
   disabled?: boolean;
+  /** This control is currently altering the session — muted, paused, mic open. */
+  active?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -774,7 +895,12 @@ function DockButton({
       disabled={disabled}
       title={label}
       aria-label={label}
-      className="grid h-10 w-10 place-items-center rounded-md border border-[var(--hud-line)] text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)]/45 hover:text-[var(--hud-text)] disabled:opacity-35"
+      aria-pressed={active}
+      className={`grid h-10 w-10 place-items-center rounded-lg border transition disabled:opacity-35 ${
+        active
+          ? "border-[var(--hud-cyan)]/55 bg-[var(--hud-cyan)]/12 text-[var(--hud-cyan)]"
+          : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:border-[var(--hud-cyan)]/45 hover:text-[var(--hud-text)]"
+      }`}
     >
       {children}
     </button>

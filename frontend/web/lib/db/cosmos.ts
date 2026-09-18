@@ -28,6 +28,7 @@ export const LEADERBOARD_CONTAINER = "leaderboard";
 export const THOUGHTS_CONTAINER = "thoughts";
 export const LECTURES_CONTAINER = "lectures";
 export const VIEWER_DOCUMENTS_CONTAINER = "viewer-documents";
+export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -174,6 +175,41 @@ export type SessionDoc = {
   ttl: number;
 };
 
+/**
+ * The durable record of a background lecture build.
+ *
+ * WRITE-BEHIND, NOT THE SOURCE OF TRUTH. The live job still lives in the in-process map that
+ * lib/lectureJobs.ts owns, because `setJobStage` is called from inside the generation pipeline
+ * (fifteen-odd times per build, some of it inside a Promise.all fan-out) and `waitForJobRunnable`
+ * polls every 150ms. Routing either through Cosmos would put a network round-trip back into the
+ * path a whole session of latency work just took it out of.
+ *
+ * What this container is for is the ONE question the map cannot answer: what happened to a job that
+ * is no longer in it. A build whose invocation was reaped, or whose replica restarted, simply
+ * disappeared — and the status route reported the absence as "unknown", which the client showed as
+ * "That lecture job expired". Nothing had expired; the work had been killed. Only the terminal and
+ * near-terminal transitions are persisted (created, heartbeat, done, error), which is enough to
+ * answer that question and cheap enough not to matter.
+ *
+ * `result` is deliberately NOT stored: a finished lecture is already durable in blob storage via
+ * lectureArchive, and a beat package is far too large to belong in a job row.
+ */
+export type LectureJobDoc = {
+  id: string;
+  /** Partition key, and the ownership check the status route already performs. */
+  userId: string;
+  state: "running" | "paused" | "done" | "error" | "cancelled";
+  stage: string;
+  stageFraction: number;
+  status: string;
+  detail: string | null;
+  error: string | null;
+  createdAt: string;
+  updatedAt: string;
+  /** Cosmos deletes the row this many seconds after its last write. */
+  ttl: number;
+};
+
 export type LectureSourceType = "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder";
 export type LectureMode = "standard" | "blind" | "low-vision" | "adhd" | "dyslexia" | "deaf";
 
@@ -264,6 +300,10 @@ export function viewerDocuments(): Container {
   return client().database(DATABASE_ID).container(VIEWER_DOCUMENTS_CONTAINER);
 }
 
+export function lectureJobs(): Container {
+  return client().database(DATABASE_ID).container(LECTURE_JOBS_CONTAINER);
+}
+
 /**
  * Create the database and containers if they do not exist.
  *
@@ -307,6 +347,15 @@ export async function ensureContainers(): Promise<void> {
     id: VIEWER_DOCUMENTS_CONTAINER,
     // Same reasoning as LECTURES_CONTAINER: "this learner's documents" is the only query shape.
     partitionKey: { paths: ["/userId"] },
+  });
+  await database.containers.createIfNotExists({
+    id: LECTURE_JOBS_CONTAINER,
+    // The status route already scopes every lookup to the signed-in learner, so the ownership
+    // check and the partition are the same thing.
+    partitionKey: { paths: ["/userId"] },
+    // Job rows are diagnostic breadcrumbs with a short useful life; TTL retires them the same way
+    // it retires sessions, so nothing has to sweep them.
+    defaultTtl: -1,
   });
   ensured = true;
 }

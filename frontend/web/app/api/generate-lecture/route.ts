@@ -1,8 +1,23 @@
 import { NextResponse } from "next/server";
 import { createJob, failJob, finishJob, jobSteering, LectureJobCancelledError, replicaHint, setJobStage, waitForJobRunnable } from "@/lib/lectureJobs";
+
+/**
+ * The generation work outlives the request that starts it, so this invocation must be allowed to
+ * live as long as the build does.
+ *
+ * Every comparable route declares one (parse-pdf 300, document-pages 300, viewer-documents 300);
+ * this one declared nothing and therefore ran under the platform default. The POST returns a 202
+ * almost immediately, but `generateLecture()` keeps running on the same invocation — so when the
+ * platform reaped it mid-build the job was never marked failed. It simply vanished from the
+ * in-memory map, and the next poll reported "unknown", which the client showed as "That lecture
+ * job expired" — a message about the wrong thing entirely.
+ */
+export const runtime = "nodejs";
+export const maxDuration = 300;
 import OpenAI from "openai";
 import { DRAW_LECTURE_SYSTEM_PROMPT, PPTX_LECTURE_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { outlineGroundingInstruction, type PlanOutline } from "@/lib/planPrompt";
+import { sourceScopeInstruction, type SourceScope } from "@/lib/sourceScope";
 import { FOCUSED_SCOPE, STANDARD_SCOPE, scopeFromOutline, scopeInstruction, type LessonScope } from "@/lib/lessonScope";
 import { assertLectureDepth, lectureDepthStats, sanitizeDrawLecture, scriptWordCount } from "@/lib/drawSanitize";
 import { fillImageOps, pauseImageOps, type ImageFillStats } from "@/lib/imageGen";
@@ -107,8 +122,12 @@ const TEXT_MAX_TOKENS = Math.max(8_000, Math.min(16_000, Number(process.env.OPEN
 // nothing concrete to check itself against.
 const DEEPEN_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_DEEPEN_ATTEMPTS ?? 5)));
 const PDF_BEATS_PER_GENERATION = Math.max(1, Math.min(6, Number(process.env.PDF_BEATS_PER_GENERATION ?? 1)));
-const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
+// Ceiling raised from 3: text generation was measured at 52% of a build (53.3s of 102.2s), because a
+// 19-beat document is 19 separate completions drained two at a time — about ten sequential waves.
+// The calls are independent, so the wave count, not the model, was setting the floor.
+const PDF_GENERATION_CONCURRENCY = Math.max(1, Math.min(8, Number(process.env.PDF_GENERATION_CONCURRENCY ?? 2)));
 const OUTLINE_SUBTOPICS_PER_GENERATION = Math.max(3, Number(process.env.OUTLINE_SUBTOPICS_PER_GENERATION ?? 8));
+const OUTLINE_GENERATION_CONCURRENCY = Math.max(1, Math.min(3, Number(process.env.OUTLINE_GENERATION_CONCURRENCY ?? 2)));
 
 /**
  * Cache identity must include the complete quality profile, not only the lecture-writing model.
@@ -154,6 +173,10 @@ type LectureBuildInput = {
   slideImages: Array<{ slide: number; descriptions: string[] }>;
   sourceDocument: SuprnotesLessonInput | null;
   outline: PlanOutline | null;
+  /** Whether the lecture must stay strictly inside the uploaded material or may use it as a
+   *  springboard — see lib/sourceScope.ts. Null when no scope was ever asked (no upload, or a
+   *  path that skips planning entirely) — the existing, pre-existing behavior in that case. */
+  sourceScope: SourceScope | null;
   /**
    * The passage the student's question is about, when they asked about one.
    *
@@ -609,6 +632,7 @@ async function deepenLectureScripts(
 function buildFullContextMessage(input: LectureBuildInput, retryGuidance: string): ContentPart[] {
   const full = input.fullContext!;
   const unit = full.unit;
+  const sourceScopeLine = input.sourceScope?.fidelity ? sourceScopeInstruction(input.sourceScope) : "";
   const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
   const hasRegions = full.regions.length > 0;
   /*
@@ -691,6 +715,10 @@ function buildFullContextMessage(input: LectureBuildInput, retryGuidance: string
     `Every beat title must name the precise concept being taught. Never use a raw source locator such as "Figure 19.4", "${unit === "slide" ? "Slide 3" : "Page 2"}", or "Overview" as a title.`,
     "Reproduce every symbol, subscript, index, operator and numeric value exactly as it appears. Reproducing one wrongly is worse than omitting it.",
     "Use a provided asset only via its assetId, and only when that figure is genuinely what the beat teaches. Otherwise build whiteboard SVG diagram beats from the document's own content.",
+    // Only for the full lecture — a focused answer is already strict-by-construction (see the
+    // "ANSWER THIS, AND ONLY THIS" instruction above and focusedUserMessage's own contract), so a
+    // "reference" choice would contradict a rule this shape has already committed to.
+    shape.mode === "full-lecture" ? sourceScopeLine : "",
     `Build the complete lecture now.${retryGuidance}`,
   ].join("\n");
 
@@ -705,6 +733,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope
   const moodLine = input.mood ? `Lesson mode: ${input.mood}. ` : "";
   const base = `Teach this topic live: "${input.topic}". ${moodLine}`;
   const outlineLine = input.outline ? outlineGroundingInstruction(input.outline) : "";
+  const sourceScopeLine = input.sourceScope?.fidelity ? sourceScopeInstruction(input.sourceScope) : "";
   /**
    * The length budget, stated last so it is the most recent instruction before the model writes.
    *
@@ -770,7 +799,7 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope
       `Do not invent chemistry-specific layouts, exact coordinates, or examples outside the source; choose layout, callout text, and placement dynamically from the content and asset descriptions. ` +
       `Do not ask for AI-generated images for this source document. If an image beat is useful, it must use one of the provided assetId values. ` +
       `Make the visuals feel like a clean teaching whiteboard: generous whitespace, centered headings, readable gray/colored marker text, and callouts placed around the provided image without covering the key content. ` +
-      `Build the complete lecture now from the plan: teacher script, board layouts, provided-image callouts, whiteboard SVG diagrams, and checkpoints.${retryGuidance}${outlineLine}`
+      `Build the complete lecture now from the plan: teacher script, board layouts, provided-image callouts, whiteboard SVG diagrams, and checkpoints.${retryGuidance}${outlineLine}${sourceScopeLine}`
     );
   }
 
@@ -814,14 +843,14 @@ function buildUserMessage(input: LectureBuildInput, retryGuidance: string, scope
       `${base}\nThe student uploaded a presentation. Slide content:\n---\n${input.slideContext}\n---\n` +
       `Use the slide text and data as your factual source (do not invent content). Choose board types in the same Suprnotes-style paper-whiteboard grammar: mostly whiteboard SVG diagrams and blackboards, with slide images only when they are truly useful evidence.` +
       `${diagramLine}${imageRefBlock}` +
-      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, one or two TYPE D diagram beats (a "manimScene" op) where the deck contains a curve or staged process, one TYPE E morph beat (a "morph" op) if anything in the deck literally turns into something else, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}${scopeLine}`
+      `\nBuild the complete lecture now: teacher script, paper-whiteboard SVG/blackboard boards, one or two TYPE D diagram beats (a "manimScene" op) where the deck contains a curve or staged process, one TYPE E morph beat (a "morph" op) if anything in the deck literally turns into something else, selective image callouts only when needed, and checkpoints.${retryGuidance}${outlineLine}${scopeLine}${sourceScopeLine}`
     );
   }
 
   // The closing enumeration is the last thing the model reads, so it must name every board type
   // that should appear. Omitting TYPE D here suppressed diagram beats entirely even when the
   // system prompt required one — the model built exactly the three board types this line listed.
-  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, one or two TYPE D diagram beats (a "manimScene" op) for the curve or staged process at the heart of the topic, one TYPE E morph beat (a "morph" op) if anything in the topic literally turns into something else, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}${scopeLine}`;
+  return `${base}Build the complete lecture now in the Suprnotes-style paper-whiteboard format: teacher script, clean handwritten whiteboard SVG diagrams, blackboard relationship boards, one or two TYPE D diagram beats (a "manimScene" op) for the curve or staged process at the heart of the topic, one TYPE E morph beat (a "morph" op) if anything in the topic literally turns into something else, selective image callouts only when truly needed, and checkpoints.${retryGuidance}${outlineLine}${scopeLine}${sourceScopeLine}`;
 }
 
 /**
@@ -1148,36 +1177,54 @@ async function generateOutlinedLectureInChunks(client: OpenAI, input: LectureBui
     });
   }
 
-  const results: BaseLecture[] = [];
-  for (const [index, chunk] of chunks.entries()) {
-    if (jobId) {
-      await waitForJobRunnable(jobId);
-      setJobStage(jobId, "structuring", {
-        fraction: index / chunks.length,
-        detail: `Lesson section ${index + 1} of ${chunks.length}`,
-        status: "Writing the complete lesson section by section",
-      });
-    }
-
-    const positionInstruction = index === 0
-      ? "This is the first section of a longer lesson: open naturally, but do not write the final recap yet."
-      : index === chunks.length - 1
-        ? "This continues an existing lesson: do not repeat an introduction, and finish with the one final recap."
-        : "This is a middle section of an existing lesson: do not repeat an introduction and do not write a final recap.";
-    const result = await generateBaseLecture(client, {
-      ...input,
-      outline: chunk,
-      topic: input.topic,
-      mood: `${moodWithSteering(input.mood, jobId)} ${positionInstruction}`.trim(),
-    }, jobId);
-
-    // The model may still emit its normal local scaffolding despite the section instruction. Remove
-    // only explicit intro/recap beats at internal boundaries; substantive teaching beats survive.
-    const beats = [...result.beats];
-    if (index > 0 && beats[0]?.slideKind === "intro") beats.shift();
-    if (index < chunks.length - 1 && beats.at(-1)?.slideKind === "recap") beats.pop();
-    results.push({ ...result, beats });
+  const results = new Array<BaseLecture>(chunks.length);
+  let cursor = 0;
+  let finished = 0;
+  if (jobId) {
+    setJobStage(jobId, "structuring", {
+      fraction: 0,
+      detail: `Lesson section 1 of ${chunks.length}`,
+      status: "Writing the complete lesson section by section",
+    });
   }
+  // Each chunk's generation is independent of the others — the position instruction (first/middle/
+  // last) is baked into the prompt per chunk, so nothing downstream depends on chunk N finishing
+  // before chunk N+1 starts. Mirrors the concurrency-bounded worker pool generatePdfLectureInChunks
+  // already uses, instead of awaiting one chunk at a time.
+  await Promise.all(Array.from({ length: Math.min(OUTLINE_GENERATION_CONCURRENCY, chunks.length) }, async () => {
+    while (cursor < chunks.length) {
+      if (jobId) await waitForJobRunnable(jobId);
+      const index = cursor++;
+      const chunk = chunks[index];
+
+      const positionInstruction = index === 0
+        ? "This is the first section of a longer lesson: open naturally, but do not write the final recap yet."
+        : index === chunks.length - 1
+          ? "This continues an existing lesson: do not repeat an introduction, and finish with the one final recap."
+          : "This is a middle section of an existing lesson: do not repeat an introduction and do not write a final recap.";
+      const result = await generateBaseLecture(client, {
+        ...input,
+        outline: chunk,
+        topic: input.topic,
+        mood: `${moodWithSteering(input.mood, jobId)} ${positionInstruction}`.trim(),
+      }, jobId);
+
+      // The model may still emit its normal local scaffolding despite the section instruction. Remove
+      // only explicit intro/recap beats at internal boundaries; substantive teaching beats survive.
+      const beats = [...result.beats];
+      if (index > 0 && beats[0]?.slideKind === "intro") beats.shift();
+      if (index < chunks.length - 1 && beats.at(-1)?.slideKind === "recap") beats.pop();
+      results[index] = { ...result, beats };
+
+      finished += 1;
+      if (jobId) {
+        setJobStage(jobId, "structuring", {
+          fraction: finished / chunks.length,
+          detail: `Lesson section ${finished} of ${chunks.length}`,
+        });
+      }
+    }
+  }));
 
   const beats = results.flatMap((result) => result.beats);
   dedupeBeatIdentity(beats);
@@ -1329,6 +1376,33 @@ export async function POST(req: Request) {
       : null;
 
   /*
+   * The chosen source scope, as its OWN field rather than folded into `mood`.
+   *
+   * Fidelity ("strictly from source" vs "source as reference") is a hard content constraint, not
+   * a style preference — the same kind of thing outlineGroundingInstruction is for the outline's
+   * own shape. mood already carries several concatenated concerns; a correctness constraint
+   * deserves the same unambiguous treatment the outline gets rather than becoming a fifth clause
+   * buried in that string. `?.fidelity` is checked explicitly rather than a bare truthiness check
+   * on the object, so an accidentally-passed `{}` cannot silently gag every non-PDF lecture with a
+   * "strict" instruction it never asked for.
+   */
+  const sourceScope: SourceScope | null =
+    body.sourceScope && typeof body.sourceScope === "object" && typeof body.sourceScope.fidelity === "string"
+      ? {
+          fidelity: body.sourceScope.fidelity === "strict" ? "strict" : "reference",
+          breadth:
+            body.sourceScope.breadth && typeof body.sourceScope.breadth === "object"
+              && (body.sourceScope.breadth.kind === "section" || body.sourceScope.breadth.kind === "question")
+              && typeof body.sourceScope.breadth.focus === "string" && body.sourceScope.breadth.focus.trim()
+              ? { kind: body.sourceScope.breadth.kind, focus: body.sourceScope.breadth.focus.trim().slice(0, 240) }
+              : { kind: "whole" },
+          documentLabels: Array.isArray(body.sourceScope.documentLabels)
+            ? body.sourceScope.documentLabels.filter((v: unknown): v is string => typeof v === "string" && v.trim().length > 0).map((v: string) => v.trim().slice(0, 120)).slice(0, 8)
+            : [],
+        }
+      : null;
+
+  /*
    * The student's own question, as a field rather than smuggled inside the topic string.
    *
    * It used to be folded into `topic` by the upload screen, which meant "explain the formula on
@@ -1456,7 +1530,7 @@ export async function POST(req: Request) {
     ? subjectFromFocus(focus) || effectiveTopic
     : effectiveTopic;
 
-  const input: LectureBuildInput = { topic: groundedTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, focus, context: ragContext, fullContext, question: focusQuestion };
+  const input: LectureBuildInput = { topic: groundedTopic, mood, slideContext, diagramHints, slideImages, sourceDocument, outline, sourceScope, focus, context: ragContext, fullContext, question: focusQuestion };
 
   const refresh = body.refresh === true;
 
@@ -1554,9 +1628,27 @@ async function generateLecture(
       status: input.sourceDocument ? "Reading your document" : "Working out what to teach",
     });
 
-    const base = isPdfSource(input.sourceDocument)
-      ? await generatePdfLectureInChunks(client, input, jobId)
-      : await generateOutlinedLectureInChunks(client, input, jobId);
+    /**
+     * WALL-CLOCK TIMING, because the pipeline was being tuned by reading its call structure rather
+     * than its duration — and that got the bottleneck wrong. The fan-out below runs seven generators
+     * concurrently, so a single number for the whole Promise.all says nothing about which arm the
+     * build is actually waiting on; each one is timed separately for that reason.
+     */
+    const buildStartedAt = Date.now();
+    const timings: Array<[string, number]> = [];
+    const timeStage = async <T,>(label: string, run: () => Promise<T>): Promise<T> => {
+      const startedAt = Date.now();
+      try {
+        return await run();
+      } finally {
+        timings.push([label, Date.now() - startedAt]);
+      }
+    };
+
+    const base = await timeStage("text-generation", () =>
+      isPdfSource(input.sourceDocument)
+        ? generatePdfLectureInChunks(client, input, jobId)
+        : generateOutlinedLectureInChunks(client, input, jobId));
 
     // The script, its beat structure and its checkpoint questions all exist now — they are written
     // by the same call, which is why they are one stage rather than three.
@@ -1568,7 +1660,9 @@ async function generateLecture(
     // Vision pass FIRST (sourceDocument only): look at each provided image and rewrite its
     // description from the actual pixels, so the director's script and the image-explainer's
     // labels teach the real picture instead of the upstream relevant_images.json text.
-    const visionCostUsd = input.sourceDocument ? await describeAssetsWithVision(client, input.sourceDocument) : 0;
+    const visionCostUsd = input.sourceDocument
+      ? await timeStage("asset-vision", () => describeAssetsWithVision(client, input.sourceDocument!))
+      : 0;
     await waitForJobRunnable(jobId);
     setJobStage(jobId, "visuals", { status: "Preparing the board content" });
 
@@ -1576,34 +1670,34 @@ async function generateLecture(
     // passes below — they complete whatever placeholder a beat carries, so the swap has to happen
     // first or the wrong generator does the work. Off unless BOARD_DIRECTOR=1; when off this is a
     // no-op and board selection stays exactly as the lecture prompt wrote it.
-    const directorStats = await directBoards(client, base.beats);
+    const directorStats = await timeStage("board-director", () => directBoards(client, base.beats));
 
     // Step 2: fill each "image" op placeholder with a real generated image, and (if enabled)
     // each "reactAnimation" op placeholder with generated component source — in parallel with
     // each other since they touch disjoint beats and are both I/O-bound. Individual failures
     // in either degrade gracefully (dropped image / explicit animation unavailable state).
     const [imageCostUsd, referenceImageStats, reactAnimationStats, boardStats, manimSceneStats, structureStats, specBoardStats] = await Promise.all([
-      IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages ? fillImageOps(client, base.beats) : Promise.resolve(disabledImageStats(base.beats).costUsd),
+      timeStage("fill-images", () => IMAGE_GENERATION_ENABLED && !useOnlyProvidedImages ? fillImageOps(client, base.beats) : Promise.resolve(disabledImageStats(base.beats).costUsd)),
       // The director's per-beat findings ARE the photo gate: a beat may carry a real photograph
       // only when its visual specification says the subject is physical and the classifier called
       // it a labelled diagram. Without that context no beat qualifies, which is the safe default —
       // the previous gate guessed from keywords and put a stamp vending machine in a lecture on
       // Support Vector Machines.
-      REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument
+      timeStage("fill-reference-images", () => REAL_REFERENCE_IMAGES_ENABLED && !input.sourceDocument
         ? fillRealReferenceImage(client, base.beats, { specs: directorStats.specs, forms: directorStats.forms })
-        : Promise.resolve(disabledReferenceImageStats()),
-      REACT_ANIMATIONS_ENABLED ? fillReactAnimationOps(client, base.beats) : Promise.resolve(disabledAnimationStats()),
-      BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats, Boolean(input.sourceDocument)) : Promise.resolve(disabledBlackboardStats()),
+        : Promise.resolve(disabledReferenceImageStats())),
+      timeStage("fill-react-animations", () => REACT_ANIMATIONS_ENABLED ? fillReactAnimationOps(client, base.beats) : Promise.resolve(disabledAnimationStats())),
+      timeStage("fill-blackboards", () => BLACKBOARD_GEN_ENABLED ? fillBlackboardOps(client, base.beats, Boolean(input.sourceDocument)) : Promise.resolve(disabledBlackboardStats())),
       // TYPE D diagram boards. Gated on the same switch as rendering: with Manim off there is
       // nothing to render the spec, so paying for one would be pure waste — the beat falls
       // back to the live SVG board either way.
-      MANIM_RENDER_ENABLED ? fillManimSceneOps(client, base.beats) : Promise.resolve(disabledManimSceneStats()),
+      timeStage("fill-manim-scenes", () => MANIM_RENDER_ENABLED ? fillManimSceneOps(client, base.beats) : Promise.resolve(disabledManimSceneStats())),
       // TYPE F structural diagrams. Ungated: unlike Manim there is nothing to install and no video
       // to render — the layout is computed in-process, so the only cost is one small spec call.
-      fillStructureSceneOps(client, base.beats),
+      timeStage("fill-structure-scenes", () => fillStructureSceneOps(client, base.beats)),
       // Vega-Lite charts and KaTeX derivations. Ungated for the same reason as structure boards:
       // nothing to install and nothing rendered out of process, so the only cost is one spec call.
-      fillSpecBoardOps(client, base.beats),
+      timeStage("fill-spec-boards", () => fillSpecBoardOps(client, base.beats)),
     ]);
 
     // Image-Explainer agent (sourceDocument only): label the real visible parts of each provided
@@ -1612,7 +1706,7 @@ async function generateLecture(
     await waitForJobRunnable(jobId);
     setJobStage(jobId, "activities", { status: "Setting up the interactive parts" });
     const calloutStats = input.sourceDocument
-      ? await fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument)
+      ? await timeStage("image-callouts", () => fillImageCalloutOpsIncremental(client, base.beats, input.sourceDocument!))
       : { costUsd: 0 };
 
     await waitForJobRunnable(jobId);
@@ -1640,7 +1734,16 @@ async function generateLecture(
      * these passes are the only difference between the two paths — so moving the net downstream is
      * warranted on its own, independently of whichever pass turns out to be responsible.
      */
-    const fallbackStats = await rescueEmptyBoards(client, base.beats, directorStats.specs, directorStats.forms);
+    const fallbackStats = await timeStage("rescue-empty-boards", () =>
+      rescueEmptyBoards(client, base.beats, directorStats.specs, directorStats.forms));
+    console.error(
+      `[timing] total=${((Date.now() - buildStartedAt) / 1000).toFixed(1)}s | ` +
+        timings
+          .slice()
+          .sort((a, b) => b[1] - a[1])
+          .map(([label, ms]) => `${label}=${(ms / 1000).toFixed(1)}s`)
+          .join("  "),
+    );
     await waitForJobRunnable(jobId);
     const costUsd = base.textCost + visionCostUsd + imageCostUsd + referenceImageStats.costUsd + reactAnimationStats.costUsd + boardStats.costUsd + calloutStats.costUsd + manimSceneStats.costUsd + structureStats.costUsd + specBoardStats.costUsd + directorStats.costUsd + fallbackStats.costUsd;
 

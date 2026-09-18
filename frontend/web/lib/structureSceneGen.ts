@@ -117,6 +117,10 @@ async function generateOne(
 
   op.status = "failed";
   op.error = issue?.slice(0, 200) ?? "structure spec was not available";
+  // This path was silent, and that hid the pipeline's largest source of wasted work: on a prose-
+  // heavy document EVERY structure beat fails here, ~20 calls produce nothing, and the only visible
+  // trace was a [fallback] line minutes later. A stage that fails 100% of the time must say so.
+  console.error(`[structure] beat=${beat.id} FAILED after ${MAX_ATTEMPTS} attempt(s): ${op.error}`);
   return { filled: false, costUsd: spent, issue };
 }
 

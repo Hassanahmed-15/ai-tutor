@@ -1,4 +1,4 @@
-import { MAX_DIAGNOSTIC_QUESTIONS, MIN_USEFUL_DIAGNOSTIC_QUESTIONS, type LearnerProfile } from "./learnerProfile";
+import { MAX_DIAGNOSTIC_QUESTIONS, MIN_USEFUL_DIAGNOSTIC_QUESTIONS, type DepthLevel, type LearnerProfile } from "./learnerProfile";
 
 /**
  * The short conversation that happens before the lesson is planned — Phase 1: understand the
@@ -121,6 +121,35 @@ Output ONLY the JSON object.`;
  */
 export function openingQuestion(topic: string): string {
   return `Before we start — in your own words, what do you think ${topic} is, or what do you already know about it?`;
+}
+
+/**
+ * The one direct, explicit question in this whole conversation: what depth does the student
+ * actually WANT. Everything else here deliberately avoids self-report ("recognition is not
+ * evidence, use is" — see the file's own doc comment) because a claimed skill LEVEL is unreliable
+ * on its own. This is different in kind: it is not asking them to grade their own competence, it
+ * is asking what they want out of the lesson — the same category as the existing "goal" question
+ * kind, just asked up front and every time rather than opportunistically.
+ *
+ * STILL NOT TRUSTED BLINDLY. The answer here becomes `claimedLevel` with high confidence, exactly
+ * as if the model had inferred a self-report from free text — resolveDepth's existing asymmetric
+ * trust (a claim of expertise is capped until a diagnostic answer corroborates it; a demonstrated
+ * gap or misconception overrides any claim) still applies on top of it unchanged. Asking directly
+ * does not bypass verification; it just means the student is never left to accidentally imply a
+ * level through phrasing when they could simply say what they want.
+ */
+export const DEPTH_QUESTION_MARKER = "__depth_preference__";
+
+export const DEPTH_OPTIONS: { label: string; level: DepthLevel }[] = [
+  { label: "Foundation — I'm new to this and related ideas", level: 1 },
+  { label: "Beginner — new to this topic specifically", level: 2 },
+  { label: "Intermediate — know the basics", level: 3 },
+  { label: "Advanced — comfortable, want the non-obvious parts", level: 4 },
+  { label: "Expert — treat me as a peer", level: 5 },
+];
+
+export function depthQuestion(topic: string): string {
+  return `How deep do you want to go with ${topic}?`;
 }
 
 /**

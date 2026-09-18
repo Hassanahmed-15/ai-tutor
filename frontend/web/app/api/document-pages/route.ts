@@ -10,10 +10,13 @@ export const maxDuration = 300;
 const MAX_BYTES = DOCUMENT_LIMITS.MAX_BYTES;
 /**
  * Thumbnails are rendered directly at this DPI rather than rendered large and downscaled.
- * 40 DPI puts a Letter page at roughly 340x440 — recognisable at preview size, a few KB on the
- * wire, and about a tenth the work of the 400 DPI the lesson pipeline uses.
+ * 150 DPI puts a Letter page at roughly 1275x1650 — sharp when the page picker displays it at up
+ * to 672 CSS px wide (including on a retina 2x display), while staying well under the 400 DPI the
+ * lesson pipeline uses for the model call this screen is not making. Was 40 DPI (≈340x440) when
+ * the picker showed a small single-page preview beside a thumbnail grid; once the preview became
+ * the primary, larger reading surface, that resolution upscaled visibly blurry.
  */
-const THUMB_DPI = 40;
+const THUMB_DPI = 150;
 
 /**
  * Render every page of an uploaded document to a small thumbnail.

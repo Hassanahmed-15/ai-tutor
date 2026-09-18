@@ -13,6 +13,12 @@ import {
   RESUME_LECTURE_TOOL,
   SHOW_BOARD_TOOL,
 } from "./geminiLiveContract";
+import {
+  analyzeFrame,
+  DEFAULT_GATE_CONFIG,
+  InterruptionGate,
+  type GateDecision,
+} from "./interruptionGate";
 
 export type GeminiLiveStatus =
   | "idle"
@@ -120,6 +126,13 @@ export type UseGeminiLiveTutorOptions = {
    *  acknowledgement, someone else in the room). The caller should resume the lecture rather than
    *  stay paused for a turn that is not coming. */
   onIncidentalSpeech?: () => void;
+  /**
+   * Every barge-in decision, with the reason it was made.
+   *
+   * Exposed so a room where the tutor stops too readily — or not readily enough — can be diagnosed
+   * from the decision trail instead of guesswork. See `lib/interruptionGate.ts`.
+   */
+  onInterruptionDecision?: (decision: GateDecision) => void;
   onExplicitPause?: () => void;
   onExplicitResume?: () => void;
   onTutorTurnComplete?: () => void;
@@ -200,6 +213,14 @@ type GeminiSession = {
     text?: string;
     audio?: { data: string; mimeType: string };
     audioStreamEnd?: boolean;
+    /**
+     * Manual turn boundaries, valid only while `automaticActivityDetection.disabled` is true.
+     *
+     * The empty objects are the whole payload — the signal is the presence of the field. They
+     * replace `audioStreamEnd`, which belongs to the automatic mode this session no longer uses.
+     */
+    activityStart?: Record<string, never>;
+    activityEnd?: Record<string, never>;
   }) => void;
   sendToolResponse: (input: {
     functionResponses:
@@ -262,6 +283,44 @@ export class MicrophoneIntent {
 
 const INPUT_SAMPLE_RATE = 16_000;
 const OUTPUT_SAMPLE_RATE = 24_000;
+
+/**
+ * How loud the tutor stays while the gate is waiting to hear whether it was addressed.
+ *
+ * Must match `DEFAULT_GATE_CONFIG.duckGain` — the gate reports the figure through `onDuck`, but a
+ * reply that starts mid-episode has to build its bus at the same level before any callback runs.
+ */
+const DUCKED_GAIN = DEFAULT_GATE_CONFIG.duckGain;
+
+/**
+ * Analysis window, in samples at 16 kHz — 32 ms.
+ *
+ * The mic callback delivers 4096 frames at the device rate, which is ~85 ms at the usual 48 kHz.
+ * Feeding the gate one decision per callback would quantise its 240 ms debounce to three coarse
+ * steps and blur the duck latency badly, so each callback is sliced into 32 ms windows and pushed
+ * with interpolated timestamps. This is also exactly the window the gate's tests are written
+ * against, so tuned thresholds mean the same thing in the browser as on the bench.
+ */
+const ANALYSIS_FRAME = 512;
+const ANALYSIS_FRAME_MS = (ANALYSIS_FRAME / INPUT_SAMPLE_RATE) * 1000;
+
+/**
+ * Fade applied to each end of every PCM chunk, and to an interrupted stop, in seconds.
+ *
+ * Long enough to remove the step discontinuity that makes a click, short enough to be inaudible as
+ * a fade — 1.5 ms is roughly one cycle at 650 Hz, well under the ~20 ms the ear needs to hear an
+ * amplitude change as anything but a transient.
+ */
+const CHUNK_FADE_S = 0.0015;
+
+/**
+ * Fade applied when the tutor is cut off mid-word, in seconds.
+ *
+ * Longer than the chunk seam because it happens at an arbitrary point in a vowel, where amplitude
+ * is at its highest — the discontinuity is correspondingly bigger. Still short enough that a
+ * barge-in feels instant.
+ */
+const STOP_FADE_S = 0.012;
 const IDLE_TIMEOUT_MS = 60_000;
 const MAX_SESSION_MS = 5 * 60_000;
 const EXAM_MAX_SESSION_MS = 12 * 60_000;
@@ -407,9 +466,36 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const localSpeechFramesRef = useRef(0);
-  const lastLoudFrameAtRef = useRef(0);
-  const noiseFloorRef = useRef(0.008);
+  /**
+   * The barge-in decision, owned entirely by the client. See `lib/interruptionGate.ts`.
+   *
+   * Constructed lazily on the first mic frame because its callbacks close over `stopPlayback` and
+   * the duck helpers, which are not defined yet at this point in the hook body.
+   */
+  const gateRef = useRef<InterruptionGate | null>(null);
+  /** Every gate decision, kept so a wrong call in a real room can be explained afterwards. */
+  const gateLogRef = useRef<GateDecision[]>([]);
+  /**
+   * Whether the tutor's voice is currently ducked rather than stopped.
+   *
+   * Tracked separately from the gate's own stage because teardown, mute and reconnect all need to
+   * restore the gain without consulting the state machine.
+   */
+  const duckedRef = useRef(false);
+  /**
+   * Whether we have told the server a turn is in progress.
+   *
+   * With automatic VAD disabled the server does nothing until we say so, and an `activityEnd`
+   * without a matching `activityStart` is a protocol error rather than a no-op.
+   */
+  const activityOpenRef = useRef(false);
+  /**
+   * Indirection so `endStudentSpeech` can close the turn.
+   *
+   * `closeActivity` is declared further down because it reads `sessionRef`, and the two would
+   * otherwise form a declaration cycle. The ref is assigned once `closeActivity` exists.
+   */
+  const closeActivityRef = useRef<() => void>(() => undefined);
   const endedRef = useRef(false);
   const connectingRef = useRef(false);
   /** Bumped on every start() and every teardown, so a stale in-flight connect can abandon itself. */
@@ -498,10 +584,70 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     tutorTranscriptRef.current = "";
   }, []);
 
+  /**
+   * Ride the tutor's volume down without stopping it.
+   *
+   * This is the whole reason the gate can afford to wait for words. Ducking is instant and cheap to
+   * be wrong about — a brief dip if the neighbour coughs — where stopping is not. The ramp is short
+   * enough to feel immediate but not so abrupt that it clicks.
+   *
+   * The target is `mouthBusRef`, the one gain node every reply chunk already routes through. It is
+   * null whenever the tutor is not speaking, in which case there is nothing to duck and the gate's
+   * request is simply a no-op that `restoreTutorVolume` will not have to undo.
+   */
+  const duckTutorVolume = useCallback((gain: number) => {
+    duckedRef.current = true;
+    const bus = mouthBusRef.current;
+    const context = audioContextRef.current;
+    if (!bus || !context) return;
+    try {
+      bus.gain.cancelScheduledValues(context.currentTime);
+      bus.gain.setTargetAtTime(gain, context.currentTime, 0.02);
+    } catch {
+      // A node belonging to a closed context cannot be scheduled against.
+    }
+  }, []);
+
+  const restoreTutorVolume = useCallback(() => {
+    duckedRef.current = false;
+    const bus = mouthBusRef.current;
+    const context = audioContextRef.current;
+    if (!bus || !context) return;
+    try {
+      bus.gain.cancelScheduledValues(context.currentTime);
+      bus.gain.setTargetAtTime(1, context.currentTime, 0.04);
+    } catch {
+      // Same as above: a torn-down context has nothing left to restore.
+    }
+  }, []);
+
   const stopPlayback = useCallback(() => {
+    const context = audioContextRef.current;
+    const bus = mouthBusRef.current;
+    /*
+     * Fade the bus out before stopping the sources, rather than cutting them dead.
+     *
+     * A barge-in lands mid-vowel, where the waveform is nowhere near zero, so `source.stop()` on
+     * its own leaves a full-amplitude step — the pop heard every time the tutor is interrupted.
+     * Ramping the one node they all share takes every source down together, then the stop happens
+     * just after the ramp has reached silence and is inaudible.
+     *
+     * The sources are still stopped explicitly: a fade alone would leave them playing silently,
+     * holding the graph and the `onended` bookkeeping open.
+     */
+    const stopAt = context && bus ? context.currentTime + STOP_FADE_S : 0;
+    if (context && bus) {
+      try {
+        bus.gain.cancelScheduledValues(context.currentTime);
+        bus.gain.setValueAtTime(bus.gain.value, context.currentTime);
+        bus.gain.linearRampToValueAtTime(0, stopAt);
+      } catch {
+        // A closed context cannot be scheduled against; fall through to the hard stop.
+      }
+    }
     for (const source of playingSourcesRef.current) {
       try {
-        source.stop();
+        source.stop(stopAt);
       } catch {
         // A source that just ended cannot be stopped again.
       }
@@ -509,6 +655,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     playingSourcesRef.current.clear();
     nextPlayTimeRef.current = audioContextRef.current?.currentTime ?? 0;
     setSpeaking(false);
+    // The bus this duck applied to is about to be discarded, so the gain never needs unwinding —
+    // but the flag must clear, or the next reply would build a fresh bus while we still believe the
+    // tutor is ducked and never restore it.
+    duckedRef.current = false;
     // Interruption and teardown both land here. Detaching is idempotent — a token that no longer
     // owns the analyser is ignored — so it is safe alongside the same call in `source.onended`.
     detachMouthAnalyser(mouthTokenRef.current);
@@ -605,15 +755,41 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       // Build the mouth bus once per context, then route every chunk through it.
       if (!mouthBusRef.current || mouthBusRef.current.context !== context) {
         const bus = context.createGain();
+        // A duck can be asked for while the tutor is between chunks, when there is no bus to apply
+        // it to. Honouring it on the bus we are about to build keeps the reply quiet as intended
+        // instead of letting it come back at full volume mid-episode.
+        bus.gain.value = duckedRef.current ? DUCKED_GAIN : 1;
         bus.connect(context.destination);
         mouthBusRef.current = bus;
         mouthTokenRef.current = attachMouthAnalyser(context, bus);
       }
       const source = context.createBufferSource();
       source.buffer = buffer;
-      source.connect(mouthBusRef.current);
+      /*
+       * A ~1.5 ms fade on each end of every chunk. This is the beep.
+       *
+       * Gemini sends the reply as a stream of short PCM buffers that are scheduled back to back.
+       * A buffer starts and ends at whatever sample value the encoder happened to land on, which is
+       * almost never zero — so each seam is a step discontinuity in the waveform, and a step is a
+       * click. Because the chunks arrive at a steady cadence, the clicks do too, and a periodic
+       * click train is heard as a tone: the "beep" is the chunk rate itself.
+       *
+       * Ramping each chunk up from and back down to silence forces every seam to zero, so the
+       * clicks have nothing to click about. 1.5 ms is below the ear's pitch-perception threshold,
+       * so it removes the transient without softening consonants or sounding like a fade.
+       */
+      const chunkGain = context.createGain();
+      chunkGain.connect(mouthBusRef.current);
+      source.connect(chunkGain);
       source.onended = () => {
         playingSourcesRef.current.delete(source);
+        // Each chunk owns a gain node; leaving them attached would grow the graph for the whole
+        // reply and keep every one of them summing into the bus.
+        try {
+          chunkGain.disconnect();
+        } catch {
+          // Already detached by a teardown that ran first.
+        }
         if (playingSourcesRef.current.size === 0 && !responseInFlightRef.current) {
           setSpeaking(false);
           // The reply is over — close the mouth rather than leaving it parked on the last chunk.
@@ -624,10 +800,32 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         }
       };
       const startAt = Math.max(context.currentTime, nextPlayTimeRef.current);
+      /*
+       * The fade must be short relative to the chunk, or a very short buffer would be faded to
+       * nothing. Half the chunk at most, so the envelope always has room to open and close.
+       */
+      const fade = Math.min(CHUNK_FADE_S, buffer.duration / 2);
+      chunkGain.gain.setValueAtTime(0, startAt);
+      chunkGain.gain.linearRampToValueAtTime(1, startAt + fade);
+      chunkGain.gain.setValueAtTime(1, startAt + buffer.duration - fade);
+      chunkGain.gain.linearRampToValueAtTime(0, startAt + buffer.duration);
       source.start(startAt);
       playingSourcesRef.current.add(source);
       nextPlayTimeRef.current = startAt + buffer.duration;
       setSpeaking(true);
+      /*
+       * Tell the gate the tutor is audible, for as long as this chunk plays.
+       *
+       * Browser echo cancellation is tuned for a headset and leaks badly over laptop speakers, so
+       * the mic really does hear the tutor — and the tutor's voice passes every acoustic test in the
+       * gate, because it IS a voice. Without this the lecture interrupts itself.
+       *
+       * The cooldown is measured from the END of the buffer, not from now: chunks are scheduled
+       * back to back ahead of real time, so dating it from the call would expire the cooldown while
+       * audio was still coming out of the speakers.
+       */
+      const audibleForMs = Math.max(0, startAt - context.currentTime + buffer.duration) * 1000;
+      gateRef.current?.noteTutorAudio(performance.now() + audibleForMs);
     },
     [scheduleSettle],
   );
@@ -661,7 +859,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const endStudentSpeech = useCallback(() => {
     if (!studentSpeakingRef.current) return;
     studentSpeakingRef.current = false;
-    localSpeechFramesRef.current = 0;
+    // Close the turn we opened on commit, so the model stops listening and answers.
+    closeActivityRef.current();
     optionsRef.current.onStudentSpeechStopped?.();
     window.setTimeout(() => {
       if (!studentSpeakingRef.current) suppressCurrentTurnRef.current = false;
@@ -701,6 +900,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       connectingRef.current = false;
+      // Drop the episode but keep the gate itself: the learned noise floor describes the room, which
+      // outlives this session and is the expensive thing to re-learn after a reconnect.
+      activityOpenRef.current = false;
+      gateRef.current?.reset();
       // Any connect still awaiting its mic or token is now stale.
       connectAttemptRef.current += 1;
       flushStudentTranscript();
@@ -860,13 +1063,18 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const handleServerMessage = useCallback(
     (message: GeminiServerMessage) => {
+      /*
+       * The server's VAD no longer interrupts anything.
+       *
+       * With `automaticActivityDetection.disabled: true` these messages should not arrive at all,
+       * but they are still handled defensively because a server that resumed its own detection
+       * would otherwise silently restore the exact bug this change removes. They are now treated as
+       * evidence that someone is making noise — enough to keep the session from idling out, not
+       * enough to stop the tutor. Only the gate stops the tutor.
+       */
       const activity = message.voiceActivity?.voiceActivityType;
-      if (activity === "ACTIVITY_START") {
+      if (activity === "ACTIVITY_START" || activity === "ACTIVITY_END") {
         resetIdleTimer();
-        beginStudentSpeech();
-      } else if (activity === "ACTIVITY_END") {
-        resetIdleTimer();
-        endStudentSpeech();
       }
 
       if (message.toolCallCancellation?.ids) {
@@ -885,15 +1093,37 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         stopPlayback();
       }
 
+      /*
+       * An interim transcript no longer cuts the audio.
+       *
+       * It used to call `beginStudentSpeech()` directly, which meant ANY speech the server managed
+       * to transcribe stopped the lecture — including the neighbour's conversation, which
+       * transcribes just as cleanly as the student's. Words are still the only way to tell those
+       * apart, so they are now routed to the gate's third stage, which is allowed to weigh them,
+       * rather than acting as a trigger in their own right.
+       */
       const interimInput = content?.interimInputTranscription?.text;
       if (interimInput) {
-        beginStudentSpeech();
         optionsRef.current.onTranscript?.("student", interimInput, false);
+        resetIdleTimer();
       }
       const inputText = content?.inputTranscription?.text;
       if (inputText) {
         studentTranscriptRef.current = appendTranscript(studentTranscriptRef.current, inputText);
         optionsRef.current.onTranscript?.("student", inputText, false);
+        /*
+         * Stage 3. This is the only place that can distinguish "someone is speaking" from "the
+         * student is speaking TO US", and it is why the gate ducks instead of stopping: a transcript
+         * arriving here resolves an episode that is currently only a dip in volume.
+         *
+         * `isAddressedToTeacher` already existed and was already correct — it was simply running
+         * after the audio had been cut, where its answer could no longer prevent anything.
+         */
+        gateRef.current?.provideTranscript(
+          studentTranscriptRef.current,
+          isAddressedToTeacher(studentTranscriptRef.current),
+          performance.now(),
+        );
       }
       const outputText = content?.outputTranscription?.text;
       if (outputText) {
@@ -941,8 +1171,86 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         }
       }
     },
-    [beginStudentSpeech, endStudentSpeech, handleToolCalls, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
+    [handleToolCalls, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
   );
+
+  /**
+   * Open a turn on the server.
+   *
+   * With automatic VAD disabled the server is deaf to turn boundaries until we mark them, so this
+   * is what actually hands the student's words to the model. It is called only once the gate has
+   * committed — which is the entire point of the change: the server now hears a turn start when a
+   * PERSON addressed the tutor, rather than whenever the room got loud.
+   */
+  const openActivity = useCallback(() => {
+    if (activityOpenRef.current) return;
+    const session = sessionRef.current;
+    if (!session) return;
+    activityOpenRef.current = true;
+    try {
+      session.sendRealtimeInput({ activityStart: {} });
+    } catch {
+      // A socket that closed between the gate's decision and this call.
+    }
+  }, []);
+
+  const closeActivity = useCallback(() => {
+    if (!activityOpenRef.current) return;
+    const session = sessionRef.current;
+    activityOpenRef.current = false;
+    if (!session) return;
+    try {
+      session.sendRealtimeInput({ activityEnd: {} });
+    } catch {
+      // As above — nothing to close if the transport is gone.
+    }
+  }, []);
+
+  // Assigned in an effect rather than during render: writing a ref while rendering is a React
+  // correctness rule, and nothing reads this until a mic frame or a turn ends.
+  useEffect(() => {
+    closeActivityRef.current = closeActivity;
+  }, [closeActivity]);
+
+  /**
+   * Build the gate on first use and bind it to this hook's audio.
+   *
+   * Lazy because the callbacks close over `stopPlayback` and the duck helpers. Memoised on the ref
+   * rather than rebuilt per session so the learned noise floor survives a reconnect — the room does
+   * not change just because the socket dropped.
+   */
+  const ensureGate = useCallback(() => {
+    if (gateRef.current) return gateRef.current;
+    const gate = new InterruptionGate(
+      {},
+      {
+        // Stage 2: sustained voice. Dip the volume, commit to nothing.
+        onDuck: (gain) => duckTutorVolume(gain),
+        // Stage 3 said the words were not for us, or the speech simply stopped.
+        onRestore: () => restoreTutorVolume(),
+        // Stage 3 said the student is addressing the tutor. Only now does anything stop.
+        onStop: () => {
+          restoreTutorVolume();
+          openActivity();
+          beginStudentSpeech();
+        },
+        onDecision: (decision) => {
+          /*
+           * Keep the decision trail bounded but long enough to explain a mistake.
+           *
+           * At ~31 windows a second this is roughly the last minute, which is what someone reporting
+           * "it stopped for no reason" can actually still remember the cause of.
+           */
+          const log = gateLogRef.current;
+          log.push(decision);
+          if (log.length > 2000) log.splice(0, log.length - 2000);
+          optionsRef.current.onInterruptionDecision?.(decision);
+        },
+      },
+    );
+    gateRef.current = gate;
+    return gate;
+  }, [beginStudentSpeech, duckTutorVolume, openActivity, restoreTutorVolume]);
 
   const startMicrophone = useCallback(
     async (stream: MediaStream, session: GeminiSession) => {
@@ -964,10 +1272,22 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       micProcessorRef.current = processor;
       silentGainRef.current = silentGain;
 
+      const gate = ensureGate();
+
       processor.onaudioprocess = (event) => {
         if (sessionRef.current !== session || !track.enabled) return;
         const channel = event.inputBuffer.getChannelData(0);
         const pcm = downsample(channel, context.sampleRate);
+
+        /*
+         * The audio goes up unconditionally, every frame, whatever the gate decides.
+         *
+         * With automatic VAD disabled the server transcribes only between `activityStart` and
+         * `activityEnd`, and those brackets are what the gate controls. Withholding the audio
+         * itself as well would mean the first syllables of a real question — the ones spoken during
+         * the 240 ms debounce — never reached the model at all, and the tutor would answer a
+         * question with its opening words missing.
+         */
         session.sendRealtimeInput({
           audio: {
             data: float32ToPcm16Base64(pcm),
@@ -975,22 +1295,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           },
         });
 
-        let energy = 0;
-        for (let index = 0; index < channel.length; index += 1) energy += channel[index] * channel[index];
-        const rms = Math.sqrt(energy / channel.length);
-        const threshold = Math.max(0.025, noiseFloorRef.current * 3.8);
-        const now = performance.now();
-        if (rms > threshold) {
-          localSpeechFramesRef.current += 1;
-          lastLoudFrameAtRef.current = now;
-          if (localSpeechFramesRef.current >= 2) beginStudentSpeech();
-        } else {
-          if (!studentSpeakingRef.current) {
-            noiseFloorRef.current = noiseFloorRef.current * 0.96 + Math.min(rms, 0.03) * 0.04;
-            localSpeechFramesRef.current = 0;
-          } else if (now - lastLoudFrameAtRef.current > 700) {
-            endStudentSpeech();
-          }
+        /*
+         * Slice the callback into 32 ms analysis windows.
+         *
+         * `performance.now()` is the time the callback ran, which corresponds to the END of this
+         * buffer, so each window is back-dated to when its audio was actually captured. Feeding all
+         * of them the same timestamp would make a debounce measured in milliseconds meaningless.
+         */
+        const bufferEndedAt = performance.now();
+        const windows = Math.max(1, Math.floor(pcm.length / ANALYSIS_FRAME));
+        for (let index = 0; index < windows; index += 1) {
+          const start = index * ANALYSIS_FRAME;
+          const window = pcm.subarray(start, start + ANALYSIS_FRAME);
+          if (window.length < ANALYSIS_FRAME) break;
+          const at = bufferEndedAt - (windows - 1 - index) * ANALYSIS_FRAME_MS;
+          gate.push(analyzeFrame(window, INPUT_SAMPLE_RATE), at);
         }
       };
 
@@ -998,7 +1317,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       processor.connect(silentGain);
       silentGain.connect(context.destination);
     },
-    [beginStudentSpeech, endStudentSpeech],
+    [ensureGate],
   );
 
   const start = useCallback(async () => {
@@ -1066,14 +1385,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       return;
     }
     try {
-      const {
-        GoogleGenAI,
-        Modality,
-        ThinkingLevel,
-        StartSensitivity,
-        EndSensitivity,
-        ActivityHandling,
-      } = await import("@google/genai");
+      // The VAD sensitivity and activity-handling enums are gone with the server-side detection they
+      // configured; the client decides now. See `realtimeInputConfig` below.
+      const { GoogleGenAI, Modality, ThinkingLevel } = await import("@google/genai");
       const client = new GoogleGenAI({
         apiKey: sessionData.token,
         httpOptions: { apiVersion: "v1alpha" },
@@ -1117,15 +1431,22 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           systemInstruction: {
             parts: [{ text: optionsRef.current.systemInstruction ?? sessionData.instructions }],
           },
+          /*
+           * MANUAL ACTIVITY DETECTION. The client owns the turn boundaries.
+           *
+           * The server's VAD is a speech detector, and a good one — which is precisely the problem.
+           * Every noise complaint here was speech: the neighbour's conversation, the TV, someone
+           * asking a third party a question. No sensitivity setting rejects those, because they are
+           * genuinely voices; only the WORDS distinguish them, and the server does not gate on
+           * words. Its most eager setting (`START_SENSITIVITY_HIGH` with
+           * `START_OF_ACTIVITY_INTERRUPTS`) additionally fired on fans and keyboards.
+           *
+           * So detection moves to the client, where `lib/interruptionGate.ts` can combine spectral
+           * shape, duration and transcript before committing. `activityStart`/`activityEnd` are
+           * sent from the gate's decisions instead. `audioStreamEnd` is not used in this mode.
+           */
           realtimeInputConfig: {
-            automaticActivityDetection: {
-              disabled: false,
-              startOfSpeechSensitivity: StartSensitivity.START_SENSITIVITY_HIGH,
-              endOfSpeechSensitivity: EndSensitivity.END_SENSITIVITY_LOW,
-              prefixPaddingMs: 120,
-              silenceDurationMs: 550,
-            },
-            activityHandling: ActivityHandling.START_OF_ACTIVITY_INTERRUPTS,
+            automaticActivityDetection: { disabled: true },
           },
           tools: functionDeclarations.length > 0 ? [{ functionDeclarations }] : undefined,
         },
@@ -1282,7 +1603,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     }
     track.enabled = enabled;
     if (!enabled) {
-      sessionRef.current?.sendRealtimeInput({ audioStreamEnd: true });
+      /*
+       * `audioStreamEnd` is not sent here any more: it is the automatic-VAD way to flush cached
+       * audio, and this session runs with automatic detection disabled. `endStudentSpeech` already
+       * closes the turn with `activityEnd`, which is the manual-mode equivalent.
+       */
+      gateRef.current?.reset();
       endStudentSpeech();
     } else if (audioContextRef.current?.state === "suspended") {
       void audioContextRef.current.resume().catch(() => setStatus("blocked"));
@@ -1382,6 +1708,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (!sessionRef.current || !trimmed) return;
       // A typed turn interrupts, like speaking would: whatever is playing is abandoned.
       stopPlayback();
+      /*
+       * Abandon any spoken turn still in progress before sending text.
+       *
+       * If the student starts talking and then types instead, the gate may be holding an activity
+       * bracket open. Sending the typed turn inside that bracket leaves a spoken turn that is never
+       * closed, and the server rejects the mismatch — a live probe returns `1007 Precondition check
+       * failed` and drops the socket.
+       */
+      gateRef.current?.reset();
+      closeActivityRef.current();
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();

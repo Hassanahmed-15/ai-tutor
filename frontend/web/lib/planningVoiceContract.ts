@@ -38,7 +38,7 @@ export const PLANNING_TOOLS: GeminiToolDeclaration[] = [
   {
     name: "approve_plan",
     description:
-      "Accept the plan as it stands and start building the lecture. Use when the student signals they are happy — 'that's good', 'go ahead', 'build it', 'yes'. Building takes several minutes and cannot be undone, so do not call this speculatively or to end an awkward pause; only when they have actually agreed.",
+      "Accept the plan as it stands and move to the final lesson summary screen, where the student reviews everything before building starts. Use when the student signals they are happy — 'that's good', 'go ahead', 'build it', 'yes'. Do not call this speculatively or to end an awkward pause; only when they have actually agreed. Building itself only starts once they confirm on that summary screen, not from this call alone.",
     parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
   },
 ];
@@ -78,6 +78,7 @@ export function buildPlanningVoiceInstruction(input: {
     "WHILE PLANNING.",
     "- Ask what they want out of this, and where they are starting from. What do they already know? What is the bit that is confusing them? Is there something specific they need it for?",
     "- Use their answers to change the plan, rather than defending the draft you already made.",
+    "- You may be told what has already been established via a silent context update — it will not look like something the student said to you. Treat it as already answered: never ask about it again, on this topic or a closely related one, whether it came from something they typed on screen or said to you a moment ago.",
     "",
     "WHILE THE LECTURE IS BUILDING.",
     "- Once they approve the plan, building starts and takes several minutes. You will be told when it begins and when it is ready.",

@@ -45,6 +45,8 @@ export function PageSelector({
   label = "pages",
   onChange,
   regionFor,
+  currentPage,
+  onThumbnailClick,
 }: {
   pages: DocumentPage[];
   loading?: boolean;
@@ -57,6 +59,12 @@ export function PageSelector({
   onChange: (selection: PageSelection) => void;
   /** The area chosen on a page, if any — drawn onto its thumbnail. Owned by the page above. */
   regionFor?: (pageNumber: number) => NormalisedRect | undefined;
+  /** Whichever page is currently in view in the scrolling preview, for a "you are here" ring —
+   *  independent of selection, so scrolling past an unselected page still shows where you are. */
+  currentPage?: number | null;
+  /** Called (in addition to toggling selection) when a thumbnail is clicked, so the preview pane
+   *  can scroll to that page — an Acrobat-style thumbnail rail, not just a selection grid. */
+  onThumbnailClick?: (pageNumber: number) => void;
 }) {
   const [selected, setSelected] = useState<number[]>([]);
   const [prompt, setPrompt] = useState("");
@@ -143,19 +151,28 @@ export function PageSelector({
           {pages.map((page) => {
             const position = order.get(page.pageNumber);
             const isSelected = position !== undefined;
+            const isCurrent = currentPage === page.pageNumber;
             return (
               <li key={page.pageNumber}>
                 <button
                   type="button"
-                  onClick={() => toggle(page.pageNumber)}
+                  onClick={() => {
+                    toggle(page.pageNumber);
+                    onThumbnailClick?.(page.pageNumber);
+                  }}
                   aria-pressed={isSelected}
+                  aria-current={isCurrent ? "true" : undefined}
                   aria-label={`${label === "pages" ? "Page" : "Slide"} ${page.pageNumber}${
                     isSelected ? `, selected, position ${position}` : ""
                   }${page.excerpt ? `. ${page.excerpt}` : ""}`}
                   className="group relative block w-full overflow-hidden rounded-[var(--radius)] border text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)]"
                   style={{
-                    borderColor: isSelected ? "var(--hud-cyan)" : "var(--hud-line)",
-                    boxShadow: isSelected ? "0 0 0 1px var(--hud-cyan)" : "none",
+                    borderColor: isSelected ? "var(--hud-cyan)" : isCurrent ? "var(--hud-text-dim)" : "var(--hud-line)",
+                    boxShadow: isSelected
+                      ? "0 0 0 1px var(--hud-cyan)"
+                      : isCurrent
+                        ? "0 0 0 1px var(--hud-text-dim)"
+                        : "none",
                     transitionDuration: "var(--motion-fast)",
                   }}
                 >

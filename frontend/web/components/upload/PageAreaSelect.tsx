@@ -22,11 +22,21 @@ export function PageAreaSelect({
   alt,
   rect,
   onChange,
+  fill = true,
+  onUseRegion,
 }: {
   src: string;
   alt: string;
   rect: NormalisedRect | undefined;
   onChange: (rect: NormalisedRect | undefined) => void;
+  /** True (default) sizes the image to fill a fixed-height parent — the single-page preview this
+   *  component was built for. False sizes it to its own natural width instead, for a page sitting
+   *  in a normal document flow (a continuous scroll stack) rather than a fixed-height pane. */
+  fill?: boolean;
+  /** Renders a direct "build a lecture from this" action once a region is cropped, rather than
+   *  making the student scroll back up to a header button after drawing the box they came here to
+   *  draw. Omit to hide the action entirely (a caller with nowhere to send it). */
+  onUseRegion?: () => void;
 }) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [dragFrom, setDragFrom] = useState<{ x: number; y: number } | null>(null);
@@ -55,8 +65,14 @@ export function PageAreaSelect({
   }
 
   return (
-    <div className="flex h-full min-h-0 w-full flex-col items-center justify-center gap-2">
-      <div className="relative min-h-0">
+    <div
+      className={
+        fill
+          ? "flex h-full min-h-0 w-full flex-col items-center justify-center gap-2"
+          : "flex w-full flex-col items-center gap-2"
+      }
+    >
+      <div className={fill ? "relative min-h-0" : "relative w-full min-h-0"}>
         {/* eslint-disable-next-line @next/next/no-img-element -- a data: URI has no remote host to
             optimise and next/image would only add overhead here. */}
         <img
@@ -65,7 +81,11 @@ export function PageAreaSelect({
           alt={alt}
           draggable={false}
           data-page-area-image
-          className="max-h-full max-w-full select-none rounded-[var(--radius)] border bg-white object-contain"
+          className={
+            fill
+              ? "max-h-full max-w-full select-none rounded-[var(--radius)] border bg-white object-contain"
+              : "block w-full max-w-2xl select-none rounded-[var(--radius)] border bg-white object-contain"
+          }
           style={{ borderColor: "var(--hud-line)", touchAction: "none", cursor: "crosshair" }}
           onPointerDown={(event) => {
             const at = pointIn(event);
@@ -106,6 +126,25 @@ export function PageAreaSelect({
               height: `${shown.height * 100}%`,
             }}
           />
+        )}
+
+        {/* Floating right at the region just drawn, the way Acrobat's own selection popup does —
+            not in a caption below the whole page image, which can scroll out of view entirely on
+            a tall page and leave the one action worth taking right after a drag undiscoverable. */}
+        {rect && !draft && onUseRegion && (
+          <button
+            type="button"
+            data-use-region
+            onClick={onUseRegion}
+            className="hud-btn-primary absolute z-10 -translate-x-1/2 whitespace-nowrap px-4 py-1.5 text-[0.78rem] shadow-lg"
+            style={{
+              left: `${(rect.x + rect.width / 2) * 100}%`,
+              top: `${(rect.y + rect.height) * 100}%`,
+              marginTop: "0.5rem",
+            }}
+          >
+            Get a lecture from this area
+          </button>
         )}
       </div>
 

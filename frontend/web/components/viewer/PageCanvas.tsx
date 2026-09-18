@@ -1,8 +1,9 @@
 "use client";
 
 import { memo, useEffect, useRef, useState } from "react";
-import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
+import type { PDFPageProxy } from "pdfjs-dist";
 import type { Highlight, SearchMatch } from "@/lib/viewerTypes";
+import type { PageQueue } from "@/lib/pdfPageQueue";
 
 /**
  * One page of the document: a rendered canvas with a REAL, invisible, selectable text layer laid
@@ -18,7 +19,7 @@ import type { Highlight, SearchMatch } from "@/lib/viewerTypes";
  * observer setup this component plugs into.
  */
 export const PageCanvas = memo(function PageCanvas({
-  doc,
+  queue,
   pageNumber,
   scale,
   visible,
@@ -27,7 +28,8 @@ export const PageCanvas = memo(function PageCanvas({
   onMeasured,
   registerRef,
 }: {
-  doc: PDFDocumentProxy;
+  /** Shared, concurrency-limited getPage() queue for the whole document — see lib/pdfPageQueue.ts. */
+  queue: PageQueue;
   pageNumber: number;
   /** CSS pixels per PDF point. 1.0 is "100%"; fit-to-width computes this from the container. */
   scale: number;
@@ -48,11 +50,20 @@ export const PageCanvas = memo(function PageCanvas({
   const [rendered, setRendered] = useState(false);
   const renderGenerationRef = useRef(0);
 
-  // Natural size is fetched once per page regardless of visibility, so the placeholder is
-  // correctly sized immediately rather than jumping when the page first scrolls into view.
+  // Natural size is fetched through the shared, concurrency-limited queue (lib/pdfPageQueue.ts)
+  // rather than calling doc.getPage() directly — every PageCanvas in the document mounts at once,
+  // so an unqueued call here means hundreds of simultaneous requests flooding the single pdf.js
+  // worker connection on a large PDF, starving the render() calls for pages actually on screen.
+  // Visible pages jump the queue; off-screen ones wait their turn so the placeholder still ends up
+  // correctly sized without competing with what the student is looking at right now.
   useEffect(() => {
+    // Once the size is known there is nothing left to fetch — without this check, every
+    // visibility toggle (scrolling a page in and out of the observer's margin repeatedly) would
+    // re-request it from the queue for no reason.
+    if (naturalSize) return;
     let cancelled = false;
-    doc.getPage(pageNumber).then((page) => {
+    const request = queue.getPage(pageNumber, visible);
+    request.promise.then((page) => {
       if (cancelled) return;
       const viewport = page.getViewport({ scale: 1 });
       const size = { width: viewport.width, height: viewport.height };
@@ -61,18 +72,20 @@ export const PageCanvas = memo(function PageCanvas({
     });
     return () => {
       cancelled = true;
+      request.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- onMeasured is a stable dispatcher from the parent
-  }, [doc, pageNumber]);
+  }, [queue, pageNumber, visible, naturalSize]);
 
   useEffect(() => {
     if (!visible || !naturalSize) return;
     const generation = ++renderGenerationRef.current;
     let cancelled = false;
     let renderTask: ReturnType<PDFPageProxy["render"]> | null = null;
+    const pageRequest = queue.getPage(pageNumber, true);
 
     (async () => {
-      const page = await doc.getPage(pageNumber);
+      const page = await pageRequest.promise;
       if (cancelled || renderGenerationRef.current !== generation) return;
 
       const viewport = page.getViewport({ scale });
@@ -119,9 +132,10 @@ export const PageCanvas = memo(function PageCanvas({
 
     return () => {
       cancelled = true;
+      pageRequest.cancel();
       renderTask?.cancel();
     };
-  }, [doc, pageNumber, scale, visible, naturalSize]);
+  }, [queue, pageNumber, scale, visible, naturalSize]);
 
   const width = naturalSize ? naturalSize.width * scale : 0;
   const height = naturalSize ? naturalSize.height * scale : 0;

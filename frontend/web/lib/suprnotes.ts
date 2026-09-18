@@ -41,6 +41,10 @@ export type SuprnotesContentBlock = {
   pageNumber?: number;
   bbox?: { x: number; y: number; width: number; height: number };
   role?: string;
+  /** Which uploaded file this block came from, when more than one was uploaded and merged
+   *  together — see lib/mergeSourceDocuments.ts. Absent for a single-document upload, so every
+   *  existing consumer that never reads this field is unaffected. */
+  documentLabel?: string;
 };
 
 export type SuprnotesWebPreviewItem = {
@@ -292,6 +296,18 @@ export function composeSuprnotesPaperBoards(beats: Beat[], sourceDocument: Suprn
     // overwrite it. This runs after every incremental blackboard fill (route.ts), so clobbering
     // a filled board here would erase the engine's sentence-synced output.
     if (beat.draw?.ops.some((op) => op.kind === "chalkBoard")) return;
+    /*
+     * THE DIRECTOR'S OTHER BOARDS ARE BOARDS TOO.
+     *
+     * chalkBoard was guarded and these three were not, so every beat the director re-pointed to
+     * structureScene/plotBoard/equationBoard had its op replaced by a chalkBoard placeholder right
+     * here — before fillStructureSceneOps could ever see it. Measured on a 19-beat PDF: the director
+     * routed ten beats to structureScene, all ten were overwritten, `[structure]` logged nothing at
+     * all because the fill pass found zero pending ops, and all ten then showed up as "no usable
+     * board" for the end-of-build rescue to regenerate as chalkBoards. The pipeline was paying the
+     * director to make a routing decision and then discarding it a few lines later.
+     */
+    if (beat.draw?.ops.some((op) => op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return;
 
     const planBeat = plannedBeatForBeat(sourceDocument, beat, index);
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index);
@@ -417,6 +433,10 @@ export function enforcePlannedSuprnotesVisualModes(beats: Beat[], sourceDocument
     if (!visualPreference.includes("svg") && !visualPreference.includes("animation") && !visualPreference.includes("diagram")) return;
     if (beat.draw?.ops.some((op) => op.kind === "image")) return;
     if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" && op.code)) return;
+    // Same reason as the guard in composeSuprnotesPaperBoards: this replaces beat.draw wholesale,
+    // so without it a plan that merely PREFERS an svg silently destroys the board the director
+    // chose from the beat's actual content.
+    if (beat.draw?.ops.some((op) => op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return;
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, new Set<string>(), index);
     if (!block) return;
     beat.draw = generatedSvgPaperBoard(beat, block);

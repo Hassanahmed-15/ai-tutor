@@ -10,8 +10,15 @@
 export const RETENTION_RULES = {
   /** Long enough to cover parsing, planning and a slow generation; short enough to bound memory. */
   TTL_MS: 45 * 60 * 1000,
-  /** Documents kept at once. The oldest is dropped first when a new one would exceed this. */
-  MAX_DOCUMENTS: 8,
+  /**
+   * Documents kept at once. The oldest is dropped first when a new one would exceed this.
+   *
+   * Raised from 8: an eviction is INVISIBLE downstream — `getDocumentImages` returns null and the
+   * lecture quietly degrades to text-only grounding, with no error and no warning. Eight is easy to
+   * reach in one working session (each upload is one entry), so the ceiling was close enough to
+   * normal use to silently cost someone their page images.
+   */
+  MAX_DOCUMENTS: 24,
 } as const;
 
 /** True once an entry is old enough to be treated as gone. */

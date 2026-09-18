@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/hud/HudKit";
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
-import { applyDiagnostic, emptyProfile, learnerInstruction, profileSummary, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
-import { openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
+import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
+import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -17,8 +17,10 @@ import { useAuth } from "@/components/auth/AuthGate";
 import { trackForProfile, isAdhdLearner } from "@/lib/adhd/gate";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { takePendingBrief } from "@/lib/pendingBrief";
-import { PageSelector, type DocumentPage, type NormalisedRect, type PageSelection } from "@/components/upload/PageSelector";
-import { PageAreaSelect } from "@/components/upload/PageAreaSelect";
+import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
+import { PageStack } from "@/components/upload/PageStack";
+import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
+import { Loader2 } from "lucide-react";
 import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
@@ -29,6 +31,9 @@ import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
+import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnotes";
+import { mergeSourceDocuments } from "@/lib/mergeSourceDocuments";
+import { emptySourceScope, type PdfFidelity, type SourceScope } from "@/lib/sourceScope";
 import {
   fallbackDocumentScopeQuestion,
   isSpecificDocumentRequest,
@@ -56,32 +61,8 @@ const PLANNING_ANGLES: { id: PlanningAngleId; label: string }[] = [
   { id: "failure-case", label: "Through a failure" },
   { id: "analogy", label: "Through an analogy" },
 ];
-const BUILD_STEERING_QUESTIONS = [
-  {
-    question: "Should I spend extra time on the mechanism?",
-    options: [
-      { label: "Go deeper", note: "The student chose deeper technical mechanism explanations during build." },
-      { label: "Keep it crisp", note: "The student chose concise mechanism explanations during build." },
-    ],
-  },
-  {
-    question: "Should I include the common trap?",
-    options: [
-      { label: "Add the trap", note: "The student wants a Mistake Ambush/common misconception included during the lecture." },
-      { label: "Skip traps", note: "The student prefers not to spend extra time on misconception traps." },
-    ],
-  },
-  {
-    question: "What should Aria use when things get hard?",
-    options: [
-      { label: "Real example", note: "When the topic gets difficult, use a concrete real-world example." },
-      { label: "Quick check", note: "When the topic gets difficult, use a short active recall check." },
-      { label: "Analogy", note: "When the topic gets difficult, use a compact analogy." },
-    ],
-  },
-] as const;
 type ScopingQuestion = {
-  kind?: "scope" | "emphasis";
+  kind?: "scope" | "emphasis" | "fidelity" | "depth";
   question: string;
   options: DocumentPlanningOption[];
 };
@@ -135,12 +116,15 @@ type LecturePayload = {
    * later. An id the server no longer recognises is not an error — generation falls back to text.
    */
   documentId?: string;
+  /** Whether the lecture must stay strictly inside the uploaded material or may use it as a
+   *  springboard — see lib/sourceScope.ts. Absent for a topic with no upload. */
+  sourceScope?: SourceScope;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
   const [input, setInput] = useState("");
   const [phase, setPhase] = useState<
-    "ask" | "outline" | "building" | "teaching" | "finished" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
+    "ask" | "outline" | "preview" | "building" | "teaching" | "finished" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
   const [builtTopic, setBuiltTopic] = useState("");
@@ -194,10 +178,6 @@ type BuildCost =
    * no-op.
    */
   const builtLessonRef = useRef<{ beats: Beat[]; topic: string } | null>(null);
-  const [buildSteeringActive, setBuildSteeringActive] = useState(false);
-  const [buildSteeringChoices, setBuildSteeringChoices] = useState<string[]>([]);
-  const buildSteeringNotesRef = useRef<string[]>([]);
-  const buildSteeringResolveRef = useRef<(() => void) | null>(null);
 
   // Interactive planning: ONE pre-draft gate in the main canvas (ambiguity questions if the
   // topic is genuinely ambiguous, OR topic-specific planning questions if there are real
@@ -206,10 +186,25 @@ type BuildCost =
   // scoping questions + freeform revise.
   const [initialAmbiguityQuestions, setInitialAmbiguityQuestions] = useState<ClarifyQuestion[]>([]);
   const [initialPlanningQuestions, setInitialPlanningQuestions] = useState<ScopingQuestion[]>([]);
-  const [planningAnswers, setPlanningAnswers] = useState<Array<{ question: string; label: string; instruction: string; focus?: string | null }>>([]);
+  const [planningAnswers, setPlanningAnswers] = useState<Array<{ question: string; label: string; instruction: string; focus?: string | null; fidelity?: PdfFidelity; depthLevel?: DepthLevel }>>([]);
   const [documentPlanningActive, setDocumentPlanningActive] = useState(false);
   const [focusedDocumentPlanningActive, setFocusedDocumentPlanningActive] = useState(false);
   const focusedPlanningFreshRef = useRef<FreshUpload | null>(null);
+  /** Free-text notes from the document-scope/emphasis chip answers, carried from
+   *  submitPlanningQuestions through the outline+preview screens to the eventual build() call —
+   *  see confirmLessonPlan. Cleared whenever a fresh document-scope round starts. */
+  const documentPlanningNotesRef = useRef<string[]>([]);
+  /**
+   * Whether the lesson must stay strictly inside the uploaded material or may use it as a
+   * springboard, plus how much of it to cover — asked once alongside the existing document-scope
+   * question (see fallbackFidelityQuestion in lib/documentLessonPlanning.ts) and travelling
+   * through the outline call and into generation exactly like learnerProfile/depth already do.
+   */
+  const [sourceScope, setSourceScope] = useState<SourceScope>(emptySourceScope());
+  const sourceScopeRef = useRef<SourceScope>(sourceScope);
+  useEffect(() => {
+    sourceScopeRef.current = sourceScope;
+  }, [sourceScope]);
   const [clarifyAnswers, setClarifyAnswers] = useState<{ question: string; answer: string }[]>([]);
   /**
    * The pre-lesson conversation about what the student already knows.
@@ -222,6 +217,10 @@ type BuildCost =
   const [learnerProfile, setLearnerProfile] = useState<LearnerProfile | null>(null);
   const [learnerDepth, setLearnerDepth] = useState<DepthLevel | null>(null);
   const [diagnosticQuestion, setDiagnosticQuestion] = useState<{ question: string; options: string[] } | null>(null);
+  /** True while `diagnosticQuestion` IS the depth-preference question — answering it is handled
+   *  locally (no model round-trip needed for a fixed set of chip options) rather than through
+   *  submitDiagnosticAnswer. See startPlanning, where it is always asked first. */
+  const isDepthQuestionRef = useRef(false);
   const [diagnosticExchanges, setDiagnosticExchanges] = useState<{ question: string; answer: string }[]>([]);
   const [diagnosticBusy, setDiagnosticBusy] = useState(false);
   /**
@@ -307,6 +306,11 @@ type BuildCost =
    */
   const voiceOutlineRef = useRef<PlanOutline | null>(null);
   const voiceDocContext = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
+  /** Aria's own last spoken line, used as the "question" a spoken student answer is graded
+   *  against — see onTranscript below. Voice turn-taking is Gemini Live's own, not gated on
+   *  diagnosticQuestion the way the text chat is, so there is no other record of what she just
+   *  asked out loud. */
+  const lastVoiceQuestionRef = useRef<string>("");
 
   const planningVoice = useGeminiLiveTutor({
     topic: topic || "this lesson",
@@ -331,7 +335,7 @@ type BuildCost =
       }
       if (name === "approve_plan") {
         approveOutline();
-        return "Building has started. It takes a few minutes.";
+        return "The student is now looking at the final lesson summary on screen — tell them briefly what it shows, and building starts once they confirm it there.";
       }
       return `Unknown tool: ${name}`;
     },
@@ -342,6 +346,30 @@ type BuildCost =
     onTranscript: (role, text, final) => {
       if (!final || !text.trim()) return;
       setVoiceLines((prev) => [...prev.slice(-40), { role: role === "student" ? "you" : "aria", text: text.trim() }]);
+
+      if (role === "tutor") {
+        lastVoiceQuestionRef.current = text.trim();
+        return;
+      }
+
+      /*
+       * A SPOKEN ANSWER FEEDS THE SAME SHARED PROFILE, SILENTLY.
+       *
+       * Voice stays naturally voice-led — Gemini Live keeps driving its own turns exactly as
+       * buildPlanningVoiceInstruction already asks it to — but every final student utterance is
+       * graded in the background via the same diagnose call the text chat uses, so a question
+       * answered by talking counts exactly like one answered by typing. Nothing here tells Aria
+       * what to say next; submitDiagnosticAnswer's own addContext call (see its body) is what
+       * keeps her from re-asking something this turn just established.
+       *
+       * Gated on hasEnoughSignal so voice does not keep silently grading once the diagnostic has
+       * already concluded — once the lecture is being planned in earnest, an aside spoken during
+       * the build is genuine conversation, not one more diagnostic turn to score.
+       */
+      if (phase === "outline" && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
+        const question = lastVoiceQuestionRef.current || openingQuestion(topic);
+        void submitDiagnosticAnswer(question, text.trim(), "voice");
+      }
     },
     /**
      * KEEP THE SOCKET OPEN THROUGH A SILENT WAIT.
@@ -378,7 +406,7 @@ type BuildCost =
    * there.
    */
   useEffect(() => {
-    if (phase === "outline") {
+    if (phase === "outline" || phase === "preview") {
       void voiceStart();
       return;
     }
@@ -409,32 +437,73 @@ type BuildCost =
     lastLine: voiceLines.length ? voiceLines[voiceLines.length - 1] : null,
   };
   const [uploadPhase, setUploadPhase] = useState<"idle" | "reading" | "choosing" | "ready" | "error">("idle");
-  // Page-selection state. Only ever populated for PDFs; every other upload path skips it entirely.
-  const [pendingPdf, setPendingPdf] = useState<File | null>(null);
-  /** Which parser the chosen pages go to. A deck takes the same road as a PDF now. */
-  const [pendingKind, setPendingKind] = useState<"pdf" | "pptx">("pdf");
-  const [documentPages, setDocumentPages] = useState<DocumentPage[]>([]);
+  /**
+   * Page-selection state. Only ever populated for PDFs/decks; every other upload path skips it
+   * entirely. An ARRAY, not a single value, so more than one file can be chosen and previewed
+   * together — see ingestFiles. A single-file upload is simply the length-1 case of the same
+   * state, so nothing here special-cases "just one file".
+   */
+  type PendingSource = {
+    file: File;
+    kind: "pdf" | "pptx";
+    pages: DocumentPage[];
+    /** Whether THIS file's previews are the real pages or a reconstruction — see pagesFidelity's
+     *  old doc comment; now tracked per file since a mixed PDF+deck upload can disagree. */
+    fidelity: "rendered" | "approximate";
+    /** Reachable via document-pages but with no renderable previews (e.g. no Python renderer on
+     *  this server) — the reason is shown instead of a page stack for this file specifically. */
+    unavailableReason: string | null;
+    /** Chosen pages within THIS file, in the order they were chosen — same shape PageSelection
+     *  always had, now one per file instead of shared. */
+    selection: PageSelection;
+    /** The part of a page the student dragged over, by page number, within THIS file. */
+    regions: Record<number, NormalisedRect>;
+  };
+  const [pendingSources, setPendingSources] = useState<PendingSource[]>([]);
+  const [activeSourceIndex, setActiveSourceIndex] = useState(0);
   const [pagesLoading, setPagesLoading] = useState(false);
   // True while the CHOSEN pages are being parsed — keeps the selection screen up instead of
   // falling back to the capture form.
   const [parsingPages, setParsingPages] = useState(false);
-  const [pagesUnavailable, setPagesUnavailable] = useState<string | null>(null);
-  /**
-   * Whether the previews are the real pages or a reconstruction.
-   *
-   * Only ever "approximate" for a deck with no LibreOffice to convert it. Surfaced because a student
-   * who cannot tell a real slide from a redrawing cannot tell why the region they cropped looks
-   * unfamiliar — and would reasonably conclude the crop was broken.
-   */
-  const [pagesFidelity, setPagesFidelity] = useState<"rendered" | "approximate">("rendered");
-  const [pageSelection, setPageSelection] = useState<PageSelection>({ pages: [], prompt: "" });
-  /**
-   * The part of a page the student dragged over, by page number.
-   *
-   * Owned here rather than inside PageSelector because the surface you drag on is the big preview
-   * this page renders, not the selector's thumbnail grid — one owner for one piece of state.
-   */
-  const [pageRegions, setPageRegions] = useState<Record<number, NormalisedRect>>({});
+  const activeSource: PendingSource | undefined = pendingSources[activeSourceIndex];
+  const pageSelection = activeSource?.selection ?? { pages: [], prompt: "" };
+  const pageRegions = activeSource?.regions ?? {};
+  /** Selection now lives on the page itself (a click in the scroller), not a separate grid — this
+   *  is the one place that mutates a source's selection. Order is preserved, since the order
+   *  pages were chosen in is meaningful when assembling an explanation. Always applies to the
+   *  ACTIVE tab — see the tab switcher in the "choosing" phase render. */
+  const togglePageSelected = useCallback((pageNumber: number) => {
+    setPendingSources((current) =>
+      current.map((source, index) => {
+        if (index !== activeSourceIndex) return source;
+        const pages = source.selection.pages.includes(pageNumber)
+          ? source.selection.pages.filter((n) => n !== pageNumber)
+          : [...source.selection.pages, pageNumber];
+        return { ...source, selection: { ...source.selection, pages } };
+      }),
+    );
+  }, [activeSourceIndex]);
+  const setPageSelection = useCallback((updater: PageSelection | ((current: PageSelection) => PageSelection)) => {
+    setPendingSources((current) =>
+      current.map((source, index) => {
+        if (index !== activeSourceIndex) return source;
+        const next = typeof updater === "function" ? updater(source.selection) : updater;
+        return { ...source, selection: next };
+      }),
+    );
+  }, [activeSourceIndex]);
+  const setPageRegions = useCallback(
+    (updater: Record<number, NormalisedRect> | ((current: Record<number, NormalisedRect>) => Record<number, NormalisedRect>)) => {
+      setPendingSources((current) =>
+        current.map((source, index) => {
+          if (index !== activeSourceIndex) return source;
+          const next = typeof updater === "function" ? updater(source.regions) : updater;
+          return { ...source, regions: next };
+        }),
+      );
+    },
+    [activeSourceIndex],
+  );
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
@@ -517,7 +586,7 @@ type BuildCost =
     if (brief.file) {
       // Route through the same handler the on-page picker uses, so PDF/PPTX/JSON parsing, page
       // limits and error reporting stay in exactly one place.
-      void ingestFile(brief.file);
+      void ingestFiles([brief.file]);
       if (brief.topic) setInput(brief.topic);
       return;
     }
@@ -550,11 +619,11 @@ type BuildCost =
   }, [uploadPhase, topic, input]);
 
   async function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    // Reset file input so the same file can be re-selected if needed
+    const files = Array.from(e.target.files ?? []);
+    if (!files.length) return;
+    // Reset file input so the same file(s) can be re-selected if needed
     e.target.value = "";
-    await ingestFile(file);
+    await ingestFiles(files);
   }
 
   /** The file pipeline itself, separated from the input event so a file handed over from the
@@ -575,9 +644,15 @@ type BuildCost =
    * general lecture on the paper's subject. The topic still drives planning; `focus` is what lets
    * the server find the passage and pin the lecture to it.
    */
-  async function parseSelectedPages() {
-    const file = pendingPdf;
-    if (!file) return;
+  /**
+   * `pagesOverride` lets a caller act on pages that haven't made it into `pageSelection` state yet
+   * — specifically the per-page "Get a lecture from this area" button, which selects a page and
+   * parses it in the same click. Reading `pageSelection.pages` there would race the state update
+   * (still the old value on this render), so the override is the source of truth when given.
+   */
+  async function parseSelectedPages(activeOverride?: number[]) {
+    const sources = pendingSources;
+    if (!sources.length) return;
     /**
      * Stay on the selection screen while the chosen pages are parsed.
      *
@@ -590,35 +665,61 @@ type BuildCost =
     setParsingPages(true);
     setUploadError(null);
     try {
-      const fd = new FormData();
-      fd.append("file", file);
-      if (pageSelection.pages.length > 0) fd.append("pages", pageSelection.pages.join(","));
-      // Only for pages still selected: deselecting a page must not leave its region behind to be
-      // read from a page the student has since taken out of the lesson.
-      const regions = pageSelection.pages
-        .filter((page) => pageRegions[page])
-        .map((page) => ({ page, rect: pageRegions[page] }));
-      if (regions.length > 0) fd.append("regions", JSON.stringify(regions));
-      // Same request, same fields, different parser — that is what "treated exactly the same" means.
-      const res = await fetch(pendingKind === "pptx" ? "/api/parse-pptx" : "/api/parse-pdf", { method: "POST", body: fd });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || (!data.sourceDocument && !data.fullText)) {
-        throw new Error(data.error || (pendingKind === "pptx"
+      /*
+       * MULTIPLE FILES ARE PARSED IN PARALLEL, THEN MERGED. Each file's own /api/parse-pdf or
+       * /api/parse-pptx call is independent expensive work — there is no reason the second file
+       * should wait on the first — and mergeSourceDocuments() combines the results into the one
+       * flat sourceDocument every downstream planning/generation call already expects, tagging
+       * each block with which file it came from.
+       *
+       * `activeOverride` only applies to the ACTIVE source (the "Get a lecture from this area"
+       * button acts on one page of one file); every other source parses its own selection as-is.
+       */
+      const parsed = await Promise.all(
+        sources.map(async (source, index) => {
+          const pages = index === activeSourceIndex && activeOverride ? activeOverride : source.selection.pages;
+          const fd = new FormData();
+          fd.append("file", source.file);
+          if (pages.length > 0) fd.append("pages", pages.join(","));
+          // Only for pages still selected: deselecting a page must not leave its region behind to
+          // be read from a page the student has since taken out of the lesson.
+          const regions = pages
+            .filter((page) => source.regions[page])
+            .map((page) => ({ page, rect: source.regions[page] }));
+          if (regions.length > 0) fd.append("regions", JSON.stringify(regions));
+          // Same request, same fields, different parser — that is what "treated exactly the same" means.
+          const res = await fetch(source.kind === "pptx" ? "/api/parse-pptx" : "/api/parse-pdf", { method: "POST", body: fd });
+          const data = await res.json().catch(() => ({}));
+          return { source, data, ok: res.ok, drewRegion: regions.length > 0 };
+        }),
+      );
+
+      const failed = parsed.find((p) => !p.ok || (!p.data.sourceDocument && !p.data.fullText));
+      if (failed) {
+        throw new Error(failed.data.error || (failed.source.kind === "pptx"
           ? "Couldn't read the presentation. Make sure it's a valid .pptx file."
           : "Couldn't read the PDF. Make sure it's a valid .pdf file."));
       }
+
+      const primary = parsed[activeSourceIndex] ?? parsed[0];
+      const docsToMerge = parsed
+        .filter((p) => isSuprnotesLessonInput(p.data.sourceDocument))
+        .map((p) => ({ label: p.source.file.name, doc: p.data.sourceDocument as SuprnotesLessonInput }));
+      const mergedSourceDocument = docsToMerge.length > 0 ? mergeSourceDocuments(docsToMerge) : null;
+
       setUploadedFile({
-        name: file.name,
-        slideCount: Array.isArray(data.pagesUsed) ? data.pagesUsed.length : data.pageCount ?? data.slideCount ?? 0,
-        kind: pendingKind,
-        assetCount: data.assetCount ?? 0,
+        name: sources.length > 1 ? `${sources.length} files` : primary.source.file.name,
+        slideCount: Array.isArray(primary.data.pagesUsed) ? primary.data.pagesUsed.length : primary.data.pageCount ?? primary.data.slideCount ?? 0,
+        kind: primary.source.kind,
+        assetCount: parsed.reduce((sum, p) => sum + (p.data.assetCount ?? 0), 0),
       });
-      setSourceDocument(data.sourceDocument ?? null);
+      setSourceDocument(mergedSourceDocument);
       // A deck without embedded pictures has no source document; its slide text is the source.
-      if (!data.sourceDocument && typeof data.fullText === "string") setSlideContext(data.fullText);
-      const parsedDocumentId = typeof data.documentId === "string" ? data.documentId : null;
+      // Only meaningful for a single deck — multiple files always produce a mergeable sourceDocument.
+      if (!mergedSourceDocument && typeof primary.data.fullText === "string") setSlideContext(primary.data.fullText);
+      const parsedDocumentId = typeof primary.data.documentId === "string" ? primary.data.documentId : null;
       setDocumentId(parsedDocumentId);
-      setFullDocumentText(typeof data.fullDocumentText === "string" ? data.fullDocumentText : "");
+      setFullDocumentText(parsed.map((p) => (typeof p.data.fullDocumentText === "string" ? p.data.fullDocumentText : "")).filter(Boolean).join("\n\n"));
 
       /**
        * The question, from wherever the student actually asked it.
@@ -631,11 +732,12 @@ type BuildCost =
        * then thrown away for the one purpose that mattered.
        *
        * The page-chooser box wins when both exist: it is the more specific of the two, typed with
-       * the pages already in view.
+       * the pages already in view. With more than one file, the ACTIVE tab's prompt wins — that
+       * is the file the student was looking at when they typed it.
        */
-      const focus = pageSelection.prompt.trim() || topic.trim() || input.trim();
-      const transcriptText = typeof data.ocrTranscript === "string" ? data.ocrTranscript : "";
-      const drewRegion = regions.length > 0;
+      const focus = primary.source.selection.prompt.trim() || topic.trim() || input.trim();
+      const transcriptText = parsed.map((p) => (typeof p.data.ocrTranscript === "string" ? p.data.ocrTranscript : "")).filter(Boolean).join("\n\n");
+      const drewRegion = parsed.some((p) => p.drewRegion);
 
       /*
        * The lecture's SUBJECT comes from what was read, when the words only point.
@@ -665,12 +767,11 @@ type BuildCost =
         || focus
         || topic.trim()
         || input.trim()
-        || data.title
+        || primary.data.title
         || "this document";
       setUploadFocus(focus);
       setOcrTranscript(transcriptText);
-      setPendingPdf(null);
-      setDocumentPages([]);
+      setPendingSources([]);
       setParsingPages(false);
       setUploadPhase("ready");
 
@@ -682,11 +783,11 @@ type BuildCost =
        */
       autoPlannedRef.current = true;
       void startPlanning(subject, false, {
-        sourceDocument: data.sourceDocument ?? undefined,
-        slideContext: typeof data.fullText === "string" ? data.fullText : undefined,
+        sourceDocument: mergedSourceDocument ?? undefined,
+        slideContext: typeof primary.data.fullText === "string" ? primary.data.fullText : undefined,
         focus,
         transcript: transcriptText,
-        kind: pendingKind,
+        kind: primary.source.kind,
         scopeSelected: drewRegion,
         documentId: parsedDocumentId,
       });
@@ -697,7 +798,22 @@ type BuildCost =
     }
   }
 
-  async function ingestFile(file: File) {
+  /**
+   * "Get a lecture from this area" — the button that appears the instant a region is cropped, so
+   * building from just that crop does not require scrolling back up to the header's "Use N pages".
+   * Marks the page selected (so the header stays truthful about what is about to be sent) and
+   * parses immediately, passing the page explicitly rather than waiting a render for `pageSelection`
+   * to reflect the toggle.
+   */
+  function useRegionAsLecture(pageNumber: number) {
+    setPageSelection((current) =>
+      current.pages.includes(pageNumber) ? current : { ...current, pages: [...current.pages, pageNumber] },
+    );
+    void parseSelectedPages([pageNumber]);
+  }
+
+  async function ingestFiles(files: File[]) {
+    if (!files.length) return;
     setUploadPhase("reading");
     setUploadError(null);
     setSlideContext("");
@@ -707,18 +823,22 @@ type BuildCost =
     setSourceDocument(null);
 
     try {
-      if (file.name.toLowerCase().endsWith(".json") || file.type === "application/json") {
-        const text = await file.text();
+      // A Suprnotes JSON export is a complete, already-built lesson package, not "a document to
+      // add to a stack" — if the student picked one (alone or alongside other files), it wins and
+      // nothing else in the selection is read. Multi-select only ever composes several PDFs/decks.
+      const jsonFile = files.find((f) => f.name.toLowerCase().endsWith(".json") || f.type === "application/json");
+      if (jsonFile) {
+        const text = await jsonFile.text();
         const parsed = JSON.parse(text) as Record<string, unknown>;
         const lesson = parsed.lesson && typeof parsed.lesson === "object" ? parsed.lesson as Record<string, unknown> : {};
-        const title = typeof lesson.title === "string" && lesson.title.trim() ? lesson.title.trim() : file.name.replace(/\.json$/i, "");
+        const title = typeof lesson.title === "string" && lesson.title.trim() ? lesson.title.trim() : jsonFile.name.replace(/\.json$/i, "");
         const assetCount = Array.isArray(parsed.assets) ? parsed.assets.length : 0;
         const blockCount = Array.isArray(parsed.contentBlocks) ? parsed.contentBlocks.length : 0;
         if (!blockCount && !assetCount) {
           throw new Error("That JSON does not look like a Suprnotes lesson export. It needs contentBlocks or assets.");
         }
         setSourceDocument(parsed);
-        setUploadedFile({ name: file.name, kind: "suprnotes", assetCount });
+        setUploadedFile({ name: jsonFile.name, kind: "suprnotes", assetCount });
         setSlideContext("");
         setDiagramHints("");
         setSlideImages([]);
@@ -728,9 +848,11 @@ type BuildCost =
         return;
       }
 
-      const lower = file.name.toLowerCase();
-      const isDeck = lower.endsWith(".pptx") || file.type.includes("presentationml");
-      if (lower.endsWith(".pdf") || file.type === "application/pdf" || isDeck) {
+      const docFiles = files.filter((file) => {
+        const lower = file.name.toLowerCase();
+        return lower.endsWith(".pdf") || file.type === "application/pdf" || lower.endsWith(".pptx") || file.type.includes("presentationml");
+      });
+      if (docFiles.length > 0) {
         /**
          * A PDF *or a deck* stops here to let the student choose pages, instead of parsing at once.
          *
@@ -745,42 +867,72 @@ type BuildCost =
          *
          * If previews are unavailable — no Python renderer on this server — the selector says so
          * and parsing the whole document remains one click away, which is the old behaviour.
+         *
+         * MULTIPLE FILES ARE FETCHED IN PARALLEL. Each file's thumbnails are independent work, so
+         * there is no reason to make the second file wait on the first — Promise.all runs the
+         * requests together and the tab strip (see the "choosing" phase render) shows each file
+         * the moment its own previews land, not all-or-nothing.
          */
-        setPendingPdf(file);
-        setPendingKind(isDeck ? "pptx" : "pdf");
+        setActiveSourceIndex(0);
+        setPendingSources(
+          docFiles.map((file) => ({
+            file,
+            kind: file.name.toLowerCase().endsWith(".pptx") || file.type.includes("presentationml") ? "pptx" as const : "pdf" as const,
+            pages: [],
+            fidelity: "rendered" as const,
+            unavailableReason: null,
+            selection: { pages: [], prompt: "" },
+            regions: {},
+          })),
+        );
         setPagesLoading(true);
         setUploadPhase("choosing");
-        const pageForm = new FormData();
-        pageForm.append("file", file);
-        const pageRes = await fetch("/api/document-pages", { method: "POST", body: pageForm });
-        const pageData = await pageRes.json().catch(() => ({}));
+        const results = await Promise.all(
+          docFiles.map(async (file) => {
+            const pageForm = new FormData();
+            pageForm.append("file", file);
+            const pageRes = await fetch("/api/document-pages", { method: "POST", body: pageForm });
+            const pageData = await pageRes.json().catch(() => ({}));
+            return { file, ok: pageRes.ok, data: pageData };
+          }),
+        );
         setPagesLoading(false);
+
         /*
          * A REFUSAL is not a missing preview.
          *
          * A document over the page limit comes back 413 with an explanation of what to do about it.
-         * Falling through to the branch below would file that under "previews are unavailable" and
-         * still show the selector, so the student would pick pages from a document that is going to
-         * be rejected — and never see the sentence telling them to split it.
+         * Treating that as "previews are unavailable" would still show the selector, so the student
+         * would pick pages from a document that is going to be rejected — and never see the
+         * sentence telling them to split it. One refused file fails the whole upload; a partial
+         * "3 of 4 files worked" state has no good way to explain itself.
          */
-        if (!pageRes.ok) {
-          setPendingPdf(null);
-          setDocumentPages([]);
-          setUploadError(typeof pageData?.error === "string" ? pageData.error : "Could not read that file.");
+        const failed = results.find((r) => !r.ok);
+        if (failed) {
+          setPendingSources([]);
+          setUploadError(typeof failed.data?.error === "string" ? failed.data.error : "Could not read that file.");
           setUploadPhase("error");
           return;
         }
-        if (pageData?.kind === "pages" && Array.isArray(pageData.pages)) {
-          setDocumentPages(pageData.pages);
-          setPagesFidelity(pageData.fidelity === "approximate" ? "approximate" : "rendered");
-          setPagesUnavailable(null);
-        } else {
-          setDocumentPages([]);
-          setPagesUnavailable(pageData?.reason ?? "Page previews are unavailable.");
-        }
+
+        setPendingSources((current) =>
+          current.map((source, index) => {
+            const result = results[index];
+            if (result?.data?.kind === "pages" && Array.isArray(result.data.pages)) {
+              return {
+                ...source,
+                pages: result.data.pages,
+                fidelity: result.data.fidelity === "approximate" ? "approximate" as const : "rendered" as const,
+                unavailableReason: null,
+              };
+            }
+            return { ...source, pages: [], unavailableReason: result?.data?.reason ?? "Page previews are unavailable." };
+          }),
+        );
         return;
       }
 
+      const [file] = files;
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch("/api/parse-pptx", { method: "POST", body: fd });
@@ -1055,6 +1207,9 @@ type BuildCost =
       sourceDocument,
       ...(learnerProfileRef.current ? { learnerProfile: learnerProfileRef.current } : {}),
       ...(learnerDepth ? { depth: learnerDepth } : {}),
+      // Absent (fidelity stays at its "reference" default) for a topic with no upload — the
+      // server treats a missing/no-op scope exactly like today's unlabeled behavior.
+      ...(sourceDocument ? { sourceScope: sourceScopeRef.current } : {}),
     }, t);
   }
 
@@ -1154,7 +1309,7 @@ type BuildCost =
       if (!questions.length && fallback) setPlanError(null);
       setInitialPlanningQuestions(questions.length ? questions : fallback ? [fallback] : []);
       if (questions.length || fallback) return;
-      build(trimmed, undefined, true, fresh);
+      build(trimmed, undefined, fresh);
       return;
     }
 
@@ -1195,7 +1350,7 @@ type BuildCost =
       const normalizedFresh = isPdfOrDeck && isWholeDocumentRequest(planningFocus)
         ? { ...fresh, sourceDocument: planningDocument, focus: "", kind: planningKind }
         : fresh;
-      build(trimmed, undefined, forceBuild || isPdfOrDeck, normalizedFresh);
+      build(trimmed, undefined, normalizedFresh);
       return;
     }
 
@@ -1212,15 +1367,26 @@ type BuildCost =
      * Ask who this is for before planning what to teach.
      *
      * Only on the typed-topic path: an uploaded document returns above with its own planning, and a
-     * demo/skip path never reaches here. The opening question is asked locally rather than by a
+     * demo/skip path never reaches here. Both questions here are asked locally rather than by a
      * round-trip, so the conversation starts the instant the screen does. This is the ONE pre-draft
      * conversation for a typed topic now — the old "planningQuestions" chip questionnaire (prior
      * knowledge / focus / structure dropdowns) has been retired in favor of this adaptive diagnostic;
      * see CLARIFY_TOPIC_SYSTEM_PROMPT's doc comment for why it no longer proposes those.
+     *
+     * THE DEPTH QUESTION COMES FIRST, ALWAYS. Everything else in this conversation deliberately
+     * avoids asking the student to self-report their level (see diagnosticPrompt.ts's own doc
+     * comment on why recognition is not evidence) — but "how deep do you want this" is a
+     * preference, not a competence claim, the same category as the existing "goal" question kind.
+     * Asking it directly and up front, every time, means depth is never left to an implicit read
+     * of phrasing; runDiagnostic still lets the rest of the conversation's evidence override it.
      */
     setLearnerProfile(emptyProfile(trimmed));
     learnerProfileRef.current = emptyProfile(trimmed);
-    setDiagnosticQuestion({ question: openingQuestion(trimmed), options: [] });
+    isDepthQuestionRef.current = true;
+    setDiagnosticQuestion({
+      question: depthQuestion(trimmed),
+      options: DEPTH_OPTIONS.map((o) => o.label),
+    });
   }
 
   /**
@@ -1235,11 +1401,96 @@ type BuildCost =
    * lecture they would have had before this feature existed. The stage is an enhancement, and an
    * enhancement that can strand someone on a question screen is worse than no enhancement.
    */
-  async function runDiagnostic(answer: string) {
-    const question = diagnosticQuestion?.question ?? openingQuestion(topic);
+  /**
+   * ONE turn of the pre-lesson conversation, shared by BOTH the text-chat diagnostic and the live
+   * voice session — see the doc comment on `onTranscript` below for why. Grades `answer` against
+   * `question` (the open text-chat question when `source === "text"`, or a synthetic "what have
+   * they just told Aria" question when `source === "voice"`), updates the one shared
+   * `learnerProfile`, and returns whatever the model decided — the caller decides what to DO with
+   * that, which is the whole reason this is split out from `runDiagnostic` rather than being it.
+   *
+   * NEVER BLOCKS THE LESSON. Every failure path here returns null rather than throwing: a
+   * diagnostic that errors, times out, or returns nothing leaves the student with exactly the
+   * lecture they would have had before this feature existed.
+   */
+  async function submitDiagnosticAnswer(
+    question: string,
+    answer: string,
+    source: "text" | "voice",
+  ): Promise<{ nextQuestion: { question: string; options: string[] } | null; remark: string } | null> {
     const exchanges = [...diagnosticExchanges, { question, answer }];
     setDiagnosticExchanges(exchanges);
+
+    const data = await callPlanApi({
+      mode: "diagnose",
+      topic,
+      profile: learnerProfileRef.current ?? emptyProfile(topic),
+      exchanges,
+      accountContext: accountContextLine(),
+    });
+    if (!data) return null;
+
+    const profile = (data.profile as LearnerProfile | undefined) ?? null;
+    if (profile) {
+      setLearnerProfile(profile);
+      learnerProfileRef.current = profile;
+      // Tell the voice session what is now established, whichever channel just learned it — a
+      // spoken answer must stop the TEXT side re-asking it, and a typed answer must stop Aria
+      // asking about it out loud. See the "WHILE PLANNING" instruction in planningVoiceContract.ts.
+      if (source === "text" && (planningVoice.status === "live" || planningVoice.status === "drawing")) {
+        planningVoice.addContext(profileContextForVoice(profile));
+      }
+    }
+    const depth = typeof data.depth === "number" ? (data.depth as DepthLevel) : null;
+    if (depth) setLearnerDepth(depth);
+
+    const remark = typeof data.remark === "string" ? data.remark.trim() : "";
+    const next = data.nextQuestion as { question: string; options?: string[] } | null | undefined;
+    return {
+      nextQuestion: next?.question ? { question: next.question, options: Array.isArray(next.options) ? next.options : [] } : null,
+      remark,
+    };
+  }
+
+  async function runDiagnostic(answer: string) {
+    const question = diagnosticQuestion?.question ?? openingQuestion(topic);
     setDiagnosticQuestion(null);
+
+    /*
+     * The depth question answers itself — no model round-trip needed for a fixed set of chip
+     * options. Maps straight onto claimedLevel (a stated preference, not a self-graded competence
+     * claim — see depthQuestion's doc comment), then moves straight into the real adaptive
+     * diagnostic, which can still override this via resolveDepth's existing asymmetric trust if
+     * what follows contradicts it.
+     *
+     * A free-typed answer gets a best-effort local keyword match (someone who types "advanced" by
+     * hand said the same thing as clicking the chip) at high confidence; anything unrecognisable
+     * still sets a mid-level default at LOW confidence rather than silently discarding the answer
+     * and leaving claimedLevel null — a null claimedLevel reads to resolveDepth as "never asked",
+     * which is no longer true once this question has been asked and answered.
+     */
+    if (isDepthQuestionRef.current) {
+      isDepthQuestionRef.current = false;
+      const trimmed = answer.trim();
+      const picked =
+        DEPTH_OPTIONS.find((o) => o.label === trimmed) ??
+        DEPTH_OPTIONS.find((o) => trimmed.toLowerCase().includes(o.label.split(" ")[0].toLowerCase()));
+      const next: LearnerProfile = {
+        ...(learnerProfileRef.current ?? emptyProfile(topic)),
+        claimedLevel: picked?.level ?? 3,
+        confidence: picked ? "high" : "low",
+      };
+      setLearnerProfile(next);
+      learnerProfileRef.current = next;
+      // Computed locally, right away, so the profile card's depth line reflects this choice the
+      // instant it's made rather than waiting on the next diagnose round-trip to report it back.
+      setLearnerDepth(resolveDepth(next));
+      // "Just teach me" on the depth question itself still means "skip straight to the lecture".
+      if (!wantsToStart(answer)) {
+        setDiagnosticQuestion({ question: openingQuestion(topic), options: [] });
+        return;
+      }
+    }
 
     /*
      * The student's override, checked before the model is consulted.
@@ -1254,38 +1505,22 @@ type BuildCost =
     }
 
     setDiagnosticBusy(true);
-    const data = await callPlanApi({
-      mode: "diagnose",
-      topic,
-      profile: learnerProfileRef.current ?? emptyProfile(topic),
-      exchanges,
-      accountContext: accountContextLine(),
-    });
+    const result = await submitDiagnosticAnswer(question, answer, "text");
     setDiagnosticBusy(false);
 
-    if (!data) {
-      // callPlanApi already surfaced the error; teach rather than strand them on a question.
+    if (!result) {
+      // submitDiagnosticAnswer already surfaced the error; teach rather than strand them on a question.
       requestOutline(topic, clarifyAnswers, planAngle);
       return;
     }
 
-    const profile = (data.profile as LearnerProfile | undefined) ?? null;
-    if (profile) {
-      setLearnerProfile(profile);
-      learnerProfileRef.current = profile;
-    }
-    const depth = typeof data.depth === "number" ? (data.depth as DepthLevel) : null;
-    if (depth) setLearnerDepth(depth);
-
-    const remark = typeof data.remark === "string" ? data.remark.trim() : "";
-    if (remark) {
+    if (result.remark) {
       diagnosticTurnRef.current += 1;
-      setDiagnosticRemark({ text: remark, turn: diagnosticTurnRef.current });
+      setDiagnosticRemark({ text: result.remark, turn: diagnosticTurnRef.current });
     }
 
-    const next = data.nextQuestion as { question: string; options?: string[] } | null | undefined;
-    if (next?.question) {
-      setDiagnosticQuestion({ question: next.question, options: Array.isArray(next.options) ? next.options : [] });
+    if (result.nextQuestion) {
+      setDiagnosticQuestion(result.nextQuestion);
       return;
     }
     requestOutline(topic, clarifyAnswers, planAngle);
@@ -1319,6 +1554,24 @@ type BuildCost =
     return bits.join("; ");
   }
 
+  /**
+   * What to silently tell the live voice session right after a TEXT answer updates the shared
+   * profile, so Aria's own next spoken question — which she generates herself, per her "ASK, do
+   * not tell" persona (lib/planningVoiceContract.ts) — never re-asks something already answered
+   * on the other channel. Kept short and in the same "already established, never re-ask" register
+   * accountContextLine already uses for the account's own prior-lesson history.
+   */
+  function profileContextForVoice(profile: LearnerProfile): string {
+    const bits: string[] = [];
+    if (profile.masteredConcepts.length) bits.push(`already demonstrated: ${profile.masteredConcepts.join(", ")}`);
+    if (profile.weakConcepts.length) bits.push(`shaky on: ${profile.weakConcepts.join(", ")}`);
+    if (profile.misconceptions.length) bits.push(`holds this wrong belief: ${profile.misconceptions.join("; ")}`);
+    if (profile.prerequisiteGaps.length) bits.push(`missing prerequisite: ${profile.prerequisiteGaps.join(", ")}`);
+    if (profile.objective !== "unknown") bits.push(`wants this for: ${profile.objective}`);
+    if (profile.teachingHypothesis) bits.push(`current read on this student: ${profile.teachingHypothesis}`);
+    return bits.length ? `The student answered a question in the chat panel. Already established, never ask about it again: ${bits.join(" | ")}` : "";
+  }
+
   /** Applies an answer to a pre-draft ambiguity question — starts the FIRST draft now that the
    *  subject is resolved (mode:"outline"), since before this the outline was never built. */
   function answerAmbiguity(question: string, answer: string) {
@@ -1331,21 +1584,66 @@ type BuildCost =
   /** Records/replaces an answer to one pre-draft planning question (main-canvas panel shows all
    *  of them at once, like a short form) — drafting only starts once every question has an
    *  answer (or the student explicitly skips), via submitPlanningQuestions below. */
-  function choosePlanningAnswer(question: string, label: string, instruction: string, focus?: string | null) {
-    setPlanningAnswers((prev) => [...prev.filter((a) => a.question !== question), { question, label, instruction, focus }]);
+  function choosePlanningAnswer(question: string, label: string, instruction: string, focus?: string | null, fidelity?: PdfFidelity, depthLevel?: DepthLevel) {
+    setPlanningAnswers((prev) => [...prev.filter((a) => a.question !== question), { question, label, instruction, focus, fidelity, depthLevel }]);
   }
 
-  /** All planning questions answered — fold them into clarifyAnswers (same grounding mechanism
-   *  ambiguity answers use) and start the first draft. */
+  /** Pulls the fidelity choice (see fallbackFidelityQuestion) out of the answered planning
+   *  questions and folds it into sourceScope, alongside whatever breadth was already chosen —
+   *  the two travel together from here on. Matched by `fidelity` being SET rather than by
+   *  `focus`'s presence, since every answer object now always carries a `focus` key (even
+   *  `undefined`) once choosePlanningAnswer started threading fidelity through the same shape. */
+  function applyFidelityAnswer(answers: typeof planningAnswers, breadth: SourceScope["breadth"]) {
+    const fidelityAnswer = answers.find((a) => a.fidelity === "strict" || a.fidelity === "reference");
+    const next: SourceScope = {
+      breadth,
+      fidelity: fidelityAnswer?.fidelity ?? "reference",
+      documentLabels: pendingSources.length > 1 ? pendingSources.map((s) => s.file.name) : [],
+    };
+    setSourceScope(next);
+    sourceScopeRef.current = next;
+    return next;
+  }
+
+  /**
+   * All planning questions answered — fold them into clarifyAnswers (same grounding mechanism
+   * ambiguity answers use) and draft an outline. This used to call build() directly for an
+   * uploaded document, skipping the outline/preview screens entirely: the student would answer
+   * the scope/emphasis/fidelity chips and land straight in "Preparing your lesson" with no chance
+   * to see or confirm the lesson structure first. Every path — typed topic or uploaded document —
+   * now goes through requestOutline the same way, so a document upload gets the identical
+   * drafting-then-preview experience a typed topic already had.
+   */
   function submitPlanningQuestions() {
     if (documentPlanningActive) {
-      const scopeAnswer = planningAnswers.find((answer) => Object.hasOwn(answer, "focus"));
+      const scopeAnswer = planningAnswers.find((answer) => typeof answer.focus !== "undefined");
       const nextFocus = scopeAnswer ? scopeAnswer.focus ?? "" : "";
-      const notes = planningAnswers.map((answer) => answer.instruction);
+      const notes = planningAnswers
+        .filter((a) => a.fidelity === undefined && a.depthLevel === undefined)
+        .map((answer) => answer.instruction);
+      applyFidelityAnswer(planningAnswers, nextFocus ? { kind: "section", focus: nextFocus } : { kind: "whole" });
+      /*
+       * The depth choice from the document-scope questions travels the same way the typed-topic
+       * diagnostic's depth question does — straight onto claimedLevel/learnerDepth, not into the
+       * free-text documentPlanningNotes line, so learnerInstruction's proper depth directive
+       * applies rather than a vague prose note.
+       */
+      const depthAnswer = planningAnswers.find((a) => a.depthLevel !== undefined);
+      if (depthAnswer?.depthLevel) {
+        const nextProfile: LearnerProfile = {
+          ...(learnerProfileRef.current ?? emptyProfile(topic)),
+          claimedLevel: depthAnswer.depthLevel,
+          confidence: "high",
+        };
+        setLearnerProfile(nextProfile);
+        learnerProfileRef.current = nextProfile;
+        setLearnerDepth(resolveDepth(nextProfile));
+      }
+      documentPlanningNotesRef.current = notes;
       setUploadFocus(nextFocus);
       setInitialPlanningQuestions([]);
       setPlanningAnswers([]);
-      build(topic, undefined, true, { focus: nextFocus }, notes);
+      requestOutline(topic, [], planAngle);
       return;
     }
     const next = [...clarifyAnswers, ...planningAnswers.map((a) => ({ question: a.question, answer: `${a.label}: ${a.instruction}` }))];
@@ -1355,13 +1653,15 @@ type BuildCost =
     requestOutline(topic, next, planAngle);
   }
 
-  /** "Use your judgment" — explicit skip past the planning-question panel straight to drafting. */
+  /** "Use your judgment" — explicit skip past the planning-question panel straight to drafting
+   *  (an outline, not a direct build — same reasoning as submitPlanningQuestions above). */
   function skipPlanningQuestions() {
     setInitialPlanningQuestions([]);
     setPlanningAnswers([]);
     if (documentPlanningActive) {
       setUploadFocus("");
-      build(topic, undefined, true, { focus: "" });
+      documentPlanningNotesRef.current = [];
+      requestOutline(topic, [], planAngle);
       return;
     }
     requestOutline(topic, clarifyAnswers, planAngle);
@@ -1388,47 +1688,30 @@ type BuildCost =
     setPhase("ask");
   }
 
-  function approveOutline() {
-    build(topic, outline ?? undefined, focusedDocumentPlanningActive, focusedPlanningFreshRef.current ?? undefined);
-  }
-
-  function chooseBuildSteering(label: string, note: string) {
-    if (!buildSteeringActive) return;
-    if (!buildSteeringNotesRef.current.includes(note)) {
-      buildSteeringNotesRef.current = [...buildSteeringNotesRef.current, note];
-    }
-    setBuildSteeringChoices((prev) => (prev.includes(label) ? prev : [...prev, label]));
-    setBuildStatus(`Noted: ${label}`);
-  }
-
-  function continueBuildSteering() {
-    if (!buildSteeringActive) return;
-    buildSteeringResolveRef.current?.();
-    buildSteeringResolveRef.current = null;
-  }
-
-  function waitForBuildSteering(signal: AbortSignal): Promise<void> {
-    return new Promise((resolve, reject) => {
-      buildSteeringResolveRef.current = resolve;
-      signal.addEventListener(
-        "abort",
-        () => {
-          buildSteeringResolveRef.current = null;
-          reject(new DOMException("Aborted", "AbortError"));
-        },
-        { once: true }
-      );
-    });
-  }
-
   /**
-   * @param forceSkipSteering Bypass the build-time steering prompt.
-   *
-   * Same reason as startPlanning's forceBuild: shouldSkipPlanning() reads `uploadedFile`, which a
-   * caller that has just parsed a document sets in the same tick. Without this the steering panel
-   * opens and waits for a click that a document upload should never have been asked for — the
-   * lecture simply stops, with parse-pdf having returned 200 and nothing in the log.
+   * "Approve" no longer starts the build directly — it moves to the Final Lesson Preview, a
+   * synthesized "here's everything about you + here's the plan" screen the student confirms or
+   * goes back to edit, per the redesign. Gated on the diagnostic/planning questions actually
+   * being resolved (they already gate the outline screen's own approve button existing at all,
+   * but re-checking here keeps this function correct if it is ever called from anywhere else).
    */
+  function approveOutline() {
+    if (!outline) return;
+    if (diagnosticQuestion || initialPlanningQuestions.length > 0 || initialAmbiguityQuestions.length > 0) return;
+    setPhase("preview");
+  }
+
+  /** What the old approveOutline body did — the actual build trigger, now called from the
+   *  preview screen's "Confirm" button. */
+  function confirmLessonPlan() {
+    build(
+      topic,
+      outline ?? undefined,
+      focusedPlanningFreshRef.current ?? undefined,
+      documentPlanningNotesRef.current,
+    );
+  }
+
   /**
    * What was just parsed, when the caller has it and React does not yet.
    *
@@ -1454,7 +1737,6 @@ type BuildCost =
   async function build(
     t: string,
     approvedOutline?: PlanOutline,
-    forceSkipSteering = false,
     fresh?: FreshUpload,
     documentPlanningNotes: string[] = [],
   ) {
@@ -1481,28 +1763,7 @@ type BuildCost =
     setBuildJobId(null);
     setBuiltLesson(null);
     setBuildProgress({ stage: "analyzing", stageFraction: 0, detail: null, status: "Starting", elapsedMs: 0 });
-    setBuildSteeringChoices([]);
-    buildSteeringNotesRef.current = [];
 
-    // Structured uploads (PDF/PPT/task-folder/notes) must teach their source AS-IS — no planning and
-    // no build-time steering choices. Only typed prompts get the steering step. This is why a PDF was
-    // still showing "planning options" even though the outline step was already skipped.
-    if (!forceSkipSteering && !shouldSkipPlanning()) {
-      setBuildSteeringActive(true);
-      try {
-        await waitForBuildSteering(controller.signal);
-      } catch (err) {
-        if (err instanceof DOMException && err.name === "AbortError") return;
-        throw err;
-      } finally {
-        setBuildSteeringActive(false);
-      }
-    }
-
-    const buildSteeringNotes = buildSteeringNotesRef.current;
-    const buildSteeringLine = buildSteeringNotes.length
-      ? ` Build-time student steering: ${buildSteeringNotes.join(" ")}`
-      : " Build-time student steering: no extra preference selected, use best judgment.";
     const documentPlanningLine = documentPlanningNotes.length
       ? ` Uploaded-source plan chosen by the student: ${documentPlanningNotes.join(" ")}`
       : "";
@@ -1551,7 +1812,7 @@ type BuildCost =
 
     const payload: LecturePayload = {
       topic: trimmed,
-      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${buildSteeringLine}${documentPlanningLine}${learnerLine}`,
+      mood: `${selectedMode.name} learning mode: ${selectedMode.detail}.${documentPlanningLine}${learnerLine}`,
       sourceType: fresh?.kind ?? uploadedFile?.kind ?? "prompt",
       mode: selectedMode.id === "none" ? "standard" : selectedMode.id as LectureMode,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
@@ -1562,6 +1823,9 @@ type BuildCost =
       ...(approvedOutline ? { outline: approvedOutline } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
+      // Absent (defaults to "reference") for a topic with no upload — matches today's existing,
+      // unlabeled behavior exactly.
+      ...(doc || slides ? { sourceScope: sourceScopeRef.current } : {}),
     };
 
     try {
@@ -1630,7 +1894,11 @@ type BuildCost =
           }
           if (state.state === "error") throw new Error(state.error || "Couldn't build that lecture.");
           if (state.state === "unknown") {
-            throw new Error("That lecture job expired. Press build again to restart it.");
+            // NOT "expired" — nothing timed out. The job is missing because the server process that
+            // was building it went away (a restart, a deploy, or the invocation being reaped), and
+            // blaming a timeout sent people off shortening their PDF for a problem that had nothing
+            // to do with its length.
+            throw new Error("The build stopped unexpectedly — the server may have restarted. Press build to try again.");
           }
           if (state.state === "done") {
             data = state;
@@ -2025,12 +2293,15 @@ type BuildCost =
   /**
    * Page selection is its own full screen rather than a panel inside the upload box.
    *
-   * Thumbnails need room to be recognisable — a page shrunk into a sidebar card is a grey
-   * rectangle — and this is a real decision point in the flow, not a setting. It sits before the
-   * outline step and after upload, so it reads as "which parts of this document?" followed by
-   * "here is the plan".
+   * FULL-BLEED SCROLLER, NOT A SPLIT PANE. The previous layout gave the page preview half the
+   * screen and spent the other half on a thumbnail grid that duplicated what scrolling already
+   * shows. Selection now happens on the page itself — a small "Select" control beside its label —
+   * so the whole width goes to reading the document, which is what a 300%-zoomed Cambridge
+   * textbook page actually needs.
    */
   if (uploadPhase === "choosing" || parsingPages) {
+    const label = activeSource?.kind === "pptx" ? "slides" : "pages";
+    const totalSelected = pendingSources.reduce((sum, s) => sum + s.selection.pages.length, 0);
     return (
       <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
@@ -2039,13 +2310,19 @@ type BuildCost =
         >
           <div className="min-w-0">
             <p className="text-[0.72rem] text-[var(--hud-text-faint)]">Uploaded</p>
-            <h1 className="truncate text-[0.95rem] font-medium">{pendingPdf?.name ?? "Document"}</h1>
+            <h1 className="truncate text-[0.95rem] font-medium">
+              {pendingSources.length > 1 ? `${pendingSources.length} files` : pendingSources[0]?.file.name ?? "Document"}
+            </h1>
           </div>
           <div className="flex items-center gap-3">
+            {totalSelected > 0 && (
+              <p className="text-[0.78rem] text-[var(--hud-text-faint)]">
+                {totalSelected} {label} selected
+              </p>
+            )}
             <button
               onClick={() => {
-                setPendingPdf(null);
-                setDocumentPages([]);
+                setPendingSources([]);
                 setUploadPhase("idle");
               }}
               className="text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
@@ -2053,61 +2330,123 @@ type BuildCost =
               Cancel
             </button>
             <button
-              onClick={parseSelectedPages}
+              onClick={() => parseSelectedPages()}
               disabled={pagesLoading || parsingPages}
               className="hud-btn-primary px-6 py-2.5 text-sm disabled:opacity-40"
             >
               {parsingPages
                 ? "Reading those pages…"
-                : pageSelection.pages.length > 0
-                  ? `Use ${pageSelection.pages.length} page${pageSelection.pages.length === 1 ? "" : "s"}`
+                : totalSelected > 0
+                  ? `Use ${totalSelected} page${totalSelected === 1 ? "" : "s"}`
                   : "Use all pages"}
             </button>
           </div>
         </header>
 
-        <div className="grid min-h-0 flex-1 lg:grid-cols-[1fr_26rem]">
-          {/* A large preview of the first selected page, so the grid stays scannable while the
-              student can still read what they picked. */}
-          <section className="hidden min-h-0 items-center justify-center overflow-hidden p-6 lg:flex">
-            {(() => {
-              const focus = pageSelection.pages[0] ?? documentPages[0]?.pageNumber;
-              const page = documentPages.find((p) => p.pageNumber === focus);
-              if (!page) {
-                return (
-                  <p className="max-w-sm text-center text-[0.9rem] leading-relaxed text-[var(--hud-text-dim)]">
-                    Choose the pages Aria should teach from, or continue to use the whole document.
-                  </p>
-                );
-              }
-              return (
-                <PageAreaSelect
-                  src={page.thumbnail}
-                  alt={`Page ${page.pageNumber}`}
-                  rect={pageRegions[page.pageNumber]}
-                  onChange={(rect) =>
-                    setPageRegions((current) => {
-                      const next = { ...current };
-                      if (rect) next[page.pageNumber] = rect;
-                      else delete next[page.pageNumber];
-                      return next;
-                    })
-                  }
-                />
-              );
-            })()}
-          </section>
+        {/* One tab per uploaded file — an Acrobat-style document switcher, not a merged scroll
+            across files (their page numbers would collide and "Use N pages" would be ambiguous
+            about which file a number belongs to). */}
+        {pendingSources.length > 1 && (
+          <div
+            className="flex shrink-0 gap-1 overflow-x-auto border-b px-3 py-2"
+            style={{ borderColor: "var(--hud-line)" }}
+          >
+            {pendingSources.map((source, index) => (
+              <button
+                key={source.file.name + index}
+                onClick={() => setActiveSourceIndex(index)}
+                className="shrink-0 rounded-[var(--radius)] px-3 py-1.5 text-[0.78rem] font-medium transition-colors"
+                style={{
+                  background: index === activeSourceIndex ? "var(--hud-cyan)" : "transparent",
+                  color: index === activeSourceIndex ? "var(--hud-bg)" : "var(--hud-text-dim)",
+                }}
+              >
+                {source.file.name}
+                {source.selection.pages.length > 0 ? ` (${source.selection.pages.length})` : ""}
+              </button>
+            ))}
+          </div>
+        )}
 
-          <div className="min-h-0 border-l" style={{ borderColor: "var(--hud-line)" }}>
-            <PageSelector
-              pages={documentPages}
-              loading={pagesLoading}
-              unavailableReason={pagesUnavailable}
-              approximate={pagesFidelity === "approximate"}
-              label={pendingKind === "pptx" ? "slides" : "pages"}
-              onChange={setPageSelection}
-              regionFor={(pageNumber) => pageRegions[pageNumber]}
+        <div className="min-h-0 flex-1">
+          {pagesLoading ? (
+            <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
+              <Loader2 aria-hidden="true" size={18} className="animate-spin text-[var(--hud-text-faint)]" />
+              <p className="text-[0.85rem] text-[var(--hud-text-dim)]">Rendering {label}…</p>
+            </div>
+          ) : activeSource?.unavailableReason ? (
+            <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center">
+              <p className="text-[0.85rem] text-[var(--hud-text-dim)]">{activeSource.unavailableReason}</p>
+              <p className="text-[0.78rem] text-[var(--hud-text-faint)]">The whole document will be used.</p>
+            </div>
+          ) : !activeSource || activeSource.pages.length === 0 ? (
+            <div className="flex h-full items-center justify-center p-6">
+              <p className="max-w-sm text-center text-[0.9rem] leading-relaxed text-[var(--hud-text-dim)]">
+                Choose the pages Aria should teach from, or continue to use the whole document.
+              </p>
+            </div>
+          ) : (
+            <>
+              {activeSource.fidelity === "approximate" && (
+                <p className="border-b px-5 py-2 text-center text-[0.72rem] text-amber-300/80" style={{ borderColor: "var(--hud-line)" }}>
+                  These are rebuilt previews, not the real slides — layout and fonts will differ.
+                </p>
+              )}
+              <PageStack
+                pages={activeSource.pages}
+                regions={pageRegions}
+                onRegionChange={(pageNumber, rect) =>
+                  setPageRegions((current) => {
+                    const next = { ...current };
+                    if (rect) next[pageNumber] = rect;
+                    else delete next[pageNumber];
+                    return next;
+                  })
+                }
+                selected={pageSelection.pages}
+                onToggleSelected={togglePageSelected}
+                onUseRegion={useRegionAsLecture}
+                label={label}
+              />
+            </>
+          )}
+        </div>
+
+        {/* The prompt bar, docked full-width at the bottom — "what should Aria explain?" plus
+            dictation, in the one place it belongs now that there is no side panel to anchor it to. */}
+        <div className="shrink-0 border-t p-3" style={{ borderColor: "var(--hud-line)" }}>
+          <div className="mx-auto max-w-4xl">
+            <label htmlFor="page-prompt" className="sr-only">
+              What should Aria explain about the selected {label}?
+            </label>
+            <textarea
+              id="page-prompt"
+              value={pageSelection.prompt}
+              onChange={(e) => {
+                const value = e.target.value;
+                setPageSelection((current) => ({ ...current, prompt: value }));
+                const el = e.currentTarget;
+                el.style.height = "auto";
+                el.style.height = `${Math.min(el.scrollHeight, 180)}px`;
+              }}
+              rows={2}
+              placeholder={
+                pageSelection.pages.length > 0
+                  ? `What should Aria explain about ${pageSelection.pages.length === 1 ? "this page" : `these ${label}`}?`
+                  : `Ask about specific ${label}…`
+              }
+              className="max-h-[180px] w-full resize-none overflow-y-auto rounded-[var(--radius)] border bg-transparent px-3 py-2 text-[0.85rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1"
+              style={{ borderColor: "var(--hud-line)" }}
             />
+            <div className="mt-1.5 flex items-center gap-2">
+              <VoicePromptButton
+                baseText={pageSelection.prompt}
+                onTranscript={(text) => setPageSelection((current) => ({ ...current, prompt: text }))}
+                title="Speak your question"
+                showLabel
+                className="inline-flex items-center gap-1.5 rounded-[var(--radius)] border px-2.5 py-1 text-[0.75rem] transition-colors"
+              />
+            </div>
           </div>
         </div>
       </main>
@@ -2117,42 +2456,19 @@ type BuildCost =
   return (
     <main className="hud-canvas hud-grain relative min-h-screen overflow-x-hidden text-[var(--hud-text)]">
       {phase === "building" ? (
-        buildSteeringActive ? (
-          /*
-           * The steering step still comes first when there is one. It is a BLOCKING question the
-           * student answers before generation starts, so it is not part of the design screen —
-           * which exists to accompany work that is already running.
-           */
-          <BuildingState
-            topic={topic}
-            mode={selectedMode.name}
-            status={buildStatus}
-            steeringActive={buildSteeringActive}
-            choices={buildSteeringChoices}
-            // The planner's own questions, grounded in this topic and any uploaded document.
-            questions={initialPlanningQuestions.map((q) => ({
-              question: q.question,
-              options: q.options.map((o) => ({ label: o.label, note: o.instruction })),
-            }))}
-            onChoose={chooseBuildSteering}
-            onContinue={continueBuildSteering}
-            voice={voice}
-          />
-        ) : (
-          <LessonDesignMode
-            topic={topic}
-            mode={selectedMode.name}
-            progress={{ ...buildProgress, status: buildProgress.status || buildStatus }}
-            ready={builtLesson !== null}
-            sourceKind={designSourceKind}
-            mood={`${selectedMode.name} learning mode: ${selectedMode.detail}`}
-            blindMode={selectedMode.page === "blind-demo"}
-            studentName={profile?.displayName ?? undefined}
-            jobId={buildJobId}
-            onStop={backToAsk}
-            onStart={startBuiltLesson}
-          />
-        )
+        <LessonDesignMode
+          topic={topic}
+          mode={selectedMode.name}
+          progress={{ ...buildProgress, status: buildProgress.status || buildStatus }}
+          ready={builtLesson !== null}
+          sourceKind={designSourceKind}
+          mood={`${selectedMode.name} learning mode: ${selectedMode.detail}`}
+          blindMode={selectedMode.page === "blind-demo"}
+          studentName={profile?.displayName ?? undefined}
+          jobId={buildJobId}
+          onStop={backToAsk}
+          onStart={startBuiltLesson}
+        />
       ) : phase === "outline" ? (
         <OutlineReviewState
           topic={topic}
@@ -2167,6 +2483,9 @@ type BuildCost =
           diagnosticRemark={diagnosticRemark}
           onAnswerDiagnostic={runDiagnostic}
           learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
+          learnerProfile={learnerProfile}
+          learnerDepth={learnerDepth}
+          sourceScope={sourceScope}
           initialAmbiguityQuestions={initialAmbiguityQuestions}
           initialPlanningQuestions={initialPlanningQuestions}
           planningAnswers={planningAnswers}
@@ -2180,6 +2499,17 @@ type BuildCost =
           onBack={backToAsk}
           onOutlineChange={setOutline}
           onRerollAngle={rerollAngle}
+          voice={voice}
+        />
+      ) : phase === "preview" ? (
+        <LessonPreviewState
+          topic={topic}
+          outline={outline}
+          learnerProfile={learnerProfile}
+          learnerDepth={learnerDepth}
+          sourceScope={sourceScope}
+          onModify={() => setPhase("outline")}
+          onConfirm={confirmLessonPlan}
           voice={voice}
         />
       ) : (
@@ -2247,14 +2577,18 @@ type BuildCost =
                 <div className="mb-12">
                   <p className="mb-3 text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Or upload a source</p>
 
-                  {/* Hidden file input */}
+                  {/* Hidden file input. `multiple` lets several PDFs/decks be picked at once — see
+                      ingestFiles, which merges them into one source the model reasons over
+                      together. A single Suprnotes JSON export still wins outright if picked
+                      alongside other files, since it is a complete lesson package on its own. */}
                   <input
                     ref={fileInputRef}
                     type="file"
+                    multiple
                     accept=".pptx,.pdf,.json,application/json"
                     className="sr-only"
                     onChange={handleFileSelect}
-                    aria-label="Upload PowerPoint, PDF, or Suprnotes JSON file"
+                    aria-label="Upload one or more PowerPoint, PDF, or Suprnotes JSON files"
                   />
                   {/* Second, separate hidden input for a task-folder pick — webkitdirectory forces
                       folder-selection mode, so it cannot share the single-file input above. */}
@@ -2521,117 +2855,6 @@ function TestOfferScreen({
   );
 }
 
-/** The "building your lecture" state — now with a brief steering window before the generation
- *  request is sent, so answers actually influence the prompt instead of being decorative. */
-function BuildingState({
-  topic,
-  mode,
-  status,
-  steeringActive,
-  choices,
-  questions,
-  onChoose,
-  onContinue,
-  voice,
-}: {
-  topic: string;
-  mode: string;
-  status: string;
-  /** Aria's live session, still running from planning — this screen is where she keeps company. */
-  voice?: VoiceState;
-  steeringActive: boolean;
-  choices: string[];
-  /** Topic-specific questions from the planner. Empty falls back to the generic set. */
-  questions?: { question: string; options: { label: string; note: string }[] }[];
-  onChoose: (label: string, note: string) => void;
-  onContinue: () => void;
-}) {
-  /**
-   * Prefer the planner's questions over the hardcoded ones.
-   *
-   * BUILD_STEERING_QUESTIONS asks the same three things about every subject — "should I spend
-   * extra time on the mechanism?" is a reasonable question about enzyme kinetics and a meaningless
-   * one about the causes of the French Revolution. /api/plan-lesson already generates questions
-   * grounded in the actual topic (and in an uploaded document, when there is one); they were
-   * fetched but never reached this screen, so the generic set was what students always saw.
-   *
-   * The hardcoded set remains as a fallback for when planning is skipped or returns nothing —
-   * asking something generic beats asking nothing.
-   */
-  const steeringQuestions = questions && questions.length > 0 ? questions : BUILD_STEERING_QUESTIONS;
-  return (
-    <div className="relative z-10 grid h-screen place-items-center p-6 text-center">
-      <HudCorners />
-      <div className="flex max-w-xl flex-col items-center">
-        <div className="relative grid size-28 place-items-center">
-          <div className="hud-halo absolute inset-0 rounded-full border border-[var(--hud-cyan)]/40" />
-          <div className="pointer-events-none absolute inset-0 rounded-full opacity-40 blur-2xl" style={{ background: "radial-gradient(circle, rgba(94,234,212,0.6), transparent 70%)" }} />
-          <span className="relative font-display text-4xl hud-text-glow">✦</span>
-        </div>
-        <HudEyebrow>Composing your lecture</HudEyebrow>
-        <h2 className="mt-4 max-w-lg font-display text-3xl font-light leading-tight">
-          Designing a live lesson on <span className="hud-text-glow italic">{topic}</span>…
-        </h2>
-        <p className="mt-5 max-w-md text-sm leading-7 text-[var(--hud-text-dim)]">
-          Mode: {mode}. Aria is choosing the script, visuals, and interaction moments.
-        </p>
-        <p className="mt-3 text-xs font-black uppercase tracking-[0.18em] text-[var(--hud-cyan)]/70">{status}</p>
-        {/* The wait is the reason the voice exists. Showing her state here is what tells the
-            student the silence is a pause in a conversation, not the app having stopped. */}
-        {voice && (
-          <div className="mt-4 flex justify-center">
-            <VoiceStrip voice={voice} />
-          </div>
-        )}
-
-        {steeringActive && (
-          <div className="mt-8 w-full rounded-2xl border border-[var(--hud-cyan)]/45 bg-[var(--hud-cyan)]/[0.075] p-5 text-left shadow-[0_0_60px_rgba(94,234,212,0.13)]">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--hud-cyan)]">Aria needs your call</p>
-            <p className="mt-2 text-sm leading-6 text-[var(--hud-text-dim)]">
-              Pick anything that matters. Then continue and Aria will build the lesson with that direction.
-            </p>
-            <div className="mt-4 space-y-4">
-              {steeringQuestions.map((q) => (
-                <div key={q.question}>
-                  <p className="text-sm font-semibold text-[var(--hud-text)]">{q.question}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {q.options.map((option) => {
-                      const selected = choices.includes(option.label);
-                      return (
-                        <button
-                          key={option.label}
-                          onClick={() => onChoose(option.label, option.note)}
-                          className={`rounded-full border px-3 py-1.5 text-xs font-black transition ${
-                            selected
-                              ? "border-transparent bg-[var(--hud-cyan)] text-black"
-                              : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
-                          }`}
-                        >
-                          {option.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={onContinue}
-              className="mt-5 w-full rounded-full bg-[var(--hud-cyan)] px-4 py-3 text-sm font-black text-black transition hover:brightness-110"
-            >
-              {choices.length > 0 ? "Continue with my choices →" : "Use Aria’s choice →"}
-            </button>
-          </div>
-        )}
-
-        <div className="mt-8 h-1 w-56 overflow-hidden rounded-full bg-white/10">
-          <div className="hud-shimmer h-full w-full" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /** A row of quiet, flat quick-reply buttons — used inline under a chat bubble for both the rare
  *  ambiguity questions and the model-authored scoping questions. Deliberately no glow/gradient:
  *  a thin border, a filled state on hover, nothing decorative. */
@@ -2755,6 +2978,384 @@ function VoiceStrip({ voice }: { voice: VoiceState }) {
   );
 }
 
+/**
+ * The pre-lesson diagnostic question, as the main event rather than a small aside.
+ *
+ * Answering by typing here calls the exact same onAnswerDiagnostic the side chat's chip/typed
+ * path already called — this is a second, more prominent front-end onto the same interaction,
+ * not a new mechanism. Quick-reply chips (when the question has any) sit right below the
+ * question text; a free-text field is always available underneath for a real answer.
+ */
+/**
+ * The document-scope/emphasis/fidelity chip questions, one at a time — same redesign as
+ * DiagnosticQuestionCard, applied here for the same reason. This used to stack every question
+ * into one small bordered box and make the student answer all of them before anything advanced,
+ * which read exactly like filling out a form. Now only the current unanswered question is shown,
+ * generously sized, and picking a chip immediately advances to the next.
+ */
+function PlanningQuestionsCard({
+  questions,
+  answers,
+  documentPlanning,
+  loading,
+  onChoose,
+  onAllAnswered,
+  onSkip,
+}: {
+  questions: ScopingQuestion[];
+  answers: Array<{ question: string; label: string; instruction: string; focus?: string | null; fidelity?: PdfFidelity; depthLevel?: DepthLevel }>;
+  documentPlanning: boolean;
+  loading: boolean;
+  onChoose: (question: string, label: string, instruction: string, focus?: string | null, fidelity?: PdfFidelity, depthLevel?: DepthLevel) => void;
+  onAllAnswered: () => void;
+  onSkip: () => void;
+}) {
+  const current = questions.find((q) => !answers.some((a) => a.question === q.question));
+
+  // All questions answered — advance automatically, the instant the last chip is picked, rather
+  // than waiting on a second "continue" click. In an effect, not during render: onAllAnswered
+  // itself calls setState, and render must stay free of side effects.
+  useEffect(() => {
+    if (!current) onAllAnswered();
+  }, [current, onAllAnswered]);
+
+  if (!current) {
+    return (
+      <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
+        <p className="text-sm text-[var(--hud-text-dim)]">Drafting your lesson…</p>
+      </div>
+    );
+  }
+
+  const answeredCount = answers.length;
+  const total = questions.length;
+
+  return (
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-10 text-center">
+      <p className="text-xs font-semibold uppercase tracking-wider text-[var(--hud-text-faint)]">
+        {documentPlanning ? "Planning from your source" : "Before we draft this outline"} · {answeredCount + 1} of {total}
+      </p>
+
+      <h2 className="mt-4 max-w-xl text-2xl font-medium leading-snug text-[var(--hud-text)]">
+        {current.question}
+      </h2>
+
+      <div className="mt-6 flex max-w-lg flex-wrap justify-center gap-2.5">
+        {current.options.map((option) => (
+          <button
+            key={option.label}
+            type="button"
+            disabled={loading}
+            onClick={() => onChoose(current.question, option.label, option.instruction, option.focus, option.fidelity, option.depthLevel)}
+            className="rounded-full border border-[var(--hud-line-strong)] bg-white/[0.02] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40"
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+
+      <button
+        onClick={onSkip}
+        disabled={loading}
+        className="mt-8 text-xs font-medium text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40"
+      >
+        {documentPlanning ? "Or just teach the whole source →" : "Or let Aria use her judgment →"}
+      </button>
+    </div>
+  );
+}
+
+function DiagnosticQuestionCard({
+  topic,
+  question,
+  remark,
+  busy,
+  onAnswer,
+}: {
+  topic: string;
+  question: { question: string; options: string[] };
+  remark: { text: string; turn: number } | null;
+  busy: boolean;
+  onAnswer: (answer: string) => void;
+}) {
+  const [draft, setDraft] = useState({ value: "", forQuestion: question.question });
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  /*
+   * Reset the field the moment a NEW question arrives, during render — React's own documented
+   * pattern for "state must change immediately when a prop changes" (see lib/usePdfDocument.ts
+   * for the same pattern). Compared against `draft.forQuestion`, part of STATE itself, rather
+   * than a ref: a ref is not safe to read during render, while state read during its own render
+   * always reflects the commit in progress. An effect here would leave one stale frame of the
+   * PREVIOUS question's typed text visible before it had a chance to run.
+   */
+  if (draft.forQuestion !== question.question) {
+    setDraft({ value: "", forQuestion: question.question });
+  }
+  const value = draft.value;
+  const setValue = (next: string) => setDraft({ value: next, forQuestion: question.question });
+
+  useEffect(() => {
+    textareaRef.current?.focus();
+  }, [question.question]);
+
+  function submit() {
+    const trimmed = value.trim();
+    if (!trimmed || busy) return;
+    setValue("");
+    onAnswer(trimmed);
+  }
+
+  return (
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-10 text-center">
+      <p className="text-xs font-semibold uppercase tracking-wider text-[var(--hud-text-faint)]">
+        Before we plan &ldquo;{topic}&rdquo;
+      </p>
+
+      {remark && (
+        <p className="mt-4 max-w-lg text-sm italic text-[var(--hud-cyan)]/90">{remark.text}</p>
+      )}
+
+      <h2 className="mt-4 max-w-xl text-2xl font-medium leading-snug text-[var(--hud-text)]">
+        {question.question}
+      </h2>
+
+      {question.options.length > 0 && (
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          {question.options.map((option) => (
+            <button
+              key={option}
+              type="button"
+              disabled={busy}
+              onClick={() => onAnswer(option)}
+              className="rounded-full border border-[var(--hud-line-strong)] bg-white/[0.02] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40"
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="mt-6 w-full max-w-lg">
+        <textarea
+          ref={textareaRef}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              submit();
+            }
+          }}
+          disabled={busy}
+          rows={2}
+          placeholder={question.options.length > 0 ? "Or type your own answer…" : "Type your answer…"}
+          className="w-full resize-none rounded-[var(--radius)] border border-[var(--hud-line)] bg-white/[0.02] px-4 py-3 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none"
+        />
+        <div className="mt-3 flex items-center justify-between">
+          <p className="text-xs text-[var(--hud-text-faint)]">
+            Or just say &ldquo;start&rdquo; and Aria will get going.
+          </p>
+          <button
+            type="button"
+            onClick={submit}
+            disabled={busy || !value.trim()}
+            className="hud-btn-primary px-5 py-2 text-sm disabled:opacity-40"
+          >
+            {busy ? "Thinking…" : "Answer"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The tutor's own live picture of the student, made visible instead of only baked silently into
+ * later prompts. Every field here already existed in state (learnerProfile, learnerDepth,
+ * sourceScope) — this is purely a rendering surface, so it can only ever show what the diagnostic
+ * has genuinely established, never invent structure the conversation hasn't produced yet.
+ *
+ * conceptMap() (lib/learnerProfile.ts) is the same view masteredConcepts/weakConcepts/
+ * prerequisiteGaps/misconceptions already were — grouped by status here rather than re-derived,
+ * so a change to how the profile classifies a concept shows up here automatically.
+ */
+function StudentProfileCard({
+  profile,
+  depth,
+  sourceScope,
+}: {
+  profile: LearnerProfile | null;
+  depth: DepthLevel | null;
+  sourceScope: SourceScope;
+}) {
+  if (!profile) return null;
+  const map = conceptMap(profile);
+  const groups: { status: ConceptMapEntry["status"]; label: string; dot: string }[] = [
+    { status: "mastered", label: "Mastered", dot: "bg-[var(--hud-cyan)]" },
+    { status: "weak", label: "Shaky on", dot: "bg-amber-400" },
+    { status: "missing", label: "Gap", dot: "bg-rose-400" },
+    { status: "misconception", label: "Misconception", dot: "bg-rose-500" },
+  ];
+  const hasAnyConcepts = map.length > 0;
+  const hasSourceInfo = sourceScope.documentLabels.length > 0 || sourceScope.breadth.kind !== "whole" || sourceScope.fidelity === "strict";
+
+  if (!hasAnyConcepts && !profile.teachingHypothesis && !hasSourceInfo && profile.objective === "unknown") return null;
+
+  return (
+    <div
+      className="hud-materialize mb-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] p-4"
+      style={{ animationDelay: "0.05s" }}
+    >
+      <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Student profile</p>
+
+      {depth && (
+        <p className="mt-2 text-sm font-medium text-[var(--hud-text)]">{DEPTH_NAMES[depth]}</p>
+      )}
+
+      {hasAnyConcepts && (
+        <div className="mt-3 flex flex-col gap-2">
+          {groups.map((group) => {
+            const entries = map.filter((entry) => entry.status === group.status);
+            if (!entries.length) return null;
+            return (
+              <div key={group.status} className="flex items-start gap-2">
+                <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${group.dot}`} aria-hidden="true" />
+                <div className="min-w-0">
+                  <span className="text-[0.68rem] font-semibold uppercase tracking-wide text-[var(--hud-text-faint)]">
+                    {group.label}
+                  </span>
+                  <div className="mt-1 flex flex-wrap gap-1.5">
+                    {entries.map((entry) => (
+                      <span
+                        key={entry.concept}
+                        className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.72rem] text-[var(--hud-text-dim)]"
+                      >
+                        {entry.concept}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {profile.teachingHypothesis && (
+        <p className="mt-3 text-[0.8rem] italic leading-relaxed text-[var(--hud-text-dim)]">
+          &ldquo;{profile.teachingHypothesis}&rdquo;
+        </p>
+      )}
+
+      {profile.objective !== "unknown" && (
+        <p className="mt-2 text-[0.75rem] text-[var(--hud-text-faint)]">
+          Goal: <span className="text-[var(--hud-text-dim)]">{profile.objective}</span>
+        </p>
+      )}
+      {profile.redirectedFocus && (
+        <p className="mt-1 text-[0.75rem] text-[var(--hud-text-faint)]">
+          Focus: <span className="text-[var(--hud-text-dim)]">{profile.redirectedFocus}</span>
+        </p>
+      )}
+
+      {hasSourceInfo && (
+        <div className="mt-3 flex flex-wrap gap-1.5 border-t border-[var(--hud-line)] pt-3">
+          <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]">
+            {sourceScope.breadth.kind === "whole" ? "Whole source" : sourceScope.breadth.focus}
+          </span>
+          <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]">
+            {sourceScope.fidelity === "strict" ? "Strictly from source" : "Source as reference"}
+          </span>
+          {sourceScope.documentLabels.map((label) => (
+            <span key={label} className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]">
+              {label}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * The Final Lesson Preview — a synthesized "here's everything about you + here's the plan"
+ * moment between drafting the outline and actually building the lecture. Reuses
+ * StudentProfileCard verbatim (same data, same component) rather than re-deriving anything: this
+ * screen's entire job is to SHOW what planning already produced, not to compute anything new.
+ *
+ * CONFIRM VS MODIFY, NOT INLINE EDITING HERE. Modify is pure back-navigation to the outline
+ * screen — every piece of state (outline, learnerProfile, sourceScope) is still live, so nothing
+ * needs to be reconstructed. A second, separate editing surface on this screen would duplicate
+ * the outline editor for no requirement that asks for it.
+ */
+function LessonPreviewState({
+  topic,
+  outline,
+  learnerProfile,
+  learnerDepth,
+  sourceScope,
+  onModify,
+  onConfirm,
+  voice,
+}: {
+  topic: string;
+  outline: PlanOutline | null;
+  learnerProfile: LearnerProfile | null;
+  learnerDepth: DepthLevel | null;
+  sourceScope: SourceScope;
+  onModify: () => void;
+  onConfirm: () => void;
+  voice: VoiceState;
+}) {
+  return (
+    <section className="relative z-10 min-h-screen w-full bg-[#08090c]">
+      <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-[var(--hud-line)] px-6 py-4">
+        <div className="min-w-0">
+          <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">Ready to teach</p>
+          <h1 className="mt-1 truncate text-lg font-medium text-[var(--hud-text)]">{topic}</h1>
+        </div>
+        <VoiceStrip voice={voice} />
+      </div>
+
+      <div className="mx-auto max-w-3xl px-6 py-8">
+        <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
+
+        {outline && outline.subtopics.length > 0 && (
+          <div className="rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] p-4">
+            <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Lesson structure</p>
+            <ol className="mt-3 space-y-3">
+              {outline.subtopics.map((subtopic, index) => (
+                <li key={`${subtopic.title}-${index}`} className="text-sm">
+                  <p className="font-medium text-[var(--hud-text)]">
+                    {index + 1}. {subtopic.title}
+                  </p>
+                  <p className="mt-0.5 text-[var(--hud-text-dim)]">{subtopic.caption}</p>
+                  {subtopic.reason && (
+                    <p className="mt-0.5 text-[0.78rem] italic text-[var(--hud-text-faint)]">{subtopic.reason}</p>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        <div className="mt-6 flex items-center justify-end gap-3">
+          <button
+            onClick={onModify}
+            className="rounded-md border border-[var(--hud-line)] px-5 py-2.5 text-sm font-medium text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+          >
+            Modify
+          </button>
+          <button onClick={onConfirm} className="hud-btn-primary px-6 py-2.5 text-sm">
+            Confirm — start teaching
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function OutlineReviewState({
   topic,
   outline,
@@ -2768,6 +3369,9 @@ function OutlineReviewState({
   diagnosticBusy,
   onAnswerDiagnostic,
   learnerSummary,
+  learnerProfile,
+  learnerDepth,
+  sourceScope,
   initialAmbiguityQuestions,
   initialPlanningQuestions,
   planningAnswers,
@@ -2806,13 +3410,18 @@ function OutlineReviewState({
   onAnswerDiagnostic: (answer: string) => void;
   /** "intermediate, skipping gradient descent" — what Aria concluded, in the student's terms. */
   learnerSummary: string;
+  /** The full profile/depth, for the live-building StudentProfileCard — learnerSummary above
+   *  stays as the terse one-line version used in a couple of narrower spots. */
+  learnerProfile: LearnerProfile | null;
+  learnerDepth: DepthLevel | null;
+  sourceScope: SourceScope;
   initialAmbiguityQuestions: ClarifyQuestion[];
   /** The ONE pre-draft gate, shown in the MAIN CANVAS (not the side chat) — topic-specific
    *  planning questions worth answering before drafting starts. Empty for most topics. */
   initialPlanningQuestions: ScopingQuestion[];
-  planningAnswers: Array<{ question: string; label: string; instruction: string; focus?: string | null }>;
+  planningAnswers: Array<{ question: string; label: string; instruction: string; focus?: string | null; fidelity?: PdfFidelity }>;
   documentPlanning: boolean;
-  onChoosePlanningAnswer: (question: string, label: string, instruction: string, focus?: string | null) => void;
+  onChoosePlanningAnswer: (question: string, label: string, instruction: string, focus?: string | null, fidelity?: PdfFidelity) => void;
   onSubmitPlanningQuestions: () => void;
   onSkipPlanningQuestions: () => void;
   onAnswerAmbiguity: (question: string, answer: string) => void;
@@ -2997,63 +3606,16 @@ function OutlineReviewState({
    *  DOCUMENT_SCOPE_SYSTEM_PROMPT), not a fixed generic set. */
   function renderPlanningQuestionsPanel() {
     if (initialPlanningQuestions.length === 0) return null;
-    const allAnswered = planningAnswers.length >= initialPlanningQuestions.length;
     return (
-      <div className="max-w-2xl rounded-xl border border-[var(--hud-cyan)]/40 bg-[var(--hud-cyan)]/[0.06] p-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--hud-cyan)]">Aria is planning with you</p>
-        <p className="mt-2 text-sm leading-6 text-[var(--hud-text-dim)]">
-          {documentPlanning
-            ? "Choose exactly what Aria should teach from this source before the lecture is built."
-            : "A couple of things worth deciding before drafting this specific outline."}
-        </p>
-        <div className="mt-4 space-y-5">
-          {initialPlanningQuestions.map((q) => {
-            const selected = planningAnswers.find((answer) => answer.question === q.question);
-            return (
-              <div key={q.question}>
-                <p className="text-base font-medium text-[var(--hud-text)]">{q.question}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {q.options.map((option) => {
-                    const active = selected?.label === option.label;
-                    return (
-                      <button
-                        key={option.label}
-                        onClick={() => onChoosePlanningAnswer(q.question, option.label, option.instruction, option.focus)}
-                        disabled={loading}
-                        className={`rounded-md border px-4 py-2 text-sm font-semibold transition disabled:opacity-50 ${
-                          active
-                            ? "border-[var(--hud-cyan)] bg-[var(--hud-cyan)] text-black"
-                            : "border-[var(--hud-line-strong)] bg-black/20 text-[var(--hud-text-dim)] hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)]"
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-5 flex items-center gap-3">
-          <button
-            onClick={onSubmitPlanningQuestions}
-            disabled={!allAnswered || loading}
-            className="flex-1 rounded-md bg-[var(--hud-text)] py-3 text-sm font-semibold text-[#08090c] transition hover:opacity-90 disabled:opacity-35"
-          >
-            {allAnswered
-              ? documentPlanning ? "Build this source lesson →" : "Draft outline with these choices →"
-              : `Answer ${initialPlanningQuestions.length - planningAnswers.length} more to continue`}
-          </button>
-          <button
-            onClick={onSkipPlanningQuestions}
-            disabled={loading}
-            className="text-sm font-medium text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40"
-          >
-            {documentPlanning ? "Teach the whole source →" : "Use your judgment →"}
-          </button>
-        </div>
-      </div>
+      <PlanningQuestionsCard
+        questions={initialPlanningQuestions}
+        answers={planningAnswers}
+        documentPlanning={documentPlanning}
+        loading={loading}
+        onChoose={onChoosePlanningAnswer}
+        onAllAnswered={onSubmitPlanningQuestions}
+        onSkip={onSkipPlanningQuestions}
+      />
     );
   }
 
@@ -3074,23 +3636,28 @@ function OutlineReviewState({
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_360px]">
         {/* Outline canvas */}
         <div className="min-w-0 border-r border-[var(--hud-line)] px-6 py-8 lg:px-10">
+          <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
           {!outline && diagnosticQuestion ? (
             /*
-             * Before class, not a form. The question itself lives in the chat on the right — this
-             * pane says why it is being asked, so the screen is never an empty box with a question
-             * floating beside it.
+             * THE QUESTION LIVES HERE NOW, LARGE — not as a small chat bubble in a 360px side
+             * rail while the main two-thirds of the screen sits empty. That emptiness was the
+             * actual complaint: it read as a broken/empty screen rather than a teacher actively
+             * working something out with you. The side chat still seeds the same question (for
+             * voice context and as a running transcript), but this is the primary place to
+             * answer — a real question card, generously sized, with the input right on it.
              */
-            <div>
-              <p className="text-sm text-[var(--hud-text-dim)]">
-                Aria is working out where to start with &ldquo;{topic}&rdquo; — answer on the right, or just say
-                &ldquo;start&rdquo; and she will get going.
-              </p>
-              {learnerSummary && (
-                <p className="mt-3 text-xs font-medium uppercase tracking-wider text-[var(--hud-cyan)]/80">
-                  So far: {learnerSummary}
-                </p>
-              )}
-            </div>
+            <DiagnosticQuestionCard
+              topic={topic}
+              question={diagnosticQuestion}
+              remark={diagnosticRemark}
+              busy={diagnosticBusy}
+              onAnswer={(answer) => {
+                // Mirrored into the side transcript so it still reads as one continuous
+                // conversation there, even though this card is now where the answer was typed.
+                setChatLog((prev) => [...prev, { role: "you", text: answer }]);
+                onAnswerDiagnostic(answer);
+              }}
+            />
           ) : !outline && diagnosticBusy ? (
             <p className="text-sm text-[var(--hud-text-dim)]">Working out where to start…</p>
           ) : !outline && initialPlanningQuestions.length > 0 ? (

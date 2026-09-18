@@ -58,6 +58,27 @@ const PLOTS: Record<string, unknown> = {
       y: { field: "mm", type: "quantitative", title: "Rainfall (mm)" },
     },
   },
+  /*
+   * The two-series bar that exposed the layout bug in production.
+   *
+   * Kept as a fixture because it is the worst case for this board: the fewest possible categories,
+   * so Vega stretches each bar as wide as it will go, and a colour legend, so the plot area is
+   * squeezed from the right at the same time. A chart that reads well here reads well anywhere.
+   */
+  "overfitting-gap": {
+    mark: "bar",
+    data: {
+      values: [
+        { dataset: "Training", performance: 92 },
+        { dataset: "Validation", performance: 65 },
+      ],
+    },
+    encoding: {
+      x: { field: "dataset", type: "nominal", title: "Dataset", sort: ["Training", "Validation"] },
+      y: { field: "performance", type: "quantitative", title: "Performance (%)" },
+      color: { field: "dataset", type: "nominal", title: "Dataset" },
+    },
+  },
 };
 
 const EQUATIONS: Record<string, unknown> = {
@@ -88,6 +109,12 @@ function BoardLab() {
     const p = Number(params.get("p"));
     return Number.isFinite(p) ? Math.max(0, Math.min(1, p)) : 1;
   });
+
+  // Clamped so a typo in the query string cannot produce a zero-height or absurd stage.
+  const stageHeight = (() => {
+    const h = Number(params.get("h"));
+    return Number.isFinite(h) && h > 0 ? Math.max(200, Math.min(1400, h)) : 460;
+  })();
 
   const plot = PLOTS[requested] ? validatePlotSpec(PLOTS[requested]) : null;
   const equation = EQUATIONS[requested] ? validateEquationSpec(EQUATIONS[requested]) : null;
@@ -128,7 +155,15 @@ function BoardLab() {
         />
       </label>
 
-      <div className="mt-5 h-[460px] max-w-4xl" data-lab-stage="">
+      {/*
+        The stage height is a parameter (`?h=`), defaulting to the old 460.
+
+        It matters: the real lesson board is often 700-900px tall, and a chart that anchors itself
+        to the top leaves proportionally more dead space the taller the frame gets. At 460 the bug
+        was easy to miss, which is exactly why it survived here — the lab was a shorter box than
+        the thing it stands in for.
+      */}
+      <div className="mt-5 max-w-4xl" style={{ height: stageHeight }} data-lab-stage="">
         {plot ? (
           <PlotBoard spec={plot as PlotSpec} progress={progress} />
         ) : equation ? (

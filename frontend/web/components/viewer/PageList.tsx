@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import { PageCanvas } from "./PageCanvas";
+import { createPageQueue } from "@/lib/pdfPageQueue";
 import type { Highlight, SearchMatch } from "@/lib/viewerTypes";
 
 /**
@@ -41,6 +42,9 @@ export function PageList({
   const [visiblePages, setVisiblePages] = useState<Set<number>>(new Set());
   const naturalSizesRef = useRef<Map<number, { width: number; height: number }>>(new Map());
   const observerRef = useRef<IntersectionObserver | null>(null);
+  // One queue per document instance — recreated only if `doc` itself changes, so switching
+  // documents doesn't leave a stale queue draining requests against a destroyed PDFDocumentProxy.
+  const queue = useMemo(() => createPageQueue(doc), [doc]);
 
   const registerRef = useCallback((pageNumber: number, el: HTMLDivElement | null) => {
     const map = pageElsRef.current;
@@ -113,7 +117,7 @@ export function PageList({
       {Array.from({ length: pageCount }, (_, i) => i + 1).map((pageNumber) => (
         <PageCanvas
           key={pageNumber}
-          doc={doc}
+          queue={queue}
           pageNumber={pageNumber}
           scale={scale}
           visible={visiblePages.has(pageNumber)}
