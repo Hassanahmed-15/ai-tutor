@@ -5,6 +5,8 @@ import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
 import { unlockAudio, splitNarrationSentences } from "@/lib/voice";
+import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
+import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { narrationRecovery } from "@/lib/narrationRecovery";
@@ -405,8 +407,10 @@ export function LessonPlayer({
     ? transitionSentence(beat.transitionIn, beats[index - 1]?.title ?? title, beat.title)
     : "";
   const narrationText = transitionIn ? `${transitionIn} ${beat.script}` : beat.script;
-  const transitionShare = transitionIn
-    ? Math.min(0.45, Math.max(0.08, transitionIn.length / Math.max(1, narrationText.length)))
+  // How many leading narration sentences are the bridge. Counted from the same split voice.ts uses,
+  // so cue indices can be mapped onto the script's own numbering (see scriptClockFromNarration).
+  const bridgeSentences = transitionIn
+    ? Math.max(0, splitNarrationSentences(narrationText).length - splitNarrationSentences(beat.script).length)
     : 0;
   const transitionBoardShownRef = useRef(false);
   // Signing-only mirror of Gemini's streaming tutor transcript. It never enters the caption log or
@@ -1120,16 +1124,28 @@ export function LessonPlayer({
     if (!narrateOnBoard && !narrateOnSlide) return;
     if (!isCheckpoint && animationBlocking) return;
     window.setTimeout(() => setDrawProgress(0), 0);
+    /*
+     * The voice numbers sentences over `narrationText`, bridge included; the board's
+     * `data-teach-sentence` tags number the SCRIPT. Every cue and progress value is translated into
+     * the script's numbering before it reaches the board, or a bridged beat draws one sentence ahead.
+     */
+    const narrationWeights = splitNarrationSentences(narrationText).map(sentenceWeight);
+    let narrationCue = 0;
     const started = voice.speakAsTeacher(
       narrationText,
       {
         onStart: () => setSpeaking(true),
         onSentenceStart: (sentenceIndex, sentence, total) => {
-          if (transitionIn && !isCheckpoint && sentenceIndex > 0 && !transitionBoardShownRef.current) {
+          narrationCue = sentenceIndex;
+          if (transitionIn && !isCheckpoint && sentenceIndex >= bridgeSentences && !transitionBoardShownRef.current) {
             transitionBoardShownRef.current = true;
             setStage("board");
           }
-          setSentenceCue({ index: sentenceIndex, text: sentence, total });
+          setSentenceCue({
+            index: Math.max(0, sentenceIndex - bridgeSentences),
+            text: sentence,
+            total: Math.max(1, total - bridgeSentences),
+          });
           if (deafMode) {
             const caption = sentence.trim();
             setCaptionLog((lines) => {
@@ -1141,15 +1157,16 @@ export function LessonPlayer({
         // The media element's clock is the source of truth for board progress. This keeps the
         // live marker, generated SVG progress, and beat advancement pinned to the actual voice.
         onProgress: (progress) => {
-          if (!transitionIn) {
+          if (!transitionIn || bridgeSentences === 0) {
             setDrawProgress(Math.max(0, progress));
             return;
           }
-          if (!isCheckpoint && progress >= transitionShare && !transitionBoardShownRef.current) {
+          const clock = scriptClockFromNarration(narrationWeights, bridgeSentences, narrationCue, progress);
+          if (!isCheckpoint && !clock.onBridge && !transitionBoardShownRef.current) {
             transitionBoardShownRef.current = true;
             setStage("board");
           }
-          setDrawProgress(Math.max(0, Math.min(1, (progress - transitionShare) / (1 - transitionShare))));
+          setDrawProgress(clock.scriptProgress);
         },
         onEnd: () => {
           setSpeaking(false);
@@ -1209,7 +1226,7 @@ export function LessonPlayer({
     // effect's cleanup as soon as a question opens, which cancels (rather than pauses) the preserved
     // lecture handle and makes the eventual resume restart the beat from line one.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, transitionShare, rate, deafMode, animationBlocking]);
+  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, bridgeSentences, rate, deafMode, animationBlocking]);
 
   // Pause/resume IN PLACE, driven by the single mode value. Leaving `teaching` freezes the audio
   // (and with it the board reveal + sentence cue); returning to it continues from the exact same
@@ -2337,7 +2354,7 @@ function VisualDirector({
             sentenceTotal={sentenceTiming.total}
             onError={() => setSandboxFailed(true)}
           />
-          <RendererBadge kind="sandbox" />
+          <RendererBadge kind="sandbox" detail={animationChipDetail(animationOp.model, animationOp.trial?.costUsd)} />
         </section>
       );
     }
@@ -2461,24 +2478,12 @@ function VisualDirector({
   );
 }
 
+/**
+ * The math lives in lib/narrationClock.ts, beside its inverse, so the round trip between what
+ * lib/voice.ts emits and what the board reads can be tested against the real code.
+ */
 function narrationSentenceTiming(script: string, cueIndex: number, beatProgress: number) {
-  const sentences = splitNarrationSentences(script);
-  const total = Math.max(1, sentences.length);
-  const weights = sentences.length
-    ? sentences.map((sentence) => Math.max(1.35, sentence.length / 13))
-    : [1];
-  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-  const index = Math.max(0, Math.min(total - 1, cueIndex));
-  const startWeight = weights.slice(0, index).reduce((sum, weight) => sum + weight, 0);
-  const start = startWeight / totalWeight;
-  const end = (startWeight + weights[index]) / totalWeight;
-  const progress = Math.max(0, Math.min(1, (beatProgress - start) / Math.max(0.001, end - start)));
-  return {
-    index,
-    total,
-    progress,
-    alignedProgress: (index + progress) / total,
-  };
+  return timingFromProgress(splitNarrationSentences(script).map(sentenceWeight), cueIndex, beatProgress);
 }
 
 function AnimationStatusBoard({

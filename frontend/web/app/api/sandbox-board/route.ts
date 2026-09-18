@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
 import type { Beat } from "@/lib/lessonContent";
+import { ANIMATION_ROTATION } from "@/lib/animationModels";
 
 /**
  * Generates ONE sandbox board from a title + teaching point, for `/sandbox-lab`.
@@ -29,9 +30,17 @@ export async function POST(req: Request) {
   if (!title || !teachingPoint) {
     return NextResponse.json({ error: "title and teachingPoint are required" }, { status: 400 });
   }
+  // Optional: pin the board to one of the compared models (scripts/compare-animation-models.mjs).
+  // Only models in the rotation are accepted, so this cannot be pointed at an arbitrary model id.
+  const modelId = typeof body.model === "string" ? body.model : "";
+  const model = modelId ? ANIMATION_ROTATION.find((m) => m.id === modelId) : undefined;
+  if (modelId && !model) {
+    return NextResponse.json({ error: `model must be one of ${ANIMATION_ROTATION.map((m) => m.id).join(", ")}` }, { status: 400 });
+  }
+  const beatId = typeof body.beatId === "string" && /^[\w.-]{1,80}$/.test(body.beatId) ? body.beatId : "lab";
 
   const beat: Beat = {
-    id: "lab",
+    id: beatId,
     title,
     script: script || teachingPoint,
     teacherMove: "explain",
@@ -45,10 +54,10 @@ export async function POST(req: Request) {
   } as unknown as Beat;
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const stats = await fillReactAnimationOps(client, [beat]);
+  const stats = await fillReactAnimationOps(client, [beat], model ? { model } : {});
 
   const op = (beat.draw?.ops ?? []).find((o) => o.kind === "reactAnimation") as
-    | { code?: string; assetIds?: string[]; status?: string; error?: string; critique?: unknown }
+    | { code?: string; assetIds?: string[]; status?: string; error?: string; critique?: unknown; model?: string; trial?: unknown }
     | undefined;
 
   return NextResponse.json({
@@ -57,6 +66,8 @@ export async function POST(req: Request) {
     status: op?.status ?? null,
     error: op?.error ?? null,
     critique: op?.critique ?? null,
+    model: op?.model ?? null,
+    trial: op?.trial ?? null,
     stats,
   });
 }

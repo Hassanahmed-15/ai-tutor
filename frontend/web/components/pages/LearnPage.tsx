@@ -34,6 +34,8 @@ import {
 import { takePendingLecture } from "@/lib/pendingLecture";
 import { DEMO_HARDCODED, demoLectureBeats, demoLectureTopic } from "@/lib/demo/demoLecture";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
+import { addCost, recordJsonCost, resetCostLedger, setCost } from "@/lib/costLedger";
+import { LectureCostBadge } from "@/components/LectureCostBadge";
 import { buildLessonInputFromMarkdown, relevantImageKeys, assetKey, type UploadedImage } from "@/lib/markdownSource";
 import {
   fallbackDocumentScopeQuestion,
@@ -480,6 +482,8 @@ type BuildCost =
     const events = new EventSource(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/events`);
     const onSnapshot = (event: MessageEvent<string>) => {
       const snapshot = JSON.parse(event.data) as ProgressiveLectureSnapshot;
+      // The worker keeps a running total, so each snapshot replaces the last rather than adding.
+      if (typeof snapshot.costUsd === "number") setCost("generation", snapshot.costUsd);
       setProgressivePlannedBeatCount(snapshot.plannedBeatCount);
       setBuildStatus(snapshot.complete
         ? "Lecture saved to your history"
@@ -649,6 +653,7 @@ type BuildCost =
       // Same request, same fields, different parser — that is what "treated exactly the same" means.
       const res = await fetch(pendingKind === "pptx" ? "/api/parse-pptx" : "/api/parse-pdf", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
+      recordJsonCost("document", data);
       if (!res.ok || (!data.sourceDocument && !data.fullText)) {
         throw new Error(data.error || (pendingKind === "pptx"
           ? "Couldn't read the presentation. Make sure it's a valid .pptx file."
@@ -747,6 +752,8 @@ type BuildCost =
   async function ingestFile(file: File) {
     setUploadPhase("reading");
     setUploadError(null);
+    // A new document is a new lecture: its cost starts here, with the reading of it.
+    resetCostLedger();
     setSlideContext("");
     setDiagramHints("");
     setSlideImages([]);
@@ -832,6 +839,7 @@ type BuildCost =
       fd.append("file", file);
       const res = await fetch("/api/parse-pptx", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
+      recordJsonCost("document", data);
       if (!res.ok || !data.topic) {
         throw new Error(data.error || "Couldn't read the presentation. Make sure it's a valid .pptx file.");
       }
@@ -893,6 +901,8 @@ type BuildCost =
 
     setUploadPhase("reading");
     setUploadError(null);
+    // A new document is a new lecture: its cost starts here, with the reading of it.
+    resetCostLedger();
     setSlideContext("");
     setDiagramHints("");
     setSlideImages([]);
@@ -999,6 +1009,7 @@ type BuildCost =
         signal: controller.signal,
       });
       const data = await res.json().catch(() => ({}));
+      recordJsonCost("planning", data);
       if (!res.ok) throw new Error(data.error || "Planning failed.");
       return data;
     } catch (err) {
@@ -1056,6 +1067,7 @@ type BuildCost =
         if (event.type === "scoping-question" && typeof event.subtopicIndex === "number" && event.question && Array.isArray(event.options)) {
           setPlanScopingQuestions((prev) => [...prev, { subtopicIndex: event.subtopicIndex as number, question: event.question as string, options: event.options as { label: string; instruction: string }[] }]);
         }
+        if (event.type === "outline" && typeof event.costUsd === "number") addCost("planning", event.costUsd);
         if (event.type === "outline" && Array.isArray(event.subtopics)) {
           setOutline({
             topic: typeof event.topic === "string" ? event.topic : fallbackTopic,
@@ -1772,6 +1784,7 @@ type BuildCost =
        */
       if (data.cached) setBuildCost({ kind: "cached" });
       else if (typeof data.costUsd === "number") setBuildCost({ kind: "generated", usd: data.costUsd });
+      if (!data.cached && typeof data.costUsd === "number") setCost("generation", data.costUsd);
       // No setPhase here — the design screen now owns the hand-off (see startBuiltLesson).
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
@@ -1839,6 +1852,8 @@ type BuildCost =
   }
 
   function openSavedLecture(lecture: { topic: string; beats: Beat[] }) {
+    // Replaying costs only what is spent from here (narration, questions); its build was paid before.
+    resetCostLedger();
     // A replay package is self-contained. Clear transient upload context so follow-up tools do not
     // accidentally read a different document that happened to be selected earlier in this tab.
     setSourceDocument(null);
@@ -1965,6 +1980,7 @@ type BuildCost =
    * router — see components/hud/HudKit.tsx's PageName union and HudLogo's own onClick.
    */
   function endLectureToHome() {
+    resetCostLedger();
     go("landing");
   }
 
@@ -2103,43 +2119,16 @@ type BuildCost =
       <div className="relative">
         {player}
         {/*
-            It used to say "This lecture cost $X.XXXX", which was wrong in every case and worst in
-            the one that looked best: re-uploading a PDF skips generation (cache hit -> costUsd 0)
-            but still re-parses the document through up to 60 vision calls, so the badge announced
-            $0.0000 for about a dollar of spend.
-
-            It now names the ONE stage it measures and says what it leaves out, so the gap is
-            visible instead of implied. Reused and demo builds carry no figure at all — quoting a
-            number that was never true of this build is the whole failure being fixed.
+            The whole lecture's cost, not one stage of it: document, planning, generation, narration,
+            questions and the live tutor each report what they measured (lib/costLedger.ts). The old
+            badge showed generation alone and said so; that was honest but it was not the cost of
+            the lecture — a re-uploaded PDF showed $0.0000 for about a dollar of document reading.
         */}
-        {buildCost !== null && (
-          <div className="pointer-events-none absolute left-0 right-0 top-0 z-[60] flex justify-center pt-2">
-            <div className="hud-eyebrow flex items-center gap-1.5 rounded-full border border-[var(--hud-line-strong)] bg-black/70 px-3.5 py-1.5 text-[0.65rem] backdrop-blur-md">
-              {buildCost.kind === "generated" ? (
-                <>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Generation</span>
-                  <span className="text-[var(--hud-cyan)]">${buildCost.usd.toFixed(4)}</span>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">
-                    excludes document &amp; playback
-                  </span>
-                </>
-              ) : buildCost.kind === "cached" ? (
-                <>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Reused</span>
-                  <span className="text-[var(--hud-cyan)]">no new generation cost</span>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">
-                    document was re-read
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">Demo lecture</span>
-                  <span className="text-[var(--hud-cyan)]">nothing generated</span>
-                </>
-              )}
-            </div>
-          </div>
-        )}
+        <LectureCostBadge
+          reused={buildCost?.kind === "cached"}
+          demo={buildCost?.kind === "demo"}
+          generating={Boolean(progressiveSessionId) && !progressiveComplete}
+        />
       </div>
     );
   }

@@ -13,6 +13,9 @@ import { critiqueLayout, critiqueShapeRecognizability, critiqueForRefinement, re
 import { findAssets, loadAssets, assetRuntimeFor, assetPromptBlock } from "./assetCatalogue";
 import { appPath } from "./appPaths";
 import { costFor } from "./modelPricing";
+import { reactLabelSyncIssue } from "./boardSentenceSync";
+import { animationModelForBeat, type AnimationModel } from "./animationModels";
+import { recordAnimationTrial } from "./animationTrials";
 
 /**
  * Second step of the two-step generate-then-render pipeline for ANIMATION beats, mirroring
@@ -60,6 +63,14 @@ export type ReactAnimationFillStats = {
   rejected: number;
   issues: string[];
 };
+
+/**
+ * Who draws this board: the model, and the client that reaches its provider.
+ *
+ * Only generation and refinement use it. Every critic keeps the OpenAI client and its own vision
+ * model, so when models are compared (lib/animationModels.ts) they are all scored by one judge.
+ */
+type GenerationChoice = { model: string; client: OpenAI };
 
 export type ReactAnimationFillUpdate = {
   beat: Beat;
@@ -134,15 +145,16 @@ async function transpileCheck(code: string): Promise<string | null> {
  * person would do.
  */
 async function refineBoard(
-  client: OpenAI,
+  choice: GenerationChoice,
   code: string,
   defects: BoardDefect[],
   subject: string,
 ): Promise<{ code: string | null; costUsd: number }> {
+  const { client, model } = choice;
   const defectList = defects.map((d, i) => `${i + 1}. ${d.what}\n   Where: ${d.where}\n   Fix: ${d.fix}`).join("\n");
   try {
     const completion = await client.chat.completions.create({
-      model: MODEL,
+      model,
       messages: [
         {
           role: "system",
@@ -156,10 +168,10 @@ async function refineBoard(
           content: `This board must depict: ${subject}\n\nDefects found in the rendered image:\n${defectList}\n\nCurrent component:\n\`\`\`jsx\n${code}\n\`\`\``,
         },
       ],
-      ...modelCallParams(MODEL, MAX_TOKENS, 0.3),
+      ...modelCallParams(model, MAX_TOKENS, 0.3),
     });
     const revised = extractCodeFence(completion.choices[0]?.message?.content ?? "");
-    return { code: revised || null, costUsd: costUsd(MODEL, completion.usage) };
+    return { code: revised || null, costUsd: costUsd(model, completion.usage) };
   } catch {
     return { code: null, costUsd: 0 };
   }
@@ -171,17 +183,18 @@ async function refineBoard(
  */
 async function refineUntilGood(
   client: OpenAI,
+  choice: GenerationChoice,
   beat: Beat,
   op: ReactAnimationOp,
   startCode: string,
   subject: string,
   assetRuntime: string | undefined,
   abstract: boolean,
-): Promise<{ code: string; costUsd: number }> {
+): Promise<{ code: string; costUsd: number; score: number | null; trail: string }> {
   // Abstract boards are excluded for the same reason the shape critic skips them: the standard here
   // is physical structure, which wrongly condemns a timeline or an array diagram.
   if (abstract || !reactAnimationVisionCriticEnabled() || REFINE_ROUNDS < 1) {
-    return { code: startCode, costUsd: 0 };
+    return { code: startCode, costUsd: 0, score: null, trail: "" };
   }
 
   let bestCode = startCode;
@@ -203,7 +216,7 @@ async function refineUntilGood(
       break;
     }
 
-    const revision = await refineBoard(client, bestCode, critique.defects, subject);
+    const revision = await refineBoard(choice, bestCode, critique.defects, subject);
     spent += revision.costUsd;
     if (!revision.code) break;
 
@@ -224,8 +237,8 @@ async function refineUntilGood(
     }
   }
 
-  console.error(`[anim-refine] beat=${beat.id} ${trail.join(" -> ")} final=${bestScore}/5 $${spent.toFixed(3)}`);
-  return { code: bestCode, costUsd: spent };
+  console.error(`[anim-refine] beat=${beat.id} model=${choice.model} ${trail.join(" -> ")} final=${bestScore}/5 $${spent.toFixed(3)}`);
+  return { code: bestCode, costUsd: spent, score: bestScore >= 0 ? bestScore : null, trail: trail.join(" -> ") };
 }
 
 function extractCodeFence(text: string): string {
@@ -689,18 +702,58 @@ function buildUserPrompt(
  * "the boards use real artwork now" went unchallenged while every subject was still hand-drawn.
  */
 function assetsUsedBy(code: string, offered: Array<{ id: string }>): string[] | undefined {
-  const used = offered.filter((a) => new RegExp(`name=["\x27]${a.id.replace(/[.*+?^${}()|[\]\\]/g, "\\async function generateOne(")}["\x27]`).test(code));
+  const used = offered.filter((a) => new RegExp(`name=["\x27]${a.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["\x27]`).test(code));
   return used.length ? used.map((a) => a.id) : undefined;
 }
 
 async function generateOne(
   client: OpenAI,
   op: ReactAnimationOp,
-  beat: Beat
+  beat: Beat,
+  contestant: AnimationModel | null = null,
 ): Promise<{ costUsd: number; filled: boolean; issue?: string }> {
+  const startedAt = Date.now();
+  let attemptsMade = 0;
+  let providerError: string | null = null;
+  const choice: GenerationChoice = { model: contestant?.id ?? MODEL, client };
   // Abstract topics (algorithms/data-structures/math) draw as DIAGRAMS, not physical objects: use
   // the abstract system prompt + relaxed validator, and skip the physical shape-recognizability critic.
   const abstract = isAbstractTopic(op, beat);
+  /**
+   * Stamp the board with who drew it and how it went, and log one trial line.
+   *
+   * The model rides on the op, so the corner chip can name it and the lecture cache, archive and
+   * progressive docs keep it with no further plumbing. The trial log is what the comparison reads.
+   */
+  const finish = async (
+    result: { costUsd: number; filled: boolean; issue?: string },
+    outcome: "shipped" | "sub-floor" | "refused" | "failed",
+    score: number | null,
+    refineTrail = "",
+  ) => {
+    op.model = choice.model;
+    op.trial = {
+      score,
+      attempts: attemptsMade,
+      refineTrail: refineTrail.slice(0, 120),
+      costUsd: Number(result.costUsd.toFixed(5)),
+      ms: Date.now() - startedAt,
+    };
+    await recordAnimationTrial({
+      model: choice.model,
+      beatId: beat.id,
+      title: beat.title,
+      outcome,
+      // A board the provider never answered for says nothing about how well that model draws.
+      providerError: outcome === "failed" ? providerError : null,
+      score,
+      attempts: attemptsMade,
+      costUsd: op.trial.costUsd,
+      ms: op.trial.ms,
+      abstract,
+    });
+    return result;
+  };
   const basePrompt = abstract ? REACT_ANIMATION_ABSTRACT_SYSTEM_PROMPT : REACT_ANIMATION_SYSTEM_PROMPT;
   const visualPlan = AI_VISUAL_PLANNING_ENABLED
     ? await planVisual(client, op, beat)
@@ -762,15 +815,17 @@ async function generateOne(
         attempt === 0
           ? 0.55
           : Math.min(1.0, 0.55 + attempt * 0.2 + (previousFailure?.stalled ? 0.15 : 0));
-      const completion = await client.chat.completions.create({
-        model: MODEL,
+      attemptsMade += 1;
+      const completion = await choice.client.chat.completions.create({
+        model: choice.model,
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: buildUserPrompt(op, beat, blueprint, previousFailure, abstract) },
         ],
-        ...modelCallParams(MODEL, MAX_TOKENS, temperature),
+        ...modelCallParams(choice.model, MAX_TOKENS, temperature),
       });
-      totalCostUsd += costUsd(MODEL, completion.usage);
+      providerError = null;
+      totalCostUsd += costUsd(choice.model, completion.usage);
 
       const raw = completion.choices[0]?.message?.content ?? "";
       const code = extractCodeFence(raw);
@@ -779,12 +834,18 @@ async function generateOne(
       // Always-on (not debug-gated): animation failures were invisible in production logs, so we
       // kept flying blind on why a beat showed "unavailable". One concise line per attempt.
       console.error(
-        `[anim] beat=${beat.id} attempt=${attempt} finish=${finishReason} rawLen=${raw.length} codeLen=${code.length} issue=${diagnostics.issue ?? "OK"} | ${diagnosticsSummary(diagnostics)}`
+        `[anim] beat=${beat.id} model=${choice.model} attempt=${attempt} finish=${finishReason} rawLen=${raw.length} codeLen=${code.length} issue=${diagnostics.issue ?? "OK"} | ${diagnosticsSummary(diagnostics)}`
+      );
+      // Tags that exist and are spread out can still be WRONG: a label written sentences before the
+      // teacher says it. Split exactly as buildUserPrompt numbers the script, so indices agree.
+      const labelSyncIssue = reactLabelSyncIssue(
+        code,
+        beat.script.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean),
       );
       const generationIssue = diagnostics.issue ??
         (!diagnostics.visualSpecPresent
           ? "missing the required visualSpec with recognitionCues, requiredParts, and forbiddenShortcuts"
-          : null);
+          : labelSyncIssue);
       if (generationIssue) {
         await saveDebugSvgCandidate(beat, op, code, generationIssue);
         const candidate: BestCandidate | null = (await runnableCandidate(code, diagnostics, false)) ?? best; // keep it if it runs
@@ -897,14 +958,14 @@ async function generateOne(
          * line at all. A quality pass that only runs on the failure path is a quality pass that
          * stops running exactly when the pipeline starts working.
          */
-        const refined = await refineUntilGood(client, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
+        const refined = await refineUntilGood(client, choice, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
         totalCostUsd += refined.costUsd;
         op.code = refined.code;
         // IDs only — the browser resolves them to markup via /api/animation-assets. See the op type.
         op.assetIds = assetsUsedBy(refined.code, assets);
         op.status = "ready";
         op.error = undefined;
-        return { costUsd: totalCostUsd, filled: true };
+        return finish({ costUsd: totalCostUsd, filled: true }, "shipped", refined.score, refined.trail);
       }
       previousFailure = {
         issue: "the code failed the safety validator after quality checks",
@@ -913,6 +974,9 @@ async function generateOne(
         stalled: false,
       };
     } catch (err) {
+      // Kept apart from drawing failures: a 503 or a timeout says the provider was down, not that
+      // the model draws badly, and the comparison must not score it as a bad board.
+      providerError = err instanceof Error ? err.message.slice(0, 160) : "generation failed";
       previousFailure = {
         issue: err instanceof Error ? err.message : "generation failed",
         diagnostics: getReactAnimationCodeDiagnostics(""),
@@ -965,7 +1029,7 @@ async function generateOne(
        * plainly identifiable and still be an outline with a messy annotation cluster — one such
        * scored 5/5 from the recognizability critic while visibly falling short.
        */
-      const refinedBest = await refineUntilGood(client, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
+      const refinedBest = await refineUntilGood(client, choice, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
       totalCostUsd += refinedBest.costUsd;
       op.code = refinedBest.code;
       validated.code = refinedBest.code;
@@ -981,14 +1045,15 @@ async function generateOne(
           op.assetIds = undefined;
           op.status = "failed";
           op.error = shipped.issue ?? `board scored ${shipped.score}/5 for recognisability`;
-          return { costUsd: totalCostUsd, filled: false, issue: op.error };
+          return finish({ costUsd: totalCostUsd, filled: false, issue: op.error }, "refused", refinedBest.score ?? shipped.score, refinedBest.trail);
         }
         console.error(
           `[anim] beat=${beat.id} SHIPPED sub-floor board scored ${shipped.score ?? "not scored"}/5` +
             (shipped.issue ? ` — ${shipped.issue}` : ""),
         );
+        return finish({ costUsd: totalCostUsd, filled: true }, "sub-floor", refinedBest.score ?? shipped.score, refinedBest.trail);
       }
-      return { costUsd: totalCostUsd, filled: true };
+      return finish({ costUsd: totalCostUsd, filled: true }, "sub-floor", refinedBest.score, refinedBest.trail);
     }
   }
 
@@ -996,8 +1061,8 @@ async function generateOne(
   op.code = undefined;
   op.status = "failed";
   op.error = previousFailure?.issue ?? "animation code was not generated";
-  console.error(`[anim] beat=${beat.id} GAVE UP after ${MAX_ATTEMPTS} attempts. final issue: ${op.error}`);
-  return { costUsd: totalCostUsd, filled: false, issue: previousFailure?.issue ?? "animation code was not generated" };
+  console.error(`[anim] beat=${beat.id} model=${choice.model} GAVE UP after ${MAX_ATTEMPTS} attempts. final issue: ${op.error}`);
+  return finish({ costUsd: totalCostUsd, filled: false, issue: previousFailure?.issue ?? "animation code was not generated" }, "failed", null);
 }
 
 /**
@@ -1005,15 +1070,31 @@ async function generateOne(
  * Returns the total generation cost in USD. Runs entirely in parallel with fillImageOps at the
  * call site (disjoint beats, both I/O-bound) — see app/api/generate-lecture/route.ts.
  */
-export async function fillReactAnimationOps(client: OpenAI, beats: Beat[]): Promise<ReactAnimationFillStats> {
-  return fillReactAnimationOpsIncremental(client, beats);
+export type ReactAnimationFillOptions = {
+  limit?: number;
+  /**
+   * Rotation position of the first board, when the caller passes a slice of a lecture (the
+   * progressive worker fills one beat at a time and passes its beat position). Only used for model
+   * rotation.
+   */
+  animationIndexOffset?: number;
+  /** Pin every board to one model (the head-to-head comparison script). */
+  model?: AnimationModel | null;
+};
+
+export async function fillReactAnimationOps(
+  client: OpenAI,
+  beats: Beat[],
+  options: ReactAnimationFillOptions = {},
+): Promise<ReactAnimationFillStats> {
+  return fillReactAnimationOpsIncremental(client, beats, undefined, options);
 }
 
 export async function fillReactAnimationOpsIncremental(
   client: OpenAI,
   beats: Beat[],
   onUpdate?: (update: ReactAnimationFillUpdate) => void | Promise<void>,
-  options: { limit?: number } = {}
+  options: ReactAnimationFillOptions = {}
 ): Promise<ReactAnimationFillStats> {
   const pending: Array<{ op: ReactAnimationOp; beat: Beat; beatIndex: number }> = [];
   for (let beatIndex = 0; beatIndex < beats.length; beatIndex++) {
@@ -1030,8 +1111,14 @@ export async function fillReactAnimationOpsIncremental(
     return { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: [] };
   }
 
+  // Rotation counts ANIMATED beats, not all beats: rotating on the plain beat index could hand every
+  // animated beat in a lecture to the same model whenever they fell three beats apart.
+  const animationOrder = new Map(pending.map((entry, order) => [entry.op, order]));
   const results = await Promise.all(selected.map(async ({ op, beat, beatIndex }) => {
-    const result = await generateOne(client, op, beat);
+    const contestant = options.model !== undefined
+      ? options.model
+      : animationModelForBeat((options.animationIndexOffset ?? 0) + (animationOrder.get(op) ?? 0));
+    const result = await generateOne(client, op, beat, contestant);
     await onUpdate?.({ beat, beatIndex, costUsd: result.costUsd, status: result.filled ? "ready" : "failed" });
     return result;
   }));

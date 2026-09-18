@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
+import { costFor } from "@/lib/modelPricing";
 
 /**
  * Teacher-voice text-to-speech. Streams warm, natural narration from OpenAI TTS so the
@@ -44,21 +45,31 @@ export async function POST(req: Request) {
         "Content-Type": "audio/mpeg",
         "Cache-Control": "private, max-age=3600",
         "X-TTS-Cache": "hit",
+        // Served from memory: no call was made, so nothing was spent.
+        "X-Cost-Usd": "0",
       },
     });
   }
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const speech = await client.audio.speech.create({
-      model: TTS_MODEL,
-      voice: VOICE,
-      input, // API hard limit is 4096 chars
-      instructions: TEACHER_TONE,
-      response_format: "mp3",
-    });
-
-    const buffer = Buffer.from(await speech.arrayBuffer());
+    // Measured first; the plain SDK call remains as the fallback so narration never depends on it.
+    const measured = await synthesizeWithUsage(input).catch(() => null);
+    let buffer: Buffer;
+    let costUsd: number | null = null;
+    if (measured) {
+      buffer = measured.audio;
+      costUsd = costFor(TTS_MODEL, { prompt_tokens: measured.inputTokens, completion_tokens: measured.outputTokens });
+    } else {
+      const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      const speech = await client.audio.speech.create({
+        model: TTS_MODEL,
+        voice: VOICE,
+        input, // API hard limit is 4096 chars
+        instructions: TEACHER_TONE,
+        response_format: "mp3",
+      });
+      buffer = Buffer.from(await speech.arrayBuffer());
+    }
     if (MAX_CACHE_ENTRIES > 0) {
       if (ttsCache.size >= MAX_CACHE_ENTRIES) {
         const oldestKey = ttsCache.keys().next().value;
@@ -66,15 +77,59 @@ export async function POST(req: Request) {
       }
       ttsCache.set(cacheKey, buffer);
     }
-    return new NextResponse(buffer, {
+    return new NextResponse(new Uint8Array(buffer), {
       headers: {
         "Content-Type": "audio/mpeg",
         "Cache-Control": "private, max-age=3600",
         "X-TTS-Cache": "miss",
+        // Absent when usage could not be read: the client then shows narration as unpriced rather
+        // than inventing a figure.
+        ...(costUsd !== null ? { "X-Cost-Usd": costUsd.toFixed(8) } : {}),
       },
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "TTS failed";
     return NextResponse.json({ error: message }, { status: 502 });
   }
+}
+
+/**
+ * Synthesise and read back what the call actually used.
+ *
+ * WHY. The plain speech endpoint returns only audio, so narration was the one stream whose cost could
+ * only be guessed — and the usual guess (~$0.015 per minute) is wrong for this app. Narration is
+ * synthesised one sentence at a time, and short clips cost more per minute: a measured 3-second
+ * sentence used 108 audio tokens, about $0.026 per minute. With `stream_format: "sse"` the final
+ * event carries real token usage, so the figure is measured rather than assumed.
+ *
+ * Raw fetch, because the installed SDK (openai 4.104) predates `stream_format`. Returns null on
+ * anything unexpected and the caller falls back to the ordinary call.
+ */
+async function synthesizeWithUsage(
+  input: string,
+): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number } | null> {
+  const res = await fetch("https://api.openai.com/v1/audio/speech", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: TTS_MODEL,
+      voice: VOICE,
+      input,
+      instructions: TEACHER_TONE,
+      response_format: "mp3",
+      stream_format: "sse",
+    }),
+  });
+  if (!res.ok) return null;
+  const chunks: Buffer[] = [];
+  type SpeechUsage = { input_tokens?: number; output_tokens?: number };
+  let usage: SpeechUsage | null = null;
+  for (const line of (await res.text()).split(/\r?\n/)) {
+    if (!line.startsWith("data: ") || line === "data: [DONE]") continue;
+    const event = JSON.parse(line.slice(6)) as { type?: string; audio?: string; usage?: SpeechUsage };
+    if (event.type === "speech.audio.delta" && typeof event.audio === "string") chunks.push(Buffer.from(event.audio, "base64"));
+    else if (event.type === "speech.audio.done") usage = event.usage ?? null;
+  }
+  if (!chunks.length || !usage) return null;
+  return { audio: Buffer.concat(chunks), inputTokens: usage.input_tokens ?? 0, outputTokens: usage.output_tokens ?? 0 };
 }

@@ -7,6 +7,8 @@ import type { DrawScript } from "@/components/sketch/LiveSketch";
 // it is `import type` and erases at compile time. A value import must be relative or two unrelated
 // test files fail with "Cannot find module".
 import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
+import { addCost, recordJsonCost } from "./costLedger";
+import { geminiLiveCostFor, type GeminiLiveUsage } from "./modelPricing";
 import {
   isDrawingRequest,
   PAUSE_LECTURE_TOOL,
@@ -216,6 +218,8 @@ type GeminiFunctionCall = {
 };
 
 type GeminiServerMessage = {
+  /** Per-turn token usage — not cumulative, so every message's figure is added. */
+  usageMetadata?: GeminiLiveUsage;
   serverContent?: {
     modelTurn?: { parts?: Array<{ inlineData?: { data?: string; mimeType?: string }; text?: string }> };
     inputTranscription?: { text?: string };
@@ -787,6 +791,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         }),
       });
       const data = await response.json().catch(() => ({}));
+      recordJsonCost("questions", data);
       if (!response.ok || !data.script) throw new Error(data.error ?? "Could not create the slide.");
 
       /**
@@ -860,6 +865,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const handleServerMessage = useCallback(
     (message: GeminiServerMessage) => {
+      if (message.usageMetadata) addCost("liveTutor", geminiLiveCostFor(message.usageMetadata));
       const activity = message.voiceActivity?.voiceActivityType;
       if (activity === "ACTIVITY_START") {
         resetIdleTimer();

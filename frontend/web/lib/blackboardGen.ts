@@ -9,6 +9,7 @@ import {
   type ChalkBoardOp,
 } from "./drawSanitize";
 import { splitNarrationSentences } from "./voice";
+import { assignOpSentences, boardSyncIssue } from "./boardSentenceSync";
 import { critiqueBoard, boardVisionCriticEnabled } from "./boardVisionCritic";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
@@ -74,23 +75,36 @@ function buildUserPrompt(op: ChalkBoardOp, beat: Beat, sentences: string[], prev
   return parts.join("\n\n");
 }
 
-/** Reads the model's `group` tag off each raw op and rewrites `at` to a sentence-aligned reveal
- *  fraction. An op in group g begins just after g/N, while sentence g is being spoken. Ops with
- *  no/invalid group fall back to their own `at`
- *  or the last group. Mutates a shallow copy of each raw op before sanitize. */
-function quantizeAtToSentences(rawOps: unknown, sentenceCount: number): unknown[] {
-  if (!Array.isArray(rawOps)) return [];
-  const n = Math.max(1, sentenceCount);
-  return rawOps.map((raw) => {
+/** Rewrites each op's `at` to a sentence-aligned reveal fraction: an op belonging to sentence g
+ *  begins just after g/N, while that sentence is being spoken.
+ *
+ *  TAKES THE SENTENCES, NOT JUST THEIR COUNT. It used to receive only the count, so an op the model
+ *  forgot to tag could not be rescued — it silently kept the freehand `at` the model had guessed and
+ *  appeared at the wrong moment, which is how the chlorophyll row got written three sentences before
+ *  the teacher said "chlorophyll". With the sentences in hand, `assignOpSentences` can place an
+ *  untagged op by reading its own words. Mutates a shallow copy of each raw op before sanitize.
+ *
+ *  Returns the assignments alongside the ops so the caller can tell whether the board ended up
+ *  genuinely synchronised, rather than assuming it did. */
+function quantizeAtToSentences(rawOps: unknown, sentences: string[]) {
+  if (!Array.isArray(rawOps)) return { ops: [] as unknown[], assignments: [] };
+  const n = Math.max(1, sentences.length);
+  const placeable = rawOps.map((raw) =>
+    raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {},
+  );
+  const assignments = assignOpSentences(placeable, sentences);
+
+  const ops = rawOps.map((raw, index) => {
     if (!raw || typeof raw !== "object") return raw;
     const o = { ...(raw as Record<string, unknown>) };
-    const g = typeof o.group === "number" ? o.group : Number(o.group);
-    if (Number.isFinite(g)) {
-      const group = Math.max(0, Math.min(n - 1, Math.floor(g)));
-      o.at = Math.min(0.98, group / n + 0.004);
-    }
+    const sentence = assignments[index]?.index;
+    // An op nobody could place keeps whatever `at` it arrived with — a last resort now, where it
+    // used to be the silent default. `boardSyncIssue` reports it and the retry loop acts on it.
+    if (typeof sentence === "number") o.at = Math.min(0.98, sentence / n + 0.004);
     return o;
   });
+
+  return { ops, assignments };
 }
 
 // Grounding critic (the multi-agent verifier): a cheap check that the board's written claims are
@@ -181,7 +195,7 @@ async function generateOne(
         continue;
       }
 
-      const quantized = quantizeAtToSentences(parsedOps, sentences.length);
+      const { ops: quantized, assignments } = quantizeAtToSentences(parsedOps, sentences);
       let ops = sanitizeChalkBoardOps(quantized);
       let diagnostics: BlackboardDiagnostics = getBlackboardDiagnostics(ops);
       // Preserve good authored content and solve row geometry deterministically. Retrying the same
@@ -191,10 +205,26 @@ async function generateOne(
         diagnostics = getBlackboardDiagnostics(ops);
       }
       console.error(
-        `[board] beat=${beat.id} attempt=${attempt} ops=${ops.length} labels=${diagnostics.labelCount} notes=${diagnostics.noteCount} diagram=${diagnostics.diagramCount} issue=${diagnostics.issue ?? "OK"}`
+        `[board] beat=${beat.id} attempt=${attempt} ops=${ops.length} tagged=${assignments.filter((a) => a.source === "group").length}/${assignments.length} rescued=${assignments.filter((a) => a.source === "inferred" || a.source === "inherited").length} labels=${diagnostics.labelCount} notes=${diagnostics.noteCount} diagram=${diagnostics.diagramCount} issue=${diagnostics.issue ?? "OK"}`
       );
       if (diagnostics.issue) {
         previousIssue = diagnostics.issue;
+        continue;
+      }
+
+      /*
+       * IS THIS BOARD ACTUALLY WRITTEN AS IT IS SPOKEN?
+       *
+       * The React-animation path has always rejected a board whose steps carry no sentence and one
+       * that piles every step onto a single sentence; the chalkboard had neither check, so a board
+       * that appeared all at once shipped looking fine. Inference above rescues the common case
+       * without a retry — this catches what it could not place, and hands the reason to the same
+       * loop the spacing and grounding rejections already use.
+       */
+      const syncIssue = boardSyncIssue(assignments, sentences.length);
+      if (syncIssue) {
+        console.error(`[board] beat=${beat.id} attempt=${attempt} sync=${syncIssue}`);
+        previousIssue = syncIssue;
         continue;
       }
 

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
+import { recordJsonCost } from "@/lib/costLedger";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
 
@@ -116,6 +117,7 @@ export function useLessonChat(opts: {
           }),
         });
         const data = await res.json().catch(() => ({}));
+        recordJsonCost("questions", data);
         if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
         setChat((c) => [...c, { role: "aria", text: data.script }]);
         setExplainBoard({ script: data.script, draw: data.draw });

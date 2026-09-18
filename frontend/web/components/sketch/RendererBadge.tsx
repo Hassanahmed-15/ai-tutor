@@ -66,15 +66,21 @@ const LABELS: Record<RendererKind, { text: string; dot: string; tint: string; ti
   },
 };
 
-export function RendererBadge({ kind }: { kind: RendererKind }) {
+/**
+ * `detail` names who made the board — for a sandbox board, the model that drew it — so boards from
+ * different models can be told apart while watching (see lib/animationModels.ts). Absent on boards
+ * generated before models were recorded, which then show the chip exactly as before.
+ */
+export function RendererBadge({ kind, detail }: { kind: RendererKind; detail?: string | null }) {
   const { text, dot, tint, title } = LABELS[kind];
   return (
     <span
-      title={title}
+      title={detail ? `${title} — drawn by ${detail}` : title}
       className={`pointer-events-none absolute left-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-slate-950/85 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] shadow-lg ring-1 backdrop-blur-md sm:left-4 sm:top-4 sm:px-3 sm:py-1.5 sm:text-xs ${tint}`}
     >
       <span className={`h-1.5 w-1.5 rounded-full ${dot}`} aria-hidden="true" />
       {text}
+      {detail && <span className="opacity-80">· {detail}</span>}
     </span>
   );
 }

@@ -40,6 +40,9 @@ yarn-error.log*
 # generated lesson cache (see lib/lectureCache.ts)
 /.lecture-cache/
 
+# animation model comparison log (see lib/animationTrials.ts)
+/.animation-trials/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

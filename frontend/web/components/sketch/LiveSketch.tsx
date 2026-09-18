@@ -217,6 +217,10 @@ type DrawOp =
       assetIds?: string[];
       status?: "ready" | "failed";
       error?: string;
+      /** The model that drew this board. Shown on the corner chip; see lib/animationModels.ts. */
+      model?: string;
+      /** How the board's generation went, for the model comparison (lib/animationTrials.ts). */
+      trial?: { score: number | null; attempts: number; refineTrail: string; costUsd: number; ms: number };
       fallback?: DrawOp[];
       at: 0;
       endAt: 1;

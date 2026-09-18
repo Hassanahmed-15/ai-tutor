@@ -416,7 +416,11 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   let error: string | null = null;
   try {
     if (visualKind !== "live-svg" && client) {
-      const result = await fillPremium(client, candidate, visualKind, session.sourceType !== "prompt");
+      // The beat's position drives the model comparison's rotation (lib/animationModels.ts), so
+      // neighbouring beats always get different models. Not the count of planned animation beats:
+      // a prompted lecture plans few of those and picks the real board kind later (above), so that
+      // count would hand nearly every animated beat to the same model.
+      const result = await fillPremium(client, candidate, visualKind, session.sourceType !== "prompt", sequence);
       costUsd += result.costUsd;
       success = result.success;
       error = result.error;
@@ -514,13 +518,13 @@ function premiumPlaceholder(beat: Beat, kind: ProgressiveVisualKind): DrawScript
   return beat.draw ?? fallbackDraw(beat.title, beat.points, common.durationMs);
 }
 
-async function fillPremium(client: OpenAI, beat: Beat, kind: ProgressiveVisualKind, hasSource: boolean) {
+async function fillPremium(client: OpenAI, beat: Beat, kind: ProgressiveVisualKind, hasSource: boolean, animationIndex = 0) {
   if (!process.env.OPENAI_API_KEY) return { success: false, costUsd: 0, error: "OPENAI_API_KEY is not set." };
   if (kind === "react-animation" && process.env.REACT_ANIMATIONS_ENABLED !== "1") return disabled(kind);
   if (kind === "blackboard" && process.env.BLACKBOARD_GEN_ENABLED !== "1") return disabled(kind);
   if (kind === "manim" && process.env.MANIM_RENDER_ENABLED !== "1") return disabled(kind);
   const stats = kind === "react-animation"
-    ? await fillReactAnimationOps(client, [beat])
+    ? await fillReactAnimationOps(client, [beat], { animationIndexOffset: animationIndex })
     : kind === "blackboard"
       ? await fillBlackboardOps(client, [beat], hasSource)
       : kind === "manim"

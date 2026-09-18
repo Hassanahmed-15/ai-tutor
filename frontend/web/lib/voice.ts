@@ -13,6 +13,8 @@
  */
 
 import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
+import { CLIP_FETCH_CONCURRENCY, SENTENCE_GAP_MS, sentenceAlignedProgress, sentenceWeight } from "./narrationClock";
+import { recordTtsResponse } from "./costLedger";
 
 export type NarrationHandle = {
   cancel: () => void;
@@ -173,6 +175,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   let progressRaf = 0;
   let resumeProgressLoop: (() => void) | null = null;
   let objectUrl: string | null = null;
+  /** True while a sentence clip is actually playing — false in the gaps between them. */
+  let clipActive = false;
+  /** Wakes the loop awaiting the current clip, so cancel() never leaves it waiting forever. */
+  let clipWaiter: (() => void) | null = null;
   const clearCues = () => {
     cueTimers.forEach((timer) => clearTimeout(timer));
     cueTimers = [];
@@ -185,6 +191,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     if (cancelled) return;
     cancelled = true;
     activeNarrationCancelers.delete(cancel);
+    clipWaiter?.();
+    clipWaiter = null;
     if (audio) {
       audio.pause();
       audio = null;
@@ -223,7 +231,12 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.resume();
     }
-    if (audio) {
+    /*
+     * Only a clip that is genuinely MID-PLAY is restarted. Between sentences the element has ended,
+     * and play() on an ended element starts it again from the top — so resuming in the gap would
+     * have repeated the sentence just finished. The loop's own paused-aware sleep carries on instead.
+     */
+    if (audio && clipActive) {
       void audio.play().then(() => resumeProgressLoop?.()).catch(() => callbacks.onBlocked());
     } else {
       resumeProgressLoop?.();
@@ -342,162 +355,250 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       return;
     }
 
+    /**
+     * ONE CLIP PER SENTENCE — so the board knows which sentence is playing instead of guessing.
+     *
+     * This path used to synthesise the whole beat as a single clip and work out the current sentence
+     * by mapping playback progress onto a character-count layout. Speech does not advance per
+     * character: it pauses at every full stop and spends far longer on "CO2", "2019" or a formula than
+     * their length suggests. Measured on 12 real beats, the guess put the board a median 0.69 s and up
+     * to 2.66 s away from the voice, with 28 of 87 sentence boundaries off by a second or more — the
+     * worst on formula-heavy beats, where the next step appeared while the last was still being said.
+     *
+     * With a clip per sentence the cue fires when that clip STARTS, which is when the teacher starts
+     * saying it. The boundary is a fact. See lib/narrationClock.ts for how the position is reported
+     * so every existing board reads it without change.
+     */
+    const sentences = splitNarrationSentences(text);
+    if (sentences.length === 0) {
+      activeNarrationCancelers.delete(cancel);
+      callbacks.onEnd();
+      return;
+    }
+    const weights = sentences.map(sentenceWeight);
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+    const estimatedTotalMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
+    const estimatedSentenceMs = (i: number) => Math.max(2200, sentences[i].length * 85) / Math.max(0.5, rate);
+
+    /*
+     * Synthesis: sentence 0 first, the rest queued behind it a few at a time. The first clip is a
+     * single short sentence rather than a whole beat, so the teacher starts speaking SOONER than the
+     * single-clip path allowed; later clips are normally ready before the one before them finishes.
+     */
+    const resolvers: Array<(blob: Blob | null) => void> = [];
+    const clipPromises = sentences.map(
+      (_, i) => new Promise<Blob | null>((resolve) => { resolvers[i] = resolve; }),
+    );
+    let nextToFetch = 0;
+    let inFlight = 0;
+    const pump = () => {
+      while (!cancelled && inFlight < CLIP_FETCH_CONCURRENCY && nextToFetch < sentences.length) {
+        const i = nextToFetch;
+        nextToFetch += 1;
+        inFlight += 1;
+        fetch("/api/tts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: sentences[i] }),
+        })
+          .then((res) => {
+            recordTtsResponse(res);
+            return res.ok ? res.blob() : null;
+          })
+          .catch(() => null)
+          .then((blob) => resolvers[i](blob))
+          .finally(() => {
+            inFlight -= 1;
+            pump();
+          });
+      }
+    };
+    pump();
+
+    // Nothing has played yet, so a first clip that cannot be synthesised falls back exactly as the
+    // single-clip path did.
+    const firstClip = await clipPromises[0];
+    if (cancelled) return;
+    if (!firstClip) {
+      void browserFallback();
+      return;
+    }
+
+    /*
+     * ONE element for every sentence, with its `src` swapped per clip.
+     *
+     * `createMediaElementSource` may be called only once per element, and the gain stage and the
+     * avatar's mouth analyser both hang off that node. Binding the graph to a single element keeps
+     * the volume boost and lip sync intact across every sentence change.
+     */
+    audio = new Audio();
+    audio.preload = "auto";
     try {
-      const res = await fetch("/api/tts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
+      const AudioContextCtor =
+        window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (AudioContextCtor) {
+        audioContext = new AudioContextCtor();
+        const source = audioContext.createMediaElementSource(audio);
+        let tail: AudioNode = source;
+        if (CLOUD_TTS_GAIN > 1) {
+          const gain = audioContext.createGain();
+          gain.gain.value = CLOUD_TTS_GAIN;
+          source.connect(gain);
+          tail = gain;
+        }
+        tail.connect(audioContext.destination);
+        mouthToken = attachMouthAnalyser(audioContext, tail);
+        void audioContext.resume();
+      }
+    } catch {
+      // If Web Audio routing fails, the plain media element still plays at normal volume.
+    }
+
+    // Word cues are now estimated INSIDE a sentence whose start is exact, so the error is bounded by
+    // one sentence and resets at every boundary.
+    const wantWords = typeof callbacks.onWordStart === "function";
+    const wordPlans = wantWords
+      ? sentences.map((sentence) => {
+          const words = sentence.split(/\s+/).filter(Boolean);
+          const wordWeights = words.map((word) => {
+            const vowels = word.match(/[aeiouy]+/gi)?.length ?? 1;
+            const digits = (word.match(/\d/g)?.length ?? 0) * 1.5;
+            return Math.max(1, vowels + digits);
+          });
+          const total = wordWeights.reduce((sum, w) => sum + w, 0) || 1;
+          let running = 0;
+          return { total, cumulative: wordWeights.map((w) => (running += w)) };
+        })
+      : [];
+    let lastWordKey = "";
+    let elapsedBeforeMs = 0;
+
+    /** A delay that stands still while narration is paused, and ends at once on cancel. */
+    const sleep = (ms: number) =>
+      new Promise<void>((resolve) => {
+        let remaining = ms;
+        let last = performance.now();
+        const tick = () => {
+          if (cancelled) return resolve();
+          const now = performance.now();
+          if (!paused) remaining -= now - last;
+          last = now;
+          if (remaining <= 0) return resolve();
+          cueTimers.push(setTimeout(tick, 40));
+        };
+        tick();
       });
-      if (!res.ok) throw new Error("tts unavailable");
-      const blob = await res.blob();
+
+    callbacks.onStart();
+
+    for (let i = 0; i < sentences.length; i += 1) {
       if (cancelled) return;
+      const blob = i === 0 ? firstClip : await clipPromises[i];
+      if (cancelled) return;
+
+      /*
+       * A sentence that could not be synthesised still happens.
+       *
+       * Its cue fires and the lecture waits roughly as long as it would take to say, so the board
+       * stays in step and the beat advances rather than stalling on one failed request.
+       */
+      if (!blob) {
+        if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+        callbacks.onProgress?.(sentenceAlignedProgress(weights, i, 0), elapsedBeforeMs, estimatedTotalMs);
+        await sleep(estimatedSentenceMs(i));
+        elapsedBeforeMs += estimatedSentenceMs(i);
+        continue;
+      }
+
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
       objectUrl = URL.createObjectURL(blob);
-      audio = new Audio(objectUrl);
+      audio.src = objectUrl;
+      audio.defaultPlaybackRate = rate;
       audio.playbackRate = rate;
       audio.volume = 1;
-      const sentences = splitNarrationSentences(text);
-      const weights = sentences.map((sentence) => Math.max(1.35, sentence.length / 13));
-      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-      const cumulative = weights.reduce<number[]>((acc, weight, i) => {
-        acc.push((acc[i - 1] ?? 0) + weight);
-        return acc;
-      }, []);
-      let lastCueIndex = initialSentences.length > 0 ? 0 : -1;
 
-      /**
-       * Per-sentence word weights, for the reading-along cue.
-       *
-       * Only built when a caller asked for word cues — every other narration in the app pays
-       * nothing for this.
-       */
-      const wantWords = typeof callbacks.onWordStart === "function";
-      const wordPlans = wantWords
-        ? sentences.map((sentence) => {
-            const words = sentence.split(/\s+/).filter(Boolean);
-            // Vowel groups approximate spoken length far better than character count, and digits are
-            // spoken far longer than they are written ("2019").
-            const weights = words.map((word) => {
-              const vowels = word.match(/[aeiouy]+/gi)?.length ?? 1;
-              const digits = (word.match(/\d/g)?.length ?? 0) * 1.5;
-              return Math.max(1, vowels + digits);
-            });
-            const total = weights.reduce((sum, w) => sum + w, 0) || 1;
-            let running = 0;
-            const cumulative = weights.map((w) => (running += w));
-            return { total, cumulative };
-          })
-        : [];
-      let lastWordKey = "";
+      if (paused) await sleep(1);
+      if (cancelled) return;
 
-      const estimatedDurationMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
-      const emitAudioClock = () => {
-        if (cancelled || !audio) return;
-        if (paused) return;
-        const durationMs = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration * 1000 : estimatedDurationMs;
-        const currentMs = Math.min(durationMs, audio.currentTime * 1000);
-        const progress = durationMs > 0 ? Math.max(0, Math.min(1, currentMs / durationMs)) : 0;
-        callbacks.onProgress?.(progress, currentMs, durationMs);
-
-        if (sentences.length > 0) {
-          const currentWeight = progress * totalWeight;
-          const nextBoundaryIndex = cumulative.findIndex((boundary) => currentWeight < boundary);
-          const cueIndex = nextBoundaryIndex === -1 ? sentences.length - 1 : nextBoundaryIndex;
-          if (cueIndex !== lastCueIndex) {
-            lastCueIndex = cueIndex;
-            callbacks.onSentenceStart?.(cueIndex, sentences[cueIndex], sentences.length);
-          }
-
-          // Where inside the current sentence the clock has reached, mapped onto its words.
-          const plan = wordPlans[cueIndex];
-          if (plan) {
-            const sentenceStart = cumulative[cueIndex - 1] ?? 0;
-            const spanned = Math.max(0.0001, weights[cueIndex]);
-            const within = Math.max(0, Math.min(1, (currentWeight - sentenceStart) / spanned));
-            const target = within * plan.total;
-            let wordIndex = plan.cumulative.findIndex((boundary) => target < boundary);
-            if (wordIndex === -1) wordIndex = plan.cumulative.length - 1;
-            const key = `${cueIndex}:${wordIndex}`;
-            if (key !== lastWordKey) {
-              lastWordKey = key;
-              callbacks.onWordStart?.(wordIndex, cueIndex);
-            }
-          }
-        }
-
-        if (!audio.paused && !audio.ended) progressRaf = window.requestAnimationFrame(emitAudioClock);
-      };
-      resumeProgressLoop = emitAudioClock;
       try {
-        const AudioContextCtor =
-          window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        /*
-         * NOTE THE CONDITION. This used to read `if (AudioContextCtor && CLOUD_TTS_GAIN > 1)`, so the
-         * whole Web Audio graph existed only as a side effect of wanting extra volume. The mouth
-         * analyser must not inherit that: setting the gain to 1 would silently kill lip sync, with
-         * nothing to connect the two facts. The context is now built whenever Web Audio exists, and
-         * the gain node is what is conditional.
-         */
-        if (AudioContextCtor) {
-          audioContext = new AudioContextCtor();
-          const source = audioContext.createMediaElementSource(audio);
-          let tail: AudioNode = source;
-          if (CLOUD_TTS_GAIN > 1) {
-            const gain = audioContext.createGain();
-            gain.gain.value = CLOUD_TTS_GAIN;
-            source.connect(gain);
-            tail = gain;
-          }
-          tail.connect(audioContext.destination);
-          // Drives the avatar's mouth. Tapped off the same chain rather than a second context.
-          mouthToken = attachMouthAnalyser(audioContext, tail);
-          void audioContext.resume();
-        }
-      } catch {
-        // If Web Audio routing fails, the plain media element still plays at normal volume.
-      }
-      audio.onended = () => {
-        activeNarrationCancelers.delete(cancel);
-        stopProgressLoop();
-        clearCues();
-        if (objectUrl) {
-          URL.revokeObjectURL(objectUrl);
-          objectUrl = null;
-        }
-        detachMouthAnalyser(mouthToken);
-        mouthToken = undefined;
-        void audioContext?.close();
-        audioContext = null;
-        callbacks.onProgress?.(1, audio?.duration ? audio.duration * 1000 : 1, audio?.duration ? audio.duration * 1000 : 1);
-        callbacks.onEnd();
-      };
-      audio.onerror = () => {
-        activeNarrationCancelers.delete(cancel);
-        stopProgressLoop();
-        clearCues();
-        if (objectUrl) {
-          URL.revokeObjectURL(objectUrl);
-          objectUrl = null;
-        }
-        detachMouthAnalyser(mouthToken);
-        mouthToken = undefined;
-        void audioContext?.close();
-        audioContext = null;
-        void browserFallback();
-      };
-      callbacks.onStart();
-      if (!paused) {
         await audio.play();
-        emitAudioClock();
+      } catch (err) {
+        // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
+        if (err instanceof DOMException && err.name === "NotAllowedError") {
+          activeNarrationCancelers.delete(cancel);
+          callbacks.onBlocked();
+          return;
+        }
+        if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+        await sleep(estimatedSentenceMs(i));
+        elapsedBeforeMs += estimatedSentenceMs(i);
+        continue;
       }
-    } catch (err) {
-      // DOMException "NotAllowedError" = autoplay-blocked, not a server/network problem.
-      if (err instanceof DOMException && err.name === "NotAllowedError") {
-        activeNarrationCancelers.delete(cancel);
-        callbacks.onBlocked();
-        return;
-      }
-      void browserFallback();
+      if (cancelled) return;
+      clipActive = true;
+
+      // THE SYNC POINT: the teacher has just started saying sentence i, so the board moves now.
+      // Sentence 0's cue was sent before any audio existed, so the board is ready as speech begins.
+      if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
+
+      const clipIndex = i;
+      const loop = () => {
+        if (cancelled || !audio || paused) return;
+        const duration = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0;
+        const fraction = duration > 0 ? Math.min(1, audio.currentTime / duration) : 0;
+        callbacks.onProgress?.(
+          sentenceAlignedProgress(weights, clipIndex, fraction),
+          elapsedBeforeMs + audio.currentTime * 1000,
+          estimatedTotalMs,
+        );
+        const plan = wordPlans[clipIndex];
+        if (plan) {
+          const target = fraction * plan.total;
+          let wordIndex = plan.cumulative.findIndex((boundary) => target < boundary);
+          if (wordIndex === -1) wordIndex = plan.cumulative.length - 1;
+          const key = `${clipIndex}:${wordIndex}`;
+          if (key !== lastWordKey) {
+            lastWordKey = key;
+            callbacks.onWordStart?.(wordIndex, clipIndex);
+          }
+        }
+        if (!audio.paused && !audio.ended) progressRaf = window.requestAnimationFrame(loop);
+      };
+      resumeProgressLoop = loop;
+      loop();
+
+      await new Promise<void>((resolve) => {
+        const done = () => {
+          clipWaiter = null;
+          resolve();
+        };
+        clipWaiter = done;
+        audio!.onended = done;
+        audio!.onerror = done;
+      });
+      clipActive = false;
+      stopProgressLoop();
+      if (cancelled) return;
+
+      elapsedBeforeMs += (Number.isFinite(audio.duration) ? audio.duration : 0) * 1000;
+      callbacks.onProgress?.(sentenceAlignedProgress(weights, clipIndex, 1), elapsedBeforeMs, estimatedTotalMs);
+      if (i < sentences.length - 1) await sleep(SENTENCE_GAP_MS / Math.max(0.5, rate));
     }
+
+    if (cancelled) return;
+    activeNarrationCancelers.delete(cancel);
+    stopProgressLoop();
+    clearCues();
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+    }
+    detachMouthAnalyser(mouthToken);
+    mouthToken = undefined;
+    void audioContext?.close();
+    audioContext = null;
+    callbacks.onProgress?.(1, elapsedBeforeMs, elapsedBeforeMs);
+    callbacks.onEnd();
   })();
 
   return {

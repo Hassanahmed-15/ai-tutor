@@ -828,6 +828,25 @@ export function getReactAnimationCodeIssue(rawCode: string, opts: { abstract?: b
   return getReactAnimationCodeDiagnostics(rawCode, opts).issue;
 }
 
+/** A board's generation record (lib/animationTrials.ts), kept only if every field is well-formed. */
+export function sanitizeTrial(raw: unknown): ReactAnimationOp["trial"] {
+  const t = raw as Record<string, unknown> | null;
+  if (!t || typeof t !== "object") return undefined;
+  const num = (v: unknown) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? v : null);
+  const score = t.score === null ? null : num(t.score);
+  const attempts = num(t.attempts);
+  const costUsd = num(t.costUsd);
+  const ms = num(t.ms);
+  if (attempts === null || costUsd === null || ms === null || (t.score !== null && score === null)) return undefined;
+  return {
+    score: score === null ? null : Math.min(5, score),
+    attempts,
+    refineTrail: typeof t.refineTrail === "string" ? t.refineTrail.slice(0, 120) : "",
+    costUsd,
+    ms,
+  };
+}
+
 /** Validates a `reactAnimation` op's `code` field. Returns the op unchanged if the code passes,
  *  or the op with `code` stripped if it fails any check. Deliberately does NOT touch
  *  `teachingPoint` because it is safe plain data regardless of what happened to `code`. Exported
@@ -1041,6 +1060,10 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
         : undefined,
       status: r.status === "ready" || r.status === "failed" ? r.status : undefined,
       error: typeof r.error === "string" ? r.error.slice(0, 180) : undefined,
+      // Who drew the board and how it went. Same reason as assetIds: anything not named here is
+      // dropped when a filled script is re-sanitised, and the chip would stop naming the model.
+      model: typeof r.model === "string" && /^[a-z0-9.-]{1,60}$/i.test(r.model) ? r.model : undefined,
+      trial: sanitizeTrial(r.trial),
       at: 0,
       endAt: 1,
     };
