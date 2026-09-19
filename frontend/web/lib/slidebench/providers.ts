@@ -131,8 +131,23 @@ async function generateWithGemini(
   }
 }
 
-/** Overload and rate-limit language, across both providers. */
-const TRANSIENT = /high demand|rate limit|429|503|overloaded|unavailable|timeout|temporarily/i;
+/**
+ * Worth retrying: the provider is busy right now and may not be in a few seconds.
+ *
+ * Note what is NOT here: a quota/billing exhaustion. See QUOTA below.
+ */
+const TRANSIENT = /high demand|overloaded|unavailable|timeout|temporarily|503/i;
+
+/**
+ * NEVER RETRY A QUOTA ERROR — retrying it is what causes it.
+ *
+ * Measured the hard way on this account: gemini-3.8-flash is on a free tier capped at 20 requests
+ * per day per model. Nine bench attempts, each retried three times, burned roughly 27 requests and
+ * exhausted the whole day's allowance — so the retry logic intended to protect a model from a
+ * transient blip is exactly what locked it out. A daily cap does not clear in two seconds, and
+ * every extra call spends a budget the user cannot get back until tomorrow.
+ */
+const QUOTA = /exceeded your current quota|RESOURCE_EXHAUSTED|billing|quota/i;
 
 /**
  * RETRY THE PROVIDER, NOT THE MODEL.
@@ -158,6 +173,8 @@ export async function generateSlide(
       ? await generateWithGemini(model, prompt, maxTokens)
       : await generateWithOpenAI(model, prompt, maxTokens);
     if (!last.providerError) return last;
+    // A quota is a budget, not a blip. Retrying spends more of the thing that just ran out.
+    if (QUOTA.test(last.providerError)) return last;
     if (!TRANSIENT.test(last.providerError)) return last; // a real error: a bad key, an unknown model
     if (attempt < attempts - 1) {
       // 2s, 6s. Long enough for a demand spike to pass, short enough to keep a sweep interactive.
