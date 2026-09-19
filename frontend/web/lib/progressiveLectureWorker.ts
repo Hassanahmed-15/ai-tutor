@@ -32,6 +32,7 @@ import { fillReactAnimationOps } from "./reactAnimationGen";
 import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
+import { beatCountForDepth, scopedBlockText } from "./beatSourceScope";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
 type GeneratedBeatPayload = {
@@ -130,7 +131,7 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
   const sourcePlan = sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
   const subject = topicKeywords(input.topic);
-  const requested = input.learnerProfile.depth === "deep" ? 10 : input.learnerProfile.depth === "concise" ? 6 : 8;
+  const requested = beatCountForDepth(input.learnerProfile.depth);
   const supplied = (input.outline?.subtopics ?? [])
     .map((item) => ({ title: clean(item.title), objective: clean(item.caption || item.reason || item.title) }))
     .filter((item) => item.title);
@@ -199,7 +200,7 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
    * Applied to the model's own plan as well as the block fallback, since a long PDF makes the
    * planner propose many beats and the cap is what makes the student's choice win.
    */
-  const beatCap = input.learnerProfile.depth === "deep" ? 10 : input.learnerProfile.depth === "concise" ? 6 : 8;
+  const beatCap = beatCountForDepth(input.learnerProfile.depth);
   const fallback = planned.length > 0 ? planned.slice(0, beatCap) : (document.contentBlocks ?? [])
     .slice()
     .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0))
@@ -683,8 +684,32 @@ async function failSession(session: ProgressiveLectureSessionDoc, error: unknown
   await replaceProgressiveSession({ ...session, status: "failed", error: messageFor(error).slice(0, 500) }).catch(() => {});
 }
 
+/**
+ * The source material one beat is allowed to see.
+ *
+ * WHY SCOPING MATTERS MORE THAN IT LOOKS. Only the suprnotes branch below ever narrowed to the
+ * beat's own blocks; `context`, `transcript` and `focus` were pushed whole for every beat and the
+ * result truncated at 18 000 characters. Two things follow, and both were visible in the output:
+ *
+ *   1. Every beat was handed the ENTIRE document, so a beat about page 9 read pages 1-4 first and
+ *      wrote about them — the lecture drifted back toward the opening pages instead of advancing.
+ *   2. Truncation is positional, so on a long PDF the later pages were simply absent. A beat
+ *      planned from page 15 could be written from material that never mentioned page 15.
+ *
+ * Scoping by the planner's own `sourceBlockIds` fixes both: the beat sees its pages, in full,
+ * within budget. The unscoped text stays as the fallback for a topic-only lecture, which has no
+ * blocks to scope to.
+ */
 function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]): string {
-  const parts = [input.context, input.diagramHints, input.transcript, input.focus];
+  /*
+   * The beat's own pages lead. `focus` (the student's question) is always included — it is short
+   * and it is the one piece of context every beat needs — while the full-document text is used
+   * only when there is nothing more specific, so it can no longer crowd out the beat's own pages.
+   */
+  const scopedDocument = scopedDocumentText(input, sourceBlockIds);
+  const parts = scopedDocument
+    ? [input.focus, scopedDocument, input.diagramHints]
+    : [input.context, input.diagramHints, input.transcript, input.focus];
   if (isSuprnotesLessonInput(input.suprnotes)) {
     const selected = new Set(sourceBlockIds ?? []);
     const scoped: SuprnotesLessonInput = selected.size > 0
@@ -697,6 +722,19 @@ function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]
     parts.push(compactSuprnotesForPrompt(scoped));
   } else if (input.suprnotes) parts.push(JSON.stringify(input.suprnotes));
   return parts.filter((part): part is string => typeof part === "string" && Boolean(part.trim())).join("\n\n").slice(0, 18_000);
+}
+
+/**
+ * The text of just the blocks this beat was planned from, or "" when there are none.
+ *
+ * Returning "" rather than the whole document is deliberate: a beat with no blocks is a topic-only
+ * beat, and the caller falls back to the unscoped text for exactly that case. Silently widening to
+ * the full document here would reintroduce the drift this function exists to stop.
+ */
+function scopedDocumentText(input: ProgressiveLectureInput, sourceBlockIds?: string[]): string {
+  const document = input.suprnotes;
+  if (!isSuprnotesLessonInput(document)) return "";
+  return scopedBlockText(document.contentBlocks ?? [], sourceBlockIds);
 }
 
 function clean(value: unknown): string {
