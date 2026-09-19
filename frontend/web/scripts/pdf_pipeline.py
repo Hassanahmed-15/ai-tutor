@@ -10,12 +10,31 @@ import math
 import os
 import sys
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-import cv2
 import fitz
-import numpy as np
-import pytesseract
+
+# cv2, numpy and pytesseract are imported LAZILY, inside the functions that use them.
+#
+# Only the cropping/OCR path (ink_mask and below) touches them; `render` and `thumbs` need nothing
+# but fitz. Importing them at module scope meant every thumbnail spawn — the one call on the
+# latency-critical first-paint path — paid to load OpenCV and Tesseract and then never used either.
+# Measured on this machine: fitz alone 0.08s, the other three 0.19s on top, per spawn, and a spawn
+# happens per request.
+#
+# `from __future__ import annotations` above keeps the `np.ndarray` annotations below valid without
+# importing numpy, since they are then never evaluated at runtime.
+if TYPE_CHECKING:
+    import numpy as np
+
+
+def _load_cv():
+    """cv2, numpy and pytesseract, imported on first use. See the note above."""
+    import cv2
+    import numpy as np
+    import pytesseract
+
+    return cv2, np, pytesseract
 
 
 def clamp(value: float, low: float, high: float) -> float:
@@ -171,11 +190,13 @@ def stream_thumbnails(input_path: Path, dpi: int) -> None:
 
 
 def ink_mask(image: np.ndarray) -> np.ndarray:
+    cv2, np, pytesseract = _load_cv()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     return (gray < 245).astype(np.uint8)
 
 
 def edge_ink_ratio(mask: np.ndarray, edge: str) -> float:
+    cv2, np, pytesseract = _load_cv()
     height, width = mask.shape[:2]
     band = max(2, round(min(width, height) * 0.006))
     if edge == "left":
@@ -190,6 +211,7 @@ def edge_ink_ratio(mask: np.ndarray, edge: str) -> float:
 
 
 def ocr_edge_risks(image: np.ndarray) -> set[str]:
+    cv2, np, pytesseract = _load_cv()
     risks: set[str] = set()
     height, width = image.shape[:2]
     try:
@@ -231,6 +253,7 @@ def strip_hits_text(
     """True if the [x0,y0,x1,y1] strip we're about to grow into meaningfully overlaps body text.
     Used to stop a figure crop from swallowing an adjacent paragraph. A figure's OWN internal labels
     are inside the box already, so they never appear in an outward growth strip."""
+    cv2, np, pytesseract = _load_cv()
     sx0, sy0, sx1, sy1 = strip
     strip_area = max(1, (sx1 - sx0) * (sy1 - sy0))
     for tx0, ty0, tx1, ty1 in text_boxes_px:
@@ -246,6 +269,7 @@ def expand_box_until_clear(
     box: tuple[int, int, int, int],
     text_boxes_px: list[tuple[int, int, int, int]] | None = None,
 ) -> tuple[int, int, int, int]:
+    cv2, np, pytesseract = _load_cv()
     page_height, page_width = page.shape[:2]
     x0, y0, x1, y1 = box
     step_x = max(24, round(page_width * 0.028))
@@ -300,6 +324,7 @@ def expand_box_until_clear(
 
 
 def trim_whitespace(image: np.ndarray) -> tuple[np.ndarray, tuple[int, int, int, int]]:
+    cv2, np, pytesseract = _load_cv()
     mask = ink_mask(image)
     points = cv2.findNonZero(mask)
     if points is None:
@@ -314,6 +339,7 @@ def trim_whitespace(image: np.ndarray) -> tuple[np.ndarray, tuple[int, int, int,
 
 
 def deskew(image: np.ndarray) -> np.ndarray:
+    cv2, np, pytesseract = _load_cv()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     coords = np.column_stack(np.where(gray < 220))[:, ::-1]
     if len(coords) < 80:
@@ -337,6 +363,7 @@ def deskew(image: np.ndarray) -> np.ndarray:
 
 
 def clean_image(image: np.ndarray) -> np.ndarray:
+    cv2, np, pytesseract = _load_cv()
     image = deskew(image)
     lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
     lightness, a, b = cv2.split(lab)
@@ -354,6 +381,7 @@ def text_boxes_to_pixels(
     page_height: int,
 ) -> list[tuple[int, int, int, int]]:
     """Normalized text rectangles -> pixel boxes, so expansion never crosses body text."""
+    cv2, np, pytesseract = _load_cv()
     text_boxes_px: list[tuple[int, int, int, int]] = []
     for tb in raw_boxes or []:
         try:
@@ -383,6 +411,7 @@ def crop_one_page(
     page_index: int,
 ) -> list[dict[str, Any]]:
     """Every crop for ONE page image. Named by prefix so several pages can share an output dir."""
+    cv2, np, pytesseract = _load_cv()
     page = cv2.imread(str(page_path), cv2.IMREAD_COLOR)
     if page is None:
         raise RuntimeError(f"Could not read page image: {page_path}")
@@ -443,6 +472,7 @@ def crop_regions(page_path: Path | None, regions_path: Path, output_dir: Path) -
     `{"regions": [...]}` with a `--page` argument still works, so any caller that has not been
     moved over keeps functioning rather than failing on an unrecognised key.
     """
+    cv2, np, pytesseract = _load_cv()
     raw = json.loads(regions_path.read_text(encoding="utf-8"))
     crops: list[dict[str, Any]] = []
 

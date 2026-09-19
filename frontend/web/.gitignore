@@ -50,3 +50,6 @@ next-env.d.ts
 # Screenshot artifacts from the board verifiers (scripts/verify-*.mjs)
 /board_*.png
 /plot_*.png
+
+# Python bytecode from scripts/pdf_pipeline.py
+__pycache__/
