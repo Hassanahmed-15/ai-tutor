@@ -9,5 +9,8 @@
     "dev": "npm run dev --workspace=frontend/web",
     "build": "npm run build --workspace=frontend/web",
     "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "dependencies": {
+    "docx": "^9.7.1"
   }
 }
