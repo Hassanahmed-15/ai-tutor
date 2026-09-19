@@ -1,5 +1,6 @@
 import type { Beat } from "./lessonContent";
 import type { LectureMode, LectureSourceType } from "./db/cosmos";
+import type { LearnerProfile } from "./learnerProfile";
 
 export type LearnerExpertise = "beginner" | "intermediate" | "advanced";
 export type LearnerDepth = "concise" | "balanced" | "deep";
@@ -67,6 +68,20 @@ export type ProgressiveLectureInput = {
   focus?: string;
   documentId?: string;
   learnerProfile: LearnerProfileSnapshot;
+  /**
+   * The full profile from the planning conversation: what they know, what they are shaky on, their
+   * misconceptions and gaps. The five-field `learnerProfile` above is derived from it.
+   *
+   * This replaces the old channel, which was prose squeezed into `mood`, cut to 500 characters, and
+   * never read by the lecture worker — so none of the conversation reached the lecture.
+   */
+  learner?: LearnerProfile;
+  /**
+   * "What Aria thinks about this student" from earlier lessons (lib/learnerModel.ts
+   * personaForPrompt): interests, strengths, what is still settling, how to teach them. The
+   * planning profile above is about THIS topic; this is about the person across every topic.
+   */
+  learnerPersona?: string;
 };
 
 export type ProgressiveLectureSessionDoc = {
@@ -95,6 +110,34 @@ export type ProgressiveLectureSessionDoc = {
 
 export type ProgressiveBeatState = "planned" | "generating" | "playable" | "ready" | "failed";
 
+/**
+ * Where one beat's time went, measured by the worker. Shown on the build screen and used for the
+ * latency analysis: without it "the lecture is slow" could not be attributed to anything.
+ */
+export type BeatTiming = {
+  /** Waiting in the queue before the script step started. */
+  queuedMs?: number;
+  textStartedAt?: string;
+  /** The whole script step. */
+  textMs?: number;
+  /** Of which: the script model call. */
+  scriptMs?: number;
+  /** Of which: everything else — database and storage reads and writes. */
+  textOverheadMs?: number;
+  /** Waiting in the queue between the script step and the visual step. */
+  enrichQueuedMs?: number;
+  /** Choosing which kind of board to draw (a classifier call). */
+  visualChoiceMs?: number;
+  visualKind?: string;
+  /** Generating the board itself. */
+  premiumMs?: number;
+  /** The whole visual step. */
+  enrichMs?: number;
+  readyAt?: string;
+  /** For animated boards: model, checks, critic, refine and every attempt. */
+  animation?: import("./reactAnimationGen").AnimationTiming;
+};
+
 export type ProgressiveBeatDoc = {
   id: string;
   sessionId: string;
@@ -109,6 +152,7 @@ export type ProgressiveBeatDoc = {
   createdAt: string;
   updatedAt: string;
   error: string | null;
+  timing?: BeatTiming;
 };
 
 /**
@@ -139,6 +183,16 @@ export type ProgressiveLectureSnapshot = {
   lectureId: string | null;
   costUsd: number;
   error: string | null;
+  /** When the session was created, so time-to-first-beat can be read off the snapshot. */
+  createdAt?: string;
+  /** Every planned beat, ready or not, with where its time has gone so far. */
+  beatStatus?: Array<{
+    sequence: number;
+    title: string;
+    state: ProgressiveBeatState | "not-started";
+    visualKind: string;
+    timing?: BeatTiming;
+  }>;
 };
 
 export type LearnerInteractionKind = "playhead" | "deeper" | "simpler" | "more-examples" | "code" | "checkpoint" | "question";

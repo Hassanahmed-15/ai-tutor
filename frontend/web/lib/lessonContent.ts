@@ -62,6 +62,12 @@ export interface Beat {
    * Manim cache id; putting a delivery URL inside it would change that id and force a new render.
    */
   manimVideoUrl?: string;
+  /**
+   * How to pitch this beat's BOARD for the student watching (lib/learnerBrief.ts): labelling and
+   * density for their level. Every board generator appends it as AUDIENCE guidance. Absent on
+   * lectures made without a learner profile, which then draw exactly as before.
+   */
+  learnerBrief?: string;
 }
 
 const GREEN = "#15803d";

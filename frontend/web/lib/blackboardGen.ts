@@ -13,6 +13,7 @@ import { assignOpSentences, boardSyncIssue } from "./boardSentenceSync";
 import { critiqueBoard, boardVisionCriticEnabled } from "./boardVisionCritic";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
+import { withAudience } from "./learnerBrief";
 
 type DrawOp = DrawScript["ops"][number];
 
@@ -177,7 +178,7 @@ async function generateOne(
         model: MODEL,
         messages: [
           { role: "system", content: BLACKBOARD_SYSTEM_PROMPT },
-          { role: "user", content: buildUserPrompt(op, beat, sentences, previousIssue) },
+          { role: "user", content: withAudience(beat, buildUserPrompt(op, beat, sentences, previousIssue)) },
         ],
         temperature: attempt === 0 ? 0.5 : Math.min(0.9, 0.5 + attempt * 0.2),
         response_format: { type: "json_object" },

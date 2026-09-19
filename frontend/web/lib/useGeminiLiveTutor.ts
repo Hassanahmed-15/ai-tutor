@@ -143,6 +143,18 @@ export type UseGeminiLiveTutorOptions = {
   onPauseLecture?: () => void;
   onResumeLecture?: () => void;
   alwaysOn?: boolean;
+  /**
+   * While this returns true, Aria speaks only when asked to by `say()` or `sendText()`; a reply she
+   * generates on her own to something the student said is neither played nor transcribed.
+   *
+   * For the planning conversation, where the question on screen must be the question she asks. The
+   * live model answers every finished student turn by itself, and measured in real runs it asked
+   * questions of its own ("Are you familiar with dynamic programming in this context?") while a
+   * different one was on screen — an instruction not to did not stop it. The reply is already
+   * spoken by the time the student's transcript reaches the page, so it cannot be silenced from
+   * there; it has to be held here, as it arrives. Unset everywhere else, which is unchanged.
+   */
+  holdUnpromptedReplies?: () => boolean;
   adhdMode?: boolean;
   /**
    * Opens the session with the CASUAL check-in persona instead of the tutor one, and with
@@ -461,6 +473,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const pendingLectureResumeRef = useRef(false);
   const studentSpeakingRef = useRef(false);
   const suppressCurrentTurnRef = useRef(false);
+  /** True once say()/sendText() asked for a reply; cleared when the student addresses her again. */
+  const promptedTurnRef = useRef(false);
   /**
    * Output mute: the tutor's VOICE is silenced, the session stays fully alive.
    *
@@ -754,18 +768,24 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     }, SETTLE_MS);
   }, [finishTutorTurn]);
 
+  /** A reply the caller did not ask for, while asking is required (see `holdUnpromptedReplies`). */
+  const isHeldReply = useCallback(
+    () => Boolean(optionsRef.current.holdUnpromptedReplies?.()) && !promptedTurnRef.current,
+    [],
+  );
+
   const markTutorActive = useCallback(() => {
     if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
     settleTimerRef.current = null;
     turnCompletedRef.current = false;
     responseInFlightRef.current = true;
     turnCompleteRef.current = false;
-    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current) setSpeaking(true);
-  }, []);
+    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current && !isHeldReply()) setSpeaking(true);
+  }, [isHeldReply]);
 
   const playAudioChunk = useCallback(
     (base64: string) => {
-      if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current) return;
+      if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || isHeldReply()) return;
       // Dropped rather than buffered: a queue flushed on unmute would replay a turn the
       // conversation has already moved past.
       if (outputMutedRef.current) return;
@@ -861,6 +881,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const beginStudentSpeech = useCallback(() => {
     if (studentSpeakingRef.current) return;
     studentSpeakingRef.current = true;
+    // Real words addressed to her — not a cough or a click, which only duck — begin a new student
+    // turn, so whatever she says next was not asked for by say() (see holdUnpromptedReplies).
+    promptedTurnRef.current = false;
     pendingLectureResumeRef.current = false;
     suppressCurrentTurnRef.current = true;
     contextOnlyTurnRef.current = false;
@@ -1158,8 +1181,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
       const outputText = content?.outputTranscription?.text;
       if (outputText) {
-        tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
-        if (!contextOnlyTurnRef.current && !suppressCurrentTurnRef.current) {
+        // A held reply is not collected either, so its final transcript is empty and never shown.
+        if (!isHeldReply()) tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
+        if (!contextOnlyTurnRef.current && !suppressCurrentTurnRef.current && !isHeldReply()) {
           optionsRef.current.onTranscript?.("tutor", outputText, false);
         }
       }
@@ -1803,6 +1827,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const say = useCallback(
     (prompt: string) => {
       if (!sessionRef.current || !prompt.trim()) return;
+      promptedTurnRef.current = true;
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();
@@ -1835,6 +1860,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
        */
       gateRef.current?.reset();
       closeActivityRef.current();
+      promptedTurnRef.current = true;
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();

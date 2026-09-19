@@ -14,14 +14,12 @@ import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnot
 import {
   MAX_DIAGNOSTIC_QUESTIONS,
   applyDiagnostic,
-  emptyProfile,
+  sanitizeLearnerProfile,
   hasEnoughSignal,
   profileSummary,
   resolveDepth,
-  type Confidence,
   type DepthLevel,
   type LearnerProfile,
-  type LearningObjective,
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
@@ -81,6 +79,16 @@ function summarizeSourceDocumentForPlanning(doc: SuprnotesLessonInput): string {
  * costs). Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
 const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
+
+/**
+ * "What Aria thinks about this student", from their long-term memory (lib/learnerModel.ts
+ * personaForPrompt), as a block for the planning prompts. The client sends it already framed:
+ * earlier-lesson background, which what the student says now overrides. Capped here regardless.
+ */
+function personaLine(value: unknown): string {
+  const text = typeof value === "string" ? value.trim().slice(0, 1_000) : "";
+  return text ? `\n\n${text}` : "";
+}
 const OUTLINE_MAX_TOKENS = Math.max(1_700, Math.min(16_000, Number(process.env.OPENAI_PLAN_MAX_TOKENS ?? 8_000)));
 
 // gpt-4o-mini pricing (source: openai.com/api/pricing).
@@ -143,67 +151,6 @@ function sanitizeSafetyNet(raw: unknown): PlanOutline["subtopics"][number]["safe
   return { prerequisite, diagnostic, masterySignal, rescueMove, reinforceAfter, reinforcementPrompt };
 }
 
-
-/**
- * Accept a learner profile from the client without trusting any of it.
- *
- * The client owns the profile across a conversation (it is per-topic and dies with the planning
- * session), so it arrives over the wire each turn and every field has to be re-checked. Anything
- * unrecognised degrades to the empty profile rather than throwing: a malformed profile must cost
- * the student a slightly less personalised lesson, never the lesson itself.
- */
-function sanitizeLearnerProfile(raw: unknown, topic: string): LearnerProfile {
-  const base = emptyProfile(topic);
-  if (!raw || typeof raw !== "object") return base;
-  const rec = raw as Record<string, unknown>;
-
-  const strings = (value: unknown, cap = 8): string[] =>
-    Array.isArray(value)
-      ? value.filter((v): v is string => typeof v === "string" && v.trim().length > 0).map((v) => v.trim().slice(0, 120)).slice(0, cap)
-      : [];
-
-  const level = typeof rec.claimedLevel === "number" && rec.claimedLevel >= 1 && rec.claimedLevel <= 5
-    ? (Math.round(rec.claimedLevel) as DepthLevel)
-    : null;
-
-  const CONFIDENCES = ["low", "medium", "high", "unknown"];
-  const OBJECTIVES = ["exam", "fundamentals", "project", "interview", "curiosity", "unknown"];
-
-  return {
-    ...base,
-    topic,
-    claimedLevel: level,
-    confidence: typeof rec.confidence === "string" && CONFIDENCES.includes(rec.confidence)
-      ? (rec.confidence as Confidence)
-      : "unknown",
-    objective: typeof rec.objective === "string" && OBJECTIVES.includes(rec.objective)
-      ? (rec.objective as LearningObjective)
-      : "unknown",
-    masteredConcepts: strings(rec.masteredConcepts),
-    weakConcepts: strings(rec.weakConcepts),
-    misconceptions: strings(rec.misconceptions, 5),
-    prerequisiteGaps: strings(rec.prerequisiteGaps, 5),
-    preferredStyle: typeof rec.preferredStyle === "string" ? rec.preferredStyle.trim().slice(0, 200) || null : null,
-    background: typeof rec.background === "string" ? rec.background.trim().slice(0, 300) || null : null,
-    teachingHypothesis: typeof rec.teachingHypothesis === "string" ? rec.teachingHypothesis.trim().slice(0, 400) || null : null,
-    redirectedFocus: typeof rec.redirectedFocus === "string" ? rec.redirectedFocus.trim().slice(0, 200) || null : null,
-    diagnostics: Array.isArray(rec.diagnostics)
-      ? (rec.diagnostics as unknown[])
-          .filter((d): d is Record<string, unknown> => Boolean(d) && typeof d === "object")
-          .map((d) => ({
-            question: typeof d.question === "string" ? d.question.slice(0, 300) : "",
-            answer: typeof d.answer === "string" ? d.answer.slice(0, 500) : "",
-            verdict: (["correct", "partial", "incorrect", "misconception", "skipped"] as const).includes(d.verdict as never)
-              ? (d.verdict as LearnerProfile["diagnostics"][number]["verdict"])
-              : "skipped",
-            concept: typeof d.concept === "string" ? d.concept.slice(0, 120) : undefined,
-            misconception: typeof d.misconception === "string" ? d.misconception.slice(0, 200) : undefined,
-            selfReport: d.selfReport === true,
-          }))
-          .slice(0, MAX_DIAGNOSTIC_QUESTIONS)
-      : [],
-  };
-}
 
 /**
  * Fold the model's assessment of this turn into the profile the client sent.
@@ -735,6 +682,7 @@ export async function POST(req: Request) {
           .slice(-MAX_DIAGNOSTIC_QUESTIONS)
       : [];
     const accountContext = typeof body.accountContext === "string" ? body.accountContext.slice(0, 400) : "";
+    const learnerPersona = personaLine(body.learnerPersona);
 
     try {
       const completion = await client.chat.completions.create({
@@ -744,6 +692,7 @@ export async function POST(req: Request) {
           {
             role: "user",
             content: buildDiagnosticUserMessage({ topic, profile: incoming, exchanges, accountContext })
+              + learnerPersona
               + sourceDocLine,
           },
         ],
@@ -847,7 +796,7 @@ export async function POST(req: Request) {
     const scope = sanitizeSourceScope(body.sourceScope);
     const scopeLine = scope ? sourceScopeInstruction(scope) : "";
 
-    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${scopeLine}`;
+    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, userContent, topic);
   }
 
@@ -866,6 +815,6 @@ export async function POST(req: Request) {
   const focusedRevisionLine = revisionFocus
     ? `\n\nThis is a question-specific document outline. It must continue to answer ONLY this question and use ONLY these passages:\n${focusPromptSection(revisionFocus)}`
     : sourceDocLine;
-  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}`;
+  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}${personaLine(body.learnerPersona)}`;
   return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, userContent, currentOutline.topic, Boolean(revisionFocus));
 }

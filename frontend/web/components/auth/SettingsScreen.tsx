@@ -5,6 +5,7 @@ import { Check, Loader2, LogOut, X } from "lucide-react";
 import { PREFERENCES, PROFILE_OPTIONS } from "@/lib/accessibilityProfiles";
 import type { AccessibilityProfile } from "@/lib/db/cosmos";
 import type { LearnerProfile, SessionUser } from "./AuthGate";
+import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 
 /**
  * Profile and settings.
@@ -324,6 +325,14 @@ export function SettingsScreen({
               </span>
             </div>
           </form>
+
+          <section className="mt-8 border-t pt-6" style={{ borderColor: "var(--hud-line)" }}>
+            <h3 className="mb-1 text-[0.95rem] text-[var(--hud-text)]">What Aria remembers about you</h3>
+            <p className="mb-4 text-[0.8rem] text-[var(--hud-text-faint)]">
+              Carried from one lesson to the next so she starts where you are. Correct anything that&apos;s wrong.
+            </p>
+            <LearnerMemoryPanel />
+          </section>
 
           <div className="mt-8 border-t pt-5" style={{ borderColor: "var(--hud-line)" }}>
             <button

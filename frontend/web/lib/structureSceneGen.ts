@@ -4,6 +4,7 @@ import { STRUCTURE_SCENE_SYSTEM_PROMPT } from "./drawPrompt";
 import { validateStructureSpec, type StructureSpec } from "./structureSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
+import { withAudience } from "./learnerBrief";
 
 type DrawOp = DrawScript["ops"][number];
 type StructureSceneOp = Extract<DrawOp, { kind: "structureScene" }>;
@@ -93,7 +94,7 @@ async function generateOne(
         max_tokens: MAX_TOKENS,
         messages: [
           { role: "system", content: STRUCTURE_SCENE_SYSTEM_PROMPT },
-          { role: "user", content: buildUserPrompt(op, beat, issue) },
+          { role: "user", content: withAudience(beat, buildUserPrompt(op, beat, issue)) },
         ],
         response_format: { type: "json_object" },
       });

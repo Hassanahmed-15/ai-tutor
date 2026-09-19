@@ -11,6 +11,9 @@ import { polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresent
 import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
+import { dispatchDueBeats } from "./progressiveDispatch";
+import { learnerBrief } from "./learnerBrief";
+import { learnerInstruction, resolveDepth } from "./learnerProfile";
 import {
   progressiveBeat,
   progressiveBeats,
@@ -28,7 +31,8 @@ import type {
   ProgressiveLectureTask,
   ProgressiveVisualKind,
 } from "./progressiveLectureTypes";
-import { fillReactAnimationOps } from "./reactAnimationGen";
+import { fillReactAnimationOps, type ReactAnimationFillStats } from "./reactAnimationGen";
+import { animationModelLabel } from "./animationModels";
 import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
@@ -47,15 +51,6 @@ type GeneratedBeatPayload = {
   checkpoint?: unknown;
 };
 
-/**
- * How many beats may be generating at once.
- *
- * Matches the worker's own concurrency (PROGRESSIVE_WORKER_CONCURRENCY, default 4) so the lanes
- * and the hands that work them stay in step. Previously this was starterBeatCount, which conflated
- * "how much must exist before playback starts" with "how much may be in flight" — two unrelated
- * questions that happened to share a number.
- */
-const PROGRESSIVE_LANES = Math.max(1, Math.min(8, Number(process.env.PROGRESSIVE_WORKER_CONCURRENCY ?? 4)));
 
 /**
  * Per-task timing, logged in one parseable line.
@@ -89,8 +84,8 @@ export async function processProgressiveLectureTask(task: ProgressiveLectureTask
   }
   try {
     if (task.type === "plan") await planLecture(task.userId, task.sessionId);
-    else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision);
-    else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision);
+    else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
+    else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
   } finally {
     logTiming(task.type, task.sessionId, startedAt, seq);
   }
@@ -104,22 +99,11 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
     const plan = buildProgressivePlan(input);
     const next = await setProgressivePlan(session, plan);
     /*
-     * Start a full worker-width of lanes, not just the starter count.
-     *
-     * This used to open `starterBeatCount` lanes, which tied how much runs in parallel to how much
-     * must finish before playback — so shortening the starter requirement to 2 also throttled the
-     * pipeline to 2 concurrent beats while the worker had 4 hands free. The opening beats still
-     * come first (they are sequences 0..n and the queue is FIFO); the extra lanes simply stop the
-     * remaining workers idling, so the lecture finishes sooner without delaying its start.
+     * Start only the beats within reach of the student (lib/progressiveWindow.ts): the opening two
+     * or three. Later beats are written as the student approaches them, so what they ask and answer
+     * along the way shapes the beats they have not reached yet.
      */
-    await dispatchProgressiveTasks(plan.slice(0, PROGRESSIVE_LANES).map((beat) => ({
-      version: 1 as const,
-      type: "generate-beat" as const,
-      sessionId,
-      userId,
-      sequence: beat.sequence,
-      revision: next.planRevision,
-    })));
+    await dispatchDueBeats(next);
   } catch (error) {
     await failSession(session, error);
     throw error;
@@ -274,7 +258,9 @@ function visualKindFor(
   return "react-animation";
 }
 
-async function generateBeat(userId: string, sessionId: string, sequence: number, revision: number): Promise<void> {
+async function generateBeat(userId: string, sessionId: string, sequence: number, revision: number, queuedMs?: number): Promise<void> {
+  const textStartedAt = performance.now();
+  const textStartedIso = new Date().toISOString();
   const session = await requiredSession(userId, sessionId);
   if (session.status === "failed") return;
   const planned = session.plan[sequence];
@@ -304,11 +290,13 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
   let beat: Beat;
   let costUsd = 0;
   let error: string | null = null;
+  let scriptMs = 0;
   try {
     const input = await progressiveInput(session);
     const generated = await generateOneBeat(input, session, planned);
     beat = generated.beat;
     costUsd = generated.costUsd;
+    scriptMs = generated.scriptMs;
   } catch (cause) {
     error = messageFor(cause);
     beat = deterministicFallbackBeat(planned, session, sequence);
@@ -316,6 +304,7 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
 
   const latest = await progressiveBeat(sessionId, sequence);
   if (latest && latest.revision > revision) return;
+  const textMs = Math.round(performance.now() - textStartedAt);
   await upsertProgressiveBeat({
     ...baseDoc,
     state: "playable",
@@ -323,26 +312,65 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
     fallbackUsed: Boolean(error),
     costUsd: baseDoc.costUsd + costUsd,
     error,
+    timing: {
+      queuedMs,
+      textStartedAt: textStartedIso,
+      textMs,
+      scriptMs: Math.round(scriptMs),
+      textOverheadMs: Math.max(0, textMs - Math.round(scriptMs)),
+    },
   });
   await dispatchProgressiveTasks([
     { version: 1, type: "enrich-beat", sessionId, userId, sequence, revision },
   ]);
 }
 
+/** The "How to teach them" sentence of the portrait block, for the board brief. */
+function teachingPlanFrom(persona: string | undefined): string {
+  const line = persona?.split("\n").find((l) => l.startsWith("How to teach them: "));
+  return line ? line.slice("How to teach them: ".length).trim().slice(0, 240) : "";
+}
+
 async function generateOneBeat(
   input: ProgressiveLectureInput,
   session: ProgressiveLectureSessionDoc,
   planned: ProgressiveBeatPlan,
-): Promise<{ beat: Beat; costUsd: number }> {
+): Promise<{ beat: Beat; costUsd: number; scriptMs: number }> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set.");
   const client = new OpenAI({ apiKey });
   const wordRange = input.learnerProfile.depth === "deep" ? "125-165" : input.learnerProfile.depth === "concise" ? "70-100" : "95-130";
   const isCheckpoint = planned.sequence > 0 && planned.sequence < session.plan.length - 1 && planned.sequence % 3 === 0;
+  /*
+   * WHO THIS IS FOR. The full planning profile (what they know, are shaky on, and believe wrongly)
+   * plus a brief for THIS beat pitched by level (lib/learnerBrief.ts). This used to be one line —
+   * "use language for a beginner learner" — and nothing the student said while planning reached here.
+   */
+  const learner = input.learner;
+  const depth = learner ? resolveDepth(learner) : null;
+  const learnerSection = learner && depth
+    ? `${learnerInstruction(learner, depth)}\nTHIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth)}`
+    : "";
+  /*
+   * WHO THEY ARE ACROSS LESSONS. The portrait Aria keeps of this student (lib/learnerModel.ts
+   * personaForPrompt): interests to draw examples from, strengths not to re-teach, what is still
+   * settling, and how to teach them. The planning profile above knows this topic; this knows the person.
+   */
+  const personaSection = input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : "";
+  if (personaSection && planned.sequence === 0) console.log(`[persona] script prompt for ${session.id} carries the student portrait (${personaSection.length} chars)`);
+  /*
+   * WHAT HAS ALREADY BEEN SAID. The last two beats' actual scripts, not just their plan titles, so
+   * this beat builds on the explanation the student heard rather than repeating or contradicting it.
+   * Beats are now written just ahead of the student, so these are normally the beats they just watched.
+   */
+  const priorScripts = (await progressiveBeats(session.id))
+    .filter((doc) => doc.sequence < planned.sequence && doc.sequence >= planned.sequence - 2 && doc.beat?.script)
+    .sort((a, b) => a.sequence - b.sequence)
+    .map((doc) => ({ sequence: doc.sequence, title: doc.beat?.title, script: (doc.beat?.script ?? "").slice(0, 1_200) }));
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". Omit transitionIn on the first beat. The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". Omit transitionIn on the first beat. The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
@@ -352,6 +380,7 @@ async function generateOneBeat(
         previousBeat: planned.sequence > 0 ? session.plan[planned.sequence - 1] : null,
         fullPlan: session.plan.map(({ sequence, title, objective }) => ({ sequence, title, objective })),
         adaptation: session.adaptationNotes,
+        priorScripts,
         preferredExamples: input.learnerProfile.preferredExamples,
         sourceContext: sourceContext(input, planned.sourceBlockIds),
       }),
@@ -370,8 +399,15 @@ async function generateOneBeat(
   // parallelising if it turns out to dominate.
   logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}`);
   const payload = JSON.parse(completion.choices[0]?.message?.content ?? "{}") as GeneratedBeatPayload;
+  const beat = sanitizeGeneratedBeat(payload, planned, session);
+  // The board generators read this as AUDIENCE guidance, so the visual is pitched like the script.
+  if (learner && depth) beat.learnerBrief = learnerBrief(learner, planned, "visual", depth);
+  // The portrait's teaching plan reaches the boards too, through the same audience brief.
+  const teachingPlan = teachingPlanFrom(input.learnerPersona);
+  if (teachingPlan) beat.learnerBrief = `${beat.learnerBrief ? `${beat.learnerBrief} ` : ""}From earlier lessons with this student: ${teachingPlan}`;
   return {
-    beat: sanitizeGeneratedBeat(payload, planned, session),
+    beat,
+    scriptMs: performance.now() - scriptStartedAt,
     costUsd: costFor(MODEL, completion.usage),
   };
 }
@@ -462,7 +498,8 @@ function fallbackDraw(title: string, points: string[], durationMs: number): Draw
   };
 }
 
-async function enrichBeat(userId: string, sessionId: string, sequence: number, revision: number): Promise<void> {
+async function enrichBeat(userId: string, sessionId: string, sequence: number, revision: number, queuedMs?: number): Promise<void> {
+  const enrichStartedAt = performance.now();
   const session = await requiredSession(userId, sessionId);
   const planned = session.plan[sequence];
   const doc = await progressiveBeat(sessionId, sequence);
@@ -474,8 +511,13 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   const client = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
   let visualKind = planned.visualKind;
   let costUsd = 0;
+  let visualChoiceMs = 0;
+  let premiumMs = 0;
+  let animation: import("./reactAnimationGen").AnimationTiming | undefined;
   if (client && session.sourceType === "prompt") {
+    const choiceStartedAt = performance.now();
     const selection = await chooseProgressiveVisual(client, candidate, planned.visualKind);
+    visualChoiceMs = performance.now() - choiceStartedAt;
     visualKind = selection.kind;
     costUsd += selection.costUsd;
   }
@@ -508,6 +550,8 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
       // (Cosmos reads/writes, the visual-kind choice) can be told apart from the model work.
       logTiming("premium", sessionId, premiumStartedAt, `seq=${sequence} kind=${visualKind}`);
+      premiumMs = performance.now() - premiumStartedAt;
+      animation = result.animation;
       costUsd += result.costUsd;
       success = result.success;
       error = result.error;
@@ -525,38 +569,23 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
     beat: success ? candidate : fallback,
     state: "ready",
     enrichmentState: "ready",
+    timing: {
+      ...latest.timing,
+      enrichQueuedMs: queuedMs,
+      visualChoiceMs: Math.round(visualChoiceMs),
+      visualKind,
+      premiumMs: Math.round(premiumMs),
+      enrichMs: Math.round(performance.now() - enrichStartedAt),
+      readyAt: new Date().toISOString(),
+      animation,
+    },
     fallbackUsed: !success || latest.fallbackUsed,
     costUsd: latest.costUsd + costUsd,
     error: error ?? latest.error,
   });
-  // Advance this lane only after its premium render has finished (or definitively fallen back).
-  // This keeps the three opening enrichments at the head of the queue instead of allowing later
-  // text generation to consume every worker while the learner sees only provisional SVG boards.
-  /*
-   * LANE WIDTH IS THE WORKER'S CONCURRENCY, NOT THE STARTER COUNT.
-   *
-   * These were the same number by accident, and lowering starterBeatCount to 2 to shorten
-   * time-to-first-play therefore also cut the pipeline from three parallel lanes to two — making
-   * the whole lecture slower to finish in exchange for starting sooner. They answer different
-   * questions: starterBeatCount is "how much must exist before playback begins", lane width is
-   * "how many beats may be in flight at once", and the second should match how many the worker can
-   * actually process in parallel.
-   *
-   * PROGRESSIVE_LANES is read from the same env var the worker uses for its own concurrency, so
-   * raising one raises the other and the queue never has more in flight than there are hands to
-   * work on it.
-   */
-  const nextSequence = sequence + PROGRESSIVE_LANES;
-  if (nextSequence < session.plan.length) {
-    await dispatchProgressiveTasks([{
-      version: 1,
-      type: "generate-beat",
-      sessionId,
-      userId,
-      sequence: nextSequence,
-      revision,
-    }]);
-  }
+  // A beat finishing is one of the moments the window can move: queue whatever is now due. The
+  // session is re-read because the student has likely moved on since this beat started.
+  await dispatchDueBeats(await requiredSession(userId, sessionId));
   await maybeFinalize(userId, sessionId);
 }
 
@@ -640,6 +669,16 @@ function premiumPlaceholder(beat: Beat, kind: ProgressiveVisualKind): DrawScript
  * The loop keeps the best-scoring board it has when the clock stops, so this lowers the ceiling on
  * polish for the first boards rather than risking a blank one.
  */
+/**
+ * The model that draws the OPENING beats' boards, whatever else is configured.
+ *
+ * The start of a lecture waits on these boards alone, and per attempt the models measured Luna
+ * ~14 s, Terra ~29 s, Sol ~44 s: the measured 114 s wait was beat 2 drawn by Terra. With model
+ * rotation on for comparison, the opening beats are exempt; later beats, built while the student is
+ * already watching, keep the rotation.
+ */
+const STARTER_ANIMATION_MODEL = process.env.PROGRESSIVE_STARTER_ANIMATION_MODEL ?? "gpt-5.6-luna";
+
 const STARTER_REFINE_BUDGET_MS = Math.max(
   10_000,
   Number(process.env.PROGRESSIVE_STARTER_REFINE_BUDGET_MS ?? 20_000),
@@ -662,6 +701,9 @@ async function fillPremium(
     ? await fillReactAnimationOps(client, [beat], {
         animationIndexOffset: animationIndex,
         refineTimeBudgetMs: blocksPlayback ? STARTER_REFINE_BUDGET_MS : undefined,
+        ...(blocksPlayback
+          ? { model: { id: STARTER_ANIMATION_MODEL, label: animationModelLabel(STARTER_ANIMATION_MODEL) ?? STARTER_ANIMATION_MODEL } }
+          : {}),
       })
     : kind === "blackboard"
       ? await fillBlackboardOps(client, [beat], hasSource)
@@ -674,6 +716,7 @@ async function fillPremium(
     success: stats.filled > 0,
     costUsd: stats.costUsd,
     error: stats.issues[0] ?? (stats.filled > 0 ? null : `${kind} enrichment was unavailable.`),
+    animation: kind === "react-animation" ? (stats as ReactAnimationFillStats).timings?.[0] : undefined,
   };
 }
 

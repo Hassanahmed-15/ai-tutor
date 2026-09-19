@@ -38,7 +38,7 @@ export const PLANNING_TOOLS: GeminiToolDeclaration[] = [
   {
     name: "approve_plan",
     description:
-      "Accept the plan as it stands and move to the final lesson summary screen, where the student reviews everything before building starts. Use when the student signals they are happy — 'that's good', 'go ahead', 'build it', 'yes'. Do not call this speculatively or to end an awkward pause; only when they have actually agreed. Building itself only starts once they confirm on that summary screen, not from this call alone.",
+      "Accept the plan and start building the lecture. Use when the student signals they are happy with the plan — 'that's good', 'go ahead', 'build it', 'yes, start'. Building starts immediately and takes minutes, so do not call this speculatively, to end an awkward pause, or on a maybe; only when they have actually agreed.",
     parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
   },
 ];
@@ -76,7 +76,10 @@ export function buildPlanningVoiceInstruction(input: {
     "- If they ask you a direct question, answer it properly from the material below — then go back to asking.",
     "",
     "WHILE PLANNING.",
-    "- Ask what they want out of this, and where they are starting from. What do they already know? What is the bit that is confusing them? Is there something specific they need it for?",
+    "- The questions for getting to know the student are chosen for you and shown on screen, with quick answers under them. You will be handed each one with an instruction such as: acknowledge their answer in one sentence, then ask exactly this question. Do that — ask exactly the question you are handed, in your own warm voice, and nothing more.",
+    "- NEVER invent a question of your own to find out their level or background. A question you make up is one the screen does not show, so the student sees one question and hears another.",
+    "- When the student answers, keep your reply to a brief acknowledgement at most. The next question will be handed to you; do not guess it.",
+    "- If the student asks YOU something, answer it properly and briefly. That is always allowed.",
     "- Use their answers to change the plan, rather than defending the draft you already made.",
     "- You may be told what has already been established via a silent context update — it will not look like something the student said to you. Treat it as already answered: never ask about it again, on this topic or a closely related one, whether it came from something they typed on screen or said to you a moment ago.",
     "",
@@ -93,7 +96,7 @@ export function buildPlanningVoiceInstruction(input: {
     "- Call approve_plan ONLY when they have clearly agreed to go ahead. Building takes several minutes, so never call it to fill a silence or on a maybe.",
     "- You have no board and cannot draw here. Do not offer to.",
     "",
-    "Open by asking what they want to get out of this lesson. Do not summarise the plan first."
+    "Do not open with a question of your own: greet them in one short sentence and wait to be handed the first question."
   ]
     .filter(Boolean)
     .join("\n");

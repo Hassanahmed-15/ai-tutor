@@ -6,6 +6,9 @@ import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
+import { memoryWasUsed, personaForPrompt, profileHasSignal, rememberedLine, seedProfile, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
+import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
+import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
@@ -140,6 +143,8 @@ type LecturePayload = {
    *  springboard — see lib/sourceScope.ts. Absent for a topic with no upload. */
   sourceScope?: SourceScope;
   learnerProfile: LearnerProfileSnapshot;
+  /** "What Aria thinks about this student" from earlier lessons — see personaField(). */
+  learnerPersona?: string;
 };
 export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: () => void }) {
   const [topic, setTopic] = useState("");
@@ -366,7 +371,7 @@ type BuildCost =
       }
       if (name === "approve_plan") {
         approveOutline();
-        return "The student is now looking at the final lesson summary on screen — tell them briefly what it shows, and building starts once they confirm it there.";
+        return "The plan is accepted and the lesson is being built now. Tell them in one sentence that you're preparing it.";
       }
       return `Unknown tool: ${name}`;
     },
@@ -416,6 +421,20 @@ type BuildCost =
        * this widens WHERE speech is heard without removing the stop condition.
        */
       const planningPhase = phase === "outline" || phase === "preview";
+      /*
+       * ONE CONVERSATION: a spoken answer to the question on screen IS the answer to it.
+       *
+       * It used to be graded silently against whatever Aria had last said out loud, while the text
+       * side kept its own question open — two conversations running at once. Now the question on
+       * screen is the only question, Aria speaks exactly that question, and whichever way the
+       * student answers, it advances the same conversation.
+       */
+      if (planningPhase && diagnosticQuestionRef.current && !diagnosticBusyRef.current) {
+        // Her own reply to this turn is held back by holdUnpromptedReplies (above); the next
+        // question is spoken via say() — a short acknowledgement, then exactly what is on screen.
+        void runDiagnostic(text.trim());
+        return;
+      }
       if (planningPhase && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
         const question = lastVoiceQuestionRef.current || openingQuestion(topic);
         void submitDiagnosticAnswer(question, text.trim(), "voice");
@@ -431,6 +450,9 @@ type BuildCost =
      * student said nothing, and a minute later the voice was simply off.
      */
     alwaysOn: true,
+    // While a question is on screen (or the next one is being chosen), Aria speaks only what she is
+    // handed via say(): the question the student can see. See holdUnpromptedReplies in the hook.
+    holdUnpromptedReplies: () => Boolean(diagnosticQuestionRef.current) || diagnosticBusyRef.current,
     onSessionEnded: (reason) => {
       // Surfaced rather than swallowed: a dropped socket and a deliberate stop look identical on
       // screen otherwise, which is what made the idle teardown so hard to see.
@@ -440,6 +462,90 @@ type BuildCost =
 
   const voiceStart = planningVoice.start;
   const voiceStop = planningVoice.stop;
+
+  /*
+   * THE QUESTION ON SCREEN IS THE QUESTION ARIA ASKS.
+   *
+   * The diagnose step picks each question (with its quick-answer chips); Aria's voice only speaks
+   * it, after a one-sentence acknowledgement of what the student just said. Before, her voice asked
+   * questions of its own while a different question sat on screen, so the student faced two
+   * conversations and whichever they answered, the other went unanswered.
+   */
+  const diagnosticQuestionRef = useRef<{ question: string; options: string[] } | null>(null);
+  const diagnosticBusyRef = useRef(false);
+  const lastStudentAnswerRef = useRef<string>("");
+  const spokenQuestionRef = useRef<string>("");
+  useEffect(() => {
+    diagnosticQuestionRef.current = diagnosticQuestion;
+    diagnosticBusyRef.current = diagnosticBusy;
+  }, [diagnosticQuestion, diagnosticBusy]);
+  const voiceSay = planningVoice.say;
+  const voiceLive = planningVoice.status === "live" || planningVoice.status === "drawing";
+  useEffect(() => {
+    const q = diagnosticQuestion?.question;
+    if (!q || !voiceLive || spokenQuestionRef.current === q) return;
+    spokenQuestionRef.current = q;
+    const answered = lastStudentAnswerRef.current;
+    voiceSay(
+      (answered
+        ? `The student just answered: "${answered.slice(0, 300)}". Acknowledge it in ONE short, natural sentence (do not grade it or teach), then ask exactly this question and nothing else: `
+        : "Ask exactly this question, warmly and in your own voice, and nothing else: ") + `"${q}"`,
+    );
+  }, [diagnosticQuestion, voiceLive, voiceSay]);
+
+  /*
+   * WHAT ARIA ALREADY KNOWS ABOUT THIS STUDENT, from earlier lectures (lib/learnerModel.ts).
+   * Loaded once; a new topic's conversation starts from the related part of it, so a returning
+   * student is not asked again what they showed last time. Signed out, it is simply empty.
+   */
+  const learnerMemoryLoadRef = useRef<Promise<LearnerMemory | null> | null>(null);
+  const [memoryNote, setMemoryNote] = useState<string | null>(null);
+  const [buildBeats, setBuildBeats] = useState<{ beats: NonNullable<ProgressiveLectureSnapshot["beatStatus"]>; startedAt?: string } | null>(null);
+  /*
+   * One request, shared. Planning AWAITS it rather than reading whatever has arrived: this screen
+   * mounts at the moment a topic is submitted and planning starts in the same breath, so a plain
+   * "fetch on mount" lost the race every time and the returning student was treated as new.
+   */
+  function loadLearnerMemory(): Promise<LearnerMemory | null> {
+    learnerMemoryLoadRef.current ??= fetch("/api/learner-memory")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        const memory = (data?.memory as LearnerMemory | undefined) ?? null;
+        learnerMemoryRef.current = memory;
+        return memory;
+      })
+      .catch(() => null);
+    return learnerMemoryLoadRef.current;
+  }
+  /** The memory once it has arrived, for the portrait that every planning and writing step is given. */
+  const learnerMemoryRef = useRef<LearnerMemory | null>(null);
+
+  /**
+   * "What Aria thinks about this student", for the models that plan the questions, draft the
+   * outline, write the script and brief the boards (lib/learnerModel.ts personaForPrompt). One
+   * field, spread into each request; empty until memory has loaded, and for a new student.
+   */
+  function personaField(): { learnerPersona?: string } {
+    const block = personaForPrompt(learnerMemoryRef.current);
+    return block ? { learnerPersona: block } : {};
+  }
+
+  /**
+   * Ask Aria to rewrite her portrait when there is something new to say (the server skips the
+   * model call otherwise). Best effort, never awaited: the lecture does not depend on it.
+   */
+  function refreshPersona() {
+    void fetch("/api/learner-memory/persona", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ force: false }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.memory) learnerMemoryRef.current = data.memory as LearnerMemory;
+      })
+      .catch(() => {});
+  }
 
   /*
    * PLANNING ONLY — exactly one live session exists on this page at any moment.
@@ -605,6 +711,8 @@ type BuildCost =
     const events = new EventSource(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/events`);
     const onSnapshot = (event: MessageEvent<string>) => {
       const snapshot = JSON.parse(event.data) as ProgressiveLectureSnapshot;
+      // Every planned beat with its measured timings, for the build screen's timeline.
+      if (snapshot.beatStatus) setBuildBeats({ beats: snapshot.beatStatus, startedAt: snapshot.createdAt });
       // The worker keeps a running total, so each snapshot replaces the last rather than adding.
       if (typeof snapshot.costUsd === "number") setCost("generation", snapshot.costUsd);
       setProgressivePlannedBeatCount(snapshot.plannedBeatCount);
@@ -1350,7 +1458,9 @@ type BuildCost =
       const res = await fetch("/api/plan-lesson", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        // The portrait goes with every outline request (first draft, revision, re-angle), so the
+        // structure itself is planned for this student, not just the wording later.
+        body: JSON.stringify({ ...body, ...personaField() }),
         signal: controller.signal,
       });
       if (!res.ok || !res.body) {
@@ -1604,8 +1714,17 @@ type BuildCost =
      * Asking it directly and up front, every time, means depth is never left to an implicit read
      * of phrasing; runDiagnostic still lets the rest of the conversation's evidence override it.
      */
-    setLearnerProfile(emptyProfile(trimmed));
-    learnerProfileRef.current = emptyProfile(trimmed);
+    // Never let a slow network hold up the conversation: memory gets a moment, then we go without.
+    const memory = await Promise.race([
+      loadLearnerMemory(),
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500)),
+    ]);
+    const seeded = memory ? seedProfile(memory, trimmed, emptyProfile(trimmed)) : emptyProfile(trimmed);
+    setLearnerProfile(seeded);
+    learnerProfileRef.current = seeded;
+    setMemoryNote(memoryWasUsed(seeded) ? rememberedLine(seeded) : null);
+    lastStudentAnswerRef.current = "";
+    spokenQuestionRef.current = "";
     isDepthQuestionRef.current = true;
     setDiagnosticQuestion({
       question: depthQuestion(trimmed),
@@ -1651,6 +1770,8 @@ type BuildCost =
       profile: learnerProfileRef.current ?? emptyProfile(topic),
       exchanges,
       accountContext: accountContextLine(),
+      // So Aria asks about what she does not know yet, not what her portrait already says.
+      ...personaField(),
     });
     if (!data) return null;
 
@@ -1678,6 +1799,7 @@ type BuildCost =
 
   async function runDiagnostic(answer: string) {
     const question = diagnosticQuestion?.question ?? openingQuestion(topic);
+    lastStudentAnswerRef.current = answer;
     setDiagnosticQuestion(null);
 
     /*
@@ -1937,7 +2059,9 @@ type BuildCost =
   function approveOutline() {
     if (!outline) return;
     if (diagnosticQuestion || initialPlanningQuestions.length > 0 || initialAmbiguityQuestions.length > 0) return;
-    setPhase("preview");
+    // No separate preview screen any more: the chat has just shown the student what Aria
+    // understood about them and the plan itself, so Accept means "start".
+    confirmLessonPlan();
   }
 
   /** What the old approveOutline body did — the actual build trigger, now called from the
@@ -1985,6 +2109,9 @@ type BuildCost =
     const controller = new AbortController();
     buildAbortRef.current = controller;
     setPhase("building");
+    // The portrait for the lecture writers needs memory in hand. Planning already awaited it; a
+    // student who skipped straight to the build has not, so give it a moment, then go without.
+    await Promise.race([loadLearnerMemory(), new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500))]);
     /*
      * The build hand-off is SILENT here, deliberately.
      *
@@ -2019,7 +2146,17 @@ type BuildCost =
      */
     setBuildStatus("Understanding how you want to learn");
     let suggested = DEFAULT_LEARNER_PROFILE;
-    try {
+    /*
+     * The planning conversation already built a full profile. Derive the lecture's five-field
+     * summary from it (lib/learnerModel.ts snapshotFrom) instead of asking a second model to guess
+     * it again — two inferences could disagree about the same student. The suggestion call remains
+     * only for lectures that had no conversation (uploads that skip planning, demos).
+     */
+    const conversationProfile = learnerProfileRef.current;
+    const hasConversation = Boolean(conversationProfile && profileHasSignal(conversationProfile));
+    if (hasConversation && conversationProfile) {
+      suggested = snapshotFrom(conversationProfile, learnerDepth ?? undefined);
+    } else try {
       const suggestionResponse = await fetch("/api/learner-profile/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -2108,7 +2245,30 @@ type BuildCost =
       // unlabeled behavior exactly.
       ...(doc || slides ? { sourceScope: sourceScopeRef.current } : {}),
       learnerProfile: confirmedProfile,
+      // The whole profile, so the script writer and every board generator can pitch this lecture
+      // for this student (lib/learnerBrief.ts), not just a level word.
+      ...(hasConversation && conversationProfile ? { learner: conversationProfile } : {}),
+      // And who they are across lessons, for the same writers.
+      ...personaField(),
     };
+    // Remember what the conversation established, for the next lecture, along with the student's
+    // own words from it — the material the portrait is written from. Best effort: never awaited.
+    // Once it is saved, the portrait is rewritten (the server skips this when nothing is new).
+    if (hasConversation && conversationProfile) {
+      const conversation = [
+        ...diagnosticExchanges.map((exchange) => exchange.answer),
+        ...voiceLinesRef.current.filter((line) => line.role === "you").map((line) => line.text),
+      ].map((text) => text.trim()).filter((text) => text.length >= 4).slice(-30);
+      void fetch("/api/learner-memory/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ profile: conversationProfile, conversation }),
+      })
+        .then(() => refreshPersona())
+        .catch(() => {});
+    } else {
+      refreshPersona();
+    }
 
     try {
       const useFixture = process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_USE_FIXTURE === "1";
@@ -2285,6 +2445,8 @@ type BuildCost =
     });
     learnerProfileRef.current = next;
     setLearnerProfile(next);
+    // Checkpoint answers reach long-term memory through the lecture's interaction route on the
+    // server (it knows which beat was asked about), not from here — sending both counted each twice.
   }
 
   /**
@@ -2337,6 +2499,14 @@ type BuildCost =
   // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
   // every other mode gets to choose written or oral on the offer screen.
   function onLectureComplete() {
+    // The final beat is never "moved past", so say explicitly that it was watched to the end.
+    if (progressiveSessionId && lecturePlayheadRef.current >= 0) {
+      void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind: "playhead", playhead: lecturePlayheadRef.current, ended: true }),
+      }).catch(() => {});
+    }
     if (!progressiveComplete) return;
     rememberLesson();
     setPhase("test-offer");
@@ -2782,6 +2952,8 @@ type BuildCost =
           blindMode={selectedMode.page === "blind-demo"}
           studentName={profile?.displayName ?? undefined}
           jobId={buildJobId}
+          beatStatus={buildBeats?.beats}
+          buildStartedAt={buildBeats?.startedAt}
           onStop={backToAsk}
           onStart={startBuiltLesson}
         />
@@ -2816,6 +2988,8 @@ type BuildCost =
           onOutlineChange={setOutline}
           onRerollAngle={rerollAngle}
           voice={voice}
+          voiceLines={voiceLines}
+          memoryNote={memoryNote}
         />
       ) : phase === "preview" ? (
         <LessonPreviewState
@@ -3237,6 +3411,8 @@ type OutlineChatMessage = {
   /** True for a pre-lesson question about what the student knows — its answer goes to the
    *  diagnostic turn rather than to the revise pipeline, since there is no outline to revise yet. */
   isDiagnostic?: boolean;
+  /** Aria's plan proposal: its chips are Accept / Change / Focus, not revise instructions. */
+  isPlan?: boolean;
 };
 
 /** Draft-first planning: Aria's best-guess outline appears immediately, then a live planning
@@ -3412,110 +3588,6 @@ function PlanningQuestionsCard({
   );
 }
 
-function DiagnosticQuestionCard({
-  topic,
-  question,
-  remark,
-  busy,
-  onAnswer,
-}: {
-  topic: string;
-  question: { question: string; options: string[] };
-  remark: { text: string; turn: number } | null;
-  busy: boolean;
-  onAnswer: (answer: string) => void;
-}) {
-  const [draft, setDraft] = useState({ value: "", forQuestion: question.question });
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  /*
-   * Reset the field the moment a NEW question arrives, during render — React's own documented
-   * pattern for "state must change immediately when a prop changes" (see lib/usePdfDocument.ts
-   * for the same pattern). Compared against `draft.forQuestion`, part of STATE itself, rather
-   * than a ref: a ref is not safe to read during render, while state read during its own render
-   * always reflects the commit in progress. An effect here would leave one stale frame of the
-   * PREVIOUS question's typed text visible before it had a chance to run.
-   */
-  if (draft.forQuestion !== question.question) {
-    setDraft({ value: "", forQuestion: question.question });
-  }
-  const value = draft.value;
-  const setValue = (next: string) => setDraft({ value: next, forQuestion: question.question });
-
-  useEffect(() => {
-    textareaRef.current?.focus();
-  }, [question.question]);
-
-  function submit() {
-    const trimmed = value.trim();
-    if (!trimmed || busy) return;
-    setValue("");
-    onAnswer(trimmed);
-  }
-
-  return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-10 text-center">
-      <p className="text-xs font-semibold uppercase tracking-wider text-[var(--hud-text-faint)]">
-        Before we plan &ldquo;{topic}&rdquo;
-      </p>
-
-      {remark && (
-        <p className="mt-4 max-w-lg text-sm italic text-[var(--hud-cyan)]/90">{remark.text}</p>
-      )}
-
-      <h2 className="mt-4 max-w-xl text-2xl font-medium leading-snug text-[var(--hud-text)]">
-        {question.question}
-      </h2>
-
-      {question.options.length > 0 && (
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          {question.options.map((option) => (
-            <button
-              key={option}
-              type="button"
-              disabled={busy}
-              onClick={() => onAnswer(option)}
-              className="rounded-full border border-[var(--hud-line-strong)] bg-white/[0.02] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40"
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <div className="mt-6 w-full max-w-lg">
-        <textarea
-          ref={textareaRef}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              submit();
-            }
-          }}
-          disabled={busy}
-          rows={2}
-          placeholder={question.options.length > 0 ? "Or type your own answer…" : "Type your answer…"}
-          className="w-full resize-none rounded-[var(--radius)] border border-[var(--hud-line)] bg-white/[0.02] px-4 py-3 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none"
-        />
-        <div className="mt-3 flex items-center justify-between">
-          <p className="text-xs text-[var(--hud-text-faint)]">
-            Or just say &ldquo;start&rdquo; and Aria will get going.
-          </p>
-          <button
-            type="button"
-            onClick={submit}
-            disabled={busy || !value.trim()}
-            className="hud-btn-primary px-5 py-2 text-sm disabled:opacity-40"
-          >
-            {busy ? "Thinking…" : "Answer"}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /**
  * The tutor's own live picture of the student, made visible instead of only baked silently into
@@ -3757,10 +3829,16 @@ function OutlineReviewState({
   onOutlineChange,
   onRerollAngle,
   voice,
+  voiceLines,
+  memoryNote,
 }: {
   topic: string;
   /** Aria's live session state, owned by LearnPage so it survives into the build screen. */
   voice: VoiceState;
+  /** Everything said out loud, by either side — merged into the one transcript below. */
+  voiceLines: { role: "you" | "aria"; text: string }[];
+  /** What Aria remembers from earlier lessons, said first so the student can correct it. */
+  memoryNote: string | null;
   outline: PlanOutline | null;
   loading: boolean;
   error: string | null;
@@ -3836,6 +3914,34 @@ function OutlineReviewState({
   }, [initialAmbiguityQuestions]);
 
   /*
+   * VOICE JOINS THE SAME TRANSCRIPT (lib/planningTranscript.ts).
+   *
+   * Spoken lines used to appear only as one truncated caption that the next line overwrote. Each
+   * one is now a bubble — except Aria speaking the question already on screen, which would print it
+   * twice. A spoken answer also marks the open question answered, exactly as a chip would.
+   *
+   * DECLARED BEFORE the question-seeding effect below, deliberately: effects run in declaration
+   * order, and a spoken answer and the question it produces land in the same render. Declared
+   * after, the next question was printed above the answer that caused it.
+   */
+  const seenVoiceCountRef = useRef(0);
+  useEffect(() => {
+    if (voiceLines.length < seenVoiceCountRef.current) seenVoiceCountRef.current = 0;
+    if (voiceLines.length <= seenVoiceCountRef.current) return;
+    const fresh = voiceLines.slice(seenVoiceCountRef.current);
+    seenVoiceCountRef.current = voiceLines.length;
+    setChatLog((prev) => {
+      let next = prev;
+      for (const line of fresh) {
+        if (!shouldAddVoiceLine(next, line)) continue;
+        if (line.role === "you") next = next.map((m) => (m.isDiagnostic && !m.answered ? { ...m, answered: true } : m));
+        next = [...next, { role: line.role, text: line.text.trim() }];
+      }
+      return next;
+    });
+  }, [voiceLines]);
+
+  /*
    * The pre-lesson conversation appears as chat bubbles, in the same place Aria already asks
    * everything else. Deliberately NOT a separate gate screen: this is a teacher asking a question
    * before class, and routing it through a different surface would make it feel like a form.
@@ -3875,9 +3981,11 @@ function OutlineReviewState({
     // items aren't skipped as "already seen".
     if (thoughts.length < lastThoughtCountRef.current) lastThoughtCountRef.current = 0;
     if (thoughts.length <= lastThoughtCountRef.current) return;
-    const fresh = thoughts.slice(lastThoughtCountRef.current);
     lastThoughtCountRef.current = thoughts.length;
-    setChatLog((prev) => [...prev, ...fresh.map((t): OutlineChatMessage => ({ role: "aria", text: t }))]);
+    // Not posted as chat bubbles any more. They are the planner's notes to itself ("Needed to
+    // establish the foundation…"), and in a conversation they read as Aria muttering half-sentences
+    // at the student. Drafting progress still shows under the transcript, and the finished plan is
+    // proposed as one message with Accept / Change / Focus.
   }, [thoughts]);
 
   // Post each scoping question as a chat bubble the INSTANT it streams in — mid-build, while
@@ -3895,6 +4003,54 @@ function OutlineReviewState({
     ]);
   }, [scopingQuestions]);
 
+  // What Aria remembers, said first — so a student can say "that's changed" before she relies on it.
+  const seededMemoryRef = useRef(false);
+  useEffect(() => {
+    if (seededMemoryRef.current || !memoryNote) return;
+    seededMemoryRef.current = true;
+    setChatLog((prev) => [{ role: "aria", text: memoryNote }, ...prev]);
+  }, [memoryNote]);
+
+  /*
+   * THE PLAN, PROPOSED IN THE CONVERSATION.
+   *
+   * Once the outline is drafted, Aria says what she understood about the student and what she
+   * would teach, and offers Accept / Change / Focus. The full editable outline stays on the page
+   * above; this is the moment of agreement, where the student is asked rather than left to find a
+   * button. Posted once per drafted plan.
+   */
+  const postedPlanRef = useRef("");
+  useEffect(() => {
+    if (!outline || loading || outline.subtopics.length === 0) return;
+    const key = outline.subtopics.map((sub) => sub.title).join("|");
+    if (postedPlanRef.current === key) return;
+    postedPlanRef.current = key;
+    setChatLog((prev) => [
+      ...prev,
+      {
+        role: "aria",
+        text: planMessage(outline.subtopics.map((sub) => sub.title), learnerSummary),
+        chips: [
+          { label: PLAN_CHOICES.accept, instruction: "accept" },
+          { label: PLAN_CHOICES.change, instruction: "change" },
+          { label: PLAN_CHOICES.focus, instruction: "focus" },
+        ],
+        isPlan: true,
+      },
+    ]);
+  }, [outline, loading, learnerSummary]);
+
+  // Set by "Focus on…": the student's next message names what the lesson should centre on.
+  const [awaitingFocus, setAwaitingFocus] = useState(false);
+  const [showMemory, setShowMemory] = useState(false);
+  const composerRef = useRef<HTMLInputElement>(null);
+  // Bumped when Aria asks the student to type or say something, so the input takes focus. Focus
+  // happens in an effect, never from a render-time path.
+  const [focusComposer, setFocusComposer] = useState(0);
+  useEffect(() => {
+    if (focusComposer > 0) composerRef.current?.focus();
+  }, [focusComposer]);
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [chatLog]);
@@ -3909,21 +4065,45 @@ function OutlineReviewState({
      * and lose what they said.
      */
     if (diagnosticQuestion) {
+      setChatLog((prev) => prev.map((m) => (m.isDiagnostic && !m.answered ? { ...m, answered: true } : m)));
       onAnswerDiagnostic(trimmed);
       return;
     }
+    const request = awaitingFocus ? `Refocus the lesson on this, as the student asked: ${trimmed}` : trimmed;
+    setAwaitingFocus(false);
     setSending(true);
-    await onRevise(trimmed);
+    await onRevise(request);
     setSending(false);
-    setChatLog((prev) => [...prev, { role: "aria", text: error ? `Couldn't apply that — ${error}` : "Updated the outline." }]);
+    // Success needs no line of its own: the revised plan is proposed as a new message.
+    if (error) setChatLog((prev) => [...prev, { role: "aria", text: `Couldn't apply that — ${error}` }]);
   }
 
   /** A chip click under an Aria question bubble. `isAmbiguity` chips re-draft the outline from
    *  scratch (the answer changes what subject it's even about, via onAnswerAmbiguity); scoping
    *  chips patch the same outline in place via the normal revise pipeline (onRevise). Either
    *  way the source bubble is marked answered so its chips disable without vanishing. */
-  function sendChip(bubbleIndex: number, questionText: string, label: string, instruction: string, isAmbiguity: boolean, isDiagnostic = false) {
+  function sendChip(bubbleIndex: number, questionText: string, label: string, instruction: string, isAmbiguity: boolean, isDiagnostic = false, isPlan = false) {
     if (sending || loading) return;
+    if (isPlan) {
+      setChatLog((prev) => prev.map((m, i) => (i === bubbleIndex ? { ...m, answered: true } : m)));
+      setChatLog((prev) => [...prev, { role: "you", text: label }]);
+      if (instruction === "accept") {
+        onApprove();
+        return;
+      }
+      setAwaitingFocus(instruction === "focus");
+      setChatLog((prev) => [
+        ...prev,
+        {
+          role: "aria",
+          text: instruction === "focus"
+            ? "What should the lesson centre on? Say it or type it."
+            : "What would you like to change? Say it or type it — add, drop, reorder, or go deeper somewhere.",
+        },
+      ]);
+      setFocusComposer((n) => n + 1);
+      return;
+    }
     setChatLog((prev) => prev.map((m, i) => (i === bubbleIndex ? { ...m, answered: true } : m)));
     setChatLog((prev) => [...prev, { role: "you", text: label }]);
     if (isDiagnostic) {
@@ -3937,8 +4117,92 @@ function OutlineReviewState({
     setSending(true);
     onRevise(instruction).then(() => {
       setSending(false);
-      setChatLog((prev) => [...prev, { role: "aria", text: error ? `Couldn't apply that — ${error}` : "Updated the outline." }]);
+      if (error) setChatLog((prev) => [...prev, { role: "aria", text: `Couldn't apply that — ${error}` }]);
     });
+  }
+
+  /**
+   * The one planning conversation: Aria's lines and the student's, spoken or typed, in order.
+   *
+   * `inline` is the conversation as the main event (while Aria is getting to know the student):
+   * tall, in the page. Otherwise it is docked under the plan, shorter, for asking changes.
+   */
+  function renderConversation(inline: boolean) {
+    return (
+      <div
+        data-planning-chat
+        className={`pointer-events-auto overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/95 shadow-2xl backdrop-blur-xl ${inline ? "mt-6" : ""}`}
+      >
+        {(chatLog.length > 0 || diagnosticBusy) && (
+          <div className={`${inline ? "max-h-[55vh] min-h-[16rem]" : "max-h-44"} overflow-y-auto border-b border-[var(--hud-line)] px-4 py-3`}>
+            <div className="space-y-2.5">
+              {chatLog.map((m, i) => (
+                <div key={i} data-chat-role={m.role} className={m.role === "you" ? "text-right" : ""}>
+                  <p
+                    className={`inline-block max-w-[85%] rounded-lg px-3 py-2 text-left leading-snug ${inline ? "text-[15px]" : "text-sm"} ${
+                      m.role === "you" ? "bg-[var(--hud-text)] text-[#08090c]" : "bg-white/[0.05] text-[var(--hud-text-dim)]"
+                    }`}
+                  >
+                    {m.text}
+                  </p>
+                  {m.chips && (
+                    <div className="mt-2">
+                      <QuickReplyChips
+                        options={m.chips.map((c) => c.label)}
+                        disabled={m.answered || sending || loading || diagnosticBusy}
+                        onSelect={(label) => {
+                          const chip = m.chips!.find((c) => c.label === label);
+                          if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic), Boolean(m.isPlan));
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+              {(loading || sending || diagnosticBusy) && (
+                <p className="text-sm text-[var(--hud-text-faint)]">
+                  {diagnosticBusy
+                    ? "Aria is thinking…"
+                    : sending
+                      ? "Updating…"
+                      : !outline && thoughts.length > 0
+                        ? `Drafting subtopic ${Math.min(thoughts.length + 1, ESTIMATED_SUBTOPICS)} of ~${ESTIMATED_SUBTOPICS}…`
+                        : "Planning…"}
+                </p>
+              )}
+              <div ref={chatEndRef} />
+            </div>
+          </div>
+        )}
+        <VoiceStrip voice={voice} />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendChat(chatInput);
+            setChatInput("");
+          }}
+          className="border-t border-[var(--hud-line)] p-3"
+        >
+          <div className="flex gap-2">
+            <input
+              ref={composerRef}
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              placeholder={awaitingFocus ? "What should the lesson focus on?" : outline ? "Ask Aria to change the lesson…" : "Answer out loud, or type here…"}
+              disabled={loading || sending || diagnosticBusy}
+              className="min-w-0 flex-1 rounded-lg border border-[var(--hud-line)] bg-transparent px-3 py-2.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-line-strong)] focus:outline-none"
+            />
+            <button
+              type="submit"
+              disabled={loading || sending || diagnosticBusy || !chatInput.trim()}
+              className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2.5 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)] disabled:opacity-40"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    );
   }
 
   function updateSubtopics(next: PlanOutline["subtopics"]) {
@@ -3999,16 +4263,49 @@ function OutlineReviewState({
           </p>
           <h1 className="mt-1 truncate text-lg font-medium text-[var(--hud-text)]">{topic}</h1>
         </div>
-        <button onClick={onBack} className="shrink-0 rounded-md border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]">
-          Back
-        </button>
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setShowMemory(true)}
+            className="rounded-md border border-[var(--hud-line)] px-3 py-2 text-sm text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
+          >
+            What Aria remembers
+          </button>
+          <button onClick={onBack} className="shrink-0 rounded-md border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]">
+            Back
+          </button>
+        </div>
       </div>
+      {showMemory && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="What Aria remembers about you"
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/70 px-6 py-12 backdrop-blur-sm"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) setShowMemory(false);
+          }}
+        >
+          <div className="mx-auto max-w-lg rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)] p-6">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-lg font-medium text-[var(--hud-text)]">What Aria remembers about you</h2>
+                <p className="mt-1 text-xs text-[var(--hud-text-faint)]">From earlier lessons. Correct anything that&apos;s wrong before she plans this one.</p>
+              </div>
+              <button type="button" onClick={() => setShowMemory(false)} className="text-sm text-[var(--hud-text-faint)] hover:text-[var(--hud-text)]">
+                Close
+              </button>
+            </div>
+            <LearnerMemoryPanel compact />
+          </div>
+        </div>
+      )}
 
       {/*
        * ONE COLUMN. The 360px "Plan with Aria" rail is gone.
        *
        * It had become a duplicate: the diagnostic question moved into this column as a real card
-       * (see DiagnosticQuestionCard below), so the rail was left mirroring the same conversation
+       * (it has since become the conversation itself), so the rail was left mirroring the same conversation
        * into a narrow strip beside it — the student read the question large on the left and its
        * echo on the right, and the lesson structure they actually came to look at was squeezed into
        * whatever width was left over.
@@ -4020,29 +4317,16 @@ function OutlineReviewState({
       <div className="mx-auto max-w-[1100px]">
         <div className="min-w-0 px-6 pb-40 pt-8 lg:px-10">
           <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
-          {!outline && diagnosticQuestion ? (
+          {!outline && (diagnosticQuestion || diagnosticBusy) ? (
             /*
-             * THE QUESTION LIVES HERE NOW, LARGE — not as a small chat bubble in a 360px side
-             * rail while the main two-thirds of the screen sits empty. That emptiness was the
-             * actual complaint: it read as a broken/empty screen rather than a teacher actively
-             * working something out with you. The side chat still seeds the same question (for
-             * voice context and as a running transcript), but this is the primary place to
-             * answer — a real question card, generously sized, with the input right on it.
+             * THE CONVERSATION IS THE PAGE while Aria is getting to know the student.
+             *
+             * This used to be a large question card, with the same question repeated in a small
+             * transcript docked below it and Aria's voice asking something else again — three
+             * surfaces for one conversation. Now there is one: her questions and the student's
+             * answers, spoken or typed, in order, with the quick answers under her question.
              */
-            <DiagnosticQuestionCard
-              topic={topic}
-              question={diagnosticQuestion}
-              remark={diagnosticRemark}
-              busy={diagnosticBusy}
-              onAnswer={(answer) => {
-                // Mirrored into the side transcript so it still reads as one continuous
-                // conversation there, even though this card is now where the answer was typed.
-                setChatLog((prev) => [...prev, { role: "you", text: answer }]);
-                onAnswerDiagnostic(answer);
-              }}
-            />
-          ) : !outline && diagnosticBusy ? (
-            <p className="text-sm text-[var(--hud-text-dim)]">Working out where to start…</p>
+            renderConversation(true)
           ) : !outline && initialPlanningQuestions.length > 0 ? (
             renderPlanningQuestionsPanel()
           ) : !outline && initialAmbiguityQuestions.length > 0 ? (
@@ -4267,73 +4551,11 @@ function OutlineReviewState({
          * reach it. The transcript is capped and scrolls internally: it is there to confirm what
          * Aria heard, not to be re-read, and the question itself is already on the card above.
          */}
-        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
-          <div className="mx-auto max-w-[1100px] px-6 pb-5 lg:px-10">
-            <div className="pointer-events-auto overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/95 shadow-2xl backdrop-blur-xl">
-              {chatLog.length > 0 && (
-                <div className="max-h-44 overflow-y-auto border-b border-[var(--hud-line)] px-4 py-3">
-                  <div className="space-y-2.5">
-                    {chatLog.map((m, i) => (
-                      <div key={i} className={m.role === "you" ? "text-right" : ""}>
-                        <p
-                          className={`inline-block max-w-[85%] rounded-lg px-3 py-2 text-left text-sm leading-snug ${
-                            m.role === "you" ? "bg-[var(--hud-text)] text-[#08090c]" : "bg-white/[0.05] text-[var(--hud-text-dim)]"
-                          }`}
-                        >
-                          {m.text}
-                        </p>
-                        {m.chips && (
-                          <div className="mt-2">
-                            <QuickReplyChips
-                              options={m.chips.map((c) => c.label)}
-                              disabled={m.answered || sending || loading}
-                              onSelect={(label) => {
-                                const chip = m.chips!.find((c) => c.label === label);
-                                if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic));
-                              }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                    {(loading || sending) && (
-                      <p className="text-sm text-[var(--hud-text-faint)]">
-                        {sending ? "Updating…" : !outline && thoughts.length > 0 ? `Drafting subtopic ${Math.min(thoughts.length + 1, ESTIMATED_SUBTOPICS)} of ~${ESTIMATED_SUBTOPICS}…` : "Planning…"}
-                      </p>
-                    )}
-                    <div ref={chatEndRef} />
-                  </div>
-                </div>
-              )}
-              <VoiceStrip voice={voice} />
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  sendChat(chatInput);
-                  setChatInput("");
-                }}
-                className="border-t border-[var(--hud-line)] p-3"
-              >
-                <div className="flex gap-2">
-                  <input
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    placeholder={outline ? "Ask Aria to change the lesson…" : "Answer out loud, or type here…"}
-                    disabled={loading || sending}
-                    className="min-w-0 flex-1 rounded-lg border border-[var(--hud-line)] bg-transparent px-3 py-2.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-line-strong)] focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    disabled={loading || sending || !chatInput.trim()}
-                    className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2.5 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)] disabled:opacity-40"
-                  >
-                    Send
-                  </button>
-                </div>
-              </form>
-            </div>
+        {!(!outline && (diagnosticQuestion || diagnosticBusy)) && (
+          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
+            <div className="mx-auto max-w-[1100px] px-6 pb-5 lg:px-10">{renderConversation(false)}</div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

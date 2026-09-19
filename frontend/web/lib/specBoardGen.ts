@@ -5,6 +5,7 @@ import { validatePlotSpec, compilesAsVegaLite } from "./plotSpec";
 import { parseEquationSpec } from "./equationSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
+import { withAudience } from "./learnerBrief";
 
 type DrawOp = DrawScript["ops"][number];
 type PlotBoardOp = Extract<DrawOp, { kind: "plotBoard" }>;
@@ -133,7 +134,7 @@ async function generateOne(
         max_tokens: MAX_TOKENS,
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: buildUserPrompt(op, beat, issue) },
+          { role: "user", content: withAudience(beat, buildUserPrompt(op, beat, issue)) },
         ],
         response_format: { type: "json_object" },
       });

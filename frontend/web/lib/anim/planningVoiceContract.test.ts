@@ -60,8 +60,12 @@ test("she keeps turns short and does not read the outline back", () => {
   const instruction = buildPlanningVoiceInstruction({ topic: "anything" });
   assert.match(instruction, /a sentence or two/);
   assert.match(instruction, /Do not read the outline back/);
-  // She opens by asking, not by presenting.
-  assert.match(instruction, /Open by asking what they want/);
+  // She does not open with a question of her own: the questions on screen are the conversation, and
+  // a question she invents is one the student hears but cannot see or answer with a chip.
+  assert.match(instruction, /wait to be handed the first question/);
+  assert.match(instruction, /NEVER invent a question of your own/);
+  assert.match(instruction, /ask exactly the question you are handed/);
+  assert.doesNotMatch(instruction, /Open by asking what they want/);
 });
 
 test("she is told to ASK, not to deliver information", () => {

@@ -6,6 +6,8 @@ import { LectureCostBadge } from "@/components/LectureCostBadge";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { RendererBadge } from "@/components/sketch/RendererBadge";
 import { animationChipDetail } from "@/lib/animationModels";
+import { BuildTimeline } from "@/components/design/BuildTimeline";
+import type { ProgressiveLectureSnapshot } from "@/lib/progressiveLectureTypes";
 import type { Beat } from "@/lib/lessonContent";
 
 /**
@@ -22,23 +24,34 @@ declare global {
     __PLAYBACK_BEATS__?: { title: string; beats: Beat[] };
     /** One finished board to render fully drawn, for side-by-side screenshots of the model comparison. */
     __BOARD_STILL__?: { code: string; assetIds?: string[]; sentenceTotal: number; model?: string; costUsd?: number };
+    /** Measured beat timings to render the build screen's timeline with (scripts/measure-lecture-latency.mjs). */
+    __BUILD_TIMELINE__?: { beats: NonNullable<ProgressiveLectureSnapshot["beatStatus"]>; createdAt?: string };
   }
 }
 
 export default function PlaybackLab() {
   const [lecture, setLecture] = useState<Window["__PLAYBACK_BEATS__"]>(undefined);
   const [still, setStill] = useState<Window["__BOARD_STILL__"]>(undefined);
+  const [timeline, setTimeline] = useState<Window["__BUILD_TIMELINE__"]>(undefined);
 
   useEffect(() => {
     const read = () => {
       if (window.__PLAYBACK_BEATS__) setLecture(window.__PLAYBACK_BEATS__);
       if (window.__BOARD_STILL__) setStill(window.__BOARD_STILL__);
+      if (window.__BUILD_TIMELINE__) setTimeline(window.__BUILD_TIMELINE__);
     };
     read();
     const t = window.setInterval(read, 200);
     return () => window.clearInterval(t);
   }, []);
 
+  if (timeline) {
+    return (
+      <main data-timeline className="mx-auto max-w-xl bg-[#0b0a14] p-6">
+        <BuildTimeline beats={timeline.beats} createdAt={timeline.createdAt} />
+      </main>
+    );
+  }
   if (still) {
     // The board as it stands once the teacher has finished: every sentence spoken, fully drawn.
     return (

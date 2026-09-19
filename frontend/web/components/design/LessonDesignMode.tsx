@@ -16,6 +16,8 @@ import {
   stageIndex,
   type LessonDesignStageId,
 } from "@/lib/lessonDesignStages";
+import { BuildTimeline } from "./BuildTimeline";
+import type { ProgressiveLectureSnapshot } from "@/lib/progressiveLectureTypes";
 
 /**
  * Live Lesson Design Mode — what the student sees while their lesson is generated.
@@ -62,6 +64,10 @@ export type LessonDesignModeProps = {
   jobId: string | null;
   /** Called when the student ends the build. */
   onStop: () => void;
+  /** Every planned beat with its measured timings, from the progressive build (optional). */
+  beatStatus?: NonNullable<ProgressiveLectureSnapshot["beatStatus"]>;
+  /** When the build started, for "started N s ago". */
+  buildStartedAt?: string;
   /** Called once the ready hand-off is complete (after Aria's closing line, if she is speaking). */
   onStart: () => void;
 };
@@ -108,6 +114,8 @@ export function LessonDesignMode({
   jobId,
   onStop,
   onStart,
+  beatStatus,
+  buildStartedAt,
 }: LessonDesignModeProps) {
   const [captions, setCaptions] = useState<Array<{ role: "student" | "tutor"; text: string; final: boolean }>>([]);
   const [paused, setPaused] = useState(false);
@@ -817,6 +825,7 @@ export function LessonDesignMode({
               );
             })}
           </ul>
+          {beatStatus && beatStatus.length > 0 && <BuildTimeline beats={beatStatus} createdAt={buildStartedAt} />}
         </div>
 
         {/* CONTROLS. Every one of these drives the real session — see the handlers above. */}

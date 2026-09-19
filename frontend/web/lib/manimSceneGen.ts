@@ -4,6 +4,7 @@ import { MANIM_SCENE_SYSTEM_PROMPT } from "./drawPrompt";
 import { validateManimSceneSpec, type ManimSceneSpec } from "./manimSceneSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
+import { withAudience } from "./learnerBrief";
 
 type DrawOp = DrawScript["ops"][number];
 type ManimSceneOp = Extract<DrawOp, { kind: "manimScene" }>;
@@ -101,7 +102,7 @@ async function generateOne(
         max_tokens: MAX_TOKENS,
         messages: [
           { role: "system", content: MANIM_SCENE_SYSTEM_PROMPT },
-          { role: "user", content: buildUserPrompt(op, beat, issue) },
+          { role: "user", content: withAudience(beat, buildUserPrompt(op, beat, issue)) },
         ],
         response_format: { type: "json_object" },
       });

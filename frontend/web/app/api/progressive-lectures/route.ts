@@ -6,6 +6,9 @@ import { normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureA
 import { dispatchProgressiveTasks, progressiveQueueTransport } from "@/lib/progressiveLectureQueue";
 import { createProgressiveLectureSession } from "@/lib/progressiveLectureStore";
 import { isLearnerProfileSnapshot, shouldIncludeCodeExamples, type ProgressiveLectureInput } from "@/lib/progressiveLectureTypes";
+import { sanitizeLearnerProfile } from "@/lib/learnerProfile";
+import { recordLesson, snapshotFrom } from "@/lib/learnerModel";
+import { updateLearnerMemory } from "@/lib/learnerMemoryStore";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -19,7 +22,11 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => ({})) as Record<string, unknown>;
   const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
   if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
-  if (!isLearnerProfileSnapshot(body.learnerProfile)) {
+  // The full profile from the planning conversation, when the client sent one. The five-field
+  // summary is then derived from it rather than guessed separately (lib/learnerModel.ts).
+  const learner = body.learner && typeof body.learner === "object" ? sanitizeLearnerProfile(body.learner, topic) : undefined;
+  const snapshot = isLearnerProfileSnapshot(body.learnerProfile) ? body.learnerProfile : learner ? snapshotFrom(learner) : null;
+  if (!snapshot) {
     return NextResponse.json({ error: "A confirmed learner profile is required." }, { status: 400 });
   }
   const rawOutline = body.outline && typeof body.outline === "object" ? body.outline as Record<string, unknown> : null;
@@ -48,14 +55,23 @@ export async function POST(request: Request) {
     focus: text(body.focus, 1_000),
     documentId: text(body.documentId, 200),
     learnerProfile: {
-      ...body.learnerProfile,
-      codeExamples: shouldIncludeCodeExamples(body.learnerProfile),
-      confirmedAt: body.learnerProfile.confirmedAt || new Date().toISOString(),
+      ...snapshot,
+      codeExamples: shouldIncludeCodeExamples(snapshot),
+      confirmedAt: snapshot.confirmedAt || new Date().toISOString(),
     },
+    learner,
+    learnerPersona: text(body.learnerPersona, 1_000),
   };
 
   try {
     const lecture = await createProgressiveLectureSession(auth.userId, input);
+    // Every lesson is remembered, whatever the planning conversation did or did not establish.
+    await updateLearnerMemory(auth.userId, (memory) => recordLesson(memory, topic, undefined, {
+      codeExamples: input.learnerProfile.codeExamples,
+      expertise: input.learnerProfile.expertise,
+      goal: input.learnerProfile.goal,
+    }))
+      .catch((error) => console.error("[learner-memory] could not record the lesson:", error));
     await dispatchProgressiveTasks([{ version: 1, type: "plan", sessionId: lecture.id, userId: auth.userId }]);
     return NextResponse.json({
       sessionId: lecture.id,

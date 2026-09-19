@@ -213,6 +213,17 @@ export async function progressiveSnapshot(
     lectureId: session.lectureId,
     costUsd: session.costUsd + docs.reduce((sum, doc) => sum + doc.costUsd, 0),
     error: session.error,
+    createdAt: session.createdAt,
+    beatStatus: session.plan.map((planned) => {
+      const doc = docs.find((d) => d.sequence === planned.sequence);
+      return {
+        sequence: planned.sequence,
+        title: planned.title,
+        state: doc?.state ?? "not-started",
+        visualKind: doc?.timing?.visualKind ?? planned.visualKind,
+        timing: doc?.timing,
+      };
+    }),
   };
 }
 
@@ -238,7 +249,14 @@ export async function recordLearnerInteraction(
   return next;
 }
 
-/** Invalidates only not-yet-frozen beats so older queue messages cannot overwrite an adaptation. */
+/**
+ * Invalidates only not-yet-frozen beats so older queue messages cannot overwrite an adaptation.
+ *
+ * Reset beats are marked "planned", not "generating". They used to be marked "generating", which
+ * says someone is writing them — so nothing queued them again, and any the route did not re-queue
+ * itself were never written: the lecture stopped at the first one. "planned" means "due when in
+ * reach", and lib/progressiveDispatch.ts queues them as the student approaches.
+ */
 export async function prepareAdaptiveRevision(
   session: ProgressiveLectureSessionDoc,
   firstMutable: number,
@@ -249,7 +267,7 @@ export async function prepareAdaptiveRevision(
     .map((doc) => upsertProgressiveBeat({
       ...doc,
       revision: session.planRevision,
-      state: "generating",
+      state: "planned",
       enrichmentState: "pending",
       error: null,
     })));

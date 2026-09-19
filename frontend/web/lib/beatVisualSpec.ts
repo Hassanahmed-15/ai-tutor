@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
 import { costFor } from "./modelPricing";
+import { withAudience } from "./learnerBrief";
 
 /**
  * Stage one of board planning: what must this beat's visual actually CONTAIN?
@@ -129,7 +130,7 @@ export async function planBeatVisual(
       { role: "system", content: VISUAL_SPEC_SYSTEM_PROMPT },
       {
         role: "user",
-        content: `Lecture beat title: ${beat.title}\n\nSpoken script: ${String(beat.script ?? "").slice(0, 1800)}`,
+        content: withAudience(beat, `Lecture beat title: ${beat.title}\n\nSpoken script: ${String(beat.script ?? "").slice(0, 1800)}`),
       },
     ],
     response_format: { type: "json_object" },

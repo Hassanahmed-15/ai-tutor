@@ -531,3 +531,64 @@ export const MAX_DIAGNOSTIC_QUESTIONS = 4;
  *  enforced (hasEnoughSignal can still stop earlier when the evidence is already conclusive), just
  *  the number below which "I could ask one more useful thing" should usually win the argument. */
 export const MIN_USEFUL_DIAGNOSTIC_QUESTIONS = 2;
+
+/**
+ * Accept a learner profile from the client without trusting any of it.
+ *
+ * The client owns the profile across a conversation, and it also arrives with a lecture request and
+ * from saved memory, so every field has to be re-checked wherever it enters. Anything
+ * unrecognised degrades to the empty profile rather than throwing: a malformed profile must cost
+ * the student a slightly less personalised lesson, never the lesson itself.
+ */
+export function sanitizeLearnerProfile(raw: unknown, topic: string): LearnerProfile {
+  const base = emptyProfile(topic);
+  if (!raw || typeof raw !== "object") return base;
+  const rec = raw as Record<string, unknown>;
+
+  const strings = (value: unknown, cap = 8): string[] =>
+    Array.isArray(value)
+      ? value.filter((v): v is string => typeof v === "string" && v.trim().length > 0).map((v) => v.trim().slice(0, 120)).slice(0, cap)
+      : [];
+
+  const level = typeof rec.claimedLevel === "number" && rec.claimedLevel >= 1 && rec.claimedLevel <= 5
+    ? (Math.round(rec.claimedLevel) as DepthLevel)
+    : null;
+
+  const CONFIDENCES = ["low", "medium", "high", "unknown"];
+  const OBJECTIVES = ["exam", "fundamentals", "project", "interview", "curiosity", "unknown"];
+
+  return {
+    ...base,
+    topic,
+    claimedLevel: level,
+    confidence: typeof rec.confidence === "string" && CONFIDENCES.includes(rec.confidence)
+      ? (rec.confidence as Confidence)
+      : "unknown",
+    objective: typeof rec.objective === "string" && OBJECTIVES.includes(rec.objective)
+      ? (rec.objective as LearningObjective)
+      : "unknown",
+    masteredConcepts: strings(rec.masteredConcepts),
+    weakConcepts: strings(rec.weakConcepts),
+    misconceptions: strings(rec.misconceptions, 5),
+    prerequisiteGaps: strings(rec.prerequisiteGaps, 5),
+    preferredStyle: typeof rec.preferredStyle === "string" ? rec.preferredStyle.trim().slice(0, 200) || null : null,
+    background: typeof rec.background === "string" ? rec.background.trim().slice(0, 300) || null : null,
+    teachingHypothesis: typeof rec.teachingHypothesis === "string" ? rec.teachingHypothesis.trim().slice(0, 400) || null : null,
+    redirectedFocus: typeof rec.redirectedFocus === "string" ? rec.redirectedFocus.trim().slice(0, 200) || null : null,
+    diagnostics: Array.isArray(rec.diagnostics)
+      ? (rec.diagnostics as unknown[])
+          .filter((d): d is Record<string, unknown> => Boolean(d) && typeof d === "object")
+          .map((d) => ({
+            question: typeof d.question === "string" ? d.question.slice(0, 300) : "",
+            answer: typeof d.answer === "string" ? d.answer.slice(0, 500) : "",
+            verdict: (["correct", "partial", "incorrect", "misconception", "skipped"] as const).includes(d.verdict as never)
+              ? (d.verdict as LearnerProfile["diagnostics"][number]["verdict"])
+              : "skipped",
+            concept: typeof d.concept === "string" ? d.concept.slice(0, 120) : undefined,
+            misconception: typeof d.misconception === "string" ? d.misconception.slice(0, 200) : undefined,
+            selfReport: d.selfReport === true,
+          }))
+          .slice(0, MAX_DIAGNOSTIC_QUESTIONS)
+      : [],
+  };
+}
