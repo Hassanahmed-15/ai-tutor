@@ -1,9 +1,13 @@
 import "server-only";
 
+import fs from "node:fs";
+import path from "node:path";
+
 import {
   AlignmentType,
   Document,
   HeadingLevel,
+  ImageRun,
   Packer,
   Paragraph,
   Table,
@@ -55,6 +59,40 @@ function table(header: string[], rows: string[][]): Table {
 
 const seconds = (ms: number) => `${(ms / 1000).toFixed(1)}s`;
 const money = (usd: number) => `$${usd.toFixed(usd < 0.01 ? 5 : 4)}`;
+
+/**
+ * THE BOARDS, AS PICTURES.
+ *
+ * A table of scores is not evidence that a board is good — this repo's own history is that the
+ * numbers have been wrong and the pictures have not (see scripts/compare-animation-models.mjs).
+ * The screenshots are what let a reader disagree with the scoring, which is the whole reason to
+ * include them: the heart case shows GPT-4o mini scoring 34 beside a board that visibly is not a
+ * heart, and that agreement between number and picture is the claim being made.
+ *
+ * Silently skipped when absent, because a missing screenshot must not cost anyone their report.
+ * Regenerate them with `node scripts/shoot-slide-bench.mjs bench-screenshots`.
+ */
+const SHOT_DIR = path.resolve(process.cwd(), "bench-screenshots");
+
+function screenshotsForReport(): Array<{ caption: string; data: Buffer }> {
+  try {
+    if (!fs.existsSync(SHOT_DIR)) return [];
+    return fs
+      .readdirSync(SHOT_DIR)
+      .filter((name) => name.startsWith("case-") && name.endsWith(".png"))
+      .sort()
+      .map((name) => {
+        const caption = name
+          .replace(/^case-\d+-/, "")
+          .replace(/\.png$/, "")
+          .replace(/-/g, " ")
+          .replace(/abst$/, "(abstract)");
+        return { caption, data: fs.readFileSync(path.join(SHOT_DIR, name)) };
+      });
+  } catch {
+    return [];
+  }
+}
 
 /**
  * Per-model aggregates across the whole bench, not just one case.
@@ -237,8 +275,74 @@ export async function buildSlideBenchReport(allRuns: SlideBenchRun[]): Promise<B
     ),
   );
 
+  /*
+   * AVAILABILITY BEFORE QUALITY. A model that could not be reached has no quality result, and
+   * printing its blank row without saying why invites the reader to conclude it failed the test.
+   */
+  const blocked = rows.filter((row) => row.providerFailures > 0);
+  if (blocked.length) {
+    children.push(
+      HEAD("3b. Models that could not be measured", HeadingLevel.HEADING_1),
+      P(
+        "These rows are blank because the request never reached the model, not because the model drew badly. Nothing about their quality can be read from this report.",
+      ),
+      table(
+        ["Model", "Attempts", "Never reached", "What the provider said"],
+        blocked.map((row) => {
+          const example = allRuns.find((run) => run.modelId === row.model.id && run.providerError);
+          return [
+            row.model.label,
+            String(row.attempts),
+            String(row.providerFailures),
+            (example?.providerError ?? "").slice(0, 120),
+          ];
+        }),
+      ),
+      HEAD("Why Gemini 3.8 Flash has no results", HeadingLevel.HEADING_2),
+      P(
+        "The API key used for the Gemini models is on Google's free tier, which allows 20 requests per day per model (quota GenerateRequestsPerDayPerProjectPerModel-FreeTier). That allowance was exhausted during this bench, so gemini-3.8-flash could not be measured at all.",
+      ),
+      P(
+        "Two things made this hard to see, and both are worth knowing before reading any Gemini row here. First, the harness retried each failed attempt three times, so nine recorded attempts spent roughly twenty-seven requests — the retry logic intended to survive a transient outage is what consumed the daily allowance. That has since been changed: a quota error is no longer retried, because retrying it spends more of the budget that just ran out.",
+      ),
+      P(
+        "Second, once the cap trips the failures do not look like a quota. A very small prompt still succeeds, while any real slide-sized request returns 503 'this model is currently experiencing high demand' — so the model appears intermittently broken rather than rate-limited. The reliable diagnosis is the structured error detail (error.details[].violations[].quotaId), not the message.",
+      ),
+      P(
+        "To measure Gemini 3.8 Flash properly, billing must be enabled on the Google AI Studio project; the free allowance also resets daily, which is enough for a single case but not a full sweep. Until then, treat its absence here as unmeasured, not as a result.",
+        { bold: true },
+      ),
+    );
+  }
+
+  const shots = screenshotsForReport();
+  if (shots.length) {
+    children.push(
+      HEAD("4. The boards, side by side", HeadingLevel.HEADING_1),
+      P(
+        "One screenshot per test case, every model's board rendered live in the production sandbox at the same point on the clock. These are included so the scoring can be argued with: in the heart case, the model scoring 34 is visibly not drawing a heart, and the models scoring 98 are. Where a number and a picture disagree, trust the picture.",
+      ),
+    );
+    for (const shot of shots) {
+      children.push(P(shot.caption, { bold: true }));
+      children.push(
+        new Paragraph({
+          children: [
+            new ImageRun({
+              data: shot.data,
+              // 1600x1250 source, scaled to fit a portrait page with margins.
+              transformation: { width: 600, height: 469 },
+              type: "png",
+            }),
+          ],
+          spacing: { after: 240 },
+        }),
+      );
+    }
+  }
+
   children.push(
-    HEAD("4. Cost", HeadingLevel.HEADING_1),
+    HEAD("5. Cost", HeadingLevel.HEADING_1),
     P(
       "Cost is computed from each provider's own reported token usage at that model's list price. Gemini bills hidden 'thinking' tokens as output, so they are included — a model that reasons at length is not cheap merely because its answer is short.",
     ),
@@ -255,7 +359,7 @@ export async function buildSlideBenchReport(allRuns: SlideBenchRun[]): Promise<B
     ),
   );
 
-  children.push(HEAD("5. Per-model observations", HeadingLevel.HEADING_1));
+  children.push(HEAD("6. Per-model observations", HeadingLevel.HEADING_1));
   for (const row of rows) {
     children.push(HEAD(row.model.label, HeadingLevel.HEADING_2));
     children.push(P(row.model.note, { italic: true }));
@@ -263,7 +367,7 @@ export async function buildSlideBenchReport(allRuns: SlideBenchRun[]): Promise<B
   }
 
   children.push(
-    HEAD("6. Every run", HeadingLevel.HEADING_1),
+    HEAD("7. Every run", HeadingLevel.HEADING_1),
     P(
       "The full log, newest per case/model pair. 'Key' is the environment variable that held the credential plus a non-reversible fingerprint, so two keys can be told apart without the key appearing in this document.",
     ),
@@ -286,7 +390,7 @@ export async function buildSlideBenchReport(allRuns: SlideBenchRun[]): Promise<B
 
   if (ranked.length) {
     children.push(
-      HEAD("7. Conclusion", HeadingLevel.HEADING_1),
+      HEAD("8. Conclusion", HeadingLevel.HEADING_1),
       P(
         `On this evidence ${ranked[0].model.label} leads on mean composite score (${ranked[0].meanComposite?.toFixed(0)}/100)${
           ranked[1] ? `, ahead of ${ranked[1].model.label} (${ranked[1].meanComposite?.toFixed(0)})` : ""
