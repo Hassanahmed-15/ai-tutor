@@ -208,6 +208,29 @@ ${assetRuntime}
 
   window.onerror = function (message) { reportError(message); return true; };
 
+  /*
+   * A require() SHIM, so a stray import does not silently blank the board.
+   *
+   * The prompt says "No imports. React is already in scope." Models write an import of React from
+   * "react" anyway — measured on four of six models in one bench sweep. Babel's commonjs transform
+   * turns that into a require("react") call, and with no require defined the whole module threw
+   * before exports.default was ever assigned. The failure was invisible in the worst way:
+   * the code was perfectly good, every static check passed, and the student got a blank board with
+   * the generic "could not render" fallback.
+   *
+   * Resolving the handful of names that are genuinely in scope costs nothing and turns a total
+   * failure into a working board. Anything else still throws — an unknown module is a real
+   * problem, and pretending otherwise would hide it.
+   */
+  function require(name) {
+    if (name === "react") return React;
+    if (name === "react-dom") return ReactDOM;
+    if (name === "react/jsx-runtime" || name === "react/jsx-dev-runtime") {
+      return { jsx: React.createElement, jsxs: React.createElement, Fragment: React.Fragment };
+    }
+    throw new Error("Module not available in the board sandbox: " + name);
+  }
+
   try {
     var exports = {}; // transform-modules-commonjs output assigns onto this
     ${transpiledCode}

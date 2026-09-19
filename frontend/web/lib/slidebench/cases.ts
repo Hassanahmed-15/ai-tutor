@@ -80,7 +80,15 @@ export function slidePrompt(testCase: SlideBenchCase): string {
     "HARD REQUIREMENTS:",
     "1. Export default a function component named Animation taking a single prop { progress }, a number from 0 to 1.",
     "2. Drive EVERY motion from `progress`. No setState, no useEffect, no timers, no requestAnimationFrame — the caller owns the clock and scrubs it backwards as well as forwards.",
-    "3. Render inline SVG with viewBox=\"0 0 1000 560\". No external images, no network, no imports beyond React.",
+    /*
+     * "No imports beyond React" was the original wording and it was a trap of my own making: four
+     * of six models read it as permission and emitted `import React from "react"`, which the
+     * sandbox transpiles to a bare require() it has no loader for, so the board rendered blank
+     * while every static check passed. The production prompt (lib/drawPrompt.ts) says "No imports.
+     * React is already in scope." — matching it exactly keeps the bench measuring drawing ability
+     * rather than a trick of phrasing.
+     */
+    "3. Render inline SVG with viewBox=\"0 0 1000 560\". NO IMPORTS AT ALL — React is already in scope. No external images, no network, no fonts.",
     "4. Label the parts with <text>. A viewer who cannot hear the narration must still be able to name what they are looking at.",
     "5. The drawing must be recognisable as the real subject, in correct proportion and arrangement — not abstract boxes standing in for it.",
     "6. Reveal progressively: at progress=0 almost nothing is drawn, at progress=1 the whole picture is complete and readable.",
