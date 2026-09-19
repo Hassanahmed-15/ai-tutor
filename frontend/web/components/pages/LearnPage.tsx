@@ -23,6 +23,7 @@ import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { Loader2 } from "lucide-react";
 import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
+import { lectureSubject } from "@/lib/lectureSubject";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
@@ -923,13 +924,29 @@ type BuildCost =
        * heading-less data all fail its candidate test and return "". So the literal stays exactly
        * where it belongs — as the fallback for when there genuinely is no name in the crop.
        */
-      const subject = (pointing && subjectFromTranscript(transcriptText))
-        || (pointing && drewRegion && "Selected region")
-        || focus
-        || topic.trim()
-        || input.trim()
-        || primary.data.title
-        || "this document";
+      /*
+       * ...AND THE DOCUMENT'S OWN NAME BEFORE THE LITERAL.
+       *
+       * The fix above stopped one step short. `primary.data.title` — the PDF's metadata title, or
+       * its first heading, or the cleaned-up filename — sat BELOW the literal and was therefore
+       * still unreachable whenever a region was drawn, which is the common case: dragging a box and
+       * clicking "Get a lecture from this area" requires typing nothing at all. So every crop-built
+       * lecture was named "Selected region" regardless, and Lecture History filled with identical
+       * cards — the exact failure the comment above describes as actively broken.
+       *
+       * Naming the document and marking the crop keeps both facts: which file this came from, and
+       * that it was part of it rather than the whole thing. The bare literal remains for the case it
+       * was written for — a crop from a document with no usable title of its own.
+       */
+      const subject = lectureSubject({
+        transcriptSubject: subjectFromTranscript(transcriptText),
+        pointing,
+        drewRegion,
+        focus,
+        topic,
+        input,
+        documentTitle: primary.data.title ?? "",
+      });
       setUploadFocus(focus);
       setOcrTranscript(transcriptText);
       setPendingSources([]);

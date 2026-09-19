@@ -206,6 +206,8 @@ async function refineUntilGood(
   subject: string,
   assetRuntime: string | undefined,
   abstract: boolean,
+  /** See ReactAnimationFillOptions.refineTimeBudgetMs. Undefined means the module default. */
+  refineTimeBudgetMs?: number,
 ): Promise<{ code: string; costUsd: number; score: number | null; trail: string }> {
   // Abstract boards are excluded for the same reason the shape critic skips them: the standard here
   // is physical structure, which wrongly condemns a timeline or an array diagram.
@@ -237,8 +239,13 @@ async function refineUntilGood(
    * spending three more minutes to move a 4 to a 5.
    */
   const startedAt = Date.now();
+  // Clamped to the module ceiling so a caller can only ever ask for LESS time, never more.
+  const timeBudgetMs = Math.max(
+    10_000,
+    Math.min(REFINE_TIME_BUDGET_MS, refineTimeBudgetMs ?? REFINE_TIME_BUDGET_MS),
+  );
   for (let round = 0; round <= REFINE_ROUNDS; round++) {
-    if (round > 0 && Date.now() - startedAt >= REFINE_TIME_BUDGET_MS) {
+    if (round > 0 && Date.now() - startedAt >= timeBudgetMs) {
       trail.push(`time-stop@${Math.round((Date.now() - startedAt) / 1000)}s`);
       break;
     }
@@ -750,6 +757,8 @@ async function generateOne(
   op: ReactAnimationOp,
   beat: Beat,
   contestant: AnimationModel | null = null,
+  /** See ReactAnimationFillOptions.refineTimeBudgetMs. Undefined means the module default. */
+  refineTimeBudgetMs?: number,
 ): Promise<{ costUsd: number; filled: boolean; issue?: string }> {
   const startedAt = Date.now();
   let attemptsMade = 0;
@@ -997,7 +1006,7 @@ async function generateOne(
          * line at all. A quality pass that only runs on the failure path is a quality pass that
          * stops running exactly when the pipeline starts working.
          */
-        const refined = await refineUntilGood(client, choice, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
+        const refined = await refineUntilGood(client, choice, beat, op, validated.code, blueprint.subject, assetRuntime, abstract, refineTimeBudgetMs);
         totalCostUsd += refined.costUsd;
         op.code = refined.code;
         // IDs only — the browser resolves them to markup via /api/animation-assets. See the op type.
@@ -1068,7 +1077,7 @@ async function generateOne(
        * plainly identifiable and still be an outline with a messy annotation cluster — one such
        * scored 5/5 from the recognizability critic while visibly falling short.
        */
-      const refinedBest = await refineUntilGood(client, choice, beat, op, validated.code, blueprint.subject, assetRuntime, abstract);
+      const refinedBest = await refineUntilGood(client, choice, beat, op, validated.code, blueprint.subject, assetRuntime, abstract, refineTimeBudgetMs);
       totalCostUsd += refinedBest.costUsd;
       op.code = refinedBest.code;
       validated.code = refinedBest.code;
@@ -1119,6 +1128,16 @@ export type ReactAnimationFillOptions = {
   animationIndexOffset?: number;
   /** Pin every board to one model (the head-to-head comparison script). */
   model?: AnimationModel | null;
+  /**
+   * Override the refine loop's wall-clock budget for these boards.
+   *
+   * Exists for the OPENING beats of a progressive lecture. Nothing plays until they are enriched,
+   * so their refine time is time the student spends watching a spinner — whereas every later beat
+   * is built behind a beat that is already playing, where the full budget costs nobody anything.
+   * The loop keeps the best-scoring board it found when the clock runs out, so a tighter budget
+   * lowers the ceiling on polish rather than risking an empty board.
+   */
+  refineTimeBudgetMs?: number;
 };
 
 export async function fillReactAnimationOps(
@@ -1157,7 +1176,7 @@ export async function fillReactAnimationOpsIncremental(
     const contestant = options.model !== undefined
       ? options.model
       : animationModelForBeat((options.animationIndexOffset ?? 0) + (animationOrder.get(op) ?? 0));
-    const result = await generateOne(client, op, beat, contestant);
+    const result = await generateOne(client, op, beat, contestant, options.refineTimeBudgetMs);
     await onUpdate?.({ beat, beatIndex, costUsd: result.costUsd, status: result.filled ? "ready" : "failed" });
     return result;
   }));

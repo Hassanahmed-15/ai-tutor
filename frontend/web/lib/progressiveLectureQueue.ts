@@ -125,7 +125,13 @@ function enqueueLocal(tasks: ProgressiveLectureTask[]): void {
 }
 
 async function drainLocalQueue(): Promise<void> {
-  const limit = Math.max(1, Math.min(6, Number(process.env.PROGRESSIVE_WORKER_CONCURRENCY ?? 3)));
+  /*
+   * MUST MATCH progressiveLectureWorker.ts's PROGRESSIVE_LANES — same env var, same default, same
+   * ceiling. It did not: the worker opened 4 lanes and re-dispatched at stride 4 while this drainer
+   * ran 3 at a time, so the fourth beat of every wave sat queued behind the others for no reason.
+   * The ceilings disagreed too (8 there, 6 here), so PROGRESSIVE_WORKER_CONCURRENCY=8 silently got 6.
+   */
+  const limit = Math.max(1, Math.min(8, Number(process.env.PROGRESSIVE_WORKER_CONCURRENCY ?? 4)));
   globalForQueue.ariaProgressiveLocalActive ??= 0;
   const queue = globalForQueue.ariaProgressiveLocalQueue ?? [];
   while ((globalForQueue.ariaProgressiveLocalActive ?? 0) < limit && queue.length > 0) {

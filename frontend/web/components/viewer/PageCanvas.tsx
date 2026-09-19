@@ -49,6 +49,16 @@ export const PageCanvas = memo(function PageCanvas({
   const [naturalSize, setNaturalSize] = useState<{ width: number; height: number } | null>(null);
   const [rendered, setRendered] = useState(false);
   const renderGenerationRef = useRef(0);
+  /*
+   * The CURRENT visibility, readable from a cleanup closure.
+   *
+   * Assigned during render rather than in an effect on purpose: React runs the previous effect's
+   * cleanup BEFORE the next effect body, but after the render that changed `visible`. So by the
+   * time the cleanup asks "is this page still on screen?", this ref already says no — which is
+   * exactly the question it needs answered, and the one the captured `visible` could never answer.
+   */
+  const visibleRef = useRef(visible);
+  visibleRef.current = visible;
 
   // Natural size is fetched through the shared, concurrency-limited queue (lib/pdfPageQueue.ts)
   // rather than calling doc.getPage() directly — every PageCanvas in the document mounts at once,
@@ -168,8 +178,15 @@ export const PageCanvas = memo(function PageCanvas({
        * Setting width/height to 0 is what actually frees a canvas's memory — clearRect only paints
        * over it. Resetting `rendered` matters too: it was left true, so the placeholder never came
        * back and a freed page showed a blank canvas instead of its skeleton.
+       *
+       * READ VISIBILITY FROM A REF, NOT THE CLOSURE. This guard used to test `visible` directly and
+       * was therefore dead code: the effect body above returns early unless `visible` is true, so a
+       * cleanup only ever exists for a render where it was true, and the closure captured that
+       * `true`. Scrolling a page out ran this cleanup with `visible === true` in scope, the guard
+       * never passed, and nothing was ever freed — the exact growth the comment above describes,
+       * left in place by the fix that claimed to have solved it.
        */
-      if (!visible) {
+      if (!visibleRef.current) {
         const canvas = canvasRef.current;
         if (canvas) {
           canvas.width = 0;

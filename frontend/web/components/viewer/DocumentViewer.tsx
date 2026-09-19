@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AlertCircle, Loader2, X } from "lucide-react";
 import { usePdfDocument } from "@/lib/usePdfDocument";
+import { createPageQueue } from "@/lib/pdfPageQueue";
 import { highlightFromSelection, pageForSelection } from "@/lib/viewerSelection";
 import { DEFAULT_HIGHLIGHT_COLOR, type CollectedSnippet, type Highlight, type SearchMatch } from "@/lib/viewerTypes";
 import type { PageTextCache } from "@/lib/viewerSearch";
@@ -58,6 +59,21 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
   // across renders without it being flagged as "read during render" the way a ref would be.
   const [textCache] = useState<PageTextCache>(() => new Map());
   const scrollAreaRef = useRef<HTMLDivElement | null>(null);
+
+  /*
+   * ONE PAGE QUEUE PER DOCUMENT, owned here rather than inside PageList.
+   *
+   * pdf.js talks to a single worker connection, so every getPage() in the app has to share one
+   * concurrency limit or they starve each other. PageList used to own the queue, which left the
+   * thumbnail rail unable to reach it — so the rail called doc.getPage() directly and flooded the
+   * worker while the student waited on the page in front of them. Both consumers now take this one.
+   *
+   * Memoized on the doc so switching documents builds a fresh queue rather than draining requests
+   * against a destroyed PDFDocumentProxy. `null` until the document is ready; the render branches
+   * below that use it are only reachable once it is.
+   */
+  const doc = pdfState.status === "ready" ? pdfState.doc : null;
+  const pageQueue = useMemo(() => (doc ? createPageQueue(doc) : null), [doc]);
 
   const highlightsByPage = new Map<number, Highlight[]>();
   for (const h of highlights) {
@@ -231,6 +247,8 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
   }
 
   const hasCollected = collected.length > 0;
+  // Unreachable: both are set whenever status === "ready", which the branches above have proved.
+  if (!pageQueue) return null;
 
   return (
     /*
@@ -251,6 +269,7 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
           highlightsByPage={highlightsByPage}
           scrollToPage={scrollToPage}
           onCurrentPageChange={setCurrentPage}
+          queue={pageQueue}
         />
       </div>
 
@@ -301,7 +320,7 @@ export function DocumentViewer({ doc: uploadedDoc, onBack }: { doc: UploadedDocu
           />
           <aside className="absolute inset-y-0 left-0 z-40 w-40 overflow-hidden border-r border-[var(--hud-line)] bg-[var(--hud-bg-2)] shadow-2xl">
             <ThumbnailSidebar
-              doc={pdfState.doc}
+              queue={pageQueue}
               pageCount={pdfState.pageCount}
               currentPage={currentPage}
               onSelect={(p) => {

@@ -490,7 +490,20 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       // a prompted lecture plans few of those and picks the real board kind later (above), so that
       // count would hand nearly every animated beat to the same model.
       const premiumStartedAt = performance.now();
-      const result = await fillPremium(client, candidate, visualKind, session.sourceType !== "prompt", sequence);
+      /*
+       * Beats below the starter count are the ones holding up playback — see
+       * STARTER_REFINE_BUDGET_MS. Read from the session rather than hardcoded so the two cannot
+       * drift apart if starterBeatCount ever changes.
+       */
+      const blocksPlayback = sequence < session.starterBeatCount;
+      const result = await fillPremium(
+        client,
+        candidate,
+        visualKind,
+        session.sourceType !== "prompt",
+        sequence,
+        blocksPlayback,
+      );
       // The single most expensive call in the pipeline — an animation generation plus its vision
       // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
       // (Cosmos reads/writes, the visual-kind choice) can be told apart from the model work.
@@ -616,13 +629,40 @@ function premiumPlaceholder(beat: Beat, kind: ProgressiveVisualKind): DrawScript
   return beat.draw ?? fallbackDraw(beat.title, beat.points, common.durationMs);
 }
 
-async function fillPremium(client: OpenAI, beat: Beat, kind: ProgressiveVisualKind, hasSource: boolean, animationIndex = 0) {
+/**
+ * How long a board may spend being refined when NOTHING IS PLAYING YET.
+ *
+ * The opening beats are the whole of the student's wait: playback starts only once
+ * `starterBeatCount` beats are enriched, and `[timing] kind=premium` has measured single boards at
+ * 66-206 s inside the refine loop. Every later beat is built behind a beat that is already playing,
+ * so it keeps the full budget and loses nothing.
+ *
+ * The loop keeps the best-scoring board it has when the clock stops, so this lowers the ceiling on
+ * polish for the first boards rather than risking a blank one.
+ */
+const STARTER_REFINE_BUDGET_MS = Math.max(
+  10_000,
+  Number(process.env.PROGRESSIVE_STARTER_REFINE_BUDGET_MS ?? 20_000),
+);
+
+async function fillPremium(
+  client: OpenAI,
+  beat: Beat,
+  kind: ProgressiveVisualKind,
+  hasSource: boolean,
+  animationIndex = 0,
+  /** True while this beat is one the student is actively waiting on. */
+  blocksPlayback = false,
+) {
   if (!process.env.OPENAI_API_KEY) return { success: false, costUsd: 0, error: "OPENAI_API_KEY is not set." };
   if (kind === "react-animation" && process.env.REACT_ANIMATIONS_ENABLED !== "1") return disabled(kind);
   if (kind === "blackboard" && process.env.BLACKBOARD_GEN_ENABLED !== "1") return disabled(kind);
   if (kind === "manim" && process.env.MANIM_RENDER_ENABLED !== "1") return disabled(kind);
   const stats = kind === "react-animation"
-    ? await fillReactAnimationOps(client, [beat], { animationIndexOffset: animationIndex })
+    ? await fillReactAnimationOps(client, [beat], {
+        animationIndexOffset: animationIndex,
+        refineTimeBudgetMs: blocksPlayback ? STARTER_REFINE_BUDGET_MS : undefined,
+      })
     : kind === "blackboard"
       ? await fillBlackboardOps(client, [beat], hasSource)
       : kind === "manim"

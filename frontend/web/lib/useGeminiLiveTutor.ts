@@ -22,6 +22,7 @@ import {
   isVoiceLike,
   type GateDecision,
 } from "./interruptionGate";
+import { turnCloseAction } from "./studentTurnLatch";
 
 export type GeminiLiveStatus =
   | "idle"
@@ -513,6 +514,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const closeActivityRef = useRef<() => void>(() => undefined);
   /** Same indirection as `closeActivityRef`: the mic callback runs before `openActivity` exists. */
   const openActivityRef = useRef<() => void>(() => undefined);
+  /**
+   * Same indirection again, for the end-of-utterance close in the mic callback.
+   *
+   * That close must go through `endStudentSpeech` — it is the only thing that clears
+   * `suppressCurrentTurnRef`, the hard mute on playback — and `endStudentSpeech` is a useCallback
+   * declared further down.
+   */
+  const endStudentSpeechRef = useRef<() => void>(() => undefined);
   /** When voice-like audio was last heard, for deciding the utterance is over. 0 = not speaking. */
   const lastVoiceHeardAtRef = useRef(0);
   const endedRef = useRef(false);
@@ -885,6 +894,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (!studentSpeakingRef.current) suppressCurrentTurnRef.current = false;
     }, 120);
   }, []);
+  endStudentSpeechRef.current = endStudentSpeech;
 
   const teardown = useCallback(
     (reason: SessionEndReason) => {
@@ -1387,13 +1397,26 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         const nowMs = performance.now();
         if (isVoiceLike(frameFeatures, DEFAULT_GATE_CONFIG) && frameFeatures.rms >= DEFAULT_GATE_CONFIG.minRms) {
           lastVoiceHeardAtRef.current = nowMs;
-        } else if (
-          activityOpenRef.current &&
-          lastVoiceHeardAtRef.current > 0 &&
-          nowMs - lastVoiceHeardAtRef.current >= END_OF_UTTERANCE_MS
-        ) {
-          lastVoiceHeardAtRef.current = 0;
-          closeActivityRef.current();
+        } else {
+          /*
+           * The decision lives in `turnCloseAction` (lib/studentTurnLatch.ts) so it can be tested:
+           * a committed turn MUST leave through `endStudentSpeech`, the only thing that clears the
+           * playback mute. Closing the bracket directly ended the turn with the mute still latched,
+           * and every chunk of the model's answer was discarded — Aria heard the student, replied,
+           * and nothing came out of the speakers for the rest of the session.
+           */
+          const action = turnCloseAction({
+            activityOpen: activityOpenRef.current,
+            studentSpeaking: studentSpeakingRef.current,
+            lastVoiceHeardAt: lastVoiceHeardAtRef.current,
+            now: nowMs,
+            endOfUtteranceMs: END_OF_UTTERANCE_MS,
+          });
+          if (action !== "none") {
+            lastVoiceHeardAtRef.current = 0;
+            if (action === "end-student-speech") endStudentSpeechRef.current();
+            else closeActivityRef.current();
+          }
         }
 
         const bufferEndedAt = performance.now();

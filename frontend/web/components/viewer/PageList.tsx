@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import { PageCanvas } from "./PageCanvas";
-import { createPageQueue } from "@/lib/pdfPageQueue";
+import type { PageQueue } from "@/lib/pdfPageQueue";
 import type { Highlight, SearchMatch } from "@/lib/viewerTypes";
 
 /**
@@ -26,6 +26,7 @@ export function PageList({
   highlightsByPage,
   scrollToPage,
   onCurrentPageChange,
+  queue,
 }: {
   doc: PDFDocumentProxy;
   pageCount: number;
@@ -36,15 +37,20 @@ export function PageList({
   scrollToPage: number | null;
   /** Reported upward so the page-counter UI can show "12 of 240" as the student scrolls. */
   onCurrentPageChange: (pageNumber: number) => void;
+  /**
+   * The document's ONE page queue, owned by DocumentViewer.
+   *
+   * It used to be created here, which left the thumbnail rail with no way to reach it — so the rail
+   * called doc.getPage() directly and flooded the single pdf.js worker that this queue exists to
+   * protect. One queue per document, shared by everything that touches it.
+   */
+  queue: PageQueue;
 }) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const pageElsRef = useRef<Map<number, HTMLDivElement>>(new Map());
   const [visiblePages, setVisiblePages] = useState<Set<number>>(new Set());
   const naturalSizesRef = useRef<Map<number, { width: number; height: number }>>(new Map());
   const observerRef = useRef<IntersectionObserver | null>(null);
-  // One queue per document instance — recreated only if `doc` itself changes, so switching
-  // documents doesn't leave a stale queue draining requests against a destroyed PDFDocumentProxy.
-  const queue = useMemo(() => createPageQueue(doc), [doc]);
 
   const registerRef = useCallback((pageNumber: number, el: HTMLDivElement | null) => {
     const map = pageElsRef.current;

@@ -29,7 +29,16 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
             controller.enqueue(encoder.encode(": heartbeat\n\n"));
           }
           if (snapshot.complete || snapshot.status === "failed") break;
-          await new Promise((resolve) => setTimeout(resolve, 1_250));
+          /*
+           * POLL FAST WHILE THE STUDENT IS STARING AT A SPINNER, SLOWLY ONCE PLAYBACK HAS STARTED.
+           *
+           * A flat 1.25 s added up to ~0.6 s of average dead time onto first play — time the lecture
+           * was ready and nobody had been told. Before `starterReady` that latency is the only thing
+           * between a finished beat and audio, so it is worth a tighter loop; afterwards the next
+           * beat is being pre-built behind a playing one and there is nothing to race, so the
+           * interval returns to 1.25 s rather than hammering Cosmos for the rest of the lecture.
+           */
+          await new Promise((resolve) => setTimeout(resolve, snapshot.starterReady ? 1_250 : 350));
         }
       } catch {
         if (!request.signal.aborted) controller.enqueue(encoder.encode(`event: stream-error\ndata: ${JSON.stringify({ error: "Lecture update stream failed." })}\n\n`));
