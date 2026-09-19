@@ -19,6 +19,7 @@ import {
   analyzeFrame,
   DEFAULT_GATE_CONFIG,
   InterruptionGate,
+  isVoiceLike,
   type GateDecision,
 } from "./interruptionGate";
 
@@ -309,6 +310,16 @@ const ANALYSIS_FRAME = 512;
 const ANALYSIS_FRAME_MS = (ANALYSIS_FRAME / INPUT_SAMPLE_RATE) * 1000;
 
 /**
+ * Silence that ends a spoken turn, in milliseconds.
+ *
+ * With manual activity detection the model replies on `activityEnd`, so this is the "you can answer
+ * now" signal. 800 ms comfortably outlasts the pause inside a sentence (and the hesitation before a
+ * hard word) while keeping the reply prompt; it is deliberately longer than the gate's own 650 ms
+ * silenceMs, which answers the different question of whether an interruption episode has ended.
+ */
+const END_OF_UTTERANCE_MS = 800;
+
+/**
  * Fade applied to each end of every PCM chunk, and to an interrupted stop, in seconds.
  *
  * Long enough to remove the step discontinuity that makes a click, short enough to be inaudible as
@@ -500,6 +511,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * otherwise form a declaration cycle. The ref is assigned once `closeActivity` exists.
    */
   const closeActivityRef = useRef<() => void>(() => undefined);
+  /** Same indirection as `closeActivityRef`: the mic callback runs before `openActivity` exists. */
+  const openActivityRef = useRef<() => void>(() => undefined);
+  /** When voice-like audio was last heard, for deciding the utterance is over. 0 = not speaking. */
+  const lastVoiceHeardAtRef = useRef(0);
   const endedRef = useRef(false);
   const connectingRef = useRef(false);
   /** Bumped on every start() and every teardown, so a stale in-flight connect can abandon itself. */
@@ -1216,7 +1231,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   // correctness rule, and nothing reads this until a mic frame or a turn ends.
   useEffect(() => {
     closeActivityRef.current = closeActivity;
-  }, [closeActivity]);
+    openActivityRef.current = openActivity;
+  }, [closeActivity, openActivity]);
 
   /**
    * Build the gate on first use and bind it to this hook's audio.
@@ -1230,14 +1246,41 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     const gate = new InterruptionGate(
       {},
       {
-        // Stage 2: sustained voice. Dip the volume, commit to nothing.
-        onDuck: (gain) => duckTutorVolume(gain),
-        // Stage 3 said the words were not for us, or the speech simply stopped.
-        onRestore: () => restoreTutorVolume(),
-        // Stage 3 said the student is addressing the tutor. Only now does anything stop.
+        /*
+         * Stage 2: sustained voice. Duck the tutor AND open the turn.
+         *
+         * OPENING THE TURN HERE IS NOT OPTIONAL — it is what makes voice work at all.
+         *
+         * With `automaticActivityDetection.disabled: true` the server transcribes nothing outside
+         * an activity bracket. Opening the bracket only at stage 3 (an addressed transcript) was
+         * therefore a deadlock: no bracket meant no transcript, no transcript meant stage 3 never
+         * ran, so the bracket never opened. Voice was dead in every scenario — planning, lecture
+         * and document Q&A alike — because all three share this hook.
+         *
+         * Stage 2 is the right place. It already means "a human voice has been speaking for 240 ms",
+         * which is exactly when the server should start listening. Opening the bracket costs
+         * nothing if the words turn out not to be for us: the audio is transcribed, stage 3 reads
+         * it, and `onRestore` closes the turn again without ever stopping the tutor. The gate keeps
+         * its whole job — deciding whether to INTERRUPT — while the server regains its ability to
+         * hear.
+         */
+        onDuck: (gain) => {
+          duckTutorVolume(gain);
+          openActivity();
+        },
+        /*
+         * Stage 3 said the words were not for us, or the speech simply stopped. Close the turn as
+         * well as restoring the volume, or the bracket opened above would stay open forever and
+         * the next real utterance would be appended to this one.
+         */
+        onRestore: () => {
+          restoreTutorVolume();
+          closeActivityRef.current();
+        },
+        // Stage 3 said the student is addressing the tutor. Only now does anything STOP; the turn
+        // is already open from stage 2, which is what let the words arrive to be judged.
         onStop: () => {
           restoreTutorVolume();
-          openActivity();
           beginStudentSpeech();
         },
         onDecision: (decision) => {
@@ -1308,6 +1351,51 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
          * buffer, so each window is back-dated to when its audio was actually captured. Feeding all
          * of them the same timestamp would make a debounce measured in milliseconds meaningless.
          */
+        /*
+         * WHEN THE TUTOR IS SILENT, THE GATE IS NOT NEEDED — SO IT IS NOT USED.
+         *
+         * The gate exists for exactly one problem: the tutor talking over itself, or being cut off
+         * by a fan, WHILE IT IS SPEAKING. When nothing is playing there is nothing to protect, and
+         * every judgement it makes can only subtract — a quiet question, a soft-spoken student or
+         * an unusual microphone that fails its thresholds simply goes unheard, because with manual
+         * VAD an unopened turn is a turn the server never transcribes.
+         *
+         * That is most of the planning conversation, where Aria asks a question and then waits.
+         * Holding the bracket open while the tutor is silent means the student is always heard;
+         * the gate resumes owning the decision the moment audio is actually playing, which is the
+         * only time barge-in is a question at all.
+         */
+        const tutorAudible = playingSourcesRef.current.size > 0;
+        if (!tutorAudible) {
+          openActivityRef.current();
+        }
+
+        /*
+         * CLOSE THE TURN WHEN THE STUDENT STOPS TALKING.
+         *
+         * With manual VAD the model answers on `activityEnd`, so an open bracket is also an
+         * unanswered question — holding it open forever means Aria listens and never replies.
+         *
+         * The close is driven from the same frame analysis the gate uses, rather than from the
+         * gate's own episode state, because the bracket can be opened above without the gate ever
+         * reaching stage 2 (quiet speech during tutor silence, which is the case this whole change
+         * exists to rescue). Voice-like audio refreshes the clock; `END_OF_UTTERANCE_MS` of no
+         * voice-like audio ends the turn — long enough to survive the pause inside a sentence,
+         * short enough that a finished question is answered promptly.
+         */
+        const frameFeatures = analyzeFrame(pcm.subarray(0, Math.min(pcm.length, ANALYSIS_FRAME)), INPUT_SAMPLE_RATE);
+        const nowMs = performance.now();
+        if (isVoiceLike(frameFeatures, DEFAULT_GATE_CONFIG) && frameFeatures.rms >= DEFAULT_GATE_CONFIG.minRms) {
+          lastVoiceHeardAtRef.current = nowMs;
+        } else if (
+          activityOpenRef.current &&
+          lastVoiceHeardAtRef.current > 0 &&
+          nowMs - lastVoiceHeardAtRef.current >= END_OF_UTTERANCE_MS
+        ) {
+          lastVoiceHeardAtRef.current = 0;
+          closeActivityRef.current();
+        }
+
         const bufferEndedAt = performance.now();
         const windows = Math.max(1, Math.floor(pcm.length / ANALYSIS_FRAME));
         for (let index = 0; index < windows; index += 1) {
