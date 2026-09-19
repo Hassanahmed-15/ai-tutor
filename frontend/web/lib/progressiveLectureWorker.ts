@@ -47,6 +47,16 @@ type GeneratedBeatPayload = {
 };
 
 /**
+ * How many beats may be generating at once.
+ *
+ * Matches the worker's own concurrency (PROGRESSIVE_WORKER_CONCURRENCY, default 4) so the lanes
+ * and the hands that work them stay in step. Previously this was starterBeatCount, which conflated
+ * "how much must exist before playback starts" with "how much may be in flight" — two unrelated
+ * questions that happened to share a number.
+ */
+const PROGRESSIVE_LANES = Math.max(1, Math.min(8, Number(process.env.PROGRESSIVE_WORKER_CONCURRENCY ?? 4)));
+
+/**
  * Per-task timing, logged in one parseable line.
  *
  * WHY THIS EXISTS. There was no instrumentation anywhere in this pipeline, so "the lecture takes
@@ -92,9 +102,16 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
     const input = await progressiveInput(session);
     const plan = buildProgressivePlan(input);
     const next = await setProgressivePlan(session, plan);
-    // Start one worker-width of script jobs. Each completion queues its premium enrichment before
-    // releasing the next script in that lane, so animation work cannot sit behind the whole plan.
-    await dispatchProgressiveTasks(plan.slice(0, next.starterBeatCount).map((beat) => ({
+    /*
+     * Start a full worker-width of lanes, not just the starter count.
+     *
+     * This used to open `starterBeatCount` lanes, which tied how much runs in parallel to how much
+     * must finish before playback — so shortening the starter requirement to 2 also throttled the
+     * pipeline to 2 concurrent beats while the worker had 4 hands free. The opening beats still
+     * come first (they are sequences 0..n and the queue is FIFO); the extra lanes simply stop the
+     * remaining workers idling, so the lecture finishes sooner without delaying its start.
+     */
+    await dispatchProgressiveTasks(plan.slice(0, PROGRESSIVE_LANES).map((beat) => ({
       version: 1 as const,
       type: "generate-beat" as const,
       sessionId,
@@ -170,10 +187,23 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
       visualKind: sourceVisualKind(item),
     }))
     .filter((item) => item.title);
-  const fallback = planned.length > 0 ? planned : (document.contentBlocks ?? [])
+  /*
+   * DEPTH CAPS THE BEAT COUNT FOR A DOCUMENT TOO, not just for a typed topic.
+   *
+   * The prompt path has always honoured depth — 6 beats concise, 8 balanced, 10 deep. This path
+   * ignored it and took a flat 12 blocks, so an uploaded PDF produced a longer lecture than the
+   * same request typed as a sentence, and asking for "concise" changed only the words per beat
+   * while the lecture still ran twelve sections. That is the regression: concise stopped meaning
+   * concise on exactly the source type where documents are longest.
+   *
+   * Applied to the model's own plan as well as the block fallback, since a long PDF makes the
+   * planner propose many beats and the cap is what makes the student's choice win.
+   */
+  const beatCap = input.learnerProfile.depth === "deep" ? 10 : input.learnerProfile.depth === "concise" ? 6 : 8;
+  const fallback = planned.length > 0 ? planned.slice(0, beatCap) : (document.contentBlocks ?? [])
     .slice()
     .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0))
-    .slice(0, 12)
+    .slice(0, beatCap)
     .map((block) => ({
       title: clean(block.heading) || `Page ${block.pageNumber ?? "source"}`,
       objective: clean(block.text).slice(0, 260) || `Teach the source material in ${block.id}.`,
@@ -488,7 +518,21 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   // Advance this lane only after its premium render has finished (or definitively fallen back).
   // This keeps the three opening enrichments at the head of the queue instead of allowing later
   // text generation to consume every worker while the learner sees only provisional SVG boards.
-  const nextSequence = sequence + session.starterBeatCount;
+  /*
+   * LANE WIDTH IS THE WORKER'S CONCURRENCY, NOT THE STARTER COUNT.
+   *
+   * These were the same number by accident, and lowering starterBeatCount to 2 to shorten
+   * time-to-first-play therefore also cut the pipeline from three parallel lanes to two — making
+   * the whole lecture slower to finish in exchange for starting sooner. They answer different
+   * questions: starterBeatCount is "how much must exist before playback begins", lane width is
+   * "how many beats may be in flight at once", and the second should match how many the worker can
+   * actually process in parallel.
+   *
+   * PROGRESSIVE_LANES is read from the same env var the worker uses for its own concurrency, so
+   * raising one raises the other and the queue never has more in flight than there are hands to
+   * work on it.
+   */
+  const nextSequence = sequence + PROGRESSIVE_LANES;
   if (nextSequence < session.plan.length) {
     await dispatchProgressiveTasks([{
       version: 1,
