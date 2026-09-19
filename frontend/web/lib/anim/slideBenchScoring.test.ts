@@ -35,7 +35,7 @@ test("a conforming component compiles and registers its animated values", () => 
   const scores = scoreSlideSource(GOOD, false);
   assert.equal(scores.compiles, true, scores.issues.join("; "));
   assert.equal(scores.labelCount, 2);
-  assert.ok(scores.progressDrivenValues >= 4, `expected several progress-driven values, got ${scores.progressDrivenValues}`);
+  assert.ok(scores.progressDrivenValues >= 3, `expected several progress-driven values, got ${scores.progressDrivenValues}`);
   assert.ok(scores.shapeVariety >= 5);
 });
 
@@ -135,4 +135,45 @@ test("a short answer well inside the budget is not called truncated", () => {
   const fine = scoreSlideSource(GOOD, false, { outputTokens: 900, maxTokens: 16_000 });
   assert.equal(fine.likelyTruncated, false);
   assert.equal(fine.compiles, true);
+});
+
+test("a staged-reveal helper is not scored below inlined arithmetic", () => {
+  /*
+   * THE INVERSION THIS METRIC ONCE HAD. GPT-5.6 Sol wrote the richest board in the bench — 21
+   * labels, 13 shape kinds, vision 5/5 — using one reveal(start, end) helper called per stage.
+   * Counting source lines that mention `progress` scored that 2, while a cruder board that inlined
+   * the same arithmetic scored 12, so the worse picture won. The metric must count staged motion,
+   * not how the model chose to spell it.
+   */
+  const staged = `
+export default function Animation({ progress }) {
+  const smooth = (v) => v * v * (3 - 2 * v);
+  const reveal = (start, end) => smooth(Math.max(0, Math.min(1, (progress - start) / (end - start))));
+  return (
+    <svg viewBox="0 0 1000 560">
+      <circle opacity={reveal(0, 0.2)} />
+      <rect opacity={reveal(0.2, 0.4)} />
+      <path opacity={reveal(0.4, 0.6)} />
+      <line opacity={reveal(0.6, 0.8)} />
+      <ellipse opacity={reveal(0.8, 1)} />
+      <text>Labelled</text>
+    </svg>
+  );
+}`;
+  const inlined = `
+export default function Animation({ progress }) {
+  return (
+    <svg viewBox="0 0 1000 560">
+      <circle opacity={progress * 1} />
+      <rect opacity={progress * 2} />
+      <text>Labelled</text>
+    </svg>
+  );
+}`;
+  const stagedScores = scoreSlideSource(staged, false);
+  const inlinedScores = scoreSlideSource(inlined, false);
+  assert.ok(
+    stagedScores.progressDrivenValues > inlinedScores.progressDrivenValues,
+    `staged (${stagedScores.progressDrivenValues}) must outrank inlined (${inlinedScores.progressDrivenValues})`,
+  );
 });

@@ -136,12 +136,38 @@ export function scoreSlideSource(
   }
 
   /*
-   * Distinct expressions that read `progress`. Deduplicated because `progress * 100` appearing
-   * forty times is one idea used forty times, not forty independent motions, and counting raw
-   * occurrences would reward repetition.
+   * HOW MANY THINGS MOVE INDEPENDENTLY — counted from staged reveals, not from mentions.
+   *
+   * The first version of this counted distinct source lines containing `progress`, and it was
+   * measurably backwards. GPT-5.6 Sol wrote the richest board in the bench — 21 labels, 13 shape
+   * kinds, a vision score of 5 — by defining one `reveal(start, end)` helper and calling it for
+   * each stage. That is the BETTER pattern, and it scored 2 while a model that inlined the same
+   * arithmetic everywhere scored 12, handing the crude board a higher composite than the good one.
+   *
+   * What actually indicates independent motion is the number of distinct time WINDOWS the drawing
+   * is staged across. So: count calls to any local helper that takes a start/end pair, plus the
+   * distinct numeric thresholds `progress` is compared against, plus inline interpolations. A board
+   * that reveals six parts at six different moments scores six however it expresses that.
    */
-  const progressExpressions = new Set(
-    (code.match(/[^;\n]*\bprogress\b[^;\n]*/g) ?? []).map((line) => line.trim()),
+  const revealHelpers = [...code.matchAll(/(?:const|let|function)\s+(\w+)\s*=?\s*(?:\()?\s*\(?\s*(?:start|from|a)\s*,\s*(?:end|to|b)\s*[,)]/g)]
+    .map((match) => match[1]);
+  const helperCalls = revealHelpers.reduce(
+    (sum, name) => sum + (code.match(new RegExp(`\\b${name}\\s*\\(`, "g")) ?? []).length - 1,
+    0,
+  );
+  /** Thresholds like `progress > 0.4` — each one is a moment something appears. */
+  const thresholds = new Set(
+    [...code.matchAll(/\bprogress\s*[<>]=?\s*([0-9.]+)|\b(?:p|t)\s*[<>]=?\s*([0-9.]+)/g)].map(
+      (match) => match[1] ?? match[2],
+    ),
+  );
+  /** Inline interpolations: `progress * 300`, `50 + p * 20`. */
+  const inlineInterpolations = new Set(
+    (code.match(/[^;\n]*\b(?:progress|\bp\b)\s*[*+\-/][^;\n]*/g) ?? []).map((line) => line.trim()),
+  );
+  const progressExpressions = Math.max(
+    helperCalls + thresholds.size,
+    inlineInterpolations.size,
   );
 
   const labelCount = (code.match(/<text[\s>]/g) ?? []).length;
@@ -157,7 +183,7 @@ export function scoreSlideSource(
     compiles: issues.length === 0,
     likelyTruncated,
     issues,
-    progressDrivenValues: progressExpressions.size,
+    progressDrivenValues: progressExpressions,
     forbiddenClockUses,
     labelCount,
     shapeVariety,
