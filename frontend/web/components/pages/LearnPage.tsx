@@ -3549,78 +3549,102 @@ function StudentProfileCard({
 
   if (!hasAnyConcepts && !profile.teachingHypothesis && !hasSourceInfo && profile.objective === "unknown") return null;
 
+  /*
+   * A DASHBOARD, NOT A STACK.
+   *
+   * This was a single narrow column: depth, then each concept group on its own row, then the
+   * hypothesis, then the goal, then the scope chips — each one a full-width band, so reading "what
+   * does Aria think of me and what is she about to teach" meant scrolling past the whole thing
+   * before reaching the lesson itself.
+   *
+   * The same facts now sit in three columns that fill the width the page already has: who the
+   * student is, what Aria concluded, and what she is drawing from. Nothing was removed; it is the
+   * shape that changed, from a list to a panel that can be taken in at once.
+   */
+  const cells = groups
+    .map((group) => ({ ...group, entries: map.filter((entry) => entry.status === group.status) }))
+    .filter((group) => group.entries.length > 0);
+
   return (
     <div
-      className="hud-materialize mb-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] p-4"
+      className="hud-materialize mb-6 overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-white/[0.02]"
       style={{ animationDelay: "0.05s" }}
     >
-      <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Student profile</p>
+      <div className="grid gap-px bg-[var(--hud-line)] md:grid-cols-3">
+        {/* WHO — the depth dial and the student's own goal. */}
+        <div className="bg-[var(--hud-bg-2)] p-4">
+          <p className="text-[0.68rem] font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Student profile</p>
+          {depth && <p className="mt-2 font-display text-xl leading-tight text-[var(--hud-text)]">{DEPTH_NAMES[depth]}</p>}
+          {profile.objective !== "unknown" && (
+            <p className="mt-2 text-[0.78rem] leading-snug text-[var(--hud-text-faint)]">
+              Goal: <span className="text-[var(--hud-text-dim)]">{profile.objective}</span>
+            </p>
+          )}
+          {profile.redirectedFocus && (
+            <p className="mt-1 text-[0.78rem] leading-snug text-[var(--hud-text-faint)]">
+              Focus: <span className="text-[var(--hud-text-dim)]">{profile.redirectedFocus}</span>
+            </p>
+          )}
+        </div>
 
-      {depth && (
-        <p className="mt-2 text-sm font-medium text-[var(--hud-text)]">{DEPTH_NAMES[depth]}</p>
-      )}
-
-      {hasAnyConcepts && (
-        <div className="mt-3 flex flex-col gap-2">
-          {groups.map((group) => {
-            const entries = map.filter((entry) => entry.status === group.status);
-            if (!entries.length) return null;
-            return (
-              <div key={group.status} className="flex items-start gap-2">
-                <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${group.dot}`} aria-hidden="true" />
-                <div className="min-w-0">
-                  <span className="text-[0.68rem] font-semibold uppercase tracking-wide text-[var(--hud-text-faint)]">
-                    {group.label}
-                  </span>
-                  <div className="mt-1 flex flex-wrap gap-1.5">
-                    {entries.map((entry) => (
-                      <span
-                        key={entry.concept}
-                        className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.72rem] text-[var(--hud-text-dim)]"
-                      >
-                        {entry.concept}
-                      </span>
-                    ))}
+        {/* WHAT SHE FOUND — the concept map, the reason the lesson is shaped the way it is. */}
+        <div className="bg-[var(--hud-bg-2)] p-4">
+          <p className="text-[0.68rem] font-bold uppercase tracking-wider text-[var(--hud-text-faint)]">What Aria found</p>
+          {cells.length > 0 ? (
+            <div className="mt-2 space-y-2">
+              {cells.map((group) => (
+                <div key={group.status} className="flex items-start gap-2">
+                  <span className={`mt-[0.3rem] h-1.5 w-1.5 shrink-0 rounded-full ${group.dot}`} aria-hidden="true" />
+                  <div className="min-w-0">
+                    <span className="text-[0.64rem] font-semibold uppercase tracking-wide text-[var(--hud-text-faint)]">
+                      {group.label}
+                    </span>
+                    <div className="mt-1 flex flex-wrap gap-1">
+                      {group.entries.map((entry) => (
+                        <span
+                          key={entry.concept}
+                          className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]"
+                        >
+                          {entry.concept}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          ) : (
+            <p className="mt-2 text-[0.78rem] text-[var(--hud-text-faint)]">Still working that out.</p>
+          )}
         </div>
-      )}
 
-      {profile.teachingHypothesis && (
-        <p className="mt-3 text-[0.8rem] italic leading-relaxed text-[var(--hud-text-dim)]">
-          &ldquo;{profile.teachingHypothesis}&rdquo;
-        </p>
-      )}
-
-      {profile.objective !== "unknown" && (
-        <p className="mt-2 text-[0.75rem] text-[var(--hud-text-faint)]">
-          Goal: <span className="text-[var(--hud-text-dim)]">{profile.objective}</span>
-        </p>
-      )}
-      {profile.redirectedFocus && (
-        <p className="mt-1 text-[0.75rem] text-[var(--hud-text-faint)]">
-          Focus: <span className="text-[var(--hud-text-dim)]">{profile.redirectedFocus}</span>
-        </p>
-      )}
-
-      {hasSourceInfo && (
-        <div className="mt-3 flex flex-wrap gap-1.5 border-t border-[var(--hud-line)] pt-3">
-          <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]">
-            {sourceScope.breadth.kind === "whole" ? "Whole source" : sourceScope.breadth.focus}
-          </span>
-          <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]">
-            {sourceScope.fidelity === "strict" ? "Strictly from source" : "Source as reference"}
-          </span>
-          {sourceScope.documentLabels.map((label) => (
-            <span key={label} className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.7rem] text-[var(--hud-text-dim)]">
-              {label}
-            </span>
-          ))}
+        {/* THE PLAN — the teaching hypothesis, and what it is being drawn from. */}
+        <div className="bg-[var(--hud-bg-2)] p-4">
+          <p className="text-[0.68rem] font-bold uppercase tracking-wider text-[var(--hud-text-faint)]">Teaching angle</p>
+          {profile.teachingHypothesis ? (
+            <p className="mt-2 text-[0.8rem] italic leading-relaxed text-[var(--hud-text-dim)]">
+              &ldquo;{profile.teachingHypothesis}&rdquo;
+            </p>
+          ) : (
+            <p className="mt-2 text-[0.78rem] text-[var(--hud-text-faint)]">Taking shape as you answer.</p>
+          )}
+          {hasSourceInfo && (
+            <div className="mt-3 flex flex-wrap gap-1">
+              <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] text-[var(--hud-text-dim)]">
+                {sourceScope.breadth.kind === "whole" ? "Whole source" : sourceScope.breadth.focus}
+              </span>
+              <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] text-[var(--hud-text-dim)]">
+                {sourceScope.fidelity === "strict" ? "Strictly from source" : "Source as reference"}
+              </span>
+              {sourceScope.documentLabels.map((label) => (
+                <span key={label} className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] text-[var(--hud-text-dim)]">
+                  {label}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -3980,9 +4004,21 @@ function OutlineReviewState({
         </button>
       </div>
 
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 lg:grid-cols-[1fr_360px]">
-        {/* Outline canvas */}
-        <div className="min-w-0 border-r border-[var(--hud-line)] px-6 py-8 lg:px-10">
+      {/*
+       * ONE COLUMN. The 360px "Plan with Aria" rail is gone.
+       *
+       * It had become a duplicate: the diagnostic question moved into this column as a real card
+       * (see DiagnosticQuestionCard below), so the rail was left mirroring the same conversation
+       * into a narrow strip beside it — the student read the question large on the left and its
+       * echo on the right, and the lesson structure they actually came to look at was squeezed into
+       * whatever width was left over.
+       *
+       * What the rail genuinely owned — the voice session, the transcript, and the "ask for a
+       * change" input — is now docked at the bottom of this column, where it belongs: the plan is
+       * the page, and talking to Aria is something you do TO the plan rather than beside it.
+       */}
+      <div className="mx-auto max-w-[1100px]">
+        <div className="min-w-0 px-6 pb-40 pt-8 lg:px-10">
           <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
           {!outline && diagnosticQuestion ? (
             /*
@@ -4222,78 +4258,81 @@ function OutlineReviewState({
           )}
         </div>
 
-        {/* Side chat — Aria's live planning reasoning + freeform revise requests, one conversation */}
-        <div className="flex h-[calc(100vh-65px)] flex-col lg:sticky lg:top-0">
-          <div className="border-b border-[var(--hud-line)] px-5 py-4">
-            <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">Plan with Aria</p>
-          </div>
-          <div className="flex-1 overflow-y-auto px-5 py-4">
-            {chatLog.length === 0 && !loading && (
-              <p className="text-sm text-[var(--hud-text-faint)]">
-                Ask for changes here — &ldquo;also cover streaming responses&rdquo;, &ldquo;make beat 3 more advanced&rdquo;, &ldquo;add the common mistake students make&rdquo;.
-              </p>
-            )}
-            <div className="space-y-3">
-              {chatLog.map((m, i) => (
-                <div key={i} className={m.role === "you" ? "text-right" : ""}>
-                  <p
-                    className={`inline-block max-w-[90%] rounded-md px-3 py-2 text-left text-sm leading-snug ${
-                      m.role === "you" ? "bg-[var(--hud-text)] text-[#08090c]" : "bg-white/[0.04] text-[var(--hud-text-dim)]"
-                    }`}
-                  >
-                    {m.text}
-                  </p>
-                  {m.chips && (
-                    <div className="mt-2">
-                      <QuickReplyChips
-                        options={m.chips.map((c) => c.label)}
-                        disabled={m.answered || sending || loading}
-                        onSelect={(label) => {
-                          const chip = m.chips!.find((c) => c.label === label);
-                          if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic));
-                        }}
-                      />
-                    </div>
-                  )}
+        {/*
+         * THE COMPOSER, DOCKED.
+         *
+         * Everything the side rail actually owned — the live voice session, the running transcript,
+         * and the freeform "change this" input — without the column. It floats over the bottom of
+         * the plan so the structure above stays full width and nothing has to be scrolled past to
+         * reach it. The transcript is capped and scrolls internally: it is there to confirm what
+         * Aria heard, not to be re-read, and the question itself is already on the card above.
+         */}
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
+          <div className="mx-auto max-w-[1100px] px-6 pb-5 lg:px-10">
+            <div className="pointer-events-auto overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/95 shadow-2xl backdrop-blur-xl">
+              {chatLog.length > 0 && (
+                <div className="max-h-44 overflow-y-auto border-b border-[var(--hud-line)] px-4 py-3">
+                  <div className="space-y-2.5">
+                    {chatLog.map((m, i) => (
+                      <div key={i} className={m.role === "you" ? "text-right" : ""}>
+                        <p
+                          className={`inline-block max-w-[85%] rounded-lg px-3 py-2 text-left text-sm leading-snug ${
+                            m.role === "you" ? "bg-[var(--hud-text)] text-[#08090c]" : "bg-white/[0.05] text-[var(--hud-text-dim)]"
+                          }`}
+                        >
+                          {m.text}
+                        </p>
+                        {m.chips && (
+                          <div className="mt-2">
+                            <QuickReplyChips
+                              options={m.chips.map((c) => c.label)}
+                              disabled={m.answered || sending || loading}
+                              onSelect={(label) => {
+                                const chip = m.chips!.find((c) => c.label === label);
+                                if (chip) sendChip(i, m.text, chip.label, chip.instruction, Boolean(m.isAmbiguity), Boolean(m.isDiagnostic));
+                              }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                    {(loading || sending) && (
+                      <p className="text-sm text-[var(--hud-text-faint)]">
+                        {sending ? "Updating…" : !outline && thoughts.length > 0 ? `Drafting subtopic ${Math.min(thoughts.length + 1, ESTIMATED_SUBTOPICS)} of ~${ESTIMATED_SUBTOPICS}…` : "Planning…"}
+                      </p>
+                    )}
+                    <div ref={chatEndRef} />
+                  </div>
                 </div>
-              ))}
-              {(loading || sending) && (
-                <p className="text-sm text-[var(--hud-text-faint)]">
-                  {sending ? "Updating…" : !outline && thoughts.length > 0 ? `Drafting subtopic ${Math.min(thoughts.length + 1, ESTIMATED_SUBTOPICS)} of ~${ESTIMATED_SUBTOPICS}…` : "Planning…"}
-                </p>
               )}
-            </div>
-            <div ref={chatEndRef} />
-          </div>
-          {/* Aria is already talking by the time this screen appears; this reports her state and
-              offers the way out. A microphone that opened on its own must at minimum be visible
-              and mutable, or it is something done TO the student rather than for them. */}
-          <VoiceStrip voice={voice} />
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendChat(chatInput);
-              setChatInput("");
-            }}
-            className="border-t border-[var(--hud-line)] p-3"
-          >
-            <div className="flex gap-2">
-              <input
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Ask Aria to change the outline…"
-                disabled={loading || sending}
-                className="min-w-0 flex-1 rounded-md border border-[var(--hud-line)] bg-transparent px-3 py-2 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-line-strong)] focus:outline-none"
-              />
-              <button
-                type="submit"
-                disabled={loading || sending || !chatInput.trim()}
-                className="shrink-0 rounded-md border border-[var(--hud-line)] px-3 py-2 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)] disabled:opacity-40"
+              <VoiceStrip voice={voice} />
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  sendChat(chatInput);
+                  setChatInput("");
+                }}
+                className="border-t border-[var(--hud-line)] p-3"
               >
-                Send
-              </button>
+                <div className="flex gap-2">
+                  <input
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    placeholder={outline ? "Ask Aria to change the lesson…" : "Answer out loud, or type here…"}
+                    disabled={loading || sending}
+                    className="min-w-0 flex-1 rounded-lg border border-[var(--hud-line)] bg-transparent px-3 py-2.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-line-strong)] focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading || sending || !chatInput.trim()}
+                    className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2.5 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)] disabled:opacity-40"
+                  >
+                    Send
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>
