@@ -4148,6 +4148,27 @@ function OutlineReviewState({
    * `inline` is the conversation as the main event (while Aria is getting to know the student):
    * tall, in the page. Otherwise it is docked under the plan, shorter, for asking changes.
    */
+  /**
+   * The docked composer's real height, so the column above can reserve exactly that much.
+   *
+   * A ResizeObserver rather than a one-off measurement: the composer changes height as the
+   * transcript fills, when the voice strip appears, and on viewport resize. Each of those would
+   * otherwise re-create the overlap this fixes.
+   */
+  const dockRef = useRef<HTMLDivElement | null>(null);
+  const [dockHeight, setDockHeight] = useState(0);
+  useEffect(() => {
+    const node = dockRef.current;
+    if (!node) {
+      setDockHeight(0);
+      return;
+    }
+    const observer = new ResizeObserver(([entry]) => setDockHeight(entry.contentRect.height));
+    observer.observe(node);
+    setDockHeight(node.getBoundingClientRect().height);
+    return () => observer.disconnect();
+  }, [outline, diagnosticQuestion, diagnosticBusy]);
+
   function renderConversation(inline: boolean) {
     return (
       <div
@@ -4336,7 +4357,15 @@ function OutlineReviewState({
        * the page, and talking to Aria is something you do TO the plan rather than beside it.
        */}
       <div className="mx-auto max-w-[1100px]">
-        <div className="min-w-0 px-6 pb-40 pt-8 lg:px-10">
+        {/*
+         * The floating composer is `position: fixed`, so it takes no space in the flow and the
+         * column must reserve its height explicitly or the last beats sit underneath it. A fixed
+         * `pb-40` was that reservation and it was wrong: the composer grows with the transcript
+         * (up to max-h-44) plus the voice strip and the input, ~318px at its tallest against 160px
+         * reserved — so roughly 158px of the lesson was covered, which is what the screenshot shows.
+         * Measured at runtime instead, with a floor for the first paint before the observer fires.
+         */}
+        <div className="min-w-0 px-6 pt-8 lg:px-10" style={{ paddingBottom: Math.max(dockHeight + 24, 96) }}>
           <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
           {!outline && (diagnosticQuestion || diagnosticBusy) ? (
             /*
@@ -4573,7 +4602,7 @@ function OutlineReviewState({
          * Aria heard, not to be re-read, and the question itself is already on the card above.
          */}
         {!(!outline && (diagnosticQuestion || diagnosticBusy)) && (
-          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
+          <div ref={dockRef} className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
             <div className="mx-auto max-w-[1100px] px-6 pb-5 lg:px-10">{renderConversation(false)}</div>
           </div>
         )}

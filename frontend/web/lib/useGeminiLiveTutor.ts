@@ -545,6 +545,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * declared further down.
    */
   const endStudentSpeechRef = useRef<() => void>(() => undefined);
+  /** Same indirection: the gate is built before `flushStudentTranscript` exists. */
+  const flushStudentTranscriptRef = useRef<() => void>(() => undefined);
   const endedRef = useRef(false);
   const connectingRef = useRef(false);
   /** Bumped on every start() and every teardown, so a stale in-flight connect can abandon itself. */
@@ -626,6 +628,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     studentTranscriptRef.current = "";
     return { text, turnKind };
   }, []);
+
+  flushStudentTranscriptRef.current = flushStudentTranscript;
 
   const flushTutorTranscript = useCallback(() => {
     const text = tutorTranscriptRef.current.trim();
@@ -1320,6 +1324,17 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
          * decision — is replayed first so the opening word of a question is not lost.
          */
         onListen: (preroll) => {
+          /*
+           * A NEW TURN IS NEVER SUPPRESSED BY THE LAST ONE.
+           *
+           * `contextOnlyTurnRef` mutes the model's reply to a discarded turn and clears itself on
+           * that turn's `turnComplete`. When the discarded turn produces no reply at all — the
+           * common case, since there was nothing to answer — no turnComplete arrives and the flag
+           * stays set, so the student's NEXT genuine question was answered in silence: the socket
+           * healthy, the transcript flowing, and no audio. Clearing it as each turn opens makes the
+           * suppression last exactly one turn whatever the server does.
+           */
+          contextOnlyTurnRef.current = false;
           openActivity();
           for (const pcm of preroll) sendFrame(pcm);
         },
@@ -1333,6 +1348,17 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         },
         onTurnEnd: () => {
           gate.setExpectingAnswer(false);
+          /*
+           * FLUSH THE STUDENT TRANSCRIPT AT THE END OF EVERY TURN.
+           *
+           * It was cleared only by `finishTutorTurn`, i.e. only when the tutor actually replied.
+           * A gated turn frequently ends without a reply — an answer she acknowledges silently, a
+           * turn the gate discards, a command handled locally — and each of those left the text in
+           * place, so the NEXT utterance was appended to it. Three separate things the student said
+           * arrived as one run-on sentence, and the addressing classifier then judged that
+           * concatenation rather than the sentence actually just spoken.
+           */
+          flushStudentTranscriptRef.current();
           // A committed turn MUST leave through endStudentSpeech — it is the only thing that clears
           // the playback mute set by beginStudentSpeech. A turn that never stopped the tutor has no
           // mute to clear and just closes.
@@ -1346,6 +1372,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
          */
         onDiscard: () => {
           contextOnlyTurnRef.current = true;
+          // Same reason as onTurnEnd: a discarded turn's words must not be prepended to the next
+          // real one. Dropped rather than flushed — nobody should see the neighbour's sentence.
+          studentTranscriptRef.current = "";
           closeActivityRef.current();
         },
         onDecision: (decision) => {
