@@ -14,6 +14,8 @@ import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
 import { AnnotationLayer, type BoardTool } from "@/components/board/AnnotationLayer";
+import { ExplainSelection } from "@/components/board/ExplainSelection";
+import { strokesFor } from "@/lib/board/annotations";
 import { BoardDock } from "@/components/board/BoardDock";
 import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
 import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
@@ -450,6 +452,9 @@ export function LessonPlayer({
    * and the strokes were wiped on every beat change. See lib/board/annotations.ts.
    */
   const [boardTool, setBoardTool] = useState<BoardTool>("none");
+  /** The "Explain this" offer is dismissed per mark, and re-offered on the next one. */
+  const [explainDismissed, setExplainDismissed] = useState(true);
+  const [explainBusy, setExplainBusy] = useState(false);
   const [annotations, setAnnotations] = useState(EMPTY_ANNOTATIONS);
   const [drawMode, setDrawMode] = useState(false);
   const [askingDrawing, setAskingDrawing] = useState(false);
@@ -1732,7 +1737,12 @@ export function LessonPlayer({
           and the board gets the rest, at any viewport, with no magic numbers. */}
       <div className="absolute inset-0 flex flex-col">
         <div className="flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid xl:grid-cols-[minmax(0,1fr)_340px]">
-          <section className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
+          {/*
+           * Labelled so assistive tech and the annotation layer can both find the board. The SVG
+           * inside is aria-hidden, so without this the teaching surface is nameless to a screen
+           * reader — and the "Explain this" anchor has nothing to measure against.
+           */}
+          <section aria-label="Teaching board" className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
             {stage === "slide" || isCheckpoint ? (
               <SlideStage
                 /* In the ADHD track a checkpoint beat asks nothing — the flown question every third
@@ -1909,8 +1919,27 @@ export function LessonPlayer({
               onStrokeFinished={(stroke) => {
                 // A highlight over real board text is a question waiting to be asked.
                 if (stroke.kind === "highlight" && stroke.coveredText) highlightedTextRef.current = stroke.coveredText;
+                // Offer to explain what was just marked, rather than silently posting the whole
+                // board to the model the way the old auto-describe did.
+                setExplainDismissed(false);
               }}
             />
+            {!explainDismissed && strokesFor(annotations, beat.id).length > 0 && (
+              <ExplainSelection
+                strokes={strokesFor(annotations, beat.id)}
+                conceptTitle={beat.title}
+                currentSentence={sentenceCue.text}
+                busy={explainBusy}
+                onDismiss={() => setExplainDismissed(true)}
+                onExplain={(request) => {
+                  setExplainBusy(true);
+                  setExplainDismissed(true);
+                  explainWithTutor(request.question);
+                  // The tutor answers over the live socket; the button has done its job once asked.
+                  window.setTimeout(() => setExplainBusy(false), 1200);
+                }}
+              />
+            )}
           </section>
 
           <div className="hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1">
