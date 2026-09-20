@@ -315,6 +315,12 @@ type DrawOp =
 export interface DrawScript {
   caption?: string;
   durationMs?: number;
+  /**
+   * How many screens tall this board is (1-3). A concept that needs more room says so here instead
+   * of shrinking to fit 560 units; the camera pans down it as the narration advances. See
+   * `boardHeight` and `panFrame`.
+   */
+  canvasScreens?: number;
   /** Visual surface for imported note-style lessons. `paper` matches Suprnotes-style white boards. */
   surface?: "dark" | "paper";
   ops: DrawOp[];
@@ -322,7 +328,26 @@ export interface DrawScript {
 
 // The board's internal coordinate space. Ops use a 0..100 grid; we scale to this.
 const VB_W = 1000;
+/**
+ * ONE SCREEN of board. A DrawScript may be TALLER than this — see `boardHeight` — in which case the
+ * camera pans down it as the narration advances, the way a teacher fills the top of a physical
+ * board and then slides it up to keep writing. `VB_H` remains the height of the visible window;
+ * what changes is how much board exists below it.
+ */
 const VB_H = 560;
+/**
+ * The full authored height of a script, in board units.
+ *
+ * A board that needs more room than one screen says so with `canvasScreens: 2` (or 3), rather than
+ * cramming a whole concept into 560 units and shrinking the type until it cannot be read. Capped
+ * at three because past that the student can no longer scroll back to the start of an idea without
+ * losing their place — see MAX_BOARDS_PER_CONCEPT in lib/board/teachingState.ts, which enforces the
+ * same limit on the teaching side.
+ */
+function boardHeight(script: { canvasScreens?: number }): number {
+  const screens = Math.max(1, Math.min(3, Math.round(script.canvasScreens ?? 1)));
+  return VB_H * screens;
+}
 const DEFAULT_DURATION = 11000;
 const INK = "#1e293b";
 const STROKE_WINDOW = 700; // how long an op takes to draw in
@@ -352,6 +377,8 @@ export function LiveSketch({ script, progress }: { script: DrawScript; progress?
 
 function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: number }) {
   const duration = script.durationMs ?? DEFAULT_DURATION;
+  /** Full authored height: one screen unless the script asked for a taller board. */
+  const canvasH = boardHeight(script);
   const paperSurface = script.surface === "paper";
   // Per-instance prefix so clipPath/id attributes never collide when two boards are on screen
   // at once (e.g. the main board + an ExplainOverlay board).
@@ -433,17 +460,26 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   // obviously mechanical motion there is — real camera moves settle.
   const camera = useMemo(() => {
     const focuses = timed.filter((t) => t.op.kind === "focus");
-    if (!focuses.length) return FULL_FRAME;
+    /*
+     * A TALL BOARD PANS BY DEFAULT. With no focus ops, a one-screen board simply shows its whole
+     * frame; a two- or three-screen board descends steadily as the narration advances, which is
+     * what makes "keep writing underneath" read as one continuous surface rather than a cut to a
+     * new slide. An explicit focus op still wins — the author asked for a specific shot.
+     */
+    if (!focuses.length) {
+      return canvasH > VB_H ? panFrame(duration > 0 ? visibleElapsed / duration : 0, canvasH) : FULL_FRAME;
+    }
 
-    let from = FULL_FRAME;
-    let to = FULL_FRAME;
+    const base = canvasH > VB_H ? panFrame(duration > 0 ? visibleElapsed / duration : 0, canvasH) : FULL_FRAME;
+    let from = base;
+    let to = base;
     let moveT = 1;
     for (const entry of focuses) {
       if (visibleElapsed < entry.startMs) break;
       const op = entry.op as Extract<DrawOp, { kind: "focus" }>;
       const endMs = typeof op.endAt === "number" ? op.endAt * duration : entry.startMs + CAMERA_WINDOW;
       from = to;
-      to = frameFor(entry.focusRect, op.scale ?? (entry.focusRect ? 0.55 : 1));
+      to = frameFor(entry.focusRect, op.scale ?? (entry.focusRect ? 0.55 : 1), canvasH);
       moveT = phase(visibleElapsed, entry.startMs, endMs);
     }
     return {
@@ -452,7 +488,7 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
       w: lerp(from.w, to.w, moveT),
       h: lerp(from.h, to.h, moveT),
     };
-  }, [timed, visibleElapsed, duration]);
+  }, [timed, visibleElapsed, duration, canvasH]);
 
   return (
     <section
@@ -666,16 +702,32 @@ interface ViewBox {
  * corner element by showing empty space outside the board looks broken, whereas one that
  * slides to keep the frame full reads as a deliberate pan.
  */
-function frameFor(target: Bounds | null, scale: number): ViewBox {
+function frameFor(target: Bounds | null, scale: number, canvasH: number = VB_H): ViewBox {
   if (!target) return FULL_FRAME;
   const w = Math.max(160, Math.min(VB_W, VB_W * scale));
   const h = Math.max(90, Math.min(VB_H, VB_H * scale));
   return {
     x: Math.max(0, Math.min(VB_W - w, gx(target.x) - w / 2)),
-    y: Math.max(0, Math.min(VB_H - h, gy(target.y) - h / 2)),
+    // Clamped to the FULL canvas, not to one screen: on a tall board the camera must be able to
+    // travel below the first 560 units, which is the whole point of authoring one.
+    y: Math.max(0, Math.min(Math.max(0, canvasH - h), (target.y / 100) * canvasH - h / 2)),
     w,
     h,
   };
+}
+
+/**
+ * Where the camera sits at a given point through the narration, on a board taller than one screen.
+ *
+ * A single smooth descent rather than a jump per section: a teacher slides the board continuously,
+ * and a cut would lose the connection between what was just written and what is being written now.
+ * The last screen is held rather than scrolled past the end.
+ */
+function panFrame(progress: number, canvasH: number): ViewBox {
+  const travel = Math.max(0, canvasH - VB_H);
+  if (travel === 0) return FULL_FRAME;
+  const eased = Math.max(0, Math.min(1, progress));
+  return { x: 0, y: travel * eased, w: VB_W, h: VB_H };
 }
 
 /** Where the pen should sit while an op draws (its "starting nib" point, or its current
