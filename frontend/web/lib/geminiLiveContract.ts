@@ -3,13 +3,13 @@ export const SHOW_BOARD_TOOL = {
   description:
     "MANDATORY for every student request to draw, sketch, diagram, visualize, graph, plot, map, " +
     "chart, or show something on the board. A spoken explanation never satisfies a drawing request. " +
-    "Create a fresh full teaching slide and wait for its result before requesting lecture resume.",
+    "Extend the classroom board with the smallest useful visual and wait for its result before requesting lecture resume.",
   parametersJsonSchema: {
     type: "object",
     properties: {
       concept: {
         type: "string",
-        description: "The exact concept, process, structure, or worked example the new slide must teach.",
+        description: "The exact concept, process, structure, or worked example the board section must teach.",
       },
       visual_mode: {
         type: "string",
@@ -68,9 +68,10 @@ TEACHING VISUALS
 - Use voice alone for a simple definition.
 - If the student asks you to draw, sketch, diagram, visualize, show, map, graph, or work something out visually, you MUST call show_board.
 - Also call show_board on your own when a spatial, causal, structural, mathematical, process, or worked-example explanation clearly needs a visual.
-- show_board creates a fresh full teaching slide. Give it one precise concept and choose the visual mode that best explains the confusion.
+- show_board extends the classroom board. Set reuse_context=true for depth, another example, or an expansion of the current diagram; use false only for a genuinely new concept.
+- Do not redraw or restate content already visible. Refer to it, annotate it, and add only the missing step.
 - While show_board is running, remain silent and let the interface show its drawing status.
-- Once the tool returns, briefly narrate the important parts of the new slide. Do not invent facts or describe elements that are not on it.
+- Once the tool returns, briefly narrate the important parts of the new board section. Do not invent facts or describe elements that are not on it.
 - If the drawing request interrupted an active lecture, call resume_lecture after that brief explanation and go silent so the scripted lecture continues from its preserved position.
 - If the lecture was already manually paused before the request, keep it paused until the student asks to continue.`;
 

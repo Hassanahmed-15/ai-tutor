@@ -250,11 +250,11 @@ export function ExplainOverlay({
     <div className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/95 p-3 backdrop-blur-md lg:p-5">
       <div className="mb-2 flex items-center justify-between">
         <div>
-          <HudEyebrow>Blackboard explanation</HudEyebrow>
-          <p className="mt-1 text-xs font-semibold text-[var(--hud-text-faint)]">Aria is drawing the answer as a fresh diagram.</p>
+          <HudEyebrow>Board extension</HudEyebrow>
+          <p className="mt-1 text-xs font-semibold text-[var(--hud-text-faint)]">Aria kept the lesson context and added only what this question needs.</p>
         </div>
         <button onClick={onClose} className="hud-btn-ghost rounded-full px-4 py-1.5 text-xs font-bold">
-          Got it — back to lecture
+          Return to the lesson board
         </button>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto" aria-live="polite">
@@ -332,7 +332,7 @@ export function ChatPanel({
         <div>
           <p className="text-sm font-bold text-[var(--hud-text)]">Ask Aria anything</p>
           <p className="text-[11px] leading-tight text-[var(--hud-text-faint)]">
-            {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she explains on a fresh board."}
+            {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she extends the board when a visual helps."}
           </p>
         </div>
       </div>

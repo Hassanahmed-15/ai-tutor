@@ -275,6 +275,8 @@ const SCENARIOS: Scenario[] = [
     frames: seq(80, (i) => STUDENT(i)), transcript: { text: "hey Sam did you lock the door", atFrame: 40 } },
   { name: "30. student speaks just after Aria stops (echo guard must not swallow it)", expect: "TURN", profile: "conversation", expectingAnswer: true,
     tutorSpeakingFrames: [0, 8], frames: [...seq(8, (i) => ARIA(i)), ...seq(80, (i) => STUDENT(i))], transcript: { text: "the second one", atFrame: 50 } },
+  { name: "31. friend directly addresses Aria but is not the enrolled student", expect: "SILENT", tutorSpeakingFrames: LECTURE,
+    frames: seq(80, (i) => FRIEND(i)), transcript: { text: "Aria, stop the lecture", atFrame: 40 } },
 ];
 
 // --- Scoring ------------------------------------------------------------------------------------
@@ -329,6 +331,41 @@ test("the pre-roll is handed over when a turn opens", () => {
   const gate = new VoiceGate({ callbacks: { onListen: (p) => { preroll = p; } } });
   for (let i = 0; i < 40; i++) gate.push(i < 20 ? silence() : STUDENT(i), i * MS);
   assert.ok(preroll.length >= 10, `expected a pre-roll of several frames, got ${preroll.length}`);
+});
+
+test("semantic prefilter keeps an acoustic candidate entirely local until words address Aria", () => {
+  let listened = 0;
+  let barged = 0;
+  const gate = new VoiceGate({
+    semanticPrefilter: true,
+    callbacks: {
+      onListen: () => { listened += 1; },
+      onBargeIn: () => { barged += 1; },
+    },
+  });
+  gate.setTutorSpeaking(true, 0);
+  for (let i = 0; i < 35; i++) gate.push(STUDENT(i), i * MS);
+  assert.equal(gate.getStage(), "candidate");
+  assert.equal(listened, 0, "candidate audio escaped to Gemini before semantic acceptance");
+
+  gate.provideTranscript("Arya, why did that sign change?", false, 35 * MS);
+  assert.equal(listened, 1);
+  assert.equal(barged, 1);
+  assert.equal(gate.getStage(), "committed");
+});
+
+test("semantic prefilter rejects nearby conversation without opening a Gemini activity", () => {
+  let listened = 0;
+  const gate = new VoiceGate({
+    semanticPrefilter: true,
+    callbacks: { onListen: () => { listened += 1; } },
+  });
+  gate.setTutorSpeaking(true, 0);
+  for (let i = 0; i < 35; i++) gate.push(FRIEND(i), i * MS);
+  gate.provideTranscript("hey Sam did you lock the door", true, 35 * MS);
+  assert.equal(listened, 0);
+  for (let i = 35; i < 75; i++) gate.push(silence(), i * MS);
+  assert.equal(gate.getStage(), "refractory");
 });
 
 test("every decision is explainable", () => {

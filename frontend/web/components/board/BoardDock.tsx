@@ -11,6 +11,7 @@ import {
   Pause,
   Pencil,
   Play,
+  Sparkles,
   Undo2,
   X,
 } from "lucide-react";
@@ -51,6 +52,8 @@ export interface BoardDockProps {
   /** "Part 2 of 6" — the only progress text, because a ring around an avatar is not readable. */
   positionLabel: string;
   busy?: boolean;
+  explainSelectionLabel?: string;
+  onExplainSelection?: () => void;
 }
 
 export function BoardDock(props: BoardDockProps) {
@@ -150,6 +153,17 @@ export function BoardDock(props: BoardDockProps) {
             </div>
           )}
         </div>
+
+        {props.explainSelectionLabel && props.onExplainSelection && (
+          <button
+            onClick={props.onExplainSelection}
+            disabled={props.busy}
+            className="flex h-11 max-w-[16rem] items-center gap-2 rounded-xl bg-amber-300 px-3.5 text-[0.84rem] font-semibold text-[#12151c] transition hover:bg-amber-200 disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          >
+            <Sparkles size={16} />
+            <span className="truncate">{props.busy ? "Asking Aria…" : props.explainSelectionLabel}</span>
+          </button>
+        )}
 
         {props.micAvailable && (
           <DockButton

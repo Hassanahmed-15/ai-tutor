@@ -50,6 +50,10 @@ interface Anchorable {
   anchorDir?: AnchorDirection;
   /** Gap between the target's edge and this op, on the 0-100 grid. Defaults to 6. */
   anchorBuff?: number;
+  /** Exact narration sentence that introduces this mark. */
+  atSentence?: number;
+  /** Optional last sentence for a transient pointer/emphasis mark. */
+  untilSentence?: number;
 }
 
 type DrawOp =
@@ -321,8 +325,16 @@ export interface DrawScript {
    * `boardHeight` and `panFrame`.
    */
   canvasScreens?: number;
-  /** Visual surface for imported note-style lessons. `paper` matches Suprnotes-style white boards. */
-  surface?: "dark" | "paper";
+  /**
+   * The board this is written on. `dark` is chalk, `paper` is a whiteboard.
+   *
+   * `split` puts the two side by side — a worked derivation in chalk beside the precise result on
+   * white, which is what a teacher does with a divided board and what a single surface could not
+   * express. See lib/board/surfaces.ts, which chooses this from what is being taught.
+   */
+  surface?: "dark" | "paper" | "split";
+  /** For a split board: which surface each half uses. Defaults to chalk left, white right. */
+  panes?: { left?: "dark" | "paper"; right?: "dark" | "paper" };
   ops: DrawOp[];
 }
 
@@ -358,10 +370,30 @@ const EMPHASIS_WINDOW = 1400;
 const CAMERA_WINDOW = 900;
 const TEXT_PAD_X = 48;
 const TEXT_PAD_Y = 18;
-const INITIAL_SYNC_PROGRESS = 0.001;
+// Before playback starts the board must not be an empty rectangle. Show the opening mark/title in
+// its settled state; later sentence-bound ops remain hidden and still reveal from the narration.
+const INITIAL_SYNC_PROGRESS = 0.08;
 
 const gx = (x: number) => (x / 100) * VB_W;
 const gy = (y: number) => (y / 100) * VB_H;
+/** Which physical panel of a tall roller board owns an op, based on when it is introduced. */
+function screenOffset(at: number, canvasH: number): number {
+  // Match the camera's continuous pan exactly. Discrete one-screen jumps leave a dead 560-unit gap
+  // while the camera travels between panels; placing each new mark along the belt at the moment it
+  // is introduced keeps useful writing in view through the whole movement.
+  return clamp01(at) * Math.max(0, canvasH - VB_H);
+}
+
+function adaptOpToSurface(op: DrawOp, surface?: DrawScript["surface"], panes?: DrawScript["panes"]): DrawOp {
+  if (surface !== "split" || (op.kind !== "label" && op.kind !== "note")) return op;
+
+  // A centred label on a divided board straddles the rail and is unreadable on one half. Treat
+  // near-centre text as an underspecified pane choice: early material belongs to the left working
+  // area and later material to the right comparison area. Explicitly placed text keeps its pane.
+  const x = op.x >= 42 && op.x <= 58 ? (op.at < 0.5 ? 25 : 75) : op.x;
+  const pane = x < 50 ? (panes?.left ?? "dark") : (panes?.right ?? "paper");
+  return { ...op, x, color: pane === "paper" ? "#334155" : "#f8fafc" };
+}
 
 /**
  * The live-sketch engine: executes a DrawScript's ops in timed order, drawing each one in
@@ -379,6 +411,7 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
   const duration = script.durationMs ?? DEFAULT_DURATION;
   /** Full authored height: one screen unless the script asked for a taller board. */
   const canvasH = boardHeight(script);
+  // A split board is chalk-first (its left half), so ink defaults to the chalk palette.
   const paperSurface = script.surface === "paper";
   // Per-instance prefix so clipPath/id attributes never collide when two boards are on screen
   // at once (e.g. the main board + an ExplainOverlay board).
@@ -454,11 +487,19 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
             : visibleElapsed - t.startMs < STROKE_WINDOW
     );
   const progressValue = Math.min(1, visibleElapsed / duration);
+  // Follow the newest mark, not wall-clock time. Narration can spend several seconds explaining
+  // one line; a time-driven camera used to keep travelling during that pause and leave the ink
+  // behind, producing an empty board until the next operation appeared. Each mark is placed along
+  // the roller by its authored `at`, so this is the exact matching camera position.
+  const latestBoardMark = [...visible]
+    .reverse()
+    .find((entry) => entry.op.kind !== "focus");
+  const boardPanProgress = latestBoardMark?.op.at ?? 0;
 
   // Camera: interpolate between the frame the previous focus op established and the one the
   // current focus op wants. Eased with `smooth`, because a linear camera push is the most
   // obviously mechanical motion there is — real camera moves settle.
-  const camera = useMemo(() => {
+  const camera = (() => {
     const focuses = timed.filter((t) => t.op.kind === "focus");
     /*
      * A TALL BOARD PANS BY DEFAULT. With no focus ops, a one-screen board simply shows its whole
@@ -467,10 +508,10 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
      * new slide. An explicit focus op still wins — the author asked for a specific shot.
      */
     if (!focuses.length) {
-      return canvasH > VB_H ? panFrame(duration > 0 ? visibleElapsed / duration : 0, canvasH) : FULL_FRAME;
+      return canvasH > VB_H ? panFrame(boardPanProgress, canvasH) : FULL_FRAME;
     }
 
-    const base = canvasH > VB_H ? panFrame(duration > 0 ? visibleElapsed / duration : 0, canvasH) : FULL_FRAME;
+    const base = canvasH > VB_H ? panFrame(boardPanProgress, canvasH) : FULL_FRAME;
     let from = base;
     let to = base;
     let moveT = 1;
@@ -488,7 +529,7 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
       w: lerp(from.w, to.w, moveT),
       h: lerp(from.h, to.h, moveT),
     };
-  }, [timed, visibleElapsed, duration, canvasH]);
+  })();
 
   return (
     <section
@@ -496,7 +537,7 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
         paperSurface ? "border-slate-200 bg-white text-slate-700" : "border-slate-800 bg-black text-white"
       }`}
     >
-      <Paper surface={script.surface} />
+      <Paper surface={script.surface} panes={script.panes} />
       <svg
         viewBox={`${camera.x} ${camera.y} ${camera.w} ${camera.h}`}
         preserveAspectRatio="xMidYMid meet"
@@ -538,10 +579,14 @@ function LiveSketchClock({ script, progress }: { script: DrawScript; progress?: 
           </filter>
         </defs>
         {visibleImages.map((t) => (
-          <OpRenderer key={t.i} op={t.op} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
+          <g key={t.i} transform={`translate(0 ${screenOffset(t.op.at, canvasH)})`}>
+            <OpRenderer op={adaptOpToSurface(t.op, script.surface, script.panes)} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
+          </g>
         ))}
         {visibleDrawing.map((t) => (
-          <OpRenderer key={t.i} op={t.op} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
+          <g key={t.i} transform={`translate(0 ${screenOffset(t.op.at, canvasH)})`}>
+            <OpRenderer op={adaptOpToSurface(t.op, script.surface, script.panes)} seed={`${instanceId}-op-${t.i}`} startMs={t.startMs} windowMs={t.windowMs} elapsed={visibleElapsed} duration={duration} contextTitle={script.caption} hasBackdropImage={hasBackdropImage} surface={script.surface} />
+          </g>
         ))}
         {/* The pen nib is gone deliberately. The DRAWING is the point — strokes appearing and text
             being written on — and a glowing stylus hovering over it is decoration that competes with
@@ -2472,7 +2517,33 @@ function Pen({ x, y }: { x: number; y: number }) {
   );
 }
 
-function Paper({ surface }: { surface?: DrawScript["surface"] }) {
+function Paper({ surface, panes }: { surface?: DrawScript["surface"]; panes?: DrawScript["panes"] }) {
+  /*
+   * A DIVIDED BOARD. Two surfaces with a seam down the middle, the way a classroom board is used
+   * when one idea needs working out and another needs to stay legible beside it. The divider is a
+   * real edge rather than a gap, because a teacher's board is one continuous surface with a line
+   * on it — a gap would read as two windows.
+   */
+  if (surface === "split") {
+    const left = panes?.left ?? "dark";
+    const right = panes?.right ?? "paper";
+    const face = (which: "dark" | "paper") =>
+      which === "paper"
+        ? { background: "#ffffff", dots: "radial-gradient(circle at 1px 1px, #6b7280 1px, transparent 0)", size: "30px 30px", opacity: 0.025 }
+        : { background: "#08090c", dots: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)", size: "26px 26px", opacity: 0.035 };
+    const l = face(left);
+    const r = face(right);
+    return (
+      <>
+        <div data-board-pane="left" className="pointer-events-none absolute inset-y-0 left-0 w-1/2" style={{ background: l.background }} />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2" style={{ backgroundImage: l.dots, backgroundSize: l.size, opacity: l.opacity }} />
+        <div data-board-pane="right" className="pointer-events-none absolute inset-y-0 right-0 w-1/2" style={{ background: r.background }} />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2" style={{ backgroundImage: r.dots, backgroundSize: r.size, opacity: r.opacity }} />
+        {/* The seam: a board frame's centre rail, not a window gap. */}
+        <div className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2" style={{ background: "rgba(148,163,184,0.35)" }} />
+      </>
+    );
+  }
   if (surface === "paper") {
     return (
       <>

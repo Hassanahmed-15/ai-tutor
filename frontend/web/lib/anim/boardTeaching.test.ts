@@ -21,7 +21,10 @@ import {
   decideBoardMove,
   priorKnowledge,
   recordTaught,
+  buildLessonTeachingMap,
 } from "../board/teachingState";
+import { cropViewBox } from "../board/captureSelection";
+import type { Beat } from "../lessonContent";
 
 const at = (index: number, total: number, progress = 0): { index: number; total: number; progress: number } => ({
   index,
@@ -197,4 +200,37 @@ test("the camera never scrolls past the end of the board", () => {
   const canvas = boardHeightOf(2);
   assert.equal(panY(1.8, canvas), 560, "clamped: the last screen is held, not overshot");
   assert.equal(panY(-1, canvas), 0);
+});
+
+test("the lesson map keeps several deep sections on one concept and one physical board belt", () => {
+  const beat = (id: string, title: string, conceptId: string): Beat => ({
+    id, title, conceptId, conceptObjective: title, teacherMove: title, stepLabel: title,
+    slideKind: "intro", points: [], script: `${title}.`,
+  });
+  const map = buildLessonTeachingMap([
+    beat("line", "The line of best fit", "regression-fit"),
+    beat("residuals", "Why residuals are squared", "regression-fit"),
+    beat("gradient", "Follow the gradient", "optimisation"),
+  ]);
+  assert.deepEqual(map.entries.map((entry) => entry.move), ["fresh", "continue", "fresh"]);
+  assert.equal(map.concepts.length, 2);
+  assert.deepEqual(map.concepts[0].beatIds, ["line", "residuals"]);
+});
+
+test("a checkpoint stays attached to the concept it assesses instead of creating a blank slide", () => {
+  const teaching: Beat = { id: "teach", title: "Loss", conceptId: "loss", teacherMove: "loss", stepLabel: "1", slideKind: "intro", points: [], script: "Loss measures error." };
+  const checkpoint: Beat = { id: "check", title: "Check", teacherMove: "check", stepLabel: "2", slideKind: "checkpoint", points: [], script: "What is loss?" };
+  const map = buildLessonTeachingMap([teaching, checkpoint]);
+  assert.equal(map.entries[1].conceptId, "loss");
+  assert.equal(map.concepts.length, 1);
+});
+
+test("the vision crop maps normalised board selection into the renderer's real viewBox", () => {
+  const crop = cropViewBox(
+    { x: 0, y: 0, width: 1000, height: 560 },
+    { left: 100, top: 50, width: 1000, height: 560 },
+    { left: 100, top: 50, width: 1000, height: 560 },
+    { x: 0.25, y: 0.5, width: 0.2, height: 0.25 },
+  );
+  assert.deepEqual(crop, { x: 250, y: 280, width: 200, height: 140 });
 });

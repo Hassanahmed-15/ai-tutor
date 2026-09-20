@@ -60,6 +60,7 @@ backend/packages/*/node_modules
 # Local caches and generated artefacts
 **/.vercel
 **/coverage
+**/artifacts
 **/manim-cache
 **/lecture-cache
 **/*.log

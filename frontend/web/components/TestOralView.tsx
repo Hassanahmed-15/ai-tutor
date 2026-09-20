@@ -3,11 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { HudButton, HudCorners, HudEyebrow } from "@/components/hud/HudKit";
 import { LiveTutorPanel } from "@/components/lesson-chat/LiveTutorPanel";
-import { useRealtimeTutor } from "@/lib/useRealtimeTutor";
+import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 
-/** Live oral exam: reuses the realtime voice tutor infra in "examMode" (see EXAM_ADDENDUM in
- *  app/api/realtime-session/route.ts) — Aria asks bank.questions in order, the student answers
+/** Live oral exam: reuses Gemini Live in "examMode" — Aria asks bank.questions in order, the student answers
  *  by voice, and grading happens in a SEPARATE post-session pass over the full transcript
  *  (/api/grade-oral-test) rather than parsing live spoken judgment (see testPrompt.ts /
  *  grade-oral-test/route.ts for why). A "grading" phase is layered on top of the hook's own
@@ -55,7 +54,8 @@ export function TestOralView({
     }
   }
 
-  const tutor = useRealtimeTutor({
+  const tutor = useGeminiLiveTutor({
+    gateProfile: "conversation",
     topic,
     getBeatContext: () => "",
     examMode: true,

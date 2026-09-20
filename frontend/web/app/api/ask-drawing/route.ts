@@ -24,6 +24,13 @@ export async function POST(req: Request) {
   const question = typeof body.question === "string" && body.question.trim()
     ? body.question.trim()
     : "Look at what I drew on the board and tell me about it.";
+  const selectedText = typeof body.selectedText === "string" ? body.selectedText.trim().slice(0, 500) : "";
+  const region = body.selectedRegion && typeof body.selectedRegion === "object"
+    ? body.selectedRegion as Record<string, unknown>
+    : null;
+  const regionLabel = region
+    ? `Selected crop coordinates (normalised board space): x=${Number(region.x).toFixed(3)}, y=${Number(region.y).toFixed(3)}, width=${Number(region.width).toFixed(3)}, height=${Number(region.height).toFixed(3)}.`
+    : "The attachment is already cropped to the student's selection.";
 
   if (!image.startsWith("data:image")) {
     return NextResponse.json({ error: "image (data URI) is required" }, { status: 400 });
@@ -80,12 +87,15 @@ export async function POST(req: Request) {
               text:
                 `Topic: "${topic || "this lesson"}".\n` +
                 (beatContext ? `We are on this part of the lesson: "${beatContext}".\n` : "") +
-                `The student drew the attached image ON the board. ${question}\n\n` +
+                `${regionLabel}\n` +
+                (selectedText ? `Board text captured under the mark: "${selectedText}".\n` : "") +
+                `The attached image contains ONLY the selected board region plus the student's mark. ${question}\n\n` +
                 "FIRST read their drawing carefully and describe back what they actually drew (name the " +
                 "specific marks — a circled term, an arrow, their attempt at a diagram, a written step). " +
                 "If it shows a misunderstanding, say kindly what's off and correct it. If it's right, " +
                 "confirm and build on it. Then draw ONE clean board that answers them. Ground everything " +
-                "in what is genuinely visible in the image — never invent marks that aren't there.",
+                "in what is genuinely visible in the crop — never invent marks outside it and never " +
+                "answer about the board as a whole.",
             },
             { type: "image_url", image_url: { url: image, detail: "high" } },
           ],

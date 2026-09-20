@@ -16,14 +16,14 @@ import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
 import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
-import { useRealtimeTutor, type RealtimeBoard } from "@/lib/useRealtimeTutor";
+import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { HudCorners } from "./hud/HudKit";
 
 const UNDERSTANDING_CHECK_EVERY = 4;
 
-// Client mirror of REALTIME_TUTOR_ENABLED — gates the live conversational tutor on the chat mic.
+// Historical env name retained for deployment compatibility; the live tutor now runs on Gemini.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
 
 /**
@@ -164,20 +164,24 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
 
-  // ── Live voice tutor (full-duplex realtime) — same wiring as the standard LessonPlayer ──
-  const [liveBoard, setLiveBoard] = useState<RealtimeBoard | null>(null);
+  // ── Live voice tutor (full-duplex Gemini Live) — same gated path as LessonPlayer ──
+  const [liveBoard, setLiveBoard] = useState<GeminiLiveBoard | null>(null);
   const [sessionActive, setSessionActive] = useState(false);
   const beatRef = useRef(beat);
   useEffect(() => {
     beatRef.current = beat;
   }, [beat]);
 
-  const tutor = useRealtimeTutor({
+  const tutor = useGeminiLiveTutor({
+    gateProfile: "lecture",
+    getTutorSpeaking: () => speaking,
     topic: title,
     getBeatContext: () =>
       `${beatRef.current.title}: ${beatRef.current.script}` +
       (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
+    getLessonContext: () => buildLessonContext(beats, index),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     // ADHD: mic stays open the whole lecture, board is simple chalk text, tutor can pause/resume.
     alwaysOn: true,
     boardTextOnly: true,

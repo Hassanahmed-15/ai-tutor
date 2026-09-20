@@ -57,6 +57,33 @@ function frac(v: unknown, fallback: number): number {
   if (!Number.isFinite(n)) return fallback;
   return Math.max(0, Math.min(1, n));
 }
+function sentenceBinding(o: Record<string, unknown>): { atSentence?: number; untilSentence?: number } {
+  const read = (value: unknown) => {
+    const n = typeof value === "number" ? value : typeof value === "string" ? Number(value) : NaN;
+    return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : undefined;
+  };
+  const atSentence = read(o.atSentence);
+  const untilSentence = read(o.untilSentence);
+  return {
+    ...(atSentence === undefined ? {} : { atSentence }),
+    ...(untilSentence === undefined ? {} : { untilSentence }),
+  };
+}
+
+function scriptSurface(o: Record<string, unknown>): Pick<DrawScript, "surface" | "panes" | "canvasScreens"> {
+  const surface = o.surface === "dark" || o.surface === "paper" || o.surface === "split" ? o.surface : undefined;
+  const rawPanes = o.panes && typeof o.panes === "object" ? o.panes as Record<string, unknown> : null;
+  const pane = (value: unknown) => value === "dark" || value === "paper" ? value : undefined;
+  const left = pane(rawPanes?.left);
+  const right = pane(rawPanes?.right);
+  const rawScreens = typeof o.canvasScreens === "number" ? o.canvasScreens : Number(o.canvasScreens);
+  const canvasScreens = Number.isFinite(rawScreens) ? Math.max(1, Math.min(3, Math.round(rawScreens))) : undefined;
+  return {
+    ...(surface ? { surface } : {}),
+    ...(surface === "split" && (left || right) ? { panes: { left, right } } : {}),
+    ...(canvasScreens ? { canvasScreens } : {}),
+  };
+}
 function color(v: unknown): string | undefined {
   if (typeof v !== "string") return undefined;
   return COLOR_MAP[v.trim().toLowerCase()] ?? undefined;
@@ -119,6 +146,7 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
   const rawKind = typeof o.kind === "string" ? o.kind.trim() : "";
   const at = frac(o.at, 0.1);
   const c = color(o.color);
+  const sync = sentenceBinding(o);
 
   switch (rawKind) {
     case "label": {
@@ -131,7 +159,7 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
         x = x < imageBox.x ? Math.max(8, imageBox.x - imageBox.w / 2 - 8) : Math.min(92, imageBox.x + imageBox.w / 2 + 8);
         y = Math.max(10, Math.min(90, y));
       }
-      return { kind: "label", text: text.slice(0, 40), x, y, size: size(o.size), color: c, at };
+      return { kind: "label", text: text.slice(0, 40), x, y, size: size(o.size), color: c, at, ...sync };
     }
     case "callout": {
       const text = str(o.text);
@@ -140,7 +168,7 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
       const labelX = pos(o.labelX ?? o.lx, x !== null ? (x < 50 ? x + 18 : x - 18) : undefined);
       const labelY = pos(o.labelY ?? o.ly, y !== null ? y - 12 : undefined);
       if (!text || x === null || y === null) return null;
-      return { kind: "callout", text: text.slice(0, 34), x, y, labelX: labelX ?? undefined, labelY: labelY ?? undefined, color: c, at };
+      return { kind: "callout", text: text.slice(0, 34), x, y, labelX: labelX ?? undefined, labelY: labelY ?? undefined, color: c, at, ...sync };
     }
     case "note": {
       const text = str(o.text);
@@ -151,7 +179,7 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
         // Notes belong in the top/bottom margin — snap to whichever is closer.
         y = y < imageBox.y ? Math.max(10, imageBox.y - imageBox.h / 2 - 8) : Math.min(90, imageBox.y + imageBox.h / 2 + 8);
       }
-      return { kind: "note", text: text.slice(0, 100), x, y, color: c, at };
+      return { kind: "note", text: text.slice(0, 100), x, y, color: c, at, ...sync };
     }
     case "arrow": {
       const x1 = pos(o.x1);
@@ -159,7 +187,7 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
       const x2 = pos(o.x2);
       const y2 = pos(o.y2);
       if (x1 === null || y1 === null || x2 === null || y2 === null) return null;
-      return { kind: "arrow", x1, y1, x2, y2, curved: o.curved === true, color: c, at };
+      return { kind: "arrow", x1, y1, x2, y2, curved: o.curved === true, color: c, at, ...sync };
     }
     case "image": {
       // `prompt` is required (written by the text model, filled before client delivery).
@@ -168,7 +196,7 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
       if (!prompt) return null;
       const x = pos(o.x) ?? IMAGE_DEFAULT_X;
       const y = pos(o.y) ?? IMAGE_DEFAULT_Y;
-      const op: Record<string, unknown> = { kind: "image", prompt, x, y, at };
+      const op: Record<string, unknown> = { kind: "image", prompt, x, y, at, ...sync };
       const assetId = str(o.assetId ?? o.providedAssetId);
       if (assetId) op.assetId = assetId.slice(0, 120);
       op.w = coord(o.w) ?? IMAGE_DEFAULT_W;
@@ -339,6 +367,7 @@ function sanitizeChalkOp(raw: unknown): DrawOp | null {
   const rawKind = typeof o.kind === "string" ? o.kind.trim() : "";
   const at = frac(o.at, 0.1);
   const c = color(o.color);
+  const sync = sentenceBinding(o);
 
   switch (rawKind) {
     case "label": {
@@ -346,14 +375,14 @@ function sanitizeChalkOp(raw: unknown): DrawOp | null {
       const x = pos(o.x);
       const y = pos(o.y);
       if (!text || x === null || y === null) return null;
-      return { kind: "label", text: text.slice(0, 44), x, y, size: size(o.size), color: c, at };
+      return { kind: "label", text: text.slice(0, 44), x, y, size: size(o.size), color: c, at, ...sync };
     }
     case "note": {
       const text = str(o.text);
       const x = pos(o.x);
       const y = pos(o.y);
       if (!text || x === null || y === null) return null;
-      return { kind: "note", text: text.slice(0, 120), x, y, color: c, at };
+      return { kind: "note", text: text.slice(0, 120), x, y, color: c, at, ...sync };
     }
     case "arrow": {
       const x1 = pos(o.x1);
@@ -361,7 +390,7 @@ function sanitizeChalkOp(raw: unknown): DrawOp | null {
       const x2 = pos(o.x2);
       const y2 = pos(o.y2);
       if (x1 === null || y1 === null || x2 === null || y2 === null) return null;
-      return { kind: "arrow", x1, y1, x2, y2, curved: o.curved === true, color: c, at };
+      return { kind: "arrow", x1, y1, x2, y2, curved: o.curved === true, color: c, at, ...sync };
     }
     case "shape": {
       const shape = typeof o.shape === "string" ? o.shape.trim() : "";
@@ -369,7 +398,7 @@ function sanitizeChalkOp(raw: unknown): DrawOp | null {
       const x = pos(o.x);
       const y = pos(o.y);
       if (x === null || y === null) return null;
-      const op: Record<string, unknown> = { kind: "shape", shape, x, y, color: c, at };
+      const op: Record<string, unknown> = { kind: "shape", shape, x, y, color: c, at, ...sync };
       const w = coord(o.w);
       const h = coord(o.h);
       if (w !== null) op.w = w;
@@ -1071,7 +1100,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
     // Keep placeholders even before code exists; streaming fills `code` later. If generation
     // fails, LessonPlayer shows an explicit unavailable board instead of a substitute sketch.
     if (op.code || op.teachingPoint) {
-      return { caption: str(o.caption), durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined, ops: [op] };
+      return { caption: str(o.caption), durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined, ...scriptSurface(o), ops: [op] };
     }
   }
 
@@ -1082,6 +1111,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
     return {
       caption: str(o.caption),
       durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined,
+      ...scriptSurface(o),
       ops: morphBoardOps,
     };
   }
@@ -1142,7 +1172,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
       at: 0,
       endAt: 1,
     };
-    return { caption: str(o.caption), durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined, ops: [chalkOp] };
+    return { caption: str(o.caption), durationMs: typeof o.durationMs === "number" ? o.durationMs : undefined, ...scriptSurface(o), ops: [chalkOp] };
   }
 
   const imageRaw = opsRaw.find((op) => op && typeof op === "object" && (op as Record<string, unknown>).kind === "image");
@@ -1165,7 +1195,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
     const introOps = introImage ? [introImage, ...introRest.slice(0, 3)] : introRest.slice(0, 4);
     const introDuration = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 60000 ? o.durationMs : 46000;
     if (introOps.length < 1) return undefined;
-    return { caption: str(o.caption), durationMs: introDuration, ops: introOps };
+    return { caption: str(o.caption), durationMs: introDuration, ...scriptSurface(o), ops: introOps };
   }
 
   // Anti-decoration backstop: if the model gave us a full-board image AND scene/motion ops,
@@ -1321,7 +1351,7 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
   // semantic motion fills the middle of the timeline, while the longer default gives each
   // op more dwell time.
   const durationMs = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 60000 ? o.durationMs : 48000;
-  return { caption: str(o.caption), durationMs, ops: enrichedOps };
+  return { caption: str(o.caption), durationMs, ...scriptSurface(o), ops: enrichedOps };
 }
 
 function forceFullBoardImage(op: ImageOp): ImageOp {

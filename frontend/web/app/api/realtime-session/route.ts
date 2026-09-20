@@ -51,9 +51,8 @@ const SHOW_BOARD_TOOL = {
   type: "function" as const,
   name: "show_board",
   description:
-    "Create or extend a premium teaching visual when it will explain the student's question better " +
-    "than speech alone. Choose the appropriate visual medium and whether continuity with the current " +
-    "board matters.",
+    "Extend the physical classroom board when a visual will explain the student's question better " +
+    "than speech alone. Reuse the current section for depth and start clean only for a new concept.",
   parameters: {
     type: "object",
     properties: {

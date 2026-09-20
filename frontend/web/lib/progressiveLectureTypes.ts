@@ -38,6 +38,9 @@ export type ProgressiveBeatPlan = {
   sequence: number;
   title: string;
   objective: string;
+  /** Stable teaching concept. Repeated ids extend one physical board instead of making slides. */
+  conceptId?: string;
+  prerequisiteConceptIds?: string[];
   visualKind: ProgressiveVisualKind;
   estimatedDurationMs: number;
   sourceBlockIds?: string[];

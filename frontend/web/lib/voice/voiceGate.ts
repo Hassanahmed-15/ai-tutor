@@ -132,6 +132,8 @@ export interface VoiceGateOptions {
   verifier?: SpeakerVerifier;
   callbacks?: VoiceGateCallbacks;
   wakeNames?: string[];
+  /** True when words arrive from a browser-side recognizer before audio is sent to Gemini. */
+  semanticPrefilter?: boolean;
 }
 
 export class VoiceGate {
@@ -140,6 +142,7 @@ export class VoiceGate {
   private readonly verifier: SpeakerVerifier;
   private readonly callbacks: VoiceGateCallbacks;
   private readonly wakeNames?: string[];
+  private readonly semanticPrefilter: boolean;
 
   private stage: GateStage = "idle";
   private tutorSpeaking = false;
@@ -149,6 +152,8 @@ export class VoiceGate {
 
   private pendingFrame: Float32Array | null = null;
   private preroll: Float32Array[] = [];
+  /** Full candidate audio, including pre-roll. It is released only after semantic acceptance. */
+  private candidateAudio: Float32Array[] = [];
   private readonly prerollFrames: number;
 
   /**
@@ -182,6 +187,7 @@ export class VoiceGate {
     this.verifier = options.verifier ?? new NoSpeakerVerifier();
     this.callbacks = options.callbacks ?? {};
     this.wakeNames = options.wakeNames;
+    this.semanticPrefilter = options.semanticPrefilter ?? false;
     this.prerollFrames = Math.max(1, Math.round(this.config.prerollMs / this.config.frameMs));
   }
 
@@ -271,7 +277,7 @@ export class VoiceGate {
    * because interim results truncate mid-word.
    */
   provideTranscript(text: string, final: boolean, now: number): void {
-    if (this.stage !== "listening" && this.stage !== "committed") return;
+    if (this.stage !== "candidate" && this.stage !== "listening" && this.stage !== "committed") return;
     this.lastTranscript = text;
     let verdict = classifyAddressing(text, {
       expectingAnswer: this.expectingAnswer,
@@ -283,10 +289,10 @@ export class VoiceGate {
      * The words and the voice must agree when the words are only WEAKLY for us. "It's in the
      * kitchen drawer" while Aria waits for an answer is addressed on the words alone — an answer
      * is expected and this is a sentence — but if the voice is plainly not the student's, it is
-     * someone else answering someone else. Hard rules (her name, a command) still stand whoever
-     * says them: a person who says "Aria, stop" means it.
+     * someone else answering someone else. Once a voice profile is enrolled, it also applies to
+     * hard rules: a nearby person saying "Aria, stop" is still not the enrolled student's turn.
      */
-    if (verdict.addressed && verdict.score < 1 && this.speakerVerdict() === "other") {
+    if (verdict.addressed && this.speakerVerdict() === "other") {
       verdict = { addressed: false, score: verdict.score, reason: `${verdict.reason}, but the voice is not the student's` };
     }
     this.lastVerdict = verdict;
@@ -294,6 +300,7 @@ export class VoiceGate {
     if (verdict.addressed) {
       this.addressedByWords = true;
       this.notForUsCount = 0;
+      if (this.stage === "candidate") this.listen(now);
       if (this.stage === "listening" && this.tutorSpeaking) this.commit(now, `words: ${verdict.reason}`);
       else this.decide(now, "addressed", `"${text.slice(0, 50)}": ${verdict.reason}`);
       return;
@@ -304,7 +311,11 @@ export class VoiceGate {
       this.decide(now, "not-addressed-interim", `"${text.slice(0, 50)}": ${verdict.reason}`);
       return;
     }
-    if (this.stage === "listening") this.discard(now, `words: ${verdict.reason}`);
+    // A browser recognizer may finalize clauses separately. Do not reject a still-speaking
+    // candidate on the first negative clause: a later "Arya, ..." must still be able to accept the
+    // same utterance. The silence confirmation window settles the negative without opening Gemini.
+    if (this.stage === "candidate") this.decide(now, "not-addressed-final", `"${text.slice(0, 50)}": ${verdict.reason}`);
+    else if (this.stage === "listening") this.discard(now, `words: ${verdict.reason}`);
     else this.decide(now, "not-addressed-after-commit", `"${text.slice(0, 50)}": ${verdict.reason}`);
   }
 
@@ -340,10 +351,27 @@ export class VoiceGate {
       case "idle":
         this.stage = "candidate";
         this.candidateSince = now;
+        this.candidateAudio = [...this.preroll];
         this.decide(now, "voice-candidate", `confidence ${confidence.toFixed(2)}`);
         return;
       case "candidate":
-        if (now - this.candidateSince >= this.config.candidateMs) this.listen(now);
+        this.candidateAudio.push(this.pendingFrame as Float32Array);
+        // Bound a stalled recognizer to four seconds of PCM (~256 KB). A longer utterance keeps
+        // its most recent audio; normal accepted turns resolve hundreds of milliseconds in.
+        if (this.candidateAudio.length > 200) this.candidateAudio.shift();
+        // Without a local semantic prefilter, audio has to reach Gemini to obtain words. This
+        // compatibility path is paired with NO_INTERRUPTION at the transport layer. On supported
+        // browsers the candidate remains local until the transcript says it is for Arya.
+        if (!this.semanticPrefilter && now - this.candidateSince >= this.config.candidateMs) this.listen(now);
+        else if (
+          this.semanticPrefilter &&
+          this.tutorSpeaking &&
+          this.speakerVerdict() === "student" &&
+          now - this.candidateSince >= this.config.maxUnverifiedMs
+        ) {
+          this.listen(now);
+          this.commit(now, "verified student voice sustained while local transcription was unavailable");
+        }
         return;
       case "listening": {
         this.episodeFrames.push(features);
@@ -377,10 +405,9 @@ export class VoiceGate {
   private onQuietFrame(now: number): void {
     switch (this.stage) {
       case "candidate":
-        if (now - this.lastVoiceAt >= this.config.candidateMs) {
-          this.stage = "idle";
-          this.decide(now, "silence", "candidate faded before it became a turn");
-        }
+        // Leave a confirmation window for a final local transcript, which commonly lands just
+        // after the last phoneme. No Gemini activity has opened, so waiting is harmless.
+        if (now - this.lastVoiceAt >= this.config.silenceMs) this.rejectCandidate(now, "no addressed transcript in confirmation window");
         return;
       case "listening":
       case "committed":
@@ -397,8 +424,15 @@ export class VoiceGate {
   private listen(now: number): void {
     this.stage = "listening";
     this.listeningSince = now;
-    this.callbacks.onListen?.([...this.preroll]);
-    this.decide(now, "listening", `turn opened with ${this.preroll.length} pre-roll frames`);
+    const buffered = this.candidateAudio.length ? this.candidateAudio : this.preroll;
+    this.callbacks.onListen?.([...buffered]);
+    this.candidateAudio = [];
+    this.decide(now, "listening", `accepted turn opened with ${buffered.length} buffered frames`);
+  }
+
+  private rejectCandidate(now: number, why: string): void {
+    this.decide(now, "candidate-rejected", why);
+    this.finish(now);
   }
 
   private commit(now: number, why: string): void {
@@ -480,6 +514,7 @@ export class VoiceGate {
     this.addressedByWords = false;
     this.notForUsCount = 0;
     this.candidateSince = 0;
+    this.candidateAudio = [];
   }
 
   /** Only turns the words accepted teach the profile, so a neighbour never becomes the student. */

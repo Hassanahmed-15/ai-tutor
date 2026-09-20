@@ -38,6 +38,12 @@ export interface CheckpointSpec {
 export interface Beat {
   id: string;
   title: string;
+  /** Stable node in the lesson's concept map. Several beats may deliberately share one concept. */
+  conceptId?: string;
+  /** What must be established before the teacher leaves this concept. */
+  conceptObjective?: string;
+  /** Concept-map edges used for callbacks and prerequisite reminders. */
+  prerequisiteConceptIds?: string[];
   /** Spoken over this beat's incoming title card. Omitted on the opening beat. */
   transitionIn?: string;
   teacherMove: string;

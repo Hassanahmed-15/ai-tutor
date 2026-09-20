@@ -14,10 +14,14 @@ import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
 import { AnnotationLayer, type BoardTool } from "@/components/board/AnnotationLayer";
-import { ExplainSelection } from "@/components/board/ExplainSelection";
 import { strokesFor } from "@/lib/board/annotations";
 import { BoardDock } from "@/components/board/BoardDock";
+import { BoardStage } from "@/components/board/BoardStage";
 import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
+import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingState";
+import { coordinateTeachingTimeline } from "@/lib/board/teachingTimeline";
+import { captureSelectedBoardRegion } from "@/lib/board/captureSelection";
+import { buildExplainRequest, type ExplainRequest } from "@/lib/board/selection";
 import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
 import { ManimBoard } from "./sketch/ManimBoard";
 import { GsapSketch } from "./sketch/GsapSketch";
@@ -311,6 +315,33 @@ export function LessonPlayer({
   const [rate, setRate] = useState(1);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
+  const teachingMap = useMemo(() => buildLessonTeachingMap(beats), [beats]);
+  const teachingEntry = teachingMap.entries[index];
+  const teachingProgress = useMemo(() => conceptProgress(teachingMap, index), [teachingMap, index]);
+  const priorBoardSections = useMemo(
+    () => beats
+      .slice(0, index)
+      .filter((pastBeat) => pastBeat.slideKind !== "checkpoint")
+      .slice(-5)
+      .map((pastBeat) => {
+        const sentences = splitNarrationSentences(pastBeat.script);
+        return {
+          key: pastBeat.id,
+          node: (
+            <Board
+              beat={pastBeat}
+              sentenceCue={{
+                index: Math.max(0, sentences.length - 1),
+                total: Math.max(1, sentences.length),
+                text: sentences[sentences.length - 1] ?? pastBeat.script,
+              }}
+              drawProgress={1}
+            />
+          ),
+        };
+      }),
+    [beats, index],
+  );
   // Future beats arrive while the current one is playing. Keep tail state current without making
   // the current narration effect depend on it: changing `beats.length`, `hasMoreBeats`, or an
   // inline parent callback must never cancel and replay the audio already in progress.
@@ -456,6 +487,14 @@ export function LessonPlayer({
   const [explainDismissed, setExplainDismissed] = useState(true);
   const [explainBusy, setExplainBusy] = useState(false);
   const [annotations, setAnnotations] = useState(EMPTY_ANNOTATIONS);
+  const boardSurfaceRef = useRef<HTMLElement | null>(null);
+  const selectionRequest = useMemo(
+    () => buildExplainRequest(strokesFor(annotations, beat.id), {
+      conceptTitle: beat.title,
+      currentSentence: sentenceCue.text,
+    }),
+    [annotations, beat.id, beat.title, sentenceCue.text],
+  );
   const [drawMode, setDrawMode] = useState(false);
   const [askingDrawing, setAskingDrawing] = useState(false);
   const [highlightMode, setHighlightMode] = useState(false);
@@ -1276,10 +1315,10 @@ export function LessonPlayer({
   // (a fresh beat, or the browser-TTS fallback), `startNonce` starts the beat instead.
   useEffect(() => {
     if (lesson.mode === "teaching") {
-      if (!voice.resumeTeacher()) setStartNonce((n) => n + 1);
+      if (!voice.resumeTeacher()) queueMicrotask(() => setStartNonce((n) => n + 1));
     } else {
       voice.pauseTeacher();
-      setSpeaking(false);
+      queueMicrotask(() => setSpeaking(false));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode]);
@@ -1524,7 +1563,7 @@ export function LessonPlayer({
 
   // New section (board content changes) -> old highlights no longer map to it. Clear them.
   useEffect(() => {
-    setHighlightStrokes([]);
+    queueMicrotask(() => setHighlightStrokes([]));
     highlightedTextRef.current = "";
   }, [beat.id]);
 
@@ -1577,6 +1616,49 @@ export function LessonPlayer({
         ? `The student just drew this on the board and wants you to explain it in detail: ${description}`
         : "The student just drew something on the board and wants you to explain it in detail — look at what's there and talk them through it."
     );
+  }
+
+  async function explainMarkedRegion(request: ExplainRequest) {
+    if (checkinRef.current) return;
+    setExplainBusy(true);
+    setExplainDismissed(true);
+    try {
+      const surface = boardSurfaceRef.current;
+      if (!surface) throw new Error("Teaching board is unavailable.");
+      const image = await captureSelectedBoardRegion(surface, request.region);
+      const response = await fetch("/api/ask-drawing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          image,
+          topic: title,
+          beatContext: `${beat.title}: ${beat.script}`,
+          question: request.question,
+          selectedRegion: request.region,
+          selectedText: request.selectedText,
+        }),
+      });
+      const answer = await response.json().catch(() => ({}));
+      if (!response.ok || typeof answer.script !== "string" || !answer.script.trim()) {
+        throw new Error(typeof answer.error === "string" ? answer.error : "Aria could not inspect that region.");
+      }
+      const grounded = answer.script.trim();
+      tutor.addContext(
+        `A vision pass inspected only the student's selected board crop (${request.gesture}). ` +
+        `${request.selectedText ? `The board text under it is "${request.selectedText}". ` : ""}` +
+        `It concluded: ${grounded}`,
+      );
+      explainWithTutor(
+        `${request.question} A vision pass of the selected crop found: ${grounded} ` +
+        "Explain that exact selection now; do not broaden the answer to the whole board.",
+      );
+    } catch {
+      // The text-under-selection and lesson context still make a precise answer possible when a
+      // browser cannot rasterise an exotic renderer (video/cross-origin image).
+      explainWithTutor(request.question);
+    } finally {
+      setExplainBusy(false);
+    }
   }
 
   function startLesson() {
@@ -1742,8 +1824,8 @@ export function LessonPlayer({
            * inside is aria-hidden, so without this the teaching surface is nameless to a screen
            * reader — and the "Explain this" anchor has nothing to measure against.
            */}
-          <section aria-label="Teaching board" className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
-            {stage === "slide" || isCheckpoint ? (
+          <section ref={boardSurfaceRef} aria-label="Teaching board" className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
+            {isCheckpoint ? (
               <SlideStage
                 /* In the ADHD track a checkpoint beat asks nothing — the flown question every third
                    beat is the only question. Without this the beat still printed its "Type your
@@ -1757,8 +1839,14 @@ export function LessonPlayer({
                 onRevealAnswer={revealCheckpointAnswer}
               />
             ) : (
-              <div className="beat-fade-in relative h-full">
-                                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+              <BoardStage
+                boardKey={beat.id}
+                sections={priorBoardSections}
+                move={teachingEntry?.move}
+                transition={teachingEntry?.move === "continue" || teachingEntry?.move === "refer-back" ? "slide" : "erase"}
+              >
+              <div className="relative h-full">
+                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
                 {/* The "From past you" echo is removed from the lesson surface. It replayed the
                     student's own earlier wording as a floating card over the board, which
                     interrupts the lesson rather than supporting it. The component and its stored
@@ -1782,7 +1870,7 @@ export function LessonPlayer({
                     bins, hiding the one thing a player has to see to answer at all. The caption is narration
                     the student has already heard by the time a question appears, so yielding is
                     the right call — nothing is lost. */}
-                <div
+                {deafMode && <div
                   className={`pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5 ${
                     quiz.phase !== "idle" ? "hidden" : ""
                   }`}
@@ -1802,8 +1890,9 @@ export function LessonPlayer({
                     )}
                     {currentCaption}
                   </div>
-                </div>
+                </div>}
               </div>
+              </BoardStage>
             )}
 
             {/* Fresh explanation board for a chat question */}
@@ -1924,22 +2013,6 @@ export function LessonPlayer({
                 setExplainDismissed(false);
               }}
             />
-            {!explainDismissed && strokesFor(annotations, beat.id).length > 0 && (
-              <ExplainSelection
-                strokes={strokesFor(annotations, beat.id)}
-                conceptTitle={beat.title}
-                currentSentence={sentenceCue.text}
-                busy={explainBusy}
-                onDismiss={() => setExplainDismissed(true)}
-                onExplain={(request) => {
-                  setExplainBusy(true);
-                  setExplainDismissed(true);
-                  explainWithTutor(request.question);
-                  // The tutor answers over the live socket; the button has done its job once asked.
-                  window.setTimeout(() => setExplainBusy(false), 1200);
-                }}
-              />
-            )}
           </section>
 
           <div className="hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1">
@@ -2033,7 +2106,20 @@ export function LessonPlayer({
             else void tutor.start();
           }}
           micAvailable={REALTIME_TUTOR_ENABLED}
-          positionLabel={`Part ${index + 1} of ${displayBeatCount}`}
+          positionLabel={
+            teachingEntry?.sectionInConcept && teachingEntry.sectionInConcept > 1
+              ? `${teachingProgress.current?.title ?? beat.title} · board ${teachingEntry.sectionInConcept}`
+              : `Part ${index + 1} of ${displayBeatCount}`
+          }
+          busy={explainBusy}
+          explainSelectionLabel={
+            !explainDismissed && selectionRequest
+              ? selectionRequest.selectedText
+                ? `Explain “${selectionRequest.selectedText.length > 30 ? `${selectionRequest.selectedText.slice(0, 30)}…` : selectionRequest.selectedText}”`
+                : "Explain selected region"
+              : undefined
+          }
+          onExplainSelection={selectionRequest ? () => void explainMarkedRegion(selectionRequest) : undefined}
         />
 
         {/*
@@ -2056,7 +2142,11 @@ export function LessonPlayer({
             </button>
             <div className="min-w-0">
               <p className="truncate text-[0.95rem] font-semibold leading-tight text-[var(--hud-text)]">{title}</p>
-              <p className="text-[0.72rem] text-[var(--hud-text-faint)]">Part {index + 1} of {displayBeatCount}</p>
+              <p className="text-[0.72rem] text-[var(--hud-text-faint)]">
+                {teachingProgress.explained.length} established
+                {teachingProgress.current ? ` · ${teachingProgress.current.title}` : ` · Part ${index + 1}`}
+                {teachingProgress.next ? ` · next: ${teachingProgress.next.title}` : " · final concept"}
+              </p>
             </div>
           </div>
           <VoiceState
@@ -2253,6 +2343,17 @@ function VisualDirector({
   const text = sentenceCue.text;
   const cue = sentenceCue.index;
   const sentenceTiming = narrationSentenceTiming(beat.script, cue, drawProgress ?? 0);
+  const coordinatedDraw = useMemo(
+    () => beat.draw
+      ? coordinateTeachingTimeline(beat.draw, {
+          title: beat.title,
+          objective: beat.conceptObjective ?? beat.teacherMove,
+          script: beat.script,
+        }).draw
+      : undefined,
+    [beat.draw, beat.title, beat.conceptObjective, beat.teacherMove, beat.script],
+  );
+  const coordinatedBeat = coordinatedDraw ? { ...beat, draw: coordinatedDraw } : beat;
   const bespokeScene = isCuratedPhotosynthesisBeat(beat) ? photosynthesisSceneForBeat(beat.id, cue) : null;
   // Once the sandboxed animation fails for this beat (transpile error, runtime throw, watchdog
   // timeout), show an explicit unavailable board for the rest of this beat's lifetime. Resets
@@ -2261,8 +2362,8 @@ function VisualDirector({
   // Same lifetime rule as sandboxFailed: once Manim fails for this beat, fall back to the live
   // board for the rest of the beat rather than retrying a render that costs seconds.
   const [manimFailed, setManimFailed] = useState(false);
-  const rendererSelection = beat.draw
-    ? selectAnimationRenderer(beat.draw, {
+  const rendererSelection = coordinatedDraw
+    ? selectAnimationRenderer(coordinatedDraw, {
         gsapEnabled: GSAP_RENDER_ENABLED,
         manimEnabled: MANIM_RENDER_ENABLED && !manimFailed,
       })
@@ -2286,16 +2387,16 @@ function VisualDirector({
 
   // If a beat declares a React animation, never mask a missing or failed animation with the old
   // line-diagram fallback. Normal DrawScript boards still render through LiveSketch.
-  if (beat.draw) {
+  if (coordinatedDraw) {
     // A chalkBoard beat: its real chalk ops are authored server-side; unwrap them into LiveSketch
     // (chalk rendering). Pending → preparing card; failed → unavailable card (never the old
     // template board, per the design).
-    const chalkOp = findChalkBoardOp(beat);
+    const chalkOp = findChalkBoardOp(coordinatedBeat);
     if (chalkOp?.kind === "chalkBoard") {
       if (chalkOp.ops && chalkOp.ops.length > 0 && BLACKBOARD_GEN_ENABLED) {
         return (
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
-            <LiveSketch key={beat.id} script={{ ...beat.draw, ops: chalkOp.ops }} progress={sentenceTiming.alignedProgress} />
+            <LiveSketch key={beat.id} script={{ ...coordinatedDraw, ops: chalkOp.ops }} progress={sentenceTiming.alignedProgress} />
             <RendererBadge kind="svg" />
           </section>
         );
@@ -2309,7 +2410,7 @@ function VisualDirector({
       return <AnimationStatusBoard title={beat.title} teachingPoint={chalkOp.boardBrief} eyebrow="Board unavailable" reason={boardReason} />;
     }
 
-    const animationOp = findReactAnimationOp(beat);
+    const animationOp = findReactAnimationOp(coordinatedBeat);
     if (animationOp?.kind === "reactAnimation" && animationOp.code && REACT_ANIMATIONS_ENABLED && !sandboxFailed) {
       return (
         <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
@@ -2341,7 +2442,7 @@ function VisualDirector({
     // back to the live board if the render fails, so the flag can degrade but never break a
     // lesson. This condition must match the prefetch filter above.
     if (rendererSelection?.renderer === "structure") {
-      const structureOp = beat.draw.ops.find((op) => op.kind === "structureScene");
+      const structureOp = coordinatedDraw.ops.find((op) => op.kind === "structureScene");
       if (structureOp?.kind === "structureScene" && structureOp.spec) {
         return (
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
@@ -2354,7 +2455,7 @@ function VisualDirector({
     // The two spec-driven boards. Like `structure` above, both are only selected once their spec
     // has validated against the renderer that draws it, so reaching here means the board renders.
     if (rendererSelection?.renderer === "plot") {
-      const plotOp = beat.draw.ops.find((op) => op.kind === "plotBoard");
+      const plotOp = coordinatedDraw.ops.find((op) => op.kind === "plotBoard");
       if (plotOp?.kind === "plotBoard" && plotOp.spec) {
         return (
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
@@ -2365,7 +2466,7 @@ function VisualDirector({
       }
     }
     if (rendererSelection?.renderer === "equation") {
-      const equationOp = beat.draw.ops.find((op) => op.kind === "equationBoard");
+      const equationOp = coordinatedDraw.ops.find((op) => op.kind === "equationBoard");
       if (equationOp?.kind === "equationBoard" && equationOp.spec) {
         return (
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
@@ -2378,7 +2479,7 @@ function VisualDirector({
     if (rendererSelection?.renderer === "gsap") {
       return (
         <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
-          <GsapSketch key={beat.id} script={beat.draw} progress={drawProgress} />
+          <GsapSketch key={beat.id} script={coordinatedDraw} progress={drawProgress} />
           <RendererBadge kind="gsap" />
         </section>
       );
@@ -2390,7 +2491,7 @@ function VisualDirector({
               is currently falling back to the live SVG board. */}
           <ManimBoard
             key={beat.id}
-            script={beat.draw}
+            script={coordinatedDraw}
             progress={drawProgress}
             savedUrl={beat.manimVideoUrl}
             onError={() => setManimFailed(true)}
@@ -2398,7 +2499,7 @@ function VisualDirector({
         </section>
       );
     }
-    const manimSceneOp = beat.draw.ops.find((op) => op.kind === "manimScene");
+    const manimSceneOp = coordinatedDraw.ops.find((op) => op.kind === "manimScene");
     if (manimSceneOp?.kind === "manimScene") {
       const reason = !MANIM_RENDER_ENABLED
         ? "Manim rendering is turned off."
@@ -2416,7 +2517,7 @@ function VisualDirector({
     }
     return (
       <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
-        <LiveSketch key={beat.id} script={beat.draw} progress={drawProgress} />
+        <LiveSketch key={beat.id} script={coordinatedDraw} progress={drawProgress} />
         <RendererBadge kind="svg" />
       </section>
     );

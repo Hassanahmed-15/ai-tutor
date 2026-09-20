@@ -79,11 +79,11 @@ TYPE E — MORPH BOARD (ONLY "shape"/"morph"/"label"/"note"/"arrow" ops — NO i
   content in "text"/"toText" ("NOT(A OR B)" -> "NOT A AND NOT B", never "Before"/"After"); one
   "note" giving the rule; and an "indicate"/"circumscribe" on the result.
   Emit 4-6 ops total, and AT LEAST ONE "morph":
-  { "kind":"shape","shape":Shape,"x":n,"y":n,"w"?:n,"h"?:n,"color"?:Color,"at":n }
-  { "kind":"morph","shape":Shape,"x":n,"y":n,"toX":n,"toY":n,"w"?:n,"h"?:n,"text"?:string,"toText"?:string,"color"?:Color,"toColor"?:Color,"at":n,"morphAt":n }
-  { "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n }
-  { "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n }
-  { "kind":"arrow","x1":n,"y1":n,"x2":n,"y2":n,"color"?:Color,"at":n }
+  { "kind":"shape","shape":Shape,"x":n,"y":n,"w"?:n,"h"?:n,"color"?:Color,"at":n,"atSentence":n }
+  { "kind":"morph","shape":Shape,"x":n,"y":n,"toX":n,"toY":n,"w"?:n,"h"?:n,"text"?:string,"toText"?:string,"color"?:Color,"toColor"?:Color,"at":n,"morphAt":n,"atSentence":n }
+  { "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n,"atSentence":n }
+  { "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n,"atSentence":n }
+  { "kind":"arrow","x1":n,"y1":n,"x2":n,"y2":n,"color"?:Color,"at":n,"atSentence":n }
   { "kind":"circumscribe","x":n,"y":n,"w"?:n,"h"?:n,"color"?:Color,"at":n,"endAt"?:n }   // or "indicate" / "flash"
   Shape is EXACTLY one of: "circle" | "rect" | "hexagon" | "line" | "chain" | "leaf" | "droplet". Nothing else is drawable on this board.
   Keep every x within 12-88 and every y within 14-86 so a shape plus its label never runs off the canvas.
@@ -278,7 +278,19 @@ BEAT SCHEMA (every field required unless marked optional):
   "script": string,   // what teacher SAYS — warm, spoken, detailed, 110-140 words on teaching beats
   "draw"?: DrawScript // omit only on checkpoint beats
 }
-DrawScript = { "caption": string, "durationMs": 42000-56000, "ops": DrawOp[] }
+DrawScript = { "caption": string, "durationMs": 42000-56000, "surface"?: "dark"|"paper"|"split", "panes"?: {"left":"dark"|"paper","right":"dark"|"paper"}, "canvasScreens"?: 1|2|3, "ops": DrawOp[] }
+
+BOARD SURFACE. Choose the board this belongs on, the way a teacher does:
+- "dark" (chalkboard, the default) for anything WORKED OUT in front of the student: a derivation, a proof, a diagram built stroke by stroke, an argument developed as you speak.
+- "paper" (whiteboard) for anything that must be READ EXACTLY: a data table, code, precise figures, a colour-coded chart. A faint chalk line is fine for an arrow and wrong for a column of numbers.
+- "split" with "panes" when the beat holds TWO things at once — the worked example on the left and the rule it demonstrates on the right, or a before and an after. Use it for genuine comparisons only, not to fill space.
+
+BOARD HEIGHT. "canvasScreens" is how many screens tall this board is.
+- 1 (default) for a single idea that fits one view.
+- 2 or 3 when this beat DEVELOPS one concept at length — the camera pans down as you speak, so earlier work stays above exactly as it would on a physical board you slide up. Prefer a taller board over cramming; never shrink the type to fit.
+- Never more than 3: past that the student cannot scroll back to where the idea started.
+
+EVERY OP CARRIES "atSentence". This is the single most important field for the lecture feeling synchronised: it is the 0-based index of the narration sentence during which that op appears. Count sentences in "script". If you say "notice this curve" in sentence four, the curve's op must carry "atSentence": 4 — not 3, not 5. An op the student sees before you mention it, or long after, is the defect this field exists to prevent. Optionally add "untilSentence" for a pointer or emphasis mark that should disappear once its moment passes.
 
 TITLE AND TRANSITION CONTRACT:
 - Titles are 3-9 words and name the exact insight on that beat. Vary them by role: a curiosity hook, a causal/action title for a mechanism, a concrete worked-example title, a contrast title, then a synthesis title.
@@ -365,10 +377,10 @@ HARD RULES:
 11. STRUCTURE QUOTA — CHECK THIS TOO: count your "structureScene" ops. If the topic contains a cycle, a staged pipeline, a state machine or a hierarchy — and almost every technical topic does — exactly ONE beat must be a TYPE F structural diagram. Any beat you were about to build from boxes joined by arrows is a TYPE F instead: its layout is computed, so it cannot overlap or clip the way a hand-placed board does.
 
 DrawOp types (each has "at": 0-1 fraction when it appears):
-{ "kind":"image","prompt":string,"x":n,"y":n,"w"?:n,"h"?:n,"at":n }
-{ "kind":"callout","text":string,"x":n,"y":n,"labelX"?:n,"labelY"?:n,"color"?:Color,"at":n }
-{ "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n }  // intro beat only
-{ "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n }  // intro beat only
+{ "kind":"image","prompt":string,"x":n,"y":n,"w"?:n,"h"?:n,"at":n,"atSentence":n }
+{ "kind":"callout","text":string,"x":n,"y":n,"labelX"?:n,"labelY"?:n,"color"?:Color,"at":n,"atSentence":n }
+{ "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n,"atSentence":n }  // intro beat only
+{ "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n,"atSentence":n }  // intro beat only
 { "kind":"chalkBoard","boardBrief":string,"at":0,"endAt":1 }  // BLACKBOARD beats only, see TYPE A
 { "kind":"reactAnimation","teachingPoint":string,"at":0,"endAt":1 }  // ANIMATION beats only, see TYPE C
 { "kind":"manimScene","sceneBrief":string,"at":0,"endAt":1 }  // DIAGRAM beats only, see TYPE D
@@ -429,7 +441,19 @@ BEAT SCHEMA (every field required unless marked optional):
   "script": string,   // what teacher SAYS — warm, spoken, detailed, 110-140 words on teaching beats
   "draw"?: DrawScript // omit only on checkpoint beats
 }
-DrawScript = { "caption": string, "durationMs": 42000-56000, "ops": DrawOp[] }
+DrawScript = { "caption": string, "durationMs": 42000-56000, "surface"?: "dark"|"paper"|"split", "panes"?: {"left":"dark"|"paper","right":"dark"|"paper"}, "canvasScreens"?: 1|2|3, "ops": DrawOp[] }
+
+BOARD SURFACE. Choose the board this belongs on, the way a teacher does:
+- "dark" (chalkboard, the default) for anything WORKED OUT in front of the student: a derivation, a proof, a diagram built stroke by stroke, an argument developed as you speak.
+- "paper" (whiteboard) for anything that must be READ EXACTLY: a data table, code, precise figures, a colour-coded chart. A faint chalk line is fine for an arrow and wrong for a column of numbers.
+- "split" with "panes" when the beat holds TWO things at once — the worked example on the left and the rule it demonstrates on the right, or a before and an after. Use it for genuine comparisons only, not to fill space.
+
+BOARD HEIGHT. "canvasScreens" is how many screens tall this board is.
+- 1 (default) for a single idea that fits one view.
+- 2 or 3 when this beat DEVELOPS one concept at length — the camera pans down as you speak, so earlier work stays above exactly as it would on a physical board you slide up. Prefer a taller board over cramming; never shrink the type to fit.
+- Never more than 3: past that the student cannot scroll back to where the idea started.
+
+EVERY OP CARRIES "atSentence". This is the single most important field for the lecture feeling synchronised: it is the 0-based index of the narration sentence during which that op appears. Count sentences in "script". If you say "notice this curve" in sentence four, the curve's op must carry "atSentence": 4 — not 3, not 5. An op the student sees before you mention it, or long after, is the defect this field exists to prevent. Optionally add "untilSentence" for a pointer or emphasis mark that should disappear once its moment passes.
 
 TITLE AND TRANSITION CONTRACT:
 - Titles are 3-9 words and name the exact insight on that beat. Use curiosity, mechanism, worked-example, contrast, and synthesis titles according to the beat's role.
@@ -504,10 +528,10 @@ HARD RULES:
 11. STRUCTURE QUOTA — CHECK THIS TOO: count your "structureScene" ops. If the topic contains a cycle, a staged pipeline, a state machine or a hierarchy — and almost every technical topic does — exactly ONE beat must be a TYPE F structural diagram. Any beat you were about to build from boxes joined by arrows is a TYPE F instead: its layout is computed, so it cannot overlap or clip the way a hand-placed board does.
 
 DrawOp types (each has "at": 0-1 fraction when it appears):
-{ "kind":"image","prompt":string,"x":n,"y":n,"w"?:n,"h"?:n,"at":n }
-{ "kind":"callout","text":string,"x":n,"y":n,"labelX"?:n,"labelY"?:n,"color"?:Color,"at":n }
-{ "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n }  // intro beat only
-{ "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n }  // intro beat only
+{ "kind":"image","prompt":string,"x":n,"y":n,"w"?:n,"h"?:n,"at":n,"atSentence":n }
+{ "kind":"callout","text":string,"x":n,"y":n,"labelX"?:n,"labelY"?:n,"color"?:Color,"at":n,"atSentence":n }
+{ "kind":"label","text":string,"x":n,"y":n,"size"?:"sm"|"md"|"lg","color"?:Color,"at":n,"atSentence":n }  // intro beat only
+{ "kind":"note","text":string,"x":n,"y":n,"color"?:Color,"at":n,"atSentence":n }  // intro beat only
 { "kind":"chalkBoard","boardBrief":string,"at":0,"endAt":1 }  // BLACKBOARD beats only, see TYPE A
 { "kind":"reactAnimation","teachingPoint":string,"at":0,"endAt":1 }  // ANIMATION beats only, see TYPE C
 { "kind":"manimScene","sceneBrief":string,"at":0,"endAt":1 }  // DIAGRAM beats only, see TYPE D
@@ -939,8 +963,8 @@ Return JSON: { "script": string, "draw": DrawScript }
 
 DrawScript = { "caption": string, "durationMs": number, "ops": DrawOp[] }
 ONLY these two op types are allowed:
-{ "kind":"label","text":string,"x":n,"y":n,"size":"sm"|"md"|"lg","color":Color,"at":n }   // heading + short terms
-{ "kind":"note","text":string,"x":n,"y":n,"color":Color,"at":n }                            // short explanation lines
+{ "kind":"label","text":string,"x":n,"y":n,"size":"sm"|"md"|"lg","color":Color,"at":n,"atSentence":n }   // heading + short terms
+{ "kind":"note","text":string,"x":n,"y":n,"color":Color,"at":n,"atSentence":n }                            // short explanation lines
 Color = "amber"|"green"|"blue"|"slate"|"rose"|"violet"
 
 RULES:

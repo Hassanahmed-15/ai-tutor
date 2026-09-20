@@ -145,6 +145,8 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     sequence,
     title: entry.title,
     objective: entry.objective,
+    conceptId: `concept-${sequence + 1}-${slug(entry.title)}`,
+    prerequisiteConceptIds: sequence > 0 ? [`concept-${sequence}-${slug(entries[sequence - 1].title)}`] : [],
     visualKind: visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
   }));
@@ -472,6 +474,9 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   return {
     id: planned.id,
     title: planned.title,
+    conceptId: planned.conceptId ?? planned.id,
+    conceptObjective: planned.objective,
+    prerequisiteConceptIds: planned.prerequisiteConceptIds ?? [],
     // Beat one opens the lecture rather than bridging from anything; either way the player treats
     // this as the sentence to start speaking on the title slide (lib/beatPresentation.ts).
     transitionIn: planned.sequence > 0
@@ -512,6 +517,9 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
   return {
     id: planned.id,
     title: planned.title,
+    conceptId: planned.conceptId ?? planned.id,
+    conceptObjective: planned.objective,
+    prerequisiteConceptIds: planned.prerequisiteConceptIds ?? [],
     transitionIn: sequence > 0
       ? transitionSentence(undefined, session.plan[sequence - 1]?.title ?? session.topic, planned.title)
       : openingSentence(undefined, session.topic),

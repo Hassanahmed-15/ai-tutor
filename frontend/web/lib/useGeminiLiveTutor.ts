@@ -18,6 +18,11 @@ import {
 import { topicWordsFrom } from "./voice/addressing";
 import { HeuristicVoiceprint, NoSpeakerVerifier } from "./voice/speakerProfile";
 import { DEFAULT_VOICE_GATE_CONFIG, VoiceGate, type GateDecision, type GateProfile } from "./voice/voiceGate";
+import {
+  browserSemanticPrefilterAvailable,
+  createBrowserLocalTranscriber,
+  type LocalTranscriber,
+} from "./voice/localTranscriber";
 
 /** Which Live models take a thinkingConfig. The 3.8 line rejects it at the socket. */
 export function supportsThinkingLevel(model: string): boolean {
@@ -33,7 +38,12 @@ export type GeminiLiveStatus =
   | "blocked"
   | "error";
 
-export type GeminiLiveBoard = { script: string; draw?: DrawScript };
+export type GeminiLiveBoard = {
+  script: string;
+  draw?: DrawScript;
+  concept?: string;
+  reuseContext?: boolean;
+};
 
 type TranscriptRole = "student" | "tutor";
 type SessionEndReason = "user" | "idle" | "timeout" | "error";
@@ -458,6 +468,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const micSourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
   /** The capture node: an AudioWorkletNode, or a ScriptProcessorNode where worklets are unavailable. */
   const micProcessorRef = useRef<AudioNode | null>(null);
+  const localTranscriberRef = useRef<LocalTranscriber | null>(null);
   const silentGainRef = useRef<GainNode | null>(null);
   const micIntentRef = useRef<MicrophoneIntent | null>(null);
   if (micIntentRef.current === null) micIntentRef.current = new MicrophoneIntent(options.startMuted === true);
@@ -932,6 +943,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       toolAbortControllersRef.current.forEach((controller) => controller.abort());
       toolAbortControllersRef.current.clear();
       micProcessorRef.current?.disconnect();
+      localTranscriberRef.current?.stop();
       micSourceRef.current?.disconnect();
       silentGainRef.current?.disconnect();
       micStreamRef.current?.getTracks().forEach((track) => track.stop());
@@ -947,6 +959,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       micStreamRef.current = null;
       micSourceRef.current = null;
       micProcessorRef.current = null;
+      localTranscriberRef.current = null;
       silentGainRef.current = null;
       micIntentRef.current = new MicrophoneIntent(optionsRef.current.startMuted === true);
       responseInFlightRef.current = false;
@@ -1032,7 +1045,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     setStatus("drawing");
 
     try {
-      if (!concept) throw new Error("A concept is required to create a slide.");
+      if (!concept) throw new Error("A concept is required to extend the board.");
       const response = await fetch("/api/explain", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1048,7 +1061,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       });
       const data = await response.json().catch(() => ({}));
       recordJsonCost("questions", data);
-      if (!response.ok || !data.script) throw new Error(data.error ?? "Could not create the slide.");
+      if (!response.ok || !data.script) throw new Error(data.error ?? "Could not extend the board.");
 
       /**
        * Show the board even if the tool call was cancelled mid-flight.
@@ -1063,17 +1076,17 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
        * throw away a picture the student explicitly asked for and already paid for. So the board
        * is always handed over, and only the spoken follow-up is suppressed below.
        */
-      optionsRef.current.onBoardRequest({ script: data.script, draw: data.draw });
+      optionsRef.current.onBoardRequest({ script: data.script, draw: data.draw, concept, reuseContext });
 
       if (controller.signal.aborted) {
         // Deliver silently: the student has the floor, so Aria must not start talking about it.
-        return { id, name, response: { output: "The slide is on the board. Do not describe it unless asked." } };
+        return { id, name, response: { output: "The board section is visible. Do not describe it unless asked." } };
       }
       return {
         id,
         name,
         response: {
-          output: `A fresh teaching slide for "${concept}" is now visible. Briefly explain its important parts.`,
+          output: `${reuseContext ? "The current board was extended" : "A clean board section was opened"} for "${concept}". Briefly explain only what is now visible.`,
         },
       };
     } catch (error) {
@@ -1316,6 +1329,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     const gate = new VoiceGate({
       profile: optionsRef.current.gateProfile ?? "lecture",
       verifier,
+      semanticPrefilter: browserSemanticPrefilterAvailable(),
       callbacks: {
         /*
          * AUDIO REACHES GEMINI ONLY INSIDE A TURN. The old pipeline streamed every frame and let
@@ -1410,6 +1424,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       silentGainRef.current = silentGain;
 
       const gate = ensureGate();
+      const localTranscriber = createBrowserLocalTranscriber(({ text, final }) => {
+        gate.provideTranscript(text, final, performance.now());
+      });
+      localTranscriberRef.current = localTranscriber;
+      // SpeechRecognition owns its own capture path, so the MediaStreamTrack's enabled flag does
+      // not mute it. Mirror the app's mic intent explicitly; startMuted must remain a privacy
+      // guarantee for both capture paths.
+      if (track.enabled) localTranscriber.start();
       const handleFrame = (pcm: Float32Array) => {
         if (sessionRef.current !== session || !track.enabled) return;
         const now = performance.now();
@@ -1533,7 +1555,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     try {
       // The VAD sensitivity and activity-handling enums are gone with the server-side detection they
       // configured; the client decides now. See `realtimeInputConfig` below.
-      const { GoogleGenAI, Modality, ThinkingLevel } = await import("@google/genai");
+      const { ActivityHandling, GoogleGenAI, Modality, ThinkingLevel } = await import("@google/genai");
       const client = new GoogleGenAI({
         apiKey: sessionData.token,
         httpOptions: { apiVersion: "v1alpha" },
@@ -1595,6 +1617,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
            */
           realtimeInputConfig: {
             automaticActivityDetection: { disabled: true },
+            // On Chromium the local semantic prefilter means activityStart is already an accepted
+            // turn and should barge in normally. Other browsers use Gemini transcription as a
+            // compatibility fallback; their candidate activity must never interrupt by itself.
+            activityHandling: browserSemanticPrefilterAvailable()
+              ? ActivityHandling.START_OF_ACTIVITY_INTERRUPTS
+              : ActivityHandling.NO_INTERRUPTION,
           },
           tools: functionDeclarations.length > 0 ? [{ functionDeclarations }] : undefined,
         },
@@ -1741,6 +1769,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     // this assignment is the race that intermittently left Gemini deaf after the learner clicked.
     micIntentRef.current?.set(enabled);
     setMuted(!enabled);
+    if (enabled) localTranscriberRef.current?.start();
+    else localTranscriberRef.current?.stop();
     const track = micStreamRef.current?.getAudioTracks()[0];
     if (!track) return;
     if (track.enabled === enabled) {

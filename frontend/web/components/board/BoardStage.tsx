@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
+import type { BoardMove } from "@/lib/board/teachingState";
 
 /**
  * THE BOARD SURFACE, AND HOW ONE CONCEPT BECOMES THE NEXT.
@@ -32,6 +32,10 @@ export interface BoardStageProps {
   boardKey: string;
   children: React.ReactNode;
   transition?: BoardTransition;
+  /** Teaching decision, not a cosmetic animation choice. */
+  move?: BoardMove;
+  /** Finished sections on the same roller belt, oldest first. */
+  sections?: Array<{ key: string; node: React.ReactNode }>;
   status?: BoardStatus;
   /** Rendered above the board surface but below any status veil — the annotation layer. */
   overlay?: React.ReactNode;
@@ -44,58 +48,42 @@ export type BoardStatus =
   | { kind: "paused" }
   | { kind: "error"; label: string; onRetry?: () => void };
 
-const TRANSITION_MS = 900;
-
-export function BoardStage({ boardKey, children, transition = "erase", status = { kind: "ready" }, overlay }: BoardStageProps) {
-  const [outgoing, setOutgoing] = useState<{ key: string; node: React.ReactNode } | null>(null);
-  const previous = useRef<{ key: string; node: React.ReactNode }>({ key: boardKey, node: children });
-  const [phase, setPhase] = useState<"idle" | "leaving">("idle");
-
-  useEffect(() => {
-    if (previous.current.key === boardKey) {
-      previous.current = { key: boardKey, node: children };
-      return;
-    }
-    const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (transition === "none" || reduced) {
-      previous.current = { key: boardKey, node: children };
-      return;
-    }
-    // Keep the finished board alive so the two can overlap for the length of the move.
-    setOutgoing(previous.current);
-    setPhase("leaving");
-    previous.current = { key: boardKey, node: children };
-    const timer = window.setTimeout(() => {
-      setOutgoing(null);
-      setPhase("idle");
-    }, TRANSITION_MS);
-    return () => window.clearTimeout(timer);
-  }, [boardKey, children, transition]);
+export function BoardStage({
+  boardKey,
+  children,
+  transition = "erase",
+  move,
+  sections = [],
+  status = { kind: "ready" },
+  overlay,
+}: BoardStageProps) {
+  const retained = sections.filter((section) => section.key !== boardKey).slice(-5);
+  const belt = [...retained, { key: boardKey, node: children }];
+  const activeIndex = belt.length - 1;
 
   const veiled = status.kind !== "ready";
 
   return (
     <section
-      className="relative min-h-0 flex-1 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#080a0e]"
+      className="relative h-full min-h-0 flex-1 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#080a0e]"
       aria-label="Teaching board"
     >
-      {/* The outgoing concept, on its way out. */}
-      {outgoing && (
-        <div
-          key={`out-${outgoing.key}`}
-          className={`absolute inset-0 ${transition === "slide" ? "board-slide-out" : "board-erase-out"}`}
-          aria-hidden="true"
-        >
-          {outgoing.node}
-        </div>
-      )}
-
-      {/* The current concept. */}
       <div
-        key={`in-${boardKey}`}
-        className={`absolute inset-0 ${phase === "leaving" ? (transition === "slide" ? "board-slide-in" : "board-draw-in") : ""}`}
+        className="absolute inset-0 transition-transform duration-[900ms] ease-[cubic-bezier(.65,0,.35,1)] motion-reduce:transition-none"
+        style={{ transform: `translateY(-${activeIndex * 100}%)` }}
       >
-        {children}
+        {belt.map((section, sectionIndex) => (
+          <div
+            key={section.key}
+            data-board-section={section.key}
+            data-active-board={section.key === boardKey ? "true" : "false"}
+            className={`absolute inset-x-0 h-full ${section.key === boardKey && (move === "fresh" || transition === "erase") ? "board-draw-in" : ""}`}
+            style={{ top: `${sectionIndex * 100}%` }}
+            aria-hidden={section.key === boardKey ? undefined : true}
+          >
+            {section.node}
+          </div>
+        ))}
       </div>
 
       {overlay}

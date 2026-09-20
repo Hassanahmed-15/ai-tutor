@@ -23,6 +23,7 @@
  */
 
 import { conceptOverlap } from "../lectureDepth";
+import type { Beat } from "../lessonContent";
 
 /** One idea in the lesson, which may span several boards. */
 export interface Concept {
@@ -161,4 +162,92 @@ export function alreadyTaught(
     of: index >= 0 ? state.taught[index].title : null,
     overlap,
   };
+}
+
+export interface LessonConceptNode extends Concept {
+  beatIds: string[];
+  firstBeat: number;
+  lastBeat: number;
+}
+
+export interface TeachingMapEntry {
+  beatId: string;
+  beatIndex: number;
+  conceptId: string;
+  move: BoardMove;
+  reason: string;
+  sectionInConcept: number;
+}
+
+export interface LessonTeachingMap {
+  concepts: LessonConceptNode[];
+  entries: TeachingMapEntry[];
+}
+
+function conceptIdFor(beat: Beat, index: number): string {
+  if (beat.conceptId?.trim()) return beat.conceptId.trim();
+  // Old/cached lessons predate concept ids. Their beat id is a safe stable fallback: it preserves
+  // every existing lesson, while newly generated or explicitly authored continuations can share an
+  // id and get the continuous-board behaviour.
+  return `legacy:${beat.id || index}`;
+}
+
+/**
+ * Build the serialisable lesson map consumed by the player and by live-tutor context.
+ * Checkpoints stay attached to the concept they assess; they do not allocate an empty board.
+ */
+export function buildLessonTeachingMap(beats: Beat[]): LessonTeachingMap {
+  let state = EMPTY_TEACHING_STATE;
+  const concepts = new Map<string, LessonConceptNode>();
+  const entries: TeachingMapEntry[] = [];
+
+  beats.forEach((beat, beatIndex) => {
+    const previous = entries[entries.length - 1];
+    const conceptId = beat.slideKind === "checkpoint" && previous
+      ? previous.conceptId
+      : conceptIdFor(beat, beatIndex);
+    const objective = beat.conceptObjective?.trim() || beat.teacherMove || beat.title;
+    const existing = concepts.get(conceptId);
+    if (existing) {
+      existing.beatIds.push(beat.id);
+      existing.lastBeat = beatIndex;
+    } else {
+      concepts.set(conceptId, {
+        id: conceptId,
+        title: beat.title,
+        objective,
+        prerequisites: beat.prerequisiteConceptIds ?? (previous && previous.conceptId !== conceptId ? [previous.conceptId] : []),
+        beatIds: [beat.id],
+        firstBeat: beatIndex,
+        lastBeat: beatIndex,
+      });
+    }
+
+    const decision = beat.slideKind === "checkpoint"
+      ? { move: "refer-back" as const, reason: "checkpoint stays with the concept it checks" }
+      : decideBoardMove(state, { conceptId, title: beat.title, objective });
+    const sectionInConcept = state.taught.filter((item) => item.conceptId === conceptId).length + 1;
+    entries.push({ beatId: beat.id, beatIndex, conceptId, move: decision.move, reason: decision.reason, sectionInConcept });
+
+    if (beat.slideKind !== "checkpoint") {
+      state = recordTaught(state, {
+        beatId: beat.id,
+        conceptId,
+        sequence: beatIndex,
+        title: beat.title,
+        script: beat.script,
+      });
+    }
+  });
+
+  return { concepts: [...concepts.values()], entries };
+}
+
+export function conceptProgress(map: LessonTeachingMap, beatIndex: number) {
+  const entry = map.entries[beatIndex] ?? null;
+  if (!entry) return { current: null, explained: [], next: null };
+  const current = map.concepts.find((concept) => concept.id === entry.conceptId) ?? null;
+  const explained = map.concepts.filter((concept) => concept.lastBeat < beatIndex);
+  const next = map.concepts.find((concept) => concept.firstBeat > beatIndex) ?? null;
+  return { current, explained, next };
 }
