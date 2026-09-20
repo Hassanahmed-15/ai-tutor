@@ -72,6 +72,19 @@ const LABELS: Record<RendererKind, { text: string; dot: string; tint: string; ti
  * generated before models were recorded, which then show the chip exactly as before.
  */
 export function RendererBadge({ kind, detail }: { kind: RendererKind; detail?: string | null }) {
+  /*
+   * DEVELOPER TELEMETRY, HIDDEN FROM STUDENTS BY DEFAULT.
+   *
+   * This pill named the RENDERING ENGINE — "React · sandbox", "Chart · Vega-Lite", "Diagram · ELK"
+   * — in the board's top-left corner, optionally with the model name and the dollar cost of the
+   * board. Its own docstring says it exists for comparing and debugging renderers, which is a
+   * question no learner has, in vocabulary no learner knows, occupying the space where the diagram
+   * starts. It also told a student nothing useful about PROVENANCE: the hand-authored scenes
+   * render the same badge as a model-generated one.
+   *
+   * Kept for renderer work, behind NEXT_PUBLIC_SHOW_RENDERER_BADGE=1.
+   */
+  if (process.env.NEXT_PUBLIC_SHOW_RENDERER_BADGE !== "1") return null;
   const { text, dot, tint, title } = LABELS[kind];
   return (
     <span

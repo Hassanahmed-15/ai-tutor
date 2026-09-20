@@ -13,6 +13,9 @@ import { narrationRecovery } from "@/lib/narrationRecovery";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
+import { AnnotationLayer, type BoardTool } from "@/components/board/AnnotationLayer";
+import { BoardDock } from "@/components/board/BoardDock";
+import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
 import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
 import { ManimBoard } from "./sketch/ManimBoard";
 import { GsapSketch } from "./sketch/GsapSketch";
@@ -30,7 +33,7 @@ import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd
 import { MazeGame } from "@/components/adhd/games/MazeGame";
 import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import type { Expression } from "@/lib/adhd/expression";
-import { Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
+import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase } from "@/components/classroom/VoiceState";
 import { useManimPrefetch } from "@/lib/useManimPrefetch";
@@ -440,6 +443,14 @@ export function LessonPlayer({
   const [focusPause, setFocusPause] = useState<null | "stopped" | "ready">(null);
   const focusHoldTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Two-way board: freehand sketch + highlighter.
+  /*
+   * ONE TOOL, AND MARKS THAT OUTLIVE THE BEAT.
+   *
+   * `drawMode`/`highlightMode` were mutually exclusive booleans over two separate raster overlays,
+   * and the strokes were wiped on every beat change. See lib/board/annotations.ts.
+   */
+  const [boardTool, setBoardTool] = useState<BoardTool>("none");
+  const [annotations, setAnnotations] = useState(EMPTY_ANNOTATIONS);
   const [drawMode, setDrawMode] = useState(false);
   const [askingDrawing, setAskingDrawing] = useState(false);
   const [highlightMode, setHighlightMode] = useState(false);
@@ -1885,6 +1896,21 @@ export function LessonPlayer({
                 }}
               />
             )}
+            {/*
+             * The student's own marks, above the board and below any status veil. One layer for
+             * pen, highlighter and eraser — the two old overlays could not be used together.
+             */}
+            <AnnotationLayer
+              boardId={beat.id}
+              tool={boardTool}
+              state={annotations}
+              onChange={setAnnotations}
+              visible
+              onStrokeFinished={(stroke) => {
+                // A highlight over real board text is a question waiting to be asked.
+                if (stroke.kind === "highlight" && stroke.coveredText) highlightedTextRef.current = stroke.coveredText;
+              }}
+            />
           </section>
 
           <div className="hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1">
@@ -1961,172 +1987,60 @@ export function LessonPlayer({
             `order-first` keeps it visually above the board while leaving it after the board in the
             DOM would have hurt nothing — but it reads top-to-bottom for a screen reader this way,
             which matches the visual order. */}
-        <header className="order-first flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-4 py-2.5">
-          <div className="flex items-center gap-4">
-            <button onClick={onExit} className="group relative" aria-label="Exit lecture">
-              <AvatarRing progress={progressPct} speaking={speaking}>
-                {/*
-                  ADHD mode renders ONE big avatar in the sidebar, so this slot drops the face and
-                  keeps only the control. The button, its ring and its aria-label are untouched —
-                  deleting the element outright would delete the exit affordance with it.
-                */}
-                {adhd ? (
-                  <span className="grid size-[52px] place-items-center text-lg text-[var(--hud-text-dim)]" aria-hidden="true">
-                    ←
-                  </span>
-                ) : (
-                  <TeacherAvatar speaking={speaking} size={52} expression={face} />
-                )}
-              </AvatarRing>
+        <BoardDock
+          playing={lesson.playing}
+          onTogglePlay={() => (hasStarted ? togglePlay() : startLesson())}
+          onPrevious={index > 0 ? () => goTo(index - 1) : undefined}
+          onNext={skipForward}
+          canGoPrevious={index > 0}
+          canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat}
+          tool={boardTool}
+          onToolChange={setBoardTool}
+          onUndo={() => setAnnotations(annUndo(annotations))}
+          canUndo={annCanUndo(annotations)}
+          micOn={tutor.status === "live" && !tutor.muted}
+          onToggleMic={() => {
+            if (tutor.status === "live") tutor.toggleMute();
+            else void tutor.start();
+          }}
+          micAvailable={REALTIME_TUTOR_ENABLED}
+          positionLabel={`Part ${index + 1} of ${displayBeatCount}`}
+        />
+
+        {/*
+         * THE TOP STRIP: who is teaching, what part, and one status word. Nothing else.
+         *
+         * This replaces a header carrying eight icon buttons (rate, draw, highlight, export, skip,
+         * play, restart, exit) of which exactly one had a visible label, plus two separate controls
+         * that both exited the lecture. Transport now lives in the dock BELOW the board, where it
+         * cannot cover the teaching content.
+         */}
+        <header className="order-first flex shrink-0 items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-4 py-2.5">
+          <div className="flex min-w-0 items-center gap-3">
+            <button
+              onClick={onExit}
+              aria-label="Leave the lecture"
+              className="flex h-9 shrink-0 items-center gap-1.5 rounded-lg px-2.5 text-[0.82rem] font-medium text-[var(--hud-text-dim)] transition hover:bg-white/10 hover:text-[var(--hud-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--listening)]"
+            >
+              <ChevronLeft size={17} />
+              <span className="hidden sm:inline">Leave</span>
             </button>
-            {/* min-w-0 lets the title truncate instead of pushing the controls off-screen — a
-                generated lesson title can be arbitrarily long. */}
             <div className="min-w-0">
-              <p className="text-[0.72rem] leading-none text-[var(--hud-text-faint)]">
-                Part {index + 1} of {displayBeatCount}
-              </p>
-              <h1 className="mt-1 max-w-[38ch] truncate text-[0.95rem] font-medium leading-tight text-[var(--hud-text)]">
-                {title}
-              </h1>
+              <p className="truncate text-[0.95rem] font-semibold leading-tight text-[var(--hud-text)]">{title}</p>
+              <p className="text-[0.72rem] text-[var(--hud-text-faint)]">Part {index + 1} of {displayBeatCount}</p>
             </div>
-
-            {/* The score sits INSIDE the header row rather than absolutely over the board. As an
-                overlay it clipped the board frame at every viewport; as a flow element the header
-                simply grows to hold it, which is what this header was built to do. */}
-            {adhd && <AdhdScoreChip />}
-
-            {/* Who is speaking — the single most important thing this screen communicates. Derived
-                from state the tutor hook already owns, so nothing about the audio pipeline
-                changes. Colour, icon and text all carry the meaning, so it survives colour
-                blindness and screen readers alike. */}
-            <VoiceState
-              phase={derivePhase({
-                status: tutor.status,
-                // `tutor.isSpeaking` is a getter, not a flag — it reads live refs for the
-                // in-flight response and the audio element.
-                ariaSpeaking: speaking || tutor.isSpeaking(),
-                // The hook does not expose a dedicated "student is talking" flag, so this is
-                // deliberately conservative: only claim the student has the floor when the
-                // session is live, the mic is open, and neither Aria channel is active.
-                studentSpeaking: Boolean(
-                  tutor.status === "live" && !tutor.muted && !speaking && !tutor.isSpeaking() && hasStarted,
-                ),
-                muted: tutor.muted,
-                paused: hasStarted && !lesson.playing,
-              })}
-            />
-
-            {!deafMode && hasStarted && <EngagementMeter engagement={engagement} accent="bg-[var(--hud-cyan)]" />}
           </div>
-
-          {/*
-            THE TRANSPORT IS INERT DURING A CHECK-IN.
-            The overlay covers the board, but this row sits outside that section — so without this a
-            learner could simply keep pressing Skip straight through the conversation, which is the
-            exact behaviour the check-in exists to answer, and pressing Play would fight the pause
-            besides. `inert` rather than `pointer-events-none`: it also removes the buttons from the
-            tab order and from assistive tech, so the controls are unavailable rather than merely
-            unclickable. The dimming is what makes that legible instead of mysterious.
-          */}
-          <div
-            inert={checkin !== null}
-            className={`flex flex-wrap items-center gap-2 transition-opacity ${checkin ? "opacity-30" : ""}`}
-          >
-            {/* Icon controls with tooltips, replacing the text-filled pills. Every handler below
-                is the original one, moved verbatim — this is a presentation change only. The
-                tooltip appears on keyboard focus as well as hover, and each button keeps an
-                aria-label, so an icon-only control stays operable and announceable. */}
-            <button
-              onClick={cycleRate}
-              aria-label={`Playback speed, currently ${rate} times. Click to change.`}
-              className="grid h-9 min-w-9 place-items-center rounded-[var(--radius-sm)] border border-[var(--hud-line)] px-2 text-[0.78rem] tabular-nums text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--listening)]"
-              style={{ transitionDuration: "var(--motion-fast)" }}
-            >
-              {rate}×
-            </button>
-            <IconButton
-              icon={Pencil}
-              label="Draw on the board"
-              active={drawMode}
-              onClick={() => {
-                setHighlightMode(false);
-                setDrawMode((v) => !v);
-              }}
-            />
-            <IconButton
-              icon={Highlighter}
-              label="Highlight the board"
-              active={highlightMode}
-              onClick={() => {
-                setDrawMode(false);
-                setHighlightMode((v) => !v);
-              }}
-            />
-            <button
-              onClick={async () => {
-                setExportingPdf(true);
-                try {
-                  const res = await fetch("/api/export-pdf", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ topic: title, beats }),
-                  });
-                  if (!res.ok) throw new Error("export failed");
-                  const blob = await res.blob();
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = `${title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}.pdf`;
-                  a.click();
-                  URL.revokeObjectURL(url);
-                } catch {
-                  /* PDF export failures shouldn't interrupt the lesson */
-                } finally {
-                  setExportingPdf(false);
-                }
-              }}
-              disabled={exportingPdf}
-              aria-label={exportingPdf ? "Exporting this lesson as a PDF" : "Export this lesson as a PDF"}
-              className="grid size-9 place-items-center rounded-[var(--radius-sm)] border border-[var(--hud-line)] text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface)] disabled:cursor-not-allowed disabled:opacity-35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--listening)]"
-              style={{ transitionDuration: "var(--motion-fast)" }}
-            >
-              {exportingPdf ? (
-                <Loader2 aria-hidden="true" size={17} strokeWidth={1.9} className="animate-spin" />
-              ) : (
-                <Download aria-hidden="true" size={17} strokeWidth={1.9} />
-              )}
-            </button>
-            <IconButton
-              icon={SkipForward}
-              label="Skip to next part"
-              onClick={skipForward}
-              disabled={waitingForNextBeat || (!hasMoreBeats && index >= beats.length - 1)}
-            />
-
-            {/* The primary action keeps its words. Everything else on this bar is an icon, which
-                is exactly what makes a single labelled button read as the main one. */}
-            <button
-              onClick={hasStarted ? togglePlay : startLesson}
-              className="hud-btn-primary inline-flex items-center gap-2 rounded-[var(--radius-sm)] px-4 py-2 text-sm"
-            >
-              {!hasStarted ? (
-                <>
-                  <Play aria-hidden="true" size={15} strokeWidth={2.2} /> Start lecture
-                </>
-              ) : lesson.playing ? (
-                <>
-                  <Pause aria-hidden="true" size={15} strokeWidth={2.2} /> Pause
-                </>
-              ) : (
-                <>
-                  <Play aria-hidden="true" size={15} strokeWidth={2.2} /> Resume
-                </>
-              )}
-            </button>
-
-            <IconButton icon={RotateCcw} label="Restart lesson" onClick={restart} />
-            {onExit && <IconButton icon={LogOut} label="End lesson" tone="danger" onClick={onExit} />}
-          </div>
+          <VoiceState
+            phase={derivePhase({
+              status: tutor.status,
+              ariaSpeaking: speaking || tutor.isSpeaking(),
+              studentSpeaking: Boolean(
+                tutor.status === "live" && !tutor.muted && !speaking && !tutor.isSpeaking() && hasStarted,
+              ),
+              muted: tutor.muted,
+              paused: !lesson.playing && hasStarted,
+            })}
+          />
         </header>
 
         {voiceBlocked && (

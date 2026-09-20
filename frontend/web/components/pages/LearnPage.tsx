@@ -2772,11 +2772,20 @@ type BuildCost =
             badge showed generation alone and said so; that was honest but it was not the cost of
             the lecture — a re-uploaded PDF showed $0.0000 for about a dollar of document reading.
         */}
-        <LectureCostBadge
-          reused={buildCost?.kind === "cached"}
-          demo={buildCost?.kind === "demo"}
-          generating={Boolean(progressiveSessionId) && !progressiveComplete}
-        />
+        {/*
+         * OPERATOR TELEMETRY, NOT STUDENT UI. This floated a running dollar figure across the top
+         * of the board — "This lecture $0.5385 · planning $0.0014 · generation $0.4297 …" — in the
+         * most valuable space on screen, answering a question no learner has while they are trying
+         * to follow a diagram. It is worth keeping for cost work, so it is behind a flag rather
+         * than deleted: NEXT_PUBLIC_SHOW_COST_BADGE=1.
+         */}
+        {process.env.NEXT_PUBLIC_SHOW_COST_BADGE === "1" && (
+          <LectureCostBadge
+            reused={buildCost?.kind === "cached"}
+            demo={buildCost?.kind === "demo"}
+            generating={Boolean(progressiveSessionId) && !progressiveComplete}
+          />
+        )}
       </div>
     );
   }
