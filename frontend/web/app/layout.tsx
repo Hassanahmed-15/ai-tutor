@@ -3,6 +3,23 @@ import { JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
 
 /**
+ * NEVER CACHE THE APP SHELL.
+ *
+ * `/` was statically prerendered, so Next served it with `cache-control: s-maxage=31536000` and
+ * `x-nextjs-cache: HIT` — one year. The HTML names the hashed JS chunks, so a browser holding that
+ * cached shell kept loading the PREVIOUS build's JavaScript however many times the container was
+ * redeployed: new image, new chunks on disk, and the user still looking at the old UI with nothing
+ * to indicate why. That is not a caching win, it is a deploy that silently does not arrive.
+ *
+ * Declared here rather than in page.tsx because route config is server-only and page.tsx is a
+ * client component — Next fails the build with "Invalid revalidate value" if you try.
+ *
+ * Nothing is lost: the shell branches on the signed-in user immediately, so it is per-request.
+ */
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+/**
  * Typography: one family, used lightly.
  *
  * Sora — a geometric sans with slightly squared terminals and a distinctive lowercase. Inter and
