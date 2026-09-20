@@ -61,3 +61,15 @@ test("the lead is configurable, and an animation's lead is never shorter than a 
   assert.deepEqual(lookaheadFromEnv({ PROGRESSIVE_LOOKAHEAD: "4" }), { lookahead: 4, animationLookahead: 4 });
   assert.deepEqual(lookaheadFromEnv({ PROGRESSIVE_LOOKAHEAD: "junk", PROGRESSIVE_ANIMATION_LOOKAHEAD: "5" }), { lookahead: 2, animationLookahead: 5 });
 });
+
+test("with nothing else to do, the rest of the lecture is finished one beat at a time — so it reaches history", () => {
+  // The student stopped on beat 1 of 8; everything within reach is ready and nothing is in flight.
+  const beats = [0, 1, 2, 3].map((s) => beat(s, "ready"));
+  assert.deepEqual(dueSequences({ planLength: 8, playhead: 1, isAnimation: noAnimations, beats, now: NOW }), [4]);
+  // While that one is being written, nothing more is started: the student's next beats come first.
+  assert.deepEqual(dueSequences({ planLength: 8, playhead: 1, isAnimation: noAnimations, beats: [...beats, beat(4, "generating")], now: NOW }), []);
+  assert.deepEqual(dueSequences({ planLength: 8, playhead: 1, isAnimation: noAnimations, beats: [...beats, beat(4, "playable")], now: NOW }), []);
+  // And when every beat exists there is nothing left to do.
+  const all = [0, 1, 2, 3, 4, 5, 6, 7].map((s) => beat(s, "ready"));
+  assert.deepEqual(dueSequences({ planLength: 8, playhead: 1, isAnimation: noAnimations, beats: all, now: NOW }), []);
+});

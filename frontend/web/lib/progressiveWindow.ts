@@ -71,6 +71,13 @@ export function lookaheadFromEnv(env: Record<string, string | undefined> = proce
  *   - its generation has been silent for longer than any real one takes (the worker died).
  * A beat being generated, awaiting its visuals, finished, or failed for good is left alone —
  * dispatching it again would pay twice for the same beat.
+ *
+ * THE REST OF THE LECTURE, WHEN NOTHING ELSE IS GOING ON. A lecture reaches the student's history
+ * only once every beat exists (progressiveLectureWorker maybeFinalize). Generating strictly within
+ * reach of the playhead meant a student who stopped early left a lecture that never finished and
+ * never appeared in their history. So when nothing near the student is due and no beat anywhere is
+ * in flight, the earliest unwritten beat beyond reach is due too — ONE, because this is asked again
+ * as each beat finishes, and one at a time never competes with the beats the student is about to need.
  */
 export function dueSequences(input: WindowInput): number[] {
   const lookahead = input.lookahead ?? DEFAULT_LOOKAHEAD;
@@ -93,6 +100,15 @@ export function dueSequences(input: WindowInput): number[] {
       const age = input.now - Date.parse(beat.updatedAt);
       if (Number.isFinite(age) && age > staleMs) due.push(sequence);
     }
+  }
+  if (due.length > 0) return due;
+
+  // Idle: finish the lecture in the background, one beat at a time.
+  const inFlight = input.beats.some((beat) => beat.state === "generating" || beat.state === "playable");
+  if (inFlight) return due;
+  for (let sequence = 0; sequence < input.planLength; sequence += 1) {
+    const beat = bySequence.get(sequence);
+    if (!beat || beat.state === "planned") return [sequence];
   }
   return due;
 }
