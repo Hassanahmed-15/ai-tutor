@@ -11,6 +11,7 @@
     "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "dependencies": {
-    "docx": "^9.7.1"
+    "docx": "^9.7.1",
+    "onnxruntime-web": "^1.30.0"
   }
 }
