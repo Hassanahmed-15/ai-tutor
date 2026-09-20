@@ -2,7 +2,13 @@ import { NextResponse } from "next/server";
 import { buildGeminiLiveInstructions } from "@/lib/geminiLiveContract";
 import { buildLessonDesignInstructions } from "@/lib/lessonDesignContract";
 
-const GEMINI_LIVE_MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
+/**
+ * gemini-3.8-live: the newest general Live model on this account, verified to open a session with
+ * the production config (scripts/probe-live-model.mjs). It rejects thinkingConfig — the hook omits
+ * it for this line. The extended-thinking variant exists but adds reasoning latency to every turn,
+ * which is the wrong trade for a full-duplex conversation.
+ */
+const GEMINI_LIVE_MODEL = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.8-live";
 
 export async function POST(request: Request) {
   const apiKey = process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;

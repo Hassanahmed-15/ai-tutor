@@ -229,6 +229,7 @@ export function LessonDesignMode({
   }, []);
 
   const tutor = useGeminiLiveTutor({
+    gateProfile: "conversation",
     topic,
     getBeatContext: () => {
       // There is no lecture yet. Saying so plainly is what stops the model describing a slide that

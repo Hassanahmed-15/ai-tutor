@@ -58,7 +58,9 @@ loadLocalEnv();
 const apiKey = process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY;
 assert.ok(apiKey, "Set GEMINI_API_KEY in frontend/web/.env.local before running this acceptance test.");
 
-const model = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.1-flash-live-preview";
+const model = process.env.GEMINI_LIVE_MODEL ?? "gemini-3.8-live";
+// The 3.8 line closes the socket on a thinkingConfig (1007). See lib/useGeminiLiveTutor.ts.
+const supportsThinkingLevel = !/gemini-3\.8-live/.test(model);
 const client = new GoogleGenAI({ apiKey, httpOptions: { apiVersion: "v1alpha" } });
 const instructions = buildGeminiLiveInstructions({
   topic: "supply and demand",
@@ -149,6 +151,11 @@ async function runTurn(label, text, { autoResume = false } = {}) {
   session.sendClientContent({ turns: text, turnComplete: true });
   await waitForTurn(turn);
   await sleep(200);
+  // LIVE_DEBUG=1 prints what the model actually did, which is the only way to tell "called the
+  // wrong tool" from "answered in words instead" when a model changes behaviour.
+  if (process.env.LIVE_DEBUG) {
+    console.error(`[${label}] tools=${eventNames(turn.events).join(",") || "none"} audio=${turn.audioBytes}B said="${turn.transcript.trim().slice(0, 240)}"`);
+  }
   if (isDrawingRequest(text) && !eventNames(turn.events).includes("show_board")) {
     await runLocalDrawingFallback(turn);
   }
@@ -166,7 +173,7 @@ try {
     config: {
       responseModalities: [Modality.AUDIO],
       outputAudioTranscription: {},
-      thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL },
+      ...(supportsThinkingLevel ? { thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL } } : {}),
       speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } },
       systemInstruction: { parts: [{ text: instructions }] },
       tools: [{ functionDeclarations: [SHOW_BOARD_TOOL, PAUSE_LECTURE_TOOL, RESUME_LECTURE_TOOL] }],

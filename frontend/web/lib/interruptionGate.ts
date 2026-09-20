@@ -1,4 +1,12 @@
 /**
+ * STATUS: the `InterruptionGate` class below is SUPERSEDED by lib/voice/voiceGate.ts and is no
+ * longer wired into the tutor. It is kept because its feature extraction — `analyzeFrame`,
+ * `isVoiceLike`, `voiceConfidence`, `DEFAULT_GATE_CONFIG` — is the acoustic layer the new gate is
+ * built on, and because its matrix tests still pin that layer's behaviour on every noise class.
+ * The class itself had two structural faults the new gate exists to fix: a self-echo cooldown that
+ * could be dated into the future indefinitely, and a terminal "rejected" state.
+ */
+/**
  * Deciding whether the student is TALKING TO THE TUTOR, as opposed to merely making noise.
  *
  * WHY THIS EXISTS. The tutor used to stop talking for a desk fan. Three separate triggers each cut

@@ -349,6 +349,8 @@ type BuildCost =
   const lastVoiceQuestionRef = useRef<string>("");
 
   const planningVoice = useGeminiLiveTutor({
+    // Aria asks and waits here; a plain answer in the student's voice is a turn. See lib/voice/voiceGate.ts.
+    gateProfile: "conversation",
     topic: topic || "this lesson",
     // Read when called, never captured: the outline is revised while the session is open, and a
     // captured value would leave her discussing the draft as it stood when she started speaking.

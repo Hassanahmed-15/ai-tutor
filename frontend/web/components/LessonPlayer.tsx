@@ -503,7 +503,17 @@ export function LessonPlayer({
    * pause, to resume, and to draw, which is what makes "stop, answer, draw, carry on" work without
    * the UI having to guess at intent from transcripts.
    */
+  /*
+   * Whether the LECTURE is audibly narrating — the tutor's voice the Live hook cannot see, because
+   * narration plays through the voice director's TTS path, not through the hook's own playback.
+   * Read by the gate on every mic frame via `getTutorSpeaking`, so it is a ref, not state, and it
+   * is kept current by the effect below `lesson` (which is declared after this call).
+   */
+  const narrationAudibleRef = useRef(false);
   const tutor = useGeminiLiveTutor({
+    // Minutes of narration at a time: nothing stops her without positive evidence.
+    gateProfile: "lecture",
+    getTutorSpeaking: () => narrationAudibleRef.current,
     topic: title,
     getBeatContext: () =>
       `${beatRef.current.title}: ${beatRef.current.script}` +
@@ -729,6 +739,10 @@ export function LessonPlayer({
     });
   }, [adhd]);
   const lesson = useLessonMachine(voice);
+  useEffect(() => {
+    // The teacher owns the voice and the lesson is not paused or frozen: narration is audible.
+    narrationAudibleRef.current = voice.owner === "teacher" && lesson.playing;
+  }, [voice.owner, lesson.playing]);
 
   const stopVoice = useCallback(() => {
     voice.stopTeacher();
