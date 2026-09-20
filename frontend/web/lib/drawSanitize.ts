@@ -1,5 +1,5 @@
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
-import { transitionSentence } from "./beatPresentation";
+import { openingSentence, transitionSentence } from "./beatPresentation";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { validateManimSceneSpec } from "./manimSceneSpec";
 import { validateStructureSpec } from "./structureSpec";
@@ -1361,7 +1361,7 @@ export function sanitizeBeat(raw: unknown, index: number): Beat | null {
   const beat: Beat = {
     id: str(o.id, `beat-${index}`),
     title,
-    transitionIn: index > 0 && typeof o.transitionIn === "string" ? str(o.transitionIn) : undefined,
+    transitionIn: typeof o.transitionIn === "string" ? str(o.transitionIn) : undefined,
     teacherMove: str(o.teacherMove, "I keep teaching."),
     stepLabel: str(o.stepLabel, `${index + 1}`),
     slideKind,
@@ -2166,6 +2166,8 @@ function uniqueShort(items: string[], max: number) {
 type SanitizeDrawLectureOptions = {
   enforceDepth?: boolean;
   minUsableBeats?: number;
+  /** The lecture's topic, for the opening line when the model did not write one. */
+  topic?: string;
 };
 
 /** Sanitizes the whole `{ beats: [...] }` payload. Throws if too few survive. */
@@ -2181,7 +2183,9 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
 
   // The transition is authored with the beat, but older cached/generated lectures predate that
   // field. Fill those deterministically so a replay and a fresh lecture have the same smooth handoff.
-  delete beats[0]?.transitionIn;
+  // Beat one's is an OPENING line rather than a bridge — it is what the student hears first, and
+  // having one is what lets the lecture start speaking immediately (lib/beatPresentation.ts).
+  if (beats[0]) beats[0].transitionIn = openingSentence(beats[0].transitionIn, options.topic ?? beats[0].title);
   for (let index = 1; index < beats.length; index++) {
     beats[index].transitionIn = transitionSentence(
       beats[index].transitionIn,

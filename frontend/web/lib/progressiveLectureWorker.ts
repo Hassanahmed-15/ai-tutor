@@ -7,7 +7,7 @@ import { planBeatVisual, specToBrief } from "./beatVisualSpec";
 import { direct, type BoardKind } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
-import { polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
+import { openingSentence, polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
 import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
@@ -32,7 +32,8 @@ import type {
   ProgressiveVisualKind,
 } from "./progressiveLectureTypes";
 import { fillReactAnimationOps, type ReactAnimationFillStats } from "./reactAnimationGen";
-import { animationModelLabel } from "./animationModels";
+import { animationModelLabel, type AnimationModel } from "./animationModels";
+import { animationTierRoutingEnabled, classifyAnimationTier, modelForTier, type TierDecision } from "./animationTier";
 import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
@@ -370,7 +371,7 @@ async function generateOneBeat(
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". Omit transitionIn on the first beat. The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
@@ -427,9 +428,11 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   return {
     id: planned.id,
     title: planned.title,
+    // Beat one opens the lecture rather than bridging from anything; either way the player treats
+    // this as the sentence to start speaking on the title slide (lib/beatPresentation.ts).
     transitionIn: planned.sequence > 0
       ? transitionSentence(payload.transitionIn, session.plan[planned.sequence - 1]?.title ?? session.topic, planned.title)
-      : undefined,
+      : openingSentence(payload.transitionIn, session.topic),
     teacherMove: clean(payload.teacherMove) || planned.objective,
     stepLabel: `${planned.sequence + 1} · ${planned.sequence === 0 ? "Start" : slideKind === "checkpoint" ? "Check" : "Learn"}`,
     slideKind,
@@ -467,7 +470,7 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
     title: planned.title,
     transitionIn: sequence > 0
       ? transitionSentence(undefined, session.plan[sequence - 1]?.title ?? session.topic, planned.title)
-      : undefined,
+      : openingSentence(undefined, session.topic),
     teacherMove: "Keep the lesson moving with a clear, visual explanation.",
     stepLabel: `${sequence + 1} · Learn`,
     slideKind: sequence === session.plan.length - 1 ? "recap" : "intro",
@@ -514,6 +517,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   let visualChoiceMs = 0;
   let premiumMs = 0;
   let animation: import("./reactAnimationGen").AnimationTiming | undefined;
+  let tier: TierDecision | undefined;
   if (client && session.sourceType === "prompt") {
     const choiceStartedAt = performance.now();
     const selection = await chooseProgressiveVisual(client, candidate, planned.visualKind);
@@ -538,6 +542,24 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
        * drift apart if starterBeatCount ever changes.
        */
       const blocksPlayback = sequence < session.starterBeatCount;
+      /*
+       * HOW HEAVY IS THIS ANIMATION, and so which model draws it (lib/animationTier.ts). A recap
+       * slide and a traced algorithm used to get whichever model their position in the lecture
+       * handed them. The opening beats are not asked: they hold up playback, so they stay on the
+       * fast starter model whatever they show — that cap is what makes the lecture start quickly.
+       */
+      if (visualKind === "react-animation" && animationTierRoutingEnabled()) {
+        if (blocksPlayback) {
+          tier = { tier: "light", reason: "opening beat: drawn by the fast model so the lecture can start" };
+        } else {
+          const tierStartedAt = performance.now();
+          const decided = await classifyAnimationTier(client, candidate);
+          visualChoiceMs += performance.now() - tierStartedAt;
+          costUsd += decided.costUsd;
+          tier = { tier: decided.tier, reason: decided.reason };
+        }
+        console.log(`[animation-tier] session=${sessionId} seq=${sequence} tier=${tier.tier} model=${blocksPlayback ? STARTER_ANIMATION_MODEL : modelForTier(tier.tier).id} reason="${tier.reason}"`);
+      }
       const result = await fillPremium(
         client,
         candidate,
@@ -545,6 +567,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
         session.sourceType !== "prompt",
         sequence,
         blocksPlayback,
+        tier && !blocksPlayback ? modelForTier(tier.tier) : undefined,
       );
       // The single most expensive call in the pipeline — an animation generation plus its vision
       // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
@@ -578,6 +601,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       enrichMs: Math.round(performance.now() - enrichStartedAt),
       readyAt: new Date().toISOString(),
       animation,
+      ...(tier ? { animationTier: tier.tier, animationTierReason: tier.reason } : {}),
     },
     fallbackUsed: !success || latest.fallbackUsed,
     costUsd: latest.costUsd + costUsd,
@@ -692,6 +716,8 @@ async function fillPremium(
   animationIndex = 0,
   /** True while this beat is one the student is actively waiting on. */
   blocksPlayback = false,
+  /** The model this beat's animation tier calls for (lib/animationTier.ts); absent → rotation or default. */
+  tierModel?: AnimationModel,
 ) {
   if (!process.env.OPENAI_API_KEY) return { success: false, costUsd: 0, error: "OPENAI_API_KEY is not set." };
   if (kind === "react-animation" && process.env.REACT_ANIMATIONS_ENABLED !== "1") return disabled(kind);
@@ -703,7 +729,9 @@ async function fillPremium(
         refineTimeBudgetMs: blocksPlayback ? STARTER_REFINE_BUDGET_MS : undefined,
         ...(blocksPlayback
           ? { model: { id: STARTER_ANIMATION_MODEL, label: animationModelLabel(STARTER_ANIMATION_MODEL) ?? STARTER_ANIMATION_MODEL } }
-          : {}),
+          : tierModel
+            ? { model: tierModel }
+            : {}),
       })
     : kind === "blackboard"
       ? await fillBlackboardOps(client, [beat], hasSource)

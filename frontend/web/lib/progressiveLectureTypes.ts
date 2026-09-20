@@ -136,6 +136,9 @@ export type BeatTiming = {
   readyAt?: string;
   /** For animated boards: model, checks, critic, refine and every attempt. */
   animation?: import("./reactAnimationGen").AnimationTiming;
+  /** How demanding the animation was judged to be, which decides the model (lib/animationTier.ts). */
+  animationTier?: "light" | "moderate" | "heavy";
+  animationTierReason?: string;
 };
 
 export type ProgressiveBeatDoc = {

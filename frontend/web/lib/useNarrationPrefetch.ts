@@ -26,6 +26,29 @@ import { recordTtsResponse } from "./costLedger";
  *   - Every failure is swallowed. This is a warm-up; if it fails the normal on-demand path runs
  *     exactly as before, just slower. It must never be able to break playback.
  */
+/**
+ * Warm these sentences now, from outside a component.
+ *
+ * The hook only runs once the player is mounted, which is after the build finishes — too late for
+ * the lecture's own opening line. The build screen calls this the moment the first beat's text
+ * exists, so by the time the student presses Start the opening clip is a cache hit.
+ */
+export async function warmNarration(sentences: string[]): Promise<void> {
+  if (typeof window === "undefined") return;
+  for (const text of sentences) {
+    if (!text || warmed.has(text)) continue;
+    warmed.add(text);
+    await fetch("/api/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) })
+      .then((r) => {
+        recordTtsResponse(r);
+        return r.blob();
+      })
+      .catch(() => undefined);
+  }
+}
+
+const warmed = new Set<string>();
+
 export function useNarrationPrefetch(scripts: string[], currentIndex: number, lookahead = 2): void {
   // Text already requested, so re-renders and re-visits never refetch. Keyed by the script itself
   // because that is what the server cache keys on.
@@ -45,7 +68,11 @@ export function useNarrationPrefetch(scripts: string[], currentIndex: number, lo
      * synthesis of several seconds.
      */
     const pending: string[] = [];
-    for (let i = currentIndex + 1; i <= currentIndex + lookahead && i < scripts.length; i += 1) {
+    // From the CURRENT beat, not the next one. The beat the student is on is the one whose first
+    // clip they are waiting for in silence; on beat one that wait is the pause at the start of the
+    // lecture. Its sentences are already in `requested` once it has played, so this costs nothing
+    // after the first beat.
+    for (let i = currentIndex; i <= currentIndex + lookahead && i < scripts.length; i += 1) {
       for (const sentence of splitNarrationSentences(scripts[i] ?? "")) {
         if (sentence && !requested.current.has(sentence)) pending.push(sentence);
       }

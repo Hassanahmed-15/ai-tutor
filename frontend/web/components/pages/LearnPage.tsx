@@ -8,6 +8,9 @@ import { LessonDesignMode, type DesignProgress } from "@/components/design/Lesso
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
 import { memoryWasUsed, personaForPrompt, profileHasSignal, rememberedLine, seedProfile, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
 import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
+import { openingSentence } from "@/lib/beatPresentation";
+import { warmNarration } from "@/lib/useNarrationPrefetch";
+import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
@@ -501,6 +504,8 @@ type BuildCost =
    * student is not asked again what they showed last time. Signed out, it is simply empty.
    */
   const learnerMemoryLoadRef = useRef<Promise<LearnerMemory | null> | null>(null);
+  /** The opening line and first sentence are only worth asking for once per lecture. */
+  const warmedOpeningRef = useRef(false);
   const [memoryNote, setMemoryNote] = useState<string | null>(null);
   const [buildBeats, setBuildBeats] = useState<{ beats: NonNullable<ProgressiveLectureSnapshot["beatStatus"]>; startedAt?: string } | null>(null);
   /*
@@ -715,6 +720,20 @@ type BuildCost =
       const snapshot = JSON.parse(event.data) as ProgressiveLectureSnapshot;
       // Every planned beat with its measured timings, for the build screen's timeline.
       if (snapshot.beatStatus) setBuildBeats({ beats: snapshot.beatStatus, startedAt: snapshot.createdAt });
+      /*
+       * THE LECTURE'S FIRST WORDS, SYNTHESISED WHILE THE STUDENT IS STILL WATCHING THE BUILD.
+       *
+       * The player's own warm-up cannot help here: it only exists once the player is mounted,
+       * which is after this screen is gone. So the first beat's opening line and first sentence
+       * would always be a cold /api/tts call — seconds of silence at the exact moment the lecture
+       * begins. Asked for here, they are a cache hit by the time Start is pressed. Best effort.
+       */
+      const opening = snapshot.beats?.[0];
+      if (opening?.script && !warmedOpeningRef.current) {
+        warmedOpeningRef.current = true;
+        const bridge = openingSentence(opening.transitionIn, snapshot.topic ?? opening.title);
+        void warmNarration(splitNarrationSentences(`${bridge} ${opening.script}`).slice(0, 2));
+      }
       // The worker keeps a running total, so each snapshot replaces the last rather than adding.
       if (typeof snapshot.costUsd === "number") setCost("generation", snapshot.costUsd);
       setProgressivePlannedBeatCount(snapshot.plannedBeatCount);

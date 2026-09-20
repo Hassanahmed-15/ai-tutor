@@ -139,6 +139,37 @@ function deterministicTransition(previousTitle: string, currentTitle: string): s
 /** One short, speakable sentence. Missing values get a deterministic bridge for old lectures. */
 export function transitionSentence(raw: unknown, previousTitle: string, currentTitle: string): string {
   const fallback = deterministicTransition(previousTitle, currentTitle);
+  return oneSentence(raw, fallback);
+}
+
+const OPENING_LINES = [
+  (topic: string) => `Let’s get into ${topic}.`,
+  (topic: string) => `Here’s ${topic}, from the ground up.`,
+  (topic: string) => `We’re looking at ${topic} today.`,
+  (topic: string) => `Let’s work through ${topic} together.`,
+];
+
+/**
+ * THE FIRST THING THE STUDENT HEARS, and why it exists.
+ *
+ * Every beat but the first carries a transitionIn, and a beat that has one narrates the moment its
+ * title slide appears. The first beat had none, so it sat through the title-slide timer in silence
+ * and only then asked for its first audio clip — the pause at the start of every lecture, and the
+ * one place the lecture felt slower than the joins inside it. Giving beat one an opening line puts
+ * it on exactly the same path as every transition, with no special case anywhere downstream.
+ *
+ * A lecture written before this, or one whose opener came back empty, gets a deterministic line
+ * chosen by the topic, so it is stable for the same lecture rather than changing on every replay.
+ */
+export function openingSentence(raw: unknown, topic: string): string {
+  const clean = trimTitle(topic) || "today’s topic";
+  let hash = 0;
+  for (const char of clean.toLowerCase()) hash = (hash * 31 + char.charCodeAt(0)) % 100_000;
+  const fallback = OPENING_LINES[hash % OPENING_LINES.length](clean);
+  return oneSentence(raw, fallback);
+}
+
+function oneSentence(raw: unknown, fallback: string): string {
   const candidate = typeof raw === "string" && compact(raw) ? compact(raw) : fallback;
   const firstSentence = candidate.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() ?? candidate;
   const words = firstSentence.split(" ").filter(Boolean).slice(0, MAX_TRANSITION_WORDS);

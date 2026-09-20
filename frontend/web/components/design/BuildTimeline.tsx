@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { animationModelLabel } from "@/lib/animationModels";
 import type { BeatTiming, ProgressiveLectureSnapshot } from "@/lib/progressiveLectureTypes";
 
 /**
@@ -25,6 +26,12 @@ const SEGMENTS: Array<{ key: string; label: string; colour: string; value: (t: B
 ];
 
 const seconds = (ms: number) => (ms >= 10_000 ? `${Math.round(ms / 1000)} s` : `${(ms / 1000).toFixed(1)} s`);
+
+/** The model that actually drew the board, by its display name — what the beat's tier bought. */
+function tierModel(t: BeatTiming): string | null {
+  const id = t.animation?.attempts[0]?.model;
+  return id ? animationModelLabel(id) ?? id : null;
+}
 
 function stageLabel(row: BeatRow): string {
   if (row.state === "ready") return "ready";
@@ -82,6 +89,7 @@ export function BuildTimeline({ beats, createdAt }: { beats: BeatRow[]; createdA
                     <span className="shrink-0 text-[11px] text-[var(--hud-text-faint)]">
                       {total !== null ? seconds(total) : running !== null ? `${stageLabel(row)} · ${seconds(running)}` : stageLabel(row)}
                       {t?.animation ? ` · ${t.animation.attempts.length} attempt${t.animation.attempts.length === 1 ? "" : "s"}` : ""}
+                      {t?.animationTier ? ` · ${t.animationTier}${tierModel(t) ? ` → ${tierModel(t)}` : ""}` : ""}
                     </span>
                   </span>
                   <span className="mt-1 flex h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
@@ -104,6 +112,13 @@ export function BuildTimeline({ beats, createdAt }: { beats: BeatRow[]; createdA
                     {SEGMENTS.filter((seg) => seg.value(t) > 0).map((seg) => `${seg.label} ${seconds(seg.value(t))}`).join(" · ")}
                     {t.visualKind ? ` · board: ${t.visualKind}` : ""}
                   </p>
+                  {t.animationTier && (
+                    <p>
+                      animation judged {t.animationTier}
+                      {tierModel(t) ? `, drawn by ${tierModel(t)}` : ""}
+                      {t.animationTierReason ? ` — ${t.animationTierReason}` : ""}
+                    </p>
+                  )}
                   {t.animation?.attempts.map((a, i) => (
                     <p key={i}>
                       attempt {i + 1} ({a.model}): {seconds(a.ms)} — {a.outcome}

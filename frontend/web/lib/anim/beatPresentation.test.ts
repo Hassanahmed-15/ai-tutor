@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { polishBeatPlan, topicKeywords, transitionSentence } from "../beatPresentation";
+import { openingSentence, polishBeatPlan, topicKeywords, transitionSentence } from "../beatPresentation";
 
 test("beat titles are compact keyword phrases", () => {
   const plan = polishBeatPlan([
@@ -46,4 +46,28 @@ test("a transition is one short sentence and old lectures receive a deterministi
   const fallback = transitionSentence(undefined, "The loop condition", "A worked example");
   assert.match(fallback, /put .* to work/i);
   assert.ok(fallback.split(/\s+/).length <= 18);
+});
+
+test("the lecture opens with a spoken line, so it never starts in silence", () => {
+  // Written by the model: kept, trimmed to one sentence.
+  assert.equal(
+    openingSentence("Hash tables are everywhere once you look. And here is a stray second sentence.", "how a hash table handles collisions"),
+    "Hash tables are everywhere once you look.",
+  );
+
+  // Not written (an older lecture, or an empty field): a deterministic line naming the topic, the
+  // same one every time that lecture is replayed.
+  const fallback = openingSentence(undefined, "how a hash table handles collisions");
+  assert.equal(openingSentence("", "how a hash table handles collisions"), fallback);
+  assert.ok(fallback.split(/\s+/).length <= 18);
+  assert.match(fallback, /[.!?]$/);
+  assert.match(fallback.toLowerCase(), /hash table/);
+
+  // Different lectures do not all open the same way.
+  const others = ["photosynthesis", "the Krebs cycle", "binary search trees", "Markov chains", "the Hill cipher"]
+    .map((topic) => openingSentence(undefined, topic));
+  assert.ok(new Set(others.map((line) => line.replace(/ .*/, ""))).size > 1, "openings should vary between lectures");
+
+  // No topic at all is still a sentence, never an empty narration.
+  assert.match(openingSentence(undefined, ""), /\S/);
 });

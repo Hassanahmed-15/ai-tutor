@@ -283,7 +283,7 @@ DrawScript = { "caption": string, "durationMs": 42000-56000, "ops": DrawOp[] }
 TITLE AND TRANSITION CONTRACT:
 - Titles are 3-9 words and name the exact insight on that beat. Vary them by role: a curiosity hook, a causal/action title for a mechanism, a concrete worked-example title, a contrast title, then a synthesis title.
 - Never use generic titles such as "Introduction", "Overview", "Core idea", "How it works", "Idea 2", "Quick check", or a raw page/slide/figure locator. Do not prefix every title with the lecture topic. Every title must be distinct without numbered suffixes.
-- Beat 0 omits transitionIn. Every later beat has one 8-18 word transitionIn sentence connecting the previous insight to this one. Make the relationship explicit; never repeat stock phrases such as "Now let's move on".
+- Beat 0's transitionIn is instead one 8-16 word OPENING line leading into the topic — the first thing the student hears, never a greeting such as "hello" or "welcome back". Every later beat has one 8-18 word transitionIn sentence connecting the previous insight to this one. Make the relationship explicit; never repeat stock phrases such as "Now let's move on".
 
 LECTURE DEPTH REQUIREMENTS:
 - This is NOT a demo outline. Teach each board slowly and in depth.
@@ -434,7 +434,7 @@ DrawScript = { "caption": string, "durationMs": 42000-56000, "ops": DrawOp[] }
 TITLE AND TRANSITION CONTRACT:
 - Titles are 3-9 words and name the exact insight on that beat. Use curiosity, mechanism, worked-example, contrast, and synthesis titles according to the beat's role.
 - Never use generic titles such as "Introduction", "Overview", "Core idea", "How it works", "Idea 2", "Quick check", or a raw page/slide/figure locator. Do not prefix every title with the deck topic. Every title must be distinct without numbered suffixes.
-- Beat 0 omits transitionIn. Every later beat has one 8-18 word transitionIn sentence connecting the previous insight to this one. Make the relationship explicit; never repeat stock phrases such as "Now let's move on".
+- Beat 0's transitionIn is instead one 8-16 word OPENING line leading into the topic — the first thing the student hears, never a greeting such as "hello" or "welcome back". Every later beat has one 8-18 word transitionIn sentence connecting the previous insight to this one. Make the relationship explicit; never repeat stock phrases such as "Now let's move on".
 
 LECTURE DEPTH REQUIREMENTS:
 - This is NOT a demo outline. Use as many beats as the selected slide content genuinely requires, with no hard maximum, and teach each board slowly and in depth.

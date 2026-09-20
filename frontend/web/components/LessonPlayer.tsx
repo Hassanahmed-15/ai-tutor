@@ -48,7 +48,7 @@ import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { DeafSigningExtension } from "./sign-language/DeafSigningExtension";
-import { transitionSentence } from "@/lib/beatPresentation";
+import { openingSentence, transitionSentence } from "@/lib/beatPresentation";
 
 // Client mirror of the server's REALTIME_TUTOR_ENABLED flag — gates the "Talk to tutor" button.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -349,8 +349,10 @@ export function LessonPlayer({
   // of beats turns each of those into a ~12ms cache hit by the time the student arrives.
   useNarrationPrefetch(
     useMemo(() => beats.map((b, beatIndex) => {
-      if (!standardTransitionsEnabled || beatIndex === 0) return b.script ?? "";
-      const bridge = transitionSentence(b.transitionIn, beats[beatIndex - 1]?.title ?? title, b.title);
+      if (!standardTransitionsEnabled) return b.script ?? "";
+      const bridge = beatIndex === 0
+        ? openingSentence(b.transitionIn, title)
+        : transitionSentence(b.transitionIn, beats[beatIndex - 1]?.title ?? title, b.title);
       return `${bridge} ${b.script ?? ""}`.trim();
     }), [beats, standardTransitionsEnabled, title]),
     index,
@@ -403,9 +405,19 @@ export function LessonPlayer({
   const [animationTimedOut, setAnimationTimedOut] = useState(false);
   const animationBlocking = currentAnimationPending && !animationTimedOut;
   const deafMode = mode === "deaf";
-  const transitionIn = standardTransitionsEnabled && index > 0
-    ? transitionSentence(beat.transitionIn, beats[index - 1]?.title ?? title, beat.title)
-    : "";
+  /*
+   * The sentence the beat starts speaking on, while its title slide is still up.
+   *
+   * Beat one used to have none, so it alone waited out the SLIDE_MS title timer in silence and
+   * only then asked for its first audio clip — the pause at the start of every lecture. It now
+   * carries an opening line (lib/beatPresentation.ts openingSentence), which puts it on the same
+   * path as every other beat: narration starts on the slide, and nothing downstream special-cases it.
+   */
+  const transitionIn = !standardTransitionsEnabled
+    ? ""
+    : index > 0
+      ? transitionSentence(beat.transitionIn, beats[index - 1]?.title ?? title, beat.title)
+      : openingSentence(beat.transitionIn, title);
   const narrationText = transitionIn ? `${transitionIn} ${beat.script}` : beat.script;
   // How many leading narration sentences are the bridge. Counted from the same split voice.ts uses,
   // so cue indices can be mapped onto the script's own numbering (see scriptClockFromNarration).
