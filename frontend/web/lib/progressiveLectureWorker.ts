@@ -37,7 +37,8 @@ import { animationTierRoutingEnabled, classifyAnimationTier, modelForTier, type 
 import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
-import { beatCountForDepth, scopedBlockText } from "./beatSourceScope";
+import { scopedBlockText } from "./beatSourceScope";
+import { boardCountFor, conceptOverlap, depthBudget } from "./lectureDepth";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
 type GeneratedBeatPayload = {
@@ -116,24 +117,28 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
   const sourcePlan = sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
   const subject = topicKeywords(input.topic);
-  const requested = beatCountForDepth(input.learnerProfile.depth);
   const supplied = (input.outline?.subtopics ?? [])
     .map((item) => ({ title: clean(item.title), objective: clean(item.caption || item.reason || item.title) }))
     .filter((item) => item.title);
-  const foundations = supplied.length > 0 ? supplied : defaultObjectives(subject, requested - 2);
-  const middle = foundations.slice(0, Math.max(2, requested - 2));
-  while (middle.length < requested - 2) {
-    const index = middle.length + 1;
-    middle.push({
-      title: `${subject}: idea ${index}`,
-      objective: `Explain a distinct, useful part of ${subject} with a concrete example.`,
-    });
-  }
+  /*
+   * THE CONCEPTS DECIDE THE COUNT — see lib/lectureDepth.ts.
+   *
+   * This used to pad the plan up to `beatCountForDepth(depth)` with invented beats titled
+   * "${subject}: idea 2/3/4", every one carrying the same objective string, and then truncate
+   * anything longer. That is the whole shallow-and-repetitive complaint in two statements: the
+   * padding manufactured duplicate teaching instructions, and the truncation threw away real
+   * concepts the planner had reasoned about. `polishBeatPlan` then renamed the duplicates to
+   * "Worked Example" / "Common Pitfalls", which hid the repetition behind distinct headings.
+   *
+   * A narrow topic now gets three boards taught thoroughly; a broad one gets eight. The depth
+   * setting buys WORDS PER BOARD (depthBudget), never more boards.
+   */
+  const middle = supplied.length > 0 ? supplied : defaultObjectives(subject, 4);
   const entries = polishBeatPlan([
     { title: subject, objective: `Open with a concrete puzzle or use case that makes ${subject} worth learning.` },
     ...middle,
     { title: `${subject} Recap`, objective: `Connect the core ideas, correct the main misconception, and give the learner a usable recap.` },
-  ].slice(0, requested), subject);
+  ].slice(0, boardCountFor(middle.length + 2)), subject);
 
   const plan = entries.map((entry, sequence) => ({
     id: `beat-${sequence + 1}-${slug(entry.title)}`,
@@ -141,7 +146,7 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     title: entry.title,
     objective: entry.objective,
     visualKind: visualKindFor(sequence, entries.length, input, entry),
-    estimatedDurationMs: input.learnerProfile.depth === "deep" ? 55_000 : input.learnerProfile.depth === "concise" ? 35_000 : 45_000,
+    estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
   }));
   // A prompted lecture should exercise the live animation engine, not accidentally collapse into
   // blackboards/structure boards because every outline title matched a broad keyword. Prefer the
@@ -185,7 +190,13 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
    * Applied to the model's own plan as well as the block fallback, since a long PDF makes the
    * planner propose many beats and the cap is what makes the student's choice win.
    */
-  const beatCap = beatCountForDepth(input.learnerProfile.depth);
+  /*
+   * A document's board count follows the document's own structure, not the depth slider. Depth is
+   * spent on WORDS PER BOARD instead (depthBudget), so "concise" on a long PDF now means each
+   * section is taught briskly rather than the last two thirds of the document being dropped —
+   * `planned.slice(0, beatCap)` silently discarded the tail of real material.
+   */
+  const beatCap = boardCountFor(planned.length > 0 ? planned.length : (document.contentBlocks ?? []).length);
   const fallback = planned.length > 0 ? planned.slice(0, beatCap) : (document.contentBlocks ?? [])
     .slice()
     .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0))
@@ -203,7 +214,7 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
     objective: item.objective,
     sourceBlockIds: item.sourceBlockIds,
     visualKind: item.visualKind,
-    estimatedDurationMs: input.learnerProfile.depth === "deep" ? 55_000 : input.learnerProfile.depth === "concise" ? 35_000 : 45_000,
+    estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
   }));
 }
 
@@ -340,7 +351,14 @@ async function generateOneBeat(
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set.");
   const client = new OpenAI({ apiKey });
-  const wordRange = input.learnerProfile.depth === "deep" ? "125-165" : input.learnerProfile.depth === "concise" ? "70-100" : "95-130";
+  /*
+   * The word budget IS the board's dwell time: the player advances when narration ends and has no
+   * other timer, so this number alone decides whether a concept stays up for forty seconds or two
+   * minutes. The old 95-130 made the requested depth physically impossible — a worked example plus
+   * its setup and interpretation does not fit in forty seconds of speech.
+   */
+  const budget = depthBudget(input.learnerProfile.depth);
+  const wordRange = `${budget.wordRange[0]}-${budget.wordRange[1]}`;
   const isCheckpoint = planned.sequence > 0 && planned.sequence < session.plan.length - 1 && planned.sequence % 3 === 0;
   /*
    * WHO THIS IS FOR. The full planning profile (what they know, are shaky on, and believe wrongly)
@@ -364,14 +382,37 @@ async function generateOneBeat(
    * this beat builds on the explanation the student heard rather than repeating or contradicting it.
    * Beats are now written just ahead of the student, so these are normally the beats they just watched.
    */
-  const priorScripts = (await progressiveBeats(session.id))
-    .filter((doc) => doc.sequence < planned.sequence && doc.sequence >= planned.sequence - 2 && doc.beat?.script)
-    .sort((a, b) => a.sequence - b.sequence)
-    .map((doc) => ({ sequence: doc.sequence, title: doc.beat?.title, script: (doc.beat?.script ?? "").slice(0, 1_200) }));
+  /*
+   * EVERY earlier board, not a sliding window of two.
+   *
+   * With a 2-beat window, board 8 could not see boards 1-5 and happily re-taught them. Titles plus
+   * an opening slice are enough to recognise "already covered" without spending the context that
+   * full scripts would, and the most recent board is kept in full because that is the one this
+   * board must actually continue from.
+   */
+  const priorDocs = (await progressiveBeats(session.id))
+    .filter((doc) => doc.sequence < planned.sequence && doc.beat?.script)
+    .sort((a, b) => a.sequence - b.sequence);
+  const priorScripts = priorDocs.map((doc) => ({
+    sequence: doc.sequence,
+    title: doc.beat?.title,
+    script: (doc.beat?.script ?? "").slice(0, doc.sequence === planned.sequence - 1 ? 1_600 : 420),
+  }));
+  /*
+   * Boards the planner may have made too similar to one already taught. Named explicitly so the
+   * model is told what NOT to repeat rather than left to infer it from a JSON field — the old
+   * prompt supplied priorScripts and never once mentioned them.
+   */
+  const alreadyCovered = priorDocs.length > 0
+    ? conceptOverlap(
+        { title: planned.title, objective: planned.objective },
+        priorDocs.map((doc) => ({ title: doc.beat?.title ?? "", objective: doc.beat?.teacherMove ?? "" })),
+      )
+    : { overlap: 0, with: -1 };
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words, accurate, warm, and complete on its own while connecting to adjacent plan items. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD. Never split a single concept across boards to make the lecture longer. DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
@@ -382,6 +423,9 @@ async function generateOneBeat(
         fullPlan: session.plan.map(({ sequence, title, objective }) => ({ sequence, title, objective })),
         adaptation: session.adaptationNotes,
         priorScripts,
+        alreadyTaughtWarning: alreadyCovered.overlap > 0.55
+          ? `This board's plan overlaps heavily with beat ${alreadyCovered.with} which the student has ALREADY heard. Teach the genuinely new part of it and refer back to the rest in a sentence — do not re-explain it.`
+          : null,
         preferredExamples: input.learnerProfile.preferredExamples,
         sourceContext: sourceContext(input, planned.sourceBlockIds),
       }),
