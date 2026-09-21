@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
 import type { BoardMove } from "@/lib/board/teachingState";
 
@@ -27,6 +28,9 @@ import type { BoardMove } from "@/lib/board/teachingState";
 
 export type BoardTransition = "erase" | "slide" | "none";
 
+/** Must match `board-title-out` in globals.css — the card unmounts when its exit has finished. */
+const TITLE_EXIT_MS = 420;
+
 export interface BoardStageProps {
   /** Changes when the concept changes; drives the transition. */
   boardKey: string;
@@ -39,6 +43,15 @@ export interface BoardStageProps {
   status?: BoardStatus;
   /** Rendered above the board surface but below any status veil — the annotation layer. */
   overlay?: React.ReactNode;
+  /**
+   * The section card shown while this board prepares, or null to show none.
+   *
+   * Null on a continuation pass: the second or third board of one subtopic is the same section, so
+   * re-announcing it would turn one idea back into several slides.
+   */
+  title?: string | null;
+  /** Fired once the board has actually painted, so the card can hand over instead of timing out. */
+  onBoardPainted?: () => void;
 }
 
 export type BoardStatus =
@@ -56,7 +69,43 @@ export function BoardStage({
   sections = [],
   status = { kind: "ready" },
   overlay,
+  title,
+  onBoardPainted,
 }: BoardStageProps) {
+  /*
+   * "The board has painted" = two animation frames after this board mounted: one for the browser to
+   * lay the new subtree out, one for it to paint. A single rAF fires before paint, and a load/ready
+   * callback is not available here because the board has a dozen render branches (LiveSketch, chalk,
+   * React animation, status cards) and only the stage sees all of them.
+   */
+  useEffect(() => {
+    if (!onBoardPainted) return;
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => onBoardPainted());
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      if (raf2) cancelAnimationFrame(raf2);
+    };
+  }, [boardKey, onBoardPainted]);
+
+  /*
+   * The card outlives its own `title` prop by one animation, so handing over is a dissolve rather
+   * than a cut. `shownTitle` holds the last real title while `leaving` drives the exit; it clears
+   * when the animation ends, or on a timer for the reduced-motion case where no animation runs.
+   */
+  const [shownTitle, setShownTitle] = useState<string | null>(title ?? null);
+  useEffect(() => {
+    if (title) {
+      setShownTitle(title);
+      return;
+    }
+    if (!shownTitle) return;
+    const t = setTimeout(() => setShownTitle(null), TITLE_EXIT_MS);
+    return () => clearTimeout(t);
+  }, [title, shownTitle]);
+
   const retained = sections.filter((section) => section.key !== boardKey).slice(-5);
   const belt = [...retained, { key: boardKey, node: children }];
   const activeIndex = belt.length - 1;
@@ -88,8 +137,38 @@ export function BoardStage({
 
       {overlay}
 
+      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} /> : null}
+
       {veiled && <StatusVeil status={status} />}
     </section>
+  );
+}
+
+/**
+ * The section card: the title of the subtopic about to be taught.
+ *
+ * It sits OVER the board rather than replacing it, which is the whole change. The old card was a
+ * separate stage — the board was unmounted, the card held the screen for a flat 1500ms, and only
+ * then did the board mount and begin drawing, so the student watched several seconds of nothing
+ * between every explanation. Here the board is already mounting and drawing underneath; the card
+ * covers it only until there is something worth uncovering, then fades out over it.
+ *
+ * It leaves on its own `board-title-out` animation rather than unmounting instantly, so the
+ * hand-off is a dissolve into the board instead of a cut.
+ */
+function SectionCard({ title, leaving }: { title: string; leaving: boolean }) {
+  return (
+    <div
+      className="board-title-card pointer-events-none absolute inset-0 z-20 grid place-items-center bg-[#080a0e] p-6 lg:p-10"
+      data-leaving={leaving ? "true" : "false"}
+      aria-hidden="true"
+    >
+      <div className="relative w-full max-w-4xl text-center">
+        <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {title}
+        </h2>
+      </div>
+    </div>
   );
 }
 

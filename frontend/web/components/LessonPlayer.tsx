@@ -109,7 +109,29 @@ const CURATED_SCENES_ENABLED = process.env.NEXT_PUBLIC_CURATED_SCENES_ENABLED !=
  * pacing (~5 min, 15 beats with definitions, 3 checkpoints, a comparison, and a recap),
  * not five disconnected facts.
  */
+/**
+ * THE TITLE CARD'S MAXIMUM DWELL — a ceiling, not a delay.
+ *
+ * This used to be an unconditional `setTimeout(SLIDE_MS)` between every beat: the board was
+ * unmounted, a full-screen title sat there for a flat 1500ms, and only then did the board mount and
+ * narration begin. Stacked with the 850ms card fade and the board's own 900ms draw-in, the student
+ * watched several seconds of nothing between every explanation, and the cost was paid even when the
+ * board had been ready the whole time.
+ *
+ * The board now mounts WITH the title, and the title yields as soon as the board has actually
+ * painted (`onBoardReady`, a double-rAF after mount — one frame to lay out, one to paint). This
+ * value only bounds the wait for a board that never reports, so a stall degrades to the old
+ * behaviour instead of hanging.
+ */
 const SLIDE_MS = 1500;
+/**
+ * The floor under the title card.
+ *
+ * Without one, a cached board paints on the next frame and the title flashes past unread, which is
+ * its own kind of broken — the card exists to name the section before it is taught. Long enough to
+ * read three or four words, short enough not to feel like waiting.
+ */
+const TITLE_MIN_MS = 480;
 // Safety net: a beat whose animation/board op never resolves (still no `code`/`ops`, e.g. a
 // server that didn't generate it) would otherwise hold the lecture on its slide forever. After this
 // long we stop waiting and let the lecture proceed (the board shows its status card meanwhile).
@@ -280,6 +302,26 @@ export function LessonPlayer({
   const [checkpointDone, setCheckpointDone] = useState<Record<number, boolean>>({});
   const [speaking, setSpeaking] = useState(false);
   const [stage, setStage] = useState<Stage>("slide");
+  /*
+   * Has this beat's board actually painted?
+   *
+   * The title card used to cover a fixed 1500ms whether or not the board behind it was ready. The
+   * board now mounts with the card and reports its first paint here, so the card can hand over the
+   * moment there is something to hand over to.
+   */
+  const [boardPainted, setBoardPainted] = useState(false);
+  /** When the current title card went up, so its minimum dwell is measured from the right instant. */
+  const titleShownAtRef = useRef(performance.now());
+  const handleBoardPainted = useCallback(() => setBoardPainted(true), []);
+  /**
+   * Is the section card currently covering the board?
+   *
+   * Deliberately NOT tied to `stage`. `stage` only advances while the lecture is playing, so a card
+   * gated on it sits over the board forever whenever the lecture is paused or has not been started
+   * — which is exactly what a student sees on opening a lesson. The card announces a section and
+   * then yields as soon as the board has painted, whether or not anyone has pressed play.
+   */
+  const [cardDismissed, setCardDismissed] = useState(false);
   useEffect(() => {
     if (!waitingForNextBeat) return;
     queueMicrotask(() => {
@@ -340,6 +382,14 @@ export function LessonPlayer({
   const beat = beats[index];
   const teachingMap = useMemo(() => buildLessonTeachingMap(beats), [beats]);
   const teachingEntry = teachingMap.entries[index];
+  /*
+   * Is this beat another pass over the subtopic already on the board?
+   *
+   * When it is, the board continues: no title card, no entrance, no pause — it slides down and
+   * keeps writing under the work already there. Read from the teaching map rather than from the
+   * beat alone so a lesson whose beats predate concept ids still behaves exactly as before.
+   */
+  const continuesConcept = teachingEntry?.move === "continue";
   const teachingProgress = useMemo(() => conceptProgress(teachingMap, index), [teachingMap, index]);
   const priorBoardSections = useMemo(
     () => beats
@@ -418,6 +468,26 @@ export function LessonPlayer({
   );
 
   const isCheckpoint = beat.slideKind === "checkpoint";
+  /*
+   * THE SECTION CARD'S LIFETIME — see `cardDismissed` above.
+   *
+   * It yields on the board's own first paint, with the minimum dwell only ensuring the title is
+   * readable and SLIDE_MS only as a ceiling for a board that never reports. That is what removes
+   * the dead delay: the wait is now as long as the board actually takes, which on a ready board is
+   * a few frames. A continuation pass and a checkpoint never show one at all.
+   */
+  const showSectionCard = !continuesConcept && !isCheckpoint && !cardDismissed;
+  useEffect(() => {
+    if (continuesConcept || isCheckpoint || !boardPainted) return;
+    const elapsed = performance.now() - titleShownAtRef.current;
+    const t = setTimeout(() => setCardDismissed(true), Math.max(0, TITLE_MIN_MS - elapsed));
+    return () => clearTimeout(t);
+  }, [boardPainted, continuesConcept, isCheckpoint, beat.id]);
+  useEffect(() => {
+    if (continuesConcept || isCheckpoint) return;
+    const t = setTimeout(() => setCardDismissed(true), SLIDE_MS);
+    return () => clearTimeout(t);
+  }, [beat.id, continuesConcept, isCheckpoint]);
   /**
    * The round for this beat, or null when its content will not support one.
    *
@@ -1188,6 +1258,10 @@ export function LessonPlayer({
   // didn't generate it, etc.). A ready op is never pending, so this never delays a normal beat.
   useEffect(() => {
     transitionBoardShownRef.current = false;
+    // A new beat has a new board, which has not painted yet, and its card starts its dwell now.
+    titleShownAtRef.current = performance.now();
+    setBoardPainted(false);
+    setCardDismissed(false);
     queueMicrotask(() => setAnimationTimedOut(false));
   }, [beat.id]);
   useEffect(() => {
@@ -1199,22 +1273,40 @@ export function LessonPlayer({
   // Drives each beat: show its slide briefly, then (for normal beats) flip to the board
   // and narrate; on voice end, advance. Checkpoint beats narrate the question on the slide
   // itself and then STOP — they wait for submitCheckpoint() instead of auto-advancing.
-  // Effect 1: while a beat is on its intro slide, count down then flip to "board" (skipped
-  // for checkpoints, which narrate right on the slide). This effect ONLY sets `stage` — it
-  // never starts narration itself, so it can't race with the narration effect's cleanup.
+  /*
+   * Effect 1: hand the beat from its title card to its board. This effect ONLY sets `stage` — it
+   * never starts narration itself, so it can't race with the narration effect's cleanup.
+   *
+   * THE HAND-OFF IS DRIVEN BY THE BOARD, NOT BY A CLOCK. The board is mounted underneath the title
+   * from the moment the beat begins, so it is laying out and drawing during the card rather than
+   * after it; `boardPainted` fires on its first real paint and the title yields immediately. The
+   * timer that remains is only a ceiling for a board that never reports.
+   *
+   * A CONTINUATION PASS SKIPS THE CARD ENTIRELY. The second board of one subtopic is not a new
+   * section, so it neither announces a title nor pauses: it slides straight on from the work above
+   * it, which is what makes several explanations read as one idea.
+   */
   useEffect(() => {
     if (!lesson.playing || stage !== "slide" || isCheckpoint || transitionIn || animationBlocking) return;
-    if (slideTimer.current) clearTimeout(slideTimer.current);
-    slideTimer.current = setTimeout(() => {
+
+    if (continuesConcept) {
       setStage("board");
-      // The narration effect does not depend on stage because a bridge changes slide -> board
-      // without interrupting its audio. This nonce starts an ordinary beat after its title delay.
       setStartNonce((value) => value + 1);
-    }, SLIDE_MS);
-    return () => {
-      if (slideTimer.current) clearTimeout(slideTimer.current);
-    };
-  }, [index, lesson.playing, stage, isCheckpoint, transitionIn, animationBlocking]);
+      return;
+    }
+
+    /*
+     * Narration begins when the card yields, on the same signal — so the voice starts as the board
+     * is revealed rather than a fixed interval after the beat began. `cardDismissed` is driven by
+     * the board's own first paint (with SLIDE_MS only as a ceiling), which is what removes the dead
+     * air: on a ready board this is a few frames, not a second and a half.
+     */
+    if (!cardDismissed) return;
+    setStage("board");
+    // The narration effect does not depend on stage because a bridge changes slide -> board
+    // without interrupting its audio. This nonce starts an ordinary beat once its card has gone.
+    setStartNonce((value) => value + 1);
+  }, [index, lesson.playing, stage, isCheckpoint, transitionIn, animationBlocking, cardDismissed, continuesConcept]);
 
   // Effect 2: start narration exactly once per (beat, stage) — when a checkpoint's slide
   // appears, or once a normal beat reaches "board". Separate from effect 1 so flipping
@@ -1934,6 +2026,15 @@ export function LessonPlayer({
                 sections={priorBoardSections}
                 move={teachingEntry?.move}
                 transition={teachingEntry?.move === "continue" || teachingEntry?.move === "refer-back" ? "slide" : "erase"}
+                /*
+                 * The section card, over a board that is already mounting behind it. It names the
+                 * subtopic being started and then gets out of the way the moment the board has
+                 * something to show — so the title is read DURING the board's preparation rather
+                 * than instead of it. A continuation pass passes null: the second board of one
+                 * subtopic is not a new section and must not re-announce itself.
+                 */
+                title={showSectionCard ? beat.title : null}
+                onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />

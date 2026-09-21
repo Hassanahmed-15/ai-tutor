@@ -41,6 +41,16 @@ export type ProgressiveBeatPlan = {
   /** Stable teaching concept. Repeated ids extend one physical board instead of making slides. */
   conceptId?: string;
   prerequisiteConceptIds?: string[];
+  /**
+   * Which pass over this concept the beat is, 1-based, and how many there are in total.
+   *
+   * A subtopic taught in depth is several beats sharing one `conceptId`. The board needs to tell
+   * the first pass from a later one — the first earns the title card and the entrance, the rest
+   * roll underneath on the same surface — and needs to know when the concept is FINISHED, because
+   * that is the only moment a move to the next subtopic is correct.
+   */
+  conceptPass?: number;
+  conceptPasses?: number;
   visualKind: ProgressiveVisualKind;
   estimatedDurationMs: number;
   sourceBlockIds?: string[];

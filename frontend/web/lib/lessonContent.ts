@@ -44,6 +44,16 @@ export interface Beat {
   conceptObjective?: string;
   /** Concept-map edges used for callbacks and prerequisite reminders. */
   prerequisiteConceptIds?: string[];
+  /**
+   * This beat's position within its concept, 1-based, and the concept's total length.
+   *
+   * A subtopic taught in depth spans several beats sharing one `conceptId`. Pass 1 opens the
+   * concept and earns the title card and the entrance transition; later passes continue on the
+   * same board. `conceptPass === conceptPasses` marks the end of the concept, which is the only
+   * point at which moving to the next subtopic is correct.
+   */
+  conceptPass?: number;
+  conceptPasses?: number;
   /** Spoken over this beat's incoming title card. Omitted on the opening beat. */
   transitionIn?: string;
   teacherMove: string;

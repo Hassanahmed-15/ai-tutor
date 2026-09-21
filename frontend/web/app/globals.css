@@ -1141,8 +1141,32 @@ textarea {
 }
 .board-slide-in { animation: board-slide-in 900ms cubic-bezier(0.65, 0, 0.35, 1) both; }
 
+/* THE SECTION CARD: the subtopic title, over a board that is already drawing underneath.
+ *
+ * It enters fast (220ms) because it is announcing, not performing, and it leaves by dissolving
+ * into the board it was covering rather than cutting away. The scale is barely perceptible —
+ * enough to feel like a surface lifting off, not a zoom. */
+@keyframes board-title-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.board-title-card {
+  animation: board-title-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Yielding: the card dissolves into the board it was covering. The element stays mounted for the
+ * length of this animation (see `leaving` in BoardStage) — unmounting on the state change alone
+ * would cut, and a cut is what the card exists to avoid. */
+@keyframes board-title-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.012); }
+}
+.board-title-card[data-leaving="true"] {
+  animation: board-title-out 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* A board changing under someone who asked for less motion should simply change. */
 @media (prefers-reduced-motion: reduce) {
+  .board-title-card { animation: none; transition: none; }
   .board-erase-out, .board-draw-in, .board-slide-out, .board-slide-in {
     animation: none;
     -webkit-mask-image: none;

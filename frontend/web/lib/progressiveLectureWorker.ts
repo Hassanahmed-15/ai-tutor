@@ -10,6 +10,7 @@ import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
 import { openingSentence, polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
 import { boardBriefFor, pointsFromScript } from "./boardBrief";
 import { hasUsableBoard, rescueEmptyBoards } from "./boardFallback";
+import { expandConceptPasses, type ConceptPass } from "./board/conceptPasses";
 import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
@@ -40,7 +41,7 @@ import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 import { scopedBlockText } from "./beatSourceScope";
-import { boardCountFor, conceptOverlap, depthBudget } from "./lectureDepth";
+import { boardCountFor, conceptOverlap, depthBudget, type DepthLevelName } from "./lectureDepth";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
 type GeneratedBeatPayload = {
@@ -114,6 +115,25 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
   }
 }
 
+/** The depth slider as the three names the budget and the pass-count both speak. */
+function depthLevel(depth: string | undefined): DepthLevelName {
+  return depth === "deep" ? "deep" : depth === "concise" ? "concise" : "balanced";
+}
+
+/**
+ * What must be understood before this beat: the previous CONCEPT, not the previous beat.
+ *
+ * Keyed off concepts rather than sequence numbers, so a three-pass subtopic lists the subtopic
+ * before it once, instead of naming its own earlier passes as prerequisites of itself.
+ */
+function prerequisitesFor(entries: ConceptPass[], sequence: number): string[] {
+  const self = entries[sequence].conceptKey;
+  for (let i = sequence - 1; i >= 0; i--) {
+    if (entries[i].conceptKey !== self) return [entries[i].conceptKey];
+  }
+  return [];
+}
+
 /** Builds the global map synchronously so no model round-trip delays the first beat. */
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
   const sourcePlan = sourceDocumentPlan(input);
@@ -136,19 +156,35 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
    * setting buys WORDS PER BOARD (depthBudget), never more boards.
    */
   const middle = supplied.length > 0 ? supplied : defaultObjectives(subject, 4);
-  const entries = polishBeatPlan([
+  /*
+   * Titles are uniquified HERE, over the subtopics, and never again afterwards. `polishBeatPlan`
+   * renames any duplicate title it sees, so running it after the concept expansion below would
+   * rename the second and third pass over one subtopic into two unrelated-looking headings — which
+   * is precisely the "separate slides for one subtopic" symptom being fixed.
+   */
+  const subtopics = polishBeatPlan([
     { title: subject, objective: `Open with a concrete puzzle or use case that makes ${subject} worth learning.` },
     ...middle,
     { title: `${subject} Recap`, objective: `Connect the core ideas, correct the main misconception, and give the learner a usable recap.` },
   ].slice(0, boardCountFor(middle.length + 2)), subject);
 
+  /*
+   * One subtopic becomes the one, two or three boards it actually needs. Every pass shares a
+   * `conceptId`, which is what lets the board CONTINUE — slide down and keep writing — instead of
+   * wiping and announcing a new title for each explanation of the same idea.
+   */
+  const entries = expandConceptPasses(subtopics, depthLevel(input.learnerProfile.depth), slug);
+
   const plan = entries.map((entry, sequence) => ({
-    id: `beat-${sequence + 1}-${slug(entry.title)}`,
+    // The id stays per-beat and unique; the CONCEPT is what repeats.
+    id: `beat-${sequence + 1}-${slug(entry.title)}${entry.passes > 1 ? `-p${entry.pass}` : ""}`,
     sequence,
     title: entry.title,
     objective: entry.objective,
-    conceptId: `concept-${sequence + 1}-${slug(entry.title)}`,
-    prerequisiteConceptIds: sequence > 0 ? [`concept-${sequence}-${slug(entries[sequence - 1].title)}`] : [],
+    conceptId: entry.conceptKey,
+    conceptPass: entry.pass,
+    conceptPasses: entry.passes,
+    prerequisiteConceptIds: prerequisitesFor(entries, sequence),
     visualKind: visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
   }));
@@ -211,15 +247,41 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
       sourceBlockIds: [block.id],
       visualKind: "react-animation" as ProgressiveVisualKind,
     }));
-  return polishBeatPlan(fallback, input.topic).map((item, sequence) => ({
-    id: `beat-${sequence + 1}-${slug(item.title)}`,
-    sequence,
-    title: item.title,
-    objective: item.objective,
-    sourceBlockIds: item.sourceBlockIds,
-    visualKind: item.visualKind,
-    estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
-  }));
+  /*
+   * A DOCUMENT'S SECTIONS GET THE SAME CONTINUOUS BOARD as a typed topic's subtopics.
+   *
+   * This path previously emitted no `conceptId` at all, so every beat fell back to a `legacy:` id
+   * and no two beats could ever share a concept — a PDF section explained over two boards produced
+   * two unrelated titled slides, which is the reported behaviour. Expanding here keeps the source's
+   * own structure (one section is still one concept) while letting a section that needs a worked
+   * example take a second board underneath the first.
+   *
+   * Source provenance is carried onto every pass, so an extracted figure still attaches to each
+   * board that teaches its page.
+   */
+  const polished = polishBeatPlan(fallback, input.topic);
+  const provenance = new Map(polished.map((item) => [item.title, item]));
+  const expanded = expandConceptPasses(
+    polished.map((item) => ({ title: item.title, objective: item.objective })),
+    depthLevel(input.learnerProfile.depth),
+    slug,
+  );
+  return expanded.map((item, sequence) => {
+    const source = provenance.get(item.title);
+    return {
+      id: `beat-${sequence + 1}-${slug(item.title)}${item.passes > 1 ? `-p${item.pass}` : ""}`,
+      sequence,
+      title: item.title,
+      objective: item.objective,
+      conceptId: item.conceptKey,
+      conceptPass: item.pass,
+      conceptPasses: item.passes,
+      prerequisiteConceptIds: prerequisitesFor(expanded, sequence),
+      sourceBlockIds: source?.sourceBlockIds,
+      visualKind: source?.visualKind ?? ("react-animation" as ProgressiveVisualKind),
+      estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
+    };
+  });
 }
 
 function sourceVisualKind(item: Record<string, unknown>): ProgressiveVisualKind {
@@ -461,6 +523,21 @@ async function generateOneBeat(
   };
 }
 
+/**
+ * The title of the last DIFFERENT concept, for the spoken bridge.
+ *
+ * Using `plan[sequence - 1]` would name the previous pass of the same subtopic — "that leads
+ * directly into Chlorophyll" spoken while already teaching Chlorophyll.
+ */
+function previousConceptTitle(session: ProgressiveLectureSessionDoc, planned: ProgressiveBeatPlan): string | null {
+  const self = planned.conceptId ?? planned.id;
+  for (let i = planned.sequence - 1; i >= 0; i--) {
+    const candidate = session.plan[i];
+    if (candidate && (candidate.conceptId ?? candidate.id) !== self) return candidate.title;
+  }
+  return null;
+}
+
 function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: ProgressiveBeatPlan, session: ProgressiveLectureSessionDoc): Beat {
   const points = Array.isArray(payload.points)
     ? payload.points.filter((item): item is string => typeof item === "string").map(clean).filter(Boolean).slice(0, 4)
@@ -486,10 +563,21 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
     conceptId: planned.conceptId ?? planned.id,
     conceptObjective: planned.objective,
     prerequisiteConceptIds: planned.prerequisiteConceptIds ?? [],
-    // Beat one opens the lecture rather than bridging from anything; either way the player treats
-    // this as the sentence to start speaking on the title slide (lib/beatPresentation.ts).
-    transitionIn: planned.sequence > 0
-      ? transitionSentence(payload.transitionIn, session.plan[planned.sequence - 1]?.title ?? session.topic, planned.title)
+    conceptPass: planned.conceptPass,
+    conceptPasses: planned.conceptPasses,
+    /*
+     * Beat one opens the lecture rather than bridging from anything; either way the player treats
+     * this as the sentence to start speaking on the title slide (lib/beatPresentation.ts).
+     *
+     * A CONTINUATION PASS GETS NO BRIDGE. `transitionIn` is what announces a new section — the
+     * player holds the title card while it is spoken — so emitting one for the second board of the
+     * same subtopic would both re-announce an idea already in progress and stop the board from
+     * simply sliding on. Continuing an explanation is not a transition.
+     */
+    transitionIn: (planned.conceptPass ?? 1) > 1
+      ? undefined
+      : planned.sequence > 0
+      ? transitionSentence(payload.transitionIn, previousConceptTitle(session, planned) ?? session.topic, planned.title)
       : openingSentence(payload.transitionIn, session.topic),
     teacherMove: clean(payload.teacherMove) || planned.objective,
     stepLabel: `${planned.sequence + 1} · ${planned.sequence === 0 ? "Start" : slideKind === "checkpoint" ? "Check" : "Learn"}`,
@@ -536,8 +624,13 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
     conceptId: planned.conceptId ?? planned.id,
     conceptObjective: planned.objective,
     prerequisiteConceptIds: planned.prerequisiteConceptIds ?? [],
-    transitionIn: sequence > 0
-      ? transitionSentence(undefined, session.plan[sequence - 1]?.title ?? session.topic, planned.title)
+    conceptPass: planned.conceptPass,
+    conceptPasses: planned.conceptPasses,
+    // As in sanitizeGeneratedBeat: a continuation pass is not a transition and gets no bridge.
+    transitionIn: (planned.conceptPass ?? 1) > 1
+      ? undefined
+      : sequence > 0
+      ? transitionSentence(undefined, previousConceptTitle(session, planned) ?? session.topic, planned.title)
       : openingSentence(undefined, session.topic),
     teacherMove: "Keep the lesson moving with a clear, visual explanation.",
     stepLabel: `${sequence + 1} · Learn`,
