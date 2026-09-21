@@ -33,6 +33,15 @@ export type VoiceOwner = "none" | "teacher" | "chatbot";
 /** Which slot a piece of teacher speech belongs to. */
 export type TeacherSlot = "lecture" | "utterance";
 
+/**
+ * Overrides the "the chatbot holds the channel" refusal. For ONE caller only: the stall backstop,
+ * which acts precisely when the synchronous refs say she is talking but React state has said she is
+ * silent for several seconds — i.e. when the refs are the thing that is wrong. Without it the
+ * backstop asked the same stuck refs for permission and was refused, so it could never unstick
+ * anything.
+ */
+export type ChannelOverride = { force?: boolean };
+
 export type VoiceDirector = {
   /** Who currently holds the audio channel. Render-safe (React state). */
   owner: VoiceOwner;
@@ -40,7 +49,7 @@ export type VoiceDirector = {
    * Speak as the teacher, cutting off any chatbot tail first.
    * Returns false — and plays NOTHING — if the chatbot is speaking; the caller decides what to do.
    */
-  speakAsTeacher: (text: string, callbacks: NarrationCallbacks, slot?: TeacherSlot) => boolean;
+  speakAsTeacher: (text: string, callbacks: NarrationCallbacks, slot?: TeacherSlot, options?: ChannelOverride) => boolean;
   /**
    * Freeze the lecture where it is (keeps sentence cue and board progress) and drop any utterance.
    * Returns false when the lecture can't be frozen (browser-TTS fallback), in which case it is
@@ -48,7 +57,7 @@ export type VoiceDirector = {
    */
   pauseTeacher: () => boolean;
   /** Continue the frozen lecture. Refuses while the chatbot is speaking. */
-  resumeTeacher: () => boolean;
+  resumeTeacher: (options?: ChannelOverride) => boolean;
   /** Cancel everything the teacher is saying — nothing to resume afterwards. */
   stopTeacher: () => void;
   /** Cancel just a transient utterance, leaving a frozen lecture intact. */
@@ -132,8 +141,8 @@ export function useVoiceDirector({
     return froze;
   }, [release]);
 
-  const resumeTeacher = useCallback(() => {
-    if (chatbotHoldsChannel()) return false; // the chatbot has the floor
+  const resumeTeacher = useCallback((options?: ChannelOverride) => {
+    if (!options?.force && chatbotHoldsChannel()) return false; // the chatbot has the floor
     stopUtterance(); // never let an interjection run under the lecture
     const lecture = lectureRef.current;
     if (!lecture || !frozenRef.current) return false;
@@ -146,8 +155,8 @@ export function useVoiceDirector({
   }, [chatbotHoldsChannel, stopUtterance, claim]);
 
   const speakAsTeacher = useCallback(
-    (text: string, callbacks: NarrationCallbacks, slot: TeacherSlot = "lecture") => {
-      if (chatbotHoldsChannel()) return false; // the chatbot has the floor — play nothing
+    (text: string, callbacks: NarrationCallbacks, slot: TeacherSlot = "lecture", options?: ChannelOverride) => {
+      if (!options?.force && chatbotHoldsChannel()) return false; // the chatbot has the floor — play nothing
       unlockAudio();
 
       const wrapped: NarrationCallbacks = {

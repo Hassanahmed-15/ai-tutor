@@ -360,7 +360,9 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   // returning continues from the exact spot. `startNonce` starts a fresh beat when nothing is frozen.
   useEffect(() => {
     if (lesson.mode === "teaching") {
-      if (!voice.resumeTeacher()) setStartNonce((n) => n + 1);
+      // Restart only when nothing is frozen: a frozen lecture refused because Aria still holds the
+      // channel is continued by the recovery below. Bumping here cancelled it (see LessonPlayer).
+      if (!voice.resumeTeacher() && !voice.hasFrozenTeacher()) setStartNonce((n) => n + 1);
     } else {
       voice.pauseTeacher();
       setSpeaking(false);
@@ -383,6 +385,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       utteranceInFlight: voice.hasPendingUtterance(),
       lectureFrozen: voice.hasFrozenTeacher(),
       startRefused: startRefusedForRef.current === index,
+      narrationLost: false,
     });
     if (action === "resume") {
       voice.resumeTeacher();
@@ -395,13 +398,14 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
 
   /**
    * The backstop, for the stall no render announces: the tutor hook's refs say she holds the channel,
-   * its React state says she is silent, and seconds have passed — so the refs are wrong. Only ever
+   * its React state says she is silent, and seconds have passed — so the refs are wrong, and it
+   * overrides them (asking the same refs for permission is why it never unstuck anything). Only ever
    * resumes, never restarts a beat, so the worst case is a no-op.
    */
   useEffect(() => {
     if (lesson.mode !== "teaching" || tutor.speaking) return;
     if (!voice.hasFrozenTeacher() || voice.hasPendingUtterance()) return;
-    const t = setTimeout(() => voice.resumeTeacher(), NARRATION_STALL_MS);
+    const t = setTimeout(() => voice.resumeTeacher({ force: true }), NARRATION_STALL_MS);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);

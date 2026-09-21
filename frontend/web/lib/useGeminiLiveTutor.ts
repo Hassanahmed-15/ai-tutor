@@ -68,7 +68,9 @@ const BACKCHANNEL = new Set([
 /** Openers that make an utterance an instruction even without a question mark. */
 const IMPERATIVE = /^(?:can|could|would|will|please|explain|show|draw|tell|repeat|say|go|stop|pause|resume|wait|hold|skip|slow|speed|why|what|how|when|where|who|which|is|are|does|do|did|should|am)\b/i;
 const PAUSE_COMMAND = /^(?:aria\s+|teacher\s+|please\s+)*(?:pause|stop|wait|hold(?:\s+on)?)(?:\s+(?:the\s+)?lecture)?[.!\s]*$/i;
-const RESUME_COMMAND = /^(?:aria\s+|teacher\s+|please\s+)*(?:continue|resume|keep\s+going|start\s+again|go\s+on)(?:\s+(?:the\s+)?lecture)?[.!\s]*$/i;
+// A leading acknowledgement ("okay okay, carry on") is still a resume command: that is how people
+// actually say it, and treating it as a question re-planned the lecture instead of resuming it.
+const RESUME_COMMAND = /^(?:(?:ok(?:ay)?|alright|all\s+right|yes|yeah|right|sure|fine)[,.!\s]+)*(?:aria\s+|teacher\s+|please\s+)*(?:continue|resume|keep\s+going|carry\s+on|start\s+again|go\s+on)(?:\s+(?:the\s+)?lecture)?[.!\s]*$/i;
 
 export type StudentTurnKind = "incidental" | "pause" | "resume" | "drawing" | "question";
 

@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { narrationRecovery, type ChannelSnapshot } from "../narrationRecovery";
+import { backstopRecovery, narrationRecovery, type ChannelSnapshot } from "../narrationRecovery";
+import { isAdaptiveQuestion } from "../adaptiveQuestion";
 
 /**
  * "It stops at the whiteboard and stays there unless I pause and resume."
@@ -28,6 +29,7 @@ const RUNNING: ChannelSnapshot = {
   utteranceInFlight: false,
   lectureFrozen: false,
   startRefused: false,
+  narrationLost: false,
 };
 
 const snapshot = (overrides: Partial<ChannelSnapshot>): ChannelSnapshot => ({ ...RUNNING, ...overrides });
@@ -104,4 +106,52 @@ test("a beat waiting on the learner is left alone", () => {
   // so the snapshot is indistinguishable from a healthy lecture, and both must be left untouched.
   // This is what stops the retry from replaying a beat the learner is answering.
   assert.equal(narrationRecovery(RUNNING), "none");
+});
+
+/* ── "Pause on the button, nothing heard, and Pause/Resume cannot help" ─────────────── */
+
+test("a lecture cancelled under Aria's voice is restarted once she stops, not left silent", () => {
+  // Resuming while she still held the channel failed; the fallback re-ran the narration effect,
+  // whose cleanup CANCELLED the lecture. Nothing was frozen and no refusal was on record, so every
+  // path here used to answer "none" and the lecture never spoke again.
+  assert.equal(narrationRecovery(snapshot({ narrationLost: true })), "restart");
+  // ...but never over her: the loss waits until the channel is free.
+  assert.equal(narrationRecovery(snapshot({ narrationLost: true, chatbotHoldsChannel: true })), "none");
+});
+
+test("a frozen lecture refused only because she is talking is left frozen, then resumed in place", () => {
+  // The fix to the mode effect: do not restart (and so cancel) a frozen lecture. While she talks it
+  // waits; the moment she is quiet it continues mid-sentence rather than replaying the beat.
+  assert.equal(narrationRecovery(snapshot({ lectureFrozen: true, chatbotHoldsChannel: true })), "none");
+  assert.equal(narrationRecovery(snapshot({ lectureFrozen: true })), "resume");
+});
+
+test("the backstop overrides refs that claim she is talking after React has said she is silent", () => {
+  const stuck = { ...snapshot({ chatbotHoldsChannel: true }), tutorSpeaking: false };
+  // The ordinary recovery bows out to the refs...
+  assert.equal(narrationRecovery(stuck), "none");
+  // ...the backstop does not: it continues a frozen lecture, or restarts one that was refused or lost.
+  assert.equal(backstopRecovery({ ...stuck, lectureFrozen: true }), "resume");
+  assert.equal(backstopRecovery({ ...stuck, narrationLost: true }), "restart");
+  assert.equal(backstopRecovery({ ...stuck, startRefused: true }), "restart");
+});
+
+test("the backstop never replays a beat that is merely waiting", () => {
+  // Narration finished and the next beat is still being generated; or a checkpoint awaits an answer.
+  // Nothing refused, nothing lost, nothing frozen — restarting here would replay the beat in a loop.
+  assert.equal(backstopRecovery({ ...RUNNING, tutorSpeaking: false }), "none");
+  // And it does nothing while she is genuinely speaking, or a question is in flight.
+  assert.equal(backstopRecovery({ ...snapshot({ narrationLost: true }), tutorSpeaking: true }), "none");
+  assert.equal(backstopRecovery({ ...snapshot({ narrationLost: true, utteranceInFlight: true }), tutorSpeaking: false }), "none");
+  assert.equal(backstopRecovery({ ...snapshot({ narrationLost: true, mode: "paused" }), tutorSpeaking: false }), "none");
+});
+
+test("filler and commands do not re-plan the lecture; real questions do", () => {
+  // From the stuck lecture: each of these was posted as a question and re-planned the upcoming beats.
+  for (const filler of ["Okay okay, carry on.", "carry on", "go on", "continue the lecture", "Hello hello", "hi aria", "ok", "yeah", "thank you"]) {
+    assert.equal(isAdaptiveQuestion(filler), false, `"${filler}" should not re-plan the lecture`);
+  }
+  for (const question of ["Aarya, what is a rebellion?", "why did the sepoys revolt?", "can you explain the Doctrine of Lapse again?"]) {
+    assert.equal(isAdaptiveQuestion(question), true, `"${question}" is a real question`);
+  }
 });

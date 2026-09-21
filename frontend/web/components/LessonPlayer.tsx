@@ -9,7 +9,8 @@ import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
 import { useLessonMachine } from "@/lib/lessonMachine";
-import { narrationRecovery } from "@/lib/narrationRecovery";
+import { backstopRecovery, narrationRecovery } from "@/lib/narrationRecovery";
+import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { LiveSketch } from "./sketch/LiveSketch";
@@ -311,6 +312,28 @@ export function LessonPlayer({
    * makes it impossible to go stale, with no dependence on the order effects happen to run in.
    */
   const startRefusedForRef = useRef<number | null>(null);
+  /** The beat whose narration is playing and has not finished (see the narration effect's cleanup). */
+  const narrationLiveForRef = useRef<number | null>(null);
+  /** The beat whose narration was cancelled before it finished — lost, so it must restart. */
+  const narrationLostForRef = useRef<number | null>(null);
+  /** Set by the stall backstop only: the next start overrides a channel refusal it has judged stale. */
+  const forceNextStartRef = useRef(false);
+  /*
+   * DEVELOPMENT ONLY — never present in a production build.
+   *
+   * Lets a browser test reproduce the "Pause on the button, nothing heard" stall. `restartNarration`
+   * does exactly what the mode effect's old fallback did when Aria still held the channel: re-run the
+   * narration effect, whose cleanup cancels the beat that is playing. Used by
+   * scripts/test-stuck-lecture.mjs; there is no other way to reach that path without a live voice.
+   */
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") return;
+    const target = window as unknown as { __ariaLecture?: { restartNarration: () => void } };
+    target.__ariaLecture = { restartNarration: () => setStartNonce((n) => n + 1) };
+    return () => {
+      delete target.__ariaLecture;
+    };
+  }, []);
   const [drawProgress, setDrawProgress] = useState(0);
   const [rate, setRate] = useState(1);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -620,7 +643,8 @@ export function LessonPlayer({
       // it a silent model looks identical to a dead session, and they have no reason to keep talking.
       if (checkinRef.current) setCheckinLine(text.trim());
       chat.appendTurn(role === "student" ? "you" : "aria", text);
-      if (role === "student") onLearnerInteraction?.({ kind: "question", detail: text.trim() });
+      // Only a real question re-plans the lecture — not "carry on", not "hello hello" (lib/adaptiveQuestion.ts).
+      if (role === "student" && isAdaptiveQuestion(text)) onLearnerInteraction?.({ kind: "question", detail: text.trim() });
     },
     onSessionEnded: () => {
       setSessionActive(false);
@@ -882,7 +906,9 @@ export function LessonPlayer({
       setBeatQuestions((n) => n + 1);
       lesson.enterChat({ resumeAfterAnswer: true });
     },
-    onQuestionAsked: (question) => onLearnerInteraction?.({ kind: "question", detail: question }),
+    onQuestionAsked: (question) => {
+      if (isAdaptiveQuestion(question)) onLearnerInteraction?.({ kind: "question", detail: question });
+    },
     onExplanationClosed: () => lesson.requestResume(),
     onVoiceBlocked: () => setVoiceBlocked(true),
   });
@@ -1200,32 +1226,51 @@ export function LessonPlayer({
     // replayed the beat from the top. Pause/resume is handled by the mode effect below, which freezes
     // and continues the SAME audio in place. This effect only (re)starts a beat fresh.
     if (lesson.modeRef.current !== "teaching" || chat.busy) return;
-    const narrateOnBoard = !isCheckpoint && !transitionIn && stage === "board";
+    /*
+     * A BRIDGED BEAT CAN ALWAYS START AGAIN.
+     *
+     * It starts on its title slide, bridge sentence first, and the narration itself moves it to the
+     * board. This used to be the ONLY place it could start: once the board was showing, a beat whose
+     * narration had been lost — cancelled under Aria's voice, or a resume that found nothing to
+     * continue — could never be started by anything, not Resume, not the recovery below. The lecture
+     * sat silent on the board with "Pause" on the button. Since every standard-track beat now has a
+     * bridge (beat one opens with one), that trapped every beat.
+     *
+     * On the board the slide's moment has passed, so it restarts from the script, without the bridge.
+     * `stage` is deliberately not a dependency, so this cannot start a beat twice.
+     */
+    const restartOnBoard = Boolean(transitionIn) && !isCheckpoint && stage === "board";
+    const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnSlide = (isCheckpoint || Boolean(transitionIn)) && stage === "slide";
     if (!narrateOnBoard && !narrateOnSlide) return;
     if (!isCheckpoint && animationBlocking) return;
+    const speakText = restartOnBoard ? (beat.script ?? "") : narrationText;
+    const bridge = restartOnBoard ? 0 : bridgeSentences;
+    const bridged = Boolean(transitionIn) && !restartOnBoard;
+    const force = forceNextStartRef.current;
+    forceNextStartRef.current = false;
     window.setTimeout(() => setDrawProgress(0), 0);
     /*
      * The voice numbers sentences over `narrationText`, bridge included; the board's
      * `data-teach-sentence` tags number the SCRIPT. Every cue and progress value is translated into
      * the script's numbering before it reaches the board, or a bridged beat draws one sentence ahead.
      */
-    const narrationWeights = splitNarrationSentences(narrationText).map(sentenceWeight);
+    const narrationWeights = splitNarrationSentences(speakText).map(sentenceWeight);
     let narrationCue = 0;
     const started = voice.speakAsTeacher(
-      narrationText,
+      speakText,
       {
         onStart: () => setSpeaking(true),
         onSentenceStart: (sentenceIndex, sentence, total) => {
           narrationCue = sentenceIndex;
-          if (transitionIn && !isCheckpoint && sentenceIndex >= bridgeSentences && !transitionBoardShownRef.current) {
+          if (bridged && !isCheckpoint && sentenceIndex >= bridge && !transitionBoardShownRef.current) {
             transitionBoardShownRef.current = true;
             setStage("board");
           }
           setSentenceCue({
-            index: Math.max(0, sentenceIndex - bridgeSentences),
+            index: Math.max(0, sentenceIndex - bridge),
             text: sentence,
-            total: Math.max(1, total - bridgeSentences),
+            total: Math.max(1, total - bridge),
           });
           if (deafMode) {
             const caption = sentence.trim();
@@ -1238,11 +1283,11 @@ export function LessonPlayer({
         // The media element's clock is the source of truth for board progress. This keeps the
         // live marker, generated SVG progress, and beat advancement pinned to the actual voice.
         onProgress: (progress) => {
-          if (!transitionIn || bridgeSentences === 0) {
+          if (!bridged || bridge === 0) {
             setDrawProgress(Math.max(0, progress));
             return;
           }
-          const clock = scriptClockFromNarration(narrationWeights, bridgeSentences, narrationCue, progress);
+          const clock = scriptClockFromNarration(narrationWeights, bridge, narrationCue, progress);
           if (!isCheckpoint && !clock.onBridge && !transitionBoardShownRef.current) {
             transitionBoardShownRef.current = true;
             setStage("board");
@@ -1251,6 +1296,7 @@ export function LessonPlayer({
         },
         onEnd: () => {
           setSpeaking(false);
+          narrationLiveForRef.current = null;
           // If playback was paused between the last cue and this onEnd firing, do NOT advance —
           // freeze on the current beat. Read the LIVE mode (not the captured `lesson.playing`).
           if (lesson.modeRef.current !== "teaching") return;
@@ -1284,7 +1330,8 @@ export function LessonPlayer({
         onBlocked: () => setVoiceBlocked(true),
         rate,
       },
-      "lecture"
+      "lecture",
+      { force },
     );
     /*
      * A REFUSAL IS NOT A DEAD END.
@@ -1298,8 +1345,15 @@ export function LessonPlayer({
       return;
     }
     startRefusedForRef.current = null;
+    narrationLostForRef.current = null;
+    narrationLiveForRef.current = index;
 
     return () => {
+      // Cancelled before it finished — this effect re-running for the SAME beat, not the lecture
+      // moving on (a narration that ended cleared the live marker in onEnd). The audio is gone, not
+      // paused, so record the loss: the recovery below restarts the beat once the channel is free.
+      if (narrationLiveForRef.current === index) narrationLostForRef.current = index;
+      narrationLiveForRef.current = null;
       voice.stopTeacher();
       setSpeaking(false);
     };
@@ -1315,7 +1369,17 @@ export function LessonPlayer({
   // (a fresh beat, or the browser-TTS fallback), `startNonce` starts the beat instead.
   useEffect(() => {
     if (lesson.mode === "teaching") {
-      if (!voice.resumeTeacher()) queueMicrotask(() => setStartNonce((n) => n + 1));
+      /*
+       * Restart the beat ONLY when there is genuinely nothing to continue.
+       *
+       * `resumeTeacher()` returns false for two different reasons: nothing is frozen, or Aria still
+       * holds the channel. This treated both as "nothing to continue" and bumped the nonce — which
+       * re-runs the narration effect, whose cleanup CANCELS the frozen lecture it was meant to
+       * continue. The student's question was answered and their lecture was destroyed with it.
+       * Now a frozen lecture refused only because the channel is busy is left frozen, and the
+       * recovery below continues it, mid-sentence, the moment she goes quiet.
+       */
+      if (!voice.resumeTeacher() && !voice.hasFrozenTeacher()) queueMicrotask(() => setStartNonce((n) => n + 1));
     } else {
       voice.pauseTeacher();
       queueMicrotask(() => setSpeaking(false));
@@ -1346,11 +1410,13 @@ export function LessonPlayer({
       utteranceInFlight: voice.hasPendingUtterance(),
       lectureFrozen: voice.hasFrozenTeacher(),
       startRefused: startRefusedForRef.current === index,
+      narrationLost: narrationLostForRef.current === index,
     });
     if (action === "resume") {
       voice.resumeTeacher();
     } else if (action === "restart") {
       startRefusedForRef.current = null;
+      narrationLostForRef.current = null;
       setStartNonce((n) => n + 1);
     }
     // `quiz.phase` is in here for a reason that is easy to delete by accident: cancelling an
@@ -1367,14 +1433,38 @@ export function LessonPlayer({
    * response abandoned mid-flight, a board chain that never settled — the recovery above keeps
    * correctly bowing out and the lecture stays frozen with nothing to fix it. The cross-check is the
    * point: the refs say she holds the channel, React state says she is silent, and several seconds
-   * have passed. Then the refs are wrong.
+   * have passed. Then the refs are wrong — so it OVERRIDES them. It used to ask those same refs for
+   * permission (`resumeTeacher()` refuses while they say she is talking) and was refused, which is
+   * why it could never unstick anything.
    *
-   * It only ever RESUMES — never restarts a beat — so the worst case is a no-op and it cannot loop.
+   * It restarts a beat only when one is on record as refused or lost (lib/narrationRecovery.ts
+   * `backstopRecovery`), never one that is merely waiting — so it cannot replay a finished beat while
+   * the next is still being generated. The decision is re-read when the timer fires, not trusted
+   * from six seconds earlier; a successful start clears the record, so it cannot loop.
    */
   useEffect(() => {
     if (lesson.mode !== "teaching" || tutor.speaking) return;
-    if (!voice.hasFrozenTeacher() || voice.hasPendingUtterance()) return;
-    const t = setTimeout(() => voice.resumeTeacher(), NARRATION_STALL_MS);
+    const snapshot = () => backstopRecovery({
+      mode: lesson.modeRef.current,
+      tutorSpeaking: tutor.speaking,
+      chatbotHoldsChannel: voice.owner === "chatbot" || voice.isChatbotSpeaking(),
+      utteranceInFlight: voice.hasPendingUtterance(),
+      lectureFrozen: voice.hasFrozenTeacher(),
+      startRefused: startRefusedForRef.current === index,
+      narrationLost: narrationLostForRef.current === index,
+    });
+    if (snapshot() === "none") return;
+    const t = setTimeout(() => {
+      const action = snapshot();
+      if (action === "resume") {
+        voice.resumeTeacher({ force: true });
+      } else if (action === "restart") {
+        startRefusedForRef.current = null;
+        narrationLostForRef.current = null;
+        forceNextStartRef.current = true;
+        setStartNonce((n) => n + 1);
+      }
+    }, NARRATION_STALL_MS);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);

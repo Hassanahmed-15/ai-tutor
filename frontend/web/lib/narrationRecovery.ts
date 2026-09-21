@@ -33,6 +33,16 @@ export type ChannelSnapshot = {
   lectureFrozen: boolean;
   /** `speakAsTeacher` REFUSED to start this beat (the chatbot had the floor) and nothing retried. */
   startRefused: boolean;
+  /**
+   * This beat's narration started and was then CANCELLED before it finished — not paused, cancelled
+   * — so there is nothing frozen to resume and no refusal on record.
+   *
+   * WHY THIS EXISTS. Resuming while Aria still held the channel failed, and the fallback re-ran the
+   * narration effect, whose cleanup cancels the lecture it was meant to continue. Neither flag above
+   * was then set, so every recovery here answered "none" and the lecture sat silent — "Pause" on the
+   * button, nothing heard, and Pause/Resume unable to help.
+   */
+  narrationLost: boolean;
 };
 
 export type NarrationAction =
@@ -54,6 +64,22 @@ export function narrationRecovery(snapshot: ChannelSnapshot): NarrationAction {
   if (snapshot.chatbotHoldsChannel) return "none";
   if (snapshot.utteranceInFlight) return "none";
   if (snapshot.lectureFrozen) return "resume";
-  if (snapshot.startRefused) return "restart";
+  if (snapshot.startRefused || snapshot.narrationLost) return "restart";
+  return "none";
+}
+
+/**
+ * The stall backstop's decision, for the stall no render announces.
+ *
+ * `chatbotHoldsChannel` reads live refs inside the tutor hook; if one is left set (a response
+ * abandoned mid-flight) every check above keeps bowing out. The backstop acts on the contradiction:
+ * the refs say she is talking, React state (`tutorSpeaking`) has said she is silent for several
+ * seconds, so the refs are wrong — and it overrides them. It never touches a beat that is merely
+ * waiting on something, because "restart" still needs an explicit refusal or loss on record.
+ */
+export function backstopRecovery(snapshot: ChannelSnapshot & { tutorSpeaking: boolean }): NarrationAction {
+  if (snapshot.mode !== "teaching" || snapshot.tutorSpeaking || snapshot.utteranceInFlight) return "none";
+  if (snapshot.lectureFrozen) return "resume";
+  if (snapshot.startRefused || snapshot.narrationLost) return "restart";
   return "none";
 }
