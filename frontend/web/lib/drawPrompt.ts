@@ -911,7 +911,7 @@ Color = "amber"|"green"|"blue"|"slate"|"rose"|"violet" (bold marker colors on th
 DO NOT use "shape" or "arrow" ops — this board is text only. No diagrams, no drawn shapes, no connectors.
 
 WHAT TO PUT ON THE BOARD:
-- ONE heading label (size "lg") at the top naming the idea, kept SHORT (<= 22 characters — if the title is longer, abbreviate it) so it never runs off the side.
+- ONE heading label (size "lg") at the top naming the idea. Use the supplied beat title AS GIVEN — never drop, abbreviate or truncate its words. A title is the student's anchor for the board and a half-title ("Is Linear Regression") is worse than a long one. If it is longer than ~28 characters the renderer wraps it; that is fine and expected.
 - 3-5 real content points. Each point is a SHORT term/symbol label (size "md", <= 18 characters) on its OWN line, with a short explanatory note on the line DIRECTLY BELOW it giving genuine context the narration does NOT already say (a consequence, a why, a worked number, a misconception). Complete chalk phrases — never fragments, ellipses, or dangling connectors ("because", "which"). Each note must make sense read aloud on its own.
 - Optionally a single closing takeaway line at the bottom.
 

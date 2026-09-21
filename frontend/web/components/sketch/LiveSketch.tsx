@@ -2344,7 +2344,13 @@ function SceneText({
   fill: string;
   opacity?: number;
 }) {
-  const lines = wrapText(text, maxChars).slice(0, 2);
+  /*
+   * Three lines, not two. At two, a title that wrapped to three simply LOST its last words with no
+   * ellipsis and no warning — the student read a half-title and had no way to know a word was
+   * missing. Three lines holds every realistic beat title; beyond that the text genuinely does not
+   * belong on a board as a heading.
+   */
+  const lines = wrapText(text, maxChars).slice(0, 3);
   return (
     <text x={x} y={y} textAnchor="middle" opacity={opacity} style={{ fontSize: size, fontWeight: 900, fill, paintOrder: "stroke", stroke: fill === "#0f172a" ? "rgba(255,255,255,0.34)" : "rgba(2,6,23,0.72)", strokeWidth: 4, strokeLinejoin: "round" }}>
       {lines.map((line, i) => (

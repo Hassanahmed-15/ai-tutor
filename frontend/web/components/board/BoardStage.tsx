@@ -52,6 +52,8 @@ export interface BoardStageProps {
   title?: string | null;
   /** Fired once the board has actually painted, so the card can hand over instead of timing out. */
   onBoardPainted?: () => void;
+  /** Small line above the title — where this section sits in the lesson. */
+  titleEyebrow?: string;
 }
 
 export type BoardStatus =
@@ -71,6 +73,7 @@ export function BoardStage({
   overlay,
   title,
   onBoardPainted,
+  titleEyebrow,
 }: BoardStageProps) {
   /*
    * "The board has painted" = two animation frames after this board mounted: one for the browser to
@@ -137,7 +140,7 @@ export function BoardStage({
 
       {overlay}
 
-      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} /> : null}
+      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} eyebrow={titleEyebrow} /> : null}
 
       {veiled && <StatusVeil status={status} />}
     </section>
@@ -156,17 +159,29 @@ export function BoardStage({
  * It leaves on its own `board-title-out` animation rather than unmounting instantly, so the
  * hand-off is a dissolve into the board instead of a cut.
  */
-function SectionCard({ title, leaving }: { title: string; leaving: boolean }) {
+function SectionCard({ title, leaving, eyebrow }: { title: string; leaving: boolean; eyebrow?: string }) {
   return (
     <div
-      className="board-title-card pointer-events-none absolute inset-0 z-20 grid place-items-center bg-[#080a0e] p-6 lg:p-10"
+      className="board-title-card pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-[#080a0e] px-8 lg:px-16"
       data-leaving={leaving ? "true" : "false"}
       aria-hidden="true"
     >
-      <div className="relative w-full max-w-4xl text-center">
-        <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+      {/* One faint warm wash, matching the board's own backdrop. The predecessor used a purple/cyan
+          gradient card that looked like a corporate slide deck dropped into a lecture — a different
+          visual language from the board it was introducing, which is why it read as an interruption
+          rather than as the lesson starting. */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,168,124,0.07),transparent_60%)]" />
+      <div className="relative w-full max-w-3xl">
+        {eyebrow && (
+          <p className="mb-4 text-[0.7rem] font-black uppercase tracking-[0.22em] text-white/30">{eyebrow}</p>
+        )}
+        {/* Left-aligned, like a teacher writing a heading at the top of a board — not centred like
+            a title slide. Balanced weight and a rule beneath, so it reads as a heading rather than
+            a splash screen. */}
+        <h2 className="text-balance text-3xl font-bold leading-[1.12] tracking-[-0.01em] text-white/95 sm:text-4xl lg:text-[2.9rem]">
           {title}
         </h2>
+        <div className="mt-5 h-px w-16 bg-gradient-to-r from-amber-300/60 to-transparent" />
       </div>
     </div>
   );

@@ -2034,6 +2034,7 @@ export function LessonPlayer({
                  * subtopic is not a new section and must not re-announce itself.
                  */
                 title={showSectionCard ? beat.title : null}
+                titleEyebrow={`Part ${index + 1} of ${displayBeatCount}`}
                 onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">

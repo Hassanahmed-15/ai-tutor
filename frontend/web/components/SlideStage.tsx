@@ -38,8 +38,10 @@ export function SlideStage({
    */
   suppressCheckpoint?: boolean;
 }) {
+  // Only a real, unsuppressed checkpoint renders the question form; everything else is a title.
+  const isCheckpointForm = beat.slideKind === "checkpoint" && Boolean(beat.checkpoint) && !suppressCheckpoint;
   return (
-    <section className="beat-fade-in relative grid h-full min-h-0 place-items-center overflow-hidden rounded-[2rem] bg-[#07101f] p-6 text-white lg:p-10">
+    <section className="beat-fade-in relative grid h-full min-h-0 place-items-center overflow-hidden rounded-[2rem] bg-[#0c0a09] p-6 text-white lg:p-10">
       {beat.photoBackdrop && (
         <Image
           src={beat.photoBackdrop}
@@ -50,16 +52,29 @@ export function SlideStage({
           sizes="100vw"
         />
       )}
+      {/* One faint warm wash, the same backdrop the board itself uses. The predecessor layered a
+          cyan radial, a violet radial and a blue diagonal gradient — a busy, differently-coloured
+          surface from the board it introduces, so every section change flashed a purple slide into
+          the middle of a calm dark lecture. */}
       <div
         className={`absolute inset-0 ${beat.photoBackdrop ? "" : "opacity-90"}`}
         style={{
           backgroundImage: beat.photoBackdrop
             ? "linear-gradient(180deg, rgba(2,6,23,0.48) 0%, rgba(2,6,23,0.78) 75%, rgba(2,6,23,0.95) 100%)"
-            : "radial-gradient(circle at 18% 20%, rgba(34,211,238,0.34), transparent 44%), radial-gradient(circle at 82% 78%, rgba(168,85,247,0.26), transparent 50%), linear-gradient(135deg,#07101f,#020617)",
+            : "radial-gradient(circle at 50% 0%, rgba(232,168,124,0.07), transparent 60%), linear-gradient(180deg,#0c0a09,#080605)",
         }}
       />
-      <div className="pointer-events-none absolute inset-6 rounded-[1.7rem] border border-white/10" />
-      <div className="relative w-full max-w-4xl rounded-[1.75rem] border border-white/10 bg-slate-950/46 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.28)] backdrop-blur-md lg:p-10">
+      {/* A checkpoint is a form and earns a panel to sit in. A plain section title does not: the
+          old card nested a bordered, blurred panel inside a bordered frame inside a gradient, three
+          boxes deep for one line of text. */}
+      {isCheckpointForm && <div className="pointer-events-none absolute inset-6 rounded-[1.7rem] border border-white/10" />}
+      <div
+        className={
+          isCheckpointForm
+            ? "relative w-full max-w-4xl rounded-[1.75rem] border border-white/10 bg-slate-950/46 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.28)] backdrop-blur-md lg:p-10"
+            : "relative w-full max-w-3xl px-2"
+        }
+      >
         <SlideBody
           beat={beat}
           onCheckpointAnswer={onCheckpointAnswer}
@@ -119,10 +134,22 @@ function SlideBody({
   return <BeatTitleCard title={beat.title} />;
 }
 
+/**
+ * The title of a section, on a checkpoint beat.
+ *
+ * Matched to `SectionCard` in components/board/BoardStage.tsx: left-aligned, balanced weight, a
+ * thin amber rule. The predecessor set this at text-7xl black and centred, which on a real title
+ * ("Wht Is Linear Regression") filled the screen edge to edge and read as a splash screen rather
+ * than as a heading in a lesson. `text-balance` keeps a wrapped title from leaving one orphan word
+ * on the last line.
+ */
 function BeatTitleCard({ title }: { title: string }) {
   return (
-    <div className="text-center">
-      <h2 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">{title}</h2>
+    <div className="w-full">
+      <h2 className="text-balance text-3xl font-bold leading-[1.12] tracking-[-0.01em] text-white/95 sm:text-4xl lg:text-[2.9rem]">
+        {title}
+      </h2>
+      <div className="mt-5 h-px w-16 bg-gradient-to-r from-amber-300/60 to-transparent" />
     </div>
   );
 }

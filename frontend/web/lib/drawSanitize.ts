@@ -1351,7 +1351,64 @@ export function sanitizeDraw(raw: unknown, context?: DrawRepairContext): DrawScr
   // semantic motion fills the middle of the timeline, while the longer default gives each
   // op more dwell time.
   const durationMs = typeof o.durationMs === "number" && o.durationMs >= 9000 && o.durationMs <= 60000 ? o.durationMs : 48000;
-  return { caption: str(o.caption), durationMs, ...scriptSurface(o), ops: enrichedOps };
+  return { caption: str(o.caption), durationMs, ...scriptSurface(o), ops: separateCollidingText(enrichedOps) };
+}
+
+/**
+ * NUDGE TEXT THAT LANDS ON TOP OF OTHER TEXT.
+ *
+ * Overlap was only ever checked on blackboards (`blackboardTextOverlaps`), and only as a PASS/FAIL
+ * that asked the model to try again. Every other board — plots, diagrams, the annotated scatter in
+ * a regression lecture — had no protection at all, so a data label written at the same spot as an
+ * axis label simply rendered on top of it. That is the reported "text is badly placed and
+ * overlapping".
+ *
+ * A critic cannot fix this cheaply: it costs another generation and the model is guessing at
+ * rendered widths either way. This instead repairs the placement directly, and only where there is
+ * a genuine collision — each op is moved the minimum vertical distance that clears the one it hits,
+ * in board order, so deliberate composition is preserved and only the clash is resolved.
+ *
+ * Deliberately vertical-only: on a plot an x position usually MEANS something (it sits over its
+ * data point), while y has slack. Moving a label sideways would detach it from what it labels.
+ */
+function separateCollidingText(ops: DrawOp[]): DrawOp[] {
+  type TextOp = Extract<DrawOp, { kind: "label" | "note" }>;
+  const isText = (op: DrawOp): op is TextOp => op.kind === "label" || op.kind === "note";
+  if (ops.filter(isText).length < 2) return ops;
+
+  // Rendered size in grid units. Mirrors the estimates in `blackboardTextOverlaps` so the two
+  // agree about what "wide" means.
+  const charW = (op: TextOp): number => {
+    if (op.kind === "note") return 0.95;
+    const size = "size" in op && op.size ? op.size : "md";
+    return size === "lg" ? 2.0 : size === "sm" ? 0.95 : 1.35;
+  };
+  const width = (op: TextOp) => Math.min(84, op.text.trim().length * charW(op));
+  const height = (op: TextOp) => (op.kind === "label" && "size" in op && op.size === "lg" ? 9 : 6);
+
+  const placed: Array<{ x: number; y: number; w: number; h: number }> = [];
+  return ops.map((op) => {
+    if (!isText(op)) return op;
+    const w = width(op);
+    const h = height(op);
+    let y = op.y;
+    /*
+     * Try the authored position, then step away in increasing increments, alternating down and up
+     * so a nudged label stays as close as possible to where the model meant it. Bounded: after 12
+     * attempts we accept the last position rather than loop, since an unplaceable board is better
+     * rendered slightly imperfectly than not at all.
+     */
+    for (let attempt = 0; attempt < 12; attempt++) {
+      const hits = placed.some((p) => op.x < p.x + p.w + 1.5 && p.x < op.x + w + 1.5 && y < p.y + p.h && p.y < y + h);
+      if (!hits) break;
+      const step = Math.ceil((attempt + 1) / 2) * (h + 1.5);
+      const candidate = attempt % 2 === 0 ? op.y + step : op.y - step;
+      // Stay inside the frame; if a direction would leave it, the next attempt tries the other.
+      y = Math.max(6, Math.min(94 - h, candidate));
+    }
+    placed.push({ x: op.x, y, w, h });
+    return y === op.y ? op : { ...op, y };
+  });
 }
 
 function forceFullBoardImage(op: ImageOp): ImageOp {

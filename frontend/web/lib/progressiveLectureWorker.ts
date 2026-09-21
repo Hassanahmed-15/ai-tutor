@@ -475,10 +475,31 @@ async function generateOneBeat(
         priorDocs.map((doc) => ({ title: doc.beat?.title ?? "", objective: doc.beat?.teacherMove ?? "" })),
       )
     : { overlap: 0, with: -1 };
+  /*
+   * WHAT THIS BOARD IS, WITHIN ITS CONCEPT.
+   *
+   * The instruction here used to be flat: "Never split a single concept across boards to make the
+   * lecture longer." That is right for a one-board concept and exactly wrong for a subtopic
+   * deliberately taught over two or three — the model was told to pack everything into each board,
+   * so every pass restated the whole idea in different words. That is the reported "it still
+   * explains the same thing, just differently".
+   *
+   * A continuation pass is now told three things it previously had no way to know: that the board
+   * ALREADY HAS the earlier passes' work on it, which specific job this pass has, and that it must
+   * not re-establish what is already written above it.
+   */
+  const passIndex = planned.conceptPass ?? 1;
+  const passTotal = planned.conceptPasses ?? 1;
+  const passInstruction = passTotal <= 1
+    ? " Never split a single concept across boards to make the lecture longer."
+    : passIndex === 1
+      ? ` This concept is taught across ${passTotal} boards and THIS IS BOARD 1 of ${passTotal}: establish the idea itself — what it is and why it is true — and STOP there. Do not work the example or cover the edge cases; later boards of this same concept do that. End at a natural pause, not a summary.`
+      : ` This is BOARD ${passIndex} of ${passTotal} ON THE SAME CONCEPT, continuing directly underneath the work already on the board. The student can still SEE the earlier boards, so do NOT re-introduce, re-define or re-motivate the idea, and do not summarise it — open as a teacher continuing mid-explanation ("so let's put numbers on that", "now watch what happens when…"). Teach ONLY this pass's job: ${planned.objective}`;
+
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD. Never split a single concept across boards to make the lecture longer. DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD.${passInstruction} DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
