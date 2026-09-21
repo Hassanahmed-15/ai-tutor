@@ -69,6 +69,11 @@ function weakTitle(value: string, topic: string): boolean {
   return false;
 }
 
+/** "<topic>: <role>" — a title from the default lecture plan, not one anyone wrote for this beat. */
+function isPlanTemplateTitle(value: string): boolean {
+  return /:\s*(?:core idea|how it works|a worked example|common mistake|compare and connect|try it|deeper layer|transfer|idea \d+|put it together)\s*$/i.test(compact(value));
+}
+
 function objectiveTitle(objective: string): string {
   const stripped = compact(objective)
     .replace(/^(?:open with|define|explain|show|demonstrate|apply|trace|teach|introduce|connect|contrast|compare|expose and repair|give)\s+/i, "")
@@ -105,11 +110,20 @@ export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: strin
     const original = keywordTitle(entry.title, topic);
     const objective = objectiveTitle(entry.objective);
     const role = roleTitle(topic, sequence, entries.length);
+    /*
+     * A default-plan beat ("1857 War: Core idea", used when the student skipped planning and there
+     * is no outline) takes its ROLE title. Its objective is an instruction to the tutor — "Define
+     * 1857 War plainly and establish the mental model" — and turning that into a title put "1857 War
+     * plainly and establish" on the title slide; "How it works" lost its verb and became "How It".
+     * The raw title is tested, because `keywordTitle` has already mangled `original`.
+     */
     const candidates = sequence === 0 || sequence === entries.length - 1
       ? [role, original, objective]
-      : weakTitle(original, topic)
-        ? [objective, role]
-        : [original, objective, role];
+      : isPlanTemplateTitle(entry.title)
+        ? [role]
+        : weakTitle(original, topic)
+          ? [objective, role]
+          : [original, objective, role];
     let title = candidates.find((candidate) => candidate && !used.has(candidate.toLowerCase())) ?? role;
     if (used.has(title.toLowerCase())) {
       title = trimTitle(sequence === entries.length - 1 ? `${topicKeywords(topic)} Recap` : role);

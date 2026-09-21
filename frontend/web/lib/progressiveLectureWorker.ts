@@ -3,11 +3,13 @@ import "server-only";
 import OpenAI from "openai";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { fillBlackboardOps } from "./blackboardGen";
-import { planBeatVisual, specToBrief } from "./beatVisualSpec";
-import { direct, type BoardKind } from "./director";
+import { planBeatVisual, specToBrief, type BeatVisualSpec } from "./beatVisualSpec";
+import { direct, type BoardKind, type VisualForm } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
 import { openingSentence, polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
+import { boardBriefFor, pointsFromScript } from "./boardBrief";
+import { hasUsableBoard, rescueEmptyBoards } from "./boardFallback";
 import { fillManimSceneOps } from "./manimSceneGen";
 import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
@@ -463,9 +465,16 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   const points = Array.isArray(payload.points)
     ? payload.points.filter((item): item is string => typeof item === "string").map(clean).filter(Boolean).slice(0, 4)
     : [];
-  const script = typeof payload.script === "string" && payload.script.trim()
-    ? payload.script.trim()
-    : `${planned.objective} ${points.join(" ")}`;
+  // No script is a generation failure, not something to paper over: the fallback used to be the
+  // planner's objective, so the tutor's own instruction was read aloud. The caller's catch takes the
+  // deterministic fallback beat instead.
+  if (typeof payload.script !== "string" || !payload.script.trim()) {
+    throw new Error(`the model returned no script for beat ${planned.sequence + 1}`);
+  }
+  const script = payload.script.trim();
+  // With no model points, the board shows the opening of what the student hears — never the plan
+  // objective, which is an instruction to the tutor (lib/boardBrief.ts).
+  const boardPoints = points.length > 0 ? points : pointsFromScript(script);
   const rawKind = String(payload.slideKind ?? "");
   const slideKind: SlideKind = ["intro", "definition", "checkpoint", "compare", "recap"].includes(rawKind)
     ? rawKind as SlideKind
@@ -485,13 +494,13 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
     teacherMove: clean(payload.teacherMove) || planned.objective,
     stepLabel: `${planned.sequence + 1} · ${planned.sequence === 0 ? "Start" : slideKind === "checkpoint" ? "Check" : "Learn"}`,
     slideKind,
-    points: points.length > 0 ? points : [planned.objective],
+    points: boardPoints,
     definitionTerm: clean(payload.definitionTerm) || undefined,
     definitionMeaning: clean(payload.definitionMeaning) || undefined,
     checkpoint,
     script,
     sourceBlockIds: planned.sourceBlockIds,
-    draw: fallbackDraw(planned.title, points.length > 0 ? points : [planned.objective], planned.estimatedDurationMs),
+    draw: fallbackDraw(planned.title, boardPoints, planned.estimatedDurationMs),
   };
 }
 
@@ -513,7 +522,14 @@ function sanitizeCheckpoint(value: unknown, planned: ProgressiveBeatPlan): Check
 }
 
 function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: ProgressiveLectureSessionDoc, sequence: number): Beat {
-  const points = [planned.objective, `Connect this idea to the larger topic: ${session.topic}.`];
+  /*
+   * The model failed outright, so there is no written content — only the plan, whose objective is an
+   * instruction to the tutor ("Open with a concrete puzzle…", "Define X plainly…"). That used to be
+   * the board's first bullet AND the opening of what Aria said. Everything here is student-facing,
+   * built from the beat's title and the topic: thin, but never the tutor's own notes read aloud.
+   */
+  const script = `Let's look at ${planned.title}, and where it fits in ${session.topic}. Watch the board as we build it up, notice what changes and what stays the same, and connect each piece back to the bigger picture.`;
+  const points = [planned.title, `How it fits in ${session.topic}`];
   return {
     id: planned.id,
     title: planned.title,
@@ -527,7 +543,7 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
     stepLabel: `${sequence + 1} · Learn`,
     slideKind: sequence === session.plan.length - 1 ? "recap" : "intro",
     points,
-    script: `${planned.objective} Let’s make that concrete. Focus on the relationship shown on the board, then connect it back to ${session.topic}. Notice what changes, what stays constant, and how this idea helps you reason about the larger topic.`,
+    script,
     draw: fallbackDraw(planned.title, points, planned.estimatedDurationMs),
   };
 }
@@ -570,11 +586,16 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   let premiumMs = 0;
   let animation: import("./reactAnimationGen").AnimationTiming | undefined;
   let tier: TierDecision | undefined;
+  // What the director made of this beat, when it was asked — reused to re-brief a refused board.
+  let visualSpec: BeatVisualSpec | undefined;
+  let visualForm: VisualForm | undefined;
   if (client && session.sourceType === "prompt") {
     const choiceStartedAt = performance.now();
-    const selection = await chooseProgressiveVisual(client, candidate, planned.visualKind);
+    const selection = await chooseProgressiveVisual(client, candidate, planned.visualKind, sequence);
     visualChoiceMs = performance.now() - choiceStartedAt;
     visualKind = selection.kind;
+    visualSpec = selection.spec;
+    visualForm = selection.form;
     costUsd += selection.costUsd;
   }
   console.error(`[progressive-worker] beat=${candidate.id} renderer-plan=${visualKind} provisional=${planned.visualKind}`);
@@ -630,6 +651,44 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       costUsd += result.costUsd;
       success = result.success;
       error = result.error;
+
+      /*
+       * A REFUSED BOARD DROPS TO A WRITTEN ONE — it does not leave the student a blank board.
+       *
+       * When a board fails (refused by the critic, or never produced) this published the
+       * pre-enrichment placeholder: a white board with the title and one line, which is what the
+       * student saw on "1857 War". The older pipeline already drops a failed board down a chain —
+       * structure diagram, then a written chalk board, which cannot fail on content — in
+       * lib/boardFallback.ts. This is the same chain, for one beat, re-briefed from what the director
+       * made of the beat or, failing that, from what the student hears (never the plan).
+       */
+      if (!success && candidate.slideKind !== "checkpoint" && process.env.BLACKBOARD_GEN_ENABLED === "1") {
+        const rescueStartedAt = performance.now();
+        const spec: BeatVisualSpec = visualSpec ?? {
+          subject: boardBriefFor(candidate),
+          mustShow: candidate.points.slice(0, 4),
+          mustNotShow: "",
+          isPhysical: false,
+        };
+        try {
+          const rescue = await rescueEmptyBoards(
+            client,
+            [candidate],
+            new Map([[candidate.id, spec]]),
+            new Map(visualForm ? [[candidate.id, visualForm]] : []),
+          );
+          costUsd += rescue.costUsd;
+          if (hasUsableBoard(candidate)) {
+            success = true;
+            const board = candidate.draw?.ops.find((op) => ["structureScene", "chalkBoard", "plotBoard", "equationBoard"].includes(op.kind))?.kind ?? "written";
+            error = `${error ?? `${visualKind} board failed`} — rescued with a ${board} board`;
+            console.error(`[progressive-worker] beat=${candidate.id} ${visualKind} failed; rescued with ${board}`);
+          }
+        } catch (cause) {
+          console.error(`[progressive-worker] rescue failed for ${candidate.id}:`, cause);
+        }
+        premiumMs += performance.now() - rescueStartedAt;
+      }
     } else if (visualKind !== "live-svg") {
       error = "OPENAI_API_KEY is not set.";
     }
@@ -680,7 +739,8 @@ async function chooseProgressiveVisual(
   client: OpenAI,
   beat: Beat,
   fallback: ProgressiveVisualKind,
-): Promise<{ kind: ProgressiveVisualKind; costUsd: number }> {
+  sequence: number,
+): Promise<{ kind: ProgressiveVisualKind; costUsd: number; spec?: BeatVisualSpec; form?: VisualForm }> {
   /*
    * DO NOT PAY FOR A CLASSIFICATION WHOSE ANSWER IS ALREADY DECIDED.
    *
@@ -693,7 +753,15 @@ async function chooseProgressiveVisual(
    * COMMON case, not an edge one. Returning early removes two round trips per animated beat while
    * changing no decision the pipeline would have made — the chosen kind is identical either way.
    */
-  if (fallback === "react-animation") {
+  /*
+   * EXCEPT THE FIRST BEAT. Its title is forced to the bare topic ("1857 War"), so the plan's keyword
+   * rules can never match it and it always fell through to an animation — the board most likely to
+   * be refused (a history topic drew a light bulb) and the one that sets the whole lecture's first
+   * impression. It is worth the two calls (~1.5 s, ~$0.01) to let the director choose from what the
+   * beat actually teaches: a diagram for history, an animation for an algorithm.
+   */
+  const opening = sequence === 0;
+  if (fallback === "react-animation" && !opening) {
     return { kind: fallback, costUsd: 0 };
   }
 
@@ -702,20 +770,24 @@ async function chooseProgressiveVisual(
     if (!visual.spec) return { kind: fallback, costUsd: visual.costUsd };
     const selected = await direct(client, specToBrief(visual.spec));
     const board = selected.plan?.board;
-    if (!board) return { kind: fallback, costUsd: visual.costUsd + selected.costUsd };
+    const chosen = { spec: visual.spec, form: selected.plan?.form, costUsd: visual.costUsd + selected.costUsd };
+    if (!board) return { kind: fallback, ...chosen };
     // (The "fallback is already react-animation" case is handled by the early return above, before
     // these two calls are made at all — it used to be checked here, after paying for both.)
     // A broad technical topic can make every visual specification mention "connections", causing
     // an independent per-beat classifier to turn definitions, benefits and recaps into the same ELK
     // network. Structure is accepted only when the beat title itself says relationships/stages are
     // the teaching object; otherwise the varied content-aware provisional plan wins.
-    if (board === "structureScene" && !/\b(?:how .* works?|architecture|pipeline|cycle|state machine|workflow|flow|hierarchy|components?|stages?|sequence)\b/i.test(beat.title)) {
-      return { kind: fallback, costUsd: visual.costUsd + selected.costUsd };
+    // The guard stops every beat of one lecture collapsing into the same diagram; with a single
+    // opening beat there is nothing to collapse, and its title is the bare topic, which would
+    // always fail the test.
+    if (!opening && board === "structureScene" && !/\b(?:how .* works?|architecture|pipeline|cycle|state machine|workflow|flow|hierarchy|components?|stages?|sequence)\b/i.test(beat.title)) {
+      return { kind: fallback, ...chosen };
     }
     // Morph authoring needs inline before/after geometry, which this asynchronous filler does not
     // invent. The sandbox is the full engine's safe live-animation choice for transformations.
     const kind = board === "morph" ? "react-animation" : PROGRESSIVE_KIND_FOR_BOARD[board];
-    return { kind, costUsd: visual.costUsd + selected.costUsd };
+    return { kind, ...chosen };
   } catch (cause) {
     console.error(`[progressive-worker] visual direction failed for ${beat.id}:`, cause);
     return { kind: fallback, costUsd: 0 };
@@ -723,7 +795,9 @@ async function chooseProgressiveVisual(
 }
 
 function premiumPlaceholder(beat: Beat, kind: ProgressiveVisualKind): DrawScript {
-  const brief = `${beat.title}. ${beat.teacherMove} ${beat.points.join(" ")}`;
+  // What the student hears and reads — never `teacherMove`, which is a stage direction. Briefed on
+  // "spark curiosity", the generator drew a light bulb (lib/boardBrief.ts).
+  const brief = boardBriefFor(beat);
   const common = { caption: beat.title, durationMs: beat.draw?.durationMs ?? 45_000, surface: "paper" as const };
   if (kind === "react-animation") return { ...common, ops: [{ kind: "reactAnimation", teachingPoint: brief, at: 0, endAt: 1 }] };
   if (kind === "blackboard") return { ...common, ops: [{ kind: "chalkBoard", boardBrief: brief, at: 0, endAt: 1 }] };

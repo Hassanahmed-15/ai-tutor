@@ -71,3 +71,24 @@ test("the lecture opens with a spoken line, so it never starts in silence", () =
   // No topic at all is still a sentence, never an empty narration.
   assert.match(openingSentence(undefined, ""), /\S/);
 });
+
+test("a lecture with no outline gets role titles, never ones made from the tutor's instructions", () => {
+  // Exactly what the default plan hands polishBeatPlan when the student skipped planning.
+  const subject = "1857 War";
+  const plan = polishBeatPlan([
+    { title: subject, objective: `Open with a concrete puzzle or use case that makes ${subject} worth learning.` },
+    { title: `${subject}: Core idea`, objective: `Define ${subject} plainly and establish the mental model.` },
+    { title: `${subject}: How it works`, objective: `Explain the mechanism or sequence behind ${subject}.` },
+    { title: `${subject}: A worked example`, objective: `Apply ${subject} step by step to a concrete example.` },
+    { title: `${subject}: Common mistake`, objective: `Expose and repair a common misconception about ${subject}.` },
+    { title: `${subject} Recap`, objective: "Connect the core ideas, correct the main misconception, and give the learner a usable recap." },
+  ], "the 1857 war");
+  const titles = plan.map((beat) => beat.title);
+  // What shipped: "1857 War plainly and establish", "How It".
+  for (const title of titles) {
+    assert.ok(!/plainly|establish|mechanism or sequence|misconception about|how it$/i.test(title), `"${title}" is made from a tutor instruction`);
+    assert.ok(title.split(/\s+/).length >= 2 || /^\w{5,}/.test(title), `"${title}" is not a real title`);
+  }
+  assert.deepEqual(titles, ["The 1857 War", "The 1857 War Fundamentals", "The 1857 War Mechanism", "Worked Example", "Common Pitfalls", "The 1857 War Recap"]);
+  assert.equal(new Set(titles.map((t) => t.toLowerCase())).size, titles.length, "titles are distinct");
+});
