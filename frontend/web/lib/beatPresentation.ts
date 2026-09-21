@@ -42,7 +42,16 @@ export function topicKeywords(value: string): string {
 function keywordTitle(value: string, topic: string): string {
   const subject = topicKeywords(topic);
   const stripped = compact(value)
-    .replace(/^(?:why|how|what)\s+/i, "")
+    /*
+     * Strip a leading interrogative ONLY when what follows still reads as a phrase.
+     *
+     * "What is linear regression" became "Is Linear Regression" — an ungrammatical fragment that
+     * then went on to become a SEPARATE SUBTOPIC beside the real one, so the lesson listed both
+     * "What Is Linear Regression" and "Is Linear Regression". Dropping the question word is only
+     * safe when the remainder does not start with a copula or auxiliary; "what IS x" and "why DOES
+     * y" need the question word to make sense at all.
+     */
+    .replace(/^(?:why|how|what)\s+(?!(?:is|are|was|were|does|do|did|can|could|will|would|should)\b)/i, "")
     .replace(/^(?:explain|teach|show|tell)\s+(?:me|us)?\s*/i, "")
     .replace(/\b(?:step[- ]by[- ]step|in detail)\b.*$/i, "")
     .replace(/\s+(?:matters?|works?)\??$/i, "")

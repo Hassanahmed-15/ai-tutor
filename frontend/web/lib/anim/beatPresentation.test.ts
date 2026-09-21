@@ -92,3 +92,33 @@ test("a lecture with no outline gets role titles, never ones made from the tutor
   assert.deepEqual(titles, ["The 1857 War", "The 1857 War Fundamentals", "The 1857 War Mechanism", "Worked Example", "Common Pitfalls", "The 1857 War Recap"]);
   assert.equal(new Set(titles.map((t) => t.toLowerCase())).size, titles.length, "titles are distinct");
 });
+
+test("THE FRAGMENT: 'What is X' keeps its question word instead of becoming 'Is X'", () => {
+  /*
+   * Reported: a lecture on "wht is linear regression" listed BOTH "What Is Linear Regression" and
+   * "Is Linear Regression" as subtopics, because the interrogative stripper turned the title into
+   * an ungrammatical fragment that then read as a different idea.
+   */
+  const plan = polishBeatPlan([
+    { title: "What Is Linear Regression", objective: "Define the method and what it predicts." },
+    { title: "Fitting The Line", objective: "Show how the line is chosen." },
+    { title: "Reading The Output", objective: "Interpret slope and intercept." },
+  ], "what is linear regression");
+  const titles = plan.map((beat) => beat.title);
+  for (const title of titles) {
+    assert.ok(!/^is\s/i.test(title), `"${title}" is a fragment missing its question word`);
+    assert.ok(!/^(?:does|are|can|will)\s/i.test(title), `"${title}" is a fragment`);
+  }
+  assert.equal(new Set(titles.map((t) => t.toLowerCase())).size, titles.length, "titles are distinct");
+});
+
+test("a question title that still reads without its question word is still shortened", () => {
+  // "How gradient descent works" -> the interrogative is redundant; dropping it is an improvement.
+  const [beat] = polishBeatPlan(
+    [{ title: "How Gradient Descent Works", objective: "Explain the update rule." },
+     { title: "Step Size", objective: "Why alpha matters." },
+     { title: "Convergence", objective: "When it stops." }],
+    "gradient descent",
+  );
+  assert.ok(!/^how\s/i.test(beat.title), `"${beat.title}" should have dropped the redundant "How"`);
+});

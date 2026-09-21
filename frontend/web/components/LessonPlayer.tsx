@@ -132,6 +132,15 @@ const SLIDE_MS = 1500;
  * read three or four words, short enough not to feel like waiting.
  */
 const TITLE_MIN_MS = 480;
+/**
+ * The ceiling for a card whose beat opens with a SPOKEN bridge.
+ *
+ * That card is not waiting on anything — it is on screen while Aria says the sentence that
+ * introduces the section — so it may legitimately hold for the length of one sentence. This only
+ * catches a bridge whose audio never arrives (muted, blocked autoplay, a failed voice) so the
+ * lecture still reaches its board.
+ */
+const BRIDGE_CARD_MAX_MS = 9_000;
 // Safety net: a beat whose animation/board op never resolves (still no `code`/`ops`, e.g. a
 // server that didn't generate it) would otherwise hold the lecture on its slide forever. After this
 // long we stop waiting and let the lecture proceed (the board shows its status card meanwhile).
@@ -477,17 +486,19 @@ export function LessonPlayer({
    * a few frames. A continuation pass and a checkpoint never show one at all.
    */
   const showSectionCard = !continuesConcept && !isCheckpoint && !cardDismissed;
-  useEffect(() => {
-    if (continuesConcept || isCheckpoint || !boardPainted) return;
-    const elapsed = performance.now() - titleShownAtRef.current;
-    const t = setTimeout(() => setCardDismissed(true), Math.max(0, TITLE_MIN_MS - elapsed));
-    return () => clearTimeout(t);
-  }, [boardPainted, continuesConcept, isCheckpoint, beat.id]);
-  useEffect(() => {
-    if (continuesConcept || isCheckpoint) return;
-    const t = setTimeout(() => setCardDismissed(true), SLIDE_MS);
-    return () => clearTimeout(t);
-  }, [beat.id, continuesConcept, isCheckpoint]);
+  /*
+   * THE CARD'S DWELL IS MEASURED FROM WHEN IT WENT UP, NOT FROM A STORED TIMESTAMP.
+   *
+   * The predecessor compared `performance.now()` against a ref seeded at COMPONENT MOUNT and reset
+   * on `beat.id`. For the first beat of a progressively-generated lecture, mount happens while the
+   * lecture is still being written — seconds before beat 1 exists — so by the time the card
+   * rendered its dwell was already spent, the timeout computed to 0, and the opening title card
+   * flashed past or never appeared at all. That is the reported "no slide title in start".
+   *
+   * Starting the clock inside the effect that shows the card removes the dependence on when the
+   * component happened to mount: the dwell always runs from the frame the card is actually on
+   * screen.
+   */
   /**
    * The round for this beat, or null when its content will not support one.
    *
@@ -553,6 +564,39 @@ export function LessonPlayer({
   const bridgeSentences = transitionIn
     ? Math.max(0, splitNarrationSentences(narrationText).length - splitNarrationSentences(beat.script).length)
     : 0;
+
+  /*
+   * A BEAT WITH A SPOKEN BRIDGE KEEPS ITS CARD UNTIL THE BRIDGE IS SPOKEN.
+   *
+   * `transitionIn` is the sentence that introduces the section ("Let's get into linear
+   * regression"), and the narration effect deliberately speaks it while the beat is still on its
+   * card — `narrateOnSlide`. Dismissing the card on the board's first paint therefore pulled the
+   * title away 480ms into a sentence that was still introducing it, so the opening beat looked
+   * like it had no title at all while Aria was audibly announcing one.
+   *
+   * For those beats the board's existing bridge handoff owns the transition: `transitionBoardShown`
+   * flips to the board once the bridge sentences are done, and the card follows that instead of a
+   * timer. Beats with no bridge keep the fast paint-driven handover.
+   */
+  useEffect(() => {
+    if (continuesConcept || isCheckpoint) return;
+    // The ceiling. Longer when a bridge is being spoken, since that is a real sentence, not a wait.
+    const ceiling = setTimeout(() => setCardDismissed(true), transitionIn ? BRIDGE_CARD_MAX_MS : SLIDE_MS);
+    return () => clearTimeout(ceiling);
+  }, [beat.id, continuesConcept, isCheckpoint, transitionIn]);
+  useEffect(() => {
+    if (continuesConcept || isCheckpoint) return;
+    // With a bridge, the card yields when the narration hands over to the board, not on paint.
+    if (transitionIn) {
+      if (stage !== "board") return;
+      setCardDismissed(true);
+      return;
+    }
+    if (!boardPainted) return;
+    const elapsed = performance.now() - titleShownAtRef.current;
+    const t = setTimeout(() => setCardDismissed(true), Math.max(0, TITLE_MIN_MS - elapsed));
+    return () => clearTimeout(t);
+  }, [boardPainted, continuesConcept, isCheckpoint, beat.id, transitionIn, stage]);
   const transitionBoardShownRef = useRef(false);
   // Signing-only mirror of Gemini's streaming tutor transcript. It never enters the caption log or
   // chat state, so enabling the isolated hand cannot alter either existing transcript surface.
