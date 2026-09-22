@@ -22,7 +22,8 @@ import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib
 import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingState";
 import { coordinateTeachingTimeline } from "@/lib/board/teachingTimeline";
 import { captureSelectedBoardRegion } from "@/lib/board/captureSelection";
-import { buildExplainRequest, type ExplainRequest } from "@/lib/board/selection";
+import { visibleSandboxText } from "@/lib/board/sandboxBridge";
+import { buildExplainRequest, marksNarrative, type ExplainRequest } from "@/lib/board/selection";
 import { ReactAnimationSandbox, warmSandbox } from "./sketch/ReactAnimationSandbox";
 import { ManimBoard } from "./sketch/ManimBoard";
 import { GsapSketch } from "./sketch/GsapSketch";
@@ -653,6 +654,23 @@ export function LessonPlayer({
   const [explainDismissed, setExplainDismissed] = useState(true);
   const [explainBusy, setExplainBusy] = useState(false);
   const [annotations, setAnnotations] = useState(EMPTY_ANNOTATIONS);
+  const annotationsRef = useRef(annotations);
+  annotationsRef.current = annotations;
+  /**
+   * WHAT THE TUTOR CAN SEE. Every ask path — voice, chat, "Explain this" — is text in, so the board
+   * has to be described to the model in words: what is written on it right now (from the sandbox's
+   * text map, which is the board's actual content rather than the narration), and every mark the
+   * student made with the text each covered. Without this the tutor knew the script and nothing
+   * else, which is why it could not answer "what is THIS?".
+   */
+  const boardContextExtras = useCallback((): string => {
+    const lines: string[] = [];
+    const onBoard = visibleSandboxText(boardSurfaceRef.current?.querySelector('[data-active-board="true"]') ?? boardSurfaceRef.current);
+    if (onBoard.length) lines.push(`Text currently written on the board: ${onBoard.join(" | ").slice(0, 700)}`);
+    const marks = marksNarrative(strokesFor(annotationsRef.current, beatRef.current.id));
+    if (marks) lines.push(`The student has marked the board — ${marks}. If they ask about "this" or "that", they mean these marks.`);
+    return lines.length ? `\n${lines.join("\n")}` : "";
+  }, []);
   const boardSurfaceRef = useRef<HTMLElement | null>(null);
   const selectionRequest = useMemo(
     () => buildExplainRequest(strokesFor(annotations, beat.id), {
@@ -750,8 +768,9 @@ export function LessonPlayer({
     documentId,
     getTutorSpeaking: () => narrationAudibleRef.current,
     topic: title,
-    // What is ON the board — the code listing, the diagram, the chalk lines — not only the script.
-    getBeatContext: () => describeBoard(beatRef.current, highlightedTextRef.current),
+    // What is ON the board — the code listing, the diagram, the chalk lines — not only the script,
+    // plus the text inside a sandboxed board and every mark the student made on it.
+    getBeatContext: () => describeBoard(beatRef.current, highlightedTextRef.current) + boardContextExtras(),
     lessonQuestion,
     /*
      * THE SAME TWO SOURCES THE TEXT CHAT ALREADY USES.
@@ -1116,9 +1135,10 @@ export function LessonPlayer({
 
   const chat = useLessonChat({
     topic: title,
-    // The board as it stands, and anything the student highlighted on it — the typed chat used to
-    // get the title and script only, so "what does this line of code do?" had no code to look at.
-    getBeatContext: () => describeBoard(beat, highlightedTextRef.current),
+    // The board as it stands, anything the student highlighted on it, and what a sandboxed board
+    // actually says — the typed chat used to get the title and script only, so "what does this line
+    // of code do?" had no code to look at.
+    getBeatContext: () => describeBoard(beat, highlightedTextRef.current) + boardContextExtras(),
     // Read at ask time, not captured: the lecture moves while the panel is open.
     getLessonContext: () => buildLessonContext(beats, indexRef.current),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
@@ -1907,7 +1927,7 @@ export function LessonPlayer({
       if (!t) return;
       highlightCtxTimer.current = setTimeout(() => {
         tutor.addContext(
-          `The student highlighted this on the board: "${t}". If they ask about it, explain THAT specifically, in detail.`,
+          `The student just ${/^(?:circled|underlined|highlighted|marked) /.test(t) ? t : `highlighted "${t}"`} on the board. If they ask about it, explain THAT specifically, in detail.`,
         );
       }, 400);
     },
@@ -2396,8 +2416,9 @@ export function LessonPlayer({
               onChange={setAnnotations}
               visible
               onStrokeFinished={(stroke) => {
-                // A highlight over real board text is a question waiting to be asked.
-                if (stroke.kind === "highlight" && stroke.coveredText) highlightedTextRef.current = stroke.coveredText;
+                // Any mark over real board text is a question waiting to be asked — pen as much as
+                // highlighter. Pushed into the live session so "what's that?" by voice already has it.
+                if (stroke.coveredText) pushHighlightContext(marksNarrative([stroke]) || stroke.coveredText);
                 // Offer to explain what was just marked, rather than silently posting the whole
                 // board to the model the way the old auto-describe did.
                 setExplainDismissed(false);

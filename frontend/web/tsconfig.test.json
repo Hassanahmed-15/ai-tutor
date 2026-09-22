@@ -59,7 +59,8 @@
     "lib/lessonLadder.ts",
     "lib/lessonRepetition.ts",
     "lib/beatScriptPrompt.ts",
-    "lib/progressivePlan.ts"
+    "lib/progressivePlan.ts",
+    "lib/board/sandboxBridge.ts"
   ],
   "exclude": ["node_modules"]
 }

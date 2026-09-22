@@ -1,3 +1,4 @@
+import { snapshotSandbox } from "./sandboxBridge";
 import type { SelectionRegion } from "./selection";
 
 export interface ViewBox {
@@ -74,22 +75,50 @@ export async function captureSelectedBoardRegion(stage: HTMLElement, region: Sel
   ctx.fillStyle = background === "rgba(0, 0, 0, 0)" ? "#08090c" : background;
   ctx.fillRect(0, 0, outputWidth, outputHeight);
 
+  const drawCropped = async (xml: string, viewBox: { x: number; y: number; width: number; height: number }, svgRect: { left: number; top: number; width: number; height: number }) => {
+    const cropped = cropViewBox(viewBox, svgRect, stageRect, region);
+    const doc = new DOMParser().parseFromString(xml, "image/svg+xml");
+    const clone = doc.documentElement;
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    clone.setAttribute("width", String(outputWidth));
+    clone.setAttribute("height", String(outputHeight));
+    clone.setAttribute("viewBox", `${cropped.x} ${cropped.y} ${cropped.width} ${cropped.height}`);
+    const serialised = new XMLSerializer().serializeToString(clone);
+    const image = await imageFrom(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(serialised)}`);
+    ctx.drawImage(image, 0, 0, outputWidth, outputHeight);
+  };
+
   if (source) {
     const originalViewBox = source.svg.viewBox?.baseVal;
     const viewBox = originalViewBox && originalViewBox.width > 0
       ? { x: originalViewBox.x, y: originalViewBox.y, width: originalViewBox.width, height: originalViewBox.height }
       : { x: 0, y: 0, width: source.rect.width, height: source.rect.height };
-    const cropped = cropViewBox(viewBox, source.rect, stageRect, region);
     const clone = source.svg.cloneNode(true) as SVGSVGElement;
     inlineVisualStyles(source.svg, clone);
-    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    clone.setAttribute("width", String(outputWidth));
-    clone.setAttribute("height", String(outputHeight));
-    clone.setAttribute("viewBox", `${cropped.x} ${cropped.y} ${cropped.width} ${cropped.height}`);
-    const xml = new XMLSerializer().serializeToString(clone);
-    const data = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(xml)}`;
-    const image = await imageFrom(data);
-    ctx.drawImage(image, 0, 0, outputWidth, outputHeight);
+    await drawCropped(new XMLSerializer().serializeToString(clone), viewBox, source.rect);
+  } else {
+    /*
+     * A SANDBOXED BOARD. Its SVG lives in an iframe this document cannot reach, so the old code
+     * found no <svg> and rasterised the background plus the ink — the model was shown a dark
+     * rectangle with a squiggle and asked what the student had circled. Ask the iframe for its
+     * picture instead (lib/board/sandboxBridge.ts) and crop that; a board that does not answer
+     * falls through to the ink-only image, which the caller already tolerates.
+     */
+    const iframe = active.querySelector<HTMLIFrameElement>("iframe");
+    if (iframe) {
+      try {
+        const snapshot = await snapshotSandbox(iframe);
+        const iframeRect = iframe.getBoundingClientRect();
+        await drawCropped(snapshot.svg, snapshot.viewBox, {
+          left: iframeRect.left + snapshot.rect.left,
+          top: iframeRect.top + snapshot.rect.top,
+          width: snapshot.rect.width,
+          height: snapshot.rect.height,
+        });
+      } catch {
+        // Ink-only crop below; the text under the selection still names what was marked.
+      }
+    }
   }
 
   // The annotation canvas is a sibling of the board renderer, so composite the same crop after the

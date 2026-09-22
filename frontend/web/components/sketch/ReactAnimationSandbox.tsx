@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { registerSandboxText } from "@/lib/board/sandboxBridge";
 import { ANIM_SANDBOX_RUNTIME } from "../../lib/anim/sandboxRuntime";
 import { escapeStrayLessThan, type ParseLoc } from "../../lib/jsxRepair";
 
@@ -212,6 +213,75 @@ ${assetRuntime}
 
   function postToParent(msg) {
     try { window.parent.postMessage(msg, "*"); } catch (e) {}
+  }
+
+  /*
+   * WHAT THE BOARD SAYS, FOR THE PARENT. The parent document cannot see into this sandbox, so a
+   * pen stroke over a word here reads as a stroke over an <iframe>. Every visible text element is
+   * reported with its box, whenever the visible set changes, so the pen can name what it covered
+   * and the tutor can be told what is written on the board.
+   */
+  var lastTextMapKey = "";
+  function postTextMap() {
+    try {
+      var svg = document.querySelector("#root svg");
+      if (!svg) return;
+      var nodes = Array.prototype.slice.call(svg.querySelectorAll("text"));
+      var items = [];
+      for (var i = 0; i < nodes.length && items.length < 80; i++) {
+        var node = nodes[i];
+        var text = (node.textContent || "").replace(/\\s+/g, " ").trim();
+        if (!text) continue;
+        var visible = true;
+        var probe = node;
+        while (probe && probe !== svg) {
+          if (probe.style && probe.style.opacity === "0") { visible = false; break; }
+          probe = probe.parentNode;
+        }
+        if (!visible) continue;
+        var box = node.getBoundingClientRect();
+        if (box.width <= 0 || box.height <= 0) continue;
+        items.push({ text: text, x: box.left, y: box.top, w: box.width, h: box.height });
+      }
+      var key = items.map(function (item) { return item.text; }).join("|");
+      if (key === lastTextMapKey) return;
+      lastTextMapKey = key;
+      postToParent({ type: "textmap", items: items });
+    } catch (e) {}
+  }
+
+  /* The picture, for "Explain this": the SVG with computed styles inlined so it renders outside. */
+  function inlineComputedStyles(source, clone) {
+    var computed = getComputedStyle(source);
+    var keys = ["fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "opacity",
+      "font-family", "font-size", "font-weight", "font-style", "letter-spacing",
+      "text-anchor", "dominant-baseline", "display", "visibility", "transform"];
+    var style = keys.map(function (key) { return key + ":" + computed.getPropertyValue(key); }).join(";");
+    clone.setAttribute("style", (clone.getAttribute("style") || "") + ";" + style);
+    var sourceChildren = source.children, cloneChildren = clone.children;
+    for (var i = 0; i < sourceChildren.length; i++) {
+      if (cloneChildren[i]) inlineComputedStyles(sourceChildren[i], cloneChildren[i]);
+    }
+  }
+  function postSnapshot(id) {
+    try {
+      var svg = document.querySelector("#root svg");
+      if (!svg) { postToParent({ type: "snapshot", id: id, svg: "" }); return; }
+      var clone = svg.cloneNode(true);
+      inlineComputedStyles(svg, clone);
+      clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      var box = svg.getBoundingClientRect();
+      var vb = svg.viewBox && svg.viewBox.baseVal;
+      postToParent({
+        type: "snapshot",
+        id: id,
+        svg: new XMLSerializer().serializeToString(clone),
+        rect: { left: box.left, top: box.top, width: box.width, height: box.height },
+        viewBox: vb && vb.width > 0 ? { x: vb.x, y: vb.y, width: vb.width, height: vb.height } : { x: 0, y: 0, width: box.width, height: box.height },
+      });
+    } catch (e) {
+      postToParent({ type: "snapshot", id: id, svg: "" });
+    }
   }
 
   function reportError(err) {
@@ -495,7 +565,7 @@ ${assetRuntime}
 
       if (!needsRender) {
         cancelAnimationFrame(timelineFrame);
-        applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal);
+        applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal); postTextMap();
         return;
       }
       lastRenderedProgress = quantised;
@@ -510,7 +580,7 @@ ${assetRuntime}
       // detailed ones never appeared. Waiting a second frame puts this after commit and paint.
       timelineFrame = requestAnimationFrame(function () {
         timelineFrame = requestAnimationFrame(function () {
-          applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal);
+          applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal); postTextMap();
         });
       });
     } catch (err) {
@@ -521,6 +591,7 @@ ${assetRuntime}
   window.addEventListener("message", function (event) {
     var data = event.data;
     if (!data || typeof data !== "object") return;
+    if (data.type === "snapshot") { postSnapshot(data.id); return; }
     if (data.type === "progress") render(
       typeof data.value === "number" ? data.value : 0,
       typeof data.sentenceIndex === "number" ? data.sentenceIndex : 0,
@@ -532,6 +603,7 @@ ${assetRuntime}
   if (!hasErrored) {
     render(${INITIAL_REVEAL_PROGRESS}, 0, 0, 1);
     postToParent({ type: "ready" });
+    postTextMap();
   }
 })();
 <\/script>
@@ -646,6 +718,9 @@ export function ReactAnimationSandbox({
         setReady(true);
         onReady?.();
       }
+      if (data.type === "textmap" && Array.isArray(data.items) && iframeRef.current) {
+        registerSandboxText(iframeRef.current, data.items.filter((item: unknown) => item && typeof item === "object"));
+      }
       if (data.type === "marker") {
         setMarker({
           x: Number.isFinite(data.x) ? data.x : 50,
@@ -657,6 +732,12 @@ export function ReactAnimationSandbox({
       if (data.type === "error") reportFailure();
     }
     window.addEventListener("message", onMessage);
+    /*
+     * No unregister here. This effect re-runs on every render (`reportFailure` wraps an inline
+     * callback from the caller), and a cleanup that dropped the registration was emptying the
+     * text map sixty times a second while the iframe only ever posts it once. A detached iframe is
+     * pruned by the lookup itself (`isConnected`), which is the only unregistration needed.
+     */
     return () => window.removeEventListener("message", onMessage);
   }, [reportFailure, onReady]);
 

@@ -157,3 +157,22 @@ export function buildExplainRequest(
 
   return { region, selectedText, gesture, question: parts.join(" ") };
 }
+
+/**
+ * Every mark on the board, in words, for a tutor that cannot see the board.
+ *
+ * "circled 'residual'; underlined 'Σeᵢ²'; highlighted 'line of best fit'" — the gesture and the
+ * board text it covered, most recent last. This is what makes "what does THAT mean?" answerable
+ * by voice or chat without the student having to retype what they pointed at.
+ */
+export function marksNarrative(strokes: AnnotationStroke[], limit = 8): string {
+  const parts: string[] = [];
+  for (const stroke of strokes) {
+    const text = stroke.coveredText?.trim();
+    if (!text) continue;
+    const gesture = stroke.kind === "highlight" ? "highlighted" : classifyGesture([stroke]) === "underline" ? "underlined" : classifyGesture([stroke]) === "circle" ? "circled" : "marked";
+    const line = `${gesture} "${text}"`;
+    if (!parts.includes(line)) parts.push(line);
+  }
+  return parts.slice(-limit).join("; ");
+}

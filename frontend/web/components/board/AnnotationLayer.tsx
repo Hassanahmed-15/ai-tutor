@@ -11,6 +11,7 @@ import {
   strokesFor,
 } from "@/lib/board/annotations";
 import { contentBox, toBoardSpace, withinBoard } from "@/lib/board/geometry";
+import { sandboxTextAt } from "@/lib/board/sandboxBridge";
 
 /**
  * ONE LAYER FOR EVERY MARK THE STUDENT MAKES.
@@ -133,6 +134,13 @@ export function AnnotationLayer({
 
   /** The board text under a point, so a highlight can be described in words rather than guessed at. */
   const textUnder = useCallback((clientX: number, clientY: number): string => {
+    /*
+     * Most generated boards are sandboxed iframes, and elementsFromPoint on this document stops at
+     * the <iframe> — it never sees the word underneath. The sandbox reports its text and boxes to
+     * lib/board/sandboxBridge.ts; ask there first, and fall back to the DOM for in-document boards.
+     */
+    const inSandbox = sandboxTextAt(clientX, clientY);
+    if (inSandbox) return inSandbox;
     try {
       const found = document.elementsFromPoint(clientX, clientY);
       for (const element of found) {
