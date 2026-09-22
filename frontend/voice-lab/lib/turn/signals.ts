@@ -66,9 +66,104 @@ export function voice(f0: number, offset: number, amplitude = 0.14, tilt = 1.0):
   return out;
 }
 
-export const STUDENT = (offset: number, amp = 0.14) => voice(130, offset, amp, 1.0);
-export const FRIEND = (offset: number, amp = 0.12) => voice(215, offset, amp, 0.6);
-export const ARIA = (offset: number, amp = 0.16) => voice(200, offset, amp, 0.8);
+/**
+ * A voice a NEURAL detector recognises: the same harmonic source, shaped by three formants.
+ *
+ * Production's VAD check found that a bare harmonic stack scores ~0.07 with Silero while a
+ * formant-shaped vowel scores 0.38-0.47 — the model was trained on speech, and speech has
+ * resonances. The acoustic heuristics accept both, so this is used for every scenario voice and
+ * the bare `voice()` is kept for callers that want a deliberately un-speech-like harmonic tone.
+ *
+ *   envelope "soft"  loudness pulses 0.65-1.0 at 5 Hz (continuous voicing, as in production's suite)
+ *   envelope "hard"  half-wave syllables at 3.5 Hz with true gaps (as in production's VAD check)
+ */
+export type Formants = ReadonlyArray<readonly [number, number]>;
+export const VOWEL_A: Formants = [[730, 90], [1090, 110], [2440, 140]];
+export const VOWEL_I: Formants = [[300, 70], [2300, 130], [3000, 160]];
+export const VOWEL_E: Formants = [[530, 80], [1840, 120], [2480, 140]];
+
+export function formantVoice(f0: number, offset: number, amplitude = 0.14, formants: Formants = VOWEL_A, envelope: "soft" | "hard" = "soft"): Float32Array {
+  const out = new Float32Array(FRAME);
+  const DEPTH = 0.015;
+  const VIBRATO_HZ = 6;
+  for (let i = 0; i < FRAME; i++) {
+    const t = (offset * FRAME + i) / RATE;
+    const phaseTime = t - (DEPTH * Math.cos(2 * Math.PI * VIBRATO_HZ * t)) / (2 * Math.PI * VIBRATO_HZ);
+    const syllable = envelope === "hard" ? Math.max(0, Math.sin(2 * Math.PI * 3.5 * t)) ** 0.5 : 0.65 + 0.35 * Math.sin(2 * Math.PI * 5 * t);
+    let sum = 0;
+    for (let h = 1; h <= 30; h++) {
+      const hz = f0 * h;
+      if (hz > 4000) break;
+      let gain = 0;
+      for (const [fc, bw] of formants) gain += 1 / (1 + ((hz - fc) / bw) ** 2);
+      sum += (gain / h) * Math.sin(2 * Math.PI * hz * phaseTime);
+    }
+    out[i] = sum * amplitude * syllable;
+  }
+  return out;
+}
+
+/**
+ * Speech-shaped voice for the NEURAL detector: formants that glide between vowels every ~150 ms
+ * (a syllable is a movement, not a held vowel), a little aspiration noise, and cycle-to-cycle
+ * pitch jitter. Each of these is something Silero learned from real speech and none of them is
+ * present in a held tone; measured on the calibration page, a held formant vowel scores speech on
+ * ~5% of frames and this on far more.
+ */
+export function speechVoice(f0: number, offset: number, amplitude = 0.14, seed = 1): Float32Array {
+  const out = new Float32Array(FRAME);
+  const rnd = xorshift(seed + offset * 7919);
+  const vowels: Formants[] = [VOWEL_A, VOWEL_I, VOWEL_E];
+  for (let i = 0; i < FRAME; i++) {
+    const t = (offset * FRAME + i) / RATE;
+    // Which vowel pair we are gliding between, and how far along.
+    const cycle = t / 0.15;
+    const from = vowels[Math.floor(cycle) % vowels.length];
+    const to = vowels[(Math.floor(cycle) + 1) % vowels.length];
+    const mixAmount = cycle - Math.floor(cycle);
+    const jitter = 1 + 0.02 * Math.sin(2 * Math.PI * 27 * t) + 0.01 * Math.sin(2 * Math.PI * 6 * t);
+    const syllable = 0.55 + 0.45 * Math.max(0, Math.sin(2 * Math.PI * 4 * t));
+    let sum = 0;
+    for (let h = 1; h <= 30; h++) {
+      const hz = f0 * jitter * h;
+      if (hz > 4000) break;
+      let gain = 0;
+      for (let k = 0; k < 3; k++) {
+        const fc = from[k][0] * (1 - mixAmount) + to[k][0] * mixAmount;
+        const bw = from[k][1] * (1 - mixAmount) + to[k][1] * mixAmount;
+        gain += 1 / (1 + ((hz - fc) / bw) ** 2);
+      }
+      sum += (gain / h) * Math.sin(2 * Math.PI * hz * t);
+    }
+    out[i] = (sum * syllable + rnd() * 0.06) * amplitude;
+  }
+  return out;
+}
+
+/** A cast: three voices with distinct pitch and timbre. */
+export interface Cast {
+  STUDENT: (offset: number, amp?: number) => Float32Array;
+  FRIEND: (offset: number, amp?: number) => Float32Array;
+  ARIA: (offset: number, amp?: number) => Float32Array;
+}
+
+/** The bare harmonic cast production's matrix was built on: what the acoustic heuristics are tuned to. */
+export const BARE_CAST: Cast = {
+  STUDENT: (offset, amp = 0.14) => voice(130, offset, amp, 1.0),
+  FRIEND: (offset, amp = 0.12) => voice(215, offset, amp, 0.6),
+  ARIA: (offset, amp = 0.16) => voice(200, offset, amp, 0.8),
+};
+
+/** The speech-shaped cast for runs with the neural VAD. */
+export const SPEECH_CAST: Cast = {
+  STUDENT: (offset, amp = 0.14) => speechVoice(130, offset, amp, 1),
+  FRIEND: (offset, amp = 0.12) => speechVoice(215, offset, amp, 2),
+  ARIA: (offset, amp = 0.16) => speechVoice(200, offset, amp, 3),
+};
+
+export const STUDENT = BARE_CAST.STUDENT;
+export const FRIEND = BARE_CAST.FRIEND;
+export const ARIA = BARE_CAST.ARIA;
 
 /** Music / TV: a steady chord of three tones in the speech band. */
 export function music(amplitude: number, offset: number): Float32Array {
@@ -126,6 +221,7 @@ export const NOISE_BEDS: Record<string, (offset: number, amplitude: number) => F
   traffic: (offset, amplitude) => traffic(amplitude, offset),
   tv: (offset, amplitude) => music(amplitude * 0.4, offset),
   "other voice": (offset, amplitude) => FRIEND(offset, amplitude * 0.8),
+  "my voice (synthetic)": (offset, amplitude) => SPEECH_CAST.STUDENT(offset, amplitude),
   keyboard: (offset, amplitude) => (offset % 5 === 0 ? click(amplitude * 1.6) : silence()),
   hiss: (offset, amplitude) => noise(amplitude * 0.5, offset + 7),
 };

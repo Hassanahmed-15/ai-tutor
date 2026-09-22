@@ -266,18 +266,16 @@ export class LiveLab {
     return JSON.stringify({ mode: this.mode, status: this.status, events: this.log.toJSON() }, null, 2);
   }
 
-  /** Silero for a scenario run: a fresh model state per scenario, driven frame by frame. */
-  async vadForScenarios(): Promise<((frame: Float32Array) => number | null) | null> {
+  /** Silero for a scenario run: a fresh model state per scenario, awaited frame by frame. */
+  async vadForScenarios(): Promise<((frame: Float32Array) => Promise<number | null>) | null> {
     const vad = this.silero ?? (await SileroVad.load());
     if (!vad) return null;
-    vad.reset();
-    let last = 0;
-    return (frame) => {
-      // The scenario harness is synchronous; inference is async. Feed and read the last value —
-      // one frame of lag, which is below the endpointer's onset window.
-      void vad.push(frame).then((p) => { last = p; });
-      return last;
-    };
+    return async (frame) => vad.push(frame);
+  }
+
+  /** Reset the neural VAD's memory between scenarios so one room does not bleed into the next. */
+  resetVad(): void {
+    this.silero?.reset();
   }
 
   private bed(): Float32Array | null {

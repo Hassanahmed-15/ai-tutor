@@ -13,7 +13,7 @@ import { analyzeVoiceFrame, concatFrames } from "./acoustics";
 import type { TurnState } from "./arbiter";
 import { EventLog, type LabEvent } from "./events";
 import { TurnPipeline } from "./pipeline";
-import { ARIA, FRAME_MS, FRIEND, RATE, STUDENT, click, fan, mix, music, ping, seq, silence, traffic, voice } from "./signals";
+import { BARE_CAST, FRAME_MS, RATE, SPEECH_CAST, click, fan, mix, music, ping, seq, silence, traffic, voice, type Cast } from "./signals";
 import { HeuristicVoiceprint } from "./speakerProfile";
 import type { ArbiterProfile } from "./arbiter";
 
@@ -41,6 +41,8 @@ export interface Scenario {
   /** How many trailing silent frames to run so long watchdogs can fire. */
   trailingFrames?: number;
   note?: string;
+  /** Which voices played the parts; set by buildScenarios. */
+  cast?: Cast;
 }
 
 export interface Outcome {
@@ -57,11 +59,12 @@ export interface Outcome {
   transcripts: string[];
 }
 
-export function enrolledVoiceprint(): HeuristicVoiceprint {
+export function enrolledVoiceprint(cast: Cast = BARE_CAST): HeuristicVoiceprint {
   const vp = new HeuristicVoiceprint();
   for (let i = 0; i < 80; i++) {
-    const drift = 1 + 0.08 * Math.sin(i / 5);
-    vp.enrol(analyzeVoiceFrame(concatFrames(voice(130 * drift, i, 0.14, 1.0), voice(130 * drift, i + 1, 0.14, 1.0)), RATE));
+    // The student's own voice at two moments, with a little drift, so the profile has a spread.
+    vp.enrol(analyzeVoiceFrame(concatFrames(cast.STUDENT(i), cast.STUDENT(i + 1)), RATE));
+    vp.enrol(analyzeVoiceFrame(concatFrames(cast.STUDENT(i + 400), cast.STUDENT(i + 401)), RATE));
   }
   return vp;
 }
@@ -71,20 +74,20 @@ export interface RunOptions {
   vad?: (frame: Float32Array) => number | null;
 }
 
-export function runScenario(s: Scenario, options: RunOptions = {}): Outcome {
+function setup(s: Scenario) {
   const o: Outcome = { verdict: "SILENT", turns: 0, bargeReason: null, discarded: false, ducked: false, restored: false, resumed: false, finalState: "idle", watchdogs: [], events: [], transcripts: [] };
   const log = new EventLog(20_000);
-  let replyAt = -1;
+  const reply = { at: -1 };
   const pipeline = new TurnPipeline({
     profile: s.profile ?? "lecture",
-    verifier: s.unenrolled ? new HeuristicVoiceprint() : enrolledVoiceprint(),
+    verifier: s.unenrolled ? new HeuristicVoiceprint() : enrolledVoiceprint(s.cast ?? BARE_CAST),
     log,
     callbacks: {
       onDuck: () => { o.ducked = true; },
       onRestore: () => { o.restored = true; },
       onPauseTutor: (why) => { if (!o.bargeReason) o.bargeReason = why; },
       onResumeTutor: () => { o.resumed = true; },
-      onEndTurn: (info) => { o.turns += 1; o.transcripts.push(info.transcript); if (!s.noResponse) replyAt = -2; },
+      onEndTurn: (info) => { o.turns += 1; o.transcripts.push(info.transcript); if (!s.noResponse) reply.at = -2; },
       onDiscard: () => { o.discarded = true; },
       onWatchdog: (kind) => { o.watchdogs.push(kind); },
     },
@@ -92,32 +95,63 @@ export function runScenario(s: Scenario, options: RunOptions = {}): Outcome {
   pipeline.setTopicWords(["demand", "curve", "price", "quantity", "slope", "downward", "substitution"]);
   const [tsStart, tsEnd] = s.tutorSpeakingFrames ?? [-1, -1];
   const total = s.frames.length + (s.trailingFrames ?? 80);
-  for (let i = 0; i < total; i++) {
+  /** Everything for frame i except the VAD-dependent push; returns the frame to push, or null in a gap. */
+  const before = (i: number): { now: number; frame: Float32Array | null } => {
     const now = i * FRAME_MS;
     const tutorSpeaking = i >= tsStart && i < tsEnd;
     pipeline.setTutor({ speaking: tutorSpeaking, expectingAnswer: Boolean(s.expectingAnswer), speakingAs: s.speakingAs }, now);
     // A reply begins 200 ms after a turn ends, unless the scenario withholds it.
-    if (replyAt === -2) replyAt = now + 200;
-    if (replyAt >= 0 && now >= replyAt) { pipeline.responseStarted(now); replyAt = -1; }
+    if (reply.at === -2) reply.at = now + 200;
+    if (reply.at >= 0 && now >= reply.at) { pipeline.responseStarted(now); reply.at = -1; }
     const inGap = s.gap && i >= s.gap.start && i < s.gap.start + s.gap.count;
-    if (inGap) {
-      pipeline.tick(now);
-    } else {
-      const frame = i < s.frames.length ? s.frames[i] : silence();
-      pipeline.push(frame, now, options.vad ? options.vad(frame) : null);
-    }
+    if (inGap) { pipeline.tick(now); return { now, frame: null }; }
+    return { now, frame: i < s.frames.length ? s.frames[i] : silence() };
+  };
+  const after = (i: number, now: number) => {
     if (s.transcript && i === s.transcript.atFrame) pipeline.provideTranscript(s.transcript.text, s.transcript.final ?? true, now);
     if (s.transcript2 && i === s.transcript2.atFrame) pipeline.provideTranscript(s.transcript2.text, s.transcript2.final ?? true, now);
+  };
+  const finish = (): Outcome => {
+    o.finalState = pipeline.state;
+    o.events = log.toJSON();
+    o.verdict = o.bargeReason ? "BARGE-IN" : o.turns > 0 ? "TURN" : "SILENT";
+    return o;
+  };
+  return { pipeline, total, before, after, finish };
+}
+
+/** Synchronous run with the acoustic detector (or a synchronous VAD function). */
+export function runScenario(s: Scenario, options: RunOptions = {}): Outcome {
+  const { pipeline, total, before, after, finish } = setup(s);
+  for (let i = 0; i < total; i++) {
+    const { now, frame } = before(i);
+    if (frame) pipeline.push(frame, now, options.vad ? options.vad(frame) : null);
+    after(i, now);
   }
-  o.finalState = pipeline.state;
-  o.events = log.toJSON();
-  o.verdict = o.bargeReason ? "BARGE-IN" : o.turns > 0 ? "TURN" : "SILENT";
-  return o;
+  return finish();
+}
+
+/**
+ * The same run with an ASYNCHRONOUS neural VAD: inference is awaited per frame, so the pipeline
+ * sees Silero's real probability for each frame rather than a stale value. (A synchronous loop
+ * reading an async result scored every speech frame 0 — the whole suite reported SILENT.)
+ */
+export async function runScenarioAsync(s: Scenario, vad: (frame: Float32Array) => Promise<number | null>): Promise<Outcome> {
+  const { pipeline, total, before, after, finish } = setup(s);
+  for (let i = 0; i < total; i++) {
+    const { now, frame } = before(i);
+    if (frame) pipeline.push(frame, now, await vad(frame));
+    after(i, now);
+  }
+  return finish();
 }
 
 const LECTURE: [number, number] = [0, 100_000];
 
-export const SCENARIOS: Scenario[] = [
+/** The suite, played by a given cast. */
+export function buildScenarios(cast: Cast): Scenario[] {
+  const { STUDENT, FRIEND, ARIA } = cast;
+  const list: Scenario[] = [
   // --- Environmental noise while the tutor teaches: none may even open a turn. ---
   { id: 1, name: "fan / AC running while the tutor teaches", expect: "SILENT", tutorSpeakingFrames: LECTURE, frames: seq(150, (i) => fan(0.35, i)) },
   { id: 2, name: "keyboard typing while the tutor teaches", expect: "SILENT", tutorSpeakingFrames: LECTURE, frames: seq(150, (i) => (i % 5 === 0 ? click(0.5) : silence())) },
@@ -179,7 +213,14 @@ export const SCENARIOS: Scenario[] = [
     frames: seq(90, (i) => (i >= 15 && i < 40 ? silence() : STUDENT(i))), transcript: { text: "um", atFrame: 12, final: false }, transcript2: { text: "um why is it negative?", atFrame: 70 } },
   { id: 40, name: "friend talks over the tutor's reply — not the student, no barge-in", expect: "SILENT", profile: "conversation", tutorSpeakingFrames: LECTURE, speakingAs: "reply",
     frames: seq(90, (i) => FRIEND(i)), transcript: { text: "no it was on the table", atFrame: 45 } },
-];
+  ];
+  return list.map((s) => ({ ...s, cast }));
+}
+
+/** The deterministic suite: bare harmonic voices, the acoustic detector's ground. */
+export const SCENARIOS: Scenario[] = buildScenarios(BARE_CAST);
+/** The same suite with speech-shaped voices, for runs with the neural VAD. */
+export const NEURAL_SCENARIOS: Scenario[] = buildScenarios(SPEECH_CAST);
 
 export function scoreScenario(s: Scenario, o: Outcome): { pass: boolean; why: string } {
   const problems: string[] = [];

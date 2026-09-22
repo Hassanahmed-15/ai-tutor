@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { EventLog, type EventLayer, type LabEvent } from "@/lib/turn/events";
 import { LiveLab, type LabMode, type LiveStatus } from "@/lib/turn/livePipeline";
 import { NOISE_BEDS } from "@/lib/turn/signals";
-import { SCENARIOS, runScenario, scoreScenario, type Scenario } from "@/lib/turn/scenarios";
+import { NEURAL_SCENARIOS, SCENARIOS, runScenario, runScenarioAsync, scoreScenario, type Scenario } from "@/lib/turn/scenarios";
 
 const LAYERS: EventLayer[] = ["mic", "vad", "endpoint", "speaker", "words", "turn", "tutor", "conn", "watchdog", "scenario", "ui"];
 
@@ -21,6 +21,7 @@ export default function VoiceLabPage() {
   const [bedLevel, setBedLevel] = useState(0.3);
   const [results, setResults] = useState<ScenarioResult[] | null>(null);
   const [running, setRunning] = useState<"" | "heuristic" | "silero">("");
+  const [lastRun, setLastRun] = useState<"" | "heuristic" | "silero">("");
   const logRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -44,14 +45,16 @@ export default function VoiceLabPage() {
 
   const runSuite = async (withSilero: boolean) => {
     setRunning(withSilero ? "silero" : "heuristic");
+    setLastRun(withSilero ? "silero" : "heuristic");
     setResults([]);
     const vad = withSilero ? await lab().vadForScenarios() : null;
     if (withSilero && !vad) { log.log("scenario", "silero-unavailable", 0, "the neural VAD did not load; run the heuristic suite", "warn"); setRunning(""); return; }
     const out: ScenarioResult[] = [];
-    for (const s of SCENARIOS) {
+    for (const s of withSilero ? NEURAL_SCENARIOS : SCENARIOS) {
       await new Promise((r) => setTimeout(r, 0));
       const t0 = performance.now();
-      const o = runScenario(s, vad ? { vad } : {});
+      if (vad) labRef.current?.resetVad();
+      const o = vad ? await runScenarioAsync(s, vad) : runScenario(s);
       const { pass, why } = scoreScenario(s, o);
       out.push({ id: s.id, name: s.name, expect: s.expect, verdict: o.verdict, pass, why, ms: Math.round(performance.now() - t0) });
       log.log("scenario", pass ? "pass" : "FAIL", 0, `#${s.id} ${s.name}${why ? ` — ${why}` : ""}`, pass ? "ok" : "bad");
@@ -143,7 +146,16 @@ export default function VoiceLabPage() {
           </div>
           {results && (
             <>
-              <p className="small">{results.filter((r) => r.pass).length}/{results.length} pass{running ? " (running)" : ""}</p>
+              <p className="small">
+                {results.filter((r) => r.pass).length}/{results.length} pass{running ? " (running)" : ""}
+                {lastRun === "silero" && (
+                  <>
+                    {" "}— noise rejection {results.filter((r) => r.expect === "SILENT" && r.pass).length}/{results.filter((r) => r.expect === "SILENT").length},
+                    voice scenarios {results.filter((r) => r.expect !== "SILENT" && r.pass).length}/{results.filter((r) => r.expect !== "SILENT").length}.
+                    <br />Synthetic voices are only intermittently speech to the neural VAD (see /vad-check); voice scenarios under Silero are informational — validate them with a real microphone in a live session.
+                  </>
+                )}
+              </p>
               <div style={{ maxHeight: 260, overflow: "auto" }}>
                 <table className="results">
                   <tbody>
