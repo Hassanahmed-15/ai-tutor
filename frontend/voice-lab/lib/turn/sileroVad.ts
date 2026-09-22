@@ -34,9 +34,11 @@ export class SileroVad {
         const ort = await import("onnxruntime-web");
         ort.env.wasm.numThreads = 1;
         ort.env.wasm.simd = true;
-        // The WASM binaries are served from the CDN rather than bundled: Vercel's bundler does not
-        // copy onnxruntime's .wasm files, and a 404 there is the failure mode that looks healthy.
-        ort.env.wasm.wasmPaths = `https://cdn.jsdelivr.net/npm/onnxruntime-web@${ort.env.versions?.web ?? "1.30.0"}/dist/`;
+        // The WASM binaries are self-hosted at /ort/, copied from node_modules at build time
+        // (scripts/copy-ort.mjs) so the served binary always matches the installed package. A CDN
+        // URL built from a version string drifted on Vercel, and a missing WASM is the failure mode
+        // that looks healthy — the detector silently falls back to heuristics.
+        ort.env.wasm.wasmPaths = "/ort/";
         const session = await ort.InferenceSession.create(modelUrl, { executionProviders: ["wasm"], graphOptimizationLevel: "all" });
         return new SileroVad(ort, session);
       } catch (error) {

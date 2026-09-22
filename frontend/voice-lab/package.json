@@ -2,13 +2,15 @@
   "name": "voice-lab",
   "version": "0.1.0",
   "private": true,
-  "description": "Aria Voice Lab — a standalone testing interface for the next voice turn-taking architecture. Deployed to Vercel only; never imported by the production app.",
+  "description": "Aria Voice Lab \u2014 a standalone testing interface for the next voice turn-taking architecture. Deployed to Vercel only; never imported by the production app.",
   "scripts": {
     "dev": "next dev -p 3100",
     "build": "next build",
     "start": "next start -p 3100",
     "typecheck": "tsc --noEmit",
-    "test": "tsc -p tsconfig.test.json && node --test \".test-build/lib/turn/__tests__/*.test.js\""
+    "test": "tsc -p tsconfig.test.json && node --test \".test-build/lib/turn/__tests__/*.test.js\"",
+    "prebuild": "node scripts/copy-ort.mjs",
+    "predev": "node scripts/copy-ort.mjs"
   },
   "dependencies": {
     "next": "16.2.9",
