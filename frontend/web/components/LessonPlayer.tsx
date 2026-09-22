@@ -23,7 +23,7 @@ import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingSta
 import { coordinateTeachingTimeline } from "@/lib/board/teachingTimeline";
 import { captureSelectedBoardRegion } from "@/lib/board/captureSelection";
 import { buildExplainRequest, type ExplainRequest } from "@/lib/board/selection";
-import { ReactAnimationSandbox } from "./sketch/ReactAnimationSandbox";
+import { ReactAnimationSandbox, warmSandbox } from "./sketch/ReactAnimationSandbox";
 import { ManimBoard } from "./sketch/ManimBoard";
 import { GsapSketch } from "./sketch/GsapSketch";
 import { StructureBoard } from "./sketch/StructureBoard";
@@ -135,31 +135,26 @@ const SLIDE_MS = 1500;
  */
 const TITLE_MIN_MS = 480;
 /**
- * The ceiling for a card whose beat opens with a SPOKEN bridge.
+ * How long the card waits for the VOICE to start before giving up on it.
  *
- * That card is not waiting on anything — it is on screen while Aria says the sentence that
- * introduces the section — so it may legitimately hold for the length of one sentence. This only
- * catches a bridge whose audio never arrives (muted, blocked autoplay, a failed voice) so the
- * lecture still reaches its board.
+ * "Ready to explain" means the teacher is speaking as well as the board being drawn. A cold
+ * /api/tts call can take 6-8s, and revealing the board before the voice arrives puts a mute,
+ * unwritten board on screen — every teaching element is hidden until narration reaches its
+ * sentence, so there is nothing to look at. Bounded so a blocked or failed voice cannot trap the
+ * card: after this the card follows the board alone.
  */
-const BRIDGE_CARD_MAX_MS = 9_000;
+const VOICE_WAIT_MAX_MS = 8_000;
 /**
  * The longest the title card may cover a board that is still being generated.
  *
  * The card's job is to hold the screen while the board's content is fetched, so this must outlast
  * the pending-content timeout (ANIMATION_PENDING_TIMEOUT_MS, 10s) — otherwise the card would give
- * up FIRST and reveal the very empty board it exists to hide. Slightly longer than that, so the
- * normal exit is always "the content arrived, or the board gave up and showed its own status
- * card", never "the title timed out".
+ * up FIRST and reveal the very empty board it exists to hide. It also has to outlast a cold voice
+ * (up to VOICE_WAIT_MAX_MS) PLUS a spoken bridge sentence, which together can approach fifteen
+ * seconds; a board that gives up shows its own status card, so a generous ceiling costs nothing.
+ * Counted from when the lecture starts playing, not from when the beat mounts.
  */
-const BOARD_WAIT_MAX_MS = 12_000;
-/**
- * How long the card may stay up while its bridge sentence is genuinely being spoken.
- *
- * Only ever an EXTENSION of `TITLE_MIN_MS`, and only while `speaking` is true — so a lecture whose
- * voice is still connecting, muted or blocked never waits on it.
- */
-const BRIDGE_HOLD_MS = 2_600;
+const BOARD_WAIT_MAX_MS = 20_000;
 // Safety net: a beat whose animation/board op never resolves (still no `code`/`ops`, e.g. a
 // server that didn't generate it) would otherwise hold the lecture on its slide forever. After this
 // long we stop waiting and let the lecture proceed (the board shows its status card meanwhile).
@@ -350,6 +345,16 @@ export function LessonPlayer({
   /** When the current title card went up, so its minimum dwell is measured from the right instant. */
   const titleShownAtRef = useRef(performance.now());
   const handleBoardPainted = useCallback(() => setBoardPainted(true), []);
+  /** The generated animation has run and is listening — the moment a sandbox board is visible. */
+  const [sandboxReady, setSandboxReady] = useState(false);
+  const handleSandboxReady = useCallback(() => setSandboxReady(true), []);
+  /** The bounded wait for the voice to start has expired; the card follows the board alone now. */
+  const [voiceWaited, setVoiceWaited] = useState(false);
+  // Load Babel and the sandbox React runtime now, while the student is reading the first title,
+  // instead of on the first animated beat where every millisecond is a card over an empty board.
+  useEffect(() => {
+    warmSandbox();
+  }, []);
   /**
    * Is the section card currently covering the board?
    *
@@ -621,24 +626,6 @@ export function LessonPlayer({
    * seconds of nothing, then a white board. `currentAnimationPending` alone asks the honest
    * question — has this beat's board content actually arrived? — and stays true until it has.
    */
-  const boardContentReady = boardPainted && !currentAnimationPending;
-  useEffect(() => {
-    if (continuesConcept || isCheckpoint) return;
-    const ceiling = setTimeout(() => setCardDismissed(true), BOARD_WAIT_MAX_MS);
-    return () => clearTimeout(ceiling);
-  }, [beat.id, continuesConcept, isCheckpoint]);
-  useEffect(() => {
-    if (continuesConcept || isCheckpoint || !boardContentReady) return;
-    const elapsed = performance.now() - titleShownAtRef.current;
-    /*
-     * Once the board is genuinely ready, hold only long enough for the title to have been readable.
-     * While a bridge sentence is actually being spoken, hold a little longer so the title is still
-     * up while the section is being announced — an extension only, never a dependency.
-     */
-    const hold = speaking && Boolean(transitionIn) && stage !== "board" ? BRIDGE_HOLD_MS : TITLE_MIN_MS;
-    const t = setTimeout(() => setCardDismissed(true), Math.max(0, hold - elapsed));
-    return () => clearTimeout(t);
-  }, [boardContentReady, continuesConcept, isCheckpoint, beat.id, transitionIn, stage, speaking]);
   const transitionBoardShownRef = useRef(false);
   // Signing-only mirror of Gemini's streaming tutor transcript. It never enters the caption log or
   // chat state, so enabling the isolated hand cannot alter either existing transcript surface.
@@ -988,6 +975,66 @@ export function LessonPlayer({
     });
   }, [adhd]);
   const lesson = useLessonMachine(voice);
+
+  /*
+   * A GENERATED ANIMATION IS NOT ON SCREEN WHEN ITS CODE EXISTS.
+   *
+   * `currentAnimationPending` only says the code has arrived. The sandbox then returns null while
+   * Babel and the React runtime load and the code transpiles, and the iframe then shows only the
+   * component's static background until its script runs and posts "ready". Every teaching element
+   * sits at opacity 0 until narration reaches its sentence. Treating "code exists" as "board
+   * visible" is what put a white board with an empty frame on screen for seconds — the reported
+   * failure — so a sandbox beat additionally waits for the sandbox's own ready signal.
+   */
+  const sandboxBeat = REACT_ANIMATIONS_ENABLED && Boolean(findReactAnimationOp(beat)?.code);
+  const boardContentReady = boardPainted && !currentAnimationPending && (!sandboxBeat || sandboxReady);
+  /*
+   * THE CARD LEAVES WHEN THE BOARD STARTS WRITING, NOT BEFORE.
+   *
+   * In standard mode every beat opens with a spoken bridge, and the narration effect flips
+   * `stage` to "board" at the exact moment the bridge sentences end and the script — the words the
+   * drawing is synchronised to — begins. That is the moment the board starts writing, and it is
+   * when the title should dissolve into it. While the bridge is being spoken the card stays,
+   * because underneath it the board is still blank by design.
+   *
+   * Speech is never REQUIRED: this only holds while narration is actually running. A voice that
+   * has not started yet is waited for separately, below, and only for a bounded time.
+   */
+  /*
+   * WHILE NOTHING IS BEING EXPLAINED, THE TITLE STAYS.
+   *
+   * Measured on the real animation path: the board became "ready" before the lecture was playing,
+   * so there was nothing to wait for and the card left at ~400ms; Play then started the bridge
+   * sentence over a board that reveals nothing until the script begins — five seconds of white.
+   * A beat that is not playing has no reason to uncover its board, so its card simply stays, and
+   * the bounded waits below only start counting once the lecture is actually playing.
+   *
+   * Bridged beats (every beat in standard mode) hold through two more things, in order: the voice
+   * starting (bounded by VOICE_WAIT_MAX_MS, so a blocked voice cannot trap the card) and the bridge
+   * being spoken (until `stage` flips to "board" — the exact moment the script, and the drawing
+   * synchronised to it, begin). Unbridged beats cannot wait for the voice: their narration starts
+   * on the board stage, which only arrives after the card leaves.
+   */
+  const bridged = Boolean(transitionIn);
+  const holdForVoice = bridged && !speaking && !voiceWaited;
+  const holdForBridge = bridged && speaking && stage !== "board";
+  useEffect(() => {
+    if (continuesConcept || isCheckpoint || !lesson.playing) return;
+    const ceiling = setTimeout(() => setCardDismissed(true), BOARD_WAIT_MAX_MS);
+    const voice = setTimeout(() => setVoiceWaited(true), VOICE_WAIT_MAX_MS);
+    return () => {
+      clearTimeout(ceiling);
+      clearTimeout(voice);
+    };
+  }, [beat.id, continuesConcept, isCheckpoint, lesson.playing]);
+  useEffect(() => {
+    if (continuesConcept || isCheckpoint || !lesson.playing) return;
+    if (!boardContentReady || holdForVoice || holdForBridge) return;
+    // Everything is ready; hold only long enough for the title to have been readable.
+    const elapsed = performance.now() - titleShownAtRef.current;
+    const t = setTimeout(() => setCardDismissed(true), Math.max(0, TITLE_MIN_MS - elapsed));
+    return () => clearTimeout(t);
+  }, [boardContentReady, holdForVoice, holdForBridge, lesson.playing, continuesConcept, isCheckpoint, beat.id]);
   useEffect(() => {
     // The teacher owns the voice and the lesson is not paused or frozen: narration is audible.
     narrationAudibleRef.current = voice.owner === "teacher" && lesson.playing;
@@ -1371,6 +1418,8 @@ export function LessonPlayer({
     // A new beat has a new board, which has not painted yet, and its card starts its dwell now.
     titleShownAtRef.current = performance.now();
     setBoardPainted(false);
+    setSandboxReady(false);
+    setVoiceWaited(false);
     setCardDismissed(false);
     queueMicrotask(() => setAnimationTimedOut(false));
   }, [beat.id]);
@@ -2187,7 +2236,7 @@ export function LessonPlayer({
                 onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">
-                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
                 {/* The "From past you" echo is removed from the lesson surface. It replayed the
                     student's own earlier wording as a floating card over the board, which
                     interrupts the lesson rather than supporting it. The component and its stored
@@ -2648,10 +2697,13 @@ export function Board({
   beat,
   sentenceCue,
   drawProgress,
+  onSandboxReady,
 }: {
   beat: Beat;
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
+  /** The generated animation is on screen and listening — see ReactAnimationSandbox.onReady. */
+  onSandboxReady?: () => void;
 }) {
   // Enrichment keeps a beat id stable while replacing its provisional drawing. Key the visual
   // subtree by the actual payload as well, so a sandbox/Manim upgrade resets renderer-local state
@@ -2659,7 +2711,7 @@ export function Board({
   const visualRevision = visualFingerprint(beat);
   return (
     <div className="absolute inset-0 bg-slate-950">
-      <VisualDirector key={`${beat.id}:${visualRevision}`} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+      <VisualDirector key={`${beat.id}:${visualRevision}`} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={onSandboxReady} />
     </div>
   );
 }
@@ -2678,10 +2730,12 @@ function VisualDirector({
   beat,
   sentenceCue,
   drawProgress,
+  onSandboxReady,
 }: {
   beat: Beat;
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
+  onSandboxReady?: () => void;
 }) {
   const text = sentenceCue.text;
   const cue = sentenceCue.index;
@@ -2765,7 +2819,13 @@ function VisualDirector({
             sentenceIndex={sentenceTiming.index}
             sentenceProgress={sentenceTiming.progress}
             sentenceTotal={sentenceTiming.total}
-            onError={() => setSandboxFailed(true)}
+            onReady={onSandboxReady}
+            // A failed sandbox falls back to a board that paints synchronously, so from the title
+            // card's point of view the board is ready — it must not wait on a ready that never comes.
+            onError={() => {
+              setSandboxFailed(true);
+              onSandboxReady?.();
+            }}
           />
           <RendererBadge kind="sandbox" detail={animationChipDetail(animationOp.model, animationOp.trial?.costUsd)} />
         </section>

@@ -93,6 +93,20 @@ function loadAssetRuntime(assetIds?: string[]): Promise<string> {
   return pending;
 }
 
+/**
+ * Pay the sandbox's fixed costs before the first animated beat needs them.
+ *
+ * The first board of a lecture was paying for `import("@babel/standalone")` (a multi-megabyte
+ * chunk) plus two runtime fetches before it could transpile a line, and every millisecond of that
+ * was a title card over a board that did not exist yet. Both are memoised, so warming them at
+ * lecture start moves that cost to a moment nobody is waiting on. Failures are swallowed: this is
+ * an optimisation, and the real load path still reports its own errors.
+ */
+export function warmSandbox(): void {
+  void import("@babel/standalone").catch(() => undefined);
+  void loadReactRuntime().catch(() => undefined);
+}
+
 /** How many stray `<` characters we are willing to fix before concluding the source is just broken. */
 const MAX_JSX_REPAIRS = 6;
 
@@ -533,6 +547,7 @@ export function ReactAnimationSandbox({
   sentenceTotal = 1,
   assetIds,
   onError,
+  onReady,
 }: {
   code: string;
   progress?: number;
@@ -542,6 +557,15 @@ export function ReactAnimationSandbox({
   /** Catalogue artwork this board places; resolved to markup via /api/animation-assets. */
   assetIds?: string[];
   onError?: () => void;
+  /**
+   * The sandboxed document has run its script and is listening for progress.
+   *
+   * Until this fires the board is NOT on screen: the component returns null while Babel and the
+   * React runtime load and the code transpiles, and the iframe then shows only the component's
+   * static background until it acknowledges. The player's title card needs this moment — "code
+   * exists" was being read as "board is visible", which put a blank board on screen for seconds.
+   */
+  onReady?: () => void;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [srcDoc, setSrcDoc] = useState<string | null>(null);
@@ -620,6 +644,7 @@ export function ReactAnimationSandbox({
       if (data.type === "ready") {
         readyRef.current = true;
         setReady(true);
+        onReady?.();
       }
       if (data.type === "marker") {
         setMarker({
@@ -633,7 +658,7 @@ export function ReactAnimationSandbox({
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, [reportFailure]);
+  }, [reportFailure, onReady]);
 
   if (failed || !srcDoc) return null;
   return (

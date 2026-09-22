@@ -79,6 +79,53 @@ export const PREVIEW_KEYS = Object.keys(PREVIEW_LECTURES) as PreviewKey[];
  *
  * `code: undefined` with no `status` is precisely what `isReactAnimationPending` looks for.
  */
+/**
+ * A LECTURE WHOSE FIRST BOARD IS A REAL GENERATED-STYLE ANIMATION, code and all.
+ *
+ * The seeded lectures are LiveSketch boards, and `pendingBoardLecture` has no code at all — so
+ * neither ever exercised the path a real lecture takes: code present, sandbox loading Babel and
+ * the React runtime, iframe parsing, "ready" posted, then teaching elements revealed sentence by
+ * sentence. That is the path on which the title card kept handing over to a white board, and this
+ * fixture is what makes it measurable. The component is shaped exactly like generated output:
+ * one SVG, elements tagged with data-teach-order/kind/sentence, `export default`.
+ */
+export function sandboxBoardLecture(): { title: string; beats: Beat[] } {
+  const base = PREVIEW_LECTURES["linear-regression"];
+  const code = `
+export default function Animation() {
+  return (
+    <svg viewBox="0 0 1000 560" width="100%" height="100%" style={{ background: "#fbfbf8" }}>
+      <rect x="54" y="54" width="892" height="452" fill="none" stroke="#d9d9d4" strokeWidth="2" />
+      <text data-teach-order="1" data-teach-kind="write" data-teach-weight="1" data-teach-sentence="0"
+        x="80" y="110" fontSize="34" fontWeight="700" fill="#1e293b">Fit a line to the cloud</text>
+      <g data-teach-order="2" data-teach-kind="diagram" data-teach-weight="1.4" data-teach-sentence="1">
+        <line x1="140" y1="460" x2="140" y2="160" stroke="#1e293b" strokeWidth="3" />
+        <line x1="140" y1="460" x2="880" y2="460" stroke="#1e293b" strokeWidth="3" />
+      </g>
+      <text data-teach-order="3" data-teach-kind="label" data-teach-weight="0.8" data-teach-sentence="1"
+        x="420" y="500" fontSize="22" fill="#475569">x: study hours</text>
+      <g data-teach-order="4" data-teach-kind="diagram" data-teach-weight="1.2" data-teach-sentence="2">
+        <circle cx="260" cy="400" r="9" fill="#3b82f6" />
+        <circle cx="400" cy="340" r="9" fill="#3b82f6" />
+        <circle cx="560" cy="290" r="9" fill="#3b82f6" />
+        <circle cx="720" cy="220" r="9" fill="#3b82f6" />
+      </g>
+      <line data-teach-order="5" data-teach-kind="diagram" data-teach-weight="1.2" data-teach-sentence="3"
+        x1="200" y1="430" x2="820" y2="180" stroke="#be123c" strokeWidth="4" />
+    </svg>
+  );
+}
+`;
+  return {
+    title: base.title,
+    beats: base.beats.map((beat, index) => (
+      index === 0
+        ? { ...beat, draw: { ...beat.draw!, ops: [{ kind: "reactAnimation", teachingPoint: beat.title, code, status: "ready" } as DrawScript["ops"][number]] } }
+        : beat
+    )),
+  };
+}
+
 export function pendingBoardLecture(): { title: string; beats: Beat[] } {
   const base = PREVIEW_LECTURES["linear-regression"];
   return {

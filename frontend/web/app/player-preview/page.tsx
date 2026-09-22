@@ -8,7 +8,7 @@
  */
 import { useEffect, useState } from "react";
 import { LessonPlayer } from "@/components/LessonPlayer";
-import { PREVIEW_LECTURES, pendingBoardLecture, type PreviewKey } from "@/lib/board/previewLectures";
+import { PREVIEW_LECTURES, pendingBoardLecture, sandboxBoardLecture, type PreviewKey } from "@/lib/board/previewLectures";
 
 export default function PlayerPreview() {
   const [preview, setPreview] = useState<PreviewKey | null>(null);
@@ -18,12 +18,16 @@ export default function PlayerPreview() {
    * passing while the real, progressively-generated lecture showed a blank board.
    */
   const [pending, setPending] = useState(false);
+  /* `?sandbox=1` gives the first beat a real generated-style animation, so the sandbox load,
+     ready signal and sentence-by-sentence reveal — the path a real lecture takes — are exercised. */
+  const [sandbox, setSandbox] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const requested = params.get("topic");
     if (params.get("pending") === "1") queueMicrotask(() => setPending(true));
+    if (params.get("sandbox") === "1") queueMicrotask(() => setSandbox(true));
     if (requested && requested in PREVIEW_LECTURES) queueMicrotask(() => setPreview(requested as PreviewKey));
   }, []);
-  const lecture = pending ? pendingBoardLecture() : preview ? PREVIEW_LECTURES[preview] : null;
-  return <LessonPlayer key={pending ? "pending" : preview ?? "demo"} beats={lecture?.beats} title={lecture?.title} autoVoiceAssistant={false} onExit={() => undefined} />;
+  const lecture = sandbox ? sandboxBoardLecture() : pending ? pendingBoardLecture() : preview ? PREVIEW_LECTURES[preview] : null;
+  return <LessonPlayer key={sandbox ? "sandbox" : pending ? "pending" : preview ?? "demo"} beats={lecture?.beats} title={lecture?.title} autoVoiceAssistant={false} onExit={() => undefined} />;
 }
