@@ -1,0 +1,29 @@
+{
+  "//": "Tests compile the pure turn-taking modules to CommonJS and run under node --test. Nothing here touches the DOM.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": ".test-build",
+    "noEmit": false,
+    "incremental": false,
+    "jsx": "react-jsx",
+    "types": [
+      "node"
+    ],
+    "plugins": [],
+    "rootDir": "."
+  },
+  "include": [
+    "lib/turn/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "lib/turn/micSession.ts",
+    "lib/turn/tutorPlayer.ts",
+    "lib/turn/transcriber.ts",
+    "lib/turn/livePipeline.ts",
+    "lib/turn/sileroVad.ts"
+  ]
+}
