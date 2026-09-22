@@ -142,6 +142,16 @@ const TITLE_MIN_MS = 480;
  */
 const BRIDGE_CARD_MAX_MS = 9_000;
 /**
+ * The longest the title card may cover a board that is still being generated.
+ *
+ * The card's job is to hold the screen while the board's content is fetched, so this must outlast
+ * the pending-content timeout (ANIMATION_PENDING_TIMEOUT_MS, 10s) — otherwise the card would give
+ * up FIRST and reveal the very empty board it exists to hide. Slightly longer than that, so the
+ * normal exit is always "the content arrived, or the board gave up and showed its own status
+ * card", never "the title timed out".
+ */
+const BOARD_WAIT_MAX_MS = 12_000;
+/**
  * How long the card may stay up while its bridge sentence is genuinely being spoken.
  *
  * Only ever an EXTENSION of `TITLE_MIN_MS`, and only while `speaking` is true — so a lecture whose
@@ -573,52 +583,42 @@ export function LessonPlayer({
     : 0;
 
   /*
-   * A BEAT WITH A SPOKEN BRIDGE KEEPS ITS CARD UNTIL THE BRIDGE IS SPOKEN.
+   * THE CARD COVERS THE WAIT — IT DOES NOT HAND OVER TO AN EMPTY BOARD.
    *
-   * `transitionIn` is the sentence that introduces the section ("Let's get into linear
-   * regression"), and the narration effect deliberately speaks it while the beat is still on its
-   * card — `narrateOnSlide`. Dismissing the card on the board's first paint therefore pulled the
-   * title away 480ms into a sentence that was still introducing it, so the opening beat looked
-   * like it had no title at all while Aria was audibly announcing one.
+   * `boardPainted` is two animation frames after the board subtree mounts. An EMPTY board paints
+   * just as fast as a full one, so handing over on that signal put the student in front of a blank
+   * white rectangle while Aria talked over it — the board had mounted but its content had not been
+   * generated yet. The title card exists precisely to cover that gap, so it must outlast it.
    *
-   * For those beats the board's existing bridge handoff owns the transition: `transitionBoardShown`
-   * flips to the board once the bridge sentences are done, and the card follows that instead of a
-   * timer. Beats with no bridge keep the fast paint-driven handover.
+   * `animationBlocking` is the real readiness signal and already exists: it is true while a beat's
+   * React animation or chalkboard op is still waiting on the server (`isReactAnimationPending` /
+   * `isChalkBoardPending`), and it clears when the content lands or the 10s pending timeout gives
+   * up. The card now holds while it is true.
+   *
+   * Two rules kept from the previous fix, because both were real failures:
+   *   - Speech is never REQUIRED. A voice stuck on "Connecting" must not trap the card (it did),
+   *     so nothing here waits on `speaking` or on `stage`.
+   *   - There is always a ceiling, so a board whose content never arrives still reveals itself
+   *     rather than leaving the lecture behind a title forever.
    */
-  /*
-   * THE CARD MUST NEVER DEPEND ON AUDIO ARRIVING.
-   *
-   * Two previous attempts tied it to things that only happen once the voice is running: first to
-   * `stage`, which Effect 1 advances only while `lesson.playing`, then to the narration's own
-   * bridge handoff. `transitionIn` is NEVER empty in standard mode — `openingSentence` always
-   * returns a fallback — so that second branch applied to every beat. While the voice showed
-   * "Connecting", nothing advanced `stage`, so the card sat invisible behind its own ceiling: no
-   * title, no transition, and a long pause before the board. Exactly the reported failure, and the
-   * demo preview never caught it because its lecture is seeded and its voice starts instantly.
-   *
-   * The rule now: the card is a VISUAL beat opener with a visual lifetime. It shows for a readable
-   * minimum, then yields as soon as the board has painted. If narration happens to start during it
-   * (the bridge sentence), it is allowed to stay a little longer so the title is still up while the
-   * section is being announced — but speech is only ever permitted to EXTEND the card, never to be
-   * required for it to appear or to leave.
-   */
+  const boardContentReady = boardPainted && !animationBlocking;
   useEffect(() => {
     if (continuesConcept || isCheckpoint) return;
-    const ceiling = setTimeout(() => setCardDismissed(true), BRIDGE_CARD_MAX_MS);
+    const ceiling = setTimeout(() => setCardDismissed(true), BOARD_WAIT_MAX_MS);
     return () => clearTimeout(ceiling);
   }, [beat.id, continuesConcept, isCheckpoint]);
   useEffect(() => {
-    if (continuesConcept || isCheckpoint || !boardPainted) return;
+    if (continuesConcept || isCheckpoint || !boardContentReady) return;
     const elapsed = performance.now() - titleShownAtRef.current;
     /*
-     * While the bridge is actually being spoken, hold the title through it; otherwise the card is
-     * purely visual and yields at the readable minimum. `speaking` going false ends the hold, so a
-     * voice that never connects simply never extends it.
+     * Once the board is genuinely ready, hold only long enough for the title to have been readable.
+     * While a bridge sentence is actually being spoken, hold a little longer so the title is still
+     * up while the section is being announced — an extension only, never a dependency.
      */
     const hold = speaking && Boolean(transitionIn) && stage !== "board" ? BRIDGE_HOLD_MS : TITLE_MIN_MS;
     const t = setTimeout(() => setCardDismissed(true), Math.max(0, hold - elapsed));
     return () => clearTimeout(t);
-  }, [boardPainted, continuesConcept, isCheckpoint, beat.id, transitionIn, stage, speaking]);
+  }, [boardContentReady, continuesConcept, isCheckpoint, beat.id, transitionIn, stage, speaking]);
   const transitionBoardShownRef = useRef(false);
   // Signing-only mirror of Gemini's streaming tutor transcript. It never enters the caption log or
   // chat state, so enabling the isolated hand cannot alter either existing transcript surface.

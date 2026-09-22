@@ -8,14 +8,22 @@
  */
 import { useEffect, useState } from "react";
 import { LessonPlayer } from "@/components/LessonPlayer";
-import { PREVIEW_LECTURES, type PreviewKey } from "@/lib/board/previewLectures";
+import { PREVIEW_LECTURES, pendingBoardLecture, type PreviewKey } from "@/lib/board/previewLectures";
 
 export default function PlayerPreview() {
   const [preview, setPreview] = useState<PreviewKey | null>(null);
+  /*
+   * `?pending=1` withholds the first board's content, reproducing a beat whose board is still
+   * being generated. Every seeded lecture here ships fully filled, which is why this harness kept
+   * passing while the real, progressively-generated lecture showed a blank board.
+   */
+  const [pending, setPending] = useState(false);
   useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get("topic");
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("topic");
+    if (params.get("pending") === "1") queueMicrotask(() => setPending(true));
     if (requested && requested in PREVIEW_LECTURES) queueMicrotask(() => setPreview(requested as PreviewKey));
   }, []);
-  const lecture = preview ? PREVIEW_LECTURES[preview] : null;
-  return <LessonPlayer key={preview ?? "demo"} beats={lecture?.beats} title={lecture?.title} autoVoiceAssistant={false} onExit={() => undefined} />;
+  const lecture = pending ? pendingBoardLecture() : preview ? PREVIEW_LECTURES[preview] : null;
+  return <LessonPlayer key={pending ? "pending" : preview ?? "demo"} beats={lecture?.beats} title={lecture?.title} autoVoiceAssistant={false} onExit={() => undefined} />;
 }

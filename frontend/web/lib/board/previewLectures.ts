@@ -67,3 +67,26 @@ export const PREVIEW_LECTURES: Record<PreviewKey, { title: string; beats: Beat[]
 ) as Record<PreviewKey, { title: string; beats: Beat[] }>;
 
 export const PREVIEW_KEYS = Object.keys(PREVIEW_LECTURES) as PreviewKey[];
+
+/**
+ * A LECTURE WHOSE FIRST BOARD HAS NOT BEEN GENERATED YET.
+ *
+ * Every preview lecture above ships with its board content already filled, so the preview could
+ * never reproduce the condition that actually broke in production: the beat exists and narration
+ * starts, but the board's `reactAnimation` op is still waiting on the server. That is what put a
+ * blank white rectangle on screen while Aria talked over it, and it is invisible to a seeded
+ * fixture — which is exactly why three attempts at the title card passed here and failed there.
+ *
+ * `code: undefined` with no `status` is precisely what `isReactAnimationPending` looks for.
+ */
+export function pendingBoardLecture(): { title: string; beats: Beat[] } {
+  const base = PREVIEW_LECTURES["linear-regression"];
+  return {
+    title: base.title,
+    beats: base.beats.map((beat, index) => (
+      index === 0
+        ? { ...beat, draw: { ...beat.draw!, ops: [{ kind: "reactAnimation", teachingPoint: beat.title } as DrawScript["ops"][number]] } }
+        : beat
+    )),
+  };
+}
