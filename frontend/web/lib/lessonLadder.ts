@@ -137,7 +137,7 @@ export const ROLE_CONTRACT: Record<TeachingRole, RoleContract> = {
   },
   recap: {
     must: "Connect the boards into one structure — how the definition, mechanism, example and implications fit together — in a few sentences, then the single most usable takeaway.",
-    mustNot: "Do not re-define, re-derive or re-exemplify anything. Name each idea in a clause and state the RELATIONSHIP between them; a recap that re-explains is a second lecture.",
+    mustNot: "Do not re-define, re-derive or re-exemplify anything, and do not narrate the lesson in the past tense (\"we explored\", \"we examined\", \"we noted\"). Name each idea in a clause, in the present tense, and state the RELATIONSHIP between them; a recap that re-explains is a second lecture.",
     allowsDefinition: false,
     allowsAnalogy: false,
   },

@@ -10,6 +10,7 @@ import assert from "node:assert/strict";
 import {
   auditBeat,
   auditLesson,
+  claimsAllowedFor,
   isAnalogyFor,
   isDefinitionOf,
   isFiller,
@@ -194,4 +195,27 @@ test("more filler shapes: 'understanding X helps', 'this balance is crucial', 't
   assert.equal(isFiller("Finally, the key takeaway is that finding the right balance is essential.", "mechanism"), true);
   assert.equal(isFiller("Therefore, the single most usable takeaway is that balance is vital.", "recap"), false, "the recap's job is the takeaway");
   assert.equal(isFiller("The balance shifts when lambda exceeds one.", "mechanism"), false);
+});
+
+test("filler: 'as we explore further', 'it's crucial to understand', and past-tense narration of the lesson", () => {
+  assert.equal(isFiller("As we explore further, we will delve into how overfitting works and the mechanisms behind it."), true);
+  assert.equal(isFiller("For now, it's crucial to understand this foundational definition."), true);
+  assert.equal(isFiller("Next, we explored how overfitting works, noting that complexity raises training accuracy.", "recap"), true);
+  assert.equal(isFiller("A larger penalty produces a smoother curve.", "recap"), false);
+});
+
+test("a hook cannot hand a definition forward as an established claim; the core can", () => {
+  const claims = ["A model can score 95% on training data and 50% on new data.", "Overfitting occurs when a model learns noise and peculiarities of the training set."];
+  assert.deepEqual(claimsAllowedFor(claims, subject, "hook"), [claims[0]]);
+  assert.deepEqual(claimsAllowedFor(claims, subject, "core"), claims);
+  assert.deepEqual(claimsAllowedFor(claims, subject, undefined), claims, "no rung known: nothing filtered");
+});
+
+test("repair strips a dangling 'Next,' when the sentence it followed was removed", () => {
+  const core = "Overfitting is a model fitting noise in its training data as if it were signal.";
+  const script = "Overfitting is a phenomenon where a model learns the noise as well as the pattern. Next, the mechanism ties complexity to memorisation. The example showed a degree-four curve through five points. The implications reach healthcare and finance.";
+  const findings = auditBeat({ title: "Recap", script, role: "recap" }, [{ title: "Core", script: core, role: "core" }], subject, 1);
+  const repaired = repairScript(script, findings);
+  assert.equal(repaired.repaired, true);
+  assert.match(repaired.script, /^The mechanism ties complexity/);
 });

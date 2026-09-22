@@ -45,7 +45,7 @@ import { getDocumentImages } from "./pageImageStore";
 import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { depthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
-import { auditBeat, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
+import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
 import { buildProgressivePlan, clean } from "./progressivePlan";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
@@ -403,7 +403,7 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
     prerequisiteConceptIds: planned.prerequisiteConceptIds ?? [],
     conceptPass: planned.conceptPass,
     conceptPasses: planned.conceptPasses,
-    keyClaims: keyClaimsFrom(payload, script),
+    keyClaims: claimsAllowedFor(keyClaimsFrom(payload, script), subjectTerms(session.topic), planned.role),
     /*
      * Beat one opens the lecture rather than bridging from anything; either way the player treats
      * this as the sentence to start speaking on the title slide (lib/beatPresentation.ts).

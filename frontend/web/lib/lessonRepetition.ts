@@ -206,7 +206,7 @@ export function isRestatementOf(sentence: string, subject: string[]): boolean {
  */
 const FILLER = [
   /^(?:so |thus |therefore |ultimately |overall |in short |clearly )?(?:understanding|recogni[sz]ing|knowing|grasping|mastering|appreciating|being aware of)\b.{0,80}\b(?:is|are|becomes?|remains?)\b.{0,20}\b(?:crucial|essential|vital|important|key|critical|fundamental|paramount|necessary)\b/i,
-  /\b(?:as we (?:delve|dive|move|go|progress) (?:deeper|further|on|forward)|we (?:will|'ll) (?:explore|discuss|see|cover|look at|examine|dive into)|in (?:our|the) (?:next|following|upcoming) (?:board|section|discussion|topic|lesson|part|step)|will be foundational|this (?:understanding|knowledge|insight) will (?:guide|help|serve|prepare)|in our exploration of|as (?:we|i) (?:discussed|mentioned|saw|noted) (?:earlier|before|previously|above)|we (?:also )?learned that|we (?:have )?discussed|let'?s recap what|let'?s (?:delve|dive) (?:deeper|into)|sets? the stage for)\b/i,
+  /\b(?:as we (?:delve|dive|move|go|progress|explore|continue) (?:deeper|further|on|forward)|we (?:will|'ll) (?:explore|discuss|see|cover|look at|examine|dive into|delve into|unpack)|for now,? it'?s (?:crucial|essential|important)|it'?s (?:crucial|essential|vital|important) to (?:understand|remember|note|grasp|recogni[sz]e|keep in mind)|we (?:also |then |first |next )?(?:explored|examined|noted|looked at|covered|went through|established that|saw that)\b|in (?:our|the) (?:next|following|upcoming) (?:board|section|discussion|topic|lesson|part|step)|will be foundational|this (?:understanding|knowledge|insight) will (?:guide|help|serve|prepare)|in our exploration of|as (?:we|i) (?:discussed|mentioned|saw|noted) (?:earlier|before|previously|above)|we (?:also )?learned that|we (?:have )?discussed|let'?s recap what|let'?s (?:delve|dive) (?:deeper|into)|sets? the stage for)\b/i,
   /^(?:this|it|that) (?:is|becomes|remains) (?:crucial|essential|vital|important|critical|key|fundamental)\b/i,
   /\b(?:is|are) (?:a )?(?:crucial|essential|vital|critical|fundamental|key) (?:concept|idea|aspect|part|step|consideration|skill|point)\b.{0,40}\b(?:in|for|of|to)\b/i,
 ];
@@ -378,12 +378,23 @@ export function repairScript(script: string, findings: RepetitionFinding[]): { s
   return { script: repairedSentences.join(" "), removed: sentences.filter((s) => offending.has(s)), repaired: true };
 }
 
-const DANGLING_CONNECTIVE = /^(?:for (?:instance|example),?\s+|thus,?\s+|therefore,?\s+|consequently,?\s+|as a result,?\s+|additionally,?\s+|moreover,?\s+|furthermore,?\s+|also,?\s+|similarly,?\s+|in other words,?\s+|so,?\s+|hence,?\s+|likewise,?\s+|in addition,?\s+)/i;
+const DANGLING_CONNECTIVE = /^(?:for (?:instance|example),?\s+|next,?\s+|then,?\s+|finally,?\s+|thus,?\s+|therefore,?\s+|consequently,?\s+|as a result,?\s+|additionally,?\s+|moreover,?\s+|furthermore,?\s+|also,?\s+|similarly,?\s+|in other words,?\s+|so,?\s+|hence,?\s+|likewise,?\s+|in addition,?\s+)/i;
 
 function stripDanglingConnective(sentence: string): string {
   const stripped = sentence.replace(DANGLING_CONNECTIVE, "");
   if (stripped === sentence) return sentence;
   return stripped.replace(/^[a-z]/, (c) => c.toUpperCase());
+}
+
+/**
+ * The claims a board hands to later boards. A hook that defined the subject in its keyClaims —
+ * despite being told not to — primed the core board to restate that exact sentence as "the
+ * canonical definition". Only a rung that may define the subject may establish its definition.
+ */
+export function claimsAllowedFor(claims: string[], subject: string[], role: TeachingRole | undefined): string[] {
+  const contract = role ? ROLE_CONTRACT[role] : null;
+  if (!contract || contract.allowsDefinition) return claims;
+  return claims.filter((claim) => !isDefinitionOf(claim, subject));
 }
 
 /** A human-readable line per finding, for logs and for quoting back to the model. */

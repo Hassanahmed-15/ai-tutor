@@ -30,7 +30,7 @@ const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE
 
 const { buildProgressivePlan } = require(path.join(root, ".test-build/lib/progressivePlan.js"));
 const { buildBeatScriptMessages, keyClaimsFrom } = require(path.join(root, ".test-build/lib/beatScriptPrompt.js"));
-const { auditBeat, subjectTerms, repairScript, describeFinding, noveltyRatio } = require(path.join(root, ".test-build/lib/lessonRepetition.js"));
+const { auditBeat, subjectTerms, repairScript, describeFinding, noveltyRatio, claimsAllowedFor } = require(path.join(root, ".test-build/lib/lessonRepetition.js"));
 const { descends } = require(path.join(root, ".test-build/lib/lessonLadder.js"));
 const { depthBudget } = require(path.join(root, ".test-build/lib/lectureDepth.js"));
 const OpenAI = require(path.join(root, "../../node_modules/openai")).default;
@@ -66,7 +66,7 @@ async function writeBoard(topic, planned, plan, taught, repetitionFeedback) {
   });
   const payload = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
   const script = typeof payload.script === "string" ? payload.script.trim() : "";
-  return { script, keyClaims: keyClaimsFrom(payload, script), usage: completion.usage };
+  return { script, keyClaims: claimsAllowedFor(keyClaimsFrom(payload, script), subjectTerms(topic), planned.role), usage: completion.usage };
 }
 
 const summary = [];
