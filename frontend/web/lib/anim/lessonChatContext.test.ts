@@ -178,3 +178,35 @@ test("without a full document the scoped blocks are still used", () => {
   const scoped = { contentBlocks: [{ id: "b1", pageNumber: 1, text: "Scoped block text." }] };
   assert.match(buildDocumentContext(scoped, "", "", ""), /Scoped block text/);
 });
+
+test("the chat is told what is ON the board, not only the script", async () => {
+  const { describeBoard } = await import("../lessonChatContext");
+  const beat = {
+    id: "b", title: "Deleting a node", teacherMove: "", stepLabel: "", slideKind: "intro", points: ["Leaf: delete it"],
+    script: "Now look at the two-children case.",
+    draw: {
+      caption: "remove", durationMs: 30000,
+      ops: [
+        { kind: "codeBoard", codeBrief: "remove()", at: 0, endAt: 1, spec: { language: "cpp", code: "Node* s = p->right;\nwhile (s->left) s = s->left;", steps: [{ lines: [1, 2], note: "find the inorder successor" }] } },
+        { kind: "chalkBoard", boardBrief: "cases", at: 0, endAt: 1, ops: [{ kind: "label", text: "Two children → successor", x: 10, y: 10, at: 0.1 }] },
+        { kind: "reactAnimation", teachingPoint: "A tree where node 2 is replaced by 3", at: 0, endAt: 1 },
+      ],
+    },
+  } as unknown as Beat;
+  const text = describeBoard(beat, "inorder successor");
+  assert.match(text, /Code on the board \(cpp\):\nNode\* s = p->right;/);
+  assert.match(text, /find the inorder successor/);
+  assert.match(text, /Two children → successor/);
+  assert.match(text, /node 2 is replaced by 3/);
+  assert.match(text, /Points on screen: Leaf: delete it/);
+  assert.match(text, /highlighted on the board: "inorder successor"/);
+  assert.ok(describeBoard({ ...beat, script: "x ".repeat(5000) } as Beat).length <= 2500);
+  assert.equal(describeBoard(undefined), "");
+});
+
+test("a lesson built from a selected area says so first", () => {
+  const context = buildDocumentContext({ contentBlocks: [{ id: "a", heading: "Deleting", text: "remove()", pageNumber: 2 }] }, "", "--- page 2, selected region ---\nNode* s", "", [2]);
+  assert.match(context, /^The student built this lesson from an area they SELECTED on page 2/);
+  assert.match(context, /selected region/);
+  assert.doesNotMatch(buildDocumentContext({ contentBlocks: [] }, "", "", "whole doc"), /SELECTED/);
+});

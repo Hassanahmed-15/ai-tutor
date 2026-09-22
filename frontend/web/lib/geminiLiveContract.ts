@@ -145,6 +145,8 @@ export function buildGeminiLiveInstructions(input: {
    * drift apart.
    */
   documentContext?: string;
+  /** What the lesson was built to answer: the student's question, or the area they selected. */
+  lessonQuestion?: string;
   mood: string;
   adhdMode: boolean;
   checkinMode: boolean;
@@ -163,6 +165,7 @@ export function buildGeminiLiveInstructions(input: {
   }
 
   const parts = [TUTOR_PERSONA, `Lesson topic: ${input.topic || "the current lesson"}.`];
+  if (input.lessonQuestion) parts.push(`This lesson was built to answer: "${input.lessonQuestion}". Keep every answer connected to it.`);
   /*
    * The document comes BEFORE the lesson and the beat.
    *

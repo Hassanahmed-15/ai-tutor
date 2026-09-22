@@ -54,6 +54,7 @@ export async function POST(request: Request) {
     transcript: text(body.transcript, 30_000),
     focus: text(body.focus, 1_000),
     documentId: text(body.documentId, 200),
+    selection: parseSelection(body.selection),
     learnerProfile: {
       ...snapshot,
       codeExamples: shouldIncludeCodeExamples(snapshot),
@@ -87,4 +88,16 @@ export async function POST(request: Request) {
 
 function text(value: unknown, limit: number): string | undefined {
   return typeof value === "string" && value.trim() ? value.trim().slice(0, limit) : undefined;
+}
+
+/** The dragged area the lecture is about, or undefined. Pages must be real page numbers. */
+function parseSelection(value: unknown): ProgressiveLectureInput["selection"] {
+  if (!value || typeof value !== "object") return undefined;
+  const o = value as Record<string, unknown>;
+  const pages = Array.isArray(o.pages)
+    ? [...new Set(o.pages.map(Number).filter((n) => Number.isInteger(n) && n > 0 && n <= 500))].slice(0, 20)
+    : [];
+  const transcript = text(o.transcript, 8_000) ?? "";
+  if (pages.length === 0 && !transcript) return undefined;
+  return { pages, transcript, description: text(o.description, 200) ?? "" };
 }

@@ -153,6 +153,18 @@ export function planTranscription(
  * itself. LaTeX is requested for mathematics because it is the only plain-text form that survives
  * subscripts, superscripts and summation limits intact.
  */
+/**
+ * The model declining instead of transcribing — "I'm sorry, I can't transcribe text from this
+ * image." Short, apologetic, and about the task rather than the content. A real transcript that
+ * happens to contain "sorry" is long and does not open with it.
+ */
+export function isTranscriptionRefusal(text: string): boolean {
+  const t = text.trim();
+  if (!t) return true;
+  if (t.length > 240) return false;
+  return /^(?:i['’]?m\s+sorry|sorry|i\s+(?:can(?:no|['’])t|cannot|am\s+unable|'m\s+unable)|unfortunately|i\s+apologi[sz]e)\b|\b(?:can(?:no|['’])t|cannot|unable\s+to)\s+(?:transcribe|read|assist|help|process)\b/i.test(t);
+}
+
 export const TRANSCRIBE_PROMPT = [
   "Transcribe everything visible in this image, exactly as it appears.",
   "",

@@ -54,6 +54,42 @@ export function scopedBlockText(blocks: ScopeBlock[], sourceBlockIds?: string[])
     .join("\n\n");
 }
 
+const SELECTION_STOPWORDS = new Set(["which", "there", "these", "those", "their", "about", "would", "could", "should", "other", "where", "while"]);
+
+/**
+ * The blocks a DRAGGED SELECTION covers — what a lecture "from this area" is built from.
+ *
+ * The student drags a box over part of a page; parse-pdf reads that crop, but the page's own
+ * blocks still describe the whole page. A lecture scoped to all of them teaches the whole page —
+ * which is exactly the reported bug ("the lecture is generated generally from the pdf, not from
+ * that part"). So the beats are scoped to:
+ *   1. the crop's own block (parse-pdf emits one, headed "Page N (selected area)"), and
+ *   2. the page's blocks that share words with what was read off the crop,
+ * falling back to every block on the selected pages only when nothing matches at all.
+ */
+export function blocksForSelection(
+  blocks: ScopeBlock[],
+  selection: { pages: number[]; transcript: string },
+): string[] {
+  const pages = new Set(selection.pages);
+  const onPages = blocks.filter((block) => block.pageNumber !== undefined && pages.has(block.pageNumber));
+  const crop = onPages.filter((block) => /\(selected area\)/i.test(block.heading ?? ""));
+  const words = new Set(
+    (selection.transcript.toLowerCase().match(/[a-z_][a-z0-9_]{4,}/g) ?? []).filter((w) => !SELECTION_STOPWORDS.has(w)),
+  );
+  const overlapping = onPages.filter((block) => {
+    if (crop.includes(block)) return false;
+    const text = `${block.heading ?? ""} ${block.text ?? ""}`.toLowerCase();
+    let shared = 0;
+    for (const word of words) {
+      if (text.includes(word) && ++shared >= 2) return true;
+    }
+    return false;
+  });
+  const chosen = [...crop, ...overlapping];
+  return (chosen.length > 0 ? chosen : onPages).map((block) => block.id);
+}
+
 /**
  * How many beats a lecture should have at this depth.
  *

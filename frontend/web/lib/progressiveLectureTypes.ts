@@ -81,6 +81,12 @@ export type ProgressiveLectureInput = {
   transcript?: string;
   focus?: string;
   documentId?: string;
+  /**
+   * The part of a page the student DRAGGED a box over ("Get a lecture from this area"). When set,
+   * it is the subject of the whole lecture; the rest of the document is background. `transcript`
+   * is what was read off that crop, `pages` the pages it sits on.
+   */
+  selection?: { pages: number[]; transcript: string; description: string };
   learnerProfile: LearnerProfileSnapshot;
   /**
    * The full profile from the planning conversation: what they know, what they are shaky on, their

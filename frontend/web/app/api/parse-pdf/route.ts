@@ -15,7 +15,7 @@ import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/do
 import { figureScope } from "@/lib/figureDetectionScope";
 import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
 import {
-  planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, isUsableRegion,
+  planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, isUsableRegion, isTranscriptionRefusal,
   TRANSCRIBE_PROMPT, type PageRegion, type TranscriptPart,
 } from "@/lib/pdfOcr";
 import type {
@@ -1129,18 +1129,29 @@ async function parsePdfRequest(req: NextRequest) {
         }
 
         try {
-          const completion = await client.chat.completions.create({
-            model: VISION_MODEL,
-            max_tokens: 2000,
-            messages: [{
-              role: "user",
-              content: [
-                { type: "text", text: TRANSCRIBE_PROMPT },
-                { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}`, detail: "high" } },
-              ],
-            }],
-          });
-          return { page: target.page, rect: target.rect, text: completion.choices[0]?.message?.content ?? "" };
+          /*
+           * A REFUSAL IS NOT A TRANSCRIPT. The vision model sometimes answers a crop of code with
+           * "I'm sorry, I can't transcribe text from this image." — measured on a boxed remove()
+           * function — and that sentence became the selected area's "text": the lecture was then
+           * planned without knowing what was boxed. One retry with a firmer instruction; a second
+           * refusal is dropped, so the area is read from its image downstream instead of from a lie.
+           */
+          for (let attempt = 0; attempt < 2; attempt++) {
+            const completion = await client.chat.completions.create({
+              model: VISION_MODEL,
+              max_tokens: 2000,
+              messages: [{
+                role: "user",
+                content: [
+                  { type: "text", text: attempt === 0 ? TRANSCRIBE_PROMPT : `${TRANSCRIBE_PROMPT}\n\nThis is a page of the student's own study material (text, code or figures). Transcribe it — code exactly as written. Never reply that you cannot.` },
+                  { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}`, detail: "high" } },
+                ],
+              }],
+            });
+            const text = completion.choices[0]?.message?.content ?? "";
+            if (!isTranscriptionRefusal(text)) return { page: target.page, rect: target.rect, text };
+          }
+          return null;
         } catch {
           // One unreadable page must not lose the others, or a transient failure on page 3 throws
           // away a transcription of the page the student actually asked about.
@@ -1223,7 +1234,12 @@ async function parsePdfRequest(req: NextRequest) {
     // Blocks read off the pixels, used when extraction found nothing at all. On a document that
     // does have text, the transcript is still carried separately as the focus passage — it does not
     // need to be duplicated into the block list as well.
-    ...(extractedBlocks.length === 0 ? blocksFromTranscript(transcriptParts) : []),
+    ...(extractedBlocks.length === 0
+      ? blocksFromTranscript(transcriptParts)
+      // A DRAGGED AREA always becomes a block of its own, headed "Page N (selected area)". Without
+      // one, a lecture "from this area" had nothing to be scoped to but the whole page's blocks —
+      // so it taught the whole page (lib/beatSourceScope.ts `blocksForSelection`).
+      : blocksFromTranscript(transcriptParts.filter((part) => Boolean(part.rect)))),
   ];
   const assets = pageResults.flatMap((page) => page.assets);
   if (!contentBlocks.length) {

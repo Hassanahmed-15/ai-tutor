@@ -40,7 +40,7 @@ import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdCheckin } from "@/lib/adhd/events";
 import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
 import { MazeGame } from "@/components/adhd/games/MazeGame";
-import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
+import { buildDocumentContext, buildLessonContext, describeBoard } from "@/lib/lessonChatContext";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -259,6 +259,7 @@ export function LessonPlayer({
   onLearnerInteraction,
   onSummarize,
   summaryUnlocked = false,
+  selectionPages = [],
 }: {
   onExit?: () => void;
   /**
@@ -314,6 +315,8 @@ export function LessonPlayer({
   onSummarize?: () => void;
   /** True once the student has finished this lecture — the summary button is disabled until then. */
   summaryUnlocked?: boolean;
+  /** Pages the student dragged an area on, when this lecture was built "from this area". */
+  selectionPages?: number[];
 }) {
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -751,9 +754,9 @@ export function LessonPlayer({
     documentId,
     getTutorSpeaking: () => narrationAudibleRef.current,
     topic: title,
-    getBeatContext: () =>
-      `${beatRef.current.title}: ${beatRef.current.script}` +
-      (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
+    // What is ON the board — the code listing, the diagram, the chalk lines — not only the script.
+    getBeatContext: () => describeBoard(beatRef.current, highlightedTextRef.current),
+    lessonQuestion,
     /*
      * THE SAME TWO SOURCES THE TEXT CHAT ALREADY USES.
      *
@@ -764,7 +767,7 @@ export function LessonPlayer({
      * functions is what stops the voice and the text drifting apart again.
      */
     getLessonContext: () => buildLessonContext(beats, indexRef.current),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
     onTranscript: (role, text, final) => {
@@ -1035,12 +1038,34 @@ export function LessonPlayer({
   // Shared side-chat. Asking a question pauses the lecture (through the lesson machine, same
   // mechanism a voice interruption uses, so a chat question now pauses/resumes in place instead
   // of restarting the beat); closing the explanation requests a resume.
+  /*
+   * THE VOICE TUTOR FOLLOWS THE BOARD.
+   *
+   * Her beat context was read once, when the socket opened, so from beat two onwards she believed
+   * the lecture was still on beat one and could not say what was on the board. Each time the beat
+   * (or its board, once it fills) changes, she is told silently — the same context-only update the
+   * highlight uses. Never while she is talking: that update suppresses the turn it lands in.
+   */
+  const boardSentRef = useRef("");
+  const liveTutorReady = tutor.status === "live" || tutor.status === "drawing";
+  useEffect(() => {
+    if (!liveTutorReady) return;
+    const board = describeBoard(beat, highlightedTextRef.current);
+    const key = `${index}:${board.length}`;
+    if (boardSentRef.current === key || tutor.isSpeaking()) return;
+    boardSentRef.current = key;
+    tutor.addContext(`The lecture is now on part ${index + 1}. What the student sees:\n${board}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, beat, liveTutorReady]);
+
   const chat = useLessonChat({
     topic: title,
-    getBeatContext: () => `${beat.title}: ${beat.script}`,
+    // The board as it stands, and anything the student highlighted on it — the typed chat used to
+    // get the title and script only, so "what does this line of code do?" had no code to look at.
+    getBeatContext: () => describeBoard(beat, highlightedTextRef.current),
     // Read at ask time, not captured: the lecture moves while the panel is open.
     getLessonContext: () => buildLessonContext(beats, indexRef.current),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
     documentId,
     lessonQuestion,
     pausePlayer: () => {

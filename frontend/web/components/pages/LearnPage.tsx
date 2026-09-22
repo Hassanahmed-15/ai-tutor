@@ -326,6 +326,8 @@ type BuildCost =
    * pasted as an image is not a text object, so it never appears in contentBlocks at all.
    */
   const [ocrTranscript, setOcrTranscript] = useState("");
+  /** Pages the student dragged an area on — the lesson is about that area; chat and voice are told so. */
+  const [selectionPages, setSelectionPages] = useState<number[]>([]);
   /**
    * Handle for the page images the parse rendered and parked server-side.
    *
@@ -358,7 +360,7 @@ type BuildCost =
   const [voiceLines, setVoiceLines] = useState<{ role: "you" | "aria"; text: string }[]>([]);
   const voiceLinesRef = useRef<{ role: "you" | "aria"; text: string }[]>([]);
   const planningRevisionRef = useRef<string[]>([]);
-  const voiceDocContext = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
+  const voiceDocContext = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages);
   /** Aria's own last spoken line, used as the "question" a spoken student answer is graded
    *  against — see onTranscript below. Voice turn-taking is Gemini Live's own, not gated on
    *  diagnosticQuestion the way the text chat is, so there is no other record of what she just
@@ -983,7 +985,15 @@ type BuildCost =
        */
       const parsed = await Promise.all(
         sources.map(async (source, index) => {
-          const pages = index === activeSourceIndex && activeOverride ? activeOverride : source.selection.pages;
+          const chosen = index === activeSourceIndex && activeOverride ? activeOverride : source.selection.pages;
+          /*
+           * A DRAGGED AREA ON AN UNTICKED PAGE STILL COUNTS. The header button parses the ticked
+           * pages; with none ticked it parsed the whole document and silently dropped the area the
+           * student had drawn — a general lecture instead of one on their selection. Its page is
+           * added, exactly as "Get a lecture from this area" does.
+           */
+          const regionOnly = Object.keys(source.regions).map(Number).filter((page) => Number.isInteger(page) && page > 0);
+          const pages = chosen.length === 0 && regionOnly.length > 0 ? regionOnly : chosen;
           const fd = new FormData();
           fd.append("file", source.file);
           if (pages.length > 0) fd.append("pages", pages.join(","));
@@ -999,7 +1009,7 @@ type BuildCost =
           // Each parsed file bills its own tokens; with several in flight this must be recorded
           // per response rather than once for the batch.
           recordJsonCost("document", data);
-          return { source, data, ok: res.ok, drewRegion: regions.length > 0 };
+          return { source, data, ok: res.ok, drewRegion: regions.length > 0, regionPages: regions.map((region) => region.page) };
         }),
       );
 
@@ -1112,6 +1122,7 @@ type BuildCost =
       });
       setUploadFocus(focus);
       setOcrTranscript(transcriptText);
+      setSelectionPages(drewRegion ? [...new Set(parsed.flatMap((p) => p.regionPages))] : []);
       setPendingSources([]);
       setParsingPages(false);
       setUploadPhase("ready");
@@ -1131,6 +1142,7 @@ type BuildCost =
         kind: primary.source.kind,
         scopeSelected: drewRegion,
         documentId: parsedDocumentId,
+        regionPages: parsed.flatMap((p) => p.regionPages),
       });
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
@@ -1327,6 +1339,7 @@ type BuildCost =
       // A deck hides content in pictures for the same reason a paper does, and gets the same
       // reading — this is what was read off its slides.
       setOcrTranscript(typeof data.ocrTranscript === "string" ? data.ocrTranscript : "");
+      setSelectionPages([]);
       // A pptx with at least one readable embedded image now gets a real sourceDocument, which
       // routes it through the same grounded pipeline (vision verification, image-only mode,
       // content-block-linked chalkboard boards) task-folder uploads already get — the payload
@@ -2222,6 +2235,8 @@ type BuildCost =
     scopeSelected?: boolean;
     /** Handle for the page images this parse rendered. Null when none were produced. */
     documentId?: string | null;
+    /** Pages the student dragged an area on — the lecture is about that area (lib/beatSourceScope.ts). */
+    regionPages?: number[];
   };
 
   async function build(
@@ -2377,6 +2392,10 @@ type BuildCost =
       // Sent whichever route the upload took: a deck reaches generation through `context` rather
       // than `suprnotes`, and the passage read from its slides is just as much the subject there.
       ...(transcriptText ? { transcript: transcriptText } : {}),
+      // A lecture "from this area": the area is the subject; the document is background.
+      ...(fresh?.scopeSelected && (fresh.regionPages?.length || transcriptText)
+        ? { selection: { pages: fresh.regionPages ?? [], transcript: transcriptText.slice(0, 8_000), description: trimmed } }
+        : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
@@ -2621,6 +2640,7 @@ type BuildCost =
     setSlideImages([]);
     setUploadFocus("");
     setOcrTranscript("");
+    setSelectionPages([]);
     setDocumentId(null);
     setFullDocumentText("");
     setUploadedFile(null);
@@ -2952,13 +2972,13 @@ type BuildCost =
         player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} />;
     }
     return (
       <div className="relative">
@@ -3009,6 +3029,7 @@ type BuildCost =
   if (uploadPhase === "choosing" || parsingPages) {
     const label = activeSource?.kind === "pptx" ? "slides" : "pages";
     const totalSelected = pendingSources.reduce((sum, s) => sum + s.selection.pages.length, 0);
+    const drawnAreas = pendingSources.reduce((sum, s) => sum + Object.keys(s.regions).length, 0);
     return (
       <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
@@ -3045,7 +3066,10 @@ type BuildCost =
                 ? "Reading those pages…"
                 : totalSelected > 0
                   ? `Use ${totalSelected} page${totalSelected === 1 ? "" : "s"}`
-                  : "Use all pages"}
+                  // An area is drawn and no page ticked: that area is what gets used.
+                  : drawnAreas > 0
+                    ? "Use the selected area"
+                    : "Use all pages"}
             </button>
           </div>
         </header>

@@ -69,3 +69,22 @@ test("depth decides the beat count, and a document obeys it like a typed topic d
   assert.equal(beatCountForDepth("something-else"), 8);
   assert.ok(beatCountForDepth("concise") < beatCountForDepth("deep"));
 });
+
+test("a lecture from a dragged area is scoped to that area, not the whole page", async () => {
+  const { blocksForSelection } = await import("../beatSourceScope");
+  // The BST notes: page 1 is Node + insert, page 2 is remove(); the student boxed remove's two-children case.
+  const blocks = [
+    { id: "p1-b1", pageNumber: 1, heading: "Insert", text: "void BST::insert(int d, Node*& p) { if (p == NULL) p = new Node(d); }" },
+    { id: "p2-b1", pageNumber: 2, heading: "Deleting a node", text: "remove first searches for the node holding d, then handles three cases." },
+    { id: "p2-b2", pageNumber: 2, heading: "Deleting a node", text: "Node* s = p->right; while (s->left != NULL) s = s->left; p->data = s->data; remove(s->data, p->right);" },
+    { id: "p2-b3", pageNumber: 2, heading: "Complexity", text: "Every operation runs in O(h) time on the height of the tree." },
+    { id: "ocr-p2-0", pageNumber: 2, heading: "Page 2 (selected area)", text: "Node* s = p->right; while (s->left != NULL) s = s->left; p->data = s->data;" },
+  ];
+  const ids = blocksForSelection(blocks, { pages: [2], transcript: "Node* s = p->right; while (s->left != NULL) s = s->left; p->data = s->data; remove(s->data, p->right);" });
+  assert.ok(ids.includes("ocr-p2-0"), "the crop's own block leads");
+  assert.ok(ids.includes("p2-b2"), "the page block that holds the same code");
+  assert.ok(!ids.includes("p1-b1"), "another page is never pulled in");
+  assert.ok(!ids.includes("p2-b3"), "an unrelated block on the same page is left out");
+  // Nothing matches → the selected page, never the whole document.
+  assert.deepEqual(blocksForSelection(blocks.slice(0, 4), { pages: [2], transcript: "zzzz qqqq" }), ["p2-b1", "p2-b2", "p2-b3"]);
+});

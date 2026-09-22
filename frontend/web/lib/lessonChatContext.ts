@@ -32,6 +32,77 @@ const MAX_DOCUMENT_CHARS = 30000;
 
 const clean = (s: string | undefined): string => (s ?? "").replace(/\s+/g, " ").trim();
 
+/** Enough to say what the board shows — every op's text, a code listing — without the whole script twice. */
+const MAX_BOARD_CHARS = 2_500;
+
+type LooseOp = Record<string, unknown> & { kind?: string };
+
+const str = (value: unknown): string => (typeof value === "string" ? value : "");
+
+/** Every piece of text an op puts on the board, including chalk sub-ops. */
+function opLines(op: LooseOp): string[] {
+  switch (op.kind) {
+    case "codeBoard": {
+      const spec = op.spec as { language?: string; code?: string; steps?: Array<{ lines?: number[]; note?: string }> } | undefined;
+      if (!spec?.code) return op.codeBrief ? [`Code board (being prepared): ${str(op.codeBrief)}`] : [];
+      const steps = (spec.steps ?? []).map((step) => `  lines ${step.lines?.join("-") ?? "?"}: ${str(step.note)}`).join("\n");
+      return [`Code on the board (${spec.language ?? "code"}):\n${spec.code}${steps ? `\nWalkthrough steps:\n${steps}` : ""}`];
+    }
+    case "reactAnimation":
+      return op.teachingPoint ? [`Animated diagram showing: ${clean(str(op.teachingPoint))}`] : [];
+    case "chalkBoard": {
+      const inner = Array.isArray(op.ops) ? (op.ops as LooseOp[]).flatMap(opLines) : [];
+      return inner.length > 0 ? [`Written board:\n${inner.map((line) => `  ${line}`).join("\n")}`] : op.boardBrief ? [`Written board about: ${clean(str(op.boardBrief))}`] : [];
+    }
+    case "structureScene": {
+      const spec = op.spec as { title?: string; nodes?: Array<{ label?: string }> } | undefined;
+      const nodes = (spec?.nodes ?? []).map((node) => str(node.label)).filter(Boolean);
+      return [`Diagram${spec?.title ? ` "${spec.title}"` : ""}${nodes.length ? `: ${nodes.join(" → ")}` : op.structureBrief ? `: ${clean(str(op.structureBrief))}` : ""}`];
+    }
+    case "equationBoard": {
+      const spec = op.spec as { steps?: Array<{ tex?: string; why?: string }> } | undefined;
+      const steps = (spec?.steps ?? []).map((step) => `${str(step.tex)}${step.why ? `  (${step.why})` : ""}`);
+      return steps.length ? [`Derivation on the board:\n${steps.map((line) => `  ${line}`).join("\n")}`] : [];
+    }
+    case "plotBoard":
+      return op.plotBrief ? [`Chart: ${clean(str(op.plotBrief))}`] : [];
+    case "manimScene":
+      return op.sceneBrief ? [`Animation: ${clean(str(op.sceneBrief))}`] : [];
+    case "image":
+      return [clean(str(op.caption) || str(op.alt) || "An image")].filter(Boolean);
+    case "label":
+    case "note":
+    case "callout":
+      return op.text ? [clean(str(op.text))] : [];
+    default:
+      return typeof op.text === "string" && op.text.trim() ? [clean(op.text)] : [];
+  }
+}
+
+/**
+ * WHAT IS ON THE BOARD RIGHT NOW, for the chat and the voice tutor.
+ *
+ * They used to be told the beat's title and script and nothing else — so "what does line 4 of this
+ * code do?" or "what is that arrow on the diagram?" was answered without ever seeing the board. The
+ * beat carries all of it: the code listing, the diagram's nodes, the chalk lines, the bullets.
+ */
+export function describeBoard(beat: Beat | undefined | null, highlighted = ""): string {
+  if (!beat) return "";
+  const parts: string[] = [`${clean(beat.title)}: ${clean(beat.script)}`];
+  const points = (beat.points ?? []).map(clean).filter(Boolean);
+  if (points.length) parts.push(`Points on screen: ${points.join(" · ")}`);
+  if (beat.definitionTerm && beat.definitionMeaning) parts.push(`Definition shown: ${clean(beat.definitionTerm)} — ${clean(beat.definitionMeaning)}`);
+  if (beat.compareLeft && beat.compareRight) {
+    parts.push(`Comparison shown: ${clean(beat.compareLeft.label)} (${beat.compareLeft.points.map(clean).join("; ")}) vs ${clean(beat.compareRight.label)} (${beat.compareRight.points.map(clean).join("; ")})`);
+  }
+  const board = ((beat.draw?.ops ?? []) as unknown as LooseOp[]).flatMap(opLines);
+  if (board.length) parts.push(`ON THE BOARD:\n${board.join("\n")}`);
+  if (highlighted.trim()) parts.push(`The student has highlighted on the board: "${clean(highlighted)}"`);
+  const text = parts.join("\n");
+  // The title/script lead, so a cut takes the tail of the board description, never the beat itself.
+  return text.length > MAX_BOARD_CHARS ? `${text.slice(0, MAX_BOARD_CHARS - 1)}…` : text;
+}
+
 /**
  * The lecture as an ordered outline, marked with where the student currently is.
  *
@@ -65,6 +136,21 @@ export function buildLessonContext(beats: Beat[], currentIndex: number): string 
  * from it at all.
  */
 export function buildDocumentContext(
+  sourceDocument: unknown,
+  slideContext = "",
+  transcript = "",
+  fullDocumentText = "",
+  /** The pages the student dragged an area on, when the lesson was built "from this area". */
+  selectionPages: number[] = [],
+): string {
+  const body = buildDocumentBody(sourceDocument, slideContext, transcript, fullDocumentText);
+  if (selectionPages.length === 0 || !body) return body;
+  // Said first, so the tutor knows the lesson's subject is that area — not the whole document.
+  const lead = `The student built this lesson from an area they SELECTED on page ${selectionPages.join(", ")}; what was read off that area comes first below. The rest is the whole document, for background.\n\n`;
+  return (lead + body).slice(0, MAX_DOCUMENT_CHARS);
+}
+
+function buildDocumentBody(
   sourceDocument: unknown,
   slideContext = "",
   transcript = "",

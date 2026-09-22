@@ -22,7 +22,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   const images = getDocumentImages(id);
   if (!images) return NextResponse.json({ error: "Those pages are no longer available." }, { status: 404 });
   return NextResponse.json(
-    { unit: images.unit, pages: images.pages.map((page) => ({ pageNumber: page.pageNumber, dataUrl: page.dataUrl })) },
+    {
+      unit: images.unit,
+      pages: images.pages.map((page) => ({ pageNumber: page.pageNumber, dataUrl: page.dataUrl })),
+      // The crops the student dragged — the part of the page the lesson is about.
+      regions: images.regions.map((region) => ({ pageNumber: region.pageNumber, dataUrl: region.dataUrl, rect: region.rect })),
+    },
     { headers: { "Cache-Control": "private, no-store" } },
   );
 }

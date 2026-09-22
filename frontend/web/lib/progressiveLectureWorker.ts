@@ -40,7 +40,7 @@ import { animationTierRoutingEnabled, classifyAnimationTier, modelForTier, type 
 import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
-import { scopedBlockText } from "./beatSourceScope";
+import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
 import { CODE_BEAT_PATTERN, asksForCode, looksLikeCode, mergeSplitCodeBeats, pickCodeBeats } from "./codeSpec";
 import { getDocumentImages } from "./pageImageStore";
 import { buildImageParts, type ContentPart } from "./fullDocumentContext";
@@ -139,7 +139,17 @@ function prerequisitesFor(entries: ConceptPass[], sequence: number): string[] {
 
 /** Builds the global map synchronously so no model round-trip delays the first beat. */
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
-  const sourcePlan = sourceDocumentPlan(input);
+  /*
+   * A LECTURE FROM A DRAGGED AREA IS PLANNED FROM THAT AREA.
+   *
+   * The document's own plan covers every block of the page in order, and it used to win outright —
+   * so "Get a lecture from this area" produced a lecture on the whole page, while the outline the
+   * student had just approved (planned from the crop by plan-lesson's document-question mode) was
+   * thrown away. With a selection, the approved outline decides the beats and every beat is scoped
+   * to the selected blocks; the rest of the document stays available as background.
+   */
+  const selectionIds = selectionBlockIds(input);
+  const sourcePlan = input.selection ? [] : sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return pickCodeBeats(sourcePlan, codeRequestText(input), requestedCode(input));
   const subject = topicKeywords(input.topic);
   const supplied = (input.outline?.subtopics ?? [])
@@ -198,6 +208,7 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     prerequisiteConceptIds: prerequisitesFor(entries, sequence),
     visualKind: visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
+    ...(selectionIds.length > 0 ? { sourceBlockIds: selectionIds } : {}),
   }));
   // A prompted lecture should exercise the live animation engine, not accidentally collapse into
   // blackboards/structure boards because every outline title matched a broad keyword. Prefer the
@@ -210,7 +221,23 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     if (candidate) candidate.visualKind = "react-animation";
   }
   // Asked for code → the lecture shows code, whether or not the plan titles happened to say so.
-  return pickCodeBeats(plan, codeRequestText(input), requestedCode(input));
+  // A selected area that IS code (a function the student boxed) counts as asking for it.
+  const selectionIsCode = Boolean(input.selection && looksLikeCode(input.selection.transcript));
+  return pickCodeBeats(plan, codeRequestText(input), requestedCode(input) || selectionIsCode);
+}
+
+/** The blocks of the dragged area, or [] when the lecture is not from a selection. */
+function selectionBlockIds(input: ProgressiveLectureInput): string[] {
+  if (!input.selection || !isSuprnotesLessonInput(input.suprnotes)) return [];
+  return blocksForSelection(input.suprnotes.contentBlocks ?? [], input.selection);
+}
+
+/** The selection, stated as the lecture's subject — for every beat's context and its board. */
+function selectionSection(input: ProgressiveLectureInput): string {
+  const selection = input.selection;
+  if (!selection?.transcript.trim()) return "";
+  const where = selection.pages.length > 0 ? ` OF PAGE ${selection.pages.join(", ")}` : "";
+  return `THE STUDENT SELECTED THIS PART${where} — it is the subject of the whole lecture. Teach it; the rest of the document is background, used only to explain it:\n${selection.transcript.trim()}`;
 }
 
 /**
@@ -541,7 +568,7 @@ async function generateOneBeat(
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD.${passInstruction} DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${codeInstruction(input, session, planned)} Never write a recap or summary: teach THIS beat's concept, even when it is the last beat — the lecture ends when its last concept is taught, and slideKind is never "recap".${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD.${passInstruction} DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${codeInstruction(input, session, planned)}${input.selection ? " This lecture is about the part of the document the student SELECTED (sourceContext opens with it, and its crop is attached after its page). Every beat teaches that selection; use the rest of the page and document only to explain it, never as a topic of its own." : ""} Never write a recap or summary: teach THIS beat's concept, even when it is the last beat — the lecture ends when its last concept is taught, and slideKind is never "recap".${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
@@ -1138,9 +1165,12 @@ function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]
    * only when there is nothing more specific, so it can no longer crowd out the beat's own pages.
    */
   const scopedDocument = scopedDocumentText(input, sourceBlockIds);
+  // The dragged area leads every beat's context: it is what the lecture is ABOUT. (It used to be
+  // dropped as soon as a beat had blocks of its own, since it travels as `transcript`.)
+  const selected = selectionSection(input);
   const parts = scopedDocument
-    ? [input.focus, scopedDocument, input.diagramHints]
-    : [input.context, input.diagramHints, input.transcript, input.focus];
+    ? [selected, input.focus, scopedDocument, input.diagramHints]
+    : [selected, input.context, input.diagramHints, selected ? undefined : input.transcript, input.focus];
   if (isSuprnotesLessonInput(input.suprnotes)) {
     const selected = new Set(sourceBlockIds ?? []);
     const scoped: SuprnotesLessonInput = selected.size > 0
@@ -1192,7 +1222,12 @@ function beatPageImages(input: ProgressiveLectureInput, sourceBlockIds?: string[
     blocks.filter((block) => wanted.has(block.id) && typeof block.pageNumber === "number").map((block) => block.pageNumber as number),
   );
   const pages = pageNumbers.size > 0 ? stored.pages.filter((page) => pageNumbers.has(page.pageNumber)) : stored.pages;
-  return buildImageParts(pages.length > 0 ? pages : stored.pages, [], stored.unit);
+  const shown = pages.length > 0 ? pages : stored.pages;
+  // The crop the student dragged goes in after its page, labelled as the subject by
+  // buildImageParts. It used to be passed as [] — the beat writer saw whole pages only.
+  const shownPages = new Set(shown.map((page) => page.pageNumber));
+  const regions = stored.regions.filter((region) => shownPages.has(region.pageNumber));
+  return buildImageParts(shown, regions, stored.unit);
 }
 
 function scopedDocumentText(input: ProgressiveLectureInput, sourceBlockIds?: string[]): string {

@@ -31,6 +31,7 @@ export async function POST(request: Request) {
    * fixed for the life of its socket, so anything sent here is carried for the whole conversation.
    */
   const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 30_000) : "";
+  const lessonQuestion = typeof body.lessonQuestion === "string" ? body.lessonQuestion.trim().slice(0, 500) : "";
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 500) : "";
   const adhdMode = body.adhdMode === true;
   const checkinMode = body.checkinMode === true;
@@ -92,7 +93,7 @@ export async function POST(request: Request) {
         // now including the whole-document context added upstream.
         instructions: designMode
           ? buildLessonDesignInstructions({ topic, sourceKind, mood, blindMode, studentName: studentName || undefined, documentContext })
-          : buildGeminiLiveInstructions({ topic, beatContext, lessonContext, documentContext, mood, adhdMode, checkinMode, examQuestions }),
+          : buildGeminiLiveInstructions({ topic, beatContext, lessonContext, documentContext, lessonQuestion, mood, adhdMode, checkinMode, examQuestions }),
       },
       { headers: { "Cache-Control": "no-store" } },
     );

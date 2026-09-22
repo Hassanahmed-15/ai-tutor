@@ -221,3 +221,14 @@ test("empty transcriptions produce no blocks", () => {
   assert.deepEqual(blocksFromTranscript([{ page: 1, text: "  " }]), []);
   assert.deepEqual(blocksFromTranscript([]), []);
 });
+
+test("a refusal to transcribe is never taken as the selected area's text", async () => {
+  const { isTranscriptionRefusal } = await import("../pdfOcr");
+  // Measured on a boxed remove() function: this sentence became the lecture's "selection".
+  assert.equal(isTranscriptionRefusal("I'm sorry, I can't transcribe text from this image."), true);
+  assert.equal(isTranscriptionRefusal("Sorry, I cannot assist with that."), true);
+  assert.equal(isTranscriptionRefusal("I am unable to read this."), true);
+  assert.equal(isTranscriptionRefusal(""), true);
+  assert.equal(isTranscriptionRefusal("Node* s = p->right;\nwhile (s->left != NULL) s = s->left;"), false);
+  assert.equal(isTranscriptionRefusal("Sorry is not a word in this code: " + "x = 1; ".repeat(60)), false, "a long real transcript is kept");
+});

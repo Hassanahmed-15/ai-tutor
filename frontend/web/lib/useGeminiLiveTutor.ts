@@ -139,6 +139,8 @@ export type UseGeminiLiveTutorOptions = {
    * question about the same paper got a grounded answer typed and a general one spoken.
    */
   getDocumentContext?: () => string;
+  /** What the lesson was built to answer — the student's question, or the area they selected. */
+  lessonQuestion?: string;
   /**
    * The upload's page-image handle (from parse-pdf). When set, the session is shown the pages
    * themselves once it is live — the only way Aria can know a scanned document, which has no text.
@@ -1072,6 +1074,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
            */
           lessonContext: optionsRef.current.getLessonContext?.() ?? "",
           documentContext: optionsRef.current.getDocumentContext?.() ?? "",
+          // So a board drawn by voice can LOOK at the pages and the selected area, as typed ones do.
+          documentId: optionsRef.current.documentId ?? "",
+          lessonQuestion: optionsRef.current.lessonQuestion ?? "",
           question: concept,
           textOnly: optionsRef.current.boardTextOnly === true,
           visualMode,
@@ -1536,6 +1541,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         beatContext: optionsRef.current.getBeatContext(),
         lessonContext: optionsRef.current.getLessonContext?.() ?? "",
         documentContext: optionsRef.current.getDocumentContext?.() ?? "",
+        lessonQuestion: optionsRef.current.lessonQuestion ?? "",
         mood: optionsRef.current.mood ?? "",
         adhdMode: optionsRef.current.adhdMode === true,
         checkinMode: optionsRef.current.checkinMode === true,
@@ -1958,6 +1964,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const res = await fetch(`/api/document-images/${encodeURIComponent(documentId)}`).catch(() => null);
       const data = res?.ok ? await res.json().catch(() => null) : null;
       const pages: Array<{ pageNumber: number; dataUrl: string }> = Array.isArray(data?.pages) ? data.pages : [];
+      const regions: Array<{ pageNumber: number; dataUrl: string }> = Array.isArray(data?.regions) ? data.regions : [];
       if (pages.length === 0 || sessionRef.current !== session || endedRef.current) return;
       const unit = data?.unit === "slide" ? "slide" : "page";
       try {
@@ -1979,6 +1986,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             turns: [{ role: "user", parts: [{ text: `${unit} ${page.pageNumber}:` }, { inlineData: { mimeType: match[1], data: match[2] } }] }],
             turnComplete: false,
           });
+          // The area the student dragged on this page, when the lesson was built from it.
+          for (const region of regions.filter((r) => r.pageNumber === page.pageNumber)) {
+            const crop = /^data:([^;]+);base64,(.+)$/.exec(region.dataUrl);
+            if (!crop) continue;
+            session.sendClientContent({
+              turns: [{
+                role: "user",
+                parts: [
+                  { text: `The student's SELECTION on ${unit} ${page.pageNumber} — the area this lesson is about:` },
+                  { inlineData: { mimeType: crop[1], data: crop[2] } },
+                ],
+              }],
+              turnComplete: false,
+            });
+          }
         }
         console.log(`[gemini-live] shared ${pages.length} ${unit} image(s) of the uploaded document`);
       } catch (error) {
