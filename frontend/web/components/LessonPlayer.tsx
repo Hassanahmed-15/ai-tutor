@@ -612,7 +612,16 @@ export function LessonPlayer({
    *   - There is always a ceiling, so a board whose content never arrives still reveals itself
    *     rather than leaving the lecture behind a title forever.
    */
-  const boardContentReady = boardPainted && !animationBlocking;
+  /*
+   * READY MEANS THE CONTENT EXISTS — not that we stopped waiting for it.
+   *
+   * `animationBlocking` is `currentAnimationPending && !animationTimedOut`, so it also goes false
+   * when the 10s pending timeout GIVES UP. Keying the card on it therefore handed over to a board
+   * that was still empty, which is the long blank-white stretch being reported: title, then ten
+   * seconds of nothing, then a white board. `currentAnimationPending` alone asks the honest
+   * question — has this beat's board content actually arrived? — and stays true until it has.
+   */
+  const boardContentReady = boardPainted && !currentAnimationPending;
   useEffect(() => {
     if (continuesConcept || isCheckpoint) return;
     const ceiling = setTimeout(() => setCardDismissed(true), BOARD_WAIT_MAX_MS);
@@ -1436,7 +1445,19 @@ export function LessonPlayer({
     const narrateOnBoard = !isCheckpoint && stage === "board";
     const narrateOnSlide = (isCheckpoint || Boolean(transitionIn)) && stage === "slide";
     if (!narrateOnBoard && !narrateOnSlide) return;
-    if (!isCheckpoint && animationBlocking) return;
+    /*
+     * A PENDING BOARD SILENCES THE BOARD, NOT THE TEACHER.
+     *
+     * This used to block narration outright while a beat's animation was still being generated, so
+     * the lecture simply stopped — up to the full 10s pending timeout of title card with nothing
+     * spoken, which is most of the reported "huge gap between slides". The board's own content is
+     * what has to wait; the sentence that introduces the section does not, and speaking it over the
+     * card is exactly what a teacher does while writing.
+     *
+     * Only the SLIDE-stage narration is allowed through: on the board the script must stay in step
+     * with drawing, so a board beat still waits for something to draw on.
+     */
+    if (!isCheckpoint && animationBlocking && !narrateOnSlide) return;
     const speakText = restartOnBoard ? (beat.script ?? "") : narrationText;
     const bridge = restartOnBoard ? 0 : bridgeSentences;
     const bridged = Boolean(transitionIn) && !restartOnBoard;
@@ -2160,6 +2181,9 @@ export function LessonPlayer({
                  */
                 title={showSectionCard ? beat.title : null}
                 titleEyebrow={`Part ${index + 1} of ${displayBeatCount}`}
+                /* While the board is still being generated, say so on the card rather than leaving
+                   the student in front of a silent title wondering whether the lecture has hung. */
+                titlePending={currentAnimationPending}
                 onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">

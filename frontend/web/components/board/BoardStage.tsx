@@ -54,6 +54,8 @@ export interface BoardStageProps {
   onBoardPainted?: () => void;
   /** Small line above the title — where this section sits in the lesson. */
   titleEyebrow?: string;
+  /** The board behind the card is still being generated; show that rather than a silent title. */
+  titlePending?: boolean;
 }
 
 export type BoardStatus =
@@ -74,6 +76,7 @@ export function BoardStage({
   title,
   onBoardPainted,
   titleEyebrow,
+  titlePending,
 }: BoardStageProps) {
   /*
    * "The board has painted" = two animation frames after this board mounted: one for the browser to
@@ -140,7 +143,7 @@ export function BoardStage({
 
       {overlay}
 
-      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} eyebrow={titleEyebrow} /> : null}
+      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} eyebrow={titleEyebrow} pending={titlePending} /> : null}
 
       {veiled && <StatusVeil status={status} />}
     </section>
@@ -159,7 +162,7 @@ export function BoardStage({
  * It leaves on its own `board-title-out` animation rather than unmounting instantly, so the
  * hand-off is a dissolve into the board instead of a cut.
  */
-function SectionCard({ title, leaving, eyebrow }: { title: string; leaving: boolean; eyebrow?: string }) {
+function SectionCard({ title, leaving, eyebrow, pending }: { title: string; leaving: boolean; eyebrow?: string; pending?: boolean }) {
   return (
     <div
       className="board-title-card pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-[#080a0e] px-8 lg:px-16"
@@ -182,6 +185,14 @@ function SectionCard({ title, leaving, eyebrow }: { title: string; leaving: bool
           {title}
         </h2>
         <div className="mt-5 h-px w-16 bg-gradient-to-r from-amber-300/60 to-transparent" />
+        {/* A silent title for several seconds is indistinguishable from a hung lecture. When the
+            board behind the card is still being written, say so. */}
+        {pending && (
+          <p className="mt-5 flex items-center gap-2 text-[0.8rem] font-medium text-white/40">
+            <Loader2 size={13} className="animate-spin" aria-hidden="true" />
+            Drawing the board…
+          </p>
+        )}
       </div>
     </div>
   );

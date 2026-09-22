@@ -932,6 +932,15 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   await maybeFinalize(userId, sessionId);
 }
 
+/**
+ * Beats whose visual is a RELATIONSHIP BETWEEN TWO QUANTITIES, and therefore a chart.
+ *
+ * Deliberately narrow: it must name plotting, axes, a correlation, a trend, or one quantity
+ * against another ("study hours vs test score", "price against demand"). A beat that merely
+ * mentions a number is not a chart, and routing it to one would be worse than the sandbox.
+ */
+const QUANTITATIVE_BEAT = /\b(?:scatter|scatterplot|plot(?:ted|ting)?|graph(?:ed|ing)?|chart|axis|axes|x-axis|y-axis|coordinate|correlat\w*|regression|line of best fit|trend ?line|slope|intercept|data ?points?|versus|vs\.?)\b/i;
+
 const PROGRESSIVE_KIND_FOR_BOARD: Record<Exclude<BoardKind, "morph">, ProgressiveVisualKind> = {
   reactAnimation: "react-animation",
   manimScene: "manim",
@@ -969,8 +978,24 @@ async function chooseProgressiveVisual(
    * impression. It is worth the two calls (~1.5 s, ~$0.01) to let the director choose from what the
    * beat actually teaches: a diagram for history, an animation for an algorithm.
    */
+  /*
+   * AND EXCEPT A BEAT THAT IS PLAINLY A CHART.
+   *
+   * The sandbox has no axes primitive — its shape vocabulary is circle/rect/hexagon/line/chain/
+   * leaf/droplet — so a beat about two quantities has to FAKE a coordinate system out of `line`
+   * shapes and arrow glyphs. That is what produced the reported board: a corner bracket where the
+   * axes should be, a stray ">" floating mid-canvas, a rotated y-label written over the subtitle,
+   * an arrow pointing into blank space, and no fitted line at all on a board titled "Linear
+   * Regression".
+   *
+   * `plotBoard` exists precisely for this and derives its axes, ticks and scales from the data
+   * (lib/plotSpec.ts) — LiveSketch's own comment says a plot beat should never be hand-drawn SVG.
+   * Letting the director see these beats costs two calls on the few beats that look quantitative,
+   * and nothing on the rest, which keeps the latency win for ordinary animated beats.
+   */
   const opening = sequence === 0;
-  if (fallback === "react-animation" && !opening) {
+  const quantitative = QUANTITATIVE_BEAT.test(`${beat.title} ${beat.conceptObjective ?? ""} ${beat.script}`);
+  if (fallback === "react-animation" && !opening && !quantitative) {
     return { kind: fallback, costUsd: 0 };
   }
   // A code beat was chosen because the student asked for code on an implementation beat; letting a

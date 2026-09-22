@@ -914,6 +914,19 @@ CHOOSE THE RIGHT DIAGRAM (pick the one that teaches THIS concept; do not default
 - Tree/recursion/heap/hierarchy: nodes connected by edges in levels, with labels; expand or traverse with progress.
 - Graph/network/state machine: labeled nodes and directed/undirected edges routed as smooth non-crossing curves; light up a path/traversal with progress.
 - Function/relation/growth/complexity: a labeled coordinate plane with axes and a real plotted curve/points; trace it with progress.
+  AXES ARE FULL LINES, NOT CORNER MARKS. Draw the y-axis as ONE line from the top of the plot area
+  down to the origin, and the x-axis as ONE line from the origin to the right edge of the plot area.
+  A short bracket in the corner is not an axis and reads as a stray mark. Put the arrowhead, if any,
+  at the far END of its own axis — never floating in the middle of the canvas.
+  THE AXIS LABELS. The y-label is rotated (transform="rotate(-90 ...)") and sits to the LEFT of the
+  y-axis, vertically centred on it; the x-label sits BELOW the x-axis, horizontally centred. Neither
+  may overlap the heading, the subtitle, or any data point — a rotated label written across the
+  subtitle is a hard failure, not a blemish.
+  RESERVE THE HEADING BAND. The heading and subtitle own the top of the board; the plot area starts
+  BELOW them. Never let the plot, its axes or its labels enter that band.
+  AND IF THE BEAT IS ABOUT A FITTED LINE, DRAW THE FITTED LINE. A scatter titled for a regression,
+  a trend or a line of best fit must actually show that line through the points. Points alone do not
+  teach the thing the board is named after.
 - Process/procedure/pipeline: animate a concrete token, value, request, or object through a spatial path with meaningful boundaries and state changes. Use stage boxes only when the stages themselves are the concept.
 - Security/network/protocol: show concrete packets or data tokens crossing trust boundaries, attack and defence paths, encryption/transformation states, and layered zones. Do not reduce the idea to a row of UI-card rectangles.
 - Math derivation/equation: an equation spine with each term/step annotated progressively.
@@ -923,6 +936,8 @@ CONTENT:
 - Ground every visible value, label, node, cell, and edge in the supplied title, spoken script, and brief. Use REAL example values from the narration (actual numbers, names, intervals) — not placeholders like "A/B/C" unless the narration itself is generic.
 - Cells and nodes are appropriate for arrays, grids, trees, graphs, and state machines, but rectangles are not a universal visual language. For conceptual security, networking, and processes prefer paths, boundaries, zones, moving tokens, and transformations. Unless the concept is inherently a grid/table/array, use at most two large rectangular containers. Still forbidden: decorative dotted clusters, random icons, floating cards/pills, a lone endpoint-to-endpoint arrow with two labels and nothing else, or a wall of prose.
 - The diagram must be understandable as a static figure at progress=1: a reader should see the structure and its relationships without the narration.
+- EVERY ARROW MUST JOIN TWO NAMED THINGS, and its direction must state the real relation between them. An arrow, curve or leader that ends in blank space is making no claim at all — delete it. A pointer that indicates something must actually TOUCH what it indicates: an arrowhead resting in empty canvas beside a data point is a fault, not a near miss. Do not draw decorative or symmetrical connectors to balance the composition.
+- A STROKE MAY NEVER CROSS TEXT. A line drawn through a label overprints it and both become unreadable — route the connector around every label, or move the label clear of the stroke.
 
 LAYOUT (same discipline as the physical engine):
 - Background #fbfbf8 or #ffffff with a subtle gray frame inside a 54px margin. Title inside x=54..946,y=30..104; teaching content inside x=64..936,y=122..500.
