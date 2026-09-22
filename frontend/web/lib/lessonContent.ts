@@ -54,6 +54,13 @@ export interface Beat {
    */
   conceptPass?: number;
   conceptPasses?: number;
+  /**
+   * What this board established, in the model's own 2-4 short claims.
+   *
+   * Every later board is shown these as "already established" and told not to define, motivate
+   * or re-derive them. Compact enough to include for the whole lesson, which a full script is not.
+   */
+  keyClaims?: string[];
   /** Spoken over this beat's incoming title card. Omitted on the opening beat. */
   transitionIn?: string;
   teacherMove: string;

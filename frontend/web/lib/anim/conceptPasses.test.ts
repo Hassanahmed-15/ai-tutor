@@ -75,9 +75,14 @@ test("a definition stays one board however deep the lesson is set", () => {
   assert.equal(passesFor({ title: "What Is A Vector", objective: "Define the term precisely." }, "deep"), 1);
 });
 
-test("concise buys fewer words per board, never a mechanism without its example", () => {
+test("concise is one board per subtopic; only balanced and deep earn continuation boards", () => {
+  /*
+   * A second board over one idea is a second chance to repeat it. Concise keeps the example inside
+   * the single board; balanced and deep get continuation boards, each on its own rung and audited.
+   */
   const subtopic = { title: "How Diffusion Works", objective: "Explain the mechanism." };
-  assert.equal(passesFor(subtopic, "concise"), 2, "still earns its worked example");
+  assert.equal(passesFor(subtopic, "concise"), 1);
+  assert.equal(passesFor(subtopic, "balanced"), 2);
   assert.equal(passesFor(subtopic, "deep"), 3);
 });
 

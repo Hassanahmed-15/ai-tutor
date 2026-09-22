@@ -52,6 +52,12 @@ export type ProgressiveBeatPlan = {
    */
   conceptPass?: number;
   conceptPasses?: number;
+  /**
+   * This board's rung on the lesson ladder (lib/lessonLadder.ts): hook, core, mechanism, example,
+   * implication, application, pitfall, contrast or recap. Decides what the board must add and what
+   * it must not repeat; a lesson climbs these and never descends.
+   */
+  role?: import("./lessonLadder").TeachingRole;
   visualKind: ProgressiveVisualKind;
   estimatedDurationMs: number;
   sourceBlockIds?: string[];

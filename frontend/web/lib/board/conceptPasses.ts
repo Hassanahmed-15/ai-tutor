@@ -22,6 +22,7 @@
  */
 
 import type { DepthLevelName } from "../lectureDepth";
+import { LADDER, type TeachingRole } from "../lessonLadder";
 
 export interface PlannedSubtopic {
   title: string;
@@ -86,12 +87,13 @@ export function passesFor(
   if (SINGLE_BOARD.test(text)) return 1;
 
   /*
-   * "concise" means fewer WORDS per board (see depthBudget), and it must not mean a mechanism gets
-   * explained without an example — that is the shallow-lecture complaint. It caps the expansion at
-   * two rather than refusing it.
+   * A second board over one idea is a second chance to repeat it. "Concise" therefore gets ONE
+   * board per subtopic — the example lives inside it — and only "balanced" and "deep" earn the
+   * continuation boards, each of which has its own distinct job (see ROLE_INSTRUCTION) and is
+   * audited against everything before it (lib/lessonRepetition.ts).
    */
   if (!MULTI_BOARD.test(text)) return 1;
-  if (depth === "concise") return 2;
+  if (depth === "concise") return 1;
   if (depth === "deep") return 3;
   return 2;
 }
@@ -105,23 +107,34 @@ export function passesFor(
  * SUBTOPICS — before this expansion — never on its output.
  */
 export function expandConceptPasses(
-  subtopics: PlannedSubtopic[],
+  subtopics: Array<PlannedSubtopic & { role?: TeachingRole }>,
   depth: DepthLevelName,
   slugify: (value: string) => string,
 ): ConceptPass[] {
   const out: ConceptPass[] = [];
   subtopics.forEach((subtopic, index) => {
-    const passes = passesFor(subtopic, depth, {
-      isFirst: index === 0,
-      isLast: index === subtopics.length - 1,
-    });
+    /*
+     * Each pass climbs one rung above the last (lib/progressivePlan.ts roleForPass), so a subtopic
+     * can only have as many passes as there are rungs left above its own: a "contrast" board has
+     * nowhere to climb and gets one pass, a "pitfall" board two. Without this cap the extra passes
+     * clamped onto the same top rung and became the same board twice.
+     */
+    const passes = Math.min(
+      passesFor(subtopic, depth, { isFirst: index === 0, isLast: index === subtopics.length - 1 }),
+      rungsAbove(subtopic.role),
+    );
     const conceptKey = `concept-${index + 1}-${slugify(subtopic.title)}`;
     for (let pass = 1; pass <= passes; pass++) {
       out.push({
         title: subtopic.title,
-        objective: passes === 1
+        /*
+         * The FIRST pass carries the subtopic's objective; a LATER pass leads with its own job and
+         * mentions the original only as what is already on the board. When both passes carried the
+         * same objective verbatim, the model wrote the same board twice.
+         */
+        objective: pass === 1
           ? subtopic.objective
-          : `${subtopic.objective} ${ROLE_INSTRUCTION[roleFor(pass, passes)]}`,
+          : `${ROLE_INSTRUCTION[roleFor(pass, passes)]} The idea itself is already on the board above this one (that board's job was: ${subtopic.objective}) — do not re-establish it.`,
         conceptKey,
         pass,
         passes,
@@ -130,6 +143,17 @@ export function expandConceptPasses(
     }
   });
   return out;
+}
+
+/** How many boards a subtopic on this rung can occupy while climbing: its own rung plus those above it. */
+function rungsAbove(role: TeachingRole | undefined): number {
+  // No rung known (a caller that has not run the ladder): nothing to cap against.
+  if (!role) return Number.POSITIVE_INFINITY;
+  const climb: TeachingRole[] = LADDER.filter((r) => r !== "hook" && r !== "recap");
+  const index = climb.indexOf(role);
+  // The hook and the recap never continue.
+  if (index < 0) return 1;
+  return climb.length - index;
 }
 
 function roleFor(pass: number, passes: number): PassRole {
