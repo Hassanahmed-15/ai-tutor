@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
+import { CodeBoard } from "@/components/sketch/CodeBoard";
+import type { CodeSpec } from "@/lib/codeSpec";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { recordJsonCost } from "@/lib/costLedger";
@@ -102,7 +104,7 @@ export function useLessonChat(opts: {
       setChat((c) => [...c, { role: "you", text: trimmed }]);
       setExplaining(true);
       try {
-        const res = await fetch("/api/explain", {
+        const request = () => fetch("/api/explain", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -115,6 +117,14 @@ export function useLessonChat(opts: {
             lessonQuestion: opts.lessonQuestion ?? "",
             question: trimmed,
           }),
+        });
+        // One retry when the request never reached the server ("Failed to fetch" — a dropped
+        // connection, not an answer). Measured: the student saw only that error, and the server
+        // logged no request at all. An HTTP error response is NOT retried; it is a real answer.
+        const res = await request().catch(async (error: unknown) => {
+          if (!(error instanceof TypeError)) throw error;
+          await new Promise((resolve) => setTimeout(resolve, 1200));
+          return request();
         });
         const data = await res.json().catch(() => ({}));
         recordJsonCost("questions", data);
@@ -229,6 +239,9 @@ export function ExplainOverlay({
     (op): op is Extract<typeof op, { kind: "reactAnimation" }> =>
       op.kind === "reactAnimation" && typeof op.code === "string"
   );
+  const codeOp = board.draw?.ops.find(
+    (op): op is Extract<typeof op, { kind: "codeBoard" }> => op.kind === "codeBoard" && Boolean(op.spec)
+  );
 
   useEffect(() => {
     if (!autoReveal) return;
@@ -258,7 +271,9 @@ export function ExplainOverlay({
         </button>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto" aria-live="polite">
-        {animationOp?.code ? (
+        {codeOp?.spec ? (
+          <CodeBoard key={board.script.slice(0, 24)} spec={codeOp.spec as CodeSpec} progress={effectiveProgress} />
+        ) : animationOp?.code ? (
           <ReactAnimationSandbox
             key={board.script.slice(0, 24)}
             code={animationOp.code}

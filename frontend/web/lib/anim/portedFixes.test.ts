@@ -211,7 +211,7 @@ test("a plot needs inline data, a drawable mark and a positional channel", async
 
 test("every visual form routes to a board this codebase can actually fill", async () => {
   const { VISUAL_FORMS, BOARD_FOR } = await import("../director");
-  const fillable = new Set(["manimScene", "structureScene", "morph", "reactAnimation", "chalkBoard", "plotBoard", "equationBoard"]);
+  const fillable = new Set(["manimScene", "structureScene", "morph", "reactAnimation", "chalkBoard", "plotBoard", "equationBoard", "codeBoard"]);
   for (const form of VISUAL_FORMS) {
     assert.ok(fillable.has(BOARD_FOR[form]), `${form} -> ${BOARD_FOR[form]} must be a real board`);
   }
@@ -219,6 +219,8 @@ test("every visual form routes to a board this codebase can actually fill", asyn
   // Manim — a derivation is read, not watched, and a chart should not cost seconds of Python.
   assert.equal(BOARD_FOR.plot, "plotBoard");
   assert.equal(BOARD_FOR.equation, "equationBoard");
+  // Code is READ too: a listing with a moving highlight, never a drawing of what it does.
+  assert.equal(BOARD_FOR.code, "codeBoard");
 });
 
 /* ── The beat visual specification, and the SVM regression ────────────────── */
@@ -281,7 +283,7 @@ test("a placeholder nobody could fill does not count as a board", async () => {
   assert.equal(hasUsableBoard(beat([{ kind: "reactAnimation", code: "export default function Animation(){}" }])), true);
 
   // Spec boards are the same story: a brief with no spec is a placeholder, not a picture.
-  for (const kind of ["manimScene", "structureScene", "plotBoard", "equationBoard"]) {
+  for (const kind of ["manimScene", "structureScene", "plotBoard", "equationBoard", "codeBoard"]) {
     assert.equal(hasUsableBoard(beat([{ kind }])), false, `${kind} without a spec is not a board`);
     assert.equal(hasUsableBoard(beat([{ kind, spec: {} }])), true, `${kind} with a spec is`);
   }

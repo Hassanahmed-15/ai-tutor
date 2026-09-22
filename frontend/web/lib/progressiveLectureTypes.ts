@@ -31,7 +31,8 @@ export type ProgressiveVisualKind =
   | "manim"
   | "structure"
   | "plot"
-  | "equation";
+  | "equation"
+  | "code";
 
 export type ProgressiveBeatPlan = {
   id: string;

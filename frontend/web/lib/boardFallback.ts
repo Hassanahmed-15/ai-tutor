@@ -26,7 +26,7 @@ import type { VisualForm } from "./director";
  * lesson than an error card.
  */
 
-export const CHAIN: Record<VisualForm, readonly ("structureScene" | "plotBoard" | "equationBoard" | "chalkBoard")[]> = {
+export const CHAIN: Record<VisualForm, readonly ("structureScene" | "plotBoard" | "equationBoard" | "codeBoard" | "chalkBoard")[]> = {
   // The illustration failed, so try the structure of what it was illustrating, then say it plainly.
   "labelled-diagram": ["structureScene", "chalkBoard"],
   plot: ["chalkBoard"],
@@ -35,6 +35,7 @@ export const CHAIN: Record<VisualForm, readonly ("structureScene" | "plotBoard" 
   transformation: ["structureScene", "chalkBoard"],
   construction: ["structureScene", "chalkBoard"],
   "animated-maths": ["equationBoard", "chalkBoard"],
+  code: ["chalkBoard"],
   text: ["chalkBoard"],
 };
 
@@ -53,6 +54,7 @@ const BOARD_OP_KINDS = new Set([
   "structureScene",
   "plotBoard",
   "equationBoard",
+  "codeBoard",
   "chalkBoard",
 ]);
 
@@ -149,7 +151,7 @@ export async function rescueEmptyBoards(
       // Replace the dead placeholder outright: leaving it in place means the renderer selector can
       // still pick it and show the same empty card.
       const keep = (draw.ops ?? []).filter(
-        (op) => !["reactAnimation", "manimScene", "structureScene", "plotBoard", "equationBoard", "chalkBoard"].includes(String(op.kind)),
+        (op) => !["reactAnimation", "manimScene", "structureScene", "plotBoard", "equationBoard", "codeBoard", "chalkBoard"].includes(String(op.kind)),
       );
       draw.ops = [placeholderFor(board, brief), ...keep] as typeof draw.ops;
 
@@ -202,6 +204,8 @@ function placeholderFor(board: string, brief: string): DrawOpLike {
       return { kind: "plotBoard", plotBrief: brief, at: 0, endAt: 1 };
     case "equationBoard":
       return { kind: "equationBoard", equationBrief: brief, at: 0, endAt: 1 };
+    case "codeBoard":
+      return { kind: "codeBoard", codeBrief: brief, at: 0, endAt: 1 };
     default:
       return { kind: "chalkBoard", boardBrief: brief, at: 0, endAt: 1 };
   }
@@ -211,7 +215,7 @@ function placeholderFor(board: string, brief: string): DrawOpLike {
 async function fillOne(client: OpenAI, board: string, _all: Beat[], beat: Beat): Promise<number> {
   try {
     if (board === "structureScene") return (await fillStructureSceneOps(client, [beat])).costUsd;
-    if (board === "plotBoard" || board === "equationBoard") return (await fillSpecBoardOps(client, [beat])).costUsd;
+    if (board === "plotBoard" || board === "equationBoard" || board === "codeBoard") return (await fillSpecBoardOps(client, [beat])).costUsd;
     return (await fillBlackboardOps(client, [beat], false)).costUsd;
   } catch (err) {
     console.error(`[fallback] beat=${beat.id} ${board} fill threw: ${err instanceof Error ? err.message : "error"}`);

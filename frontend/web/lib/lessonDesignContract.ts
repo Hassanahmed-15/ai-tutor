@@ -125,6 +125,8 @@ export function buildLessonDesignInstructions(input: {
   mood: string;
   blindMode: boolean;
   studentName?: string;
+  /** The uploaded document's text. Its pages are also shown to her as images once connected. */
+  documentContext?: string;
 }): string {
   const source =
     input.sourceKind === "pdf"
@@ -143,6 +145,12 @@ export function buildLessonDesignInstructions(input: {
   if (input.mood) parts.push(`Learner context: ${input.mood}`);
   if (input.studentName) parts.push(`The student's name is ${input.studentName}.`);
   if (input.blindMode) parts.push(DESIGN_BLIND_ADDENDUM);
+  const doc = input.documentContext?.trim();
+  if (doc) {
+    parts.push(
+      "The student's document, as extracted text (you are also shown its pages as images). When you talk about the material, it must come from THIS document, not general knowledge:\n" + doc,
+    );
+  }
   return parts.join("\n\n");
 }
 

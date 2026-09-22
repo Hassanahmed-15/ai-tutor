@@ -5,6 +5,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Eraser,
+  FileText,
   Highlighter,
   Mic,
   MicOff,
@@ -54,6 +55,12 @@ export interface BoardDockProps {
   busy?: boolean;
   explainSelectionLabel?: string;
   onExplainSelection?: () => void;
+  /**
+   * The one-slide summary of the whole lecture. Always shown so the student knows it exists, but
+   * enabled only once they have finished the lecture — it is a summary of what they watched.
+   */
+  onSummarize?: () => void;
+  summaryUnlocked?: boolean;
 }
 
 export function BoardDock(props: BoardDockProps) {
@@ -162,6 +169,20 @@ export function BoardDock(props: BoardDockProps) {
           >
             <Sparkles size={16} />
             <span className="truncate">{props.busy ? "Asking Aria…" : props.explainSelectionLabel}</span>
+          </button>
+        )}
+
+        {props.onSummarize && (
+          <button
+            onClick={props.onSummarize}
+            disabled={!props.summaryUnlocked}
+            data-summarize-lecture=""
+            title={props.summaryUnlocked ? "See the whole lecture on one slide" : "Finish the whole lecture to unlock the one-slide summary"}
+            aria-label={props.summaryUnlocked ? "Summarize the lecture in one slide" : "Summarize the lecture — unlocks when you finish the lecture"}
+            className="flex h-11 items-center gap-2 rounded-xl border border-white/10 px-3.5 text-[0.84rem] font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          >
+            <FileText size={16} />
+            <span>Summarize</span>
           </button>
         )}
 

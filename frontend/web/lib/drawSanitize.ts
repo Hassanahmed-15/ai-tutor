@@ -5,6 +5,7 @@ import { validateManimSceneSpec } from "./manimSceneSpec";
 import { validateStructureSpec } from "./structureSpec";
 import { validatePlotSpec } from "./plotSpec";
 import { validateEquationSpec } from "./equationSpec";
+import { validateCodeSpec } from "./codeSpec";
 
 /**
  * Defensive validation for LLM-generated DrawScript lectures — never trust raw model
@@ -300,6 +301,21 @@ function sanitizeOp(raw: unknown, imageBox?: { x: number; y: number; w: number; 
         endAt: 1,
       };
       const spec = isPlot ? validatePlotSpec(o.spec) : validateEquationSpec(o.spec);
+      if (spec) op.spec = spec;
+      if (o.status === "failed") {
+        op.status = "failed";
+        const error = str(o.error);
+        if (error) op.error = error.slice(0, 200);
+      }
+      return op as unknown as DrawOp;
+    }
+    case "codeBoard": {
+      // Same two-step shape as the spec boards above. `validateCodeSpec` guarantees every
+      // highlighted range lies inside the listing, so a surviving spec is one the board can draw.
+      const brief = str(o.codeBrief);
+      if (!brief) return null;
+      const op: Record<string, unknown> = { kind: "codeBoard", codeBrief: brief.slice(0, 400), at: 0, endAt: 1 };
+      const spec = validateCodeSpec(o.spec);
       if (spec) op.spec = spec;
       if (o.status === "failed") {
         op.status = "failed";
@@ -1550,7 +1566,7 @@ export function sanitizeBeat(raw: unknown, index: number): Beat | null {
           // photo backdrop under a morph board is doubly damaging: the later paper-layout pass sees
           // the image FIRST and re-lays the beat out as an image board, discarding the shape/morph
           // ops that were the whole animation.
-          op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard"
+          op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard"
       )
     ) {
       const hasAnimation = beat.draw.ops.some((op) => op.kind === "scene" || op.kind === "motion");
@@ -1611,7 +1627,7 @@ function isWrittenBlackboard(ops: DrawOp[]): boolean {
  *  so a loose trigger here is safe (unlike isWrittenBlackboard, which gates whether to KEEP the
  *  model's raw ops as-is and must stay strict). */
 function looksLikeAttemptedBlackboard(ops: DrawOp[]): boolean {
-  if (ops.some((op) => op.kind === "image" || op.kind === "scene" || op.kind === "motion" || op.kind === "reactAnimation" || op.kind === "chalkBoard" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return false;
+  if (ops.some((op) => op.kind === "image" || op.kind === "scene" || op.kind === "motion" || op.kind === "reactAnimation" || op.kind === "chalkBoard" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return false;
   const labels = ops.filter((op) => op.kind === "label").length;
   const notes = ops.filter((op) => op.kind === "note").length;
   const arrows = ops.filter((op) => op.kind === "arrow").length;
@@ -2028,7 +2044,7 @@ function animationNeedsRepair(beat: Beat): boolean {
   // A reactAnimation op IS a complete, valid animation board on its own (see beatIsAnimationLed
   // above) — none of the legacy scene-kind checks below apply to it, and it must never be
   // rewritten here even when it happens to describe a supply/demand or photosynthesis topic.
-  if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return false;
+  if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return false;
   const text = `${beat.title} ${beat.script}`.toLowerCase();
   const scene = beat.draw.ops.find((op): op is SceneOp => op.kind === "scene");
   if (!scene) return true;
@@ -2304,7 +2320,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     // A `reactAnimation` op IS the animation-led board — it's a self-contained op, not a
     // scene+motion pair. Treat it as automatically animation-led so none of the rhythm/quality
     // gates below mistake it for an empty/weak beat and overwrite it with makeAnimationBoard().
-    if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return true;
+    if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return true;
     const hasImage = beat.draw.ops.some((op) => op.kind === "image");
     const hasCallouts = beat.draw.ops.some((op) => op.kind === "callout");
     const hasSceneOp = beat.draw.ops.some((op) => op.kind === "scene");
@@ -2345,7 +2361,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   };
   const modelBoardIsGoodAnimation = (beat: Beat): boolean => {
     if (!beat.draw) return false;
-    if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return true;
+    if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return true;
     const hasSceneOp = beat.draw.ops.some((op) => op.kind === "scene");
     const motionCount = beat.draw.ops.filter((op) => op.kind === "motion" || op.kind === "morph").length;
     return hasSceneOp && motionCount >= 1 && motionCount <= 3;
@@ -2357,7 +2373,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     // A reactAnimation op is a single self-contained board, not a set of composable primitives
     // to count individually — credit it with 4 so it clears the `>= 4` acceptability floor
     // below (modelBoardIsAcceptable) on its own, same as a real multi-op board would.
-    if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return 4;
+    if (beat.draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return 4;
     return beat.draw.ops.filter((op) =>
       op.kind === "label" || op.kind === "note" || op.kind === "callout" ||
       op.kind === "arrow" || op.kind === "scene" || op.kind === "motion" || op.kind === "image"
@@ -2471,7 +2487,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
       // never overwrite either with a forced image board, even on the allowReplacingBlackboard
       // pass (that pass is meant for the OLD label/arrow/note blackboard grammar, not the new
       // chalkBoard placeholder, which is never a legacy "beatIsBlackboard" match on its own).
-      if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "chalkBoard" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) continue;
+      if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "chalkBoard" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) continue;
       if (beatIsImageLed(beat) && imageBeatNeedsConcreteRepair(beat)) {
         beat.draw = makeImageCalloutBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
         continue;
@@ -2486,25 +2502,10 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   forceImageBoards(false);
   forceImageBoards(true);
 
-  // CLOSING BLACKBOARD GUARANTEE: the final non-checkpoint beat should recap the logic on
-  // a written board — but keep a good non-template model recap (e.g. a clean recap animation
-  // for a history topic) rather than replacing it with the weak keyword fallback.
-  const closingBeat = beats[lastTeachingIdx];
-  if (closingBeat && closingBeat.slideKind !== "checkpoint") {
-    const keep = modelBoardIsGoodBlackboard(closingBeat)
-      || (modelBoardIsGood(closingBeat) && !hasTemplateRows(closingBeat.title, closingBeat.script));
-    if (!keep) {
-      if (BLACKBOARD_GEN_ENABLED) {
-        // Recap becomes a chalkBoard placeholder too — fillBlackboardOps authors a genuine
-        // one-row-per-idea synthesis from the beat script (the boardBrief nudges "recap/synthesize").
-        const recapBrief = `Recap of ${closingBeat.title}: synthesize the lecture's key ideas, one row each, with a closing takeaway.`;
-        closingBeat.draw = { caption: closingBeat.title, durationMs: closingBeat.draw?.durationMs ?? 26000, ops: [{ kind: "chalkBoard", boardBrief: recapBrief, at: 0, endAt: 1 }] };
-      } else {
-        // Synthesize a genuine recap from the legacy template builder.
-        closingBeat.draw = makeRecapBoard(beats, closingBeat, boardCtx);
-      }
-    }
-  }
+  // No closing recap board. The final beat used to be overwritten with a "synthesize the lecture's
+  // key ideas" board whatever it taught; lectures no longer end on a recap — the student opens a
+  // one-slide summary once they finish (app/api/summarize-lecture) — so the last beat keeps the
+  // board written for its own concept.
 
   // Variety enforcement: the model sometimes reuses the SAME scene kind on many beats in a row,
   // which makes several boards look identical. For most scene kinds we convert the duplicate into
@@ -2581,7 +2582,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
   const animationCount = beats.filter(
     (b, i) =>
       i >= 1 && i < lastTeachingIdx && b.slideKind !== "checkpoint" && beatIsAnimationLed(b) &&
-      !b.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")
+      !b.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")
   ).length;
   if (animationCount === 0) {
     // Pick a beat around the middle of the teaching range to become the animation.
@@ -2603,7 +2604,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
     // as animation-led everywhere else (so no pass overwrites it), but it must not compete here:
     // otherwise whichever reactAnimation beat comes first wins and the diagram beat is silently
     // converted to an image board — which is exactly why manimScene never reached the player.
-    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return;
+    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return;
     if (!beatIsAnimationLed(beat)) return;
     if (!seenAnimation) {
       seenAnimation = true; // keep the first one
@@ -2629,7 +2630,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
           // A reactAnimation beat is guaranteed-useful content for the animation pipeline. Never
           // sacrifice it to this safety net, even in the degenerate case where no candidate ever
           // satisfies modelBoardIsGoodBlackboard and the loop would burn through every beat.
-          !beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")
+          !beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")
       )
       .sort((a, b) => boardScore(a.beat) - boardScore(b.beat)); // weakest first
     for (const { beat } of candidates) {
@@ -2649,7 +2650,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
       // PRESERVE THE SINGLE ANIMATION BEAT. `rhythm` is blackboard/image only (we allow exactly one
       // animation, chosen earlier), so without this guard the lock would convert the animation beat
       // into a board/image. Leave any reactAnimation beat untouched.
-      if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) {
+      if (beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) {
         return imageSlot;
       }
       const desired = rhythm[rhythmIndex % rhythm.length];
@@ -2672,7 +2673,7 @@ export function sanitizeDrawLecture(raw: unknown, options: SanitizeDrawLectureOp
       }
       // A reactAnimation op is already the complete, correct animation-slot board — never
       // overwrite it with the legacy scene/motion makeAnimationBoard() synthesis.
-      if (!beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) {
+      if (!beat.draw?.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) {
         beat.draw = makeAnimationBoard(beat.title, beat.script, beat.draw?.durationMs ?? 26000);
       }
       return imageSlot;
@@ -3703,7 +3704,7 @@ export function hasUsefulExplanationVisual(draw: DrawScript | undefined): draw i
   // A reactAnimation op is a complete, self-contained animation-slot board. A manimScene op is
   // the same contract for the TYPE D diagram slot — one op that IS the whole board, whose video
   // is rendered later from the sceneBrief/spec.
-  if (draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return true;
+  if (draw.ops.some((op) => op.kind === "reactAnimation" || op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return true;
   // A chalkBoard op is a complete, self-contained blackboard-slot board — its real content is
   // authored later by fillBlackboardOps. Without this check, a fresh placeholder (which has no
   // label/note/arrow ops yet) fails every other check below and gets silently replaced by

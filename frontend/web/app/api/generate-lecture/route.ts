@@ -1297,7 +1297,7 @@ function finalizeSuprnotesBeats(beats: Beat[], sourceDocument: SuprnotesLessonIn
  * Reports each board op as its code length, `spec`, `ops`, or NONE.
  */
 function snapshotBoards(tag: string, beats: Beat[]): void {
-  const BOARD = ["reactAnimation", "manimScene", "structureScene", "plotBoard", "equationBoard", "chalkBoard"];
+  const BOARD = ["reactAnimation", "manimScene", "structureScene", "plotBoard", "equationBoard", "codeBoard", "chalkBoard"];
   const rows = beats.flatMap((b) => {
     const ops = (b.draw?.ops ?? []) as unknown as Array<Record<string, unknown>>;
     return ops

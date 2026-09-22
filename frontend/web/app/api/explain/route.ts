@@ -6,6 +6,8 @@ import { createCostMeter } from "@/lib/costMeter";
 import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation, sanitizeTextExplanation } from "@/lib/drawSanitize";
 import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
+import { fillSpecBoardOps } from "@/lib/specBoardGen";
+import { isCodeQuestion } from "@/lib/codeSpec";
 import type { Beat } from "@/lib/lessonContent";
 
 /**
@@ -133,6 +135,43 @@ export async function POST(req: Request) {
           script: result.script,
           draw: result.draw,
         };
+        /*
+         * The model was told to answer code questions with a code board and, measured on a real
+         * lecture, still drew a diagram for "explain to me working of remove function". Whether the
+         * answer is code is decided here instead, from the question and the student's document.
+         */
+        if (
+          !syntheticBeat.draw?.ops.some((op) => op.kind === "codeBoard") &&
+          isCodeQuestion(question, documentContext, visualMode)
+        ) {
+          const brief = syntheticBeat.draw?.ops.find((op) => op.kind === "reactAnimation")?.teachingPoint ?? "";
+          syntheticBeat.draw = {
+            ...syntheticBeat.draw!,
+            ops: [{ kind: "codeBoard", codeBrief: `${question} — ${brief}`.slice(0, 400), at: 0, endAt: 1 }],
+          };
+        }
+        /*
+         * A question about specific code gets the code itself. The board quotes the student's
+         * document when the function is in it; if the listing cannot be produced, the brief is
+         * handed to the illustrator instead, so the student still gets a visual answer.
+         */
+        const codeOp = syntheticBeat.draw?.ops.find((op) => op.kind === "codeBoard");
+        if (codeOp?.kind === "codeBoard") {
+          await fillSpecBoardOps(client, [syntheticBeat], {
+            sourceByBeatId: documentContext ? new Map([[syntheticBeat.id, documentContext]]) : undefined,
+            imagesByBeatId: pageImages
+              ? new Map([[syntheticBeat.id, buildImageParts(pageImages.pages, pageImages.regions, pageImages.unit)]])
+              : undefined,
+          });
+          if (codeOp.spec) {
+            result.draw = { ...syntheticBeat.draw!, ops: [codeOp] };
+            return NextResponse.json({ ...result, costUsd: meter.totalUsd });
+          }
+          syntheticBeat.draw = {
+            ...syntheticBeat.draw!,
+            ops: [{ kind: "reactAnimation", teachingPoint: codeOp.codeBrief ?? question, at: 0, endAt: 1 }],
+          };
+        }
         const stats = await fillReactAnimationOps(client, [syntheticBeat]);
         const animation = syntheticBeat.draw?.ops.find((op) => op.kind === "reactAnimation");
         if (!animation?.code || stats.filled < 1) {

@@ -1,5 +1,7 @@
 import "server-only";
 
+import { CODE_BEAT_PATTERN } from "./codeSpec";
+
 import { randomUUID } from "node:crypto";
 import {
   ensureContainers,
@@ -233,13 +235,30 @@ export async function recordLearnerInteraction(
 ): Promise<ProgressiveLectureSessionDoc> {
   const note = interactionNote(interaction);
   const adaptive = interaction.kind !== "playhead";
+  const frozenThrough = Math.max(session.frozenThrough, Math.floor(interaction.playhead) + 1);
+  /*
+   * "Show me code" has to change the BOARDS, not just add a note. The note alone reached the script
+   * prompt, which then still said "Do not include code", and no board type could show a listing.
+   * Upcoming implementation beats become code boards; the rest of the plan is left alone.
+   */
+  const wantsCode = interaction.kind === "code";
+  const learnerProfile = wantsCode ? { ...session.learnerProfile, codeExamples: true } : session.learnerProfile;
+  const plan = wantsCode
+    ? session.plan.map((beat) =>
+        beat.sequence > frozenThrough && beat.sequence < session.plan.length - 1 && CODE_BEAT_PATTERN.test(`${beat.title} ${beat.objective}`)
+          ? { ...beat, visualKind: "code" as const }
+          : beat,
+      )
+    : session.plan;
   const next: ProgressiveLectureSessionDoc = {
     ...session,
+    learnerProfile,
+    plan,
     // A completed archive can still have unplayed beats. Reopen generation for an adaptive
     // revision; finalization will idempotently replace the same archived lecture package.
     status: adaptive && session.status === "complete" ? "generating" : session.status,
     playhead: Math.max(session.playhead, Math.floor(interaction.playhead)),
-    frozenThrough: Math.max(session.frozenThrough, Math.floor(interaction.playhead) + 1),
+    frozenThrough,
     adaptationNotes: note ? [...session.adaptationNotes, note].slice(-20) : session.adaptationNotes,
     lastAdaptedAt: adaptive ? new Date().toISOString() : session.lastAdaptedAt,
     planRevision: adaptive ? session.planRevision + 1 : session.planRevision,

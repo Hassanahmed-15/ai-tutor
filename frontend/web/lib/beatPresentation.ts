@@ -13,13 +13,31 @@ function trimWords(value: string, maximum: number): string {
   return words.length <= maximum ? words.join(" ") : words.slice(0, maximum).join(" ");
 }
 
+/**
+ * Words a title must never END on. Cutting at a word limit produced "Explore the fundamental
+ * purpose and" — a title that visibly stops mid-phrase. The dangling connective is dropped instead.
+ */
+const DANGLING_TAIL = /[\s,;:—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that)?$/i;
+
 function trimTitle(value: string): string {
   const words = trimWords(value.replace(/[.!]+$/, ""), MAX_TITLE_WORDS);
-  const fitted = words.length <= MAX_TITLE_CHARS
+  let fitted = words.length <= MAX_TITLE_CHARS
     ? words
     : words.slice(0, MAX_TITLE_CHARS + 1).replace(/\s+\S*$/, "").trim();
+  // Repeatedly: "purpose and the" loses both words, never leaving another connective behind.
+  for (let previous = ""; previous !== fitted && fitted.includes(" "); ) {
+    previous = fitted;
+    fitted = fitted.replace(DANGLING_TAIL, "").trim();
+  }
   return fitted.replace(/[A-Za-z]/, (letter) => letter.toUpperCase());
 }
+
+/**
+ * An instruction written as a title — "Explore the fundamental purpose of…", "Understand how…".
+ * The planner sometimes titles a subtopic with what the TUTOR should do; the student should see
+ * what is being taught. The leading verb (and a following article) is dropped.
+ */
+const INSTRUCTION_OPENER = /^(?:explore|understand|learn(?: about)?|discover|discuss|examine|describe|define|identify|introduce|investigate|review|study|cover|analy[sz]e|master|grasp|see|look at|dive into|delve into|get to know)\s+(?:the\s+|a\s+|an\s+)?/i;
 
 /** Turns a user's request into the subject label used on title cards. */
 export function topicKeywords(value: string): string {
@@ -53,6 +71,7 @@ function keywordTitle(value: string, topic: string): string {
      */
     .replace(/^(?:why|how|what)\s+(?!(?:is|are|was|were|does|do|did|can|could|will|would|should)\b)/i, "")
     .replace(/^(?:explain|teach|show|tell)\s+(?:me|us)?\s*/i, "")
+    .replace(INSTRUCTION_OPENER, "")
     .replace(/\b(?:step[- ]by[- ]step|in detail)\b.*$/i, "")
     .replace(/\s+(?:matters?|works?)\??$/i, "")
     .replace(new RegExp(`^${escapeRegExp(compact(topic))}\\s*:\\s*`, "i"), "")
@@ -91,10 +110,19 @@ function objectiveTitle(objective: string): string {
   return trimTitle(stripped.replace(/^(?:a|an|the)\s+/i, ""));
 }
 
+/**
+ * A beat planned as a recap or summary. Lectures no longer have them — the student asked for
+ * lessons strictly on their question, and the whole-lecture crux is a one-slide summary they open
+ * once they finish — so the plan builders drop any beat this matches.
+ */
+export function isRecapTitle(title: string): boolean {
+  return /\b(?:recap|summary|summari[sz]ing|review|wrap[- ]?up|conclusion|putting it (?:all )?together|key takeaways?)\b/i.test(compact(title));
+}
+
 function roleTitle(topic: string, sequence: number, total: number): string {
+  void total;
   const subject = topicKeywords(topic) || "Core Concept";
   if (sequence === 0) return subject;
-  if (sequence === total - 1) return trimTitle(`${subject} Recap`);
   const roles = [
     `${subject} Fundamentals`,
     `${subject} Mechanism`,
@@ -126,7 +154,9 @@ export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: strin
      * plainly and establish" on the title slide; "How it works" lost its verb and became "How It".
      * The raw title is tested, because `keywordTitle` has already mangled `original`.
      */
-    const candidates = sequence === 0 || sequence === entries.length - 1
+    // Only the OPENING beat prefers its role title (the subject). The last beat is titled like any
+    // other: it used to be forced to "<subject> Recap" whatever it actually taught.
+    const candidates = sequence === 0
       ? [role, original, objective]
       : isPlanTemplateTitle(entry.title)
         ? [role]
@@ -135,7 +165,7 @@ export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: strin
           : [original, objective, role];
     let title = candidates.find((candidate) => candidate && !used.has(candidate.toLowerCase())) ?? role;
     if (used.has(title.toLowerCase())) {
-      title = trimTitle(sequence === entries.length - 1 ? `${topicKeywords(topic)} Recap` : role);
+      title = trimTitle(role);
     }
     used.add(title.toLowerCase());
     return { ...entry, title };

@@ -307,7 +307,7 @@ export function composeSuprnotesPaperBoards(beats: Beat[], sourceDocument: Suprn
      * board" for the end-of-build rescue to regenerate as chalkBoards. The pipeline was paying the
      * director to make a routing decision and then discarding it a few lines later.
      */
-    if (beat.draw?.ops.some((op) => op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return;
+    if (beat.draw?.ops.some((op) => op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return;
 
     const planBeat = plannedBeatForBeat(sourceDocument, beat, index);
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, usedBlocks, index);
@@ -380,7 +380,7 @@ export function composePromptedSuprnotesBoards(beats: Beat[]): number {
     // this pass had just removed rendered as nothing at all.
     //
     // Unlike manimScene, no later fill rebuilds a reactAnimation, so destroying it here is final.
-    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "reactAnimation" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) continue;
+    if (beat.draw?.ops.some((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "reactAnimation" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) continue;
     const trustedReferenceImage = beat.draw?.ops.some(
       (op) => op.kind === "image"
         && typeof op.assetId === "string"
@@ -436,7 +436,7 @@ export function enforcePlannedSuprnotesVisualModes(beats: Beat[], sourceDocument
     // Same reason as the guard in composeSuprnotesPaperBoards: this replaces beat.draw wholesale,
     // so without it a plan that merely PREFERS an svg silently destroys the board the director
     // chose from the beat's actual content.
-    if (beat.draw?.ops.some((op) => op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard")) return;
+    if (beat.draw?.ops.some((op) => op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard")) return;
     const block = blockForPlanBeat(planBeat, blocks) ?? bestBlockForBeat(beat, blocks, new Set<string>(), index);
     if (!block) return;
     beat.draw = generatedSvgPaperBoard(beat, block);
@@ -594,7 +594,7 @@ export function applySuprnotesPaperLayout(beats: Beat[], sourceDocument: Suprnot
     // A TYPE D diagram beat is rendered as Manim video from its scene spec — it has no paper text
     // to lay out. Without this escape it matches none of the cases above, falls through to
     // layoutPaperTextBoard below, and its single `manimScene` op is rewritten away entirely.
-    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard");
+    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard");
     if (diagramOp) continue;
 
     const hasStructuredInk = beat.draw.ops.some(
@@ -638,7 +638,7 @@ export function applyPaperLayout(beats: Beat[]): void {
     // A TYPE D diagram beat is rendered as Manim video from its scene spec — it has no paper text
     // to lay out. Without this escape it matches none of the cases above, falls through to
     // layoutPaperTextBoard below, and its single `manimScene` op is rewritten away entirely.
-    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard");
+    const diagramOp = beat.draw.ops.find((op) => op.kind === "manimScene" || op.kind === "morph" || op.kind === "structureScene" || op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard");
     if (diagramOp) continue;
 
     const hasStructuredInk = beat.draw.ops.some(

@@ -139,6 +139,12 @@ export type UseGeminiLiveTutorOptions = {
    * question about the same paper got a grounded answer typed and a general one spoken.
    */
   getDocumentContext?: () => string;
+  /**
+   * The upload's page-image handle (from parse-pdf). When set, the session is shown the pages
+   * themselves once it is live — the only way Aria can know a scanned document, which has no text.
+   * Watched, not read once: planning connects before the upload has finished parsing.
+   */
+  documentId?: string;
   mood?: string;
   onBoardRequest: (board: GeminiLiveBoard) => void;
   onTranscript?: (role: TranscriptRole, text: string, final: boolean) => void;
@@ -273,6 +279,10 @@ type GeminiSession = {
      */
     activityStart?: Record<string, never>;
     activityEnd?: Record<string, never>;
+  }) => void;
+  sendClientContent: (input: {
+    turns: Array<{ role: "user"; parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }> }>;
+    turnComplete?: boolean;
   }) => void;
   sendToolResponse: (input: {
     functionResponses:
@@ -1055,6 +1065,13 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         body: JSON.stringify({
           topic: optionsRef.current.topic,
           beatContext: optionsRef.current.getBeatContext(),
+          /*
+           * The lesson and the student's document, as the typed chat already sends. Without them a
+           * voice-requested board was drawn from the concept name alone — "explain the remove
+           * function" got a generic picture instead of the student's own code.
+           */
+          lessonContext: optionsRef.current.getLessonContext?.() ?? "",
+          documentContext: optionsRef.current.getDocumentContext?.() ?? "",
           question: concept,
           textOnly: optionsRef.current.boardTextOnly === true,
           visualMode,
@@ -1917,6 +1934,58 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       text: `[SILENT CONTEXT UPDATE — store this for the student's next question and do not reply]: ${text.trim()}`,
     });
   }, []);
+
+  /*
+   * SHOW ARIA THE PAGES.
+   *
+   * Every voice session was grounded in extracted TEXT only. A scanned PDF has none — measured:
+   * "tree del.pdf", 0 characters, 15 images — so she planned, chatted through the build, and taught
+   * a document she had never seen. The pages parse-pdf rendered are sent as images instead, one per
+   * message, with `turnComplete: false` so they are context rather than a turn she answers.
+   *
+   * Keyed on the SESSION object as well as the id, so a reconnect (a new socket, empty context)
+   * shares them again; and on the id, so a planning session that connected before the parse
+   * finished receives them the moment they exist.
+   */
+  const documentId = options.documentId ?? "";
+  const sharedPagesRef = useRef<{ session: GeminiSession; documentId: string } | null>(null);
+  useEffect(() => {
+    const session = sessionRef.current;
+    if (!documentId || !session || (status !== "live" && status !== "drawing")) return;
+    if (sharedPagesRef.current?.session === session && sharedPagesRef.current.documentId === documentId) return;
+    sharedPagesRef.current = { session, documentId };
+    void (async () => {
+      const res = await fetch(`/api/document-images/${encodeURIComponent(documentId)}`).catch(() => null);
+      const data = res?.ok ? await res.json().catch(() => null) : null;
+      const pages: Array<{ pageNumber: number; dataUrl: string }> = Array.isArray(data?.pages) ? data.pages : [];
+      if (pages.length === 0 || sessionRef.current !== session || endedRef.current) return;
+      const unit = data?.unit === "slide" ? "slide" : "page";
+      try {
+        session.sendClientContent({
+          turns: [{
+            role: "user",
+            parts: [{
+              text:
+                `[SILENT CONTEXT — do not reply to this] The student's uploaded document follows: ${pages.length} ${unit}${pages.length === 1 ? "" : "s"}, ` +
+                `exactly as they see them. Read them carefully — text, code, diagrams. Everything you say about the material must come from these ${unit}s, not from general knowledge.`,
+            }],
+          }],
+          turnComplete: false,
+        });
+        for (const page of pages.slice(0, 20)) {
+          const match = /^data:([^;]+);base64,(.+)$/.exec(page.dataUrl);
+          if (!match) continue;
+          session.sendClientContent({
+            turns: [{ role: "user", parts: [{ text: `${unit} ${page.pageNumber}:` }, { inlineData: { mimeType: match[1], data: match[2] } }] }],
+            turnComplete: false,
+          });
+        }
+        console.log(`[gemini-live] shared ${pages.length} ${unit} image(s) of the uploaded document`);
+      } catch (error) {
+        console.warn("[gemini-live] could not share the document pages:", error);
+      }
+    })();
+  }, [documentId, status]);
 
   const silence = useCallback(() => {
     suppressCurrentTurnRef.current = true;

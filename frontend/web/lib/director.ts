@@ -6,7 +6,7 @@ import OpenAI from "openai";
  * WHY THE MODEL ONLY CLASSIFIES. Everything learned building this pipeline points the same way: a
  * model asked to obey a long list of board-selection rules ignores most of them (a quota changed
  * from "4-5" to "3-4" produced 5), but a model asked for ONE short classification answers
- * reliably. So the model picks a visual form from eight and nothing else; the form → renderer
+ * reliably. So the model picks a visual form from nine and nothing else; the form → renderer
  * mapping below is ordinary code and cannot drift.
  *
  * THE TAXONOMY IS NOT INVENTED. Clark & Lyons' communicative functions of instructional graphics
@@ -27,12 +27,13 @@ export const VISUAL_FORMS = [
   "labelled-diagram",
   "construction",
   "animated-maths",
+  "code",
   "text",
 ] as const;
 export type VisualForm = (typeof VISUAL_FORMS)[number];
 
 /** The board kinds this codebase can actually fill and render. */
-export type BoardKind = "manimScene" | "structureScene" | "morph" | "reactAnimation" | "chalkBoard" | "plotBoard" | "equationBoard";
+export type BoardKind = "manimScene" | "structureScene" | "morph" | "reactAnimation" | "chalkBoard" | "plotBoard" | "equationBoard" | "codeBoard";
 
 /**
  * ONE renderer per form — the whole point of the routing.
@@ -53,6 +54,9 @@ export type BoardKind = "manimScene" | "structureScene" | "morph" | "reactAnimat
  *                    artwork catalogue and the vision critic.
  *  - construction    Manim. Measured geometry, worth the render.
  *  - animated-maths  Manim. A curve being traced or transformed — where video earns its seconds.
+ *  - code            The code board. A listing is READ, like a derivation: the real source shown
+ *                    with the highlight moving through it, quoted from the student's document when
+ *                    it has one. Drawing a picture of what a function does never shows the function.
  *  - text            The chalk board. Nothing moves; say so cleanly instead of inventing a diagram.
  */
 export const BOARD_FOR: Record<VisualForm, BoardKind> = {
@@ -66,6 +70,7 @@ export const BOARD_FOR: Record<VisualForm, BoardKind> = {
   // a generic geometric container.
   construction: "manimScene",
   "animated-maths": "manimScene",
+  code: "codeBoard",
   text: "chalkBoard",
 };
 
@@ -78,6 +83,7 @@ export const FORM_FUNCTION: Record<VisualForm, string> = {
   "labelled-diagram": "representational / interpretive — a real subject, annotated",
   construction: "interpretive — a measured geometric construction",
   "animated-maths": "transformational — maths that must move to be understood",
+  code: "symbolic — a program listing walked through line by line",
   text: "no graphic — a definition, comparison or list",
 };
 
@@ -92,7 +98,7 @@ const MODEL = process.env.OPENAI_DIRECTOR_MODEL ?? process.env.OPENAI_LECTURE_MO
 
 export const DIRECTOR_SYSTEM_PROMPT = `You classify a teaching beat into the ONE kind of visual it needs. Output ONLY JSON — no markdown, no commentary.
 
-{ "form": "plot" | "network" | "equation" | "transformation" | "labelled-diagram" | "construction" | "animated-maths" | "text",
+{ "form": "plot" | "network" | "equation" | "transformation" | "labelled-diagram" | "construction" | "animated-maths" | "code" | "text",
   "reason": string,
   "brief": string }
 
@@ -104,11 +110,13 @@ Pick by what the visual must DO:
 - "labelled-diagram" a specific real subject drawn and annotated: an organ, an apparatus, a molecule, a device cutaway, a scene.
 - "construction"     a measured geometric construction: an angle, vectors adding, a labelled span, a geometric proof.
 - "animated-maths"   maths that must MOVE to land: a curve being traced as a value grows, a shape transforming under a rule.
+- "code"             the beat teaches a SPECIFIC function, method, algorithm implementation or program — its lines, branches and cases. The CODE is the content.
 - "text"             a definition, a word comparison, a list, a history. Nothing moves, changes or is measured — a clean text board is the honest answer.
 
 Distinguishing the near-misses:
 - "equation" vs "plot": a derivation you READ is "equation"; a relationship you SEE the shape of is "plot". If the beat names a RANGE — over 20 years, from 0 to 10, as n grows — it is "plot", because nobody reads twenty worked lines. A formula applied ONCE to given values is "equation".
 - "network" vs "labelled-diagram": boxes joined by arrows is "network"; one real object with parts named is "labelled-diagram". If the beat names a PHYSICAL thing — an organ, a cell, a device, an instrument — it is "labelled-diagram" even when the question is how it works, because its parts ARE the explanation. "network" is for stages that are not themselves objects.
+- "code" vs "network": walking through the lines of a real function or implementation is "code"; the stages of a process drawn as boxes is "network". If the beat names a function or says "implementation", "the code", "this method", it is "code".
 - "transformation" vs "network": ONE thing becoming another is "transformation"; several stages connected is "network".
 
 "reason": one plain sentence on why that form fits THIS beat.

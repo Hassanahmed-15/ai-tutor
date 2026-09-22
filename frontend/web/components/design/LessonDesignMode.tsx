@@ -62,6 +62,12 @@ export type LessonDesignModeProps = {
   studentName?: string;
   /** The running job, so spoken steering can be recorded against it. Null before it starts. */
   jobId: string | null;
+  /**
+   * The uploaded document — its page images and its extracted text. The build-time Aria had
+   * neither, so while the lecture generated she chatted about a document she had never seen.
+   */
+  documentId?: string;
+  documentContext?: string;
   /** Called when the student ends the build. */
   onStop: () => void;
   /** Every planned beat with its measured timings, from the progressive build (optional). */
@@ -112,6 +118,8 @@ export function LessonDesignMode({
   blindMode,
   studentName,
   jobId,
+  documentId,
+  documentContext = "",
   onStop,
   onStart,
   beatStatus,
@@ -231,6 +239,8 @@ export function LessonDesignMode({
   const tutor = useGeminiLiveTutor({
     gateProfile: "conversation",
     topic,
+    documentId,
+    getDocumentContext: () => documentContext,
     getBeatContext: () => {
       // There is no lecture yet. Saying so plainly is what stops the model describing a slide that
       // does not exist — the failure the design persona is written to avoid.
@@ -473,7 +483,7 @@ export function LessonDesignMode({
     announcedRef.current = progress.stage;
     const stage = stageById(progress.stage);
     if (!stage) return;
-    maybeSpeak(DESIGN_CUES.stageChange(completed?.label ?? "The previous preparation stage", stage.label, spokenPercent(percent), remainingLabel), {
+    maybeSpeak(DESIGN_CUES.stageChange(completed?.label ?? "The previous preparation stage", stage.label, spokenPercent(percent), null), {
       force: blindMode,
     });
   }, [progress.stage, liveStatus, ready, percent, remainingLabel, blindMode, maybeSpeak]);
@@ -597,7 +607,7 @@ export function LessonDesignMode({
       <div className="sr-only" role="status" aria-live="polite">
         {ready
           ? "Your lesson is ready."
-          : `${current?.label ?? progress.status}.${remainingLabel ? ` About ${remainingLabel} remaining.` : ""}`}
+          : `${current?.label ?? progress.status}.`}
       </div>
 
       <div className="w-full max-w-3xl">
@@ -636,12 +646,6 @@ export function LessonDesignMode({
               />
               {liveLabel}
             </span>
-            {!ready && !paused && remainingLabel ? (
-              <>
-                <span aria-hidden className="text-[var(--hud-text-faint)]/50">·</span>
-                <span className="tabular-nums text-[var(--hud-text-faint)]">about {remainingLabel} left</span>
-              </>
-            ) : null}
           </div>
         </div>
 

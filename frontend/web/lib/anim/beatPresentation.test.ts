@@ -23,7 +23,9 @@ test("request wording is removed from lecture topic cards", () => {
     { title: "Hill cipher: put it together", objective: "Connect matrices and modular arithmetic." },
   ], "explain me hill cipher step by step to a");
   assert.equal(plan[0]?.title, "Hill Cipher");
-  assert.equal(plan[1]?.title, "Hill Cipher Recap");
+  // The last beat is titled for what it teaches — never renamed "<subject> Recap" any more.
+  assert.equal(plan[1]?.title, "Hill Cipher Fundamentals");
+  assert.doesNotMatch(plan[1]?.title ?? "", /recap/i);
 });
 
 test("duplicate titles are replaced instead of receiving numbered suffixes", () => {
@@ -80,8 +82,6 @@ test("a lecture with no outline gets role titles, never ones made from the tutor
     { title: `${subject}: Core idea`, objective: `Define ${subject} plainly and establish the mental model.` },
     { title: `${subject}: How it works`, objective: `Explain the mechanism or sequence behind ${subject}.` },
     { title: `${subject}: A worked example`, objective: `Apply ${subject} step by step to a concrete example.` },
-    { title: `${subject}: Common mistake`, objective: `Expose and repair a common misconception about ${subject}.` },
-    { title: `${subject} Recap`, objective: "Connect the core ideas, correct the main misconception, and give the learner a usable recap." },
   ], "the 1857 war");
   const titles = plan.map((beat) => beat.title);
   // What shipped: "1857 War plainly and establish", "How It".
@@ -89,7 +89,8 @@ test("a lecture with no outline gets role titles, never ones made from the tutor
     assert.ok(!/plainly|establish|mechanism or sequence|misconception about|how it$/i.test(title), `"${title}" is made from a tutor instruction`);
     assert.ok(title.split(/\s+/).length >= 2 || /^\w{5,}/.test(title), `"${title}" is not a real title`);
   }
-  assert.deepEqual(titles, ["The 1857 War", "The 1857 War Fundamentals", "The 1857 War Mechanism", "Worked Example", "Common Pitfalls", "The 1857 War Recap"]);
+  // The default plan is the opener plus three focused beats, and no recap.
+  assert.deepEqual(titles, ["The 1857 War", "The 1857 War Fundamentals", "The 1857 War Mechanism", "Worked Example"]);
   assert.equal(new Set(titles.map((t) => t.toLowerCase())).size, titles.length, "titles are distinct");
 });
 
@@ -121,4 +122,23 @@ test("a question title that still reads without its question word is still short
     "gradient descent",
   );
   assert.ok(!/^how\s/i.test(beat.title), `"${beat.title}" should have dropped the redundant "How"`);
+});
+
+test("a title never stops mid-phrase, and never reads as an instruction to the tutor", () => {
+  // The outline the real "explain me cryptography" run produced, and the plan the worker builds.
+  const plan = polishBeatPlan([
+    { title: "Cryptography", objective: "Open with a concrete puzzle." },
+    { title: "Explore the fundamental purpose and principles of cryptography", objective: "Why secrets need protecting." },
+    { title: "Symmetric vs Asymmetric Encryption", objective: "Compare the two key models." },
+    { title: "Understand the role of hash functions", objective: "One-way functions." },
+    { title: "Cryptography Recap", objective: "Connect the core ideas." },
+  ], "Cryptography");
+  const titles = plan.map((beat) => beat.title);
+  assert.equal(titles[2], "Symmetric vs Asymmetric Encryption", "a good title is left alone");
+  for (const title of titles) {
+    assert.doesNotMatch(title, /\b(?:and|or|of|the|to|with|in|for|a|an)$/i, `"${title}" ends on a connective`);
+    assert.doesNotMatch(title, /^(?:explore|understand)\b/i, `"${title}" is an instruction`);
+  }
+  assert.match(titles[1], /^Fundamental Purpose/i);
+  assert.match(titles[3], /^Role of Hash Functions$/i);
 });

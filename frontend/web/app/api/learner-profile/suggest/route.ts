@@ -64,12 +64,26 @@ export async function POST(request: Request) {
       rationale: typeof raw.rationale === "string" ? raw.rationale.slice(0, 240) : fallback.rationale,
       confirmedAt: "",
     };
-    const suggestion = { ...inferred, codeExamples: shouldIncludeCodeExamples(inferred) };
+    const suggestion = { ...inferred, codeExamples: explicitCodePreference(planningConversation) ?? shouldIncludeCodeExamples(inferred) };
     return NextResponse.json({ suggestion });
   } catch (error) {
     console.error("[learner-profile] suggestion failed:", error);
     return NextResponse.json({ suggestion: fallback });
   }
+}
+
+/**
+ * What the student SAID about code, or null when they said nothing.
+ *
+ * An explicit request beats the derived default. "Show me code snippets" used to set the flag and
+ * then be overwritten two lines later by `shouldIncludeCodeExamples`, which is true only for an
+ * advanced professional — so almost every student who asked for code was told no.
+ */
+function explicitCodePreference(conversation: string): boolean | null {
+  const text = conversation.toLowerCase();
+  if (/\bno code\b|\bwithout code\b|\bdon'?t (?:show|want|need) (?:me )?(?:the |any )?code\b/.test(text)) return false;
+  if (/\bcode snippets?\b|\bshow (?:me )?(?:the )?code\b|\bwith code\b|\bcode examples?\b|\bimplementation\b|\bpython\b|\bjavascript\b/.test(text)) return true;
+  return null;
 }
 
 function oneOf<T extends string>(value: unknown, choices: readonly T[], fallback: T): T {
@@ -111,19 +125,15 @@ function heuristicSuggestion(
   else if (/\bproject\b|\bbuild|\bimplement|\bhands[- ]on\b|\bpractical\b/.test(text)) next.goal = "practical";
   else if (/\bschool\b|\bclass\b|\bhomework\b|\bsecondary student\b|\bcollege\b/.test(text)) next.goal = "school";
 
-  if (/\bcode snippets?\b|\bshow (?:me )?(?:the )?code\b|\bimplementation\b|\bpython\b|\bjavascript\b/.test(text)) {
-    next.codeExamples = true;
-    evidence.push("requested code");
-  } else if (/\bno code\b|\bwithout code\b/.test(text)) {
-    next.codeExamples = false;
-    evidence.push("declined code");
-  }
+  const codePreference = explicitCodePreference(conversation);
+  if (codePreference === true) evidence.push("requested code");
+  else if (codePreference === false) evidence.push("declined code");
 
   if (/\bworked examples?\b|\bstep[- ]by[- ]step\b/.test(text)) next.preferredExamples = "worked";
   else if (/\breal[- ]world\b|\beveryday examples?\b/.test(text)) next.preferredExamples = "real-world";
   else if (/\bvisual examples?\b|\bdiagrams?\b|\banimations?\b/.test(text)) next.preferredExamples = "visual";
 
-  next.codeExamples = shouldIncludeCodeExamples(next);
+  next.codeExamples = codePreference ?? shouldIncludeCodeExamples(next);
   next.rationale = evidence.length
     ? `Suggested from your current conversation: ${evidence.join(", ")}.`
     : previousRationale(baseline, topic);

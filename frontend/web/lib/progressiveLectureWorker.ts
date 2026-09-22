@@ -7,7 +7,7 @@ import { planBeatVisual, specToBrief, type BeatVisualSpec } from "./beatVisualSp
 import { direct, type BoardKind, type VisualForm } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
-import { openingSentence, polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
+import { isRecapTitle, openingSentence, polishBeatPlan, topicKeywords, transitionSentence } from "./beatPresentation";
 import { boardBriefFor, pointsFromScript } from "./boardBrief";
 import { hasUsableBoard, rescueEmptyBoards } from "./boardFallback";
 import { expandConceptPasses, type ConceptPass } from "./board/conceptPasses";
@@ -41,6 +41,9 @@ import { fillSpecBoardOps } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 import { scopedBlockText } from "./beatSourceScope";
+import { CODE_BEAT_PATTERN, asksForCode, looksLikeCode, mergeSplitCodeBeats, pickCodeBeats } from "./codeSpec";
+import { getDocumentImages } from "./pageImageStore";
+import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { boardCountFor, conceptOverlap, depthBudget, type DepthLevelName } from "./lectureDepth";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
@@ -137,7 +140,7 @@ function prerequisitesFor(entries: ConceptPass[], sequence: number): string[] {
 /** Builds the global map synchronously so no model round-trip delays the first beat. */
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
   const sourcePlan = sourceDocumentPlan(input);
-  if (sourcePlan.length > 0) return sourcePlan;
+  if (sourcePlan.length > 0) return pickCodeBeats(sourcePlan, codeRequestText(input), requestedCode(input));
   const subject = topicKeywords(input.topic);
   const supplied = (input.outline?.subtopics ?? [])
     .map((item) => ({ title: clean(item.title), objective: clean(item.caption || item.reason || item.title) }))
@@ -155,7 +158,16 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
    * A narrow topic now gets three boards taught thoroughly; a broad one gets eight. The depth
    * setting buys WORDS PER BOARD (depthBudget), never more boards.
    */
-  const middle = supplied.length > 0 ? supplied : defaultObjectives(subject, 4);
+  /*
+   * NO RECAP BEATS. A template recap used to close every lecture, and the outline often planned
+   * its own as well — "Mathematics of Cryptography Recap" then "Cryptography Recap", two beats of
+   * repetition at the end of a lesson the student asked to be strictly on their question. A lecture
+   * now ends when its last concept is taught; the whole-lecture crux is the one-slide summary the
+   * student can open once they finish (app/api/summarize-lecture).
+   */
+  const taught = supplied.filter((item) => !isRecapTitle(item.title));
+  const middle = taught.length > 0 ? taught : defaultObjectives(subject, 3);
+  const request = (input.focus || input.topic || subject).trim().slice(0, 160);
   /*
    * Titles are uniquified HERE, over the subtopics, and never again afterwards. `polishBeatPlan`
    * renames any duplicate title it sees, so running it after the concept expansion below would
@@ -163,10 +175,9 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
    * is precisely the "separate slides for one subtopic" symptom being fixed.
    */
   const subtopics = polishBeatPlan([
-    { title: subject, objective: `Open with a concrete puzzle or use case that makes ${subject} worth learning.` },
+    { title: subject, objective: `Open directly on what the student asked about: ${request}` },
     ...middle,
-    { title: `${subject} Recap`, objective: `Connect the core ideas, correct the main misconception, and give the learner a usable recap.` },
-  ].slice(0, boardCountFor(middle.length + 2)), subject);
+  ].slice(0, boardCountFor(middle.length + 1)), subject);
 
   /*
    * One subtopic becomes the one, two or three boards it actually needs. Every pass shares a
@@ -193,13 +204,26 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
   // most process-like teaching beat, and keep specialised equation/plot choices intact.
   if (!plan.some((beat) => beat.visualKind === "react-animation")) {
     const candidate = plan.find((beat) =>
-      beat.sequence < plan.length - 1 &&
       /how|work|apply|example|try|mechanism|process|change|step/i.test(`${beat.title} ${beat.objective}`) &&
-      !["equation", "plot"].includes(beat.visualKind),
-    ) ?? plan.find((beat) => beat.sequence < plan.length - 1 && !["equation", "plot"].includes(beat.visualKind));
+      !["equation", "plot", "code"].includes(beat.visualKind),
+    ) ?? plan.find((beat) => !["equation", "plot", "code"].includes(beat.visualKind));
     if (candidate) candidate.visualKind = "react-animation";
   }
-  return plan;
+  // Asked for code → the lecture shows code, whether or not the plan titles happened to say so.
+  return pickCodeBeats(plan, codeRequestText(input), requestedCode(input));
+}
+
+/**
+ * What the student asked, in their own words: the topic they typed and the question they asked of
+ * their document. Never `mood` — it carries the literal "code examples disabled".
+ */
+function codeRequestText(input: ProgressiveLectureInput): string {
+  return `${input.topic ?? ""} ${input.focus ?? ""}`;
+}
+
+/** The student wants to see code: they said so, or their confirmed profile asks for code examples. */
+function requestedCode(input: ProgressiveLectureInput): boolean {
+  return input.learnerProfile.codeExamples || asksForCode(codeRequestText(input));
 }
 
 function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
@@ -207,17 +231,23 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
   const document = input.suprnotes;
   const rawPlan = (document.lessonPlan ?? document.suggestedLecturePlan) as Record<string, unknown> | undefined;
   const rawBeats = Array.isArray(rawPlan?.beats) ? rawPlan.beats : [];
-  const planned = rawBeats
+  const plannedRaw = rawBeats
     .filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === "object")
-    .map((item) => ({
-      title: clean(item.title),
-      objective: clean(item.objective) || clean(item.teachingGoal) || clean(item.title),
-      sourceBlockIds: Array.isArray(item.sourceBlockIds)
+    .map((item) => {
+      const sourceBlockIds = Array.isArray(item.sourceBlockIds)
         ? item.sourceBlockIds.filter((id): id is string => typeof id === "string")
-        : [],
-      visualKind: sourceVisualKind(item),
-    }))
-    .filter((item) => item.title);
+        : [];
+      return {
+        title: clean(item.title),
+        objective: clean(item.objective) || clean(item.teachingGoal) || clean(item.title),
+        sourceBlockIds,
+        visualKind: sourceCodeKind(document, sourceBlockIds) ?? sourceVisualKind(item),
+      };
+    })
+    // A document section planned as a recap/summary is dropped too — no lecture ends on a recap.
+    .filter((item) => item.title && !isRecapTitle(item.title));
+  // A listing the planner cut across beats is re-joined, so the code board shows the whole function.
+  const planned = mergeSplitCodeBeats(plannedRaw, (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
   /*
    * DEPTH CAPS THE BEAT COUNT FOR A DOCUMENT TOO, not just for a typed topic.
    *
@@ -245,7 +275,7 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
       title: clean(block.heading) || `Page ${block.pageNumber ?? "source"}`,
       objective: clean(block.text).slice(0, 260) || `Teach the source material in ${block.id}.`,
       sourceBlockIds: [block.id],
-      visualKind: "react-animation" as ProgressiveVisualKind,
+      visualKind: (looksLikeCode(block.text) ? "code" : "react-animation") as ProgressiveVisualKind,
     }));
   /*
    * A DOCUMENT'S SECTIONS GET THE SAME CONTINUOUS BOARD as a typed topic's subtopics.
@@ -282,6 +312,16 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
       estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
     };
   });
+}
+
+/**
+ * A beat planned from pages that contain program source teaches THAT code, so it gets the code
+ * board whatever the planner recommended. Asked about a PDF's `remove()` function, the lecture drew
+ * an animated tree and never showed the function the student was reading.
+ */
+function sourceCodeKind(document: SuprnotesLessonInput, sourceBlockIds: string[]): ProgressiveVisualKind | null {
+  if (sourceBlockIds.length === 0) return null;
+  return looksLikeCode(scopedBlockText(document.contentBlocks ?? [], sourceBlockIds)) ? "code" : null;
 }
 
 function sourceVisualKind(item: Record<string, unknown>): ProgressiveVisualKind {
@@ -323,14 +363,15 @@ function visualKindFor(
   input: ProgressiveLectureInput,
   entry: { title: string; objective: string },
 ): ProgressiveVisualKind {
-  if (sequence === total - 1) return "blackboard";
   const title = entry.title.toLowerCase();
   const planText = `${entry.title} ${entry.objective}`.toLowerCase();
   if (/\b(?:equation|formula|derivation|solve|algebra|calculus)\b/.test(title)) return "equation";
   if (/\b(?:chart|graph|trend|probability distribution|data plot)\b/.test(title)) return "plot";
   if (/\b(?:cycle|pipeline|state machine|hierarchy|workflow|architecture)\b/.test(title)) return "structure";
-  if (/\b(?:definition|recap|summary)\b/.test(title)) return "blackboard";
-  if (/code|program|loop|algorithm|software/.test(planText) && input.learnerProfile.codeExamples) return "react-animation";
+  if (/\b(?:definition)\b/.test(title)) return "blackboard";
+  // A student who asked for code gets it on the beats that teach an implementation. This rule used
+  // to exist and return "react-animation" — i.e. it did nothing, and no lecture ever showed code.
+  if (requestedCode(input) && CODE_BEAT_PATTERN.test(planText)) return "code";
   // The sandbox is the normal teaching surface, matching the pre-progressive pipeline. Specialised
   // renderers above are opt-ins only when the title explicitly calls for their grammar.
   return "react-animation";
@@ -496,10 +537,11 @@ async function generateOneBeat(
       ? ` This concept is taught across ${passTotal} boards and THIS IS BOARD 1 of ${passTotal}: establish the idea itself — what it is and why it is true — and STOP there. Do not work the example or cover the edge cases; later boards of this same concept do that. End at a natural pause, not a summary.`
       : ` This is BOARD ${passIndex} of ${passTotal} ON THE SAME CONCEPT, continuing directly underneath the work already on the board. The student can still SEE the earlier boards, so do NOT re-introduce, re-define or re-motivate the idea, and do not summarise it — open as a teacher continuing mid-explanation ("so let's put numbers on that", "now watch what happens when…"). Teach ONLY this pass's job: ${planned.objective}`;
 
+  const pageImages = beatPageImages(input, planned.sourceBlockIds);
   const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
     {
       role: "system",
-      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD.${passInstruction} DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${input.learnerProfile.codeExamples ? "Include a code snippet only when it genuinely teaches the topic." : "Do not include code."}${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
+      content: `You write one beat of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied beat title exactly; it is the canonical title already approved in the plan. For every beat after the first, transitionIn is one natural 8-18 word sentence that connects the previous beat's insight to this beat without saying a generic phrase such as "moving on". On the FIRST beat, transitionIn is instead one natural 8-16 word opening line that leads the student into the topic — it is the first thing they hear, so make it warm and specific to this lecture, never a greeting such as "hello" or "welcome back". The script must be ${wordRange} words: this is ONE FULL TEACHING UNIT on a board a real teacher would keep up for a minute or more, not a slide bullet. Develop the concept properly — ${budget.movements[0]}-${budget.movements[1]} movements such as the intuition, the mechanism step by step, a concrete worked example with real numbers, an equation or diagram reading, the mistake people make, and what it lets you do — ALL WITHIN THIS ONE BOARD.${passInstruction} DO NOT restate what earlier beats already taught: priorScripts below is what the student has already heard, so build on it and reference it briefly instead of re-explaining it. Accurate and warm throughout. Use language for a ${input.learnerProfile.expertise} learner seeking ${input.learnerProfile.depth} depth for a ${input.learnerProfile.goal} goal. ${codeInstruction(input, session, planned)} Never write a recap or summary: teach THIS beat's concept, even when it is the last beat — the lecture ends when its last concept is taught, and slideKind is never "recap".${learnerSection}${personaSection} ${isCheckpoint ? "This is a checkpoint beat. Include checkpoint with prompt, acceptableKeywords as arrays of keywords, correctFeedback, hintFeedback, revealAnswer, three options, and correctOption." : "Do not create a checkpoint."}`,
     },
     {
       role: "user",
@@ -515,9 +557,19 @@ async function generateOneBeat(
           : null,
         preferredExamples: input.learnerProfile.preferredExamples,
         sourceContext: sourceContext(input, planned.sourceBlockIds),
+        ...(pageImages.length > 0
+          ? { sourcePages: "The pages this beat is built from are attached as images. They ARE the source: teach what they actually show — their text, code, figures and worked examples — even where sourceContext is thin or empty (a scanned page has no extractable text)." }
+          : {}),
       }),
     },
   ];
+  if (pageImages.length > 0) {
+    const last = messages[messages.length - 1];
+    messages[messages.length - 1] = {
+      role: "user",
+      content: [{ type: "text", text: String(last.content) }, ...pageImages] as OpenAI.Chat.Completions.ChatCompletionContentPart[],
+    };
+  }
   const request: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming = {
     model: MODEL,
     messages,
@@ -559,6 +611,20 @@ function previousConceptTitle(session: ProgressiveLectureSessionDoc, planned: Pr
   return null;
 }
 
+/**
+ * What the script may say about code. The listing itself is shown on the code board, never read
+ * aloud — the script is speech, so it WALKS THROUGH the code ("first it searches left or right…")
+ * rather than reciting symbols.
+ */
+function codeInstruction(input: ProgressiveLectureInput, session: ProgressiveLectureSessionDoc, planned: ProgressiveBeatPlan): string {
+  if (planned.visualKind === "code") {
+    return "This beat's board shows the actual code listing (quoted from the source when the source contains it), highlighted as you speak. Walk through that code in order — what each part does and why — in plain spoken sentences; never read symbols, brackets or syntax aloud, and never put code in the script.";
+  }
+  return requestedCode(input) || session.learnerProfile.codeExamples
+    ? "Include a code snippet only when it genuinely teaches the topic."
+    : "Do not include code.";
+}
+
 function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: ProgressiveBeatPlan, session: ProgressiveLectureSessionDoc): Beat {
   const points = Array.isArray(payload.points)
     ? payload.points.filter((item): item is string => typeof item === "string").map(clean).filter(Boolean).slice(0, 4)
@@ -576,7 +642,7 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   const rawKind = String(payload.slideKind ?? "");
   const slideKind: SlideKind = ["intro", "definition", "checkpoint", "compare", "recap"].includes(rawKind)
     ? rawKind as SlideKind
-    : planned.sequence === session.plan.length - 1 ? "recap" : "intro";
+    : "intro";
   const checkpoint = slideKind === "checkpoint" ? sanitizeCheckpoint(payload.checkpoint, planned) : undefined;
   return {
     id: planned.id,
@@ -655,7 +721,7 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
       : openingSentence(undefined, session.topic),
     teacherMove: "Keep the lesson moving with a clear, visual explanation.",
     stepLabel: `${sequence + 1} · Learn`,
-    slideKind: sequence === session.plan.length - 1 ? "recap" : "intro",
+    slideKind: "intro",
     points,
     script,
     draw: fallbackDraw(planned.title, points, planned.estimatedDurationMs),
@@ -755,6 +821,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
         sequence,
         blocksPlayback,
         tier && !blocksPlayback ? modelForTier(tier.tier) : undefined,
+        visualKind === "code" ? await codeBoardSource(session, candidate.sourceBlockIds) : undefined,
       );
       // The single most expensive call in the pipeline — an animation generation plus its vision
       // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
@@ -794,7 +861,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
           costUsd += rescue.costUsd;
           if (hasUsableBoard(candidate)) {
             success = true;
-            const board = candidate.draw?.ops.find((op) => ["structureScene", "chalkBoard", "plotBoard", "equationBoard"].includes(op.kind))?.kind ?? "written";
+            const board = candidate.draw?.ops.find((op) => ["structureScene", "chalkBoard", "plotBoard", "equationBoard", "codeBoard"].includes(op.kind))?.kind ?? "written";
             error = `${error ?? `${visualKind} board failed`} — rescued with a ${board} board`;
             console.error(`[progressive-worker] beat=${candidate.id} ${visualKind} failed; rescued with ${board}`);
           }
@@ -845,6 +912,7 @@ const PROGRESSIVE_KIND_FOR_BOARD: Record<Exclude<BoardKind, "morph">, Progressiv
   chalkBoard: "blackboard",
   plotBoard: "plot",
   equationBoard: "equation",
+  codeBoard: "code",
 };
 
 /** Uses the same semantic visual director as the full lecture engine. The provisional plan remains
@@ -878,6 +946,9 @@ async function chooseProgressiveVisual(
   if (fallback === "react-animation" && !opening) {
     return { kind: fallback, costUsd: 0 };
   }
+  // A code beat was chosen because the student asked for code on an implementation beat; letting a
+  // classifier redraw it as a diagram is exactly how the code never reached the board.
+  if (fallback === "code") return { kind: fallback, costUsd: 0 };
 
   try {
     const visual = await planBeatVisual(client, beat);
@@ -919,6 +990,7 @@ function premiumPlaceholder(beat: Beat, kind: ProgressiveVisualKind): DrawScript
   if (kind === "structure") return { ...common, ops: [{ kind: "structureScene", structureBrief: brief, at: 0, endAt: 1 }] };
   if (kind === "plot") return { ...common, ops: [{ kind: "plotBoard", plotBrief: brief, at: 0, endAt: 1 }] };
   if (kind === "equation") return { ...common, ops: [{ kind: "equationBoard", equationBrief: brief, at: 0, endAt: 1 }] };
+  if (kind === "code") return { ...common, ops: [{ kind: "codeBoard", codeBrief: brief, at: 0, endAt: 1 }] };
   return beat.draw ?? fallbackDraw(beat.title, beat.points, common.durationMs);
 }
 
@@ -958,6 +1030,8 @@ async function fillPremium(
   blocksPlayback = false,
   /** The model this beat's animation tier calls for (lib/animationTier.ts); absent → rotation or default. */
   tierModel?: AnimationModel,
+  /** The beat's own document text and pages, so a code board can quote the student's code verbatim. */
+  source?: { text: string; images: ContentPart[]; request: string },
 ) {
   if (!process.env.OPENAI_API_KEY) return { success: false, costUsd: 0, error: "OPENAI_API_KEY is not set." };
   if (kind === "react-animation" && process.env.REACT_ANIMATIONS_ENABLED !== "1") return disabled(kind);
@@ -979,7 +1053,13 @@ async function fillPremium(
         ? await fillManimSceneOps(client, [beat])
         : kind === "structure"
           ? await fillStructureSceneOps(client, [beat])
-          : await fillSpecBoardOps(client, [beat]);
+          : await fillSpecBoardOps(client, [beat], source
+            ? {
+                sourceByBeatId: new Map([[beat.id, source.text]]),
+                imagesByBeatId: new Map([[beat.id, source.images]]),
+                requestByBeatId: new Map([[beat.id, source.request]]),
+              }
+            : undefined);
   return {
     success: stats.filled > 0,
     costUsd: stats.costUsd,
@@ -1082,6 +1162,39 @@ function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]
  * beat, and the caller falls back to the unscoped text for exactly that case. Silently widening to
  * the full document here would reintroduce the drift this function exists to stop.
  */
+async function codeBoardSource(session: ProgressiveLectureSessionDoc, sourceBlockIds?: string[]) {
+  const input = await progressiveInput(session);
+  return {
+    text: sourceContext(input, sourceBlockIds),
+    images: beatPageImages(input, sourceBlockIds),
+    request: codeRequestText(input).trim(),
+  };
+}
+
+/**
+ * The uploaded pages this beat is built from, as images for the model.
+ *
+ * `documentId` was accepted by the route and never read, so every beat of a PDF lecture was written
+ * from extracted text alone — and a scanned PDF has none: "tree del.pdf" (0 characters of text)
+ * produced a lecture that knew nothing of its pages. The page images parse-pdf already rendered are
+ * attached instead: the beat's own pages when its blocks say which, otherwise every page.
+ *
+ * A miss is silent and ordinary — the store is in-process memory with a 45-minute life
+ * (lib/pageImageStore.ts), so a restarted server, or a worker running in another process, writes
+ * the beat from text as before.
+ */
+function beatPageImages(input: ProgressiveLectureInput, sourceBlockIds?: string[]): ContentPart[] {
+  const stored = getDocumentImages(input.documentId);
+  if (!stored || stored.pages.length === 0) return [];
+  const wanted = new Set(sourceBlockIds ?? []);
+  const blocks = isSuprnotesLessonInput(input.suprnotes) ? input.suprnotes.contentBlocks ?? [] : [];
+  const pageNumbers = new Set(
+    blocks.filter((block) => wanted.has(block.id) && typeof block.pageNumber === "number").map((block) => block.pageNumber as number),
+  );
+  const pages = pageNumbers.size > 0 ? stored.pages.filter((page) => pageNumbers.has(page.pageNumber)) : stored.pages;
+  return buildImageParts(pages.length > 0 ? pages : stored.pages, [], stored.unit);
+}
+
 function scopedDocumentText(input: ProgressiveLectureInput, sourceBlockIds?: string[]): string {
   const document = input.suprnotes;
   if (!isSuprnotesLessonInput(document)) return "";

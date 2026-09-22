@@ -66,6 +66,8 @@ function placeholderFor(board: BoardKind, plan: DirectorPlan, beat: Beat): DrawO
       return { kind: "plotBoard", plotBrief: plan.brief, at: 0, endAt: 1 };
     case "equationBoard":
       return { kind: "equationBoard", equationBrief: plan.brief, at: 0, endAt: 1 };
+    case "codeBoard":
+      return { kind: "codeBoard", codeBrief: plan.brief, at: 0, endAt: 1 };
     // `morph` is not a placeholder the fill passes complete — a morph board is written inline by
     // the lecture call as real ops. Rewriting one from a brief would mean inventing the before and
     // after states here, which is authoring, not routing. Leave the beat as it is.
@@ -75,7 +77,7 @@ function placeholderFor(board: BoardKind, plan: DirectorPlan, beat: Beat): DrawO
 }
 
 /** Board ops the director owns. Anything else on the beat (labels, arrows, notes) is left alone. */
-const BOARD_KINDS = new Set(["reactAnimation", "manimScene", "structureScene", "chalkBoard", "plotBoard", "equationBoard"]);
+const BOARD_KINDS = new Set(["reactAnimation", "manimScene", "structureScene", "chalkBoard", "plotBoard", "equationBoard", "codeBoard"]);
 
 /**
  * Classifies every teaching beat and swaps its board placeholder to match.

@@ -29,9 +29,11 @@ import { GsapSketch } from "./sketch/GsapSketch";
 import { StructureBoard } from "./sketch/StructureBoard";
 import { PlotBoard } from "./sketch/PlotBoard";
 import { EquationBoard } from "./sketch/EquationBoard";
+import { CodeBoard } from "./sketch/CodeBoard";
 import type { StructureSpec } from "@/lib/structureSpec";
 import type { PlotSpec } from "@/lib/plotSpec";
 import type { EquationSpec } from "@/lib/equationSpec";
+import type { CodeSpec } from "@/lib/codeSpec";
 import { RendererBadge } from "./sketch/RendererBadge";
 import { AdhdLayer } from "./adhd/AdhdLayer";
 import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
@@ -255,6 +257,8 @@ export function LessonPlayer({
   totalBeatCount,
   onBeatIndexChange,
   onLearnerInteraction,
+  onSummarize,
+  summaryUnlocked = false,
 }: {
   onExit?: () => void;
   /**
@@ -306,6 +310,10 @@ export function LessonPlayer({
   totalBeatCount?: number;
   onBeatIndexChange?: (index: number) => void;
   onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
+  /** Opens the one-slide summary of the lecture; the caller owns it (components/LectureSummarySlide). */
+  onSummarize?: () => void;
+  /** True once the student has finished this lecture — the summary button is disabled until then. */
+  summaryUnlocked?: boolean;
 }) {
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -739,6 +747,8 @@ export function LessonPlayer({
   const tutor = useGeminiLiveTutor({
     // Minutes of narration at a time: nothing stops her without positive evidence.
     gateProfile: "lecture",
+    // She is shown the uploaded pages themselves, not only their extracted text.
+    documentId,
     getTutorSpeaking: () => narrationAudibleRef.current,
     topic: title,
     getBeatContext: () =>
@@ -1001,7 +1011,7 @@ export function LessonPlayer({
       // Scored by the ADHD layer if one is mounted; a no-op otherwise.
       emitAdhdEvent({ type: "answer-correct" });
       onLearnerInteraction?.({ kind: "checkpoint", correct: true });
-      lesson.requestResume();
+      resumeAfterQuestion();
     },
     onFailed: () => {
       // A check-in owns the pause; nothing about the lesson may move it. See beginCheckin.
@@ -1941,6 +1951,30 @@ export function LessonPlayer({
       lesson.requestResume();
     }
   }
+  /**
+   * Carry on after the teacher's quick question — skipped or answered.
+   *
+   * THE QUESTION IS OFTEN ASKED INTO SILENCE. The periodic check fires only while Aria is not
+   * speaking, so there is frequently no narration to freeze under it. `requestResume()` then finds
+   * nothing to continue, the mode never left `teaching`, and the lecture sat silent while the button
+   * still showed Pause — until Pause then Resume forced a real mode change that restarted the beat.
+   *
+   * So when there is nothing frozen and this beat's narration is not live, record it as lost: the
+   * recovery effect (keyed on `quiz.phase`, which this same tick sets back to "idle") restarts it.
+   * A frozen lecture is still continued mid-sentence by `requestResume()` as before.
+   */
+  function resumeAfterQuestion() {
+    lesson.requestResume();
+    if (
+      !voice.hasFrozenTeacher() &&
+      narrationLiveForRef.current !== index &&
+      stage === "board" &&
+      !waitingForNextBeat &&
+      !waitingOnCheckpoint
+    ) {
+      narrationLostForRef.current = index;
+    }
+  }
   function retryVoice() {
     unlockAudio();
     setVoiceBlocked(false);
@@ -2249,7 +2283,7 @@ export function LessonPlayer({
                   // Skipping the QUESTION, which is not the same as answering it wrong — a wrong
                   // answer still costs nothing. See lib/adhd/score.ts.
                   emitAdhdEvent({ type: "question-unanswered" });
-                  lesson.requestResume();
+                  resumeAfterQuestion();
                 }}
               />
             )}
@@ -2352,6 +2386,8 @@ export function LessonPlayer({
           onTogglePlay={() => (hasStarted ? togglePlay() : startLesson())}
           onPrevious={index > 0 ? () => goTo(index - 1) : undefined}
           onNext={skipForward}
+          onSummarize={onSummarize}
+          summaryUnlocked={summaryUnlocked}
           canGoPrevious={index > 0}
           canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat}
           tool={boardTool}
@@ -2730,6 +2766,17 @@ function VisualDirector({
           <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
             <EquationBoard key={beat.id} spec={equationOp.spec as EquationSpec} progress={drawProgress} />
             <RendererBadge kind="equation" />
+          </section>
+        );
+      }
+    }
+    if (rendererSelection?.renderer === "code") {
+      const codeOp = coordinatedDraw.ops.find((op) => op.kind === "codeBoard");
+      if (codeOp?.kind === "codeBoard" && codeOp.spec) {
+        return (
+          <section className="relative h-full min-h-0 overflow-hidden bg-slate-950 p-2 text-white lg:p-3">
+            <CodeBoard key={beat.id} spec={codeOp.spec as CodeSpec} progress={drawProgress} />
+            <RendererBadge kind="code" />
           </section>
         );
       }

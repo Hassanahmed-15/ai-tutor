@@ -17,7 +17,7 @@ type DrawOpLike = {
 
 type DrawScriptLike = { ops?: DrawOpLike[] };
 
-export type AnimationRenderer = "react-svg" | "manim" | "gsap" | "structure" | "plot" | "equation" | "live-svg";
+export type AnimationRenderer = "react-svg" | "manim" | "gsap" | "structure" | "plot" | "equation" | "code" | "live-svg";
 
 export type RendererSelection = {
   renderer: AnimationRenderer;
@@ -28,6 +28,7 @@ export type RendererSelection = {
     | "structural-diagram"
     | "data-chart"
     | "worked-derivation"
+    | "code-walkthrough"
     | "diagram-or-motion"
     | "handwriting-or-unsupported";
 };
@@ -100,6 +101,7 @@ export function selectAnimationRenderer(
     structureScene: { renderer: "structure", reason: "structural-diagram" },
     plotBoard: { renderer: "plot", reason: "data-chart" },
     equationBoard: { renderer: "equation", reason: "worked-derivation" },
+    codeBoard: { renderer: "code", reason: "code-walkthrough" },
   } as const;
 
   for (let index = ops.length - 1; index >= 0; index -= 1) {

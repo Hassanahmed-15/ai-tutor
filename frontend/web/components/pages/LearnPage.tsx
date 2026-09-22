@@ -3,12 +3,14 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/hud/HudKit";
 import { LessonPlayer } from "@/components/LessonPlayer";
+import { LectureSummarySlide } from "@/components/LectureSummarySlide";
+import type { LectureSummary } from "@/lib/lectureSummary";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
 import { memoryWasUsed, personaForPrompt, profileHasSignal, rememberedLine, seedProfile, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
 import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
-import { openingSentence } from "@/lib/beatPresentation";
+import { openingSentence, topicKeywords } from "@/lib/beatPresentation";
 import { warmNarration } from "@/lib/useNarrationPrefetch";
 import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
@@ -198,6 +200,18 @@ type BuildCost =
    * the player begins on the hand-off rather than mid-sentence.
    */
   const [builtLesson, setBuiltLesson] = useState<{ beats: Beat[]; topic: string } | null>(null);
+  /*
+   * THE ONE-SLIDE SUMMARY, unlocked by finishing.
+   *
+   * Lectures no longer end on a recap beat; the crux of the whole lecture is a slide the student
+   * opens when they choose — but only once they have watched the lecture to its end, because it
+   * summarizes what they saw. Fetched once per lecture and kept, so reopening it is free.
+   */
+  const [lectureCompleted, setLectureCompleted] = useState(false);
+  const [summaryOpen, setSummaryOpen] = useState(false);
+  const [lectureSummary, setLectureSummary] = useState<LectureSummary | null>(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
   /**
    * Mirrors `builtLesson` for the hand-off.
    *
@@ -352,6 +366,9 @@ type BuildCost =
   const lastVoiceQuestionRef = useRef<string>("");
 
   const planningVoice = useGeminiLiveTutor({
+    // The uploaded pages, as images: shared the moment the parse produces them, even if she
+    // connected first. A scanned PDF has no text for the instruction below to carry.
+    documentId: documentId ?? undefined,
     // Aria asks and waits here; a plain answer in the student's voice is a turn. See lib/voice/voiceGate.ts.
     gateProfile: "conversation",
     topic: topic || "this lesson",
@@ -846,14 +863,31 @@ type BuildCost =
    * student never sees this screen ask for what they already provided. Only someone who arrives
    * here directly — via the nav rather than the front page — gets the capture form.
    */
+  /*
+   * ONCE PER MOUNT, guarded by a ref — not by the handoff being one-shot.
+   *
+   * React Strict Mode (on by default in `next dev`) runs mount effects twice. The first run
+   * consumed the brief and started planning; the second found the handoff empty, read that as
+   * "arrived here directly", and sent the student back to the front page — so every typed prompt
+   * bounced to landing in development. Refs survive the simulated remount, so this makes the
+   * second run a no-op.
+   */
+  const briefHandledRef = useRef(false);
   useEffect(() => {
+    if (briefHandledRef.current) return;
+    briefHandledRef.current = true;
     const savedLecture = takePendingLecture();
     if (savedLecture) {
       openSavedLecture(savedLecture);
       return;
     }
     const brief = takePendingBrief();
-    if (!brief) return;
+    // Nothing handed over (a reload, a bookmark, a stray link): the front page is where a lesson
+    // starts, so go there rather than show a second copy of it.
+    if (!brief || (!brief.file && !brief.topic?.trim())) {
+      go("landing");
+      return;
+    }
 
     if (brief.file) {
       // Route through the same handler the on-page picker uses, so PDF/PPTX/JSON parsing, page
@@ -863,7 +897,7 @@ type BuildCost =
       return;
     }
     if (brief.topic) void startPlanning(brief.topic);
-    // Runs once on mount; takePendingBrief() is one-shot so a re-run could not double-fire anyway.
+    // Runs once on mount (see briefHandledRef above).
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -1415,6 +1449,50 @@ type BuildCost =
     setUploadError(null);
   }
 
+  /**
+   * The student's request in their own words, kept beside the cleaned subject.
+   *
+   * The subject names the lesson ("Cryptography"); the request is what they actually asked
+   * ("explain me cryptography for my exam", "deletion code in C++"). Titles and Aria's questions use
+   * the first; generation still receives the second, so "in C++" or "code" is never lost.
+   */
+  const requestTextRef = useRef("");
+
+  /**
+   * The SUBJECT of a request, not the request itself.
+   *
+   * The raw prompt was the topic everywhere — so beat titles read "Mw This Particular Eg" and Aria
+   * asked "what do you think explain me cryptography is?". One cheap planner call names it (typos
+   * fixed, request phrasing dropped, read off the document when the prompt only points at it). On
+   * any failure, or after 4 s, the local keyword cleaner stands in: planning is never held up.
+   */
+  async function nameSubject(raw: string, source: unknown, docId: string | null | undefined): Promise<string> {
+    const doc = isSuprnotesLessonInput(source) ? source : null;
+    const local = topicKeywords(raw) || raw;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+    try {
+      const res = await fetch("/api/plan-lesson", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mode: "subject",
+          text: raw,
+          ...(doc ? { sourceDocument: doc, documentTitle: doc.lesson?.title ?? "" } : {}),
+          ...(doc && docId ? { documentId: docId } : {}),
+        }),
+        signal: controller.signal,
+      });
+      const data = await res.json().catch(() => ({}));
+      recordJsonCost("planning", data);
+      return typeof data.subject === "string" && data.subject.trim() ? data.subject.trim() : local;
+    } catch {
+      return local;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
   function resetPlanning() {
     setInitialAmbiguityQuestions([]);
     setInitialPlanningQuestions([]);
@@ -1439,6 +1517,17 @@ type BuildCost =
     setVoiceLines([]);
   }
 
+  /**
+   * The upload's page images, for the planner. Planning runs on the pages as well as their text —
+   * a scanned PDF has no text, so a text-only planner planned it from two figure captions. A ref,
+   * set as planning starts, because the fresh parse's id is not in state yet at that moment.
+   */
+  const planDocumentIdRef = useRef<string | null>(null);
+  const withPlanPages = (body: Record<string, unknown>) =>
+    body.sourceDocument && !body.documentId && (planDocumentIdRef.current ?? documentId)
+      ? { ...body, documentId: planDocumentIdRef.current ?? documentId }
+      : body;
+
   async function callPlanApi(body: Record<string, unknown>): Promise<Record<string, unknown> | null> {
     planAbortRef.current?.abort();
     const controller = new AbortController();
@@ -1447,7 +1536,7 @@ type BuildCost =
       const res = await fetch("/api/plan-lesson", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify(withPlanPages(body)),
         signal: controller.signal,
       });
       const data = await res.json().catch(() => ({}));
@@ -1481,7 +1570,11 @@ type BuildCost =
         headers: { "Content-Type": "application/json" },
         // The portrait goes with every outline request (first draft, revision, re-angle), so the
         // structure itself is planned for this student, not just the wording later.
-        body: JSON.stringify({ ...body, ...personaField() }),
+        body: JSON.stringify({
+          ...withPlanPages(body),
+          ...personaField(),
+          ...(requestTextRef.current ? { request: requestTextRef.current } : {}),
+        }),
         signal: controller.signal,
       });
       if (!res.ok || !res.body) {
@@ -1616,12 +1709,17 @@ type BuildCost =
    * committed state. `fresh` carries those values into either document planning or generation.
    */
   async function startPlanning(t: string, forceBuild = false, fresh?: FreshUpload) {
-    const trimmed = t.trim();
-    if (!trimmed) return;
-    setTopic(trimmed);
+    const raw = t.trim();
+    if (!raw) return;
     setInput("");
     setError(null);
     resetPlanning();
+    if (fresh?.documentId) planDocumentIdRef.current = fresh.documentId;
+    requestTextRef.current = raw;
+    // Shown at once from the local cleaner, then replaced by the named subject a moment later.
+    setTopic(topicKeywords(raw) || raw);
+    const trimmed = await nameSubject(raw, fresh?.sourceDocument ?? sourceDocument, fresh?.documentId ?? documentId);
+    setTopic(trimmed);
 
     const planningDocument = fresh?.sourceDocument ?? sourceDocument;
     const planningFocus = fresh?.focus ?? uploadFocus;
@@ -2050,10 +2148,13 @@ type BuildCost =
     }, outline.topic);
   }
 
-  function backToAsk() {
+  /** Leaving planning — Back from the plan, Stop during a build — goes to the front page. */
+  function leaveToHome() {
     planAbortRef.current?.abort();
+    buildAbortRef.current?.abort();
     resetPlanning();
-    setPhase("ask");
+    resetCostLedger();
+    go("landing");
   }
 
   /**
@@ -2065,7 +2166,12 @@ type BuildCost =
    */
   function updateLearnerProfile(patch: Partial<LearnerProfileSnapshot>) {
     const merged = { ...generationProfileRef.current, ...patch };
-    const next = { ...merged, codeExamples: shouldIncludeCodeExamples(merged) };
+    // A code choice the student made (or the suggestion carried) is kept; the expertise/goal rule
+    // only ever ADDS code, it no longer silently takes back a request for it.
+    const codeExamples = typeof patch.codeExamples === "boolean"
+      ? patch.codeExamples
+      : merged.codeExamples || shouldIncludeCodeExamples(merged);
+    const next = { ...merged, codeExamples };
     generationProfileRef.current = next;
     setGenerationProfile(next);
   }
@@ -2126,6 +2232,7 @@ type BuildCost =
   ) {
     const trimmed = t.trim();
     if (!trimmed) return;
+    resetLectureSummary();
     buildAbortRef.current?.abort();
     const controller = new AbortController();
     buildAbortRef.current = controller;
@@ -2197,7 +2304,12 @@ type BuildCost =
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
     }
-    suggested = { ...suggested, codeExamples: shouldIncludeCodeExamples(suggested) };
+    // The suggestion route already honours an explicit "show me code" / "no code"; re-deriving here
+    // from expertise and goal alone overwrote it.
+    suggested = {
+      ...suggested,
+      codeExamples: typeof suggested.codeExamples === "boolean" ? suggested.codeExamples : shouldIncludeCodeExamples(suggested),
+    };
     generationProfileRef.current = suggested;
     setGenerationProfile(suggested);
 
@@ -2255,7 +2367,13 @@ type BuildCost =
       sourceType: fresh?.kind ?? uploadedFile?.kind ?? "prompt",
       mode: selectedMode.id === "none" ? "standard" : selectedMode.id as LectureMode,
       ...(doc ? { suprnotes: doc } : slides ? { context: slides, diagramHints, slideImages } : {}),
-      ...(focusText ? { focus: focusText } : {}),
+      // The document question when there is one; otherwise the student's own words, when they say
+      // more than the subject does ("deletion code in C++" vs "BST Deletion").
+      ...(focusText
+        ? { focus: focusText }
+        : requestTextRef.current && requestTextRef.current.toLowerCase() !== trimmed.toLowerCase()
+          ? { focus: requestTextRef.current }
+          : {}),
       // Sent whichever route the upload took: a deck reaches generation through `context` rather
       // than `suprnotes`, and the passage read from its slides is just as much the subject there.
       ...(transcriptText ? { transcript: transcriptText } : {}),
@@ -2492,6 +2610,7 @@ type BuildCost =
   }
 
   function openSavedLecture(lecture: { topic: string; beats: Beat[] }) {
+    resetLectureSummary();
     // Replaying costs only what is spent from here (narration, questions); its build was paid before.
     resetCostLedger();
     // A replay package is self-contained. Clear transient upload context so follow-up tools do not
@@ -2516,6 +2635,67 @@ type BuildCost =
     setPhase("teaching");
   }
 
+  function resetLectureSummary() {
+    setLectureCompleted(false);
+    setSummaryOpen(false);
+    setLectureSummary(null);
+    setSummaryError(null);
+    setSummaryLoading(false);
+  }
+
+  async function fetchLectureSummary() {
+    setSummaryLoading(true);
+    setSummaryError(null);
+    try {
+      const res = await fetch("/api/summarize-lecture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: builtTopic,
+          request: requestTextRef.current,
+          beats: beats.map((beat) => ({ title: beat.title, points: beat.points, script: beat.script })),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      recordJsonCost("questions", data);
+      if (!res.ok || !data.summary) throw new Error(data.error || "Couldn't summarize the lecture.");
+      setLectureSummary(data.summary as LectureSummary);
+    } catch (err) {
+      setSummaryError(err instanceof Error ? err.message : "Couldn't summarize the lecture.");
+    } finally {
+      setSummaryLoading(false);
+    }
+  }
+
+  function openLectureSummary() {
+    // The button is disabled until then; this guard is the rule, not the styling.
+    if (!lectureCompleted) return;
+    setSummaryOpen(true);
+    if (!lectureSummary && !summaryLoading) void fetchLectureSummary();
+  }
+
+  const summaryOverlay = summaryOpen ? (
+    <LectureSummarySlide
+      fixed
+      summary={lectureSummary}
+      loading={summaryLoading}
+      error={summaryError}
+      onRetry={() => void fetchLectureSummary()}
+      onClose={() => setSummaryOpen(false)}
+    />
+  ) : null;
+
+  /** The end-of-lecture screens' way in. Only rendered once the lecture is complete. */
+  const summaryButton = lectureCompleted ? (
+    <button
+      onClick={openLectureSummary}
+      data-summarize-lecture=""
+      className="hud-btn-primary fixed bottom-6 right-6 z-40 rounded-full px-6 py-3 text-sm font-bold shadow-2xl"
+    >
+      Summarize the lecture in one slide
+    </button>
+  ) : null;
+
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.
   // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
   // every other mode gets to choose written or oral on the offer screen.
@@ -2529,6 +2709,8 @@ type BuildCost =
       }).catch(() => {});
     }
     if (!progressiveComplete) return;
+    // Watched to the end: the one-slide summary unlocks, here and on every screen after this.
+    setLectureCompleted(true);
     rememberLesson();
     setPhase("test-offer");
   }
@@ -2675,6 +2857,15 @@ type BuildCost =
             >
               Test me on it
             </button>
+            {lectureCompleted && (
+              <button
+                onClick={openLectureSummary}
+                data-summarize-lecture=""
+                className="text-sm font-semibold text-[var(--hud-text)] underline-offset-4 transition-colors hover:underline"
+              >
+                Summarize in one slide
+              </button>
+            )}
             {/* The one door that genuinely discards the lecture, so it is the one that leaves. */}
             <button
               onClick={onExit}
@@ -2693,12 +2884,14 @@ type BuildCost =
             </button>
           </div>
         </section>
+        {summaryOverlay}
       </main>
     );
   }
 
   if (phase === "test-offer") {
     return (
+      <>
       <TestOfferScreen
         mode={selectedMode}
         topic={builtTopic}
@@ -2709,6 +2902,10 @@ type BuildCost =
         onOral={startOralTest}
         onSkip={endLecture}
       />
+      {/* The student lands here the moment the lecture ends — the summary is one click away. */}
+      {!summaryOpen && summaryButton}
+      {summaryOverlay}
+      </>
     );
   }
 
@@ -2755,17 +2952,18 @@ type BuildCost =
         player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} />;
     }
     return (
       <div className="relative">
         {player}
+        {summaryOverlay}
         {/*
             The whole lecture's cost, not one stage of it: document, planning, generation, narration,
             questions and the live tutor each report what they measured (lib/costLedger.ts). The old
@@ -2982,9 +3180,11 @@ type BuildCost =
           blindMode={selectedMode.page === "blind-demo"}
           studentName={profile?.displayName ?? undefined}
           jobId={buildJobId}
+          documentId={documentId ?? undefined}
+          documentContext={voiceDocContext}
           beatStatus={buildBeats?.beats}
           buildStartedAt={buildBeats?.startedAt}
-          onStop={backToAsk}
+          onStop={leaveToHome}
           onStart={startBuiltLesson}
         />
       ) : phase === "outline" ? (
@@ -3014,7 +3214,7 @@ type BuildCost =
           onAnswerAmbiguity={answerAmbiguity}
           onRevise={reviseOutline}
           onApprove={approveOutline}
-          onBack={backToAsk}
+          onBack={leaveToHome}
           onOutlineChange={setOutline}
           onRerollAngle={rerollAngle}
           voice={voice}
@@ -3033,251 +3233,22 @@ type BuildCost =
           voice={voice}
         />
       ) : (
-        <section className="hud-canvas hud-grain relative z-10 min-h-screen w-full overflow-y-auto p-6 lg:p-10">
-          {/* Masthead. The mode badge and "Change mode" control are gone with mode selection;
-              there is no step 1 to return to, so this is a wordmark and a way out. */}
-          <div className="relative z-20 mx-auto mb-20 flex max-w-5xl items-baseline justify-between">
-            <button
-              onClick={() => go("landing")}
-              className="font-display text-2xl tracking-[-0.02em] text-[var(--hud-text)] transition-opacity hover:opacity-60"
-            >
-              Aria
-            </button>
-            <button
-              onClick={() => go("landing")}
-              className="text-sm text-[var(--hud-text-dim)] underline decoration-[var(--hud-line-strong)] underline-offset-4 transition-colors hover:text-[var(--hud-text)]"
-            >
-              Leave
-            </button>
-          </div>
-
-          <div className="relative z-20 mx-auto max-w-5xl">
-            <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
-              {/* Main content */}
-              <div className="flex flex-col justify-start">
-                <div className="mb-12">
-                  <h1 className="font-display text-[2.8rem] leading-[0.95] tracking-[-0.035em] sm:text-[4rem]">
-                    Name what you do not
-                    <br />
-                    <span className="text-[var(--hud-text)]">understand.</span>
-                  </h1>
-                </div>
-
-                {/* Input section */}
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (topic && !input.trim()) startPlanning(topic);
-                    else startPlanning(input);
-                  }}
-                  className="mb-6"
-                >
-                  {/* A ruled line to write on, rather than a pill to fill in. The field is the
-                      largest type on the page after the headline, because it is the one thing
-                      being asked for. */}
-                  <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:gap-4">
-                    <input
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      placeholder="the Krebs cycle, properly"
-                      autoFocus
-                      className="min-w-0 flex-1 border-0 border-b border-[var(--hud-line-strong)] bg-transparent px-0 pb-3 font-display text-2xl tracking-[-0.01em] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] transition-colors focus:border-[var(--hud-cyan)] focus:outline-none focus:ring-0 sm:text-3xl"
-                    />
-                    <button
-                      type="submit"
-                      disabled={!(topic || input).trim()}
-                      className="hud-btn-primary shrink-0 px-8 py-3.5 text-sm disabled:opacity-30"
-                    >
-                      Draft the plan
-                    </button>
-                  </div>
-                </form>
-
-                {/* Source upload */}
-                <div className="mb-12">
-                  <p className="mb-3 text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Or upload a source</p>
-
-                  {/* Hidden file input. `multiple` lets several PDFs/decks be picked at once — see
-                      ingestFiles, which merges them into one source the model reasons over
-                      together. A single Suprnotes JSON export still wins outright if picked
-                      alongside other files, since it is a complete lesson package on its own. */}
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    multiple
-                    accept=".pptx,.pdf,.json,application/json"
-                    className="sr-only"
-                    onChange={handleFileSelect}
-                    aria-label="Upload one or more PowerPoint, PDF, or Suprnotes JSON files"
-                  />
-                  {/* Second, separate hidden input for a task-folder pick — webkitdirectory forces
-                      folder-selection mode, so it cannot share the single-file input above. */}
-                  <input
-                    ref={(el) => {
-                      folderInputRef.current = el;
-                      if (el) {
-                        el.setAttribute("webkitdirectory", "");
-                        el.setAttribute("directory", "");
-                      }
-                    }}
-                    type="file"
-                    multiple
-                    className="sr-only"
-                    onChange={handleFolderSelect}
-                    aria-label="Upload a task folder containing generated_notes.md, images, and relevant_images.json"
-                  />
-
-                  {uploadPhase === "idle" || uploadPhase === "error" ? (
-                    <div className="space-y-2">
-                      <button
-                        type="button"
-                        onClick={() => fileInputRef.current?.click()}
-                        className="flex w-full items-center gap-4 rounded-2xl border border-dashed border-[var(--hud-line)] bg-white/[0.02] px-6 py-5 text-left text-base text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)]/50 hover:bg-white/[0.05] hover:text-[var(--hud-text)]"
-                      >
-                          <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">📎</span>
-                          <span>
-                          <span className="block font-bold">Upload .pptx, .pdf, or Suprnotes .json</span>
-                          <span className="text-sm text-[var(--hud-text-faint)]">Aria reads your source and builds a lecture from it</span>
-                        </span>
-                      </button>
-                      <div className="flex items-center gap-4 px-6">
-                        <button
-                          type="button"
-                          onClick={() => folderInputRef.current?.click()}
-                          className="text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
-                        >
-                          or upload a task folder →
-                        </button>
-                        <span className="text-[var(--hud-text-faint)]/40">·</span>
-                        <button
-                          type="button"
-                          onClick={() => go("viewer")}
-                          className="text-left text-xs font-semibold text-[var(--hud-text-faint)] underline-offset-2 transition hover:text-[var(--hud-cyan)] hover:underline"
-                        >
-                          just want to read it? open in the document viewer →
-                        </button>
-                      </div>
-                    </div>
-                  ) : uploadPhase === "reading" ? (
-                    <div className="flex items-center gap-4 rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] px-6 py-5">
-                      <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-[var(--hud-line)] bg-white/[0.05] text-xl">⏳</span>
-                      <span className="text-base font-semibold text-[var(--hud-text-dim)]">Reading slides…</span>
-                    </div>
-                  ) : (
-                    /* uploadPhase === "ready" */
-                    <div className="rounded-2xl border border-[var(--hud-cyan)]/30 bg-[var(--hud-cyan)]/[0.04] px-6 py-5">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl">📄</span>
-                          <div>
-                            <p className="font-bold text-[var(--hud-text)]">{uploadedFile?.name}</p>
-                            <p className="text-sm text-[var(--hud-text-dim)]">
-                              {uploadedFile?.kind === "suprnotes"
-                                ? `${uploadedFile.assetCount ?? 0} provided images · ready to build`
-                                : uploadedFile?.kind === "task-folder"
-                                  ? `Task folder · ${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} extracted · ready to build`
-                                  : uploadedFile?.kind === "pdf"
-                                    ? `${uploadedFile.slideCount ?? 0} page${(uploadedFile.slideCount ?? 0) === 1 ? "" : "s"} · ${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} extracted · ready to build`
-                                    : `${uploadedFile?.slideCount ?? 0} slides extracted${(uploadedFile?.assetCount ?? 0) > 0 ? ` · ${uploadedFile?.assetCount} image${uploadedFile?.assetCount === 1 ? "" : "s"}` : ""} · ready to build`}
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={clearUpload}
-                          className="shrink-0 rounded-full border border-[var(--hud-line)] px-3 py-1 text-xs font-bold text-[var(--hud-text-faint)] hover:text-[var(--hud-text)]"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
-                  {uploadPhase === "error" && uploadError && (
-                    <p className="mt-2 text-sm font-semibold text-rose-300">⚠️ {uploadError}</p>
-                  )}
-                </div>
-
-                {/* Popular suggestions */}
-                <div>
-                  <p className="mb-4 text-xs font-black uppercase tracking-[0.16em] text-[var(--hud-text-faint)]">Popular topics to try</p>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {SUGGESTIONS.map((s) => (
-                      <button
-                        key={s}
-                        onClick={() => startPlanning(s)}
-                        className="rounded-2xl border border-[var(--hud-line)] bg-white/[0.03] px-5 py-4 text-left text-base font-semibold text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)]/60 hover:bg-white/[0.08] hover:text-[var(--hud-text)]"
-                      >
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Error message */}
-                {phase === "error" && error && (
-                  <div className="mt-8 rounded-3xl border border-rose-400/40 bg-rose-500/[0.08] px-6 py-5 text-base font-semibold text-rose-200">
-                    ⚠️ {error}
-                  </div>
-                )}
-              </div>
-
-              {/* Right sidebar preview */}
-              <div className="relative rounded-[2.5rem] border border-[var(--hud-line)]/50 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 backdrop-blur-xl lg:h-max lg:sticky lg:top-10">
-                <HudCorners accent={selectedMode.accent} />
-                <div className="relative z-10 space-y-8">
-                  <div>
-                    <HudEyebrow color={selectedMode.accent}>Build preview</HudEyebrow>
-                  </div>
-
-                  {/* Mode display */}
-                  <div className="rounded-2xl border border-[var(--hud-line)] bg-black/30 p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Mode</p>
-                    <p className="mt-3 font-display text-2xl">{selectedMode.name}</p>
-                    <p className="mt-2 text-sm font-medium text-[var(--hud-text-dim)]">{selectedMode.detail}</p>
-                  </div>
-
-                  {/* Topic display */}
-                  <div className="rounded-2xl border border-[var(--hud-line)] bg-black/30 p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Topic</p>
-                    <p className="mt-3 text-2xl font-black text-[var(--hud-text)]">{topic || "Not set yet"}</p>
-                    {uploadPhase === "ready" && uploadedFile && (
-                      <p className="mt-2 text-xs font-semibold text-[var(--hud-cyan)]">
-                        📎 {uploadedFile.kind === "suprnotes"
-                          ? `${uploadedFile.assetCount ?? 0} images loaded from notes`
-                          : uploadedFile.kind === "task-folder"
-                            ? `${uploadedFile.assetCount ?? 0} image${(uploadedFile.assetCount ?? 0) === 1 ? "" : "s"} loaded from folder`
-                            : uploadedFile.kind === "pdf"
-                              ? `${uploadedFile.slideCount ?? 0} page${(uploadedFile.slideCount ?? 0) === 1 ? "" : "s"} loaded from PDF`
-                              : `${uploadedFile.slideCount ?? 0} slides loaded`}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* What you get */}
-                  <div className="space-y-3 pt-4">
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">Included</p>
-                    <div className="space-y-2 text-base text-[var(--hud-text-dim)]">
-                      <p className="flex items-center gap-3"><span className="text-lg">✓</span> Teacher script</p>
-                      <p className="flex items-center gap-3"><span className="text-lg">✓</span> Hand-drawn visuals</p>
-                      <p className="flex items-center gap-3"><span className="text-lg">✓</span> Interactive checkpoints</p>
-                      <p className="flex items-center gap-3"><span className="text-lg">✓</span> Full recap</p>
-                    </div>
-                  </div>
-
-                  {/* Build button */}
-                  <button
-                    onClick={() => startPlanning(topic)}
-                    disabled={!topic.trim()}
-                    className="hud-btn-primary w-full rounded-full py-4 text-base font-black disabled:opacity-40"
-                  >
-                    Plan lesson →
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        /*
+         * THE TOPIC-CAPTURE SCREEN IS GONE. The front page is the only way in: it takes the subject
+         * or the file and hands it over, so this page never asks for them again. What is left is a
+         * status for the moments in between — a file being read, an error with a way home, or the
+         * second before planning starts. Leaving planning (Back, Stop) goes to the front page.
+         */
+        <EntryStatus
+          phase={phase}
+          error={error}
+          uploadPhase={uploadPhase}
+          uploadError={uploadError}
+          fileName={uploadedFile?.name ?? null}
+          topic={topic}
+          onHome={leaveToHome}
+          onRetry={topic ? () => void startPlanning(topic) : undefined}
+        />
       )}
     </main>
   );
@@ -3310,6 +3281,60 @@ function cleanupSpokenTopic(command: string): string {
     .replace(/^(can you\s+)?(please\s+)?(help me understand|help me with|i need to understand|i want to understand)\s+/i, "")
     .replace(/\s+(please)$/i, "")
     .trim();
+}
+
+/**
+ * What the learn page shows between the front page and the plan: reading a file, an error, or the
+ * moment before planning starts. Never a form — the front page already asked.
+ */
+function EntryStatus({
+  phase,
+  error,
+  uploadPhase,
+  uploadError,
+  fileName,
+  topic,
+  onHome,
+  onRetry,
+}: {
+  phase: string;
+  error: string | null;
+  uploadPhase: "idle" | "reading" | "choosing" | "ready" | "error";
+  uploadError: string | null;
+  fileName: string | null;
+  topic: string;
+  onHome: () => void;
+  onRetry?: () => void;
+}) {
+  const failed = phase === "error" ? error : uploadPhase === "error" ? uploadError : null;
+  const title = failed
+    ? phase === "error" ? "That lesson could not be built" : "That file could not be read"
+    : uploadPhase === "reading" ? `Reading ${fileName ?? "your file"}…` : topic ? `Getting "${topic}" ready…` : "Getting your lesson ready…";
+  return (
+    <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center p-6">
+      <div className="relative z-10 w-full max-w-md text-center" role={failed ? "alert" : "status"} aria-live="polite">
+        {!failed && (
+          <div className="mx-auto mb-6 h-8 w-8 animate-spin rounded-full border-2 border-[var(--hud-line-strong)] border-t-[var(--hud-text)]" aria-hidden="true" />
+        )}
+        <h1 className="font-display text-2xl tracking-[-0.02em] text-[var(--hud-text)]">{title}</h1>
+        {failed && <p className="mt-3 text-sm text-rose-300">{failed}</p>}
+        <div className="mt-8 flex items-center justify-center gap-3">
+          {failed && onRetry && phase === "error" && (
+            <button type="button" onClick={onRetry} className="hud-btn-primary rounded-full px-5 py-2 text-sm font-bold">
+              Try again
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={onHome}
+            className="rounded-full border border-[var(--hud-line)] px-5 py-2 text-sm text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+          >
+            {failed ? "Back to home" : "Cancel"}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /** Shown right after a lecture finishes — offers a real test on the content. Blind mode forces

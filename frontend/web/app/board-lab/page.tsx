@@ -6,6 +6,8 @@ import { PlotBoard } from "@/components/sketch/PlotBoard";
 import { EquationBoard } from "@/components/sketch/EquationBoard";
 import { validatePlotSpec, type PlotSpec } from "@/lib/plotSpec";
 import { validateEquationSpec, type EquationSpec } from "@/lib/equationSpec";
+import { CodeBoard } from "@/components/sketch/CodeBoard";
+import { validateCodeSpec, type CodeSpec } from "@/lib/codeSpec";
 
 /**
  * `/board-lab` — the Vega-Lite chart and the KaTeX derivation on real specs, driven by one slider.
@@ -102,6 +104,52 @@ const EQUATIONS: Record<string, unknown> = {
   },
 };
 
+const CODE: Record<string, unknown> = {
+  // The listing a student asked about in their BST notes — the case that had no board at all.
+  "bst-remove": {
+    title: "remove(int d, Node*& p)",
+    language: "cpp",
+    fromSource: true,
+    code: [
+      "void BST::remove(int d, Node*& p) {",
+      "    if (p == NULL)",
+      "        return;",
+      "    else if (d < p->data)",
+      "        remove(d, p->left);",
+      "    else if (d > p->data)",
+      "        remove(d, p->right);",
+      "    else {",
+      "        // found: leaf, one child, or two children",
+      "        if (p->left == NULL && p->right == NULL) {",
+      "            delete p;",
+      "            p = NULL;",
+      "        } else if (p->left == NULL) {",
+      "            Node* t = p;",
+      "            p = p->right;",
+      "            delete t;",
+      "        } else if (p->right == NULL) {",
+      "            Node* t = p;",
+      "            p = p->left;",
+      "            delete t;",
+      "        } else {",
+      "            Node* s = p->right;",
+      "            while (s->left != NULL) s = s->left;",
+      "            p->data = s->data;",
+      "            remove(s->data, p->right);",
+      "        }",
+      "    }",
+      "}",
+    ].join("\n"),
+    steps: [
+      { lines: [2, 3], note: "An empty subtree means the value isn't in the tree — nothing to delete." },
+      { lines: [4, 7], note: "Smaller goes left, larger goes right: an ordinary BST search." },
+      { lines: [10, 12], note: "A leaf is simply deleted, and its parent's pointer set to NULL." },
+      { lines: [13, 20], note: "One child: splice the node out and let the child take its place." },
+      { lines: [21, 25], note: "Two children: copy in the inorder successor, then delete that successor." },
+    ],
+  },
+};
+
 function BoardLab() {
   const params = useSearchParams();
   const requested = params.get("board") ?? "compound-interest";
@@ -118,6 +166,7 @@ function BoardLab() {
 
   const plot = PLOTS[requested] ? validatePlotSpec(PLOTS[requested]) : null;
   const equation = EQUATIONS[requested] ? validateEquationSpec(EQUATIONS[requested]) : null;
+  const code = CODE[requested] ? validateCodeSpec(CODE[requested]) : null;
 
   return (
     <main className="min-h-screen bg-slate-950 p-6 text-white">
@@ -128,7 +177,7 @@ function BoardLab() {
       </p>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {[...Object.keys(PLOTS), ...Object.keys(EQUATIONS)].map((name) => (
+        {[...Object.keys(PLOTS), ...Object.keys(EQUATIONS), ...Object.keys(CODE)].map((name) => (
           <a
             key={name}
             href={`/board-lab?board=${name}&p=${progress}`}
@@ -168,6 +217,8 @@ function BoardLab() {
           <PlotBoard spec={plot as PlotSpec} progress={progress} />
         ) : equation ? (
           <EquationBoard spec={equation as EquationSpec} progress={progress} />
+        ) : code ? (
+          <CodeBoard spec={code as CodeSpec} progress={progress} />
         ) : (
           // A spec that fails validation must say so here rather than rendering an empty frame —
           // "the validator rejected this" and "the board drew nothing" are different bugs.

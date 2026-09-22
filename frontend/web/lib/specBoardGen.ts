@@ -1,16 +1,19 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
-import { PLOT_BOARD_SYSTEM_PROMPT, EQUATION_BOARD_SYSTEM_PROMPT } from "./drawPrompt";
+import { PLOT_BOARD_SYSTEM_PROMPT, EQUATION_BOARD_SYSTEM_PROMPT, CODE_BOARD_SYSTEM_PROMPT } from "./drawPrompt";
 import { validatePlotSpec, compilesAsVegaLite } from "./plotSpec";
 import { parseEquationSpec } from "./equationSpec";
+import { parseCodeSpec, verifyFromSource, type CodeSpec } from "./codeSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { costFor } from "./modelPricing";
 import { withAudience } from "./learnerBrief";
+import type { ContentPart } from "./fullDocumentContext";
 
 type DrawOp = DrawScript["ops"][number];
 type PlotBoardOp = Extract<DrawOp, { kind: "plotBoard" }>;
 type EquationBoardOp = Extract<DrawOp, { kind: "equationBoard" }>;
-type SpecBoardOp = PlotBoardOp | EquationBoardOp;
+type CodeBoardOp = Extract<DrawOp, { kind: "codeBoard" }>;
+type SpecBoardOp = PlotBoardOp | EquationBoardOp | CodeBoardOp;
 
 /**
  * Second step for the two spec-driven boards, mirroring structureSceneGen.ts exactly.
@@ -36,6 +39,8 @@ type SpecBoardOp = PlotBoardOp | EquationBoardOp;
 const MODEL = process.env.OPENAI_SPEC_BOARD_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
 const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_SPEC_BOARD_MAX_TOKENS ?? 2_500)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_SPEC_BOARD_ATTEMPTS ?? 2)));
+/** How much of a beat's document text a code board is shown when looking for the code to quote. */
+const MAX_SOURCE_CHARS = 12_000;
 
 
 export type SpecBoardFillStats = {
@@ -51,23 +56,32 @@ function costUsd(usage: OpenAI.Chat.Completions.ChatCompletion["usage"] | undefi
 }
 
 export function findSpecBoardOp(draw: DrawScript | undefined): SpecBoardOp | null {
-  const op = draw?.ops?.find((o) => o.kind === "plotBoard" || o.kind === "equationBoard");
+  const op = draw?.ops?.find((o) => o.kind === "plotBoard" || o.kind === "equationBoard" || o.kind === "codeBoard");
   return (op as SpecBoardOp | undefined) ?? null;
 }
 
 function briefOf(op: SpecBoardOp): string {
-  return (op.kind === "plotBoard" ? op.plotBrief : op.equationBrief) ?? "";
+  return (op.kind === "plotBoard" ? op.plotBrief : op.kind === "codeBoard" ? op.codeBrief : op.equationBrief) ?? "";
 }
 
-function buildUserPrompt(op: SpecBoardOp, beat: Beat, previousIssue?: string): string {
+function buildUserPrompt(op: SpecBoardOp, beat: Beat, previousIssue?: string, source?: string, request?: string): string {
   const retry = previousIssue
     ? `\n\nYour previous attempt was rejected: ${previousIssue}\nFix exactly that and return the corrected JSON.`
     : "";
+  // Only the code board is given the document: it must QUOTE the student's code, not invent a
+  // plausible version of it. The other spec boards are drawn from the script, as before.
+  const excerpt = op.kind === "codeBoard" && source?.trim()
+    ? ["", "Source excerpt (the student's own document; its line breaks were lost in extraction):", source.slice(0, MAX_SOURCE_CHARS)]
+    : [];
+  // What the student asked for — it carries the language ("in C++") the listing must be written in.
+  const asked = op.kind === "codeBoard" && request?.trim() ? [`Student's request: ${request.trim().slice(0, 300)}`] : [];
   return (
     [
       `Lecture beat title: ${beat.title}`,
       `Spoken script: ${beat.script}`,
       `Brief: ${briefOf(op)}`,
+      ...asked,
+      ...excerpt,
       "",
       "Return the JSON spec for this board.",
     ].join("\n") + retry
@@ -109,6 +123,12 @@ async function validateFor(op: SpecBoardOp, raw: unknown): Promise<{ spec: unkno
     return { spec };
   }
 
+  if (op.kind === "codeBoard") {
+    const { spec, rejected } = parseCodeSpec(raw);
+    if (spec) return { spec };
+    return { issue: rejected[0]?.reason ?? "not a usable code spec — it needs `language`, `code` and at least two `steps`" };
+  }
+
   const { spec, rejected } = parseEquationSpec(raw);
   if (spec) return { spec };
   return {
@@ -122,8 +142,15 @@ async function generateOne(
   client: OpenAI,
   op: SpecBoardOp,
   beat: Beat,
+  source?: string,
+  images: ContentPart[] = [],
+  request?: string,
 ): Promise<{ filled: boolean; costUsd: number; issue?: string }> {
-  const systemPrompt = op.kind === "plotBoard" ? PLOT_BOARD_SYSTEM_PROMPT : EQUATION_BOARD_SYSTEM_PROMPT;
+  const systemPrompt = op.kind === "plotBoard"
+    ? PLOT_BOARD_SYSTEM_PROMPT
+    : op.kind === "codeBoard"
+      ? CODE_BOARD_SYSTEM_PROMPT
+      : EQUATION_BOARD_SYSTEM_PROMPT;
   let spent = 0;
   let issue: string | undefined;
 
@@ -134,7 +161,17 @@ async function generateOne(
         max_tokens: MAX_TOKENS,
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: withAudience(beat, buildUserPrompt(op, beat, issue)) },
+          {
+            role: "user",
+            // A code board may be handed the document's pages: on a scanned PDF they are the only
+            // place the code exists, so it is read off the image rather than invented.
+            content: op.kind === "codeBoard" && images.length > 0
+              ? ([
+                  { type: "text", text: withAudience(beat, buildUserPrompt(op, beat, issue, source, request)) + "\n\nThe document's pages are attached as images. If the code is on them, copy it from there verbatim and set fromSource: true." },
+                  ...images,
+                ] as OpenAI.Chat.Completions.ChatCompletionContentPart[])
+              : withAudience(beat, buildUserPrompt(op, beat, issue, source, request)),
+          },
         ],
         response_format: { type: "json_object" },
       });
@@ -142,6 +179,12 @@ async function generateOne(
 
       const result = await validateFor(op, parseSpec(completion.choices[0]?.message?.content ?? ""));
       if ("spec" in result) {
+        // "From your document" is shown only for code that IS in the document — the model's own
+        // claim was measured wrong on a scan with no listing and on a topic with no document at all.
+        if (op.kind === "codeBoard") {
+          const code = result.spec as CodeSpec;
+          if (code.fromSource && !verifyFromSource(code.code, source)) delete code.fromSource;
+        }
         op.spec = result.spec;
         op.status = "ready";
         delete op.error;
@@ -160,7 +203,16 @@ async function generateOne(
   return { filled: false, costUsd: spent, issue };
 }
 
-export async function fillSpecBoardOps(client: OpenAI, beats: Beat[]): Promise<SpecBoardFillStats> {
+export type SpecBoardFillOptions = {
+  /** Document text per beat id. Read only by code boards, which quote the source verbatim. */
+  sourceByBeatId?: Map<string, string>;
+  /** Page images per beat id, likewise read only by code boards. */
+  imagesByBeatId?: Map<string, ContentPart[]>;
+  /** What the student asked for, per beat id — read only by code boards. */
+  requestByBeatId?: Map<string, string>;
+};
+
+export async function fillSpecBoardOps(client: OpenAI, beats: Beat[], options: SpecBoardFillOptions = {}): Promise<SpecBoardFillStats> {
   const pending: Array<{ op: SpecBoardOp; beat: Beat }> = [];
   for (const beat of beats) {
     const op = findSpecBoardOp(beat.draw);
@@ -170,7 +222,9 @@ export async function fillSpecBoardOps(client: OpenAI, beats: Beat[]): Promise<S
     return { costUsd: 0, pending: 0, filled: 0, rejected: 0, issues: [] };
   }
 
-  const results = await Promise.all(pending.map(({ op, beat }) => generateOne(client, op, beat)));
+  const results = await Promise.all(
+    pending.map(({ op, beat }) => generateOne(client, op, beat, options.sourceByBeatId?.get(beat.id), options.imagesByBeatId?.get(beat.id), options.requestByBeatId?.get(beat.id))),
+  );
   const filled = results.filter((r) => r.filled).length;
   return {
     costUsd: results.reduce((sum, r) => sum + r.costUsd, 0),

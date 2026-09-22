@@ -91,7 +91,7 @@ export async function POST(request: Request) {
         // Design mode replaces the persona entirely; every other session keeps the tutor persona,
         // now including the whole-document context added upstream.
         instructions: designMode
-          ? buildLessonDesignInstructions({ topic, sourceKind, mood, blindMode, studentName: studentName || undefined })
+          ? buildLessonDesignInstructions({ topic, sourceKind, mood, blindMode, studentName: studentName || undefined, documentContext })
           : buildGeminiLiveInstructions({ topic, beatContext, lessonContext, documentContext, mood, adhdMode, checkinMode, examQuestions }),
       },
       { headers: { "Cache-Control": "no-store" } },

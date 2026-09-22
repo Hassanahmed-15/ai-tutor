@@ -3,7 +3,8 @@ export const SHOW_BOARD_TOOL = {
   description:
     "MANDATORY for every student request to draw, sketch, diagram, visualize, graph, plot, map, " +
     "chart, or show something on the board. A spoken explanation never satisfies a drawing request. " +
-    "Extend the classroom board with the smallest useful visual and wait for its result before requesting lecture resume.",
+    "Extend the classroom board with the smallest useful visual and wait for its result before requesting lecture resume. " +
+    "When the student asks how specific code works or asks to see code, use visual_mode code_walkthrough and name the exact function in concept.",
   parametersJsonSchema: {
     type: "object",
     properties: {
@@ -13,7 +14,7 @@ export const SHOW_BOARD_TOOL = {
       },
       visual_mode: {
         type: "string",
-        enum: ["annotated_board", "scientific_diagram", "worked_example", "real_reference_image"],
+        enum: ["annotated_board", "scientific_diagram", "worked_example", "real_reference_image", "code_walkthrough"],
       },
       reuse_context: {
         type: "boolean",

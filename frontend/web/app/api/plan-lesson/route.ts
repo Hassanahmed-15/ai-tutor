@@ -29,6 +29,29 @@ import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
 import { sourceScopeInstruction, type SourceScope } from "@/lib/sourceScope";
+import { getDocumentImages } from "@/lib/pageImageStore";
+import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
+
+/**
+ * At most this many uploaded pages ride along with a planning call. Planning needs to know what is
+ * on the pages, not every page of a long paper; generation still sees its own pages in full.
+ */
+const PLANNING_PAGE_IMAGES = 8;
+
+/**
+ * The planner's user message, with the uploaded pages attached when there are any.
+ *
+ * Every planning call was text-only, so a scanned PDF — no text layer at all — was planned from the
+ * two figure captions its diagrams produced, and the student was asked "this source covers Figure
+ * 19.2…, what should the lesson cover?" about a chapter on deletion. The pages are the document.
+ */
+function withPages(text: string, pages: ContentPart[]): string | ContentPart[] {
+  if (pages.length === 0) return text;
+  return [
+    { type: "text", text: `${text}\n\nThe uploaded pages are attached as images. They are the document: plan from what they actually show (text, code, figures), even where the extracted summary above is thin or empty.` },
+    ...pages,
+  ];
+}
 
 /**
  * Compact, planning-sized summary of an uploaded source document (PDF/PPTX) — just enough for
@@ -487,7 +510,7 @@ function angleInstructionLine(angleId: string | undefined): string {
 function streamOutline(
   client: OpenAI,
   systemPrompt: string,
-  userContent: string,
+  userContent: string | ContentPart[],
   fallbackTopic: string,
   focused = false,
 ): Response {
@@ -500,7 +523,7 @@ function streamOutline(
           model: MODEL,
           messages: [
             { role: "system", content: systemPrompt },
-            { role: "user", content: userContent },
+            { role: "user", content: userContent as OpenAI.Chat.Completions.ChatCompletionContentPart[] | string },
           ],
           temperature: 0.6,
           max_tokens: OUTLINE_MAX_TOKENS,
@@ -573,8 +596,8 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "clarify" && mode !== "diagnose" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
-    return NextResponse.json({ error: "mode must be clarify, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
+  if (mode !== "subject" && mode !== "clarify" && mode !== "diagnose" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
+    return NextResponse.json({ error: "mode must be subject, clarify, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -583,6 +606,63 @@ export async function POST(req: Request) {
   // Suprnotes JSON/task-folder uploads, which carry their own lessonPlan and skip planning
   // entirely) — grounds the outline in what the document actually says instead of just its title.
   const sourceDocument = isSuprnotesLessonInput(body.sourceDocument) ? (body.sourceDocument as SuprnotesLessonInput) : null;
+  const stored = sourceDocument && typeof body.documentId === "string" ? getDocumentImages(body.documentId) : null;
+  const pageImages: ContentPart[] = stored ? buildImageParts(stored.pages.slice(0, PLANNING_PAGE_IMAGES), stored.regions, stored.unit) : [];
+  /*
+   * WHAT IS THIS LESSON ABOUT — as a subject, not as the sentence the student typed.
+   *
+   * The raw prompt was the lesson's topic everywhere, so it surfaced verbatim: beat titles read
+   * "Mw This Particular Eg" (a typo for "me", pointing at the PDF), and Aria asked "what do you think
+   * explain me cryptography is?". This names the subject once — typos fixed, request phrasing
+   * dropped, and read off the document when the prompt only points at it — and everything
+   * downstream uses that. The student's own words still travel separately as their request.
+   *
+   * gpt-4o-mini, ~30 output tokens, first two pages at LOW detail: a fraction of a cent.
+   */
+  if (mode === "subject") {
+    const text = typeof body.text === "string" ? body.text.trim().slice(0, 500) : "";
+    if (!text) return NextResponse.json({ error: "text is required" }, { status: 400 });
+    const docTitle = typeof body.documentTitle === "string" ? body.documentTitle.trim().slice(0, 200) : "";
+    const images = sourceDocument && typeof body.documentId === "string" ? getDocumentImages(body.documentId) : null;
+    const lowDetailPages: ContentPart[] = (images?.pages ?? []).slice(0, 2).map((page) => ({
+      type: "image_url",
+      image_url: { url: page.dataUrl, detail: "low" },
+    }));
+    const prompt = [
+      `The student typed: "${text}"`,
+      docTitle ? `Their uploaded document is titled: "${docTitle}"` : "",
+      sourceDocument ? `The document's sections:\n${summarizeSourceDocumentForPlanning(sourceDocument).slice(0, 1500)}` : "",
+      lowDetailPages.length ? "Its first pages are attached." : "",
+    ].filter(Boolean).join("\n\n");
+    try {
+      const completion = await client.chat.completions.create({
+        model: MODEL,
+        temperature: 0,
+        max_tokens: 40,
+        response_format: { type: "json_object" },
+        messages: [
+          {
+            role: "system",
+            content:
+              'Name the SUBJECT this student wants to learn, as a short lesson title of 2-6 words in Title Case. Return JSON only: {"subject": string}. ' +
+              "Fix spelling mistakes and typos. Drop request phrasing entirely: \"explain me\", \"teach me\", \"I want to know\", \"in the pdf\", \"this particular example\", \"step by step\", \"for my exam\". " +
+              "Keep the real subject words and any specific named thing (\"BST Deletion\", \"RSA Encryption\"); a language they name may stay (\"Deletion in C++\"). " +
+              "If the text only points at the document (\"explain this\", \"this particular eg\"), name what the document itself is about. Never invent a subject that is in neither.",
+          },
+          {
+            role: "user",
+            content: (lowDetailPages.length ? [{ type: "text", text: prompt }, ...lowDetailPages] : prompt) as OpenAI.Chat.Completions.ChatCompletionContentPart[] | string,
+          },
+        ],
+      });
+      const parsed = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
+      const subject = typeof parsed.subject === "string" ? parsed.subject.replace(/\s+/g, " ").trim().slice(0, 80) : "";
+      return NextResponse.json({ subject, costUsd: costUsd(completion.usage) });
+    } catch (err) {
+      return NextResponse.json({ error: err instanceof Error ? err.message : "Could not name the subject" }, { status: 502 });
+    }
+  }
+
   const sourceDocLine = sourceDocument
     ? `\n\nThe student uploaded a source document. Its actual content (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${summarizeSourceDocumentForPlanning(sourceDocument)}`
     : "";
@@ -594,7 +674,7 @@ export async function POST(req: Request) {
         model: MODEL,
         messages: [
           { role: "system", content: DOCUMENT_SCOPE_SYSTEM_PROMPT },
-          { role: "user", content: `Uploaded source topic: "${typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "Document lesson"}"${sourceDocLine}` },
+          { role: "user", content: withPages(`Uploaded source topic: "${typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "Document lesson"}"${sourceDocLine}`, pageImages) as OpenAI.Chat.Completions.ChatCompletionContentPart[] | string },
         ],
         temperature: 0.2,
         max_tokens: 850,
@@ -653,7 +733,7 @@ export async function POST(req: Request) {
           "Plan an answer to that exact question, using only this document.",
           "If the document genuinely does not address the question, plan the closest thing it DOES cover and make that the opening step, rather than inventing material.",
         ].join("\n");
-    return streamOutline(client, DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT, userContent, fallbackTopic, true);
+    return streamOutline(client, DOCUMENT_QUESTION_OUTLINE_SYSTEM_PROMPT, withPages(userContent, pageImages), fallbackTopic, true);
   }
 
   /**
@@ -796,8 +876,13 @@ export async function POST(req: Request) {
     const scope = sanitizeSourceScope(body.sourceScope);
     const scopeLine = scope ? sourceScopeInstruction(scope) : "";
 
-    const userContent = `Topic: "${topic}"${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}`;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, userContent, topic);
+    // The student's own words, when they say more than the topic — "in C++", "the code", "for my exam".
+    const requestText = typeof body.request === "string" ? body.request.trim().slice(0, 300) : "";
+    const requestLine = requestText && requestText.toLowerCase() !== topic.toLowerCase()
+      ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it. Honour what it asks for (e.g. a language, code, an exam focus), but title subtopics by the subject, never by this phrasing.`
+      : "";
+    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}`;
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic);
   }
 
   // mode === "revise"
@@ -816,5 +901,5 @@ export async function POST(req: Request) {
     ? `\n\nThis is a question-specific document outline. It must continue to answer ONLY this question and use ONLY these passages:\n${focusPromptSection(revisionFocus)}`
     : sourceDocLine;
   const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}${personaLine(body.learnerPersona)}`;
-  return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, userContent, currentOutline.topic, Boolean(revisionFocus));
+  return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, withPages(userContent, pageImages), currentOutline.topic, Boolean(revisionFocus));
 }

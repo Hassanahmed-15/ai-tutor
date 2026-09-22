@@ -303,6 +303,20 @@ type DrawOp =
       endAt: 1;
     }
   | {
+      /**
+       * A code listing walked through step by step, the highlight moving to the lines being
+       * discussed. `codeBrief` is the step-1 one-liner; lib/specBoardGen.ts fills `spec` with a
+       * CodeSpec (lib/codeSpec.ts) — quoted verbatim from the student's document when it has one.
+       */
+      kind: "codeBoard";
+      codeBrief?: string;
+      spec?: unknown;
+      status?: "ready" | "failed";
+      error?: string;
+      at: 0;
+      endAt: 1;
+    }
+  | {
       /** A model-authored chalk blackboard. `boardBrief` is the step-1 one-liner describing what
        *  the board must teach; `ops` is filled server-side by fillBlackboardOps with the real
        *  chalk ops (label/arrow/note/shape), each carrying an `at` fraction aligned to a spoken
@@ -825,6 +839,7 @@ function anchorOf(op: DrawOp, elapsed: number, startMs: number, windowMs: number
       return { x: 50, y: 50 };
     case "plotBoard":
     case "equationBoard":
+    case "codeBoard":
       // Rendered by PlotBoard / EquationBoard. They own their whole frame, so there is no pen
       // position to report — the centre keeps the marker off the edges if anything ever asks.
       return { x: 50, y: 50 };
@@ -1099,7 +1114,7 @@ function OpRenderer({
   // Same again for the two spec-driven boards: PlotBoard embeds a Vega-Lite chart and
   // EquationBoard typesets with KaTeX. Neither is expressible as pen strokes, which is the point
   // of having them — this board draws, those two compute.
-  if (op.kind === "plotBoard" || op.kind === "equationBoard") return null;
+  if (op.kind === "plotBoard" || op.kind === "equationBoard" || op.kind === "codeBoard") return null;
 
   const paperSurface = surface === "paper";
   const color = op.color ?? (paperSurface ? "#6b7280" : INK);

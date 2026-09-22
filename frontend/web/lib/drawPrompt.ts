@@ -178,6 +178,49 @@ RULES:
   positive root"). This is the part a picture of an equation always loses, so it is required.
 - Start from the governing rule, end at the result. No prose, no commentary, no units inside the TeX.`;
 
+/**
+ * The code board: a real listing plus the line ranges the narration walks through.
+ *
+ * QUOTE, DON'T WRITE. When the student's document contains the function, the board must show THAT
+ * function — the student is reading it in their PDF and a different, "cleaner" version is a second
+ * thing to reconcile. PDF extraction collapses whitespace, so the excerpt arrives as one line; the
+ * model restores the line structure and indentation but may not change a single token.
+ */
+export const CODE_BOARD_SYSTEM_PROMPT = `You lay out ONE code listing for a lecture board, walked through step by step as the tutor speaks. Output ONLY JSON — no markdown.
+
+{ "title": string,
+  "language": "cpp" | "c" | "java" | "python" | "javascript" | "typescript" | "csharp" | "go" | "sql" | "pseudocode",
+  "code": string,
+  "fromSource": boolean,
+  "steps": [ { "lines": [startLine, endLine], "note": string } ] }
+
+WHERE THE CODE COMES FROM — READ THIS FIRST:
+- If a "Source excerpt" is given and it contains code for what this beat teaches, COPY THAT CODE
+  VERBATIM and set "fromSource": true. Same identifiers, same operators, same order, same comments.
+  Do not rename, "improve", modernise, fix style, or add error handling.
+- The excerpt's line breaks were lost in extraction, so it may read as one long line. Restore the
+  original line structure: one statement per line, braces placed as the code implies, 4-space
+  indentation for each nested block. Reformatting whitespace is the ONLY change allowed.
+- Quote just the function or block this beat teaches, not the whole page.
+- Only when the excerpt has no relevant code (or there is no excerpt) write minimal, correct,
+  idiomatic code for exactly what the brief describes, and set "fromSource": false.
+- PAGES THAT EXPLAIN BUT SHOW NO LISTING. When the document (its text or attached page images)
+  describes an algorithm in prose and diagrams without code, write the code for EXACTLY the steps
+  it describes — the same cases, in the same order, with the same rule (e.g. "replace a node with
+  two children by the smallest item in its right subtree"). Set "fromSource": false. Tie each
+  step's note back to the document ("the two-children case, as in Figure 19.4").
+- LANGUAGE. Use the language the student's request names ("in C++" → cpp). If they named none,
+  use the document's own language, and C++ if it has none.
+
+RULES:
+- At most 40 lines. A real newline ("\\n" in JSON) between lines; never put line numbers in "code".
+- "language" is the language the code is actually written in (C++ with Node*& is "cpp").
+- 2-8 steps, in the order the script explains them. "lines" is 1-based and inclusive, and must lie
+  inside the listing. Steps may skip lines (a closing brace needs no step).
+- "note" is under 120 characters: what THOSE lines do and why, in plain words ("If d is smaller,
+  keep searching the left subtree"). Not a restatement of the syntax.
+- For branching code, give each case its own step (e.g. search → leaf → one child → two children).`;
+
 export const STRUCTURE_SCENE_SYSTEM_PROMPT = `You turn one teaching brief into a diagram spec, as JSON. Output ONLY the JSON object — no markdown, no commentary.
 
 { "kind": "cycle" | "flow" | "tree" | "state",
@@ -271,7 +314,7 @@ Plan the lecture around those two. They are different boards and must be differe
 
 BEAT SCHEMA (every field required unless marked optional):
 { "id": string, "title": string, "transitionIn"?: string, "teacherMove": string, "stepLabel": string,
-  "slideKind": "intro"|"definition"|"checkpoint"|"compare"|"recap",
+  "slideKind": "intro"|"definition"|"checkpoint"|"compare",
   "points": string[],
   "definitionTerm"?: string, "definitionMeaning"?: string,
   "checkpoint"?: { "prompt": string, "acceptableKeywords": string[][], "correctFeedback": string, "hintFeedback": string, "revealAnswer": string, "options": [string, string, string], "correctOption": 0|1|2 },
@@ -301,7 +344,7 @@ LECTURE DEPTH REQUIREMENTS:
 - This is NOT a demo outline. Teach each board slowly and in depth.
 - Total spoken narration is roughly 100-140 words per teaching beat — so the total scales with the lesson's length rather than being fixed.
 - Every non-checkpoint teaching beat must have 110-140 spoken words. Stay on that one board long enough to establish the claim, explain why it works, walk through one concrete example, contrast the common misconception, and connect forward.
-- Intro may be 75-95 words. Checkpoint scripts may be 25-45 words. Recap must be 110-135 words.
+- Intro may be 75-95 words. Checkpoint scripts may be 25-45 words. Never write a recap or summary beat — the lecture ends on its last concept.
 - Do not write one-line scripts. Do not summarize. Teach like a real tutor who is walking slowly through the idea.
 - Use short natural sentences, but many of them. The transcript should feel substantial.
 - More narration must NOT mean more board clutter. Revisit, point to, circle, or annotate the same few visual anchors while explaining them more deeply; never add an object or label for every spoken sentence.
@@ -329,7 +372,7 @@ TYPE A — BLACKBOARD (ONE "chalkBoard" op ONLY, NO image, NO scene, NO label/ar
   Use for: laws, relationships, formulas, "if X then Y" logical chains, definitions, worked reasoning.
   Emit exactly one op: { "kind":"chalkBoard", "boardBrief":string, "at":0, "endAt":1 }
   "boardBrief": one dense sentence naming exactly what this board must teach and the concrete facts/relationships/numbers it should write out (e.g. "derive that when price rises, quantity demanded falls, using a labeled demand curve sloping down and one worked point" — not "the law of demand"). This is handed to a separate call that writes the actual marker-written rows + a real diagram — be specific about the terms, the cause→effect chain, and what the diagram should show.
-  REQUIRED: every lecture MUST have 3-5 blackboard beats total. Do not place two blackboards back-to-back unless one is the final recap. Each board must teach NEW material — the recap board synthesizes the whole lecture.
+  REQUIRED: every lecture MUST have 3-5 blackboard beats total. Do not place two blackboards back-to-back. Each board must teach NEW material; there is no recap board.
 
 TYPE B — IMAGE+CALLOUTS (image+callout, NO scene, NO motion):
   Do not use this type for ordinary typed-topic lessons. It exists only for source material that carries an actual provided image. Prefer TYPE C whiteboard SVG diagrams for visual teaching.
@@ -387,7 +430,7 @@ DrawOp types (each has "at": 0-1 fraction when it appears):
 Color = "amber"|"green"|"blue"|"slate"|"rose"|"violet"
 Grid 0-100, keep content x:8-92, y:8-92.
 
-EXAMPLE BLACKBOARD BEAT (beats 1, 4, recap, etc. — just the placeholder; a separate call writes the real chalk):
+EXAMPLE BLACKBOARD BEAT (beats 1, 4, etc. — just the placeholder; a separate call writes the real chalk):
 { "caption":"Law of Demand","durationMs":48000,"ops":[
   {"kind":"chalkBoard","boardBrief":"Show that as price rises quantity demanded falls: write the rule, two worked rows (price down->more bought, price up->less bought), and a labeled downward-sloping demand curve with axes P and Q.","at":0,"endAt":1}
 ]}
@@ -430,11 +473,11 @@ SLIDE-GROUNDING RULES (read these first):
 - Use the slide text, chart data, and image descriptions to fuel scripts, blackboard rows, and image prompts — but choose board types freely (you are NOT one-slide-one-beat).
 - When a slide contains chart data with real numbers, put those numbers on the blackboard.
 - When a slide has an image description, write the image beat prompt to recreate that subject as a cleaner, more vivid photorealistic scene — same subject and moment, higher quality.
-- The closing recap must reference the actual slide topics in order, not generic bullets.
+- Do not end with a recap or summary beat; the final beat teaches the last concept.
 
 BEAT SCHEMA (every field required unless marked optional):
 { "id": string, "title": string, "transitionIn"?: string, "teacherMove": string, "stepLabel": string,
-  "slideKind": "intro"|"definition"|"checkpoint"|"compare"|"recap",
+  "slideKind": "intro"|"definition"|"checkpoint"|"compare",
   "points": string[],
   "definitionTerm"?: string, "definitionMeaning"?: string,
   "checkpoint"?: { "prompt": string, "acceptableKeywords": string[][], "correctFeedback": string, "hintFeedback": string, "revealAnswer": string, "options": [string, string, string], "correctOption": 0|1|2 },
@@ -464,7 +507,7 @@ LECTURE DEPTH REQUIREMENTS:
 - This is NOT a demo outline. Use as many beats as the selected slide content genuinely requires, with no hard maximum, and teach each board slowly and in depth.
 - Total spoken narration must scale with the actual beat count; do not compress later beats to fit a global word quota.
 - Every non-checkpoint teaching beat must have 110-140 spoken words. Stay on that one board long enough to establish the slide-supported claim, explain why it works, walk through one concrete example, contrast the common misconception, and connect forward.
-- Intro may be 75-95 words. Checkpoint scripts may be 25-45 words. Recap must be 110-135 words.
+- Intro may be 75-95 words. Checkpoint scripts may be 25-45 words. Never write a recap or summary beat — the lecture ends on its last concept.
 - Do not write one-line scripts. Teach like a real tutor walking slowly through the idea.
 - More narration must NOT mean more board clutter. Revisit, point to, circle, or annotate the same few visual anchors while explaining them more deeply; never add an object or label for every spoken sentence.
 
@@ -489,7 +532,7 @@ TYPE A — BLACKBOARD (ONE "chalkBoard" op ONLY, NO image, NO scene, NO raw labe
   Use for: laws, relationships, formulas, "if X then Y" logical chains, definitions, data-heavy slides.
   Emit exactly one op: { "kind":"chalkBoard", "boardBrief":string, "at":0, "endAt":1 }
   "boardBrief": one dense sentence naming exactly what this board must teach and the concrete facts/terms/numbers FROM THE SLIDES it should write out, plus what its diagram should show. A separate call writes the real marker-written rows + diagram — be specific and grounded in the slide content.
-  REQUIRED: every lecture MUST have 3-5 blackboard beats total. Each board teaches NEW material; the recap board synthesizes the slide topics in order.
+  REQUIRED: every lecture MUST have 3-5 blackboard beats total. Each board teaches NEW material; there is no recap board.
 
 TYPE B — IMAGE+CALLOUTS (image+callout, NO scene, NO motion):
   Use rarely. Use for beat 0 intro, or when an actual uploaded slide image should be recreated/used as visual evidence. Prefer TYPE C whiteboard SVG diagrams for most technical/teaching visuals.
@@ -520,7 +563,7 @@ HARD RULES:
 3. WHITEBOARD SVG BEATS: exactly one "reactAnimation" op. NO image, NO callout, NO scene, NO motion.
 4. DIAGRAM BEATS: exactly one "manimScene" op with a sceneBrief. NO other op. Use 1-3 per lecture where the slide content is a curve, a transformation, a measured construction, or a staged process something travels through — never as decoration. Use 0 only if the deck genuinely contains no such beat.
 5. Beat 0 = calm WHITEBOARD SVG overview with a complete title, 2-3 anchor notes, and one recognizable topic-specific sketch.
-6. MANDATORY STRUCTURE: produce a FULL lecture with no maximum beat count. Scale the mix of whiteboard SVG, relationship/note, diagram, and checkpoint beats to the amount of selected material. Do not create AI-generated images from slide descriptions; teach their information through whiteboard SVGs. Final teaching beat=closing paper recap.
+6. MANDATORY STRUCTURE: produce a FULL lecture with no maximum beat count. Scale the mix of whiteboard SVG, relationship/note, diagram, and checkpoint beats to the amount of selected material. Do not create AI-generated images from slide descriptions; teach their information through whiteboard SVGs. No recap beat: the final beat teaches the last concept.
 7. Include 1-2 checkpoint beats.
 8. durationMs 42000-56000 on teaching beats. The player stays synchronized to the real narration; this gives marker actions room to unfold across the deeper explanation.
 9. DIAGRAM QUOTA — CHECK THIS BEFORE YOU OUTPUT: count your "manimScene" ops. Unless the topic is purely definitional or historical, that count must be at least 1. If it is 0, find the beat whose teaching point is a curve, a transformation, or a staged process something travels through — mechanism, lifecycle, protocol, pipeline, algorithm and scheduling topics always have one — and make it a TYPE D beat instead of TYPE C. A still snapshot cannot show movement that IS the teaching point.
@@ -948,7 +991,11 @@ Return JSON only:
   }
 }
 
-The teachingPoint must be specific to the student's exact question and current lesson context. Describe a scientifically or technically credible diagram, not generic circles, bubbles, cards, or a reusable flowchart. Specify which real parts should be drawn, their relationships and relative positions, which labels belong outside the subject, and what should be traced or annotated as each sentence is spoken. Never invent facts. Do not provide SVG code yourself; the dedicated premium illustration model creates it from this brief.`;
+The teachingPoint must be specific to the student's exact question and current lesson context. Describe a scientifically or technically credible diagram, not generic circles, bubbles, cards, or a reusable flowchart. Specify which real parts should be drawn, their relationships and relative positions, which labels belong outside the subject, and what should be traced or annotated as each sentence is spoken. Never invent facts. Do not provide SVG code yourself; the dedicated premium illustration model creates it from this brief.
+
+CODE QUESTIONS. When the student asks how specific code works (a named function or method, "this code", an implementation, "show me the code"), or asks for code, the board is the code itself, not a picture. Use this op instead of reactAnimation:
+  { "kind": "codeBoard", "codeBrief": "...", "at": 0, "endAt": 1 }
+"codeBrief" names the exact function or block (e.g. "remove(int d, Node*& p) from the student's BST notes"), says whether it appears in the student's document, and lists the parts to walk through in order (e.g. search left/right, leaf case, one child, two children via inorder successor). The listing is quoted verbatim from the document when it is there. The script then walks through that code in the same order in plain spoken sentences, without reading symbols aloud.`;
 
 /**
  * TEXT-ONLY variant of the explain prompt, used by the live tutor's show_board in ADHD mode. The

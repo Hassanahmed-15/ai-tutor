@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { EXPLAIN_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation } from "@/lib/drawSanitize";
+import { fillSpecBoardOps } from "@/lib/specBoardGen";
 
 /**
  * "Ask about my drawing" — the student sketches on the board (components/sketch/DrawOverlay.tsx)
@@ -108,6 +109,13 @@ export async function POST(req: Request) {
 
     const raw = completion.choices[0]?.message?.content ?? "";
     const result = sanitizeExplanation(JSON.parse(raw), { question });
+    // The shared explain prompt can answer a question about code with a code board, which, unlike
+    // the other ops here, is only a brief until it is filled.
+    if (result.draw?.ops.some((op) => op.kind === "codeBoard")) {
+      const beat = { id: `ask-drawing-${Date.now()}`, title: topic || question, teacherMove: "", stepLabel: "", slideKind: "definition" as const, points: [], script: result.script, draw: result.draw };
+      await fillSpecBoardOps(client, [beat]);
+      result.draw = { ...result.draw, ops: result.draw.ops.filter((op) => op.kind !== "codeBoard" || Boolean(op.spec)) };
+    }
     return NextResponse.json(result);
   } catch (err) {
     console.error(`[ask-drawing] failed: ${err instanceof Error ? err.message : "error"}`);
