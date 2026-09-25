@@ -39,7 +39,11 @@ import { classifyAddressing, type AddressingVerdict } from "./addressing";
 import { analyzeVoiceFrame, type VoiceFrameFeatures } from "./features";
 import { NoSpeakerVerifier, type SpeakerVerdict, type SpeakerVerifier } from "./speakerProfile";
 
-export type GateProfile = "lecture" | "conversation";
+/**
+ * How much evidence a turn needs. See lib/voice/sharedVoiceGate.ts for the full rationale;
+ * "dedicated" is a session the student opened on purpose, where anything they say is for the tutor.
+ */
+export type GateProfile = "lecture" | "conversation" | "dedicated";
 
 export interface VoiceGateConfig {
   /** Frame length the hook delivers. Everything below is in ms and independent of it. */
@@ -286,6 +290,17 @@ export class VoiceGate {
       wakeNames: this.wakeNames,
     });
     /*
+     * A DEDICATED SESSION HAS NOBODY ELSE TO BE TALKING TO. The student pressed a button that says
+     * "listening" and is speaking at it; demanding a question form or the tutor's name filtered out
+     * "hello", "hey" and "explain linear regression" — 0.15 against a 0.50 bar — so the session
+     * looked live and never answered. The words test is skipped unless it positively identifies
+     * someone else's conversation (a hail to a named person, or domestic side-talk), which is the
+     * only thing it can usefully tell us here.
+     */
+    if (this.profile === "dedicated" && !verdict.addressed && verdict.score > 0) {
+      verdict = { addressed: true, score: Math.max(verdict.score, 0.6), reason: `${verdict.reason} (dedicated voice session)` };
+    }
+    /*
      * The words and the voice must agree when the words are only WEAKLY for us. "It's in the
      * kitchen drawer" while Aria waits for an answer is addressed on the words alone — an answer
      * is expected and this is a sentence — but if the voice is plainly not the student's, it is
@@ -487,7 +502,7 @@ export class VoiceGate {
      * mode with the tutor speaking there is nothing to answer — the tutor was never stopped — so
      * the turn is discarded rather than handed to the model to reply over the narration.
      */
-    if (!this.tutorSpeaking && this.profile === "conversation") {
+    if (!this.tutorSpeaking && (this.profile === "conversation" || this.profile === "dedicated")) {
       this.enrolEpisode();
       this.callbacks.onTurnEnd?.();
       this.decide(now, "turn-end", "no transcript verdict; tutor silent, letting the model answer");

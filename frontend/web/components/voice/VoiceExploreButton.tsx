@@ -39,8 +39,14 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
     getBeatContext: () =>
       "There is no lecture running. This is an open conversation: the student wants to talk, ask questions and explore what you can do. Answer naturally and briefly, and ask what they would like to learn.",
     onBoardRequest: () => undefined,
-    // An open chat, not a narration: a plain question should reach her without her name.
-    gateProfile: "conversation",
+    /*
+     * A session the student opened on purpose. "conversation" still required a question form or
+     * her name, so "hello", "hey" and "explain linear regression" were filtered out and the panel
+     * sat on "Listening" forever. Here anything the student says is for her; noise and other
+     * people are still rejected by the acoustic and speaker layers, and a hail to someone else or
+     * household side-talk is still rejected by the words.
+     */
+    gateProfile: "dedicated",
     voiceSurface: "shared",
     alwaysOn: true,
     onTranscript: (role, text, final) => {

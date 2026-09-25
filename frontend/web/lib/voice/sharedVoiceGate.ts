@@ -3,7 +3,21 @@ import { TurnPipeline } from "./runtime/pipeline";
 import { EventLog, type LabEvent } from "./runtime/events";
 import type { SpeakerVerifier } from "./runtime/speakerProfile";
 
-export type GateProfile = "lecture" | "conversation";
+/**
+ * How much evidence a turn needs before it reaches the model.
+ *
+ *   lecture       the tutor is narrating; interrupting is expensive, so a turn needs positive
+ *                 evidence (her name, a command, a question about the board).
+ *   conversation  the tutor is idle but the surface has other purposes; a question or an answer
+ *                 to a pending question counts.
+ *   dedicated     the student opened a voice session on purpose and is looking at a microphone
+ *                 that says it is listening. There is nothing to interrupt and no other reason
+ *                 for them to be talking at it, so anything they say is for the tutor — "hello"
+ *                 included. The acoustic and speaker layers still reject noise and other people;
+ *                 only the WORDS test is relaxed, because in this surface it has nothing to
+ *                 discriminate between.
+ */
+export type GateProfile = "lecture" | "conversation" | "dedicated";
 export type GateStage = "idle" | "candidate" | "listening" | "committed" | "refractory";
 export interface GateDecision { stage: GateStage; reason: string; detail: string; at: number; }
 export interface SharedGateDiagnostics {

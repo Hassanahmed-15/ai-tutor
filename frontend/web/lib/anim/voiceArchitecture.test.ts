@@ -144,3 +144,24 @@ test("race matrix: duplicate interruption, reconnect mid-speech/playback and lat
   machine.dispatch({ type: "RECONNECTED", at: 11 });
   assert.equal(machine.value.state, "LISTENING");
 });
+
+test("DEDICATED SESSION: a plain greeting reaches the tutor, a hail to someone else does not", () => {
+  /*
+   * The reported failure: the button said "Listening — just talk", and saying hello did nothing.
+   * With the conversation profile "hello" scores 0.15 against a 0.50 bar, so the turn was never
+   * opened. A session the student deliberately started has nobody else to be addressing.
+   */
+  const ctx = { expectingAnswer: false, tutorSpeaking: false };
+  const dedicated = (text: string) => {
+    let verdict = classifyAddressing(text, ctx);
+    if (!verdict.addressed && verdict.score > 0) verdict = { ...verdict, addressed: true };
+    return verdict.addressed;
+  };
+  for (const said of ["hello", "hi can you hear me", "hey", "explain linear regression", "what is overfitting"]) {
+    assert.equal(dedicated(said), true, `"${said}" must reach the tutor in a dedicated session`);
+  }
+  // The words layer still has one job here: reject what is plainly someone else's conversation.
+  for (const said of ["hey Sam I will call you back", "did you remember to send that email", "dinner is ready"]) {
+    assert.equal(dedicated(said), false, `"${said}" is not for the tutor`);
+  }
+});

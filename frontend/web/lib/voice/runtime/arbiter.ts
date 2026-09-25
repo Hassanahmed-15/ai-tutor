@@ -31,7 +31,8 @@ import type { EndpointEvent } from "./endpointer";
 import { NoSpeakerVerifier, type SpeakerVerdict, type SpeakerVerifier } from "./speakerProfile";
 import type { DetectorVerdict } from "./speechDetector";
 
-export type ArbiterProfile = "lecture" | "conversation";
+/** Mirrors GateProfile in ../sharedVoiceGate.ts — see there for what each costs. */
+export type ArbiterProfile = "lecture" | "conversation" | "dedicated";
 export type TurnState = "idle" | "attending" | "listening" | "committed" | "processing" | "refractory";
 
 export interface ArbiterConfig {
@@ -211,7 +212,7 @@ export class TurnArbiter {
         this.callbacks.onRestore?.("voice is not the student's");
       }
       if (this.negativeFinal) return;
-      const replying = this.tutor.speakingAs === "reply" || (this.tutor.speakingAs === undefined && this.profile === "conversation");
+      const replying = this.tutor.speakingAs === "reply" || (this.tutor.speakingAs === undefined && this.profile !== "lecture");
       const verifiedNeed = replying ? this.config.verifiedBargeMsReply : this.config.verifiedBargeMsLecture;
       if (who === "student" && this.episodeSpeechMs >= verifiedNeed) {
         this.commit(now, `verified student voice for ${this.episodeSpeechMs} ms${this.lastVerdict ? "" : " with no transcript yet"}`);
