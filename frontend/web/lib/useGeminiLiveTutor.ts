@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 // RELATIVE, not "@/lib/adhd/mouth". This module is pulled into the CJS test build, where the "@/"
 // alias has no runtime resolver — the existing "@/components/..." line above survives only because
@@ -16,8 +16,12 @@ import {
   SHOW_BOARD_TOOL,
 } from "./geminiLiveContract";
 import { topicWordsFrom } from "./voice/addressing";
-import { HeuristicVoiceprint, NoSpeakerVerifier } from "./voice/speakerProfile";
-import { DEFAULT_VOICE_GATE_CONFIG, VoiceGate, type GateDecision, type GateProfile } from "./voice/voiceGate";
+import { HeuristicVoiceprint, NoSpeakerVerifier } from "./voice/runtime/speakerProfile";
+import { SharedVoiceGate as VoiceGate, type GateDecision, type GateProfile, type SharedGateDiagnostics } from "./voice/sharedVoiceGate";
+import { SileroVad } from "./voice/sileroVad";
+import { VoiceSessionMachine, type VoiceSessionSnapshot, type VoiceSurface } from "./voice/sessionMachine";
+import { PlaybackGenerationController, type PlaybackToken } from "./voice/playbackGeneration";
+import { profileForSurface } from "./voice/surfacePolicy";
 import {
   browserSemanticPrefilterAvailable,
   createBrowserLocalTranscriber,
@@ -249,6 +253,10 @@ export type UseGeminiLiveTutorOptions = {
   systemInstruction?: string;
   /** Overrides the prebuilt voice name. */
   voiceName?: string;
+  /** Identifies the UI surface in diagnostics; turn-taking remains identical on every surface. */
+  voiceSurface?: VoiceSurface;
+  /** Enables the richer internal diagnostics panel without changing voice policy. */
+  debugVoice?: boolean;
 };
 
 /**
@@ -358,7 +366,7 @@ const OUTPUT_SAMPLE_RATE = 24_000;
  * Must match `DEFAULT_GATE_CONFIG.duckGain` — the gate reports the figure through `onDuck`, but a
  * reply that starts mid-episode has to build its bus at the same level before any callback runs.
  */
-const DUCKED_GAIN = DEFAULT_VOICE_GATE_CONFIG.duckGain;
+const DUCKED_GAIN = 0.25;
 
 
 
@@ -393,10 +401,8 @@ const SETTLE_MS = 500;
  * single planning session show twenty separate token mints, which is this failure happening over
  * and over and being papered over by the student pressing the button again.
  *
- * ONLY FOR `alwaysOn` SESSIONS. Those are the ones whose whole purpose is to stay up across a long
- * wait (lesson design, planning, voice-first). A session that ends because the student stopped it,
- * went idle, or hit its cap SHOULD stay ended — reconnecting there would resurrect a conversation
- * nobody asked for, and bill for it.
+ * Every active voice surface recovers. Deliberate stop, idle timeout, and session-cap teardowns set
+ * `endedRef` before the socket closes, so their close callbacks cannot schedule a resurrection.
  *
  * BACKOFF, AND A CEILING. A server refusing connections (bad key, revoked project, quota) must not
  * be hammered: each attempt waits longer, and after MAX_RECONNECTS the session stays down with the
@@ -474,6 +480,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const [muted, setMuted] = useState(false);
   const [micAvailable, setMicAvailable] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const reactSessionId = useId();
+  const machineRef = useRef<VoiceSessionMachine | null>(null);
+  if (!machineRef.current) machineRef.current = new VoiceSessionMachine(options.voiceSurface ?? "shared", `voice-${reactSessionId}`);
+  const [voiceSession, setVoiceSession] = useState<VoiceSessionSnapshot>(() => machineRef.current!.value);
+  const playbackControllerRef = useRef<PlaybackGenerationController | null>(null);
+  if (!playbackControllerRef.current) playbackControllerRef.current = new PlaybackGenerationController(machineRef.current.value.sessionId);
+  const playbackTokenRef = useRef<PlaybackToken | null>(null);
+  const sileroRef = useRef<SileroVad | null>(null);
+  const vadQueueRef = useRef<Promise<void>>(Promise.resolve());
+  const micWatchdogRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const optionsRef = useRef(options);
   const sessionRef = useRef<GeminiSession | null>(null);
@@ -539,6 +555,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const verifierRef = useRef<HeuristicVoiceprint | null>(null);
   /** Every gate decision, kept so a wrong call in a real room can be explained afterwards. */
   const gateLogRef = useRef<GateDecision[]>([]);
+  const gateEventsRef = useRef<SharedGateDiagnostics["events"]>([]);
   /**
    * Whether the tutor's voice is currently ducked rather than stopped.
    *
@@ -584,17 +601,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     optionsRef.current = options;
   }, [options]);
 
-  const clearTimers = useCallback(() => {
+  useEffect(() => machineRef.current!.subscribe((snapshot) => setVoiceSession(snapshot)), []);
+
+  const clearTimers = useCallback((preserveReconnect = false) => {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     if (maxTimerRef.current) clearTimeout(maxTimerRef.current);
     if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
     // A pending reconnect is a timer like any other: an explicit stop must cancel it, or the
     // session the student just ended dials itself back a second later.
-    if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+    if (!preserveReconnect && reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
+    if (micWatchdogRef.current) clearInterval(micWatchdogRef.current);
     idleTimerRef.current = null;
     maxTimerRef.current = null;
     settleTimerRef.current = null;
-    reconnectTimerRef.current = null;
+    if (!preserveReconnect) reconnectTimerRef.current = null;
+    micWatchdogRef.current = null;
   }, []);
 
   /**
@@ -607,11 +628,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * Bring a dropped session back, or give up honestly.
    *
    * Returns true when a retry was scheduled, so the caller knows whether to report an error to the
-   * student or to say it is reconnecting. Only `alwaysOn` sessions recover — see the constants
-   * above for why a stopped, idle or capped session must stay stopped.
+   * student or to say it is reconnecting. Deliberate endings cannot enter this callback because
+   * teardown marks them ended before closing the transport.
    */
   const scheduleReconnect = useCallback((closeCode?: number): boolean => {
-    if (!optionsRef.current.alwaysOn) return false;
     if (closeCode !== undefined && FATAL_CLOSE_CODES.has(closeCode)) return false;
     if (reconnectCountRef.current >= MAX_RECONNECTS) return false;
 
@@ -619,6 +639,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     reconnectCountRef.current += 1;
     setReconnecting(true);
     setStatus("connecting");
+    machineRef.current?.dispatch({ type: "DISCONNECTED", at: performance.now(), reason: `socket closed${closeCode ? ` (${closeCode})` : ""}` });
 
     if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);
     reconnectTimerRef.current = setTimeout(() => {
@@ -700,6 +721,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, []);
 
   const stopPlayback = useCallback(() => {
+    playbackControllerRef.current?.invalidate();
+    playbackTokenRef.current = null;
     const context = audioContextRef.current;
     const bus = mouthBusRef.current;
     /*
@@ -833,7 +856,15 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         void context.resume().catch(() => setStatus("blocked"));
       }
 
+      let playbackToken = playbackTokenRef.current;
+      if (!playbackToken) {
+        playbackToken = playbackControllerRef.current!.begin(`gemini-${performance.now().toFixed(3)}`);
+        playbackTokenRef.current = playbackToken;
+        gateRef.current?.responseStarted?.(performance.now());
+        machineRef.current?.dispatch({ type: "TUTOR_AUDIO_START", at: performance.now(), generation: playbackToken.generation });
+      }
       const samples = base64ToFloat32(base64);
+      playbackControllerRef.current!.noteAccepted(playbackToken, samples.length);
       const buffer = context.createBuffer(1, samples.length, OUTPUT_SAMPLE_RATE);
       buffer.copyToChannel(samples, 0);
       // Build the mouth bus once per context, then route every chunk through it.
@@ -867,6 +898,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       source.connect(chunkGain);
       source.onended = () => {
         playingSourcesRef.current.delete(source);
+        const currentGeneration = playbackControllerRef.current?.accept(playbackToken) === true;
+        if (currentGeneration) playbackControllerRef.current?.notePlayed(playbackToken, samples.length);
         // Each chunk owns a gain node; leaving them attached would grow the graph for the whole
         // reply and keep every one of them summing into the bus.
         try {
@@ -874,12 +907,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         } catch {
           // Already detached by a teardown that ran first.
         }
-        if (playingSourcesRef.current.size === 0 && !responseInFlightRef.current) {
+        if (currentGeneration && playingSourcesRef.current.size === 0 && !responseInFlightRef.current) {
           setSpeaking(false);
           // The reply is over — close the mouth rather than leaving it parked on the last chunk.
           detachMouthAnalyser(mouthTokenRef.current);
           mouthTokenRef.current = undefined;
           mouthBusRef.current = null;
+          playbackTokenRef.current = null;
+          machineRef.current?.dispatch({ type: "TUTOR_AUDIO_END", at: performance.now(), generation: playbackToken.generation });
           scheduleSettle();
         }
       };
@@ -905,7 +940,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
        * the gate sat in permanent self-echo cooldown and a genuine barge-in was impossible.
        */
     },
-    [scheduleSettle],
+    [isHeldReply, scheduleSettle],
   );
 
   const beginStudentSpeech = useCallback(() => {
@@ -953,7 +988,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     (reason: SessionEndReason) => {
       if (endedRef.current) return;
       endedRef.current = true;
-      clearTimers();
+      const recovering = reason === "error" && machineRef.current?.value.state === "RECONNECTING" && reconnectTimerRef.current !== null;
+      clearTimers(recovering);
       toolAbortControllersRef.current.forEach((controller) => controller.abort());
       toolAbortControllersRef.current.clear();
       micProcessorRef.current?.disconnect();
@@ -995,8 +1031,15 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       setSpeaking(false);
       setMuted(false);
       setMicAvailable(true);
-      setStatus(reason === "error" ? "error" : "idle");
-      optionsRef.current.onSessionEnded?.(reason);
+      setStatus(recovering ? "connecting" : reason === "error" ? "error" : "idle");
+      if (reason === "error") {
+        if (machineRef.current?.value.state !== "RECONNECTING") {
+          machineRef.current?.dispatch({ type: "FAIL", at: performance.now(), reason: "voice session failed" });
+        }
+      } else {
+        machineRef.current?.dispatch({ type: "STOP", at: performance.now(), reason });
+      }
+      if (!recovering) optionsRef.current.onSessionEnded?.(reason);
     },
     [clearTimers, flushStudentTranscript, flushTutorTranscript, stopPlayback],
   );
@@ -1021,10 +1064,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     const name = call.name ?? "";
     const id = call.id ?? `${name}-${Date.now()}`;
     if (name === "pause_lecture") {
+      machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "Gemini pause_lecture tool" });
       optionsRef.current.onPauseLecture?.();
       return { id, name, response: { output: "The lecture is paused. Wait for the student." } };
     }
     if (name === "resume_lecture") {
+      machineRef.current?.dispatch({ type: "RESUME", at: performance.now(), reason: "Gemini resume_lecture tool" });
       pendingLectureResumeRef.current = true;
       return {
         id,
@@ -1187,6 +1232,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         turnCompletedRef.current = true;
         boardChainPendingRef.current = false;
         stopPlayback();
+        machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "unexpected Gemini interruption event" });
       }
 
       /*
@@ -1204,12 +1250,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         // Interim text reaches the gate for POSITIVE verdicts only — her name arriving mid-sentence
         // should stop her at once. Negative verdicts wait for the utterance to end.
         gateRef.current?.provideTranscript(appendTranscript(studentTranscriptRef.current, interimInput), false, performance.now());
+        machineRef.current?.dispatch({ type: "TRANSCRIPT", at: performance.now(), text: appendTranscript(studentTranscriptRef.current, interimInput) });
         resetIdleTimer();
       }
       const inputText = content?.inputTranscription?.text;
       if (inputText) {
         studentTranscriptRef.current = appendTranscript(studentTranscriptRef.current, inputText);
         optionsRef.current.onTranscript?.("student", inputText, false);
+        machineRef.current?.dispatch({ type: "TRANSCRIPT", at: performance.now(), text: studentTranscriptRef.current });
         /*
          * Stage 3. This is the only place that can distinguish "someone is speaking" from "the
          * student is speaking TO US", and it is why the gate ducks instead of stopping: a transcript
@@ -1285,7 +1333,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         }
       }
     },
-    [handleToolCalls, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
+    [handleToolCalls, isHeldReply, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
   );
 
   /**
@@ -1351,7 +1399,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
     };
     const gate = new VoiceGate({
-      profile: optionsRef.current.gateProfile ?? "lecture",
+      profile: optionsRef.current.gateProfile ?? profileForSurface(optionsRef.current.voiceSurface ?? "shared"),
       verifier,
       semanticPrefilter: browserSemanticPrefilterAvailable(),
       callbacks: {
@@ -1373,16 +1421,27 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
            * suppression last exactly one turn whatever the server does.
            */
           contextOnlyTurnRef.current = false;
+          const tutorAudible = playingSourcesRef.current.size > 0 || Boolean(optionsRef.current.getTutorSpeaking?.());
+          if (!tutorAudible) machineRef.current?.dispatch({ type: "USER_TURN_OPEN", at: performance.now(), reason: "voice gate accepted turn" });
           openActivity();
           for (const pcm of preroll) sendFrame(pcm);
         },
         onFrame: sendFrame,
-        onDuck: (gain) => duckTutorVolume(gain),
-        onRestore: () => restoreTutorVolume(),
+        onDuck: (gain) => {
+          machineRef.current?.dispatch({ type: "SPEECH_CANDIDATE", at: performance.now(), confidence: gate.getDiagnostics().speechConfidence, vadProbability: gate.getDiagnostics().vadProbability, reason: "sustained candidate speech" });
+          duckTutorVolume(gain);
+        },
+        onRestore: () => {
+          machineRef.current?.dispatch({ type: "INTERRUPTION_REJECTED", at: performance.now(), reason: "candidate was not a directed interruption" });
+          restoreTutorVolume();
+          machineRef.current?.dispatch({ type: "RESTORE_TUTOR", at: performance.now(), reason: "false interruption restored" });
+        },
         // The student is talking to her. Only now does anything STOP.
-        onBargeIn: () => {
+        onBargeIn: (reason) => {
+          machineRef.current?.dispatch({ type: "INTERRUPTION_CONFIRMED", at: performance.now(), confidence: 1, reason });
           restoreTutorVolume();
           beginStudentSpeech();
+          machineRef.current?.dispatch({ type: "USER_TURN_OPEN", at: performance.now(), reason: "confirmed barge-in" });
         },
         onTurnEnd: () => {
           gate.setExpectingAnswer(false);
@@ -1402,6 +1461,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           // mute to clear and just closes.
           if (studentSpeakingRef.current) endStudentSpeechRef.current();
           else closeActivityRef.current();
+          machineRef.current?.dispatch({ type: "USER_TURN_END", at: performance.now(), reason: "adaptive endpoint" });
         },
         /*
          * NOT FOR US. Closing the bracket makes the model answer whatever it heard — the
@@ -1414,6 +1474,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           // real one. Dropped rather than flushed — nobody should see the neighbour's sentence.
           studentTranscriptRef.current = "";
           closeActivityRef.current();
+          machineRef.current?.dispatch({ type: "INTERRUPTION_REJECTED", at: performance.now(), reason: "not addressed to Arya" });
+          machineRef.current?.dispatch({ type: "RESTORE_TUTOR", at: performance.now(), reason: "discarded background turn" });
         },
         onDecision: (decision) => {
           // Roughly the last minute at fifty frames a second — what someone reporting "it stopped
@@ -1422,6 +1484,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           log.push(decision);
           if (log.length > 3000) log.splice(0, log.length - 3000);
           optionsRef.current.onInterruptionDecision?.(decision);
+        },
+        onEvent: (event) => {
+          const events = gateEventsRef.current;
+          events.push(event);
+          if (events.length > 500) events.splice(0, events.length - 500);
         },
       },
     });
@@ -1439,8 +1506,15 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
       const track = stream.getAudioTracks()[0];
       if (!track) throw new Error("The selected microphone did not provide an audio track.");
+      track.addEventListener("ended", () => {
+        if (micStreamRef.current !== stream) return;
+        setMicAvailable(false);
+        machineRef.current?.dispatch({ type: "MIC_ACTIVE", at: performance.now(), active: false });
+        machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "microphone disconnected" });
+      }, { once: true });
       micIntentRef.current?.apply(track);
       setMuted(!track.enabled);
+      machineRef.current?.dispatch({ type: "MUTE", at: performance.now(), muted: !track.enabled });
       const source = context.createMediaStreamSource(stream);
       const silentGain = context.createGain();
       silentGain.gain.value = 0;
@@ -1448,6 +1522,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       silentGainRef.current = silentGain;
 
       const gate = ensureGate();
+      void SileroVad.load().then((vad) => {
+        if (sessionRef.current !== session) return;
+        sileroRef.current = vad;
+        vad?.reset();
+      });
       const localTranscriber = createBrowserLocalTranscriber(({ text, final }) => {
         gate.provideTranscript(text, final, performance.now());
       });
@@ -1459,10 +1538,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const handleFrame = (pcm: Float32Array) => {
         if (sessionRef.current !== session || !track.enabled) return;
         const now = performance.now();
-        // Live truth, every frame: Live audio this hook is playing, or narration the player is.
-        const tutorSpeaking = playingSourcesRef.current.size > 0 || Boolean(optionsRef.current.getTutorSpeaking?.());
-        gate.setTutorSpeaking(tutorSpeaking, now);
-        gate.push(pcm, now);
+        // Keep neural inference ordered: Silero carries recurrent state across windows. At its
+        // measured ~1 ms/frame this stays far ahead of the 20 ms capture cadence.
+        vadQueueRef.current = vadQueueRef.current.then(async () => {
+          if (sessionRef.current !== session || !track.enabled) return;
+          const tutorSpeaking = playingSourcesRef.current.size > 0 || Boolean(optionsRef.current.getTutorSpeaking?.());
+          const machine = machineRef.current;
+          if (machine && tutorSpeaking && !machine.value.tutorAudible && ["LISTENING", "PROCESSING"].includes(machine.value.state)) {
+            machine.dispatch({ type: "TUTOR_AUDIO_START", at: now, generation: playbackControllerRef.current!.metrics.generation });
+          } else if (machine && !tutorSpeaking && machine.value.tutorAudible && ["TUTOR_SPEAKING", "POSSIBLE_INTERRUPTION", "FALSE_INTERRUPTION"].includes(machine.value.state)) {
+            machine.dispatch({ type: "TUTOR_AUDIO_END", at: now, generation: machine.value.playbackGeneration });
+          }
+          gate.setTutorSpeaking(tutorSpeaking, now);
+          const result = sileroRef.current ? await sileroRef.current.push(pcm) : null;
+          gate.push(pcm, now, result?.ready ? result.speech : null);
+        }).catch(() => gate.push(pcm, now, null));
       };
 
       /*
@@ -1508,6 +1598,17 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       source.connect(node);
       node.connect(silentGain);
       silentGain.connect(context.destination);
+      context.onstatechange = () => {
+        if (audioContextRef.current !== context) return;
+        if (context.state === "suspended" || context.state === "interrupted") {
+          machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: `audio context ${context.state}` });
+        } else if (context.state === "running" && track.enabled && machineRef.current?.value.state === "PAUSED") {
+          machineRef.current.dispatch({ type: "RESUME", at: performance.now(), reason: "audio context resumed" });
+        }
+      };
+      machineRef.current?.dispatch({ type: "MIC_ACTIVE", at: performance.now(), active: true });
+      if (micWatchdogRef.current) clearInterval(micWatchdogRef.current);
+      micWatchdogRef.current = setInterval(() => gate.tick(performance.now()), 500);
     },
     [ensureGate],
   );
@@ -1516,6 +1617,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     if (sessionRef.current || connectingRef.current) return;
     connectingRef.current = true;
     endedRef.current = false;
+    if (machineRef.current?.value.state !== "RECONNECTING") {
+      machineRef.current?.dispatch({ type: "START", at: performance.now() });
+    }
     /*
      * Which connect attempt this is.
      *
@@ -1574,6 +1678,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       void micPromise.then((stream) => stream?.getTracks().forEach((track) => track.stop()));
       setErrorMessage(error instanceof Error ? error.message : "Could not start Gemini Live.");
       setStatus("error");
+      machineRef.current?.dispatch({ type: "FAIL", at: performance.now(), reason: error instanceof Error ? error.message : "Could not start Gemini Live" });
       connectingRef.current = false;
       return;
     }
@@ -1722,6 +1827,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       sessionRef.current = session;
       connectingRef.current = false;
       setStatus("live");
+      if (machineRef.current?.value.state === "RECONNECTING") {
+        machineRef.current.dispatch({ type: "RECONNECTED", at: performance.now() });
+      } else {
+        machineRef.current?.dispatch({ type: "CONNECTED", at: performance.now() });
+      }
       // Attach voice when permission resolves, independently of the already-live text session.
       void micPromise.then(async (stream) => {
         if (!stream) {
@@ -1729,6 +1839,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             micIntentRef.current?.set(false);
             setMuted(true);
             setMicAvailable(false);
+            machineRef.current?.dispatch({ type: "MIC_ACTIVE", at: performance.now(), active: false });
+            machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "microphone permission denied or unavailable" });
           }
           return;
         }
@@ -1746,6 +1858,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           micIntentRef.current?.set(false);
           setMuted(true);
           setMicAvailable(false);
+          machineRef.current?.dispatch({ type: "MIC_ACTIVE", at: performance.now(), active: false });
+          machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "microphone capture failed" });
         }
       });
       /*
@@ -1794,6 +1908,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     // this assignment is the race that intermittently left Gemini deaf after the learner clicked.
     micIntentRef.current?.set(enabled);
     setMuted(!enabled);
+    machineRef.current?.dispatch({ type: "MUTE", at: performance.now(), muted: !enabled });
+    if (machineRef.current && !["IDLE", "ERROR", "RECONNECTING"].includes(machineRef.current.value.state)) {
+      machineRef.current.dispatch(enabled
+        ? { type: "RESUME", at: performance.now(), reason: "microphone enabled" }
+        : { type: "PAUSE", at: performance.now(), reason: "microphone muted" });
+    }
     if (enabled) localTranscriberRef.current?.start();
     else localTranscriberRef.current?.stop();
     const track = micStreamRef.current?.getAudioTracks()[0];
@@ -1843,6 +1963,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       micStreamRef.current = stream;
       await startMicrophone(stream, session);
       setMicAvailable(true);
+      if (machineRef.current?.value.state === "PAUSED") machineRef.current.dispatch({ type: "RESUME", at: performance.now(), reason: "microphone restored" });
       return true;
     } catch {
       micIntentRef.current?.set(false);
@@ -2016,6 +2137,39 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     stopPlayback();
   }, [stopPlayback]);
 
+  const getVoiceDiagnostics = useCallback(() => ({
+    session: machineRef.current!.value,
+    gate: gateRef.current?.getDiagnostics() ?? null,
+    playback: playbackControllerRef.current!.metrics,
+    transitions: machineRef.current!.history,
+    events: [...gateEventsRef.current],
+  }), []);
+
+  const forceReconnect = useCallback(() => {
+    teardown("user");
+    machineRef.current?.dispatch({ type: "RESET", at: performance.now() });
+    window.setTimeout(() => void startRef.current?.(), 0);
+  }, [teardown]);
+
+  const resetVoiceSession = useCallback(() => {
+    teardown("user");
+    gateRef.current?.reset(performance.now());
+    gateLogRef.current = [];
+    gateEventsRef.current = [];
+    playbackControllerRef.current?.invalidate();
+    machineRef.current?.dispatch({ type: "RESET", at: performance.now() });
+  }, [teardown]);
+
+  const simulateInterruption = useCallback(() => {
+    const at = performance.now();
+    machineRef.current?.dispatch({ type: "SPEECH_CANDIDATE", at, confidence: 1, vadProbability: 1, reason: "debug simulation" });
+    if (machineRef.current?.value.state === "POSSIBLE_INTERRUPTION") {
+      machineRef.current.dispatch({ type: "INTERRUPTION_CONFIRMED", at: at + 1, confidence: 1, reason: "debug simulation" });
+      beginStudentSpeech();
+      machineRef.current.dispatch({ type: "USER_TURN_OPEN", at: at + 2, reason: "debug simulation" });
+    }
+  }, [beginStudentSpeech]);
+
   const isSpeaking = useCallback(
     () =>
       !suppressCurrentTurnRef.current &&
@@ -2044,6 +2198,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     setOutputMuted: setOutputMutedPublic,
     /** True while a dropped session is waiting to dial again — distinct from a hard error. */
     reconnecting,
+    voiceSession,
+    getVoiceDiagnostics,
+    forceReconnect,
+    resetVoiceSession,
+    simulateInterruption,
     sendText,
     say,
     addContext,

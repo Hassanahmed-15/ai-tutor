@@ -1,65 +1,76 @@
 # Arya full-duplex voice architecture
 
-All full-duplex Arya voice modes use `useGeminiLiveTutor`: standard and ADHD lecture narration and
-questions, planning, lesson generation/design, the voice-first tutor, check-ins, and oral exams. The hook owns
-one shared microphone pipeline and delegates turn admission to `lib/voice/voiceGate.ts`; callers
-only supply mode context and whether Arya is audibly narrating outside the Live audio bus.
+Every Gemini Live surface uses `useGeminiLiveTutor`: normal and PDF lectures, ADHD lessons,
+planning, lesson design, voice-first chat, check-ins, and oral exams. Callers provide context and a
+surface label; they do not own microphone admission, turn state, playback cancellation, or socket
+recovery.
 
-## Runtime path
+## One shared runtime
 
-1. `getUserMedia` enables browser echo cancellation, noise suppression, and automatic gain control.
-2. `public/voice/capture-worklet.js` resamples on the audio thread to 16 kHz mono and emits exact
-   20 ms frames. A same-size `ScriptProcessor` fallback is retained for older audio contexts.
-3. Acoustic features reject silence, impulsive noise, hum, and steady tones using RMS, speech-band
-   energy, flatness, zero crossings, pitch, voicing, centroid, and time-varying pitch/level.
-4. `speakerProfile.ts` incrementally enrolls only semantically accepted student turns and compares
-   pitch distribution plus level-independent timbre. It is a replaceable `SpeakerVerifier`, not a
-   claim of biometric identity.
-5. On browsers with Web Speech recognition, `localTranscriber.ts` supplies interim words to
-   `addressing.ts` while PCM remains buffered in the browser. Web Speech may use the browser
-   vendor's service; it is a browser-side prefilter, not guaranteed on-device recognition.
-6. The addressing classifier combines Arya/teacher wake names, commands, board references, lesson
-   vocabulary, pending-question state, side-conversation patterns, and speaker evidence.
-7. On the primary browser-prefilter path, only an accepted turn opens Gemini activity. Buffered
-   onset/pre-roll is replayed, then live frames flow. A genuine interruption stops local playback
-   immediately; unrelated candidates do not stop or switch Arya.
+The model adapter and the voice gate are separate modules. The production path is:
 
-Gemini automatic activity detection is disabled. On browsers without Web Speech, the compatibility
-path can use Gemini input transcription, but configures `NO_INTERRUPTION` so an unconfirmed
-candidate cannot cancel Arya's active server turn. This fallback is intentionally conservative;
-the replaceable transcriber boundary is where an on-device WASM ASR should be installed for equal
-semantics across Firefox and Safari.
+1. `getUserMedia` requests browser echo cancellation, noise suppression, and automatic gain.
+2. `public/voice/capture-worklet.js` resamples off the main thread to 16 kHz mono, 20 ms frames.
+3. `lib/voice/sileroVad.ts` runs Silero v6 in WASM. If it is loading or unavailable, the same
+   interface falls back to the acoustic detector in `lib/voice/runtime/speechDetector.ts`.
+4. `runtime/endpointer.ts` confirms onset, preserves 500 ms pre-roll, tolerates natural pauses,
+   extends the grace period for unfinished clauses, and has max-utterance and mic-stall watchdogs.
+5. `runtime/speakerProfile.ts` incrementally learns pitch distribution and level-independent
+   timbre from accepted turns. It is a replaceable verifier, not biometric authentication.
+6. Browser speech recognition supplies interim words to `runtime/addressing.ts`. Wake names,
+   lesson commands, board references, topic vocabulary, current question state, third-person name
+   use, and side-conversation patterns all contribute an explainable verdict.
+7. `runtime/arbiter.ts` combines the acoustic, speaker, semantic, endpoint, and tutor streams.
+   Candidate speech may duck playback after 240 ms; it cannot stop Arya without positive evidence.
+8. `sharedVoiceGate.ts` is the stable adapter used by the hook. Gemini sees only audio belonging to
+   an opened turn, beginning with pre-roll.
 
-## Timing and hysteresis
+Gemini automatic activity detection is disabled and client `activityStart` / `activityEnd` events
+are authoritative. In Chromium-class browsers the semantic prefilter holds PCM locally until words
+establish that the utterance is for Arya. Where browser speech recognition is unavailable, Gemini
+input transcription is the compatibility path and `NO_INTERRUPTION` prevents server VAD from
+cancelling Arya by itself.
 
-- Capture frame: 20 ms.
-- Acoustic confirmation: 180 ms.
-- Pre-roll: 500 ms, with candidate audio buffered until acceptance.
-- End-of-turn silence / final-transcript confirmation: 700 ms.
-- Post-episode refractory window: 500 ms.
-- Verified-speaker no-transcript safety barge-in: 2 s.
+## Authoritative session and playback state
 
-The gate may classify and buffer continuously, but it only ducks after an admitted turn. Accepted
-wake-name or command transcripts barge in on the same callback; no extra debounce is applied after
-positive semantic evidence.
+`sessionMachine.ts` is the single public lifecycle. Its explicit states are `IDLE`, `LISTENING`,
+`USER_SPEAKING`, `PROCESSING`, `TUTOR_SPEAKING`, `POSSIBLE_INTERRUPTION`,
+`CONFIRMED_INTERRUPTION`, `FALSE_INTERRUPTION`, `PAUSED`, `ERROR`, and `RECONNECTING`.
+Transitions are reasoned, timestamped, deduplicated, bounded, and exposed to diagnostics.
 
-Muting the microphone stops both the Web Audio track and the browser speech-recognition adapter;
-`startMuted` therefore remains a privacy boundary even though the two capture APIs are independent.
+`playbackGeneration.ts` assigns every response a session/generation token. Barge-in invalidates the
+generation before fading and stopping sources. Late chunks and stale `onended` callbacks are then
+ignored, so cancelled speech cannot restart, mark a newer response complete, or corrupt state.
 
-## Model
+Dropped active sessions reconnect with bounded exponential backoff. Deliberate stop/idle/timeout
+teardowns cannot resurrect because they invalidate the session before closing the socket. A reconnect resets active
+audio and gate episodes but retains the learned speaker profile. Mic stalls, response timeouts,
+maximum utterance duration, and illegal session transitions all recover to explicit states.
 
-The default is `gemini-3.8-live`, configurable with `GEMINI_LIVE_MODEL`. It is the general Gemini
-Live model optimized for low-latency dialogue. The extended-thinking variant is deliberately not
-the default because its additional reasoning latency is the wrong tradeoff for natural duplex
-speech. Gemini thinking configuration is omitted for the 3.8 Live line.
+## Timing policy
 
-## Tests and observability
+- Capture: 20 ms frames.
+- Speech onset confirmation: 180 ms.
+- Reversible duck: 240 ms of sustained candidate speech.
+- Pre-roll: 500 ms.
+- Normal endpoint grace: 700 ms; unfinished phrase: 1,100 ms.
+- Verified barge-in without words: 1,000 ms. Positive words (name, command, question) still commit
+  immediately; the longer acoustic-only safety path prevents a side sentence from winning a race
+  against its transcript.
+- Unverified no-transcript barge-in: disabled for lectures; 1,500 ms only over a conversational
+  reply when no speaker profile exists.
+- Refractory hysteresis: 400 ms.
+- Mic-stall watchdog: 1,500 ms; reply watchdog: 8 s; max utterance: 20 s.
 
-`lib/anim/voiceGateScenarios.test.ts` contains 30 synthesized room scenarios: fan/AC, keyboard,
-TV, music, traffic, cough, laugh, notifications, multiple kinds of nearby conversation, explicit
-addressing, wake name, overlap, whispering, commands, pauses, background speech during Arya's turn,
-speaker mismatch, missing transcription, planning answers, and echo-guard timing. Regression tests
-also assert that semantic candidates do not open Gemini activity before acceptance.
+## Model and diagnostics
 
-Every state transition carries a reason and detail string. The hook retains the latest 3,000 gate
-decisions and exposes them through `onInterruptionDecision` for production diagnostics.
+The default model is `gemini-3.8-live`, configurable with `GEMINI_LIVE_MODEL`. Thinking config is
+omitted for this model because the Live endpoint rejects it and extra reasoning latency is a poor
+trade for spoken turn-taking.
+
+`/voice-lab` is an internal production-path dashboard with start/stop/reconnect/simulated-interrupt
+controls; session, connection, microphone, VAD, endpoint, transcript, playback-generation, reason,
+latency, and event-stream views. `voiceArchitecture.test.ts` drives 40 deterministic room scenarios
+through the same runtime, including environmental noise, nearby people, direct address, genuine
+barge-in, overlap, whispers, short commands, natural pauses, microphone drops, response timeouts,
+and all voice surface policies.

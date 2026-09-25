@@ -55,6 +55,7 @@ export function TestOralView({
   }
 
   const tutor = useGeminiLiveTutor({
+    voiceSurface: "oral-test",
     gateProfile: "conversation",
     topic,
     getBeatContext: () => "",

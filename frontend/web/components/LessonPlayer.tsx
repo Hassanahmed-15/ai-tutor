@@ -762,6 +762,7 @@ export function LessonPlayer({
    */
   const narrationAudibleRef = useRef(false);
   const tutor = useGeminiLiveTutor({
+    voiceSurface: documentId ? "pdf" : "normal",
     // Minutes of narration at a time: nothing stops her without positive evidence.
     gateProfile: "lecture",
     // She is shown the uploaded pages themselves, not only their extracted text.

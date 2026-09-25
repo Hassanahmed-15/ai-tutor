@@ -579,6 +579,7 @@ ${beat.script}${definition}${points}${compare}`,
   );
 
   const tutor = useGeminiLiveTutor({
+    voiceSurface: "chatbot",
     gateProfile: "conversation",
     topic: lecture.topic || "open conversation",
     getBeatContext: () => {

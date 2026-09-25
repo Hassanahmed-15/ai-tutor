@@ -237,6 +237,7 @@ export function LessonDesignMode({
   }, []);
 
   const tutor = useGeminiLiveTutor({
+    voiceSurface: "design",
     gateProfile: "conversation",
     topic,
     documentId,

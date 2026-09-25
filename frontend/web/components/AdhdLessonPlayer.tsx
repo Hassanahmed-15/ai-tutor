@@ -173,6 +173,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   }, [beat]);
 
   const tutor = useGeminiLiveTutor({
+    voiceSurface: documentId ? "pdf" : "normal",
     gateProfile: "lecture",
     documentId,
     getTutorSpeaking: () => speaking,

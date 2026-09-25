@@ -52,17 +52,18 @@ test("hopeless closes are not retried", () => {
   assert.ok(!codes.includes(1011), "a server error should be retried, not surfaced as fatal");
 });
 
-test("only sessions meant to stay up recover", () => {
+test("every active voice surface recovers, while deliberate endings stay ended", () => {
   /*
-   * `alwaysOn` marks the sessions whose whole purpose is surviving a long wait. A session that
-   * ended because the student stopped it, went idle, or hit its cap must stay ended — otherwise
-   * stopping the tutor brings it back a second later, still billing.
+   * Normal/PDF modes need the same transport recovery as planning and chatbot. Deliberate endings
+   * are protected by endedRef before their socket close callback can schedule anything.
    */
   assert.match(
     hook,
-    /const scheduleReconnect = useCallback\([\s\S]{0,400}?if \(!optionsRef\.current\.alwaysOn\) return false;/,
-    "scheduleReconnect must refuse non-alwaysOn sessions before anything else",
+    /const scheduleReconnect = useCallback\([\s\S]{0,500}?if \(closeCode !== undefined && FATAL_CLOSE_CODES\.has\(closeCode\)\) return false;/,
+    "scheduleReconnect must be shared rather than gated to one surface",
   );
+  assert.doesNotMatch(hook, /scheduleReconnect[\s\S]{0,300}!optionsRef\.current\.alwaysOn/);
+  assert.match(hook, /if \(endedRef\.current\) return;/, "deliberate teardown must make close callbacks inert");
 });
 
 test("an explicit stop cancels a pending reconnect", () => {
@@ -87,7 +88,7 @@ test("a healthy connection restores the recovery budget", () => {
    */
   assert.match(
     hook,
-    /reconnectCountRef\.current = 0;\s*\n\s*setReconnecting\(false\);\s*\n\s*\n?\s*if \(!optionsRef\.current\.alwaysOn\)/,
+    /reconnectCountRef\.current = 0;\s*\n\s*setReconnecting\(false\);/,
     "a successful connect must reset the reconnect counter",
   );
 });

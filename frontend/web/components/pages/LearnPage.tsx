@@ -368,6 +368,7 @@ type BuildCost =
   const lastVoiceQuestionRef = useRef<string>("");
 
   const planningVoice = useGeminiLiveTutor({
+    voiceSurface: "planning",
     // The uploaded pages, as images: shared the moment the parse produces them, even if she
     // connected first. A scanned PDF has no text for the instruction below to carry.
     documentId: documentId ?? undefined,
