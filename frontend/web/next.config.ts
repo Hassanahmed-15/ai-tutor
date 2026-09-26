@@ -28,6 +28,30 @@ const nextConfig: NextConfig = {
   // route handler (which makes the runtime import/require fail). Used by the vision board critic
   // (lib/boardVisionCritic.ts), the PDF export route, and the PDF upload parser (parse-pdf route).
   serverExternalPackages: ["@resvg/resvg-js", "@napi-rs/canvas", "pdfjs-dist"],
+  /**
+   * Cache the voice model and its runtime.
+   *
+   * Next serves everything under public/ with `cache-control: public, max-age=0`, so the browser
+   * revalidates on every load and the 14MB ONNX runtime plus the 2.3MB model are fetched again
+   * each time. Measured on the deployed app: 52 seconds before the neural VAD was ready, during
+   * which the voice gate silently runs on the weaker acoustic heuristic — long enough to cover a
+   * whole first exchange.
+   *
+   * These are safe to cache hard because neither is edited in place: the runtime is copied out of
+   * the installed package by scripts/copy-ort.mjs and changes only when the package version does,
+   * and the model is a fixed release artefact.
+   *
+   * Scoped to those two, deliberately. The rest of public/voice/ is our own source — capture-
+   * worklet.js is edited between deploys, and freezing it for a year would pin every returning
+   * student to a stale worklet with no way to bust it short of renaming the file.
+   */
+  async headers() {
+    const immutable = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
+    return [
+      { source: "/ort/:file*", headers: immutable },
+      { source: "/voice/silero_vad.onnx", headers: immutable },
+    ];
+  },
   outputFileTracingIncludes: {
     /**
      * pdf.worker.mjs is loaded by pdfjs at RUNTIME via a path it computes itself, so Next's

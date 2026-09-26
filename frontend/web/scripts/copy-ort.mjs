@@ -24,9 +24,11 @@ const out = path.resolve(new URL(".", import.meta.url).pathname, "../public/ort"
 fs.mkdirSync(out, { recursive: true });
 let copied = 0;
 for (const name of fs.readdirSync(dist)) {
-  // This onnxruntime-web build loads the .jsep variant even for the plain wasm backend (measured:
-  // a request for ort-wasm-simd-threaded.jsep.mjs), so both the plain and the jsep files ship.
-  if (/^ort-wasm-simd-threaded(\.jsep)?\.(wasm|mjs)$/.test(name)) {
+  // Only the plain wasm pair. The umbrella `onnxruntime-web` entry point pulls the GPU-capable
+  // .jsep binary (28MB against 14MB), but lib/voice/sileroVad.ts imports `onnxruntime-web/wasm`,
+  // which requests these two and never touches .jsep — verified by the network log on a
+  // production build. Shipping it anyway would double this directory for a file nothing fetches.
+  if (/^ort-wasm-simd-threaded\.(wasm|mjs)$/.test(name)) {
     fs.copyFileSync(path.join(dist, name), path.join(out, name));
     copied += 1;
   }
@@ -34,4 +36,10 @@ for (const name of fs.readdirSync(dist)) {
 const version = JSON.parse(fs.readFileSync(path.join(pkgDir, "package.json"), "utf8")).version;
 fs.writeFileSync(path.join(out, "VERSION"), version);
 console.log(`[copy-ort] ${copied} file(s) from onnxruntime-web@${version} → public/ort`);
-if (copied === 0) process.exit(1);
+// Both the loader and the binary, or the build fails here rather than shipping an app whose
+// neural VAD 404s at runtime and silently degrades to the heuristic — the failure this whole
+// script exists to prevent, and one that looks perfectly healthy from the outside.
+if (copied !== 2) {
+  console.error(`[copy-ort] expected 2 files, copied ${copied}. Did onnxruntime-web rename its wasm build?`);
+  process.exit(1);
+}

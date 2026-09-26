@@ -91,7 +91,10 @@ export class SileroVad {
     if (loadPromise) return loadPromise;
     loadPromise = (async () => {
       try {
-        const ort = await import("onnxruntime-web");
+        // The WASM-only entry point, not the umbrella `onnxruntime-web`. The umbrella build pulls
+        // the GPU-capable `.jsep` binary — 28MB against 14MB — and we only ever run the wasm
+        // backend, so the larger half of that download was never going to be executed.
+        const ort = await import("onnxruntime-web/wasm");
         // Single-threaded WASM: cross-origin isolation is not guaranteed here, and threads without
         // it throw at instantiation rather than degrading.
         ort.env.wasm.numThreads = 1;
