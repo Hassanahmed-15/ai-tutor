@@ -47,8 +47,16 @@ const nextConfig: NextConfig = {
    */
   async headers() {
     const immutable = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
+    /*
+     * Exact paths, not a wildcard. `/ort/:file*` silently matched nothing on the deployed app —
+     * verified by the response header, where silero_vad.onnx came back immutable and the runtime
+     * next to it still said max-age=0. This Next runs path-to-regexp v8, where `*` is no longer a
+     * suffix modifier on a named parameter. Two files are worth naming rather than re-deriving
+     * which wildcard dialect is in force; copy-ort.mjs fails the build if either stops existing.
+     */
     return [
-      { source: "/ort/:file*", headers: immutable },
+      { source: "/ort/ort-wasm-simd-threaded.wasm", headers: immutable },
+      { source: "/ort/ort-wasm-simd-threaded.mjs", headers: immutable },
       { source: "/voice/silero_vad.onnx", headers: immutable },
     ];
   },
