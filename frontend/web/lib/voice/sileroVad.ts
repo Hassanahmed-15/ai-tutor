@@ -65,6 +65,20 @@ type OrtModule = typeof import("onnxruntime-web");
  */
 let loadPromise: Promise<SileroVad | null> | null = null;
 
+/**
+ * Why the load outcome is observable.
+ *
+ * The gate reports the detector that judged the last frame, which is the heuristic both while the
+ * model is still downloading and forever after a failed download. A UI reading only that cannot
+ * tell a healthy first few seconds from a permanently degraded session, so warning on it either
+ * cries wolf at every startup or stays silent on a real fault. This distinguishes them.
+ */
+export type SileroStatus = "idle" | "loading" | "ready" | "failed";
+let loadStatus: SileroStatus = "idle";
+export function sileroStatus(): SileroStatus {
+  return loadStatus;
+}
+
 export class SileroVad {
   private readonly threshold: number;
   private state: unknown;
@@ -89,6 +103,7 @@ export class SileroVad {
 
   static load(options: SileroOptions = {}): Promise<SileroVad | null> {
     if (loadPromise) return loadPromise;
+    loadStatus = "loading";
     loadPromise = (async () => {
       try {
         // The WASM-only entry point, not the umbrella `onnxruntime-web`. The umbrella build pulls
@@ -109,8 +124,10 @@ export class SileroVad {
           executionProviders: ["wasm"],
           graphOptimizationLevel: "all",
         });
+        loadStatus = "ready";
         return new SileroVad(ort, session, options.threshold ?? 0.35);
       } catch (error) {
+        loadStatus = "failed";
         console.warn("[silero] unavailable, falling back to heuristic VAD:", error);
         return null;
       }

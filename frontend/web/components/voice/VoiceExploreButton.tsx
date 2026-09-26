@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
+import { sileroStatus, type SileroStatus } from "@/lib/voice/sileroVad";
 
 /**
  * TALK TO ARIA FROM ANYWHERE — a floating control on the main screen, for exploring the voice
@@ -67,30 +68,28 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
   const live = status === "live";
 
   /*
-   * Show which detector is actually judging speech.
+   * Show whether the neural detector is available.
    *
    * This panel previously showed "Listening" whether the neural VAD had loaded or had silently
    * fallen back to the acoustic heuristic, and for one deploy it was the heuristic for everyone:
    * the runtime WASM 404'd, every turn died at the acoustic layer, and the only outward sign was
-   * that nothing ever answered. The gate has always reported its source; nothing displayed it.
-   * `heuristic` here now means "degraded, expect missed speech" instead of looking like silence.
+   * that nothing ever answered.
+   *
+   * Read from the loader, not from the gate's last verdict. The gate reports whichever detector
+   * judged the most recent frame, which is the heuristic for the first seconds of every cold
+   * session while the model downloads — reading that flagged "degraded" on a perfectly healthy
+   * startup, which is worse than no indicator, because a warning that is usually wrong gets
+   * ignored on the one occasion it is right.
    */
-  const [vadSource, setVadSource] = useState<string | null>(null);
-  // `getVoiceDiagnostics` is a stable useCallback; depending on `tutor` itself would rebuild this
-  // interval on every render, since the hook returns a fresh object each time.
-  const { getVoiceDiagnostics } = tutor;
+  const [vadStatus, setVadStatus] = useState<SileroStatus>("idle");
   useEffect(() => {
     if (!live) return;
-    // Polled rather than read once: the model loads asynchronously after the session goes live, so
-    // the source starts as the heuristic and flips to silero a few seconds in.
-    const id = window.setInterval(() => {
-      setVadSource(getVoiceDiagnostics().gate?.vadSource ?? null);
-    }, 1000);
+    const id = window.setInterval(() => setVadStatus(sileroStatus()), 1000);
     return () => {
       window.clearInterval(id);
-      setVadSource(null);
+      setVadStatus("idle");
     };
-  }, [live, getVoiceDiagnostics]);
+  }, [live]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -172,10 +171,11 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
           </div>
           <p className="mt-2 border-t border-white/10 pt-2 text-[10px] text-white/35">
             {muted ? "Microphone muted." : "Interrupt her any time — just start talking."}{" "}
-            {vadSource === "heuristic" && (
+            {vadStatus === "loading" && <span className="text-white/45">Loading speech model… </span>}
+            {vadStatus === "failed" && (
               <span className="text-amber-300/80">Neural VAD unavailable — speech detection degraded. </span>
             )}
-            {vadSource === "silero" && <span className="text-emerald-300/60">Neural VAD active. </span>}
+            {vadStatus === "ready" && <span className="text-emerald-300/60">Neural VAD active. </span>}
             Diagnostics at /voice-lab.
           </p>
         </div>
