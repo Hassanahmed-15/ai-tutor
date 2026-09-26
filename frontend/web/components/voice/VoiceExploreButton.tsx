@@ -10,7 +10,7 @@ import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
  * It is deliberately a thin shell over `useGeminiLiveTutor`, with no voice logic of its own: the
  * same session machine, the same turn-taking gate and the same playback path the lecture player
  * uses, so what is exercised here is what ships. `voiceSurface: "shared"` labels it in diagnostics
- * without changing policy, and `gateProfile: "conversation"` is the right bar for an open chat —
+ * without changing policy, and `gateProfile: "dedicated"` is the right bar for an open chat —
  * nothing is being narrated, so a plain sentence should reach her without needing her name.
  *
  * WHAT IT SHOWS. Connection state, whether she is speaking, whether the microphone is live, and a

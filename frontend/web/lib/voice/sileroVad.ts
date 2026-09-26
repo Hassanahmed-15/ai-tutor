@@ -96,6 +96,12 @@ export class SileroVad {
         // it throw at instantiation rather than degrading.
         ort.env.wasm.numThreads = 1;
         ort.env.wasm.simd = true;
+        // Serve the runtime from our own origin. Without this the package fetches its WASM from a
+        // CDN by version string, and when that 404s the neural VAD is silently unavailable while
+        // everything else looks healthy: the microphone runs, the socket connects, and every turn
+        // is judged by the weaker heuristic instead. `public/ort` is filled at build time from the
+        // installed package, so the served binary always matches the one the bundler expects.
+        ort.env.wasm.wasmPaths = "/ort/";
         const session = await ort.InferenceSession.create(options.modelUrl ?? "/voice/silero_vad.onnx", {
           executionProviders: ["wasm"],
           graphOptimizationLevel: "all",
