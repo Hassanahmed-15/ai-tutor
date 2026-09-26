@@ -66,6 +66,32 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
   const { status, speaking, muted, reconnecting, errorMessage, start, stop, toggleMute } = tutor;
   const live = status === "live";
 
+  /*
+   * Show which detector is actually judging speech.
+   *
+   * This panel previously showed "Listening" whether the neural VAD had loaded or had silently
+   * fallen back to the acoustic heuristic, and for one deploy it was the heuristic for everyone:
+   * the runtime WASM 404'd, every turn died at the acoustic layer, and the only outward sign was
+   * that nothing ever answered. The gate has always reported its source; nothing displayed it.
+   * `heuristic` here now means "degraded, expect missed speech" instead of looking like silence.
+   */
+  const [vadSource, setVadSource] = useState<string | null>(null);
+  // `getVoiceDiagnostics` is a stable useCallback; depending on `tutor` itself would rebuild this
+  // interval on every render, since the hook returns a fresh object each time.
+  const { getVoiceDiagnostics } = tutor;
+  useEffect(() => {
+    if (!live) return;
+    // Polled rather than read once: the model loads asynchronously after the session goes live, so
+    // the source starts as the heuristic and flips to silero a few seconds in.
+    const id = window.setInterval(() => {
+      setVadSource(getVoiceDiagnostics().gate?.vadSource ?? null);
+    }, 1000);
+    return () => {
+      window.clearInterval(id);
+      setVadSource(null);
+    };
+  }, [live, getVoiceDiagnostics]);
+
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
@@ -145,7 +171,12 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
             )}
           </div>
           <p className="mt-2 border-t border-white/10 pt-2 text-[10px] text-white/35">
-            {muted ? "Microphone muted." : "Interrupt her any time — just start talking."} Diagnostics at /voice-lab.
+            {muted ? "Microphone muted." : "Interrupt her any time — just start talking."}{" "}
+            {vadSource === "heuristic" && (
+              <span className="text-amber-300/80">Neural VAD unavailable — speech detection degraded. </span>
+            )}
+            {vadSource === "silero" && <span className="text-emerald-300/60">Neural VAD active. </span>}
+            Diagnostics at /voice-lab.
           </p>
         </div>
       )}
