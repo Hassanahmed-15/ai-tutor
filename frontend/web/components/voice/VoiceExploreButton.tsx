@@ -82,14 +82,28 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
    * ignored on the one occasion it is right.
    */
   const [vadStatus, setVadStatus] = useState<SileroStatus>("idle");
+  /*
+   * The gate's own reason for the last decision, shown only while nothing has been accepted yet.
+   *
+   * Audio reaches Gemini exclusively through the gate's sendFrame callback, between activityStart
+   * and activityEnd, so a gate that never opens means the model receives nothing and the student
+   * sees an empty transcript with no explanation. The gate always records why it rejected a frame;
+   * printing it turns "she isn't responding" into a specific, reportable reason.
+   */
+  const [gateReason, setGateReason] = useState<string | null>(null);
+  const { getVoiceDiagnostics } = tutor;
   useEffect(() => {
     if (!live) return;
-    const id = window.setInterval(() => setVadStatus(sileroStatus()), 1000);
+    const id = window.setInterval(() => {
+      setVadStatus(sileroStatus());
+      setGateReason(getVoiceDiagnostics().gate?.reason ?? null);
+    }, 1000);
     return () => {
       window.clearInterval(id);
       setVadStatus("idle");
+      setGateReason(null);
     };
-  }, [live]);
+  }, [live, getVoiceDiagnostics]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -177,6 +191,10 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
             )}
             {vadStatus === "ready" && <span className="text-emerald-300/60">Neural VAD active. </span>}
             Diagnostics at /voice-lab.
+            {/* Only while she has heard nothing yet — once a turn lands, the transcript says more. */}
+            {lines.length === 0 && gateReason && (
+              <span className="mt-1 block font-mono text-[9px] text-white/30">gate: {gateReason}</span>
+            )}
           </p>
         </div>
       )}
