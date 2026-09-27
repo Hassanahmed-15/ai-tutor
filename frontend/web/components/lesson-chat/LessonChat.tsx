@@ -7,6 +7,8 @@ import type { CodeSpec } from "@/lib/codeSpec";
 import { ReactAnimationSandbox } from "@/components/sketch/ReactAnimationSandbox";
 import { playNarration, unlockAudio, type NarrationHandle } from "@/lib/voice";
 import { recordJsonCost } from "@/lib/costLedger";
+import { asksForVisual, isAffirmative, isNegative } from "@/lib/drawConsent";
+import { isCodeQuestion } from "@/lib/codeSpec";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
 
@@ -24,6 +26,15 @@ import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
 export interface ChatTurn {
   role: "you" | "aria";
   text: string;
+  /**
+   * Aria's offer of a drawing, as two buttons under her answer.
+   *
+   * Kept on the turn rather than in a banner so the log still reads back correctly: the chips stay
+   * where they were asked and go quiet once used, the same way the planning chat's quick replies do.
+   */
+  chips?: { label: string; accept: boolean }[];
+  /** Set when the student has answered, so the chips are disabled rather than removed. */
+  answered?: boolean;
 }
 
 export interface LessonChatState {
@@ -34,6 +45,10 @@ export interface LessonChatState {
   listening: boolean;
   interim: string;
   voiceSupported: boolean;
+  /** An offer of a drawing waiting on a yes or no. Exposed so a voice turn can answer it too. */
+  pendingVisual: { question: string; what: string } | null;
+  /** Answer the open offer. `true` builds the board; `false` leaves the spoken answer as the answer. */
+  answerVisualOffer: (accept: boolean) => void;
   ask: (question: string) => void;
   startVoice: () => void;
   stopVoice: () => void;
@@ -84,19 +99,127 @@ export function useLessonChat(opts: {
   const [drawProgress, setDrawProgress] = useState(0);
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
+  const [pendingVisual, setPendingVisual] = useState<{ question: string; what: string } | null>(null);
+  /**
+   * She is speaking an answer that has no board behind it.
+   *
+   * A board used to hold the lecture on its own: three of the five players resume as soon as `busy`
+   * clears, and `explaining` goes false the moment the fetch returns. Without this, a words-only answer
+   * would have the lecture start up again over the top of her while she was still saying it.
+   */
+  const [narrating, setNarrating] = useState(false);
   const cancelRef = useRef<NarrationHandle | null>(null);
   const voiceRef = useRef<VoiceCaptureHandle | null>(null);
   const voiceSupported = isSpeechSupported();
+  /*
+   * Read through refs, not state, by the two callbacks that can fire from outside React's own
+   * ordering — a spoken answer arriving through a transcript handler, and `ask` deciding whether the
+   * message in front of it is a yes to an offer or a new question. A captured value would be whichever
+   * offer was open when that callback was last rebuilt.
+   */
+  const pendingVisualRef = useRef<{ question: string; what: string } | null>(null);
+  const answerVisualOfferRef = useRef<(accept: boolean) => void>(() => {});
 
   const stopNarration = useCallback(() => {
     cancelRef.current?.cancel();
     cancelRef.current = null;
+    setNarrating(false);
   }, []);
+
+  /**
+   * One POST to /api/explain, with the retry that only covers a request which never arrived.
+   *
+   * `extra` selects the mode: `{ offer: true }` asks for words and at most a proposal, nothing asks
+   * for the board exactly as this panel always did.
+   */
+  const requestExplain = useCallback(
+    async (question: string, extra: Record<string, unknown>) => {
+      const request = () => fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: opts.topic,
+          beatContext: opts.getBeatContext(),
+          lessonContext: opts.getLessonContext?.() ?? "",
+          documentContext: opts.getDocumentContext?.() ?? "",
+          // Lets the endpoint attach the page images themselves; see app/api/explain/route.ts.
+          documentId: opts.documentId ?? "",
+          lessonQuestion: opts.lessonQuestion ?? "",
+          question,
+          ...extra,
+        }),
+      });
+      // One retry when the request never reached the server ("Failed to fetch" — a dropped
+      // connection, not an answer). Measured: the student saw only that error, and the server
+      // logged no request at all. An HTTP error response is NOT retried; it is a real answer.
+      const res = await request().catch(async (error: unknown) => {
+        if (!(error instanceof TypeError)) throw error;
+        await new Promise((resolve) => setTimeout(resolve, 1200));
+        return request();
+      });
+      const data = await res.json().catch(() => ({}));
+      recordJsonCost("questions", data);
+      if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
+      return data as { script: string; draw?: DrawScript; visual?: { what: string } | null };
+    },
+    [opts],
+  );
+
+  /** Speak an answer. `onDone` runs when she has finished and nothing is waiting on the student. */
+  const narrate = useCallback(
+    (script: string, onDone?: () => void) => {
+      setNarrating(true);
+      const handle = playNarration(script, {
+        onStart: () => {},
+        onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
+        onEnd: () => {
+          cancelRef.current = null;
+          setDrawProgress(1);
+          setNarrating(false);
+          onDone?.();
+        },
+        onBlocked: () => {
+          setNarrating(false);
+          opts.onVoiceBlocked?.();
+          onDone?.();
+        },
+        // `pausePlayer` has already frozen the current lecture. Preserve that audio handle while
+        // this one-off answer speaks so "continue" can resume at its exact timestamp instead of
+        // recreating the beat narration from the beginning.
+        preserveActive: true,
+      });
+      cancelRef.current = handle;
+    },
+    [opts],
+  );
+
+  /** The board answer, exactly as this panel has always produced it. */
+  const explainWithBoard = useCallback(
+    async (question: string, extra: Record<string, unknown> = {}) => {
+      const data = await requestExplain(question, extra);
+      setChat((c) => [...c, { role: "aria", text: data.script }]);
+      setExplainBoard({ script: data.script, draw: data.draw });
+      setDrawProgress(0);
+      narrate(data.script);
+    },
+    [narrate, requestExplain],
+  );
 
   const ask = useCallback(
     async (question: string) => {
       const trimmed = question.trim();
       if (!trimmed || explaining) return;
+
+      /*
+       * A yes or no while an offer is open answers the offer — it is not a new question. Anything
+       * longer is: "yes, but why does it drop?" has to be answered, not treated as consent.
+       */
+      const open = pendingVisualRef.current;
+      if (open && (isAffirmative(trimmed) || isNegative(trimmed))) {
+        answerVisualOfferRef.current(isAffirmative(trimmed));
+        return;
+      }
+
       unlockAudio();
       opts.pausePlayer();
       opts.onQuestionAsked?.(trimmed);
@@ -104,56 +227,70 @@ export function useLessonChat(opts: {
       setChat((c) => [...c, { role: "you", text: trimmed }]);
       setExplaining(true);
       try {
-        const request = () => fetch("/api/explain", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            topic: opts.topic,
-            beatContext: opts.getBeatContext(),
-            lessonContext: opts.getLessonContext?.() ?? "",
-            documentContext: opts.getDocumentContext?.() ?? "",
-            // Lets the endpoint attach the page images themselves; see app/api/explain/route.ts.
-            documentId: opts.documentId ?? "",
-            lessonQuestion: opts.lessonQuestion ?? "",
-            question: trimmed,
-          }),
-        });
-        // One retry when the request never reached the server ("Failed to fetch" — a dropped
-        // connection, not an answer). Measured: the student saw only that error, and the server
-        // logged no request at all. An HTTP error response is NOT retried; it is a real answer.
-        const res = await request().catch(async (error: unknown) => {
-          if (!(error instanceof TypeError)) throw error;
-          await new Promise((resolve) => setTimeout(resolve, 1200));
-          return request();
-        });
-        const data = await res.json().catch(() => ({}));
-        recordJsonCost("questions", data);
-        if (!res.ok || !data.script) throw new Error(data.error || "Couldn't explain that right now.");
-        setChat((c) => [...c, { role: "aria", text: data.script }]);
-        setExplainBoard({ script: data.script, draw: data.draw });
-        setDrawProgress(0);
-        const handle = playNarration(data.script, {
-          onStart: () => {},
-          onSentenceStart: (si, _s, st) => setDrawProgress(st > 1 ? Math.min(1, (si + 1) / st) : 1),
-          onEnd: () => {
-            cancelRef.current = null;
-            setDrawProgress(1);
-          },
-          onBlocked: () => opts.onVoiceBlocked?.(),
-          // `pausePlayer` has already frozen the current lecture. Preserve that audio handle while
-          // this one-off answer speaks so "continue" can resume at its exact timestamp instead of
-          // recreating the beat narration from the beginning.
-          preserveActive: true,
-        });
-        cancelRef.current = handle;
+        /*
+         * WHO ASKED FOR A PICTURE. An outright request draws at once — asking "shall I draw?" after
+         * "draw me a diagram" is a second question in the way. A code question does too, because
+         * showing the code when code is asked for was a deliberate earlier fix. Everything else gets
+         * words, and an offer only if the model thinks the answer genuinely needs one.
+         */
+        const documentContext = opts.getDocumentContext?.() ?? "";
+        if (asksForVisual(trimmed) || isCodeQuestion(trimmed, documentContext)) {
+          await explainWithBoard(trimmed);
+          return;
+        }
+        const data = await requestExplain(trimmed, { offer: true });
+        const offered = data.visual?.what ? { question: trimmed, what: data.visual.what } : null;
+        setChat((c) => [
+          ...c,
+          offered
+            ? { role: "aria", text: data.script, chips: [{ label: "Yes, draw it", accept: true }, { label: "No, thanks", accept: false }] }
+            : { role: "aria", text: data.script },
+        ]);
+        setPendingVisual(offered);
+        // No board, so nothing will be closed later: the answer itself has to release the lecture,
+        // unless an offer is waiting on the student.
+        narrate(data.script, offered ? undefined : () => opts.onExplanationClosed?.());
       } catch (err) {
         setChat((c) => [...c, { role: "aria", text: err instanceof Error ? err.message : "Something went wrong." }]);
       } finally {
         setExplaining(false);
       }
     },
-    [explaining, opts, stopNarration]
+    [explaining, explainWithBoard, narrate, opts, requestExplain, stopNarration]
   );
+
+  const answerVisualOffer = useCallback(
+    async (accept: boolean) => {
+      const open = pendingVisualRef.current;
+      if (!open) return;
+      setPendingVisual(null);
+      // The chips stay in the log and go quiet; only one offer is ever open, so this is unambiguous.
+      setChat((c) => c.map((t) => (t.chips ? { ...t, answered: true } : t)));
+      setChat((c) => [...c, { role: "you", text: accept ? "Yes, draw it" : "No, thanks" }]);
+      if (!accept) {
+        // Her words were the whole answer. Hand the lecture back.
+        opts.onExplanationClosed?.();
+        return;
+      }
+      stopNarration();
+      setExplaining(true);
+      try {
+        await explainWithBoard(open.question, { visualHint: open.what });
+      } catch (err) {
+        setChat((c) => [...c, { role: "aria", text: err instanceof Error ? err.message : "Couldn't draw that." }]);
+        opts.onExplanationClosed?.();
+      } finally {
+        setExplaining(false);
+      }
+    },
+    [explainWithBoard, opts, stopNarration],
+  );
+  // Synced after the commit, the way the planning chat mirrors its own pending question: both are
+  // read by handlers that fire outside React's ordering, and by then the refs are current.
+  useEffect(() => {
+    pendingVisualRef.current = pendingVisual;
+    answerVisualOfferRef.current = answerVisualOffer;
+  }, [pendingVisual, answerVisualOffer]);
 
   const startVoice = useCallback(() => {
     if (listening) {
@@ -187,6 +324,7 @@ export function useLessonChat(opts: {
     stopNarration();
     setExplainBoard(null);
     setDrawProgress(0);
+    setPendingVisual(null);
     opts.onExplanationClosed?.();
   }, [stopNarration, opts]);
 
@@ -211,12 +349,16 @@ export function useLessonChat(opts: {
     listening,
     interim,
     voiceSupported,
+    pendingVisual,
+    answerVisualOffer,
     ask,
     startVoice,
     stopVoice: stopVoiceCapture,
     closeExplanation,
     appendTurn,
-    busy: explaining || explainBoard !== null,
+    // A words-only answer has no board to hold the lecture, so her voice and an open offer hold it
+    // instead: it would be odd for the lecture to start up again underneath either.
+    busy: explaining || explainBoard !== null || pendingVisual !== null || narrating,
   };
 }
 
@@ -260,7 +402,7 @@ export function ExplainOverlay({
   const effectiveProgress = autoReveal ? automaticProgress : progress;
 
   return (
-    <div className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/95 p-3 backdrop-blur-md lg:p-5">
+    <div data-explain-overlay className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/95 p-3 backdrop-blur-md lg:p-5">
       <div className="mb-2 flex items-center justify-between">
         <div>
           <HudEyebrow>Board extension</HudEyebrow>
@@ -294,6 +436,42 @@ export function ExplainOverlay({
 }
 
 /** The side chat panel. `voiceOnly` (Blind) hides the text input and shows only the mic. */
+/**
+ * Aria's offer of a drawing, as two buttons under her answer.
+ *
+ * They stay in the log once used and only go quiet, so scrolling back still shows what was asked and
+ * what the student chose. Modelled on the planning chat's quick replies.
+ */
+function OfferChips({
+  chips,
+  disabled,
+  onChoose,
+}: {
+  chips: { label: string; accept: boolean }[];
+  disabled: boolean;
+  onChoose: (accept: boolean) => void;
+}) {
+  return (
+    <div className="mt-2.5 flex flex-wrap gap-2">
+      {chips.map((chip) => (
+        <button
+          key={chip.label}
+          type="button"
+          disabled={disabled}
+          onClick={() => onChoose(chip.accept)}
+          className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition disabled:cursor-default disabled:opacity-40 ${
+            chip.accept
+              ? "border-[var(--hud-cyan)]/40 bg-[var(--hud-cyan)]/15 text-[var(--hud-text)] enabled:hover:bg-[var(--hud-cyan)]/25"
+              : "border-white/10 bg-white/[0.04] text-[var(--hud-text-dim)] enabled:hover:bg-white/[0.08]"
+          }`}
+        >
+          {chip.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function ChatPanel({
   chat,
   explaining,
@@ -303,6 +481,7 @@ export function ChatPanel({
   voiceOnly,
   onAsk,
   onVoice,
+  onAnswerOffer,
   liveActive = false,
   liveReady = false,
   liveStatusLabel = "",
@@ -319,6 +498,8 @@ export function ChatPanel({
   voiceOnly?: boolean;
   onAsk: (q: string) => void;
   onVoice: () => void;
+  /** Answer an offered drawing. Absent for a panel whose owner does not use the offer. */
+  onAnswerOffer?: (accept: boolean) => void;
   /** True while a live full-duplex tutor session is running (the mic toggles the call). */
   liveActive?: boolean;
   /** The realtime session is preconnected but may be privacy-muted while the lecture plays. */
@@ -347,7 +528,7 @@ export function ChatPanel({
         <div>
           <p className="text-sm font-bold text-[var(--hud-text)]">Ask Aria anything</p>
           <p className="text-[11px] leading-tight text-[var(--hud-text-faint)]">
-            {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she extends the board when a visual helps."}
+            {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she answers in words, and offers a drawing when one would help."}
           </p>
         </div>
       </div>
@@ -368,6 +549,12 @@ export function ChatPanel({
                 {t.role === "you" ? "You" : "Aria"}
               </span>
               {t.text}
+              {t.chips && onAnswerOffer && (
+                <>
+                  <p className="mt-2 text-[12px] font-semibold text-[var(--hud-text)]">Want me to draw it?</p>
+                  <OfferChips chips={t.chips} disabled={t.answered === true} onChoose={onAnswerOffer} />
+                </>
+              )}
             </div>
           ))
         )}

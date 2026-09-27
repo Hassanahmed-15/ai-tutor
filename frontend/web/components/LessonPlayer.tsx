@@ -2471,6 +2471,7 @@ export function LessonPlayer({
                 interim={chat.interim}
                 voiceSupported={REALTIME_TUTOR_ENABLED ? true : chat.voiceSupported}
                 onAsk={chat.ask}
+                onAnswerOffer={chat.answerVisualOffer}
                 // The mic now toggles the live full-duplex tutor (real conversation) instead of a
                 // one-shot transcription. Falls back to one-shot voice if realtime is disabled.
                 onVoice={REALTIME_TUTOR_ENABLED ? (sessionActive ? endLiveTutor : startLiveTutor) : chat.startVoice}

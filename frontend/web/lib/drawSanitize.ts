@@ -3767,6 +3767,28 @@ export function sanitizeExplanation(raw: unknown, context?: { question?: string 
 }
 
 /**
+ * A WORDS-ONLY answer, plus the offer of a drawing.
+ *
+ * Not a variant of sanitizeExplanation above, on purpose: that one guarantees a board, substituting a
+ * synthesized one whenever the model's own does not validate. Here the absence of a board is the point,
+ * so there is nothing to fall back to — an over-eager `visual` is simply dropped and the student gets
+ * the answer they asked for.
+ */
+export function sanitizeOfferedExplanation(
+  raw: unknown,
+): { script: string; visual: { what: string } | null } {
+  if (!raw || typeof raw !== "object") throw new Error("No explanation returned.");
+  const o = raw as Record<string, unknown>;
+  const script = str(o.script);
+  if (!script) throw new Error("Empty explanation.");
+  const offered = o.visual;
+  if (!offered || typeof offered !== "object") return { script, visual: null };
+  // One line, and short enough to sit under her answer as a question rather than a second paragraph.
+  const what = str((offered as Record<string, unknown>).what).slice(0, 220);
+  return { script, visual: what ? { what } : null };
+}
+
+/**
  * TEXT-ONLY explanation sanitize (ADHD live tutor). Keeps the model's label/note ops as a clean
  * chalk-text board — never substitutes the shape/scene fallback that produces the busy diagram.
  * If the model gave too few text ops, synthesize a couple of note lines from the script so the

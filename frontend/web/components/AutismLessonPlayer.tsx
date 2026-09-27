@@ -474,6 +474,7 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
               interim={chat.interim}
               voiceSupported={chat.voiceSupported}
               onAsk={chat.ask}
+              onAnswerOffer={chat.answerVisualOffer}
               onVoice={chat.startVoice}
             />
           </div>

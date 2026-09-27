@@ -3,8 +3,8 @@ import { getDocumentImages } from "@/lib/pageImageStore";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
-import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT } from "@/lib/drawPrompt";
-import { sanitizeExplanation, sanitizeTextExplanation } from "@/lib/drawSanitize";
+import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT, EXPLAIN_OFFER_SYSTEM_PROMPT } from "@/lib/drawPrompt";
+import { sanitizeExplanation, sanitizeTextExplanation, sanitizeOfferedExplanation } from "@/lib/drawSanitize";
 import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
 import { fillSpecBoardOps } from "@/lib/specBoardGen";
 import { isCodeQuestion } from "@/lib/codeSpec";
@@ -31,6 +31,17 @@ export async function POST(req: Request) {
   const textOnly = body.textOnly === true;
   const visualMode = typeof body.visualMode === "string" ? body.visualMode.trim() : "annotated_board";
   const reuseContext = body.reuseContext === true;
+  /*
+   * ANSWER FIRST, DRAW ON REQUEST.
+   *
+   * With `offer`, this returns words plus at most a one-line proposal, and never reaches the animation
+   * pass below — which is where the tens of seconds go, with the lecture frozen behind it. The client
+   * asks again without the flag once the student says yes, so the board pipeline is untouched and
+   * every other caller (/api/ask-drawing, the ADHD text board, the viewer) behaves exactly as before.
+   */
+  const offer = body.offer === true;
+  /** What she promised to draw, carried into the build so the board is the one that was offered. */
+  const visualHint = typeof body.visualHint === "string" ? body.visualHint.trim().slice(0, 300) : "";
 
   /**
    * The rest of the lesson, and the document it came from.
@@ -89,9 +100,12 @@ export async function POST(req: Request) {
       : "") +
     (beatContext ? `The student is on this part right now: "${beatContext}". ` : "") +
     `They asked: "${question}". ` +
-    `Preferred visual mode: "${visualMode}". ` +
-    (reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +
-    `Explain it and plan a precise visual answer.`;
+    (offer
+      ? `Answer it in words. Propose a drawing only if the answer genuinely needs one.`
+      : `Preferred visual mode: "${visualMode}". ` +
+        (reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +
+        (visualHint ? `They have asked to see this drawn, and you offered: "${visualHint}". Draw that. ` : "") +
+        `Explain it and plan a precise visual answer.`);
 
   let lastError = "Couldn't generate an explanation.";
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -99,7 +113,7 @@ export async function POST(req: Request) {
       const completion = await client.chat.completions.create({
         model: MODEL,
         messages: [
-          { role: "system", content: textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT },
+          { role: "system", content: offer ? EXPLAIN_OFFER_SYSTEM_PROMPT : textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT },
           {
             role: "user",
             /*
@@ -117,6 +131,13 @@ export async function POST(req: Request) {
         response_format: { type: "json_object" },
       });
       const raw = completion.choices[0]?.message?.content ?? "";
+      /*
+       * The words-only answer returns here, before the board pipeline exists at all. Nothing is
+       * validated, retried or illustrated, so this path costs one model call instead of twenty.
+       */
+      if (offer) {
+        return NextResponse.json({ ...sanitizeOfferedExplanation(JSON.parse(raw)), costUsd: meter.totalUsd });
+      }
       // TEXT-ONLY (ADHD tutor): dedicated sanitizer keeps ONLY label/note ops and never substitutes
       // the shape/scene diagram fallback — guaranteeing a clean chalk-text board.
       if (textOnly) {

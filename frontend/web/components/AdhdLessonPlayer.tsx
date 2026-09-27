@@ -672,6 +672,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               interim={chat.interim}
               voiceSupported={REALTIME_TUTOR_ENABLED ? true : chat.voiceSupported}
               onAsk={chat.ask}
+              onAnswerOffer={chat.answerVisualOffer}
               // Mic is always-on in ADHD; the button toggles it/mute rather than ending a call.
               onVoice={REALTIME_TUTOR_ENABLED ? toggleLiveMic : chat.startVoice}
               liveActive={sessionActive}

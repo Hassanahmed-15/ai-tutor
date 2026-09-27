@@ -346,6 +346,7 @@ export function DysgraphiaLessonPlayer({ onExit, onComplete, beats = demoBeats, 
               interim={chat.interim}
               voiceSupported={chat.voiceSupported}
               onAsk={chat.ask}
+              onAnswerOffer={chat.answerVisualOffer}
               onVoice={chat.startVoice}
             />
           </div>
