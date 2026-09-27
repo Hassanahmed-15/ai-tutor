@@ -27,18 +27,47 @@ export interface AddressingVerdict {
   reason: string;
 }
 
+const DEFAULT_WAKE_NAMES = ["aria", "arya", "teacher", "tutor"];
+
 /**
- * Every spelling a speech recogniser plausibly returns for "Aria", not just the correct one.
+ * Wake on anything that SOUNDS like "Aria", rather than on a list of spellings.
  *
- * "Aria" is a short, unstressed, vowel-heavy name, and transcribers routinely render it as a common
- * English word — "area" above all, which is a real word with a far higher language-model prior than
- * the name. Listing only the correct spellings meant a student saying "hey Aria" could be rejected
- * outright for hailing someone else, so repeating the wake phrase produced silence every time.
+ * "Aria" is two syllables of vowel around a single tapped r, with no stressed consonant to anchor
+ * it, so recognisers return whatever nearby word their language model prefers: "area", "aria",
+ * "ariya", "ara", "arie", "airia", "oria", "Ariel". Enumerating those is a losing game — the first
+ * version of this fix listed eight spellings and still missed twelve of twenty-six plausible
+ * transcriptions, because there is no bound on what a recogniser will produce for a name it does
+ * not know.
+ *
+ * So match the skeleton instead: an optional leading vowel sound, an `r`, and a vowel-ish tail,
+ * with no consonant other than that `r` anywhere in the token. "area", "ara", "oria" and "aeria"
+ * all reduce to it; "art", "around", "read" and "race" do not, because a second consonant
+ * disqualifies them. The `y` in "arya" counts as a vowel here, and a trailing "h" or "l" is
+ * allowed for "ariah" and "Ariel".
  */
-const DEFAULT_WAKE_NAMES = [
-  "aria", "arya", "ariya", "area", "aaria", "aria's",
-  "ariah", "aria'", "arria", "ariel", "teacher", "tutor",
-];
+const WAKE_SOUNDALIKE = /^[aeiou]{0,3}r+[aeiouy]{1,4}(?:h|l)?$/i;
+
+/** A determiner or modifier right before the token means it is a noun, not someone being addressed. */
+const ARTICLE_BEFORE_NOUN = new Set([
+  "the", "a", "an", "this", "that", "its", "his", "her", "their", "our", "my", "your",
+  "surface", "total", "same", "whole", "entire", "shaded", "cross", "grey", "gray", "of",
+]);
+
+/** Openers a student puts in front of the name, so the name is the second word rather than the first. */
+const GREETING_OPENER = new Set([
+  "hey", "hi", "hello", "yo", "oi", "um", "uh", "so", "okay", "ok", "excuse", "sorry", "listen", "good",
+]);
+
+/** Tokens that pass the skeleton but are ordinary words, not a mis-heard name. */
+const WAKE_SOUNDALIKE_EXCEPTIONS = new Set(["or", "our", "are", "her", "hour", "era", "oreo", "euro", "aura", "royal"]);
+
+/** True when a single word is plausibly the recogniser's attempt at "Aria". */
+function soundsLikeWakeName(word: string): boolean {
+  const w = word.replace(/[^a-z]/gi, "").toLowerCase();
+  if (w.length < 2 || w.length > 7) return false;
+  if (WAKE_SOUNDALIKE_EXCEPTIONS.has(w)) return false;
+  return WAKE_SOUNDALIKE.test(w);
+}
 
 const BACKCHANNEL = new Set([
   "mm", "mmm", "mhm", "mm-hm", "mmhm", "uh", "uh-huh", "uhhuh", "um", "hmm", "huh", "ah", "oh",
@@ -111,6 +140,17 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
   if (LESSON_COMMAND.test(text)) return { addressed: true, score: 1, reason: "lesson command" };
   if (NAME_THIRD_PERSON.test(text) && !/\byou\b/.test(text)) return { addressed: false, score: 0, reason: "talking about the tutor, not to her" };
   if (wakePattern.test(text)) return { addressed: true, score: 1, reason: "addressed by name" };
+  // Same question phonetically — see soundsLikeWakeName. Only the edges of the utterance count, so
+  // "the area of a circle" stays a maths question while "hello ara" wakes her.
+  if (!context.wakeNames?.length) {
+    const at = (i: number) => (i >= 0 && i < words.length && soundsLikeWakeName(words[i]) ? words[i] : null);
+    const before = words[words.length - 2];
+    const heard =
+      at(0) ??
+      (words.length > 1 && !ARTICLE_BEFORE_NOUN.has(before ?? "") ? at(words.length - 1) : null) ??
+      (words.length > 1 && GREETING_OPENER.has(words[0]) ? at(1) : null);
+    if (heard) return { addressed: true, score: 1, reason: `addressed by name (heard "${heard}")` };
+  }
   const hail = text.match(HAIL_OPENER);
   /*
    * A hail to an unrecognised name is evidence against, not a veto.

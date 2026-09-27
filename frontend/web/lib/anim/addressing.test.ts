@@ -74,6 +74,23 @@ test("THE BUG: a mis-transcribed \"Aria\" still reaches her", () => {
   for (const said of ["hey aria", "hey area", "hey ariya", "hey ariah", "hey area what does that mean"]) {
     forAria(said, IDLE);
   }
+  /*
+   * Matched phonetically, not from a list of spellings. The first version of this fix enumerated
+   * eight spellings and still missed twelve of twenty-six plausible transcriptions; there is no
+   * bound on what a recogniser returns for a name it does not know, so the rule is the sound shape.
+   */
+  for (const said of ["aria", "ara", "arie", "airia", "auria", "oria", "aeria", "ariel", "hello ara", "hi arie", "good morning aria", "aria are you there"]) {
+    forAria(said, IDLE);
+  }
+  /*
+   * But "area" is also ordinary vocabulary, and a maths lesson says it constantly. Position settles
+   * it: a name being addressed sits at an edge of the utterance, never mid-phrase behind a
+   * determiner. These must stay questions about geometry.
+   */
+  for (const said of ["what is the area of a circle", "the surface area", "the area under the curve", "find the area of that shape"]) {
+    const v = classifyAddressing(said, IDLE);
+    assert.ok(!/heard "/.test(v.reason), `"${said}" must not match the name rule — got ${v.reason}`);
+  }
   // A name we have actually been told belongs to someone else is still a hard veto, and an unknown
   // hail must still earn its way in on the words alone.
   const room: AddressingContext = { ...IDLE, otherPeople: ["dave", "mum"] };
