@@ -55,6 +55,20 @@ export interface ArbiterConfig {
   minSpeakerWindows: number;
   /** While attending or listening, this long without any frame means the microphone has stalled. */
   micStallMs: number;
+  /**
+   * How long a confirmed voice may be held waiting for words before it is let through anyway.
+   *
+   * Only applies when `requireAddressingBeforeOpen` is set, which is what production runs whenever
+   * the browser offers SpeechRecognition. Without this, a recogniser that returns nothing — denied,
+   * throttled, unsupported locale, or losing the microphone to the Live session — held every
+   * utterance forever: the student talks, the gate waits for a transcript that never comes, and the
+   * tutor is silent with no error anywhere. A student saying "hey Aria" got exactly that.
+   *
+   * Opening on sustained speech alone is the safe failure: audio then reaches Gemini, whose own
+   * transcription decides what to do with it. The cost of being wrong is one unnecessary turn; the
+   * cost of waiting forever is an assistant that cannot be spoken to at all.
+   */
+  addressingTimeoutMs: number;
 }
 
 export const DEFAULT_ARBITER_CONFIG: ArbiterConfig = {
@@ -68,6 +82,9 @@ export const DEFAULT_ARBITER_CONFIG: ArbiterConfig = {
   refractoryMs: 400,
   minSpeakerWindows: 5,
   micStallMs: 1500,
+  // Long enough that a working recogniser almost always wins the race (interim results arrive in
+  // 200-600 ms), short enough that a student does not conclude the tutor is deaf.
+  addressingTimeoutMs: 1600,
 };
 
 export interface TutorStatus {
@@ -100,7 +117,7 @@ export interface ArbiterCallbacks {
   /** The turn was not for us: close it and suppress whatever comes back. */
   onDiscard?: (reason: string) => void;
   onState?: (from: TurnState, to: TurnState, reason: string, at: number) => void;
-  onWatchdog?: (kind: "mic-stalled" | "response-timeout" | "max-utterance", detail: string, at: number) => void;
+  onWatchdog?: (kind: "mic-stalled" | "response-timeout" | "max-utterance" | "addressing-timeout", detail: string, at: number) => void;
 }
 
 export interface ArbiterOptions {
@@ -138,6 +155,19 @@ export class TurnArbiter {
   private lastTranscript = "";
   private addressedByWords = false;
   private negativeFinal = false;
+  /** When a confirmed voice started waiting on a transcript; -1 when not waiting. */
+  private awaitingWordsSince = -1;
+  /** The preroll captured when the wait began, so the released turn keeps the opening words. */
+  private pendingPreroll: Float32Array[] = [];
+  /**
+   * Whether the local recogniser has EVER returned a transcript in this session.
+   *
+   * Session-scoped on purpose, so it is deliberately not cleared by clearEpisode(): one working
+   * transcript proves the recogniser exists, and from then on a turn with no words is a student who
+   * has not spoken yet rather than a broken transcriber. It is the difference between "wait, the
+   * words are coming" and "nothing is ever coming, let the audio through".
+   */
+  private everTranscribed = false;
 
   constructor(options: ArbiterOptions = {}) {
     this.config = { ...DEFAULT_ARBITER_CONFIG, ...options.config };
@@ -242,6 +272,14 @@ export class TurnArbiter {
         } else if (this.addressedByWords) {
           this.open(now, event.preroll, "confirmed speech, words already addressed the tutor");
           this.commit(now, this.lastVerdict?.reason ?? "addressed");
+        } else if (this.config.requireAddressingBeforeOpen && !this.tutor.speaking) {
+          /*
+           * Confirmed speech, tutor silent, no words yet. Start the clock rather than waiting
+           * indefinitely: tick() opens this turn if the transcript never arrives. Interrupting a
+           * SPEAKING tutor on no evidence is a different, worse trade, so that case still waits.
+           */
+          this.awaitingWordsSince = now;
+          this.pendingPreroll = event.preroll;
         }
         return;
       case "pause":
@@ -271,6 +309,9 @@ export class TurnArbiter {
 
   /** Words from the transcriber. Interim text drives POSITIVE verdicts only; negatives wait for final text. */
   provideTranscript(text: string, final: boolean, now: number): void {
+    // Recorded before the state guard: a transcript arriving while idle still proves the recogniser
+    // is alive, which is all the addressing watchdog needs to know.
+    if (text.trim()) this.everTranscribed = true;
     if (this.state !== "attending" && this.state !== "listening" && this.state !== "committed") return;
     this.lastTranscript = text;
     let verdict = classifyAddressing(text, {
@@ -315,6 +356,43 @@ export class TurnArbiter {
       this.lastFrameAt = now;
       return;
     }
+    /*
+     * A confirmed voice waited for words that never came. Let it through.
+     *
+     * The transcript feeding the addressing gate comes from the browser's SpeechRecognition, which
+     * can silently produce nothing — permission denied, an unsupported locale, throttling, or the
+     * Live session taking the microphone. When that happened the turn was held indefinitely and the
+     * tutor never answered, with no error raised anywhere: exactly "I keep saying hey Aria and it
+     * doesn't listen". Opening on sustained speech hands the audio to Gemini, whose own
+     * transcription then decides; one unnecessary turn is a far cheaper mistake than silence.
+     */
+    if (
+      this.state === "attending" &&
+      this.awaitingWordsSince >= 0 &&
+      !this.addressedByWords &&
+      !this.tutor.speaking &&
+      // Only when the recogniser has produced NOTHING for this whole session. A transcriber that is
+      // working — even slowly, even mid-sentence — must be allowed to finish, or a student speaking
+      // with pauses gets cut off and their neighbour's side-talk gets let in. Both were measured:
+      // scenarios 53 and 54 broke on timing alone, and 26 and 29 leaked.
+      this.lastTranscript === "" &&
+      !this.everTranscribed &&
+      now - this.awaitingWordsSince >= this.config.addressingTimeoutMs
+    ) {
+      const waited = Math.round(now - this.awaitingWordsSince);
+      const preroll = this.pendingPreroll;
+      this.awaitingWordsSince = -1;
+      this.pendingPreroll = [];
+      this.callbacks.onWatchdog?.("addressing-timeout", `no transcript after ${waited} ms; opening anyway`, now);
+      /*
+       * Open, but do NOT commit. Committing pauses the tutor and reports a barge-in, which is wrong
+       * here: this branch only runs while she is silent, so there is nothing to interrupt. Opening
+       * streams the audio to Gemini and lets the ordinary end-of-utterance path finish the turn.
+       */
+      this.open(now, preroll, "confirmed speech, but no words arrived to judge it");
+      return;
+    }
+
     if (this.state === "processing" && now - this.processingSince >= this.config.responseTimeoutMs) {
       this.callbacks.onWatchdog?.("response-timeout", `no reply for ${Math.round(now - this.processingSince)} ms`, now);
       if (this.pausedTutor) {
@@ -410,6 +488,10 @@ export class TurnArbiter {
     this.lastTranscript = "";
     this.addressedByWords = false;
     this.negativeFinal = false;
+    // Clear the addressing clock with the episode, so a wait from a previous utterance cannot fire
+    // against the next one.
+    this.awaitingWordsSince = -1;
+    this.pendingPreroll = [];
   }
 
   private transition(to: TurnState, reason: string, at: number): void {

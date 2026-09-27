@@ -72,14 +72,22 @@ export function enrolledVoiceprint(cast: Cast = BARE_CAST): HeuristicVoiceprint 
 export interface RunOptions {
   /** Supply a neural VAD probability per 20 ms frame (browser only); null means heuristic. */
   vad?: (frame: Float32Array) => number | null;
+  /**
+   * Hold every turn until the words have addressed the tutor — what production actually runs
+   * whenever the browser offers SpeechRecognition (`semanticPrefilter` in useGeminiLiveTutor).
+   * The suite ran only the `false` path for a long time, so the configuration real students get
+   * was the one nothing exercised.
+   */
+  requireAddressingBeforeOpen?: boolean;
 }
 
-function setup(s: Scenario) {
+function setup(s: Scenario, options: RunOptions = {}) {
   const o: Outcome = { verdict: "SILENT", turns: 0, bargeReason: null, discarded: false, ducked: false, restored: false, resumed: false, finalState: "idle", watchdogs: [], events: [], transcripts: [] };
   const log = new EventLog(20_000);
   const reply = { at: -1 };
   const pipeline = new TurnPipeline({
     profile: s.profile ?? "lecture",
+    arbiter: { requireAddressingBeforeOpen: options.requireAddressingBeforeOpen === true },
     verifier: s.unenrolled ? new HeuristicVoiceprint() : enrolledVoiceprint(s.cast ?? BARE_CAST),
     log,
     callbacks: {
@@ -122,7 +130,7 @@ function setup(s: Scenario) {
 
 /** Synchronous run with the acoustic detector (or a synchronous VAD function). */
 export function runScenario(s: Scenario, options: RunOptions = {}): Outcome {
-  const { pipeline, total, before, after, finish } = setup(s);
+  const { pipeline, total, before, after, finish } = setup(s, options);
   for (let i = 0; i < total; i++) {
     const { now, frame } = before(i);
     if (frame) pipeline.push(frame, now, options.vad ? options.vad(frame) : null);

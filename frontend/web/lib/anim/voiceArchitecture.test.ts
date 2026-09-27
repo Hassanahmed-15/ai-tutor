@@ -145,6 +145,36 @@ test("race matrix: duplicate interruption, reconnect mid-speech/playback and lat
   assert.equal(machine.value.state, "LISTENING");
 });
 
+test("PRODUCTION CONFIG: the whole suite also passes with requireAddressingBeforeOpen", () => {
+  /*
+   * The configuration real students get, and for a long time the one nothing tested.
+   *
+   * useGeminiLiveTutor sets `semanticPrefilter: browserSemanticPrefilterAvailable()`, so on every
+   * Chrome the gate holds each turn until the words have addressed the tutor. The suite only ever
+   * ran the `false` path. The gap hid a hang: when the browser recogniser returned nothing — denied,
+   * throttled, unsupported locale, or the Live session taking the microphone — a confirmed voice was
+   * held forever and the tutor never answered, with no error raised anywhere. Reported as "i keep
+   * saying hey aria and it doesnt listen".
+   */
+  for (const scenario of SCENARIOS) {
+    const outcome = runScenario(scenario, { requireAddressingBeforeOpen: true });
+    const { pass, why } = scoreScenario(scenario, outcome);
+    assert.ok(pass, `#${scenario.id} ${scenario.name}: ${why}`);
+  }
+});
+
+test("NO TRANSCRIPT: a voice with no words still gets a turn, and side-talk still does not", () => {
+  // The hang itself, pinned: #35 is 25s of speech the recogniser never transcribes, #29 is a friend
+  // talking while the tutor is idle. The watchdog must release the first and ignore the second.
+  const held = runScenario(SCENARIOS.find((s) => s.id === 35)!, { requireAddressingBeforeOpen: true });
+  assert.equal(held.verdict, "TURN", "speech with no transcript must still reach the tutor");
+  assert.ok(held.watchdogs.includes("addressing-timeout"), "the addressing watchdog should be what released it");
+
+  const sideTalk = runScenario(SCENARIOS.find((s) => s.id === 29)!, { requireAddressingBeforeOpen: true });
+  assert.equal(sideTalk.verdict, "SILENT", "a friend's conversation must not open a turn");
+  assert.equal(sideTalk.turns, 0);
+});
+
 test("WAKE PHRASE: a mis-transcribed \"Aria\" still reaches her, a real hail still does not", () => {
   /*
    * The reported failure: "i keep saying it hey aria hey aria but it doesnt listen".
