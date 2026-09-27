@@ -28,6 +28,25 @@ type Line = { role: "student" | "tutor"; text: string; final: boolean; at: numbe
 
 export function VoiceExploreButton({ position = "top-right" }: { position?: "top-right" | "top-left" }) {
   const [open, setOpen] = useState(false);
+  /*
+   * Screens that must stay silent mark themselves with `data-quiet-screen`, and this control hides
+   * while one is mounted — the lesson build screen is the first, where a floating "Talk to Aria"
+   * sat on top of a progress view that deliberately has no voice at all.
+   *
+   * Observed from the DOM rather than passed down, because this button is mounted beside the whole
+   * app: the alternative is threading a flag through every page that might ever want quiet.
+   */
+  const [quiet, setQuiet] = useState(false);
+  useEffect(() => {
+    const check = () => setQuiet(Boolean(document.querySelector("[data-quiet-screen]")));
+    const observer = new MutationObserver(check);
+    observer.observe(document.body, { childList: true, subtree: true });
+    const id = window.setTimeout(check, 0);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(id);
+    };
+  }, []);
   const [lines, setLines] = useState<Line[]>([]);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -136,6 +155,16 @@ export function VoiceExploreButton({ position = "top-right" }: { position?: "top
 
   const dot = reconnecting || status === "connecting" ? "#fbbf24" : live ? (speaking ? "#a78bfa" : "#34d399") : "#64748b";
   const side = position === "top-left" ? { left: 16 } : { right: 16 };
+
+  // Hiding the control must also END the session, or a quiet screen would keep an open microphone
+  // and a billing socket with nothing on screen to stop it.
+  useEffect(() => {
+    // `stop()` alone: the panel is unmounted by the early return below, so there is no `open` state
+    // to reset here, and setting it would be a render-phase update for no visible effect.
+    if (quiet && (live || status === "connecting")) stop();
+  }, [quiet, live, status, stop]);
+
+  if (quiet) return null;
 
   return (
     <div style={{ position: "fixed", top: 16, ...side, zIndex: 9999 }} className="flex flex-col items-stretch gap-2">

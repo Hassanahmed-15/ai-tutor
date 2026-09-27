@@ -6,7 +6,8 @@ import { LessonPlayer } from "@/components/LessonPlayer";
 import { LectureSummarySlide } from "@/components/LectureSummarySlide";
 import type { LectureSummary } from "@/lib/lectureSummary";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
-import { LessonDesignMode, type DesignProgress } from "@/components/design/LessonDesignMode";
+import { type DesignProgress } from "@/components/design/LessonDesignMode";
+import { LessonBuildScreen } from "@/components/design/LessonBuildScreen";
 import { applyDiagnostic, conceptMap, emptyProfile, hasEnoughSignal, learnerInstruction, profileSummary, resolveDepth, DEPTH_NAMES, type ConceptMapEntry, type DepthLevel, type LearnerProfile } from "@/lib/learnerProfile";
 import { memoryWasUsed, personaForPrompt, profileHasSignal, rememberedLine, seedProfile, snapshotFrom, type LearnerMemory } from "@/lib/learnerModel";
 import { PLAN_CHOICES, planMessage, shouldAddVoiceLine } from "@/lib/planningTranscript";
@@ -3195,18 +3196,14 @@ type BuildCost =
   return (
     <main className="hud-canvas hud-grain relative min-h-screen overflow-x-hidden text-[var(--hud-text)]">
       {phase === "building" ? (
-        <LessonDesignMode
+        // The silent build screen, in place of LessonDesignMode: that one opened a Gemini Live
+        // session so Aria could talk while the lecture generated — avatar, microphone, transcript
+        // and text box — which is a second voice session competing with the lecture's own. This
+        // shows the slides being written instead, and makes no sound.
+        <LessonBuildScreen
           topic={topic}
-          mode={selectedMode.name}
           progress={{ ...buildProgress, status: buildProgress.status || buildStatus }}
           ready={builtLesson !== null}
-          sourceKind={designSourceKind}
-          mood={`${selectedMode.name} learning mode: ${selectedMode.detail}`}
-          blindMode={selectedMode.page === "blind-demo"}
-          studentName={profile?.displayName ?? undefined}
-          jobId={buildJobId}
-          documentId={documentId ?? undefined}
-          documentContext={voiceDocContext}
           beatStatus={buildBeats?.beats}
           buildStartedAt={buildBeats?.startedAt}
           onStop={leaveToHome}
