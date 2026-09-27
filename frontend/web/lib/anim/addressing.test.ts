@@ -61,6 +61,27 @@ test("hailing someone else by name is not for Aria", () => {
   forAria("hey wait", LECTURING);
 });
 
+test("THE BUG: a mis-transcribed \"Aria\" still reaches her", () => {
+  /*
+   * Reported as "i keep saying it hey aria hey aria but it doesnt listen".
+   *
+   * "Aria" is short, unstressed and vowel-heavy, so recognisers return "area" — a real word with a
+   * much higher language-model prior than the name. The wake list held only the correct spellings,
+   * and an unrecognised hail was a hard veto, so a mis-heard name was not merely unmatched: it was
+   * rejected as addressing someone else. Repeating the phrase could not help, because every attempt
+   * was mis-heard identically.
+   */
+  for (const said of ["hey aria", "hey area", "hey ariya", "hey ariah", "hey area what does that mean"]) {
+    forAria(said, IDLE);
+  }
+  // A name we have actually been told belongs to someone else is still a hard veto, and an unknown
+  // hail must still earn its way in on the words alone.
+  const room: AddressingContext = { ...IDLE, otherPeople: ["dave", "mum"] };
+  for (const said of ["hey dave", "hey mum", "hey dave pass me that", "hey mike can you close the door"]) {
+    notForAria(said, room);
+  }
+});
+
 test("short lesson commands are always for Aria, even mid-lecture", () => {
   for (const cmd of ["stop", "pause", "wait", "hold on", "continue", "repeat", "say that again", "slower", "go back", "skip", "one more time", "never mind"]) {
     forAria(cmd, LECTURING);

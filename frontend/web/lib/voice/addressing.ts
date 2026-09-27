@@ -34,6 +34,12 @@ export interface AddressingContext {
   topicWords?: Iterable<string>;
   /** What the tutor answers to. Both spellings, because the product is spoken and spelt both ways. */
   wakeNames?: string[];
+  /**
+   * Names known to belong to other people in the room. Hailing one of these is a hard veto; any
+   * other unrecognised name is only scored down, since a name the app has never been told about is
+   * more likely a mis-transcribed "Aria" than a real person.
+   */
+  otherPeople?: string[];
 }
 
 export interface AddressingVerdict {
@@ -44,7 +50,18 @@ export interface AddressingVerdict {
   reason: string;
 }
 
-const DEFAULT_WAKE_NAMES = ["aria", "arya", "teacher"];
+/**
+ * Every spelling a recogniser plausibly returns for "Aria", not just the correct ones.
+ *
+ * "Aria" is short, unstressed and vowel-heavy, so transcribers render it as a common English word —
+ * "area" above all, which has a far higher language-model prior than the name. Holding only the
+ * correct spellings meant a mis-heard wake phrase did not merely fail to match: it fell through to
+ * the hail rule and was rejected as addressing someone else. Repeating "hey Aria" could not fix
+ * that, because each attempt was mis-heard the same way.
+ */
+const DEFAULT_WAKE_NAMES = [
+  "aria", "arya", "ariya", "area", "aaria", "ariah", "arria", "ariel", "teacher", "tutor",
+];
 
 /** Acknowledgements that are never a request — unless Aria asked a yes/no question. */
 const BACKCHANNEL = new Set([
@@ -145,9 +162,20 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
 
   if (wakePattern.test(text)) return { addressed: true, score: 1, reason: "addressed by name" };
 
+  /*
+   * A hail to an unrecognised name is evidence against, not a veto.
+   *
+   * This used to return 0 outright, which made a mis-transcribed "Aria" indistinguishable from
+   * calling across the room — the student repeated the wake phrase and got silence every time, with
+   * nothing to say why. Real side-talk is still caught: an unknown hail forfeits the "tutor idle"
+   * credit and takes a penalty, so it must earn 0.5 from the words themselves. "hey Dave pass me
+   * that" cannot; "hey area, what does that mean" can. A hail to a name we have actually been told
+   * belongs to someone else remains a hard veto.
+   */
   const hail = text.match(HAIL_OPENER);
-  if (hail && !HAIL_NOT_A_NAME.has(hail[1]) && !wakeNames.includes(hail[1])) {
-    return { addressed: false, score: 0, reason: `hailing someone else ("${hail[1]}")` };
+  const hailedName = hail && !HAIL_NOT_A_NAME.has(hail[1]) && !wakeNames.includes(hail[1]) ? hail[1] : null;
+  if (hailedName && context.otherPeople?.some((n) => n.toLowerCase() === hailedName)) {
+    return { addressed: false, score: 0, reason: `hailing someone else ("${hailedName}")` };
   }
 
   if (SIDE_CONVERSATION.test(text)) return { addressed: false, score: 0, reason: "side conversation" };
@@ -197,10 +225,16 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
     // Interrupting the teacher is the expensive mistake, so the bar is higher while she talks.
     score -= 0.25;
     why.push("tutor speaking");
-  } else if (!context.expectingAnswer) {
+  } else if (!context.expectingAnswer && !hailedName) {
     // Idle tutor, nothing pending: lean slightly toward listening, since nobody else is talking.
+    // Withheld when an unknown name was hailed — that is the one case where somebody else plainly is.
     score += 0.15;
     why.push("tutor idle");
+  }
+
+  if (hailedName) {
+    score -= 0.2;
+    why.push(`hailed "${hailedName}"`);
   }
 
   const addressed = score >= 0.5;

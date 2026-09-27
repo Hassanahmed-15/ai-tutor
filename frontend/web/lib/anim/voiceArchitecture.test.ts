@@ -145,6 +145,28 @@ test("race matrix: duplicate interruption, reconnect mid-speech/playback and lat
   assert.equal(machine.value.state, "LISTENING");
 });
 
+test("WAKE PHRASE: a mis-transcribed \"Aria\" still reaches her, a real hail still does not", () => {
+  /*
+   * The reported failure: "i keep saying it hey aria hey aria but it doesnt listen".
+   *
+   * "Aria" is short, unstressed and vowel-heavy, so recognisers return "area" — a real English word
+   * with a much higher language-model prior than the name. The wake list held only the correct
+   * spellings, and an unrecognised hail was a hard veto, so a mis-heard name did not merely fail to
+   * match: it was actively rejected as "hailing someone else". Repeating the phrase could not help,
+   * because every attempt was mis-heard the same way.
+   */
+  const ctx = { expectingAnswer: false, tutorSpeaking: false, topicWords: new Set(["derivative"]) };
+  for (const said of ["hey aria", "hey area", "hey ariya", "hey ariah", "hey area what is a derivative"]) {
+    assert.equal(classifyAddressing(said, ctx).addressed, true, `"${said}" must reach the tutor`);
+  }
+  // Someone the app has been told about is still a hard veto; an unknown name must earn its way in
+  // on the words alone, which plain side-talk does not.
+  const room = { ...ctx, otherPeople: ["dave", "mum"] };
+  for (const said of ["hey dave", "hey mum", "hey dave pass me that", "hey mike can you close the door"]) {
+    assert.equal(classifyAddressing(said, room).addressed, false, `"${said}" is not for the tutor`);
+  }
+});
+
 test("DEDICATED SESSION: a plain greeting reaches the tutor, a hail to someone else does not", () => {
   /*
    * The reported failure: the button said "Listening — just talk", and saying hello did nothing.
