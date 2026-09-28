@@ -111,9 +111,12 @@ export function sourceScopeInstruction(scope: SourceScope): string {
   const fidelityLine =
     scope.fidelity === "strict"
       ? STRICT_SOURCE_RULE
-      : "SOURCE AS REFERENCE. Use the uploaded material as the foundation, but freely expand with " +
-        "outside knowledge, additional examples, and context that helps teaching — the source anchors " +
-        "the lesson, it does not fence it in.";
+      : "SOURCE AS REFERENCE. The uploaded material is the foundation and the lesson follows it, but it " +
+        "does not fence the lesson in: freely expand with outside knowledge — the intuition behind what it " +
+        "states, worked examples it leaves out, and context that makes it understood. What the document states, " +
+        "teach faithfully (its terms, its figures, its code). For a programming topic, show and explain " +
+        "the code — the document's own code where it has it, otherwise a short, correct implementation of " +
+        "your own, walked through step by step.";
 
   const breadthLine =
     scope.breadth.kind === "whole"

@@ -55,3 +55,27 @@ test("strict whole-source planning keeps more than twelve source sections", () =
   assert.equal(plan.length, 15);
   assert.deepEqual(plan.flatMap((beat) => beat.sourceBlockIds ?? []), blocks.map((block) => block.id));
 });
+
+test("a reference PDF's implementation sections get code boards even without printed code; strict ones do not", () => {
+  const blocks = [
+    { id: "r1", pageNumber: 1, sourceOrder: 0, heading: "What a binary search tree is", text: "Each node's left subtree holds smaller keys and its right subtree larger keys." },
+    { id: "r2", pageNumber: 1, sourceOrder: 1, heading: "The remove method", text: "Removing a node with one child bypasses it by linking its parent to its child." },
+  ];
+  const input = (fidelity: "strict" | "reference"): ProgressiveLectureInput => ({
+    topic: "Binary Search Trees",
+    mood: "",
+    sourceType: "pdf",
+    mode: "standard",
+    suprnotes: {
+      contentBlocks: blocks,
+      lessonPlan: { beats: blocks.map((block) => ({ title: block.heading, objective: block.text, sourceBlockIds: [block.id] })) },
+    },
+    learnerProfile: { expertise: "intermediate", depth: "balanced", goal: "school", codeExamples: false, preferredExamples: "mixed", rationale: "test", confirmedAt: "now" },
+    sourceScope: { fidelity, breadth: { kind: "whole" }, documentLabels: [] },
+  });
+  const kindOf = (fidelity: "strict" | "reference", blockId: string) =>
+    buildProgressivePlan(input(fidelity)).find((beat) => beat.sourceBlockIds?.includes(blockId))?.visualKind;
+  assert.equal(kindOf("reference", "r2"), "code");
+  assert.notEqual(kindOf("reference", "r1"), "code", "a conceptual section keeps its animation");
+  assert.notEqual(kindOf("strict", "r2"), "code", "strict shows only code the document prints");
+});

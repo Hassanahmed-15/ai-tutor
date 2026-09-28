@@ -418,7 +418,10 @@ async function generateOneBeat(
       isCheckpoint,
       adaptation,
       sourceContext: context,
-      sourceInstruction: strict && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      // Both fidelities: strict fences the lesson in; reference says to explain beyond the document.
+      // Reference used to get nothing here, so the writer saw only the pages ("they ARE the source")
+      // and taught a reference PDF as if it were strict.
+      sourceInstruction: input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
       strict,
       codeInstruction: codeInstruction(input, session, planned, strict),
       selectionScoped: Boolean(input.selection?.transcript.trim()),
@@ -559,9 +562,12 @@ function codeInstruction(input: ProgressiveLectureInput, session: ProgressiveLec
   // A strict lesson shows code only where its source prints code; a snippet written "because it
   // teaches the topic" is content from outside the source.
   if (strict) return "Do not include code unless this board's own source contains it; then quote it exactly and never write code of your own.";
-  return requestedCode(input) || session.learnerProfile.codeExamples
-    ? "Include a code snippet only when it genuinely teaches the topic."
-    : "Do not include code.";
+  if (!requestedCode(input) && !session.learnerProfile.codeExamples) return "Do not include code.";
+  // A programming document used as a reference: code is part of explaining it, whether or not the
+  // document prints any.
+  return input.sourceScope?.fidelity === "reference"
+    ? "This is a programming topic taught from a reference document: where code shows the idea more clearly than words, put a short, correct snippet on the board — the document's own code when it has it, otherwise your own — and explain what it does in the narration (never read symbols aloud)."
+    : "Include a code snippet only when it genuinely teaches the topic.";
 }
 
 function sanitizeGeneratedBeat(

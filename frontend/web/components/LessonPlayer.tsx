@@ -59,7 +59,7 @@ import { useLessonChat, ChatPanel, ExplainOverlay, TeacherDrawingNotice } from "
 import { HudCorners } from "./hud/HudKit";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import type { SourceScope } from "@/lib/sourceScope";
-import { beatSourceGroundingFor, isStrictScope, strictVoicePartContext, withStrictSourceHeader } from "@/lib/strictSourceAnswers";
+import { beatSourceGroundingFor, isStrictScope, referenceVoicePartContext, strictVoicePartContext, withStrictSourceHeader } from "@/lib/strictSourceAnswers";
 import { useEngagementScore } from "@/lib/useEngagementScore";
 import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
@@ -1386,7 +1386,9 @@ export function LessonPlayer({
     boardSentRef.current = key;
     // Strict: the session's instruction was fixed when it opened, so each new part's own source
     // text travels with the part change, and the tutor is held to it.
-    const partSource = strictSource ? strictVoicePartContext(beatSourceFor(beat)) : "";
+    const partSource = strictSource
+      ? strictVoicePartContext(beatSourceFor(beat))
+      : hasSourceDocument ? referenceVoicePartContext(beatSourceFor(beat)) : "";
     tutor.addContext(`The lecture is now on part ${index + 1}. What the student sees:\n${board}${partSource}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, beat, liveTutorReady]);

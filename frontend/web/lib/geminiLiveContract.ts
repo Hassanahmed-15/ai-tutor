@@ -1,4 +1,4 @@
-import { STRICT_VOICE_RULES, formatBeatSource, readStrictSourceHeader } from "./strictSourceAnswers";
+import { REFERENCE_VOICE_RULES, STRICT_VOICE_RULES, formatBeatSource, readStrictSourceHeader } from "./strictSourceAnswers";
 
 export const SHOW_BOARD_TOOL = {
   name: "show_board",
@@ -176,6 +176,7 @@ export function buildGeminiLiveInstructions(input: {
   const fidelity = readStrictSourceHeader(input.documentContext ?? "");
   const parts = [TUTOR_PERSONA];
   if (fidelity.strict) parts.push(STRICT_VOICE_RULES);
+  else if (input.documentContext?.trim()) parts.push(REFERENCE_VOICE_RULES);
   parts.push(`Lesson topic: ${input.topic || "the current lesson"}.`);
   if (input.lessonQuestion) parts.push(`This lesson was built to answer: "${input.lessonQuestion}". Keep every answer connected to it.`);
   /*

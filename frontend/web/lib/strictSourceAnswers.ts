@@ -177,6 +177,15 @@ The student chose to learn ONLY from their own document. SOURCE in the message (
 Return "covered" (true or false) in the JSON alongside everything else.`;
 
 /**
+ * The live voice tutor in a lesson whose document is a REFERENCE: specific when asked about the
+ * document, free to go past it otherwise — and code is always fair game on a programming topic.
+ */
+export const REFERENCE_VOICE_RULES = `THE DOCUMENT IS A REFERENCE, NOT A FENCE.
+- A question about the document itself — "what does this paragraph mean", "what is (b) in figure 19.3", "what does this code do" — is answered specifically from the document: its words, its figure, its code. Answer exactly that question; do not drift into the rest of the chapter.
+- Anything beyond it — "why", "give me another example", "how would I code this", a related topic it does not cover — is answered fully from your own knowledge. Say in a few words when you are going beyond the document ("your notes don't show this, but…"), then teach it properly.
+- On a programming topic, explain the code: the document's own code when it has it; otherwise describe a clear implementation step by step, and use show_board with visual_mode code_walkthrough when the student wants to see it.`;
+
+/**
  * The live voice tutor's version of the same rule.
  *
  * Speech cannot be filtered sentence by sentence after the fact the way a typed answer can, so this
@@ -414,6 +423,18 @@ export function readStrictSourceHeader(documentContext: string): StrictSourceHea
  * Its system instruction is fixed for the life of the socket, so the part it was opened on goes
  * stale as the lecture plays. This rides on the per-part context update the player already sends.
  */
+/**
+ * The same per-part text for a REFERENCE lesson, framed as a reference rather than a fence.
+ *
+ * Strict lessons sent Aria each part's own document text as the lecture moved; reference lessons
+ * sent nothing, so a question about "this paragraph" or "figure 19.3" was answered from the whole
+ * document at best — and the strict voice was the one that felt right. Same channel, looser rule.
+ */
+export function referenceVoicePartContext(beatSource: BeatSourceGrounding | null): string {
+  if (!beatSource) return "";
+  return `\nThe document's own text for this part (a reference: answer questions about it from here, and explain beyond it freely):\n${formatBeatSource(beatSource)}`;
+}
+
 export function strictVoicePartContext(beatSource: BeatSourceGrounding | null): string {
   if (!beatSource) return "";
   return `\nThe document's own text for this part — in strict mode you teach and answer ONLY from the document, so add nothing it does not say:\n${formatBeatSource(beatSource)}`;

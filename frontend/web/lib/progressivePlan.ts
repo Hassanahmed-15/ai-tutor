@@ -212,7 +212,7 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
         title: clean(item.title),
         objective: clean(item.objective) || clean(item.teachingGoal) || clean(item.title),
         sourceBlockIds,
-        visualKind: sourceCodeKind(document, sourceBlockIds) ?? sourceVisualKind(item),
+        visualKind: sourceCodeKind(document, sourceBlockIds) ?? referenceCodeKind(input, item) ?? sourceVisualKind(item),
       };
     })
     // A document section planned as a recap/summary is dropped too — no lecture ends on a recap.
@@ -325,6 +325,18 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
 function sourceCodeKind(document: SuprnotesLessonInput, sourceBlockIds: string[]): ProgressiveVisualKind | null {
   if (sourceBlockIds.length === 0) return null;
   return looksLikeCode(scopedBlockText(document.contentBlocks ?? [], sourceBlockIds)) ? "code" : null;
+}
+
+/**
+ * A REFERENCE DOCUMENT'S IMPLEMENTATION BOARDS SHOW CODE. A section about "the remove method" in a
+ * data-structures PDF without a listing was drawn as an animation only — reference mode may go
+ * beyond the page, and for an implementation the code IS the explanation. Strict mode never does:
+ * code the document does not print is outside it.
+ */
+function referenceCodeKind(input: ProgressiveLectureInput, item: Record<string, unknown>): ProgressiveVisualKind | null {
+  if (input.sourceScope?.fidelity !== "reference" || !programmingLesson(input)) return null;
+  const planText = `${clean(item.title)} ${clean(item.objective) || clean(item.teachingGoal)}`;
+  return CODE_BEAT_PATTERN.test(planText) ? "code" : null;
 }
 
 function sourceVisualKind(item: Record<string, unknown>): ProgressiveVisualKind {
