@@ -29,10 +29,15 @@ interface Core {
   shrinkToClear(box: Box, anchor: string, p: { x: number; y: number }, gap: number, minScale: number): number | null;
   containerFitScale(box: Box, anchor: string, rect: Box, pad: number, minScale: number): number | null;
   rowClearScales(a: Box, anchorA: string, b: Box, anchorB: string, minGap: number, minScale: number): { a: number; b: number } | null;
+  ellipseChordWidth(node: Node, box: Box): number;
+  boxHitsEllipse(box: Box, node: Node, inset: number): boolean;
+  segmentEllipseEntry(p: { x: number; y: number }, q: { x: number; y: number }, node: Node, gap: number): { x: number; y: number } | null;
+  segmentBoxEntry(p: { x: number; y: number }, q: { x: number; y: number }, box: Box, gap: number): { x: number; y: number } | null;
 }
+type Node = { cx: number; cy: number; rx: number; ry: number };
 
 const core = new Function(
-  `${SANDBOX_LAYOUT_CORE}\nreturn { fitViewBox, writingPosition, writingEdge, bestLineBreak, separateVertically, resolveTeachingSchedule, boxDistance, visiblePart, strokeExit, shrinkToClear, containerFitScale, rowClearScales };`,
+  `${SANDBOX_LAYOUT_CORE}\nreturn { fitViewBox, writingPosition, writingEdge, bestLineBreak, separateVertically, resolveTeachingSchedule, boxDistance, visiblePart, strokeExit, shrinkToClear, containerFitScale, rowClearScales, ellipseChordWidth, boxHitsEllipse, segmentEllipseEntry, segmentBoxEntry };`,
 )() as Core;
 
 const AUTHORED = { width: 1000, height: 560 };
@@ -380,4 +385,35 @@ test("a mark is on the board when it is inside the visible pane", () => {
   assert.equal(pointInRect(50, 30, pane), true);
   assert.equal(pointInRect(5, 30, pane), false);
   assert.equal(pointInRect(50, 61, pane), false);
+});
+
+// The tree board that printed "one child" across its node's outline and "before" on top of a node.
+const NODE = { cx: 538, cy: 683, rx: 56, ry: 56 };
+
+test("a node's room for words is its chord at the words' height, not its bounding square", () => {
+  const centred = core.ellipseChordWidth(NODE, { x: 470, y: 673, width: 136, height: 20 });
+  assert.ok(centred > 105 && centred < 112, `near the full diameter at the centre, got ${centred}`);
+  const high = core.ellipseChordWidth(NODE, { x: 470, y: 630, width: 136, height: 20 });
+  assert.ok(high < centred, "narrower towards the top");
+  assert.equal(core.ellipseChordWidth(NODE, { x: 470, y: 600, width: 136, height: 20 }), 0, "above the node there is no room");
+});
+
+test("a caption touching a node's curve collides; one clear of it, or only in the bounding corner, does not", () => {
+  assert.equal(core.boxHitsEllipse({ x: 490, y: 610, width: 100, height: 22 }, NODE, 1), true, "'before' over the top of the node");
+  assert.equal(core.boxHitsEllipse({ x: 490, y: 590, width: 100, height: 22 }, NODE, 1), false, "moved clear above");
+  assert.equal(core.boxHitsEllipse({ x: 585, y: 630, width: 12, height: 10 }, NODE, 1), false, "inside the bounding square's corner, outside the circle");
+});
+
+test("an arrow into a node stops the gap short of its rim", () => {
+  const entry = core.segmentEllipseEntry({ x: 538, y: 520 }, { x: 538, y: 640 }, NODE, 4);
+  assert.ok(entry, "the arrow reaches the node");
+  assert.ok(Math.abs(entry!.y - (683 - 56 - 4)) < 0.01 && Math.abs(entry!.x - 538) < 0.01, JSON.stringify(entry));
+  assert.equal(core.segmentEllipseEntry({ x: 538, y: 520 }, { x: 538, y: 560 }, NODE, 4), null, "an arrow that stops short is left alone");
+});
+
+test("an arrow into a pill stops the gap short of its edge", () => {
+  const pill = { x: 826, y: 226, width: 156, height: 52 };
+  const entry = core.segmentBoxEntry({ x: 826, y: 380 }, { x: 900, y: 260 }, pill, 4);
+  assert.ok(entry && Math.abs(entry.y - (226 + 52 + 4)) < 0.01, JSON.stringify(entry));
+  assert.equal(core.segmentBoxEntry({ x: 826, y: 380 }, { x: 826, y: 330 }, pill, 4), null, "short of the pill: untouched");
 });

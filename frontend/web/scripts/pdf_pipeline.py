@@ -45,6 +45,19 @@ def write_json(path: Path, value: Any) -> None:
     path.write_text(json.dumps(value, ensure_ascii=True), encoding="utf-8")
 
 
+# A page's pixels are capped by size, not only by DPI. The MIT deep-learning deck is laid out on
+# 3628 x 2041 pt pages (a 50-inch canvas): at 400 DPI that is a 20,000 px image, which the vision
+# model refused, so a whole slide deck read as "nothing could be read". A Letter page at 400 DPI
+# is 4400 px on its long side; nothing is rendered larger than that, or than 1600 px for the model.
+MAX_RENDER_SIDE = 4400
+MAX_VISION_SIDE = 1600
+
+
+def page_scale(page: Any, dpi: int, max_side: int) -> float:
+    longest = max(float(page.rect.width), float(page.rect.height), 1.0)
+    return min(dpi / 72.0, max_side / longest)
+
+
 def write_vision_image(page: Any, output_dir: Path, index: int, dpi: int) -> dict[str, Any]:
     """Render the SECOND, much smaller copy of the page that gets sent to the lecture model.
 
@@ -58,7 +71,7 @@ def write_vision_image(page: Any, output_dir: Path, index: int, dpi: int) -> dic
     Falls back to PNG when this build of PyMuPDF cannot encode JPEG, because a slightly larger
     image is a far better outcome than no image at all.
     """
-    scale = dpi / 72.0
+    scale = page_scale(page, dpi, MAX_VISION_SIDE)
     pixmap = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False, colorspace=fitz.csRGB)
     try:
         data = pixmap.tobytes("jpeg", jpg_quality=78)
@@ -77,19 +90,27 @@ def write_vision_image(page: Any, output_dir: Path, index: int, dpi: int) -> dic
     }
 
 
-def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0) -> None:
+def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0, only_pages: set[int] | None = None) -> None:
+    """Rasterise the document. With `only_pages` (1-based), only those pages are rasterised — a
+    long document's other pages still report their text, which costs nothing, but not an image."""
     document = fitz.open(input_path)
     pages: list[dict[str, Any]] = []
-    scale = dpi / 72.0
-    matrix = fitz.Matrix(scale, scale)
 
     for index, page in enumerate(document):
-        pixmap = page.get_pixmap(matrix=matrix, alpha=False, colorspace=fitz.csRGB)
+        scale = page_scale(page, dpi, MAX_RENDER_SIDE)
+        matrix = fitz.Matrix(scale, scale)
+        rasterise = only_pages is None or (index + 1) in only_pages
         output_path = output_dir / f"page-{index + 1}.png"
-        pixmap.save(output_path)
+        if rasterise:
+            pixmap = page.get_pixmap(matrix=matrix, alpha=False, colorspace=fitz.csRGB)
+            pixmap.save(output_path)
+            pixel_width, pixel_height = pixmap.width, pixmap.height
+        else:
+            pixel_width = int(round(page.rect.width * scale))
+            pixel_height = int(round(page.rect.height * scale))
 
         vision: dict[str, Any] = {}
-        if vision_dpi > 0:
+        if vision_dpi > 0 and rasterise:
             try:
                 vision = write_vision_image(page, output_dir, index, vision_dpi)
             except Exception:
@@ -124,9 +145,9 @@ def render_pdf(input_path: Path, output_dir: Path, dpi: int, vision_dpi: int = 0
         pages.append(
             {
                 "pageNumber": index + 1,
-                "path": output_path.name,
-                "width": pixmap.width,
-                "height": pixmap.height,
+                "path": output_path.name if rasterise else None,
+                "width": pixel_width,
+                "height": pixel_height,
                 "pageWidth": float(page.rect.width),
                 "pageHeight": float(page.rect.height),
                 "text": " ".join(span["text"] for span in spans),
@@ -157,8 +178,6 @@ def stream_thumbnails(input_path: Path, dpi: int) -> None:
     file round-trip would add an unlink-per-page for no benefit.
     """
     document = fitz.open(input_path)
-    scale = dpi / 72.0
-    matrix = fitz.Matrix(scale, scale)
 
     # A count-first line lets the client build the right number of placeholders before any image
     # arrives, so the page list does not grow and reflow underneath the reader.
@@ -166,7 +185,9 @@ def stream_thumbnails(input_path: Path, dpi: int) -> None:
     sys.stdout.flush()
 
     for index, page in enumerate(document):
-        pixmap = page.get_pixmap(matrix=matrix, alpha=False, colorspace=fitz.csRGB)
+        # A preview never needs more than 1400 px, however large the page's canvas.
+        scale = page_scale(page, dpi, 1400)
+        pixmap = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False, colorspace=fitz.csRGB)
         png = pixmap.tobytes("png")
         text = page.get_text("text", flags=fitz.TEXTFLAGS_TEXT) or ""
         sys.stdout.write(
@@ -511,6 +532,8 @@ def main() -> None:
     # 0 means "do not produce one". Thumbnail callers want nothing extra; the lesson pipeline
     # passes a real value and gets a page image sized for a vision model.
     render.add_argument("--vision-dpi", type=int, default=0)
+    # Comma-separated 1-based pages to rasterise; absent means every page.
+    render.add_argument("--pages", type=str, default="")
     # Streams page previews as NDJSON on stdout. No --output-dir: nothing is written to disk.
     thumbs = subparsers.add_parser("thumbs")
     thumbs.add_argument("--input", required=True, type=Path)
@@ -537,7 +560,8 @@ def main() -> None:
         #
         # Callers that need crop quality pass the pipeline default (400) and are unaffected.
         vision_dpi = int(clamp(args.vision_dpi, 0, 200)) if args.vision_dpi > 0 else 0
-        render_pdf(args.input, args.output_dir, int(clamp(args.dpi, 24, 600)), vision_dpi)
+        only_pages = {int(value) for value in args.pages.split(",") if value.strip().isdigit()} or None
+        render_pdf(args.input, args.output_dir, int(clamp(args.dpi, 24, 600)), vision_dpi, only_pages)
     else:
         crop_regions(args.page, args.regions, args.output_dir)
 

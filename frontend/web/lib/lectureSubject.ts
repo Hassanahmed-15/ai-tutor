@@ -26,13 +26,18 @@ export interface LectureSubjectInput {
   input: string;
   /** The PDF's metadata title, first heading, or cleaned-up filename. */
   documentTitle: string;
+  /**
+   * The first real section title of the pages chosen ("Binary search trees"), from the parsed
+   * plan. Ahead of the transcript: a line OCR'd off a scan named lectures "(a) (b)".
+   */
+  sectionTitle?: string;
 }
 
 export function lectureSubject(args: LectureSubjectInput): string {
   const croppedFrom = args.pointing && args.drewRegion && args.documentTitle
     ? `${args.documentTitle} — selected region`
     : "";
-  return (args.pointing ? args.transcriptSubject : "")
+  return (args.pointing ? args.sectionTitle || args.transcriptSubject : "")
     || args.focus
     || args.topic.trim()
     || args.input.trim()
@@ -40,4 +45,14 @@ export function lectureSubject(args: LectureSubjectInput): string {
     || args.documentTitle
     || (args.pointing && args.drewRegion ? "Selected region" : "")
     || "this document";
+}
+
+/** The first section title of a parsed document that can name a lecture, or "". */
+export function documentLectureTitle(sectionTitles: string[], isTitle: (line: string) => boolean): string {
+  for (const raw of sectionTitles) {
+    const title = raw.replace(/\s+/g, " ").replace(/[\s.:;,|]+$/, "").trim();
+    if (/^questions?\b/i.test(title) || /\((?:part|pt\.?)\s*\d+\)$/i.test(title)) continue;
+    if (isTitle(title)) return title;
+  }
+  return "";
 }

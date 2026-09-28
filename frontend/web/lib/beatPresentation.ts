@@ -20,8 +20,21 @@ function trimWords(value: string, maximum: number): string {
 // A title cut from a sentence must not end mid-clause: "Remove Operation Is Difficult Because".
 const DANGLING_TAIL = /[\s,;:—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that|because|which|who|whose|where|when|while|if|so|but|as|than|since|although|unless|until|whether|nor|yet)?$/i;
 
+/**
+ * A title taken from a document line keeps the line's typography unless it is stripped: a bulleted
+ * note titled a slide "● High Accuracy Requires Many Segments →". List markers at the front and
+ * arrows or dangling punctuation at the end are layout, never part of a name.
+ */
+export function stripLineMarks(value: string): string {
+  return value
+    .replace(/\\\\+|(^|\s)\\(?=\s|$)/g, " ")
+    .replace(/^[\s•●○◦▪▫■□▸▹►▶➤➢✓✔✗✘★☆*·\-–—>»→⇒\\/|]+/u, "")
+    .replace(/[\s→⟶⇒➔➜➝>»=\-–—:;,•●]+$/u, "")
+    .trim();
+}
+
 function trimTitle(value: string, maxWords = MAX_TITLE_WORDS): string {
-  const words = trimWords(value.replace(/[.!]+$/, ""), maxWords);
+  const words = trimWords(stripLineMarks(value).replace(/[.!]+$/, ""), maxWords);
   let fitted = words.length <= MAX_TITLE_CHARS
     ? words
     : words.slice(0, MAX_TITLE_CHARS + 1).replace(/\s+\S*$/, "").trim();

@@ -597,6 +597,25 @@ export function subjectFromFocus(focus: PdfFocus | null): string {
  * the server left "Designing a live lesson on explain me this…" on screen while the lecture
  * underneath was correctly about the region.
  */
+/**
+ * CAN THIS LINE NAME A LECTURE? Lecture History filled with "(a) (b)" (a figure's panel letters),
+ * "dled automatically." (the tail of a hyphenated word), and "these alternatives are poor options."
+ * (a paragraph's last sentence) — lines read off a scanned page that are nobody's title. A title
+ * starts like one (a capital or a section number, never mid-sentence), names something (a real
+ * word of four letters or more), is not a full sentence, and is not a figure's caption.
+ */
+export function looksLikeTitle(raw: string): boolean {
+  const line = raw.replace(/\s+/g, " ").trim();
+  if (!line || line.length > 90) return false;
+  if (!/^[\s"“'(]*[A-Z0-9]/.test(line)) return false;
+  if (!/[A-Za-z]{4,}/.test(line)) return false;
+  if (/^\s*(?:fig(?:ure|\.)?|table)\s*\d/i.test(line)) return false;
+  const words = line.split(" ").length;
+  if (words > 12 || (/[.!?]$/.test(line) && words > 5)) return false;
+  if (/[|\\{}]/.test(line)) return false;
+  return true;
+}
+
 export function subjectFromTranscript(transcript: string): string {
   const body = (transcript ?? "")
     .split(/\n+/)
@@ -623,6 +642,7 @@ export function subjectFromTranscript(transcript: string): string {
    */
   const candidates = body.filter((line) => {
     if (!/[a-z]/i.test(line)) return false;
+    if (!looksLikeTitle(line)) return false;
     if (/^\s*\\(begin|end|hline|documentclass)/i.test(line)) return false;
     // A pipe-delimited row is a row. Its symbol ratio is low enough to pass the test below,
     // and "| Model | Accuracy |" is no better a lecture title than the markup around it.

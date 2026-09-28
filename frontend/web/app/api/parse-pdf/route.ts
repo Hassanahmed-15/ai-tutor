@@ -12,7 +12,7 @@ import {
   isBoilerplateText,
 } from "@/lib/pdfLessonPipeline";
 import { cropFigurePagesWithPython, renderPdfWithPython, VISION_DPI, type PythonCrop } from "@/lib/pdfPythonPipeline";
-import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
+import { DOCUMENT_LIMITS, exceedsPageLimit, selectFewerPagesMessage } from "@/lib/documentLimits";
 import { figureScope } from "@/lib/figureDetectionScope";
 import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
 import { figureRegionsFromCaptions, locateBlocks, ocrPageLayout, type OcrPageLayout } from "@/lib/ocrLayout";
@@ -458,7 +458,9 @@ async function renderPage(
   let width = 0;
   let height = 0;
   try {
-    const viewport = page.getViewport({ scale: RENDER_SCALE });
+    // Capped by size as well as scale: an oversized page (a 3628 pt slide canvas) at scale 2 is a
+    // 7,000 px image the vision model refuses. Same ceiling as the Python renderer.
+    const viewport = page.getViewport({ scale: Math.min(RENDER_SCALE, 4400 / Math.max(textViewport.width, textViewport.height, 1)) });
     width = Math.ceil(viewport.width);
     height = Math.ceil(viewport.height);
     type CanvasFactory = {
@@ -800,22 +802,6 @@ async function parsePdfRequest(req: NextRequest) {
     return NextResponse.json({ error: "No pages found in the PDF." }, { status: 422 });
   }
 
-  /**
-   * The length limit binds on the DOCUMENT, before any work happens.
-   *
-   * This deliberately reverses the previous rule, which let a document of any length through and
-   * capped only the pages processed. That rule existed to make a 108-page book usable by asking
-   * about three of its pages, and it was the right trade while the lecture was written from an
-   * excerpt. It is the wrong one now: the lecture is written from the WHOLE document — every page's
-   * text and every page's image in one call — and accepting a file we can only partly carry would
-   * quietly teach a fraction of it while claiming to have read it all.
-   *
-   * Refusing here rather than after rendering also means the student waits for nothing.
-   */
-  if (exceedsPageLimit(pdf.numPages)) {
-    return NextResponse.json({ error: tooManyPagesMessage(pdf.numPages) }, { status: 413 });
-  }
-
   let metadataTitle = "";
   try {
     const metadata = await pdf.getMetadata();
@@ -826,8 +812,6 @@ async function parsePdfRequest(req: NextRequest) {
 
   // The third argument asks for the small per-page copy that the lecture model reads. One document
   // open produces both sizes, so this costs a JPEG encode per page and no extra parse.
-  const pythonPages = await renderPdfWithPython(pythonBytes, undefined, VISION_DPI);
-
   /**
    * Optional page scoping.
    *
@@ -846,6 +830,19 @@ async function parsePdfRequest(req: NextRequest) {
     .map((value) => Number.parseInt(value.trim(), 10))
     .filter((value) => Number.isInteger(value) && value >= 1 && value <= pdf.numPages);
   const scopedPages = [...new Set(requestedPages)].sort((a, b) => a - b);
+
+  /*
+   * THE LIMIT BINDS ON WHAT IS TAUGHT. A lesson carries up to MAX_PAGES pages; a longer file is
+   * welcome as long as the student picks which of its pages to learn (the picker opens files up to
+   * MAX_PREVIEW_PAGES). A 21-page lecture deck used to be refused before a page could be chosen.
+   */
+  if (scopedPages.length > MAX_PAGES || (scopedPages.length === 0 && exceedsPageLimit(pdf.numPages))) {
+    return NextResponse.json({ error: selectFewerPagesMessage(pdf.numPages, scopedPages.length) }, { status: 413 });
+  }
+
+  // A long document is rasterised only where the student chose; a short one exactly as before.
+  const pythonPages = await renderPdfWithPython(pythonBytes, undefined, VISION_DPI, exceedsPageLimit(pdf.numPages) ? scopedPages : undefined);
+
 
   /**
    * Regions the student drew on the page thumbnails, in normalised (0-1) coordinates.
@@ -873,14 +870,9 @@ async function parsePdfRequest(req: NextRequest) {
     ? scopedPages
     : Array.from({ length: pdf.numPages }, (_, index) => index + 1);
 
-  /*
-   * The document-length check above already guarantees `pageNumbers.length <= MAX_PAGES`, because a
-   * scope is a subset of the pages and the document itself was refused if it had more. This is kept
-   * as a cheap assertion of that invariant rather than as a user-facing rule — if it ever fires,
-   * the scoping logic has a bug, and silently sending 40 images would be the worse failure.
-   */
+  // The selection check above guarantees this; kept as a cheap assertion of that invariant.
   if (pageNumbers.length > MAX_PAGES) {
-    return NextResponse.json({ error: tooManyPagesMessage(pdf.numPages) }, { status: 413 });
+    return NextResponse.json({ error: selectFewerPagesMessage(pdf.numPages, scopedPages.length) }, { status: 413 });
   }
   /**
    * THE WHOLE DOCUMENT'S TEXT, KEPT BEFORE THE SCOPE FILTER THROWS IT AWAY.
@@ -1130,6 +1122,36 @@ async function parsePdfRequest(req: NextRequest) {
     .filter((block) => block.role !== "visual" && block.type !== "visual")
     .reduce((sum, block) => sum + (block.text ?? "").replace(/\s+/g, "").length, 0);
   const scanned = textLayerChars < 60 * Math.max(1, renderedPages.length);
+  /*
+   * A TEXT LAYER CAN BE PRESENT AND STILL UNREADABLE. A slide deck's diagrams come through as text —
+   * a scatter plot's dots as ". .. ... ..", an axis letter "f", a lone "•" — and its title and
+   * bullets as fragments in the wrong order ("Frequency Reuse the available" glued across two lines).
+   * The structurer built for book pages cannot recover that; the vision transcription reads the same
+   * page cleanly. A page where at least 30% of the blocks are such junk is read by eye instead, and
+   * only that page: a clean text layer is always kept, so this costs a vision call only where needed.
+   */
+  const junkText = (text: string) => {
+    const compact = text.replace(/\s+/g, "");
+    const letters = (compact.match(/[A-Za-z]/g) ?? []).length;
+    return compact.length < 4 || letters < compact.length * 0.4;
+  };
+  const garbledPages = scanned ? [] : [...new Set(extractedBlocks.map((block) => block.pageNumber))]
+    .filter((pageNumber): pageNumber is number => typeof pageNumber === "number")
+    .filter((pageNumber) => {
+      /*
+       * A SLIDE is read by eye too. A landscape page is a slide, and a slide's text layer is built
+       * for display, not reading: the Cellular Systems deck gave its bullets in reverse order and
+       * glued its title to a wrapped line ("Frequency Reuse the available"), with no junk at all to
+       * give it away. The transcription reads a slide in order, title first.
+       */
+      const rendered = renderedPages.find((page) => page.pageNumber === pageNumber);
+      if (rendered && rendered.width > rendered.height * 1.15) return true;
+      const own = extractedBlocks.filter((block) => block.pageNumber === pageNumber && block.role !== "visual" && block.type !== "visual");
+      const junk = own.filter((block) => junkText(block.text ?? "")).length;
+      return own.length >= 4 && junk >= Math.max(2, Math.ceil(own.length * 0.3));
+    });
+  /** Pages whose blocks come from the vision transcription rather than the text layer. */
+  const readByEye = new Set<number>(scanned ? renderedPages.map((page) => page.pageNumber) : garbledPages);
 
   /*
    * A document with NO extractable text must be read, not refused.
@@ -1153,13 +1175,14 @@ async function parsePdfRequest(req: NextRequest) {
    */
   const pagesReachModelAsImages = renderedPages.some((page) => page.visionImage !== null);
   const requested = planTranscription(scopedPages, regions, pagesReachModelAsImages);
+  const garbledPlan = planTranscription(garbledPages, []).filter((target) => !requested.some((r) => r.page === target.page && !r.rect));
   const transcriptionPlan = requested.length > 0
-    ? requested
+    ? [...requested, ...garbledPlan]
     : scanned
       // No text at all: read every page regardless of cost. `blocksFromTranscript` is the only
       // source of contentBlocks for a scan, and without them the upload is refused outright.
       ? planTranscription(renderedPages.map((page) => page.pageNumber), [])
-      : [];
+      : garbledPlan;
   // Line positions for each whole scanned page, read beside its transcription (lib/ocrLayout.ts),
   // so the source panel can box the passage being taught. Never awaited on a page with a text layer.
   const pageLines = new Map<number, Promise<OcrPageLayout | null>>();
@@ -1170,7 +1193,7 @@ async function parsePdfRequest(req: NextRequest) {
 
         // A page rendered without a PNG cannot be read; skip it rather than crop nothing.
         if (!page.png) return null;
-        if (scanned && !target.rect && !pageLines.has(target.page)) pageLines.set(target.page, ocrPageLayout(page.png));
+        if (readByEye.has(target.page) && !target.rect && !pageLines.has(target.page)) pageLines.set(target.page, ocrPageLayout(page.png));
         let png: Buffer = page.png;
         if (target.rect) {
           const box = pixelRect(target.rect, page.width, page.height);
@@ -1284,7 +1307,11 @@ async function parsePdfRequest(req: NextRequest) {
   const contentBlocks = [
     // On a scan the figure detector's caption-only "visual" blocks repeat what the transcript now
     // carries properly (its own caption blocks) and became slides called "Figure 19.3".
-    ...(scanned ? extractedBlocks.filter((block) => block.role !== "visual" && block.type !== "visual") : extractedBlocks),
+    ...(scanned
+      ? extractedBlocks.filter((block) => block.role !== "visual" && block.type !== "visual")
+      // A garbled page's text-layer blocks are replaced by its transcription, below.
+      // Only when the transcription actually came back: a failed vision call keeps the text layer.
+      : extractedBlocks.filter((block) => !(typeof block.pageNumber === "number" && readByEye.has(block.pageNumber) && transcriptParts.some((part) => part.page === block.pageNumber && !part.rect)))),
     // Blocks read off the pixels, used when extraction found nothing at all. On a document that
     // does have text, the transcript is still carried separately as the focus passage — it does not
     // need to be duplicated into the block list as well.
@@ -1293,7 +1320,8 @@ async function parsePdfRequest(req: NextRequest) {
       // A DRAGGED AREA always becomes a block of its own, headed "Page N (selected area)". Without
       // one, a lecture "from this area" had nothing to be scoped to but the whole page's blocks —
       // so it taught the whole page (lib/beatSourceScope.ts `blocksForSelection`).
-      : blocksFromTranscript(transcriptParts.filter((part) => Boolean(part.rect)))),
+      // A garbled page read by eye is placed like a scanned one.
+      : await placeTranscribedBlocks(blocksFromTranscript(transcriptParts.filter((part) => Boolean(part.rect) || readByEye.has(part.page))), pageLines)),
   ];
   const assets = pageResults.flatMap((page) => page.assets);
   if (!contentBlocks.length) {

@@ -194,6 +194,61 @@ export const SANDBOX_LAYOUT_CORE = String.raw`
    * that stays put — or null when they already fit, or when fitting would take more than the floor
    * allows (then the rect is not really their box, and shrinking would only hurt legibility).
    */
+  /*
+   * NODES: circles and ellipses. A tree's "parent" and "one child" were written wider than the
+   * circles they label, and a "before" caption sat on top of the first node — the rect-only container
+   * pass never looked at a round shape. These three answer, for an ellipse (cx, cy, rx, ry):
+   */
+
+  /* How wide the ellipse is across the whole vertical band a text box occupies (its narrowest chord). */
+  function ellipseChordWidth(node, box) {
+    var far = Math.max(Math.abs(box.y - node.cy), Math.abs(box.y + box.height - node.cy));
+    if (far >= node.ry) return 0;
+    return 2 * node.rx * Math.sqrt(1 - (far / node.ry) * (far / node.ry));
+  }
+
+  /* True when a box and an ellipse really overlap (not merely their bounding boxes). */
+  function boxHitsEllipse(box, node, inset) {
+    var px = layoutClamp(node.cx, box.x + inset, box.x + box.width - inset);
+    var py = layoutClamp(node.cy, box.y + inset, box.y + box.height - inset);
+    var dx = (px - node.cx) / node.rx, dy = (py - node.cy) / node.ry;
+    return dx * dx + dy * dy < 1;
+  }
+
+  /*
+   * Where a segment from p (outside) towards q first meets the ellipse grown by gap, or null when it
+   * never does. An arrow into a node ends there, so its head stops on the rim instead of cutting in.
+   */
+  function segmentEllipseEntry(p, q, node, gap) {
+    var rx = node.rx + gap, ry = node.ry + gap;
+    var ux = (p.x - node.cx) / rx, uy = (p.y - node.cy) / ry;
+    var vx = (q.x - p.x) / rx, vy = (q.y - p.y) / ry;
+    var a = vx * vx + vy * vy, b = 2 * (ux * vx + uy * vy), c = ux * ux + uy * uy - 1;
+    if (a < 1e-9 || c <= 0) return null;
+    var disc = b * b - 4 * a * c;
+    if (disc < 0) return null;
+    var t = (-b - Math.sqrt(disc)) / (2 * a);
+    if (!(t > 0 && t < 1)) return null;
+    return { x: p.x + (q.x - p.x) * t, y: p.y + (q.y - p.y) * t };
+  }
+
+  /* The same for a box node (a pill, a cell): where a segment from p towards q meets the grown box. */
+  function segmentBoxEntry(p, q, box, gap) {
+    var x0 = box.x - gap, y0 = box.y - gap, x1 = box.x + box.width + gap, y1 = box.y + box.height + gap;
+    if (p.x > x0 && p.x < x1 && p.y > y0 && p.y < y1) return null;
+    var t0 = 0, t1 = 1, dx = q.x - p.x, dy = q.y - p.y;
+    var edges = [[-dx, p.x - x0], [dx, x1 - p.x], [-dy, p.y - y0], [dy, y1 - p.y]];
+    for (var i = 0; i < 4; i += 1) {
+      var pe = edges[i][0], qe = edges[i][1];
+      if (pe === 0) { if (qe < 0) return null; continue; }
+      var r = qe / pe;
+      if (pe < 0) { if (r > t1) return null; if (r > t0) t0 = r; }
+      else { if (r < t0) return null; if (r < t1) t1 = r; }
+    }
+    if (!(t0 > 0 && t0 < 1)) return null;
+    return { x: p.x + dx * t0, y: p.y + dy * t0 };
+  }
+
   function containerFitScale(box, anchor, rect, pad, minScale) {
     var left = rect.x + pad, right = rect.x + rect.width - pad;
     if (box.x >= left - 0.5 && box.x + box.width <= right + 0.5) return null;
@@ -873,6 +928,288 @@ export const SANDBOX_LAYOUT_HOST = String.raw`
     });
   }
 
+  /*
+   * NODES — the round shapes a tree, graph or cycle is drawn with. Dots (a leader's end, a data
+   * point) are too small to hold or block anything, and a disc wider than 40% of the board is a
+   * backdrop, not a node.
+   */
+  function boardNodes(svg, authored) {
+    var out = [];
+    var maxWidth = authored.width * 0.4;
+    Array.prototype.slice.call(svg.querySelectorAll("circle,ellipse")).forEach(function (el) {
+      if (insideSkipped(el, svg)) return;
+      var b = rootBox(svg, el);
+      if (!b || b.width < 18 || b.height < 18 || b.width > maxWidth) return;
+      out.push({ el: el, kind: "ellipse", box: b, cx: b.x + b.width / 2, cy: b.y + b.height / 2, rx: b.width / 2, ry: b.height / 2 });
+    });
+    // A pill or a cell is a node too: small next to the board, never a panel or a backdrop.
+    Array.prototype.slice.call(svg.querySelectorAll("rect")).forEach(function (el) {
+      if (insideSkipped(el, svg)) return;
+      var b = rootBox(svg, el);
+      if (!b || b.width < 18 || b.height < 18) return;
+      if (b.width > authored.width * 0.3 || b.height > authored.height * 0.25) return;
+      out.push({ el: el, kind: "rect", box: b, cx: b.x + b.width / 2, cy: b.y + b.height / 2, rx: b.width / 2, ry: b.height / 2 });
+    });
+    return out;
+  }
+
+  /* The smallest node whose ellipse holds the text's centre — the node that text names. */
+  function nodeHolding(nodes, box) {
+    var cx = box.x + box.width / 2, cy = box.y + box.height / 2, best = null;
+    nodes.forEach(function (n) {
+      if (n.kind === "rect") return;
+      // Well inside: a caption whose centre only grazes the rim ("after" over a node's top) is not
+      // the node's name, and shrinking it into the node hid it.
+      var dx = (cx - n.cx) / n.rx, dy = (cy - n.cy) / n.ry;
+      if (dx * dx + dy * dy > 0.3) return;
+      if (!best || n.rx * n.ry < best.rx * best.ry) best = n;
+    });
+    return best;
+  }
+
+  /*
+   * WORDS INSIDE A NODE STAY INSIDE IT. Measured against the circle's real chord at the text's
+   * height (not its bounding square): two lines first when it is a tight fit of several words, then
+   * shrink — as far as half size, because a node's name spilling over its outline is worse than
+   * small type — and the words are kept centred on the node.
+   */
+  function fitTextsToNodes(svg, texts, nodes) {
+    texts.forEach(function (text) {
+      // Every fit starts from the words' own size, so words shrunk while their node was still
+      // growing grow back once it is full size.
+      var original = text.getAttribute("data-host-node-size");
+      if (original) text.style.fontSize = original + "px";
+      var box = rootBox(svg, text);
+      if (!box || box.width <= 0) return;
+      var node = nodeHolding(nodes, box);
+      if (!node) {
+        var cx = box.x + box.width / 2, cy = box.y + box.height / 2;
+        for (var r = 0; r < nodes.length; r += 1) {
+          if (nodes[r].kind === "rect" && insideNode({ x: cx, y: cy }, nodes[r], 0)) { text.__hostInNode = nodes[r]; break; }
+        }
+        return;
+      }
+      text.__hostInNode = node;
+      var pad = Math.max(2, fontSizeOf(text) * 0.15);
+      var room = ellipseChordWidth(node, box) - 2 * pad;
+      if (box.width <= room + 0.5) return;
+      // A node this far too small for its words is still growing into place: fit it when it is there.
+      if (room < box.width * 0.3) return;
+      if (!original) text.setAttribute("data-host-node-size", String(fontSizeOf(text)));
+      if (room / box.width < 0.8 && wrapText(text)) {
+        var wrapped = rootBox(svg, text);
+        if (wrapped) shiftText(svg, text, 0, node.cy - (wrapped.y + wrapped.height / 2));
+        box = rootBox(svg, text) || box;
+        room = ellipseChordWidth(node, box) - 2 * pad;
+        if (box.width <= room + 0.5) return;
+      }
+      // Shrinking narrows the text, which widens the chord it needs; a few rounds settle it.
+      for (var round = 0; round < 4; round += 1) {
+        var scale = Math.max(0.5, room / box.width);
+        if (scale >= 0.995) break;
+        scaleText(text, scale);
+        var now = rootBox(svg, text);
+        if (!now) break;
+        var dx = node.cx - (now.x + now.width / 2), dy = node.cy - (now.y + now.height / 2);
+        if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) shiftText(svg, text, dx, dy);
+        box = rootBox(svg, text) || now;
+        room = ellipseChordWidth(node, box) - 2 * pad;
+        if (box.width <= room + 0.5 || fontSizeOf(text) <= 7) break;
+      }
+    });
+  }
+
+  /*
+   * WORDS OUTSIDE A NODE KEEP OFF IT. A caption ("before") written over the top of a node, or a word
+   * left behind one ("af…" hidden under the next circle), moves clear on the side it is already on —
+   * up if it sits above the node's centre, down if below — or the other way if that would leave the
+   * board. Its leader moves with it.
+   */
+  function clearTextsFromNodes(svg, texts, nodes, authored) {
+    var top = authored.y + 4, bottom = authored.y + authored.height - 4;
+    texts.forEach(function (text) {
+      if (text.__hostInNode) return;
+      for (var pass = 0; pass < 3; pass += 1) {
+        var box = rootBox(svg, text);
+        if (!box || box.width <= 0) return;
+        var hit = null;
+        for (var i = 0; i < nodes.length && !hit; i += 1) if (nodeHit(box, nodes[i])) hit = nodes[i];
+        if (!hit) return;
+        var gap = 4;
+        var up = hit.box.y - gap - (box.y + box.height);
+        var down = hit.box.y + hit.box.height + gap - box.y;
+        var preferUp = box.y + box.height / 2 <= hit.cy;
+        // The panel the words sit in bounds them too: "before" pushed above its node ran into the
+        // panel's top border. Between that edge and the node, the words shrink to the room there is.
+        var panel = containerOf(svg, box, authored);
+        var ceiling = Math.max(top, panel ? panel.y + 4 : top);
+        var floor = Math.min(bottom, panel ? panel.y + panel.height - 4 : bottom);
+        var dy = preferUp ? up : down;
+        if (box.y + dy < ceiling || box.y + box.height + dy > floor) {
+          var room = preferUp ? hit.box.y - gap - ceiling : floor - (hit.box.y + hit.box.height + gap);
+          if (room >= box.height * 0.55) {
+            scaleText(text, room / box.height);
+            box = rootBox(svg, text) || box;
+            dy = preferUp ? hit.box.y - gap - (box.y + box.height) : hit.box.y + hit.box.height + gap - box.y;
+          } else {
+            dy = preferUp ? down : up;
+          }
+        }
+        shiftText(svg, text, 0, dy);
+      }
+    });
+  }
+
+  /* The smallest drawn rect (a panel, a box) that holds a text's centre, or null. */
+  function containerOf(svg, box, authored) {
+    var cx = box.x + box.width / 2, cy = box.y + box.height / 2, best = null;
+    var frameArea = authored.width * authored.height;
+    Array.prototype.slice.call(svg.querySelectorAll("rect")).forEach(function (rect) {
+      if (insideSkipped(rect, svg)) return;
+      var r = rootBox(svg, rect);
+      if (!r || r.width * r.height >= frameArea * 0.6) return;
+      if (cx < r.x || cx > r.x + r.width || cy < r.y || cy > r.y + r.height) return;
+      if (!best || r.width * r.height < best.width * best.height) best = r;
+    });
+    return best;
+  }
+
+  function insideNode(point, n, grow) {
+    if (n.kind === "rect") return Math.abs(point.x - n.cx) < n.rx + grow && Math.abs(point.y - n.cy) < n.ry + grow;
+    var dx = (point.x - n.cx) / (n.rx + grow), dy = (point.y - n.cy) / (n.ry + grow);
+    return dx * dx + dy * dy < 1;
+  }
+
+  function nodeHit(box, n) {
+    if (n.kind !== "rect") return boxHitsEllipse(box, n, 1);
+    return box.x + 1 < n.box.x + n.box.width && box.x + box.width - 1 > n.box.x && box.y + 1 < n.box.y + n.box.height && box.y + box.height - 1 > n.box.y;
+  }
+
+  /*
+   * A CURVE INTO A NODE. The straight-stroke trim cannot rewrite a Bezier, and a dashed curve drawn
+   * from one node's centre to another's crossed both nodes' words. The curve is resampled between
+   * the points where it leaves its start node and meets its end node — the same shape, as a fine
+   * polyline — so it runs rim to rim.
+   */
+  function trimCurveAtNodes(svg, el, nodes, gap) {
+    if (el.getAttribute("data-host-node-trim-curve") === "1") return;
+    var length;
+    try { length = el.getTotalLength(); } catch (e) { return; }
+    if (!(length >= 20)) return;
+    var steps = 80, local = [], root = [];
+    for (var i = 0; i <= steps; i += 1) {
+      var q = el.getPointAtLength((length * i) / steps);
+      local.push(q);
+      root.push(rootPoint(svg, el, q.x, q.y));
+    }
+    var first = 0, last = steps;
+    nodes.forEach(function (n) {
+      if (insideNode(root[0], n, 0) && !insideNode(root[steps], n, 0)) {
+        while (first < steps && insideNode(root[first], n, gap)) first += 1;
+      }
+      // The end counts as "in" the node once it is within the gap — a head that reaches past a
+      // curve's end into the node is the same collision as a curve that enters it.
+      if (insideNode(root[steps], n, gap) && !insideNode(root[0], n, 0)) {
+        while (last > 0 && insideNode(root[last], n, gap)) last -= 1;
+      }
+    });
+    if ((first === 0 && last === steps) || last - first < 4) return;
+    var d = "M" + local[first].x + " " + local[first].y;
+    for (var k = first + 1; k <= last; k += 1) d += " L" + local[k].x + " " + local[k].y;
+    el.setAttribute("d", d);
+    el.setAttribute("data-host-node-trim-curve", "1");
+    el.removeAttribute("data-host-length");
+  }
+
+  /*
+   * How far an arrow's head reaches PAST the end of its line, in root units. A marker anchored at the
+   * middle of its triangle (refX at half its width) puts half the head beyond the end, so an arrow
+   * trimmed to stop 4 short of a node still cut into it. 0 when there is no end marker.
+   */
+  function markerOverhang(svg, el) {
+    var ref = (el.getAttribute("marker-end") || "").match(/url\(#([^)]+)\)/) || ((getComputedStyle(el).markerEnd || "").match(/url\("?#([^)"]+)"?\)/));
+    if (!ref) return 0;
+    var marker = svg.querySelector("marker[id='" + ref[1] + "']");
+    if (!marker) return 0;
+    var stroke = parseFloat(getComputedStyle(el).strokeWidth) || 1;
+    var units = marker.getAttribute("markerUnits") === "userSpaceOnUse" ? 1 : stroke;
+    var width = parseFloat(marker.getAttribute("markerWidth")) || 3;
+    var refX = parseFloat(marker.getAttribute("refX")) || 0;
+    var vb = (marker.getAttribute("viewBox") || "").trim().split(/[\s,]+/).map(Number);
+    var over = vb.length === 4 && vb[2] > 0 ? ((vb[0] + vb[2] - refX) * width) / vb[2] : width - refX;
+    return Math.max(0, over * units);
+  }
+
+  /*
+   * AN ARROWHEAD NO LONGER THAN ITS ARROW. A marker is sized in stroke widths, so a 4-wide arrow
+   * between two close nodes carried a 40-unit head on a 24-unit line, reaching back into the node it
+   * leaves. That arrow gets its own copy of the marker, scaled to at most 60% of the line.
+   */
+  function fitMarkerToStroke(svg, el) {
+    if (el.getAttribute("data-host-marker-fit") === "1") return;
+    var ref = (el.getAttribute("marker-end") || "").match(/url\(#([^)]+)\)/) || ((getComputedStyle(el).markerEnd || "").match(/url\("?#([^)"]+)"?\)/));
+    if (!ref) return;
+    var marker = svg.querySelector("marker[id='" + ref[1] + "']");
+    if (!marker) return;
+    var ends = endpointsOf(el);
+    var length;
+    try { length = ends ? Math.hypot(ends[1][0] - ends[0][0], ends[1][1] - ends[0][1]) : el.getTotalLength(); } catch (e) { return; }
+    var stroke = parseFloat(getComputedStyle(el).strokeWidth) || 1;
+    var units = marker.getAttribute("markerUnits") === "userSpaceOnUse" ? 1 : stroke;
+    var head = (parseFloat(marker.getAttribute("markerWidth")) || 3) * units;
+    if (!(length > 0) || head <= length * 0.6) return;
+    var f = Math.max(0.25, (length * 0.6) / head);
+    var copy = marker.cloneNode(true);
+    copy.setAttribute("id", ref[1] + "-host-" + Math.round(f * 100));
+    ["markerWidth", "markerHeight"].forEach(function (a) { copy.setAttribute(a, String((parseFloat(marker.getAttribute(a)) || 3) * f)); });
+    if (!marker.getAttribute("viewBox")) {
+      // Without a viewBox the head is drawn in marker units and markerWidth only clips it: scale the
+      // drawing itself, and the point it is anchored by.
+      var g = document.createElementNS(SVG_NS, "g");
+      g.setAttribute("transform", "scale(" + f + ")");
+      while (copy.firstChild) g.appendChild(copy.firstChild);
+      copy.appendChild(g);
+      ["refX", "refY"].forEach(function (a) { copy.setAttribute(a, String((parseFloat(marker.getAttribute(a)) || 0) * f)); });
+    }
+    marker.parentNode.appendChild(copy);
+    el.setAttribute("marker-end", "url(#" + copy.getAttribute("id") + ")");
+    el.style.markerEnd = "url(#" + copy.getAttribute("id") + ")";
+    el.setAttribute("data-host-marker-fit", "1");
+  }
+
+  /*
+   * A STROKE THAT RUNS INTO A NODE STOPS AT ITS RIM. An edge drawn centre to centre crossed the node's
+   * words; an arrow's head cut into the circle it points at. A straight stroke whose end lies inside
+   * a node (and whose other end does not) is trimmed back to the rim — an arrow a few units short of
+   * it, so the whole head sits outside.
+   */
+  function trimConnectorsAtNodes(svg, nodes) {
+    if (!nodes.length) return;
+    var ends = connectorEnds(svg);
+    ends.forEach(function (end) {
+      if (end.straight || end.end !== 0 || end.el.localName !== "path") return;
+      trimCurveAtNodes(svg, end.el, nodes, end.pointer ? 4 + markerOverhang(svg, end.el) : 0);
+    });
+    ends.forEach(function (end) {
+      if (!end.straight || end.el.getAttribute("data-host-node-trim-" + end.end) === "1") return;
+      var gap = end.pointer ? 4 + (end.end === 1 ? markerOverhang(svg, end.el) : 0) : 0;
+      for (var i = 0; i < nodes.length; i += 1) {
+        var n = nodes[i];
+        if (n.el === end.el) continue;
+        var inP = insideNode(end.p, n, gap);
+        var inOther = insideNode(end.other, n, 0);
+        if (!inP || inOther) continue;
+        var entry = n.kind === "rect" ? segmentBoxEntry(end.other, end.p, n.box, gap) : segmentEllipseEntry(end.other, end.p, n, gap);
+        if (!entry) continue;
+        moveLeaderEnd(svg, { el: end.el, end: end.end }, entry.x - end.p.x, entry.y - end.p.y);
+        end.el.setAttribute("data-host-node-trim-" + end.end, "1");
+        end.p = entry;
+        break;
+      }
+    });
+    ends.forEach(function (end) { if (end.end === 1 && end.pointer) fitMarkerToStroke(svg, end.el); });
+  }
+
   /* Runs once per new text node; the set can grow when the component renders text conditionally. */
   function layoutBoardText(svg) {
     var authored = authoredFrame(svg);
@@ -888,6 +1225,10 @@ export const SANDBOX_LAYOUT_HOST = String.raw`
     if (!fresh.length) return false;
     assignLeaders(svg, fresh);
     fresh.forEach(function (text) { fitTextInside(svg, text, safe); text.setAttribute("data-host-fit", "1"); });
+    var nodes = boardNodes(svg, authored);
+    fitTextsToNodes(svg, fresh, nodes);
+    clearTextsFromNodes(svg, fresh, nodes, authored);
+    trimConnectorsAtNodes(svg, nodes);
     separateTexts(svg, fresh, authored);
     fitTextsToContainers(svg, fresh, authored);
     clearRows(svg, fresh);
@@ -1283,10 +1624,35 @@ export const SANDBOX_LAYOUT_HOST = String.raw`
     return tip;
   }
 
+  /*
+   * NODES THAT GROW. A node whose radius is driven by the animation ("Perceptron" in a circle that
+   * swells into place) measured as nothing when its words were first laid out, so the words spilled
+   * over it once it was full size. The node rules are re-applied as the drawing settles — every
+   * 400 ms at most. Each rule acts only on a real overlap, so repeating it changes nothing that is
+   * already clear.
+   */
+  function refitNodes(svg) {
+    var now = typeof performance !== "undefined" ? performance.now() : Date.now();
+    if (svg.__hostNodeRefitAt && now - svg.__hostNodeRefitAt < 400) return;
+    svg.__hostNodeRefitAt = now;
+    var authored = authoredFrame(svg);
+    var texts = Array.prototype.slice.call(svg.querySelectorAll("text")).filter(function (t) {
+      return t.getAttribute("data-host-fit") === "1" && !insideSkipped(t, svg) && (t.textContent || "").trim();
+    });
+    if (!texts.length) return;
+    var nodes = boardNodes(svg, authored);
+    if (!nodes.length) return;
+    texts.forEach(function (t) { t.__hostInNode = null; });
+    fitTextsToNodes(svg, texts, nodes);
+    clearTextsFromNodes(svg, texts, nodes, authored);
+    trimConnectorsAtNodes(svg, nodes);
+  }
+
   function ensureBoardLayout(svg) {
     try {
       authoredFrame(svg);
       layoutBoardText(svg);
+      refitNodes(svg);
       if (boardInk && svg.getAttribute("data-host-fitted") !== "1") fitBoardToPane(svg);
       else if (boardInk && svg.getAttribute("viewBox") !== svg.getAttribute("data-host-last-viewbox")) {
         // React only writes viewBox when the prop changes, but a re-created <svg> or a component

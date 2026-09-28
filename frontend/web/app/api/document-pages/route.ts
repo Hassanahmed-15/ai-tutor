@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { renderPdfWithPython, streamPdfThumbnails } from "@/lib/pdfPythonPipeline";
 import { renderPptxSlides } from "@/lib/pptxRender";
 import { convertPptxToPdf } from "@/lib/pptxToPdf";
-import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
+import { DOCUMENT_LIMITS, exceedsPageLimit, exceedsPreviewLimit, tooLongToPreviewMessage, tooManyPagesMessage } from "@/lib/documentLimits";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -117,7 +117,7 @@ async function documentPagesRequest(request: Request) {
             pageCount: pages.length,
             pages: pages.map((page) => ({
               pageNumber: page.pageNumber,
-              thumbnail: `data:image/png;base64,${Buffer.from(page.png).toString("base64")}`,
+              thumbnail: `data:image/png;base64,${Buffer.from(page.png ?? Buffer.alloc(0)).toString("base64")}`,
               excerpt: page.text.replace(/\s+/g, " ").trim().slice(0, 140),
             })),
           });
@@ -190,9 +190,9 @@ async function documentPagesRequest(request: Request) {
               count = event.pageCount;
               // The page limit is enforced before any image is sent, so an over-long document is
               // refused at the same point in the flow as before rather than after a grid appears.
-              if (exceedsPageLimit(count)) {
+              if (exceedsPreviewLimit(count)) {
                 controller.enqueue(
-                  encoder.encode(JSON.stringify({ type: "error", error: tooManyPagesMessage(count) }) + "\n"),
+                  encoder.encode(JSON.stringify({ type: "error", error: tooLongToPreviewMessage(count) }) + "\n"),
                 );
                 controller.close();
                 return;
@@ -250,14 +250,15 @@ async function documentPagesRequest(request: Request) {
   const pages = await renderPdfWithPython(bytes, THUMB_DPI);
 
   /*
-   * Refuse an over-long document HERE, at the first thing that touches it.
+   * Refuse a document too long to OPEN here, at the first thing that touches it. A file longer than
+   * one lesson (MAX_PAGES) opens normally: the student picks up to MAX_PAGES of its pages.
    *
    * This route is where an upload actually begins, so this is where the student finds out. Leaving
    * the check to parsing would show them a grid of forty thumbnails, let them choose pages and type
    * a question, and only then say no — after the one step in the flow that feels like progress.
    */
-  if (pages && exceedsPageLimit(pages.length)) {
-    return NextResponse.json({ error: tooManyPagesMessage(pages.length) }, { status: 413 });
+  if (pages && exceedsPreviewLimit(pages.length)) {
+    return NextResponse.json({ error: tooLongToPreviewMessage(pages.length) }, { status: 413 });
   }
 
   if (!pages) {
@@ -271,7 +272,7 @@ async function documentPagesRequest(request: Request) {
 
   const thumbnails = pages.map((page) => ({
     pageNumber: page.pageNumber,
-    thumbnail: `data:image/png;base64,${Buffer.from(page.png).toString("base64")}`,
+    thumbnail: `data:image/png;base64,${Buffer.from(page.png ?? Buffer.alloc(0)).toString("base64")}`,
     // A short excerpt gives the student something to read when a thumbnail is ambiguous, and
     // labels the page for the model when only a subset is sent on.
     excerpt: page.text.replace(/\s+/g, " ").trim().slice(0, 140),

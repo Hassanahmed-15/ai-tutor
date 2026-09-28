@@ -17,6 +17,8 @@ import {
   type LectureVideoDoc,
 } from "./db/cosmos";
 import type { Beat } from "./lessonContent";
+import { looksLikeTitle } from "./pdfFocus";
+import { stripLineMarks } from "./beatPresentation";
 import type { LearnerProfileSnapshot } from "./progressiveLectureTypes";
 import { selectAnimationRenderer } from "./animationRouting";
 import {
@@ -138,6 +140,22 @@ export type ArchivedLecture = {
  * phase so the generation job can finish promptly while the existing warm worker pool renders all
  * eligible beats concurrently in the background.
  */
+/**
+ * WHAT A LECTURE IS CALLED IN HISTORY. A lecture's stored topic was once whatever line an upload's
+ * OCR produced — "(a) (b)", "dled automatically.", "these alternatives are poor options." When the
+ * topic cannot name anything, the lecture is called by its first part that can ("Binary Search
+ * Trees"). A good topic is kept as it is.
+ */
+export function lectureDisplayTitle(topic: string, beatTitles: string[]): string {
+  const cleaned = stripLineMarks(topic ?? "");
+  if (looksLikeTitle(cleaned)) return cleaned;
+  for (const raw of beatTitles) {
+    const title = stripLineMarks((raw ?? "").replace(/\s*\((?:part|pt\.?)\s*\d+\)\s*$/i, "")).replace(/[.:;,]+$/, "");
+    if (!/^questions?\b/i.test(title) && looksLikeTitle(title)) return title;
+  }
+  return cleaned || topic;
+}
+
 export async function archiveLecture(input: {
   /** Optional stable id for idempotent queue-driven finalization. */
   lectureId?: string;
@@ -153,6 +171,7 @@ export async function archiveLecture(input: {
   const lectureId = input.lectureId ?? randomUUID();
   const now = new Date().toISOString();
   const packageBlobName = lecturePackageBlobName(input.userId, lectureId);
+  input = { ...input, topic: lectureDisplayTitle(input.topic, input.beats.map((beat) => beat.title ?? "")) };
   const quality = configuredQuality();
   const targets = collectVideoTargets(input.beats, quality);
   const initialPackage: LecturePackage = {
@@ -284,7 +303,7 @@ export async function listLecturesForUser(userId: string, limit = 30): Promise<L
   const { resources } = await lectures().items
     .query<LectureHistoryItem>(
       {
-        query: `SELECT c.id, c.topic, c.sourceType, c.mode, c.status, c.beatCount, c.manimVideoCount, c.createdAt, c.updatedAt, c.error
+        query: `SELECT c.id, c.topic, c.sourceType, c.mode, c.status, c.beatCount, c.manimVideoCount, c.createdAt, c.updatedAt, c.error, c.packageBlobName
                 FROM c WHERE c.userId = @userId ORDER BY c.createdAt DESC OFFSET 0 LIMIT @limit`,
         parameters: [
           { name: "@userId", value: userId },
@@ -294,7 +313,21 @@ export async function listLecturesForUser(userId: string, limit = 30): Promise<L
       { partitionKey: userId },
     )
     .fetchAll();
-  return resources;
+  /*
+   * Lectures saved before titles were checked: only those whose topic cannot name anything have
+   * their package read, for its part titles. Nothing stored is rewritten; a package that cannot be
+   * read keeps the old name.
+   */
+  const rows = resources as Array<LectureHistoryItem & { packageBlobName?: string }>;
+  return Promise.all(rows.map(async ({ packageBlobName, ...item }) => {
+    if (looksLikeTitle(stripLineMarks(item.topic ?? "")) || !packageBlobName) return { ...item, topic: stripLineMarks(item.topic ?? "") || item.topic };
+    try {
+      const lecturePackage = await downloadJsonBlob<LecturePackage>(packageBlobName);
+      return { ...item, topic: lectureDisplayTitle(item.topic, (lecturePackage.beats ?? []).map((beat) => beat.title ?? "")) };
+    } catch {
+      return item;
+    }
+  }));
 }
 
 export async function lectureForUser(userId: string, lectureId: string): Promise<LectureDoc | null> {
@@ -312,6 +345,7 @@ export async function packageForUser(userId: string, lectureId: string): Promise
   // that was the only generated visual mode the old archive path could produce.
   return {
     ...lecturePackage,
+    topic: lectureDisplayTitle(lecturePackage.topic, (lecturePackage.beats ?? []).map((beat) => beat.title ?? "")),
     mode: lecturePackage.mode ?? doc.mode ?? "standard",
   };
 }

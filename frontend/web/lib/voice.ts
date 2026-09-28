@@ -400,6 +400,13 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: sentences[i] }),
+          /*
+           * A clip that never arrives must not stop the lecture. With no timeout, one hung request
+           * held the whole narration on its last sentence — the board and the notes waited with
+           * it, "Aria is speaking" and nothing said. Given up after 20 s, the sentence goes ahead
+           * silently on its estimated length (the missing-clip path below), and the next plays.
+           */
+          signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(20_000) : undefined,
         })
           .then((res) => {
             recordTtsResponse(res);

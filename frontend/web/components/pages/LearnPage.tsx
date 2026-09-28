@@ -31,8 +31,9 @@ import { PageStack } from "@/components/upload/PageStack";
 import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { Loader2 } from "lucide-react";
-import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
-import { lectureSubject } from "@/lib/lectureSubject";
+import { isPointingPhrase, looksLikeTitle, subjectFromTranscript } from "@/lib/pdfFocus";
+import { DOCUMENT_LIMITS } from "@/lib/documentLimits";
+import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
@@ -61,6 +62,7 @@ import {
   isWholeDocumentRequest,
   shouldPlanDocumentScope,
   type DocumentPlanningOption,
+  documentSectionTitles,
 } from "@/lib/documentLessonPlanning";
 
 /**
@@ -1145,6 +1147,7 @@ type BuildCost =
        * was written for — a crop from a document with no usable title of its own.
        */
       const subject = lectureSubject({
+        sectionTitle: documentLectureTitle(documentSectionTitles(primary.data.sourceDocument), looksLikeTitle),
         transcriptSubject: subjectFromTranscript(transcriptText),
         pointing,
         drewRegion,
@@ -3217,6 +3220,14 @@ type BuildCost =
     const label = activeSource?.kind === "pptx" ? "slides" : "pages";
     const totalSelected = pendingSources.reduce((sum, s) => sum + s.selection.pages.length, 0);
     const drawnAreas = pendingSources.reduce((sum, s) => sum + Object.keys(s.regions).length, 0);
+    /*
+     * A lesson carries up to MAX_PAGES pages. A longer file opens here so its pages can be chosen;
+     * "use all pages" is then not an option, and choosing more than a lesson carries is caught here
+     * rather than after the upload has been read.
+     */
+    const mustChoose = totalSelected === 0 && drawnAreas === 0 &&
+      pendingSources.some((s) => (s.pageCount ?? s.pages.length) > DOCUMENT_LIMITS.MAX_PAGES);
+    const overSelected = totalSelected > DOCUMENT_LIMITS.MAX_PAGES;
     return (
       <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
@@ -3246,12 +3257,16 @@ type BuildCost =
             </button>
             <button
               onClick={() => parseSelectedPages()}
-              disabled={pagesLoading || parsingPages}
+              disabled={pagesLoading || parsingPages || mustChoose || overSelected}
               className="hud-btn-primary px-6 py-2.5 text-sm disabled:opacity-40"
             >
               {parsingPages
                 ? "Reading those pages…"
-                : totalSelected > 0
+                : mustChoose
+                  ? `Select up to ${DOCUMENT_LIMITS.MAX_PAGES} ${label}`
+                  : overSelected
+                    ? `Up to ${DOCUMENT_LIMITS.MAX_PAGES} ${label} — ${totalSelected} selected`
+                    : totalSelected > 0
                   ? `Use ${totalSelected} page${totalSelected === 1 ? "" : "s"}`
                   // An area is drawn and no page ticked: that area is what gets used.
                   : drawnAreas > 0
@@ -3544,8 +3559,8 @@ function EntryStatus({
   );
 }
 
-/** Shown right after a lecture finishes — offers a real test on the content. Blind mode forces
- *  oral-only (voice-first already; typing an exam is a poor fit), every other mode picks. */
+/** Shown right after a lecture finishes — offers a quiz on the content. One primary action: the
+ *  written quiz, or for blind learners the spoken one (voice-first already; typing is a poor fit). */
 function TestOfferScreen({
   mode,
   topic,
@@ -3567,45 +3582,42 @@ function TestOfferScreen({
   onSkip: () => void;
   onGoDeeper?: () => void;
 }) {
+  // A topic read off a page can be anything ("(a) (b)"); only a real title is named on screen.
+  const subject = looksLikeTitle(topic) ? topic : "";
   return (
     <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10">
-      <div className="relative z-10 w-full max-w-xl">
-        <div className="relative z-10">
-          <HudEyebrow>End of lecture</HudEyebrow>
-          <h1 className="mt-6 font-display text-[2.6rem] leading-[1.0] tracking-[-0.025em] sm:text-[3.4rem]">
-            Now find out what
-            <br />
-            actually <span className="text-[var(--hud-text)]">stuck.</span>
+      <div className="relative z-10 w-full max-w-lg">
+        <div className="rounded-2xl border border-[var(--hud-line)] bg-white/[0.03] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:p-10">
+          <HudEyebrow>Lesson complete</HudEyebrow>
+          <h1 className="mt-4 font-display text-[2.1rem] leading-[1.1] tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.5rem]">
+            Check what you&apos;ve learned
           </h1>
-          <p className="mt-7 border-t border-[var(--hud-line)] pt-6 text-[1.02rem] leading-[1.8] text-[var(--hud-text-dim)]">
-            Real questions on <span className="text-[var(--hud-text)]">{topic}</span>, marked against
-            what was taught rather than string-matched. Anything you miss is explained.
+          <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--hud-text-dim)]">
+            {subject ? (
+              <>A short quiz on <span className="font-semibold text-[var(--hud-text)]">{subject}</span>.</>
+            ) : (
+              <>A short quiz on this lesson.</>
+            )}{" "}
+            Every question comes from what you just covered, and any answer you miss is explained.
           </p>
 
-          {error && <p className="mt-6 text-sm font-semibold text-rose-300">⚠️ {error}</p>}
+          {error && <p className="mt-5 rounded-lg border border-rose-400/30 bg-rose-500/10 px-3 py-2 text-sm font-semibold text-rose-200">{error}</p>}
 
-          <div className="mt-9 flex flex-col items-center gap-3">
-            {forceOral ? (
-              <HudButton onClick={onOral} disabled={loading} className="w-full">
-                {loading ? "Preparing…" : "Take the oral exam →"}
-              </HudButton>
-            ) : (
-              <div className="flex w-full flex-col gap-3 sm:flex-row">
-                <HudButton onClick={onWritten} disabled={loading} className="flex-1">
-                  {loading ? "Preparing…" : "Written test →"}
-                </HudButton>
-                <HudButton variant="ghost" onClick={onOral} disabled={loading} className="flex-1">
-                  {loading ? "Preparing…" : "Oral exam →"}
-                </HudButton>
-              </div>
-            )}
-            {onGoDeeper && (
-              <button onClick={onGoDeeper} disabled={loading} className="mt-1 text-sm font-bold text-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40">
-                Go deeper on this →
+          <div className="mt-8">
+            {/* Blind learners take the quiz by voice — typing an exam is a poor fit for them. */}
+            <HudButton onClick={forceOral ? onOral : onWritten} disabled={loading} className="w-full">
+              {loading ? "Preparing your quiz…" : "Start the quiz"}
+            </HudButton>
+          </div>
+
+          <div className="mt-5 flex items-center justify-between gap-4 border-t border-[var(--hud-line)] pt-5 text-sm font-semibold">
+            {onGoDeeper ? (
+              <button onClick={onGoDeeper} disabled={loading} className="text-[var(--hud-cyan)] transition-colors hover:text-[var(--hud-text)] disabled:opacity-40">
+                Go deeper on this topic
               </button>
-            )}
-            <button onClick={onSkip} disabled={loading} className="mt-2 text-sm font-bold text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40">
-              Skip, I&apos;m done
+            ) : <span />}
+            <button onClick={onSkip} disabled={loading} className="text-[var(--hud-text-faint)] transition-colors hover:text-[var(--hud-text)] disabled:opacity-40">
+              Skip for now
             </button>
           </div>
         </div>

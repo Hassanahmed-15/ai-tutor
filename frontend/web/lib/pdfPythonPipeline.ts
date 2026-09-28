@@ -59,7 +59,8 @@ export type CropPageJob = {
 
 export type PythonRenderedPage = {
   pageNumber: number;
-  png: Buffer;
+  /** Null for a page outside `onlyPages`: its text was read, but it was not rasterised. */
+  png: Buffer | null;
   width: number;
   height: number;
   pageWidth: number;
@@ -98,6 +99,12 @@ export async function renderPdfWithPython(
   pdfBytes: Uint8Array,
   dpi: number = DPI,
   visionDpi: number = 0,
+  /**
+   * Rasterise only these 1-based pages. A long document is taught from the pages the student
+   * picked: rendering all 108 of them at 400 DPI to use two was minutes of work and gigabytes of
+   * PNG. Every page's text is still returned — it costs nothing and the chat answers from it.
+   */
+  onlyPages?: number[],
 ): Promise<PythonRenderedPage[] | null> {
   if (process.env.PDF_PYTHON_PIPELINE === "0") return null;
   const directory = await mkdtemp(path.join(os.tmpdir(), "aria-pdf-render-"));
@@ -107,13 +114,15 @@ export async function renderPdfWithPython(
     await runPython([
       "render", "--input", inputPath, "--output-dir", directory, "--dpi", String(dpi),
       "--vision-dpi", String(Math.max(0, Math.round(visionDpi))),
+      ...(onlyPages?.length ? ["--pages", onlyPages.join(",")] : []),
     ]);
     const manifest = JSON.parse(await readFile(path.join(directory, "manifest.json"), "utf8")) as RenderManifest;
     const pages = await Promise.all((manifest.pages ?? []).map(async (page, index) => {
-      if (!page.path) throw new Error(`Missing rendered path for page ${index + 1}.`);
+      const pageNumber = Number(page.pageNumber) || index + 1;
+      if (!page.path && !(onlyPages?.length && !onlyPages.includes(pageNumber))) throw new Error(`Missing rendered path for page ${index + 1}.`);
       return {
-        pageNumber: Number(page.pageNumber) || index + 1,
-        png: await readFile(path.join(directory, page.path)),
+        pageNumber,
+        png: page.path ? await readFile(path.join(directory, page.path)) : null,
         width: Number(page.width) || 1,
         height: Number(page.height) || 1,
         pageWidth: Number(page.pageWidth) || 1,

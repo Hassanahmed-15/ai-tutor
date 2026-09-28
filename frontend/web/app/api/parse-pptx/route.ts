@@ -861,7 +861,7 @@ export async function POST(req: NextRequest) {
       const pages = await renderPdfWithPython(asPdf, undefined, VISION_DPI);
       renderedSlides = (pages ?? []).map((page) => ({
         slideNumber: page.pageNumber,
-        png: Buffer.from(page.png),
+        png: Buffer.from(page.png ?? Buffer.alloc(0)),
         width: page.width,
         height: page.height,
         visionImage: page.visionImage,

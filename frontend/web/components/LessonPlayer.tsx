@@ -841,7 +841,14 @@ export function LessonPlayer({
     getDocumentContext: liveTutorDocumentContext,
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
-    onTranscript: (role, text, final) => {
+    onTranscript: (role, rawText, final) => {
+      /*
+       * The live model's control tokens are not words. The hook strips "<no speech>" per streamed
+       * chunk, but a token split across two chunks ("<no" + " speech>") is joined again in the final
+       * transcript, and the student saw "ARIA <no speech>" floating over the board.
+       */
+      const text = rawText.replace(/<\s*no\s*speech\s*>|\{\s*pause\s*\}/gi, "").replace(/[ \t]{2,}/g, " ");
+      if (!text.trim()) return;
       if (deafMode && role === "tutor" && text.trim()) {
         if (final) {
           liveSigningCaptionRef.current = text.trim();
@@ -1806,7 +1813,9 @@ export function LessonPlayer({
         return i + 1;
       }
       if (tail.hasMoreBeats) setWaitingForNextBeat(true);
-      else tail.onComplete?.();
+      // The parent's own state changes on completion; a state updater must not set another
+      // component's state (React: "Cannot update a component while rendering a different one").
+      else queueMicrotask(() => tail.onComplete?.());
       return i;
     });
   }, []);
@@ -2025,7 +2034,7 @@ export function LessonPlayer({
     setIndex((i) => {
       if (i < beats.length - 1) return i + 1;
       if (hasMoreBeats) setWaitingForNextBeat(true);
-      else onComplete?.();
+      else queueMicrotask(() => onComplete?.());
       return i;
     });
     setStage("slide");
@@ -2379,7 +2388,7 @@ export function LessonPlayer({
    * student's own diagram, each part lit up as it is named. Everything else keeps its drawn board.
    */
   const beatFigures = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
-    ? sourceFiguresFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds)
+    ? sourceFiguresFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds, sourceDocument.assets ?? [])
     : [];
   const spokenSentences = beatFigures.length
     ? splitSentences(beat.script ?? "").slice(0, (stage === "board" ? sentenceCue.index : 0) + 1)
@@ -2392,10 +2401,31 @@ export function LessonPlayer({
     : null;
   /*
    * The figure and the drawing TOGETHER. The book's own figure used to replace the animated board;
-   * the student wants both — the real drawing from their page, and the animation that explains it.
+   * the student wants both — the real drawing from their page, and the board that explains it,
+   * whatever kind of board the part has.
    * A wide figure (two trees side by side) sits above the board; a tall one beside it.
    */
-  const boardHasAnimation = findReactAnimationOp(beat)?.kind === "reactAnimation";
+  /* Strict: a note is written only if every content word in it is the source's own. */
+  const boardNotePoints = !pdfWorkspace || isCheckpoint
+    ? []
+    : strictSource
+      ? (() => {
+          const source = beatSourceFor(beat);
+          if (!source) return [];
+          const vocab = sourceVocabulary(source);
+          return boardNotesFor(beat).filter((point) => sentenceIsGrounded(point, vocab));
+        })()
+      : boardNotesFor(beat);
+  const boardNotes = (embedded: boolean) => (
+    <BoardNotes
+      key={beat.id}
+      points={boardNotePoints}
+      sentenceIndex={stage === "board" ? sentenceCue.index : -1}
+      sentenceTotal={sentenceCue.total}
+      complete={drawProgress >= 1}
+      embedded={embedded}
+    />
+  );
   const figureIsWide = beatFigure ? (beatFigure.crop.width * 0.77) / Math.max(0.01, beatFigure.crop.height) >= 1.35 : false;
   const beatSourcePages = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
     ? [...new Set((sourceDocument.contentBlocks ?? [])
@@ -2539,21 +2569,8 @@ export function LessonPlayer({
             )}
             {/* Notes ABOVE the drawing: what Aria is saying is read first, right under the part strip, and
                 sits where the arrow from the PDF enters the board. */}
-            {pdfWorkspace && !isCheckpoint && (
-              <BoardNotes
-                key={beat.id}
-                /* Strict: a note is written only if every content word in it is the source's own. */
-                points={strictSource ? (() => {
-                  const source = beatSourceFor(beat);
-                  if (!source) return [];
-                  const vocab = sourceVocabulary(source);
-                  return boardNotesFor(beat).filter((point) => sentenceIsGrounded(point, vocab));
-                })() : boardNotesFor(beat)}
-                sentenceIndex={stage === "board" ? sentenceCue.index : -1}
-                sentenceTotal={sentenceCue.total}
-                complete={drawProgress >= 1}
-              />
-            )}
+            {/* With a figure, the notes sit beside it instead (see the figure layout below). */}
+            {pdfWorkspace && !isCheckpoint && !beatFigure && boardNotes(false)}
             <div className={pdfWorkspace ? "relative min-h-0 flex-1" : "contents"}>
             {isCheckpoint ? (
               <SlideStage
@@ -2589,25 +2606,17 @@ export function LessonPlayer({
                 onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">
-                {beatFigure && boardHasAnimation ? (
-                  <div className={`flex h-full min-h-0 gap-1.5 bg-slate-950 ${figureIsWide ? "flex-col" : "flex-row"}`}>
-                    <div className={`${figureIsWide ? "h-[42%] w-full" : "h-full w-[42%]"} min-h-0 shrink-0 overflow-hidden rounded-md`}>
-                      <SourceFigureBoard
-                        key={beat.id}
-                        documentId={documentId}
-                        pageNumber={beatFigure.pageNumber}
-                        crop={beatFigure.crop}
-                        labels={beatFigure.labels}
-                        caption={beatFigure.caption}
-                        sentence={stage === "board" ? sentenceCue.text : ""}
-                        spoken={stage === "board" ? spokenSoFar : ""}
-                      />
-                    </div>
-                    <div className="relative min-h-0 min-w-0 flex-1">
-                      <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
-                    </div>
-                  </div>
-                ) : beatFigure ? (
+                {beatFigure ? (
+                  /*
+                   * FIGURE, NOTES AND BOARD, EACH AT A USEFUL SIZE. Stacked as three bands (notes, then
+                   * figure, then board) every one of them came out small and zoomed out. A wide
+                   * figure now shares a top strip with the notes and the board takes the full width
+                   * below; a tall figure runs down the left beside the notes and the board.
+                   */
+                  figureIsWide ? (
+                    <div className="flex h-full min-h-0 flex-col bg-[#fbfbf8]">
+                      <div className="flex h-[38%] min-h-0 shrink-0 border-b border-slate-200">
+                        <div className="min-w-0 flex-[3]">
                   <SourceFigureBoard
                     key={beat.id}
                     documentId={documentId}
@@ -2618,6 +2627,35 @@ export function LessonPlayer({
                     sentence={stage === "board" ? sentenceCue.text : ""}
                     spoken={stage === "board" ? spokenSoFar : ""}
                   />
+                        </div>
+                        {boardNotePoints.length > 0 && <div className="min-w-0 flex-[2] border-l border-slate-200">{boardNotes(true)}</div>}
+                      </div>
+                      <div className="relative min-h-0 flex-1">
+                        <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex h-full min-h-0 bg-[#fbfbf8]">
+                      <div className="h-full w-[36%] min-w-0 shrink-0 border-r border-slate-200">
+                  <SourceFigureBoard
+                    key={beat.id}
+                    documentId={documentId}
+                    pageNumber={beatFigure.pageNumber}
+                    crop={beatFigure.crop}
+                    labels={beatFigure.labels}
+                    caption={beatFigure.caption}
+                    sentence={stage === "board" ? sentenceCue.text : ""}
+                    spoken={stage === "board" ? spokenSoFar : ""}
+                  />
+                      </div>
+                      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+                        {boardNotePoints.length > 0 && <div className="max-h-[34%] min-h-0 shrink-0 border-b border-slate-200">{boardNotes(true)}</div>}
+                        <div className="relative min-h-0 flex-1">
+                          <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                        </div>
+                      </div>
+                    </div>
+                  )
                 ) : (
                   <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
                 )}
@@ -4086,7 +4124,7 @@ function SourceToBoardArrow({ pointer, workspace, board }: { pointer: DOMRect | 
  * at a time, each when the voice reaches its share of the narration — timed by the voice itself,
  * so the writing can never run ahead of or behind what is being said.
  */
-function BoardNotes({ points, sentenceIndex, sentenceTotal, complete }: { points: string[]; sentenceIndex: number; sentenceTotal: number; complete: boolean }) {
+function BoardNotes({ points, sentenceIndex, sentenceTotal, complete, embedded = false }: { points: string[]; sentenceIndex: number; sentenceTotal: number; complete: boolean; /** Fills a column beside a figure instead of a band above the board. */ embedded?: boolean }) {
   const notes = points.map((point) => point.trim()).filter(Boolean).slice(0, 6);
   if (notes.length === 0) return null;
   const total = Math.max(1, sentenceTotal);
@@ -4096,7 +4134,7 @@ function BoardNotes({ points, sentenceIndex, sentenceTotal, complete }: { points
       ? 0
       : notes.filter((_, k) => sentenceIndex >= Math.floor((k * total) / notes.length)).length;
   return (
-    <div className="shrink-0 border-b border-slate-200 bg-[#fbfbf8] px-5 py-3" style={{ maxHeight: "34%" }}>
+    <div className={embedded ? "h-full overflow-y-auto bg-[#fbfbf8] px-4 py-3" : "shrink-0 border-b border-slate-200 bg-[#fbfbf8] px-5 py-3"} style={embedded ? undefined : { maxHeight: "34%" }}>
       <style>{`@font-face{font-family:"Playpen Sans";src:url(/fonts/PlaypenSans-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}.board-note-write{animation:board-note-write .7s steps(24,end) both}@keyframes board-note-write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}@media (prefers-reduced-motion:reduce){.board-note-write{animation:none}}`}</style>
       <ol className="space-y-1.5 overflow-hidden" style={{ fontFamily: '"Playpen Sans","Chalkboard SE","Comic Sans MS",sans-serif' }}>
         {notes.map((note, k) => (

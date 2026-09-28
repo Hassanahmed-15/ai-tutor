@@ -284,7 +284,14 @@ export function structureTranscribedPage(raw: string): Array<{ kind: "paragraph"
   };
 
   for (const rawLine of lines) {
-    const line = rawLine.replace(/\s+/g, " ").trim();
+    // LaTeX spacing the transcriber leaves in prose — "\\" line breaks, "\ ", "\quad" — titled a
+    // slide "\ \ Binary Search Trees". A backslash standing alone is never the book's text.
+    const line = rawLine
+      .replace(/\\\\+/g, " ")
+      .replace(/\\(?:q?quad|[,;:! ])/g, " ")
+      .replace(/(^|\s)\\(?=\s|$)/g, "$1")
+      .replace(/\s+/g, " ")
+      .trim();
     if (!line) {
       flush();
       continue;

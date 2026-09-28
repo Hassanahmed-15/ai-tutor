@@ -119,8 +119,10 @@ async function synthesizeWithUsage(
       response_format: "mp3",
       stream_format: "sse",
     }),
-  });
-  if (!res.ok) return null;
+    // A hung upstream request held one sentence's clip, and with it the whole narration.
+    signal: AbortSignal.timeout(18_000),
+  }).catch(() => null);
+  if (!res?.ok) return null;
   const chunks: Buffer[] = [];
   type SpeechUsage = { input_tokens?: number; output_tokens?: number };
   let usage: SpeechUsage | null = null;

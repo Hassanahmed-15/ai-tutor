@@ -1,4 +1,5 @@
 import type { SuprnotesAsset, SuprnotesContentBlock } from "./suprnotes";
+import { stripLineMarks } from "./beatPresentation";
 
 export type PdfTextSpan = {
   text: string;
@@ -315,7 +316,14 @@ export function structurePdfPage(
      * sentence break inside it is plainly prose, and the run is kept as the paragraph it is.
      */
     const prose = labels.some((label) => label.split(/\s+/).length > 6 || /[.!?;:]\s/.test(label));
-    if (pendingType === "labels" && !prose) {
+    /*
+     * ONE "label" is not a diagram. A heading set apart from the text ("Lab Conduct", "Theory") and a
+     * step number printed beside a picture ("3") both pass the per-line test, became "Diagram labels:
+     * Theory", and put a crop of a heading on the whiteboard as a "figure". A figure names at least
+     * two of its parts, in words (the same rule the strict source uses, lib/strictSourceScript.ts).
+     */
+    const namesParts = labels.filter((label) => /[A-Za-z]{2,}/.test(label)).length >= 2;
+    if (pendingType === "labels" && !prose && namesParts) {
       blocks.push({
         id,
         type: "paragraph",
@@ -603,7 +611,8 @@ export function headingNormalizer(blocks: SuprnotesContentBlock[]): (raw: unknow
     const glued = heading.match(/^(.*\s[a-z]*[a-z]{3})([A-Z][a-z]{3,}.*)$/);
     if (glued) heading = glued[2].trim();
     // "1.1 Photosynthesis" → "Photosynthesis": the numbering is provenance, not the name.
-    return heading.replace(/^\d+(?:\.\d+)+\s+(?=[A-Za-z])/, "");
+    // "4c. Multiple-Application Simpson's 1/3 Rule" and "4) Errors" are numbered the same way.
+    return heading.replace(/^\d+(?:\.\d+)+\s+(?=[A-Za-z])/, "").replace(/^\d{1,3}[a-z]?[.)]\s+(?=[A-Za-z])/i, "");
   };
 }
 
@@ -662,12 +671,15 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[], normaliz
    * block that actually says something.
    */
   // A figure's labels are not what a section is called.
-  const meaningful = group.find((block) => {
+  const meaningful = (candidates: SuprnotesContentBlock[]) => candidates.find((block) => {
     if (block.role === "figure-labels") return false;
     const text = clean(block.text, 100);
     return text && /[A-Za-z]{3,}/.test(text);
   });
-  let opening = clean(meaningful?.text ?? group[0]?.text, 240);
+  // A part that opens mid-sentence ("have to provide the code…", carried over from the one before)
+  // is named by its first block that starts a sentence, when it has one.
+  const opener = meaningful(group.filter((block) => /^\s*[^a-z]/.test(clean(block.text, 20)))) ?? meaningful(group);
+  let opening = clean(opener?.text ?? group[0]?.text, 240);
   // A caption's locator is provenance, not a title. Keep its descriptive clause: the Dell fixture
   // must read "Deletion of node 2 with two children", never merely "Figure 19.4".
   opening = opening
@@ -682,9 +694,20 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[], normaliz
     // A colon deliberately does NOT end the title: "Step 2: Download HOL4" splits at the colon into
     // the bare label "Step 2", which is exactly as uninformative as the "Page 1" this replaces.
     // Keeping the clause after it is what makes the outline readable.
+    /*
+     * A HEADING GLUED TO ITS FIRST SENTENCE. When the text layer does not set a heading apart, the
+     * block reads "Introduction This laboratory exercise will introduce…" and the title became
+     * "Introduction This Laboratory Exercise Will". Capitalised words followed by an ordinary
+     * sentence opening are the heading.
+     */
+    const glued = opening.match(/^((?:[A-Z][\w'’&-]*|of|and|the|for|to|in|on|with)(?:\s+(?:[A-Z][\w'’&-]*|of|and|the|for|to|in|on|with)){0,5})\s+(?=(?:This|These|The|In|A|An|We|It|Here|Our|Each|When|If|You|Most|All)\s+[a-z])/);
+    if (glued && !/^(?:This|These|The|In|A|An|We|It|Here|Our|Each|When|If|You|Most|All)$/.test(glued[1]) && !/\s(?:of|and|the|for|to|in|on|with)$/.test(glued[1])) {
+      return stripLineMarks(glued[1]);
+    }
     const firstLine = opening.split(/(?<=[.?!])\s|\s{2,}/)[0]?.trim() ?? opening;
     const candidate = firstLine.length >= 3 && firstLine.length <= 80 ? firstLine : opening.slice(0, 80).trim();
-    if (candidate) return candidate.replace(/[.:;,]\s*$/, "");
+    const named = stripLineMarks(candidate).replace(/[.:;,]\s*$/, "");
+    if (named) return named;
   }
   return pages.length > 1 ? `Pages ${pages[0]}-${pages[pages.length - 1]}` : `Page ${pages[0] ?? 1}`;
 }

@@ -29,3 +29,18 @@ test("the narration moves the board to the figure it names or describes, and oth
   assert.equal(activeFigureIndex(figures, "We start with the easiest case.", 1), 1, "a sentence about neither keeps the figure showing");
   assert.equal(activeFigureIndex(figures, "Look back at Figure 19.2 for the insertion.", 1), 0);
 });
+
+test("a lone heading filed as a label is not a figure; a detected photo for the part is", () => {
+  const blocks = [
+    { id: "h", role: "figure-labels", pageNumber: 2, text: "Diagram labels: Lab Conduct", bbox: { x: 0.1, y: 0.4, width: 0.2, height: 0.02 }, labelRegions: [{ text: "Lab Conduct", bbox: { x: 0.1, y: 0.4, width: 0.2, height: 0.02 } }] },
+    { id: "p", role: "paragraph", pageNumber: 3, text: "This tomato leaf is showing symptoms of magnesium deficiency." },
+  ];
+  const assets = [
+    { id: "photo", pageNumber: 3, visualType: "photo", caption: "This tomato leaf is showing symptoms of magnesium deficiency.", bbox: { x: 0.5, y: 0.6, width: 0.4, height: 0.3 }, sourceBlockIds: ["p"], teachingUse: { kind: "pdf-figure", useInLesson: true } },
+    { id: "table", pageNumber: 3, visualType: "table", caption: "table from page 3", bbox: { x: 0.1, y: 0.1, width: 0.8, height: 0.3 }, sourceBlockIds: ["p"], teachingUse: { kind: "pdf-figure", useInLesson: true } },
+  ];
+  assert.deepEqual(sourceFiguresFor(blocks, ["h"], assets), [], "one label names no parts");
+  const figures = sourceFiguresFor(blocks, ["p"], assets);
+  assert.equal(figures.length, 1, "the photo, not the table");
+  assert.match(figures[0].caption ?? "", /tomato leaf/);
+});

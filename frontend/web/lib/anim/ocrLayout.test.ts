@@ -81,3 +81,43 @@ test("the transcriber's own picture stand-ins are not the book's text", async ()
   const blocks = structureTranscribedPage("![Image: Binary search trees (a) before and (b) after the insertion of 6.]\n\nFigure 19.2 Binary search trees (a) before and (b) after the insertion of 6.\n\nThe hardest operation is remove.");
   assert.deepEqual(blocks.map((b) => b.kind), ["caption", "paragraph"]);
 });
+
+test("a title made from a bulleted line loses its bullet and trailing arrow", async () => {
+  const { stripLineMarks, topicKeywords } = await import("../beatPresentation");
+  assert.equal(stripLineMarks("● High accuracy requires many segments →"), "High accuracy requires many segments");
+  assert.equal(topicKeywords("• Trapezoidal rule —"), "Trapezoidal Rule");
+  assert.equal(stripLineMarks("A → B"), "A → B", "an arrow inside a name stays");
+});
+
+test("a heading glued to its first sentence titles the part by the heading", async () => {
+  const { buildPdfLessonPlan } = await import("../pdfLessonPipeline");
+  const plan = buildPdfLessonPlan([{ id: "b1", type: "paragraph", heading: "Page 2", pageNumber: 2, sourceOrder: 0, text: "Introduction This laboratory exercise will introduce the fundamental aspects of Python." }] as never, []) as { beats: Array<{ title: string }> };
+  assert.equal(plan.beats[0].title, "Introduction");
+});
+
+test("a lettered section number is provenance, not part of the title", async () => {
+  const { headingNormalizer } = await import("../pdfLessonPipeline");
+  const normalize = headingNormalizer([]);
+  assert.equal(normalize("4c. Multiple-Application Simpson's 1/3 Rule"), "Multiple-Application Simpson's 1/3 Rule");
+  assert.equal(normalize("4. Simpson's 1/3 Rule"), "Simpson's 1/3 Rule");
+});
+
+test("the transcriber's LaTeX spacing never reaches a title or caption", async () => {
+  const { structureTranscribedPage } = await import("../pdfOcr");
+  const { topicKeywords } = await import("../beatPresentation");
+  const { sourceFiguresFor } = await import("../sourceFigures");
+  const blocks = structureTranscribedPage("\\\\ \\\\ Binary Search Trees\n\nFigure 19.3 \\\\ Deletion of node 5 with one child: (a) before and (b) after.");
+  assert.ok(blocks.every((b) => !b.text.includes("\\")), JSON.stringify(blocks));
+  assert.equal(topicKeywords("\\ \\ Binary Search Trees"), "Binary Search Trees");
+  const [figure] = sourceFiguresFor([{ id: "c", pageNumber: 1, text: "Figure 19.3 \\ \\ Deletion of node 5", figureRegion: { x: 0, y: 0, width: 0.5, height: 0.2 } }], ["c"]);
+  assert.equal(figure.caption, "Figure 19.3 Deletion of node 5");
+});
+
+test("a part that opens mid-sentence is named by its first sentence opening", async () => {
+  const { buildPdfLessonPlan } = await import("../pdfLessonPipeline");
+  const plan = buildPdfLessonPlan([
+    { id: "b1", type: "paragraph", heading: "Page 2", pageNumber: 2, sourceOrder: 0, text: "have to provide the code between the commented lines." },
+    { id: "b2", type: "paragraph", heading: "Page 2", pageNumber: 2, sourceOrder: 1, text: "Use the tab key to provide the indentation in python." },
+  ] as never, []) as { beats: Array<{ title: string }> };
+  assert.equal(plan.beats[0].title, "Use the tab key to provide the indentation in python");
+});
