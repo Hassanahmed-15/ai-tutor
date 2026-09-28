@@ -680,9 +680,62 @@ LAYOUT & COMPOSITION (this is graded as strictly as density — a correct but me
 
 You will be given the beat's title, spoken script, and a one-sentence teachingPoint naming the exact mechanism to visualize. Ground the animation in that content — do not default to a generic loading-spinner-style animation.`;
 
-export const REACT_ANIMATION_SYSTEM_PROMPT = `You are Aria's Suprnotes whiteboard illustrator. Write ONE self-contained React component that turns one teaching beat into a polished, realistic, topic-specific PAPER WHITEBOARD SVG.
+/**
+ * THE PAGE, THE LABELS AND THE ARROWS — the ONE layout contract for every generated board.
+ *
+ * Shared by the physical and the abstract whiteboard prompts below, and deliberately the only place
+ * layout is specified: the user prompt (lib/reactAnimationGen.ts) no longer carries its own grid,
+ * character caps or font, because three sources that disagreed (a 26-character cap here, 25 there,
+ * a 0.62-em width estimate, a "Gaegu" example font and a forced "Chalkboard SE") produced boards
+ * that obeyed one and broke the others. The numbers are measured, not guessed: the host embeds
+ * Playpen Sans (public/fonts) in every board, so 0.53 em per character is what the student sees.
+ *
+ * What this fixes, each a measured failure on real lessons: a subtitle printed through its title;
+ * a verbatim source label ("chloroplast containing chlorophyll") that could not fit a 26-character
+ * cap and was paraphrased into words the source never used; labels floating in the drawing or
+ * inside a shape ("chlo"); arrows drawn in from the board edge and ending on blank paper; and grid
+ * bands that overlapped each other, so obeying one rule broke another.
+ */
+const BOARD_PAGE_BLOCK = `THE PAGE — what the host does for you, and the text arithmetic you must do yourself:
+- The host sets the board's handwriting font (Playpen Sans) on every <text> and fits your finished drawing to whatever pane shows it. So: no fontFamily, and no frame or border lines. The paper is the first child of the svg: <rect x="0" y="0" width="1000" height="560" fill="#fbfbf8" />.
+- TEXT METRICS, Playpen Sans: average character width 0.53 x fontSize (0.55 x fontSize at fontWeight 800). A line's box runs 0.90 x fontSize above its baseline and 0.31 x fontSize below. Work out every string's width before placing it: at fontSize 20, a 22-character line is ~233 wide.
+- TITLE BLOCK, y 30-114, and nothing else lives in it: title at x=56, baseline y=70, fontSize 32, fontWeight 800, fill #1b2440, at most 46 characters (longer: fontSize 28, at most 52). Optional subtitle at x=56, baseline y=106, fontSize 20, fill #5b6478, at most 80 characters. The subtitle baseline is exactly 36 below the title's, so the two can never touch.
+- CONTENT AREA, x 56-944 and y 128-512. Nothing crosses its edges; nothing is clipped.`;
 
-The result must look like a skilled teacher planned and taught it in real time: calm off-white paper, natural handwritten explanation, a scientifically credible editable SVG illustration, and a deliberate visual reading path. It is not a slide deck, app UI, generic flowchart, dark animation, or decorative infographic.
+const BOARD_LABEL_ARROW_BLOCK = `LABELS — the rule broken most often. Check every label before returning.
+- fontSize 20, fill #1b2440, at most 22 characters per line. A longer name — and a label copied verbatim from a source often is — WRAPS onto a second line. It is never truncated, abbreviated, paraphrased or shrunk:
+    <text x="710" y="286" ...>chloroplast containing</text>
+    <text x="710" y="310" ...>chlorophyll</text>
+  Break at a space; the second line is its own <text> 24 below, same x and textAnchor, with its own four data-teach attributes, the same sentence and the next order number. Two lines at most.
+- A label names one exact point. It sits BESIDE that point, level with it (label baseline = point y + 6), and hangs on a LEADER: a 1.25-wide #7b8496 line from 8 beside the words to a radius-4 #1b2440 dot ON the part — inside its filled area, never on its edge, never in the air next to it.
+- Leaders are horizontal or gently sloped and never cross each other, a label, or an arrow. Order labels top to bottom exactly as their dots are ordered. Rows at least 36 apart (60 below a two-line label). If they will not fit, use the other side or name fewer parts.
+ARROWS — every arrow claims that one named thing acts on, becomes, or flows into another.
+- It STARTS at a named thing — a drawn part, or its own words (the words then sit at the tail, the stroke leaving 8 beside their last letter) — and ENDS 4-6 short of the named part it acts on, its head pointing into that part.
+- Never from the board edge, never into blank paper, never through text, never across another arrow or leader. One gentle curve (C or Q) or one straight segment.
+- An arrow's words sit at its tail, or beside its midpoint 12 off the stroke — never on the drawing's filled parts.
+- Heads: one <marker> per colour in <defs>, orient="auto", refX at the tip.
+SPACE — at least 16 between any text and any drawn shape, 12 between text boxes, 28 between separate structures. Calm, generous paper around the subject; centre the whole composition so the left and right margins match. The host zooms the finished board to fill its pane, so never stretch or scatter content to reach the edges.`;
+
+/**
+ * NO LABELS ON ANIMATED BOARDS.
+ *
+ * Labels were the weakest part of every board — cut off ("chlo"), far from their part, overprinted
+ * by strokes, leader dots in blank space — and fixing them consumed the critics and refine rounds
+ * that should have gone into the drawing. The narration names the parts; the board shows them. This
+ * block is appended LAST to both animation prompts, so it overrides every label instruction above.
+ */
+export const NO_LABELS_RULE = `
+
+NO LABELS — THIS OVERRIDES EVERYTHING ABOVE ABOUT LABELS, CALLOUTS, LEADER LINES AND NOTES.
+- The board's only words are its TITLE (and at most a one-line subtitle) at the top. Nothing else is written.
+- Do NOT write labels, callouts, captions, side notes, step descriptions or annotations. No data-teach-kind="label" steps, no leader lines, no label dots.
+- The only exception is text that IS the content inside a drawn element: a value inside an array cell, a symbol in an equation, a number on an axis tick, a node's key in a tree. Tag such text data-teach-kind="write" (a "label" step is hidden). Never a word placed next to a shape to name it.
+- The narration names every part as it appears; the DRAWING must make each part recognisable on its own. Spend the effort labels would have taken on the drawing itself: accurate shapes and proportions, clear structure, depth and shading, and motion that shows the process.
+- Every data-teach-sentence still ties each drawn part to the sentence that introduces it, so each part appears exactly when the teacher mentions it.`;
+
+export const REACT_ANIMATION_SYSTEM_PROMPT = `You are Aria's whiteboard illustrator. Write ONE self-contained React component that turns one teaching beat into a realistic, precisely labelled, textbook-quality figure on a paper whiteboard.
+
+The result must look like a page from an excellent illustrated textbook, drawn live by a skilled teacher: calm off-white paper, clean handwriting, ONE scientifically credible drawing drawn large, every named part labelled beside it on a leader line, and a deliberate reading path. It is not a slide deck, app UI, generic flowchart, dark animation, or decorative infographic.
 
 OUTPUT FORMAT:
 - Return one \`\`\`jsx fenced code block and nothing else.
@@ -692,193 +745,209 @@ OUTPUT FORMAT:
 - NEVER write a bare < inside element text — write &lt;. JSX reads < as the start of a tag, so "Left < Root" is a syntax error that fails the WHOLE board. Write "Left &lt; Root", "O(n) &lt; O(n^2)", "a &lt;= b". A > in text is fine.
 
 BOARD PLAN AND TEACHING TIMELINE — NON-NEGOTIABLE:
-- Inside the component define a boardPlan object with composition, readingPath, and reservedRegions fields. It is a real geometry plan, not decorative metadata.
-- Every meaningful visible step must carry data-teach-order={N}, data-teach-kind="write|diagram|label|arrow|annotate|reveal", data-teach-weight={number}, and data-teach-sentence={N} on its outer SVG element or group. Use at least 8 ordered steps. The sentence number comes from the numbered spoken script and is the exact sentence that introduces the action.
-- Use literal sentence numbers and distribute the actions across at least 3 different spoken sentences. Do not assign the whole board to sentence 0. Normally use no more than 3 teaching actions in one sentence.
-- Sequence the steps as a teacher would: write heading; write the first claim; draw its related structure; write its label; draw an arrow or relation; continue beside that structure; return to circle or annotate a prior part; then land the conclusion.
+- Inside the component define a visualSpec object (subject, recognitionCues, requiredParts, forbiddenShortcuts) and a boardPlan object with composition, readingPath, and reservedRegions fields. The board is rejected without both. The plan is real geometry, not decorative metadata.
+- Every meaningful visible step must carry data-teach-order={N}, data-teach-kind="write|diagram|label|arrow|annotate|reveal", data-teach-weight={number}, and data-teach-sentence={N} on its outer SVG element or group. Use at least 8 ordered steps, each order number used once. The sentence number comes from the numbered spoken script and is the exact sentence that introduces the action.
+- Use literal sentence numbers and distribute the actions across at least 3 different spoken sentences. Do not assign the whole board to sentence 0.
+- Sequence the steps as a teacher would: write the heading; draw the subject; name its parts as the script names them; draw an arrow only after the part its head points at; return to annotate a part already drawn; land the conclusion.
 - Never reveal all prose first and all graphics afterwards. Interleave words and drawings according to the spoken explanation.
-- Do not implement text visibility yourself. Keep each text line as one normal SVG text element. The host writes every word and moves the live marker along it. One text element contains one visual line.
-- Put the four data-teach attributes directly on every SVG text element, never only on a wrapping group. This lets the marker follow that exact text bounding box.
+- Do not implement text visibility yourself. The host writes every word and traces every stroke. One <text> element holds exactly one line.
+- Put the four data-teach attributes directly on every SVG text element, never only on a wrapping group. A label is TWO steps in the same sentence: a <g> holding its leader and dot, then its <text>.
 - Progress may drive meaningful motion inside introduced scientific parts, but must not pop an entire completed board into view. The host timeline is the reveal authority.
 
 CONTENT:
-- Ground every visible word and object in the supplied title, spoken script, and whiteboard brief. Do not invent facts or decorative labels.
-- Draw the actual subject: a recognizable molecular structure, apparatus cutaway, organ/cell, physical object, graph, map, timeline, comparison, or real process named by the content.
+- Every visible word and object comes from the supplied title, spoken script, brief and source. A label uses the source's own words, verbatim. Never add a fact, number, name, example, label, arrow or event the supplied content does not contain; a sparser board is correct. Drawing the named subject in its true form (its real outline, proportions and surface detail) is accuracy, not added content.
+- Draw the actual subject: a recognizable organism, organ, cell, molecule, apparatus cutaway, landform, machine, graph, map or process named by the content — in its canonical textbook view.
 - Generic circles are forbidden unless they are actual atoms, particles, cells, nodes, or measured data. Generic cards, pills, bubbles, random icons, dotted filler, and abstract box-arrow diagrams are forbidden.
-- For a mechanism, show the real structure where it occurs plus the relevant moving material/force. For a comparison, use two clean, separated subject drawings. For a definition, show the concrete example that makes the definition visible.
+- For a mechanism, show the real structure where it occurs plus the material or force that moves. For a comparison, use two clean, separated subject drawings. For a definition, show the concrete example that makes it visible.
 
-THE LAYOUT GRID — place into this skeleton, do not invent a composition.
-The frame is 1000x560. Background #fbfbf8, with a 1px #e2e2dc frame rect at x=40,y=24,w=920,h=512.
+${BOARD_PAGE_BLOCK}
 
-  TITLE        x=76,  y=78          left-aligned, fontSize 34, fontWeight 800, fill #1b2440
-  TEXT COLUMN  x=76,  y=150..300    2-4 lines, fontSize 23, fill #1b2440, 46px line spacing
-                                    HARD CAP 26 CHARACTERS per line. At fontSize 23 a 26-char line
-                                    is ~370px and ends at x=446. A longer line runs under the
-                                    drawing and is unreadable — shorten the wording, never overflow.
-  EMPHASIS     x=76,  y=430..480    0-2 lines, fontSize 23, fill #d97706  (the "so what" note)
-  DRAWING      x=380..700, y=120..500   ONE subject, centred in this box, drawn LARGE
-  LABELS       x=740..940, y=140..470   right-aligned column, fontSize 22, fill #1b2440
+THE FIGURE LAYOUT — choose ONE composition, then place into it:
+  FIGURE (default — the board names parts of one subject):
+    left labels    textAnchor="end" at x=290; leaders start at x=298     (column x 56-290)
+    stage          x 310-690: ONE subject centred on x=500, drawn LARGE — at least 300 wide or 300 tall
+    right labels   x=710; leaders start at x=702                          (column x 710-944)
+  NOTES + FIGURE (only when 2-4 short claims must be written beside the drawing):
+    notes          x=56, first baseline y=160, then every 40; fontSize 21; at most 22 characters per line; at most 4 lines
+    stage          x 330-690, subject centred on x=510
+    right labels   x=710 as above
+  Each label goes in the column on its point's side of the subject. When one column would stay empty, the stage takes its room (labels on the right only: stage x 120-690; on the left only: stage x 310-880) — never leave a column-sized hole.
+  An optional takeaway line (fontSize 20, fill #b45309) goes in a label column below its lowest label — never in a band under the drawing.
 
-- The drawing must FILL its box. A subject under 240px tall in a 380px box reads as an accident.
-- Every part label lives in the LABELS column and is joined to its part by a leader line:
-  a 1.5px #8a91a3 line from the label to a 5px filled dot sitting exactly ON that part.
-  A label with no leader line, or a label overlapping the drawing, is a failed board.
-- NO TEXT ANYWHERE ON THE DRAWING. This is the rule broken most often, so check it explicitly before
-  you return: every <text> element must sit either in the LEFT TEXT COLUMN (x < 440) or in the RIGHT
-  LABELS COLUMN (x > 740). Nothing between x=440 and x=740 may be text — that band is the drawing,
-  and text placed there lands on top of the subject.
-  A label reaches its part by a LEADER LINE, never by being moved near it or onto it.
-- Two labels may not sit on the same line either. Give each one its own row at least 40px below the
-  last, down the right column. A board that names eight parts needs eight separated rows — if they
-  will not fit, name fewer parts. Overlapping labels teach nothing and look broken.
-  (Measured failure: a heart board put eight labels across the chambers with leader lines crossing
-  each other, and the whole diagram became unreadable.)
-- Chemical symbols of <= 4 characters may sit inside their own atom; nothing else may.
-- Flow arrows may cross the drawing — they are part of the mechanism. Their TEXT may not: put the
-  arrow's label at the edge of the drawing band, clear of the subject.
-- Nothing may cross x=40/x=960/y=24/y=536. Content clipped by the frame edge is a failed board.
-- Do not leave a whole quadrant empty. If the left column has one short line, the drawing moves
-  left and grows; balance the page.
+${BOARD_LABEL_ARROW_BLOCK}
+- Text never sits on or inside the drawing. The one exception: a chemical symbol of 4 characters or fewer inside its own atom, when the atom is at least twice as wide as the symbol.
 
-WORKED EXAMPLE — this is the target quality and structure. Match this level of anatomical detail,
-this labelling discipline, and this palette. Do NOT copy its subject.
+WORKED EXAMPLE — the target: this drawing quality, this labelling, this layout. Do NOT copy its subject.
 
 \`\`\`jsx
 export default function Animation({ progress }) {
+  const visualSpec = {
+    subject: "the respiratory system, front view",
+    recognitionCues: ["two tapering lungs with rounded bases", "a ringed trachea forking into two bronchi", "a domed diaphragm under the lungs"],
+    requiredParts: ["trachea", "bronchus", "bronchioles", "right lung", "left lung", "diaphragm"],
+    forbiddenShortcuts: ["plain ovals for lungs", "words inside the drawing", "any part the script does not name"],
+  };
   const boardPlan = {
-    composition: "radial-anatomy: title and text left, one large cutaway centre, labels right",
-    readingPath: ["title", "claims", "cavity", "lungs", "trachea", "diaphragm", "flow", "labels"],
+    composition: "figure: title block, one subject centred in the stage, labels level with their parts in both side columns",
+    readingPath: ["title", "subtitle", "lungs", "right lung", "trachea", "bronchus", "bronchioles", "air in", "left lung", "diaphragm"],
     reservedRegions: [
-      { name: "title", x: 76, y: 50, w: 700, h: 40 },
-      { name: "claims", x: 76, y: 130, w: 330, h: 90 },
-      { name: "subject", x: 380, y: 120, w: 320, h: 380 },
-      { name: "labels", x: 740, y: 140, w: 200, h: 330 },
-      { name: "emphasis", x: 76, y: 430, w: 330, h: 34 },
+      { name: "title", x: 56, y: 38, w: 600, h: 76 },
+      { name: "leftLabels", x: 56, y: 128, w: 234, h: 384 },
+      { name: "stage", x: 310, y: 128, w: 380, h: 384 },
+      { name: "rightLabels", x: 710, y: 128, w: 234, h: 384 },
     ],
   };
-  const draw = phase(progress, 0.10, 0.55);   // silhouettes trace on
-  const flow = phase(progress, 0.55, 1.00);   // the mechanism moves
-  const ink = "#1b2440", lead = "#8a91a3";
+  const breath = phase(progress, 0.6, 1);
+  const swell = 1 + 0.025 * thereAndBack(breath);
+  const drop = 7 * thereAndBack(breath);
+  const ink = "#1b2440", lead = "#7b8496", air = "#3f7cc0", tissue = "#c2544d";
   return (
-    <svg viewBox="0 0 1000 560" style={{ background: "#fbfbf8", fontFamily: "Gaegu, Comic Sans MS, cursive" }}>
-      <rect x="40" y="24" width="920" height="512" fill="none" stroke="#e2e2dc" />
-
-      <text x="76" y="78" fontSize="34" fontWeight="800" fill={ink}
-            data-teach-order="1" data-teach-kind="write" data-teach-weight="2" data-teach-sentence="0">Overview of the Respiratory System</text>
-
-      <text x="76" y="150" fontSize="23" fill={ink}
-            data-teach-order="2" data-teach-kind="write" data-teach-weight="1" data-teach-sentence="0">Breathing = vital network</text>
-      <text x="76" y="196" fontSize="23" fill={ink}
-            data-teach-order="3" data-teach-kind="write" data-teach-weight="1" data-teach-sentence="1">Main components</text>
-
-      {/* THE SUBJECT — real anatomy: torso cavity, ringed trachea, lobed lungs, domed diaphragm */}
-      <g data-teach-order="4" data-teach-kind="diagram" data-teach-weight="3" data-teach-sentence="1">
-        <path d="M470 150 q-90 40 -95 175 q-5 130 95 165 q80 25 160 0 q100 -35 95 -165 q-5 -135 -95 -175 z"
-              fill="#f7f9fb" stroke="#b9c0cc" strokeWidth="2" strokeDasharray="1200" strokeDashoffset={1200 * (1 - draw)} />
-        <path d="M520 190 q-55 55 -60 140 q-4 70 45 95 q35 16 45 -30 l6 -205 z" fill="#f9b8b8" stroke="#d9534f" strokeWidth="2.5" opacity={draw} />
-        <path d="M600 190 q55 55 60 140 q4 70 -45 95 q-35 16 -45 -30 l-6 -205 z" fill="#f9b8b8" stroke="#d9534f" strokeWidth="2.5" opacity={draw} />
-        <rect x="548" y="150" width="26" height="110" rx="10" fill="#eaf4fd" stroke="#4a90d9" strokeWidth="2.5" opacity={draw} />
-        {[0, 1, 2, 3].map((i) => (
-          <line key={i} x1="550" y1={168 + i * 22} x2="572" y2={168 + i * 22} stroke="#4a90d9" strokeWidth="2" opacity={lagged(draw, i, 4, { lagRatio: 0.3 })} />
-        ))}
-        <path d="M548 260 l-45 45 M574 260 l45 45" stroke="#4a90d9" strokeWidth="2.5" fill="none" opacity={draw} />
-        <path d="M485 430 q75 -40 155 0" fill="#dff2cd" stroke="#65a30d" strokeWidth="3"
-              transform={"translate(0 " + (8 * Math.sin(flow * Math.PI * 2)) + ")"} opacity={draw} />
-      </g>
-
-      {/* FLOW — the mechanism, in its real direction. NOTE every <text> carries its OWN four
-          attributes even inside a timed group: the host tracks each text's exact bounding box. */}
-      <g opacity={flow}>
-        <path d="M500 130 v60" stroke="#14b8a6" strokeWidth="3" markerEnd="url(#a1)" fill="none"
-              data-teach-order="5" data-teach-kind="arrow" data-teach-weight="2" data-teach-sentence="2" />
-        <text x="452" y="122" fontSize="21" fill="#14b8a6"
-              data-teach-order="6" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="2">O2 in</text>
-        <path d="M622 190 v-60" stroke="#d1345b" strokeWidth="3" markerEnd="url(#a2)" fill="none"
-              data-teach-order="7" data-teach-kind="arrow" data-teach-weight="2" data-teach-sentence="2" />
-        <text x="640" y="140" fontSize="21" fill="#d1345b"
-              data-teach-order="8" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="2">CO2 out</text>
-      </g>
-
-      {/* LABELS — right column, each on a leader line ending in a dot ON the part */}
-      <g>
-        <line x1="736" y1="214" x2="600" y2="214" stroke={lead} strokeWidth="1.5"
-              data-teach-order="9" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
-        <circle cx="600" cy="214" r="5" fill="#4a90d9"
-              data-teach-order="10" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
-        <text x="748" y="220" fontSize="22" fill={ink}
-              data-teach-order="11" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">Airways</text>
-        <line x1="736" y1="330" x2="655" y2="330" stroke={lead} strokeWidth="1.5"
-              data-teach-order="12" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
-        <circle cx="655" cy="330" r="5" fill="#d9534f"
-              data-teach-order="13" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3" />
-        <text x="748" y="336" fontSize="22" fill={ink}
-              data-teach-order="14" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">Lungs</text>
-        <line x1="736" y1="436" x2="640" y2="436" stroke={lead} strokeWidth="1.5"
-              data-teach-order="15" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4" />
-        <circle cx="640" cy="436" r="5" fill="#65a30d"
-              data-teach-order="16" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4" />
-        <text x="748" y="442" fontSize="22" fill={ink}
-              data-teach-order="17" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4">Diaphragm</text>
-      </g>
-
-      {/*
-        MANY PARTS? SAME PATTERN — one row each, straight down the column. A subject with eight
-        nameable parts is labelled like this, NEVER by scattering names across the drawing:
-
-          y = 150, 190, 230, 270, 310, 350, 390, 430    (40px apart, all at x=748)
-          <line x1="736" y1="{y}" x2="{dot x}" y2="{y}" ... />
-          <circle cx="{dot x}" cy="{y}" r="5" ... />
-          <text x="748" y="{y+6}" fontSize="20" ...>Part name</text>
-
-        The leader line is what reaches the part. The label never moves toward it.
-        Eight rows at 40px is 320px and fits y=150..470 exactly — that is the ceiling.
-        A NINTH part does not get a smaller gap or a second column: leave it unlabelled. Naming
-        seven parts clearly teaches more than cramming ten into an unreadable tangle.
-      */}
-
-      <text x="76" y="452" fontSize="23" fill="#d97706"
-            data-teach-order="7" data-teach-kind="annotate" data-teach-weight="1" data-teach-sentence="4">Diaphragm drives airflow</text>
-
+    <svg viewBox="0 0 1000 560" style={{ background: "#fbfbf8" }}>
+      <rect x="0" y="0" width="1000" height="560" fill="#fbfbf8" />
       <defs>
-        <marker id="a1" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8 z" fill="#14b8a6" /></marker>
-        <marker id="a2" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8 z" fill="#d1345b" /></marker>
+        <radialGradient id="lungTone" cx="38%" cy="30%" r="80%">
+          <stop offset="0" stopColor="#fbd9d4" />
+          <stop offset="1" stopColor="#e3968e" />
+        </radialGradient>
+        <linearGradient id="muscle" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f0b39f" />
+          <stop offset="1" stopColor="#d9826b" />
+        </linearGradient>
+        <marker id="airHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" fill="#0f766e" />
+        </marker>
       </defs>
+
+      <g>
+        <text x="56" y="70" fontSize="32" fontWeight="800" fill={ink}
+              data-teach-order="1" data-teach-kind="write" data-teach-weight="2" data-teach-sentence="0">The Respiratory System</text>
+        <text x="56" y="106" fontSize="20" fill="#5b6478"
+              data-teach-order="2" data-teach-kind="write" data-teach-weight="1" data-teach-sentence="0">Air travels down branching tubes into two lungs</text>
+      </g>
+
+      {/* THE SUBJECT: each lung ONE closed cubic path with its real taper; one gradient per
+          material, one soft shading layer, fissures and airways as fine internal detail. */}
+      <g transform={"translate(500 320) scale(" + swell + ") translate(-500 -320)"}
+         data-teach-order="3" data-teach-kind="diagram" data-teach-weight="3" data-teach-sentence="1">
+        <path d="M446 178 C404 176 360 236 342 312 C326 382 322 440 332 470 C366 450 424 446 474 462 C482 410 480 346 474 318 C469 296 478 264 476 226 C474 196 464 180 446 178 Z"
+              fill="url(#lungTone)" stroke={tissue} strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M554 178 C596 176 640 236 658 312 C674 382 678 440 668 470 C636 452 588 448 540 460 C540 436 556 420 566 404 C548 390 528 358 526 318 C531 296 522 264 524 226 C526 196 536 180 554 178 Z"
+              fill="url(#lungTone)" stroke={tissue} strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M372 236 C348 290 336 380 340 456 C366 446 364 330 392 250 Z" fill="#b8574f" opacity="0.13" />
+        <path d="M628 236 C652 290 664 380 660 456 C634 446 636 330 608 250 Z" fill="#b8574f" opacity="0.13" />
+        <path d="M404 206 C382 222 366 250 358 280 C372 256 388 232 410 216 Z" fill="#ffffff" opacity="0.5" />
+        <path d="M596 206 C618 222 634 250 642 280 C628 256 612 232 590 216 Z" fill="#ffffff" opacity="0.5" />
+        <path d="M343 314 C384 308 432 312 473 320 M338 420 C376 376 428 346 472 334 M662 336 C624 356 590 384 566 404"
+              fill="none" stroke={tissue} strokeWidth="1.5" opacity="0.7" />
+      </g>
+
+      <g data-teach-order="6" data-teach-kind="diagram" data-teach-weight="2" data-teach-sentence="2">
+        <rect x="487" y="150" width="26" height="104" rx="11" fill="#dcebf8" stroke={air} strokeWidth="2.5" />
+        {[0, 1, 2, 3, 4].map((i) => (
+          <path key={i} d={"M489 " + (166 + i * 18) + " q11 5 22 0"} fill="none" stroke={air} strokeWidth="1.5" />
+        ))}
+        <path d="M500 250 C490 266 470 280 450 294 M500 250 C510 266 530 280 550 294" fill="none" stroke={air} strokeWidth="12" strokeLinecap="round" />
+        <path d="M500 250 C490 266 470 280 450 294 M500 250 C510 266 530 280 550 294" fill="none" stroke="#dcebf8" strokeWidth="6" strokeLinecap="round" />
+        <path d="M450 294 C432 318 414 348 402 388 M450 294 C424 302 398 312 376 326 M426 330 C418 360 420 398 428 428"
+              fill="none" stroke={air} strokeWidth="2" strokeLinecap="round" opacity="0.8" />
+        <path d="M550 294 C568 318 586 348 598 388 M550 294 C576 302 602 312 624 326 M574 330 C582 360 580 398 572 428"
+              fill="none" stroke={air} strokeWidth="2" strokeLinecap="round" opacity="0.8" />
+      </g>
+
+      <g transform={"translate(0 " + drop + ")"}
+         data-teach-order="18" data-teach-kind="diagram" data-teach-weight="2" data-teach-sentence="5">
+        <path d="M306 498 C320 466 356 452 404 454 C446 456 478 466 500 476 C522 466 554 456 596 454 C644 452 680 466 694 498 C672 482 638 472 596 472 C556 472 524 480 500 490 C476 480 444 472 404 472 C362 472 328 482 306 498 Z"
+              fill="url(#muscle)" stroke="#b85c4a" strokeWidth="2" strokeLinejoin="round" />
+      </g>
+
+      {/* LABELS: a leader+dot group, then its words, same sentence. The words sit level with the
+          dot; the leader runs from 8px beside the words to a dot ON the part. */}
+      <g data-teach-order="4" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="1">
+        <line x1="298" y1="352" x2="384" y2="352" stroke={lead} strokeWidth="1.25" />
+        <circle cx="384" cy="352" r="4" fill={ink} />
+      </g>
+      <text x="290" y="358" fontSize="20" fill={ink} textAnchor="end"
+            data-teach-order="5" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="1">right lung</text>
+
+      <g data-teach-order="7" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="2">
+        <line x1="702" y1="166" x2="508" y2="166" stroke={lead} strokeWidth="1.25" />
+        <circle cx="508" cy="166" r="4" fill={ink} />
+      </g>
+      <text x="710" y="172" fontSize="20" fill={ink}
+            data-teach-order="8" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="2">trachea</text>
+
+      <g data-teach-order="9" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">
+        <line x1="702" y1="276" x2="532" y2="276" stroke={lead} strokeWidth="1.25" />
+        <circle cx="532" cy="276" r="4" fill={ink} />
+      </g>
+      <text x="710" y="282" fontSize="20" fill={ink}
+            data-teach-order="10" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">bronchus</text>
+
+      {/* A name longer than 22 characters WRAPS at a space onto a second text line 24 below, same
+          x and anchor, its own timing. Never truncated, abbreviated or reworded. */}
+      <g data-teach-order="11" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">
+        <line x1="298" y1="414" x2="424" y2="414" stroke={lead} strokeWidth="1.25" />
+        <circle cx="424" cy="414" r="4" fill={ink} />
+      </g>
+      <text x="290" y="420" fontSize="20" fill={ink} textAnchor="end"
+            data-teach-order="12" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">bronchioles branch</text>
+      <text x="290" y="444" fontSize="20" fill={ink} textAnchor="end"
+            data-teach-order="13" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="3">through each lung</text>
+
+      {/* An ARROW starts at a named thing (here its own words, at its tail) and ends just short of
+          the part it acts on, head pointing in. Never from the edge, never into blank paper. */}
+      <text x="290" y="150" fontSize="20" fill="#0f766e" textAnchor="end"
+            data-teach-order="14" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4">air in</text>
+      <path d="M298 144 C384 126 462 118 496 144" fill="none" stroke="#0f766e" strokeWidth="3" strokeLinecap="round" markerEnd="url(#airHead)"
+            data-teach-order="15" data-teach-kind="arrow" data-teach-weight="2" data-teach-sentence="4" />
+
+      <g data-teach-order="16" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4">
+        <line x1="702" y1="372" x2="622" y2="372" stroke={lead} strokeWidth="1.25" />
+        <circle cx="622" cy="372" r="4" fill={ink} />
+      </g>
+      <text x="710" y="378" fontSize="20" fill={ink}
+            data-teach-order="17" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="4">left lung</text>
+
+      <g data-teach-order="19" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="5">
+        <line x1="702" y1="474" x2="640" y2="474" stroke={lead} strokeWidth="1.25" />
+        <circle cx="640" cy="474" r="4" fill={ink} />
+      </g>
+      <text x="710" y="480" fontSize="20" fill={ink}
+            data-teach-order="20" data-teach-kind="label" data-teach-weight="1" data-teach-sentence="5">diaphragm</text>
+
+      {/* Returning to a part already drawn: a ring pulses on the diaphragm as it moves. */}
+      <circle cx="640" cy="474" r={6 + 10 * breath} fill="none" stroke="#d97706" strokeWidth="2"
+              data-teach-order="21" data-teach-kind="annotate" data-teach-weight="1" data-teach-sentence="5" />
     </svg>
   );
 }
 \`\`\`
 
-REALISTIC SVG DRAWING:
-- Draw the subject with CURVES that follow its real morphology. The example's lungs are tapered
-  lobes from a q-curve path, not ellipses; the trachea is a rounded rect with visible cartilage
-  rings; the diaphragm is a dome. Two ellipses and a rectangle would name the same three parts and
-  teach none of them — that is the single most common failure of this board and it is not acceptable.
-- Every shape must be a real part, material, force, quantity, or annotation. No decoration.
-- Palette: ink #1b2440, leader #8a91a3, tissue #f9b8b8 / stroke #d9534f, vessel/air #4a90d9,
-  plant or muscle #65a30d, emphasis #d97706, flow-in #14b8a6, flow-out #d1345b.
-- DRAW THE INTERNAL STRUCTURE, not just the outline. This is the whole difference between a board
-  that teaches and one that merely names parts. A trachea has visible cartilage rings; a lung has
-  lobes and a branching bronchial tree inside it; a nasal cavity has turbinates and fine hairs; a
-  volcano has layered strata and a conduit; a heart has four chambers with valves between them.
-  A plain pink blob is identifiably a lung and still teaches nothing.
-- TARGET 45-90 SVG primitives for a physical subject, met ENTIRELY through real anatomical detail:
-  every ring, lobe, branch, chamber, layer and particle is a real part. Hard floors: 5 meaningful
-  <g> groups, 4 primitive types, one path/polygon silhouette.
-  Filler does not count and is worse than nothing — repeated decorative dots, empty groups, or a
-  shape that names no real part. If you cannot reach the target with genuine structure, the drawing
-  is not detailed enough yet; add the parts the subject actually has.
-- Use <g> + map() for repeated real structures (rings up a trachea, alveoli on a bronchiole, strata
-  in a cone). That is how the detail target is reached without writing 90 tags by hand.
+REALISTIC DRAWING — make it look like the real thing, drawn by a scientific illustrator:
+- SILHOUETTES FROM CURVES. Build every organic or manufactured part as ONE closed <path> of cubic curves (C/S) that follows its real outline: tapered, asymmetric, in its real proportions and its canonical textbook view. Ellipses and rects only for things that ARE ellipses or boxes (a nucleus, a beaker's base). A leaf is never an ellipse, a lung never an oval, a cell never a circle with its name inside. The subject must be recognisable from its silhouette alone, before any label is read.
+- PROPORTIONS FIRST. Fix the real relative sizes and positions before drawing (the trachea is a sixth of a lung's width; a palisade cell is about three times taller than wide; the heart sits between the lungs). Wrong proportions read as wrong science.
+- LAYERED FILLS, at most three layers per part: (1) the base fill from a gradient in <defs> — one gradient per material, light at the top-left to deeper at the bottom-right; (2) one shading shape inside the far edge, in the material's deep tone at opacity 0.12-0.2; (3) optionally one highlight stroke, white at opacity 0.5. That is what gives volume. No drop shadows, glows or blur filters.
+- STROKES: outlines 2.5 in the part's own deep tone (never black), internal detail 1.25-1.5 at opacity 0.7-0.8, leaders 1.25, arrows 3; round caps and joins.
+- INTERNAL STRUCTURE: the telling details the real thing shows — lobes, rings, veins, layers, chambers, membranes — as fine lines, a few of them, not a texture. Use map() for genuinely repeated real parts (rings, cells in a row, strata).
+- PALETTE — restrained and coherent. Ink #1b2440, secondary text #5b6478, leaders #7b8496. At most three material hues plus one accent per board:
+    tissue #fbd9d4 to #e3968e, outline #c2544d | muscle #f0b39f to #d9826b, outline #b85c4a
+    oxygenated blood #e05a4f / #a93226 | deoxygenated blood #5b7fc7 / #2f4f8f
+    plant #d9f0c4 to #8cc56a, outline #4d8a22 | air, water, glass #eef6fd to #cfe3f6, outline #3f7cc0
+    metal #e5e7eb to #9ca3af, outline #4b5563 | rock, soil #eadbc8 to #c8a27a, outline #8a6a45
+    accent (emphasis, a returning annotation) #d97706 | flow in #0f766e | flow out #be123c
+- APPARATUS: glass as a pale fill at fill-opacity 0.35 with one white highlight stroke; a liquid as its own path with a curved meniscus; metal with a two-stop gradient.
+- Every shape is a real part, layer, material, force or annotation. No decoration, clip-art icons, faces or filler.
+- Typically 25-60 primitives, every one real. Hard floors: 5 meaningful <g> groups, 4 primitive types, one path silhouette, and fewer text elements than half the drawn shapes. A board that needs more than 60 is showing too much: choose the one view that teaches this beat.
 
 NARRATION-SYNCED TEACHING MOTION:
-- Progress is the only clock. Derive all phases from progress with clamp/lerp/smoothstep-style values.
-- Group each contour, arrow, label, and annotation into the ordered teaching timeline. Lines and contours are traced, fills settle after outlines, labels are written after their target exists, and arrows are drawn in their actual direction.
-- Use progress for at least two meaningful scientific changes such as particles travelling, a membrane closing, light entering, a force changing direction, or a result accumulating. Never animate for decoration.
-- Return later in the sequence to annotate, circle, underline, or connect something already present when that reinforces the explanation.
-- At progress=1 the board must read as one coherent page whose spatial relationships explain the concept even without narration.
+- Progress is the only clock. Derive all phases from progress with the helpers below.
+- Lines and contours are traced, fills settle after outlines, labels are written after their part exists, and arrows are drawn in their actual direction after the part they point at.
+- Use progress for at least two meaningful changes such as material travelling, a membrane closing, light entering, a force changing direction, or a result accumulating. Never animate for decoration.
+- Return later in the sequence to annotate, circle, or underline something already present when that reinforces the explanation.
+- At progress=1 the board must read as one coherent textbook figure that explains the concept even without narration.
 ${ANIMATION_HELPERS_BLOCK}
 
-Before returning, inspect the imagined 1000x560 frame: the chosen composition matches the content, the timeline interleaves writing and drawing, the subject is recognizable, every label fits, no bounding boxes overlap, and the finished board teaches one exact idea without the narration.`;
+Before returning, check the imagined 1000x560 frame: the title block is clean; the subject is recognisable from its silhouette alone and drawn large; every label is 22 characters or fewer per line, level with its dot, and its leader ends on a dot inside its part; every arrow starts and ends at named things; no text sits on the drawing; no two boxes overlap; the timeline interleaves writing and drawing; and the finished board teaches one exact idea without the narration.` + NO_LABELS_RULE;
 
 
 /**
@@ -902,7 +971,7 @@ OUTPUT FORMAT:
 - NEVER write a bare < inside element text — write &lt;. JSX reads < as the start of a tag, so "Left < Root" is a syntax error that fails the WHOLE board. Write "Left &lt; Root", "O(n) &lt; O(n^2)", "a &lt;= b". A > in text is fine.
 
 BOARD PLAN AND TEACHING TIMELINE — NON-NEGOTIABLE (same as the physical engine):
-- Inside the component define a boardPlan object with composition, readingPath, and reservedRegions fields — a real geometry plan, not decorative metadata.
+- Inside the component define a visualSpec object (subject, recognitionCues, requiredParts, forbiddenShortcuts) and a boardPlan object with composition, readingPath, and reservedRegions fields — the board is rejected without both; the plan is real geometry, not decorative metadata.
 - Every meaningful visible step must carry data-teach-order={N}, data-teach-kind="write|diagram|label|arrow|annotate|reveal", data-teach-weight={number}, and data-teach-sentence={N} on its outer SVG element or group. Use at least 8 ordered steps, distributed across at least 3 different spoken sentences (literal sentence numbers from the numbered script; never assign the whole board to sentence 0; normally no more than 3 actions per sentence).
 - Sequence like a teacher: write the heading; state the first claim; draw the structure it refers to (a cell, node, bar, row); label it; draw the relationship (arrow, edge, pointer, comparison); continue to the next element; then return to highlight/annotate an earlier element; land the conclusion. Never reveal all text first and all graphics after.
 - Keep each text line as one normal SVG text element with the four data-teach attributes directly on it — the host writes each word and moves the live marker; do not implement text reveal yourself, and never build partial strings with slice/substring/substr or a progress-driven character count.
@@ -933,21 +1002,25 @@ CHOOSE THE RIGHT DIAGRAM (pick the one that teaches THIS concept; do not default
 - Comparison: two clean, separated structures side by side, only when comparison is the actual idea.
 
 CONTENT:
-- Ground every visible value, label, node, cell, and edge in the supplied title, spoken script, and brief. Use REAL example values from the narration (actual numbers, names, intervals) — not placeholders like "A/B/C" unless the narration itself is generic.
+- Ground every visible value, label, node, cell, and edge in the supplied title, spoken script, brief and source; never add a value, name, example or step they do not contain — a sparser diagram is correct. Use REAL example values from the narration (actual numbers, names, intervals) — not placeholders like "A/B/C" unless the narration itself is generic.
 - Cells and nodes are appropriate for arrays, grids, trees, graphs, and state machines, but rectangles are not a universal visual language. For conceptual security, networking, and processes prefer paths, boundaries, zones, moving tokens, and transformations. Unless the concept is inherently a grid/table/array, use at most two large rectangular containers. Still forbidden: decorative dotted clusters, random icons, floating cards/pills, a lone endpoint-to-endpoint arrow with two labels and nothing else, or a wall of prose.
 - The diagram must be understandable as a static figure at progress=1: a reader should see the structure and its relationships without the narration.
 - EVERY ARROW MUST JOIN TWO NAMED THINGS, and its direction must state the real relation between them. An arrow, curve or leader that ends in blank space is making no claim at all — delete it. A pointer that indicates something must actually TOUCH what it indicates: an arrowhead resting in empty canvas beside a data point is a fault, not a near miss. Do not draw decorative or symmetrical connectors to balance the composition.
 - A STROKE MAY NEVER CROSS TEXT. A line drawn through a label overprints it and both become unreadable — route the connector around every label, or move the label clear of the stroke.
 
-LAYOUT (same discipline as the physical engine):
-- Background #fbfbf8 or #ffffff with a subtle gray frame inside a 54px margin. Title inside x=54..946,y=30..104; teaching content inside x=64..936,y=122..500.
-- Reserve every text line and diagram cluster as NUMERIC {name,x,y,w,h} rectangles in boardPlan.reservedRegions BEFORE placing them. Estimate each text box as width=0.62*fontSize*characters, height=1.35*fontSize; no text rectangle may intersect another text rectangle or a diagram rectangle or leave the bounds. Keep >=28px between unrelated items and 64px horizontal safety after each line's last character. No overlap, clipping, ellipses, or transcript paragraphs.
-- CHARACTER BUDGET — do the arithmetic before you write any string. Width is 0.62*fontSize*characters, so on this 1000px-wide board a 34px heading must stay under ~42 characters and a 24px body line under ~58. A rendered board is REJECTED and regenerated when a measured text box crosses the frame, and the single most common cause is a heading written longer than it can fit ("Real-Life Applications of the Pythagorean Theorem" needs 1094px and is clipped). Shorten the wording — never shrink the font, and never let text run past x=936.
-- Keep labels legible and short; put a label next to (not on top of) the element it names, with a clean leader line when needed. Occupy roughly 58-76% of the usable frame.
-- Marker/accent colors: teal #14b8a6, blue #3b82f6, rose #be185d, green #65a30d, amber #d97706 for highlights; dark ink (#1f2937) for outlines and labels. Give the structure real mid-tone fills so it is not monochrome; never fill a main element with near-background dark navy.
+${BOARD_PAGE_BLOCK}
+
+THE DIAGRAM LAYOUT:
+- The structure sits in the content area, centred on x=500, drawn LARGE: it spans at least 60% of the content width or height. Reserve every text line and diagram cluster as NUMERIC {name,x,y,w,h} rectangles in boardPlan.reservedRegions BEFORE placing them, using the text metrics above; no text rectangle may intersect another text rectangle or a diagram rectangle, or leave the content area.
+- A value or short name that belongs to a cell, node or bar (an array value, an index, a node label) sits INSIDE it only when the element is at least 16 wider than the text on each side; otherwise it sits beside it on a short leader. Explanatory notes stay outside, beside what they describe.
+- At most 4 short explanatory lines (fontSize 20-21, at most 40 characters each), each beside the part it explains. No transcript paragraphs.
+
+${BOARD_LABEL_ARROW_BLOCK}
+
+- Marker/accent colors: teal #0f766e, blue #3f7cc0, rose #be123c, green #4d8a22, amber #d97706 for highlights; ink #1b2440 for outlines and labels. Give the structure real light mid-tone fills (#eef6fd, #fbe7d0, #e3f3d5, #f5e1f0) so it is not monochrome; never fill a main element with near-background dark navy.
 ${ANIMATION_HELPERS_BLOCK}
 
-Before returning, inspect the imagined 1000x560 frame: the diagram type matches the concept, real example values are shown, the timeline interleaves writing and drawing, every label fits, no bounding boxes overlap, and the finished board teaches the exact abstract idea without the narration.`;
+Before returning, inspect the imagined 1000x560 frame: the diagram type matches the concept, real example values are shown, the timeline interleaves writing and drawing, every label fits, no bounding boxes overlap, and the finished board teaches the exact abstract idea without the narration.` + NO_LABELS_RULE;
 
 /**
  * System prompt for the separate per-beat call that authors a real chalk blackboard for a

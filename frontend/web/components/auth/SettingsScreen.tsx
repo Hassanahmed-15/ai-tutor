@@ -4,7 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { Check, Loader2, LogOut, X } from "lucide-react";
 import { PREFERENCES, PROFILE_OPTIONS } from "@/lib/accessibilityProfiles";
 import type { AccessibilityProfile } from "@/lib/db/cosmos";
-import type { LearnerProfile, SessionUser } from "./AuthGate";
+import type { LearnerProfile, SessionUser, TeachingDepth } from "./AuthGate";
+
+const TEACHING_DEPTHS: { value: TeachingDepth; label: string; hint: string }[] = [
+  { value: "adaptive", label: "Adaptive", hint: "Aria decides from each question: a short question gets a short answer." },
+  { value: "quick", label: "Quick", hint: "The fewest boards that answer the question." },
+  { value: "balanced", label: "Balanced", hint: "A full explanation, without extras." },
+  { value: "deep", label: "Deep", hint: "Go further: mechanism, edge cases, more examples." },
+];
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 
 /**
@@ -46,6 +53,7 @@ export function SettingsScreen({
     simplerLanguage: profile?.simplerLanguage ?? null,
   });
   const [notes, setNotes] = useState(profile?.notes ?? "");
+  const [teachingDepth, setTeachingDepth] = useState<TeachingDepth>(profile?.teachingDepth ?? "adaptive");
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -80,6 +88,7 @@ export function SettingsScreen({
           age: age ? Number(age) : null,
           accessibility,
           ...prefs,
+          teachingDepth,
           notes,
         }),
       });
@@ -273,6 +282,37 @@ export function SettingsScreen({
                           <span className="block text-[0.9rem] text-[var(--hud-text)]">{label}</span>
                           <span className="mt-0.5 block text-[0.76rem] text-[var(--hud-text-faint)]">{hint}</span>
                         </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </fieldset>
+            </section>
+
+            <section>
+              <fieldset>
+                <legend className="mb-1 text-[0.95rem] text-[var(--hud-text)]">How much should Aria teach?</legend>
+                <p className="mb-3 text-[0.78rem] text-[var(--hud-text-faint)]">
+                  Your default. Saying &ldquo;quickly&rdquo; or &ldquo;in depth&rdquo; in a question always wins.
+                </p>
+                <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
+                  {TEACHING_DEPTHS.map(({ value, label, hint }) => {
+                    const on = teachingDepth === value;
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        aria-pressed={on}
+                        title={hint}
+                        onClick={() => setTeachingDepth(value)}
+                        className="rounded-[var(--radius)] border px-3 py-2 text-[0.86rem] transition-colors"
+                        style={{
+                          borderColor: on ? "var(--hud-cyan)" : "var(--hud-line)",
+                          background: on ? "var(--hud-cyan-glow)" : "transparent",
+                          color: "var(--hud-text)",
+                        }}
+                      >
+                        {label}
                       </button>
                     );
                   })}

@@ -10,8 +10,9 @@ import {
   eraseAt,
   strokesFor,
 } from "@/lib/board/annotations";
-import { contentBox, toBoardSpace, withinBoard } from "@/lib/board/geometry";
+import { authoredRectIn, contentBox, pointInRect, type Rect, toBoardSpaceThrough, withinBoard } from "@/lib/board/geometry";
 import { sandboxTextAt } from "@/lib/board/sandboxBridge";
+import { SANDBOX_VIEWPORT_EVENT, sandboxViewport } from "@/components/sketch/ReactAnimationSandbox";
 
 /**
  * ONE LAYER FOR EVERY MARK THE STUDENT MAKES.
@@ -71,6 +72,38 @@ export function AnnotationLayer({
   const stateRef = useRef(state);
   stateRef.current = state;
 
+  /**
+   * WHERE THE DRAWING IS, in this layer's pixels. A sandboxed board reports its live viewBox (it is
+   * fitted to the pane, not letterboxed — see lib/board/geometry.ts authoredRectIn), so marks map
+   * through the iframe's real rectangle and that viewBox; `visible` is the board area a mark may be
+   * made in. Boards that report nothing (LiveSketch, slides) keep the authored letterbox mapping.
+   */
+  const boardFrame = useCallback((wrapRect: DOMRect): { box: Rect; visible: Rect | null } => {
+    // The BOARD's sandbox, not whichever came first: an answer board in the explain popover is a
+    // sandbox too, and when the lesson board itself is a LiveSketch the first iframe in the section
+    // would be that small popover. The board is the largest sandbox that has reported a viewBox.
+    let iframe: HTMLIFrameElement | null = null;
+    let viewport: ReturnType<typeof sandboxViewport> = null;
+    let largest = 0;
+    for (const candidate of Array.from(wrapRef.current?.parentElement?.querySelectorAll<HTMLIFrameElement>("iframe") ?? [])) {
+      const reported = sandboxViewport(candidate);
+      const size = candidate.getBoundingClientRect();
+      if (reported && size.width * size.height > largest) {
+        largest = size.width * size.height;
+        iframe = candidate;
+        viewport = reported;
+      }
+    }
+    if (iframe && viewport && largest >= wrapRect.width * wrapRect.height * 0.3) {
+      const r = iframe.getBoundingClientRect();
+      const visible = { x: r.left - wrapRect.left, y: r.top - wrapRect.top, width: r.width, height: r.height };
+      if (visible.width > 0 && visible.height > 0) {
+        return { box: authoredRectIn(viewport.viewBox, visible, viewport.authored), visible };
+      }
+    }
+    return { box: contentBox(wrapRect.width, wrapRect.height), visible: null };
+  }, []);
+
   /** Redraw everything the store holds for this board. Cheap: these are tens of strokes, not thousands. */
   const repaint = useCallback(() => {
     const canvas = canvasRef.current;
@@ -90,7 +123,7 @@ export function AnnotationLayer({
     ctx.clearRect(0, 0, rect.width, rect.height);
     if (!visible) return;
 
-    const box = contentBox(rect.width, rect.height);
+    const { box } = boardFrame(rect);
     const strokes = [...strokesFor(stateRef.current, boardId)];
     if (drawingRef.current) strokes.push(drawingRef.current);
 
@@ -117,11 +150,17 @@ export function AnnotationLayer({
       ctx.stroke();
       ctx.restore();
     }
-  }, [boardId, visible]);
+  }, [boardFrame, boardId, visible]);
 
   useEffect(() => {
     repaint();
   }, [repaint, state]);
+
+  // The sandbox reports a new viewBox when it mounts and whenever its pane changes shape.
+  useEffect(() => {
+    window.addEventListener(SANDBOX_VIEWPORT_EVENT, repaint);
+    return () => window.removeEventListener(SANDBOX_VIEWPORT_EVENT, repaint);
+  }, [repaint]);
 
   // Marks are stored in board space, so a resize is a pure repaint — no drift, nothing lost.
   useEffect(() => {
@@ -160,14 +199,15 @@ export function AnnotationLayer({
     const wrap = wrapRef.current;
     if (!wrap) return null;
     const rect = wrap.getBoundingClientRect();
-    const point = toBoardSpace(event.clientX, event.clientY, {
-      left: rect.left,
-      top: rect.top,
-      width: rect.width,
-      height: rect.height,
-    });
+    const { box, visible } = boardFrame(rect);
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const point = toBoardSpaceThrough(x, y, box);
+    // On a fitted board the visible pane, not the authored frame, is the board: a mark in the room
+    // the fit added around the drawing is still on the board, and board space outside 0..1 is fine.
+    if (visible) return pointInRect(x, y, visible) ? point : null;
     return withinBoard(point) ? point : null;
-  }, []);
+  }, [boardFrame]);
 
   const onPointerDown = useCallback(
     (event: React.PointerEvent) => {

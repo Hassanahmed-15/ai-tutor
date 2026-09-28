@@ -97,6 +97,8 @@ export type UserDoc = {
     captions: boolean | null;
     slowerPace: boolean | null;
     simplerLanguage: boolean | null;
+    /** Saved teaching depth ("adaptive" = decide per request). A request's own words override it. */
+    teachingDepth?: "quick" | "balanced" | "deep" | "adaptive" | null;
     notes: string | null;
     updatedAt: string;
   } | null;

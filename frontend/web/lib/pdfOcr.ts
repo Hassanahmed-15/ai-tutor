@@ -168,8 +168,10 @@ export function isTranscriptionRefusal(text: string): boolean {
 export const TRANSCRIBE_PROMPT = [
   "Transcribe everything visible in this image, exactly as it appears.",
   "",
-  "- Mathematics: write it in LaTeX. Preserve every subscript, superscript, index, summation limit",
-  "  and operator. Do not simplify, rename variables, or 'clean up' notation.",
+  "- Mathematics: write real equations and formulas in LaTeX. Preserve every subscript, superscript,",
+  "  index, summation limit and operator. Do not simplify, rename variables, or 'clean up' notation.",
+  "- Drawings (trees of nodes, graphs, circuits, apparatus, cells, maps): do NOT redraw them in text —",
+  "  no LaTeX arrays, no ASCII art, no node-by-node layout. Write only the figure's printed caption.",
   "- Tables: transcribe as rows of cells, keeping the header row and every value exactly.",
   "- Charts and diagrams: transcribe the axis labels, tick values, series names, legend entries and",
   "  any text inside the figure. Then, on a separate line beginning 'SHAPE:', state briefly what the",
@@ -221,15 +223,103 @@ export function blocksFromTranscript(parts: TranscriptPart[]): Array<{
   text: string;
   pageNumber: number;
   sourceOrder: number;
+  role?: string;
 }> {
-  return parts
-    .filter((part) => part.text.trim().length > 0)
-    .map((part, index) => ({
-      id: `ocr-p${part.page}-${index}`,
-      type: "section",
-      heading: part.rect ? `Page ${part.page} (selected area)` : `Page ${part.page}`,
-      text: part.text.trim(),
-      pageNumber: part.page,
-      sourceOrder: index + 1,
-    }));
+  const out: Array<{ id: string; type: string; heading: string; text: string; pageNumber: number; sourceOrder: number; role?: string }> = [];
+  let order = 0;
+  parts.forEach((part, index) => {
+    const text = part.text.trim();
+    if (!text) return;
+    // A dragged area stays ONE block headed "(selected area)": selection scoping keys on it.
+    if (part.rect) {
+      out.push({ id: `ocr-p${part.page}-${index}`, type: "section", heading: `Page ${part.page} (selected area)`, text, pageNumber: part.page, sourceOrder: ++order });
+      return;
+    }
+    for (const [i, block] of structureTranscribedPage(text).entries()) {
+      out.push({
+        id: `ocr-p${part.page}-${index}-${i}`,
+        type: block.kind === "caption" ? "caption" : "paragraph",
+        heading: block.heading ?? `Page ${part.page}`,
+        text: block.text,
+        pageNumber: part.page,
+        sourceOrder: ++order,
+        role: block.kind === "caption" ? "caption" : "paragraph",
+      });
+    }
+  });
+  return out;
+}
+
+/**
+ * A SCANNED PAGE, READ INTO SECTIONS. The transcript of a scanned page used to become one block
+ * titled "Page N" — fenced in ``` marks, with the running header, the ASCII drawing of every figure
+ * and the vision model's own "SHAPE:" description of the figures all in it — so a scanned chapter on
+ * deleting from a binary search tree was planned as two slides called "Figure 19.3" and "Page 2".
+ * This splits it the way the text-layer reader splits a real PDF: numbered headings start sections,
+ * figure captions are their own blocks, paragraphs stay paragraphs, and everything that is not the
+ * book's own words (fences, headers, drawings, the model's description) is dropped.
+ */
+/** LaTeX that lays out a drawing rather than stating an equation. */
+const LATEX_LAYOUT = /\\(?:begin\{array\}|underset|overset|hspace|vspace|begin\{matrix\}|diagup|diagdown|searrow|swarrow)/;
+
+export function structureTranscribedPage(raw: string): Array<{ kind: "paragraph" | "caption"; text: string; heading?: string }> {
+  // Everything after "SHAPE:" is the vision model describing the figures — not the book's text.
+  const body = raw
+    .split(/^\s*SHAPE:/im)[0]
+    .replace(/^\s*```[a-z]*\s*$/gim, "")
+    // A drawing laid out in LaTeX ("\begin{array}{cc} \underset{}{7} & …") is not the book's text:
+    // the tree figures of a scanned data-structures page came back this way and became slide titles.
+    .replace(/\$\$[\s\S]*?\$\$/g, (block) => (LATEX_LAYOUT.test(block) ? "\n" : block))
+    .replace(/\\begin\{(array|matrix|tabular|aligned|gathered)\}[\s\S]*?\\end\{\1\}/g, "\n");
+  const lines = body.split("\n");
+  const blocks: Array<{ kind: "paragraph" | "caption"; text: string; heading?: string }> = [];
+  let heading: string | undefined;
+  let pending: string[] = [];
+  let seenText = false;
+
+  const flush = () => {
+    const text = pending.join(" ").replace(/\u00ad\s*/g, "").replace(/(\w)-\s+(\w)/g, "$1$2").replace(/\s+/g, " ").trim();
+    pending = [];
+    if (text.length >= 3) blocks.push({ kind: "paragraph", text, heading });
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.replace(/\s+/g, " ").trim();
+    if (!line) {
+      flush();
+      continue;
+    }
+    // A line that is mostly LaTeX layout commands is drawing markup, however many letters they have.
+    const commands = line.match(/\\[A-Za-z]+/g) ?? [];
+    const prose = line.replace(/\\[A-Za-z]+/g, "").replace(/[{}&$^_]/g, "");
+    if (commands.length >= 2 && (prose.match(/[A-Za-z]{3,}/g) ?? []).length < 3) {
+      flush();
+      continue;
+    }
+    const letters = (line.match(/[A-Za-z]/g) ?? []).length;
+    // An ASCII drawing of a figure ("  / \", "1   5", "(a)"): mostly not letters.
+    if (letters < line.replace(/\s/g, "").length * 0.4 || /^\(?[a-z]\)?$/i.test(line)) {
+      flush();
+      continue;
+    }
+    // A running header at the top of the page: a short line with a page number at one end.
+    if (!seenText && /^(?:\d{1,4}\s+.{2,50}|.{2,50}\s+\d{1,4})$/.test(line) && line.split(" ").length <= 7) continue;
+    seenText = true;
+    // A caption is its own block.
+    if (/^fig(?:ure)?\.?\s*\d+(?:\.\d+)*\b/i.test(line)) {
+      flush();
+      blocks.push({ kind: "caption", text: line, heading });
+      continue;
+    }
+    // A numbered section heading ("19.1.2 C++ Implementation") starts a new section.
+    const numbered = line.match(/^\d+(?:\.\d+)+\s+([A-Z].{1,70})$/);
+    if (numbered && line.split(" ").length <= 10 && !/[.!?]$/.test(line)) {
+      flush();
+      heading = numbered[1].trim();
+      continue;
+    }
+    pending.push(line);
+  }
+  flush();
+  return blocks;
 }

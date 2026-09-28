@@ -1,12 +1,13 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
-import { fallbackWrittenDraw } from "./drawSanitize";
+import { fallbackWrittenDraw, sourceOnlyWrittenDraw } from "./drawSanitize";
 import { fillBlackboardOps } from "./blackboardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { fillSpecBoardOps } from "./specBoardGen";
 import type { BeatVisualSpec } from "./beatVisualSpec";
 import { specToBrief } from "./beatVisualSpec";
 import type { VisualForm } from "./director";
+import type { BeatSourceGrounding } from "./sourceGrounding";
 
 /**
  * Guarantees every teaching beat ends up with a board a student can actually look at.
@@ -98,11 +99,32 @@ export function hasUsableBoard(beat: Beat): boolean {
 
 /** Install the final, model-free board. It contains ordinary LiveSketch ops, so there is no
  * placeholder, compiler, network call, or retry left that can turn it into an error card. */
-export function installDeterministicWrittenBoard(beat: Beat): void {
-  beat.draw = { ...fallbackWrittenDraw(beat.title, beat.script), surface: "paper" };
+export function installDeterministicWrittenBoard(beat: Beat, options: { sourceOnly?: boolean } = {}): void {
+  // A strict-source beat must not get the topic-templated board: its equation rows, "Rule:" footer
+  // and corner sketch are written from a template, not from the beat's source.
+  beat.draw = options.sourceOnly
+    ? { ...sourceOnlyWrittenDraw(beat.title, beat.script), surface: "paper" }
+    : { ...fallbackWrittenDraw(beat.title, beat.script), surface: "paper" };
 }
 
 export type FallbackStats = { costUsd: number; rescued: number; stillEmpty: number };
+
+export type RescueOptions = {
+  /**
+   * Each uploaded-source beat's own source (lib/sourceGrounding.ts), keyed by beat id. A code board
+   * quotes it, and its presence turns on the written board's grounding and vision critics, as the
+   * main fill does for uploads — the rescue used to call the written board with them off, so a
+   * refused strict board could be replaced by one no check had ever compared with anything.
+   */
+  sources?: ReadonlyMap<string, BeatSourceGrounding>;
+  /**
+   * The student is waiting on these beats (the opening beats of a progressive lecture): no critic
+   * call is added, and a STRICT beat goes straight to the written board of its own script — which
+   * the strict gate has already kept inside the source — instead of a model board drawn from a
+   * brief. Accurate by construction, and no model call at all on the path to the first board.
+   */
+  blocksPlayback?: boolean;
+};
 
 /**
  * Runs after every fill pass. For each teaching beat with no usable board, re-briefs it onto the
@@ -113,6 +135,7 @@ export async function rescueEmptyBoards(
   beats: Beat[],
   specs: Map<string, BeatVisualSpec>,
   forms: Map<string, VisualForm>,
+  options: RescueOptions = {},
 ): Promise<FallbackStats> {
   const stats: FallbackStats = { costUsd: 0, rescued: 0, stillEmpty: 0 };
 
@@ -140,10 +163,14 @@ export async function rescueEmptyBoards(
     const own: FallbackStats = { costUsd: 0, rescued: 0, stillEmpty: 0 };
     const spec = specs.get(beat.id);
     const form = forms.get(beat.id);
+    const source = options.sources?.get(beat.id);
     // With no specification to re-brief from, the beat title is still a real instruction — thin,
     // but enough for a written board, and better than leaving an error card on screen.
     const brief = spec ? specToBrief(spec) : beat.title;
-    const chain = form ? CHAIN[form] : (["chalkBoard"] as const);
+    const chain = source?.strict && options.blocksPlayback
+      ? ([] as const)
+      : form ? CHAIN[form] : (["chalkBoard"] as const);
+    const verify = Boolean(source) && !options.blocksPlayback;
 
     for (const board of chain) {
       const draw = beat.draw as { ops?: DrawOpLike[] } | undefined;
@@ -155,7 +182,7 @@ export async function rescueEmptyBoards(
       );
       draw.ops = [placeholderFor(board, brief), ...keep] as typeof draw.ops;
 
-      const filled = await fillOne(client, board, beats, beat);
+      const filled = await fillOne(client, board, beat, source, verify);
       own.costUsd += filled;
       if (hasUsableBoard(beat)) {
         own.rescued++;
@@ -165,7 +192,7 @@ export async function rescueEmptyBoards(
     }
 
     if (!hasUsableBoard(beat)) {
-      installDeterministicWrittenBoard(beat);
+      installDeterministicWrittenBoard(beat, { sourceOnly: source?.strict === true });
       if (hasUsableBoard(beat)) {
         own.rescued++;
         console.error(`[fallback] beat=${beat.id} rescued with deterministic written board`);
@@ -212,11 +239,13 @@ function placeholderFor(board: string, brief: string): DrawOpLike {
 }
 
 /** Fills just this beat by handing the existing pass a one-beat array. */
-async function fillOne(client: OpenAI, board: string, _all: Beat[], beat: Beat): Promise<number> {
+async function fillOne(client: OpenAI, board: string, beat: Beat, source: BeatSourceGrounding | undefined, verify: boolean): Promise<number> {
   try {
     if (board === "structureScene") return (await fillStructureSceneOps(client, [beat])).costUsd;
-    if (board === "plotBoard" || board === "equationBoard" || board === "codeBoard") return (await fillSpecBoardOps(client, [beat])).costUsd;
-    return (await fillBlackboardOps(client, [beat], false)).costUsd;
+    if (board === "plotBoard" || board === "equationBoard" || board === "codeBoard") {
+      return (await fillSpecBoardOps(client, [beat], source ? { sourceByBeatId: new Map([[beat.id, source.text]]) } : {})).costUsd;
+    }
+    return (await fillBlackboardOps(client, [beat], verify)).costUsd;
   } catch (err) {
     console.error(`[fallback] beat=${beat.id} ${board} fill threw: ${err instanceof Error ? err.message : "error"}`);
     return 0;

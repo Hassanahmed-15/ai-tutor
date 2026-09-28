@@ -41,6 +41,8 @@ export type SuprnotesContentBlock = {
   pageNumber?: number;
   bbox?: { x: number; y: number; width: number; height: number };
   role?: string;
+  /** A figure-labels block's individual printed labels and where each sits on the page (0..1). */
+  labelRegions?: Array<{ text: string; bbox: { x: number; y: number; width: number; height: number } }>;
   /** Which uploaded file this block came from, when more than one was uploaded and merged
    *  together — see lib/mergeSourceDocuments.ts. Absent for a single-document upload, so every
    *  existing consumer that never reads this field is unaffected. */
@@ -142,12 +144,47 @@ export function shouldUseOnlyProvidedImages(input: SuprnotesLessonInput | null):
   return input.generationDirectives?.disableAiImageGeneration === true || input.generationDirectives?.imagePolicy === "use_provided_images_only";
 }
 
-export function compactSuprnotesForPrompt(input: SuprnotesLessonInput): string {
+export type CompactSuprnotesOptions = {
+  /**
+   * "beat": the input has already been narrowed to ONE beat's blocks and figures (the progressive
+   * worker). "document" (the default): the whole upload, for a whole-lecture writer.
+   */
+  scope?: "document" | "beat";
+  /** Strict fidelity: nothing written by a model may be presented alongside the source. */
+  strict?: boolean;
+};
+
+/**
+ * What a vision model said about a figure — never presented as the source.
+ *
+ * The figure `description` and the `focusRegions` labels are written by the parse-time vision call
+ * (detectFigures in app/api/parse-pdf/route.ts), not read off the page. Shipped inside the source
+ * JSON, they read as source text: "Illustration showing a leaf being boiled…" is the vision model's
+ * account, and its region labels are its guesses. The text layer's "Diagram labels:" block (role
+ * "figure-labels") is the figure's ground truth and stays among the blocks. Strict lessons drop the
+ * model's account entirely; reference lessons keep it, labelled for what it is.
+ */
+function visionAccount(asset: SuprnotesAsset): { note: string; description?: string; parts?: string[] } | undefined {
+  const description = clean(asset.description);
+  const use = asset.teachingUse && typeof asset.teachingUse === "object" ? asset.teachingUse as UnknownRecord : {};
+  const parts = (Array.isArray(use.focusRegions) ? use.focusRegions : [])
+    .map((region) => (region && typeof region === "object" ? clean((region as UnknownRecord).label) : ""))
+    .filter(Boolean);
+  if (!description && parts.length === 0) return undefined;
+  return {
+    note: "Written by an image model looking at the picture — NOT source text. Never quote it as what the source says.",
+    ...(description ? { description } : {}),
+    ...(parts.length ? { parts } : {}),
+  };
+}
+
+export function compactSuprnotesForPrompt(input: SuprnotesLessonInput, options: CompactSuprnotesOptions = {}): string {
   const isPdf = Boolean(
     input.source &&
     typeof input.source === "object" &&
     (input.source as UnknownRecord).adapter === "pdf-upload"
   );
+  if (options.scope === "beat") return compactBeatSource(input, isPdf, Boolean(options.strict));
   const assets = (input.assets ?? []).map((asset) => ({
     id: asset.id,
     caption: clean(asset.caption),
@@ -181,15 +218,67 @@ export function compactSuprnotesForPrompt(input: SuprnotesLessonInput): string {
       role: block.role,
     }));
 
+  const lessonPlan = input.lessonPlan ?? input.suggestedLecturePlan;
   return JSON.stringify({
     lesson: input.lesson ?? {},
     generationDirectives: input.generationDirectives ?? {},
     contentGovernance: input.contentGovernance ?? {},
-    assets,
+    // Strict: the vision model's account of a figure is not source text, so it is not sent at all.
+    assets: options.strict ? assets.map((asset) => ({ ...asset, description: undefined, teachingUse: undefined })) : assets,
     contentBlocks: blocks,
-    lessonPlan: input.lessonPlan ?? input.suggestedLecturePlan,
-    suggestedLecturePlan: input.suggestedLecturePlan,
+    lessonPlan,
+    /*
+     * parse-pdf writes the SAME plan to both fields, so every prompt carried the whole-document plan
+     * twice. The second copy is sent only when it genuinely differs.
+     */
+    suggestedLecturePlan: JSON.stringify(input.suggestedLecturePlan) === JSON.stringify(lessonPlan) ? undefined : input.suggestedLecturePlan,
     webPreview: input.webPreview ?? { status: "not_requested" },
+  });
+}
+
+/**
+ * ONE BEAT'S SOURCE, AND NOTHING ELSE.
+ *
+ * The progressive worker narrows the document to a beat's own blocks and figures, then used to
+ * serialise it with the whole-document scaffolding still attached: the whole-document lessonPlan
+ * twice over (every other section's title and visual brief, beside the real source as if it were
+ * source), generationDirectives that contradict the pipeline ("use_provided_images_only" on a path
+ * that draws every board), contentGovernance flags nothing reads, and bounding boxes. What the
+ * script writer needs is the blocks — with their roles, so it knows a "figure-labels" block lists a
+ * figure's printed labels and a "questions" block is the source's own question box — and the
+ * figures' captions.
+ */
+function compactBeatSource(input: SuprnotesLessonInput, isPdf: boolean, strict: boolean): string {
+  const blocks = (input.contentBlocks ?? [])
+    .slice()
+    .sort((a, b) => (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0))
+    .map((block) => ({
+      id: block.id,
+      page: block.pageNumber,
+      role: block.role,
+      type: block.type ?? "section",
+      heading: clean(block.heading) || undefined,
+      text: clean(block.text).slice(0, isPdf ? 2200 : 1400),
+      items: block.items?.length ? block.items : undefined,
+      columns: block.columns?.length ? block.columns : undefined,
+      rows: block.rows?.length ? block.rows : undefined,
+      // Model-derived study aids from other adapters; a strict lesson teaches the text, not them.
+      keyIdeas: !strict && block.keyIdeas?.length ? block.keyIdeas : undefined,
+      facts: !strict && block.facts?.length ? block.facts : undefined,
+    }));
+  const figures = (input.assets ?? []).map((asset) => ({
+    id: asset.id,
+    page: asset.pageNumber,
+    caption: clean(asset.caption) || undefined,
+    visualType: asset.visualType,
+    sourceBlockIds: asset.sourceBlockIds ?? [],
+    ...(strict ? {} : { imageModel: visionAccount(asset) }),
+  }));
+  return JSON.stringify({
+    lesson: { title: clean(input.lesson?.title) || undefined },
+    note: "contentBlocks are this board's own source, in reading order. A block with role \"figure-labels\" lists a figure's labels exactly as printed; role \"questions\" is the source's own question box.",
+    contentBlocks: blocks,
+    figures,
   });
 }
 

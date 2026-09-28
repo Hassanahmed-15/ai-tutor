@@ -35,7 +35,8 @@ for (const topic of ["What is overfitting?", "how linear regression works", "the
     const roles = plan.map((b) => b.role);
     assert.ok(roles.every(Boolean), "every board carries its rung");
     assert.equal(roles[0], "hook");
-    assert.equal(roles[roles.length - 1], "recap");
+    // No recap board: it restated the lesson, and every lecture ends with its own one-slide summary.
+    assert.ok(!roles.includes("recap"), `no recap board: ${roles.join(" → ")}`);
     assert.equal(descends(roles.map((r) => r!)), false, `descends: ${roles.join(" → ")}`);
     const core = roles.indexOf("core");
     const mechanism = roles.indexOf("mechanism");
@@ -85,4 +86,49 @@ test("the default ladder gets no continuation passes — it already has one rung
 test("concise produces one board per subtopic", () => {
   const plan = buildProgressivePlan(input("how linear regression works", "concise"));
   assert.ok(plan.every((b) => (b.conceptPasses ?? 1) === 1));
+});
+
+test("a QUESTION is answered in its own one or two boards: no opener, no recap, no extra passes", () => {
+  const plan = buildProgressivePlan({
+    ...input("Why does overfitting happen?", "deep"),
+    outline: {
+      topic: "Overfitting",
+      scope: "question",
+      subtopics: [
+        { title: "Memorising the noise", caption: "Why a flexible model fits noise in training data and then fails on new data." },
+      ],
+    },
+  });
+  assert.equal(plan.length, 1, plan.map((b) => b.title).join(" | "));
+  assert.equal(plan[0].conceptPasses, 1);
+});
+
+test("a whole LESSON keeps its opener but never ends on a recap, and is never cut to a board count", () => {
+  const subtopics = Array.from({ length: 14 }, (_, i) => ({ title: `Distinct idea number ${i + 1} alpha${i}`, caption: `Teaches separate concept ${i + 1} about topic${i}.` }));
+  const plan = buildProgressivePlan({
+    ...input("thermodynamics", "concise"),
+    outline: { topic: "Thermodynamics", scope: "lesson", subtopics },
+  });
+  assert.ok(plan.length >= 15, `no 12-board ceiling: ${plan.length}`);
+  assert.ok(!plan.some((b) => /recap/i.test(b.title)), "no recap board");
+});
+
+test("a specific question about a PDF keeps only the section that answers it", async () => {
+  const { sectionsForQuestion } = await import("../progressivePlan");
+  const text: Record<string, string> = {
+    a: "Photosynthesis is the way that plants make food.",
+    b: "Glucose is soluble. Instead, the plant changes some of the glucose into a different kind of carbohydrate – starch. A starch molecule is made of thousands of glucose molecules.",
+    c: "Testing a leaf for starch. Iodine solution turns blue-black with starch. Boil the leaf, add iodine, look for starch.",
+    d: "Questions about photosynthesis.",
+  };
+  const sections = [
+    { title: "Photosynthesis", sourceBlockIds: ["a"] },
+    { title: "Storing carbohydrates", sourceBlockIds: ["b"] },
+    { title: "Testing a leaf for starch", sourceBlockIds: ["c"] },
+    { title: "Questions", sourceBlockIds: ["d"] },
+  ];
+  const textOf = (ids: string[]) => ids.map((id) => text[id]).join(" ");
+  assert.deepEqual(sectionsForQuestion(sections, "what is starch in here", textOf).map((s) => s.title), ["Storing carbohydrates"]);
+  assert.equal(sectionsForQuestion(sections, "explain this pdf", textOf).length, 4, "an open request keeps the whole document");
+  assert.equal(sectionsForQuestion(sections, "what is a mitochondrion?", textOf).length, 4, "a question the document never mentions keeps the whole plan");
 });

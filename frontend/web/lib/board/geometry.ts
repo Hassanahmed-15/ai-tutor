@@ -94,6 +94,49 @@ export function toContainerSpace(
   return { x: box.x + point.x * box.width, y: box.y + point.y * box.height };
 }
 
+/**
+ * THE LIVE FRAME. A sandboxed board no longer shows its authored 1000x560 letterboxed into its pane:
+ * the host fits the viewBox to the drawing's ink and the pane's aspect (lib/anim/sandboxLayout.ts,
+ * fitBoardToPane), so the PDF split view's near-square column is filled rather than 40% empty. The
+ * authored frame then sits wherever that viewBox puts it — larger than the pane, offset, partly off
+ * screen. `contentBox` above assumes the old letterbox; marks drawn with it would slide off the part
+ * they were made on.
+ *
+ * This is the on-screen rectangle of the AUTHORED frame for a board drawn through `viewBox` into
+ * `viewport` with `xMidYMid meet` (the sandbox always sets it). Board space stays what it always
+ * was — 0..1 across the authored frame — so stored marks keep their meaning; only the mapping to
+ * pixels follows the live viewBox.
+ */
+export function authoredRectIn(
+  viewBox: Rect,
+  viewport: Rect,
+  authored: Rect = { x: 0, y: 0, width: AUTHORED_WIDTH, height: AUTHORED_HEIGHT },
+): Rect {
+  if (!(viewBox.width > 0) || !(viewBox.height > 0) || !(viewport.width > 0) || !(viewport.height > 0)) {
+    return { x: viewport.x, y: viewport.y, width: 0, height: 0 };
+  }
+  const scale = Math.min(viewport.width / viewBox.width, viewport.height / viewBox.height);
+  const originX = viewport.x + (viewport.width - viewBox.width * scale) / 2 - viewBox.x * scale;
+  const originY = viewport.y + (viewport.height - viewBox.height * scale) / 2 - viewBox.y * scale;
+  return {
+    x: originX + authored.x * scale,
+    y: originY + authored.y * scale,
+    width: authored.width * scale,
+    height: authored.height * scale,
+  };
+}
+
+/** A container-relative pixel point in board space, through an explicit authored-frame rectangle. */
+export function toBoardSpaceThrough(x: number, y: number, authoredRect: Rect): { x: number; y: number } {
+  if (!(authoredRect.width > 0) || !(authoredRect.height > 0)) return { x: 0, y: 0 };
+  return { x: (x - authoredRect.x) / authoredRect.width, y: (y - authoredRect.y) / authoredRect.height };
+}
+
+/** Is a pixel point inside a rectangle? For "is this mark on the visible board", once the board fills its pane. */
+export function pointInRect(x: number, y: number, rect: Rect): boolean {
+  return x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height;
+}
+
 /** Is this board-space point actually on the drawing? Used to ignore marks made in the margin. */
 export function withinBoard(point: { x: number; y: number }): boolean {
   return point.x >= 0 && point.x <= 1 && point.y >= 0 && point.y <= 1;

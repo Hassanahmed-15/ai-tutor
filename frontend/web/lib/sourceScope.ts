@@ -39,6 +39,68 @@ export function emptySourceScope(): SourceScope {
 }
 
 /**
+ * Accept a source-scope value at an API boundary without trusting arbitrary client JSON.
+ *
+ * Both lecture routes use this helper. Keeping the parser here prevents the synchronous and
+ * progressive generation paths from drifting — that drift previously made the progressive path
+ * silently discard a student's "strictly from the source" choice.
+ */
+export function sanitizeSourceScope(value: unknown): SourceScope | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const raw = value as Record<string, unknown>;
+  const rawBreadth = raw.breadth && typeof raw.breadth === "object"
+    ? raw.breadth as Record<string, unknown>
+    : null;
+  const focus = typeof rawBreadth?.focus === "string" ? rawBreadth.focus.trim().slice(0, 240) : "";
+  const breadth: DocumentBreadth =
+    (rawBreadth?.kind === "section" || rawBreadth?.kind === "question") && focus
+      ? { kind: rawBreadth.kind, focus }
+      : { kind: "whole" };
+  const labels = Array.isArray(raw.documentLabels)
+    ? raw.documentLabels
+        .filter((label): label is string => typeof label === "string" && Boolean(label.trim()))
+        .map((label) => label.trim().slice(0, 120))
+        .slice(0, 8)
+    : [];
+  return {
+    breadth,
+    fidelity: raw.fidelity === "strict" ? "strict" : "reference",
+    documentLabels: labels,
+  };
+}
+
+/** True when the student chose "strictly from the source": nothing may be taught that it does not contain. */
+export function isStrictSource(scope: SourceScope | null | undefined): boolean {
+  return scope?.fidelity === "strict";
+}
+
+/**
+ * The strict contract, word for word, wherever a model writes for a strict lesson.
+ *
+ * "Strictly from the source means strictly from the source, not from outside." An earlier edit
+ * allowed "clearly labelled explanatory examples or analogies", and the model took the allowance:
+ * a strict lesson on a textbook's "Energy transfer" paragraph added a leaf-as-solar-panel analogy,
+ * steps the page never states, and board labels from general knowledge. An illustration that is not
+ * in the source is still content that is not in the source. So the line is drawn where the student
+ * drew it — nothing the source does not say, not even a true thing — and what the model MAY do is
+ * spelled out, because "do not add" alone tempts padding to a word count: a shorter board is correct.
+ */
+export const STRICT_SOURCE_RULE =
+  "STRICTLY FROM SOURCE. The selected source blocks — their text, their printed figure labels and " +
+  "captions — are the ONLY permitted material. Teach every selected block completely and in source " +
+  "order; never skip a definition, formula, table, figure, relationship or claim it states. Do not " +
+  "add any fact, number, name, example, analogy, application, history, cause, consequence or process " +
+  "step that the source does not state — not even a true one, not even as an illustration, and not " +
+  "from the attached page images beyond this board's own blocks. You may reorder for clarity, rephrase " +
+  "in plain words using the source's own terms, say what a source term means using other words from " +
+  "the source, and point the student at the labelled parts of the source's figure. If the source does " +
+  "not say it, do not say it: a shorter board is correct. EXPLAIN, DO NOT READ ALOUD: teach it like a " +
+  "teacher, in plain, simple words — say what each part means and how the pieces connect. Everyday " +
+  "explaining words are fine; what must come ONLY from the source is the CONTENT: every fact, technical " +
+  "term, name, number, cause and example. A sentence that adds content the source does not have is " +
+  "deleted before the student hears it.";
+
+/**
  * The instruction handed to both the outline planner and the lecture writer.
  *
  * Written as a directive, not a data dump — same reasoning as learnerInstruction (learnerProfile.ts):
@@ -48,10 +110,7 @@ export function emptySourceScope(): SourceScope {
 export function sourceScopeInstruction(scope: SourceScope): string {
   const fidelityLine =
     scope.fidelity === "strict"
-      ? "STRICTLY FROM SOURCE. Teach only what the uploaded material actually contains. Do not add " +
-        "outside facts, outside examples, or outside context that is not present in the source — if " +
-        "something is not in the material, do not teach it. You may clarify or rephrase what IS there, " +
-        "but never supplement it with general knowledge about the subject."
+      ? STRICT_SOURCE_RULE
       : "SOURCE AS REFERENCE. Use the uploaded material as the foundation, but freely expand with " +
         "outside knowledge, additional examples, and context that helps teaching — the source anchors " +
         "the lesson, it does not fence it in.";

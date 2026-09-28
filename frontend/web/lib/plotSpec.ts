@@ -57,9 +57,10 @@ export function validatePlotSpec(raw: unknown): PlotSpec | null {
   const enc = encoding as Record<string, unknown>;
   if (!enc.x && !enc.y && !enc.theta) return null;
 
+  const repaired = repairPlotFields(spec);
   return {
     background: "#ffffff",
-    ...spec,
+    ...repaired,
     // AFTER the spread, all of it. The model reliably writes `$schema: …/v5.json` from memory while
     // the installed vega-lite is v6, which vega-embed warns about on every render; and sizing is
     // the board's business, not the spec's.
@@ -93,8 +94,175 @@ export function validatePlotSpec(raw: unknown): PlotSpec | null {
      * leans on the two things that survive distance: generous whitespace and a recessive grid. The
      * palette is the validated categorical set (see `PLOT_SERIES_COLORS`), not Vega's stock hues.
      */
-    config: mergeConfig(spec.config, PLOT_THEME),
+    config: mergeConfig(repaired.config, PLOT_THEME),
   };
+}
+
+/*
+ * THE EMPTY-CHART BUG. A student asked "why does overfitting happen?" and got a board with axes, a
+ * 2-10 x range and a Training/Test legend — and no lines. That is what Vega draws when an encoding
+ * names a field the rows do not have ("accuracy" against rows keyed "Accuracy (%)"), or when a
+ * quantitative field holds strings ("85%"): the scales and legend still come from the fields that
+ * DO match, the marks come from the one that does not, and nothing fails. The structural check only
+ * asked that some data exist, and the compiler is happy with any field name — so the empty chart
+ * was "valid" twice over. These two functions close that: repair what can be repaired for free, and
+ * name what cannot so the existing retry asks the model to fix it.
+ */
+
+const CHANNELS = ["x", "y", "x2", "y2", "theta", "color", "size", "shape", "strokeDash", "opacity", "detail", "text"] as const;
+
+function normalizeKey(value: string): string {
+  return value.toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
+}
+
+function rowsOf(spec: Record<string, unknown>): Array<Record<string, unknown>> {
+  const values = (spec.data as { values?: unknown[] } | undefined)?.values;
+  return Array.isArray(values)
+    ? values.filter((row): row is Record<string, unknown> => !!row && typeof row === "object" && !Array.isArray(row))
+    : [];
+}
+
+/** Fields a transform creates, so an encoding that uses one is not mistaken for a typo. */
+function transformFields(spec: Record<string, unknown>): { fields: Set<string>; unknowable: boolean } {
+  const fields = new Set<string>();
+  let unknowable = false;
+  const transforms = Array.isArray(spec.transform) ? spec.transform : [];
+  for (const raw of transforms) {
+    if (!raw || typeof raw !== "object") continue;
+    const t = raw as Record<string, unknown>;
+    const as = t.as;
+    if (typeof as === "string") fields.add(as);
+    if (Array.isArray(as)) as.forEach((name) => typeof name === "string" && fields.add(name));
+    if (t.fold && !as) ["key", "value"].forEach((name) => fields.add(name));
+    if (t.density && !as) ["value", "density"].forEach((name) => fields.add(name));
+    for (const listKey of ["aggregate", "window", "joinaggregate"]) {
+      const list = t[listKey];
+      if (Array.isArray(list)) list.forEach((item) => item && typeof item === "object" && typeof (item as Record<string, unknown>).as === "string" && fields.add((item as Record<string, unknown>).as as string));
+    }
+    // A pivot's output columns are the DATA's values; they cannot be known from the spec.
+    if (t.pivot) unknowable = true;
+  }
+  return { fields, unknowable };
+}
+
+function toNumber(value: unknown): number | null {
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  if (typeof value !== "string") return null;
+  const match = value.trim().match(/^[-+]?\d*\.?\d+(?:e[-+]?\d+)?\s*%?$/i);
+  return match ? Number.parseFloat(value) : null;
+}
+
+/**
+ * Free repairs, applied before anything is judged: an encoding field that differs from a real column
+ * only by case, spacing, punctuation or a "(%)" suffix is pointed at that column, and a quantitative
+ * column of number strings ("85%", "0.9") becomes numbers. Returns a new spec; never mutates.
+ */
+export function repairPlotFields(spec: Record<string, unknown>): Record<string, unknown> {
+  const rows = rowsOf(spec);
+  if (rows.length === 0 || !spec.encoding || typeof spec.encoding !== "object") return spec;
+  const keys = [...new Set(rows.flatMap((row) => Object.keys(row)))];
+  const { fields: derived } = transformFields(spec);
+  const encoding = { ...(spec.encoding as Record<string, unknown>) };
+  const numericFields = new Set<string>();
+
+  for (const channel of CHANNELS) {
+    const def = encoding[channel];
+    if (!def || typeof def !== "object" || Array.isArray(def)) continue;
+    const d = { ...(def as Record<string, unknown>) };
+    const field = typeof d.field === "string" ? d.field : null;
+    if (field && !keys.includes(field) && !derived.has(field)) {
+      const wanted = normalizeKey(field);
+      const title = typeof d.title === "string" ? normalizeKey(d.title) : "";
+      const match = keys.find((key) => normalizeKey(key) === wanted) ?? (title ? keys.find((key) => normalizeKey(key) === title) : undefined);
+      if (match) d.field = match;
+    }
+    if (d.type === "quantitative" && typeof d.field === "string") numericFields.add(d.field);
+    encoding[channel] = d;
+  }
+
+  /*
+   * FRACTIONS ON A PERCENT AXIS. "Accuracy (%)" with a fixed 0-100 domain and values 0.62-0.99:
+   * both lines sit on the x-axis, under the axis line — the chart looks empty. When a quantitative
+   * position's own domain or title says percent and every value is a fraction, the values are
+   * percents written as fractions, and are scaled.
+   */
+  const percentFields = new Set<string>();
+  for (const channel of ["x", "y"] as const) {
+    const d = encoding[channel] as Record<string, unknown> | undefined;
+    if (!d || d.type !== "quantitative" || typeof d.field !== "string") continue;
+    const domain = (d.scale as { domain?: unknown } | undefined)?.domain;
+    const percentAxis =
+      (Array.isArray(domain) && Number(domain[1]) === 100) ||
+      /%|percent/i.test(`${d.field} ${typeof d.title === "string" ? d.title : ""}`);
+    const numbers = rows.map((row) => toNumber(row[d.field as string])).filter((n): n is number => n !== null);
+    if (percentAxis && numbers.length >= 2 && numbers.every((n) => n >= 0 && n <= 1) && numbers.some((n) => n > 0)) {
+      percentFields.add(d.field);
+    }
+  }
+
+  const values = rows.map((row) => {
+    let changed = false;
+    const next = { ...row };
+    for (const field of numericFields) {
+      if (typeof next[field] === "string") {
+        const n = toNumber(next[field]);
+        if (n !== null) {
+          next[field] = n;
+          changed = true;
+        }
+      }
+    }
+    for (const field of percentFields) {
+      const n = toNumber(next[field]);
+      if (n !== null) {
+        next[field] = Math.round(n * 1000) / 10;
+        changed = true;
+      }
+    }
+    return changed ? next : row;
+  });
+
+  return { ...spec, encoding, data: { ...(spec.data as Record<string, unknown>), values } };
+}
+
+/**
+ * Why this chart would draw no marks, or null when every mark has data.
+ *
+ * A positional or colour encoding must name a column the rows (or a transform) actually have, and a
+ * quantitative position must hold at least two numbers. Anything else is an empty chart that the
+ * compiler would accept.
+ */
+export function plotFieldIssue(spec: Record<string, unknown>): string | null {
+  const rows = rowsOf(spec);
+  if (rows.length === 0) return "data.values has no rows";
+  const keys = new Set(rows.flatMap((row) => Object.keys(row)));
+  const { fields: derived, unknowable } = transformFields(spec);
+  if (unknowable) return null;
+  const encoding = (spec.encoding ?? {}) as Record<string, unknown>;
+  for (const channel of CHANNELS) {
+    const def = encoding[channel];
+    if (!def || typeof def !== "object" || Array.isArray(def)) continue;
+    const d = def as Record<string, unknown>;
+    const field = typeof d.field === "string" ? d.field.split(".")[0] : null;
+    if (!field) continue;
+    if (!keys.has(field) && !derived.has(field)) {
+      return `encoding.${channel}.field is "${field}" but the data rows have no such column (they have: ${[...keys].join(", ")}) — the marks would draw nothing`;
+    }
+    if ((channel === "x" || channel === "y") && d.type === "quantitative" && !derived.has(field) && !d.aggregate) {
+      const numbers = rows.map((row) => toNumber(row[field])).filter((n): n is number => n !== null);
+      if (numbers.length < 2) return `encoding.${channel} is quantitative but column "${field}" holds fewer than two numbers — the marks would draw nothing`;
+      // Data squeezed into a sliver of a fixed domain draws on top of the axis and reads as empty.
+      const domain = (d.scale as { domain?: unknown } | undefined)?.domain;
+      if (Array.isArray(domain) && domain.length === 2 && typeof domain[0] === "number" && typeof domain[1] === "number" && domain[1] > domain[0]) {
+        const span = (Math.max(...numbers) - Math.min(...numbers)) / (domain[1] - domain[0]);
+        const inside = numbers.filter((n) => n >= (domain[0] as number) && n <= (domain[1] as number)).length / numbers.length;
+        if (inside < 0.5 || (span < 0.03 && Math.max(...numbers) < (domain[0] as number) + 0.03 * (domain[1] - domain[0]))) {
+          return `encoding.${channel}.scale.domain is [${domain[0]}, ${domain[1]}] but column "${field}" runs ${Math.min(...numbers)}-${Math.max(...numbers)}, so the marks sit flat on the axis — make the values and the domain use the same units`;
+        }
+      }
+    }
+  }
+  return null;
 }
 
 /**

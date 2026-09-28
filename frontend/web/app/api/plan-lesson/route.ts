@@ -23,7 +23,7 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
-import { outlineLearnerInstruction } from "@/lib/planPrompt";
+import { capQuestionOutline, directQuestionInstruction, isDirectQuestion, outlineLearnerInstruction } from "@/lib/planPrompt";
 import { polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
@@ -198,8 +198,18 @@ function mergeAssessment(
   let next: LearnerProfile = {
     ...profile,
     // A later self-report supersedes an earlier one; everything else accumulates.
-    claimedLevel: assessed.claimedLevel ?? profile.claimedLevel,
-    confidence: assessed.confidence !== "unknown" ? assessed.confidence : profile.confidence,
+    /*
+     * A level the student CHOSE (the level question sets it at high confidence) is theirs: the
+     * model re-reading "Intermediate, I know the basics" as a 2 made an intermediate student look
+     * like a beginner, which ends the questions and pitches the lesson too low. Evidence moves the
+     * level only when there was no explicit choice.
+     */
+    claimedLevel: profile.claimedLevel !== null && profile.confidence === "high"
+      ? profile.claimedLevel
+      : assessed.claimedLevel ?? profile.claimedLevel,
+    confidence: profile.claimedLevel !== null && profile.confidence === "high"
+      ? profile.confidence
+      : assessed.confidence !== "unknown" ? assessed.confidence : profile.confidence,
     objective: assessed.objective !== "unknown" ? assessed.objective : profile.objective,
     masteredConcepts: union(profile.masteredConcepts, assessed.masteredConcepts, 8),
     weakConcepts: union(profile.weakConcepts, assessed.weakConcepts, 8),
@@ -264,14 +274,18 @@ function sanitizeSourceScope(raw: unknown): SourceScope | null {
 function sanitizeDiagnosticQuestion(raw: unknown): { question: string; kind: string; options: string[] } | null {
   if (!raw || typeof raw !== "object") return null;
   const rec = raw as Record<string, unknown>;
-  const question = typeof rec.question === "string" ? rec.question.trim() : "";
+  // Dashes are removed deterministically too: the prompt forbids them, and a student asked for none.
+  const question = typeof rec.question === "string" ? undash(rec.question.trim()) : "";
   if (!question) return null;
   const options = Array.isArray(rec.options)
-    ? rec.options.filter((o): o is string => typeof o === "string" && o.trim().length > 0).map((o) => o.trim().slice(0, 40)).slice(0, 4)
+    ? rec.options.filter((o): o is string => typeof o === "string" && o.trim().length > 0).map((o) => undash(o.trim()).slice(0, 40)).slice(0, 4)
     : [];
   const kind = typeof rec.kind === "string" && ["explain", "predict", "compare", "apply", "goal"].includes(rec.kind)
     ? rec.kind
     : "explain";
+  // A preference or "what interests you" question after the level has been asked is not a question
+  // about the lesson; ending the conversation and planning is better than asking it.
+  if (kind === "goal" || /\b(?:interest(?:s|ed)? you|would you like|do you prefer|want to (?:learn|focus))\b/i.test(question)) return null;
   // A single option is not a choice; either offer real quick replies or let them type.
   return { question: question.slice(0, 240), kind, options: options.length >= 2 ? options : [] };
 }
@@ -283,11 +297,16 @@ function topicComplexity(raw: unknown): DepthLevel {
   return Math.max(1, Math.min(5, n)) as DepthLevel;
 }
 
-function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
+function sanitizeOutline(raw: unknown, fallbackTopic: string, polish = true): PlanOutline {
   const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const topic = typeof obj.topic === "string" && obj.topic.trim() ? obj.topic.trim() : fallbackTopic;
   const rawSubtopics = Array.isArray(obj.subtopics) ? obj.subtopics : [];
   const subtopics: PlanOutline["subtopics"] = [];
+  // The planner's own read of the request: a specific question or a whole lesson, and any depth
+  // the student's words asked for. Carried through so the lecture is sized by the question.
+  const scope: PlanOutline["scope"] = obj.scope === "question" || obj.scope === "lesson" ? obj.scope : undefined;
+  const depth: PlanOutline["depth"] = obj.depth === "quick" || obj.depth === "deep" ? obj.depth : undefined;
+  const intent = { ...(scope ? { scope } : {}), ...(depth ? { depth } : {}) };
   let scopingQuestionCount = 0;
   let safetyNetCount = 0;
   for (const s of rawSubtopics) {
@@ -305,12 +324,14 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
     if (scopingQuestion) scopingQuestionCount++;
     if (title.trim()) subtopics.push({ title: title.trim().slice(0, 80), caption: caption.trim().slice(0, 160), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
   }
+  if (!polish) return { topic, ...intent, subtopics };
   const polished = polishBeatPlan(
     subtopics.map((subtopic) => ({ title: subtopic.title, objective: subtopic.caption })),
     topic,
   );
   return {
     topic,
+    ...intent,
     subtopics: subtopics.map((subtopic, index) => ({
       ...subtopic,
       title: polished[index]?.title ?? subtopic.title,
@@ -319,7 +340,10 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string): PlanOutline {
 }
 
 function sanitizeSingleSubtopic(raw: unknown): PlanOutline["subtopics"][number] | undefined {
-  const outline = sanitizeOutline({ topic: "partial", subtopics: [raw] }, "partial");
+  // Unpolished: polishBeatPlan titles the FIRST entry after the topic, and a lone streamed
+  // subtopic is always first — every row showed the placeholder topic ("Partial") until the
+  // final outline arrived. The final `outline` event is polished as a whole.
+  const outline = sanitizeOutline({ subtopics: [raw] }, "", false);
   return outline.subtopics[0];
 }
 
@@ -513,6 +537,8 @@ function streamOutline(
   userContent: string | ContentPart[],
   fallbackTopic: string,
   focused = false,
+  /** Set for a direct question: its outline is held to 1-2 subtopics with the model's own titles. */
+  question?: string,
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -564,7 +590,14 @@ function streamOutline(
           emittedScopingQuestions = scopingTotal;
         }
 
-        const rawOutline = sanitizeOutline(JSON.parse(buffer || "{}"), fallbackTopic);
+        const parsed = sanitizeOutline(JSON.parse(buffer || "{}"), fallbackTopic, !question);
+        /*
+         * A question's titles are kept as the planner wrote them ("Why Underfitting Happens");
+         * title polishing forces the first to the subject's name and strips a leading "Why".
+         */
+        const rawOutline = question
+          ? { ...parsed, scope: "question" as const, subtopics: capQuestionOutline(parsed.subtopics, question) }
+          : parsed;
         const outline = focused
           ? {
               topic: rawOutline.topic || fallbackTopic,
@@ -859,12 +892,17 @@ export async function POST(req: Request) {
      * first subtopics defining terms the student demonstrated they know — the structure has to be
      * planned for them in the first place.
      */
+    // The student's own words decide question vs lesson — the topic has already been renamed to a
+    // subject ("Underfitting in Machine Learning") and no longer carries the "why".
+    const questionText = (typeof body.request === "string" && body.request.trim()) || topic;
+    const directQuestion = isDirectQuestion(questionText);
     const learnerLine = body.learnerProfile
       ? outlineLearnerInstruction(
           learnerInstruction(
             sanitizeLearnerProfile(body.learnerProfile, topic),
             topicComplexity(body.depth),
           ),
+          { question: directQuestion },
         )
       : "";
 
@@ -879,10 +917,16 @@ export async function POST(req: Request) {
     // The student's own words, when they say more than the topic — "in C++", "the code", "for my exam".
     const requestText = typeof body.request === "string" ? body.request.trim().slice(0, 300) : "";
     const requestLine = requestText && requestText.toLowerCase() !== topic.toLowerCase()
-      ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it. Honour what it asks for (e.g. a language, code, an exam focus), but title subtopics by the subject, never by this phrasing.`
+      ? directQuestion
+        ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it.`
+        : `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it. Honour what it asks for (e.g. a language, code, an exam focus), but title subtopics by the subject, never by this phrasing.`
       : "";
-    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}`;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic);
+    const preference = typeof body.teachingPreference === "string" && ["quick", "balanced", "deep"].includes(body.teachingPreference)
+      ? `\nThe student's saved teaching preference is "${body.teachingPreference}"; their words in the request override it.`
+      : "";
+    const questionLine = directQuestion ? directQuestionInstruction(questionText) : "";
+    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}`;
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined);
   }
 
   // mode === "revise"
@@ -903,3 +947,15 @@ export async function POST(req: Request) {
   const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}${personaLine(body.learnerPersona)}`;
   return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, withPages(userContent, pageImages), currentOutline.topic, Boolean(revisionFocus));
 }
+
+/** "Why — and how?" → "Why, and how?": em/en dashes and spaced hyphens become commas. */
+function undash(text: string): string {
+  return text
+    .replace(/\s*[—–]\s*/g, ", ")
+    .replace(/\s+-\s+/g, ", ")
+    .replace(/,\s*([?.!])/g, "$1")
+    .replace(/^,\s*/, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+

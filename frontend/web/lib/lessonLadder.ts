@@ -27,7 +27,33 @@ export type TeachingRole =
   | "application"
   | "pitfall"
   | "contrast"
-  | "recap";
+  | "recap"
+  /*
+   * OFF THE LADDER: a strict lesson from an uploaded source. Its order is the source's own order and
+   * its content is the source's own content, so no rung applies — "mechanism" demanded causal steps
+   * the page did not state, "example" demanded values it did not give. A strict board explains its
+   * source blocks ("source"), or reads the source's own question box ("questions").
+   */
+  | "source"
+  | "questions";
+
+/** The rungs that exist only for strict source lessons, outside the ladder. */
+export const SOURCE_ROLES: readonly TeachingRole[] = ["source", "questions"];
+
+export function isSourceRole(role: TeachingRole | undefined): boolean {
+  return role === "source" || role === "questions";
+}
+
+/**
+ * The rung a board is WRITTEN to. A strict lesson is always briefed on the source rungs, whatever
+ * the plan assigned: a strict lecture planned from an outline (a text or slide source with no
+ * blocks) still carries ladder rungs, and "work one concrete example with real values" is an
+ * instruction to invent in a lesson that may only say what its source says.
+ */
+export function scriptRoleFor(role: TeachingRole | undefined, strict: boolean): TeachingRole {
+  if (strict) return role === "questions" ? "questions" : "source";
+  return role ?? "mechanism";
+}
 
 /** Canonical order. A lesson may skip rungs; it must not descend. */
 export const LADDER: readonly TeachingRole[] = [
@@ -138,6 +164,23 @@ export const ROLE_CONTRACT: Record<TeachingRole, RoleContract> = {
   recap: {
     must: "Connect the boards into one structure — how the definition, mechanism, example and implications fit together — in a few sentences, then the single most usable takeaway.",
     mustNot: "Do not re-define, re-derive or re-exemplify anything, and do not narrate the lesson in the past tense (\"we explored\", \"we examined\", \"we noted\"). Name each idea in a clause, in the present tense, and state the RELATIONSHIP between them; a recap that re-explains is a second lecture.",
+    allowsDefinition: false,
+    allowsAnalogy: false,
+  },
+  /*
+   * The source's own definition and its own analogy are content like any other, so a source board
+   * may carry them; what it may not do is make one up, which the mustNot says and the grounding gate
+   * (lib/strictSourceScript.ts) enforces.
+   */
+  source: {
+    must: "Explain THIS board's own source text sentence by sentence, in the source's order: say what each sentence states in clear spoken words, using the source's own terms, and connect each to the one before it. Where the source has a figure, point the student to its labelled parts, by their printed labels, in the order the text mentions them.",
+    mustNot: "Do not add any fact, number, name, example, analogy, application, history, cause or step that the source does not state — not even a true one. Do not answer questions the source does not answer, and do not re-teach a part of the source an earlier board already taught. If the source does not say it, do not say it: a shorter board is correct.",
+    allowsDefinition: true,
+    allowsAnalogy: true,
+  },
+  questions: {
+    must: "Read each question in THIS board's source aloud as it is printed, in order. For each one, tell the student which part of the source they have already met holds its answer — name that section or quote its sentence. Where the source itself states the answer, you may quote it; where the source asks them to recall earlier learning, say exactly that.",
+    mustNot: "Never answer a question beyond what the source states, never add hints, facts, examples or reasoning of your own, and never invent a question the source does not print.",
     allowsDefinition: false,
     allowsAnalogy: false,
   },
@@ -258,7 +301,12 @@ export interface TaughtBeatSummary {
  * what to do with it, so the model could neither avoid pre-teaching an upcoming board nor tell
  * which earlier ones it must not repeat.
  */
-export function lessonMapBlock(plan: LessonMapBeat[], currentSequence: number, taught: TaughtBeatSummary[]): string {
+export function lessonMapBlock(
+  plan: LessonMapBeat[],
+  currentSequence: number,
+  taught: TaughtBeatSummary[],
+  options: { strict?: boolean } = {},
+): string {
   const claimsFor = new Map(taught.map((t) => [t.sequence, t.keyClaims]));
   const lines = plan.map((beat) => {
     const n = beat.sequence + 1;
@@ -269,15 +317,26 @@ export function lessonMapBlock(plan: LessonMapBeat[], currentSequence: number, t
       return `  ${n}. [TAUGHT]${role} ${beat.title}${established}`;
     }
     if (beat.sequence === currentSequence) return `  ${n}. [THIS BOARD]${role} ${beat.title} — objective: ${beat.objective}`;
-    return `  ${n}. [UPCOMING]${role} ${beat.title} — will teach: ${beat.objective}`;
+    // A source plan's objectives are one pipeline instruction repeated ("Teach these source blocks
+    // completely…"): they say nothing about what a later board covers, so its title is the map entry.
+    return options.strict ? `  ${n}. [UPCOMING]${role} ${beat.title}` : `  ${n}. [UPCOMING]${role} ${beat.title} — will teach: ${beat.objective}`;
   });
+  /*
+   * "Adds NEW information only: a new mechanism, relationship, consequence, example or use" is the
+   * right rule for a typed topic and the wrong one for a strict source: it is an instruction to
+   * invent whenever a section is thin. A strict board's novelty comes from its own source blocks,
+   * which no earlier board was given.
+   */
+  const novelty = options.strict
+    ? "- This board teaches ONLY its own source blocks (sourceContext), completely and in order. It adds nothing the source does not state. Where its source repeats something ESTABLISHED, say it once in a clause and move on; never replace it with material of your own."
+    : "- This board adds NEW information only: a new mechanism, relationship, consequence, example or use. A sentence that could be deleted without losing information the student did not already have should not be written.";
   return [
     "LESSON MAP — every board in order. Read it before writing.",
     ...lines,
     "RULES THAT FOLLOW FROM THE MAP:",
     "- Anything marked ESTABLISHED is known to the student. Do not define it, re-motivate it, re-derive it or offer another analogy for it. Refer to it in a clause and build on it.",
     "- Anything marked UPCOMING belongs to a later board. Do not pre-teach it; at most name it as what comes next.",
-    "- This board adds NEW information only: a new mechanism, relationship, consequence, example or use. A sentence that could be deleted without losing information the student did not already have should not be written.",
+    novelty,
   ].join("\n");
 }
 
@@ -288,6 +347,20 @@ export function lessonMapBlock(plan: LessonMapBeat[], currentSequence: number, t
  */
 export function roleBriefing(role: TeachingRole, movements: [number, number]): string {
   const contract = ROLE_CONTRACT[role];
+  /*
+   * On the source rungs, "depth means new information: a further step, a number, a use" was the
+   * sentence that turned a 75-word section into 300 words of general knowledge. Depth there means
+   * making the source's own sentences clearer — never longer by addition.
+   */
+  if (isSourceRole(role)) {
+    return [
+      `THIS BOARD'S JOB: ${role === "questions" ? "THE SOURCE'S OWN QUESTIONS" : "EXPLAIN ITS SOURCE"}.`,
+      `It MUST: ${contract.must}`,
+      `It MUST NOT: ${contract.mustNot}`,
+      `Follow the source's own order in ${movements[0]}-${movements[1]} short movements; never reorganise it into an arc of your own.`,
+      `Depth means explaining the source's own sentences more clearly — never adding a fact, step, number or example they do not state.`,
+    ].join(" ");
+  }
   return [
     `THIS BOARD'S RUNG: ${role.toUpperCase()}.`,
     `It MUST: ${contract.must}`,

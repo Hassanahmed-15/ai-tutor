@@ -1,3 +1,5 @@
+import { STRICT_VOICE_RULES, formatBeatSource, readStrictSourceHeader } from "./strictSourceAnswers";
+
 export const SHOW_BOARD_TOOL = {
   name: "show_board",
   description:
@@ -164,7 +166,17 @@ export function buildGeminiLiveInstructions(input: {
     return parts.join("\n\n");
   }
 
-  const parts = [TUTOR_PERSONA, `Lesson topic: ${input.topic || "the current lesson"}.`];
+  /*
+   * STRICT SOURCE. A lesson the student chose to learn "strictly from the source" arrives with the
+   * rule and the current part's own source at the head of its document context (the player puts it
+   * there — lib/strictSourceAnswers.ts explains why that channel). Read back out, it becomes a real
+   * instruction placed straight after the persona, where it overrides the persona's invitations to
+   * add depth and "another example". Without the header this is today's instruction, unchanged.
+   */
+  const fidelity = readStrictSourceHeader(input.documentContext ?? "");
+  const parts = [TUTOR_PERSONA];
+  if (fidelity.strict) parts.push(STRICT_VOICE_RULES);
+  parts.push(`Lesson topic: ${input.topic || "the current lesson"}.`);
   if (input.lessonQuestion) parts.push(`This lesson was built to answer: "${input.lessonQuestion}". Keep every answer connected to it.`);
   /*
    * The document comes BEFORE the lesson and the beat.
@@ -172,13 +184,23 @@ export function buildGeminiLiveInstructions(input: {
    * It is the source the lecture was written from, so when it and a paraphrase in a script disagree,
    * it wins. Placing it first is the cheapest way to say so.
    */
-  if (input.documentContext) {
+  if (fidelity.strict) {
+    if (fidelity.beatSource) {
+      parts.push(`The document's own text for the part on screen as this conversation opened:\n${formatBeatSource(fidelity.beatSource)}`);
+    }
+    if (fidelity.document) {
+      parts.push(`SOURCE — the student's own uploaded document. It is the ONLY material you may teach or answer from:\n${fidelity.document}`);
+    }
+  } else if (input.documentContext) {
     parts.push(
       `The student's own uploaded document. Answer from THIS whenever the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${input.documentContext}`,
     );
   }
-  if (input.lessonContext) parts.push(`Whole-lesson context:\n${input.lessonContext}`);
-  if (input.beatContext) parts.push(`Current lecture position:\n${input.beatContext}`);
+  // In strict mode the lesson's scripts are paraphrase at best; they place the student, they do not
+  // license a fact the document lacks.
+  const notASource = fidelity.strict ? " (the lesson's wording — for where things are, NOT a source of facts)" : "";
+  if (input.lessonContext) parts.push(`Whole-lesson context${notASource}:\n${input.lessonContext}`);
+  if (input.beatContext) parts.push(`Current lecture position${notASource}:\n${input.beatContext}`);
   if (input.mood) parts.push(`Learner context: ${input.mood}`);
   if (input.adhdMode) parts.push(ADHD_ADDENDUM);
   if (input.examQuestions.length > 0) parts.push(buildExamAddendum(input.examQuestions));

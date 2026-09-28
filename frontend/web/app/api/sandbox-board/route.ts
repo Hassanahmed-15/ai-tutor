@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
 import type { Beat } from "@/lib/lessonContent";
 import { ANIMATION_ROTATION } from "@/lib/animationModels";
+import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
 
 /**
  * Generates ONE sandbox board from a title + teaching point, for `/sandbox-lab`.
@@ -38,6 +39,28 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `model must be one of ${ANIMATION_ROTATION.map((m) => m.id).join(", ")}` }, { status: 400 });
   }
   const beatId = typeof body.beatId === "string" && /^[\w.-]{1,80}$/.test(body.beatId) ? body.beatId : "lab";
+  /*
+   * Optional: the beat's SOURCE, to judge strict-source boards the way a PDF lesson builds them
+   * (lib/progressiveLectureWorker.ts passes the same shape as options.sourceByBeatId):
+   *   { "text": "...", "labels": ["cell wall", ...], "caption": "...", "strict": true }
+   * Bounded like the other fields; a figure image is not accepted here (it is a data URL, and the
+   * default animation models are not sent images — see animationModelAcceptsImages).
+   */
+  const rawSource = body.source && typeof body.source === "object" ? body.source as Record<string, unknown> : null;
+  const source: BeatSourceGrounding | undefined = rawSource && typeof rawSource.text === "string" && rawSource.text.trim()
+    ? {
+        text: rawSource.text.slice(0, 6000),
+        labels: Array.isArray(rawSource.labels)
+          ? rawSource.labels.filter((label): label is string => typeof label === "string" && label.trim().length > 0).map((label) => label.trim().slice(0, 120)).slice(0, 16)
+          : [],
+        caption: typeof rawSource.caption === "string" && rawSource.caption.trim() ? rawSource.caption.trim().slice(0, 300) : undefined,
+        strict: rawSource.strict === true,
+      }
+    : undefined;
+  // Optional: the refine budget the worker gives OPENING beats (20 s), to measure the starter path.
+  const refineTimeBudgetMs = typeof body.refineTimeBudgetMs === "number" && Number.isFinite(body.refineTimeBudgetMs)
+    ? Math.max(10_000, Math.min(180_000, body.refineTimeBudgetMs))
+    : undefined;
 
   const beat: Beat = {
     id: beatId,
@@ -54,7 +77,13 @@ export async function POST(req: Request) {
   } as unknown as Beat;
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const stats = await fillReactAnimationOps(client, [beat], model ? { model } : {});
+  const stats = await fillReactAnimationOps(client, [beat], {
+    ...(model ? { model } : {}),
+    ...(source ? { sourceByBeatId: { [beatId]: source } } : {}),
+    ...(refineTimeBudgetMs ? { refineTimeBudgetMs } : {}),
+    // Optional: draw it as an OPENING beat is drawn (no refine calls; see ReactAnimationFillOptions).
+    ...(body.blocksPlayback === true ? { blocksPlayback: true } : {}),
+  });
 
   const op = (beat.draw?.ops ?? []).find((o) => o.kind === "reactAnimation") as
     | { code?: string; assetIds?: string[]; status?: string; error?: string; critique?: unknown; model?: string; trial?: unknown }

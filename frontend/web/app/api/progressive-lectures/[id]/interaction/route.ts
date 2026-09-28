@@ -96,5 +96,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       console.log(`[timing] kind=stall-risk session=${id} playhead=${requestedPlayhead} next=${upcoming?.state ?? "missing"}`);
     }
   }
-  return NextResponse.json({ ok: true, adapted: adaptive, planRevision: next.planRevision, frozenThrough: next.frozenThrough });
+  // A strict-source lesson records only pacing notes, so "more examples" or "go deeper" can leave
+  // the plan untouched (lib/progressiveLectureStore.ts). Say what really happened, not what was asked.
+  const adapted = adaptive && next.planRevision !== session.planRevision;
+  return NextResponse.json({ ok: true, adapted, planRevision: next.planRevision, frozenThrough: next.frozenThrough });
 }

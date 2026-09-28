@@ -106,7 +106,8 @@ test("the pipeline's summary is derived from the profile, not guessed again", ()
   assert.equal(snapshotFrom(emptyProfile("t"), 1).expertise, "beginner");
   assert.equal(snapshotFrom(emptyProfile("t"), 3).expertise, "intermediate");
   const expert = snapshotFrom({ ...emptyProfile("t"), objective: "interview", preferredStyle: "worked examples, step by step" }, 5);
-  assert.deepEqual([expert.expertise, expert.depth, expert.goal, expert.codeExamples, expert.preferredExamples], ["advanced", "deep", "professional", true, "worked"]);
+  // A level sets expertise, never length: an expert gets expert teaching, not a longer lesson.
+  assert.deepEqual([expert.expertise, expert.depth, expert.goal, expert.codeExamples, expert.preferredExamples], ["advanced", "balanced", "professional", true, "worked"]);
 });
 
 test("memory stays bounded, keeping the most recent", () => {

@@ -9,11 +9,13 @@ import {
   structurePdfPage,
   type PdfDetectedFigure,
   type PdfTextSpan,
+  isBoilerplateText,
 } from "@/lib/pdfLessonPipeline";
 import { cropFigurePagesWithPython, renderPdfWithPython, VISION_DPI, type PythonCrop } from "@/lib/pdfPythonPipeline";
 import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
 import { figureScope } from "@/lib/figureDetectionScope";
 import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
+import { locateBlocks, ocrLines, type OcrLine } from "@/lib/ocrLayout";
 import {
   planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, isUsableRegion, isTranscriptionRefusal,
   TRANSCRIBE_PROMPT, type PageRegion, type TranscriptPart,
@@ -96,6 +98,24 @@ const VISION_DETAIL = process.env.PDF_VISION_DETAIL === "low" ? "low" : "high";
 
 /** Compact list of the page's TEXT rectangles (normalized), so the model excludes body text and
  *  returns figure boxes that live in the gaps between text — not paragraphs mistaken for figures. */
+/** A scanned page's transcribed blocks, each with its box on the page where its lines were found. */
+async function placeTranscribedBlocks<B extends { text: string; pageNumber: number }>(
+  blocks: B[],
+  pageLines: Map<number, Promise<OcrLine[] | null>>,
+): Promise<Array<B & { bbox?: { x: number; y: number; width: number; height: number } }>> {
+  const placed: Array<B & { bbox?: { x: number; y: number; width: number; height: number } }> = [...blocks];
+  for (const [pageNumber, pending] of pageLines) {
+    const lines = await pending;
+    if (!lines?.length) continue;
+    const indices = blocks.flatMap((block, index) => (block.pageNumber === pageNumber ? [index] : []));
+    const boxes = locateBlocks(indices.map((index) => blocks[index]), lines);
+    indices.forEach((index, at) => {
+      if (boxes[at]) placed[index] = { ...blocks[index], bbox: boxes[at] };
+    });
+  }
+  return placed;
+}
+
 function textRegionsHint(textRegions: Array<{ x: number; y: number; width: number; height: number }>): string {
   if (!textRegions.length) return "";
   const boxes = textRegions
@@ -320,7 +340,12 @@ async function cropRegionForVision(
     surface
       .getContext("2d")
       .drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
-    return surface.toBuffer("image/jpeg", 0.82);
+    /*
+     * @napi-rs/canvas takes JPEG quality on a 0-100 scale. This passed 0.82 — read as quality ~1 —
+     * so the exact area the student dragged reached the vision model as a blocky 3 KB smear (a
+     * 400×400 test crop: 2.8 KB at "0.82", 15.9 KB at 82), and small print in it could not be read.
+     */
+    return surface.toBuffer("image/jpeg", 82);
   } catch (error) {
     console.error(`[parse-pdf] region crop failed: ${error instanceof Error ? error.message : "unknown error"}`);
     return null;
@@ -1082,6 +1107,17 @@ async function parsePdfRequest(req: NextRequest) {
    * that request is already served by the whole-document lecture.
    */
   const extractedBlocks = pageResults.flatMap((page) => page.blocks);
+  /*
+   * IS THERE ANY REAL TEXT? A scanned book page has no text layer, but the figure detector still adds
+   * a "visual" block per page ("Figure 19.2. Figure 19.3" — the captions it read off the pixels). The
+   * scan test counted those, so a scan with figures looked like a document with text: nothing was
+   * transcribed, and the lesson had two captions to teach from. Only text-layer blocks count, and a
+   * page with almost none of it (a stray page number) is read like a scan.
+   */
+  const textLayerChars = extractedBlocks
+    .filter((block) => block.role !== "visual" && block.type !== "visual")
+    .reduce((sum, block) => sum + (block.text ?? "").replace(/\s+/g, "").length, 0);
+  const scanned = textLayerChars < 60 * Math.max(1, renderedPages.length);
 
   /*
    * A document with NO extractable text must be read, not refused.
@@ -1107,11 +1143,14 @@ async function parsePdfRequest(req: NextRequest) {
   const requested = planTranscription(scopedPages, regions, pagesReachModelAsImages);
   const transcriptionPlan = requested.length > 0
     ? requested
-    : extractedBlocks.length === 0
+    : scanned
       // No text at all: read every page regardless of cost. `blocksFromTranscript` is the only
       // source of contentBlocks for a scan, and without them the upload is refused outright.
       ? planTranscription(renderedPages.map((page) => page.pageNumber), [])
       : [];
+  // Line positions for each whole scanned page, read beside its transcription (lib/ocrLayout.ts),
+  // so the source panel can box the passage being taught. Never awaited on a page with a text layer.
+  const pageLines = new Map<number, Promise<OcrLine[] | null>>();
   const transcriptParts: TranscriptPart[] = client && transcriptionPlan.length > 0
     ? (await mapLimit(transcriptionPlan, PAGE_CONCURRENCY, async (target): Promise<TranscriptPart | null> => {
         const page = renderedPages.find((p) => p.pageNumber === target.page);
@@ -1119,6 +1158,7 @@ async function parsePdfRequest(req: NextRequest) {
 
         // A page rendered without a PNG cannot be read; skip it rather than crop nothing.
         if (!page.png) return null;
+        if (scanned && !target.rect && !pageLines.has(target.page)) pageLines.set(target.page, ocrLines(page.png));
         let png: Buffer = page.png;
         if (target.rect) {
           const box = pixelRect(target.rect, page.width, page.height);
@@ -1230,12 +1270,14 @@ async function parsePdfRequest(req: NextRequest) {
   }
 
   const contentBlocks = [
-    ...extractedBlocks,
+    // On a scan the figure detector's caption-only "visual" blocks repeat what the transcript now
+    // carries properly (its own caption blocks) and became slides called "Figure 19.3".
+    ...(scanned ? extractedBlocks.filter((block) => block.role !== "visual" && block.type !== "visual") : extractedBlocks),
     // Blocks read off the pixels, used when extraction found nothing at all. On a document that
     // does have text, the transcript is still carried separately as the focus passage — it does not
     // need to be duplicated into the block list as well.
-    ...(extractedBlocks.length === 0
-      ? blocksFromTranscript(transcriptParts)
+    ...(scanned
+      ? await placeTranscribedBlocks(blocksFromTranscript(transcriptParts), pageLines)
       // A DRAGGED AREA always becomes a block of its own, headed "Page N (selected area)". Without
       // one, a lecture "from this area" had nothing to be scoped to but the whole page's blocks —
       // so it taught the whole page (lib/beatSourceScope.ts `blocksForSelection`).
@@ -1254,11 +1296,18 @@ async function parsePdfRequest(req: NextRequest) {
   }
   applyGlobalSourceOrder(contentBlocks);
 
-  const title =
-    metadataTitle ||
-    titleFromText(pageResults[0]?.text ?? "") ||
-    fileObj.name.replace(/\.pdf$/i, "").replace(/[-_]+/g, " ").trim();
   const lessonPlan = buildPdfLessonPlan(contentBlocks, assets);
+  /*
+   * Named from the first real section, not the first line of page 1: a printed book's first line is
+   * its publisher header, and a lesson on photosynthesis was titled "Cambridge University Press" —
+   * the name its opening slide then carried. The plan has already dropped that page furniture.
+   */
+  const firstLine = titleFromText(pageResults[0]?.text ?? "");
+  const title =
+    (metadataTitle && !isBoilerplateText(metadataTitle) ? metadataTitle : "") ||
+    lessonPlan.beats[0]?.title ||
+    (isBoilerplateText(firstLine) ? "" : firstLine) ||
+    fileObj.name.replace(/\.pdf$/i, "").replace(/[-_]+/g, " ").trim();
   const sourceDocument: SuprnotesLessonInput = {
     schemaVersion: "suprnotes.lesson_input.v1",
     source: {

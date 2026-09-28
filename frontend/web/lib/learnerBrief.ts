@@ -52,6 +52,33 @@ const VISUAL_GUIDANCE: Record<Band, string> = {
     "Audience is an expert: a denser board is fine; prefer precise notation and symbols over pictograms, and show a comparison or a variant where it sharpens the point.",
 };
 
+/*
+ * THE SAME PITCH, FOR A STRICT SOURCE LESSON.
+ *
+ * The expertise-reversal guidance above changes presentation — but three of its six lines do it by
+ * ADDING material: a worked example before the rule, a faded example, a comparison or a variant.
+ * In a lesson that may say only what its source says, those are instructions to invent. The strict
+ * lines keep what the research is about (how much is unpacked, how it is sequenced, how dense the
+ * board is) and draw every example from the source or not at all.
+ */
+const STRICT_SCRIPT_GUIDANCE: Record<Band, string> = {
+  novice:
+    "Novice: keep to the source's own words and order; say what each source term means the first time it appears, using the source's own wording; one idea per sentence. Use an example only where the source gives one — never make one up.",
+  intermediate:
+    "Intermediate: follow the source's order and connect each of its sentences to the last; define only the source's new terms; use only the source's own examples.",
+  expert:
+    "Expert: state the source's points precisely and briskly, without padding; add nothing the source does not state.",
+};
+
+const STRICT_VISUAL_GUIDANCE: Record<Band, string> = {
+  novice:
+    "Audience is a novice: label every part the source names, in the source's own words, build the board up one step per sentence, and change one thing at a time.",
+  intermediate:
+    "Audience is intermediate: label the parts the source names and group what the source groups.",
+  expert:
+    "Audience is an expert: a denser board is fine, but every element and label must come from the source.",
+};
+
 /** Profile concepts that this beat touches, so the brief names only what matters here. */
 function overlapping(concepts: string[], beatText: string): string[] {
   const words = new Set(conceptKey(beatText).split(" ").filter((w) => w.length > 3));
@@ -67,8 +94,16 @@ export function learnerBrief(
   beat: { title: string; objective?: string },
   purpose: "script" | "visual",
   depth: DepthLevel = resolveDepth(profile),
+  options: { strict?: boolean } = {},
 ): string {
   const level = band(depth);
+  /*
+   * Strict: the pitch only. The profile-concept lines below re-teach prerequisites ("re-establish
+   * it briefly"), correct misconceptions ("show why this is wrong") and skip what they know ("do not
+   * re-teach it") — each of which changes WHAT is taught, and in a strict lesson the source alone
+   * decides that.
+   */
+  if (options.strict) return cap(purpose === "script" ? STRICT_SCRIPT_GUIDANCE[level] : STRICT_VISUAL_GUIDANCE[level]);
   const beatText = `${beat.title} ${beat.objective ?? ""}`;
   const parts = [purpose === "script" ? SCRIPT_GUIDANCE[level] : VISUAL_GUIDANCE[level]];
 

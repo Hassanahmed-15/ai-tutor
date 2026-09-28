@@ -59,6 +59,35 @@ export function depthBudget(depth: string | undefined): DepthBudget {
 }
 
 /**
+ * A STRICT BOARD IS AS LONG AS ITS SOURCE, NOT AS LONG AS THE SLIDER.
+ *
+ * `depthBudget` asks every board for 260-360 words ("balanced"). The "Energy transfer" section of
+ * the reported textbook page is about 75 words, labels included; a strict script asked for four
+ * times its source has exactly one way to comply, and it took it — outside steps, an analogy, a
+ * use. Told to say ONLY what the source says, a model needs room to explain each sentence once in
+ * plain words and to point at the figure, which measured at about 1.6 words per source word plus a
+ * sentence of framing. Hence clamp(1.6 × sourceWords + 30, 60, the depth's ceiling): a thin section
+ * gets a short board, a long one still never exceeds what the student's depth setting allows, and
+ * the floor keeps a one-line section (a caption, a formula) a real explanation rather than a blurt.
+ *
+ * Also fewer movements: a strict board follows the source's own order rather than building its
+ * own arc of intuition, mechanism and example, which is where invented material came in.
+ *
+ * Shorter scripts are also faster: output tokens are the bulk of a script call's time.
+ */
+export function strictDepthBudget(sourceWords: number, budget: DepthBudget): DepthBudget {
+  const ceiling = budget.wordRange[1];
+  const words = Number.isFinite(sourceWords) ? Math.max(0, sourceWords) : 0;
+  const target = Math.round(Math.min(ceiling, Math.max(60, 1.6 * words + 30)));
+  const floor = Math.min(target, Math.max(40, Math.round(target * 0.6)));
+  return {
+    wordRange: [floor, target],
+    movements: [1, 2],
+    boardMs: Math.round(budget.boardMs * (target / Math.max(1, ceiling))),
+  };
+}
+
+/**
  * The number of boards, from the concepts the planner actually found.
  *
  * `planned` is however many distinct concepts the outline identified. This function does not

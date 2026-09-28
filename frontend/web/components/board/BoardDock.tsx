@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  Check,
   ChevronLeft,
   ChevronRight,
   Eraser,
@@ -61,6 +62,21 @@ export interface BoardDockProps {
    */
   onSummarize?: () => void;
   summaryUnlocked?: boolean;
+  /**
+   * WIDE: the dock becomes the screen's only bar, spanning the full width — `leading` (leave),
+   * transport, `center` (the ask input, which takes the free space), tools, `trailing` (status).
+   * The source-document lesson uses it so the header and a separate chat row can go, and the
+   * source and board get the height.
+   */
+  wide?: boolean;
+  /**
+   * "Got it": the student's own signal that the question is answered. Understanding is decided by
+   * this button alone — the lesson ends here rather than playing boards the student no longer needs.
+   */
+  onUnderstood?: () => void;
+  leading?: React.ReactNode;
+  center?: React.ReactNode;
+  trailing?: React.ReactNode;
 }
 
 export function BoardDock(props: BoardDockProps) {
@@ -82,8 +98,10 @@ export function BoardDock(props: BoardDockProps) {
   const marking = props.tool !== "none";
 
   return (
-    <div className="pointer-events-auto flex shrink-0 items-center justify-center gap-2 px-3 pb-3 pt-2">
-      <div className="flex items-center gap-1 rounded-2xl border border-white/10 bg-[#0d0f14]/95 p-1.5 shadow-2xl backdrop-blur-xl">
+    <div className={`pointer-events-auto flex shrink-0 items-center justify-center gap-2 px-2 pb-2 sm:px-3 sm:pb-3 ${props.wide ? "pt-0" : "pt-2"}`}>
+      <div className={`flex max-w-full items-center gap-1 rounded-2xl border border-white/10 bg-[#0d0f14]/95 p-1.5 shadow-2xl backdrop-blur-xl ${props.wide ? "w-full" : ""}`}>
+        {props.leading}
+        {props.leading && <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />}
         <DockButton
           onClick={props.onPrevious}
           disabled={!props.canGoPrevious}
@@ -96,7 +114,7 @@ export function BoardDock(props: BoardDockProps) {
         {/* The primary action, and the only one that is always labelled. */}
         <button
           onClick={props.onTogglePlay}
-          className="flex h-11 items-center gap-2 rounded-xl bg-white px-5 text-[0.9rem] font-semibold text-[#0d0f14] transition hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          className="flex h-11 items-center gap-1.5 rounded-xl bg-white px-3 text-[0.9rem] font-semibold text-[#0d0f14] transition hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 sm:gap-2 sm:px-5"
           aria-label={props.playing ? "Pause the lecture" : "Play the lecture"}
         >
           {props.playing ? <Pause size={17} fill="currentColor" /> : <Play size={17} fill="currentColor" />}
@@ -108,6 +126,9 @@ export function BoardDock(props: BoardDockProps) {
         </DockButton>
 
         <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />
+
+        {props.center && <div className="min-w-0 flex-1">{props.center}</div>}
+        {props.center && <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />}
 
         {/* Progressive disclosure: one button, not four, until the student wants to mark up. */}
         <div className="relative" ref={toolsRef}>
@@ -172,6 +193,18 @@ export function BoardDock(props: BoardDockProps) {
           </button>
         )}
 
+        {props.onUnderstood && (
+          <button
+            onClick={props.onUnderstood}
+            title="I understand this — end the lesson"
+            aria-label="Got it — I understand, end the lesson"
+            className="flex h-11 shrink-0 items-center gap-1.5 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3 text-[0.84rem] font-semibold text-emerald-200 transition hover:bg-emerald-400/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          >
+            <Check size={16} />
+            <span>Got it</span>
+          </button>
+        )}
+
         {props.onSummarize && (
           <button
             onClick={props.onSummarize}
@@ -179,10 +212,10 @@ export function BoardDock(props: BoardDockProps) {
             data-summarize-lecture=""
             title={props.summaryUnlocked ? "See the whole lecture on one slide" : "Finish the whole lecture to unlock the one-slide summary"}
             aria-label={props.summaryUnlocked ? "Summarize the lecture in one slide" : "Summarize the lecture — unlocks when you finish the lecture"}
-            className="flex h-11 items-center gap-2 rounded-xl border border-white/10 px-3.5 text-[0.84rem] font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+            className="flex h-11 w-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-0 text-[0.84rem] font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 sm:w-auto sm:px-3.5"
           >
             <FileText size={16} />
-            <span>Summarize</span>
+            <span className="hidden sm:inline">Summarize</span>
           </button>
         )}
 
@@ -196,11 +229,16 @@ export function BoardDock(props: BoardDockProps) {
             {props.micOn ? <Mic size={19} /> : <MicOff size={19} />}
           </DockButton>
         )}
+
+        {/* Wide mode leaves "Part N of M" to the board's own strip, which already names it. */}
+        {props.trailing}
       </div>
 
-      <p className="hidden text-[0.8rem] tabular-nums text-white/40 sm:block" aria-live="polite">
-        {props.positionLabel}
-      </p>
+      {!props.wide && (
+        <p className="hidden text-[0.8rem] tabular-nums text-white/40 sm:block" aria-live="polite">
+          {props.positionLabel}
+        </p>
+      )}
     </div>
   );
 }

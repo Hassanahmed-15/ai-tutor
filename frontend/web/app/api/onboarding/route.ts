@@ -62,6 +62,9 @@ export function mergeProfile(body: Record<string, unknown>, existing: UserDoc["p
     captions: has("captions") ? tri(body.captions) : existing?.captions ?? null,
     slowerPace: has("slowerPace") ? tri(body.slowerPace) : existing?.slowerPace ?? null,
     simplerLanguage: has("simplerLanguage") ? tri(body.simplerLanguage) : existing?.simplerLanguage ?? null,
+    teachingDepth: has("teachingDepth")
+      ? (["quick", "balanced", "deep", "adaptive"].includes(body.teachingDepth as string) ? body.teachingDepth as "quick" | "balanced" | "deep" | "adaptive" : null)
+      : existing?.teachingDepth ?? null,
     notes: has("notes")
       ? (typeof body.notes === "string" ? body.notes.trim().slice(0, 1000) || null : null)
       : existing?.notes ?? null,

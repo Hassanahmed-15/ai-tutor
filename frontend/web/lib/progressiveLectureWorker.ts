@@ -33,20 +33,38 @@ import type {
   ProgressiveLectureTask,
   ProgressiveVisualKind,
 } from "./progressiveLectureTypes";
-import { fillReactAnimationOps, type ReactAnimationFillStats } from "./reactAnimationGen";
+import { fillReactAnimationOps, type ReactAnimationFillOptions, type ReactAnimationFillStats } from "./reactAnimationGen";
 import { animationModelLabel, type AnimationModel } from "./animationModels";
 import { animationTierRoutingEnabled, classifyAnimationTier, modelForTier, type TierDecision } from "./animationTier";
-import { fillSpecBoardOps } from "./specBoardGen";
+import { fillSpecBoardOps, repeatsCode } from "./specBoardGen";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
-import { asksForCode } from "./codeSpec";
+import { isStrictSource, sourceScopeInstruction } from "./sourceScope";
+import { asksForCode, isProgrammingTopic } from "./codeSpec";
 import { getDocumentImages } from "./pageImageStore";
 import { buildImageParts, type ContentPart } from "./fullDocumentContext";
-import { depthBudget } from "./lectureDepth";
+import { depthBudget, strictDepthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
-import { buildProgressivePlan, clean } from "./progressivePlan";
+import { buildProgressivePlan, clean, sourceRoleFor } from "./progressivePlan";
+import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
+import type { BeatSourceGrounding } from "./sourceGrounding";
+import {
+  beatNeedsBoard,
+  beatSourceGrounding,
+  cleanSourceText,
+  expandedCropRect,
+  groundBeatToSource,
+  isCheckpointBeat,
+  questionAnswerBlockIds,
+  sourceFigureRegion,
+  sourceScriptFromBlocks,
+  sourceWordCount,
+  strictAdaptationNotes,
+  strictRepetitionFindings,
+  ungroundedScriptSentences,
+} from "./strictSourceScript";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
 
@@ -133,7 +151,8 @@ function codeRequestText(input: ProgressiveLectureInput): string {
 
 /** The student wants to see code: they said so, or their confirmed profile asks for code examples. */
 function requestedCode(input: ProgressiveLectureInput): boolean {
-  return input.learnerProfile.codeExamples || asksForCode(codeRequestText(input));
+  // A programming topic counts even when the student never typed "code" (see isProgrammingTopic).
+  return input.learnerProfile.codeExamples || asksForCode(codeRequestText(input)) || isProgrammingTopic(codeRequestText(input));
 }
 
 async function generateBeat(userId: string, sessionId: string, sequence: number, revision: number, queuedMs?: number): Promise<void> {
@@ -169,15 +188,17 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
   let costUsd = 0;
   let error: string | null = null;
   let scriptMs = 0;
+  let source: BeatSource | null = null;
   try {
     const input = await progressiveInput(session);
-    const generated = await generateOneBeat(input, session, planned);
+    source = beatSourceFor(input, session, planned);
+    const generated = await generateOneBeat(input, session, planned, source);
     beat = generated.beat;
     costUsd = generated.costUsd;
     scriptMs = generated.scriptMs;
   } catch (cause) {
     error = messageFor(cause);
-    beat = deterministicFallbackBeat(planned, session, sequence);
+    beat = deterministicFallbackBeat(planned, session, sequence, source);
   }
 
   const latest = await progressiveBeat(sessionId, sequence);
@@ -187,6 +208,9 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
     ...baseDoc,
     state: "playable",
     beat,
+    // The board step reads the beat's source from here rather than loading the input again.
+    ...(source?.grounding ? { sourceGrounding: source.grounding } : {}),
+    ...(source?.figure ? { sourceFigure: source.figure } : {}),
     fallbackUsed: Boolean(error),
     costUsd: baseDoc.costUsd + costUsd,
     error,
@@ -209,39 +233,128 @@ function teachingPlanFrom(persona: string | undefined): string {
   return line ? line.slice("How to teach them: ".length).trim().slice(0, 240) : "";
 }
 
+/**
+ * EVERYTHING ONE BEAT MAY TEACH FROM, decided once, for its script and for its board.
+ *
+ * Before this, the script was scoped to the beat's blocks and the board to nothing at all: the
+ * board generator was handed a title, a script and "draw the actual subject", and drew the textbook
+ * page's "Energy transfer" section as an invented leaf with its own labels. Script and board now
+ * answer to the same record (lib/strictSourceScript.ts beatSourceGrounding), and it is stored on
+ * the beat's document so the board step needs no second read of the input.
+ */
+type BeatSource = {
+  /** "Strictly from the source" — the student's choice, on a lesson that has a source to be strict about. */
+  strict: boolean;
+  /** The beat's own source, handed to its board: own blocks, printed labels, caption. */
+  grounding: BeatSourceGrounding | null;
+  /**
+   * What the SCRIPT may draw on, and what its grounding gate checks against: the beat's own source,
+   * plus — for a board that reads the source's Questions box — the earlier sections on the same page,
+   * where the answers are. Null when there is nothing to check against (a typed topic, or a scanned
+   * page with no text layer, whose images are its only source).
+   */
+  scriptGrounding: BeatSourceGrounding | null;
+  /** The Questions board's answer sections, as text for the prompt. */
+  answerText: string;
+  /** How many words the beat's own source says, which sizes a strict script. */
+  words: number;
+  /** The beat's source as speakable text: a strict lesson's floor when generation fails. */
+  spoken: string;
+  /** The rung the script is written to (the source rungs, in strict mode). */
+  role: TeachingRole | undefined;
+  figure?: ProgressiveBeatDoc["sourceFigure"];
+};
+
+/** Below this, a text layer is too thin to police a script against: a scanned page is its images. */
+const MIN_GROUNDING_WORDS = 20;
+
+function beatSourceFor(input: ProgressiveLectureInput, session: ProgressiveLectureSessionDoc, planned: ProgressiveBeatPlan): BeatSource {
+  const document = isSuprnotesLessonInput(input.suprnotes) ? input.suprnotes : null;
+  const blocks = document?.contentBlocks ?? [];
+  const wholeText = [
+    document ? scopedBlockText(blocks, blocks.map((block) => block.id)) : "",
+    input.context,
+    input.transcript,
+  ].filter((part): part is string => Boolean(part?.trim())).join("\n\n");
+  // Strict needs something to be strict ABOUT. A typed topic has no source, so it is never strict.
+  const strict = isStrictSource(input.sourceScope) && Boolean(document || wholeText.trim());
+  const grounding = document ? beatSourceGrounding(blocks, planned.sourceBlockIds, strict, document.assets ?? []) : null;
+  // A beat planned without blocks of its own is still fenced by the lesson's whole source.
+  const fence = grounding ?? (strict && wholeText.trim() ? { text: cleanSourceText(wholeText), labels: [], strict: true } : null);
+  const role: TeachingRole | undefined = strict
+    ? planned.role === "questions" || planned.role === "source"
+      ? planned.role
+      : document ? sourceRoleFor(document, planned.title, planned.sourceBlockIds) : scriptRoleFor(planned.role, true)
+    : planned.role;
+  const answerIds = strict && role === "questions" ? questionAnswerBlockIds(session.plan, planned.sequence, blocks) : [];
+  const answerText = answerIds.length ? cleanSourceText(scopedBlockText(blocks, answerIds)) : "";
+  const scriptSource = fence && answerText ? { ...fence, text: `${fence.text}\n\n${answerText}` } : fence;
+  const checkable = scriptSource && scriptSource.text.split(/\s+/).filter(Boolean).length >= MIN_GROUNDING_WORDS ? scriptSource : null;
+  const figure = document && input.documentId ? sourceFigureRegion(blocks, planned.sourceBlockIds) : null;
+  return {
+    strict,
+    grounding,
+    scriptGrounding: strict ? checkable : null,
+    answerText,
+    words: grounding ? sourceWordCount(blocks, planned.sourceBlockIds) : 0,
+    spoken: grounding ? sourceScriptFromBlocks(blocks, planned.sourceBlockIds) : "",
+    role,
+    ...(figure && input.documentId ? { figure: { documentId: input.documentId, ...figure } } : {}),
+  };
+}
+
 async function generateOneBeat(
   input: ProgressiveLectureInput,
   session: ProgressiveLectureSessionDoc,
   planned: ProgressiveBeatPlan,
+  source: BeatSource,
 ): Promise<{ beat: Beat; costUsd: number; scriptMs: number }> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set.");
   const client = new OpenAI({ apiKey });
+  const strict = source.strict;
   /*
    * The word budget IS the board's dwell time: the player advances when narration ends and has no
    * other timer, so this number alone decides whether a concept stays up for forty seconds or two
    * minutes. The old 95-130 made the requested depth physically impossible — a worked example plus
    * its setup and interpretation does not fit in forty seconds of speech.
+   *
+   * A strict board is sized to its SOURCE instead (lib/lectureDepth.ts strictDepthBudget): asked
+   * for 300 words about a 75-word section, the only way to comply is to invent the other 225.
    */
-  const budget = depthBudget(input.learnerProfile.depth);
+  const budget = strict && source.words > 0
+    ? strictDepthBudget(source.words, depthBudget(input.learnerProfile.depth))
+    : depthBudget(input.learnerProfile.depth);
   const wordRange = `${budget.wordRange[0]}-${budget.wordRange[1]}`;
-  const isCheckpoint = planned.sequence > 0 && planned.sequence < session.plan.length - 1 && planned.sequence % 3 === 0;
+  const isCheckpoint = isCheckpointBeat(planned.sequence, session.plan.length, session.sourceType);
+  // The rung the script is written to, and the one its repetition audit judges it by.
+  const role = strict ? scriptRoleFor(source.role, true) : planned.role;
   /*
    * WHO THIS IS FOR. The full planning profile (what they know, are shaky on, and believe wrongly)
    * plus a brief for THIS beat pitched by level (lib/learnerBrief.ts). This used to be one line —
    * "use language for a beginner learner" — and nothing the student said while planning reached here.
+   *
+   * Strict keeps the pitch and drops the rest: the profile's prerequisite gaps, misconceptions to
+   * correct and background "to use for examples" each ask the script to teach something the source
+   * does not contain.
    */
   const learner = input.learner;
   const depth = learner ? resolveDepth(learner) : null;
   const learnerSection = learner && depth
-    ? `${learnerInstruction(learner, depth)}\nTHIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth)}`
+    ? strict
+      ? `THIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth, { strict: true })}`
+      : `${learnerInstruction(learner, depth)}\nTHIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth)}`
     : "";
   /*
    * WHO THEY ARE ACROSS LESSONS. The portrait Aria keeps of this student (lib/learnerModel.ts
    * personaForPrompt): interests to draw examples from, strengths not to re-teach, what is still
    * settling, and how to teach them. The planning profile above knows this topic; this knows the person.
+   *
+   * Not in a strict lesson. Every line of the portrait steers content — interests become examples,
+   * "strong on" skips source material the student chose to be taught, "how to teach them" asks for
+   * analogies — and a strict lesson's content is its source.
    */
-  const personaSection = input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : "";
+  const personaSection = !strict && input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : "";
   if (personaSection && planned.sequence === 0) console.log(`[persona] script prompt for ${session.id} carries the student portrait (${personaSection.length} chars)`);
 
   /*
@@ -261,19 +374,40 @@ async function generateOneBeat(
   const priorForAudit = priorDocs.map((doc) => ({
     title: doc.beat?.title ?? session.plan[doc.sequence]?.title ?? "",
     script: doc.beat?.script ?? "",
-    role: session.plan[doc.sequence]?.role,
+    role: strict ? scriptRoleFor(session.plan[doc.sequence]?.role, true) : session.plan[doc.sequence]?.role,
   }));
   const subject = subjectTerms(input.topic);
 
   /*
    * The page images this beat is built from. A scanned page has no extractable text, so these ARE
    * the source; the dragged crop travels with them, labelled as the subject.
+   *
+   * A STRICT beat with a real text layer is written from that text alone. A page carries several
+   * sections, and with the whole page in view the "Energy transfer" script taught the
+   * "Photosynthesis" paragraph and the Questions box printed beside it — content from other boards,
+   * which the repetition gate then flagged, and whose regeneration asked for NEW material. The text
+   * layer, with the figure's printed labels, is also the only reading of the page that is not a
+   * model's interpretation. Dropping the page images also removes ~765 input tokens per page from
+   * the call. A dragged selection keeps its images: its crop is the subject.
    */
-  const pageImages = beatPageImages(input, planned.sourceBlockIds);
-  const messagesFor = (repetitionFeedback?: Parameters<typeof buildBeatScriptMessages>[0]["repetitionFeedback"]): OpenAI.Chat.Completions.ChatCompletionMessageParam[] => {
+  const textOnly = strict && source.words >= MIN_GROUNDING_WORDS && !input.selection?.transcript.trim();
+  const pageImages = textOnly ? [] : beatPageImages(input, planned.sourceBlockIds);
+  // A Questions board is shown where the answers are, so it can name them without answering past them.
+  const context = [
+    sourceContext(input, planned.sourceBlockIds, strict),
+    source.answerText
+      ? `EARLIER SOURCE SECTIONS ON THIS PAGE — only for saying WHERE a question's answer is (quote them if they state it); never re-teach them:\n${source.answerText}`
+      : "",
+  ].filter(Boolean).join("\n\n");
+  const adaptation = strict ? strictAdaptationNotes(session.adaptationNotes) : session.adaptationNotes;
+  type ScriptFeedback = {
+    repetition?: Parameters<typeof buildBeatScriptMessages>[0]["repetitionFeedback"];
+    grounding?: Parameters<typeof buildBeatScriptMessages>[0]["groundingFeedback"];
+  };
+  const messagesFor = (feedback: ScriptFeedback = {}): OpenAI.Chat.Completions.ChatCompletionMessageParam[] => {
     const { system, user } = buildBeatScriptMessages({
       topic: input.topic,
-      planned,
+      planned: { ...planned, role },
       plan: session.plan.map(({ sequence, title, objective, role }) => ({ sequence, title, objective, role })),
       taught,
       wordRange,
@@ -282,12 +416,15 @@ async function generateOneBeat(
       learnerSection,
       personaSection,
       isCheckpoint,
-      adaptation: session.adaptationNotes,
-      sourceContext: sourceContext(input, planned.sourceBlockIds),
-      codeInstruction: codeInstruction(input, session, planned),
+      adaptation,
+      sourceContext: context,
+      sourceInstruction: strict && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      strict,
+      codeInstruction: codeInstruction(input, session, planned, strict),
       selectionScoped: Boolean(input.selection?.transcript.trim()),
       hasPageImages: pageImages.length > 0,
-      repetitionFeedback,
+      repetitionFeedback: feedback.repetition,
+      groundingFeedback: feedback.grounding,
     });
     if (pageImages.length === 0) return [{ role: "system", content: system }, { role: "user", content: user }];
     // Multimodal: the pages ride with the user message so the beat writer can read them.
@@ -298,10 +435,10 @@ async function generateOneBeat(
   };
   const scriptStartedAt = performance.now();
   let costAccum = 0;
-  const writeScript = async (repetitionFeedback?: Parameters<typeof messagesFor>[0]): Promise<GeneratedBeatPayload> => {
+  const writeScript = async (feedback?: ScriptFeedback): Promise<GeneratedBeatPayload> => {
     const completion = await client.chat.completions.create({
       model: MODEL,
-      messages: messagesFor(repetitionFeedback),
+      messages: messagesFor(feedback),
       response_format: { type: "json_object" },
       ...(isModernModel(MODEL) ? { max_completion_tokens: 2_000 } : { max_tokens: 2_000, temperature: 0.35 }),
     });
@@ -315,18 +452,44 @@ async function generateOneBeat(
    * whole-board overlap. A board that repeats is written again with the offending sentences quoted
    * back; if it still repeats, the repeated sentences are removed. Prompting asks the model not to
    * repeat; this is what makes sure it did not.
+   *
+   * In a strict lesson the source's own sentences are exempt (a Questions board and a "(part 2)"
+   * board re-read the page by design, and deleting them would drop required source content), and
+   * the fix asked for is deletion only (lib/strictSourceScript.ts strictRepetitionFindings).
+   *
+   * THE GROUNDING GATE (strict only). Every sentence is checked against the beat's source: one with
+   * two or more content words the source never uses is saying something the source does not. The
+   * opening beats hold up playback, so for them this never costs a model call — flagged sentences are
+   * deleted (they ride along only on a regeneration the repetition gate was paying for anyway).
+   * Later beats are written ahead of the student, so they get ONE regeneration with the flagged
+   * sentences quoted back; whatever is still flagged after that is deleted. Nothing ungrounded ships.
    */
-  const audit = (candidate: Beat) => auditBeat({ title: candidate.title, script: candidate.script, role: planned.role }, priorForAudit, subject, planned.sequence);
+  const gate = source.scriptGrounding;
+  const blocksPlayback = planned.sequence < session.starterBeatCount;
+  const audit = (candidate: Beat) => {
+    const findings = auditBeat({ title: candidate.title, script: candidate.script, role }, priorForAudit, subject, planned.sequence);
+    return gate ? strictRepetitionFindings(findings, gate.text) : findings;
+  };
+  const ungrounded = (candidate: Beat) => (gate ? ungroundedScriptSentences(candidate.script, gate) : []);
   let payload = await writeScript();
-  let beat = sanitizeGeneratedBeat(payload, planned, session);
+  let beat = sanitizeGeneratedBeat(payload, planned, session, isCheckpoint, role);
   let findings = audit(beat);
-  if (findings.length > 0) {
-    console.log(`[repetition] session=${session.id} seq=${planned.sequence} attempt=1 findings=${findings.length} :: ${findings.map((f) => describeFinding(f, [...priorForAudit, beat])).join(" | ")}`);
-    payload = await writeScript(findings.map((finding) => ({
-      finding,
-      matchedTitle: finding.matchBeatIndex !== undefined ? priorForAudit[finding.matchBeatIndex]?.title : undefined,
-    })));
-    beat = sanitizeGeneratedBeat(payload, planned, session);
+  const flagged = ungrounded(beat);
+  if (findings.length > 0 || (flagged.length > 0 && !blocksPlayback)) {
+    if (findings.length > 0) {
+      console.log(`[repetition] session=${session.id} seq=${planned.sequence} attempt=1 findings=${findings.length} :: ${findings.map((f) => describeFinding(f, [...priorForAudit, beat])).join(" | ")}`);
+    }
+    if (flagged.length > 0) {
+      console.log(`[grounding] session=${session.id} seq=${planned.sequence} attempt=1 ungrounded=${flagged.length} :: ${flagged.map((f) => `"${f.sentence.slice(0, 80)}" [${f.missing.slice(0, 4).join(",")}]`).join(" | ")}`);
+    }
+    payload = await writeScript({
+      repetition: findings.map((finding) => ({
+        finding,
+        matchedTitle: finding.matchBeatIndex !== undefined ? priorForAudit[finding.matchBeatIndex]?.title : undefined,
+      })),
+      grounding: flagged,
+    });
+    beat = sanitizeGeneratedBeat(payload, planned, session, isCheckpoint, role);
     findings = audit(beat);
     if (findings.length > 0) {
       const fixed = repairScript(beat.script, findings);
@@ -334,17 +497,39 @@ async function generateOneBeat(
       console.log(`[repetition] session=${session.id} seq=${planned.sequence} attempt=2 findings=${findings.length} repaired=${fixed.repaired} removed=${fixed.removed.length}`);
     }
   }
-  logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}`);
+  if (gate) {
+    const grounded = groundBeatToSource(beat, gate, {
+      sourceScript: source.spoken,
+      // A neutral bridge: the ordinary fallback promises "a concrete example" whenever a title says
+      // "try" or "practice", which a strict source may not have.
+      fallbackTransition: continuationPass(planned)
+        ? undefined
+        : planned.sequence > 0
+          ? `Next, the source turns to ${planned.title}.`
+          : openingSentence(undefined, session.topic),
+    });
+    if (grounded.removed.length > 0) {
+      console.log(`[grounding] session=${session.id} seq=${planned.sequence} deleted=${grounded.removed.length} starter=${blocksPlayback} :: ${grounded.removed.map((s) => `"${s.slice(0, 80)}"`).join(" | ")}`);
+    }
+    beat = grounded.beat;
+  }
+  logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}${strict ? ` strict=1 words=${wordRange}` : ""}`);
   // The board generators read this as AUDIENCE guidance, so the visual is pitched like the script.
-  if (learner && depth) beat.learnerBrief = learnerBrief(learner, planned, "visual", depth);
-  // The portrait's teaching plan reaches the boards too, through the same audience brief.
-  const teachingPlan = teachingPlanFrom(input.learnerPersona);
+  if (learner && depth) beat.learnerBrief = learnerBrief(learner, planned, "visual", depth, { strict });
+  // The portrait's teaching plan reaches the boards too, through the same audience brief — except
+  // in a strict lesson, where "how to teach them" is not the source.
+  const teachingPlan = strict ? "" : teachingPlanFrom(input.learnerPersona);
   if (teachingPlan) beat.learnerBrief = `${beat.learnerBrief ? `${beat.learnerBrief} ` : ""}From earlier lessons with this student: ${teachingPlan}`;
   return {
     beat,
     scriptMs: performance.now() - scriptStartedAt,
     costUsd: costAccum,
   };
+}
+
+/** A second or later board over one concept: it continues the explanation and gets no spoken bridge. */
+function continuationPass(planned: ProgressiveBeatPlan): boolean {
+  return (planned.conceptPass ?? 1) > 1;
 }
 
 /**
@@ -367,16 +552,26 @@ function previousConceptTitle(session: ProgressiveLectureSessionDoc, planned: Pr
  * aloud — the script is speech, so it WALKS THROUGH the code ("first it searches left or right…")
  * rather than reciting symbols.
  */
-function codeInstruction(input: ProgressiveLectureInput, session: ProgressiveLectureSessionDoc, planned: ProgressiveBeatPlan): string {
+function codeInstruction(input: ProgressiveLectureInput, session: ProgressiveLectureSessionDoc, planned: ProgressiveBeatPlan, strict = false): string {
   if (planned.visualKind === "code") {
     return "This beat's board shows the actual code listing (quoted from the source when the source contains it), highlighted as you speak. Walk through that code in order — what each part does and why — in plain spoken sentences; never read symbols, brackets or syntax aloud, and never put code in the script.";
   }
+  // A strict lesson shows code only where its source prints code; a snippet written "because it
+  // teaches the topic" is content from outside the source.
+  if (strict) return "Do not include code unless this board's own source contains it; then quote it exactly and never write code of your own.";
   return requestedCode(input) || session.learnerProfile.codeExamples
     ? "Include a code snippet only when it genuinely teaches the topic."
     : "Do not include code.";
 }
 
-function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: ProgressiveBeatPlan, session: ProgressiveLectureSessionDoc): Beat {
+function sanitizeGeneratedBeat(
+  payload: GeneratedBeatPayload,
+  planned: ProgressiveBeatPlan,
+  session: ProgressiveLectureSessionDoc,
+  isCheckpoint: boolean,
+  /** The rung the script was written to, which decides which keyClaims it may establish. */
+  role: TeachingRole | undefined = planned.role,
+): Beat {
   const points = Array.isArray(payload.points)
     ? payload.points.filter((item): item is string => typeof item === "string").map(clean).filter(Boolean).slice(0, 4)
     : [];
@@ -391,10 +586,16 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   // objective, which is an instruction to the tutor (lib/boardBrief.ts).
   const boardPoints = points.length > 0 ? points : pointsFromScript(script);
   const rawKind = String(payload.slideKind ?? "");
-  const slideKind: SlideKind = ["intro", "definition", "checkpoint", "compare", "recap"].includes(rawKind)
+  const declaredKind: SlideKind = ["intro", "definition", "checkpoint", "compare", "recap"].includes(rawKind)
     ? rawKind as SlideKind
     : "intro";
-  const checkpoint = slideKind === "checkpoint" ? sanitizeCheckpoint(payload.checkpoint, planned) : undefined;
+  /*
+   * An uploaded source never gets a model-written quiz slide, even when the model sets one on its
+   * own: the source's own Questions boxes are its questions (lib/strictSourceScript.ts isCheckpointBeat).
+   */
+  const slideKind: SlideKind = declaredKind === "checkpoint" && !isCheckpoint && session.sourceType !== "prompt" ? "intro" : declaredKind;
+  const keyClaims = claimsAllowedFor(keyClaimsFrom(payload, script), subjectTerms(session.topic), role);
+  const checkpoint = slideKind === "checkpoint" ? sanitizeCheckpoint(payload.checkpoint, planned, script, keyClaims) : undefined;
   return {
     id: planned.id,
     title: planned.title,
@@ -403,7 +604,7 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
     prerequisiteConceptIds: planned.prerequisiteConceptIds ?? [],
     conceptPass: planned.conceptPass,
     conceptPasses: planned.conceptPasses,
-    keyClaims: claimsAllowedFor(keyClaimsFrom(payload, script), subjectTerms(session.topic), planned.role),
+    keyClaims,
     /*
      * Beat one opens the lecture rather than bridging from anything; either way the player treats
      * this as the sentence to start speaking on the title slide (lib/beatPresentation.ts).
@@ -431,32 +632,43 @@ function sanitizeGeneratedBeat(payload: GeneratedBeatPayload, planned: Progressi
   };
 }
 
-function sanitizeCheckpoint(value: unknown, planned: ProgressiveBeatPlan): CheckpointSpec {
+function sanitizeCheckpoint(value: unknown, planned: ProgressiveBeatPlan, script: string, keyClaims: string[]): CheckpointSpec {
   const raw = value && typeof value === "object" ? value as Record<string, unknown> : {};
   const options = Array.isArray(raw.options) ? raw.options.filter((v): v is string => typeof v === "string").slice(0, 3) : [];
   const keywords = Array.isArray(raw.acceptableKeywords)
     ? raw.acceptableKeywords.filter(Array.isArray).map((set) => set.filter((v): v is string => typeof v === "string")).filter((set) => set.length > 0)
     : [];
+  /*
+   * The fallbacks are what this board SAID, never the plan's objective. The objective is an
+   * instruction to the tutor — for a document, "Teach these source blocks completely and in order…"
+   * — and it was printed as the hint and revealed as "the answer" whenever the model left them out.
+   */
+  const said = keyClaims[0] || pointsFromScript(script, 1)[0] || planned.title;
   return {
     prompt: clean(raw.prompt) || `In your own words, what is the key idea in ${planned.title}?`,
     acceptableKeywords: keywords.length ? keywords : planned.title.split(/\s+/).slice(0, 2).map((word) => [word]),
     correctFeedback: clean(raw.correctFeedback) || "Yes — that captures the key idea.",
-    hintFeedback: clean(raw.hintFeedback) || `Think about this objective: ${planned.objective}`,
-    revealAnswer: clean(raw.revealAnswer) || planned.objective,
+    hintFeedback: clean(raw.hintFeedback) || `Look back at what this board said about ${planned.title}.`,
+    revealAnswer: clean(raw.revealAnswer) || said,
     options: options.length === 3 ? options : undefined,
     correctOption: Number.isInteger(raw.correctOption) ? Math.max(0, Math.min(2, Number(raw.correctOption))) : undefined,
   };
 }
 
-function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: ProgressiveLectureSessionDoc, sequence: number): Beat {
+function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: ProgressiveLectureSessionDoc, sequence: number, source?: BeatSource | null): Beat {
   /*
    * The model failed outright, so there is no written content — only the plan, whose objective is an
    * instruction to the tutor ("Open with a concrete puzzle…", "Define X plainly…"). That used to be
    * the board's first bullet AND the opening of what Aria said. Everything here is student-facing,
    * built from the beat's title and the topic: thin, but never the tutor's own notes read aloud.
+   *
+   * In a strict lesson the fallback is the source itself, read in order: "where it fits in the
+   * bigger picture" is a claim about the subject the source never made, and it was also the only
+   * brief the board got — so a failed script produced a board drawn from nothing at all.
    */
-  const script = `Let's look at ${planned.title}, and where it fits in ${session.topic}. Watch the board as we build it up, notice what changes and what stays the same, and connect each piece back to the bigger picture.`;
-  const points = [planned.title, `How it fits in ${session.topic}`];
+  const spoken = source?.strict ? source.spoken : "";
+  const script = spoken || `Let's look at ${planned.title}, and where it fits in ${session.topic}. Watch the board as we build it up, notice what changes and what stays the same, and connect each piece back to the bigger picture.`;
+  const points = spoken ? pointsFromScript(spoken) : [planned.title, `How it fits in ${session.topic}`];
   return {
     id: planned.id,
     title: planned.title,
@@ -476,6 +688,9 @@ function deterministicFallbackBeat(planned: ProgressiveBeatPlan, session: Progre
     slideKind: "intro",
     points,
     script,
+    ...(spoken ? { keyClaims: keyClaimsFrom({}, spoken) } : {}),
+    // Provenance survives a failed script: the source highlight, and the board's own source, key off it.
+    sourceBlockIds: planned.sourceBlockIds,
     draw: fallbackDraw(planned.title, points, planned.estimatedDurationMs),
   };
 }
@@ -521,7 +736,13 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
   // What the director made of this beat, when it was asked — reused to re-brief a refused board.
   let visualSpec: BeatVisualSpec | undefined;
   let visualForm: VisualForm | undefined;
-  if (client && session.sourceType === "prompt") {
+  /*
+   * A CHECKPOINT SLIDE HAS NO BOARD. The player shows the question slide in its place, so the board
+   * this used to generate — an animation with its critic and refine loop, 20-55 s — was never seen,
+   * and held the dispatch window back while it ran. The slide keeps its written placeholder draw.
+   */
+  const boardless = !beatNeedsBoard(candidate);
+  if (client && session.sourceType === "prompt" && !boardless) {
     const choiceStartedAt = performance.now();
     const selection = await chooseProgressiveVisual(client, candidate, planned.visualKind, sequence);
     visualChoiceMs = performance.now() - choiceStartedAt;
@@ -530,7 +751,8 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
     visualForm = selection.form;
     costUsd += selection.costUsd;
   }
-  console.error(`[progressive-worker] beat=${candidate.id} renderer-plan=${visualKind} provisional=${planned.visualKind}`);
+  if (boardless) visualKind = "live-svg";
+  console.error(`[progressive-worker] beat=${candidate.id} renderer-plan=${visualKind} provisional=${planned.visualKind}${boardless ? " (checkpoint slide: no board)" : ""}`);
   candidate.draw = premiumPlaceholder(candidate, visualKind);
   let success = visualKind === "live-svg";
   let error: string | null = null;
@@ -565,6 +787,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
         }
         console.log(`[animation-tier] session=${sessionId} seq=${sequence} tier=${tier.tier} model=${blocksPlayback ? STARTER_ANIMATION_MODEL : modelForTier(tier.tier).id} reason="${tier.reason}"`);
       }
+      const boardSource = visualKind === "react-animation" ? await boardSourceFor(session, planned, doc) : undefined;
       const result = await fillPremium(
         client,
         candidate,
@@ -574,6 +797,8 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
         blocksPlayback,
         tier && !blocksPlayback ? modelForTier(tier.tier) : undefined,
         visualKind === "code" ? await codeBoardSource(session, candidate.sourceBlockIds) : undefined,
+        boardSource,
+        visualKind === "code" ? await otherCodeFor(sessionId, sequence) : undefined,
       );
       // The single most expensive call in the pipeline — an animation generation plus its vision
       // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
@@ -584,6 +809,31 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       costUsd += result.costUsd;
       success = result.success;
       error = result.error;
+
+      /*
+       * NO CODE IS EVER SHOWN TWICE. Boards ahead of the student are generated in parallel, so two
+       * code boards can be written at the same moment without seeing each other. Re-checked here,
+       * against every other board's code as it stands NOW: a repeat gets one regeneration that sees
+       * all of it, and a board that still repeats is dropped — the rescue below gives the slide a
+       * different board rather than the same listing again.
+       */
+      if (visualKind === "code" && success) {
+        const code = codeOnBoard(candidate);
+        const others = await otherCodeFor(sessionId, sequence);
+        if (code && repeatsCode(code, others)) {
+          clearCodeBoard(candidate);
+          const retry = await fillPremium(client, candidate, visualKind, session.sourceType !== "prompt", sequence, blocksPlayback,
+            tier && !blocksPlayback ? modelForTier(tier.tier) : undefined, await codeBoardSource(session, candidate.sourceBlockIds), boardSource, others);
+          costUsd += retry.costUsd;
+          const second = codeOnBoard(candidate);
+          if (!retry.success || !second || repeatsCode(second, await otherCodeFor(sessionId, sequence))) {
+            clearCodeBoard(candidate, true);
+            success = false;
+            error = "code board repeated another board's code";
+            console.error(`[progressive-worker] beat=${candidate.id} code repeated an earlier board; dropped`);
+          }
+        }
+      }
 
       /*
        * A REFUSED BOARD DROPS TO A WRITTEN ONE — it does not leave the student a blank board.
@@ -604,13 +854,20 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
           isPhysical: false,
         };
         try {
+          // The beat's own source rides along (persisted on the doc by generateBeat): a strict
+          // rescue must stay inside it too, and an opening beat's rescue adds no critic call.
+          const rescueSource = boardSource ?? doc.sourceGrounding;
           const rescue = await rescueEmptyBoards(
             client,
             [candidate],
             new Map([[candidate.id, spec]]),
             new Map(visualForm ? [[candidate.id, visualForm]] : []),
+            { sources: rescueSource ? new Map([[candidate.id, rescueSource]]) : undefined, blocksPlayback },
           );
           costUsd += rescue.costUsd;
+          // The rescue may itself write a code board; it is held to the same rule.
+          const rescuedCode = codeOnBoard(candidate);
+          if (rescuedCode && repeatsCode(rescuedCode, await otherCodeFor(sessionId, sequence))) clearCodeBoard(candidate, true);
           if (hasUsableBoard(candidate)) {
             success = true;
             const board = candidate.draw?.ops.find((op) => ["structureScene", "chalkBoard", "plotBoard", "equationBoard", "codeBoard"].includes(op.kind))?.kind ?? "written";
@@ -813,34 +1070,50 @@ async function fillPremium(
   tierModel?: AnimationModel,
   /** The beat's own document text and pages, so a code board can quote the student's code verbatim. */
   source?: { text: string; images: ContentPart[]; request: string },
+  /**
+   * The beat's own source for an animated board — text, printed figure labels, caption, the
+   * figure's crop, and whether the lesson is strict. Before this the animation generator was given
+   * no source at all and drew the subject from general knowledge.
+   */
+  grounding?: BeatSourceGrounding,
+  /** Listings earlier code boards already showed — a new code board must not repeat them. */
+  priorCode?: string[],
 ) {
   if (!process.env.OPENAI_API_KEY) return { success: false, costUsd: 0, error: "OPENAI_API_KEY is not set." };
   if (kind === "react-animation" && process.env.REACT_ANIMATIONS_ENABLED !== "1") return disabled(kind);
   if (kind === "blackboard" && process.env.BLACKBOARD_GEN_ENABLED !== "1") return disabled(kind);
   if (kind === "manim" && process.env.MANIM_RENDER_ENABLED !== "1") return disabled(kind);
+  // The source travels under the shared contract (lib/sourceGrounding.ts), keyed by beat id.
+  const animationOptions: ReactAnimationFillOptions = {
+    animationIndexOffset: animationIndex,
+    refineTimeBudgetMs: blocksPlayback ? STARTER_REFINE_BUDGET_MS : undefined,
+    // An opening board gets every free gate but no refine call: the student is waiting on it.
+    ...(blocksPlayback ? { blocksPlayback: true } : {}),
+    ...(blocksPlayback
+      ? { model: { id: STARTER_ANIMATION_MODEL, label: animationModelLabel(STARTER_ANIMATION_MODEL) ?? STARTER_ANIMATION_MODEL } }
+      : tierModel
+        ? { model: tierModel }
+        : {}),
+    ...(grounding ? { sourceByBeatId: { [beat.id]: grounding } } : {}),
+  };
   const stats = kind === "react-animation"
-    ? await fillReactAnimationOps(client, [beat], {
-        animationIndexOffset: animationIndex,
-        refineTimeBudgetMs: blocksPlayback ? STARTER_REFINE_BUDGET_MS : undefined,
-        ...(blocksPlayback
-          ? { model: { id: STARTER_ANIMATION_MODEL, label: animationModelLabel(STARTER_ANIMATION_MODEL) ?? STARTER_ANIMATION_MODEL } }
-          : tierModel
-            ? { model: tierModel }
-            : {}),
-      })
+    ? await fillReactAnimationOps(client, [beat], animationOptions)
     : kind === "blackboard"
       ? await fillBlackboardOps(client, [beat], hasSource)
       : kind === "manim"
         ? await fillManimSceneOps(client, [beat])
         : kind === "structure"
           ? await fillStructureSceneOps(client, [beat])
-          : await fillSpecBoardOps(client, [beat], source
-            ? {
-                sourceByBeatId: new Map([[beat.id, source.text]]),
-                imagesByBeatId: new Map([[beat.id, source.images]]),
-                requestByBeatId: new Map([[beat.id, source.request]]),
-              }
-            : undefined);
+          : await fillSpecBoardOps(client, [beat], {
+              ...(source
+                ? {
+                    sourceByBeatId: new Map([[beat.id, source.text]]),
+                    imagesByBeatId: new Map([[beat.id, source.images]]),
+                    requestByBeatId: new Map([[beat.id, source.request]]),
+                  }
+                : {}),
+              ...(priorCode?.length ? { priorCodeByBeatId: new Map([[beat.id, priorCode]]) } : {}),
+            });
   return {
     success: stats.filled > 0,
     costUsd: stats.costUsd,
@@ -912,13 +1185,13 @@ async function failSession(session: ProgressiveLectureSessionDoc, error: unknown
  * within budget. The unscoped text stays as the fallback for a topic-only lecture, which has no
  * blocks to scope to.
  */
-function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]): string {
+function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[], strict = isStrictSource(input.sourceScope)): string {
   /*
    * The beat's own pages lead. `focus` (the student's question) is always included — it is short
    * and it is the one piece of context every beat needs — while the full-document text is used
    * only when there is nothing more specific, so it can no longer crowd out the beat's own pages.
    */
-  const scopedDocument = scopedDocumentText(input, sourceBlockIds);
+  const scopedDocument = cleanSourceText(scopedDocumentText(input, sourceBlockIds));
   // The dragged area leads every beat's context: it is what the lecture is ABOUT. (It used to be
   // dropped as soon as a beat had blocks of its own, since it travels as `transcript`.)
   const selected = selectionSection(input);
@@ -934,9 +1207,76 @@ function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]
           assets: (input.suprnotes.assets ?? []).filter((asset) => (asset.sourceBlockIds ?? []).some((id) => selected.has(id))),
         }
       : input.suprnotes;
-    parts.push(compactSuprnotesForPrompt(scoped));
+    /*
+     * A beat with blocks of its own gets ITS source only: its blocks (with their roles) and its
+     * figures' captions — not the whole-document plan twice over, the generation directives or the
+     * vision model's descriptions presented as source (lib/suprnotes.ts compactBeatSource).
+     */
+    parts.push(compactSuprnotesForPrompt(scoped, { scope: selected.size > 0 ? "beat" : "document", strict }));
   } else if (input.suprnotes) parts.push(JSON.stringify(input.suprnotes));
   return parts.filter((part): part is string => typeof part === "string" && Boolean(part.trim())).join("\n\n").slice(0, 18_000);
+}
+
+/**
+ * The beat's source for its animated board, with the figure cropped from its page when the page
+ * image is in reach.
+ *
+ * Read from the beat's own document, where the script step stored it — no second load of the input
+ * on the path to the first board. A beat written before that field existed rebuilds it once from
+ * the input (one blob read, only for those beats).
+ */
+async function boardSourceFor(session: ProgressiveLectureSessionDoc, planned: ProgressiveBeatPlan, doc: ProgressiveBeatDoc): Promise<BeatSourceGrounding | undefined> {
+  let grounding = doc.sourceGrounding;
+  let figure = doc.sourceFigure;
+  if (!grounding && session.sourceType !== "prompt" && planned.sourceBlockIds?.length) {
+    try {
+      const rebuilt = beatSourceFor(await progressiveInput(session), session, planned);
+      grounding = rebuilt.grounding ?? undefined;
+      figure = rebuilt.figure;
+    } catch (cause) {
+      console.error(`[progressive-worker] beat=${doc.beat?.id} could not rebuild its source:`, cause);
+    }
+  }
+  if (!grounding) return undefined;
+  const figureImage = figure ? await cropSourceFigure(figure) : undefined;
+  return figureImage ? { ...grounding, figureImage } : grounding;
+}
+
+/** Longest side of a figure crop handed to the board model: legible labels, bounded payload. */
+const FIGURE_CROP_MAX_PX = 1024;
+
+/**
+ * THE SOURCE'S OWN FIGURE, as an image the board can redraw.
+ *
+ * Cropped from the page image parse-pdf already rendered (the in-process page store — a miss is
+ * ordinary and silent, exactly as for the script's page images) to the figure's box grown by 8%,
+ * with @napi-rs/canvas, which parse-pdf already uses for the same job. No model call and no new
+ * dependency; a decode, a crop and a JPEG encode take milliseconds.
+ */
+async function cropSourceFigure(figure: NonNullable<ProgressiveBeatDoc["sourceFigure"]>): Promise<string | undefined> {
+  const page = getDocumentImages(figure.documentId)?.pages.find((candidate) => candidate.pageNumber === figure.pageNumber);
+  const base64 = page?.dataUrl.match(/^data:image\/[a-z+.-]+;base64,(.+)$/i)?.[1];
+  if (!base64) return undefined;
+  try {
+    const { createCanvas, loadImage } = await import("@napi-rs/canvas");
+    const image = await loadImage(Buffer.from(base64, "base64"));
+    const rect = expandedCropRect(figure.bbox, image.width, image.height, 0.08);
+    if (rect.width < 24 || rect.height < 24) return undefined;
+    const scale = Math.min(1, FIGURE_CROP_MAX_PX / Math.max(rect.width, rect.height));
+    const width = Math.max(1, Math.round(rect.width * scale));
+    const height = Math.max(1, Math.round(rect.height * scale));
+    const canvas = createCanvas(width, height);
+    const context = canvas.getContext("2d");
+    // White under the crop, so a transparent page render does not turn into a black JPEG.
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, width, height);
+    context.drawImage(image, rect.x, rect.y, rect.width, rect.height, 0, 0, width, height);
+    // Quality is 0-100 in @napi-rs/canvas (see the note in app/api/parse-pdf/route.ts).
+    return `data:image/jpeg;base64,${canvas.toBuffer("image/jpeg", 85).toString("base64")}`;
+  } catch (cause) {
+    console.error(`[progressive-worker] figure crop failed for page ${figure.pageNumber}: ${cause instanceof Error ? cause.message : "unknown error"}`);
+    return undefined;
+  }
 }
 
 /**
@@ -946,10 +1286,25 @@ function sourceContext(input: ProgressiveLectureInput, sourceBlockIds?: string[]
  * beat, and the caller falls back to the unscoped text for exactly that case. Silently widening to
  * the full document here would reintroduce the drift this function exists to stop.
  */
+/**
+ * The code every OTHER board of this lesson has put on screen — earlier and later, since boards
+ * ahead of the student are generated in parallel. Without it each code board was written alone and
+ * a "while loop" lesson showed the same count-to-five listing on three or four boards.
+ */
+async function otherCodeFor(sessionId: string, sequence: number): Promise<string[]> {
+  const docs = await progressiveBeats(sessionId);
+  return docs
+    .filter((doc) => doc.sequence !== sequence)
+    .sort((a, b) => a.sequence - b.sequence)
+    .flatMap((doc) => doc.beat?.draw?.ops ?? [])
+    .map((op) => (op.kind === "codeBoard" ? (op.spec as { code?: unknown } | undefined)?.code : undefined))
+    .filter((code): code is string => typeof code === "string" && code.trim().length > 0);
+}
+
 async function codeBoardSource(session: ProgressiveLectureSessionDoc, sourceBlockIds?: string[]) {
   const input = await progressiveInput(session);
   return {
-    text: sourceContext(input, sourceBlockIds),
+    text: sourceContext(input, sourceBlockIds, isStrictSource(input.sourceScope)),
     images: beatPageImages(input, sourceBlockIds),
     request: codeRequestText(input).trim(),
   };
@@ -994,3 +1349,27 @@ function scopedDocumentText(input: ProgressiveLectureInput, sourceBlockIds?: str
 function messageFor(error: unknown): string {
   return error instanceof Error ? error.message : "Progressive lecture generation failed.";
 }
+
+/** The listing on a beat's code board, if it has one. */
+function codeOnBoard(beat: Beat): string | null {
+  const op = beat.draw?.ops.find((item) => item.kind === "codeBoard");
+  const code = (op?.spec as { code?: unknown } | undefined)?.code;
+  return typeof code === "string" && code.trim() ? code : null;
+}
+
+/** Empty a beat's code board so it can be regenerated, or (`failed`) so it is never shown. */
+function clearCodeBoard(beat: Beat, failed = false): void {
+  for (const op of beat.draw?.ops ?? []) {
+    if (op.kind !== "codeBoard") continue;
+    const board = op as { spec?: unknown; status?: string; error?: string };
+    delete board.spec;
+    if (failed) {
+      board.status = "failed";
+      board.error = "repeated another board's code";
+    } else {
+      delete board.status;
+      delete board.error;
+    }
+  }
+}
+

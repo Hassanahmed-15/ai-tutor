@@ -5,6 +5,7 @@ import { sanitizeBeat } from "@/lib/drawSanitize";
 import { fillImageOps } from "@/lib/imageGen";
 import { fillBlackboardOps } from "@/lib/blackboardGen";
 import type { Beat } from "@/lib/lessonContent";
+import { STRICT_REMEDIATION_RULES, boardTextIsUngrounded, groundAnswer, strictSourceOfQuestion } from "@/lib/strictSourceAnswers";
 
 /**
  * "Explain this again" — a short, targeted 1-3 beat remediation mini-lesson grounded in ONE
@@ -35,28 +36,48 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "topic and question are required" }, { status: 400 });
   }
 
+  /*
+   * STRICT SOURCE. A question from a strict lecture's test carries the source sentences it was
+   * written from (app/api/generate-test/route.ts attaches them). The mini-lesson is then held to
+   * that text — its base prompt asks for "one concrete example", the exact invitation strict
+   * forbids — and its spoken sentences and board text are checked against it before they ship.
+   */
+  const strictSource = strictSourceOfQuestion(question);
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userMsg = JSON.stringify({
     topic,
     question: question.prompt,
     studentAnswer: studentAnswer || "(no answer given)",
     rubric: question.rubric,
+    ...(strictSource ? { SOURCE: strictSource } : {}),
   });
 
   try {
     const completion = await client.chat.completions.create({
       model: MODEL,
       messages: [
-        { role: "system", content: REMEDIATION_SYSTEM_PROMPT },
+        { role: "system", content: strictSource ? `${REMEDIATION_SYSTEM_PROMPT}\n\n${STRICT_REMEDIATION_RULES}` : REMEDIATION_SYSTEM_PROMPT },
         { role: "user", content: userMsg },
       ],
-      temperature: 0.5,
+      temperature: strictSource ? 0.2 : 0.5,
       max_tokens: 3000,
       response_format: { type: "json_object" },
     });
     const raw = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
     const rawBeats: unknown[] = Array.isArray(raw.beats) ? raw.beats : [];
-    const beats: Beat[] = rawBeats.map((b, i) => sanitizeBeat(b, i)).filter((b): b is Beat => b !== null);
+    let beats: Beat[] = rawBeats.map((b, i) => sanitizeBeat(b, i)).filter((b): b is Beat => b !== null);
+    if (strictSource) {
+      // The rubric's model answer was already held to the source, so it is part of what may be said.
+      const allowed = `${strictSource}\n${question.rubric?.modelAnswer ?? ""}\n${(question.rubric?.keyPoints ?? []).join("\n")}`;
+      beats = beats.flatMap((beat): Beat[] => {
+        const grounded = groundAnswer(beat.script, allowed);
+        if (!grounded.covered) return [];
+        const draw = beat.draw
+          ? { ...beat.draw, ops: beat.draw.ops.filter((op) => !("text" in op) || typeof op.text !== "string" || !boardTextIsUngrounded(op.text, allowed)) }
+          : undefined;
+        return [{ ...beat, script: grounded.script, ...(draw ? { draw } : {}) }];
+      });
+    }
     if (beats.length === 0) {
       return NextResponse.json({ error: "Could not generate a remediation lesson for this question." }, { status: 502 });
     }

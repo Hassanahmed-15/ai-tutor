@@ -15,7 +15,6 @@ import { LearnPage } from "@/components/pages/LearnPage";
 import { ViewerPage } from "@/components/pages/ViewerPage";
 import { AuthGate, useAuth } from "@/components/auth/AuthGate";
 import { VoiceTutor } from "@/components/voice/VoiceTutor";
-import { VoiceExploreButton } from "@/components/voice/VoiceExploreButton";
 
 /**
  * Central client-side router. Every page (marketing + the five lesson players) is a named
@@ -104,15 +103,5 @@ function VoiceModeSwitch({ children }: { children: React.ReactNode }) {
   const voiceFirst = profile?.accessibility === "blind" || profile?.accessibility === "low-vision";
 
   if (voiceFirst && !overridden) return <VoiceTutor onExit={() => setOverridden(true)} />;
-  /*
-   * The explore button rides alongside the normal app, not inside the voice-first replacement —
-   * that mode IS a voice session, and a second one would open a second microphone and a second
-   * Live socket competing for the same turn.
-   */
-  return (
-    <>
-      {children}
-      <VoiceExploreButton />
-    </>
-  );
+  return <>{children}</>;
 }

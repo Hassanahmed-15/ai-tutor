@@ -323,7 +323,14 @@ export function snapshotFrom(profile: LearnerProfile, depth: DepthLevel = resolv
         : "mixed";
   return {
     expertise,
-    depth: depth >= 4 ? "deep" : "balanced",
+    /*
+     * The LEVEL a student picks is who they are, not how long the lesson is. "Advanced" used to map
+     * to depth "deep", which bought longer boards and extra example/deepen passes — so choosing a
+     * higher level produced MORE slides instead of different teaching. Level now sets expertise
+     * (how each board teaches); length comes only from the student's saved preference or their own
+     * words ("in depth", "quickly").
+     */
+    depth: "balanced",
     goal,
     codeExamples: shouldIncludeCodeExamples({ expertise, goal }),
     preferredExamples,

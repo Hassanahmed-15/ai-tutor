@@ -54,6 +54,7 @@ import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnot
 import { mergeSourceDocuments } from "@/lib/mergeSourceDocuments";
 import { readStreamedPages } from "@/lib/streamedPages";
 import { emptySourceScope, type PdfFidelity, type SourceScope } from "@/lib/sourceScope";
+import { isStrictScope, lectureSourceText } from "@/lib/strictSourceAnswers";
 import {
   fallbackDocumentScopeQuestion,
   isSpecificDocumentRequest,
@@ -104,6 +105,8 @@ type PlanSafetyNet = {
   reinforcementPrompt: string;
 };
 type PlanOutline = {
+  scope?: "question" | "lesson";
+  depth?: "quick" | "deep";
   topic: string;
   subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: ScopingQuestion }[];
   angle?: PlanningAngleId;
@@ -113,7 +116,7 @@ type OutlineStreamEvent =
   | { type: "thought"; text?: string }
   | { type: "subtopic"; index?: number; subtopic?: PlanOutline["subtopics"][number] }
   | { type: "scoping-question"; subtopicIndex?: number; question?: string; options?: { label: string; instruction: string }[] }
-  | { type: "outline"; topic?: string; subtopics?: PlanOutline["subtopics"]; costUsd?: number }
+  | { type: "outline"; topic?: string; scope?: PlanOutline["scope"]; depth?: PlanOutline["depth"]; subtopics?: PlanOutline["subtopics"]; costUsd?: number }
   | { type: "error"; error?: string };
 type LecturePayload = {
   topic: string;
@@ -156,7 +159,7 @@ export function LearnPage({ go, onExit }: { go: (p: PageName) => void; onExit: (
   const [topic, setTopic] = useState("");
   const [input, setInput] = useState("");
   const [phase, setPhase] = useState<
-    "ask" | "outline" | "preview" | "building" | "teaching" | "finished" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
+    "ask" | "source-mode" | "outline" | "preview" | "building" | "teaching" | "finished" | "test-offer" | "test-written" | "test-oral" | "test-results" | "error"
   >("ask");
   const [beats, setBeats] = useState<Beat[]>([]);
   const [builtTopic, setBuiltTopic] = useState("");
@@ -344,6 +347,13 @@ type BuildCost =
    * confined to it.
    */
   const [fullDocumentText, setFullDocumentText] = useState("");
+  /** Parsed upload held at the one explicit fork: authoritative source or adaptive reference. */
+  const [sourceModeStart, setSourceModeStart] = useState<{
+    subject: string;
+    fresh: FreshUpload;
+    documentLabels: string[];
+  } | null>(null);
+  const sourceModeChosenRef = useRef(false);
 
   /**
    * ARIA, OUT LOUD, FROM PLANNING UNTIL THE LECTURE IS READY.
@@ -456,6 +466,14 @@ type BuildCost =
        * student answers, it advances the same conversation.
        */
       if (planningPhase && diagnosticQuestionRef.current && !diagnosticBusyRef.current) {
+        /*
+         * ONLY A REAL ANSWER ANSWERS. Any transcript used to count — a cough, a word from the room,
+         * Aria's own voice echoing back as she read the question — so the level question appeared
+         * and was "answered" two seconds later, before the student had touched it. A spoken answer
+         * to a multiple-choice question must name one of its options; an open question needs at
+         * least three words. Anything else is ignored and the question stays on screen.
+         */
+        if (!isSpokenAnswer(text, diagnosticQuestionRef.current.options)) return;
         // Her own reply to this turn is held back by holdUnpromptedReplies (above); the next
         // question is spoken via say() — a short acknowledgement, then exactly what is on screen.
         void runDiagnostic(text.trim());
@@ -588,13 +606,24 @@ type BuildCost =
    * phase boundary — planning ends, the design screen takes over, and the player takes over from
    * there.
    */
+  /*
+   * Voice is for the questions, not the plan: once the outline is on screen the student edits it
+   * by hand or in the "change it" box, and that screen shows no microphone state — an open mic
+   * with nothing on screen saying so is not acceptable, so the session closes there.
+   */
+  /*
+   * And only while a question is actually on screen: in the gap after the last answer, while the
+   * plan is being drafted, an open mic transcribed the room into chat bubbles nobody asked for.
+   */
+  const outlineReady = Boolean(outline);
+  const questionOpen = Boolean(diagnosticQuestion) || diagnosticBusy || initialAmbiguityQuestions.length > 0;
   useEffect(() => {
-    if (phase === "outline" || phase === "preview") {
+    if (phase === "outline" && !outlineReady && questionOpen) {
       void voiceStart();
       return;
     }
     voiceStop();
-  }, [phase, voiceStart, voiceStop]);
+  }, [phase, outlineReady, questionOpen, voiceStart, voiceStop]);
 
   /*
    * Stop ONLY on unmount — never because `stop` got a new identity.
@@ -717,6 +746,8 @@ type BuildCost =
    * generation, so the ADHD track also changes the prompt the pipeline receives — which is intended.
    */
   const { profile } = useAuth();
+  // The saved default for how much Aria teaches; a request's own words ("quickly", "in depth") win.
+  const teachingPreference = profile?.teachingDepth ?? "adaptive";
   const selectedMode = trackForProfile(profile);
   /**
    * What the lesson is being built FROM, for the design tutor's opening line.
@@ -1125,18 +1156,26 @@ type BuildCost =
       setUploadFocus(focus);
       setOcrTranscript(transcriptText);
       setSelectionPages(drewRegion ? [...new Set(parsed.flatMap((p) => p.regionPages))] : []);
+      const sourceLabels = sources.map((source) => source.file.name);
       setPendingSources([]);
       setParsingPages(false);
       setUploadPhase("ready");
 
       /**
-       * Continue with the scope already supplied. A precise question or dragged region builds
-       * immediately; a broad multi-section selection gets the short source-specific planning gate.
-       * Neither route lets the general outline planner reorder the parser's grounded source plan.
-       * autoPlannedRef prevents the upload-watching effect from starting the same transition twice.
+       * ONE EXPLICIT SOURCE CONTRACT, immediately after page selection.
+       *
+       * The old flow buried strict/reference among later scope and depth questions, and the
+       * progressive route then discarded the answer. Holding the fresh parse here makes the
+       * decision unavoidable and race-free: strict mode can go straight to generation without a
+       * diagnostic or outline, while reference mode hands the exact same fresh values into the
+       * existing adaptive planner.
        */
       autoPlannedRef.current = true;
-      void startPlanning(subject, false, {
+      sourceModeChosenRef.current = false;
+      setSourceModeStart({
+        subject,
+        documentLabels: sourceLabels,
+        fresh: {
         sourceDocument: mergedSourceDocument ?? undefined,
         slideContext: typeof primary.data.fullText === "string" ? primary.data.fullText : undefined,
         focus,
@@ -1145,11 +1184,36 @@ type BuildCost =
         scopeSelected: drewRegion,
         documentId: parsedDocumentId,
         regionPages: parsed.flatMap((p) => p.regionPages),
+        },
       });
+      setPhase("source-mode");
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Could not read that file.");
       setParsingPages(false);
       setUploadPhase("error");
+    }
+  }
+
+  function chooseSourceMode(fidelity: PdfFidelity) {
+    if (!sourceModeStart) return;
+    // A specific question narrows the scope to its answer; only an open request covers the whole source.
+    const question = questionFromUpload(sourceModeStart);
+    const nextScope: SourceScope = {
+      fidelity,
+      breadth: question ? { kind: "section", focus: question } : { kind: "whole" },
+      documentLabels: sourceModeStart.documentLabels.length > 1 ? sourceModeStart.documentLabels : [],
+    };
+    setSourceScope(nextScope);
+    sourceScopeRef.current = nextScope;
+    sourceModeChosenRef.current = true;
+    const next = sourceModeStart;
+    setSourceModeStart(null);
+    if (fidelity === "strict") {
+      // The selected source already contains the syllabus. No diagnostic, outline, scope or depth
+      // questionnaire is allowed to stand between this choice and generation.
+      void build(next.subject, undefined, next.fresh, []);
+    } else {
+      void startPlanning(next.subject, false, next.fresh);
     }
   }
 
@@ -1171,6 +1235,11 @@ type BuildCost =
     if (!files.length) return;
     setUploadPhase("reading");
     setUploadError(null);
+    const initialScope = emptySourceScope();
+    setSourceScope(initialScope);
+    sourceScopeRef.current = initialScope;
+    sourceModeChosenRef.current = false;
+    setSourceModeStart(null);
     // A new document is a new lecture: its cost starts here, with the reading of it.
     resetCostLedger();
     setSlideContext("");
@@ -1570,7 +1639,7 @@ type BuildCost =
    *  each `{type:"scoping-question"}` into planScopingQuestions the INSTANT that subtopic's own
    *  question completes (mid-build, interleaved with thoughts — not batched at the end), then
    *  applying the final `{type:"outline"}` event. */
-  async function streamOutlineRequest(body: Record<string, unknown>, fallbackTopic: string) {
+  async function streamOutlineRequest(body: Record<string, unknown>, fallbackTopic: string): Promise<PlanOutline | null> {
     planAbortRef.current?.abort();
     const controller = new AbortController();
     planAbortRef.current = controller;
@@ -1578,6 +1647,7 @@ type BuildCost =
     setPlanError(null);
     setPlanThoughts([]);
     setPlanScopingQuestions([]);
+    let finalOutline: PlanOutline | null = null;
 
     try {
       const res = await fetch("/api/plan-lesson", {
@@ -1589,6 +1659,7 @@ type BuildCost =
           ...withPlanPages(body),
           ...personaField(),
           ...(requestTextRef.current ? { request: requestTextRef.current } : {}),
+          ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
         }),
         signal: controller.signal,
       });
@@ -1621,11 +1692,14 @@ type BuildCost =
         }
         if (event.type === "outline" && typeof event.costUsd === "number") addCost("planning", event.costUsd);
         if (event.type === "outline" && Array.isArray(event.subtopics)) {
-          setOutline({
+          finalOutline = {
             topic: typeof event.topic === "string" ? event.topic : fallbackTopic,
+            ...(event.scope === "question" || event.scope === "lesson" ? { scope: event.scope } : {}),
+            ...(event.depth === "quick" || event.depth === "deep" ? { depth: event.depth } : {}),
             subtopics: event.subtopics,
             angle: typeof body.angle === "string" ? (body.angle as PlanningAngleId) : undefined,
-          });
+          };
+          setOutline(finalOutline);
         }
       };
       for (;;) {
@@ -1643,11 +1717,14 @@ type BuildCost =
       buffer += decoder.decode();
       if (buffer.trim()) handle(JSON.parse(buffer.trim()) as OutlineStreamEvent);
     } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") return;
+      if (err instanceof DOMException && err.name === "AbortError") return null;
       setPlanError(err instanceof Error ? err.message : "Planning failed.");
+      return null;
     } finally {
-      setPlanLoading(false);
+      // A superseded request must not clear the loading state its replacement just set.
+      if (planAbortRef.current === controller) setPlanLoading(false);
     }
+    return finalOutline;
   }
 
   async function requestOutline(t: string, clarifications: { question: string; answer: string }[], angle: PlanningAngleId = "standard") {
@@ -1661,7 +1738,7 @@ type BuildCost =
      * planned for them. Null when the conversation was skipped, and the route treats its absence
      * as "plan as before".
      */
-    await streamOutlineRequest({
+    const planned = await streamOutlineRequest({
       mode: "outline",
       topic: t,
       clarifications,
@@ -1673,6 +1750,9 @@ type BuildCost =
       // server treats a missing/no-op scope exactly like today's unlabeled behavior.
       ...(sourceDocument ? { sourceScope: sourceScopeRef.current } : {}),
     }, t);
+    // Every outline — a one-board answer or a whole lesson — waits on the student: they review,
+    // edit and press Build. The planner still sizes it (a question plans 1-2 topics).
+    void planned;
   }
 
   /** "Teach it differently" — rerolls the entire outline through a different pedagogical angle
@@ -1771,7 +1851,11 @@ type BuildCost =
       const data = await callPlanApi({ mode: "document-scope", topic: trimmed, sourceDocument: planningDocument });
       setPlanLoading(false);
       const questions = data && Array.isArray(data.planningQuestions)
-        ? data.planningQuestions as ScopingQuestion[]
+        ? (data.planningQuestions as ScopingQuestion[]).filter((question) =>
+            // The page-selection handoff already asked this exact contract. Reference mode keeps
+            // adaptive scope/depth planning, but never asks the student to choose fidelity twice.
+            !(sourceModeChosenRef.current && question.kind === "fidelity"),
+          )
         : [];
       const fallback = fallbackDocumentScopeQuestion(planningDocument);
       if (!questions.length && fallback) setPlanError(null);
@@ -1965,11 +2049,12 @@ type BuildCost =
       // Computed locally, right away, so the profile card's depth line reflects this choice the
       // instant it's made rather than waiting on the next diagnose round-trip to report it back.
       setLearnerDepth(resolveDepth(next));
-      // "Just teach me" on the depth question itself still means "skip straight to the lecture".
-      if (!wantsToStart(answer)) {
-        setDiagnosticQuestion({ question: openingQuestion(topic), options: [] });
-        return;
-      }
+      /*
+       * After the level, the MODEL asks the first real question — a short scenario to reason
+       * about. The hard-coded "in your own words, what do you already know about it?" that used to
+       * follow was a recall question, and it was the one every student saw. The level answer goes
+       * through the normal turn below, so the conversation costs no extra round trip.
+       */
     }
 
     /*
@@ -2253,18 +2338,10 @@ type BuildCost =
     buildAbortRef.current?.abort();
     const controller = new AbortController();
     buildAbortRef.current = controller;
-    setPhase("building");
-    // The portrait for the lecture writers needs memory in hand. Planning already awaited it; a
-    // student who skipped straight to the build has not, so give it a moment, then go without.
-    await Promise.race([loadLearnerMemory(), new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500))]);
     /*
-     * The build hand-off is SILENT here, deliberately.
-     *
-     * This used to tell the planning voice to keep the student company through the build. That job
-     * now belongs to LessonDesignMode, which opens its own session with a persona written for it
-     * and its own progress tools. Asking this session to do it as well is what put two Arias on the
-     * screen talking over each other — and the effect below stops this one the moment the phase
-     * changes, so the instruction would be shouted at a socket that is closing anyway.
+     * CLEAR THE LAST LESSON BEFORE SHOWING THE BUILD SCREEN. The resets used to run after a
+     * 1.5-second memory wait, and the slide list (buildBeats) was never reset at all — so the build
+     * screen opened on the PREVIOUS lesson's slides and progress, then jumped to the new ones.
      */
     setError(null);
     setBuildCost(null);
@@ -2279,6 +2356,22 @@ type BuildCost =
     setProgressiveComplete(true);
     setProgressivePlannedBeatCount(0);
     lecturePlayheadRef.current = -1;
+    setBuildBeats(null);
+    setPhase("building");
+    // The portrait for the lecture writers needs memory in hand. Planning already awaited it; a
+    // student who skipped straight to the build has not, so give it a moment, then go without.
+    await Promise.race([loadLearnerMemory(), new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500))]);
+    /*
+     * The build hand-off is SILENT here, deliberately.
+     *
+     * This used to tell the planning voice to keep the student company through the build. That job
+     * now belongs to LessonDesignMode, which opens its own session with a persona written for it
+     * and its own progress tools. Asking this session to do it as well is what put two Arias on the
+     * screen talking over each other — and the effect below stops this one the moment the phase
+     * changes, so the instruction would be shouted at a socket that is closing anyway.
+     */
+    const strictSourceBuild = sourceScopeRef.current.fidelity === "strict"
+      && Boolean(fresh?.sourceDocument ?? sourceDocument ?? fresh?.slideContext ?? slideContext);
 
     /*
      * The suggested learner profile is still fetched — it controls teaching depth and examples,
@@ -2299,9 +2392,15 @@ type BuildCost =
      */
     const conversationProfile = learnerProfileRef.current;
     const hasConversation = Boolean(conversationProfile && profileHasSignal(conversationProfile));
-    if (hasConversation && conversationProfile) {
+    /*
+     * A typed topic no longer has a pre-lesson conversation, but it always has the remembered
+     * profile seeded in startPlanning. Use it locally: asking /api/learner-profile/suggest instead
+     * would put a model call between the question and its first board.
+     */
+    const typedTopicProfile = !sourceDocument && !fresh?.sourceDocument && Boolean(conversationProfile);
+    if ((hasConversation || typedTopicProfile) && conversationProfile) {
       suggested = snapshotFrom(conversationProfile, learnerDepth ?? undefined);
-    } else try {
+    } else if (!strictSourceBuild) try {
       const suggestionResponse = await fetch("/api/learner-profile/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -2399,6 +2498,7 @@ type BuildCost =
         ? { selection: { pages: fresh.regionPages ?? [], transcript: transcriptText.slice(0, 8_000), description: trimmed } }
         : {}),
       ...(approvedOutline ? { outline: approvedOutline } : {}),
+      ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
       // Absent (defaults to "reference") for a topic with no upload — matches today's existing,
@@ -2665,6 +2765,20 @@ type BuildCost =
     setSummaryLoading(false);
   }
 
+  /**
+   * The document text a STRICT lecture was taught from, for the summary and the test.
+   *
+   * Both were written from the generated scripts alone, so a script that leaked outside material was
+   * summarized and tested as if it were the lesson. In strict mode they now receive the blocks the
+   * beats taught (lib/strictSourceAnswers.ts) as the boundary. Empty — and nothing extra is sent — for
+   * a typed topic or a reference-mode lesson, whose requests stay exactly as they were.
+   */
+  function strictLectureSource(): { sourceScope: SourceScope; source: string } | null {
+    if (!isStrictScope(sourceScopeRef.current) || !isSuprnotesLessonInput(sourceDocument)) return null;
+    const source = lectureSourceText(sourceDocument, beats);
+    return source ? { sourceScope: sourceScopeRef.current, source } : null;
+  }
+
   async function fetchLectureSummary() {
     setSummaryLoading(true);
     setSummaryError(null);
@@ -2676,6 +2790,7 @@ type BuildCost =
           topic: builtTopic,
           request: requestTextRef.current,
           beats: beats.map((beat) => ({ title: beat.title, points: beat.points, script: beat.script })),
+          ...(strictLectureSource() ?? {}),
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -2737,6 +2852,31 @@ type BuildCost =
     setPhase("test-offer");
   }
 
+  /**
+   * "Got it" — the student says the question is answered, so the lecture ends here: the summary
+   * unlocks and the end screen offers a test or going deeper. Boards not yet played are simply
+   * not shown; nothing about generation waits on this, so latency is untouched.
+   */
+  function finishLectureUnderstood() {
+    if (progressiveSessionId && lecturePlayheadRef.current >= 0) {
+      void fetch(`/api/progressive-lectures/${encodeURIComponent(progressiveSessionId)}/interaction`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind: "playhead", playhead: lecturePlayheadRef.current, ended: true }),
+      }).catch(() => {});
+    }
+    setLectureCompleted(true);
+    rememberLesson();
+    setPhase("test-offer");
+  }
+
+  /** "Go deeper" from the end screen: a fresh, deeper lesson on the same subject. */
+  function goDeeper() {
+    const subject = builtTopic || topic;
+    if (!subject) return;
+    void startPlanning(`Teach me ${subject} in depth`);
+  }
+
   function onLectureBeatChange(index: number) {
     if (index === lecturePlayheadRef.current) return;
     lecturePlayheadRef.current = index;
@@ -2770,7 +2910,7 @@ type BuildCost =
       const res = await fetch("/api/generate-test", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: builtTopic, beats }),
+        body: JSON.stringify({ topic: builtTopic, beats, ...(strictLectureSource() ?? {}) }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !Array.isArray(data.questions)) throw new Error(data.error || "Could not generate a test.");
@@ -2923,6 +3063,7 @@ type BuildCost =
         onWritten={startWrittenTest}
         onOral={startOralTest}
         onSkip={endLecture}
+        onGoDeeper={goDeeper}
       />
       {/* The student lands here the moment the lecture ends — the summary is one click away. */}
       {!summaryOpen && summaryButton}
@@ -2959,6 +3100,50 @@ type BuildCost =
     );
   }
 
+  if (phase === "source-mode" && sourceModeStart) {
+    return (
+      <main className="hud-canvas hud-grain relative grid min-h-screen place-items-center overflow-hidden px-5 py-8 text-[var(--hud-text)]">
+        <section aria-labelledby="source-mode-title" className="relative z-10 w-full max-w-3xl rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-6 shadow-2xl sm:p-9">
+          <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--hud-cyan-bright)]">Source ready</p>
+          <h1 id="source-mode-title" className="mt-3 max-w-2xl font-display text-3xl leading-tight tracking-[-0.025em] sm:text-4xl">
+            Do you want me to teach strictly from the selected source?
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--hud-text-dim)]">
+            This choice controls what Aria may teach and whether the normal adaptive planning conversation appears.
+          </p>
+
+          <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <button
+              type="button"
+              onClick={() => chooseSourceMode("strict")}
+              className="group rounded-[var(--radius-lg)] border border-amber-300/35 bg-amber-300/10 p-5 text-left transition hover:border-amber-200/70 hover:bg-amber-300/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300"
+            >
+              <span className="text-base font-bold text-amber-100">Yes — strict source</span>
+              <span className="mt-2 block text-[0.8rem] leading-relaxed text-amber-50/65">
+                Cover every selected page in source order. Clarify and illustrate it, but do not add unrelated material or ask planning questions.
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => chooseSourceMode("reference")}
+              className="group rounded-[var(--radius-lg)] border border-cyan-300/25 bg-cyan-300/[0.06] p-5 text-left transition hover:border-cyan-200/55 hover:bg-cyan-300/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300"
+            >
+              <span className="text-base font-bold text-cyan-100">Use it as a reference</span>
+              <span className="mt-2 block text-[0.8rem] leading-relaxed text-cyan-50/60">
+                Keep the selected pages central, then use the normal adaptive plan and add outside examples or context when useful.
+              </span>
+            </button>
+          </div>
+
+          <div className="mt-6 flex items-center justify-between gap-4 border-t border-[var(--hud-line)] pt-4">
+            <p className="truncate text-[0.72rem] text-[var(--hud-text-faint)]">{uploadedFile?.name ?? "Selected document"}</p>
+            <button type="button" onClick={leaveToHome} className="shrink-0 text-[0.78rem] text-[var(--hud-text-dim)] underline decoration-[var(--hud-line-strong)] underline-offset-4 hover:text-[var(--hud-text)]">Cancel</button>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   if (phase === "teaching") {
     let player: React.ReactNode;
     // Freeform learner-mode string for the live tutor's realtime session instructions.
@@ -2968,19 +3153,19 @@ type BuildCost =
         player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
     }
     return (
       <div className="relative">
@@ -3370,6 +3555,7 @@ function TestOfferScreen({
   onWritten,
   onOral,
   onSkip,
+  onGoDeeper,
 }: {
   mode: TrackMeta;
   topic: string;
@@ -3379,6 +3565,7 @@ function TestOfferScreen({
   onWritten: () => void;
   onOral: () => void;
   onSkip: () => void;
+  onGoDeeper?: () => void;
 }) {
   return (
     <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10">
@@ -3411,6 +3598,11 @@ function TestOfferScreen({
                   {loading ? "Preparing…" : "Oral exam →"}
                 </HudButton>
               </div>
+            )}
+            {onGoDeeper && (
+              <button onClick={onGoDeeper} disabled={loading} className="mt-1 text-sm font-bold text-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40">
+                Go deeper on this →
+              </button>
             )}
             <button onClick={onSkip} disabled={loading} className="mt-2 text-sm font-bold text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40">
               Skip, I&apos;m done
@@ -4303,6 +4495,158 @@ function OutlineReviewState({
     );
   }
 
+  /**
+   * Answer the open diagnostic question from the focused question screen — the same path a chip in
+   * the transcript takes, so the conversation record, voice sync and the plan that follows are
+   * unchanged. Only the screen is new.
+   */
+  function answerDiagnostic(answer: string) {
+    const text = answer.trim();
+    if (!text || sending || loading || diagnosticBusy) return;
+    let open = -1;
+    chatLog.forEach((m, i) => {
+      if (m.isDiagnostic && !m.answered) open = i;
+    });
+    setChatLog((prev) => [
+      ...prev.map((m, i) => (i === open ? { ...m, answered: true } : m)),
+      { role: "you" as const, text },
+    ]);
+    onAnswerDiagnostic(text);
+  }
+
+  /*
+   * THE QUESTION SCREEN.
+   *
+   * It was a dashboard of profile columns above a chat transcript, a memory paragraph, a voice
+   * strip and a text box — six things on screen to answer one question. Now it is one question at
+   * a time, large, with its answers as cards and everything else reduced to a line: what Aria
+   * remembers, whether she can hear you, and a way out ("just teach me").
+   */
+  function renderDiagnosticFocus() {
+    const answered = chatLog.filter((m) => m.isDiagnostic && m.answered).length;
+    const options = diagnosticQuestion?.options ?? [];
+    const remark = diagnosticRemark?.text;
+    const live = voice.status === "live";
+    return (
+      <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-2xl flex-col justify-center py-10">
+        <div className="mb-8 flex items-center gap-3">
+          <div className="flex items-center gap-1.5" aria-label={`Question ${answered + 1}`}>
+            {Array.from({ length: Math.max(3, answered + 1) }, (_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  i < answered ? "w-6 bg-[var(--hud-cyan)]" : i === answered ? "w-10 bg-[var(--hud-cyan)]/70" : "w-6 bg-white/10"
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">
+            Before we start · {topic}
+          </span>
+        </div>
+
+        {remark && answered > 0 && (
+          <p className="beat-fade-in mb-4 text-[0.95rem] leading-relaxed text-[var(--hud-text-dim)]">{remark}</p>
+        )}
+
+        {diagnosticBusy || !diagnosticQuestion ? (
+          <div className="flex items-center gap-3 py-8 text-[var(--hud-text-dim)]">
+            <span className="size-2.5 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
+            <span className="text-lg">Aria is thinking about your answer…</span>
+          </div>
+        ) : (
+          <>
+            <h2 key={diagnosticQuestion.question} className="beat-fade-in text-balance text-[1.9rem] font-medium leading-tight tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.3rem]">
+              {diagnosticQuestion.question}
+            </h2>
+
+            {options.length > 0 && (
+              <div className="mt-8 grid gap-2.5">
+                {options.map((option, i) => {
+                  // The five level options read "Intermediate, I know the basics": name, then hint.
+                  const level = option.match(/^(Foundation|Beginner|Intermediate|Advanced|Expert), (.+)$/);
+                  const label = level ? level[1] : option;
+                  const hint = level ? level[2] : "";
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => answerDiagnostic(option)}
+                      disabled={sending || loading}
+                      className="group flex items-center gap-4 rounded-xl border border-[var(--hud-line)] bg-white/[0.02] px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-cyan)]/[0.06] disabled:opacity-50"
+                    >
+                      <span className="grid size-7 shrink-0 place-items-center rounded-md border border-[var(--hud-line-strong)] text-xs font-semibold text-[var(--hud-text-faint)] group-hover:border-[var(--hud-cyan)] group-hover:text-[var(--hud-cyan)]">
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[1rem] font-medium text-[var(--hud-text)]">{label}</span>
+                        {hint && <span className="mt-0.5 block text-[0.86rem] text-[var(--hud-text-faint)]">{hint}</span>}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                answerDiagnostic(chatInput);
+                setChatInput("");
+              }}
+              className="mt-5 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-black/30 p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
+            >
+              <span
+                aria-hidden
+                title={live ? (voice.muted ? "Muted" : "Listening") : "Voice off"}
+                className={`size-2 shrink-0 rounded-full ${live && !voice.muted ? "animate-pulse bg-[var(--hud-cyan)]" : "bg-white/20"}`}
+              />
+              <input
+                ref={composerRef}
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                placeholder={options.length ? "Or answer in your own words — typed or spoken" : "Type your answer, or just say it"}
+                disabled={sending || loading}
+                className="min-w-0 flex-1 bg-transparent py-2 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
+              />
+              {live && (
+                <button
+                  type="button"
+                  onClick={voice.toggleMute}
+                  aria-pressed={voice.muted}
+                  className="shrink-0 rounded-lg px-2.5 py-2 text-xs text-[var(--hud-text-faint)] hover:text-[var(--hud-text)]"
+                >
+                  {voice.muted ? "Unmute" : "Mute"}
+                </button>
+              )}
+              <button
+                type="submit"
+                disabled={!chatInput.trim() || sending || loading}
+                className="shrink-0 rounded-lg bg-[var(--hud-text)] px-4 py-2 text-sm font-semibold text-[#08090c] disabled:opacity-30"
+              >
+                Answer
+              </button>
+            </form>
+          </>
+        )}
+
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--hud-line)] pt-5">
+          <p className="min-w-0 flex-1 text-[0.8rem] leading-relaxed text-[var(--hud-text-faint)]">
+            {memoryNote ?? "Aria asks a couple of quick questions so the lesson starts at the right level."}
+          </p>
+          <button
+            type="button"
+            onClick={() => answerDiagnostic("Just teach me")}
+            disabled={sending || loading || diagnosticBusy}
+            className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)] disabled:opacity-40"
+          >
+            Skip — just teach me →
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   function updateSubtopics(next: PlanOutline["subtopics"]) {
     if (!outline) return;
     onOutlineChange({ ...outline, subtopics: next });
@@ -4357,7 +4701,7 @@ function OutlineReviewState({
       <div className="mx-auto flex max-w-[1400px] items-center justify-between border-b border-[var(--hud-line)] px-6 py-4 lg:px-10">
         <div className="min-w-0">
           <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">
-            {documentPlanning ? "Plan from your source" : "Lesson outline"}
+            {documentPlanning ? "Plan from your source" : !outline && (diagnosticQuestion || diagnosticBusy) ? "Getting to know you" : "Lesson outline"}
           </p>
           <h1 className="mt-1 truncate text-lg font-medium text-[var(--hud-text)]">{topic}</h1>
         </div>
@@ -4422,7 +4766,6 @@ function OutlineReviewState({
          * Measured at runtime instead, with a floor for the first paint before the observer fires.
          */}
         <div className="min-w-0 px-6 pt-8 lg:px-10" style={{ paddingBottom: Math.max(dockHeight + 24, 96) }}>
-          <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
           {!outline && (diagnosticQuestion || diagnosticBusy) ? (
             /*
              * THE CONVERSATION IS THE PAGE while Aria is getting to know the student.
@@ -4432,217 +4775,122 @@ function OutlineReviewState({
              * surfaces for one conversation. Now there is one: her questions and the student's
              * answers, spoken or typed, in order, with the quick answers under her question.
              */
-            renderConversation(true)
+            renderDiagnosticFocus()
           ) : !outline && initialPlanningQuestions.length > 0 ? (
             renderPlanningQuestionsPanel()
           ) : !outline && initialAmbiguityQuestions.length > 0 ? (
             <p className="text-sm text-[var(--hud-text-dim)]">
               &ldquo;{topic}&rdquo; could mean a few different things — answer the question on the right so Aria drafts the right lesson.
             </p>
-          ) : !outline && loading ? (
-            <div>
-              <p className="text-sm text-[var(--hud-text-dim)]">
-                {thoughts.length === 0
-                  ? `Thinking about "${topic}"…`
-                  : `Drafting subtopic ${Math.min(thoughts.length + 1, ESTIMATED_SUBTOPICS)} of ~${ESTIMATED_SUBTOPICS}…`}
-              </p>
-              <div className="mt-3 h-1 max-w-xs overflow-hidden rounded-full bg-white/[0.06]">
-                <div
-                  className="h-full rounded-full bg-[var(--hud-cyan)] transition-all duration-500"
-                  style={{ width: `${Math.min(100, (thoughts.length / ESTIMATED_SUBTOPICS) * 100)}%` }}
-                />
-              </div>
+          ) : !outline && (loading || !error) ? (
+            // Also covers the hand-offs between planning steps (clarify → memory → first question),
+            // where nothing is loading yet no outline exists — that is not a failure.
+            <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-2xl flex-col items-center justify-center text-center">
+              <span className="size-3 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
+              <h2 className="mt-6 text-[1.7rem] font-medium tracking-[-0.02em] text-[var(--hud-text)]">
+                Aria is planning your lesson
+              </h2>
+              <p className="mt-2 text-[0.95rem] text-[var(--hud-text-faint)]">{topic}</p>
             </div>
           ) : outline ? (
-            <>
-              {/*
-                THE LESSON PREVIEW. Once a diagnostic ran, this is the "concise Lesson Preview" the
-                student confirms or edits before Phase 2 begins — not a separate screen, but this
-                same editable outline framed as what it now is: the co-designed plan that came out
-                of the conversation, not just a generic draft. Nothing renders here for a path with
-                no diagnostic (a document upload, a revise, a fresh outline with no profile yet) —
-                the framing only appears where there is something to frame.
-              */}
-              {learnerSummary && (
-                <div className="mb-6 rounded-md border border-[var(--hud-cyan)]/25 bg-[var(--hud-cyan)]/[0.04] px-4 py-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Lesson preview, from what you told Aria</p>
-                  <p className="mt-1 text-sm text-[var(--hud-text-dim)]">{learnerSummary}</p>
-                  <p className="mt-1.5 text-xs text-[var(--hud-text-faint)]">
-                    Edit anything below, or tell Aria in the chat if this should go differently.
-                  </p>
+            /*
+             * THE PLAN, AND NOTHING ELSE. This screen carried a profile dashboard, a "lesson preview"
+             * box, an adaptive-route banner, a "Builds on…" line, a reasoning line, safety-net and
+             * low-confidence panels on every topic, and a chat transcript floating over the bottom —
+             * all to say "here are the topics". It is now the topics: edit, reorder, remove, add,
+             * ask Aria to change them, then Build. Nothing builds until the student presses it.
+             */
+            <div className="mx-auto max-w-3xl">
+              <div className="mb-6 flex items-end justify-between gap-4">
+                <div>
+                  <h2 className="text-[1.6rem] font-medium tracking-[-0.02em] text-[var(--hud-text)]">
+                    {outline.subtopics.length === 1 ? "1 topic" : `${outline.subtopics.length} topics`}
+                  </h2>
+                  <p className="mt-1 text-sm text-[var(--hud-text-faint)]">Edit, reorder or remove anything, then build the lesson.</p>
                 </div>
-              )}
-
-              {loading && (
-                <div className="mb-6 rounded-md border border-[var(--hud-line)] bg-white/[0.025] px-4 py-3">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-sm font-medium text-[var(--hud-text-dim)]">
-                      Drafting subtopic {Math.min(outline.subtopics.length + 1, ESTIMATED_SUBTOPICS)} of ~{ESTIMATED_SUBTOPICS}…
-                    </p>
-                    <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">
-                      {outline.subtopics.length} visible
-                    </p>
-                  </div>
-                  <div className="mt-3 h-1 overflow-hidden rounded-full bg-white/[0.06]">
-                    <div
-                      className="h-full rounded-full bg-[var(--hud-cyan)] transition-all duration-500"
-                      style={{ width: `${Math.min(100, (outline.subtopics.length / ESTIMATED_SUBTOPICS) * 100)}%` }}
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div className="mb-8">
-                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">Teaching angle</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {PLANNING_ANGLES.map((a) => (
-                    <button
-                      key={a.id}
-                      onClick={() => onRerollAngle(a.id)}
-                      disabled={loading || sending}
-                      className={`rounded-md border px-3 py-1.5 text-xs font-medium transition disabled:opacity-40 ${
-                        angle === a.id
-                          ? "border-[var(--hud-cyan-deep)] bg-[var(--hud-cyan)]/10 text-[var(--hud-cyan-bright)]"
-                          : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
-                      }`}
-                    >
-                      {a.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {outline.subtopics.some((subtopic) => subtopic.safetyNet) && (
-                <div className="mb-7 flex items-center justify-between gap-4 border-y border-[var(--hud-line)] py-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-amber-300">Adaptive route ready</p>
-                    <p className="mt-1 text-sm text-[var(--hud-text-dim)]">Prerequisite help stays hidden unless the learner needs it.</p>
-                  </div>
-                  <span className="shrink-0 text-xs font-medium text-[var(--hud-text-faint)]">
-                    {outline.subtopics.filter((subtopic) => subtopic.safetyNet).length} safety nets
+                {(loading || sending) && (
+                  <span className="flex items-center gap-2 text-sm text-[var(--hud-text-faint)]">
+                    <span className="size-2 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
+                    {sending ? "Updating…" : "Planning…"}
                   </span>
-                </div>
-              )}
-
-              <div>
-                {outline.subtopics.map((s, i) => (
-                  <div key={i} className="group relative flex gap-4">
-                    {/* Dependency connector: a thin rail down the left with a node per subtopic,
-                        making the teaching order visible as real structure, not just a stacked
-                        list. A low-confidence subtopic gets a dashed amber node instead of the
-                        default solid one — Aria flagging she genuinely wasn't sure about it. */}
-                    <div className="flex w-6 shrink-0 flex-col items-center">
-                      <div
-                        className={`mt-1.5 size-2 shrink-0 rounded-full ${
-                          s.confidence === "low"
-                            ? "border-2 border-dashed border-amber-400 bg-transparent"
-                            : i === 0
-                              ? "border-2 border-[var(--hud-cyan)] bg-[var(--hud-cyan)]"
-                              : "border-2 border-[var(--hud-line-strong)] bg-[#08090c]"
-                        }`}
-                      />
-                      {i < outline.subtopics.length - 1 && <div className="w-px flex-1 bg-[var(--hud-line-strong)]" />}
-                    </div>
-
-                    <div className="min-w-0 flex-1 pb-7">
-                      {i > 0 && (
-                        <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-[var(--hud-text-faint)]">
-                          Builds on &ldquo;{outline.subtopics[i - 1].title}&rdquo;
-                        </p>
-                      )}
-                      <div className="flex items-start gap-2">
-                        <div className="min-w-0 flex-1">
-                          <input
-                            value={s.title}
-                            onChange={(e) => editField(i, "title", e.target.value)}
-                            className="w-full bg-transparent text-base font-medium text-[var(--hud-text)] focus:outline-none"
-                          />
-                          <input
-                            value={s.caption}
-                            onChange={(e) => editField(i, "caption", e.target.value)}
-                            className="mt-0.5 w-full bg-transparent text-sm text-[var(--hud-text-dim)] focus:outline-none"
-                          />
-                          {s.reason && <p className="mt-1.5 text-xs text-[var(--hud-text-faint)]">{s.reason}</p>}
-                          {s.safetyNet && (
-                            <details className="mt-3 border-l-2 border-amber-400/60 pl-3">
-                              <summary className="cursor-pointer list-none text-xs font-semibold text-amber-300 marker:content-none">
-                                Only if needed: check {s.safetyNet.prerequisite.toLowerCase()}
-                              </summary>
-                              <div className="mt-3 grid gap-3 text-xs leading-5 sm:grid-cols-2">
-                                <div>
-                                  <p className="font-semibold uppercase tracking-wide text-[var(--hud-text-faint)]">Readiness check</p>
-                                  <p className="mt-1 text-[var(--hud-text-dim)]">&ldquo;{s.safetyNet.diagnostic}&rdquo;</p>
-                                </div>
-                                <div>
-                                  <p className="font-semibold uppercase tracking-wide text-[var(--hud-text-faint)]">If it is shaky</p>
-                                  <p className="mt-1 text-[var(--hud-text-dim)]">{s.safetyNet.rescueMove}</p>
-                                </div>
-                                <div className="sm:col-span-2">
-                                  <p className="font-semibold uppercase tracking-wide text-[var(--hud-text-faint)]">Memory echo after {s.safetyNet.reinforceAfter} more {s.safetyNet.reinforceAfter === 1 ? "topic" : "topics"}</p>
-                                  <p className="mt-1 text-[var(--hud-text-dim)]">&ldquo;{s.safetyNet.reinforcementPrompt}&rdquo;</p>
-                                </div>
-                              </div>
-                            </details>
-                          )}
-                          {s.confidence === "low" && (
-                            <div className="mt-2 flex items-center gap-2">
-                              <span className="text-[11px] font-medium text-amber-400">Aria wasn&apos;t sure about this one</span>
-                              <button
-                                onClick={() => updateSubtopics(outline.subtopics.map((sub, idx) => (idx === i ? { ...sub, confidence: undefined } : sub)))}
-                                className="rounded border border-amber-400/40 px-2 py-0.5 text-[11px] font-medium text-amber-300 hover:bg-amber-400/10"
-                              >
-                                Confirm it belongs
-                              </button>
-                              <button
-                                onClick={() =>
-                                  setChatLog((prev) => [
-                                    ...prev,
-                                    {
-                                      role: "aria",
-                                      text: `About "${s.title}" — should I keep it as-is, adjust its depth, or move it elsewhere?`,
-                                      chips: [
-                                        { label: "Keep as-is", instruction: `Keep the subtopic "${s.title}" exactly as-is and clear any uncertainty about it.` },
-                                        { label: "Make it simpler", instruction: `Simplify the subtopic "${s.title}" to a more basic/introductory level.` },
-                                        { label: "Move it later", instruction: `Move the subtopic "${s.title}" later in the outline, after more foundational subtopics.` },
-                                      ],
-                                    },
-                                  ])
-                                }
-                                className="rounded border border-[var(--hud-line-strong)] px-2 py-0.5 text-[11px] font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
-                              >
-                                Ask me about it
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition group-hover:opacity-100 hover:!opacity-100">
-                          <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded p-1 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up">▲</button>
-                          <button onClick={() => move(i, 1)} disabled={i === outline.subtopics.length - 1} className="rounded p-1 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move down">▼</button>
-                          <button onClick={() => remove(i)} className="rounded p-1 text-[var(--hud-text-faint)] hover:text-rose-400" aria-label="Remove">✕</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                )}
               </div>
+
+              <ol className="space-y-2">
+                {outline.subtopics.map((s, i) => (
+                  <li
+                    key={i}
+                    className="group flex items-start gap-4 rounded-xl border border-[var(--hud-line)] bg-white/[0.02] px-4 py-3.5 transition focus-within:border-[var(--hud-line-strong)] hover:border-[var(--hud-line-strong)]"
+                  >
+                    <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md bg-white/[0.05] text-xs font-semibold tabular-nums text-[var(--hud-text-faint)]">
+                      {i + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <input
+                        value={s.title}
+                        onChange={(e) => editField(i, "title", e.target.value)}
+                        aria-label={`Topic ${i + 1} title`}
+                        className="w-full bg-transparent text-[1.02rem] font-medium text-[var(--hud-text)] focus:outline-none"
+                      />
+                      <input
+                        value={s.caption}
+                        onChange={(e) => editField(i, "caption", e.target.value)}
+                        aria-label={`Topic ${i + 1} description`}
+                        placeholder="What this part teaches"
+                        className="mt-0.5 w-full bg-transparent text-sm text-[var(--hud-text-dim)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
+                      />
+                    </div>
+                    <div className="flex shrink-0 items-center gap-0.5 opacity-40 transition group-focus-within:opacity-100 group-hover:opacity-100">
+                      <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up">▲</button>
+                      <button onClick={() => move(i, 1)} disabled={i === outline.subtopics.length - 1} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move down">▼</button>
+                      <button onClick={() => remove(i)} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-rose-400" aria-label="Remove topic">✕</button>
+                    </div>
+                  </li>
+                ))}
+              </ol>
 
               <button
                 onClick={addBlank}
-                className="ml-10 rounded-md border border-dashed border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-faint)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
+                className="mt-2 w-full rounded-xl border border-dashed border-[var(--hud-line)] py-3 text-sm font-medium text-[var(--hud-text-faint)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
               >
-                + Add subtopic
+                + Add a topic
               </button>
 
-              {error && !sending && <p className="mt-6 text-sm text-rose-400">{error}</p>}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  sendChat(chatInput);
+                  setChatInput("");
+                }}
+                className="mt-6 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-black/30 p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
+              >
+                <input
+                  ref={composerRef}
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  placeholder="Or ask Aria to change it — “make it shorter”, “add a topic on…”"
+                  disabled={loading || sending}
+                  className="min-w-0 flex-1 bg-transparent py-2 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  disabled={loading || sending || !chatInput.trim()}
+                  className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)] disabled:opacity-30"
+                >
+                  Change
+                </button>
+              </form>
+
+              {error && !sending && <p className="mt-4 text-sm text-rose-400">{error}</p>}
 
               <button
                 onClick={onApprove}
-                disabled={loading || outline.subtopics.length === 0}
-                className="mt-10 w-full rounded-md bg-[var(--hud-text)] py-3 text-sm font-semibold text-[#08090c] transition hover:opacity-90 disabled:opacity-40"
+                disabled={loading || sending || outline.subtopics.length === 0}
+                className="mt-8 w-full rounded-xl bg-[var(--hud-text)] py-3.5 text-[0.95rem] font-semibold text-[#08090c] transition hover:opacity-90 disabled:opacity-40"
               >
                 Build lesson →
               </button>
-            </>
+            </div>
           ) : (
             <p className="text-sm text-rose-400">{error ?? "Couldn't plan an outline."}</p>
           )}
@@ -4657,7 +4905,8 @@ function OutlineReviewState({
          * reach it. The transcript is capped and scrolls internally: it is there to confirm what
          * Aria heard, not to be re-read, and the question itself is already on the card above.
          */}
-        {!(!outline && (diagnosticQuestion || diagnosticBusy)) && (
+        {/* Only an ambiguity question still lives in the chat; planning itself shows no chat box. */}
+        {!outline && !diagnosticQuestion && !diagnosticBusy && initialAmbiguityQuestions.length > 0 && (
           <div ref={dockRef} className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
             <div className="mx-auto max-w-[1100px] px-6 pb-5 lg:px-10">{renderConversation(false)}</div>
           </div>
@@ -4666,3 +4915,29 @@ function OutlineReviewState({
     </section>
   );
 }
+
+/**
+ * Is a transcript a deliberate answer to the question on screen? For a multiple-choice question it
+ * must name one of the options (by its first word, e.g. "intermediate", or its full text); for an
+ * open question it must be at least three words. Stray noise and echoes fail both.
+ */
+function isSpokenAnswer(text: string, options: string[]): boolean {
+  const spoken = text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+  if (!spoken) return false;
+  if (options.length > 0) {
+    return options.some((option) => {
+      const clean = option.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+      const first = clean.split(" ")[0];
+      return (first.length >= 4 && new RegExp(`\\b${first}\\b`).test(spoken)) || spoken.includes(clean);
+    }) || /\b(?:just teach|skip|start the lesson)\b/.test(spoken);
+  }
+  return spoken.split(" ").length >= 3;
+}
+
+/** The student's question that came with an upload, when it is a specific one (not "explain this PDF"). */
+function questionFromUpload(start: { fresh?: { focus?: string; sourceDocument?: unknown } } | null): string | null {
+  const focus = start?.fresh?.focus?.trim() ?? "";
+  if (!focus || isWholeDocumentRequest(focus)) return null;
+  return isSpecificDocumentRequest(focus, start?.fresh?.sourceDocument) ? focus : null;
+}
+

@@ -22,6 +22,9 @@ import { WordHelp, type WordHelpTarget } from "./dyslexia/WordHelp";
 import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
 import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
+import type { SourceScope } from "@/lib/sourceScope";
+import { isSuprnotesLessonInput } from "@/lib/suprnotes";
+import { beatSourceGroundingFor, isStrictScope } from "@/lib/strictSourceAnswers";
 import { HudCorners } from "./hud/HudKit";
 
 /**
@@ -51,9 +54,11 @@ const REWRITE_GRACE_MS = 2800;
 type Phase = "dense" | "calibrating" | "chunks";
 
 export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
-  sourceDocument = null,
+  sourceDocument = null, sourceScope,
   slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
+  /** The student's fidelity choice for an uploaded source; strict binds the ask box to it. */
+  sourceScope?: SourceScope;
   slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -206,6 +211,10 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     setSpeaking(false);
   }, []);
 
+  // Strict source, as in the standard LessonPlayer: the ask box gets the scope and this beat's own source.
+  const hasSourceDocument = isSuprnotesLessonInput(sourceDocument);
+  const strictSource = hasSourceDocument && isStrictScope(sourceScope);
+
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
@@ -214,6 +223,9 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     documentId,
     lessonQuestion,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
+    ...(hasSourceDocument && sourceScope
+      ? { sourceScope, getBeatSource: () => beatSourceGroundingFor(sourceDocument, beat.sourceBlockIds, strictSource) }
+      : {}),
     pausePlayer: stopVoice,
     onQuestionAsked: (question) => onLearnerInteraction?.({ kind: "question", detail: question }),
     onVoiceBlocked: () => setVoiceBlocked(true),

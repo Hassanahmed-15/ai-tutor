@@ -627,7 +627,7 @@ function isNearBackgroundDark(hex: string): boolean {
 
 export function getReactAnimationCodeDiagnostics(
   rawCode: string,
-  opts: { abstract?: boolean } = {},
+  opts: { abstract?: boolean; sourceFaithful?: boolean } = {},
 ): ReactAnimationCodeDiagnostics {
   const code = rawCode.trim();
   // Abstract/conceptual topics (algorithms, data structures, math) are correctly drawn AS diagrams
@@ -635,6 +635,19 @@ export function getReactAnimationCodeDiagnostics(
   // (silhouette, object-vs-line ratio, "real scene objects") would wrongly reject exactly those, so
   // in abstract mode we skip them and keep only the safety + teaching-timeline + basic-richness gates.
   const abstract = opts.abstract === true;
+  /*
+   * STRICT SOURCE MODE: the board may show only what the student's source shows.
+   *
+   * Every density floor here was written to stop EMPTY boards, and each one is an instruction to
+   * add: "the topic's main object plus a moving agent and a result", eight object primitives, and a
+   * text limit of half the object count — so a faithful redraw of a six-label figure needed twelve
+   * or more drawn parts to avoid being "too text-heavy". On a strict lesson every one of those extra
+   * parts is invented, and ranking by this density shipped the busiest (least faithful) candidate.
+   * Here the floors only guard against a board with nothing on it; faithfulness is judged by the
+   * label-grounding check and the source-scored critics in lib/reactAnimationGen.ts.
+   */
+  const sourceFaithful = opts.sourceFaithful === true;
+  const relaxed = abstract || sourceFaithful;
   const base = {
     byteLength: new TextEncoder().encode(code).length,
     groupCount: 0,
@@ -791,8 +804,9 @@ export function getReactAnimationCodeDiagnostics(
   if (!boardPlanPresent) {
     return { ...metrics, issue: "missing the required boardPlan with composition, readingPath, and reservedRegions" };
   }
-  if (timelineStepCount < 8 || timelineKindCount < timelineStepCount || timelineWeightCount < timelineStepCount || timelineSentenceCount < timelineStepCount) {
-    return { ...metrics, issue: "missing a complete sentence-synchronized teacher timeline; add at least 8 ordered steps and give every step data-teach-order, data-teach-kind, data-teach-weight, and data-teach-sentence" };
+  const minTimelineSteps = sourceFaithful ? 6 : 8;
+  if (timelineStepCount < minTimelineSteps || timelineKindCount < timelineStepCount || timelineWeightCount < timelineStepCount || timelineSentenceCount < timelineStepCount) {
+    return { ...metrics, issue: `missing a complete sentence-synchronized teacher timeline; add at least ${minTimelineSteps} ordered steps and give every step data-teach-order, data-teach-kind, data-teach-weight, and data-teach-sentence` };
   }
   if (timelineSentenceValues.length < timelineStepCount || distinctTimelineSentences < 3) {
     return { ...metrics, issue: "the teacher timeline is front-loaded; use literal data-teach-sentence values and distribute the board actions across at least three different spoken sentences" };
@@ -800,8 +814,8 @@ export function getReactAnimationCodeDiagnostics(
   if (textCount > 0 && directlyTimedTextCount < textCount) {
     return { ...metrics, issue: "every SVG text element must carry its own complete teaching timeline attributes directly on the text node so marker tracking uses the exact text bounds" };
   }
-  if (groupCount < (abstract ? 3 : 5)) {
-    return { ...metrics, issue: abstract
+  if (groupCount < (relaxed ? 3 : 5)) {
+    return { ...metrics, issue: relaxed
       ? "too flat; organize the diagram into at least three meaningful groups (title, the structure itself, and its labels/annotations)"
       : "too flat; organize the whiteboard into at least five meaningful groups (frame/title, notes, subject silhouette, mechanism/details, result)" };
   }
@@ -810,20 +824,25 @@ export function getReactAnimationCodeDiagnostics(
   // follow animations. A simple, legible scene that clearly teaches ONE mechanism is the goal —
   // these lower floors still reject a bare line-diagram/single-icon output while letting a clean
   // minimal scene pass. Simplicity is the target; the floor only guards against emptiness.
-  const minPrimitiveScore = abstract ? 10 : 14;
+  const minPrimitiveScore = sourceFaithful ? 8 : abstract ? 10 : 14;
   if (byteLength < REACT_ANIMATION_CODE_MIN_BYTES && primitiveScore < minPrimitiveScore) {
-    return { ...metrics, issue: abstract
+    return { ...metrics, issue: sourceFaithful
+      ? "too sparse; draw what the source shows — its figure's parts with the source's labels, and its statements"
+      : abstract
       ? "too sparse; draw the concept's full structure (all cells/nodes/intervals) with labels"
       : "too sparse; build a clear scene with a main subject, its parts, and a moving agent" };
   }
   if (primitiveScore < minPrimitiveScore) {
-    return { ...metrics, issue: abstract
-      ? "too few drawn elements; show the concept's full structure (array cells, tree nodes, graph edges, timeline bars) with labels"
+    return { ...metrics, issue: sourceFaithful
+      ? "too few drawn elements; draw every part the source shows, recognisably (no labels)"
+      : abstract
+      ? "too few drawn elements; show the concept's full structure (array cells, tree nodes, graph edges, timeline bars)"
       : "too few drawn elements; show the topic's main object plus a moving agent and a result" };
   }
   // Physical-scene gates — skipped for abstract concept diagrams (which legitimately ARE mostly
-  // rects/lines/text and have no "silhouette").
-  if (!abstract) {
+  // rects/lines/text and have no "silhouette"), and for strict source boards, where a figure with
+  // many labels and few parts is exactly what the source printed.
+  if (!relaxed) {
     if (objectPrimitiveScore < 8) {
       return { ...metrics, issue: "too few actual scene objects; draw the mechanism's body, a couple of parts, and the result" };
     }
@@ -837,14 +856,16 @@ export function getReactAnimationCodeDiagnostics(
       return { ...metrics, issue: "too text-heavy; labels must support the visual, not carry the animation" };
     }
   }
-  if (distinctPrimitiveTypes.size < (abstract ? 3 : 4)) {
+  if (distinctPrimitiveTypes.size < (relaxed ? 3 : 4)) {
     return { ...metrics, issue: "too visually flat; use at least three or four SVG primitive types" };
   }
   if (!primitiveTags.includes("text")) {
     return { ...metrics, issue: "needs short JSX/SVG labels so the visual teaches without becoming a slide" };
   }
 
-  if (progressDriveScore < 8) {
+  // A strict board's motion is the host's reveal of the source's own parts; asking for more
+  // progress-driven change there asks for animated content the source does not describe.
+  if (progressDriveScore < (sourceFaithful ? 4 : 8)) {
     return { ...metrics, issue: "motion is not driven enough by progress; add setup, transformation, and result phases" };
   }
   if (!/(lerp|clamp|phase|transform|opacity|translate|scale|rotate)/i.test(code)) {
@@ -869,7 +890,7 @@ export function getReactAnimationCodeDiagnostics(
   return { ...metrics, issue: null };
 }
 
-export function getReactAnimationCodeIssue(rawCode: string, opts: { abstract?: boolean } = {}): string | null {
+export function getReactAnimationCodeIssue(rawCode: string, opts: { abstract?: boolean; sourceFaithful?: boolean } = {}): string | null {
   return getReactAnimationCodeDiagnostics(rawCode, opts).issue;
 }
 
@@ -899,15 +920,16 @@ export function sanitizeTrial(raw: unknown): ReactAnimationOp["trial"] {
  *  stored on the beat. */
 export function sanitizeReactAnimationOp(
   op: ReactAnimationOp,
-  opts: { requireQuality?: boolean; abstract?: boolean } = {},
+  opts: { requireQuality?: boolean; abstract?: boolean; sourceFaithful?: boolean } = {},
 ): ReactAnimationOp {
   const code = typeof op.code === "string" ? op.code.trim() : "";
   if (!code) return { ...op, code: undefined };
   // Default: enforce the full quality floor (the normal accept path). When requireQuality is false
   // (ACCEPT_BEST fallback), gate ONLY on hard safety/structural failures — a runnable, safe, but
   // sub-floor animation is still worth rendering instead of showing the "unavailable" card. The
-  // abstract flag relaxes the physical-only quality gates (see getReactAnimationCodeDiagnostics).
-  const diagnostics = getReactAnimationCodeDiagnostics(code, { abstract: opts.abstract });
+  // abstract and sourceFaithful flags relax the physical-only quality gates (see
+  // getReactAnimationCodeDiagnostics).
+  const diagnostics = getReactAnimationCodeDiagnostics(code, { abstract: opts.abstract, sourceFaithful: opts.sourceFaithful });
   const issue = opts.requireQuality === false ? diagnostics.safetyIssue : diagnostics.issue;
   if (issue) return { ...op, code: undefined, status: "failed", error: issue };
   return { ...op, code, status: "ready", error: undefined };
@@ -3730,6 +3752,48 @@ export function hasFilledImage(draw: DrawScript | undefined): draw is DrawScript
  *  by turning the beat into a dense written board instead of returning floating notes. */
 export function fallbackWrittenDraw(title: string, script: string): DrawScript {
   return makeWrittenBoard(title || firstSentence(script, "Key idea"), script, 28000);
+}
+
+/**
+ * A WRITTEN BOARD THAT SAYS ONLY WHAT IT IS GIVEN: the title, then the script's own sentences in
+ * the order they are spoken, each on its own note, wrapped at word boundaries — never truncated,
+ * never reworded.
+ *
+ * fallbackWrittenDraw is the wrong last resort for a strict-source lesson: it matches the beat to a
+ * topic template, so a board on a textbook's "Energy transfer" paragraph came out as
+ * "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", a "Rule:" footer and a corner sketch ending in "ATP" — none of it
+ * in the source. This one has no template, no footer and no sketch. Sentences that do not fit one
+ * screen are left off rather than squeezed; each note appears as its sentence is spoken.
+ */
+export function sourceOnlyWrittenDraw(title: string, script: string, durationMs = 28000): DrawScript {
+  const sentences = script
+    .replace(/\s+/g, " ")
+    .split(/(?<=[.!?])\s+(?=[A-Z0-9"“(])/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+  const heading = title.replace(/\s+/g, " ").trim() || sentences[0] || "";
+  const ops: DrawOp[] = [];
+  if (heading) ops.push({ kind: "label", text: heading, x: 50, y: 9, size: "md", color: COLOR_MAP.amber, at: 0.02 });
+  // Paper notes are 18 px on a 560-high board and LiveSketch wraps them at 50 characters: one line
+  // is 18 x 1.15 = 20.7 px, 3.7 % of the board.
+  const LINE = 3.7;
+  const GAP = 3.2;
+  const headingLines = Math.max(1, wrapToWidth(heading, 24).length);
+  let y = 12 + headingLines * 4.8;
+  sentences.forEach((sentence, index) => {
+    const lines = Math.max(1, wrapToWidth(sentence, 50).length);
+    if (y + (lines - 1) * LINE > 90) return;
+    ops.push({
+      kind: "note",
+      text: sentence,
+      x: 50,
+      y,
+      color: COLOR_MAP.slate,
+      at: Math.min(0.96, 0.04 + (0.9 * index) / Math.max(1, sentences.length)),
+    });
+    y += lines * LINE + GAP;
+  });
+  return { caption: heading, durationMs, ops };
 }
 
 function firstSentence(text: string, fallback: string) {

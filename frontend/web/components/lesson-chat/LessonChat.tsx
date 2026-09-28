@@ -11,6 +11,8 @@ import { asksForVisual, isAffirmative, isNegative } from "@/lib/drawConsent";
 import { isCodeQuestion } from "@/lib/codeSpec";
 import { captureVoice, isSpeechSupported, type VoiceCaptureHandle } from "@/lib/speech";
 import { HudPanel, HudEyebrow } from "@/components/hud/HudKit";
+import type { SourceScope } from "@/lib/sourceScope";
+import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
 
 /**
  * The shared lesson chat + "Is this clear?" gate. Used by every player so they all behave
@@ -84,6 +86,20 @@ export function useLessonChat(opts: {
   documentId?: string;
   /** The question the lecture was built to answer, when it was built from one. */
   lessonQuestion?: string;
+  /**
+   * How tightly answers must stay inside the student's document, and the current beat's own source.
+   *
+   * WHY. The ask box was the one place a strict lesson could still be answered from general
+   * knowledge: it never sent the scope, so the endpoint ran its reference-mode prompt and drew a
+   * fresh board from scratch. With these, a strict question is answered only from the document, the
+   * endpoint says plainly when the document does not cover it, and the answer board is held to the
+   * same source as the lesson's own boards (app/api/explain/route.ts).
+   *
+   * The beat source is a getter for the same reason the contexts above are: the lecture moves while
+   * the panel is open. Both optional — a player that passes neither asks exactly as before.
+   */
+  sourceScope?: SourceScope;
+  getBeatSource?: () => BeatSourceGrounding | null;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
   /** Lets the progressive planner learn from the question without adding separate adaptation UI. */
@@ -146,6 +162,9 @@ export function useLessonChat(opts: {
           documentId: opts.documentId ?? "",
           lessonQuestion: opts.lessonQuestion ?? "",
           question,
+          // Strict source: the endpoint answers from, and checks against, the document only.
+          ...(opts.sourceScope ? { sourceScope: opts.sourceScope } : {}),
+          ...(opts.getBeatSource ? { beatSource: opts.getBeatSource() } : {}),
           ...extra,
         }),
       });
@@ -489,6 +508,8 @@ export function ChatPanel({
   onLiveMute,
   liveError = null,
   liveAlwaysOn = false,
+  compact = false,
+  inline = false,
 }: {
   chat: ChatTurn[];
   explaining: boolean;
@@ -513,39 +534,100 @@ export function ChatPanel({
   liveError?: string | null;
   /** Always-on mode (ADHD): the mic stays open; the button toggles mute instead of ending a call. */
   liveAlwaysOn?: boolean;
+  /** Bottom-docked teaching-workspace variant: conversation remains visible without taking a column. */
+  compact?: boolean;
+  /**
+   * INLINE: just the input and Ask, for a host bar that already owns the microphone (BoardDock).
+   * Answers open in a small popover above the input, dismissible, instead of a panel's worth of height.
+   */
+  inline?: boolean;
 }) {
   const [question, setQuestion] = useState("");
+  const [dismissedAt, setDismissedAt] = useState(-1);
   const endRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" });
   }, [chat.length, explaining, listening, interim]);
 
-  return (
-    <HudPanel className="flex min-h-0 flex-col overflow-hidden !rounded-[1.5rem] [&>div]:flex [&>div]:h-full [&>div]:min-h-0 [&>div]:flex-col">
-      <div className="flex items-center gap-2.5 border-b border-[var(--hud-line)] px-5 py-4">
-        <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--hud-cyan)]/15 text-sm">💬</span>
-        <div>
-          <p className="text-sm font-bold text-[var(--hud-text)]">Ask Aria anything</p>
-          <p className="text-[11px] leading-tight text-[var(--hud-text-faint)]">
-            {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she answers in words, and offers a drawing when one would help."}
-          </p>
-        </div>
+  if (inline) {
+    const showThread = (chat.length > 0 && dismissedAt !== chat.length) || listening || explaining || Boolean(liveError);
+    return (
+      <div className="relative">
+        {showThread && (
+          <div className="absolute inset-x-0 bottom-[calc(100%+12px)] z-30 max-h-56 overflow-y-auto rounded-xl border border-white/10 bg-[#0d0f14]/97 p-2.5 shadow-2xl backdrop-blur-xl">
+            <button type="button" onClick={() => setDismissedAt(chat.length)} aria-label="Hide the conversation" className="float-right -mr-1 -mt-1 grid size-6 place-items-center rounded-md text-white/45 hover:bg-white/10 hover:text-white">×</button>
+            {liveError && <p className="mb-1.5 text-xs font-semibold text-rose-300">{liveError}</p>}
+            {chat.slice(-4).map((t, i) => (
+              <div key={i} className="mb-1.5 text-[0.8rem] leading-relaxed text-[var(--hud-text-dim)] last:mb-0">
+                <span className={`mr-1.5 text-[10px] font-black uppercase tracking-wider ${t.role === "you" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"}`}>{t.role === "you" ? "You" : "Aria"}</span>
+                {t.text}
+                {t.chips && onAnswerOffer && <OfferChips chips={t.chips} disabled={t.answered === true} onChoose={onAnswerOffer} />}
+              </div>
+            ))}
+            {listening && <p className="text-[0.8rem] text-rose-200">Listening… {interim}</p>}
+            {explaining && <p className="text-[0.8rem] text-[var(--hud-cyan)]">Aria is answering…</p>}
+            <div ref={endRef} />
+          </div>
+        )}
+        <form
+          className="flex items-center gap-1.5"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (question.trim()) {
+              onAsk(question);
+              setQuestion("");
+            }
+          }}
+        >
+          <input
+            id="lesson-chat-input"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder={liveActive ? "Live conversation — just speak…" : "Ask Aria about this part…"}
+            disabled={explaining || (liveActive && !liveAlwaysOn)}
+            className="h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-black/40 px-3.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none disabled:opacity-50"
+          />
+          <button type="submit" disabled={explaining || (liveActive && !liveAlwaysOn) || !question.trim()} className="hud-btn-primary h-11 shrink-0 rounded-xl px-4 text-sm font-black disabled:opacity-40">
+            Ask
+          </button>
+        </form>
       </div>
-      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto p-4">
+    );
+  }
+
+  return (
+    /*
+     * COMPACT is one input line under the source and board. It used to be a titled card with a
+     * subtitle and a placeholder sentence — a third of the screen spent saying "ask here" while the
+     * PDF it sat under was cut to its header. Messages appear above the input only once there are some.
+     */
+    <HudPanel className={`flex min-h-0 flex-col overflow-hidden !rounded-[1.5rem] [&>div]:flex [&>div]:h-full [&>div]:min-h-0 [&>div]:flex-col ${compact ? "!rounded-xl" : ""}`}>
+      {!compact && (
+        <div className="flex items-center gap-2.5 border-b border-[var(--hud-line)] px-5 py-4">
+          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--hud-cyan)]/15 text-sm">💬</span>
+          <div>
+            <p className="text-sm font-bold text-[var(--hud-text)]">Ask Aria anything</p>
+            <p className="text-[11px] leading-tight text-[var(--hud-text-faint)]">
+              {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she answers in words, and offers a drawing when one would help."}
+            </p>
+          </div>
+        </div>
+      )}
+      <div className={`min-h-0 overflow-y-auto ${compact ? `${chat.length || listening || explaining ? "flex" : "hidden"} max-h-24 items-center gap-2 space-y-0 px-3 pt-2` : "flex-1 space-y-3 p-4"}`}>
         {chat.length === 0 ? (
-          <div className="h-full" aria-hidden="true" />
+          compact ? null : <div className="h-full" aria-hidden="true" />
         ) : (
-          chat.map((t, i) => (
+          (compact ? chat.slice(-3) : chat).map((t, i) => (
             <div
               key={i}
-              className={`max-w-[90%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
+              className={`${compact ? "shrink-0 max-w-[42%] rounded-xl px-3 py-1.5 text-[0.72rem]" : "max-w-[90%] rounded-2xl px-4 py-3 text-sm"} leading-relaxed shadow-sm ${
                 t.role === "you"
                   ? "ml-auto rounded-br-md bg-[var(--hud-cyan)]/20 text-[var(--hud-text)]"
                   : "rounded-bl-md border border-white/5 bg-white/[0.05] text-[var(--hud-text-dim)]"
               }`}
             >
-              <span className={`mb-1 block text-[10px] font-black uppercase tracking-wider ${t.role === "you" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"}`}>
+              <span className={`${compact ? "mr-1 inline" : "mb-1 block"} text-[10px] font-black uppercase tracking-wider ${t.role === "you" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"}`}>
                 {t.role === "you" ? "You" : "Aria"}
               </span>
               {t.text}
@@ -571,7 +653,7 @@ export function ChatPanel({
         <div ref={endRef} />
       </div>
 
-      <div className="mt-auto border-t border-[var(--hud-line)] p-3">
+      <div className={`mt-auto ${compact ? "p-1.5" : "border-t border-[var(--hud-line)] p-3"}`}>
         {(liveActive || liveReady) && (
           <div className="mb-2 flex items-center justify-between gap-2">
             <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveActive ? "bg-rose-500/15 text-rose-300" : "bg-cyan-400/10 text-cyan-200"}`}>

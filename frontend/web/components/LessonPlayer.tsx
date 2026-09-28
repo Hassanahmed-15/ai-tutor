@@ -17,6 +17,8 @@ import { LiveSketch } from "./sketch/LiveSketch";
 import { AnnotationLayer, type BoardTool } from "@/components/board/AnnotationLayer";
 import { strokesFor } from "@/lib/board/annotations";
 import { BoardDock } from "@/components/board/BoardDock";
+import { PdfSourcePanel } from "@/components/teaching/PdfSourcePanel";
+import { SourceFigureBoard, sourceFigureFor } from "@/components/teaching/SourceFigureBoard";
 import { BoardStage } from "@/components/board/BoardStage";
 import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
 import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingState";
@@ -46,6 +48,8 @@ import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase } from "@/components/classroom/VoiceState";
+import { isSuprnotesLessonInput } from "@/lib/suprnotes";
+import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
 import { useManimPrefetch } from "@/lib/useManimPrefetch";
 import { useNarrationPrefetch } from "@/lib/useNarrationPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
@@ -53,6 +57,8 @@ import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
+import type { SourceScope } from "@/lib/sourceScope";
+import { beatSourceGroundingFor, isStrictScope, strictVoicePartContext, withStrictSourceHeader } from "@/lib/strictSourceAnswers";
 import { useEngagementScore } from "@/lib/useEngagementScore";
 import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
@@ -164,6 +170,16 @@ const ANIMATION_PENDING_TIMEOUT_MS = 10_000;
 // React state says nobody is speaking, before we conclude its refs are lying and continue anyway.
 // Long enough that a real hand-off (she stops, the turn settles, the resume lands) finishes first.
 const NARRATION_STALL_MS = 6_000;
+
+/**
+ * Dev-only playback trace. The board follows the voice's sentence cues, and a board stuck on its
+ * title is invisible in the server log — `next dev` forwards these lines to it, so a stall can be
+ * read after the fact (which step stopped: the start, a cue, a hold by the chatbot, the recovery).
+ */
+function tracePlayback(event: string, detail: Record<string, unknown> = {}) {
+  if (process.env.NODE_ENV === "production") return;
+  console.log(`[playback] ${event} ${JSON.stringify(detail)}`);
+}
 /**
  * How long the check-in talks about anything BUT the lesson before Aria may invite the learner back.
  *
@@ -226,10 +242,14 @@ function isChalkBoardPending(beat: Beat) {
 }
 
 
+/** How long a finished board stays on screen after its narration ends, before the next slide. */
+const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
+
 export function LessonPlayer({
   onExit,
   onCheckpointGraded,
   onComplete,
+  onUnderstood,
   beats = demoBeats,
   title = "Photosynthesis",
   mode = "standard",
@@ -256,6 +276,7 @@ export function LessonPlayer({
   onSummarize,
   summaryUnlocked = false,
   selectionPages = [],
+  sourceScope,
 }: {
   onExit?: () => void;
   /**
@@ -272,6 +293,8 @@ export function LessonPlayer({
   /** Fired once, when the last beat finishes playing (natural end of lecture) — distinct from
    *  onExit, which fires on a manual exit at any point. */
   onComplete?: () => void;
+  /** The "Got it" button: the student understood, so the lesson ends now (see BoardDock). */
+  onUnderstood?: () => void;
   beats?: Beat[];
   title?: string;
   mode?: "standard" | "deaf";
@@ -313,6 +336,8 @@ export function LessonPlayer({
   summaryUnlocked?: boolean;
   /** Pages the student dragged an area on, when this lecture was built "from this area". */
   selectionPages?: number[];
+  /** Explicit source contract chosen after page selection; enables the synchronized PDF workspace. */
+  sourceScope?: SourceScope;
 }) {
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -742,6 +767,36 @@ export function LessonPlayer({
     indexRef.current = index;
   }, [index]);
 
+  /*
+   * STRICT SOURCE BEYOND THE SCRIPT.
+   *
+   * "Strictly from the source" bound the lecture script and nothing a student could talk to: the ask
+   * box, the pen and the voice tutor all answered from general knowledge. Every one of them now gets
+   * the scope and the CURRENT beat's own source — its blocks' text, its figure's printed labels and
+   * caption (lib/strictSourceAnswers.ts) — built here, where the document already is.
+   *
+   * `strictSource` requires a parsed document: a typed topic has nothing to be strict to, and a
+   * reference-mode lesson keeps its old behaviour (it still passes the beat's source, as context).
+   */
+  const hasSourceDocument = isSuprnotesLessonInput(sourceDocument);
+  const strictSource = hasSourceDocument && isStrictScope(sourceScope);
+  const beatSourceFor = useCallback(
+    (target: Beat | undefined | null) => (hasSourceDocument ? beatSourceGroundingFor(sourceDocument, target?.sourceBlockIds, strictSource) : null),
+    [hasSourceDocument, sourceDocument, strictSource],
+  );
+  /**
+   * The document context the LIVE VOICE TUTOR reads.
+   *
+   * Its hook forwards a fixed set of strings to the session-token route and to /api/explain, with no
+   * field for a scope — and that hook is frozen production voice code. So in strict mode the rule and
+   * the current part's source ride at the head of the document context, where both of those read them
+   * back out (lib/geminiLiveContract.ts, app/api/explain/route.ts). Reference mode is byte-identical.
+   */
+  const liveTutorDocumentContext = () => {
+    const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages);
+    return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
+  };
+
   /**
    * The live tutor is Gemini Live.
    *
@@ -783,7 +838,7 @@ export function LessonPlayer({
      * functions is what stops the voice and the text drifting apart again.
      */
     getLessonContext: () => buildLessonContext(beats, indexRef.current),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
+    getDocumentContext: liveTutorDocumentContext,
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
     onTranscript: (role, text, final) => {
@@ -960,6 +1015,36 @@ export function LessonPlayer({
   // The director is the only owner of the teacher's voice vs. the realtime tutor's voice; the
   // lesson machine is the single "should the teacher be talking right now?" state, built on it.
   const voice = useVoiceDirector({ tutorSpeaking: tutor.speaking, isChatbotSpeakingNow: tutor.isSpeaking });
+  /*
+   * WHEN ARIA'S VOICE SPEAKS, THE LECTURE STOPS. The lecture froze only when the STUDENT started
+   * speaking; if the live tutor spoke on her own (answering late, reacting to a sound) the lecture
+   * narration carried on under her — two voices at once. Any time she is speaking during teaching,
+   * the lecture now freezes in place and continues from the same word when her turn is complete.
+   */
+  const frozenForTutorRef = useRef(false);
+  useEffect(() => {
+    if (checkinRef.current) return;
+    if (tutor.speaking) {
+      if (lesson.modeRef.current !== "teaching") return;
+      frozenForTutorRef.current = true;
+      lesson.enterChat({ resumeAfterAnswer: true });
+      return;
+    }
+    /*
+     * AND IT ALWAYS COMES BACK. The resume used to wait for the tutor's "turn complete" signal
+     * alone; a brief sound from her, or a turn that never reported complete, left the lecture frozen
+     * in silence. Once she has been quiet for 1.5 s — and she has not started again — the lecture
+     * continues from where it froze.
+     */
+    if (!frozenForTutorRef.current) return;
+    const t = window.setTimeout(() => {
+      if (tutor.isSpeaking() || checkinRef.current) return;
+      frozenForTutorRef.current = false;
+      lesson.flushDeferredResume();
+    }, 1500);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tutor.speaking]);
 
   /*
    * Read `voice` through a ref, and depend only on `adhd`.
@@ -995,6 +1080,34 @@ export function LessonPlayer({
     });
   }, [adhd]);
   const lesson = useLessonMachine(voice);
+
+  /*
+   * SETTLE THE BOARD WHEN THE LECTURE STOPS TALKING.
+   *
+   * The board's handwriting follows the narration clock, so a pause — or a question that interrupts
+   * the lecture — froze it wherever the clock stopped: a label clipped mid-word, "chlorophyll"
+   * reading "chlo" for as long as the student looked at it. The sandbox finishes the word in
+   * progress by itself once the clock goes quiet; this tells it to finish the whole line, which is
+   * what a teacher does when they stop to take a question. Sent only on the transition out of
+   * teaching (never before the lecture has started, which would write a line nobody has said yet),
+   * and never taken back on resume — the sandbox keeps what it revealed.
+   *
+   * Posted to every frame on the board rather than through a component prop: the sandbox's message
+   * handler reads only `type`, and a board that is not a sandbox ignores the message.
+   */
+  const wasTeachingRef = useRef(false);
+  useEffect(() => {
+    const wasTeaching = wasTeachingRef.current;
+    wasTeachingRef.current = lesson.playing;
+    if (!wasTeaching || lesson.playing) return;
+    boardSurfaceRef.current?.querySelectorAll("iframe").forEach((frame) => {
+      try {
+        frame.contentWindow?.postMessage({ type: "settle", scope: "line" }, "*");
+      } catch {
+        // A frame mid-teardown has no window to post to; there is nothing left to settle.
+      }
+    });
+  }, [lesson.playing]);
 
   /*
    * A GENERATED ANIMATION IS NOT ON SCREEN WHEN ITS CODE EXISTS.
@@ -1130,7 +1243,10 @@ export function LessonPlayer({
     const key = `${index}:${board.length}`;
     if (boardSentRef.current === key || tutor.isSpeaking()) return;
     boardSentRef.current = key;
-    tutor.addContext(`The lecture is now on part ${index + 1}. What the student sees:\n${board}`);
+    // Strict: the session's instruction was fixed when it opened, so each new part's own source
+    // text travels with the part change, and the tutor is held to it.
+    const partSource = strictSource ? strictVoicePartContext(beatSourceFor(beat)) : "";
+    tutor.addContext(`The lecture is now on part ${index + 1}. What the student sees:\n${board}${partSource}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, beat, liveTutorReady]);
 
@@ -1145,6 +1261,7 @@ export function LessonPlayer({
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
     documentId,
     lessonQuestion,
+    ...(hasSourceDocument && sourceScope ? { sourceScope, getBeatSource: () => beatSourceFor(beat) } : {}),
     pausePlayer: () => {
       // Hard stop during a check-in. This is the path behind "Aria talks about the lesson": ask()
       // speaks its answer through playNarration directly (LessonChat.tsx), bypassing the voice
@@ -1541,11 +1658,16 @@ export function LessonPlayer({
      */
     const narrationWeights = splitNarrationSentences(speakText).map(sentenceWeight);
     let narrationCue = 0;
+    let tracedQuarter = -1;
     const started = voice.speakAsTeacher(
       speakText,
       {
-        onStart: () => setSpeaking(true),
+        onStart: () => {
+          tracePlayback("voice-start", { beat: index });
+          setSpeaking(true);
+        },
         onSentenceStart: (sentenceIndex, sentence, total) => {
+          tracePlayback("sentence", { beat: index, narration: sentenceIndex, bridge, board: Math.max(0, sentenceIndex - bridge), total, text: sentence.slice(0, 50) });
           narrationCue = sentenceIndex;
           if (bridged && !isCheckpoint && sentenceIndex >= bridge && !transitionBoardShownRef.current) {
             transitionBoardShownRef.current = true;
@@ -1567,6 +1689,11 @@ export function LessonPlayer({
         // The media element's clock is the source of truth for board progress. This keeps the
         // live marker, generated SVG progress, and beat advancement pinned to the actual voice.
         onProgress: (progress) => {
+          const quarter = Math.floor(progress * 4);
+          if (quarter !== tracedQuarter) {
+            tracedQuarter = quarter;
+            tracePlayback("progress", { beat: index, progress: Number(progress.toFixed(2)), cue: narrationCue });
+          }
           if (!bridged || bridge === 0) {
             setDrawProgress(Math.max(0, progress));
             return;
@@ -1579,12 +1706,21 @@ export function LessonPlayer({
           setDrawProgress(clock.scriptProgress);
         },
         onEnd: () => {
+          tracePlayback("voice-end", { beat: index, mode: lesson.modeRef.current });
           setSpeaking(false);
           narrationLiveForRef.current = null;
+          /*
+           * The narration is over, so the board is finished — in EVERY mode. This used to run only
+           * after the mode check below, so a narration that ended while the student was asking a
+           * question (or had just paused) left the board frozen wherever the last progress tick
+           * landed: a label clipped mid-word, "chlorophyll" reading "chlo". onEnd fires only on a
+           * natural end (a cancel never calls it), so completing the board here cannot pre-empt a
+           * beat that is still being spoken.
+           */
+          setDrawProgress(1);
           // If playback was paused between the last cue and this onEnd firing, do NOT advance —
           // freeze on the current beat. Read the LIVE mode (not the captured `lesson.playing`).
           if (lesson.modeRef.current !== "teaching") return;
-          setDrawProgress(1);
           // A pending question holds the beat the way a checkpoint does: the learner's answer
           // advances it, not the end of the narration.
           if (mcqRef.current) return;
@@ -1599,16 +1735,25 @@ export function LessonPlayer({
           if (isCheckpoint && !adhd) {
             setWaitingOnCheckpoint(true);
           } else {
-            setIndex((i) => {
-              const tail = playbackTailRef.current;
-              if (i < tail.beatsLength - 1) {
-                setStage("slide");
-                return i + 1;
-              }
-              if (tail.hasMoreBeats) setWaitingForNextBeat(true);
-              else tail.onComplete?.();
-              return i;
-            });
+            /*
+             * LET THE FINISHED BOARD LAND. The next slide used to replace this one the instant the
+             * last word ended — before the student had seen the completed drawing, and while its final
+             * strokes were still easing in. The board now holds, complete, for a moment first. The
+             * hold is cancelled by a pause, a question or a manual skip (anything that leaves teaching
+             * or moves the index), so it never fights the student.
+             */
+            const heldIndex = index;
+            pendingAdvanceRef.current = heldIndex;
+            window.setTimeout(() => {
+              /*
+               * A pause or a question during the hold used to DROP the advance: this beat's narration
+               * had already ended, so resuming found nothing to continue and the lecture sat silent
+               * on a finished board — the "paused weirdly, then a huge pause". The advance now stays
+               * pending and happens the moment teaching resumes (see the effect below).
+               */
+              if (lesson.modeRef.current !== "teaching" || mcqRef.current) return;
+              advanceFromHeld(heldIndex);
+            }, BOARD_HOLD_AFTER_NARRATION_MS);
           }
         },
         onBlocked: () => setVoiceBlocked(true),
@@ -1624,6 +1769,7 @@ export function LessonPlayer({
      * return — so a beat that happened to reach the board under her voice never narrated at all, and
      * nothing retried when she went quiet. The recovery effect below picks this up.
      */
+    tracePlayback(started ? "narration-start" : "narration-refused", { beat: index, stage, bridge, restartOnBoard, force, owner: voice.owner });
     if (!started) {
       startRefusedForRef.current = index;
       return;
@@ -1647,6 +1793,35 @@ export function LessonPlayer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, bridgeSentences, rate, deafMode, animationBlocking]);
 
+  /** Beat whose narration has ended and whose move to the next slide is still owed. */
+  const pendingAdvanceRef = useRef<number | null>(null);
+  const advanceFromHeld = useCallback((heldIndex: number) => {
+    if (pendingAdvanceRef.current !== heldIndex) return;
+    pendingAdvanceRef.current = null;
+    setIndex((i) => {
+      if (i !== heldIndex) return i;
+      const tail = playbackTailRef.current;
+      if (i < tail.beatsLength - 1) {
+        setStage("slide");
+        return i + 1;
+      }
+      if (tail.hasMoreBeats) setWaitingForNextBeat(true);
+      else tail.onComplete?.();
+      return i;
+    });
+  }, []);
+  // Teaching resumed with an advance still owed: move on now instead of sitting on the finished board.
+  useEffect(() => {
+    if (lesson.mode !== "teaching" || pendingAdvanceRef.current !== index || mcqRef.current) return;
+    const held = index;
+    const t = window.setTimeout(() => advanceFromHeld(held), 400);
+    return () => window.clearTimeout(t);
+  }, [lesson.mode, index, advanceFromHeld]);
+  // Any manual move (Next, Previous, a jump) settles the owed advance.
+  useEffect(() => {
+    if (pendingAdvanceRef.current !== null && pendingAdvanceRef.current !== index) pendingAdvanceRef.current = null;
+  }, [index]);
+
   // Pause/resume IN PLACE, driven by the single mode value. Leaving `teaching` freezes the audio
   // (and with it the board reveal + sentence cue); returning to it continues from the exact same
   // spot — the pause button and "resume the lecture" both land here. When there is nothing to resume
@@ -1663,7 +1838,8 @@ export function LessonPlayer({
        * Now a frozen lecture refused only because the channel is busy is left frozen, and the
        * recovery below continues it, mid-sentence, the moment she goes quiet.
        */
-      if (!voice.resumeTeacher() && !voice.hasFrozenTeacher()) queueMicrotask(() => setStartNonce((n) => n + 1));
+      // A beat whose narration already FINISHED (its advance is owed) moves on; it is not replayed.
+      if (!voice.resumeTeacher() && !voice.hasFrozenTeacher() && pendingAdvanceRef.current !== index) queueMicrotask(() => setStartNonce((n) => n + 1));
     } else {
       voice.pauseTeacher();
       queueMicrotask(() => setSpeaking(false));
@@ -1695,6 +1871,17 @@ export function LessonPlayer({
       lectureFrozen: voice.hasFrozenTeacher(),
       startRefused: startRefusedForRef.current === index,
       narrationLost: narrationLostForRef.current === index,
+    });
+    tracePlayback("recovery", {
+      beat: index,
+      action,
+      mode: lesson.mode,
+      owner: voice.owner,
+      chatbotSpeaking: voice.isChatbotSpeaking(),
+      tutorSpeaking: tutor.speaking,
+      tutorStatus: tutor.status,
+      frozen: voice.hasFrozenTeacher(),
+      utterance: voice.hasPendingUtterance(),
     });
     if (action === "resume") {
       voice.resumeTeacher();
@@ -1740,6 +1927,7 @@ export function LessonPlayer({
     if (snapshot() === "none") return;
     const t = setTimeout(() => {
       const action = snapshot();
+      tracePlayback("backstop", { beat: index, action });
       if (action === "resume") {
         voice.resumeTeacher({ force: true });
       } else if (action === "restart") {
@@ -1965,10 +2153,15 @@ export function LessonPlayer({
     // behind start() resolving — retry briefly (reading tutorRef, not the closed-over `tutor` from
     // this render, since status keeps changing across renders while we wait) rather than dropping
     // the very first ask on the floor.
+    // Strict: every spoken explanation request carries the rule too, so a "explain this in detail"
+    // is not read as licence to go past the page.
+    const spoken = strictSource
+      ? `${prompt} Strict source mode: say only what the student's document says; if it does not cover this, say so plainly and add nothing from outside it.`
+      : prompt;
     const sayWhenReady = (attempt = 0) => {
       const current = tutorRef.current;
       if (current.status === "live" || attempt > 20) {
-        current.say(prompt);
+        current.say(spoken);
         setEngagingTutor(false);
         return;
       }
@@ -2010,6 +2203,9 @@ export function LessonPlayer({
           question: request.question,
           selectedRegion: request.region,
           selectedText: request.selectedText,
+          // Only the answer is used below (the live tutor speaks it); no board to plan or fill.
+          answerOnly: true,
+          ...(hasSourceDocument && sourceScope ? { sourceScope, beatSource: beatSourceFor(beat) } : {}),
         }),
       });
       const answer = await response.json().catch(() => ({}));
@@ -2168,6 +2364,69 @@ export function LessonPlayer({
   const statusText = waitingForNextBeat ? "preparing next part" : speaking ? "explaining" : waitingOnCheckpoint ? "waiting on you" : stage === "slide" ? "setting up" : "drawing";
   const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
   const currentCaption = sentenceCue.text || beat.script;
+  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope);
+  // Where the spoken passage sits on the PDF, for the arrow that joins it to the board.
+  const [pointerRect, setPointerRect] = useState<DOMRect | null>(null);
+  const workspaceRef = useRef<HTMLDivElement | null>(null);
+  // In the source workspace the ask input lives in the bottom bar; accessibility tracks keep their panels.
+  const chatInDock = pdfWorkspace && !deafMode && !adhd;
+  /*
+   * Which source pages the current part teaches, for the label that ties the board to the PDF's
+   * highlight ("Part 2 of 5 · Energy transfer · page 1").
+   */
+  /*
+   * A part whose source has a printed figure is taught ON that figure (SourceFigureBoard): the
+   * student's own diagram, each part lit up as it is named. Everything else keeps its drawn board.
+   */
+  const beatFigure = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
+    ? sourceFigureFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds)
+    : null;
+  const spokenSoFar = beatFigure
+    ? splitSentences(beat.script ?? "").slice(0, sentenceCue.index + 1).join(" ")
+    : "";
+  const beatSourcePages = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
+    ? [...new Set((sourceDocument.contentBlocks ?? [])
+        .filter((block) => beat.sourceBlockIds?.includes(block.id) && typeof block.pageNumber === "number")
+        .map((block) => block.pageNumber as number))].sort((a, b) => a - b)
+    : [];
+  const voicePhase = derivePhase({
+    status: tutor.status,
+    ariaSpeaking: speaking || tutor.isSpeaking(),
+    studentSpeaking: Boolean(
+      tutor.status === "live" && !tutor.muted && !speaking && !tutor.isSpeaking() && hasStarted,
+    ),
+    muted: tutor.muted,
+    paused: !lesson.playing && hasStarted,
+  });
+  const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
+    <ChatPanel
+      chat={chat.chat}
+      explaining={chat.explaining}
+      listening={chat.listening}
+      interim={chat.interim}
+      voiceSupported={REALTIME_TUTOR_ENABLED ? true : chat.voiceSupported}
+      onAsk={chat.ask}
+      onAnswerOffer={chat.answerVisualOffer}
+      // The mic now toggles the live full-duplex tutor (real conversation) instead of a
+      // one-shot transcription. Falls back to one-shot voice if realtime is disabled.
+      onVoice={REALTIME_TUTOR_ENABLED ? (sessionActive ? endLiveTutor : startLiveTutor) : chat.startVoice}
+      liveActive={sessionActive}
+      /* `!== "idle"` alone counted the FAILURE states as ready: a session that had errored,
+         been refused the microphone, or been autoplay-blocked is not idle, so a dead
+         connection rendered as "VOICE READY · MUTED" directly above the red text saying it
+         had disconnected. Ready means a session that could actually carry a voice. */
+      liveReady={
+        REALTIME_TUTOR_ENABLED &&
+        (tutor.status === "connecting" || tutor.status === "live" || tutor.status === "drawing") &&
+        !sessionActive
+      }
+      liveStatusLabel={liveMicLabel}
+      liveMuted={tutor.muted}
+      onLiveMute={tutor.toggleMute}
+      liveError={tutor.errorMessage}
+      {...variant}
+    />
+  );
 
   // `reading-room` re-points the design tokens to their dark values for this subtree only. The
   // marketing pages are paper; the lesson is a darkened theatre, because the generated boards
@@ -2216,13 +2475,73 @@ export function LessonPlayer({
           wrapped to a second line. In a flex column the header simply takes the height it needs
           and the board gets the rest, at any viewport, with no magic numbers. */}
       <div className="absolute inset-0 flex flex-col">
-        <div className="flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div ref={workspaceRef} className={pdfWorkspace
+          /*
+           * Source and board are ONE framed surface: side by side, a single hairline between them,
+           * the full height of the screen. There is no header above and no chat row below — the
+           * bottom bar carries leave, transport, the ask input and status in one line.
+           */
+          ? "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] lg:grid-rows-[minmax(0,1fr)_auto]"
+          : "flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid xl:grid-cols-[minmax(0,1fr)_340px]"}
+        >
+          {pdfWorkspace && sourceScope && (
+            <PdfSourcePanel
+              documentId={documentId}
+              sourceDocument={sourceDocument}
+              beats={beats}
+              currentIndex={index}
+              fidelity={sourceScope.fidelity}
+              embedded
+              activeSentence={sentenceCue.text}
+              onPointerRect={setPointerRect}
+            />
+          )}
+          {pdfWorkspace && (
+            <SourceToBoardArrow pointer={pointerRect} workspace={workspaceRef.current} board={boardSurfaceRef.current} />
+          )}
           {/*
            * Labelled so assistive tech and the annotation layer can both find the board. The SVG
            * inside is aria-hidden, so without this the teaching surface is nameless to a screen
            * reader — and the "Explain this" anchor has nothing to measure against.
            */}
-          <section ref={boardSurfaceRef} aria-label="Teaching board" className="relative min-h-0 flex-1 overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] bg-black">
+          <section ref={boardSurfaceRef} aria-label="Teaching board" className={`relative min-h-0 flex-1 overflow-hidden bg-black ${pdfWorkspace ? "flex flex-col" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
+            {/*
+             * THE LINK BETWEEN THE TWO HALVES. The same amber as the source highlight, naming the
+             * part and where it comes from, level with the source panel's own bar — so the board
+             * visibly explains the passage lit up beside it.
+             */}
+            {pdfWorkspace && (
+              <div className="flex h-11 shrink-0 items-center gap-2 border-b border-[var(--hud-line)] bg-[#11100f] px-3 text-[0.74rem]">
+                <span className="shrink-0 rounded-md bg-amber-300/15 px-1.5 py-0.5 font-bold tabular-nums text-amber-200">
+                  Part {index + 1} of {displayBeatCount}
+                </span>
+                <span className="min-w-0 truncate font-semibold text-[var(--hud-text)]">{beat.title}</span>
+                {beatSourcePages.length > 0 && (
+                  <span className="ml-auto hidden shrink-0 items-center gap-1 text-amber-200/70 sm:flex">
+                    <span aria-hidden="true">←</span>
+                    highlighted on {beatSourcePages.length > 1 ? `pages ${beatSourcePages[0]}–${beatSourcePages[beatSourcePages.length - 1]}` : `page ${beatSourcePages[0]}`}
+                  </span>
+                )}
+              </div>
+            )}
+            {/* Notes ABOVE the drawing: what Aria is saying is read first, right under the part strip, and
+                sits where the arrow from the PDF enters the board. */}
+            {pdfWorkspace && !isCheckpoint && (
+              <BoardNotes
+                key={beat.id}
+                /* Strict: a note is written only if every content word in it is the source's own. */
+                points={strictSource ? (() => {
+                  const source = beatSourceFor(beat);
+                  if (!source) return [];
+                  const vocab = sourceVocabulary(source);
+                  return boardNotesFor(beat).filter((point) => sentenceIsGrounded(point, vocab));
+                })() : boardNotesFor(beat)}
+                sentenceIndex={stage === "board" ? sentenceCue.index : -1}
+                sentenceTotal={sentenceCue.total}
+                complete={drawProgress >= 1}
+              />
+            )}
+            <div className={pdfWorkspace ? "relative min-h-0 flex-1" : "contents"}>
             {isCheckpoint ? (
               <SlideStage
                 /* In the ADHD track a checkpoint beat asks nothing — the flown question every third
@@ -2257,7 +2576,19 @@ export function LessonPlayer({
                 onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">
-                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                {beatFigure ? (
+                  <SourceFigureBoard
+                    key={beat.id}
+                    documentId={documentId}
+                    pageNumber={beatFigure.pageNumber}
+                    crop={beatFigure.crop}
+                    labels={beatFigure.labels}
+                    sentence={stage === "board" ? sentenceCue.text : ""}
+                    spoken={stage === "board" ? spokenSoFar : ""}
+                  />
+                ) : (
+                  <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                )}
                 {/* The "From past you" echo is removed from the lesson surface. It replayed the
                     student's own earlier wording as a floating card over the board, which
                     interrupts the lesson rather than supporting it. The component and its stored
@@ -2305,6 +2636,7 @@ export function LessonPlayer({
               </div>
               </BoardStage>
             )}
+            </div>
 
             {/* Fresh explanation board for a chat question */}
             {chat.explainBoard && (
@@ -2427,7 +2759,10 @@ export function LessonPlayer({
             />
           </section>
 
-          <div className="hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1">
+          {!chatInDock && <div className={pdfWorkspace
+            ? "flex min-h-0 flex-col gap-2 border-t border-[var(--hud-line)] p-2 lg:col-span-2"
+            : "hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1"}
+          >
             {/*
               THE teacher, at a size that actually draws the eye.
               She lived at 88px over the board and covered the slide title; here she has a 340px
@@ -2464,34 +2799,9 @@ export function LessonPlayer({
                 stage={stage}
               />
             ) : (
-              <ChatPanel
-                chat={chat.chat}
-                explaining={chat.explaining}
-                listening={chat.listening}
-                interim={chat.interim}
-                voiceSupported={REALTIME_TUTOR_ENABLED ? true : chat.voiceSupported}
-                onAsk={chat.ask}
-                onAnswerOffer={chat.answerVisualOffer}
-                // The mic now toggles the live full-duplex tutor (real conversation) instead of a
-                // one-shot transcription. Falls back to one-shot voice if realtime is disabled.
-                onVoice={REALTIME_TUTOR_ENABLED ? (sessionActive ? endLiveTutor : startLiveTutor) : chat.startVoice}
-                liveActive={sessionActive}
-                /* `!== "idle"` alone counted the FAILURE states as ready: a session that had errored,
-                   been refused the microphone, or been autoplay-blocked is not idle, so a dead
-                   connection rendered as "VOICE READY · MUTED" directly above the red text saying it
-                   had disconnected. Ready means a session that could actually carry a voice. */
-                liveReady={
-                  REALTIME_TUTOR_ENABLED &&
-                  (tutor.status === "connecting" || tutor.status === "live" || tutor.status === "drawing") &&
-                  !sessionActive
-                }
-                liveStatusLabel={liveMicLabel}
-                liveMuted={tutor.muted}
-                onLiveMute={tutor.toggleMute}
-                liveError={tutor.errorMessage}
-              />
+              renderChatPanel({ compact: pdfWorkspace })
             )}
-          </div>
+          </div>}
         </div>
 
         {/* The status bar. Now a flow element at the top of the column rather than an absolute
@@ -2535,6 +2845,22 @@ export function LessonPlayer({
               : undefined
           }
           onExplainSelection={selectionRequest ? () => void explainMarkedRegion(selectionRequest) : undefined}
+          /* The source workspace has no header: leave, the ask input and status ride in this bar. */
+          wide={pdfWorkspace}
+          onUnderstood={onUnderstood}
+          leading={pdfWorkspace ? (
+            <button
+              onClick={onExit}
+              aria-label="Leave the lecture"
+              title="Leave the lecture"
+              className="flex h-11 shrink-0 items-center gap-1 rounded-xl px-2.5 text-[0.84rem] font-medium text-white/70 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300"
+            >
+              <ChevronLeft size={18} />
+              <span className="hidden xl:inline">Leave</span>
+            </button>
+          ) : undefined}
+          center={chatInDock ? renderChatPanel({ inline: true }) : undefined}
+          trailing={pdfWorkspace ? <VoiceState phase={voicePhase} className="hidden shrink-0 lg:flex" /> : undefined}
         />
 
         {/*
@@ -2544,8 +2870,11 @@ export function LessonPlayer({
          * play, restart, exit) of which exactly one had a visible label, plus two separate controls
          * that both exited the lecture. Transport now lives in the dock BELOW the board, where it
          * cannot cover the teaching content.
+         *
+         * Not in the source workspace: there the board's own "Part N · title" strip names what is
+         * being taught, and a second title bar above it only took height from the PDF.
          */}
-        <header className="order-first flex shrink-0 items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-4 py-2.5">
+        {!pdfWorkspace && <header className="order-first flex shrink-0 items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-4 py-2.5">
           <div className="flex min-w-0 items-center gap-3">
             <button
               onClick={onExit}
@@ -2557,25 +2886,15 @@ export function LessonPlayer({
             </button>
             <div className="min-w-0">
               <p className="truncate text-[0.95rem] font-semibold leading-tight text-[var(--hud-text)]">{title}</p>
-              <p className="text-[0.72rem] text-[var(--hud-text-faint)]">
+              <p className="hidden truncate text-[0.72rem] text-[var(--hud-text-faint)] sm:block">
                 {teachingProgress.explained.length} established
                 {teachingProgress.current ? ` · ${teachingProgress.current.title}` : ` · Part ${index + 1}`}
                 {teachingProgress.next ? ` · next: ${teachingProgress.next.title}` : " · final concept"}
               </p>
             </div>
           </div>
-          <VoiceState
-            phase={derivePhase({
-              status: tutor.status,
-              ariaSpeaking: speaking || tutor.isSpeaking(),
-              studentSpeaking: Boolean(
-                tutor.status === "live" && !tutor.muted && !speaking && !tutor.isSpeaking() && hasStarted,
-              ),
-              muted: tutor.muted,
-              paused: !lesson.playing && hasStarted,
-            })}
-          />
-        </header>
+          <VoiceState phase={voicePhase} />
+        </header>}
 
         {voiceBlocked && (
           <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3.5 backdrop-blur-xl lg:left-6 lg:right-6">
@@ -3692,3 +4011,92 @@ function RecapVisual({ cue }: { cue: number }) {
     </ScienceFrame>
   );
 }
+
+/**
+ * THE ARROW FROM THE PDF TO THE BOARD.
+ *
+ * The passage being spoken is marked on the page, and the board beside it explains that passage —
+ * but nothing on screen joined the two, so the student had to infer the connection. A curved amber
+ * arrow now runs from the marked passage across the seam into the board, following the passage as
+ * it moves and as the PDF scrolls. Hidden when the passage is out of view or the panes are stacked.
+ */
+function SourceToBoardArrow({ pointer, workspace, board }: { pointer: DOMRect | null; workspace: HTMLElement | null; board: HTMLElement | null }) {
+  if (!pointer || !workspace || !board) return null;
+  const frame = workspace.getBoundingClientRect();
+  const target = board.getBoundingClientRect();
+  // Only when the source and the board sit side by side.
+  if (target.left < pointer.right) return null;
+  const sx = pointer.right - frame.left + 22;
+  const sy = pointer.top + pointer.height / 2 - frame.top;
+  const ex = target.left - frame.left + 46;
+  const ey = Math.max(target.top - frame.top + 90, Math.min(target.bottom - frame.top - 120, sy));
+  const bend = Math.max(60, (ex - sx) * 0.45);
+  const path = `M ${sx} ${sy} C ${sx + bend} ${sy}, ${ex - bend} ${ey}, ${ex} ${ey}`;
+  return (
+    <svg className="pointer-events-none absolute inset-0 z-30 hidden h-full w-full overflow-visible lg:block" aria-hidden="true">
+      <defs>
+        <marker id="source-board-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#f59e0b" />
+        </marker>
+      </defs>
+      <circle cx={sx} cy={sy} r="4.5" fill="#f59e0b" />
+      <path d={path} fill="none" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" strokeDasharray="7 6" markerEnd="url(#source-board-head)" className="source-board-arrow" />
+      <style>{`.source-board-arrow{animation:source-board-flow 1.1s linear infinite}@keyframes source-board-flow{to{stroke-dashoffset:-26}}@media (prefers-reduced-motion:reduce){.source-board-arrow{animation:none}}`}</style>
+    </svg>
+  );
+}
+
+/**
+ * WHAT ARIA IS SAYING, WRITTEN ON THE BOARD AS SHE SAYS IT.
+ *
+ * A board could hold a sparse drawing while the narration ran on for a minute, so the teacher
+ * appeared to talk without writing. Under the drawing, the part's key points are now written one
+ * at a time, each when the voice reaches its share of the narration — timed by the voice itself,
+ * so the writing can never run ahead of or behind what is being said.
+ */
+function BoardNotes({ points, sentenceIndex, sentenceTotal, complete }: { points: string[]; sentenceIndex: number; sentenceTotal: number; complete: boolean }) {
+  const notes = points.map((point) => point.trim()).filter(Boolean).slice(0, 6);
+  if (notes.length === 0) return null;
+  const total = Math.max(1, sentenceTotal);
+  const shown = complete
+    ? notes.length
+    : sentenceIndex < 0
+      ? 0
+      : notes.filter((_, k) => sentenceIndex >= Math.floor((k * total) / notes.length)).length;
+  return (
+    <div className="shrink-0 border-b border-slate-200 bg-[#fbfbf8] px-5 py-3" style={{ maxHeight: "34%" }}>
+      <style>{`@font-face{font-family:"Playpen Sans";src:url(/fonts/PlaypenSans-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}.board-note-write{animation:board-note-write .7s steps(24,end) both}@keyframes board-note-write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}@media (prefers-reduced-motion:reduce){.board-note-write{animation:none}}`}</style>
+      <ol className="space-y-1.5 overflow-hidden" style={{ fontFamily: '"Playpen Sans","Chalkboard SE","Comic Sans MS",sans-serif' }}>
+        {notes.map((note, k) => (
+          <li
+            key={k}
+            className={`flex gap-2.5 text-[0.98rem] font-semibold leading-snug transition-opacity duration-300 ${k < shown ? "opacity-100" : "opacity-0"}`}
+          >
+            <span className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full text-[0.7rem] ${k === shown - 1 && !complete ? "bg-amber-400 text-[#1a1206]" : "bg-slate-200 text-slate-600"}`}>{k + 1}</span>
+            <span className={`text-slate-800 ${k < shown ? "board-note-write" : ""} ${k === shown - 1 && !complete ? "underline decoration-amber-400 decoration-2 underline-offset-4" : ""}`}>{note}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+/**
+ * The notes written on a board: its key points, then any key claim that says something the points
+ * do not — up to six, in the order the script makes them. Two or three points alone left the notes
+ * panel thin while the narration covered much more.
+ */
+function boardNotesFor(beat: Beat): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of [...(beat.points ?? []), ...(beat.keyClaims ?? [])]) {
+    const note = raw.trim().replace(/\.$/, "");
+    const key = note.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    if (!note || seen.has(key) || [...seen].some((k) => k.includes(key) || key.includes(k))) continue;
+    seen.add(key);
+    out.push(note);
+    if (out.length >= 6) break;
+  }
+  return out;
+}
+

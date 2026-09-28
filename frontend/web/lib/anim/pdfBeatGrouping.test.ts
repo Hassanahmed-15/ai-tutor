@@ -100,6 +100,29 @@ test("blocks with no pageNumber are still grouped, not dropped", () => {
   assert.equal(groupBlocksIntoBeats(blocks).flat().length, 2);
 });
 
+test("a printed textbook's header, copyright line and running footers are never slides or titles", () => {
+  // Shaped like the Cambridge Checkpoint Science excerpt that opened on "Cambridge University Press".
+  const header = "Cambridge University Press 978-1-107-62606-5 – Cambridge Checkpoint Science Mary Jones Excerpt More information";
+  const footer = "© in this web service Cambridge University Press | www.cambridge.org";
+  const H = (id: string, page: number, heading: string, text: string): SuprnotesContentBlock => ({ id, pageNumber: page, heading, text, sourceOrder: Number(id.slice(1)) });
+  const blocks = [
+    H("b1", 1, "Page 1", header),
+    H("b2", 1, "Plant organsPhotosynthesis", "Photosynthesis is the way that plants make food."),
+    H("b3", 1, "Plant organsPhotosynthesis", "carbon dioxide + water → glucose + oxygen"),
+    H("b4", 1, "Energy transfer", "The photosynthesis reaction needs a supply of energy."),
+    H("b5", 1, "6 1Plants", "The energy is stored in the glucose that is made."),
+    H("b6", 1, "6 1Plants", footer),
+    H("b7", 2, "1.1", header),
+    H("b8", 2, "Activity 1.1", "Testing a leaf for starch You will remember that we can test for starch."),
+    H("b9", 2, "Activity 1.1", "Boil some water in a beaker."),
+    H("b10", 2, "1Plants 7", footer),
+  ];
+  const plan = buildPdfLessonPlan(blocks, []);
+  assert.deepEqual(plan.beats.map((beat) => beat.title), ["Photosynthesis", "Energy transfer", "Testing a leaf for starch"]);
+  for (const id of ["b1", "b6", "b7", "b10"]) assert.ok(!plan.contentBlockIds.includes(id), `${id} is page furniture`);
+  assert.ok(plan.beats[1].sourceBlockIds.includes("b5"), "a block under a running footer stays in its section");
+});
+
 test("a raw Figure 19.4 locator becomes the caption's concept title", () => {
   const blocks: SuprnotesContentBlock[] = [{
     id: "dell-p2",

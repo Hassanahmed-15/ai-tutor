@@ -1,6 +1,8 @@
 import type { Beat } from "./lessonContent";
 import type { LectureMode, LectureSourceType } from "./db/cosmos";
 import type { LearnerProfile } from "./learnerProfile";
+import type { BeatSourceGrounding } from "./sourceGrounding";
+import type { PdfFidelity, SourceScope } from "./sourceScope";
 
 export type LearnerExpertise = "beginner" | "intermediate" | "advanced";
 export type LearnerDepth = "concise" | "balanced" | "deep";
@@ -78,6 +80,8 @@ export type ProgressiveLectureInput = {
   mode: LectureMode;
   outline?: {
     topic: string;
+    /** The planner's read of the request: a specific "question" gets only its own boards. */
+    scope?: "question" | "lesson";
     subtopics: Array<{ title: string; caption: string; reason?: string }>;
   };
   context?: string;
@@ -87,6 +91,8 @@ export type ProgressiveLectureInput = {
   transcript?: string;
   focus?: string;
   documentId?: string;
+  /** The explicit source contract chosen after page selection. */
+  sourceScope?: SourceScope;
   /**
    * The part of a page the student DRAGGED a box over ("Get a lecture from this area"). When set,
    * it is the subject of the whole lecture; the rest of the document is background. `transcript`
@@ -132,6 +138,13 @@ export type ProgressiveLectureSessionDoc = {
   createdAt: string;
   updatedAt: string;
   error: string | null;
+  /**
+   * The student's source contract, copied from the input at creation. The session is what an
+   * interaction reads (the input is a blob it never loads), and a strict lesson must turn "give me
+   * more examples" into pacing only (lib/progressiveLectureStore.ts). Absent on sessions created
+   * before it existed, which then adapt exactly as before.
+   */
+  sourceFidelity?: PdfFidelity;
 };
 
 export type ProgressiveBeatState = "planned" | "generating" | "playable" | "ready" | "failed";
@@ -182,6 +195,19 @@ export type ProgressiveBeatDoc = {
   updatedAt: string;
   error: string | null;
   timing?: BeatTiming;
+  /**
+   * The beat's own source — text, printed figure labels, caption, fidelity — as the script step
+   * built it, so the board step hands the SAME source to the board generator without loading the
+   * input blob again (a blob read on the critical path of every opening board). Absent for typed
+   * topics and for beats planned without source blocks.
+   */
+  sourceGrounding?: BeatSourceGrounding;
+  /**
+   * Where the beat's figure sits on its page, so the board step can crop the page image to it.
+   * Only the location is stored; the crop itself is made from the in-process page store at board
+   * time and never written to the database.
+   */
+  sourceFigure?: { documentId: string; pageNumber: number; bbox: { x: number; y: number; width: number; height: number } };
 };
 
 /**

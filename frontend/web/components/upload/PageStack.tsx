@@ -43,6 +43,19 @@ export function PageStack({
   return (
     <div className="h-full min-h-0 overflow-y-auto overscroll-contain px-6 py-6">
       <div className="mx-auto flex max-w-2xl flex-col gap-10">
+        {/*
+         * HOW TO USE THIS, in plain words. The page picker explained nothing: a student did not know
+         * they could pick pages, drag over one part, or ask a question — so they uploaded and hoped.
+         */}
+        <div className="rounded-xl border border-[var(--hud-line-strong)] bg-white/[0.03] px-5 py-4">
+          <p className="text-[0.95rem] font-semibold text-[var(--hud-text)]">How to learn from your {label === "pages" ? "PDF" : "slides"}</p>
+          <ol className="mt-2.5 space-y-2 text-[0.88rem] leading-relaxed text-[var(--hud-text-dim)]">
+            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">1</span>Press <span className="font-semibold text-[var(--hud-text)]">Select {label === "pages" ? "page" : "slide"}</span> on the {label} you want to learn from. Skip this to use all of them.</li>
+            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">2</span>Only want one part, like a diagram or a formula? <span className="font-semibold text-[var(--hud-text)]">Drag a box over it</span> on the {label === "pages" ? "page" : "slide"}.</li>
+            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">3</span>Have a question? Type it in the box at the bottom, for example <span className="italic text-[var(--hud-text)]">&ldquo;What is starch?&rdquo;</span> Aria will answer only that. Leave it empty to learn everything you selected.</li>
+            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">4</span>Press <span className="font-semibold text-[var(--hud-text)]">Use</span> at the top right to start.</li>
+          </ol>
+        </div>
         {pages.map((page) => {
           const position = order.get(page.pageNumber);
           const isSelected = position !== undefined;
@@ -64,20 +77,22 @@ export function PageStack({
                       ? `Deselect ${label === "pages" ? "page" : "slide"} ${page.pageNumber} (position ${position})`
                       : `Select ${label === "pages" ? "page" : "slide"} ${page.pageNumber}`
                   }
-                  className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold transition-colors"
+                  // Solid and legible in BOTH states: the unselected button was transparent with faint
+                  // text on a dark page — students could not find how to pick a page at all.
+                  className="flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[0.8rem] font-semibold transition-colors hover:brightness-110"
                   style={{
-                    borderColor: isSelected ? "var(--hud-cyan)" : "var(--hud-line)",
-                    background: isSelected ? "var(--hud-cyan)" : "transparent",
-                    color: isSelected ? "var(--hud-bg)" : "var(--hud-text-faint)",
+                    borderColor: isSelected ? "var(--hud-cyan)" : "rgba(255,255,255,0.35)",
+                    background: isSelected ? "var(--hud-cyan)" : "rgba(255,255,255,0.1)",
+                    color: isSelected ? "var(--hud-bg)" : "var(--hud-text)",
                   }}
                 >
                   {isSelected ? (
                     <>
-                      <Check size={11} strokeWidth={3} aria-hidden="true" />
-                      {position}
+                      <Check size={13} strokeWidth={3} aria-hidden="true" />
+                      Selected · {position}
                     </>
                   ) : (
-                    "Select"
+                    <>+ Select {label === "pages" ? "page" : "slide"}</>
                   )}
                 </button>
               </div>

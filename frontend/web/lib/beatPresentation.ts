@@ -17,10 +17,11 @@ function trimWords(value: string, maximum: number): string {
  * Words a title must never END on. Cutting at a word limit produced "Explore the fundamental
  * purpose and" — a title that visibly stops mid-phrase. The dangling connective is dropped instead.
  */
-const DANGLING_TAIL = /[\s,;:—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that)?$/i;
+// A title cut from a sentence must not end mid-clause: "Remove Operation Is Difficult Because".
+const DANGLING_TAIL = /[\s,;:—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that|because|which|who|whose|where|when|while|if|so|but|as|than|since|although|unless|until|whether|nor|yet)?$/i;
 
-function trimTitle(value: string): string {
-  const words = trimWords(value.replace(/[.!]+$/, ""), MAX_TITLE_WORDS);
+function trimTitle(value: string, maxWords = MAX_TITLE_WORDS): string {
+  const words = trimWords(value.replace(/[.!]+$/, ""), maxWords);
   let fitted = words.length <= MAX_TITLE_CHARS
     ? words
     : words.slice(0, MAX_TITLE_CHARS + 1).replace(/\s+\S*$/, "").trim();
@@ -40,14 +41,14 @@ function trimTitle(value: string): string {
 const INSTRUCTION_OPENER = /^(?:explore|understand|learn(?: about)?|discover|discuss|examine|describe|define|identify|introduce|investigate|review|study|cover|analy[sz]e|master|grasp|see|look at|dive into|delve into|get to know)\s+(?:the\s+|a\s+|an\s+)?/i;
 
 /** Turns a user's request into the subject label used on title cards. */
-export function topicKeywords(value: string): string {
+export function topicKeywords(value: string, maxWords = MAX_TITLE_WORDS): string {
   const subject = compact(value)
     .replace(/^(?:please\s+)*(?:(?:can|could|would)\s+you\s+)?(?:explain|teach|show|tell|help)\s+(?:me|us)?\s*(?:about\s+)?/i, "")
     .replace(/\b(?:please|plz)\b/gi, "")
     .replace(/\b(?:step[- ]by[- ]step|in detail|from scratch|for beginners?)\b.*$/i, "")
     .replace(/\s+(?:to|for)\s+(?:a|an|the)?\s*$/i, "")
     .replace(/^[\s:,-]+|[\s:,-]+$/g, "");
-  return trimTitle(subject || value)
+  return trimTitle(subject || value, maxWords)
     .split(" ")
     .map((word, index) => {
       if (/^(?:a|an|and|as|at|by|for|in|of|on|or|the|to|vs\.?)$/i.test(word) && index > 0) return word.toLowerCase();
@@ -57,7 +58,7 @@ export function topicKeywords(value: string): string {
     .join(" ");
 }
 
-function keywordTitle(value: string, topic: string): string {
+function keywordTitle(value: string, topic: string, maxWords = MAX_TITLE_WORDS): string {
   const subject = topicKeywords(topic);
   const stripped = compact(value)
     /*
@@ -76,7 +77,7 @@ function keywordTitle(value: string, topic: string): string {
     .replace(/\s+(?:matters?|works?)\??$/i, "")
     .replace(new RegExp(`^${escapeRegExp(compact(topic))}\\s*:\\s*`, "i"), "")
     .replace(/^(?:a|an|the)\s+/i, "");
-  const candidate = topicKeywords(stripped);
+  const candidate = topicKeywords(stripped, maxWords);
   return candidate || subject;
 }
 
@@ -103,6 +104,9 @@ function isPlanTemplateTitle(value: string): boolean {
 }
 
 function objectiveTitle(objective: string): string {
+  // A document beat's objective is a pipeline instruction ("Teach these source blocks completely…"),
+  // not a description of the idea — as a title it put "These source blocks completely" on a slide.
+  if (/\bsource blocks?\b/i.test(objective)) return "";
   const stripped = compact(objective)
     .replace(/^(?:open with|define|explain|show|demonstrate|apply|trace|teach|introduce|connect|contrast|compare|expose and repair|give)\s+/i, "")
     .split(/[.;!?]/, 1)[0]
@@ -141,8 +145,58 @@ function roleTitle(topic: string, sequence: number, total: number): string {
  * source remain untouched; generic templates, locators and duplicates are replaced with a title
  * based on the beat's actual objective and teaching role.
  */
-export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: string): T[] {
+/**
+ * A section taught over several beats keeps its own name, numbered — "Testing a Leaf for Starch
+ * (Part 2)" — rather than borrowing a generic role title ("Worked Example") about nothing in it.
+ */
+function numberedParts(title: string): string[] {
+  return title ? Array.from({ length: 8 }, (_, index) => `${title} (Part ${index + 2})`) : [];
+}
+
+export type PolishOptions<T> = {
+  /**
+   * The opening words of THIS beat's own source text. Setting it marks the plan as built from an
+   * uploaded document (see polishSourceTitle).
+   */
+  sourceOpening?: (entry: T, sequence: number) => string;
+};
+
+/**
+ * A source heading is authored text: the five-word cut made for model-written titles turned
+ * "Questions: Testing a leaf for starch" into "Questions: Testing a Leaf" — a heading visibly cut
+ * off mid-phrase on the title card. Source titles keep up to eight words; the 42-character cap,
+ * which is what the title card and header actually have room for, still applies.
+ */
+const SOURCE_TITLE_WORDS = 8;
+
+/**
+ * The title of a beat planned from an uploaded document: the source's own heading, or — when that
+ * is only a locator like "Page 3" or "Figure 1.2" — the source's own opening words.
+ *
+ * NEVER a generic role title. `roleTitle` exists to name the slots of a typed topic's default
+ * ladder; on a document it put "Worked Example", "Common Pitfalls" or "Applications" over a section
+ * that contained no example, pitfall or application. The script prompt then told the model to keep
+ * that title exactly, and the board drew it as its subject — the plan itself inventing content.
+ */
+function polishSourceTitle(original: string, topic: string, opening: string, objective: string, used: Set<string>, sequence: number): string {
+  const own = weakTitle(original, topic) ? "" : original;
+  // Cased like every other title on the plan ("Energy Transfer"), so the slides read as one set.
+  const said = opening.trim() ? topicKeywords(opening, SOURCE_TITLE_WORDS) : "";
+  const base = own || said || objective;
+  const candidates = [own, said, objective, ...numberedParts(base)].filter(Boolean);
+  return candidates.find((candidate) => !used.has(candidate.toLowerCase())) ?? `Part ${sequence + 1}`;
+}
+
+export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: string, options: PolishOptions<T> = {}): T[] {
   const used = new Set<string>();
+  const sourceOpening = options.sourceOpening;
+  if (sourceOpening) {
+    return entries.map((entry, sequence) => {
+      const title = polishSourceTitle(keywordTitle(entry.title, topic, SOURCE_TITLE_WORDS), topic, sourceOpening(entry, sequence) ?? "", objectiveTitle(entry.objective), used, sequence);
+      used.add(title.toLowerCase());
+      return { ...entry, title };
+    });
+  }
   return entries.map((entry, sequence) => {
     const original = keywordTitle(entry.title, topic);
     const objective = objectiveTitle(entry.objective);
@@ -162,7 +216,7 @@ export function polishBeatPlan<T extends PlannedBeat>(entries: T[], topic: strin
         ? [role]
         : weakTitle(original, topic)
           ? [objective, role]
-          : [original, objective, role];
+          : [original, objective, ...numberedParts(original), role];
     let title = candidates.find((candidate) => candidate && !used.has(candidate.toLowerCase())) ?? role;
     if (used.has(title.toLowerCase())) {
       title = trimTitle(role);

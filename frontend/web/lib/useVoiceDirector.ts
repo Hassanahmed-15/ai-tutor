@@ -197,6 +197,7 @@ export function useVoiceDirector({
   // The chatbot taking or releasing the floor. Taking it freezes the teacher IMMEDIATELY; releasing
   // it frees the channel but deliberately resumes nothing — that is always an explicit decision.
   useEffect(() => {
+    if (process.env.NODE_ENV !== "production") console.log(`[playback] chatbot-speaking ${JSON.stringify({ tutorSpeaking, owner: ownerRef.current })}`);
     if (tutorSpeaking) {
       // She has the floor: everything the teacher was saying stops. The lecture freezes so it can be
       // continued later; an interjection is simply dropped.

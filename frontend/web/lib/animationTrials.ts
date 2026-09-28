@@ -24,6 +24,19 @@ export type AnimationTrial = {
   costUsd: number;
   ms: number;
   abstract: boolean;
+  /** Strict source mode: the board had to stay inside the student's source. */
+  strict?: boolean;
+  /**
+   * How the SHIPPED board's rendered layout came out. "render-failed" is the board's own code
+   * throwing (it would throw for the student too); "unmeasured" is this server being unable to
+   * render at all. Both used to be logged as nothing — a board the checks could not see looked
+   * exactly like a board they had passed.
+   */
+  layout?: "clean" | "fault" | "unmeasured" | "render-failed" | null;
+  /** Strict only: false when the shipped board still writes a word the source does not contain. */
+  grounded?: boolean | null;
+  /** The refine loop's trail (seeded faults, rounds, why it stopped). */
+  refineTrail?: string;
 };
 
 export const ANIMATION_TRIALS_FILE = path.join(process.cwd(), ".animation-trials", "trials.jsonl");

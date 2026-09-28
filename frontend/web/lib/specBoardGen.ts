@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import type { Beat } from "./lessonContent";
 import { PLOT_BOARD_SYSTEM_PROMPT, EQUATION_BOARD_SYSTEM_PROMPT, CODE_BOARD_SYSTEM_PROMPT } from "./drawPrompt";
-import { validatePlotSpec, compilesAsVegaLite } from "./plotSpec";
+import { validatePlotSpec, compilesAsVegaLite, plotFieldIssue } from "./plotSpec";
 import { parseEquationSpec } from "./equationSpec";
 import { parseCodeSpec, verifyFromSource, type CodeSpec } from "./codeSpec";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
@@ -64,7 +64,7 @@ function briefOf(op: SpecBoardOp): string {
   return (op.kind === "plotBoard" ? op.plotBrief : op.kind === "codeBoard" ? op.codeBrief : op.equationBrief) ?? "";
 }
 
-function buildUserPrompt(op: SpecBoardOp, beat: Beat, previousIssue?: string, source?: string, request?: string): string {
+function buildUserPrompt(op: SpecBoardOp, beat: Beat, previousIssue?: string, source?: string, request?: string, priorCode: string[] = []): string {
   const retry = previousIssue
     ? `\n\nYour previous attempt was rejected: ${previousIssue}\nFix exactly that and return the corrected JSON.`
     : "";
@@ -75,6 +75,20 @@ function buildUserPrompt(op: SpecBoardOp, beat: Beat, previousIssue?: string, so
     : [];
   // What the student asked for — it carries the language ("in C++") the listing must be written in.
   const asked = op.kind === "codeBoard" && request?.trim() ? [`Student's request: ${request.trim().slice(0, 300)}`] : [];
+  /*
+   * CODE ALREADY ON EARLIER BOARDS. Each code board was written alone, so every board of a
+   * "while loop" lesson reached for the same count-to-five loop — the same listing three and four
+   * times. The earlier listings are shown so this board writes a DIFFERENT example that shows only
+   * what this board teaches.
+   */
+  const shown = op.kind === "codeBoard" && priorCode.length
+    ? [
+        "",
+        "CODE ALREADY SHOWN on earlier boards of this lesson — do NOT show it again, not even with renamed variables or changed numbers:",
+        ...priorCode.slice(-4).map((code, i) => `--- earlier board ${i + 1} ---\n${code.slice(0, 700)}`),
+        "Write a DIFFERENT example that demonstrates exactly what THIS board teaches: a NEW scenario with new variable names and a new purpose (e.g. reading input, searching a list, a game loop), never the earlier listing again with a line added or a number changed.",
+      ]
+    : [];
   return (
     [
       `Lecture beat title: ${beat.title}`,
@@ -82,6 +96,7 @@ function buildUserPrompt(op: SpecBoardOp, beat: Beat, previousIssue?: string, so
       `Brief: ${briefOf(op)}`,
       ...asked,
       ...excerpt,
+      ...shown,
       "",
       "Return the JSON spec for this board.",
     ].join("\n") + retry
@@ -115,6 +130,10 @@ async function validateFor(op: SpecBoardOp, raw: unknown): Promise<{ spec: unkno
           "not a usable Vega-Lite spec — it needs a drawable `mark` (bar/line/point/area/circle/square/tick/rule), INLINE data under `data.values`, and at least one positional encoding (x, y or theta)",
       };
     }
+    // A chart whose encodings name columns the data does not have compiles fine and draws only its
+    // axes and legend — the empty "overfitting" board. Named precisely, so the retry can fix it.
+    const fieldIssue = plotFieldIssue(spec);
+    if (fieldIssue) return { issue: fieldIssue };
     // The structural pass has no opinion about semantics: `type: "sideways"` is shaped correctly
     // and is still nonsense. Only the compiler knows, so the compiler is asked.
     if (!(await compilesAsVegaLite(spec))) {
@@ -145,6 +164,7 @@ async function generateOne(
   source?: string,
   images: ContentPart[] = [],
   request?: string,
+  priorCode: string[] = [],
 ): Promise<{ filled: boolean; costUsd: number; issue?: string }> {
   const systemPrompt = op.kind === "plotBoard"
     ? PLOT_BOARD_SYSTEM_PROMPT
@@ -167,17 +187,21 @@ async function generateOne(
             // place the code exists, so it is read off the image rather than invented.
             content: op.kind === "codeBoard" && images.length > 0
               ? ([
-                  { type: "text", text: withAudience(beat, buildUserPrompt(op, beat, issue, source, request)) + "\n\nThe document's pages are attached as images. If the code is on them, copy it from there verbatim and set fromSource: true." },
+                  { type: "text", text: withAudience(beat, buildUserPrompt(op, beat, issue, source, request, priorCode)) + "\n\nThe document's pages are attached as images. If the code is on them, copy it from there verbatim and set fromSource: true." },
                   ...images,
                 ] as OpenAI.Chat.Completions.ChatCompletionContentPart[])
-              : withAudience(beat, buildUserPrompt(op, beat, issue, source, request)),
+              : withAudience(beat, buildUserPrompt(op, beat, issue, source, request, priorCode)),
           },
         ],
         response_format: { type: "json_object" },
       });
       spent += costUsd(completion.usage);
 
-      const result = await validateFor(op, parseSpec(completion.choices[0]?.message?.content ?? ""));
+      const parsed = await validateFor(op, parseSpec(completion.choices[0]?.message?.content ?? ""));
+      // A listing that is the same as an earlier board's (after normalising names and numbers) is
+      // rejected with that reason, so the retry writes a genuinely new example.
+      const repeat = "spec" in parsed && op.kind === "codeBoard" && priorCode.some((code) => codeSimilarity((parsed.spec as CodeSpec).code, code) >= CODE_REPEAT_THRESHOLD);
+      const result = repeat ? { issue: "this listing repeats code an earlier board already showed — write a different example for this board's point" } : parsed;
       if ("spec" in result) {
         // "From your document" is shown only for code that IS in the document — the model's own
         // claim was measured wrong on a scan with no listing and on a topic with no document at all.
@@ -210,6 +234,8 @@ export type SpecBoardFillOptions = {
   imagesByBeatId?: Map<string, ContentPart[]>;
   /** What the student asked for, per beat id — read only by code boards. */
   requestByBeatId?: Map<string, string>;
+  /** Listings earlier boards of this lesson already showed, per beat id — never shown again. */
+  priorCodeByBeatId?: Map<string, string[]>;
 };
 
 export async function fillSpecBoardOps(client: OpenAI, beats: Beat[], options: SpecBoardFillOptions = {}): Promise<SpecBoardFillStats> {
@@ -223,7 +249,7 @@ export async function fillSpecBoardOps(client: OpenAI, beats: Beat[], options: S
   }
 
   const results = await Promise.all(
-    pending.map(({ op, beat }) => generateOne(client, op, beat, options.sourceByBeatId?.get(beat.id), options.imagesByBeatId?.get(beat.id), options.requestByBeatId?.get(beat.id))),
+    pending.map(({ op, beat }) => generateOne(client, op, beat, options.sourceByBeatId?.get(beat.id), options.imagesByBeatId?.get(beat.id), options.requestByBeatId?.get(beat.id), options.priorCodeByBeatId?.get(beat.id))),
   );
   const filled = results.filter((r) => r.filled).length;
   return {
@@ -233,4 +259,36 @@ export async function fillSpecBoardOps(client: OpenAI, beats: Beat[], options: S
     rejected: pending.length - filled,
     issues: results.filter((r) => !r.filled && r.issue).map((r) => r.issue as string).slice(0, 5),
   };
+}
+
+/** At or above this similarity a listing counts as a repeat of another board's code. */
+export const CODE_REPEAT_THRESHOLD = 0.7;
+
+/** True when `code` repeats any of `others` (see codeSimilarity). */
+export function repeatsCode(code: string, others: string[]): boolean {
+  return others.some((other) => codeSimilarity(code, other) >= CODE_REPEAT_THRESHOLD);
+}
+
+/**
+ * How alike two listings are, 0..1 — Jaccard overlap of token trigrams, ignoring only what a
+ * re-run changes cosmetically (numbers, string contents, whitespace). Names are kept: two genuinely
+ * different while loops share their keywords but not their variables and logic, and must not be
+ * mistaken for a copy.
+ */
+export function codeSimilarity(a: string, b: string): number {
+  const tokens = (code: string) =>
+    (code.match(/[A-Za-z_]\w*|\d+(?:\.\d+)?|"[^"]*"|'[^']*'|[^\s\w]/g) ?? []).map((token) =>
+      /^\d/.test(token) ? "N" : /^["']/.test(token) ? "S" : token.toLowerCase(),
+    );
+  const grams = (list: string[]) => {
+    const out = new Set<string>();
+    for (let i = 0; i + 2 < list.length; i++) out.add(`${list[i]} ${list[i + 1]} ${list[i + 2]}`);
+    return out;
+  };
+  const ga = grams(tokens(a));
+  const gb = grams(tokens(b));
+  if (ga.size === 0 || gb.size === 0) return 0;
+  let shared = 0;
+  for (const g of ga) if (gb.has(g)) shared += 1;
+  return shared / (ga.size + gb.size - shared);
 }

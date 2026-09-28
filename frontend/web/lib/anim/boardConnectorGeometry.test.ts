@@ -65,11 +65,20 @@ test("a line passing cleanly beside a label is left alone", () => {
 
 test("lines, polylines and stroked paths are all read", () => {
   const svg = [
-    '<line x1="10" y1="10" x2="200" y2="10"/>',
-    '<polyline points="10,50 200,50 200,120"/>',
-    '<path d="M 10 200 L 200 200" fill="none"/>',
+    '<line x1="10" y1="10" x2="200" y2="10" stroke="#333"/>',
+    '<polyline points="10,50 200,50 200,120" fill="none" stroke="#333"/>',
+    '<path d="M 10 200 L 200 200" fill="none" stroke="#333"/>',
   ].join("");
   assert.equal(parseConnectors(svg).length, 4, "1 line + 2 polyline segments + 1 path segment");
+});
+
+test("a line with no stroke paint draws nothing and crosses nothing", () => {
+  /*
+   * SVG's initial stroke is none, and the sandbox sets no default: an element without a stroke is
+   * invisible to the student, so it cannot be printed across a label.
+   */
+  assert.equal(parseConnectors('<line x1="10" y1="10" x2="200" y2="10"/>').length, 0);
+  assert.equal(parseConnectors('<g stroke="#333"><line x1="10" y1="10" x2="200" y2="10"/></g>').length, 1, "stroke is inherited");
 });
 
 test("a FILLED path is artwork, not a connector", () => {

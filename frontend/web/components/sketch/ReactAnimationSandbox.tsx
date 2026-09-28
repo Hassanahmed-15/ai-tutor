@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { keepContentLabels } from "@/lib/board/contentLabels";
 import { registerSandboxText } from "@/lib/board/sandboxBridge";
 import { ANIM_SANDBOX_RUNTIME } from "../../lib/anim/sandboxRuntime";
+import { SANDBOX_LAYOUT_CORE, SANDBOX_LAYOUT_HOST } from "../../lib/anim/sandboxLayout";
 import { escapeStrayLessThan, type ParseLoc } from "../../lib/jsxRepair";
 
 /**
@@ -95,6 +97,76 @@ function loadAssetRuntime(assetIds?: string[]): Promise<string> {
 }
 
 /**
+ * THE BOARD FONT, inlined into every sandbox document.
+ *
+ * Playpen Sans (SIL OFL 1.1 — public/fonts/PlaypenSans-OFL.txt), a handwriting face designed for
+ * legibility in education, subset to Latin, Latin-1/Extended-A, Greek and the science symbols, as
+ * two static weights: SemiBold for body text and labels, ExtraBold for headings. The .woff2 files
+ * feed this document; the matching .ttf files are for server-side measurement and rasterising
+ * (resvg reads TTF), so the critic measures the very glyphs the student sees.
+ *
+ * Fetched once per page and cached as CSS text, in parallel with the React runtime and warmed by
+ * warmSandbox(), so no board waits on it. A failed fetch resolves to "" and the board falls back to
+ * the system handwriting stack — a font must never be the reason a board does not appear. Not
+ * memoised on failure, for the same reason as the runtime above.
+ */
+const BOARD_FONT_FACES = [
+  { url: "/fonts/PlaypenSans-SemiBold.woff2", weight: "100 650" },
+  { url: "/fonts/PlaypenSans-ExtraBold.woff2", weight: "651 1000" },
+];
+let boardFontPromise: Promise<string> | null = null;
+function blobToDataUrl(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result ?? ""));
+    reader.onerror = () => reject(reader.error ?? new Error("could not read the board font"));
+    reader.readAsDataURL(blob);
+  });
+}
+function loadBoardFont(): Promise<string> {
+  if (!boardFontPromise) {
+    boardFontPromise = Promise.all(
+      BOARD_FONT_FACES.map(async (face) => {
+        const res = await fetch(face.url);
+        if (!res.ok) throw new Error(`${face.url} returned ${res.status}`);
+        const dataUrl = await blobToDataUrl(await res.blob());
+        if (!/^data:[^,]*;base64,/.test(dataUrl)) throw new Error(`${face.url} did not read as a data URL`);
+        return `@font-face{font-family:"Playpen Sans";src:url(${dataUrl}) format("woff2");font-weight:${face.weight};font-style:normal;font-display:block;}`;
+      }),
+    )
+      .then((rules) => rules.join("\n"))
+      .catch(() => {
+        boardFontPromise = null;
+        return "";
+      });
+  }
+  return boardFontPromise;
+}
+
+/**
+ * WHERE THE DRAWING IS INSIDE EACH SANDBOX. The board now fits its viewBox to its pane (see
+ * fitBoardToPane in lib/anim/sandboxLayout.ts), so the parent can no longer assume the authored
+ * 1000x560 is letterboxed into the iframe. Each sandbox reports its live viewBox; the student's
+ * marks (components/board/AnnotationLayer.tsx) map through it so ink stays on the part it was drawn
+ * over at any pane shape.
+ */
+export interface SandboxViewport {
+  viewBox: { x: number; y: number; width: number; height: number };
+  /** The board's own authored frame (normally 0 0 1000 560) — what board space is a fraction of. */
+  authored: { x: number; y: number; width: number; height: number };
+  /** The svg's size in the iframe, in CSS px (the whole iframe: the board fills it). */
+  width: number;
+  height: number;
+}
+const viewportRegistry = new WeakMap<HTMLIFrameElement, SandboxViewport>();
+/** Fired on window whenever any sandbox reports a new viewport, so overlays can repaint. */
+export const SANDBOX_VIEWPORT_EVENT = "board-sandbox-viewport";
+export function sandboxViewport(iframe: HTMLIFrameElement | null | undefined): SandboxViewport | null {
+  if (!iframe || !iframe.isConnected) return null;
+  return viewportRegistry.get(iframe) ?? null;
+}
+
+/**
  * Pay the sandbox's fixed costs before the first animated beat needs them.
  *
  * The first board of a lecture was paying for `import("@babel/standalone")` (a multi-megabyte
@@ -106,6 +178,7 @@ function loadAssetRuntime(assetIds?: string[]): Promise<string> {
 export function warmSandbox(): void {
   void import("@babel/standalone").catch(() => undefined);
   void loadReactRuntime().catch(() => undefined);
+  void loadBoardFont();
 }
 
 /** How many stray `<` characters we are willing to fix before concluding the source is just broken. */
@@ -141,7 +214,8 @@ async function transpile(code: string): Promise<string> {
    * which is in almost every generated component and is perfectly valid. A source that fails for
    * any other reason reports its ORIGINAL error rather than a confusing downstream one.
    */
-  let source = code;
+  // A node's value tagged "label" would be hidden with the real labels (lib/board/contentLabels).
+  let source = keepContentLabels(code);
   let firstError: unknown = null;
   for (let attempt = 0; attempt <= MAX_JSX_REPAIRS; attempt++) {
     try {
@@ -168,28 +242,48 @@ function buildSrcDoc(
    * a critic that scores a board without its artwork is scoring a picture nobody sees.
    */
   assetRuntime = "",
+  /** The board font's @font-face rules (data: URIs), or "" to fall back to system handwriting. */
+  fontCss = "",
 ): string {
   // React/ReactDOM are UMD builds pinned at React 18, INLINED (not <script src>) because the
   // opaque-origin sandbox + strict CSP blocks external script tags — see loadReactRuntime above.
   // This is an isolated realm — the sandboxed component never interacts with the app's real
   // React 19 tree outside the iframe, so the version mismatch has no consequence.
+  //
+  // `font-src data:` admits exactly one thing: the board font below, inlined. Nothing is fetched.
   return `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:;" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:;" />
 <style>
+${fontCss}
 html,body{margin:0;padding:0;background:#fbfbf8;width:100%;height:100%;overflow:hidden;}
-#root{width:100%;height:100%;box-sizing:border-box;padding:18px;background:#fbfbf8;}
-#root>*{width:100%;height:100%;box-sizing:border-box;}
+#root{width:100%;height:100%;box-sizing:border-box;padding:0;background:#fbfbf8;}
+#root>*{width:100%;height:100%;box-sizing:border-box;display:block;}
 svg{max-width:100%;max-height:100%;overflow:visible;}
+/*
+ * NO LABELS. Animated boards carry no labels (the prompt forbids them — NO_LABELS_RULE in
+ * lib/drawPrompt.ts); this hides any a board still has, including every board generated before the
+ * rule, so a lesson never shows one. Hidden elements take no part in the fit-to-ink layout.
+ */
+[data-teach-kind="label"]{display:none!important;}
+/*
+ * ONE FONT, EVERYWHERE. The board used to name "Chalkboard SE" — a macOS font — so Windows students
+ * got Comic Sans, Linux got a sans, and every width the layout was planned against was wrong
+ * somewhere. Playpen Sans (OFL, public/fonts) ships inside the document, so the glyphs, and every
+ * measurement taken from them, are identical on every machine and in the server-side critic.
+ * Weight is the author's, mapped onto the two shipped faces: body text SemiBold, headings ExtraBold.
+ */
 svg text{
-  font-family:"Chalkboard SE","Marker Felt","Bradley Hand","Comic Sans MS","Trebuchet MS",sans-serif!important;
-  font-weight:650!important;
+  font-family:"Playpen Sans","Chalkboard SE","Marker Felt","Comic Sans MS","Trebuchet MS",sans-serif!important;
   letter-spacing:0!important;
+  font-kerning:normal;
   transition:opacity 80ms linear!important;
 }
 [data-teach-order]{opacity:0;}
+/* A border drawn around the authored 1000x560 box means nothing once the board is fitted to its pane. */
+svg[data-host-fitted] [data-host-frame]{stroke-opacity:0!important;}
 </style>
 </head>
 <body>
@@ -253,7 +347,11 @@ ${assetRuntime}
   /* The picture, for "Explain this": the SVG with computed styles inlined so it renders outside. */
   function inlineComputedStyles(source, clone) {
     var computed = getComputedStyle(source);
+    // stroke-opacity/fill-opacity/stroke-dasharray: the host's own stylesheet hides the authored
+    // frame on a fitted board and the reveal writes fill settling; without them the picture sent
+    // for "Explain this" showed a border floating mid-board and dashed guides drawn solid.
     var keys = ["fill", "stroke", "stroke-width", "stroke-linecap", "stroke-linejoin", "opacity",
+      "stroke-opacity", "fill-opacity", "stroke-dasharray",
       "font-family", "font-size", "font-weight", "font-style", "letter-spacing",
       "text-anchor", "dominant-baseline", "display", "visibility", "transform"];
     var style = keys.map(function (key) { return key + ":" + computed.getPropertyValue(key); }).join(";");
@@ -328,215 +426,44 @@ ${assetRuntime}
     return Number.isFinite(value) ? value : fallback;
   }
 
-  function wordWritingProgress(text, local) {
-    var words = String(text || "").trim().split(/\\s+/).filter(Boolean);
-    if (!words.length) return local;
-    var weights = words.map(function (word, index) {
-      var writing = Math.max(0.8, Math.min(2.8, word.length * 0.28));
-      var variation = 0.92 + ((word.length * 17 + index * 11) % 19) / 100;
-      var pause = /[.!?]$/.test(word) ? 0.7 : /[,;:]$/.test(word) ? 0.3 : 0.1;
-      return writing * variation + pause;
-    });
-    var total = weights.reduce(function (sum, weight) { return sum + weight; }, 0);
-    var target = Math.max(0, Math.min(1, local)) * total;
-    var consumed = 0;
-    for (var i = 0; i < weights.length; i += 1) {
-      var word = words[i];
-      var slot = weights[i];
-      if (target <= consumed + slot) {
-        var pauseRatio = /[.!?]$/.test(word) ? 0.24 : /[,;:]$/.test(word) ? 0.13 : 0.06;
-        var written = Math.min(1, Math.max(0, (target - consumed) / (slot * (1 - pauseRatio))));
-        return (i + written) / words.length;
-      }
-      consumed += slot;
-    }
-    return 1;
-  }
+  // Host layout and the teaching timeline: measured text fitting, leaders that move with their
+  // labels, the heading stack, word-true handwriting, arrow holds and the pane fit. Source text
+  // from lib/anim/sandboxLayout.ts (its pure half is unit-tested there).
+${SANDBOX_LAYOUT_CORE}
+${SANDBOX_LAYOUT_HOST}
 
-  function boxFor(node) {
+  /*
+   * SETTLING. The hand stops when the clock stops: a pause, an interruption, a gap before the next
+   * sentence's audio, or a clock that ended a hair short of 1. A board frozen mid-word read "chlo"
+   * for as long as the student looked at it. So a quiet clock (no new progress for a moment)
+   * finishes the word in progress, and an explicit settle from the player finishes the line.
+   * Neither is ever taken back when the clock resumes (see the high-water marks in the timeline).
+   */
+  var SETTLE_AFTER_MS = 240;
+  var settleTimer = 0;
+  var settleMode = null;
+  var lastArgs = null;
+  function applyWithSettle() {
+    if (!lastArgs) return;
     try {
-      var box = node.getBBox();
-      if (box && Number.isFinite(box.x)) return box;
+      applyTeachingTimeline(lastArgs[0], lastArgs[1], lastArgs[2], lastArgs[3], settleMode);
+      postTextMap();
     } catch (e) {}
-    return { x: numberAttr(node, "x", 500), y: numberAttr(node, "y", 280), width: 1, height: 1 };
   }
-
-  function keepTextInsideBoard(svg) {
-    if (svg.getAttribute("data-host-text-safe") === "1") return;
-    var viewBox = svg.viewBox && svg.viewBox.baseVal;
-    var width = viewBox && viewBox.width ? viewBox.width : 1000;
-    var height = viewBox && viewBox.height ? viewBox.height : 560;
-    var margin = 42;
-    Array.prototype.slice.call(svg.querySelectorAll("text")).forEach(function (node) {
-      var box = boxFor(node);
-      var dx = 0;
-      var dy = 0;
-      if (box.x < margin) dx = margin - box.x;
-      if (box.x + box.width > width - margin) dx = width - margin - box.x - box.width;
-      if (box.y < margin) dy = margin - box.y;
-      if (box.y + box.height > height - margin) dy = height - margin - box.y - box.height;
-      if (!dx && !dy) return;
-      var base = node.getAttribute("transform") || "";
-      node.setAttribute("transform", (base + " translate(" + dx + " " + dy + ")").trim());
-    });
-    svg.setAttribute("data-host-text-safe", "1");
-  }
-
-  function setStrokeProgress(node, local) {
-    var shapes = node.matches("path,line,polyline,polygon,circle,ellipse,rect")
-      ? [node]
-      : Array.prototype.slice.call(node.querySelectorAll("path,line,polyline,polygon,circle,ellipse,rect"));
-    shapes.forEach(function (shape) {
-      shape.setAttribute("pathLength", "1");
-      shape.style.strokeDasharray = "1";
-      shape.style.strokeDashoffset = String(1 - local);
-      shape.style.opacity = local <= 0 ? "0" : "1";
-      var originalFill = shape.getAttribute("fill");
-      if (originalFill && originalFill !== "none") shape.style.fillOpacity = String(Math.max(0, (local - 0.46) / 0.54));
-    });
-  }
-
-  function applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal) {
-    var svg = document.querySelector("#root svg");
-    if (!svg) return;
-    keepTextInsideBoard(svg);
-    var steps = Array.prototype.slice.call(svg.querySelectorAll("[data-teach-order]"));
-    if (!steps.length) {
-      postToParent({ type: "marker", x: 50, y: 28, rotate: 18, visible: false });
-      return;
-    }
-    steps.sort(function (a, b) { return numberAttr(a, "data-teach-order", 0) - numberAttr(b, "data-teach-order", 0); });
-    var weights = steps.map(function (step) { return Math.max(0.35, numberAttr(step, "data-teach-weight", 1)); });
-    var active = null;
-    var activeLocal = 0;
-    var sentenceRanges = new Map();
-    var sentenceTimed = Number.isFinite(sentenceIndex) && Number.isFinite(sentenceProgress) && steps.every(function (step) {
-      return Number.isFinite(Number(step.getAttribute("data-teach-sentence")));
-    });
-    if (sentenceTimed) {
-      var grouped = new Map();
-      steps.forEach(function (step, index) {
-        var sentence = Math.max(0, Math.min(Math.max(0, sentenceTotal - 1), numberAttr(step, "data-teach-sentence", 0)));
-        var list = grouped.get(sentence) || [];
-        list.push({ step: step, weight: weights[index] });
-        grouped.set(sentence, list);
-      });
-      grouped.forEach(function (list) {
-        var sentenceWeight = list.reduce(function (sum, entry) { return sum + entry.weight; }, 0);
-        var sentenceCursor = 0;
-        list.forEach(function (entry) {
-          sentenceRanges.set(entry.step, { start: sentenceCursor / sentenceWeight, end: (sentenceCursor + entry.weight) / sentenceWeight });
-          sentenceCursor += entry.weight;
-        });
-      });
-    }
-
-    var weightedRanges = successionRanges(weights);
-
-    steps.forEach(function (step, index) {
-      var kind = step.getAttribute("data-teach-kind") || "diagram";
-      // Drawn contours ease (Manim's default on Create) so a stroke accelerates out of rest
-      // and settles. Handwriting does NOT: a hand writes a line at a fairly even pace, and
-      // easing a whole text line makes the middle words visibly sprint. Previously everything
-      // was raw linear, which is why traced contours read like a progress bar dragging a line.
-      var ease = kind === "write" || kind === "label" ? null : smooth;
-      var local = 0;
-      if (sentenceTimed) {
-        var stepSentence = Math.max(0, Math.min(Math.max(0, sentenceTotal - 1), numberAttr(step, "data-teach-sentence", 0)));
-        var range = sentenceRanges.get(step) || { start: 0, end: 1 };
-        local = sentenceIndex > stepSentence
-          ? 1
-          : sentenceIndex < stepSentence
-            ? 0
-            : phase(sentenceProgress, range.start, range.end, ease || clamp01);
-      } else {
-        var timelineRange = weightedRanges[index] || { start: 0, end: 1 };
-        local = phase(progress, timelineRange.start, timelineRange.end, ease || clamp01);
-      }
-      step.style.opacity = local <= 0 ? "0" : "1";
-      step.style.transition = "none";
-      if (kind === "write" || kind === "label") {
-        // The marker arrives first; ink appears a fraction later at the nib. This compensates
-        // for the parent-frame message hop and prevents text from visibly leading the hand.
-        var inkLocal = Math.max(0, local - 0.035);
-        var writing = wordWritingProgress(step.textContent, inkLocal);
-        var box = boxFor(step);
-        // A completed word must be completely unmasked. Keeping an exact-bounds clip attached
-        // could shave off antialiasing or a glyph overhang on the final character (for example G).
-        if (writing >= 0.97) {
-          step.removeAttribute("clip-path");
-        } else {
-          var clipId = "teacher-clip-" + index;
-          var defs = svg.querySelector("defs");
-          if (!defs) {
-            defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-            svg.insertBefore(defs, svg.firstChild);
-          }
-          var clip = svg.querySelector("#" + clipId);
-          if (!clip) {
-            clip = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-            clip.id = clipId;
-            var clipRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            clip.appendChild(clipRect);
-            defs.appendChild(clip);
-          }
-          var rect = clip.firstElementChild;
-          // Handwritten glyphs commonly overhang their measured advance width. Give the live
-          // reveal enough room for the active glyph's full stroke, especially the last letter.
-          var overhang = Math.max(14, box.height * 0.55);
-          rect.setAttribute("x", String(box.x - overhang * 0.35));
-          rect.setAttribute("y", String(box.y - overhang));
-          rect.setAttribute("width", String(Math.max(0, box.width * writing + overhang)));
-          rect.setAttribute("height", String(box.height + overhang * 2));
-          step.setAttribute("clip-path", "url(#" + clipId + ")");
-        }
-      } else if (kind === "diagram" || kind === "arrow" || kind === "annotate") {
-        step.removeAttribute("clip-path");
-        setStrokeProgress(step, Math.max(0, local - 0.025));
-      } else {
-        step.removeAttribute("clip-path");
-        step.style.opacity = String(local);
-      }
-      if (local > 0 && local < 1) {
-        active = step;
-        activeLocal = local;
-      }
-    });
-
-    if (!active) {
-      postToParent({ type: "marker", x: 50, y: 25, rotate: 18, visible: false });
-      return;
-    }
-    var box = boxFor(active);
-    var activeKind = active.getAttribute("data-teach-kind") || "diagram";
-    var x = activeKind === "write" || activeKind === "label" ? box.x + box.width * wordWritingProgress(active.textContent, activeLocal) : box.x + box.width * activeLocal;
-    var y = activeKind === "write" || activeKind === "label" ? box.y + box.height * 0.72 : box.y + box.height * (0.25 + activeLocal * 0.5);
-    var screenX = x;
-    var screenY = y;
-    try {
-      var point = svg.createSVGPoint();
-      point.x = x;
-      point.y = y;
-      var matrix = svg.getScreenCTM();
-      if (matrix) {
-        var screenPoint = point.matrixTransform(matrix);
-        screenX = screenPoint.x;
-        screenY = screenPoint.y;
-      }
-    } catch (e) {}
-    var viewportWidth = Math.max(1, document.documentElement.clientWidth);
-    var viewportHeight = Math.max(1, document.documentElement.clientHeight);
-    postToParent({
-      type: "marker",
-      x: Math.max(2, Math.min(98, screenX / viewportWidth * 100)),
-      y: Math.max(3, Math.min(96, screenY / viewportHeight * 100)),
-      rotate: activeKind === "arrow" ? 34 : activeKind === "write" || activeKind === "label" ? 14 : 24,
-      visible: true
-    });
+  function armSettle() {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(function () {
+      if (settleMode !== "line") settleMode = "word";
+      applyWithSettle();
+    }, SETTLE_AFTER_MS);
   }
 
   function render(progress, sentenceIndex, sentenceProgress, sentenceTotal) {
     if (hasErrored || typeof Animation !== "function") return;
+    var changed = !lastArgs || lastArgs[0] !== progress || lastArgs[1] !== sentenceIndex || lastArgs[2] !== sentenceProgress || lastArgs[3] !== sentenceTotal;
+    lastArgs = [progress, sentenceIndex, sentenceProgress, sentenceTotal];
+    if (changed) settleMode = null;
+    armSettle();
     try {
       if (!root) root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -565,7 +492,7 @@ ${assetRuntime}
 
       if (!needsRender) {
         cancelAnimationFrame(timelineFrame);
-        applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal); postTextMap();
+        applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal, settleMode); postTextMap();
         return;
       }
       lastRenderedProgress = quantised;
@@ -580,7 +507,7 @@ ${assetRuntime}
       // detailed ones never appeared. Waiting a second frame puts this after commit and paint.
       timelineFrame = requestAnimationFrame(function () {
         timelineFrame = requestAnimationFrame(function () {
-          applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal); postTextMap();
+          applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal, settleMode); postTextMap();
         });
       });
     } catch (err) {
@@ -588,23 +515,76 @@ ${assetRuntime}
     }
   }
 
+  /*
+   * BOOT. The board font is a data: URI, so it decodes in milliseconds, but text measured before it
+   * lands would be laid out in the fallback font and then reflow. Wait for it (bounded — a font
+   * problem must never hold a board back), lay the finished board out once, then start.
+   */
+  var booted = false;
+  var pendingArgs = null;
+  function whenFontsReady(done) {
+    var finished = false;
+    function finish() { if (!finished) { finished = true; done(); } }
+    setTimeout(finish, 700);
+    try {
+      if (document.fonts && document.fonts.load) {
+        Promise.all([
+          document.fonts.load('600 24px "Playpen Sans"'),
+          document.fonts.load('800 24px "Playpen Sans"')
+        ]).then(finish, finish);
+      } else {
+        finish();
+      }
+    } catch (e) { finish(); }
+  }
+
+  function boot() {
+    if (hasErrored || typeof Animation !== "function") return;
+    try {
+      root = ReactDOM.createRoot(document.getElementById("root"));
+      prepareBoardLayout(function (p) {
+        ReactDOM.flushSync(function () { root.render(React.createElement(Animation, { progress: p })); });
+      });
+    } catch (err) {
+      reportError(err);
+      return;
+    }
+    booted = true;
+    lastRenderedProgress = null;
+    var args = pendingArgs || [${INITIAL_REVEAL_PROGRESS}, 0, 0, 1];
+    render(args[0], args[1], args[2], args[3]);
+    postToParent({ type: "ready" });
+    postTextMap();
+  }
+
   window.addEventListener("message", function (event) {
     var data = event.data;
     if (!data || typeof data !== "object") return;
     if (data.type === "snapshot") { postSnapshot(data.id); return; }
-    if (data.type === "progress") render(
-      typeof data.value === "number" ? data.value : 0,
-      typeof data.sentenceIndex === "number" ? data.sentenceIndex : 0,
-      typeof data.sentenceProgress === "number" ? data.sentenceProgress : 0,
-      typeof data.sentenceTotal === "number" ? data.sentenceTotal : 1
-    );
+    if (data.type === "settle") {
+      settleMode = data.scope === "word" ? "word" : "line";
+      if (booted) applyWithSettle();
+      return;
+    }
+    if (data.type === "progress") {
+      var args = [
+        typeof data.value === "number" ? data.value : 0,
+        typeof data.sentenceIndex === "number" ? data.sentenceIndex : 0,
+        typeof data.sentenceProgress === "number" ? data.sentenceProgress : 0,
+        typeof data.sentenceTotal === "number" ? data.sentenceTotal : 1
+      ];
+      if (!booted) { pendingArgs = args; return; }
+      render(args[0], args[1], args[2], args[3]);
+    }
   });
 
-  if (!hasErrored) {
-    render(${INITIAL_REVEAL_PROGRESS}, 0, 0, 1);
-    postToParent({ type: "ready" });
-    postTextMap();
-  }
+  // The pane can change shape (window resize, the chat dock opening); refit from the ink measured
+  // at mount — no re-render needed, the viewBox is the only thing that changes.
+  window.addEventListener("resize", function () {
+    try { fitBoardToPane(document.querySelector("#root > svg")); } catch (e) {}
+  });
+
+  if (!hasErrored) whenFontsReady(boot);
 })();
 <\/script>
 </body>
@@ -618,6 +598,7 @@ export function ReactAnimationSandbox({
   sentenceProgress = 0,
   sentenceTotal = 1,
   assetIds,
+  settled = false,
   onError,
   onReady,
 }: {
@@ -628,6 +609,12 @@ export function ReactAnimationSandbox({
   sentenceTotal?: number;
   /** Catalogue artwork this board places; resolved to markup via /api/animation-assets. */
   assetIds?: string[];
+  /**
+   * The narration is paused or interrupted. The sandbox finishes the word and line being written
+   * and any stroke in progress, so a stopped board never reads "chlo". The sandbox also settles on
+   * its own when the clock goes quiet; this makes a deliberate pause immediate and complete.
+   */
+  settled?: boolean;
   onError?: () => void;
   /**
    * The sandboxed document has run its script and is listening for progress.
@@ -664,9 +651,9 @@ export function ReactAnimationSandbox({
   // component's whole lifetime — no need to react to it changing after mount.
   useEffect(() => {
     let cancelled = false;
-    Promise.all([transpile(code), loadReactRuntime(), loadAssetRuntime(assetIds)])
-      .then(([out, runtime, assets]) => {
-        if (!cancelled) setSrcDoc(buildSrcDoc(out, runtime, assets));
+    Promise.all([transpile(code), loadReactRuntime(), loadAssetRuntime(assetIds), loadBoardFont()])
+      .then(([out, runtime, assets, fontCss]) => {
+        if (!cancelled) setSrcDoc(buildSrcDoc(out, runtime, assets, fontCss));
       })
       .catch(() => {
         if (!cancelled) reportFailure();
@@ -709,6 +696,11 @@ export function ReactAnimationSandbox({
   }, [srcDoc, failed, ready, progress, sentenceIndex, sentenceProgress, sentenceTotal]);
 
   useEffect(() => {
+    if (!srcDoc || failed || !ready || !settled) return;
+    iframeRef.current?.contentWindow?.postMessage({ type: "settle", scope: "line" }, "*");
+  }, [srcDoc, failed, ready, settled, progress, sentenceIndex, sentenceProgress]);
+
+  useEffect(() => {
     function onMessage(event: MessageEvent) {
       if (event.source !== iframeRef.current?.contentWindow) return;
       const data = event.data;
@@ -717,6 +709,21 @@ export function ReactAnimationSandbox({
         readyRef.current = true;
         setReady(true);
         onReady?.();
+      }
+      if (data.type === "viewport" && iframeRef.current) {
+        const vb = data.viewBox;
+        const finite = (n: unknown): n is number => typeof n === "number" && Number.isFinite(n);
+        if (vb && finite(vb.x) && finite(vb.y) && finite(vb.width) && finite(vb.height) && vb.width > 0 && vb.height > 0 && finite(data.width) && finite(data.height)) {
+          const au = data.authored;
+          const authoredOk = au && finite(au.x) && finite(au.y) && finite(au.width) && finite(au.height) && au.width > 0 && au.height > 0;
+          viewportRegistry.set(iframeRef.current, {
+            viewBox: { x: vb.x, y: vb.y, width: vb.width, height: vb.height },
+            authored: authoredOk ? { x: au.x, y: au.y, width: au.width, height: au.height } : { x: 0, y: 0, width: 1000, height: 560 },
+            width: data.width,
+            height: data.height,
+          });
+          window.dispatchEvent(new Event(SANDBOX_VIEWPORT_EVENT));
+        }
       }
       if (data.type === "textmap" && Array.isArray(data.items) && iframeRef.current) {
         registerSandboxText(iframeRef.current, data.items.filter((item: unknown) => item && typeof item === "object"));

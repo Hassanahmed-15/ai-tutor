@@ -5,10 +5,12 @@ import { databaseConfigured } from "@/lib/db/cosmos";
 import { normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureArchive";
 import { dispatchProgressiveTasks, progressiveQueueTransport } from "@/lib/progressiveLectureQueue";
 import { createProgressiveLectureSession } from "@/lib/progressiveLectureStore";
-import { isLearnerProfileSnapshot, shouldIncludeCodeExamples, type ProgressiveLectureInput } from "@/lib/progressiveLectureTypes";
+import { isLearnerProfileSnapshot, shouldIncludeCodeExamples, type LearnerProfileSnapshot, type ProgressiveLectureInput } from "@/lib/progressiveLectureTypes";
 import { sanitizeLearnerProfile } from "@/lib/learnerProfile";
 import { recordLesson, snapshotFrom } from "@/lib/learnerModel";
 import { updateLearnerMemory } from "@/lib/learnerMemoryStore";
+import { sanitizeSourceScope } from "@/lib/sourceScope";
+import { isProgrammingTopic } from "@/lib/codeSpec";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +34,7 @@ export async function POST(request: Request) {
   const rawOutline = body.outline && typeof body.outline === "object" ? body.outline as Record<string, unknown> : null;
   const outline = rawOutline && Array.isArray(rawOutline.subtopics) ? {
     topic: typeof rawOutline.topic === "string" ? rawOutline.topic.slice(0, 200) : topic,
+    ...(rawOutline.scope === "question" || rawOutline.scope === "lesson" ? { scope: rawOutline.scope as "question" | "lesson" } : {}),
     subtopics: rawOutline.subtopics
       .filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === "object")
       .map((item) => ({
@@ -54,10 +57,16 @@ export async function POST(request: Request) {
     transcript: text(body.transcript, 30_000),
     focus: text(body.focus, 1_000),
     documentId: text(body.documentId, 200),
+    sourceScope: sanitizeSourceScope(body.sourceScope),
     selection: parseSelection(body.selection),
     learnerProfile: {
       ...snapshot,
-      codeExamples: shouldIncludeCodeExamples(snapshot),
+      // Words in the request ("quickly", "in depth") beat the saved preference, which beats the
+      // profile's own depth. Depth buys words per board, never extra boards.
+      depth: requestedDepth(rawOutline?.depth, body.teachingPreference) ?? snapshot.depth,
+      // Code for an advanced professional, and for ANY programming topic ("explain for loops") —
+      // a programming idea is taught by showing it, whatever the student's level.
+      codeExamples: shouldIncludeCodeExamples(snapshot) || isProgrammingTopic(`${topic} ${typeof body.focus === "string" ? body.focus : ""}`),
       confirmedAt: snapshot.confirmedAt || new Date().toISOString(),
     },
     learner,
@@ -100,4 +109,13 @@ function parseSelection(value: unknown): ProgressiveLectureInput["selection"] {
   const transcript = text(o.transcript, 8_000) ?? "";
   if (pages.length === 0 && !transcript) return undefined;
   return { pages, transcript, description: text(o.description, 200) ?? "" };
+}
+
+function requestedDepth(outlineDepth: unknown, preference: unknown): LearnerProfileSnapshot["depth"] | undefined {
+  if (outlineDepth === "quick") return "concise";
+  if (outlineDepth === "deep") return "deep";
+  if (preference === "quick") return "concise";
+  if (preference === "balanced") return "balanced";
+  if (preference === "deep") return "deep";
+  return undefined;
 }

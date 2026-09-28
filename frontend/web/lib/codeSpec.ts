@@ -263,6 +263,21 @@ export function asksForCode(text: string | undefined | null): boolean {
   return /\b(?:code|coding|snippets?|implementation|implement|program|syntax|pseudo-?code)\b|c\+\+|\bjava\b|\bpython\b|\bjavascript\b|\bc#/.test(t);
 }
 
+/**
+ * Is this a PROGRAMMING topic, whether or not the student said "code"?
+ *
+ * asksForCode only fires on the word "code" or a language name, so "how does recursion work" or
+ * "explain for loops" taught programming with no code on any board. A programming concept is best
+ * taught by showing it, so these topics get code — unless the student said they do not want it.
+ */
+export function isProgrammingTopic(text: string | undefined | null): boolean {
+  const t = (text ?? "").toLowerCase();
+  if (!t.trim()) return false;
+  if (/\b(?:no|without|skip the|don'?t (?:show|want|need|include)(?: me)?(?: the| any)?) code\b/.test(t)) return false;
+  if (asksForCode(t)) return true;
+  return /\b(?:python|javascript|typescript|java|kotlin|swift|golang|rust|ruby|php|sql|html|css|react|node\.?js|bash|shell script|c programming|programming|programmer|coding|compiler|interpreter|for loops?|while loops?|loops? in|recursion|recursive function|functions? in|lambda|closures?|callbacks?|promises?|async(?:hronous)?|await|arrays?|linked lists?|hash ?maps?|hash tables?|dictionar(?:y|ies)|binary search|sorting algorithm|bubble sort|merge sort|quick ?sort|big[- ]o|data structures?|pointers?|variables? in|classes? in|object[- ]oriented|oop|inheritance|polymorphism|encapsulation|api|rest api|git|regex|regular expressions?|exceptions?|try ?catch|decorators?|generators? in|list comprehensions?|string manipulation|debugging)\b|c\+\+|c#/.test(t);
+}
+
 /** A planned beat that teaches an implementation — where a student who wants code should get it. */
 export const CODE_BEAT_PATTERN = /\b(?:code|coding|function|method|implement\w*|algorithm|program\w*|pseudo-?code|syntax)\b/i;
 

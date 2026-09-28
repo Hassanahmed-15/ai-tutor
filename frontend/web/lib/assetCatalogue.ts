@@ -36,12 +36,23 @@ export type AssetMeta = {
   author: string;
   licence: string;
   keywords: string[];
+  /**
+   * The artwork's own drawn extent — [x, y, w, h] in the source's user units — measured from its
+   * rendered pixels by scripts/build-asset-catalogue.mjs. Absent for a catalogue built before that
+   * measurement existed, in which case the page (viewBox) stands in for it.
+   */
+  bbox?: [number, number, number, number];
 };
 
 export type LoadedAsset = AssetMeta & {
   /** Inner markup of the source SVG, with the root <svg> stripped. */
   body: string;
-  /** The source viewBox, so the runtime can scale into whatever box the model asks for. */
+  /**
+   * The part of the source's coordinate system the runtime fits into the model's box: the measured
+   * drawn extent when the catalogue has it, else the page (viewBox, INCLUDING its origin).
+   */
+  x: number;
+  y: number;
   w: number;
   h: number;
 };
@@ -115,21 +126,29 @@ export async function findAssets(brief: string, limit = 8): Promise<AssetMeta[]>
   return scored.map((s) => s.asset);
 }
 
-/** Strips the wrapper <svg> and reads its viewBox, so the body can be placed in any box. */
-function unwrap(svg: string): { body: string; w: number; h: number } | null {
+/**
+ * Strips the wrapper <svg> and reads its viewBox, so the body can be placed in any box.
+ *
+ * THE ORIGIN IS PART OF THE PAGE. A viewBox of "-120.5 -155.3 880.8 532.8" (the Erlenmeyer flask)
+ * draws its content from x = -120.5; reading only the width and height placed that artwork 120 units
+ * right of the box the model asked for, so the leader dots the prompt tells the model to put "well
+ * inside the box" landed on blank paper. 16 of the 710 catalogue assets have a non-zero origin.
+ */
+export function unwrap(svg: string): { body: string; x: number; y: number; w: number; h: number } | null {
   const open = /<svg\b[^>]*>/i.exec(svg);
   const close = svg.lastIndexOf("</svg>");
   if (!open || close < 0) return null;
 
   const attrs = open[0];
   const viewBox = /viewBox\s*=\s*"([^"]+)"/i.exec(attrs)?.[1];
+  let x = 0;
+  let y = 0;
   let w = 100;
   let h = 100;
   if (viewBox) {
     const parts = viewBox.trim().split(/[\s,]+/).map(Number);
-    if (parts.length === 4 && parts.every(Number.isFinite)) {
-      w = parts[2];
-      h = parts[3];
+    if (parts.length === 4 && parts.every(Number.isFinite) && parts[2] > 0 && parts[3] > 0) {
+      [x, y, w, h] = parts;
     }
   } else {
     w = Number(/width\s*=\s*"([\d.]+)/i.exec(attrs)?.[1]) || 100;
@@ -157,16 +176,34 @@ function unwrap(svg: string): { body: string; w: number; h: number } | null {
     .replace(/<metadata[\s\S]*?<\/metadata>/gi, "")
     .replace(/<\/?(?!xlink:)[a-z][\w-]*:[\w-]+[^>]*>/gi, "")
     .replace(/\s(?!xlink:)[a-z][\w-]*:[\w-]+\s*=\s*"[^"]*"/gi, "");
-  return { body, w, h };
+  return { body, x, y, w, h };
 }
 
+function measuredBox(box: unknown): [number, number, number, number] | null {
+  if (!Array.isArray(box) || box.length !== 4) return null;
+  const [x, y, w, h] = box.map(Number);
+  return [x, y, w, h].every(Number.isFinite) && w > 0 && h > 0 ? [x, y, w, h] : null;
+}
+
+/**
+ * The artwork for these ids, each with the extent the runtime should fit into the model's box.
+ *
+ * The extent is the MEASURED drawn box when the catalogue has one, looked up by id — callers such as
+ * app/api/animation-assets pass bare ids, and must place the artwork exactly as the critic's render
+ * did. Without it, the page stands in: leaf.svg draws a 53x22 leaf on a 210x297 A4 page, so fitting
+ * the page into a 320x360 box drew a 65 px leaf in a corner of it, and every leader dot the prompt
+ * told the model to put "well inside the box" missed the leaf.
+ */
 export async function loadAssets(metas: AssetMeta[]): Promise<LoadedAsset[]> {
+  const measured = new Map((await loadIndex()).map((asset) => [asset.id, asset.bbox]));
   const out: LoadedAsset[] = [];
   for (const meta of metas) {
     try {
       const raw = await readFile(path.join(ASSET_DIR, `${meta.id}.svg`), "utf-8");
       const parsed = unwrap(raw);
-      if (parsed) out.push({ ...meta, ...parsed });
+      if (!parsed) continue;
+      const box = measuredBox(meta.bbox ?? measured.get(meta.id));
+      out.push(box ? { ...meta, ...parsed, bbox: box, x: box[0], y: box[1], w: box[2], h: box[3] } : { ...meta, ...parsed });
     } catch {
       /* a missing file just means one fewer option */
     }
@@ -178,24 +215,34 @@ export async function loadAssets(metas: AssetMeta[]): Promise<LoadedAsset[]> {
  * The JS injected into the sandbox — and into the critic's server-side render, which must see the
  * same board the student does or its score describes something nobody looked at.
  *
- * `Asset` scales the source viewBox into the box the model asks for and centres it, so the model
- * never has to reason about the artwork's own coordinate system.
+ * `Asset` fits the artwork's DRAWN extent (x, y, w, h in its own coordinates — see loadAssets) into
+ * the box the model asks for and centres it, so the model never has to reason about the artwork's
+ * coordinate system, its page margins or its viewBox origin: what it places is what it gets.
+ *
+ * The group it draws reports that placed extent as `data-asset-box="x y w h"` (board units, before
+ * any transform the board wraps it in). The connector checks (lib/boardConnectorGeometry.ts) read it
+ * as the part a leader may point into, instead of parsing the artwork's hundreds of inner paths in a
+ * coordinate system that is not the board's.
  */
 export function assetRuntimeFor(assets: LoadedAsset[]): string {
-  const table = Object.fromEntries(assets.map((a) => [a.id, { b: a.body, w: a.w, h: a.h }]));
+  const table = Object.fromEntries(assets.map((a) => [a.id, { b: a.body, x: a.x ?? 0, y: a.y ?? 0, w: a.w, h: a.h }]));
   return `
 var __ASSETS__ = ${JSON.stringify(table)};
 function Asset(props) {
   var a = __ASSETS__[props.name];
   if (!a) return null;
-  var w = props.w || 200, h = props.h || 200, x = props.x || 0, y = props.y || 0;
+  // Numbers, even when the model wrote w="320": "380" + 10 would otherwise concatenate.
+  var w = Number(props.w) || 200, h = Number(props.h) || 200, x = Number(props.x) || 0, y = Number(props.y) || 0;
   var s = Math.min(w / a.w, h / a.h);
   // Centre inside the requested box: artwork aspect ratios vary and the model is placing a box,
   // not a shape.
-  var dx = x + (w - a.w * s) / 2, dy = y + (h - a.h * s) / 2;
+  var bx = x + (w - a.w * s) / 2, by = y + (h - a.h * s) / 2;
+  var r = function (v) { return Math.round(v * 100) / 100; };
   return React.createElement("g", {
-    transform: "translate(" + dx + "," + dy + ") scale(" + s + ")",
+    transform: "translate(" + r(bx - a.x * s) + "," + r(by - a.y * s) + ") scale(" + s + ")",
     opacity: props.opacity,
+    "data-asset": props.name,
+    "data-asset-box": [r(bx), r(by), r(a.w * s), r(a.h * s)].join(" "),
     dangerouslySetInnerHTML: { __html: a.b }
   });
 }

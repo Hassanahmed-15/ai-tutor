@@ -40,6 +40,13 @@ export function scopedBlockText(blocks: ScopeBlock[], sourceBlockIds?: string[])
   const wanted = new Set(sourceBlockIds);
   const selected = blocks.filter((block) => wanted.has(block.id));
   if (selected.length === 0) return "";
+  /*
+   * A section's blocks share one page and one heading. Repeating "[page 1] Energy transfer" above
+   * each of its three blocks tripled the heading in every prompt — and the strict board is handed
+   * this exact text as its SOURCE, where the repeats read as three separate sections. The label is
+   * written once per run and again whenever the page or the heading changes, so provenance is kept.
+   */
+  let previousLabel = "";
   return selected
     .map((block) => {
       // The page number travels with the text so the model can say where something came from, and
@@ -48,7 +55,10 @@ export function scopedBlockText(blocks: ScopeBlock[], sourceBlockIds?: string[])
       const heading = clean(block.heading);
       const body = clean(block.text);
       if (!body && !heading) return "";
-      return `${where}${heading ? `${heading}\n` : ""}${body}`;
+      const label = `${where}${heading ? `${heading}\n` : ""}`;
+      const repeated = label === previousLabel;
+      previousLabel = label;
+      return `${repeated ? "" : label}${body}`;
     })
     .filter(Boolean)
     .join("\n\n");

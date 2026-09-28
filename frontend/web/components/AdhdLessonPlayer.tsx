@@ -17,6 +17,9 @@ import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type Focus
 import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
+import type { SourceScope } from "@/lib/sourceScope";
+import { isSuprnotesLessonInput } from "@/lib/suprnotes";
+import { beatSourceGroundingFor, isStrictScope, withStrictSourceHeader } from "@/lib/strictSourceAnswers";
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { HudCorners } from "./hud/HudKit";
@@ -46,9 +49,11 @@ const NARRATION_STALL_MS = 6_000;
 type Stage = "slide" | "board";
 
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
-  sourceDocument = null,
+  sourceDocument = null, sourceScope,
   slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
+  /** The student's fidelity choice for an uploaded source; strict binds the ask box and the live tutor to it. */
+  sourceScope?: SourceScope;
   slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
@@ -148,6 +153,16 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     return () => clearInterval(id);
   }, [cameraEnabled, attention.error, attention.engagement]);
 
+  /*
+   * STRICT SOURCE, as in the standard LessonPlayer: the ask box gets the scope and the current beat's
+   * own source (lib/strictSourceAnswers.ts), and the live tutor reads the strict rule at the head of
+   * its document context. A reference-mode lesson and a typed topic are unchanged.
+   */
+  const hasSourceDocument = isSuprnotesLessonInput(sourceDocument);
+  const strictSource = hasSourceDocument && isStrictScope(sourceScope);
+  const beatSourceFor = (target: Beat | undefined | null) =>
+    hasSourceDocument ? beatSourceGroundingFor(sourceDocument, target?.sourceBlockIds, strictSource) : null;
+
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
@@ -156,6 +171,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     documentId,
     lessonQuestion,
     getBeatContext: () => `${beat.title}: ${beat.script}`,
+    ...(hasSourceDocument && sourceScope ? { sourceScope, getBeatSource: () => beatSourceFor(beat) } : {}),
     // Same unification as the standard LessonPlayer: a chat question pauses/resumes in place via
     // the lesson machine instead of destroying and restarting the beat's narration.
     pausePlayer: () => lesson.enterChat({ resumeAfterAnswer: true }),
@@ -183,7 +199,10 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
     getLessonContext: () => buildLessonContext(beats, index),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
+    getDocumentContext: () => {
+      const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
+      return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
+    },
     // ADHD: mic stays open the whole lecture, board is simple chalk text, tutor can pause/resume.
     alwaysOn: true,
     boardTextOnly: true,

@@ -84,6 +84,8 @@ OCCASIONAL NARRATION — "remark", used sparingly:
 - null far more often than not. Never on every turn, never on a skipped/trivial answer, never when nothing was actually learned. If in doubt, leave it null — a narration that does not earn its place is worse than silence.
 - Never narrate a score or a grade ("that was correct!"). Narrate the READING, not the mark.
 
+HOW A QUESTION READS. Short and intellectual: at most 20 words, about the SUBSTANCE of this lesson. The pattern is a tiny concrete scenario, then "what happens?" or "why?" — the student must REASON, not remember. Good: "A model scores 99% on training data and 60% on new data. Why?" / "You double the training data. Does overfitting get better or worse?" / "A recursive function has no base case. What happens when it runs?" Bad: "What causes overfitting?", "What strategies prevent it?", "What interests you about it?" — those ask for recall or preferences. Never ask them to LIST or RECALL what they know ("What techniques do you know…", "What is X?") — that tests memory, not understanding; make them reason about a case instead. Never ask about their preferences, background or goals — the level was already asked. Never use dashes of any kind (no "—", "–" or " - "); use a comma or a new sentence. Options, when you give any, are 2-4 plain answers of at most 6 words each, also without dashes.
+
 CHOOSING THE NEXT QUESTION — ask at most one, and prefer none once enough is known:
 - Return null for "nextQuestion" the moment another answer would not change the lesson. Stopping early is the correct outcome, not a failure — you have asked ${MIN_USEFUL_DIAGNOSTIC_QUESTIONS}-${MAX_DIAGNOSTIC_QUESTIONS} short questions in a genuinely useful conversation, not run an interview.
 - Return null if they said they know nothing or very little. Believe them and teach; a beginner is owed the chance to say what they DO know first, never made to prove the negative.
@@ -120,7 +122,7 @@ Output ONLY the JSON object.`;
  * with it, for the same reason every later question does: recognition is not evidence, use is.
  */
 export function openingQuestion(topic: string): string {
-  return `Before we start — in your own words, what do you think ${topic} is, or what do you already know about it?`;
+  return `In your own words, what do you think ${topic} is?`;
 }
 
 /**
@@ -141,11 +143,12 @@ export function openingQuestion(topic: string): string {
 export const DEPTH_QUESTION_MARKER = "__depth_preference__";
 
 export const DEPTH_OPTIONS: { label: string; level: DepthLevel }[] = [
-  { label: "Foundation — I'm new to this and related ideas", level: 1 },
-  { label: "Beginner — new to this topic specifically", level: 2 },
-  { label: "Intermediate — know the basics", level: 3 },
-  { label: "Advanced — comfortable, want the non-obvious parts", level: 4 },
-  { label: "Expert — treat me as a peer", level: 5 },
+  // No dashes, and each opens on a distinct word: the free-text fallback matches on that first word.
+  { label: "Foundation, new to all of this", level: 1 },
+  { label: "Beginner, new to this topic", level: 2 },
+  { label: "Intermediate, I know the basics", level: 3 },
+  { label: "Advanced, show me the deeper parts", level: 4 },
+  { label: "Expert, treat me as a peer", level: 5 },
 ];
 
 export function depthQuestion(topic: string): string {
@@ -218,6 +221,12 @@ export function buildDiagnosticUserMessage(input: {
   lines.push(
     "\nGrade whatever they just said, revise your teaching hypothesis, note a redirect if they gave one, decide whether a brief remark is worth making, " +
       "and decide whether ONE more question is genuinely worth asking.",
+  );
+  // Repeated LAST, where it is followed: the rule in the system prompt alone kept losing to the
+  // model's habit of "What techniques do you know…?".
+  lines.push(
+    'If you ask one: a tiny concrete scenario, then "what happens?" or "why?" — at most 20 words, no dashes. ' +
+      'Never "What do you know/think causes/techniques/strategies…" and never a question about their interests.',
   );
   return lines.join("\n");
 }

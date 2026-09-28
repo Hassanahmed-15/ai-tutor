@@ -3,6 +3,14 @@ import OpenAI from "openai";
 import { EXPLAIN_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation } from "@/lib/drawSanitize";
 import { fillSpecBoardOps } from "@/lib/specBoardGen";
+import { sanitizeSourceScope } from "@/lib/sourceScope";
+import {
+  PEN_TALK,
+  STRICT_ANSWER_RULES,
+  formatBeatSource,
+  groundAnswer,
+  sanitizeBeatSourceGrounding,
+} from "@/lib/strictSourceAnswers";
 
 /**
  * "Ask about my drawing" — the student sketches on the board (components/sketch/DrawOverlay.tsx)
@@ -32,6 +40,23 @@ export async function POST(req: Request) {
   const regionLabel = region
     ? `Selected crop coordinates (normalised board space): x=${Number(region.x).toFixed(3)}, y=${Number(region.y).toFixed(3)}, width=${Number(region.width).toFixed(3)}, height=${Number(region.height).toFixed(3)}.`
     : "The attachment is already cropped to the student's selection.";
+
+  /*
+   * STRICT SOURCE. The pen used to be answered from the beat's title and script alone — not one
+   * word of the document — under a prompt that asks for "a scientifically or technically credible
+   * diagram". In strict mode it now gets the current part's own source text and figure labels, the
+   * same strict rule as the ask box, and the same sentence-by-sentence check before the answer is
+   * spoken. Reference mode is unchanged.
+   */
+  const sourceScope = sanitizeSourceScope(body.sourceScope);
+  const beatSource = sanitizeBeatSourceGrounding(body.beatSource, sourceScope?.fidelity === "strict");
+  const strict = sourceScope?.fidelity === "strict" && Boolean(beatSource);
+  /*
+   * The lecture player speaks only the answer — its board is never shown (it hands the script to
+   * the live tutor). Such a caller says so, and the code-board fill below, a whole extra model call
+   * the student was waiting on for nothing, is skipped.
+   */
+  const answerOnly = body.answerOnly === true;
 
   if (!image.startsWith("data:image")) {
     return NextResponse.json({ error: "image (data URI) is required" }, { status: 400 });
@@ -79,7 +104,12 @@ export async function POST(req: Request) {
     const completion = await client.chat.completions.create({
       model: MODEL,
       messages: [
-        { role: "system", content: EXPLAIN_SYSTEM_PROMPT },
+        {
+          role: "system",
+          content: strict
+            ? `${EXPLAIN_SYSTEM_PROMPT}\n\n${STRICT_ANSWER_RULES}\nDescribing back what the student drew or marked is allowed; everything you TEACH about it must come from SOURCE.`
+            : EXPLAIN_SYSTEM_PROMPT,
+        },
         {
           role: "user",
           content: [
@@ -87,28 +117,53 @@ export async function POST(req: Request) {
               type: "text",
               text:
                 `Topic: "${topic || "this lesson"}".\n` +
-                (beatContext ? `We are on this part of the lesson: "${beatContext}".\n` : "") +
+                (strict && beatSource
+                  ? `SOURCE — the student's own document, the text of the part on this board. It is the ONLY material you may teach from:\n${formatBeatSource(beatSource)}\n\n`
+                  : "") +
+                (beatContext ? `We are on this part of the lesson${strict ? " (the lesson's wording, NOT a source of facts)" : ""}: "${beatContext}".\n` : "") +
                 `${regionLabel}\n` +
                 (selectedText ? `Board text captured under the mark: "${selectedText}".\n` : "") +
                 `The attached image contains ONLY the selected board region plus the student's mark. ${question}\n\n` +
                 "FIRST read their drawing carefully and describe back what they actually drew (name the " +
                 "specific marks — a circled term, an arrow, their attempt at a diagram, a written step). " +
                 "If it shows a misunderstanding, say kindly what's off and correct it. If it's right, " +
-                "confirm and build on it. Then draw ONE clean board that answers them. Ground everything " +
-                "in what is genuinely visible in the crop — never invent marks outside it and never " +
-                "answer about the board as a whole.",
+                "confirm and build on it. " +
+                // A spoken-only answer has no board to plan: leaving "draw" out saves its output tokens.
+                (answerOnly
+                  ? "This answer is SPOKEN only — return the JSON with \"script\" (and \"covered\" when asked for) and omit \"draw\" entirely. "
+                  : "Then draw ONE clean board that answers them. ") +
+                "Ground everything in what is genuinely visible in the crop — never invent marks outside " +
+                "it and never answer about the board as a whole.",
             },
             { type: "image_url", image_url: { url: image, detail: "high" } },
           ],
         },
       ],
-      temperature: 0.6,
+      temperature: strict ? 0.2 : 0.6,
       max_tokens: MAX_TOKENS,
       response_format: { type: "json_object" },
     });
 
     const raw = completion.choices[0]?.message?.content ?? "";
-    const result = sanitizeExplanation(JSON.parse(raw), { question });
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (strict && beatSource) {
+      // The student's own marks may be described back; what is taught about them must be the source's.
+      const grounded = groundAnswer(typeof parsed.script === "string" ? parsed.script : "", beatSource, {
+        modelCovered: parsed.covered === false ? false : undefined,
+        extraAllowed: PEN_TALK,
+      });
+      if (grounded.dropped.length > 0) {
+        console.info(`[ask-drawing] strict: removed ${grounded.dropped.length} unsupported sentence(s): ${grounded.dropped.join(" | ").slice(0, 300)}`);
+      }
+      if (!grounded.covered || answerOnly) return NextResponse.json({ script: grounded.script, covered: grounded.covered });
+      parsed.script = grounded.script;
+    }
+    if (answerOnly) {
+      const script = typeof parsed.script === "string" ? parsed.script.replace(/\s+/g, " ").trim() : "";
+      if (!script) throw new Error("Empty explanation.");
+      return NextResponse.json({ script });
+    }
+    const result = sanitizeExplanation(parsed, { question });
     // The shared explain prompt can answer a question about code with a code board, which, unlike
     // the other ops here, is only a brief until it is filled.
     if (result.draw?.ops.some((op) => op.kind === "codeBoard")) {

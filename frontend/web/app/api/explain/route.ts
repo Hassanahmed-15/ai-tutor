@@ -5,10 +5,22 @@ import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
 import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT, EXPLAIN_OFFER_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation, sanitizeTextExplanation, sanitizeOfferedExplanation } from "@/lib/drawSanitize";
-import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
+import { fillReactAnimationOps, type ReactAnimationFillOptions } from "@/lib/reactAnimationGen";
 import { fillSpecBoardOps } from "@/lib/specBoardGen";
 import { isCodeQuestion } from "@/lib/codeSpec";
 import type { Beat } from "@/lib/lessonContent";
+import { sanitizeSourceScope } from "@/lib/sourceScope";
+import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
+import {
+  STRICT_ANSWER_RULES,
+  boardTextIsUngrounded,
+  combinedSource,
+  formatBeatSource,
+  groundAnswer,
+  readStrictSourceHeader,
+  relevantSourceExcerpt,
+  sanitizeBeatSourceGrounding,
+} from "@/lib/strictSourceAnswers";
 
 /**
  * The side-chat "explain this further" endpoint. Returns one spoken explanation plus a fresh
@@ -56,7 +68,26 @@ export async function POST(req: Request) {
    * prompt that large costs latency on every question asked mid-lesson.
    */
   const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 8000) : "";
-  const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 30000) : "";
+  /*
+   * STRICT SOURCE. The typed ask box sends the scope and the current beat's source explicitly. The
+   * live voice tutor's board requests cannot (its hook forwards a fixed set of strings), so its
+   * player puts the same two things at the head of the document context instead — read back out
+   * here (lib/strictSourceAnswers.ts). Explicit fields win; the header is always stripped so the
+   * prompt calls only the document "the document".
+   */
+  const fidelityHeader = readStrictSourceHeader(typeof body.documentContext === "string" ? body.documentContext.trim() : "");
+  const documentContext = fidelityHeader.document.trim().slice(0, 30000);
+  const sourceScope = sanitizeSourceScope(body.sourceScope);
+  const strictRequested = sourceScope ? sourceScope.fidelity === "strict" : fidelityHeader.strict;
+  const beatSource: BeatSourceGrounding | null =
+    sanitizeBeatSourceGrounding(body.beatSource, strictRequested) ??
+    (fidelityHeader.beatSource ? { ...fidelityHeader.beatSource, strict: strictRequested } : null);
+  /*
+   * Strict needs something to be strict TO. With no document text and no beat source there is
+   * nothing to answer from and nothing to check against, so the request is answered as before
+   * rather than refusing every question.
+   */
+  const strict = strictRequested && Boolean(documentContext || beatSource?.text || beatSource?.labels.length);
   /*
    * The question this whole lesson exists to answer.
    *
@@ -85,8 +116,9 @@ export async function POST(req: Request) {
   // Priced across every attempt, including failed ones and the animation built for the answer.
   const meter = createCostMeter();
   const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
-  const userMsg =
-    `The lecture topic is "${topic || "this subject"}". ` +
+  const userMsg = strict
+    ? strictUserMessage({ topic, lessonContext, documentContext, beatSource, lessonQuestion, beatContext, question, visualMode, reuseContext, offer, visualHint })
+    : `The lecture topic is "${topic || "this subject"}". ` +
     (lessonContext
       ? `The whole lesson, in order, so you can answer about what is coming or what has already been covered:\n${lessonContext}\n\n`
       : "") +
@@ -113,7 +145,10 @@ export async function POST(req: Request) {
       const completion = await client.chat.completions.create({
         model: MODEL,
         messages: [
-          { role: "system", content: offer ? EXPLAIN_OFFER_SYSTEM_PROMPT : textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT },
+          {
+            role: "system",
+            content: `${offer ? EXPLAIN_OFFER_SYSTEM_PROMPT : textOnly ? EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT : EXPLAIN_SYSTEM_PROMPT}${strict ? `\n\n${STRICT_ANSWER_RULES}` : ""}`,
+          },
           {
             role: "user",
             /*
@@ -127,24 +162,77 @@ export async function POST(req: Request) {
               : userMsg,
           },
         ],
-        temperature: 0.7,
+        // Strict answers are restatements of the document, not compositions: low temperature keeps
+        // the wording on the page (and the retries down). Reference mode keeps its old warmth.
+        temperature: strict ? 0.2 : 0.7,
         response_format: { type: "json_object" },
       });
       const raw = completion.choices[0]?.message?.content ?? "";
+      const parsed = JSON.parse(raw) as Record<string, unknown>;
+
       /*
-       * The words-only answer returns here, before the board pipeline exists at all. Nothing is
-       * validated, retried or illustrated, so this path costs one model call instead of twenty.
+       * THE STRICT CHECK. The rule in the prompt is a request; this is the guarantee. Every sentence
+       * of the answer is checked against the document's own words (lib/sourceGrounding), and one that
+       * brings in two or more words the document never uses is removed before anyone hears it. An
+       * answer with nothing left — or one the model itself marked uncovered — becomes a plain "your
+       * document doesn't cover that", and no board is drawn for it: an animated board illustrating a
+       * non-answer costs 20-60 s and can only show material the document does not have.
+       */
+      let strictBoardSource: BeatSourceGrounding | null = null;
+      if (strict) {
+        const vocabulary = combinedSource(beatSource, documentContext);
+        const grounded = groundAnswer(typeof parsed.script === "string" ? parsed.script : "", vocabulary, {
+          modelCovered: parsed.covered === false ? false : undefined,
+        });
+        if (grounded.dropped.length > 0) {
+          console.info(`[explain] strict: removed ${grounded.dropped.length} unsupported sentence(s): ${grounded.dropped.join(" | ").slice(0, 300)}`);
+        }
+        if (!grounded.covered) {
+          return NextResponse.json({ script: grounded.script, covered: false, costUsd: meter.totalUsd });
+        }
+        parsed.script = grounded.script;
+        if (textOnly) {
+          // The chalk-text board is written by the model op by op; a line the document does not
+          // support is dropped the same way a spoken sentence is.
+          const draw = parsed.draw && typeof parsed.draw === "object" ? (parsed.draw as Record<string, unknown>) : null;
+          if (draw && Array.isArray(draw.ops)) {
+            draw.ops = draw.ops.filter((op: unknown) => {
+              const text = op && typeof op === "object" ? (op as Record<string, unknown>).text : undefined;
+              return typeof text !== "string" || !boardTextIsUngrounded(text, vocabulary);
+            });
+          }
+        }
+        /*
+         * The board is held to the beat's own source plus the few document sentences this answer
+         * is about — not the whole document, which would add seconds of prefill to every question.
+         */
+        const excerpt = relevantSourceExcerpt(documentContext, `${question} ${grounded.script}`, 2_500, beatSource?.text ?? "");
+        strictBoardSource = {
+          text: [beatSource?.text ?? "", excerpt].filter((part) => part.trim()).join("\n\n"),
+          labels: beatSource?.labels ?? [],
+          ...(beatSource?.caption ? { caption: beatSource.caption } : {}),
+          strict: true,
+        };
+      }
+      /*
+       * The words-only answer returns here — after the strict check, so an offered answer is held to
+       * the document like any other — and before the board pipeline exists at all. Nothing is
+       * illustrated, so this path costs one model call instead of twenty.
        */
       if (offer) {
-        return NextResponse.json({ ...sanitizeOfferedExplanation(JSON.parse(raw)), costUsd: meter.totalUsd });
+        return NextResponse.json({ ...sanitizeOfferedExplanation(parsed), ...(strict ? { covered: true } : {}), costUsd: meter.totalUsd });
       }
       // TEXT-ONLY (ADHD tutor): dedicated sanitizer keeps ONLY label/note ops and never substitutes
       // the shape/scene diagram fallback — guaranteeing a clean chalk-text board.
       if (textOnly) {
-        return NextResponse.json({ ...sanitizeTextExplanation(JSON.parse(raw), { question }), costUsd: meter.totalUsd });
+        return NextResponse.json({
+          ...sanitizeTextExplanation(parsed, { question }),
+          ...(strict ? { covered: true } : {}),
+          costUsd: meter.totalUsd,
+        });
       }
 
-      const result = sanitizeExplanation(JSON.parse(raw), { question });
+      const result = sanitizeExplanation(parsed, { question });
       if (result.draw) {
         const syntheticBeat: Beat = {
           id: `explain-${Date.now()}-${attempt}`,
@@ -186,14 +274,23 @@ export async function POST(req: Request) {
           });
           if (codeOp.spec) {
             result.draw = { ...syntheticBeat.draw!, ops: [codeOp] };
-            return NextResponse.json({ ...result, costUsd: meter.totalUsd });
+            return NextResponse.json({ ...result, ...(strict ? { covered: true } : {}), costUsd: meter.totalUsd });
           }
           syntheticBeat.draw = {
             ...syntheticBeat.draw!,
             ops: [{ kind: "reactAnimation", teachingPoint: codeOp.codeBrief ?? question, at: 0, endAt: 1 }],
           };
         }
-        const stats = await fillReactAnimationOps(client, [syntheticBeat]);
+        /*
+         * The answer board is drawn by the same generator as the lecture's boards, and held to the
+         * same source: strict passes the rules above in board form; reference mode passes the beat's
+         * source with strict:false, as context rather than a fence.
+         */
+        const boardSource = strictBoardSource ?? beatSource;
+        const fillOptions: ReactAnimationFillOptions & { sourceByBeatId?: Record<string, BeatSourceGrounding> } = boardSource
+          ? { sourceByBeatId: { [syntheticBeat.id]: boardSource } }
+          : {};
+        const stats = await fillReactAnimationOps(client, [syntheticBeat], fillOptions);
         const animation = syntheticBeat.draw?.ops.find((op) => op.kind === "reactAnimation");
         if (!animation?.code || stats.filled < 1) {
           throw new Error(stats.issues[0] || "The premium explanation board did not pass visual validation.");
@@ -201,10 +298,59 @@ export async function POST(req: Request) {
         result.draw = syntheticBeat.draw;
       }
 
-      return NextResponse.json({ ...result, costUsd: meter.totalUsd });
+      return NextResponse.json({ ...result, ...(strict ? { covered: true } : {}), costUsd: meter.totalUsd });
     } catch (err) {
       lastError = err instanceof Error ? err.message : "Explanation failed";
     }
   }
   return NextResponse.json({ error: lastError, costUsd: meter.totalUsd }, { status: 502 });
+}
+
+/**
+ * The strict-mode question, laid out so the document is unmistakably the source.
+ *
+ * The reference-mode message says "answer from THIS when the question is about their material",
+ * which licenses general knowledge for every question that is not. Here the current part's own text
+ * comes first, then the document, each labelled as the only permitted material; the lesson outline
+ * and what is on screen are labelled as the lesson's wording — useful for "what's next?", never a
+ * source of facts, because a script can itself have leaked.
+ */
+function strictUserMessage(input: {
+  topic: string;
+  lessonContext: string;
+  documentContext: string;
+  beatSource: BeatSourceGrounding | null;
+  lessonQuestion: string;
+  beatContext: string;
+  question: string;
+  visualMode: string;
+  reuseContext: boolean;
+  offer: boolean;
+  visualHint: string;
+}): string {
+  const parts = [`The lecture topic is "${input.topic || "this subject"}". The student chose to learn STRICTLY FROM THEIR DOCUMENT.`];
+  if (input.beatSource) {
+    parts.push(`CURRENT PART — the document's own text for the part on screen now:\n${formatBeatSource(input.beatSource)}`);
+  }
+  if (input.documentContext) {
+    parts.push(`SOURCE — the student's own document. It is the ONLY material you may use:\n${input.documentContext}`);
+  }
+  if (input.lessonContext) {
+    parts.push(`The lesson's outline, for questions about what comes next or what was covered. It is NOT a source of facts:\n${input.lessonContext}`);
+  }
+  if (input.lessonQuestion) {
+    parts.push(`This lesson was built to answer: "${input.lessonQuestion}".`);
+  }
+  if (input.beatContext) {
+    parts.push(`What is on screen now (the lesson's wording, NOT a source of facts): "${input.beatContext}".`);
+  }
+  parts.push(
+    input.offer
+      ? `They asked: "${input.question}". Answer it in words from SOURCE only. Propose a drawing only if the answer genuinely needs one, and only of what SOURCE contains.`
+      : `They asked: "${input.question}". Preferred visual mode: "${input.visualMode}". ` +
+        (input.reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +
+        (input.visualHint ? `They have asked to see this drawn, and you offered: "${input.visualHint}". Draw that. ` : "") +
+        "Answer from SOURCE only, and plan a board that shows only what SOURCE contains.",
+  );
+  return parts.join("\n\n");
 }

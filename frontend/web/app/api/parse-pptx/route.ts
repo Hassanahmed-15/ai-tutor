@@ -954,7 +954,7 @@ export async function POST(req: NextRequest) {
       surface.getContext("2d").drawImage(source, box.x, box.y, box.width, box.height, 0, 0, box.width, box.height);
       storedRegions.push({
         pageNumber: target.page,
-        dataUrl: `data:image/jpeg;base64,${surface.toBuffer("image/jpeg", 0.82).toString("base64")}`,
+        dataUrl: `data:image/jpeg;base64,${surface.toBuffer("image/jpeg", 82).toString("base64")}`,
         rect: target.rect,
       });
     } catch {

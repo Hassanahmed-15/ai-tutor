@@ -22,8 +22,12 @@ export type LearnerProfile = {
   captions: boolean | null;
   slowerPace: boolean | null;
   simplerLanguage: boolean | null;
+  /** How much Aria teaches by default; the student's own words in a request override it. */
+  teachingDepth?: TeachingDepth | null;
   notes: string | null;
 } | null;
+
+export type TeachingDepth = "quick" | "balanced" | "deep" | "adaptive";
 
 type AuthValue = {
   user: SessionUser | null;

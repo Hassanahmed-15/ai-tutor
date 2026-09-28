@@ -627,6 +627,9 @@ export function subjectFromTranscript(transcript: string): string {
     // A pipe-delimited row is a row. Its symbol ratio is low enough to pass the test below,
     // and "| Model | Accuracy |" is no better a lecture title than the markup around it.
     if (/^\s*\|.*\|\s*$/.test(line)) return false;
+    // A printed book's page header is its publisher, not its subject: a photosynthesis lesson was
+    // announced as "Cambridge University Press".
+    if (/\b(?:university press|publishers?|publishing (?:ltd|limited|house|group)|all rights reserved|more information|excerpt)\b|©|\bwww\.|\bISBN\b|\b97[89][-‐\s]?\d/i.test(line)) return false;
     const symbols = (line.match(/[\\{}|_^&$]/g) ?? []).length;
     return symbols <= line.length * 0.18;
   });

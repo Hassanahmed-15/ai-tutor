@@ -80,14 +80,19 @@ export type PlanningAngleId = (typeof PLANNING_ANGLES)[number]["id"];
 // order to pull a completed scopingQuestion out of the in-flight token buffer the moment it
 // closes, the same way it already does for "reason". Do not reorder these keys in the prompt.
 export const OUTLINE_LESSON_SYSTEM_PROMPT = `You are Aria, sketching a lesson OUTLINE only — no scripts, no visuals, just structure.
-Return JSON only: { "topic": string, "subtopics": [{ "title": string, "caption": string, "reason": string, "confidence"?: "low", "safetyNet"?: { "prerequisite": string, "diagnostic": string, "masterySignal": string, "rescueMove": string, "reinforceAfter": 1|2|3, "reinforcementPrompt": string }, "scopingQuestion"?: { "question": string, "options": [{ "label": string, "instruction": string }] } }] }
+Return JSON only: { "topic": string, "scope": "question" | "lesson", "depth"?: "quick" | "deep", "subtopics": [{ "title": string, "caption": string, "reason": string, "confidence"?: "low", "safetyNet"?: { "prerequisite": string, "diagnostic": string, "masterySignal": string, "rescueMove": string, "reinforceAfter": 1|2|3, "reinforcementPrompt": string }, "scopingQuestion"?: { "question": string, "options": [{ "label": string, "instruction": string }] } }] }
 
-STRICTLY WHAT WAS ASKED. Plan ONLY what the student's request asks for. Use as few subtopics as that genuinely needs (typically 2-5); every subtopic must directly serve the request. Do not survey the wider field, add prerequisites or history they did not ask about, add applications or adjacent topics, or pad to a count. NEVER include a recap, summary, review, wrap-up or conclusion subtopic — the lecture ends on its last concept, and the student gets a separate one-slide summary afterwards.
+TEACH THE MINIMUM THAT ANSWERS IT. Slides are an output of teaching, never a target. Before planning, decide:
+- "scope": "question" when the student asked something specific — a why/how/what question, a clarification, a comparison, a request for one example ("Why does overfitting happen?", "What is a mitochondrion?", "Difference between TCP and UDP?"). A question gets 1 subtopic, or 2 only if one genuinely cannot answer it completely. "lesson" only when they ask to learn a whole topic ("Teach me linear regression", "I want to learn thermodynamics", "full lesson on…").
+- "depth": "quick" if the request says quickly, briefly, short, simple, in one line or similar; "deep" if it says in depth, deeply, thoroughly, in detail, everything about, or similar; omit it otherwise. The student's words always win over any saved preference.
+- Then plan only the subtopics this scope and depth need. Stop as soon as the request is fully answered: never add a subtopic that re-explains, re-defines, re-examples or rewords something an earlier subtopic already covers. Each subtopic must add understanding the others do not — if you cannot name what NEW thing it adds, leave it out. Examples earn a subtopic only when each one shows something different (intuition, real case, technical case), never two of the same kind.
+
+STRICTLY WHAT WAS ASKED. Plan ONLY what the student's request asks for. Use as few subtopics as that genuinely needs (a question: 1-2; a whole lesson: only what the topic truly contains, with no maximum and no minimum); every subtopic must directly serve the request. Do not survey the wider field, add prerequisites or history they did not ask about, add applications or adjacent topics, or pad to a count. NEVER include a recap, summary, review, wrap-up or conclusion subtopic — the lecture ends on its last concept, and the student gets a separate one-slide summary afterwards.
 "title" is 3-6 words and names the precise insight being taught. Vary titles by role: use a curiosity question for a hook, a causal/action title for a mechanism, a concrete worked-example title, or a contrast title where appropriate. Titles name what is TAUGHT, never an instruction ("Explore…", "Understand…"). Never use "Introduction", "Overview", "Core idea", "How it works", "Idea 2", "Quick check", or a raw page/slide/figure locator. Do not prefix every title with the main topic, and never create duplicate titles or numbered suffixes. "caption" is ONE sentence, <=18 words, previewing what that part of the lesson will teach.
 "reason" is Aria's own one-line planning thought explaining WHY this subtopic belongs here and why it's positioned where it is (<=16 words, first person, e.g. "Needed before the mechanism or the next step won't make sense.") — this is shown to the student live as the outline is built, so make it sound like genuine reasoning, not a restatement of the caption.
 "confidence": set to "low" ONLY on a subtopic where you genuinely had to guess at scope, audience level, or whether it belongs at all (e.g. you weren't sure if the student already knows a prerequisite, or whether a topic is too advanced/basic for this lesson). Omit it entirely on subtopics you're confident about — do not mark more than 1-2 subtopics low-confidence.
 Order subtopics in a natural teaching sequence unless a different pedagogical angle is specified below.
-EACH SUBTOPIC TEACHES SOMETHING THE OTHERS DO NOT. The lesson climbs a ladder — hook, then the core definition (once), then mechanism, then examples, then implications and applications, then pitfalls and contrasts, then a synthesis — and never descends: no definition after a mechanism, no basics after an example. Never plan two subtopics that explain the same idea in different ways ("another way to see X", "X explained with an analogy", "X revisited"); depth comes from new mechanisms, relationships, consequences and uses, not from rewording. Each "caption" must name the NEW information that subtopic adds.
+EACH SUBTOPIC TEACHES SOMETHING THE OTHERS DO NOT. When a lesson needs several rungs — hook, core definition (once), mechanism, examples, implications, pitfalls — they go in that order and never descend (no definition after a mechanism, no basics after an example). Use ONLY the rungs the request needs: a question about why something happens needs the cause, not a hook, a definition section, applications and pitfalls. Never plan two subtopics that explain the same idea in different ways ("another way to see X", "X explained with an analogy", "X revisited"); depth comes from new mechanisms, relationships, consequences and uses, not from rewording. Each "caption" must name the NEW information that subtopic adds.
 Ground the outline in the given topic and any clarification the student provided — do not drift to a different subject than what was clarified.
 
 "safetyNet" (OPTIONAL, adaptive teaching route): attach one to exactly 1-2 genuinely difficult subtopics, never every subtopic. Choose concepts with a real prerequisite bottleneck where an experienced teacher would check readiness before continuing. This is an invisible Plan B, NOT extra syllabus content:
@@ -99,7 +104,7 @@ Ground the outline in the given topic and any clarification the student provided
 - "reinforcementPrompt": one short retrieval cue that reconnects the earlier idea to that later topic, <=16 words.
 Do not attach a safetyNet to a simple introductory step. Prefer fewer, high-impact branches. Keep the main outline unchanged for a learner who demonstrates readiness.
 
-"scopingQuestion" (OPTIONAL, per-subtopic): attach one to 2-3 subtopics TOTAL across the whole outline — not every subtopic, not zero. Ask about THAT SPECIFIC subtopic only ("should I keep this one as planned, cut it, or adjust it?" grounded in its actual title/caption/reason) — never a generic whole-lecture question and never restate the "confidence" field. Each has 2-4 short "options", and each option's "instruction" is a complete, ready-to-send freeform edit instruction in Aria's voice describing exactly what to change if picked (e.g. { "label": "Add a primer", "instruction": "Add a short beginner-level subtopic explaining embeddings before this one." }). If an option should make NO change, still write a no-op instruction like "Keep this subtopic as-is — no change needed." Spread the 2-3 questions across DIFFERENT subtopics through the outline, not clustered on the first ones.
+"scopingQuestion" (OPTIONAL, per-subtopic): for scope "lesson" attach one to 2-3 subtopics TOTAL across the whole outline; for scope "question" attach none. Ask about THAT SPECIFIC subtopic only ("should I keep this one as planned, cut it, or adjust it?" grounded in its actual title/caption/reason) — never a generic whole-lecture question and never restate the "confidence" field. Each has 2-4 short "options", and each option's "instruction" is a complete, ready-to-send freeform edit instruction in Aria's voice describing exactly what to change if picked (e.g. { "label": "Add a primer", "instruction": "Add a short beginner-level subtopic explaining embeddings before this one." }). If an option should make NO change, still write a no-op instruction like "Keep this subtopic as-is — no change needed." Spread the 2-3 questions across DIFFERENT subtopics through the outline, not clustered on the first ones.
 Output ONLY the JSON object — no scripts, no drawing instructions, no board content.`;
 
 export const REVISE_OUTLINE_SYSTEM_PROMPT = `You are Aria, revising a lesson outline per the student's freeform request.
@@ -122,6 +127,14 @@ export type PlanSafetyNet = {
 };
 export type PlanOutline = {
   topic: string;
+  /**
+   * What the student asked for, decided by the outline call itself (no extra round trip): a
+   * specific "question" is answered in one or two boards with no opener, recap or extra passes; a
+   * "lesson" is a whole topic. Absent on older outlines, which are treated as lessons.
+   */
+  scope?: "question" | "lesson";
+  /** Depth the student's own words asked for ("quickly", "in depth"); overrides any saved preference. */
+  depth?: "quick" | "deep";
   subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: PlanOutlineScopingQuestion }[];
   angle?: PlanningAngleId;
 };
@@ -136,12 +149,28 @@ export type PlanOutline = {
  * way — and no amount of depth instruction downstream can recover a structure that already spent
  * its first three subtopics on material the student demonstrated they hold.
  */
-export function outlineLearnerInstruction(instruction: string): string {
+export function outlineLearnerInstruction(instruction: string, options: { question?: boolean } = {}): string {
   if (!instruction.trim()) return "";
+  /*
+   * A QUESTION IS NOT A COURSE. "Add subtopics for missing prerequisites" turned "Why does
+   * underfitting happen?" from a student shaky on bias and variance into five topics — intro,
+   * example, definition, bias-variance, and finally the answer. For a question the profile sets the
+   * level and wording of the answer; a gap is bridged inside it in a sentence, never as a topic.
+   */
+  if (options.question) {
+    return (
+      `${instruction}
+
+FOR THIS QUESTION, the profile above sets only the LEVEL and WORDING of the answer. ` +
+      `It never adds subtopics: no prerequisite, background, definition or misconception subtopics. If the ` +
+      `student lacks something the answer needs, the answer bridges it in one sentence where it is needed.`
+    );
+  }
   return (
     `${instruction}\n\nPLAN THE OUTLINE FOR THIS STUDENT. The subtopic list itself must reflect the ` +
-    `profile above: omit subtopics covering what they already know, add subtopics for missing ` +
-    `prerequisites and for correcting any misconception, and pitch every caption at the stated depth. ` +
+    `profile above: omit subtopics covering what they already know, and pitch every caption at the stated level. ` +
+    `A missing prerequisite or a misconception is handled INSIDE the subtopic that needs it, in a sentence — ` +
+    `never as an extra subtopic. The level changes how each subtopic is taught, never how many there are. ` +
     `Do not produce a generic survey of the topic and rely on later wording to adjust it.`
   );
 }
@@ -176,4 +205,61 @@ export function outlineGroundingInstruction(outline: PlanOutline): string {
       ? `\n\nCONDITIONAL TEACHING ROUTE — implement these using the EXISTING checkpoint schema, not extra UI or extra beats. These checkpoints replace ordinary checkpoints. Put the rescueMove in hintFeedback/revealAnswer and the masterySignal in acceptableKeywords. The later reinforcementPrompt belongs naturally in the later beat's spoken script. A prepared learner follows the normal route; only a learner who struggles receives the prerequisite bridge.${safetyNets}`
       : "")
   );
+}
+
+/**
+ * Is the student's request a direct question rather than a request to learn a whole topic?
+ *
+ * Deterministic on purpose: the outline model was told "a question gets 1-2 subtopics" and still
+ * planned five for "Why does underfitting happen?". The planner is told plainly when the request is
+ * a question, and its outline is held to that afterwards (capQuestionOutline).
+ */
+export function isDirectQuestion(text: string): boolean {
+  const value = text.trim().toLowerCase();
+  if (!value) return false;
+  if (/\b(?:teach me|lesson on|course on|learn about|everything about|full lesson|from scratch|in depth|deeply|in detail)\b/.test(value)) return false;
+  const words = value.split(/\s+/).length;
+  if (words > 30) return false;
+  return /^(?:why|how|what|when|where|which|who|whose|does|do|did|is|are|was|were|can|could|should|would|will|explain why|explain how|explain what|tell me why|tell me how)\b/.test(value) || value.endsWith("?");
+}
+
+/** The planner's instruction for a direct question: answer it, in one board, two at most. */
+export function directQuestionInstruction(question: string): string {
+  return (
+    `\n\nTHIS IS A DIRECT QUESTION: "${question}". Set "scope": "question". Plan exactly ONE subtopic that ` +
+    `answers it head-on — TWO only if the answer genuinely has two separate parts that cannot share one board. ` +
+    `The first subtopic's title states the answer's own framing (for "why does X happen?": "Why X Happens" or the ` +
+    `cause itself), never just the topic's name. Do NOT add an introduction, a standalone definition, a separate ` +
+    `example, a related concept or a comparison unless the question itself asks for it — a one-line definition or ` +
+    `example belongs INSIDE the answer, not as its own topic. The caption says what the answer explains.`
+  );
+}
+
+/**
+ * Hold a direct question's outline to at most `max` subtopics, keeping the ones that answer it.
+ *
+ * The backstop for when the planner still returns a survey: rank subtopics by how much of the
+ * question they address (a "why" question favours causes and reasons), keep the best `max` in their
+ * original order. No model call — the answer is already in the outline, it is just buried.
+ */
+export function capQuestionOutline<T extends { title: string; caption: string }>(subtopics: T[], question: string, max = 2): T[] {
+  if (subtopics.length <= max) return subtopics;
+  const stem = (word: string) => word.toLowerCase().replace(/(?:ing|ed|es|s)$/, "");
+  const stop = new Set(["why", "how", "what", "does", "do", "did", "is", "are", "the", "a", "an", "of", "in", "to", "and", "it", "this", "that", "can", "should"]);
+  const asked = new Set((question.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((w) => !stop.has(w)).map(stem));
+  const why = /^\s*(?:why|explain why|tell me why)\b/i.test(question);
+  const how = /^\s*(?:how|explain how|tell me how)\b/i.test(question);
+  const scored = subtopics.map((item, index) => {
+    const text = `${item.title} ${item.caption}`.toLowerCase();
+    const words = (text.match(/[a-z0-9]+/g) ?? []).map(stem);
+    let score = words.filter((w) => asked.has(w)).length;
+    if (why && /\b(?:why|cause|causes|caused|reason|reasons|because|leads? to|happens?|occurs?)\b/.test(text)) score += 4;
+    if (how && /\b(?:how|steps?|process|works?|mechanism)\b/.test(text)) score += 4;
+    if (/\b(?:introduc|overview|defin|example|concrete example|related|compare|comparison)\w*/.test(item.title.toLowerCase())) score -= 2;
+    return { item, index, score };
+  });
+  const keep = new Set(
+    [...scored].sort((a, b) => b.score - a.score || a.index - b.index).slice(0, max).map((entry) => entry.index),
+  );
+  return subtopics.filter((_, index) => keep.has(index));
 }

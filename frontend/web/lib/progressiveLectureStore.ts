@@ -103,6 +103,7 @@ export async function createProgressiveLectureSession(
     createdAt: now,
     updatedAt: now,
     error: null,
+    ...(input.sourceScope?.fidelity ? { sourceFidelity: input.sourceScope.fidelity } : {}),
   };
   await progressiveLectureSessions().items.create(doc);
   await saveLearnerProfile(userId, input.learnerProfile);
@@ -233,15 +234,25 @@ export async function recordLearnerInteraction(
   session: ProgressiveLectureSessionDoc,
   interaction: LearnerInteraction,
 ): Promise<ProgressiveLectureSessionDoc> {
-  const note = interactionNote(interaction);
-  const adaptive = interaction.kind !== "playhead";
+  const strict = session.sourceFidelity === "strict";
+  const note = strict ? strictInteractionNote(interaction) : interactionNote(interaction);
+  /*
+   * A strict interaction that changes nothing (a request for examples the source does not have)
+   * must not bump the plan revision either: that resets every unplayed beat and writes each one
+   * again from identical inputs — a script call and a board per beat, for no change at all.
+   */
+  const adaptive = interaction.kind !== "playhead" && (!strict || Boolean(note));
   const frozenThrough = Math.max(session.frozenThrough, Math.floor(interaction.playhead) + 1);
   /*
    * "Show me code" has to change the BOARDS, not just add a note. The note alone reached the script
    * prompt, which then still said "Do not include code", and no board type could show a listing.
    * Upcoming implementation beats become code boards; the rest of the plan is left alone.
+   *
+   * Not in a strict lesson: a code board there would have to write code its source does not
+   * contain. A source that does contain code already gets code boards from the plan
+   * (progressivePlan.ts sourceCodeKind), quoting it.
    */
-  const wantsCode = interaction.kind === "code";
+  const wantsCode = interaction.kind === "code" && !strict;
   const learnerProfile = wantsCode ? { ...session.learnerProfile, codeExamples: true } : session.learnerProfile;
   const plan = wantsCode
     ? session.plan.map((beat) =>
@@ -310,6 +321,29 @@ function interactionNote(interaction: LearnerInteraction): string {
       return interaction.detail
         ? `The learner asked: "${interaction.detail}" Infer what this reveals about their prior knowledge, confusion, desired depth, and interests. Adapt upcoming beats only where the evidence supports it, and do not repeat the immediate answer.`
         : "The learner asked a question. Use it as evidence when choosing the depth and examples of upcoming beats.";
+    default:
+      return "";
+  }
+}
+
+/**
+ * What an interaction may change in a STRICT lesson: how the source is said, never what is said.
+ *
+ * The ordinary notes are instructions to add material — "more worked and concrete examples",
+ * "remediation and a concrete example" (sent automatically on every wrong checkpoint answer, with
+ * no request from the student), "deeper technical detail", "adapt to what they asked". Each reaches
+ * every later script as `adaptation`, and in a strict lesson each is a request for content the
+ * source does not contain. Pacing survives; everything else records nothing. (The worker applies
+ * the same filter to notes already stored — lib/strictSourceScript.ts strictAdaptationNotes.)
+ */
+function strictInteractionNote(interaction: LearnerInteraction): string {
+  switch (interaction.kind) {
+    case "simpler":
+      return "The learner asked for simpler language and smaller conceptual steps in upcoming beats.";
+    case "checkpoint":
+      return interaction.correct
+        ? "The learner answered the latest checkpoint correctly; avoid unnecessary repetition."
+        : "The learner struggled with the latest checkpoint; go more slowly, in simpler language, through the source's own statements.";
     default:
       return "";
   }

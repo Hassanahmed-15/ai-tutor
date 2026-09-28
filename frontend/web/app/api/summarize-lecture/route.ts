@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
 import {
+  LECTURE_SUMMARY_STRICT_RULES,
   LECTURE_SUMMARY_SYSTEM_PROMPT,
+  groundLectureSummary,
   parseLectureSummary,
   summaryTranscript,
+  type LectureSummary,
   type SummaryBeatInput,
 } from "@/lib/lectureSummary";
+import { sanitizeSourceScope } from "@/lib/sourceScope";
 
 /**
  * The one-slide summary of a finished lecture (lib/lectureSummary.ts).
@@ -35,6 +39,14 @@ export async function POST(req: Request) {
     : [];
   const transcript = summaryTranscript(beats);
   if (!transcript) return NextResponse.json({ error: "beats are required" }, { status: 400 });
+  /*
+   * STRICT SOURCE. A strict lecture's summary is written against the document's own text (the blocks
+   * its beats taught, sent by the client), not only against the scripts — a script that leaked would
+   * otherwise be summarized as the lesson's crux. Reference mode sends no source and is unchanged.
+   */
+  const sourceScope = sanitizeSourceScope(body.sourceScope);
+  const source = typeof body.source === "string" ? body.source.trim().slice(0, 16_000) : "";
+  const strict = sourceScope?.fidelity === "strict" && Boolean(source);
 
   const meter = createCostMeter();
   const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
@@ -43,27 +55,38 @@ export async function POST(req: Request) {
     request ? `What the student originally asked: "${request}".` : "",
     "The lecture, beat by beat:",
     transcript,
+    strict ? `SOURCE — the student's own document, the text this lecture was taught from. The summary may state only what SOURCE states:\n${source}` : "",
   ].filter(Boolean).join("\n\n");
 
   let issue = "";
+  // Strict: the best faithful summary seen so far, used when the second attempt still misses.
+  let groundedFallback: LectureSummary | null = null;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       const completion = await client.chat.completions.create({
         model: MODEL,
-        temperature: 0.3,
+        temperature: strict ? 0.2 : 0.3,
         max_tokens: 700,
         response_format: { type: "json_object" },
         messages: [
-          { role: "system", content: LECTURE_SUMMARY_SYSTEM_PROMPT },
+          { role: "system", content: strict ? `${LECTURE_SUMMARY_SYSTEM_PROMPT}\n\n${LECTURE_SUMMARY_STRICT_RULES}` : LECTURE_SUMMARY_SYSTEM_PROMPT },
           { role: "user", content: issue ? `${userMsg}\n\nYour previous answer was rejected: ${issue}. Fix exactly that.` : userMsg },
         ],
       });
       const parsed = parseLectureSummary(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), topic || "Lecture summary");
+      if (parsed.summary && strict) {
+        const grounded = groundLectureSummary(parsed.summary, source, topic || "Lecture summary");
+        if (grounded.summary && !grounded.issue) return NextResponse.json({ summary: grounded.summary, costUsd: meter.totalUsd });
+        groundedFallback = grounded.summary ?? groundedFallback;
+        issue = grounded.issue ?? "unusable summary";
+        continue;
+      }
       if (parsed.summary) return NextResponse.json({ summary: parsed.summary, costUsd: meter.totalUsd });
       issue = parsed.issue ?? "unusable summary";
     } catch (err) {
       issue = err instanceof Error ? err.message : "summary call failed";
     }
   }
+  if (groundedFallback) return NextResponse.json({ summary: groundedFallback, costUsd: meter.totalUsd });
   return NextResponse.json({ error: `Couldn't summarize the lecture: ${issue}`, costUsd: meter.totalUsd }, { status: 502 });
 }
