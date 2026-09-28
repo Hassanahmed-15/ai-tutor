@@ -51,9 +51,10 @@ const NAME_ALTERNATION = ["aria", "arya", ...WAKE_VARIANTS].join("|");
  * with no consonant other than that `r` anywhere in the token. "area", "ara", "oria" and "aeria"
  * all reduce to it; "art", "around", "read" and "race" do not, because a second consonant
  * disqualifies them. The `y` in "arya" counts as a vowel here, and a trailing "h" or "l" is
- * allowed for "ariah" and "Ariel".
+ * allowed for "ariah" and "Ariel". A leading "y" and a trailing "n" are allowed too: Chrome heard a
+ * real student's "hey Aria" as "Yaariyan".
  */
-const WAKE_SOUNDALIKE = /^[aeiou]{0,3}r+[aeiouy]{1,4}(?:h|l)?$/i;
+const WAKE_SOUNDALIKE = /^(?:[aeiou]{0,3}r+[aeiouy]{1,4}(?:h|l)?|y?[aeiou]{1,3}r+[aeiouy]{1,4}n?)$/i;
 
 /** A determiner or modifier right before the token means it is a noun, not someone being addressed. */
 const ARTICLE_BEFORE_NOUN = new Set([
@@ -67,12 +68,44 @@ const GREETING_OPENER = new Set([
 ]);
 
 /** Tokens that pass the skeleton but are ordinary words, not a mis-heard name. */
-const WAKE_SOUNDALIKE_EXCEPTIONS = new Set(["or", "our", "are", "her", "hour", "era", "oreo", "euro", "aura", "royal"]);
+const WAKE_SOUNDALIKE_EXCEPTIONS = new Set(["or", "our", "are", "her", "hour", "era", "oreo", "euro", "aura", "royal", "iron", "yarn", "your", "year", "yeah", "urn", "earn", "orion", "iran", "aaron", "arin", "erin", "oran", "urine"]);
+
+/** Edit distance, for the one word after a greeting (see hailSoundsLikeAria). */
+function editDistance(a: string, b: string): number {
+  const row = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    let diagonal = row[0];
+    row[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const above = row[j];
+      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, diagonal + (a[i - 1] === b[j - 1] ? 0 : 1));
+      diagonal = above;
+    }
+  }
+  return row[b.length];
+}
+
+/** Heard for "Aria" after a greeting, too far by spelling to be caught by the edit distance. */
+const HAIL_ONLY_VARIANTS = new Set(["idea", "aida", "ida", "aya", "ayah", "eria", "arial"]);
+
+/**
+ * "Hey <something close to Aria>". A greeting followed by a name is a call, and the name is where
+ * recognisers go wrong: "hey idea", "hey Ariel", "hi Aya". Right after a greeting a word two edits
+ * from "aria" counts — looser than anywhere else, because that position is already a call.
+ */
+function hailSoundsLikeAria(word: string): boolean {
+  const w = word.replace(/[^a-z]/gi, "").toLowerCase();
+  if (w.length < 3 || w.length > 8 || HAIL_NOT_A_NAME.has(w)) return false;
+  if (HAIL_ONLY_VARIANTS.has(w)) return true;
+  // "Aria" opens on a vowel; "Ryan", "Dan", "Maya" are other people ("Rhea"/"Riya" are listed).
+  if (!/^[aeiouy]/.test(w)) return false;
+  return ["aria", "ariya", "arya"].some((name) => editDistance(w, name) <= (w.length <= 3 ? 1 : 2));
+}
 
 /** True when a single word is plausibly the recogniser's attempt at "Aria". */
 function soundsLikeWakeName(word: string): boolean {
   const w = word.replace(/[^a-z]/gi, "").toLowerCase();
-  if (w.length < 2 || w.length > 7) return false;
+  if (w.length < 2 || w.length > 8) return false;
   if (WAKE_SOUNDALIKE_EXCEPTIONS.has(w)) return false;
   return WAKE_SOUNDALIKE.test(w);
 }
@@ -128,7 +161,9 @@ export function topicWordsFrom(...texts: Array<string | null | undefined>): Set<
 }
 
 function normalise(raw: string): { text: string; words: string[] } {
-  const text = raw.trim().toLowerCase().replace(/[“”"()]/g, "").replace(/\s[—–-]+\s/g, " ").replace(/[.,!?;:]+$/g, "").replace(/\s+/g, " ");
+  let text = raw.trim().toLowerCase().replace(/[“”"()]/g, "").replace(/\s[—–-]+\s/g, " ").replace(/[.,!?;:]+$/g, "").replace(/\s+/g, " ");
+  // Typed and dictated shorthand: "can u explain" is "can you explain".
+  text = text.replace(/\bu\b/g, "you").replace(/\bur\b/g, "your");
   return { text, words: text.split(" ").filter(Boolean) };
 }
 
@@ -156,7 +191,8 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
     const heard =
       at(0) ??
       (words.length > 1 && !ARTICLE_BEFORE_NOUN.has(before ?? "") ? at(words.length - 1) : null) ??
-      (words.length > 1 && GREETING_OPENER.has(words[0]) ? at(1) : null);
+      (words.length > 1 && GREETING_OPENER.has(words[0]) ? at(1) : null) ??
+      (words.length > 1 && /^(?:hey|hi|hello|hiya|ok|okay|oi|yo)$/.test(words[0]) && hailSoundsLikeAria(words[1]) ? words[1] : null);
     if (heard) return { addressed: true, score: 1, reason: `addressed by name (heard "${heard}")` };
   }
   const hail = text.match(HAIL_OPENER);

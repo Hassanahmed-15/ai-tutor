@@ -1050,6 +1050,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (endedRef.current) return;
       endedRef.current = true;
       const recovering = reason === "error" && machineRef.current?.value.state === "RECONNECTING" && reconnectTimerRef.current !== null;
+      if (process.env.NODE_ENV !== "production") console.log(`[voice] session teardown: ${reason}${recovering ? " (reconnecting)" : ""}`);
       clearTimers(recovering);
       toolAbortControllersRef.current.forEach((controller) => controller.abort());
       toolAbortControllersRef.current.clear();
@@ -1643,6 +1644,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (!track) throw new Error("The selected microphone did not provide an audio track.");
       track.addEventListener("ended", () => {
         if (micStreamRef.current !== stream) return;
+        if (process.env.NODE_ENV !== "production") console.log(`[voice] microphone track ended (${track.label || "unnamed device"}); reopening`);
         setMicAvailable(false);
         machineRef.current?.dispatch({ type: "MIC_ACTIVE", at: performance.now(), active: false });
         machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "microphone disconnected" });
@@ -1916,6 +1918,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           onmessage: (message: GeminiServerMessage) => handleServerMessage(message),
           onerror: (event: { message?: string }) => {
             if (endedRef.current) return;
+            if (process.env.NODE_ENV !== "production") console.log(`[voice] live socket error: ${event?.message ?? "unknown"}`);
             // Same recovery path as a close: a transport error on a long-running session is the
             // thing most worth surviving, since the student is mid-conversation when it lands.
             const recovering = scheduleReconnect();

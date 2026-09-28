@@ -32,3 +32,13 @@ test("words that merely sound close stay ordinary words", () => {
   ]) assert.equal(classifyAddressing(said, lecture).addressed, false, said);
   assert.equal(classifyAddressing("aria just keeps talking", lecture).addressed, false, "talking about her, not to her");
 });
+
+test("an accented 'hey Aria' as a recogniser writes it still wakes her; other names do not", () => {
+  const speaking = lecture;
+  for (const said of ["Yaariyan", "hey idea", "hey idea what is a leaf", "hi aya", "okay ariel explain this", "can u explain me"]) {
+    assert.equal(classifyAddressing(said, speaking).addressed, true, said);
+  }
+  for (const said of ["hey ryan", "hey dave", "orion is a constellation", "iron is a metal", "the area of a circle is pi r squared", "your answer is right"]) {
+    assert.equal(classifyAddressing(said, speaking).addressed, false, said);
+  }
+});

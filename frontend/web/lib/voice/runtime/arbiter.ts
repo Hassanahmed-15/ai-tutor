@@ -34,6 +34,10 @@ import type { DetectorVerdict } from "./speechDetector";
 /** Mirrors GateProfile in ../sharedVoiceGate.ts — see there for what each costs. */
 export type ArbiterProfile = "lecture" | "conversation" | "dedicated";
 /** `verifying`: a voice ended with no local words; a second-opinion transcript is on its way. */
+const ECHO_REASON = "the narration's own words (echo)";
+/** Longer than this, unaddressed local words are a conversation, not a mis-heard call to Aria. */
+const SECOND_OPINION_MAX_WORDS = 14;
+
 export type TurnState = "idle" | "attending" | "verifying" | "listening" | "committed" | "processing" | "refractory";
 
 export interface ArbiterConfig {
@@ -410,7 +414,7 @@ export class TurnArbiter {
     }
     // Echo is dropped unless her name was actually said: "Aria, what is that?" is never an echo.
     if (echo && !/\bby name\b/.test(verdict.reason)) {
-      verdict = { addressed: false, score: 0, reason: "the narration's own words (echo)" };
+      verdict = { addressed: false, score: 0, reason: ECHO_REASON };
     }
     this.lastVerdict = verdict;
 
@@ -556,15 +560,29 @@ export class TurnArbiter {
         if (!this.tutor.speaking) return finishTurn(`no transcript verdict; tutor silent, letting the model answer (${endReason})`);
         return drop("no words for the tutor before the voice stopped");
       case "attending":
-        // No words at all from the local recogniser, but a clear voice: ask for a second opinion
-        // on exactly this audio rather than dropping it (see provideSecondOpinion).
-        if (!this.lastVerdict && !this.lastTranscript && this.episodeSpeechMs >= 450 && who !== "other" && this.callbacks.onSecondOpinion && this.candidateAudio.length) {
+        /*
+         * A clear voice the local recogniser could not vouch for: ask for a second opinion on
+         * exactly this audio rather than dropping it (see provideSecondOpinion).
+         *
+         * Not only when it produced NO words — also when its words were not addressed. Chrome hears
+         * "hey Aria" in an accent as "Yaariyan" or "hey idea"; that garbled verdict used to count as
+         * proof the student was talking to someone else, and the one phrase that should always work
+         * was dropped three times in a row (measured in the user's own session). Only the
+         * narration's echo, another person's voice, and long talk (a conversation, not a call) are
+         * trusted to be for someone else.
+         */
+        const localWords = this.lastTranscript.trim().split(/\s+/).filter(Boolean).length;
+        const localSaysEcho = this.lastVerdict?.reason === ECHO_REASON;
+        if (
+          !this.lastVerdict?.addressed && !localSaysEcho && localWords <= SECOND_OPINION_MAX_WORDS &&
+          this.episodeSpeechMs >= 450 && who !== "other" && this.callbacks.onSecondOpinion && this.candidateAudio.length
+        ) {
           this.verifyingAudio = [...this.candidateAudio];
           this.verifyingSince = now;
           this.verifyingDurationMs = durationMs;
           this.candidateAudio = [];
           this.restoreIfDucked("holding the utterance for a second opinion");
-          this.transition("verifying", `no local words for ${Math.round(this.episodeSpeechMs)} ms of voice; asking for a second opinion`, now);
+          this.transition("verifying", `${this.lastTranscript ? `local words "${this.lastTranscript.slice(0, 40)}" unconvincing` : "no local words"} for ${Math.round(this.episodeSpeechMs)} ms of voice; asking for a second opinion`, now);
           this.callbacks.onSecondOpinion(this.verifyingAudio);
           return;
         }

@@ -83,8 +83,11 @@ export class SharedVoiceGate {
         onEndTurn: ({ reason }) => { this.decide("refractory", "turn-end", reason); callbacks.onTurnEnd?.(); },
         onDiscard: (reason) => { this.decide("refractory", "discard", reason); callbacks.onDiscard?.(reason); },
         onSecondOpinion: callbacks.onSecondOpinion
-          ? (audio) => { this.decide("candidate", "second-opinion", "no local words; asking the server what was said"); callbacks.onSecondOpinion?.(audio); }
+          ? (audio) => { this.decide("candidate", "second-opinion", "local words missing or unconvincing; asking the server what was said"); callbacks.onSecondOpinion?.(audio); }
           : undefined,
+        // Why a voice was let go — without this the log said only "restore", and a dropped "hey
+        // Aria" could not be told from a cough.
+        onState: (_from, to, reason) => { if (to === "refractory" && /^(?:ignored|discarded)/.test(reason)) this.decide("refractory", "ignore", reason); },
       },
     });
   }
