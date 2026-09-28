@@ -116,3 +116,18 @@ test("a long conversation near the mic is not sent for a second opinion", () => 
   arbiter.onEndpoint({ type: "end", durationMs: 4000, reason: "silence" } as never, 5200);
   assert.deepEqual(events, []);
 });
+
+test("an on-topic question without her name, during the lecture, pauses it — Urdu side-talk does not", async () => {
+  const { topicWordsFrom } = await import("../voice/addressing");
+  const narration = "The hardest operation in binary search trees is removing a node. When designing a complex algorithm, it is often easiest to solve the simplest case first.";
+  for (const [heard, expected] of [["What is binary search algorithm?", true], ["یار بھینڈ گیاں یار", false], ["Haan, lag raha hai kya?", false]] as const) {
+    const { arbiter, events } = secondOpinionArbiter();
+    arbiter.setTopicWords(topicWordsFrom("Binary Search Trees", narration));
+    arbiter.onEndpoint({ type: "onset" } as never, 1000);
+    speak(arbiter, 1000, 1300); // a short phrase: 300 ms of voice
+    arbiter.onEndpoint({ type: "end", durationMs: 600, reason: "silence" } as never, 1600);
+    assert.deepEqual(events, ["second-opinion"], `${heard}: a short phrase is still checked`);
+    arbiter.provideSecondOpinion(heard, 2800);
+    assert.equal(events.some((e) => e.startsWith("pause")), expected, `${heard}: ${JSON.stringify(events)}`);
+  }
+});

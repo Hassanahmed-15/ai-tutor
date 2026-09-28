@@ -2333,8 +2333,21 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   }, [stopPlayback]);
 
   /** The lecture is saying this sentence now — so the gate can tell her echo from the student. */
+  /*
+   * WHAT THE LECTURE IS ABOUT, FOR THE GATE.
+   *
+   * A question without her name counts during the lecture only when it is about the lecture (its
+   * topic words). Those words were refreshed only when the LIVE tutor spoke — never from the
+   * narration, which is what plays during a lecture — so the set was empty and "What is binary
+   * search algorithm?", transcribed perfectly, was ignored as "question + tutor speaking".
+   */
+  const recentNarrationRef = useRef<string[]>([]);
   const noteNarration = useCallback((sentence: string) => {
     gateRef.current?.setEchoText(sentence, performance.now());
+    recentNarrationRef.current = [...recentNarrationRef.current, sentence].slice(-6);
+    gateRef.current?.setTopicWords(
+      topicWordsFrom(optionsRef.current.topic, optionsRef.current.getBeatContext(), recentNarrationRef.current.join(" "), tutorTranscriptRef.current.slice(-400)),
+    );
   }, []);
 
   const getVoiceDiagnostics = useCallback(() => ({

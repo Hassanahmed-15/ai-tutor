@@ -37,6 +37,11 @@ export type ArbiterProfile = "lecture" | "conversation" | "dedicated";
 const ECHO_REASON = "the narration's own words (echo)";
 /** Longer than this, unaddressed local words are a conversation, not a mis-heard call to Aria. */
 const SECOND_OPINION_MAX_WORDS = 14;
+/**
+ * Enough voice to be worth transcribing. It was 450 ms, and a quick "hey Aria" — two short syllables
+ * after a one-syllable greeting — measured under it in a real session and was dropped unheard.
+ */
+const SECOND_OPINION_MIN_SPEECH_MS = 250;
 
 export type TurnState = "idle" | "attending" | "verifying" | "listening" | "committed" | "processing" | "refractory";
 
@@ -575,7 +580,7 @@ export class TurnArbiter {
         const localSaysEcho = this.lastVerdict?.reason === ECHO_REASON;
         if (
           !this.lastVerdict?.addressed && !localSaysEcho && localWords <= SECOND_OPINION_MAX_WORDS &&
-          this.episodeSpeechMs >= 450 && who !== "other" && this.callbacks.onSecondOpinion && this.candidateAudio.length
+          this.episodeSpeechMs >= SECOND_OPINION_MIN_SPEECH_MS && who !== "other" && this.callbacks.onSecondOpinion && this.candidateAudio.length
         ) {
           this.verifyingAudio = [...this.candidateAudio];
           this.verifyingSince = now;
