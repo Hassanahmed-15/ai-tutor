@@ -3091,7 +3091,6 @@ type BuildCost =
   if (phase === "test-results" && testBank && testResults) {
     return (
       <TestResultsView
-        topic={builtTopic}
         bank={testBank}
         results={testResults}
         answers={testAnswers}
