@@ -24,7 +24,22 @@ export type NarrationHandle = {
   /** Continue a paused narration from the exact timestamp where it was interrupted. Returns
    *  false if there's nothing resumable. */
   resume: () => boolean;
+  /**
+   * Change the speed of THIS narration while it plays.
+   *
+   * Without it the only way to change speed was to cancel and start again, which is what the
+   * player did: the beat replayed from its first sentence every time the student touched the
+   * control. On the cloud path the running clip changes speed at once; the browser-speech fallback
+   * cannot re-time an utterance already queued, so it applies from the next sentence.
+   */
+  setRate: (rate: number) => void;
 };
+
+/** The slowest speed offered. Below this, time-stretched speech stops sounding like speech. */
+export const MIN_NARRATION_RATE = 0.25;
+export const MAX_NARRATION_RATE = 2;
+const clampRate = (rate: number) =>
+  Number.isFinite(rate) ? Math.min(MAX_NARRATION_RATE, Math.max(MIN_NARRATION_RATE, rate)) : 1;
 
 /**
  * Whether narration uses OpenAI cloud TTS by default. ON: real warm teacher voice, plays
@@ -159,7 +174,12 @@ export function splitNarrationSentences(text: string): string[] {
 
 export function playNarration(text: string, callbacks: NarrationCallbacks): NarrationHandle {
   if (!callbacks.preserveActive) cancelActiveNarrations();
-  const rate = callbacks.rate ?? 1;
+  /*
+   * Mutable: `setRate` changes it mid-narration, and every duration below reads it at the moment it
+   * is needed rather than capturing it once — so a sentence gap, a fallback estimate and the next
+   * clip all follow a speed change made halfway through.
+   */
+  let rate = clampRate(callbacks.rate ?? 1);
   const useCloudTts = callbacks.cloudTts ?? CLOUD_TTS_DEFAULT;
   const initialSentences = splitNarrationSentences(text);
   let cancelled = false;
@@ -322,8 +342,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       // Advance on an estimated speaking duration so paced visuals feel right whether or
       // not audio actually plays. ~85ms/char ≈ a clear narration rate (~12 chars/sec),
       // floored so very short sentences still get a readable beat, plus a brief pause.
-      const spokenMs = Math.max(2200, sentence.length * 85) / Math.max(0.5, rate);
-      setTimeout(cueNext, spokenMs + 240);
+      // The real rate, not a clamped one: at 0.25x a 0.5x floor advanced the board twice as fast as
+      // the voice. The gap scales too, or slow speech would still be followed by a brisk pause.
+      const spokenMs = Math.max(2200, sentence.length * 85) / rate;
+      setTimeout(cueNext, spokenMs + 240 / rate);
     };
     const progressLoop = () => {
       if (cancelled) return;
@@ -378,7 +400,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     const weights = sentences.map(sentenceWeight);
     const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
     const estimatedTotalMs = Math.max(4200, (totalWeight * 900 + (sentences.length - 1) * 320) / rate);
-    const estimatedSentenceMs = (i: number) => Math.max(2200, sentences[i].length * 85) / Math.max(0.5, rate);
+    const estimatedSentenceMs = (i: number) => Math.max(2200, sentences[i].length * 85) / rate;
 
     /*
      * Synthesis: sentence 0 first, the rest queued behind it a few at a time. The first clip is a
@@ -515,6 +537,10 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       audio.src = objectUrl;
       audio.defaultPlaybackRate = rate;
       audio.playbackRate = rate;
+      // Tempo without pitch: 2x must not become a chipmunk, nor 0.25x a slowed tape. Browsers default
+      // to this already; setting it makes the choice explicit rather than inherited.
+      audio.preservesPitch = true;
+      (audio as HTMLAudioElement & { webkitPreservesPitch?: boolean }).webkitPreservesPitch = true;
       audio.volume = 1;
 
       if (paused) await sleep(1);
@@ -582,7 +608,7 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
       elapsedBeforeMs += (Number.isFinite(audio.duration) ? audio.duration : 0) * 1000;
       callbacks.onProgress?.(sentenceAlignedProgress(weights, clipIndex, 1), elapsedBeforeMs, estimatedTotalMs);
-      if (i < sentences.length - 1) await sleep(SENTENCE_GAP_MS / Math.max(0.5, rate));
+      if (i < sentences.length - 1) await sleep(SENTENCE_GAP_MS / rate);
     }
 
     if (cancelled) return;
@@ -601,9 +627,19 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     callbacks.onEnd();
   })();
 
+  const setRate = (next: number) => {
+    rate = clampRate(next);
+    // The clip that is playing now changes speed immediately; the ones after it are set as they load.
+    if (audio) {
+      audio.defaultPlaybackRate = rate;
+      audio.playbackRate = rate;
+    }
+  };
+
   return {
     cancel,
     pause,
     resume,
+    setRate,
   };
 }

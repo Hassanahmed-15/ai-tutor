@@ -8,6 +8,7 @@ import { unlockAudio, splitNarrationSentences } from "@/lib/voice";
 import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
+import { usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { backstopRecovery, narrationRecovery } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
@@ -445,7 +446,16 @@ export function LessonPlayer({
     };
   }, []);
   const [drawProgress, setDrawProgress] = useState(0);
-  const [rate, setRate] = useState(1);
+  /*
+   * The student's playback speed, remembered between lectures (lib/playbackPrefs.ts).
+   *
+   * Read by the narration effect through `rateRef`, NOT as a dependency. As a dependency, touching
+   * the speed control ran that effect's cleanup — which cancels the narration — and replayed the beat
+   * from its first sentence. The change is pushed into the running narration instead, below.
+   */
+  const [rate, setRate] = usePlaybackRate();
+  const rateRef = useRef(rate);
+  useEffect(() => { rateRef.current = rate; }, [rate]);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
   const teachingMap = useMemo(() => buildLessonTeachingMap(beats), [beats]);
@@ -1760,11 +1770,12 @@ export function LessonPlayer({
                */
               if (lesson.modeRef.current !== "teaching" || mcqRef.current) return;
               advanceFromHeld(heldIndex);
-            }, BOARD_HOLD_AFTER_NARRATION_MS);
+              // The pause after a finished board keeps pace with the voice before it.
+            }, BOARD_HOLD_AFTER_NARRATION_MS / rateRef.current);
           }
         },
         onBlocked: () => setVoiceBlocked(true),
-        rate,
+        rate: rateRef.current,
       },
       "lecture",
       { force },
@@ -1798,7 +1809,13 @@ export function LessonPlayer({
     // effect's cleanup as soon as a question opens, which cancels (rather than pauses) the preserved
     // lecture handle and makes the eventual resume restart the beat from line one.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, bridgeSentences, rate, deafMode, animationBlocking]);
+  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, bridgeSentences, deafMode, animationBlocking]);
+
+  // A speed change reaches the narration that is already speaking, mid-sentence, without a restart.
+  const setTeacherRate = voice.setTeacherRate;
+  useEffect(() => {
+    setTeacherRate(rate);
+  }, [rate, setTeacherRate]);
 
   /** Beat whose narration has ended and whose move to the next slide is still owed. */
   const pendingAdvanceRef = useRef<number | null>(null);
@@ -2361,9 +2378,6 @@ export function LessonPlayer({
       setWaitingForNextBeat(true);
     }
   }
-  function cycleRate() {
-    setRate((r) => (r >= 1.5 ? 0.85 : r === 0.85 ? 1 : 1.25));
-  }
 
   const hasStarted = lesson.mode !== "idle" || index > 0 || stage === "board";
   const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / displayBeatCount) * 100;
@@ -2826,6 +2840,8 @@ export function LessonPlayer({
           onNext={skipForward}
           onSummarize={onSummarize}
           summaryUnlocked={summaryUnlocked}
+          speed={rate}
+          onSpeedChange={setRate}
           canGoPrevious={index > 0}
           canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat}
           tool={boardTool}

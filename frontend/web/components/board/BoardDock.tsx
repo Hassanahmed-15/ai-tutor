@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 
 import type { BoardTool } from "./AnnotationLayer";
+import { PLAYBACK_RATES, rateLabel } from "@/lib/playbackPrefs";
 
 /**
  * THE ONLY CONTROLS ON SCREEN.
@@ -74,6 +75,13 @@ export interface BoardDockProps {
    * this button alone — the lesson ends here rather than playing boards the student no longer needs.
    */
   onUnderstood?: () => void;
+  /**
+   * Playback speed. Shown only when both are given, so a dock that does not narrate is unchanged.
+   * One button with the current speed on it; the choices open above it, like the markup tools —
+   * five speeds in a row would make the rest of the dock the part a student has to look for.
+   */
+  speed?: number;
+  onSpeedChange?: (speed: number) => void;
   leading?: React.ReactNode;
   center?: React.ReactNode;
   trailing?: React.ReactNode;
@@ -82,6 +90,25 @@ export interface BoardDockProps {
 export function BoardDock(props: BoardDockProps) {
   const [toolsOpen, setToolsOpen] = useState(false);
   const toolsRef = useRef<HTMLDivElement | null>(null);
+  const [speedOpen, setSpeedOpen] = useState(false);
+  const speedRef = useRef<HTMLDivElement | null>(null);
+
+  // The speed menu closes on Escape and on any click outside it, so it never lingers over the board.
+  useEffect(() => {
+    if (!speedOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSpeedOpen(false);
+    };
+    const onPointer = (event: PointerEvent) => {
+      if (speedRef.current && !speedRef.current.contains(event.target as Node)) setSpeedOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onPointer);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
+    };
+  }, [speedOpen]);
 
   // Escape leaves the tools — the old overlays could only be dismissed by finding a small ✓ icon.
   useEffect(() => {
@@ -124,6 +151,51 @@ export function BoardDock(props: BoardDockProps) {
         <DockButton onClick={props.onNext} disabled={!props.canGoNext} label="Next concept" shortcut="→">
           <ChevronRight size={20} />
         </DockButton>
+
+        {props.speed !== undefined && props.onSpeedChange && (
+          <div className="relative" ref={speedRef}>
+            <button
+              type="button"
+              onClick={() => setSpeedOpen((open) => !open)}
+              aria-label={`Playback speed, ${rateLabel(props.speed)}`}
+              aria-haspopup="true"
+              aria-expanded={speedOpen}
+              data-speed-button
+              className={`flex h-11 min-w-[3.25rem] items-center justify-center rounded-xl px-2.5 text-[0.84rem] font-bold tabular-nums transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
+                speedOpen || props.speed !== 1
+                  ? "bg-white/[0.12] text-white"
+                  : "text-white/70 hover:bg-white/[0.08] hover:text-white"
+              }`}
+            >
+              {rateLabel(props.speed)}
+            </button>
+            {speedOpen && (
+              <div
+                role="group"
+                aria-label="Playback speed"
+                className="absolute bottom-[calc(100%+10px)] left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-2xl border border-white/10 bg-[#0d0f14]/98 p-1.5 shadow-2xl backdrop-blur-xl"
+              >
+                {PLAYBACK_RATES.map((choice) => (
+                  <button
+                    key={choice}
+                    type="button"
+                    data-speed-choice={choice}
+                    aria-pressed={props.speed === choice}
+                    onClick={() => {
+                      props.onSpeedChange?.(choice);
+                      setSpeedOpen(false);
+                    }}
+                    className={`h-9 min-w-[3.25rem] rounded-xl px-2.5 text-[0.84rem] font-bold tabular-nums transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${
+                      props.speed === choice ? "bg-white text-[#0d0f14]" : "text-white/75 hover:bg-white/[0.08] hover:text-white"
+                    }`}
+                  >
+                    {rateLabel(choice)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />
 
