@@ -47,6 +47,11 @@ export interface BoardDockProps {
   canGoNext: boolean;
   tool: BoardTool;
   onToolChange: (tool: BoardTool) => void;
+  /**
+   * The student closed the markup tools — the X, or Escape. Not called when a tool is merely toggled
+   * off inside the popover, which a student does BEFORE asking about what they highlighted.
+   */
+  onCloseTools?: () => void;
   onUndo: () => void;
   canUndo: boolean;
   micOn: boolean;
@@ -117,6 +122,7 @@ export function BoardDock(props: BoardDockProps) {
       if (event.key !== "Escape") return;
       setToolsOpen(false);
       props.onToolChange("none");
+      props.onCloseTools?.();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -208,7 +214,10 @@ export function BoardDock(props: BoardDockProps) {
             onClick={() => {
               const next = !toolsOpen;
               setToolsOpen(next);
-              if (!next) props.onToolChange("none");
+              if (!next) {
+                props.onToolChange("none");
+                props.onCloseTools?.();
+              }
             }}
             active={marking || toolsOpen}
             label={marking ? "Marking up — click to stop" : "Mark up the board"}

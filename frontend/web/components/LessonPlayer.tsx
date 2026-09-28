@@ -21,7 +21,7 @@ import { BoardDock } from "@/components/board/BoardDock";
 import { PdfSourcePanel } from "@/components/teaching/PdfSourcePanel";
 import { SourceFigureBoard, sourceFigureFor } from "@/components/teaching/SourceFigureBoard";
 import { BoardStage } from "@/components/board/BoardStage";
-import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
+import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, clearKind, undo as annUndo } from "@/lib/board/annotations";
 import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingState";
 import { coordinateTeachingTimeline } from "@/lib/board/teachingTimeline";
 import { captureSelectedBoardRegion } from "@/lib/board/captureSelection";
@@ -2846,6 +2846,12 @@ export function LessonPlayer({
           canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat}
           tool={boardTool}
           onToolChange={setBoardTool}
+          /* Closing the tools puts the board back: the highlight was the question, and it has been
+             asked. Pen notes stay, and Undo restores a highlight closed by mistake. */
+          onCloseTools={() => {
+            setAnnotations((current) => clearKind(current, beat.id, "highlight"));
+            setExplainDismissed(true);
+          }}
           onUndo={() => setAnnotations(annUndo(annotations))}
           canUndo={annCanUndo(annotations)}
           micOn={tutor.status === "live" && !tutor.muted}
