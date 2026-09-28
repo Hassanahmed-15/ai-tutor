@@ -23,7 +23,7 @@ import type { SourceScope } from "@/lib/sourceScope";
 declare global {
   interface Window {
     /** The source fields put the player in its PDF workspace (source panel, figures) — an uploaded document's. */
-    __PLAYBACK_BEATS__?: { title: string; beats: Beat[]; sourceDocument?: unknown; documentId?: string; sourceScope?: SourceScope };
+    __PLAYBACK_BEATS__?: { title: string; beats: Beat[]; sourceDocument?: unknown; documentId?: string; sourceScope?: SourceScope; autoVoice?: boolean };
     /** One finished board to render fully drawn, for side-by-side screenshots of the model comparison. */
     __BOARD_STILL__?: { code: string; assetIds?: string[]; sentenceTotal: number; model?: string; costUsd?: number };
     /** Measured beat timings to render the build screen's timeline with (scripts/measure-lecture-latency.mjs). */
@@ -77,7 +77,7 @@ export default function PlaybackLab() {
       <LessonPlayer
         beats={lecture.beats}
         title={lecture.title}
-        autoVoiceAssistant={false}
+        autoVoiceAssistant={lecture.autoVoice === true}
         sourceDocument={lecture.sourceDocument}
         documentId={lecture.documentId}
         sourceScope={lecture.sourceScope}

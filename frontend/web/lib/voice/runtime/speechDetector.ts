@@ -30,9 +30,15 @@ export interface DetectorConfig {
 
 export const DEFAULT_DETECTOR_CONFIG: DetectorConfig = {
   vadThreshold: 0.35,
-  vadThresholdWhileTutorSpeaking: 0.5,
+  /*
+   * 0.5 while the tutor spoke was above what real speech scores on this model (0.38-0.47, above),
+   * so during the lecture — the whole time she is "speaking" — a student saying "Aria" often never
+   * registered as speech at all. The words still have to address her before anything happens, so a
+   * candidate costs a moment's attention, not an interruption.
+   */
+  vadThresholdWhileTutorSpeaking: 0.4,
   minConfidence: 0.45,
-  minConfidenceWhileTutorSpeaking: 0.7,
+  minConfidenceWhileTutorSpeaking: 0.6,
   minRms: ACOUSTICS.minRms,
   echoGuardMs: 250,
   steadyToneWindows: 8,

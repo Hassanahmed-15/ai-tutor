@@ -50,6 +50,7 @@ import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase } from "@/components/classroom/VoiceState";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
+import { isPauseIntent, isResumeIntent } from "@/lib/voice/lectureIntent";
 import { useManimPrefetch } from "@/lib/useManimPrefetch";
 import { useNarrationPrefetch } from "@/lib/useNarrationPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
@@ -242,6 +243,9 @@ function isChalkBoardPending(beat: Beat) {
 }
 
 
+/** Event-time clock for callbacks (the React compiler reads a bare Date.now() in them as render). */
+const wallClock = () => Date.now();
+
 /** How long a finished board stays on screen after its narration ends, before the next slide. */
 const BOARD_HOLD_AFTER_NARRATION_MS = 2500;
 
@@ -404,6 +408,12 @@ export function LessonPlayer({
     });
   }, [waitingForNextBeat, index, beats.length, hasMoreBeats, onComplete]);
   const [voiceBlocked, setVoiceBlocked] = useState(false);
+  const voiceBlockedRef = useRef(false);
+  useEffect(() => {
+    voiceBlockedRef.current = voiceBlocked;
+  }, [voiceBlocked]);
+  /** The banner is up only because Live Aria's output is held (see onOutputBlocked). */
+  const blockedLiveOnlyRef = useRef(false);
   const [checkpointResult, setCheckpointResult] = useState<CheckpointResult>(null);
   const [waitingOnCheckpoint, setWaitingOnCheckpoint] = useState(false);
   const [checkpointAttempts, setCheckpointAttempts] = useState(0);
@@ -816,6 +826,15 @@ export function LessonPlayer({
    * is kept current by the effect below `lesson` (which is declared after this call).
    */
   const narrationAudibleRef = useRef(false);
+  /*
+   * The student's last words, for judging what Aria's lecture tools mean. Aria calls
+   * `resume_lecture` both when the student said "carry on" and when she has merely finished an
+   * answer; only the first may lift a pause the student asked for. Likewise her `pause_lecture` is
+   * the student's own pause only when their words asked for one.
+   */
+  const lastStudentWordsRef = useRef<{ text: string; at: number }>({ text: "", at: 0 });
+  const studentJustSaid = (intent: (text: string) => boolean) =>
+    wallClock() - lastStudentWordsRef.current.at < 30_000 && intent(lastStudentWordsRef.current.text);
   const tutor = useGeminiLiveTutor({
     voiceSurface: documentId ? "pdf" : "normal",
     // Minutes of narration at a time: nothing stops her without positive evidence.
@@ -866,6 +885,7 @@ export function LessonPlayer({
       // Finalized lines flow into the chat log so the live conversation shows up in the chat
       // panel (not a separate bottom bar). student -> "you", tutor -> "aria".
       if (!final || !text.trim()) return;
+      if (role === "student") lastStudentWordsRef.current = { text: text.trim(), at: wallClock() };
       // The overlay shows the latest line so a learner can see the mic is genuinely working. Without
       // it a silent model looks identical to a dead session, and they have no reason to keep talking.
       if (checkinRef.current) setCheckinLine(text.trim());
@@ -973,14 +993,21 @@ export function LessonPlayer({
       // that has to come through Aria, who is the one who judged whether the learner actually meant
       // it. Ignoring it here also stops a stray "okay" in the middle of the chat ending it early.
       if (checkinRef.current) return;
-      lesson.requestResume();
+      lesson.requestResume({ explicit: true });
     },
 
     onPauseLecture: () => {
       if (checkinRef.current) return; // already paused, and by something that outranks her
-      // Tool calls may arrive after speech-start already armed the question's automatic resume.
-      // Preserve that intent; a locally classified direct pause command cancels it above.
-      lesson.enterChat({ preserveResumeIntent: true });
+      /*
+       * The student asked for this pause: hold it. It used to keep the question's automatic resume
+       * armed, so "Aria, can you pause?" was followed by "Sure, paused" — and the lecture resuming.
+       */
+      if (studentJustSaid(isPauseIntent)) {
+        lesson.pause("user");
+      } else {
+        // Aria pausing to answer a question: the question's automatic resume stays armed.
+        lesson.enterChat({ preserveResumeIntent: true });
+      }
       if (slideTimer.current) {
         clearTimeout(slideTimer.current);
         slideTimer.current = null;
@@ -1003,12 +1030,25 @@ export function LessonPlayer({
         endCheckin();
         return;
       }
-      lesson.requestResume();
+      // Lifts the student's own pause only when their words asked to carry on; after an answer to a
+      // question asked during that pause, the lecture stays where they left it.
+      lesson.requestResume({ explicit: studentJustSaid(isResumeIntent) });
     },
     lectureControlTools: true,
     checkinMode: checkin !== null,
 
-    startMuted: true,
+    /*
+     * LISTENING FROM THE START. The lecture's session used to open muted, so "Aria…" did nothing
+     * until the student found the mic button — the name only worked after they had already asked
+     * the hard way. The mic is live from Play (the browser asks once, inside that click); nothing
+     * reaches the model until the gate hears words addressed to her. The mute button still mutes.
+     */
+    onOutputBlocked: () => {
+      // Live Aria's output is held; the lecture's own narration may be fine. A tap resumes it.
+      if (!voiceBlockedRef.current) blockedLiveOnlyRef.current = true;
+      setVoiceBlocked(true);
+    },
+    startMuted: !autoVoiceAssistant,
     alwaysOn: autoVoiceAssistant,
   });
   // Mirrors `tutor` so a setTimeout-based poll (explainWithTutor) can read the LATEST status
@@ -1282,7 +1322,10 @@ export function LessonPlayer({
       if (isAdaptiveQuestion(question)) onLearnerInteraction?.({ kind: "question", detail: question });
     },
     onExplanationClosed: () => lesson.requestResume(),
-    onVoiceBlocked: () => setVoiceBlocked(true),
+    onVoiceBlocked: () => {
+      blockedLiveOnlyRef.current = false;
+      setVoiceBlocked(true);
+    },
   });
 
   // Short label for the chat mic button while a live session is active/connecting.
@@ -1293,9 +1336,12 @@ export function LessonPlayer({
         ? "Drawing…"
         : tutor.speaking
           ? "Aria speaking…"
-          : sessionActive
-            ? "Listening — tap to end"
-            : "";
+          : sessionActive && tutor.muted
+            // It said "Listening" while the mic was muted — the student talked to nobody.
+            ? "Mic muted — tap to talk"
+            : sessionActive
+              ? "Listening — tap to end"
+              : "";
 
   function startLiveTutor() {
     // The check-in owns the session; taking the floor from it would drop the lecture out of paused.
@@ -1484,8 +1530,8 @@ export function LessonPlayer({
         void t.start();
       } else {
         setSessionActive(false);
-        t.setMicEnabled(false);
-        // Back to the ordinary preconnected-and-muted lecture session.
+        // Back to the ordinary lecture session, still listening for "Aria".
+        t.setMicEnabled(autoVoiceAssistant);
         if (autoVoiceAssistant) void t.start();
       }
     }, CHECKIN_RECONNECT_GAP_MS);
@@ -1496,8 +1542,8 @@ export function LessonPlayer({
    * The two-minute floor.
    *
    * Only gates when Aria may ASK. She is cued through `say` and not `addContext`, because
-   * `addContext` explicitly instructs the model not to reply — and a silent cue to start talking is
-   * no cue at all.
+   * `addContext` is a background note the model does not answer — and a silent cue to start talking
+   * is no cue at all.
    */
   useEffect(() => {
     if (checkin !== "chatting" || checkinFallback) return;
@@ -1674,6 +1720,7 @@ export function LessonPlayer({
           setSpeaking(true);
         },
         onSentenceStart: (sentenceIndex, sentence, total) => {
+          tutorRef.current.noteNarration?.(sentence);
           tracePlayback("sentence", { beat: index, narration: sentenceIndex, bridge, board: Math.max(0, sentenceIndex - bridge), total, text: sentence.slice(0, 50) });
           narrationCue = sentenceIndex;
           if (bridged && !isCheckpoint && sentenceIndex >= bridge && !transitionBoardShownRef.current) {
@@ -1763,7 +1810,12 @@ export function LessonPlayer({
             }, BOARD_HOLD_AFTER_NARRATION_MS);
           }
         },
-        onBlocked: () => setVoiceBlocked(true),
+        onBlocked: () => {
+          // Autoplay refused the narration: nothing is audible, so she is not "speaking".
+          blockedLiveOnlyRef.current = false;
+          setSpeaking(false);
+          setVoiceBlocked(true);
+        },
         rate,
       },
       "lecture",
@@ -1905,6 +1957,35 @@ export function LessonPlayer({
     // back to "idle" is the only observable signal that the question is over.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lesson.mode, voice.owner, tutor.speaking, tutor.status, quiz.phase, index, stage, startNonce]);
+
+  /*
+   * A QUESTION THAT NEVER CAME. The voice gate can take the floor on a sustained voice before any
+   * words arrive (a student who starts to speak and trails off, a voice in the room). If no words
+   * and no reply ever follow, nothing calls back — the lecture sat in `chatting`, silent, for good.
+   * Once the gate has settled, Aria is silent, and the automatic "resume after the answer" is still
+   * waiting, the lecture continues after 8 s. It never overrides a pause the student asked for.
+   */
+  useEffect(() => {
+    if (lesson.mode !== "chatting") return;
+    let quietSince = Date.now();
+    const timer = window.setInterval(() => {
+      // A string: the gate also reports the arbiter's "processing" (waiting on a reply) as-is.
+      const stage: string = tutorRef.current.getVoiceDiagnostics().gate?.stage ?? "idle";
+      const studentOrAriaActive =
+        stage === "candidate" || stage === "verifying" || stage === "listening" || stage === "committed" || stage === "processing" ||
+        tutorRef.current.isSpeaking() || checkinRef.current !== null;
+      if (studentOrAriaActive || !lesson.hasDeferredResume() || lesson.isHeldByStudent()) {
+        quietSince = Date.now();
+        return;
+      }
+      if (Date.now() - quietSince >= 8_000 && lesson.modeRef.current === "chatting") {
+        tracePlayback("chat-stall-release", { beat: index });
+        lesson.flushDeferredResume();
+      }
+    }, 1_000);
+    return () => window.clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.mode]);
 
   /**
    * The backstop, for the stall no render announces.
@@ -2245,8 +2326,9 @@ export function LessonPlayer({
     setVoiceBlocked(false);
     lesson.startTeaching();
     if (REALTIME_TUTOR_ENABLED && autoVoiceAssistant && tutor.status === "idle") {
-      // The click is a browser permission gesture: initialize once, keep the outgoing track muted,
-      // and leave the lecture playing until the learner explicitly unmutes or starts a conversation.
+      // The click is a browser permission gesture: initialize once, listening for "Aria" (the gate
+      // sends nothing to the model until it hears words for her), and leave the lecture playing.
+      tutor.setMicEnabled(true);
       void tutor.start();
     }
   }
@@ -2269,7 +2351,7 @@ export function LessonPlayer({
       lesson.pause("user");
     } else {
       unlockAudio();
-      lesson.requestResume();
+      lesson.requestResume({ explicit: true });
     }
   }
   /**
@@ -2299,6 +2381,12 @@ export function LessonPlayer({
   function retryVoice() {
     unlockAudio();
     setVoiceBlocked(false);
+    // Only Live Aria's output was held: the tap has resumed it. Restarting the part would replay
+    // narration the student already heard.
+    if (blockedLiveOnlyRef.current) {
+      blockedLiveOnlyRef.current = false;
+      return;
+    }
     // `startTeaching` is a full un-pause. The banner that calls this renders outside the board and
     // outside the inert transport row, so before the overlay was hoisted it was reachable mid-check-in.
     if (checkinRef.current) return;
@@ -2434,7 +2522,9 @@ export function LessonPlayer({
     : [];
   const voicePhase = derivePhase({
     status: tutor.status,
-    ariaSpeaking: speaking || tutor.isSpeaking(),
+    // Audible speech only. `isSpeaking()` also covers her thinking and drawing, which showed
+    // "Aria is speaking" with nothing to hear.
+    ariaSpeaking: speaking || tutor.speaking,
     studentSpeaking: Boolean(
       tutor.status === "live" && !tutor.muted && !speaking && !tutor.isSpeaking() && hasStarted,
     ),

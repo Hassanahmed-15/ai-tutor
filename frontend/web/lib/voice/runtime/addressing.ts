@@ -27,7 +27,15 @@ export interface AddressingVerdict {
   reason: string;
 }
 
-const DEFAULT_WAKE_NAMES = ["aria", "arya", "teacher", "tutor"];
+/*
+ * Known mis-hearings of "Aria" that the sound-alike skeleton below cannot reach, because each has a
+ * second consonant: "hey Aria" run together comes back as "hey Maria" / "Mariah"; "Ariana",
+ * "Arianna", "Rhea" and "Riya" are what recognisers reach for when they know a name is being said.
+ * "Hey Maria" was even scored as calling someone ELSE. These count anywhere, like "Aria" itself.
+ */
+const WAKE_VARIANTS = ["maria", "mariah", "ariana", "arianna", "rhea", "riya", "ariya", "aariya", "areya", "ariah", "aaria", "arria"];
+const DEFAULT_WAKE_NAMES = ["aria", "arya", "teacher", "tutor", ...WAKE_VARIANTS];
+const NAME_ALTERNATION = ["aria", "arya", ...WAKE_VARIANTS].join("|");
 
 /**
  * Wake on anything that SOUNDS like "Aria", rather than on a list of spellings.
@@ -97,7 +105,7 @@ const HAIL_NOT_A_NAME = new Set([
   "where", "please", "there", "that", "this", "is", "are", "do", "does", "did", "i", "let", "hold",
   "stop", "pause", "go", "no", "yes", "okay", "ok", "listen", "look", "actually", "sorry", "hey",
 ]);
-const NAME_THIRD_PERSON = /\b(?:aria|arya|teacher|the tutor|this (?:thing|app|ai))\s+(?:said|says|told|keeps|kept|was saying|is saying|sounds|thinks|just|won'?t|can'?t|doesn'?t|isn'?t)\b/i;
+const NAME_THIRD_PERSON = new RegExp(`\\b(?:${NAME_ALTERNATION}|teacher|the tutor|this (?:thing|app|ai))\\s+(?:said|says|told|keeps|kept|was saying|is saying|sounds|thinks|just|won'?t|can'?t|doesn'?t|isn'?t)\\b`, "i");
 
 const STOPWORDS = new Set([
   "the", "and", "that", "this", "with", "from", "have", "what", "when", "where", "which", "there",

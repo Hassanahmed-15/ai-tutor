@@ -15,6 +15,7 @@
 import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
 import { CLIP_FETCH_CONCURRENCY, SENTENCE_GAP_MS, sentenceAlignedProgress, sentenceWeight } from "./narrationClock";
 import { recordTtsResponse } from "./costLedger";
+import { ensureRunning, registerAudioContext, resumeAllAudio } from "./voice/audioOutput";
 
 export type NarrationHandle = {
   cancel: () => void;
@@ -35,6 +36,12 @@ export type NarrationHandle = {
  * cloud TTS everywhere.
  */
 const CLOUD_TTS_DEFAULT = true;
+
+/** Dev-only narration trace; `next dev` forwards it to the server log beside the [playback] lines. */
+function traceNarration(event: string, detail: Record<string, unknown>) {
+  if (process.env.NODE_ENV === "production") return;
+  console.log(`[playback] narration-${event} ${JSON.stringify(detail)}`);
+}
 const CLOUD_TTS_GAIN = 1.45;
 const BROWSER_TTS_VOLUME = 1;
 
@@ -145,6 +152,8 @@ function pickTeacherVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice 
 /** One-time "unlock" for the browser's autoplay gate — call this directly inside a click handler. */
 export function unlockAudio() {
   if (typeof window === "undefined") return;
+  // Inside the click: the one moment every browser lets a suspended audio context start.
+  resumeAllAudio();
   if ("speechSynthesis" in window) {
     // A zero-length utterance still counts as "spoken" for the autoplay gate in most browsers.
     const u = new SpeechSynthesisUtterance(" ");
@@ -391,28 +400,37 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     );
     let nextToFetch = 0;
     let inFlight = 0;
+    /*
+     * ONE CLIP, FETCHED SO THAT IT ARRIVES. A clip request that hung — seen as 73 s of silence in
+     * the middle of a part, nothing else happening — held the narration at that sentence. Each try
+     * now gives up after 10 s and is retried twice; clips are fetched well ahead of playback, so a
+     * retry normally lands before the sentence is reached. A 4xx is a real answer and is not retried.
+     */
+    const fetchClip = async (text: string): Promise<Blob | null> => {
+      for (let attempt = 0; attempt < 3 && !cancelled; attempt += 1) {
+        try {
+          const res = await fetch("/api/tts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+            signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(10_000) : undefined,
+          });
+          recordTtsResponse(res);
+          if (res.ok) return await res.blob();
+          if (res.status < 500) return null;
+        } catch {
+          /* timed out or dropped: try again */
+        }
+        traceNarration("clip-retry", { attempt: attempt + 1, text: text.slice(0, 40) });
+      }
+      return null;
+    };
     const pump = () => {
       while (!cancelled && inFlight < CLIP_FETCH_CONCURRENCY && nextToFetch < sentences.length) {
         const i = nextToFetch;
         nextToFetch += 1;
         inFlight += 1;
-        fetch("/api/tts", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: sentences[i] }),
-          /*
-           * A clip that never arrives must not stop the lecture. With no timeout, one hung request
-           * held the whole narration on its last sentence — the board and the notes waited with
-           * it, "Aria is speaking" and nothing said. Given up after 20 s, the sentence goes ahead
-           * silently on its estimated length (the missing-clip path below), and the next plays.
-           */
-          signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(20_000) : undefined,
-        })
-          .then((res) => {
-            recordTtsResponse(res);
-            return res.ok ? res.blob() : null;
-          })
-          .catch(() => null)
+        fetchClip(sentences[i])
           .then((blob) => resolvers[i](blob))
           .finally(() => {
             inFlight -= 1;
@@ -443,8 +461,19 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
     try {
       const AudioContextCtor =
         window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (AudioContextCtor) {
-        audioContext = new AudioContextCtor();
+      const candidate = AudioContextCtor ? new AudioContextCtor() : null;
+      if (candidate) registerAudioContext(candidate);
+      /*
+       * ROUTED THROUGH WEB AUDIO ONLY WHEN IT CAN SOUND. Routing the element into a context makes
+       * the context its ONLY way out — and this context is made after a download, outside any click,
+       * so a browser may hold it suspended: the clip then "plays" in silence while the lecture says
+       * Aria is speaking, or `resume()` never settles at all. When it is not running within a moment,
+       * the element plays on its own (no volume boost, no mouth animation), which is always audible.
+       */
+      if (candidate && !(await ensureRunning(candidate, 1_200))) {
+        void candidate.close().catch(() => {});
+      } else if (candidate) {
+        audioContext = candidate;
         const source = audioContext.createMediaElementSource(audio);
         let tail: AudioNode = source;
         if (CLOUD_TTS_GAIN > 1) {
@@ -455,7 +484,6 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
         }
         tail.connect(audioContext.destination);
         mouthToken = attachMouthAnalyser(audioContext, tail);
-        void audioContext.resume();
       }
     } catch {
       // If Web Audio routing fails, the plain media element still plays at normal volume.
@@ -526,6 +554,9 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
 
       if (paused) await sleep(1);
       if (cancelled) return;
+      // A browser can suspend the output between clips; the element would then play in silence.
+      // Bounded: a resume the browser refuses must not hold the lecture (see lib/voice/audioOutput).
+      if (audioContext && audioContext.state !== "running") await ensureRunning(audioContext, 1_200);
 
       try {
         await audio.play();
@@ -574,8 +605,30 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       resumeProgressLoop = loop;
       loop();
 
+      /*
+       * A CLIP THAT STOPS MOVING IS NOTICED. The narration waited for "ended" alone, so a clip that
+       * stalled — play() refused after a resume, the element stuck — left 38 s of silence with the
+       * lecture still "speaking". Every half second: an output the browser suspended is resumed; a
+       * clip that should be playing but is not is nudged; one stuck for 8 s is given up, and the
+       * lecture goes on with the next sentence rather than going quiet.
+       */
       await new Promise<void>((resolve) => {
+        let lastTime = -1;
+        let stuckSince = performance.now();
+        const watchdog = setInterval(() => {
+          if (cancelled || !audio) return;
+          if (paused) { stuckSince = performance.now(); return; }
+          if (audioContext && audioContext.state !== "running") void audioContext.resume().catch(() => {});
+          if (audio.currentTime !== lastTime) { lastTime = audio.currentTime; stuckSince = performance.now(); return; }
+          const stuck = performance.now() - stuckSince;
+          if (stuck > 2_500 && audio.paused && !audio.ended) void audio.play().catch(() => {});
+          if (stuck > 8_000) {
+            traceNarration("clip-stalled", { sentence: clipIndex, at: audio.currentTime });
+            done();
+          }
+        }, 500);
         const done = () => {
+          clearInterval(watchdog);
           clipWaiter = null;
           resolve();
         };

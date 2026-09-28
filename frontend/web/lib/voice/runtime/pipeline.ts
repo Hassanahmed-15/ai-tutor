@@ -121,6 +121,23 @@ export class TurnPipeline {
     this.arbiter.responseStarted(now);
   }
 
+  provideSecondOpinion(text: string, now: number): void {
+    this.now = now;
+    this.log.log("words", "second-opinion", now, text || "(nothing)");
+    this.arbiter.provideSecondOpinion(text, now);
+    const verdict = this.arbiter.getLastVerdict();
+    if (verdict) this.log.log("words", verdict.addressed ? "for-tutor" : "not-for-tutor", now, `${verdict.reason} (${verdict.score.toFixed(2)})`, verdict.addressed ? "ok" : "warn");
+  }
+
+  setEchoText(text: string, now: number): void {
+    this.arbiter.setEchoText(text, now);
+  }
+
+  setTranscriberAlive(alive: boolean, now: number): void {
+    this.log.log("words", alive ? "recogniser-alive" : "recogniser-dead", now, alive ? "local recogniser producing words" : "local recogniser stopped; not waiting on words", alive ? "ok" : "warn");
+    this.arbiter.setTranscriberAlive(alive);
+  }
+
   /** Call when frames are NOT arriving too, so the stall watchdog can fire. */
   tick(now: number): void {
     this.now = now;

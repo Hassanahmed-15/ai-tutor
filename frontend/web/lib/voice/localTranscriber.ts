@@ -40,6 +40,7 @@ interface RecognitionLike {
   onresult: ((event: RecognitionEventLike) => void) | null;
   onerror: ((event: RecognitionErrorLike) => void) | null;
   onend: (() => void) | null;
+  onstart?: (() => void) | null;
   start(): void;
   stop(): void;
 }
@@ -58,6 +59,13 @@ export function browserSemanticPrefilterAvailable(): boolean {
 export function createBrowserLocalTranscriber(
   onTranscript: (transcript: LocalTranscript) => void,
   language?: string,
+  /**
+   * Whether the recogniser can currently produce words. The gate waits for words before letting a
+   * voice through; when the recogniser has died (permission refused, the vendor service failing,
+   * a start that keeps throwing) that wait would never end — "I keep saying Aria and nothing
+   * happens". Reported so the gate stops waiting on it. Alive again the moment it hears anything.
+   */
+  onHealth?: (alive: boolean) => void,
 ): LocalTranscriber {
   if (typeof window === "undefined") return { available: false, start() {}, stop() {} };
   const w = window as RecognitionWindow;
@@ -71,6 +79,24 @@ export function createBrowserLocalTranscriber(
   let wanted = false;
   let running = false;
   let restartTimer: ReturnType<typeof setTimeout> | null = null;
+  let failures = 0;
+  let alive: boolean | null = null;
+  const trace = (event: string) => {
+    if (process.env.NODE_ENV !== "production") console.log(`[voice] recogniser ${event}`);
+  };
+  const report = (next: boolean) => {
+    if (alive === next) return;
+    alive = next;
+    onHealth?.(next);
+  };
+
+  const scheduleRestart = (delay: number) => {
+    if (restartTimer) clearTimeout(restartTimer);
+    restartTimer = setTimeout(() => {
+      restartTimer = null;
+      restart();
+    }, delay);
+  };
 
   const restart = () => {
     if (!wanted || running) return;
@@ -78,26 +104,50 @@ export function createBrowserLocalTranscriber(
       recognition.start();
       running = true;
     } catch {
-      // Chrome throws while an earlier recognition instance is still winding down. onend retries.
+      /*
+       * Chrome throws while an earlier instance is still winding down — and a start that throws
+       * never ends, so no `onend` would ever come to retry it. The recogniser used to stay off for
+       * the rest of the session. Retry with backoff; after several failures, report it dead.
+       */
+      failures += 1;
+      if (failures >= 3) report(false);
+      scheduleRestart(Math.min(4_000, 250 * 2 ** Math.min(failures, 4)));
     }
   };
 
+  recognition.onstart = () => {
+    running = true;
+    trace("started");
+  };
   recognition.onresult = (event) => {
+    failures = 0;
+    report(true);
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const result = event.results[i];
       const text = result[0]?.transcript?.trim();
+      if (text && result.isFinal) trace(`heard: "${text.slice(0, 60)}"`);
       if (text) onTranscript({ text, final: result.isFinal });
     }
   };
   recognition.onerror = (event) => {
-    // "no-speech" and transient audio errors are normal in an always-on recognizer. Permission
-    // denial is not retried; the PCM gate remains active and uses its conservative fallback.
-    if (event.error === "not-allowed" || event.error === "service-not-allowed") wanted = false;
+    trace(`error: ${event.error ?? "unknown"}`);
+    // "no-speech" and "aborted" are normal in an always-on recognizer. Permission denial is not
+    // retried; the PCM gate stops waiting on words and uses its fallback.
+    if (event.error === "no-speech" || event.error === "aborted") return;
+    if (event.error === "not-allowed" || event.error === "service-not-allowed" || event.error === "audio-capture") {
+      wanted = false;
+      report(false);
+      return;
+    }
+    // "network" and the like: the vendor service is failing. Several in a row without a single
+    // word means it is not coming back on its own.
+    failures += 1;
+    if (failures >= 3) report(false);
   };
   recognition.onend = () => {
     running = false;
     if (!wanted) return;
-    restartTimer = setTimeout(restart, 120);
+    scheduleRestart(failures > 0 ? Math.min(4_000, 250 * 2 ** Math.min(failures, 4)) : 120);
   };
 
   return {

@@ -33,7 +33,8 @@ import type { DetectorVerdict } from "./speechDetector";
 
 /** Mirrors GateProfile in ../sharedVoiceGate.ts — see there for what each costs. */
 export type ArbiterProfile = "lecture" | "conversation" | "dedicated";
-export type TurnState = "idle" | "attending" | "listening" | "committed" | "processing" | "refractory";
+/** `verifying`: a voice ended with no local words; a second-opinion transcript is on its way. */
+export type TurnState = "idle" | "attending" | "verifying" | "listening" | "committed" | "processing" | "refractory";
 
 export interface ArbiterConfig {
   /** Hold all microphone audio locally until browser-side words establish that it is for Arya. */
@@ -117,7 +118,13 @@ export interface ArbiterCallbacks {
   /** The turn was not for us: close it and suppress whatever comes back. */
   onDiscard?: (reason: string) => void;
   onState?: (from: TurnState, to: TurnState, reason: string, at: number) => void;
-  onWatchdog?: (kind: "mic-stalled" | "response-timeout" | "max-utterance" | "addressing-timeout", detail: string, at: number) => void;
+  onWatchdog?: (kind: "mic-stalled" | "response-timeout" | "max-utterance" | "addressing-timeout" | "second-opinion-timeout", detail: string, at: number) => void;
+  /**
+   * A clear voice ended and the local recogniser gave no words to judge it by. When provided, the
+   * arbiter holds the utterance (`verifying`) and waits for `provideSecondOpinion` — a server
+   * transcription of exactly this audio — instead of dropping it. See provideSecondOpinion.
+   */
+  onSecondOpinion?: (audio: Float32Array[]) => void;
 }
 
 export interface ArbiterOptions {
@@ -126,6 +133,11 @@ export interface ArbiterOptions {
   verifier?: SpeakerVerifier;
   wakeNames?: string[];
   callbacks?: ArbiterCallbacks;
+}
+
+/** Content words for comparing a transcript with the narration: lower-case, 3+ letters. */
+function echoWords(text: string): string[] {
+  return (text.toLowerCase().match(/[a-z0-9']{3,}/g) ?? []).map((w) => w.replace(/'s$/, ""));
 }
 
 export class TurnArbiter {
@@ -168,6 +180,23 @@ export class TurnArbiter {
    * words are coming" and "nothing is ever coming, let the audio through".
    */
   private everTranscribed = false;
+  /** The utterance held while a second opinion is fetched (see provideSecondOpinion). */
+  private verifyingAudio: Float32Array[] = [];
+  private verifyingSince = -1;
+  private verifyingDurationMs = 0;
+  /** The narration's recent sentences (see setEchoText). */
+  private echoTexts: Array<{ words: Set<string>; at: number }> = [];
+
+  /** Whether a transcript is mostly the narration's own recent words (and names nobody). */
+  private isEcho(text: string, now: number): boolean {
+    if (!this.tutor.speaking) return false;
+    const recent = this.echoTexts.filter((e) => now - e.at < 20_000);
+    if (!recent.length) return false;
+    const words = echoWords(text);
+    if (words.length < 3) return false;
+    const heard = words.filter((w) => recent.some((e) => e.words.has(w))).length;
+    return heard / words.length >= 0.7;
+  }
 
   constructor(options: ArbiterOptions = {}) {
     this.config = { ...DEFAULT_ARBITER_CONFIG, ...options.config };
@@ -201,6 +230,61 @@ export class TurnArbiter {
 
   setTopicWords(words: Iterable<string>): void {
     this.topicWords = new Set(words);
+  }
+
+  /**
+   * The local recogniser died (or came back). While it is dead no words will ever arrive, so a
+   * voice must not wait on them: the "ever transcribed" proof that made waiting safe is withdrawn,
+   * and the addressing timeout lets the turn through to the model, whose own transcription decides.
+   * Without this, one working transcript early in the session kept the gate waiting forever after
+   * the recogniser failed — every "Aria…" settled as "ignored".
+   */
+  setTranscriberAlive(alive: boolean): void {
+    if (!alive) this.everTranscribed = false;
+  }
+
+  /**
+   * What the lecture is saying right now. The browser recogniser hears the speakers too, so the
+   * narration came back as "the student's" words — a rhetorical "what is a derivative?" in the
+   * script scored as a question for the tutor and paused the lecture. A transcript made mostly of
+   * the last sentences she spoke is her own echo, not the student.
+   */
+  setEchoText(text: string, now: number): void {
+    this.echoTexts.push({ words: new Set(echoWords(text)), at: now });
+    if (this.echoTexts.length > 3) this.echoTexts.shift();
+  }
+
+  /**
+   * THE WORDS THE LOCAL RECOGNISER MISSED.
+   *
+   * Chrome's speech recogniser captures through its own audio path, and measured with a real voice
+   * on the same microphone it answered "no-speech" to every phrase while this gate heard each one
+   * clearly — "Hey Aria, can you pause the lecture?" was ducked, then dropped as "no evidence it was
+   * for the tutor". During a lecture a voice with no words is never let through (it could be anyone),
+   * so the name could not work at all. A second opinion on exactly that audio settles it: addressed,
+   * and the turn opens with the audio — so the model hears what was said — and pauses the lecture;
+   * not addressed, and it is ignored as before.
+   */
+  provideSecondOpinion(text: string, now: number): void {
+    if (this.state !== "verifying") return;
+    const audio = this.verifyingAudio;
+    this.verifyingAudio = [];
+    const clean = text.trim();
+    if (clean) this.everTranscribed = true;
+    const verdict = clean
+      ? classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, topicWords: this.topicWords, wakeNames: this.wakeNames })
+      : { addressed: false, score: 0, reason: "no words in the second opinion" };
+    this.lastTranscript = clean;
+    this.lastVerdict = verdict;
+    if (!verdict.addressed) {
+      this.settle(now, `ignored (second opinion): ${verdict.reason}`);
+      return;
+    }
+    this.transition("attending", "second opinion: addressed", now);
+    this.addressedByWords = true;
+    this.open(now, audio, `second opinion: ${verdict.reason}`);
+    if (this.tutor.speaking) this.commit(now, `second opinion: ${verdict.reason}`);
+    this.endEpisode(now, this.verifyingDurationMs, "second-opinion");
   }
 
   /** The tutor's reply to the last turn has begun: the wait is over. */
@@ -314,6 +398,7 @@ export class TurnArbiter {
     if (text.trim()) this.everTranscribed = true;
     if (this.state !== "attending" && this.state !== "listening" && this.state !== "committed") return;
     this.lastTranscript = text;
+    const echo = this.isEcho(text, now);
     let verdict = classifyAddressing(text, {
       expectingAnswer: this.tutor.expectingAnswer,
       tutorSpeaking: this.tutor.speaking,
@@ -322,6 +407,10 @@ export class TurnArbiter {
     });
     if (verdict.addressed && this.speakerVerdict() === "other") {
       verdict = { addressed: false, score: verdict.score, reason: `${verdict.reason}, but the voice is not the student's` };
+    }
+    // Echo is dropped unless her name was actually said: "Aria, what is that?" is never an echo.
+    if (echo && !/\bby name\b/.test(verdict.reason)) {
+      verdict = { addressed: false, score: 0, reason: "the narration's own words (echo)" };
     }
     this.lastVerdict = verdict;
 
@@ -393,6 +482,12 @@ export class TurnArbiter {
       return;
     }
 
+    if (this.state === "verifying" && now - this.verifyingSince >= 5_000) {
+      this.callbacks.onWatchdog?.("second-opinion-timeout", `no second opinion after ${Math.round(now - this.verifyingSince)} ms`, now);
+      this.verifyingAudio = [];
+      this.settle(now, "ignored: the second opinion never came");
+      return;
+    }
     if (this.state === "processing" && now - this.processingSince >= this.config.responseTimeoutMs) {
       this.callbacks.onWatchdog?.("response-timeout", `no reply for ${Math.round(now - this.processingSince)} ms`, now);
       if (this.pausedTutor) {
@@ -435,6 +530,9 @@ export class TurnArbiter {
   private endEpisode(now: number, durationMs: number, endReason: string): void {
     const who = this.speakerVerdict();
     const finishTurn = (reason: string) => {
+      // A turn that ends normally must give Aria her volume back: without this a student answering
+      // just as she finished left her next replies at the ducked quarter volume.
+      this.restoreIfDucked("the student's turn is complete");
       for (const features of this.episodeFeatures) this.verifier.enrol(features);
       this.callbacks.onEndTurn?.({ transcript: this.lastTranscript, durationMs, reason });
       this.processingSince = now;
@@ -458,6 +556,18 @@ export class TurnArbiter {
         if (!this.tutor.speaking) return finishTurn(`no transcript verdict; tutor silent, letting the model answer (${endReason})`);
         return drop("no words for the tutor before the voice stopped");
       case "attending":
+        // No words at all from the local recogniser, but a clear voice: ask for a second opinion
+        // on exactly this audio rather than dropping it (see provideSecondOpinion).
+        if (!this.lastVerdict && !this.lastTranscript && this.episodeSpeechMs >= 450 && who !== "other" && this.callbacks.onSecondOpinion && this.candidateAudio.length) {
+          this.verifyingAudio = [...this.candidateAudio];
+          this.verifyingSince = now;
+          this.verifyingDurationMs = durationMs;
+          this.candidateAudio = [];
+          this.restoreIfDucked("holding the utterance for a second opinion");
+          this.transition("verifying", `no local words for ${Math.round(this.episodeSpeechMs)} ms of voice; asking for a second opinion`, now);
+          this.callbacks.onSecondOpinion(this.verifyingAudio);
+          return;
+        }
         this.restoreIfDucked("speech ended without evidence it was for the tutor");
         this.settle(now, `ignored: ${this.lastVerdict ? this.lastVerdict.reason : who === "other" ? "another voice" : "no positive evidence"} (${endReason})`);
         return;

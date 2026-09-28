@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { isPauseIntent, isResumeIntent } from "./voice/lectureIntent";
+import { ensureRunning, registerAudioContext } from "./voice/audioOutput";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 // RELATIVE, not "@/lib/adhd/mouth". This module is pulled into the CJS test build, where the "@/"
 // alias has no runtime resolver — the existing "@/components/..." line above survives only because
@@ -81,8 +83,10 @@ export type StudentTurnKind = "incidental" | "pause" | "resume" | "drawing" | "q
 export function classifyStudentTurn(raw: string): StudentTurnKind {
   const text = raw.trim();
   if (!text || !isAddressedToTeacher(text)) return "incidental";
-  if (PAUSE_COMMAND.test(text)) return "pause";
-  if (RESUME_COMMAND.test(text)) return "resume";
+  // Judged as requests in a sentence ("Aria, can you pause the lecture?"), not exact phrases:
+  // the anchored patterns let a polite pause through as a question, which then auto-resumed.
+  if (PAUSE_COMMAND.test(text) || isPauseIntent(text)) return "pause";
+  if (RESUME_COMMAND.test(text) || isResumeIntent(text)) return "resume";
   if (isDrawingRequest(text)) return "drawing";
   return "question";
 }
@@ -186,6 +190,11 @@ export type UseGeminiLiveTutorOptions = {
    * there; it has to be held here, as it arrives. Unset everywhere else, which is unchanged.
    */
   holdUnpromptedReplies?: () => boolean;
+  /**
+   * The browser is holding Aria's audio output (and the microphone capture that shares it) stopped
+   * until the student interacts. Surfaced so the page can ask for a tap; any tap resumes it.
+   */
+  onOutputBlocked?: () => void;
   /**
    * How suspicious the voice gate is of sound in the room. See lib/voice/voiceGate.ts.
    *
@@ -291,7 +300,7 @@ type GeminiSession = {
     activityEnd?: Record<string, never>;
   }) => void;
   sendClientContent: (input: {
-    turns: Array<{ role: "user"; parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }> }>;
+    turns: Array<{ role: "user" | "model"; parts: Array<{ text?: string; inlineData?: { mimeType: string; data: string } }> }>;
     turnComplete?: boolean;
   }) => void;
   sendToolResponse: (input: {
@@ -356,6 +365,24 @@ export class MicrophoneIntent {
 }
 
 const INPUT_SAMPLE_RATE = 16_000;
+
+/** 16-bit mono WAV from float PCM frames — the second-opinion clip sent to /api/voice-transcribe. */
+function pcmToWav(frames: Float32Array[], sampleRate: number): ArrayBuffer {
+  const total = frames.reduce((n, f) => n + f.length, 0);
+  const buffer = new ArrayBuffer(44 + total * 2);
+  const view = new DataView(buffer);
+  const text = (offset: number, value: string) => { for (let i = 0; i < value.length; i++) view.setUint8(offset + i, value.charCodeAt(i)); };
+  text(0, "RIFF"); view.setUint32(4, 36 + total * 2, true); text(8, "WAVE");
+  text(12, "fmt "); view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true); view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+  text(36, "data"); view.setUint32(40, total * 2, true);
+  let offset = 44;
+  for (const frame of frames) for (let i = 0; i < frame.length; i++, offset += 2) {
+    const v = Math.max(-1, Math.min(1, frame[i]));
+    view.setInt16(offset, v < 0 ? v * 0x8000 : v * 0x7fff, true);
+  }
+  return buffer;
+}
 /** One gate frame: 20 ms at 16 kHz. Matches public/voice/capture-worklet.js. */
 const FRAME_SAMPLES = 320;
 const OUTPUT_SAMPLE_RATE = 24_000;
@@ -539,6 +566,29 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const [reconnecting, setReconnecting] = useState(false);
   const [outputMuted, setOutputMuted] = useState(false);
   const contextOnlyTurnRef = useRef(false);
+  /*
+   * The student's "continue" was already carried out locally (the lecture is running again). Aria's
+   * spoken acknowledgement of it — "okay, carrying on" — made her `speaking`, which froze the lecture
+   * again until she finished: a stutter on every spoken resume. Her audio for that turn is skipped;
+   * her tool calls still run (resuming is idempotent). Cleared by the next student turn or by a turn
+   * the app cues (say / sendText) — NOT at turn end: the model answers its own resume_lecture tool
+   * response with a second generation ("great, let's keep going") after the first turnComplete, and
+   * that played over the resumed narration.
+   */
+  const localResumeTurnRef = useRef(false);
+  /** A turn was discarded while a reply was playing; mute the reply that follows it (see onDiscard). */
+  const discardAfterReplyRef = useRef(false);
+  /*
+   * THE LAST QUESTION SURVIVES A DROPPED CONNECTION. The preview Live model sometimes closes the
+   * socket (1011 "Internal error") right after it has received a student's turn and before it
+   * answers — measured: the question transcribed, then the close. The reconnect worked, but the
+   * question was gone and Aria never answered. The turn's audio is kept until the model starts to
+   * respond, and replayed once into the reconnected session if it never did.
+   */
+  const turnAudioRef = useRef<Float32Array[] | null>(null);
+  const unansweredTurnRef = useRef<Float32Array[] | null>(null);
+  const replaysRef = useRef(0);
+  const sendFrameRef = useRef<((pcm: Float32Array) => void) | null>(null);
   const studentTranscriptRef = useRef("");
   const tutorTranscriptRef = useRef("");
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -668,6 +718,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       } else if (turnKind === "pause") {
         optionsRef.current.onExplicitPause?.();
       } else if (turnKind === "resume") {
+        localResumeTurnRef.current = true;
         optionsRef.current.onExplicitResume?.();
       }
     }
@@ -839,21 +890,29 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     turnCompletedRef.current = false;
     responseInFlightRef.current = true;
     turnCompleteRef.current = false;
-    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current && !isHeldReply()) setSpeaking(true);
+    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current && !localResumeTurnRef.current && !isHeldReply()) setSpeaking(true);
   }, [isHeldReply]);
 
   const playAudioChunk = useCallback(
     (base64: string) => {
-      if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || isHeldReply()) return;
+      if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || localResumeTurnRef.current || isHeldReply()) return;
       // Dropped rather than buffered: a queue flushed on unmute would replay a turn the
       // conversation has already moved past.
       if (outputMutedRef.current) return;
       const AudioContextCtor = getAudioContextConstructor();
       if (!AudioContextCtor) throw new Error("This browser does not support Web Audio.");
       const context = audioContextRef.current ?? new AudioContextCtor();
+      if (audioContextRef.current !== context) registerAudioContext(context);
       audioContextRef.current = context;
-      if (context.state === "suspended") {
-        void context.resume().catch(() => setStatus("blocked"));
+      /*
+       * Suspended or (Safari) interrupted: the chunks below would queue against a frozen clock —
+       * "Aria is speaking", nothing audible, and the lecture held for her. Ask for a tap instead of
+       * failing silently; the tap resumes this context (lib/voice/audioOutput).
+       */
+      if (context.state !== "running") {
+        void ensureRunning(context, 1_500).then((running) => {
+          if (!running) optionsRef.current.onOutputBlocked?.();
+        });
       }
 
       let playbackToken = playbackTokenRef.current;
@@ -950,6 +1009,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     // turn, so whatever she says next was not asked for by say() (see holdUnpromptedReplies).
     promptedTurnRef.current = false;
     pendingLectureResumeRef.current = false;
+    localResumeTurnRef.current = false;
+    unansweredTurnRef.current = null;
     suppressCurrentTurnRef.current = true;
     contextOnlyTurnRef.current = false;
     responseInFlightRef.current = false;
@@ -1011,7 +1072,13 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       micProcessorRef.current = null;
       localTranscriberRef.current = null;
       silentGainRef.current = null;
-      micIntentRef.current = new MicrophoneIntent(optionsRef.current.startMuted === true);
+      /*
+       * A session that drops and reconnects keeps the student's choice. Resetting to `startMuted`
+       * here re-muted the mic on every automatic reconnect while the button still read "Listening"
+       * — and from then on "Aria…" reached nothing. Only a deliberate end restores the default.
+       */
+      const keptIntent = reason === "user" ? optionsRef.current.startMuted !== true : micIntentRef.current?.get() ?? optionsRef.current.startMuted !== true;
+      micIntentRef.current = new MicrophoneIntent(!keptIntent);
       responseInFlightRef.current = false;
       turnCompleteRef.current = false;
       boardChainPendingRef.current = false;
@@ -1306,7 +1373,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
 
       const calls = message.toolCall?.functionCalls ?? [];
+      if (calls.length > 0 || content?.modelTurn || content?.turnComplete) unansweredTurnRef.current = null;
       if (calls.length > 0) {
+        // A reply that is only an action (pause_lecture has no audio) is still the reply: the gate
+        // stopped waiting for one only when audio played, and ignored the student for 8 s after it.
+        gateRef.current?.responseStarted?.(performance.now());
         contextOnlyTurnRef.current = false;
         suppressCurrentTurnRef.current = false;
         void handleToolCalls(calls);
@@ -1320,6 +1391,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (content?.turnComplete) {
         responseInFlightRef.current = false;
         turnCompleteRef.current = true;
+        // A turn that finished without audio (suppressed, muted, empty) is over too.
+        gateRef.current?.responseStarted?.(performance.now());
+        const muteNext = discardAfterReplyRef.current;
+        discardAfterReplyRef.current = false;
         if (contextOnlyTurnRef.current) {
           contextOnlyTurnRef.current = false;
           tutorTranscriptRef.current = "";
@@ -1331,6 +1406,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           gateRef.current?.setExpectingAnswer(/\?\s*$/.test(tutorTranscriptRef.current.trim().slice(-160)));
           scheduleSettle();
         }
+        // The reply that was playing is done; the discarded turn's reply, if any, comes next muted.
+        if (muteNext) contextOnlyTurnRef.current = true;
       }
     },
     [handleToolCalls, isHeldReply, markTutorActive, playAudioChunk, resetIdleTimer, scheduleSettle, stopPlayback, teardown],
@@ -1349,6 +1426,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     const session = sessionRef.current;
     if (!session) return;
     activityOpenRef.current = true;
+    turnAudioRef.current = [];
     try {
       session.sendRealtimeInput({ activityStart: {} });
     } catch {
@@ -1360,6 +1438,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     if (!activityOpenRef.current) return;
     const session = sessionRef.current;
     activityOpenRef.current = false;
+    if (turnAudioRef.current?.length) {
+      unansweredTurnRef.current = turnAudioRef.current;
+      replaysRef.current = 0;
+    }
+    turnAudioRef.current = null;
     if (!session) return;
     try {
       session.sendRealtimeInput({ activityEnd: {} });
@@ -1388,6 +1471,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       ? new NoSpeakerVerifier()
       : (verifierRef.current ??= new HeuristicVoiceprint());
     const sendFrame = (pcm: Float32Array) => {
+      const turn = turnAudioRef.current;
+      if (turn && turn.length < 500) turn.push(pcm);
       const session = sessionRef.current;
       if (!session) return;
       try {
@@ -1398,6 +1483,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         // A socket that closed between the gate's decision and this call.
       }
     };
+    sendFrameRef.current = sendFrame;
     const gate = new VoiceGate({
       profile: optionsRef.current.gateProfile ?? profileForSurface(optionsRef.current.voiceSurface ?? "shared"),
       verifier,
@@ -1421,6 +1507,13 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
            * suppression last exactly one turn whatever the server does.
            */
           contextOnlyTurnRef.current = false;
+          discardAfterReplyRef.current = false;
+          /*
+           * The same for the "silence this turn" flag. Adding lesson context sets it (so the model
+           * does not answer the context itself), and only a barge-in cleared it — a question asked
+           * while Aria was silent opened without one, and its answer was dropped: no audio, no words.
+           */
+          if (!studentSpeakingRef.current) suppressCurrentTurnRef.current = false;
           const tutorAudible = playingSourcesRef.current.size > 0 || Boolean(optionsRef.current.getTutorSpeaking?.());
           if (!tutorAudible) machineRef.current?.dispatch({ type: "USER_TURN_OPEN", at: performance.now(), reason: "voice gate accepted turn" });
           openActivity();
@@ -1468,8 +1561,41 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
          * neighbour's sentence — so that answer is marked context-only before the close: its audio
          * and transcript are dropped, and the flag clears itself on turnComplete.
          */
+        onSecondOpinion: (audio) => {
+          /*
+           * The local recogniser heard nothing where the gate heard a voice. Ask the server what was
+           * said (lib/voice/runtime/arbiter.ts provideSecondOpinion). The text also becomes this
+           * turn's words, so "pause" / "continue" is recognised the moment the turn ends rather than
+           * after the model's own transcription arrives.
+           */
+          const at = performance.now();
+          void fetch("/api/voice-transcribe", {
+            method: "POST",
+            headers: { "Content-Type": "audio/wav" },
+            body: pcmToWav(audio, INPUT_SAMPLE_RATE),
+            signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(4_500) : undefined,
+          })
+            .then((res) => (res.ok ? res.json() : { text: "" }))
+            .catch(() => ({ text: "" }))
+            .then((data: { text?: string }) => {
+              if (gateRef.current !== gate) return;
+              const text = (data?.text ?? "").trim();
+              if (process.env.NODE_ENV !== "production") console.log(`[voice] second opinion (${Math.round(performance.now() - at)} ms): "${text}"`);
+              if (text && !studentTranscriptRef.current.trim()) studentTranscriptRef.current = text;
+              gate.provideSecondOpinion(text, performance.now());
+              // Not addressed: its words must not be prepended to the next real turn.
+              const stage: string = gate.getStage();
+              if (stage !== "listening" && stage !== "committed" && stage !== "processing") studentTranscriptRef.current = "";
+            });
+        },
         onDiscard: () => {
-          contextOnlyTurnRef.current = true;
+          /*
+           * The reply to the DISCARDED turn is muted — not the reply already playing. Muting at once
+           * cut Aria off mid-answer to the student's real question when a noise was discarded under
+           * it. While a reply is in flight, the mute waits for that reply to finish.
+           */
+          if (responseInFlightRef.current || playingSourcesRef.current.size > 0) discardAfterReplyRef.current = true;
+          else contextOnlyTurnRef.current = true;
           // Same reason as onTurnEnd: a discarded turn's words must not be prepended to the next
           // real one. Dropped rather than flushed — nobody should see the neighbour's sentence.
           studentTranscriptRef.current = "";
@@ -1478,6 +1604,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           machineRef.current?.dispatch({ type: "RESTORE_TUTOR", at: performance.now(), reason: "discarded background turn" });
         },
         onDecision: (decision) => {
+          // Dev-only: every gate decision reaches the server log, so "she didn't hear me" can be
+          // answered from the log — which layer dropped the turn, and why.
+          if (process.env.NODE_ENV !== "production") console.log(`[voice] ${decision.reason} (${decision.stage}): ${decision.detail}`);
           // Roughly the last minute at fifty frames a second — what someone reporting "it stopped
           // for no reason" can still remember the cause of.
           const log = gateLogRef.current;
@@ -1501,8 +1630,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const AudioContextCtor = getAudioContextConstructor();
       if (!AudioContextCtor) throw new Error("This browser does not support Web Audio.");
       const context = audioContextRef.current ?? new AudioContextCtor();
+      if (audioContextRef.current !== context) registerAudioContext(context);
       audioContextRef.current = context;
-      if (context.state === "suspended") await context.resume();
+      /*
+       * Bounded. The microphone capture runs on this same context, and a bare `await resume()` on a
+       * context the browser refuses never settles — the session "started" but never listened, with
+       * no error. It carries on; the next tap resumes the context and the capture with it.
+       */
+      if (context.state !== "running" && !(await ensureRunning(context, 2_000))) optionsRef.current.onOutputBlocked?.();
 
       const track = stream.getAudioTracks()[0];
       if (!track) throw new Error("The selected microphone did not provide an audio track.");
@@ -1511,6 +1646,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         setMicAvailable(false);
         machineRef.current?.dispatch({ type: "MIC_ACTIVE", at: performance.now(), active: false });
         machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: "microphone disconnected" });
+        /*
+         * A microphone that goes away (headphones unplugged, Bluetooth switching) used to leave the
+         * session deaf for good: only a flag was set, and nothing asked for a microphone again.
+         * Recover the way a dropped connection does — reconnecting opens the current default device,
+         * and the student's listening choice is kept (see teardown).
+         */
+        if (!endedRef.current) {
+          scheduleReconnect();
+          teardown("error");
+        }
       }, { once: true });
       micIntentRef.current?.apply(track);
       setMuted(!track.enabled);
@@ -1527,9 +1672,13 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         sileroRef.current = vad;
         vad?.reset();
       });
-      const localTranscriber = createBrowserLocalTranscriber(({ text, final }) => {
-        gate.provideTranscript(text, final, performance.now());
-      });
+      const localTranscriber = createBrowserLocalTranscriber(
+        ({ text, final }) => {
+          gate.provideTranscript(text, final, performance.now());
+        },
+        undefined,
+        (alive) => gate.setTranscriberAlive(alive, performance.now()),
+      );
       localTranscriberRef.current = localTranscriber;
       // SpeechRecognition owns its own capture path, so the MediaStreamTrack's enabled flag does
       // not mute it. Mirror the app's mic intent explicitly; startMuted must remain a privacy
@@ -1602,6 +1751,10 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         if (audioContextRef.current !== context) return;
         if (context.state === "suspended" || context.state === "interrupted") {
           machineRef.current?.dispatch({ type: "PAUSE", at: performance.now(), reason: `audio context ${context.state}` });
+          // Try to take it back at once; if the browser refuses, the student is asked for a tap.
+          void ensureRunning(context, 1_500).then((running) => {
+            if (!running && audioContextRef.current === context) optionsRef.current.onOutputBlocked?.();
+          });
         } else if (context.state === "running" && track.enabled && machineRef.current?.value.state === "PAUSED") {
           machineRef.current.dispatch({ type: "RESUME", at: performance.now(), reason: "audio context resumed" });
         }
@@ -1780,6 +1933,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
            * worth reporting.
            */
           onclose: (event?: { code?: number; reason?: string }) => {
+            if (process.env.NODE_ENV !== "production") console.log(`[voice] live socket closed: code ${event?.code ?? "?"} ${event?.reason ?? ""}`);
             if (endedRef.current) return;
             const reason = event?.reason?.trim();
             const clean = event?.code === 1000 || event?.code === 1005;
@@ -1829,6 +1983,20 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       setStatus("live");
       if (machineRef.current?.value.state === "RECONNECTING") {
         machineRef.current.dispatch({ type: "RECONNECTED", at: performance.now() });
+        // Replay the question the dropped session never answered (see unansweredTurnRef). Once.
+        const unanswered = unansweredTurnRef.current;
+        if (unanswered && replaysRef.current < 1) {
+          replaysRef.current += 1;
+          window.setTimeout(() => {
+            if (sessionRef.current !== session || unansweredTurnRef.current !== unanswered) return;
+            if (process.env.NODE_ENV !== "production") console.log(`[voice] replaying the unanswered turn (${unanswered.length} frames) into the new session`);
+            openActivityRef.current();
+            turnAudioRef.current = null; // the replay is not recorded again
+            for (const pcm of unanswered) sendFrameRef.current?.(pcm);
+            closeActivityRef.current();
+            unansweredTurnRef.current = unanswered;
+          }, 600);
+        }
       } else {
         machineRef.current?.dispatch({ type: "CONNECTED", at: performance.now() });
       }
@@ -2011,6 +2179,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     (prompt: string) => {
       if (!sessionRef.current || !prompt.trim()) return;
       promptedTurnRef.current = true;
+      localResumeTurnRef.current = false;
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();
@@ -2022,8 +2191,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   /**
    * Send a typed message as a genuine student turn.
    *
-   * Not `addContext`, which explicitly instructs Gemini NOT to reply — that is for background facts,
-   * so routing typed chat through it produced silence and looked like the box was broken. This is
+   * Not `addContext`, which records a background note that Gemini does not answer — routing typed
+   * chat through it produced silence and looked like the box was broken. This is
    * the same conversation as the voice: one session, one history, so a question typed while Aria is
    * speaking lands in context exactly as if it had been spoken.
    */
@@ -2044,6 +2213,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       gateRef.current?.reset();
       closeActivityRef.current();
       promptedTurnRef.current = true;
+      localResumeTurnRef.current = false;
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();
@@ -2055,11 +2225,32 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const addContext = useCallback((text: string) => {
     if (!sessionRef.current || !text.trim()) return;
-    contextOnlyTurnRef.current = true;
-    suppressCurrentTurnRef.current = true;
-    sessionRef.current.sendRealtimeInput({
-      text: `[SILENT CONTEXT UPDATE — store this for the student's next question and do not reply]: ${text.trim()}`,
-    });
+    /*
+     * CONTEXT, NOT A TURN — and never through the realtime channel. This was `sendRealtimeInput
+     * ({ text })`: realtime input outside an activity bracket, on a session whose automatic
+     * activity detection is off. Measured, the server closed EVERY lecture session about a second
+     * after it (1011 "Internal error encountered"), and again on each part change: a reconnect, a
+     * mic re-opened, and whatever the student said in that window lost — a large share of "she
+     * didn't hear me". Sent as client content with `turnComplete: false`, like the page images,
+     * it is context the model keeps and does not answer, so nothing needs muting either.
+     *
+     * And in HER voice, not the student's. Sent as a partial USER turn, lecture-like text (the
+     * board's title, points and script — even 135 characters of it) made gemini-3.8-live close the
+     * socket with 1011 at the student's next spoken turn, or answer it with silence; neutral one-line
+     * notes did not. Measured against the live API with the real instructions and tools: the same
+     * 2,800 characters sent as the tutor's own note were followed by a correct pause, answer and
+     * resume every time. The lecture IS her speaking, so the model turn is also the truthful place.
+     */
+    try {
+      sessionRef.current.sendClientContent({
+        // Neutral, NOT "do not reply": that instruction carried over to the student's next question
+        // (silence on gemini-3.1-flash-live, a 1011 close on gemini-3.8-live).
+        turns: [{ role: "model", parts: [{ text: `(Note to self — ${text.trim()})` }] }],
+        turnComplete: false,
+      });
+    } catch {
+      // A socket that closed between the check and the send; the next session gets fresh context.
+    }
   }, []);
 
   /*
@@ -2094,8 +2285,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
             role: "user",
             parts: [{
               text:
-                `[SILENT CONTEXT — do not reply to this] The student's uploaded document follows: ${pages.length} ${unit}${pages.length === 1 ? "" : "s"}, ` +
-                `exactly as they see them. Read them carefully — text, code, diagrams. Everything you say about the material must come from these ${unit}s, not from general knowledge.`,
+                // Background, not "do not reply" — see addContext: that wording silenced the next answer.
+                `(Background for the tutor — the student's uploaded document follows: ${pages.length} ${unit}${pages.length === 1 ? "" : "s"}, ` +
+                `exactly as they see them. Read them carefully — text, code, diagrams. Everything you say about the material must come from these ${unit}s, not from general knowledge.)`,
             }],
           }],
           turnComplete: false,
@@ -2136,6 +2328,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     turnCompletedRef.current = true;
     stopPlayback();
   }, [stopPlayback]);
+
+  /** The lecture is saying this sentence now — so the gate can tell her echo from the student. */
+  const noteNarration = useCallback((sentence: string) => {
+    gateRef.current?.setEchoText(sentence, performance.now());
+  }, []);
 
   const getVoiceDiagnostics = useCallback(() => ({
     session: machineRef.current!.value,
@@ -2208,5 +2405,6 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     addContext,
     silence,
     isSpeaking,
+    noteNarration,
   };
 }

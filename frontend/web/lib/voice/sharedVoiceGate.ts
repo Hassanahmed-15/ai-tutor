@@ -38,6 +38,8 @@ export interface SharedVoiceGateCallbacks {
   onTurnEnd?: () => void;
   onDiscard?: (reason: string) => void;
   onDecision?: (decision: GateDecision) => void;
+  /** A voice with no local words: transcribe this audio and call provideSecondOpinion. */
+  onSecondOpinion?: (audio: Float32Array[]) => void;
   onEvent?: (event: LabEvent) => void;
 }
 export interface SharedVoiceGateOptions {
@@ -80,6 +82,9 @@ export class SharedVoiceGate {
         onAudio: (pcm) => callbacks.onFrame?.(pcm),
         onEndTurn: ({ reason }) => { this.decide("refractory", "turn-end", reason); callbacks.onTurnEnd?.(); },
         onDiscard: (reason) => { this.decide("refractory", "discard", reason); callbacks.onDiscard?.(reason); },
+        onSecondOpinion: callbacks.onSecondOpinion
+          ? (audio) => { this.decide("candidate", "second-opinion", "no local words; asking the server what was said"); callbacks.onSecondOpinion?.(audio); }
+          : undefined,
       },
     });
   }
@@ -97,6 +102,9 @@ export class SharedVoiceGate {
   }
   provideTranscript(text: string, final: boolean, now: number): void { this.pipeline.provideTranscript(text, final, now); }
   responseStarted(now: number): void { this.pipeline.responseStarted(now); }
+  setTranscriberAlive(alive: boolean, now: number): void { this.pipeline.setTranscriberAlive(alive, now); }
+  setEchoText(text: string, now: number): void { this.pipeline.setEchoText(text, now); }
+  provideSecondOpinion(text: string, now: number): void { this.pipeline.provideSecondOpinion(text, now); }
   tick(now: number): void { this.pipeline.tick(now); }
   reset(now = 0): void { this.pipeline.reset(now); }
   getStage(): GateStage { return stageOf(this.pipeline.state); }
