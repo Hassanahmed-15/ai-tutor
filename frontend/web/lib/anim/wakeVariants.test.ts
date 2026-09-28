@@ -42,3 +42,15 @@ test("an accented 'hey Aria' as a recogniser writes it still wakes her; other na
     assert.equal(classifyAddressing(said, speaking).addressed, false, said);
   }
 });
+
+test("a drawing request about the lesson is for her; household imperatives are not", () => {
+  const topicWords = new Set(["binary", "search", "tree", "insert", "node"]);
+  const paused = { tutorSpeaking: false, expectingAnswer: false, topicWords };
+  for (const said of ["Now on the same board, show what happens when we insert 6.", "draw the tree for me", "show figure 19.2 on a new slide"]) {
+    assert.equal(classifyAddressing(said, paused).addressed, true, said);
+  }
+  assert.equal(classifyAddressing("Now on the same board, show what happens when we insert 6.", { ...paused, tutorSpeaking: true }).addressed, true);
+  for (const said of ["show the salt to your brother", "draw the curtains please", "add some sugar to it", "I will show you later"]) {
+    assert.equal(classifyAddressing(said, paused).addressed, false, said);
+  }
+});

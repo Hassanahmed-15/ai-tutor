@@ -60,6 +60,8 @@ export type LessonState = {
   requestResume: (opts?: { explicit?: boolean }) => boolean;
   /** Whether the student asked for the pause that is in force (see `requestResume`). */
   isHeldByStudent: () => boolean;
+  /** Aria answered: hold the lecture until the student asks to continue (see holdForStudent). */
+  holdForStudent: () => void;
   /** True while a resume is waiting for the chatbot to finish. */
   hasDeferredResume: () => boolean;
   /** Call when the chatbot finishes a turn — flushes a resume the student already asked for. */
@@ -200,6 +202,23 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
     deferredResumeRef.current = false;
   }, []);
 
+  /**
+   * Aria has ANSWERED the student (spoken a reply, or drawn for them): from here the lecture waits
+   * for the student. The "resume after the answer" armed by their question used to fire the moment
+   * she went quiet — the lecture came back before they had taken in the answer or decided whether to
+   * ask a follow-up. The student decides: "continue", or Play, lifts this like their own pause.
+   * A cough or side-talk she did not answer never reaches here, so those still let the lecture go on.
+   */
+  const holdForStudent = useCallback(() => {
+    deferredResumeRef.current = false;
+    heldByStudentRef.current = true;
+    if (modeRef.current === "teaching") {
+      voice.stopUtterance();
+      voice.pauseTeacher();
+      go("chatting", null);
+    }
+  }, [voice, go]);
+
   const isHeldByStudent = useCallback(() => heldByStudentRef.current, []);
   const hasDeferredResume = useCallback(() => deferredResumeRef.current, []);
 
@@ -215,6 +234,7 @@ export function useLessonMachine(voice: VoiceDirector): LessonState {
     flushDeferredResume,
     cancelDeferredResume,
     isHeldByStudent,
+    holdForStudent,
     hasDeferredResume,
     modeRef,
   };

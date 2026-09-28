@@ -131,3 +131,18 @@ test("an on-topic question without her name, during the lecture, pauses it — U
     assert.equal(events.some((e) => e.startsWith("pause")), expected, `${heard}: ${JSON.stringify(events)}`);
   }
 });
+
+test("a long request keeps its beginning — where her name is — for the second opinion", () => {
+  const heard: number[] = [];
+  const arbiter = new TurnArbiter({
+    profile: "lecture",
+    config: { requireAddressingBeforeOpen: true },
+    callbacks: { onSecondOpinion: (audio) => heard.push(audio.length) },
+  });
+  arbiter.setTutor({ speaking: true, expectingAnswer: false });
+  arbiter.onEndpoint({ type: "onset" } as never, 1000);
+  speak(arbiter, 1000, 7000); // "Aria, draw a binary search tree with the keys seven, two, nine, one, five and three"
+  arbiter.onEndpoint({ type: "end", durationMs: 6000, reason: "silence" } as never, 7200);
+  assert.equal(heard.length, 1);
+  assert.ok(heard[0] >= 290, `all ~6 s of the request is sent (${heard[0]} frames)`);
+});

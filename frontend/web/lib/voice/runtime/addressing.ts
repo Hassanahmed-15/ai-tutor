@@ -123,6 +123,17 @@ const LESSON_COMMAND =
 const TUTOR_VERB =
   /\b(?:can|could|would|will|please)\s+you\s+(?:explain|repeat|show|draw|tell|go|slow|speed|skip|say|clarify|elaborate|teach|walk|give|define|summari[sz]e|break)\b|\b(?:what|why|how|when|where|which|who)\s+(?:do|does|did|are|is|was|were|should|would|could)\s+(?:you\s+|that\s+|this\s+|it\s+)?(?:mean|say|saying|said|meant|call|get|come|know)\b|\bwhat\s+about\b|\byou\s+(?:said|mean|meant|mentioned|skipped|lost me|went too fast)\b|\b(?:explain|clarify|elaborate|define|summari[sz]e)\s+(?:that|this|it|again|the)\b|\bi (?:don'?t|do not|didn'?t) (?:get|follow|understand)\b|\b(?:go|jump|scroll) back\b|\bshow me\b|\bteach me\b|\btell me\b/i;
 
+/**
+ * A request in the imperative, the way people ask for a drawing: "draw the tree", "now show what
+ * happens when we insert 6", "illustrate the deletion". "Show me" alone was covered; these were not,
+ * so a follow-up drawing request without her name was ignored even with the lecture paused.
+ */
+const IMPERATIVE_REQUEST =
+  /(?:^|[,;:]\s*)(?:(?:now|and|so|okay|ok|then|next|also|please)[,\s]+)*(?:draw|sketch|show|illustrate|diagram|plot|graph|visuali[sz]e|demonstrate|walk (?:me |us )?through|go through|work (?:it|this|that) out|redraw|zoom in on|label)\b/i;
+/** The board itself named: "on the same board", "a new slide", "figure 19.2". */
+const BOARD_REFERENCE =
+  /\b(?:on|to|in|onto) (?:the|this|that|a|the same|a new|the next) (?:same |new |next )?(?:board|slide|diagram|drawing|figure|picture)\b|\bfigure\s+\d|\b(?:same|new|next) (?:board|slide)\b/i;
+
 const QUESTION_OPENER =
   /^(?:(?:aria|arya|teacher|so|ok|okay|right|yeah|yes|actually|wait|um|but|and)[,\s]+)*(?:what|why|how|when|where|which|who|whose|is|are|was|were|does|do|did|can|could|would|should|will|am|isn'?t|aren'?t|doesn'?t|don'?t)\b/i;
 
@@ -222,6 +233,12 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
   const why: string[] = [];
   if (context.expectingAnswer && !context.tutorSpeaking) { score += 0.5; why.push("answering"); }
   if (TUTOR_VERB.test(text)) { score += 0.75; why.push("second person to the tutor"); }
+  const topicSet = context.topicWords ? new Set([...context.topicWords].map((w) => w.toLowerCase())) : null;
+  const aboutLesson = BOARD_REFERENCE.test(text) || /\b(?:me|us)\b/.test(text) || Boolean(topicSet && words.some((w) => w.length >= 4 && topicSet.has(w)));
+  // "Draw the curtains" and "show the salt to your brother" are imperatives too — only one about
+  // the lesson (its words, its board, or "for me") is a request to her.
+  if (!TUTOR_VERB.test(text) && IMPERATIVE_REQUEST.test(text) && aboutLesson) { score += 0.45; why.push("asks for a drawing"); }
+  if (BOARD_REFERENCE.test(text)) { score += 0.45; why.push("names the board"); }
   if (QUESTION_OPENER.test(text) || raw.includes("?")) { score += 0.35; why.push("question"); }
   if (DEICTIC.test(text)) { score += 0.45; why.push("points at the board"); }
   const topic = context.topicWords ? new Set([...context.topicWords].map((w) => w.toLowerCase())) : null;

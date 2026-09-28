@@ -308,8 +308,13 @@ export class TurnArbiter {
     if (this.state === "listening" || this.state === "committed") this.callbacks.onAudio?.(pcm);
     else if (this.state === "attending") {
       this.candidateAudio.push(pcm);
-      // Bound a stalled transcriber to ~4 s of PCM; an accepted turn resolves long before that.
-      if (this.candidateAudio.length > 200) this.candidateAudio.shift();
+      /*
+       * Bounded, but long enough for a whole request. It was ~4 s, trimmed from the FRONT — and the
+       * front is where the name is: "Aria, draw a binary search tree with the keys seven, two, nine,
+       * one, five and three" reached the second opinion (and the model) as "2, 9, 1, 5 and 3 for me",
+       * and was ignored. 12 s of 20 ms frames also stays under the transcription upload limit.
+       */
+      if (this.candidateAudio.length > 600) this.candidateAudio.shift();
     }
     if (!verdict.speech) return;
     this.episodeSpeechMs += frameDelta;

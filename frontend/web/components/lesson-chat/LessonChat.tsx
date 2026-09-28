@@ -44,6 +44,8 @@ export interface LessonChatState {
   explaining: boolean;
   explainBoard: { script: string; draw?: DrawScript } | null;
   drawProgress: number;
+  /** A board answer is being generated (the "teacher is drawing" wait). */
+  drawingBoard: boolean;
   listening: boolean;
   interim: string;
   voiceSupported: boolean;
@@ -113,6 +115,7 @@ export function useLessonChat(opts: {
   const [explaining, setExplaining] = useState(false);
   const [explainBoard, setExplainBoard] = useState<{ script: string; draw?: DrawScript } | null>(null);
   const [drawProgress, setDrawProgress] = useState(0);
+  const [drawingBoard, setDrawingBoard] = useState(false);
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
   const [pendingVisual, setPendingVisual] = useState<{ question: string; what: string } | null>(null);
@@ -215,7 +218,8 @@ export function useLessonChat(opts: {
   /** The board answer, exactly as this panel has always produced it. */
   const explainWithBoard = useCallback(
     async (question: string, extra: Record<string, unknown> = {}) => {
-      const data = await requestExplain(question, extra);
+      setDrawingBoard(true);
+      const data = await requestExplain(question, extra).finally(() => setDrawingBoard(false));
       setChat((c) => [...c, { role: "aria", text: data.script }]);
       setExplainBoard({ script: data.script, draw: data.draw });
       setDrawProgress(0);
@@ -365,6 +369,7 @@ export function useLessonChat(opts: {
     explaining,
     explainBoard,
     drawProgress,
+    drawingBoard,
     listening,
     interim,
     voiceSupported,
@@ -386,23 +391,20 @@ export function useLessonChat(opts: {
 /** The fresh explanation board overlay (marker draws the answer to the question). */
 export function ExplainOverlay({
   board,
+  earlier = [],
   progress,
   autoReveal = false,
   onClose,
 }: {
   board: { script: string; draw?: DrawScript };
+  /** Sections already drawn on this same board (a follow-up continues under them). */
+  earlier?: Array<{ script: string; draw?: DrawScript }>;
   progress: number;
   autoReveal?: boolean;
   onClose: () => void;
 }) {
   const [automaticProgress, setAutomaticProgress] = useState(0);
-  const animationOp = board.draw?.ops.find(
-    (op): op is Extract<typeof op, { kind: "reactAnimation" }> =>
-      op.kind === "reactAnimation" && typeof op.code === "string"
-  );
-  const codeOp = board.draw?.ops.find(
-    (op): op is Extract<typeof op, { kind: "codeBoard" }> => op.kind === "codeBoard" && Boolean(op.spec)
-  );
+  const currentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!autoReveal) return;
@@ -418,37 +420,98 @@ export function ExplainOverlay({
     return () => cancelAnimationFrame(frame);
   }, [autoReveal, board]);
 
+  // A continued board brings its newest section into view as it starts drawing.
+  useEffect(() => {
+    if (earlier.length) currentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [earlier.length, board]);
+
   const effectiveProgress = autoReveal ? automaticProgress : progress;
+  const stacked = earlier.length > 0;
 
   return (
     <div data-explain-overlay className="hud-materialize absolute inset-0 z-40 flex flex-col bg-black/95 p-3 backdrop-blur-md lg:p-5">
       <div className="mb-2 flex items-center justify-between">
         <div>
-          <HudEyebrow>Board extension</HudEyebrow>
-          <p className="mt-1 text-xs font-semibold text-[var(--hud-text-faint)]">Aria kept the lesson context and added only what this question needs.</p>
+          <HudEyebrow>{stacked ? `Board extension · part ${earlier.length + 1}` : "Board extension"}</HudEyebrow>
+          <p className="mt-1 text-xs font-semibold text-[var(--hud-text-faint)]">
+            {stacked ? "Continued on the same board — scroll up for the earlier part." : "Aria kept the lesson context and added only what this question needs."}
+          </p>
         </div>
         <button onClick={onClose} className="hud-btn-ghost rounded-full px-4 py-1.5 text-xs font-bold">
           Return to the lesson board
         </button>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto" aria-live="polite">
-        {codeOp?.spec ? (
-          <CodeBoard key={board.script.slice(0, 24)} spec={codeOp.spec as CodeSpec} progress={effectiveProgress} />
-        ) : animationOp?.code ? (
-          <ReactAnimationSandbox
-            key={board.script.slice(0, 24)}
-            code={animationOp.code}
-            assetIds={animationOp.assetIds}
-            progress={effectiveProgress}
-            sentenceProgress={effectiveProgress}
-          />
-        ) : board.draw ? (
-          <LiveSketch key={board.script.slice(0, 24)} script={board.draw} progress={effectiveProgress} />
-        ) : (
-          <div className="grid h-full place-items-center p-8 text-center">
-            <p className="max-w-lg text-lg font-medium text-[var(--hud-text-dim)]">{board.script}</p>
+        {stacked ? (
+          <div className="flex h-full flex-col gap-4">
+            {earlier.map((section, i) => (
+              <div key={`${i}:${section.script.slice(0, 24)}`} className="h-[88%] shrink-0 opacity-80">
+                <BoardSection board={section} progress={1} />
+              </div>
+            ))}
+            <div ref={currentRef} className="h-[88%] shrink-0">
+              <BoardSection board={board} progress={effectiveProgress} />
+            </div>
           </div>
+        ) : (
+          <BoardSection board={board} progress={effectiveProgress} />
         )}
+      </div>
+    </div>
+  );
+}
+
+/** One drawn answer, at a given point in its drawing. */
+function BoardSection({ board, progress }: { board: { script: string; draw?: DrawScript }; progress: number }) {
+  const animationOp = board.draw?.ops.find(
+    (op): op is Extract<typeof op, { kind: "reactAnimation" }> =>
+      op.kind === "reactAnimation" && typeof op.code === "string"
+  );
+  const codeOp = board.draw?.ops.find(
+    (op): op is Extract<typeof op, { kind: "codeBoard" }> => op.kind === "codeBoard" && Boolean(op.spec)
+  );
+  if (codeOp?.spec) return <CodeBoard key={board.script.slice(0, 24)} spec={codeOp.spec as CodeSpec} progress={progress} />;
+  if (animationOp?.code) {
+    return (
+      <ReactAnimationSandbox
+        key={board.script.slice(0, 24)}
+        code={animationOp.code}
+        assetIds={animationOp.assetIds}
+        progress={progress}
+        sentenceProgress={progress}
+      />
+    );
+  }
+  if (board.draw) return <LiveSketch key={board.script.slice(0, 24)} script={board.draw} progress={progress} />;
+  return (
+    <div className="grid h-full place-items-center p-8 text-center">
+      <p className="max-w-lg text-lg font-medium text-[var(--hud-text-dim)]">{board.script}</p>
+    </div>
+  );
+}
+
+/**
+ * THE WAIT, SAID OUT LOUD ON THE BOARD. A drawing takes several seconds to generate; the board used
+ * to sit unchanged with the lecture frozen, which read as "it's stuck".
+ */
+export function TeacherDrawingNotice() {
+  return (
+    <div
+      data-teacher-drawing
+      role="status"
+      aria-live="polite"
+      className="hud-materialize absolute inset-0 z-50 grid place-items-center bg-black/80 backdrop-blur-sm"
+    >
+      <div className="flex max-w-sm flex-col items-center px-6 text-center">
+        <span className="relative mb-5 grid h-16 w-16 place-items-center rounded-full border border-[var(--hud-cyan)]/40 bg-[var(--hud-cyan)]/10">
+          <span className="absolute inset-0 animate-ping rounded-full border border-[var(--hud-cyan)]/30" />
+          <svg viewBox="0 0 24 24" className="h-7 w-7 animate-pulse text-[var(--hud-cyan)]" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+          </svg>
+        </span>
+        <p className="text-lg font-bold text-[var(--hud-text)]">Teacher is drawing for you</p>
+        <p className="mt-1.5 text-sm font-medium text-[var(--hud-text-dim)]">Please wait — the board will explain itself as it draws.</p>
       </div>
     </div>
   );

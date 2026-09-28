@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SlideStage } from "./SlideStage";
 import { TeacherAvatar } from "./TeacherAvatar";
 import { beats as demoBeats, type Beat } from "@/lib/lessonContent";
-import { unlockAudio, splitNarrationSentences } from "@/lib/voice";
+import { unlockAudio, splitNarrationSentences, playNarration, type NarrationHandle } from "@/lib/voice";
 import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
@@ -55,7 +55,7 @@ import { useManimPrefetch } from "@/lib/useManimPrefetch";
 import { useNarrationPrefetch } from "@/lib/useNarrationPrefetch";
 import { selectAnimationRenderer } from "@/lib/animationRouting";
 import type { LearnerAdaptiveSignal } from "@/lib/progressiveLectureTypes";
-import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
+import { useLessonChat, ChatPanel, ExplainOverlay, TeacherDrawingNotice } from "./lesson-chat/LessonChat";
 import { HudCorners } from "./hud/HudKit";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import type { SourceScope } from "@/lib/sourceScope";
@@ -242,6 +242,13 @@ function isChalkBoardPending(beat: Beat) {
   return Boolean(op && BLACKBOARD_GEN_ENABLED && (!op.ops || op.ops.length === 0) && op.status !== "failed");
 }
 
+
+/** "Yes", "sure, go ahead", "okay let's do it" — a short reply agreeing to her invitation to go on. */
+function isShortAgreement(text: string): boolean {
+  const t = text.trim().toLowerCase().replace(/[.!,]+/g, " ").replace(/\s+/g, " ").trim();
+  if (!t || t.includes("?") || t.split(" ").length > 6) return false;
+  return /^(?:(?:hey |ok(?:ay)? )?(?:aria |arya )?)?(?:yes|yeah|yep|yup|sure|ok|okay|alright|all right|fine|ready|i'?m ready|let'?s (?:do it|go)|go ahead|go on|haan|han|ji|theek hai)\b/.test(t);
+}
 
 /** Event-time clock for callbacks (the React compiler reads a bare Date.now() in them as render). */
 const wallClock = () => Date.now();
@@ -730,10 +737,37 @@ export function LessonPlayer({
   const bumpInteraction = useCallback(() => setLastInteractionAt(Date.now()), []);
 
   // ── Live voice tutor (full-duplex realtime) ──────────────────────────────
-  // A board the realtime tutor draws via its show_board tool. Kept SEPARATE from chat.explainBoard
-  // because the realtime model narrates the board itself — we must NOT run playNarration for it,
-  // which would violate the single-speaker invariant.
-  const [liveBoard, setLiveBoard] = useState<GeminiLiveBoard | null>(null);
+  /*
+   * THE BOARD ARIA DRAWS WHEN ASKED (show_board), as sections: a follow-up that continues the same
+   * drawing is added under it, a new figure replaces it with a fresh slide.
+   *
+   * Its explanation is read by the lesson's narration, sentence by sentence, as each part is drawn —
+   * the same sync the typed questions and the lecture have. It used to be left to the live model to
+   * "briefly explain", while the board drew itself on a fixed 12–24 s timer: often she said nothing,
+   * and when she did the words and the drawing were unrelated in time. One voice is still the rule:
+   * the live model's audio is muted for that turn (see show_board in the hook).
+   */
+  const [liveBoards, setLiveBoards] = useState<GeminiLiveBoard[]>([]);
+  const liveBoardsRef = useRef<GeminiLiveBoard[]>([]);
+  const [liveBoardProgress, setLiveBoardProgress] = useState(1);
+  const boardNarrationRef = useRef<NarrationHandle | null>(null);
+  /** The board's explanation is being spoken — the gate treats it like the lecture's voice. */
+  const boardNarratingRef = useRef(false);
+  const [boardNarrating, setBoardNarrating] = useState(false);
+  const stopBoardNarration = useCallback(() => {
+    boardNarrationRef.current?.cancel();
+    boardNarrationRef.current = null;
+    boardNarratingRef.current = false;
+    setBoardNarrating(false);
+    setLiveBoardProgress(1);
+  }, []);
+  /** Set once the lesson machine exists (below); the hook's callback reads it when a board lands. */
+  const showLiveBoardRef = useRef<(board: GeminiLiveBoard) => void>(() => {});
+  const clearLiveBoard = useCallback(() => {
+    stopBoardNarration();
+    liveBoardsRef.current = [];
+    setLiveBoards([]);
+  }, [stopBoardNarration]);
   // `sessionActive` means the realtime tutor currently owns the floor. The underlying WebRTC
   // session can remain connected and privacy-muted while the scripted lecture continues.
   const [sessionActive, setSessionActive] = useState(false);
@@ -841,7 +875,7 @@ export function LessonPlayer({
     gateProfile: "lecture",
     // She is shown the uploaded pages themselves, not only their extracted text.
     documentId,
-    getTutorSpeaking: () => narrationAudibleRef.current,
+    getTutorSpeaking: () => narrationAudibleRef.current || boardNarratingRef.current,
     topic: title,
     // What is ON the board — the code listing, the diagram, the chalk lines — not only the script,
     // plus the text inside a sandboxed board and every mark the student made on it.
@@ -859,7 +893,8 @@ export function LessonPlayer({
     getLessonContext: () => buildLessonContext(beats, indexRef.current),
     getDocumentContext: liveTutorDocumentContext,
     mood,
-    onBoardRequest: (board) => setLiveBoard(board),
+    onBoardRequest: (board) => showLiveBoardRef.current(board),
+    getPreviousBoard: () => liveBoardsRef.current[liveBoardsRef.current.length - 1]?.script ?? "",
     onTranscript: (role, rawText, final) => {
       /*
        * The live model's control tokens are not words. The hook strips "<no speech>" per streamed
@@ -895,7 +930,7 @@ export function LessonPlayer({
     },
     onSessionEnded: () => {
       setSessionActive(false);
-      setLiveBoard(null);
+      clearLiveBoard();
       /*
        * A check-in OWNS the pause, so a session ending must not lift it.
        *
@@ -942,6 +977,8 @@ export function LessonPlayer({
     },
     onStudentSpeechStarted: () => {
       setSessionActive(true);
+      // The student has the floor: the board's explanation stops, and the drawing completes.
+      if (boardNarratingRef.current) stopBoardNarration();
       // During a check-in the lecture is already frozen and must stay that way; `enterChat` here
       // would arm a resume that fires the moment Aria finishes a sentence, ending the conversation
       // after her first reply.
@@ -1030,9 +1067,13 @@ export function LessonPlayer({
         endCheckin();
         return;
       }
-      // Lifts the student's own pause only when their words asked to carry on; after an answer to a
-      // question asked during that pause, the lecture stays where they left it.
-      lesson.requestResume({ explicit: studentJustSaid(isResumeIntent) });
+      /*
+       * Only the student's own words lift the hold. She is told to call this only when they ask,
+       * but she used to call it after every answer; so it counts when their last words asked to go on
+       * ("continue", "let's go") or were a short reply to her invitation ("yes", "sure, go ahead") —
+       * never when they were a question she has just answered.
+       */
+      lesson.requestResume({ explicit: studentJustSaid(isResumeIntent) || studentJustSaid(isShortAgreement) });
     },
     lectureControlTools: true,
     checkinMode: checkin !== null,
@@ -1065,31 +1106,23 @@ export function LessonPlayer({
   /*
    * WHEN ARIA'S VOICE SPEAKS, THE LECTURE STOPS. The lecture froze only when the STUDENT started
    * speaking; if the live tutor spoke on her own (answering late, reacting to a sound) the lecture
-   * narration carried on under her — two voices at once. Any time she is speaking during teaching,
-   * the lecture now freezes in place and continues from the same word when her turn is complete.
+   * narration carried on under her — two voices at once. Any time she speaks, the lecture freezes
+   * in place, and it continues from the same word when the student asks for it.
    */
-  const frozenForTutorRef = useRef(false);
   useEffect(() => {
-    if (checkinRef.current) return;
-    if (tutor.speaking) {
-      if (lesson.modeRef.current !== "teaching") return;
-      frozenForTutorRef.current = true;
-      lesson.enterChat({ resumeAfterAnswer: true });
-      return;
-    }
+    if (checkinRef.current || !tutor.speaking) return;
     /*
-     * AND IT ALWAYS COMES BACK. The resume used to wait for the tutor's "turn complete" signal
-     * alone; a brief sound from her, or a turn that never reported complete, left the lecture frozen
-     * in silence. Once she has been quiet for 1.5 s — and she has not started again — the lecture
-     * continues from where it froze.
+     * SHE ANSWERED, SO THE STUDENT DECIDES WHAT HAPPENS NEXT.
+     *
+     * This froze the lecture while she spoke and then resumed it 1.5 s after she went quiet, and the
+     * question's own "resume after the answer" fired at her turn end too — so every answer was
+     * followed by the lecture starting again on its own, before the student had taken it in or asked
+     * a follow-up. Reported, rightly, as wrong: the student is the one who says when to go on. Her
+     * speaking now HOLDS the lecture exactly like the student's own pause; "continue" or Play lifts
+     * it. The one exception is her acknowledging a "continue" — that turn is the resume.
      */
-    if (!frozenForTutorRef.current) return;
-    const t = window.setTimeout(() => {
-      if (tutor.isSpeaking() || checkinRef.current) return;
-      frozenForTutorRef.current = false;
-      lesson.flushDeferredResume();
-    }, 1500);
-    return () => window.clearTimeout(t);
+    if (studentJustSaid(isResumeIntent)) return;
+    lesson.holdForStudent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tutor.speaking]);
 
@@ -1127,6 +1160,67 @@ export function LessonPlayer({
     });
   }, [adhd]);
   const lesson = useLessonMachine(voice);
+
+  const showLiveBoard = useCallback(
+    (board: GeminiLiveBoard) => {
+      // She drew for the student: the lecture waits for them (see holdForStudent).
+      if (!checkinRef.current) lesson.holdForStudent();
+      boardNarrationRef.current?.cancel();
+      // "Continue it" adds a section under the drawing on screen; anything else is a new slide.
+      const next = board.reuseContext && liveBoardsRef.current.length ? [...liveBoardsRef.current, board].slice(-4) : [board];
+      liveBoardsRef.current = next;
+      setLiveBoards(next);
+      if (board.interrupted || !board.script.trim()) {
+        // The student is talking: show it whole, and say nothing over them.
+        boardNarratingRef.current = false;
+        setBoardNarrating(false);
+        setLiveBoardProgress(1);
+        return;
+      }
+      setLiveBoardProgress(0);
+      boardNarratingRef.current = true;
+      setBoardNarrating(true);
+      boardNarrationRef.current = playNarration(board.script, {
+        onStart: () => {},
+        // Each part is drawn as the sentence about it begins — the same clock the typed answers use.
+        onSentenceStart: (sentenceIndex, sentence, total) => {
+          setLiveBoardProgress(total > 1 ? Math.min(1, (sentenceIndex + 1) / total) : 1);
+          tutorRef.current.noteNarration?.(sentence);
+        },
+        onEnd: () => {
+          boardNarrationRef.current = null;
+          boardNarratingRef.current = false;
+          setBoardNarrating(false);
+          setLiveBoardProgress(1);
+        },
+        onBlocked: () => {
+          boardNarratingRef.current = false;
+          setBoardNarrating(false);
+          setLiveBoardProgress(1);
+          blockedLiveOnlyRef.current = false;
+          setVoiceBlocked(true);
+        },
+        // The lecture is frozen, not finished: keep its audio so "continue" picks up mid-sentence.
+        preserveActive: true,
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  useEffect(() => {
+    showLiveBoardRef.current = showLiveBoard;
+  }, [showLiveBoard]);
+
+  // The student chose to go on: the lecture is the only voice, back on its own board.
+  useEffect(() => {
+    if (lesson.mode === "teaching" && liveBoardsRef.current.length) clearLiveBoard();
+  }, [lesson.mode, clearLiveBoard]);
+
+  // A drawing is under way: the lecture waits for the student from now, not from when it lands.
+  useEffect(() => {
+    if (tutor.status === "drawing" && !checkinRef.current) lesson.holdForStudent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tutor.status]);
 
   /*
    * SETTLE THE BOARD WHEN THE LECTURE STOPS TALKING.
@@ -1316,7 +1410,8 @@ export function LessonPlayer({
       if (checkinRef.current) return;
       bumpInteraction();
       setBeatQuestions((n) => n + 1);
-      lesson.enterChat({ resumeAfterAnswer: true });
+      // A typed question is answered and then waits for the student, as a spoken one does.
+      lesson.holdForStudent();
     },
     onQuestionAsked: (question) => {
       if (isAdaptiveQuestion(question)) onLearnerInteraction?.({ kind: "question", detail: question });
@@ -1376,7 +1471,7 @@ export function LessonPlayer({
     // and onSessionEnded never re-fires — leaving the lecture paused forever. Force the same
     // resume state directly so pressing "end call" always works, even in that edge case.
     setSessionActive(false);
-    setLiveBoard(null);
+    clearLiveBoard();
     lesson.requestResume();
   }
 
@@ -1435,7 +1530,7 @@ export function LessonPlayer({
     checkinStoleCheckpointRef.current = checkpointDone[index] ? null : index;
     setCheckpointDone((d) => ({ ...d, [index]: true }));
     setFocusPause(null);
-    setLiveBoard(null);
+    clearLiveBoard();
     setCheckinLine(null);
     setCheckinFallback(false);
     // Written synchronously as well as through state: a socket callback can fire before React has
@@ -2524,10 +2619,10 @@ export function LessonPlayer({
     status: tutor.status,
     // Audible speech only. `isSpeaking()` also covers her thinking and drawing, which showed
     // "Aria is speaking" with nothing to hear.
-    ariaSpeaking: speaking || tutor.speaking,
-    studentSpeaking: Boolean(
-      tutor.status === "live" && !tutor.muted && !speaking && !tutor.isSpeaking() && hasStarted,
-    ),
+    ariaSpeaking: speaking || tutor.speaking || boardNarrating,
+    // What the voice session actually knows. This was "live, unmuted, and the lecture is quiet" —
+    // true through every pause and every narrated board, so it read "You're speaking" at nobody.
+    studentSpeaking: tutor.voiceSession.state === "USER_SPEAKING",
     muted: tutor.muted,
     paused: !lesson.playing && hasStarted,
   });
@@ -2805,9 +2900,17 @@ export function LessonPlayer({
 
             {/* Live-tutor board (drawn by the realtime show_board tool). Closing it just clears the
                 board — the live session stays active and the tutor keeps talking. */}
-            {liveBoard && (
-              <ExplainOverlay board={liveBoard} progress={1} autoReveal onClose={() => setLiveBoard(null)} />
+            {liveBoards.length > 0 && (
+              <ExplainOverlay
+                board={liveBoards[liveBoards.length - 1]}
+                earlier={liveBoards.slice(0, -1)}
+                progress={liveBoardProgress}
+                onClose={clearLiveBoard}
+              />
             )}
+
+            {/* While a board is being generated, the whole board says so — no silent 20 s wait. */}
+            {(tutor.status === "drawing" || chat.drawingBoard) && <TeacherDrawingNotice />}
 
             {/* Two-way board: freehand sketch. The sketch is auto-shared into Aria's live context
                 a moment after the pen lifts — no "send" step, the student just asks about it. */}

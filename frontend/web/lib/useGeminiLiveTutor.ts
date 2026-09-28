@@ -49,6 +49,8 @@ export type GeminiLiveBoard = {
   draw?: DrawScript;
   concept?: string;
   reuseContext?: boolean;
+  /** The student spoke while it was being drawn: show it, but do not start talking over them. */
+  interrupted?: boolean;
 };
 
 type TranscriptRole = "student" | "tutor";
@@ -157,6 +159,8 @@ export type UseGeminiLiveTutorOptions = {
   documentId?: string;
   mood?: string;
   onBoardRequest: (board: GeminiLiveBoard) => void;
+  /** The board section on screen now, so a follow-up drawing can continue it rather than start over. */
+  getPreviousBoard?: () => string;
   onTranscript?: (role: TranscriptRole, text: string, final: boolean) => void;
   onSessionEnded?: (reason: SessionEndReason) => void;
   onStudentSpeechStarted?: () => void;
@@ -570,12 +574,16 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    * The student's "continue" was already carried out locally (the lecture is running again). Aria's
    * spoken acknowledgement of it — "okay, carrying on" — made her `speaking`, which froze the lecture
    * again until she finished: a stutter on every spoken resume. Her audio for that turn is skipped;
-   * her tool calls still run (resuming is idempotent). Cleared by the next student turn or by a turn
+   * her tool calls still run (resuming is idempotent). Also set when a board she asked for is being
+   * explained by the lesson's own synced narration (see show_board): one voice at a time, and the
+   * narration is the one that knows where the drawing is. Cleared by the next student turn or by a turn
    * the app cues (say / sendText) — NOT at turn end: the model answers its own resume_lecture tool
    * response with a second generation ("great, let's keep going") after the first turnComplete, and
    * that played over the resumed narration.
    */
-  const localResumeTurnRef = useRef(false);
+  const muteRepliesUntilStudentRef = useRef(false);
+  /** This turn's words came from the second opinion; the model's transcript of it is a duplicate. */
+  const turnWordsSettledRef = useRef(false);
   /** A turn was discarded while a reply was playing; mute the reply that follows it (see onDiscard). */
   const discardAfterReplyRef = useRef(false);
   /*
@@ -718,7 +726,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       } else if (turnKind === "pause") {
         optionsRef.current.onExplicitPause?.();
       } else if (turnKind === "resume") {
-        localResumeTurnRef.current = true;
+        muteRepliesUntilStudentRef.current = true;
         optionsRef.current.onExplicitResume?.();
       }
     }
@@ -890,12 +898,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     turnCompletedRef.current = false;
     responseInFlightRef.current = true;
     turnCompleteRef.current = false;
-    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current && !localResumeTurnRef.current && !isHeldReply()) setSpeaking(true);
+    if (!suppressCurrentTurnRef.current && !contextOnlyTurnRef.current && !muteRepliesUntilStudentRef.current && !isHeldReply()) setSpeaking(true);
   }, [isHeldReply]);
 
   const playAudioChunk = useCallback(
     (base64: string) => {
-      if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || localResumeTurnRef.current || isHeldReply()) return;
+      if (suppressCurrentTurnRef.current || contextOnlyTurnRef.current || muteRepliesUntilStudentRef.current || isHeldReply()) return;
       // Dropped rather than buffered: a queue flushed on unmute would replay a turn the
       // conversation has already moved past.
       if (outputMutedRef.current) return;
@@ -1009,7 +1017,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     // turn, so whatever she says next was not asked for by say() (see holdUnpromptedReplies).
     promptedTurnRef.current = false;
     pendingLectureResumeRef.current = false;
-    localResumeTurnRef.current = false;
+    muteRepliesUntilStudentRef.current = false;
+    turnWordsSettledRef.current = false;
     unansweredTurnRef.current = null;
     suppressCurrentTurnRef.current = true;
     contextOnlyTurnRef.current = false;
@@ -1194,6 +1203,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
           textOnly: optionsRef.current.boardTextOnly === true,
           visualMode,
           reuseContext,
+          previousBoard: optionsRef.current.getPreviousBoard?.() ?? "",
         }),
       });
       const data = await response.json().catch(() => ({}));
@@ -1213,17 +1223,25 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
        * throw away a picture the student explicitly asked for and already paid for. So the board
        * is always handed over, and only the spoken follow-up is suppressed below.
        */
-      optionsRef.current.onBoardRequest({ script: data.script, draw: data.draw, concept, reuseContext });
+      optionsRef.current.onBoardRequest({ script: data.script, draw: data.draw, concept, reuseContext, interrupted: controller.signal.aborted });
 
       if (controller.signal.aborted) {
         // Deliver silently: the student has the floor, so Aria must not start talking about it.
         return { id, name, response: { output: "The board section is visible. Do not describe it unless asked." } };
       }
+      /*
+       * THE EXPLANATION TRAVELS WITH THE DRAWING. She used to be told to "briefly explain what is now
+       * visible" — and often said nothing, or talked while the board drew at its own pace. The board
+       * arrives with its own script, which the lesson reads aloud sentence by sentence as each part
+       * is drawn; her audio for the rest of this turn is muted so the two never overlap.
+       */
+      muteRepliesUntilStudentRef.current = true;
+      stopPlayback();
       return {
         id,
         name,
         response: {
-          output: `${reuseContext ? "The current board was extended" : "A clean board section was opened"} for "${concept}". Briefly explain only what is now visible.`,
+          output: `${reuseContext ? "The current board was extended" : "A new board slide was opened"} for "${concept}", and its explanation is being read aloud to the student now, in step with the drawing. Say nothing; wait silently for the student.`,
         },
       };
     } catch (error) {
@@ -1322,7 +1340,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         resetIdleTimer();
       }
       const inputText = content?.inputTranscription?.text;
-      if (inputText) {
+      // A turn let in on the server's transcription already has its words; the model's own
+      // transcript of the same audio arriving later showed the student's sentence twice.
+      if (inputText && !turnWordsSettledRef.current) {
         studentTranscriptRef.current = appendTranscript(studentTranscriptRef.current, inputText);
         optionsRef.current.onTranscript?.("student", inputText, false);
         machineRef.current?.dispatch({ type: "TRANSCRIPT", at: performance.now(), text: studentTranscriptRef.current });
@@ -1351,12 +1371,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       const outputText = content?.outputTranscription?.text?.replace(/<no speech>|\{pause\}/g, "");
       if (outputText) {
         // A held reply is not collected either, so its final transcript is empty and never shown.
-        if (!isHeldReply()) tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
+        // Nor is a muted one (a narrated board, a "continue" handled locally): words she never said
+        // aloud must not appear in the chat as hers.
+        if (!isHeldReply() && !muteRepliesUntilStudentRef.current) tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
         // What Aria is saying is the best evidence of what a reply would be about.
         gateRef.current?.setTopicWords(
           topicWordsFrom(optionsRef.current.topic, optionsRef.current.getBeatContext(), tutorTranscriptRef.current.slice(-400)),
         );
-        if (!contextOnlyTurnRef.current && !suppressCurrentTurnRef.current && !isHeldReply()) {
+        if (!contextOnlyTurnRef.current && !suppressCurrentTurnRef.current && !isHeldReply() && !muteRepliesUntilStudentRef.current) {
           optionsRef.current.onTranscript?.("tutor", outputText, false);
         }
       }
@@ -1587,6 +1609,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
               // Not addressed: its words must not be prepended to the next real turn.
               const stage: string = gate.getStage();
               if (stage !== "listening" && stage !== "committed" && stage !== "processing") studentTranscriptRef.current = "";
+              else turnWordsSettledRef.current = true;
             });
         },
         onDiscard: () => {
@@ -2182,7 +2205,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     (prompt: string) => {
       if (!sessionRef.current || !prompt.trim()) return;
       promptedTurnRef.current = true;
-      localResumeTurnRef.current = false;
+      muteRepliesUntilStudentRef.current = false;
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();
@@ -2216,7 +2239,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       gateRef.current?.reset();
       closeActivityRef.current();
       promptedTurnRef.current = true;
-      localResumeTurnRef.current = false;
+      muteRepliesUntilStudentRef.current = false;
       suppressCurrentTurnRef.current = false;
       contextOnlyTurnRef.current = false;
       markTutorActive();

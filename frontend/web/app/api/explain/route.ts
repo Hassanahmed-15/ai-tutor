@@ -43,6 +43,8 @@ export async function POST(req: Request) {
   const textOnly = body.textOnly === true;
   const visualMode = typeof body.visualMode === "string" ? body.visualMode.trim() : "annotated_board";
   const reuseContext = body.reuseContext === true;
+  /** What the board the student is looking at already explains (a live-voice follow-up). */
+  const previousBoard = typeof body.previousBoard === "string" ? body.previousBoard.trim().slice(0, 1500) : "";
   /*
    * ANSWER FIRST, DRAW ON REQUEST.
    *
@@ -116,7 +118,18 @@ export async function POST(req: Request) {
   // Priced across every attempt, including failed ones and the animation built for the answer.
   const meter = createCostMeter();
   const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
-  const userMsg = strict
+  /*
+   * A FOLLOW-UP DRAWING. "Now show the deletion" after a drawing of the tree continues THAT board —
+   * the new section sits under the old one and must not draw it again; a different figure is a new
+   * slide and should not repeat the previous one either. Without the previous board the model had
+   * only the lecture's board to go on, and redrew what was already on screen.
+   */
+  const followUp = previousBoard && !offer
+    ? reuseContext
+      ? `\n\nThis continues the board the student is looking at, which already explains: "${previousBoard}". Add ONLY the next part, as a continuation of that drawing — do not redraw or re-explain what it already shows.`
+      : `\n\nThe student just saw a board explaining: "${previousBoard}". This is a new slide: do not repeat that board.`
+    : "";
+  const baseUserMsg = strict
     ? strictUserMessage({ topic, lessonContext, documentContext, beatSource, lessonQuestion, beatContext, question, visualMode, reuseContext, offer, visualHint })
     : `The lecture topic is "${topic || "this subject"}". ` +
     (lessonContext
@@ -138,6 +151,7 @@ export async function POST(req: Request) {
         (reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +
         (visualHint ? `They have asked to see this drawn, and you offered: "${visualHint}". Draw that. ` : "") +
         `Explain it and plan a precise visual answer.`);
+  const userMsg = baseUserMsg + followUp;
 
   let lastError = "Couldn't generate an explanation.";
   for (let attempt = 0; attempt < 3; attempt++) {
