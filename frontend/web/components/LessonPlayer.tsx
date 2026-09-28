@@ -1134,13 +1134,17 @@ export function LessonPlayer({
    * has not started yet is waited for separately, below, and only for a bounded time.
    */
   /*
-   * WHILE NOTHING IS BEING EXPLAINED, THE TITLE STAYS.
+   * THE CARD YIELDS ONCE THE BOARD IS READY, PLAYING OR NOT.
    *
-   * Measured on the real animation path: the board became "ready" before the lecture was playing,
-   * so there was nothing to wait for and the card left at ~400ms; Play then started the bridge
-   * sentence over a board that reveals nothing until the script begins — five seconds of white.
-   * A beat that is not playing has no reason to uncover its board, so its card simply stays, and
-   * the bounded waits below only start counting once the lecture is actually playing.
+   * It used to hold until the lecture was playing, so that pressing Play could not reveal a board
+   * that stays blank until the script begins. That reasoning only ever applied to a lecture about to
+   * start narrating — and it made REOPENING a saved lecture land on a full-screen title card with no
+   * way to dismiss it, because a replay mounts paused and nothing ever set `playing`. A card that
+   * covers the board until you find the Play button is not a title, it is an overlay in the way.
+   *
+   * So the waits below are bounded by the board, not by playback: the title is readable, the board
+   * appears behind it when it is ready, and a lecture you have not started yet shows you the lesson
+   * rather than a lid on it.
    *
    * Bridged beats (every beat in standard mode) hold through two more things, in order: the voice
    * starting (bounded by VOICE_WAIT_MAX_MS, so a blocked voice cannot trap the card) and the bridge
@@ -1152,17 +1156,20 @@ export function LessonPlayer({
   const holdForVoice = bridged && !speaking && !voiceWaited;
   const holdForBridge = bridged && speaking && stage !== "board";
   useEffect(() => {
-    if (continuesConcept || isCheckpoint || !lesson.playing) return;
+    if (continuesConcept || isCheckpoint) return;
     const ceiling = setTimeout(() => setCardDismissed(true), BOARD_WAIT_MAX_MS);
     const voice = setTimeout(() => setVoiceWaited(true), VOICE_WAIT_MAX_MS);
     return () => {
       clearTimeout(ceiling);
       clearTimeout(voice);
     };
-  }, [beat.id, continuesConcept, isCheckpoint, lesson.playing]);
+  }, [beat.id, continuesConcept, isCheckpoint]);
   useEffect(() => {
-    if (continuesConcept || isCheckpoint || !lesson.playing) return;
-    if (!boardContentReady || holdForVoice || holdForBridge) return;
+    if (continuesConcept || isCheckpoint) return;
+    // A lecture that is not playing has no bridge to speak and no voice to wait for, so those holds
+    // apply only while it is running — otherwise a paused lecture waits for something that cannot
+    // arrive, which is how the card got stuck over a replayed lesson.
+    if (!boardContentReady || (lesson.playing && (holdForVoice || holdForBridge))) return;
     // Everything is ready; hold only long enough for the title to have been readable.
     const elapsed = performance.now() - titleShownAtRef.current;
     const t = setTimeout(() => setCardDismissed(true), Math.max(0, TITLE_MIN_MS - elapsed));

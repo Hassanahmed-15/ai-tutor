@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
 import { blobStorageConfigured } from "@/lib/blobStorage";
 import { databaseConfigured } from "@/lib/db/cosmos";
-import { listLecturesForUser } from "@/lib/lectureArchive";
+import { countLecturesForUser, listLecturesForUser } from "@/lib/lectureArchive";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,8 +17,13 @@ export async function GET() {
   if (!session) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
 
   try {
-    const lectures = await listLecturesForUser(session.userId);
-    return NextResponse.json({ lectures });
+    // The total is counted rather than measured from the page: the list is capped, so its length is
+    // a page size and reporting it as "N saved" undercounts anyone past the cap.
+    const [lectures, total] = await Promise.all([
+      listLecturesForUser(session.userId),
+      countLecturesForUser(session.userId),
+    ]);
+    return NextResponse.json({ lectures, total });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Could not load lecture history.";
     console.error(`[lectures] list failed: ${message}`);
