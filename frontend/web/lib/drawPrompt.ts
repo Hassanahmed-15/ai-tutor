@@ -1061,6 +1061,26 @@ NARRATION SYNC — THE BOARD IS WRITTEN AS IT IS SPOKEN:
 
 Ground everything in the beat's boardBrief, title, and script. Write real, specific teaching content — never a generic template, never a diagram.`;
 
+/**
+ * ANSWER FROM WHERE THE STUDENT IS, NOT FROM NOWHERE.
+ *
+ * The chat already receives what is on the board ("ON THE BOARD: …") and the whole lecture as an
+ * outline marked "← PLAYING NOW", "(already taught)" and "(still to come)" — lib/lessonChatContext.ts.
+ * None of the explain prompts told the model to do anything with it, so every question was answered
+ * as though it had arrived out of nowhere: a question about the red curve on screen got a textbook
+ * answer that never mentioned the curve, and a question the very next section exists to answer got
+ * that section taught early, in a worse order, by the chat.
+ *
+ * Shared by every explain prompt so the text chat, the drawn answer and the ADHD text board all
+ * behave the same way.
+ */
+export const EXPLAIN_CONTEXT_RULES = `WHERE THE STUDENT IS. You are given the board they are looking at right now, and the whole lecture as an outline marked "← PLAYING NOW", "(already taught)" and "(still to come)". Use both.
+
+- THE BOARD. When the question is about something on the current board, answer in terms of what they can see — "the red V on the left is the L1 penalty; its sharp corner at zero is why…" — never a generic answer that ignores the picture in front of them.
+- LATER IN THE LECTURE. If a section marked "(still to come)" is where this question gets answered, say so plainly and name it by number and title — "that's exactly what part 4, 'Types of Regularization', covers — the short version is…" — then give the short version in one or two sentences. Do NOT teach that section now: it is coming, in the right order, with its own board.
+- ALREADY COVERED. If a section marked "(already taught)" answered it, point back to it by name — "we saw this in part 2, 'Why models overfit'" — and answer briefly, connecting it to what is on screen now.
+- NEITHER. If no section covers it, just answer it. Never invent a section, a part number or a title that is not in the outline.`;
+
 export const EXPLAIN_SYSTEM_PROMPT = `You are Aria, a patient live tutor. A student asked a follow-up question mid-lecture. Author the spoken explanation and a precise brief for ONE premium, topic-specific animated paper-whiteboard illustration.
 
 Return JSON only:
@@ -1083,7 +1103,9 @@ The teachingPoint must be specific to the student's exact question and current l
 
 CODE QUESTIONS. When the student asks how specific code works (a named function or method, "this code", an implementation, "show me the code"), or asks for code, the board is the code itself, not a picture. Use this op instead of reactAnimation:
   { "kind": "codeBoard", "codeBrief": "...", "at": 0, "endAt": 1 }
-"codeBrief" names the exact function or block (e.g. "remove(int d, Node*& p) from the student's BST notes"), says whether it appears in the student's document, and lists the parts to walk through in order (e.g. search left/right, leaf case, one child, two children via inorder successor). The listing is quoted verbatim from the document when it is there. The script then walks through that code in the same order in plain spoken sentences, without reading symbols aloud.`;
+"codeBrief" names the exact function or block (e.g. "remove(int d, Node*& p) from the student's BST notes"), says whether it appears in the student's document, and lists the parts to walk through in order (e.g. search left/right, leaf case, one child, two children via inorder successor). The listing is quoted verbatim from the document when it is there. The script then walks through that code in the same order in plain spoken sentences, without reading symbols aloud.
+
+${EXPLAIN_CONTEXT_RULES}`;
 
 /**
  * ANSWER FIRST, DRAW ONLY IF IT EARNS IT.
@@ -1121,7 +1143,9 @@ A drawing does NOT earn its place for: a definition, a term, a name, a yes/no, a
 Examples. "What does dp stand for?" → null. "Is Simpson's rule more accurate?" → null. "Why does the error term matter?" → null.
 "What happens to the tree when I delete a node with two children?" → offer: the rearrangement is the answer, and prose has to describe pointers one at a time. "How does blood move through the heart?" → offer: it is a path through chambers. "What does the curve look like as x grows?" → offer: the shape is the answer.
 
-Never mention the drawing, the board, or the offer in "script" — the interface asks the student separately. Write the answer as though no picture were coming, because usually none is.`;
+Never mention the OFFERED drawing or the offer itself in "script" — the interface asks the student separately, so write the answer as though no new picture were coming, because usually none is. Referring to the board the student is ALREADY looking at is different, and encouraged — see below.
+
+${EXPLAIN_CONTEXT_RULES}`;
 
 /**
  * TEXT-ONLY variant of the explain prompt, used by the live tutor's show_board in ADHD mode. The
@@ -1146,4 +1170,8 @@ RULES:
 - Leave >= 12 grid units of vertical gap between rows (e.g. y: 10, 26, 42, 58, 74). NEVER two texts at the same y.
 - All content x:8-14 (single left column), all text <= 40 chars so nothing runs off the frame.
 - Give each op an "at" (0-1) that increases down the board so it writes top-to-bottom.
-- 4-7 ops total. NEVER emit image, callout, shape, arrow, scene, motion, morph, or circleHighlight. Output ONLY the JSON.`;
+- 4-7 ops total. NEVER emit image, callout, shape, arrow, scene, motion, morph, or circleHighlight.
+
+${EXPLAIN_CONTEXT_RULES}
+
+Output ONLY the JSON.`;

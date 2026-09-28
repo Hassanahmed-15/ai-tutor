@@ -49,20 +49,48 @@ test("the current beat is marked, so the answer knows where the student is", () 
   assert.match(line, /Simpson/);
 });
 
-test("nearby beats carry their script; distant ones are titles only", () => {
-  // A lecture long enough to HAVE a distant beat — with only five sections every one is within the
-  // window, which is correct behaviour and simply does not exercise the cap.
+test("nearby beats carry their script; distant past ones are titles only", () => {
+  // A lecture long enough to HAVE distant beats — with only five sections every one is within the
+  // window, which is correct behaviour and simply does not exercise the cap. Scripts are long enough
+  // that a preview is visibly a preview.
+  const tail = " It then goes on at length about the details, the caveats and a worked example.".repeat(4);
   const long = Array.from({ length: 14 }, (_, i) =>
-    beat(i, `Section ${i}`, `The full teaching script for section ${i}, which is only sent when near.`),
+    beat(i, `Section ${i}`, `The full teaching script for section ${i}.${tail} END-OF-SECTION-${i}`),
   );
   const context = buildLessonContext(long, 6);
 
   // Neighbouring content is what "what did you just say?" needs.
   assert.match(context, /full teaching script for section 6/);
   assert.match(context, /full teaching script for section 7/);
-  // The far end stays a title, so one question does not paste the whole lecture into the prompt.
-  assert.ok(!context.includes("full teaching script for section 13"));
-  assert.match(context, /Section 13/, "but it is still listed, so the chat knows it exists");
+  // A section taught long ago stays a title: the chat can point back to it by name.
+  assert.ok(!context.includes("full teaching script for section 0"));
+  assert.match(context, /Section 0/, "but it is still listed, so the chat knows it exists");
+});
+
+test("THE FIX: a section far ahead carries a preview, so the chat can say 'that's coming in part N'", () => {
+  /*
+   * Titles alone could not answer "is this coming later?". A student asking why L1 zeroes weights
+   * during part 2 should hear "part 9 covers exactly that" — which needs part 9 to say what it
+   * covers, not just to be called "Types of Regularization".
+   */
+  const tail = " It then goes on at length about the details, the caveats and a worked example.".repeat(4);
+  const long = Array.from({ length: 14 }, (_, i) =>
+    beat(i, `Section ${i}`, `The full teaching script for section ${i}.${tail} END-OF-SECTION-${i}`),
+  );
+  const context = buildLessonContext(long, 2);
+
+  // Far outside the ±2 window, but still to come: its opening is there…
+  // (Displayed 1-based, so the fourteenth section is "14.")
+  assert.match(context, /14\. Section 13 \(still to come\)\n\s+The full teaching script for section 13/);
+  // …as a preview, not the whole script — one question must not paste the lecture into the prompt.
+  assert.ok(!context.includes("END-OF-SECTION-13"), "a far section is previewed, never sent whole");
+  assert.match(context, /section 13\.[^\n]*…/, "and the cut is marked");
+});
+
+test("the whole outline still fits its cap with a preview on every upcoming section", () => {
+  const tail = " A long script.".repeat(60);
+  const huge = Array.from({ length: 40 }, (_, i) => beat(i, `A reasonably descriptive section title ${i}`, `Script ${i}.${tail}`));
+  assert.ok(buildLessonContext(huge, 0).length <= 8000);
 });
 
 test("an empty lecture produces nothing rather than a header with no body", () => {

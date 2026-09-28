@@ -120,7 +120,7 @@ export async function POST(req: Request) {
     ? strictUserMessage({ topic, lessonContext, documentContext, beatSource, lessonQuestion, beatContext, question, visualMode, reuseContext, offer, visualHint })
     : `The lecture topic is "${topic || "this subject"}". ` +
     (lessonContext
-      ? `The whole lesson, in order, so you can answer about what is coming or what has already been covered:\n${lessonContext}\n\n`
+      ? `The whole lesson as an outline. "← PLAYING NOW" is where the student is; "(already taught)" and "(still to come)" say what they have and have not seen. If a later section answers this question, say that it is coming and name it:\n${lessonContext}\n\n`
       : "") +
     (documentContext
       ? `The student's own uploaded document. Answer from THIS when the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${documentContext}\n\n`
@@ -130,7 +130,7 @@ export async function POST(req: Request) {
 
 `
       : "") +
-    (beatContext ? `The student is on this part right now: "${beatContext}". ` : "") +
+    (beatContext ? `The part playing now, and the board the student is looking at (anything under "ON THE BOARD" is on their screen):\n${beatContext}\n\n` : "") +
     `They asked: "${question}". ` +
     (offer
       ? `Answer it in words. Propose a drawing only if the answer genuinely needs one.`

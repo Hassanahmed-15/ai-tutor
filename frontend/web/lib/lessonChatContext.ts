@@ -19,6 +19,16 @@ import type { Beat } from "./lessonContent";
 const SCRIPT_PREVIEW_CHARS = 260;
 /** Beats either side of the current one that get their script rather than just a title. */
 const NEARBY_WINDOW = 2;
+/**
+ * Every section still to come, however far off, gets this much of its script.
+ *
+ * Titles alone could not answer "is that coming up later?" — "Types of Regularization" does not say
+ * whether it covers why L1 zeroes weights. A hundred and twenty characters usually does, and it is
+ * what lets the chat say "that's part 4" instead of teaching part 4 early. Sections already taught
+ * stay titles past the window: the chat can point back to them by name, and their content is not
+ * the question it is being asked to judge.
+ */
+const UPCOMING_PREVIEW_CHARS = 120;
 /** Hard ceilings, mirrored by the endpoint so neither side can be surprised by the other. */
 const MAX_LESSON_CHARS = 8000;
 /**
@@ -117,8 +127,10 @@ export function buildLessonContext(beats: Beat[], currentIndex: number): string 
     const marker = i === currentIndex ? " ← PLAYING NOW" : i < currentIndex ? " (already taught)" : " (still to come)";
     const title = clean(beat.title) || `Section ${i + 1}`;
     const near = Math.abs(i - currentIndex) <= NEARBY_WINDOW;
-    const body = near ? clean(beat.script).slice(0, SCRIPT_PREVIEW_CHARS) : "";
-    return `${i + 1}. ${title}${marker}${body ? `\n   ${body}${beat.script && beat.script.length > SCRIPT_PREVIEW_CHARS ? "…" : ""}` : ""}`;
+    const limit = near ? SCRIPT_PREVIEW_CHARS : i > currentIndex ? UPCOMING_PREVIEW_CHARS : 0;
+    const script = clean(beat.script);
+    const body = limit ? script.slice(0, limit) : "";
+    return `${i + 1}. ${title}${marker}${body ? `\n   ${body}${script.length > limit ? "…" : ""}` : ""}`;
   });
 
   return lines.join("\n").slice(0, MAX_LESSON_CHARS);
