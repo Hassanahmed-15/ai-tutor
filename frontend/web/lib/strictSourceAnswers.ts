@@ -170,7 +170,7 @@ export function combinedSource(beatSource: BeatSourceGrounding | null, documentT
  */
 export const STRICT_ANSWER_RULES = `STRICTLY FROM THE SOURCE — this overrides every instruction above.
 The student chose to learn ONLY from their own document. SOURCE in the message (and the CURRENT PART of it) is the only material you may use.
-- "script": answer only with what SOURCE says, in SOURCE's own words wherever you can. Add no outside facts, examples, analogies, numbers, names, steps, applications or context — not even true ones, not even to be helpful. A short answer is a correct answer.
+- "script": answer only with what SOURCE says, in SOURCE's own words wherever you can. Add no outside facts, examples, analogies, numbers, names, steps, applications or context — not even true ones, not even to be helpful. Depth comes from SOURCE itself: when SOURCE says a lot about the question (its passage, its figure and caption), explain all of that thoroughly and step by step; only when SOURCE says little is a short answer right.
 - When SOURCE does not answer the question, set "covered": false and begin "script" with exactly "${NOT_COVERED_LINE}" Then, only if SOURCE says something close to what was asked, add one sentence saying what SOURCE does say. Never answer it from general knowledge, and never guess.
 - "covered": true only when every sentence of "script" is stated in SOURCE.
 - The board ("teachingPoint", "codeBrief", or the board's text): only what SOURCE describes or its figure shows. Use SOURCE's labels word for word. Name no part, label, arrow, value or example that SOURCE does not contain. A sparse board is correct. When SOURCE lists figure labels, the board redraws THAT figure with THOSE labels.
@@ -205,6 +205,19 @@ const ANSWER_TALK = [
 /**
  * The pen answer describes the student's own marks back before it teaches ("you circled the word
  * chloroplast"). Those words describe the student's drawing, not the subject, so they are allowed.
+ */
+export const BOARD_TALK = [
+  "here", "see", "shows", "show", "showing", "illustrates", "illustrated", "notice", "look", "looking", "appears",
+  "drawn", "draw", "drawing", "board", "picture", "diagram", "figure", "arrow", "arrows", "highlighted",
+  "first", "next", "then", "now", "finally", "step", "steps", "part", "parts", "takeaway",
+];
+
+/**
+ * A board answer walks the student through the drawing ("notice the arrow here…"). Those words point
+ * at the board rather than assert anything about the subject, so they do not count against a
+ * sentence — without them the strict check deleted "Figure 19.3 illustrates the deletion of node 5,
+ * which has one child", a sentence taken from the document's own caption, and the walk-through
+ * shrank to a line or two.
  */
 export const PEN_TALK = [
   "drew", "drawn", "draw", "circle", "circled", "circling", "mark", "marked", "marking", "highlight", "highlighted",

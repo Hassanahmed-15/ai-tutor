@@ -17,6 +17,7 @@ import {
   combinedSource,
   formatBeatSource,
   groundAnswer,
+  BOARD_TALK,
   readStrictSourceHeader,
   relevantSourceExcerpt,
   sanitizeBeatSourceGrounding,
@@ -197,6 +198,8 @@ export async function POST(req: Request) {
         const vocabulary = combinedSource(beatSource, documentContext);
         const grounded = groundAnswer(typeof parsed.script === "string" ? parsed.script : "", vocabulary, {
           modelCovered: parsed.covered === false ? false : undefined,
+          // A board answer points at its drawing; a words-only answer has nothing to point at.
+          extraAllowed: offer ? undefined : BOARD_TALK,
         });
         if (grounded.dropped.length > 0) {
           console.info(`[explain] strict: removed ${grounded.dropped.length} unsupported sentence(s): ${grounded.dropped.join(" | ").slice(0, 300)}`);
@@ -364,7 +367,10 @@ function strictUserMessage(input: {
       : `They asked: "${input.question}". Preferred visual mode: "${input.visualMode}". ` +
         (input.reuseContext ? "Keep useful visual context from the current board when it improves continuity. " : "Use a fresh board composition. ") +
         (input.visualHint ? `They have asked to see this drawn, and you offered: "${input.visualHint}". Draw that. ` : "") +
-        "Answer from SOURCE only, and plan a board that shows only what SOURCE contains.",
+        "Answer from SOURCE only, and plan a board that shows only what SOURCE contains. " +
+        "Then EXPLAIN it the way the SCRIPT section asks — a full walk-through of 6-9 sentences, one per part of the board, " +
+        "built from everything SOURCE says about this (its passage, its figure and caption, the page images): what each part is, " +
+        "what changes, and why SOURCE says it happens. Rephrase SOURCE freely to explain it; only never add to it.",
   );
   return parts.join("\n\n");
 }

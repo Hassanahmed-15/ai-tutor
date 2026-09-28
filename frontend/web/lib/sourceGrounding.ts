@@ -244,9 +244,18 @@ export function sentenceIsGrounded(text: string, vocab: Set<string>): boolean {
     const stemmed = stem(lower);
     if (vocab.has(lower) || vocab.has(stemmed)) continue;
     if (STOPWORDS.has(lower) || TEACHING_GLUE.has(lower)) continue;
-    if (/^\d/.test(word)) return false; // a number the source does not state
+    // A number the source does not state. The vocabulary holds "19.3" as "19" and "3", so a number is
+    // judged by its parts — otherwise every "Figure 19.3" in an answer failed against a source that
+    // says "Figure 19.3".
+    if (/^\d/.test(word)) {
+      if (word.split(/[.,]/).every((part) => vocab.has(part))) continue;
+      return false;
+    }
     if (/^[A-Z]/.test(word) && word !== firstWord && lower.length > 2) return false; // a name
-    if (lower.length >= 10 || /(?:ase|ose|ide|ine|phyll|plast|cyte|ism|osis|ation|ology|gen|ium|ions?)$/.test(lower) && lower.length >= 7) return false; // a technical term
+    // A technical term. Length alone used to decide it, which failed ordinary explaining words —
+    // "connecting", "identified", "effectively" — and deleted correct walk-through sentences from
+    // strict answers. Inflected everyday forms still count toward the missing share below.
+    if ((lower.length >= 10 && !/(?:ing|ed|ly|ment|ments|ness)$/.test(lower)) || /(?:ase|ose|ide|ine|phyll|plast|cyte|ism|osis|ation|ology|gen|ium|ions?)$/.test(lower) && lower.length >= 7) return false;
   }
   const stems = contentStems(text);
   if (stems.length === 0) return true;
