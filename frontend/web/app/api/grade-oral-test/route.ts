@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { GRADE_ANSWER_RUBRIC_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
+import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
 
 /**
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
           content:
             `You are grading a completed LIVE ORAL EXAM from its transcript. The examiner asked these questions, in this order, and the student answered by voice (the transcript may contain minor transcription errors — judge intent, not exact wording).\n` +
             `Return JSON only: { "results": [{ "id": string, "correct": boolean, "feedback": string }] }\n` +
-            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\nMatch each question to the student's corresponding answer in the transcript by the order the questions were asked. "feedback" is one short sentence explaining the judgment, addressed to the student.`,
+            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\nMatch each question to the student's corresponding answer in the transcript by the order the questions were asked.\n${GRADE_FEEDBACK_INSTRUCTION}`,
         },
         {
           role: "user",

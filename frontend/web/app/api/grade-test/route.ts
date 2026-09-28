@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { GRADE_ANSWER_RUBRIC_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
+import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
 
 /**
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
           role: "system",
           content:
             `You are grading a hard short-answer test. Return JSON only: { "results": [{ "id": string, "correct": boolean, "feedback": string }] }\n` +
-            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\n"feedback" is one short sentence explaining the judgment, addressed to the student.`,
+            `${GRADE_ANSWER_RUBRIC_INSTRUCTION}\n${GRADE_FEEDBACK_INSTRUCTION}`,
         },
         { role: "user", content: JSON.stringify({ pairs }) },
       ],

@@ -54,7 +54,9 @@ export function sanitizeGradeResults(raw: unknown, questionIds: string[]): TestG
     byId.set(id, {
       id,
       correct: rec.correct === true,
-      feedback: typeof rec.feedback === "string" ? rec.feedback.trim().slice(0, 300) : "",
+      // 400, not 300: feedback is now an explanation of why the answer was judged that way rather
+      // than a one-line verdict, and a cap that clips the second sentence mid-word reads as a bug.
+      feedback: typeof rec.feedback === "string" ? rec.feedback.trim().slice(0, 400) : "",
     });
   }
 

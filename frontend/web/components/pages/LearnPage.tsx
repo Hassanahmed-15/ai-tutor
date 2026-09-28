@@ -2834,8 +2834,8 @@ type BuildCost =
   ) : null;
 
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.
-  // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
-  // every other mode gets to choose written or oral on the offer screen.
+  // The written test is the test. Blind mode still sits the oral one, because a typed exam is a
+  // poor fit for an already voice-first mode; no other mode is offered the choice.
   function onLectureComplete() {
     // The final beat is never "moved past", so say explicitly that it was watched to the end.
     if (progressiveSessionId && lecturePlayheadRef.current >= 0) {
@@ -3544,8 +3544,9 @@ function EntryStatus({
   );
 }
 
-/** Shown right after a lecture finishes — offers a real test on the content. Blind mode forces
- *  oral-only (voice-first already; typing an exam is a poor fit), every other mode picks. */
+/** Shown right after a lecture finishes — offers a real test on the content. Everyone takes the
+ *  written test; blind mode takes the oral one, because it is voice-first and a typed exam is not a
+ *  test it can sit. Nobody is asked to choose. */
 function TestOfferScreen({
   mode,
   topic,
@@ -3590,12 +3591,14 @@ function TestOfferScreen({
                 {loading ? "Preparing…" : "Take the oral exam →"}
               </HudButton>
             ) : (
-              <div className="flex w-full flex-col gap-3 sm:flex-row">
-                <HudButton onClick={onWritten} disabled={loading} className="flex-1">
-                  {loading ? "Preparing…" : "Written test →"}
-                </HudButton>
-                <HudButton variant="ghost" onClick={onOral} disabled={loading} className="flex-1">
-                  {loading ? "Preparing…" : "Oral exam →"}
+              /*
+               * One way in: the written test. The oral exam used to sit beside it as a choice and is
+               * no longer offered — blind mode above still gets it, because a typed exam is not a
+               * test a blind learner can take, so removing it there would remove the exam itself.
+               */
+              <div className="flex w-full flex-col gap-3">
+                <HudButton onClick={onWritten} disabled={loading} className="w-full">
+                  {loading ? "Preparing…" : "Take the test →"}
                 </HudButton>
               </div>
             )}
