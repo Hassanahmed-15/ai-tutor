@@ -54,3 +54,11 @@ test("a drawing request about the lesson is for her; household imperatives are n
     assert.equal(classifyAddressing(said, paused).addressed, false, said);
   }
 });
+
+test("'I want you to…' and 'explain me this' are requests to her, even without her name", () => {
+  const paused = { tutorSpeaking: false, expectingAnswer: false };
+  for (const said of ["But I want you to explain me this.", "I want you to still draw something for me.", "explain me this", "draw something for me"]) {
+    assert.equal(classifyAddressing(said, paused).addressed, true, said);
+  }
+  assert.equal(classifyAddressing("I want you to call your mom", paused).addressed, false);
+});

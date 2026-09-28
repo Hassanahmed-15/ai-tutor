@@ -584,6 +584,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const muteRepliesUntilStudentRef = useRef(false);
   /** This turn's words came from the second opinion; the model's transcript of it is a duplicate. */
   const turnWordsSettledRef = useRef(false);
+  /** The last student turn's words, kept until her reply to it finishes (see finishTutorTurn). */
+  const lastStudentTurnRef = useRef<{ text: string; turnKind: StudentTurnKind } | null>(null);
   /** A turn was discarded while a reply was playing; mute the reply that follows it (see onDiscard). */
   const discardAfterReplyRef = useRef(false);
   /*
@@ -731,6 +733,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       }
     }
     studentTranscriptRef.current = "";
+    if (text) lastStudentTurnRef.current = { text, turnKind };
     return { text, turnKind };
   }, []);
 
@@ -832,7 +835,14 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     responseInFlightRef.current = false;
     turnCompleteRef.current = false;
     setSpeaking(false);
-    const studentTurn = flushStudentTranscript();
+    /*
+     * The student's words were usually flushed already, when their turn ended (onTurnEnd) — so
+     * flushing again here found nothing, the turn read as "incidental", and an explicit "can you
+     * draw this?" that the model answered with words alone was never drawn by the fallback below.
+     */
+    const flushed = flushStudentTranscript();
+    const studentTurn = flushed.text ? flushed : lastStudentTurnRef.current ?? flushed;
+    lastStudentTurnRef.current = null;
     flushTutorTranscript();
 
     const completeTurn = () => {
@@ -1537,6 +1547,15 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
            * while Aria was silent opened without one, and its answer was dropped: no audio, no words.
            */
           if (!studentSpeakingRef.current) suppressCurrentTurnRef.current = false;
+          /*
+           * And every other per-turn flag. These were reset only by a barge-in (beginStudentSpeech),
+           * so a turn that opened with nothing to interrupt — the usual case once the lecture is
+           * paused — inherited the last one's: after a narrated board her replies stayed muted
+           * ("she just remained silent"), and a second drawing request was treated as already drawn.
+           */
+          muteRepliesUntilStudentRef.current = false;
+          turnWordsSettledRef.current = false;
+          boardHandledThisTurnRef.current = false;
           const tutorAudible = playingSourcesRef.current.size > 0 || Boolean(optionsRef.current.getTutorSpeaking?.());
           if (!tutorAudible) machineRef.current?.dispatch({ type: "USER_TURN_OPEN", at: performance.now(), reason: "voice gate accepted turn" });
           openActivity();
