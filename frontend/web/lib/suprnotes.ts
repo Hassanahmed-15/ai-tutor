@@ -43,6 +43,11 @@ export type SuprnotesContentBlock = {
   role?: string;
   /** A figure-labels block's individual printed labels and where each sits on the page (0..1). */
   labelRegions?: Array<{ text: string; bbox: { x: number; y: number; width: number; height: number } }>;
+  /**
+   * On a figure CAPTION of a scanned page: where the figure it captions sits on the page (0..1),
+   * so the board can show the book's own drawing (lib/ocrLayout.ts `figureRegionsFromCaptions`).
+   */
+  figureRegion?: { x: number; y: number; width: number; height: number };
   /** Which uploaded file this block came from, when more than one was uploaded and merged
    *  together — see lib/mergeSourceDocuments.ts. Absent for a single-document upload, so every
    *  existing consumer that never reads this field is unaffected. */

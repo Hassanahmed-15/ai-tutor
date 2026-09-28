@@ -22,6 +22,7 @@ export function SourceFigureBoard({
   labels,
   sentence,
   spoken,
+  caption,
 }: {
   documentId: string;
   pageNumber: number;
@@ -33,11 +34,20 @@ export function SourceFigureBoard({
   sentence: string;
   /** Everything spoken on this board so far — parts named earlier stay softly marked. */
   spoken: string;
+  /** The book's caption, shown under a figure found from its caption (a scanned page). */
+  caption?: string;
 }) {
   const [src, setSrc] = useState<string | null>(null);
   const [natural, setNatural] = useState<{ w: number; h: number } | null>(null);
   const hostRef = useRef<HTMLDivElement | null>(null);
   const [host, setHost] = useState<{ w: number; h: number }>({ w: 0, h: 0 });
+  // The figure eases in whenever it changes, so a switch from one figure to the next reads as a move.
+  const figureKey = `${pageNumber}:${crop.x}:${crop.y}`;
+  const [entered, setEntered] = useState<string | null>(null);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setEntered(figureKey));
+    return () => cancelAnimationFrame(frame);
+  }, [figureKey]);
 
   useEffect(() => {
     let alive = true;
@@ -80,18 +90,19 @@ export function SourceFigureBoard({
 
   // Fit the crop into the board at its true aspect ratio.
   const aspect = natural ? (crop.width * natural.w) / Math.max(1, crop.height * natural.h) : crop.width / Math.max(0.01, crop.height);
-  const pad = 32;
+  const pad = 24;
+  const captionSpace = caption ? 34 : 0;
   const maxW = Math.max(0, host.w - pad * 2);
-  const maxH = Math.max(0, host.h - pad * 2);
+  const maxH = Math.max(0, host.h - pad * 2 - captionSpace);
   const width = Math.min(maxW, maxH * aspect);
   const height = width / aspect;
 
   return (
-    <div ref={hostRef} className="relative flex h-full w-full items-center justify-center bg-[#fbfbf8]">
+    <div ref={hostRef} className="relative flex h-full w-full flex-col items-center justify-center gap-2 bg-[#fbfbf8]">
       {src && width > 0 && (
         <div
-          className="relative overflow-hidden rounded-lg shadow-[0_2px_18px_rgba(15,23,42,0.12)] ring-1 ring-slate-200"
-          style={{ width, height }}
+          className="relative overflow-hidden rounded-lg bg-white shadow-[0_2px_18px_rgba(15,23,42,0.12)] ring-1 ring-slate-200 transition-all duration-500 ease-out"
+          style={{ width, height, opacity: entered === figureKey ? 1 : 0, transform: entered === figureKey ? "scale(1)" : "scale(0.96)" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- the student's own page, a private data URL. */}
           <img
@@ -132,6 +143,11 @@ export function SourceFigureBoard({
           })}
         </div>
       )}
+      {caption && src && width > 0 && (
+        <p className="max-w-full truncate px-4 text-center text-[0.8rem] font-semibold text-slate-600" style={{ width }} title={caption}>
+          {caption}
+        </p>
+      )}
       <span className="pointer-events-none absolute bottom-2 right-3 rounded-md bg-white/85 px-2 py-0.5 text-[0.7rem] font-semibold text-slate-500">
         From your source · page {pageNumber}
       </span>
@@ -139,23 +155,4 @@ export function SourceFigureBoard({
   );
 }
 
-/**
- * The printed figure a beat teaches, if its source blocks include one: the page, the figure's region
- * (the labels' extent, widened to take in the drawing they surround), and each label's position.
- */
-export function sourceFigureFor(
-  blocks: Array<{ id: string; role?: string; pageNumber?: number; bbox?: Box; labelRegions?: Array<{ text: string; bbox: Box }> }>,
-  sourceBlockIds: string[] | undefined,
-): { pageNumber: number; crop: Box; labels: Array<{ text: string; bbox: Box }> } | null {
-  if (!sourceBlockIds?.length) return null;
-  const wanted = new Set(sourceBlockIds);
-  const figure = blocks.find((block) => wanted.has(block.id) && block.role === "figure-labels" && block.bbox && block.labelRegions?.length && typeof block.pageNumber === "number");
-  if (!figure || !figure.bbox || typeof figure.pageNumber !== "number") return null;
-  const b = figure.bbox;
-  const padX = Math.max(0.03, b.width * 0.08);
-  const padY = Math.max(0.03, b.height * 0.12);
-  const x = Math.max(0, b.x - padX);
-  const y = Math.max(0, b.y - padY);
-  const crop = { x, y, width: Math.min(1, b.x + b.width + padX) - x, height: Math.min(1, b.y + b.height + padY) - y };
-  return { pageNumber: figure.pageNumber, crop, labels: figure.labelRegions ?? [] };
-}
+export { activeFigureIndex, sourceFiguresFor, type SourceFigure } from "@/lib/sourceFigures";

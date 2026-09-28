@@ -18,7 +18,7 @@ import { AnnotationLayer, type BoardTool } from "@/components/board/AnnotationLa
 import { strokesFor } from "@/lib/board/annotations";
 import { BoardDock } from "@/components/board/BoardDock";
 import { PdfSourcePanel } from "@/components/teaching/PdfSourcePanel";
-import { SourceFigureBoard, sourceFigureFor } from "@/components/teaching/SourceFigureBoard";
+import { SourceFigureBoard, activeFigureIndex, sourceFiguresFor } from "@/components/teaching/SourceFigureBoard";
 import { BoardStage } from "@/components/board/BoardStage";
 import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
 import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingState";
@@ -2378,12 +2378,25 @@ export function LessonPlayer({
    * A part whose source has a printed figure is taught ON that figure (SourceFigureBoard): the
    * student's own diagram, each part lit up as it is named. Everything else keeps its drawn board.
    */
-  const beatFigure = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
-    ? sourceFigureFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds)
+  const beatFigures = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
+    ? sourceFiguresFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds)
+    : [];
+  const spokenSentences = beatFigures.length
+    ? splitSentences(beat.script ?? "").slice(0, (stage === "board" ? sentenceCue.index : 0) + 1)
+    : [];
+  const spokenSoFar = spokenSentences.join(" ");
+  // A part can teach several figures (Figure 19.2, then 19.3): the one on the board is the one the
+  // narration last turned to, replayed sentence by sentence so it is the same on every render.
+  const beatFigure = beatFigures.length
+    ? beatFigures[spokenSentences.reduce((current, sentence) => activeFigureIndex(beatFigures, sentence, current), 0)]
     : null;
-  const spokenSoFar = beatFigure
-    ? splitSentences(beat.script ?? "").slice(0, sentenceCue.index + 1).join(" ")
-    : "";
+  /*
+   * The figure and the drawing TOGETHER. The book's own figure used to replace the animated board;
+   * the student wants both — the real drawing from their page, and the animation that explains it.
+   * A wide figure (two trees side by side) sits above the board; a tall one beside it.
+   */
+  const boardHasAnimation = findReactAnimationOp(beat)?.kind === "reactAnimation";
+  const figureIsWide = beatFigure ? (beatFigure.crop.width * 0.77) / Math.max(0.01, beatFigure.crop.height) >= 1.35 : false;
   const beatSourcePages = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
     ? [...new Set((sourceDocument.contentBlocks ?? [])
         .filter((block) => beat.sourceBlockIds?.includes(block.id) && typeof block.pageNumber === "number")
@@ -2576,13 +2589,32 @@ export function LessonPlayer({
                 onBoardPainted={handleBoardPainted}
               >
               <div className="relative h-full">
-                {beatFigure ? (
+                {beatFigure && boardHasAnimation ? (
+                  <div className={`flex h-full min-h-0 gap-1.5 bg-slate-950 ${figureIsWide ? "flex-col" : "flex-row"}`}>
+                    <div className={`${figureIsWide ? "h-[42%] w-full" : "h-full w-[42%]"} min-h-0 shrink-0 overflow-hidden rounded-md`}>
+                      <SourceFigureBoard
+                        key={beat.id}
+                        documentId={documentId}
+                        pageNumber={beatFigure.pageNumber}
+                        crop={beatFigure.crop}
+                        labels={beatFigure.labels}
+                        caption={beatFigure.caption}
+                        sentence={stage === "board" ? sentenceCue.text : ""}
+                        spoken={stage === "board" ? spokenSoFar : ""}
+                      />
+                    </div>
+                    <div className="relative min-h-0 min-w-0 flex-1">
+                      <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                    </div>
+                  </div>
+                ) : beatFigure ? (
                   <SourceFigureBoard
                     key={beat.id}
                     documentId={documentId}
                     pageNumber={beatFigure.pageNumber}
                     crop={beatFigure.crop}
                     labels={beatFigure.labels}
+                    caption={beatFigure.caption}
                     sentence={stage === "board" ? sentenceCue.text : ""}
                     spoken={stage === "board" ? spokenSoFar : ""}
                   />

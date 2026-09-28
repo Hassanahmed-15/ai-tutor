@@ -58,18 +58,101 @@ export function linesFromTsv(tsv: string): OcrLine[] {
   }));
 }
 
+/**
+ * The regions Tesseract's layout pass found to be PICTURES, not text: it reports each as a word
+ * with no characters. On a scanned textbook these are the drawings — a tree, a circuit — and they
+ * are the only place a scan says where its figures are.
+ */
+export function graphicsFromTsv(tsv: string): NormalisedBox[] {
+  const rows = tsv.split("\n").slice(1).map((row) => row.split("\t"));
+  const pageRow = rows.find((row) => row[0] === "1");
+  const pageWidth = Number(pageRow?.[8]);
+  const pageHeight = Number(pageRow?.[9]);
+  if (!(pageWidth > 0 && pageHeight > 0)) return [];
+  return rows
+    .filter((row) => row[0] === "5" && row.length >= 12 && !row[11]?.trim())
+    .map((row) => ({ x: Number(row[6]) / pageWidth, y: Number(row[7]) / pageHeight, width: Number(row[8]) / pageWidth, height: Number(row[9]) / pageHeight }))
+    // A stray rule or speck is not a figure.
+    .filter((box) => box.width * box.height >= 0.01 && box.width >= 0.08 && box.height >= 0.04);
+}
+
+export type OcrPageLayout = { lines: OcrLine[]; graphics: NormalisedBox[] };
+
 /** The page's text lines, or null when Tesseract is unavailable or fails. */
 export async function ocrLines(png: Buffer): Promise<OcrLine[] | null> {
+  return (await ocrPageLayout(png))?.lines ?? null;
+}
+
+/**
+ * Where each printed figure sits, found from its CAPTION: a textbook prints "Figure 19.3 …" directly
+ * under the drawing, so the figure is what lies between that caption and the text above it —
+ * tightened to the picture regions Tesseract marked there, when it marked any.
+ *
+ * Returns the figure's box keyed by the caption block's index. A caption with nothing above it but
+ * text (a caption printed above a table, say) gets no box rather than a crop of prose.
+ */
+export function figureRegionsFromCaptions(
+  blocks: Array<{ text: string; bbox?: NormalisedBox }>,
+  layout: OcrPageLayout,
+): Map<number, NormalisedBox> {
+  const regions = new Map<number, NormalisedBox>();
+  const prose = layout.lines.filter((line) => line.tokens.filter((token) => /[a-z]{3,}/.test(token)).length >= 2);
+  blocks.forEach((block, index) => {
+    const caption = block.bbox;
+    if (!caption || !/^\s*fig(?:ure|\.)?\s*\d/i.test(block.text)) return;
+    const left = caption.x - 0.12;
+    const right = caption.x + caption.width + 0.12;
+    const overlaps = (box: NormalisedBox) => box.x < right && box.x + box.width > left;
+    // The nearest text above the caption bounds the figure: another caption, a paragraph, the running head.
+    const ceiling = Math.max(
+      0.03,
+      ...prose.filter((line) => overlaps(line) && line.y + line.height <= caption.y - 0.004).map((line) => line.y + line.height),
+    );
+    const floor = caption.y - 0.004;
+    if (floor - ceiling < 0.05) return;
+    const pictures = layout.graphics.filter((box) => overlaps(box) && box.y + box.height / 2 > ceiling && box.y + box.height / 2 < floor);
+    const pad = 0.015;
+    // The drawing is at least as wide as its caption. Tesseract's picture regions only TIGHTEN that,
+    // and only when together they span most of it: on a two-tree figure it marked the top of one
+    // tree alone, and trusting that crop cut the other tree off.
+    const span = pictures.length ? Math.max(...pictures.map((p) => p.x + p.width)) - Math.min(...pictures.map((p) => p.x)) : 0;
+    const trusted = span >= caption.width * 0.8;
+    const box = {
+      x: Math.min(caption.x - 0.02, ...(trusted ? pictures.map((p) => p.x - pad) : [])),
+      y: trusted ? Math.max(ceiling, Math.min(...pictures.map((p) => p.y)) - pad) : ceiling + 0.004,
+      right: Math.max(caption.x + caption.width + (trusted ? pad : 0.08), ...(trusted ? pictures.map((p) => p.x + p.width + pad) : [])),
+      // Down to the caption either way: the panel letters "(a)" "(b)" sit below the drawing's picture box.
+      bottom: floor,
+    };
+    const x = Math.max(0, box.x);
+    const y = Math.max(0, box.y);
+    regions.set(index, { x, y, width: Math.min(1, box.right) - x, height: Math.min(1, box.bottom) - y });
+  });
+  return regions;
+}
+
+/** The page's text lines and picture regions, or null when Tesseract is unavailable or fails. */
+export async function ocrPageLayout(png: Buffer): Promise<OcrPageLayout | null> {
   const dir = await mkdtemp(path.join(os.tmpdir(), "ocr-layout-"));
   try {
     const file = path.join(dir, "page.png");
     await writeFile(file, png);
+    /*
+     * THE RESOLUTION, SAID OUT LOUD FOR A HIGH-RES RENDER. The upload's 400 DPI page (PyMuPDF) says
+     * 96 DPI in its metadata, so Tesseract took its text for giant type and read 24 lines of a
+     * 39-line page — both margin notes lost, and with them their boxes. A PNG's width is its only
+     * honest clue: a page is about 8.5 in wide. A low-res render (144 DPI, pdf.js) reads best with
+     * no hint at all — a hint there dropped every line — so it is given none.
+     */
+    const width = png.length >= 24 ? png.readUInt32BE(16) : 0;
+    const dpi = Math.round(width / 8.5);
+    const hint = dpi >= 250 ? ["--dpi", String(dpi)] : [];
     const tsv = await new Promise<string>((resolve, reject) => {
-      execFile(TESSERACT, [file, "stdout", "--psm", "3", "tsv"], { timeout: TIMEOUT_MS, maxBuffer: 8 * 1024 * 1024 }, (error, stdout) =>
+      execFile(TESSERACT, [file, "stdout", ...hint, "--psm", "3", "tsv"], { timeout: TIMEOUT_MS, maxBuffer: 8 * 1024 * 1024 }, (error, stdout) =>
         error ? reject(error) : resolve(stdout),
       );
     });
-    return linesFromTsv(tsv);
+    return { lines: linesFromTsv(tsv), graphics: graphicsFromTsv(tsv) };
   } catch {
     return null;
   } finally {

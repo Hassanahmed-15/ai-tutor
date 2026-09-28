@@ -9,6 +9,7 @@ import { animationChipDetail } from "@/lib/animationModels";
 import { BuildTimeline } from "@/components/design/BuildTimeline";
 import type { ProgressiveLectureSnapshot } from "@/lib/progressiveLectureTypes";
 import type { Beat } from "@/lib/lessonContent";
+import type { SourceScope } from "@/lib/sourceScope";
 
 /**
  * `/playback-lab` — the real LessonPlayer on a lecture supplied by a test.
@@ -21,7 +22,8 @@ import type { Beat } from "@/lib/lessonContent";
  */
 declare global {
   interface Window {
-    __PLAYBACK_BEATS__?: { title: string; beats: Beat[] };
+    /** The source fields put the player in its PDF workspace (source panel, figures) — an uploaded document's. */
+    __PLAYBACK_BEATS__?: { title: string; beats: Beat[]; sourceDocument?: unknown; documentId?: string; sourceScope?: SourceScope };
     /** One finished board to render fully drawn, for side-by-side screenshots of the model comparison. */
     __BOARD_STILL__?: { code: string; assetIds?: string[]; sentenceTotal: number; model?: string; costUsd?: number };
     /** Measured beat timings to render the build screen's timeline with (scripts/measure-lecture-latency.mjs). */
@@ -72,7 +74,14 @@ export default function PlaybackLab() {
   // The same badge LearnPage shows, so a playback run also checks that narration cost reaches it.
   return (
     <div className="relative">
-      <LessonPlayer beats={lecture.beats} title={lecture.title} autoVoiceAssistant={false} />
+      <LessonPlayer
+        beats={lecture.beats}
+        title={lecture.title}
+        autoVoiceAssistant={false}
+        sourceDocument={lecture.sourceDocument}
+        documentId={lecture.documentId}
+        sourceScope={lecture.sourceScope}
+      />
       <LectureCostBadge />
     </div>
   );

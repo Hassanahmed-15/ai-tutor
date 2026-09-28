@@ -289,6 +289,12 @@ export function structureTranscribedPage(raw: string): Array<{ kind: "paragraph"
       flush();
       continue;
     }
+    // The transcriber's own stand-in for a picture ("![Image: Binary search trees …]") describes the
+    // figure in its words; it became a block, and then a slide title, on a scanned BST page.
+    if (/^!?\[(?:image|figure|diagram|picture|illustration|graphic)\b[^\]]*\](?:\([^)]*\))?$/i.test(line)) {
+      flush();
+      continue;
+    }
     // A line that is mostly LaTeX layout commands is drawing markup, however many letters they have.
     const commands = line.match(/\\[A-Za-z]+/g) ?? [];
     const prose = line.replace(/\\[A-Za-z]+/g, "").replace(/[{}&$^_]/g, "");

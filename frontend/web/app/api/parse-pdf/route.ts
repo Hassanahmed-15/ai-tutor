@@ -15,7 +15,7 @@ import { cropFigurePagesWithPython, renderPdfWithPython, VISION_DPI, type Python
 import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
 import { figureScope } from "@/lib/figureDetectionScope";
 import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
-import { locateBlocks, ocrLines, type OcrLine } from "@/lib/ocrLayout";
+import { figureRegionsFromCaptions, locateBlocks, ocrPageLayout, type OcrPageLayout } from "@/lib/ocrLayout";
 import {
   planTranscription, pixelRect, assembleTranscript, blocksFromTranscript, isUsableRegion, isTranscriptionRefusal,
   TRANSCRIBE_PROMPT, type PageRegion, type TranscriptPart,
@@ -98,20 +98,32 @@ const VISION_DETAIL = process.env.PDF_VISION_DETAIL === "low" ? "low" : "high";
 
 /** Compact list of the page's TEXT rectangles (normalized), so the model excludes body text and
  *  returns figure boxes that live in the gaps between text — not paragraphs mistaken for figures. */
-/** A scanned page's transcribed blocks, each with its box on the page where its lines were found. */
+type Box = { x: number; y: number; width: number; height: number };
+
+/**
+ * A scanned page's transcribed blocks, each with its box on the page where its lines were found —
+ * and each figure caption with the box of the figure above it, so the board can show the book's
+ * own drawing.
+ */
 async function placeTranscribedBlocks<B extends { text: string; pageNumber: number }>(
   blocks: B[],
-  pageLines: Map<number, Promise<OcrLine[] | null>>,
-): Promise<Array<B & { bbox?: { x: number; y: number; width: number; height: number } }>> {
-  const placed: Array<B & { bbox?: { x: number; y: number; width: number; height: number } }> = [...blocks];
-  for (const [pageNumber, pending] of pageLines) {
-    const lines = await pending;
-    if (!lines?.length) continue;
+  pageLayouts: Map<number, Promise<OcrPageLayout | null>>,
+): Promise<Array<B & { bbox?: Box; figureRegion?: Box }>> {
+  const placed: Array<B & { bbox?: Box; figureRegion?: Box }> = [...blocks];
+  for (const [pageNumber, pending] of pageLayouts) {
+    const layout = await pending;
+    if (!layout?.lines.length) continue;
     const indices = blocks.flatMap((block, index) => (block.pageNumber === pageNumber ? [index] : []));
-    const boxes = locateBlocks(indices.map((index) => blocks[index]), lines);
+    const boxes = locateBlocks(indices.map((index) => blocks[index]), layout.lines);
     indices.forEach((index, at) => {
       if (boxes[at]) placed[index] = { ...blocks[index], bbox: boxes[at] };
     });
+    const figures = figureRegionsFromCaptions(indices.map((index) => placed[index]), layout);
+    for (const [at, region] of figures) placed[indices[at]] = { ...placed[indices[at]], figureRegion: region };
+    if (process.env.NODE_ENV !== "production") {
+      const missing = indices.filter((index) => !placed[index].bbox).map((index) => placed[index].text.slice(0, 40));
+      console.log(`[parse-pdf] layout page=${pageNumber} lines=${layout.lines.length} placed=${indices.length - missing.length}/${indices.length} figures=${figures.size}${missing.length ? ` unplaced=${JSON.stringify(missing)}` : ""}`);
+    }
   }
   return placed;
 }
@@ -1150,7 +1162,7 @@ async function parsePdfRequest(req: NextRequest) {
       : [];
   // Line positions for each whole scanned page, read beside its transcription (lib/ocrLayout.ts),
   // so the source panel can box the passage being taught. Never awaited on a page with a text layer.
-  const pageLines = new Map<number, Promise<OcrLine[] | null>>();
+  const pageLines = new Map<number, Promise<OcrPageLayout | null>>();
   const transcriptParts: TranscriptPart[] = client && transcriptionPlan.length > 0
     ? (await mapLimit(transcriptionPlan, PAGE_CONCURRENCY, async (target): Promise<TranscriptPart | null> => {
         const page = renderedPages.find((p) => p.pageNumber === target.page);
@@ -1158,7 +1170,7 @@ async function parsePdfRequest(req: NextRequest) {
 
         // A page rendered without a PNG cannot be read; skip it rather than crop nothing.
         if (!page.png) return null;
-        if (scanned && !target.rect && !pageLines.has(target.page)) pageLines.set(target.page, ocrLines(page.png));
+        if (scanned && !target.rect && !pageLines.has(target.page)) pageLines.set(target.page, ocrPageLayout(page.png));
         let png: Buffer = page.png;
         if (target.rect) {
           const box = pixelRect(target.rect, page.width, page.height);

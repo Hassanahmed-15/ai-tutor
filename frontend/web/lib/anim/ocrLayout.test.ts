@@ -75,3 +75,9 @@ test("a title cut from a sentence does not end on its connective", async () => {
   const { topicKeywords } = await import("../beatPresentation");
   assert.equal(topicKeywords("The remove operation is difficult because nonleaf nodes"), "The Remove Operation Is Difficult");
 });
+
+test("the transcriber's own picture stand-ins are not the book's text", async () => {
+  const { structureTranscribedPage } = await import("../pdfOcr");
+  const blocks = structureTranscribedPage("![Image: Binary search trees (a) before and (b) after the insertion of 6.]\n\nFigure 19.2 Binary search trees (a) before and (b) after the insertion of 6.\n\nThe hardest operation is remove.");
+  assert.deepEqual(blocks.map((b) => b.kind), ["caption", "paragraph"]);
+});
