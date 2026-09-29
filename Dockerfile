@@ -66,6 +66,10 @@ ARG NEXT_PUBLIC_GEMINI_LIVE_ENABLED=1
 # this the voice tutor is silently OFF in the deployed build while working locally — the flag is
 # inlined by Next at build time, which is why it has to be an ARG here rather than a runtime env.
 ARG NEXT_PUBLIC_REALTIME_TUTOR_ENABLED=1
+# The developer cost chip in the lecture header (components/sketch/RendererBadge.tsx). Off unless a
+# build asks for it with --build-arg NEXT_PUBLIC_SHOW_RENDERER_BADGE=1, as the team deploy does.
+ARG NEXT_PUBLIC_SHOW_RENDERER_BADGE=0
+ENV NEXT_PUBLIC_SHOW_RENDERER_BADGE=$NEXT_PUBLIC_SHOW_RENDERER_BADGE
 ENV NEXT_PUBLIC_REACT_ANIMATIONS_ENABLED=$NEXT_PUBLIC_REACT_ANIMATIONS_ENABLED
 ENV NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED=$NEXT_PUBLIC_BLACKBOARD_GEN_ENABLED
 ENV NEXT_PUBLIC_GEMINI_LIVE_ENABLED=$NEXT_PUBLIC_GEMINI_LIVE_ENABLED
