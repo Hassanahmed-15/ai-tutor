@@ -152,7 +152,8 @@ export function buildExplainRequest(
   if (lesson.conceptTitle) parts.push(`You are currently teaching "${lesson.conceptTitle}".`);
   if (lesson.currentSentence) parts.push(`You had just said: "${lesson.currentSentence}"`);
   parts.push(
-    "Explain exactly what they marked, in two or three spoken sentences. Answer about THAT, not about the whole board, and connect it to what you were just explaining.",
+    "Explain exactly what they marked, in two or three spoken sentences. Answer about THAT, not about the whole board, and connect it to what you were just explaining. " +
+      "If the crop shows no specific part, word or symbol — blank paper, or too little to tell — say you can't tell what they marked and ask them, instead of guessing.",
   );
 
   return { region, selectedText, gesture, question: parts.join(" ") };

@@ -26,9 +26,9 @@ test("a judgement the model actually made is kept, however it is cased", () => {
   assert.equal(validateAnimationTier({ tier: "light", reason: "x".repeat(400) }).reason.length, 140);
 });
 
-test("each tier buys a real model, and a dearer one as the work gets harder", () => {
+test("every tier draws on luna by default (owner's cost decision, 2026-09-29), a real priced model", () => {
   const models = ANIMATION_TIERS.map((tier) => modelForTier(tier, {}));
-  assert.deepEqual(models.map((m) => m.id), ["gpt-5.6-luna", "gpt-5.6-terra", "gpt-5.6-sol"]);
+  assert.deepEqual(models.map((m) => m.id), ["gpt-5.6-luna", "gpt-5.6-luna", "gpt-5.6-luna"]);
   // Every one is a model this codebase knows the price of: an unknown id silently prices at the
   // most expensive fallback, which would make a "light" beat the dearest in the lecture.
   const fallback = priceFor("definitely-not-a-model");
@@ -43,7 +43,7 @@ test("each tier buys a real model, and a dearer one as the work gets harder", ()
 
 test("each tier's model can be overridden, and routing switched off", () => {
   assert.equal(modelForTier("heavy", { ANIMATION_MODEL_HEAVY: "gpt-5.6-terra" }).id, "gpt-5.6-terra");
-  assert.equal(modelForTier("heavy", { ANIMATION_MODEL_HEAVY: "  " }).id, "gpt-5.6-sol", "blank override is ignored");
+  assert.equal(modelForTier("heavy", { ANIMATION_MODEL_HEAVY: "  " }).id, "gpt-5.6-luna", "blank override is ignored");
   assert.equal(animationTierRoutingEnabled({}), true, "on unless switched off");
   assert.equal(animationTierRoutingEnabled({ ANIMATION_TIER_ROUTING: "0" }), false);
 });

@@ -104,6 +104,12 @@ export function useLessonChat(opts: {
   getBeatSource?: () => BeatSourceGrounding | null;
   /** Pause the player's own narration when a question starts. */
   pausePlayer: () => void;
+  /**
+   * A question an EARLIER slide already taught is answered on that slide (lib/revisit.ts): the
+   * player shows it again and returns what Aria says over it, or null to answer as usual. Optional —
+   * a player without it answers every question in place, as before.
+   */
+  revisit?: (question: string) => Promise<{ script: string } | null>;
   /** Lets the progressive planner learn from the question without adding separate adaptation UI. */
   onQuestionAsked?: (question: string) => void;
   /** Called when the explanation closes, so the player can re-open its clarity gate. */
@@ -257,6 +263,14 @@ export function useLessonChat(opts: {
          * words, and an offer only if the model thinks the answer genuinely needs one.
          */
         const documentContext = opts.getDocumentContext?.() ?? "";
+        // Taught on an earlier slide: go back to it and answer there, instead of a new board.
+        const back = asksForVisual(trimmed) ? null : await opts.revisit?.(trimmed).catch(() => null);
+        if (back) {
+          setChat((c) => [...c, { role: "aria", text: back.script }]);
+          // The old slide stays up until the student says continue: nothing is released on end.
+          narrate(back.script);
+          return;
+        }
         if (asksForVisual(trimmed) || isCodeQuestion(trimmed, documentContext)) {
           await explainWithBoard(trimmed);
           return;
@@ -719,10 +733,18 @@ export function ChatPanel({
       <div className={`mt-auto ${compact ? "p-1.5" : "border-t border-[var(--hud-line)] p-3"}`}>
         {(liveActive || liveReady) && (
           <div className="mb-2 flex items-center justify-between gap-2">
-            <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveActive ? "bg-rose-500/15 text-rose-300" : "bg-cyan-400/10 text-cyan-200"}`}>
-              <span className={`size-2 rounded-full ${liveActive ? "animate-pulse bg-rose-400" : "bg-cyan-300"}`} />
-              {liveActive ? liveStatusLabel || "Live — costs apply" : "Voice ready · muted"}
-            </div>
+            {liveAlwaysOn ? (
+              // Always listening: no call to start or end, only her state and the mute below.
+              <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveMuted ? "bg-white/5 text-white/50" : "bg-cyan-400/10 text-cyan-200"}`}>
+                <span className={`size-2 rounded-full ${liveMuted ? "bg-white/30" : "animate-pulse bg-cyan-300"}`} />
+                {liveMuted ? "Muted" : liveStatusLabel || "Listening"}
+              </div>
+            ) : (
+              <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveActive ? "bg-rose-500/15 text-rose-300" : "bg-cyan-400/10 text-cyan-200"}`}>
+                <span className={`size-2 rounded-full ${liveActive ? "animate-pulse bg-rose-400" : "bg-cyan-300"}`} />
+                {liveActive ? liveStatusLabel || "Live — costs apply" : "Voice ready · muted"}
+              </div>
+            )}
             {onLiveMute && (
               <button
                 type="button"
@@ -762,7 +784,8 @@ export function ChatPanel({
               }
             }}
           >
-            {voiceSupported && (
+            {/* Always listening with a Mute above: the mic button would be a second mute, so it goes. */}
+            {voiceSupported && !(liveAlwaysOn && onLiveMute) && (
               <button
                 type="button"
                 onClick={onVoice}

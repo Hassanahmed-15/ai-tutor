@@ -83,7 +83,7 @@ export const OUTLINE_LESSON_SYSTEM_PROMPT = `You are Aria, sketching a lesson OU
 Return JSON only: { "topic": string, "scope": "question" | "lesson", "depth"?: "quick" | "deep", "subtopics": [{ "title": string, "caption": string, "reason": string, "confidence"?: "low", "safetyNet"?: { "prerequisite": string, "diagnostic": string, "masterySignal": string, "rescueMove": string, "reinforceAfter": 1|2|3, "reinforcementPrompt": string }, "scopingQuestion"?: { "question": string, "options": [{ "label": string, "instruction": string }] } }] }
 
 TEACH THE MINIMUM THAT ANSWERS IT. Slides are an output of teaching, never a target. Before planning, decide:
-- "scope": "question" when the student asked something specific — a why/how/what question, a clarification, a comparison, a request for one example ("Why does overfitting happen?", "What is a mitochondrion?", "Difference between TCP and UDP?"). A question gets 1 subtopic, or 2 only if one genuinely cannot answer it completely. "lesson" only when they ask to learn a whole topic ("Teach me linear regression", "I want to learn thermodynamics", "full lesson on…").
+- "scope": "lesson" when they name a whole topic to learn, however they phrase it — "Teach me linear regression", "I want to learn thermodynamics", "full lesson on…", and equally "What is photosynthesis?", "Explain the Krebs cycle", "Tell me about black holes", "How does the heart work?" or just "Photosynthesis". Asking what a TOPIC is, is asking to learn that topic. "question" only when they ask something narrow INSIDE a topic — one specific why/how, a clarification, a comparison, a request for one example ("Why does overfitting happen?", "Why is the sky blue?", "What does the p-value mean here?", "Difference between TCP and UDP?"). A question gets 1 subtopic, or 2 only if one genuinely cannot answer it completely.
 - "depth": "quick" if the request says quickly, briefly, short, simple, in one line or similar; "deep" if it says in depth, deeply, thoroughly, in detail, everything about, or similar; omit it otherwise. The student's words always win over any saved preference.
 - Then plan only the subtopics this scope and depth need. Stop as soon as the request is fully answered: never add a subtopic that re-explains, re-defines, re-examples or rewords something an earlier subtopic already covers. Each subtopic must add understanding the others do not — if you cannot name what NEW thing it adds, leave it out. Examples earn a subtopic only when each one shows something different (intuition, real case, technical case), never two of the same kind.
 
@@ -218,9 +218,42 @@ export function isDirectQuestion(text: string): boolean {
   const value = text.trim().toLowerCase();
   if (!value) return false;
   if (/\b(?:teach me|lesson on|course on|learn about|everything about|full lesson|from scratch|in depth|deeply|in detail)\b/.test(value)) return false;
+  if (isTopicRequest(value)) return false;
   const words = value.split(/\s+/).length;
   if (words > 30) return false;
   return /^(?:why|how|what|when|where|which|who|whose|does|do|did|is|are|was|were|can|could|should|would|will|explain why|explain how|explain what|tell me why|tell me how)\b/.test(value) || value.endsWith("?");
+}
+
+/**
+ * ASKING WHAT A TOPIC IS, IS ASKING TO LEARN IT.
+ *
+ * "what is photosynthesis", "what is krebs cycle", "how does the heart work" and "explain the Krebs
+ * cycle" name a whole subject. Read as direct questions they were planned as ONE subtopic — a one-board
+ * lecture on photosynthesis (reported 2026-09-29). They are topic requests; a question narrows INSIDE a
+ * topic: a why, a comparison, one aspect ("what is the role of chlorophyll in photosynthesis").
+ */
+const TOPIC_REQUEST = /^(?:what\s+(?:is|are)|what's|explain|describe|tell\s+me\s+about|how\s+(?:does|do)(?=.*\bwork\??$))\s+(?:an?\s+|the\s+)?(.+?)(?:\s+works?)?\s*\??$/;
+const NARROWING = /\b(?:why|difference|differences|between|vs|versus|compared?|role|purpose|function|meaning|mean|means|used|use|uses|when|where|for|with|without|after|before|during|if)\b/;
+
+export function isTopicRequest(text: string): boolean {
+  const value = text.trim().toLowerCase();
+  const match = value.match(TOPIC_REQUEST);
+  if (!match) return false;
+  const subject = match[1].trim();
+  return subject.length > 0 && subject.split(/\s+/).length <= 4 && !NARROWING.test(subject);
+}
+
+/**
+ * The planner's instruction for a topic request ("what is photosynthesis"). The outline prompt leans
+ * hard toward the minimum — right for a question, wrong here — so the planner is told plainly, as it
+ * is for a direct question, which kind of request this is.
+ */
+export function topicLessonInstruction(request: string): string {
+  return (
+    `\n\nTHIS IS A REQUEST TO LEARN A WHOLE TOPIC: "${request}". Set "scope": "lesson". Asking what a topic is ` +
+    `means teaching it: plan the full lesson — what it is, its parts or stages, how it works, and why it matters — ` +
+    `with as many subtopics as the topic genuinely contains, each teaching something the others do not.`
+  );
 }
 
 /** The planner's instruction for a direct question: answer it, in one board, two at most. */

@@ -168,9 +168,11 @@ test("a label wrapped with <tspan x dy> (the layout contract's form) is measured
 });
 
 test("a heading and subtitle whose ink overprints are caught; properly spaced rows are not", () => {
-  // The reported board: a 34px title at y=78 and a 23px subtitle at y=104. The old 1.35-em boxes
-  // passed it; the title's "y" descender and the subtitle's capital L overprint on screen.
-  const tight = `<svg><text x="76" y="78" font-size="34" font-weight="800">Photosynthesis</text><text x="76" y="104" font-size="23">Light powers chemical change</text></svg>`;
+  // A 34px title and a 23px subtitle 20 apart: the title's "y" descender (0.23 em) and the subtitle's
+  // capital L (0.75 em) overprint in the board font. (The reported Playpen board had them 26 apart;
+  // the board font's ink is shorter, so the same rows now clear by a pixel — the gap is set to one
+  // that really overprints.)
+  const tight = `<svg><text x="76" y="78" font-size="34" font-weight="800">Photosynthesis</text><text x="76" y="98" font-size="23">Light powers chemical change</text></svg>`;
   assert.match(layoutIssues(tight).join(" "), /on top of each other/);
   const spaced = `<svg><text x="76" y="78" font-size="34">Photosynthesis</text><text x="76" y="120" font-size="23">Light powers chemical change</text></svg>`;
   assert.deepEqual(layoutIssues(spaced), []);
@@ -184,7 +186,7 @@ test("text inside a transformed group is measured where it is drawn, not at its 
   const apart = `<svg viewBox="0 0 1000 560"><g transform="translate(300 200)"><text x="0" y="0" font-size="20">vacuole</text></g><g transform="translate(300 400)"><text x="0" y="0" font-size="20">nucleus</text></g></svg>`;
   assert.deepEqual(layoutIssues(apart), [], "not 'printed on top of each other'");
   // And two that the transforms DO bring together are caught, ink band included.
-  const together = `<svg viewBox="0 0 1000 560"><g transform="translate(300 200)"><text x="0" y="0" font-size="22">cytoplasm</text></g><text x="300" y="222" font-size="22">Nucleus</text></svg>`;
+  const together = `<svg viewBox="0 0 1000 560"><g transform="translate(300 200)"><text x="0" y="0" font-size="22">cytoplasm</text></g><text x="300" y="218" font-size="22">Nucleus</text></svg>`;
   assert.match(layoutIssues(together).join(" "), /on top of each other/);
   // A label pushed off the board by its group's transform is caught.
   const off = `<svg viewBox="0 0 1000 560"><g transform="translate(900 300)"><text x="0" y="0" font-size="20">chloroplast</text></g></svg>`;
@@ -192,9 +194,9 @@ test("text inside a transformed group is measured where it is drawn, not at its 
 });
 
 test("rows without ascenders or descenders may sit closer than rows with them", () => {
-  // x-height-only words at a 1.0 em gap do not touch; a descender over a capital at the same gap does.
-  const plain = `<svg><text x="700" y="300" font-size="22">vacuole</text><text x="700" y="322" font-size="22">membrane</text></svg>`;
-  const deep = `<svg><text x="700" y="300" font-size="22">cytoplasm</text><text x="700" y="322" font-size="22">Nucleus</text></svg>`;
+  // x-height-only words at a 0.8 em gap do not touch; a descender over a capital at the same gap does.
+  const plain = `<svg><text x="700" y="300" font-size="22">vacuole</text><text x="700" y="318" font-size="22">membrane</text></svg>`;
+  const deep = `<svg><text x="700" y="300" font-size="22">cytoplasm</text><text x="700" y="318" font-size="22">Nucleus</text></svg>`;
   assert.deepEqual(layoutIssues(plain), []);
   assert.match(layoutIssues(deep).join(" "), /on top of each other/);
 });
@@ -224,14 +226,19 @@ test("the critics' picture is drawn in the board font — even on a server with 
   const { Resvg } = await import("@resvg/resvg-js");
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" style="font-family:Chalkboard SE, Marker Felt"><rect width="400" height="100" fill="#ffffff"/><text x="10" y="70" font-size="48" font-family="Gaegu" fill="#000000">nucleus</text></svg>`;
   const inked = (doc: string) => {
-    const image = new Resvg(doc, { font: { fontFiles: files, loadSystemFonts: false, defaultFontFamily: "Playpen Sans" } }).render();
+    const image = new Resvg(doc, { font: { fontFiles: files, loadSystemFonts: false, defaultFontFamily: "Nunito" } }).render();
     let dark = 0;
     for (let i = 0; i < image.pixels.length; i += 4) if (image.pixels[i] < 128) dark += 1;
     return dark;
   };
-  assert.match(withBoardFont(svg), /font-family="Playpen Sans"/);
+  assert.match(withBoardFont(svg), /font-family="Nunito"/);
   assert.doesNotMatch(withBoardFont(svg), /Chalkboard|Gaegu/);
   assert.ok(inked(withBoardFont(svg)) > 500, "the label is drawn");
+
+  // A heading (weight above 650) is drawn in the heading face, which resvg matches by its own name.
+  const heading = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100"><rect width="400" height="100" fill="#ffffff"/><text x="10" y="70" font-size="48" font-weight="800" font-family="Gaegu" fill="#000000">Heart</text></svg>`;
+  assert.match(withBoardFont(heading), /<text[^>]*font-family="Outfit"/);
+  assert.ok(inked(withBoardFont(heading)) > 500, "the heading is drawn");
 });
 
 /* ── Strict label grounding ───────────────────────────────────────────────── */

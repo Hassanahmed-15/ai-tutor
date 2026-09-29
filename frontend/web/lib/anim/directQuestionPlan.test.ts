@@ -3,10 +3,17 @@ import assert from "node:assert/strict";
 import { capQuestionOutline, isDirectQuestion } from "../planPrompt";
 
 test("a direct question is recognised; a request to learn a topic is not", () => {
-  for (const q of ["why does underfitting happen", "Why does overfitting happen?", "how does a transistor switch", "what is a mitochondrion", "Explain why the sky is blue", "difference between TCP and UDP?"]) {
+  for (const q of ["why does underfitting happen", "Why does overfitting happen?", "how does a transistor switch", "Explain why the sky is blue", "difference between TCP and UDP?", "what is the role of chlorophyll in photosynthesis", "what is the difference between mitosis and meiosis?", "what does the p-value mean?"]) {
     assert.equal(isDirectQuestion(q), true, q);
   }
   for (const t of ["Krebs cycle", "teach me linear regression", "Photosynthesis", "I want to learn thermodynamics in depth"]) {
+    assert.equal(isDirectQuestion(t), false, t);
+  }
+});
+
+test("asking what a topic is, or how it works, is a request for the whole lesson (reported 2026-09-29)", () => {
+  // Each of these was planned as ONE subtopic — a one-board lecture.
+  for (const t of ["what is photosynthesis", "what is krebs cycle", "What is a mitochondrion?", "what are black holes", "how does the heart work", "How do vaccines work?", "explain the Krebs cycle", "tell me about plate tectonics", "what is the theory of evolution", "what is the law of demand"]) {
     assert.equal(isDirectQuestion(t), false, t);
   }
 });

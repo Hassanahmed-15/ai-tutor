@@ -5,7 +5,10 @@ import { keepContentLabels } from "@/lib/board/contentLabels";
 import { registerSandboxText } from "@/lib/board/sandboxBridge";
 import { ANIM_SANDBOX_RUNTIME } from "../../lib/anim/sandboxRuntime";
 import { SANDBOX_LAYOUT_CORE, SANDBOX_LAYOUT_HOST } from "../../lib/anim/sandboxLayout";
+import { isMotionBoard, motionBoardSentenceCount, MOTION_MODULE_NAMES, PEN_WRITER_SOURCE, SANDBOX_MOTION_RUNTIME, SANDBOX_MOTION_URL } from "../../lib/anim/sandboxMotion";
 import { escapeStrayLessThan, type ParseLoc } from "../../lib/jsxRepair";
+import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "../../lib/anim/boardFont";
+import { illustrationIdOf } from "../../lib/anim/illustratedLayout";
 
 /**
  * Renders an LLM-generated React component (a `reactAnimation` DrawOp's `code` string) live,
@@ -46,8 +49,9 @@ const transpileCache = new Map<string, string>();
 // matches nothing external — external script tags are blocked, React never loads, and every
 // animation "fails to run safely". Inlining the source (allowed by `script-src 'unsafe-inline'`)
 // is the only way to get React into an opaque-origin sandbox with a locked-down CSP.
-let reactRuntimePromise: Promise<{ react: string; reactDom: string }> | null = null;
-function loadReactRuntime(): Promise<{ react: string; reactDom: string }> {
+type SandboxRuntime = { react: string; reactDom: string; motion: string };
+let reactRuntimePromise: Promise<SandboxRuntime> | null = null;
+function loadReactRuntime(): Promise<SandboxRuntime> {
   if (!reactRuntimePromise) {
     /**
      * `res.ok` is checked, and a failure is NEVER memoised — both matter.
@@ -65,8 +69,12 @@ function loadReactRuntime(): Promise<{ react: string; reactDom: string }> {
     reactRuntimePromise = Promise.all([
       get("/sandbox/react.production.min.js"),
       get("/sandbox/react-dom.production.min.js"),
+      // Motion is optional: without it the sandbox's static stand-in renders every motion element
+      // settled at its target (lib/anim/sandboxMotion.ts), so a missing file costs the glide, never
+      // the board.
+      get(SANDBOX_MOTION_URL).catch(() => ""),
     ])
-      .then(([react, reactDom]) => ({ react, reactDom }))
+      .then(([react, reactDom, motion]) => ({ react, reactDom, motion }))
       .catch((err) => {
         reactRuntimePromise = null;
         throw err;
@@ -99,21 +107,40 @@ function loadAssetRuntime(assetIds?: string[]): Promise<string> {
 /**
  * THE BOARD FONT, inlined into every sandbox document.
  *
- * Playpen Sans (SIL OFL 1.1 — public/fonts/PlaypenSans-OFL.txt), a handwriting face designed for
- * legibility in education, subset to Latin, Latin-1/Extended-A, Greek and the science symbols, as
- * two static weights: SemiBold for body text and labels, ExtraBold for headings. The .woff2 files
- * feed this document; the matching .ttf files are for server-side measurement and rasterising
- * (resvg reads TTF), so the critic measures the very glyphs the student sees.
+ * Nunito SemiBold for text and labels, Outfit ExtraBold for headings — both under one family name
+ * (lib/anim/boardFont.ts). The same TTFs feed the server-side rasteriser and width tables, so the
+ * critic measures the very glyphs the student sees.
  *
  * Fetched once per page and cached as CSS text, in parallel with the React runtime and warmed by
  * warmSandbox(), so no board waits on it. A failed fetch resolves to "" and the board falls back to
- * the system handwriting stack — a font must never be the reason a board does not appear. Not
+ * the system sans stack — a font must never be the reason a board does not appear. Not
  * memoised on failure, for the same reason as the runtime above.
  */
-const BOARD_FONT_FACES = [
-  { url: "/fonts/PlaypenSans-SemiBold.woff2", weight: "100 650" },
-  { url: "/fonts/PlaypenSans-ExtraBold.woff2", weight: "651 1000" },
-];
+/**
+ * An illustrated board's picture (lib/anim/illustratedLayout.ts), as a data URL — the only image
+ * source the sandbox's CSP admits. Cached per id; a failure is not memoised, and rejects, because a
+ * labelled board with no picture under its labels is worse than the player's fallback board.
+ */
+const illustrationCache = new Map<string, Promise<string>>();
+function loadIllustration(code: string): Promise<string> {
+  const id = illustrationIdOf(code);
+  if (!id) return Promise.resolve("");
+  let pending = illustrationCache.get(id);
+  if (!pending) {
+    pending = fetch(`/api/board-illustrations/${id}`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`illustration ${id} returned ${res.status}`);
+        return blobToDataUrl(await res.blob());
+      })
+      .catch((err) => {
+        illustrationCache.delete(id);
+        throw err;
+      });
+    illustrationCache.set(id, pending);
+  }
+  return pending;
+}
+
 let boardFontPromise: Promise<string> | null = null;
 function blobToDataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -131,7 +158,7 @@ function loadBoardFont(): Promise<string> {
         if (!res.ok) throw new Error(`${face.url} returned ${res.status}`);
         const dataUrl = await blobToDataUrl(await res.blob());
         if (!/^data:[^,]*;base64,/.test(dataUrl)) throw new Error(`${face.url} did not read as a data URL`);
-        return `@font-face{font-family:"Playpen Sans";src:url(${dataUrl}) format("woff2");font-weight:${face.weight};font-style:normal;font-display:block;}`;
+        return `@font-face{font-family:"${BOARD_FONT_FAMILY}";src:url(${dataUrl}) format("truetype");font-weight:${face.weight};font-style:normal;font-display:block;}`;
       }),
     )
       .then((rules) => rules.join("\n"))
@@ -235,7 +262,7 @@ async function transpile(code: string): Promise<string> {
 
 function buildSrcDoc(
   transpiledCode: string,
-  runtime: { react: string; reactDom: string },
+  runtime: SandboxRuntime,
   /**
    * Defines <Asset/> and the artwork it can place. Injected AFTER the motion runtime and BEFORE
    * the component, and it must match what lib/reactAnimationVisionCritic.ts prepends server-side —
@@ -244,6 +271,17 @@ function buildSrcDoc(
   assetRuntime = "",
   /** The board font's @font-face rules (data: URIs), or "" to fall back to system handwriting. */
   fontCss = "",
+  /**
+   * A MOTION BOARD (lib/anim/sandboxMotion.ts) reveals and animates itself from the sentence clock,
+   * so it is rendered with that clock and the host's teaching timeline — handwriting, stroke
+   * tracing, data-teach-* reveal — does not run on it. False for boards saved before, which the
+   * timeline reveals exactly as before.
+   */
+  motionBoard = false,
+  /** How many sentences a Motion board's reveals are keyed to (motionBoardSentenceCount). */
+  boardSentences = 1,
+  /** An illustrated board's picture as a data URL, exposed to the board as BOARD_ILLUSTRATION. */
+  illustration = "",
 ): string {
   // React/ReactDOM are UMD builds pinned at React 18, INLINED (not <script src>) because the
   // opaque-origin sandbox + strict CSP blocks external script tags — see loadReactRuntime above.
@@ -262,26 +300,30 @@ html,body{margin:0;padding:0;background:#fbfbf8;width:100%;height:100%;overflow:
 #root{width:100%;height:100%;box-sizing:border-box;padding:0;background:#fbfbf8;}
 #root>*{width:100%;height:100%;box-sizing:border-box;display:block;}
 svg{max-width:100%;max-height:100%;overflow:visible;}
+/* The pulsing orange ring picture boards drew on a part until 2026-09-29 (removed from the composer);
+   hidden here so lectures saved before that lose it too. Matches only that exact ring. */
+circle[stroke="#f59e0b"][stroke-width="3.5"][fill="none"]{display:none!important;}
 /*
- * NO LABELS. Animated boards carry no labels (the prompt forbids them — NO_LABELS_RULE in
- * lib/drawPrompt.ts); this hides any a board still has, including every board generated before the
- * rule, so a lesson never shows one. Hidden elements take no part in the fit-to-ink layout.
+ * NO LABELS ON TIMELINE BOARDS. Boards from the timeline era carried no labels (NO_LABELS_RULE in
+ * lib/drawPrompt.ts); this hides any such a board still has. Motion boards carry a few labels by
+ * design (FEW_LABELS_RULE) and reveal everything themselves, so neither hide rule applies to them.
+ * Hidden elements take no part in the fit-to-ink layout.
  */
-[data-teach-kind="label"]{display:none!important;}
+${motionBoard ? "" : '[data-teach-kind="label"]{display:none!important;}'}
 /*
  * ONE FONT, EVERYWHERE. The board used to name "Chalkboard SE" — a macOS font — so Windows students
  * got Comic Sans, Linux got a sans, and every width the layout was planned against was wrong
- * somewhere. Playpen Sans (OFL, public/fonts) ships inside the document, so the glyphs, and every
+ * somewhere. The board font (lib/anim/boardFont.ts, OFL) ships inside the document, so the glyphs, and every
  * measurement taken from them, are identical on every machine and in the server-side critic.
  * Weight is the author's, mapped onto the two shipped faces: body text SemiBold, headings ExtraBold.
  */
 svg text{
-  font-family:"Playpen Sans","Chalkboard SE","Marker Felt","Comic Sans MS","Trebuchet MS",sans-serif!important;
+  font-family:${BOARD_FONT_STACK}!important;
   letter-spacing:0!important;
   font-kerning:normal;
   transition:opacity 80ms linear!important;
 }
-[data-teach-order]{opacity:0;}
+${motionBoard ? "" : "[data-teach-order]{opacity:0;}"}
 /* A border drawn around the authored 1000x560 box means nothing once the board is fitted to its pane. */
 svg[data-host-fitted] [data-host-frame]{stroke-opacity:0!important;}
 </style>
@@ -290,6 +332,7 @@ svg[data-host-fitted] [data-host-frame]{stroke-opacity:0!important;}
 <div id="root"></div>
 <script>${runtime.react}<\/script>
 <script>${runtime.reactDom}<\/script>
+<script>${runtime.motion}<\/script>
 <script>
 (function () {
   var root = null;
@@ -299,11 +342,43 @@ svg[data-host-fitted] [data-host-frame]{stroke-opacity:0!important;}
   // Last progress value actually committed through React, quantised to 1%. Lets render() skip
   // reconciliation on the ~60/sec messages that would produce an identical tree. See render().
   var lastRenderedProgress = null;
+  var MOTION_BOARD = ${motionBoard ? "true" : "false"};
+  var BOARD_SENTENCES = ${Math.max(1, Math.floor(boardSentences))};
+  /*
+   * What the component is rendered with. A timeline board gets progress alone, as it always has. A
+   * Motion board gets the narration clock — and two guarantees that do not depend on the caller:
+   *  - A caller with no clock (a follow-up answer's board sends sentence 0 of 1) would hold the board
+   *    on its first sentence and never reach steps keyed to sentence 2+. The board's own sentences
+   *    are run across progress instead.
+   *  - Finished means EVERY step the board defines is on screen, even if the caller counted fewer
+   *    sentences than the board was keyed to.
+   */
+  function boardProps(progress, sentenceIndex, sentenceProgress, sentenceTotal) {
+    if (!MOTION_BOARD) return { progress: progress };
+    var total = sentenceTotal, index = sentenceIndex, within = sentenceProgress;
+    if (!(total > 1) && BOARD_SENTENCES > 1) {
+      var scaled = Math.min(progress, 0.999999) * BOARD_SENTENCES;
+      total = BOARD_SENTENCES;
+      index = Math.floor(scaled);
+      within = scaled - index;
+    }
+    var finished = progress >= 1;
+    var all = Math.max(total, BOARD_SENTENCES);
+    return {
+      progress: progress,
+      sentence: finished ? all : index,
+      sentenceProgress: finished ? 1 : within,
+      sentenceTotal: all
+    };
+  }
 
   // Easing/composition helpers, declared before the generated component runs so it can call
   // them by name. Function declarations hoist, so they are in scope inside the try block below.
 ${ANIM_SANDBOX_RUNTIME}
+${SANDBOX_MOTION_RUNTIME}
+${motionBoard ? PEN_WRITER_SOURCE : ""}
 ${assetRuntime}
+  var BOARD_ILLUSTRATION = ${JSON.stringify(illustration)};
 
   function postToParent(msg) {
     try { window.parent.postMessage(msg, "*"); } catch (e) {}
@@ -410,6 +485,7 @@ ${assetRuntime}
     if (name === "react/jsx-runtime" || name === "react/jsx-dev-runtime") {
       return { jsx: React.createElement, jsxs: React.createElement, Fragment: React.Fragment };
     }
+    if (${JSON.stringify(MOTION_MODULE_NAMES)}.indexOf(name) >= 0) return { motion: motion };
     throw new Error("Module not available in the board sandbox: " + name);
   }
 
@@ -444,7 +520,7 @@ ${SANDBOX_LAYOUT_HOST}
   var settleMode = null;
   var lastArgs = null;
   function applyWithSettle() {
-    if (!lastArgs) return;
+    if (!lastArgs || MOTION_BOARD) return;
     try {
       applyTeachingTimeline(lastArgs[0], lastArgs[1], lastArgs[2], lastArgs[3], settleMode);
       postTextMap();
@@ -488,16 +564,19 @@ ${SANDBOX_LAYOUT_HOST}
        * also what makes the in-between frames cheap.
        */
       var quantised = Math.round(progress * 100) / 100;
-      var needsRender = lastRenderedProgress === null || quantised !== lastRenderedProgress;
+      // A Motion board also re-renders the moment a new sentence starts, so its reveal is on time.
+      var renderKey = MOTION_BOARD ? quantised + "|" + boardProps(progress, sentenceIndex, sentenceProgress, sentenceTotal).sentence : quantised;
+      var needsRender = lastRenderedProgress === null || renderKey !== lastRenderedProgress;
 
       if (!needsRender) {
         cancelAnimationFrame(timelineFrame);
-        applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal, settleMode); postTextMap();
+        if (!MOTION_BOARD) applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal, settleMode);
+        postTextMap();
         return;
       }
-      lastRenderedProgress = quantised;
+      lastRenderedProgress = renderKey;
 
-      root.render(React.createElement(Animation, { progress: progress }));
+      root.render(React.createElement(Animation, boardProps(progress, sentenceIndex, sentenceProgress, sentenceTotal)));
       cancelAnimationFrame(timelineFrame);
       // DOUBLE rAF, deliberately. root.render() is asynchronous, so on a single frame the
       // timeline can run BEFORE React commits: it styles the old nodes, React then swaps in new
@@ -507,7 +586,8 @@ ${SANDBOX_LAYOUT_HOST}
       // detailed ones never appeared. Waiting a second frame puts this after commit and paint.
       timelineFrame = requestAnimationFrame(function () {
         timelineFrame = requestAnimationFrame(function () {
-          applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal, settleMode); postTextMap();
+          if (!MOTION_BOARD) applyTeachingTimeline(progress, sentenceIndex, sentenceProgress, sentenceTotal, settleMode);
+          postTextMap();
         });
       });
     } catch (err) {
@@ -529,8 +609,8 @@ ${SANDBOX_LAYOUT_HOST}
     try {
       if (document.fonts && document.fonts.load) {
         Promise.all([
-          document.fonts.load('600 24px "Playpen Sans"'),
-          document.fonts.load('800 24px "Playpen Sans"')
+          document.fonts.load('600 24px "${BOARD_FONT_FAMILY}"'),
+          document.fonts.load('800 24px "${BOARD_FONT_FAMILY}"')
         ]).then(finish, finish);
       } else {
         finish();
@@ -542,8 +622,11 @@ ${SANDBOX_LAYOUT_HOST}
     if (hasErrored || typeof Animation !== "function") return;
     try {
       root = ReactDOM.createRoot(document.getElementById("root"));
+      // Motion jumps, not glides, until the first real frame has landed (see setMotionInstant).
+      setMotionInstant(true);
       prepareBoardLayout(function (p) {
-        ReactDOM.flushSync(function () { root.render(React.createElement(Animation, { progress: p })); });
+        // Laid out from the finished board: a Motion board is measured with every step revealed.
+        ReactDOM.flushSync(function () { root.render(React.createElement(Animation, boardProps(p, 999, 1, 999))); });
       });
     } catch (err) {
       reportError(err);
@@ -555,12 +638,31 @@ ${SANDBOX_LAYOUT_HOST}
     render(args[0], args[1], args[2], args[3]);
     postToParent({ type: "ready" });
     postTextMap();
+    // The first frame commits and styles over two animation frames (render's double rAF); Motion
+    // starts its animations just after commit. Glides begin only once that frame is on screen.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        setTimeout(function () {
+          setMotionInstant(false);
+          // The pen starts on the first real frame, never on the layout pass's finished board.
+          if (MOTION_BOARD) PEN.start(args[1], args[2]);
+        }, 120);
+      });
+    });
   }
 
   window.addEventListener("message", function (event) {
     var data = event.data;
     if (!data || typeof data !== "object") return;
     if (data.type === "snapshot") { postSnapshot(data.id); return; }
+    if (data.type === "pen") {
+      if (MOTION_BOARD) PEN.pause(data.paused === true);
+      return;
+    }
+    if (data.type === "annotate") {
+      if (MOTION_BOARD) PEN.annotate({ marks: Array.isArray(data.marks) ? data.marks : [], note: typeof data.note === "string" ? data.note.slice(0, 40) : "" });
+      return;
+    }
     if (data.type === "settle") {
       settleMode = data.scope === "word" ? "word" : "line";
       if (booted) applyWithSettle();
@@ -651,9 +753,9 @@ export function ReactAnimationSandbox({
   // component's whole lifetime — no need to react to it changing after mount.
   useEffect(() => {
     let cancelled = false;
-    Promise.all([transpile(code), loadReactRuntime(), loadAssetRuntime(assetIds), loadBoardFont()])
-      .then(([out, runtime, assets, fontCss]) => {
-        if (!cancelled) setSrcDoc(buildSrcDoc(out, runtime, assets, fontCss));
+    Promise.all([transpile(code), loadReactRuntime(), loadAssetRuntime(assetIds), loadBoardFont(), loadIllustration(code)])
+      .then(([out, runtime, assets, fontCss, illustration]) => {
+        if (!cancelled) setSrcDoc(buildSrcDoc(out, runtime, assets, fontCss, isMotionBoard(code), motionBoardSentenceCount(code), illustration));
       })
       .catch(() => {
         if (!cancelled) reportFailure();
@@ -699,6 +801,12 @@ export function ReactAnimationSandbox({
     if (!srcDoc || failed || !ready || !settled) return;
     iframeRef.current?.contentWindow?.postMessage({ type: "settle", scope: "line" }, "*");
   }, [srcDoc, failed, ready, settled, progress, sentenceIndex, sentenceProgress]);
+
+  // The board's pen (Motion boards) stops when the student pauses and goes on when they resume.
+  useEffect(() => {
+    if (!srcDoc || failed || !ready) return;
+    iframeRef.current?.contentWindow?.postMessage({ type: "pen", paused: settled }, "*");
+  }, [srcDoc, failed, ready, settled]);
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
@@ -758,13 +866,11 @@ export function ReactAnimationSandbox({
         sandbox="allow-scripts"
         className="h-full w-full border-0"
       />
-      {/* The marker is gone deliberately — a teal stylus used to hover here, following the writing.
-          The board is what the student reads, and a hand drawn over it competes with exactly the
-          thing it is meant to be helping them read. The ink reveal is untouched: text still writes
-          on word by word, strokes still draw. Only the hand is removed.
-
-          The iframe still POSTS marker positions; ignoring them here is cheaper than changing the
-          sandbox contract, and leaves the position available if a surface ever wants a cursor. */}
+      {/* No host marker. A teal stylus used to hover here, following the writing a beat behind it,
+          and competed with what the student reads. A Motion board now carries its own small pen
+          INSIDE the board (PEN_WRITER_SOURCE, lib/anim/sandboxMotion.ts), drawn at the edge of the
+          ink on the same frame, so it can never lag the text; it fades out when it has nothing to
+          write. The iframe still POSTS legacy marker positions; they are ignored. */}
     </div>
   );
 }

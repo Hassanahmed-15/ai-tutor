@@ -25,6 +25,7 @@ import { type TrackMeta } from "@/components/hud/tracks";
 import { useAuth } from "@/components/auth/AuthGate";
 import { trackForProfile, isAdhdLearner } from "@/lib/adhd/gate";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
+import { matchSpokenAnswer } from "@/lib/spokenAnswer";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
@@ -379,6 +380,8 @@ type BuildCost =
    *  diagnosticQuestion the way the text chat is, so there is no other record of what she just
    *  asked out loud. */
   const lastVoiceQuestionRef = useRef<string>("");
+  /** The answer card a spoken answer picked, lit for a moment so the student sees what Aria heard. */
+  const [voicePick, setVoicePick] = useState<string | null>(null);
 
   const planningVoice = useGeminiLiveTutor({
     voiceSurface: "planning",
@@ -467,6 +470,23 @@ type BuildCost =
        * screen is the only question, Aria speaks exactly that question, and whichever way the
        * student answers, it advances the same conversation.
        */
+      // "Which one do you mean?" — answered like any other question on screen.
+      const ambiguity = ambiguityQuestionRef.current;
+      if (planningPhase && ambiguity && !diagnosticQuestionRef.current) {
+        const meant = matchSpokenAnswer(text, ambiguity.options, lastVoiceQuestionRef.current);
+        if (!meant) return;
+        ambiguityQuestionRef.current = null;
+        if (meant.kind === "option") {
+          setVoicePick(meant.option);
+          window.setTimeout(() => {
+            setVoicePick(null);
+            answerAmbiguityRef.current(ambiguity.question, meant.option);
+          }, 650);
+        } else {
+          answerAmbiguityRef.current(ambiguity.question, meant.text);
+        }
+        return;
+      }
       if (planningPhase && diagnosticQuestionRef.current && !diagnosticBusyRef.current) {
         /*
          * ONLY A REAL ANSWER ANSWERS. Any transcript used to count — a cough, a word from the room,
@@ -475,10 +495,26 @@ type BuildCost =
          * to a multiple-choice question must name one of its options; an open question needs at
          * least three words. Anything else is ignored and the question stays on screen.
          */
-        if (!isSpokenAnswer(text, diagnosticQuestionRef.current.options)) return;
+        /*
+         * What the answer MEANT (lib/spokenAnswer.ts): a card by letter, position or in their own
+         * words, "not sure", "just teach me", or a real sentence of their own. A stray word or her
+         * own voice echoing back still answers nothing.
+         */
+        const meant = matchSpokenAnswer(text, diagnosticQuestionRef.current.options, lastVoiceQuestionRef.current);
+        if (!meant) return;
+        if (meant.kind === "option") {
+          // The picked card lights up first, so the student sees what was heard before it moves on.
+          diagnosticBusyRef.current = true;
+          setVoicePick(meant.option);
+          window.setTimeout(() => {
+            setVoicePick(null);
+            void runDiagnosticRef.current(meant.option);
+          }, 650);
+          return;
+        }
         // Her own reply to this turn is held back by holdUnpromptedReplies (above); the next
         // question is spoken via say() — a short acknowledgement, then exactly what is on screen.
-        void runDiagnostic(text.trim());
+        void runDiagnosticRef.current(meant.text);
         return;
       }
       if (planningPhase && !hasEnoughSignal(learnerProfileRef.current ?? emptyProfile(topic))) {
@@ -498,7 +534,7 @@ type BuildCost =
     alwaysOn: true,
     // While a question is on screen (or the next one is being chosen), Aria speaks only what she is
     // handed via say(): the question the student can see. See holdUnpromptedReplies in the hook.
-    holdUnpromptedReplies: () => Boolean(diagnosticQuestionRef.current) || diagnosticBusyRef.current,
+    holdUnpromptedReplies: () => Boolean(diagnosticQuestionRef.current) || diagnosticBusyRef.current || Boolean(ambiguityQuestionRef.current),
     onSessionEnded: (reason) => {
       // Surfaced rather than swallowed: a dropped socket and a deliberate stop look identical on
       // screen otherwise, which is what made the idle teardown so hard to see.
@@ -518,6 +554,8 @@ type BuildCost =
    * conversations and whichever they answered, the other went unanswered.
    */
   const diagnosticQuestionRef = useRef<{ question: string; options: string[] } | null>(null);
+  /** The "which one do you mean?" question for an ambiguous topic, while it is on screen. */
+  const ambiguityQuestionRef = useRef<{ question: string; options: string[] } | null>(null);
   const diagnosticBusyRef = useRef(false);
   const lastStudentAnswerRef = useRef<string>("");
   const spokenQuestionRef = useRef<string>("");
@@ -525,19 +563,31 @@ type BuildCost =
     diagnosticQuestionRef.current = diagnosticQuestion;
     diagnosticBusyRef.current = diagnosticBusy;
   }, [diagnosticQuestion, diagnosticBusy]);
+  useEffect(() => {
+    ambiguityQuestionRef.current = !outline && !diagnosticQuestion && initialAmbiguityQuestions.length ? initialAmbiguityQuestions[0] : null;
+  }, [outline, diagnosticQuestion, initialAmbiguityQuestions]);
   const voiceSay = planningVoice.say;
   const voiceLive = planningVoice.status === "live" || planningVoice.status === "drawing";
   useEffect(() => {
-    const q = diagnosticQuestion?.question;
+    const onScreen = diagnosticQuestion ?? (!outline && initialAmbiguityQuestions.length ? initialAmbiguityQuestions[0] : null);
+    const q = onScreen?.question;
     if (!q || !voiceLive || spokenQuestionRef.current === q) return;
     spokenQuestionRef.current = q;
     const answered = lastStudentAnswerRef.current;
+    // The choices are said too, short, so a student who is listening rather than reading can pick.
+    const choices = (onScreen?.options ?? [])
+      .filter((o) => !/^not sure$/i.test(o))
+      .map((o, i) => `${String.fromCharCode(65 + i)}: ${o.split(",")[0]}`);
     voiceSay(
       (answered
-        ? `The student just answered: "${answered.slice(0, 300)}". Acknowledge it in ONE short, natural sentence (do not grade it or teach), then ask exactly this question and nothing else: `
-        : "Ask exactly this question, warmly and in your own voice, and nothing else: ") + `"${q}"`,
+        ? `The student just answered: "${answered.slice(0, 300)}". Acknowledge it in ONE short, natural sentence (do not grade it or teach), then ask exactly this question: `
+        : "Ask exactly this question, warmly and in your own voice: ") +
+        `"${q}"` +
+        (choices.length
+          ? ` Then name the choices on screen, briefly — ${choices.join("; ")} — and ask them to pick one. Nothing else.`
+          : " Nothing else."),
     );
-  }, [diagnosticQuestion, voiceLive, voiceSay]);
+  }, [diagnosticQuestion, initialAmbiguityQuestions, outline, voiceLive, voiceSay]);
 
   /*
    * WHAT ARIA ALREADY KNOWS ABOUT THIS STUDENT, from earlier lectures (lib/learnerModel.ts).
@@ -619,13 +669,31 @@ type BuildCost =
    */
   const outlineReady = Boolean(outline);
   const questionOpen = Boolean(diagnosticQuestion) || diagnosticBusy || initialAmbiguityQuestions.length > 0;
+  /*
+   * AND ON THE PLAN ITSELF (2026-09-29, "the voice input doesn't really work nicely while
+   * planning"). The plan screen closed the mic, so the revise_plan and approve_plan tools Aria was
+   * given could never be used by voice. It now stays open there too, with its state shown beside
+   * the change box, and she is told the plan is up. Closed in the drafting gap as before.
+   */
+  // Not gated on planLoading: a revision Aria makes by voice (revise_plan) loads the plan again, and
+  // closing the mic then would cut her off mid-answer.
+  const planOnScreen = phase === "outline" && outlineReady;
+  const planningVoiceWanted = planOnScreen || (!outlineReady && questionOpen);
   useEffect(() => {
-    if (phase === "outline" && !outlineReady && questionOpen) {
+    if (phase === "outline" && planningVoiceWanted) {
       void voiceStart();
       return;
     }
     voiceStop();
-  }, [phase, outlineReady, questionOpen, voiceStart, voiceStop]);
+  }, [phase, planningVoiceWanted, voiceStart, voiceStop]);
+  const announcedPlanRef = useRef<PlanOutline | null>(null);
+  useEffect(() => {
+    if (!planOnScreen || planLoading || !voiceLive || !outline || announcedPlanRef.current) return;
+    announcedPlanRef.current = outline;
+    voiceSay(
+      `The draft plan is now on the student's screen: ${outline.subtopics.length} parts. In ONE short sentence, ask whether they'd like to change anything — shorter, deeper, more examples, a different focus — or build it. Do not read the plan out.`,
+    );
+  }, [planOnScreen, planLoading, voiceLive, outline, voiceSay]);
 
   /*
    * Stop ONLY on unmount — never because `stop` got a new identity.
@@ -1581,6 +1649,7 @@ type BuildCost =
   }
 
   function resetPlanning() {
+    announcedPlanRef.current = null;
     setInitialAmbiguityQuestions([]);
     setInitialPlanningQuestions([]);
     setPlanningAnswers([]);
@@ -2012,12 +2081,20 @@ type BuildCost =
 
     const remark = typeof data.remark === "string" ? data.remark.trim() : "";
     const next = data.nextQuestion as { question: string; options?: string[] } | null | undefined;
+    // Every question can be answered with a tap or a word, "not sure" included — it is an answer too.
+    const options = Array.isArray(next?.options) ? next!.options.filter((o) => typeof o === "string" && o.trim()) : [];
+    if (!options.some((o) => /\bnot sure\b/i.test(o))) options.push("Not sure");
     return {
-      nextQuestion: next?.question ? { question: next.question, options: Array.isArray(next.options) ? next.options : [] } : null,
+      nextQuestion: next?.question ? { question: next.question, options } : null,
       remark,
     };
   }
 
+  // The voice session's callbacks are built once; they reach the latest runDiagnostic through this.
+  const runDiagnosticRef = useRef<(answer: string) => Promise<void>>(async () => {});
+  useEffect(() => {
+    runDiagnosticRef.current = runDiagnostic;
+  });
   async function runDiagnostic(answer: string) {
     const question = diagnosticQuestion?.question ?? openingQuestion(topic);
     lastStudentAnswerRef.current = answer;
@@ -2142,6 +2219,10 @@ type BuildCost =
 
   /** Applies an answer to a pre-draft ambiguity question — starts the FIRST draft now that the
    *  subject is resolved (mode:"outline"), since before this the outline was never built. */
+  const answerAmbiguityRef = useRef<(question: string, answer: string) => void>(() => {});
+  useEffect(() => {
+    answerAmbiguityRef.current = answerAmbiguity;
+  });
   function answerAmbiguity(question: string, answer: string) {
     const next = [...clarifyAnswers, { question, answer }];
     setClarifyAnswers(next);
@@ -3422,6 +3503,7 @@ type BuildCost =
           diagnosticBusy={diagnosticBusy}
           diagnosticRemark={diagnosticRemark}
           onAnswerDiagnostic={runDiagnostic}
+          voicePick={voicePick}
           learnerSummary={learnerProfile && learnerDepth ? profileSummary(learnerProfile, learnerDepth) : ""}
           learnerProfile={learnerProfile}
           learnerDepth={learnerDepth}
@@ -4112,8 +4194,11 @@ function OutlineReviewState({
   voice,
   voiceLines,
   memoryNote,
+  voicePick,
 }: {
   topic: string;
+  /** The answer card a spoken answer just picked, lit before the next question. */
+  voicePick?: string | null;
   /** Aria's live session state, owned by LearnPage so it survives into the build screen. */
   voice: VoiceState;
   /** Everything said out loud, by either side — merged into the one transcript below. */
@@ -4534,10 +4619,18 @@ function OutlineReviewState({
    * a time, large, with its answers as cards and everything else reduced to a line: what Aria
    * remembers, whether she can hear you, and a way out ("just teach me").
    */
-  function renderDiagnosticFocus() {
+  /*
+   * `ask` shows another question in the same screen — the "which one do you mean?" step for an
+   * ambiguous topic ("CNN": the news network or the neural network) used to keep its own older
+   * docked chat panel, which read as a different app (reported 2026-09-29: "why is this UI back?").
+   */
+  function renderDiagnosticFocus(ask?: { question: string; options: string[]; answer: (text: string) => void; skip: () => void }) {
     const answered = chatLog.filter((m) => m.isDiagnostic && m.answered).length;
-    const options = diagnosticQuestion?.options ?? [];
-    const remark = diagnosticRemark?.text;
+    const shown = ask ? { question: ask.question, options: ask.options } : diagnosticQuestion;
+    const busy = ask ? false : diagnosticBusy;
+    const answerIt = ask ? ask.answer : answerDiagnostic;
+    const options = shown?.options ?? [];
+    const remark = ask ? undefined : diagnosticRemark?.text;
     const live = voice.status === "live";
     return (
       <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-2xl flex-col justify-center py-10">
@@ -4561,15 +4654,15 @@ function OutlineReviewState({
           <p className="beat-fade-in mb-4 text-[0.95rem] leading-relaxed text-[var(--hud-text-dim)]">{remark}</p>
         )}
 
-        {diagnosticBusy || !diagnosticQuestion ? (
+        {busy || !shown ? (
           <div className="flex items-center gap-3 py-8 text-[var(--hud-text-dim)]">
             <span className="size-2.5 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
             <span className="text-lg">Aria is thinking about your answer…</span>
           </div>
         ) : (
           <>
-            <h2 key={diagnosticQuestion.question} className="beat-fade-in text-balance text-[1.9rem] font-medium leading-tight tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.3rem]">
-              {diagnosticQuestion.question}
+            <h2 key={shown.question} className="beat-fade-in text-balance text-[1.9rem] font-medium leading-tight tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.3rem]">
+              {shown.question}
             </h2>
 
             {options.length > 0 && (
@@ -4579,13 +4672,16 @@ function OutlineReviewState({
                   const level = option.match(/^(Foundation|Beginner|Intermediate|Advanced|Expert), (.+)$/);
                   const label = level ? level[1] : option;
                   const hint = level ? level[2] : "";
+                  const heard = voicePick === option;
                   return (
                     <button
                       key={option}
                       type="button"
-                      onClick={() => answerDiagnostic(option)}
-                      disabled={sending || loading}
-                      className="group flex items-center gap-4 rounded-xl border border-[var(--hud-line)] bg-white/[0.02] px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-cyan)]/[0.06] disabled:opacity-50"
+                      onClick={() => answerIt(option)}
+                      disabled={sending || loading || Boolean(voicePick)}
+                      className={`group flex items-center gap-4 rounded-xl border px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-cyan)]/[0.06] disabled:opacity-50 ${
+                        heard ? "border-[var(--hud-cyan)] bg-[var(--hud-cyan)]/[0.14] !opacity-100" : "border-[var(--hud-line)] bg-white/[0.02]"
+                      }`}
                     >
                       <span className="grid size-7 shrink-0 place-items-center rounded-md border border-[var(--hud-line-strong)] text-xs font-semibold text-[var(--hud-text-faint)] group-hover:border-[var(--hud-cyan)] group-hover:text-[var(--hud-cyan)]">
                         {String.fromCharCode(65 + i)}
@@ -4600,45 +4696,29 @@ function OutlineReviewState({
               </div>
             )}
 
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                answerDiagnostic(chatInput);
-                setChatInput("");
-              }}
-              className="mt-5 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-black/30 p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
-            >
+            {/*
+              * No typing here (the owner, 2026-09-29: "not to type the answer, just give the user
+              * options so it can choose one"). Tap a card or say it — Aria is listening.
+              */}
+            <div className="mt-5 flex items-center gap-2.5 text-[0.85rem] text-[var(--hud-text-faint)]">
               <span
                 aria-hidden
-                title={live ? (voice.muted ? "Muted" : "Listening") : "Voice off"}
                 className={`size-2 shrink-0 rounded-full ${live && !voice.muted ? "animate-pulse bg-[var(--hud-cyan)]" : "bg-white/20"}`}
               />
-              <input
-                ref={composerRef}
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                placeholder={options.length ? "Or answer in your own words — typed or spoken" : "Type your answer, or just say it"}
-                disabled={sending || loading}
-                className="min-w-0 flex-1 bg-transparent py-2 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
-              />
+              <span className="min-w-0 flex-1">
+                {live ? (voice.muted ? "Mic muted — tap an answer" : "Tap an answer, or just say it") : "Tap an answer"}
+              </span>
               {live && (
                 <button
                   type="button"
                   onClick={voice.toggleMute}
                   aria-pressed={voice.muted}
-                  className="shrink-0 rounded-lg px-2.5 py-2 text-xs text-[var(--hud-text-faint)] hover:text-[var(--hud-text)]"
+                  className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs hover:text-[var(--hud-text)]"
                 >
                   {voice.muted ? "Unmute" : "Mute"}
                 </button>
               )}
-              <button
-                type="submit"
-                disabled={!chatInput.trim() || sending || loading}
-                className="shrink-0 rounded-lg bg-[var(--hud-text)] px-4 py-2 text-sm font-semibold text-[#08090c] disabled:opacity-30"
-              >
-                Answer
-              </button>
-            </form>
+            </div>
           </>
         )}
 
@@ -4648,8 +4728,8 @@ function OutlineReviewState({
           </p>
           <button
             type="button"
-            onClick={() => answerDiagnostic("Just teach me")}
-            disabled={sending || loading || diagnosticBusy}
+            onClick={() => (ask ? ask.skip() : answerDiagnostic("Just teach me"))}
+            disabled={sending || loading || busy}
             className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)] disabled:opacity-40"
           >
             Skip — just teach me →
@@ -4791,9 +4871,12 @@ function OutlineReviewState({
           ) : !outline && initialPlanningQuestions.length > 0 ? (
             renderPlanningQuestionsPanel()
           ) : !outline && initialAmbiguityQuestions.length > 0 ? (
-            <p className="text-sm text-[var(--hud-text-dim)]">
-              &ldquo;{topic}&rdquo; could mean a few different things — answer the question on the right so Aria drafts the right lesson.
-            </p>
+            renderDiagnosticFocus({
+              question: initialAmbiguityQuestions[0].question,
+              options: initialAmbiguityQuestions[0].options,
+              answer: (text) => { if (text.trim()) onAnswerAmbiguity(initialAmbiguityQuestions[0].question, text.trim()); },
+              skip: () => onAnswerAmbiguity(initialAmbiguityQuestions[0].question, "Whichever meaning is most common"),
+            })
           ) : !outline && (loading || !error) ? (
             // Also covers the hand-offs between planning steps (clarify → memory → first question),
             // where nothing is loading yet no outline exists — that is not a failure.
@@ -4819,6 +4902,30 @@ function OutlineReviewState({
                     {outline.subtopics.length === 1 ? "1 topic" : `${outline.subtopics.length} topics`}
                   </h2>
                   <p className="mt-1 text-sm text-[var(--hud-text-faint)]">Edit, reorder or remove anything, then build the lesson.</p>
+                  {/* What the questions showed, in one line: the lesson below is built around it. */}
+                  {learnerProfile && (() => {
+                    const map = conceptMap(learnerProfile);
+                    // Short, distinct names only: not the lesson's own topic, not a restatement of a
+                    // misconception, not one name inside another ("photosynthesis requirements").
+                    const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim();
+                    const wrong = map.filter((e) => e.status === "misconception").map((e) => e.concept).slice(0, 2);
+                    const shaky = map
+                      .filter((e) => e.status === "weak" || e.status === "missing")
+                      .map((e) => e.concept)
+                      .filter((c) => norm(c) !== norm(topic) && c.split(/\s+/).length <= 5)
+                      .filter((c) => !wrong.some((w) => norm(w).includes(norm(c)) || norm(c).includes(norm(w))))
+                      .filter((c, i, all) => !all.some((o, j) => j !== i && norm(o).length < norm(c).length && norm(c).includes(norm(o))))
+                      .slice(0, 3);
+                    if (!shaky.length && !wrong.length) return null;
+                    return (
+                      <p className="mt-2 text-[0.82rem] text-[var(--hud-text-dim)]">
+                        <span className="text-[var(--hud-text-faint)]">Aria noticed — </span>
+                        {shaky.length > 0 && <>shaky on: <span className="text-amber-300/90">{shaky.join(", ")}</span></>}
+                        {shaky.length > 0 && wrong.length > 0 && " · "}
+                        {wrong.length > 0 && <>to correct: <span className="text-rose-300/90">{wrong.join(", ")}</span></>}
+                      </p>
+                    );
+                  })()}
                 </div>
                 {(loading || sending) && (
                   <span className="flex items-center gap-2 text-sm text-[var(--hud-text-faint)]">
@@ -4868,13 +4975,44 @@ function OutlineReviewState({
                 + Add a topic
               </button>
 
+              {/* One tap (or one sentence out loud) for the changes people ask for most. */}
+              <div className="mt-6 flex flex-wrap gap-2">
+                {PLAN_QUICK_CHANGES.map((change) => (
+                  <button
+                    key={change.label}
+                    type="button"
+                    onClick={() => sendChat(change.instruction)}
+                    disabled={loading || sending}
+                    className="rounded-full border border-[var(--hud-line)] px-3.5 py-1.5 text-sm text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40"
+                  >
+                    {change.label}
+                  </button>
+                ))}
+              </div>
+
+              {voice.status === "live" && (
+                <div className="mt-4 flex items-center gap-2 text-[0.82rem] text-[var(--hud-text-faint)]">
+                  <span aria-hidden className={`size-2 shrink-0 rounded-full ${voice.muted ? "bg-white/20" : "animate-pulse bg-[var(--hud-cyan)]"}`} />
+                  <span className="min-w-0 flex-1 truncate">
+                    {voice.muted
+                      ? "Aria's mic is muted"
+                      : voice.lastLine?.role === "you"
+                        ? `Aria heard: “${voice.lastLine.text}”`
+                        : "Listening — say what to change, or “build it”"}
+                  </span>
+                  <button type="button" onClick={voice.toggleMute} aria-pressed={voice.muted} className="shrink-0 rounded-md px-2 py-1 hover:text-[var(--hud-text)]">
+                    {voice.muted ? "Unmute" : "Mute"}
+                  </button>
+                </div>
+              )}
+
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
                   sendChat(chatInput);
                   setChatInput("");
                 }}
-                className="mt-6 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-black/30 p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
+                className="mt-3 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-black/30 p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
               >
                 <input
                   ref={composerRef}
@@ -4917,12 +5055,7 @@ function OutlineReviewState({
          * reach it. The transcript is capped and scrolls internally: it is there to confirm what
          * Aria heard, not to be re-read, and the question itself is already on the card above.
          */}
-        {/* Only an ambiguity question still lives in the chat; planning itself shows no chat box. */}
-        {!outline && !diagnosticQuestion && !diagnosticBusy && initialAmbiguityQuestions.length > 0 && (
-          <div ref={dockRef} className="pointer-events-none fixed inset-x-0 bottom-0 z-30">
-            <div className="mx-auto max-w-[1100px] px-6 pb-5 lg:px-10">{renderConversation(false)}</div>
-          </div>
-        )}
+        {/* The ambiguity question now uses the question screen above; planning shows no chat box. */}
       </div>
     </section>
   );
@@ -4933,18 +5066,14 @@ function OutlineReviewState({
  * must name one of the options (by its first word, e.g. "intermediate", or its full text); for an
  * open question it must be at least three words. Stray noise and echoes fail both.
  */
-function isSpokenAnswer(text: string, options: string[]): boolean {
-  const spoken = text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-  if (!spoken) return false;
-  if (options.length > 0) {
-    return options.some((option) => {
-      const clean = option.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
-      const first = clean.split(" ")[0];
-      return (first.length >= 4 && new RegExp(`\\b${first}\\b`).test(spoken)) || spoken.includes(clean);
-    }) || /\b(?:just teach|skip|start the lesson)\b/.test(spoken);
-  }
-  return spoken.split(" ").length >= 3;
-}
+/** The plan changes asked for most, one tap each; each is sent down the ordinary revise pipeline. */
+const PLAN_QUICK_CHANGES: { label: string; instruction: string }[] = [
+  { label: "Make it shorter", instruction: "Make the lesson shorter: fewer parts, keep only the essentials." },
+  { label: "Go deeper", instruction: "Go deeper: more detail and more advanced parts." },
+  { label: "More examples", instruction: "Add more worked, concrete examples throughout." },
+  { label: "Simpler", instruction: "Make it simpler: plainer language and fewer technical terms." },
+  { label: "More visual", instruction: "Make it more visual: favour parts that are best taught with a diagram or picture." },
+];
 
 /** The student's question that came with an upload, when it is a specific one (not "explain this PDF"). */
 function questionFromUpload(start: { fresh?: { focus?: string; sourceDocument?: unknown } } | null): string | null {

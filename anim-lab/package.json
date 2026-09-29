@@ -1,0 +1,16 @@
+{
+  "name": "anim-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Animation Lab — compares the production React sandbox with Motion, GSAP, Remotion and Lottie on the same generated lecture. Local experiment only; never imported by the production app.",
+  "scripts": {
+    "dev": "node ../node_modules/next/dist/bin/next dev -p 3300",
+    "typecheck": "node ../node_modules/typescript/bin/tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/player": "4.0.529",
+    "lottie-web": "5.13.0",
+    "motion": "13.4.4",
+    "remotion": "4.0.529"
+  }
+}

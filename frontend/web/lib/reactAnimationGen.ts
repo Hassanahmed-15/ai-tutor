@@ -3,6 +3,8 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Beat } from "./lessonContent";
 import { REACT_ANIMATION_SYSTEM_PROMPT, REACT_ANIMATION_ABSTRACT_SYSTEM_PROMPT } from "./drawPrompt";
+import { randomUUID } from "node:crypto";
+import { generateIllustratedBoard, type LectureMemoryOption } from "./illustratedBoard";
 import {
   getReactAnimationCodeDiagnostics,
   sanitizeReactAnimationOp,
@@ -391,7 +393,7 @@ function sourcePromptBlock(source: BeatSourceGrounding, strict: boolean, heading
   if (source.caption) lines.push(`SOURCE FIGURE: ${source.caption}`);
   if (source.labels.length) {
     lines.push(
-      `PARTS THE SOURCE FIGURE SHOWS (draw each one recognisably; do NOT write these words on the board — the narration names them): ` +
+      `PARTS THE SOURCE FIGURE SHOWS (draw each one recognisably; a label on the board uses these exact words): ` +
         source.labels.map((label) => `"${label}"`).join(", "),
     );
   } else if (strict) {
@@ -464,8 +466,8 @@ async function refineBoard(
           role: "system",
           content:
             "You revise an existing teaching whiteboard component. Return ONE ```jsx fenced block containing the COMPLETE revised component and nothing else.\n" +
-            "Fix EXACTLY the listed defects and change nothing else. Keep the same export signature, the same viewBox, every data-teach-* attribute, every <Asset/>, and all correct existing structure.\n" +
-            "Every data-teach-sentence stays a number from the numbered script, and each label stays revealed in the sentence that says it.\n" +
+            "Fix EXACTLY the listed defects and change nothing else. Keep the same export signature, the same viewBox, every sentence-keyed reveal (reveal(N), draw(N), on(N) — or, in an older board, every data-teach-* attribute), every <Asset/>, and all correct existing structure.\n" +
+            "Every reveal stays keyed to a number from the numbered script, and each label stays revealed in the sentence that says it.\n" +
             "This is an edit, not a rewrite: preserve what already works. Never write a bare < in element text — write &lt;." +
             strictRule,
         },
@@ -473,7 +475,7 @@ async function refineBoard(
           role: "user",
           content: [
             `This board must depict: ${ctx.subject}`,
-            `Spoken script, numbered (data-teach-sentence refers to these numbers):\n${numbered}`,
+            `Spoken script, numbered (every reveal's sentence refers to these numbers):\n${numbered}`,
             ctx.source ? sourcePromptBlock(ctx.source, ctx.strict, ctx.strict ? strictHeading(ctx.beat.title, ctx.source) : null) : "",
             `Defects found in the rendered board:\n${defectList}`,
             `Current component:\n\`\`\`jsx\n${code}\n\`\`\``,
@@ -1021,7 +1023,7 @@ function diagnosticsSummary(diagnostics: ReactAnimationCodeDiagnostics): string 
     `text=${diagnostics.textCount}`,
     `directlyTimedText=${diagnostics.directlyTimedTextCount}/${diagnostics.textCount}`,
     `fills=bright:${diagnostics.brightFillCount}/dark:${diagnostics.darkFillCount}`,
-    `timelineSteps=${diagnostics.timelineStepCount}/8+`,
+    `${diagnostics.motionBoard ? "revealSteps" : "timelineSteps"}=${diagnostics.timelineStepCount}/8+`,
     `sentenceMapped=${diagnostics.timelineSentenceCount}/${diagnostics.timelineStepCount}`,
     `distinctSentences=${diagnostics.distinctTimelineSentences}/3+`,
     `boardPlan=${diagnostics.boardPlanPresent ? "present" : "missing"}`,
@@ -1041,14 +1043,21 @@ function gapInstruction(diagnostics: ReactAnimationCodeDiagnostics): string {
   if (diagnostics.primitiveScore < 14) gaps.push(`${14 - diagnostics.primitiveScore} more real drawn SVG tags — actual meaningful shapes, not decorative filler clusters (currently ${diagnostics.primitiveScore}, need 14+)`);
   if (diagnostics.objectPrimitiveScore < 8) gaps.push(`${8 - diagnostics.objectPrimitiveScore} more object/body primitives — only genuine parts of the subject (currently ${diagnostics.objectPrimitiveScore}, need 8+)`);
   if (diagnostics.silhouetteCount < 1) gaps.push("at least one path/polygon/ellipse silhouette or cutaway shape (currently 0)");
-  if (diagnostics.timelineStepCount < 8) gaps.push(`${8 - diagnostics.timelineStepCount} more complete teacher timeline step(s), each with order/kind/weight attributes`);
-  if (diagnostics.timelineSentenceCount < diagnostics.timelineStepCount) gaps.push(`${diagnostics.timelineStepCount - diagnostics.timelineSentenceCount} timeline step(s) still need data-teach-sentence`);
-  if (diagnostics.distinctTimelineSentences < 3) gaps.push(`${3 - diagnostics.distinctTimelineSentences} more distinct spoken sentence cue(s) must own timeline actions`);
-  if (diagnostics.directlyTimedTextCount < diagnostics.textCount) gaps.push(`${diagnostics.textCount - diagnostics.directlyTimedTextCount} SVG text element(s) need all four timeline attributes directly on the text node`);
+  if (diagnostics.motionBoard) {
+    if (diagnostics.timelineStepCount < 8) gaps.push(`${8 - diagnostics.timelineStepCount} more motion element(s) keyed to a sentence with a literal reveal(N) or draw(N) in the tag`);
+    if (diagnostics.distinctTimelineSentences < 3) gaps.push(`${3 - diagnostics.distinctTimelineSentences} more distinct spoken sentence(s) must own reveals`);
+  } else {
+    if (diagnostics.timelineStepCount < 8) gaps.push(`${8 - diagnostics.timelineStepCount} more complete teacher timeline step(s), each with order/kind/weight attributes`);
+    if (diagnostics.timelineSentenceCount < diagnostics.timelineStepCount) gaps.push(`${diagnostics.timelineStepCount - diagnostics.timelineSentenceCount} timeline step(s) still need data-teach-sentence`);
+    if (diagnostics.distinctTimelineSentences < 3) gaps.push(`${3 - diagnostics.distinctTimelineSentences} more distinct spoken sentence cue(s) must own timeline actions`);
+    if (diagnostics.directlyTimedTextCount < diagnostics.textCount) gaps.push(`${diagnostics.textCount - diagnostics.directlyTimedTextCount} SVG text element(s) need all four timeline attributes directly on the text node`);
+  }
   if (!diagnostics.boardPlanPresent) gaps.push("the required const boardPlan with composition, readingPath, and reservedRegions");
   if (!diagnostics.visualSpecPresent) gaps.push("the required const visualSpec with recognitionCues, requiredParts, and forbiddenShortcuts");
   if (diagnostics.distinctPrimitiveTypes < 4) gaps.push(`${4 - diagnostics.distinctPrimitiveTypes} more distinct SVG primitive type(s) — mix path/circle/rect/ellipse/polygon, not just one or two kinds (currently ${diagnostics.distinctPrimitiveTypes}, need 4+)`);
-  if (diagnostics.progressDriveScore < 8) gaps.push(`${8 - diagnostics.progressDriveScore} more progress-drive score — more lerp/clamp/phase-derived variables actually referenced in the JSX bindings (currently ${diagnostics.progressDriveScore}, need 8+)`);
+  if (diagnostics.progressDriveScore < 8) gaps.push(diagnostics.motionBoard
+    ? `more sentence-driven motion — more reveals and sentenceProgress-driven changes (currently ${diagnostics.progressDriveScore}, need 8+)`
+    : `${8 - diagnostics.progressDriveScore} more progress-drive score — more lerp/clamp/phase-derived variables actually referenced in the JSX bindings (currently ${diagnostics.progressDriveScore}, need 8+)`);
   if (gaps.length === 0) return "";
   return `EXACT GAP TO CLOSE (the previous attempt was close — add real, meaningful parts, not clutter): ${gaps.join("; ")}. Close each gap by drawing genuine additional parts of the mechanism (more internal components, more cutaway detail, evenly-spaced agents), keeping the layout clean and uncrowded — never by adding filler text, duplicate labels, random scattered dots, or background noise.`;
 }
@@ -1113,18 +1122,18 @@ export function buildUserPrompt(
     ? "WHITEBOARD MODE: a teaching canvas that evolves like a lesson, not a slide: a clean, precise, editable concept DIAGRAM built from SVG primitives (rect, line, polyline, path, circle, ellipse, polygon, text). Use cells and nodes only when the subject is inherently an array, grid, tree, graph, or state machine. For security, networking, and process concepts prefer moving data tokens, routed paths, trust boundaries, layered zones, and visible state transformations. This is not a loading animation, fixed template, or collection of UI cards."
     : "WHITEBOARD MODE: a teaching canvas that evolves like a lesson, not a slide: a professional, editable educational illustration built from SVG primitives (path, circle, ellipse, rect, polygon, line, polyline, text). This is not a loading animation, generic flowchart, fixed template, or collection of UI cards.";
   const contentContract = strict
-    ? "CONTENT: SOURCE (above) is the only content this board may show. Draw only what SOURCE states or its figure shows — and DO draw it: its parts, and the boxes and arrows for the steps and relations it states. Words go only in the title (SOURCE's words) and INSIDE a drawn box or node as its name or value, copied verbatim from SOURCE; never a label beside a part (see NO LABELS). If a narration sentence says something SOURCE does not, draw nothing for it. Leave space empty rather than fill it with anything SOURCE lacks, but a board that is only a title is a failure."
+    ? "CONTENT: SOURCE (above) is the only content this board may show. Draw only what SOURCE states or its figure shows — and DO draw it: its parts, and the boxes and arrows for the steps and relations it states. Words go only in the title (SOURCE's words), INSIDE a drawn box or node as its name or value, and in labels naming the source figure's parts — every word copied verbatim from SOURCE. If a narration sentence says something SOURCE does not, draw nothing for it. Leave space empty rather than fill it with anything SOURCE lacks, but a board that is only a title is a failure."
     : abstract
     ? "CONTENT QUALITY: draw the CORRECT diagram for this abstract concept (indexed array/grid, labeled timeline of intervals, tree/graph of nodes and edges, number line, coordinate plane, routed process, trust-boundary scene, or matrix — whichever teaches THIS beat). Use REAL example values from the script (actual numbers, names, intervals), not placeholders. Do NOT invent a physical object, mascot, or silhouette to stand in for the concept. Ground every cell, node, edge, axis, token, boundary, and label in the beat's script. Draw the full structure clearly and show relationships or state changes explicitly. Rectangular cards are not a universal fallback; unless the concept is inherently a grid/table/array, use at most two large rectangular containers."
     : "CONTENT QUALITY: the VISUAL BLUEPRINT below is the source of truth for morphology, topology, proportions, and required parts. The main subject must be recognizable before any label is read. Ground every visible label and diagram element in the beat's script and blueprint. Never replace the real subject with a metaphor, mascot, generic circle cluster, icon, or decorative analogy. Every connection, direction, layer, chamber, boundary, and relative position must agree with the blueprint.";
   const labellingContract =
-    "LABELS: every label names ONE drawn part and is joined to that part by a leader line ending ON the part (where labels go is set by the layout rules above). Write each name in full — a name that does not fit wraps onto a second line, it is never shortened. Every arrow starts at one named thing and ends at another.";
+    "KEY NOTES: write 2-4 key notes in the left column (one line each, at most 24 characters, each on the sentence that says it). LABELS: at most three, and only when naming parts is this slide's point — listed in ONE <BoardLabels side=\"right\" labels={[{ text, x, y, sentence }]} /> as the last child of the svg, each point INSIDE the part it names. The host places the words, leaders and dots so nothing overlaps; never write a label, leader or label dot yourself. Every arrow starts at one named thing and ends at another.";
   const longNarrationContract =
     "LONG-NARRATION DISCIPLINE: the teacher may spend close to a minute on this board. Do not respond by drawing more objects or copying more sentences. Select 3-5 pivotal sentence cues for new visual actions, then let the existing diagram remain while later narration explains, revisits, highlights, and connects those same anchors. The final board must stay as concise as a premium textbook figure.";
   const animationContract =
-    `TEACHING SCORE: add data-teach-order, data-teach-kind, data-teach-weight, and a LITERAL data-teach-sentence={N} to at least ${strict ? 6 : 8} meaningful outer elements/groups. N must be the zero-based sentence number whose spoken words introduce that exact visual action, from 0 through ${Math.max(0, spokenSentences.length - 1)}. Distribute the steps across at least 3 different sentences and normally assign no more than 3 steps to one sentence; assigning the whole board to sentence 0 is a failure. A label's sentence is the one that first SAYS that label's words. Start by writing the heading, then INTERLEAVE a claim, its drawing, its label, its relationship arrow, the next nearby claim, and a later annotation that returns to something already drawn. Never put all text before all diagrams. The host writes words and traces contours from these attributes, so do not hide timeline groups with your own opacity and never construct partial strings with slice, substring, substr, or a progress-driven character count. Progress may additionally drive at least two ${strict ? "changes the source itself describes" : "scientifically meaningful changes"}. Diagram contours should be real paths and shapes that can be traced; fills settle after outlines; labels come after their target; arrows draw in their actual direction.`;
+    `MOTION TIMELINE: wrap at least ${strict ? 6 : 8} meaningful parts in motion elements keyed to a LITERAL sentence number — animate={reveal(N)} for a group, animate={draw(N)} for a stroke or arrow. N is the zero-based sentence whose spoken words introduce that exact visual action, from 0 through ${Math.max(0, spokenSentences.length - 1)}. Distribute the steps across at least 3 different sentences and normally no more than 3 steps per sentence; revealing the whole board on sentence 0 is a failure. A label appears in the sentence that first SAYS its words, together with its leader and dot. Start with the heading on sentence 0, then INTERLEAVE a part, its label, its relationship arrow, the next part, and a later highlight that returns to something already drawn. Never reveal all text before all drawings. Never construct partial strings with slice, substring, substr, or a character count. Within a sentence, sentenceProgress may additionally drive at least two ${strict ? "changes the source itself describes" : "scientifically meaningful changes"} (a token travelling, an organ contracting, a value filling). Outlines are real paths that draw with pathLength; arrows draw in their actual direction after the parts they join.`;
   const implementationContract =
-    "IMPLEMENTATION: export default function Animation({ progress }) exactly. Inside it define const visualSpec using the blueprint's subject, recognitionCues, requiredParts, relationships, morphology/view, and forbiddenShortcuts; also define const boardPlan with composition, readingPath, and reservedRegions. Use enough editable inline SVG primitives to draw the real subject convincingly, but never add elements to satisfy a count. At progress=1 the page must be coherent, recognizable, and understandable as a static teaching figure.";
+    "IMPLEMENTATION: export default function Animation({ sentence, sentenceProgress }) exactly, with the reveal helpers from the system prompt (on, reveal, draw) defined at its top. Inside it define const visualSpec using the blueprint's subject, recognitionCues, requiredParts, relationships, morphology/view, and forbiddenShortcuts; also define const boardPlan with composition, readingPath, and reservedRegions. Use enough editable inline SVG primitives to draw the real subject convincingly, but never add elements to satisfy a count. Once every sentence has been spoken the page must be coherent, recognizable, and understandable as a static teaching figure.";
 
   return [
     `Beat title: ${beat.title}`,
@@ -1897,6 +1906,13 @@ export type ReactAnimationFillOptions = {
    * Later beats, built while an earlier one plays, keep the refine loop.
    */
   blocksPlayback?: boolean;
+  /**
+   * The lecture these boards belong to, so picture boards remember what it has already pictured
+   * (lib/lecturePictures.ts): a subtopic's later passes build on its picture, and no new subtopic
+   * pictures the same thing again. The progressive worker passes its session and the pictures its
+   * saved boards carry; without it, the boards of one call share a memory.
+   */
+  lecture?: LectureMemoryOption;
 };
 
 /** Fewer readable content words than this, and a source cannot ground a board (see sourceForBeat). */
@@ -1968,17 +1984,29 @@ export async function fillReactAnimationOpsIncremental(
   // Rotation counts ANIMATED beats, not all beats: rotating on the plain beat index could hand every
   // animated beat in a lecture to the same model whenever they fell three beats apart.
   const animationOrder = new Map(pending.map((entry, order) => [entry.op, order]));
+  const lecture: LectureMemoryOption = options.lecture ?? { key: `call:${randomUUID()}` };
   const results = await Promise.all(selected.map(async ({ op, beat, beatIndex }) => {
     const contestant = options.model !== undefined
       ? options.model
       : animationModelForBeat((options.animationIndexOffset ?? 0) + (animationOrder.get(op) ?? 0));
-    const result = await generateOne(
+    const source = sourceForBeat(options.sourceByBeatId, beat.id);
+    /*
+     * A picturable subject is PICTURED first (lib/illustratedBoard.ts): a textbook illustration with
+     * key notes and writing laid out deterministically. It declines what cannot be pictured and
+     * source-grounded beats, and anything that fails falls through to the Motion board generator.
+     */
+    const illustrated = await generateIllustratedBoard(client, op, beat, {
+      abstract: isAbstractTopic(op, beat, source),
+      hasSource: Boolean(source),
+      lecture,
+    });
+    const result = illustrated ?? await generateOne(
       client,
       op,
       beat,
       contestant,
       options.refineTimeBudgetMs,
-      sourceForBeat(options.sourceByBeatId, beat.id),
+      source,
       options.blocksPlayback === true,
     );
     await onUpdate?.({ beat, beatIndex, costUsd: result.costUsd, status: result.filled ? "ready" : "failed" });

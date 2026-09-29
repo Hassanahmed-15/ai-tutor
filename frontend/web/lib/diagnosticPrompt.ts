@@ -1,4 +1,4 @@
-import { MAX_DIAGNOSTIC_QUESTIONS, MIN_USEFUL_DIAGNOSTIC_QUESTIONS, type DepthLevel, type LearnerProfile } from "./learnerProfile";
+import { MAX_DIAGNOSTIC_QUESTIONS, MIN_CONCEPT_QUESTIONS, MIN_USEFUL_DIAGNOSTIC_QUESTIONS, type DepthLevel, type LearnerProfile } from "./learnerProfile";
 
 /**
  * The short conversation that happens before the lesson is planned — Phase 1: understand the
@@ -107,7 +107,7 @@ WHAT A GOOD QUESTION SOUNDS LIKE:
 - One sentence. Conversational. The way a teacher asks across a desk, not the way a form asks.
 - About THIS topic, using its real content, and built from the "kind" chosen above. "What do you think happens to the weights when the error is already zero?" — not "rate your familiarity with neural networks" and not "do you know backpropagation?".
 - Never multiple questions at once. Never a preamble beyond an optional one-sentence remark. Never "on a scale of 1 to 10".
-- "options" are optional quick replies (2-4, each <=6 words) for when a chip is genuinely easier than typing. Use [] for an open question that deserves a real answer — most explain/predict/compare/apply questions do.
+- "options" are REQUIRED: 3-4 answers the student can pick with one tap or by saying it — each at most 8 words, in a student's voice, never a letter or number alone. The student sees them as cards and can still answer in their own words. For explain/predict/compare/apply: one sound answer and two or three believable wrong ones (the common misconceptions about THIS topic), in a random order — a pick still shows what they think. For goal: the likely goals ("an exam soon", "a project I'm building", "just curious"). Never add "not sure" or "skip" — the screen offers those.
 - Never make it feel like an exam. No "correct answer" framing, no scoring, no "let's test you". If they get it wrong, that is information for you, not a mark against them.
 
 "reason" is one short line, for logs only — never shown to the student.
@@ -208,6 +208,14 @@ export function buildDiagnosticUserMessage(input: {
 
   const asked = exchanges.length;
   const remaining = Math.max(0, MAX_DIAGNOSTIC_QUESTIONS - asked);
+  const tested = profile.diagnostics.filter((d) => d.verdict !== "skipped" && Boolean(d.concept?.trim()) && d.selfReport !== true).length;
+  if (tested < MIN_CONCEPT_QUESTIONS) {
+    lines.push(
+      `\nOnly ${tested} of the ${MIN_CONCEPT_QUESTIONS} concept questions every student gets have been answered. You MUST return a nextQuestion: ` +
+        "an explain/predict/compare/apply question about a real idea of this topic, pitched at their level (a beginner gets an easy, concrete one), " +
+        "with 3-4 answer options — one sound, the rest believable misconceptions. It is how you learn which ideas they are shaky on.",
+    );
+  }
   lines.push(
     `\nYou have asked ${asked} question${asked === 1 ? "" : "s"}. You may ask at most ${remaining} more.` +
       (asked < MIN_USEFUL_DIAGNOSTIC_QUESTIONS

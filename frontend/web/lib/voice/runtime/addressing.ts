@@ -54,7 +54,7 @@ const NAME_ALTERNATION = ["aria", "arya", ...WAKE_VARIANTS].join("|");
  * allowed for "ariah" and "Ariel". A leading "y" and a trailing "n" are allowed too: Chrome heard a
  * real student's "hey Aria" as "Yaariyan".
  */
-const WAKE_SOUNDALIKE = /^(?:[aeiou]{0,3}r+[aeiouy]{1,4}(?:h|l)?|y?[aeiou]{1,3}r+[aeiouy]{1,4}n?)$/i;
+const WAKE_SOUNDALIKE = /^(?:[aeiou]{1,3}r+[aeiouy]{1,4}(?:h|l)?|y?[aeiou]{1,3}r+[aeiouy]{1,4}n?)$/i;
 
 /** A determiner or modifier right before the token means it is a noun, not someone being addressed. */
 const ARTICLE_BEFORE_NOUN = new Set([
@@ -247,7 +247,14 @@ export function classifyAddressing(raw: string, context: AddressingContext): Add
     if (hits > 0) { score += Math.min(0.6, 0.2 * hits); why.push(`${hits} topic word${hits > 1 ? "s" : ""}`); }
   }
   if (context.tutorSpeaking) { score -= 0.25; why.push("tutor speaking"); }
-  else if (!hailedName && !context.expectingAnswer) { score += 0.15; why.push("tutor idle"); }
+  /*
+   * Idle credit is small on purpose (0.15 until 2026-09-29): with it, ANY question-shaped sentence
+   * reached 0.5 while she was quiet — a phone video's "what is going on here?" or the TV's "can you
+   * believe it?" was answered as if the student had asked (reported: "whenever I'm using my phone
+   * or there's background noise, Aria gets activated that quickly"). A question now needs something
+   * that ties it to the lesson or to her — a topic word, "you"/"me", the board, her name.
+   */
+  else if (!hailedName && !context.expectingAnswer) { score += 0.1; why.push("tutor idle"); }
   // An unknown hail withholds the idle credit and costs a little more, so "hey Dave" needs real
   // evidence to get through while "hey <mis-heard Aria>, what does that mean" still does.
   if (hailedName) { score -= 0.2; why.push(`hailed "${hailedName}"`); }

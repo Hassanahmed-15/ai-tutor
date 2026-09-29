@@ -302,6 +302,13 @@ export function structureTranscribedPage(raw: string): Array<{ kind: "paragraph"
       flush();
       continue;
     }
+    // …and its bracketed variant: "(Images with nodes and connections)" on a line of its own titled
+    // the first slide of a reference lecture. A parenthesised line that describes a picture is the
+    // model narrating the page, not the book — the book's own asides run inside sentences.
+    if (/^\(\s*(?:an?\s+|the\s+)?(?:images?|figures?|diagrams?|pictures?|illustrations?|graphics?|drawings?|photos?|tree\s+diagrams?|charts?|sketch(?:es)?)\b[^()]*\)$/i.test(line)) {
+      flush();
+      continue;
+    }
     // A line that is mostly LaTeX layout commands is drawing markup, however many letters they have.
     const commands = line.match(/\\[A-Za-z]+/g) ?? [];
     const prose = line.replace(/\\[A-Za-z]+/g, "").replace(/[{}&$^_]/g, "");

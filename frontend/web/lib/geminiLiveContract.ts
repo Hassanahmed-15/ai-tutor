@@ -42,6 +42,29 @@ export const RESUME_LECTURE_TOOL = {
   parametersJsonSchema: { type: "object", properties: {}, additionalProperties: false },
 } as const;
 
+/**
+ * BACK TO THE SLIDE THAT TAUGHT IT (lib/revisit.ts). Offered by the lecture player, which handles it:
+ * the earlier slide comes back on screen and its pen rings what she talks about, the lecture stays
+ * frozen underneath, and resume_lecture brings the student back to where they were.
+ */
+export const REVISIT_SLIDE_TOOL = {
+  name: "revisit_slide",
+  description:
+    "Call this FIRST when the student asks about something an EARLIER slide of this lecture already taught " +
+    "(the outline marks those slides 'already taught'), instead of explaining it from scratch or drawing a new board. " +
+    "It puts that slide back on screen. Then tell the student we covered it on that slide and answer from what it shows, " +
+    "in one to three short sentences, and invite them to say continue. Never for the slide playing now.",
+  parametersJsonSchema: {
+    type: "object",
+    properties: {
+      slide_number: { type: "number", description: "The earlier slide's number in the lecture outline (1 = first)." },
+      question: { type: "string", description: "The student's question, in their words." },
+    },
+    required: ["slide_number", "question"],
+    additionalProperties: false,
+  },
+} as const;
+
 const DRAWING_REQUEST = /\b(?:draw|sketch|diagram|visuali[sz]e|graph|plot|chart|map\s+out|show\s+(?:me\s+)?(?:it|that|this|something|\w+)?\s*(?:on\s+the\s+board)?)\b/i;
 
 export function isDrawingRequest(text: string) {

@@ -25,7 +25,9 @@ import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingSta
 import { coordinateTeachingTimeline } from "@/lib/board/teachingTimeline";
 import { captureSelectedBoardRegion } from "@/lib/board/captureSelection";
 import { visibleSandboxText } from "@/lib/board/sandboxBridge";
-import { buildExplainRequest, marksNarrative, type ExplainRequest } from "@/lib/board/selection";
+import { boundsOf, buildExplainRequest, marksNarrative, type ExplainRequest } from "@/lib/board/selection";
+import { picturePartsInMark } from "@/lib/board/markContext";
+import type { AnnotationStroke } from "@/lib/board/annotations";
 import { ReactAnimationSandbox, warmSandbox } from "./sketch/ReactAnimationSandbox";
 import { ManimBoard } from "./sketch/ManimBoard";
 import { GsapSketch } from "./sketch/GsapSketch";
@@ -37,7 +39,11 @@ import type { StructureSpec } from "@/lib/structureSpec";
 import type { PlotSpec } from "@/lib/plotSpec";
 import type { EquationSpec } from "@/lib/equationSpec";
 import type { CodeSpec } from "@/lib/codeSpec";
-import { RendererBadge } from "./sketch/RendererBadge";
+import { BoardTelemetry, RendererBadge } from "./sketch/RendererBadge";
+import { RevisitOverlay } from "./RevisitOverlay";
+import { REVISIT_SLIDE_TOOL } from "@/lib/geminiLiveContract";
+import { boardWordsOf, findRevisitTarget, revisitMarks, type RevisitMark } from "@/lib/revisit";
+import { recordJsonCost } from "@/lib/costLedger";
 import { AdhdLayer } from "./adhd/AdhdLayer";
 import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdCheckin } from "@/lib/adhd/events";
@@ -748,6 +754,8 @@ export function LessonPlayer({
    * the live model's audio is muted for that turn (see show_board in the hook).
    */
   const [liveBoards, setLiveBoards] = useState<GeminiLiveBoard[]>([]);
+  /** An earlier slide shown again to answer a question on it (lib/revisit.ts, RevisitOverlay). */
+  const [revisit, setRevisit] = useState<{ index: number; marks: RevisitMark[]; note: string } | null>(null);
   const liveBoardsRef = useRef<GeminiLiveBoard[]>([]);
   const [liveBoardProgress, setLiveBoardProgress] = useState(1);
   const boardNarrationRef = useRef<NarrationHandle | null>(null);
@@ -869,6 +877,8 @@ export function LessonPlayer({
   const lastStudentWordsRef = useRef<{ text: string; at: number }>({ text: "", at: 0 });
   const studentJustSaid = (intent: (text: string) => boolean) =>
     wallClock() - lastStudentWordsRef.current.at < 30_000 && intent(lastStudentWordsRef.current.text);
+  // The voice tutor's revisit_slide tool, set once the revisit flow below exists.
+  const revisitToolRef = useRef<((args: Record<string, unknown>) => Promise<string>) | null>(null);
   const tutor = useGeminiLiveTutor({
     voiceSurface: documentId ? "pdf" : "normal",
     // Minutes of narration at a time: nothing stops her without positive evidence.
@@ -1076,6 +1086,9 @@ export function LessonPlayer({
       lesson.requestResume({ explicit: studentJustSaid(isResumeIntent) || studentJustSaid(isShortAgreement) });
     },
     lectureControlTools: true,
+    customTools: [REVISIT_SLIDE_TOOL],
+    onCustomToolCall: (name, args) =>
+      name === "revisit_slide" && revisitToolRef.current ? revisitToolRef.current(args) : `Unknown tool: ${name}`,
     checkinMode: checkin !== null,
 
     /*
@@ -1212,9 +1225,82 @@ export function LessonPlayer({
   }, [showLiveBoard]);
 
   // The student chose to go on: the lecture is the only voice, back on its own board.
+  const revisitOpenRef = useRef(false);
+  useEffect(() => {
+    revisitOpenRef.current = revisit !== null;
+  }, [revisit]);
+  const clearRevisit = useCallback(() => setRevisit(null), []);
   useEffect(() => {
     if (lesson.mode === "teaching" && liveBoardsRef.current.length) clearLiveBoard();
-  }, [lesson.mode, clearLiveBoard]);
+    if (lesson.mode === "teaching" && revisitOpenRef.current) clearRevisit();
+  }, [lesson.mode, clearLiveBoard, clearRevisit]);
+
+  /*
+   * JUMP BACK, THEN RETURN (lib/revisit.ts). A question about something an earlier slide taught is
+   * answered ON that slide: it comes back on screen at once (the lecture's own narration stays
+   * frozen underneath), Aria says where it was covered and answers from it, and the board's pen
+   * rings what she points at and writes her note. Null — answer as usual — for anything else, or if
+   * the answer cannot be had.
+   */
+  const showRevisit = useCallback(
+    async (targetIndex: number, question: string): Promise<{ script: string } | null> => {
+      const target = { index: targetIndex };
+      const past = beats[target.index];
+      setRevisit({ index: target.index, marks: [], note: "" });
+      try {
+        const res = await fetch("/api/revisit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question,
+            topic: title,
+            slideNumber: target.index + 1,
+            slideTitle: past.title,
+            slideScript: past.script,
+            boardWords: boardWordsOf(past),
+          }),
+        });
+        const data = await res.json().catch(() => null);
+        recordJsonCost("questions", data);
+        if (!res.ok || typeof data?.script !== "string" || !data.script.trim()) throw new Error("no answer");
+        setRevisit({ index: target.index, marks: revisitMarks(past, Array.isArray(data.marks) ? data.marks : []), note: typeof data.note === "string" ? data.note : "" });
+        return { script: data.script };
+      } catch {
+        setRevisit(null);
+        return null;
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [beats, title],
+  );
+  const revisitQuestion = useCallback(
+    async (question: string) => {
+      const target = findRevisitTarget(question, beats, indexRef.current);
+      return target ? showRevisit(target.index, question) : null;
+    },
+    [beats, showRevisit],
+  );
+  /*
+   * Spoken questions: Aria calls revisit_slide. The slide comes back at once and she is told what it
+   * shows, so she can answer over it straight away; the pen's rings and note follow when they arrive
+   * (her spoken answer is her own — the written script is not read).
+   */
+  useEffect(() => {
+    revisitToolRef.current = async (args) => {
+      const question = typeof args.question === "string" ? args.question : "";
+      const named = Math.round(Number(args.slide_number)) - 1;
+      const current = indexRef.current;
+      const hasBoard = (i: number) => Boolean(beats[i]?.draw?.ops?.length) && beats[i]?.slideKind !== "checkpoint";
+      const index = Number.isFinite(named) && named >= 0 && named < current && hasBoard(named)
+        ? named
+        : findRevisitTarget(question, beats, current)?.index ?? -1;
+      if (index < 0) return "That is not an earlier slide with a board. Answer the question here, without going back.";
+      lesson.holdForStudent();
+      const past = beats[index];
+      void showRevisit(index, question || past.title);
+      return `Slide ${index + 1}, "${past.title}", is back on screen. It taught: ${past.script.slice(0, 600)} Its board shows: ${boardWordsOf(past).join(", ") || "its drawing"}. Say we covered this on slide ${index + 1}, answer the student's question from it in one to three short sentences, then invite them to say continue. The lecture stays paused until they do.`;
+    };
+  });
 
   // A drawing is under way: the lecture waits for the student from now, not from when it lands.
   useEffect(() => {
@@ -1405,6 +1491,7 @@ export function LessonPlayer({
     documentId,
     lessonQuestion,
     ...(hasSourceDocument && sourceScope ? { sourceScope, getBeatSource: () => beatSourceFor(beat) } : {}),
+    revisit: revisitQuestion,
     pausePlayer: () => {
       // Hard stop during a check-in. This is the path behind "Aria talks about the lesson": ask()
       // speaks its answer through playNarration directly (LessonChat.tsx), bypassing the voice
@@ -1433,12 +1520,11 @@ export function LessonPlayer({
         ? "Drawing…"
         : tutor.speaking
           ? "Aria speaking…"
-          : sessionActive && tutor.muted
-            // It said "Listening" while the mic was muted — the student talked to nobody.
-            ? "Mic muted — tap to talk"
-            : sessionActive
-              ? "Listening — tap to end"
-              : "";
+          // The mic is always open (2026-09-29: "the audio should always be open — just mute and
+          // unmute"), so there is no call to end; the pill says what she is doing, Mute sits beside it.
+          : tutor.muted
+            ? "Muted"
+            : "Listening";
 
   function startLiveTutor() {
     // The check-in owns the session; taking the floor from it would drop the lecture out of paused.
@@ -2372,6 +2458,50 @@ export function LessonPlayer({
     );
   }
 
+  /*
+   * A MARK WITH NO WORDS UNDER IT still tells Aria something (2026-09-29: "the pen and highlighter
+   * should work with visual context"). On a picture board the parts it covers are named from the
+   * picture's own map (lib/board/markContext.ts) — instant and free. Anywhere else, once the student
+   * pauses marking, a quick look at just the marked crop names what is there. Either way the live
+   * session is told, so "what's this?" by voice is about the right thing.
+   */
+  const markDescribeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  function describeMarkForTutor(stroke: AnnotationStroke) {
+    const verb = stroke.kind === "highlight" ? "highlighted" : "circled";
+    const code = (beat.draw?.ops ?? []).map((op) => (op as { code?: unknown }).code).find((c): c is string => typeof c === "string");
+    const parts = picturePartsInMark(code, stroke.points);
+    if (parts.length) {
+      pushHighlightContext(`${verb} the ${parts.join(" and the ")} in the picture`);
+      return;
+    }
+    if (markDescribeTimer.current) clearTimeout(markDescribeTimer.current);
+    markDescribeTimer.current = setTimeout(() => {
+      const surface = boardSurfaceRef.current;
+      const region = boundsOf([stroke]);
+      if (!surface || !region) return;
+      void captureSelectedBoardRegion(surface, region)
+        .then((image) => fetch("/api/ask-drawing", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            image,
+            topic: title,
+            beatContext: `${beat.title}: ${beat.script}`,
+            question: "In at most twelve words, name exactly what is inside the marked area of this board crop — the part, word, symbol or shape. If it is blank paper, answer exactly: nothing specific.",
+            selectedRegion: region,
+            answerOnly: true,
+          }),
+        }))
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          recordJsonCost("questions", data);
+          const what = typeof data?.script === "string" ? data.script.trim().replace(/[.\s]+$/, "") : "";
+          if (what && !/nothing specific/i.test(what)) pushHighlightContext(`marked ${what} on the board`);
+        })
+        .catch(() => {});
+    }, 1200);
+  }
+
   async function explainMarkedRegion(request: ExplainRequest) {
     if (checkinRef.current) return;
     setExplainBusy(true);
@@ -2558,7 +2688,14 @@ export function LessonPlayer({
   const statusText = waitingForNextBeat ? "preparing next part" : speaking ? "explaining" : waitingOnCheckpoint ? "waiting on you" : stage === "slide" ? "setting up" : "drawing";
   const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
   const currentCaption = sentenceCue.text || beat.script;
-  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope);
+  /*
+   * The PDF workspace — the pages beside the board, the passage boxed, the arrow, "n/m covered" — is
+   * for a STRICT lesson, which teaches the document part by part. A reference lesson teaches the
+   * student's question with the document behind it; walking the pages was exactly the wrong frame
+   * ("it started teaching me the whole source"). It gets the ordinary lecture layout; Aria and the
+   * ask box still read the document (they take it from `sourceDocument` / `documentId`, not this).
+   */
+  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope && strictSource);
   // Where the spoken passage sits on the PDF, for the arrow that joins it to the board.
   const [pointerRect, setPointerRect] = useState<DOMRect | null>(null);
   const workspaceRef = useRef<HTMLDivElement | null>(null);
@@ -2651,6 +2788,7 @@ export function LessonPlayer({
         !sessionActive
       }
       liveStatusLabel={liveMicLabel}
+      liveAlwaysOn={REALTIME_TUTOR_ENABLED && autoVoiceAssistant}
       liveMuted={tutor.muted}
       onLiveMute={tutor.toggleMute}
       liveError={tutor.errorMessage}
@@ -2911,6 +3049,30 @@ export function LessonPlayer({
               />
             )}
 
+            {/* An earlier slide, back for a question about it; the lecture resumes underneath. */}
+            {revisit && beats[revisit.index] && (() => {
+              const past = beats[revisit.index];
+              const sentences = splitNarrationSentences(past.script);
+              return (
+                <RevisitOverlay
+                  slideNumber={revisit.index + 1}
+                  title={past.title}
+                  marks={revisit.marks}
+                  note={revisit.note}
+                  onContinue={() => {
+                    if (!lesson.playing) togglePlay();
+                    setRevisit(null);
+                  }}
+                >
+                  <Board
+                    beat={past}
+                    sentenceCue={{ index: Math.max(0, sentences.length - 1), total: Math.max(1, sentences.length), text: sentences[sentences.length - 1] ?? past.script }}
+                    drawProgress={1}
+                  />
+                </RevisitOverlay>
+              );
+            })()}
+
             {/* While a board is being generated, the whole board says so — no silent 20 s wait. */}
             {(tutor.status === "drawing" || chat.drawingBoard) && <TeacherDrawingNotice />}
 
@@ -3017,6 +3179,7 @@ export function LessonPlayer({
                 // Any mark over real board text is a question waiting to be asked — pen as much as
                 // highlighter. Pushed into the live session so "what's that?" by voice already has it.
                 if (stroke.coveredText) pushHighlightContext(marksNarrative([stroke]) || stroke.coveredText);
+                else describeMarkForTutor(stroke);
                 // Offer to explain what was just marked, rather than silently posting the whole
                 // board to the model the way the old auto-describe did.
                 setExplainDismissed(false);
@@ -3158,7 +3321,10 @@ export function LessonPlayer({
               </p>
             </div>
           </div>
-          <VoiceState phase={voicePhase} />
+          <div className="flex shrink-0 items-center gap-2">
+            <BoardTelemetry beats={beats} index={index} planned={displayBeatCount} />
+            <VoiceState phase={voicePhase} />
+          </div>
         </header>}
 
         {voiceBlocked && (
@@ -4330,8 +4496,8 @@ function BoardNotes({ points, sentenceIndex, sentenceTotal, complete, embedded =
       : notes.filter((_, k) => sentenceIndex >= Math.floor((k * total) / notes.length)).length;
   return (
     <div className={embedded ? "h-full overflow-y-auto bg-[#fbfbf8] px-4 py-3" : "shrink-0 border-b border-slate-200 bg-[#fbfbf8] px-5 py-3"} style={embedded ? undefined : { maxHeight: "34%" }}>
-      <style>{`@font-face{font-family:"Playpen Sans";src:url(/fonts/PlaypenSans-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}.board-note-write{animation:board-note-write .7s steps(24,end) both}@keyframes board-note-write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}@media (prefers-reduced-motion:reduce){.board-note-write{animation:none}}`}</style>
-      <ol className="space-y-1.5 overflow-hidden" style={{ fontFamily: '"Playpen Sans","Chalkboard SE","Comic Sans MS",sans-serif' }}>
+      <style>{`@font-face{font-family:"Aria Board";src:url(/fonts/Nunito-SemiBold.ttf) format("truetype");font-weight:600;font-display:swap}.board-note-write{animation:board-note-write .7s steps(24,end) both}@keyframes board-note-write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}@media (prefers-reduced-motion:reduce){.board-note-write{animation:none}}`}</style>
+      <ol className="space-y-1.5 overflow-hidden" style={{ fontFamily: '"Aria Board","Nunito",system-ui,sans-serif' }}>
         {notes.map((note, k) => (
           <li
             key={k}

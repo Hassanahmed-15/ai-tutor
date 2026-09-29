@@ -515,7 +515,7 @@ export function hasEnoughSignal(profile: LearnerProfile): boolean {
  * about themselves rather than a demonstration, and is excluded by requiring a concept the answer
  * actually engaged with.
  */
-function verifyingDiagnostics(profile: LearnerProfile): number {
+export function verifyingDiagnostics(profile: LearnerProfile): number {
   return profile.diagnostics.filter(
     (d) => d.verdict !== "skipped" && Boolean(d.concept?.trim()) && d.selfReport !== true,
   ).length;
@@ -531,6 +531,14 @@ export const MAX_DIAGNOSTIC_QUESTIONS = 4;
  *  enforced (hasEnoughSignal can still stop earlier when the evidence is already conclusive), just
  *  the number below which "I could ask one more useful thing" should usually win the argument. */
 export const MIN_USEFUL_DIAGNOSTIC_QUESTIONS = 2;
+
+/**
+ * Questions that TEST an idea (not the level question, not a self-report) every student is asked
+ * before planning, unless they skip. Owner, 2026-09-29: "ask intellectual questions like it used to
+ * … it should know which concept it is shaky on" — a beginner had been taught after the level
+ * question alone, so their profile never learned what they were shaky on.
+ */
+export const MIN_CONCEPT_QUESTIONS = 2;
 
 /**
  * Accept a learner profile from the client without trusting any of it.

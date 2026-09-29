@@ -1,5 +1,11 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
+import type { Beat } from "@/lib/lessonContent";
+import { boardSummary, incomingSummary, type IncomingState } from "@/lib/anim/boardTagline";
+import { modelCostBreakdown } from "@/lib/anim/modelCosts";
+import { EMPTY_COST_LEDGER, getCostLedger, subscribeCostLedger } from "@/lib/costLedger";
+
 /**
  * A small corner label naming which engine drew the board you are looking at.
  *
@@ -59,10 +65,10 @@ const LABELS: Record<RendererKind, { text: string; dot: string; tint: string; ti
     title: "Live structured SVG timeline, scrubbed by narration progress with anime.js",
   },
   sandbox: {
-    text: "React · sandbox",
+    text: "Motion",
     dot: "bg-fuchsia-300 shadow-[0_0_6px_rgba(240,171,252,0.9)]",
     tint: "text-fuchsia-300 ring-fuchsia-400/40",
-    title: "Model-authored React/SVG running live in a sandboxed iframe",
+    title: "A Motion board: model-authored (or illustrated) board animated with the Motion library, run in an isolated iframe",
   },
   svg: {
     text: "React · SVG",
@@ -88,9 +94,10 @@ export function RendererBadge({ kind, detail }: { kind: RendererKind; detail?: s
    * starts. It also told a student nothing useful about PROVENANCE: the hand-authored scenes
    * render the same badge as a model-generated one.
    *
-   * Kept for renderer work, behind NEXT_PUBLIC_SHOW_RENDERER_BADGE=1.
+   * Kept for renderer work, behind NEXT_PUBLIC_SHOW_RENDERER_BADGE=engines. (=1 shows the
+   * BoardTagline below instead, which says the same and more on one line.)
    */
-  if (process.env.NEXT_PUBLIC_SHOW_RENDERER_BADGE !== "1") return null;
+  if (process.env.NEXT_PUBLIC_SHOW_RENDERER_BADGE !== "engines") return null;
   const { text, dot, tint, title } = LABELS[kind];
   return (
     <span
@@ -101,5 +108,67 @@ export function RendererBadge({ kind, detail }: { kind: RendererKind; detail?: s
       {text}
       {detail && <span className="opacity-80">· {detail}</span>}
     </span>
+  );
+}
+
+const INCOMING_TINT: Record<IncomingState, string> = {
+  ready: "text-emerald-300",
+  drawing: "text-amber-300",
+  writing: "text-sky-300",
+  last: "text-slate-400",
+};
+
+/**
+ * The lecture's cost and board status, as ONE small chip in the player's header — never over the
+ * board (two full-width bars across the top of the picture were too much, 2026-09-29). The chip
+ * shows the total and whether the next board is ready; hovering (or focusing) it opens the cost by
+ * model (lib/anim/modelCosts.ts) and what drew this board (lib/anim/boardTagline.ts). Developer
+ * telemetry, shown only with NEXT_PUBLIC_SHOW_RENDERER_BADGE=1 — students never see it.
+ */
+const NEXT_SHORT: Record<IncomingState, string> = {
+  ready: "next ready",
+  drawing: "next drawing…",
+  writing: "next writing…",
+  last: "last board",
+};
+
+export function BoardTelemetry({ beats, index, planned }: { beats: Beat[]; index: number; planned: number }) {
+  const ledger = useSyncExternalStore(subscribeCostLedger, getCostLedger, () => EMPTY_COST_LEDGER);
+  if (process.env.NEXT_PUBLIC_SHOW_RENDERER_BADGE !== "1") return null;
+  const { totalUsd, parts } = modelCostBreakdown(beats, ledger.lines);
+  const beat = beats[index];
+  const incoming = incomingSummary(beats, index, planned);
+  return (
+    <div className="group relative shrink-0">
+      <button
+        type="button"
+        aria-label="Lecture cost by model and board status"
+        className="flex h-7 items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 text-[10px] font-semibold text-slate-300 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300"
+      >
+        <span className="tabular-nums text-cyan-300">${totalUsd.toFixed(3)}</span>
+        <span className="opacity-40">·</span>
+        <span className={INCOMING_TINT[incoming.state]}>{NEXT_SHORT[incoming.state]}</span>
+      </button>
+      <div className="invisible absolute right-0 top-full z-[80] mt-2 w-72 rounded-xl border border-white/10 bg-slate-950/95 p-3 text-[11px] leading-snug text-slate-200 opacity-0 shadow-2xl backdrop-blur-md transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+        <p className="font-bold text-cyan-300">All models ${totalUsd.toFixed(4)}</p>
+        {parts.length > 0 ? (
+          <ul className="mt-1.5 space-y-0.5">
+            {parts.map((part) => (
+              <li key={part.label} className="flex justify-between gap-3">
+                <span className="truncate text-slate-300">{part.label}</span>
+                <span className="tabular-nums">${part.usd.toFixed(3)}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-1 text-slate-400">No spend measured yet.</p>
+        )}
+        {ledger.unpriced > 0 && <p className="mt-1 text-amber-300/80">+{ledger.unpriced} unpriced call{ledger.unpriced === 1 ? "" : "s"}</p>}
+        <div className="mt-2 space-y-0.5 border-t border-white/10 pt-2">
+          {beat && <p className="text-fuchsia-200">This board: {boardSummary(beat)}</p>}
+          <p className={INCOMING_TINT[incoming.state]}>{incoming.text}</p>
+        </div>
+      </div>
+    </div>
   );
 }

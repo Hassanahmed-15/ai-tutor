@@ -1,5 +1,6 @@
 "use client";
 
+import { groupSlides } from "@/lib/anim/slideGroups";
 import { useEffect, useState } from "react";
 import { Check, Play, Square } from "lucide-react";
 import {
@@ -142,13 +143,17 @@ export function LessonBuildScreen({
           <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-black/25 p-5">
             <h2 className="text-sm font-semibold">Slides</h2>
             <ul className="mt-3 space-y-1.5">
-              {slides.map((row) => {
-                const { label, tone } = slideStage(row);
+              {groupSlides(slides).map((group) => {
+                // One line per subtopic: the stage of its most advanced board still in progress.
+                const active = group.rows.find((r) => slideStage(r).tone === "active");
+                const row = active ?? (group.readyCount === group.rows.length ? group.rows[0] : group.rows[group.rows.length - 1]);
+                const { label, tone } = group.readyCount === group.rows.length ? slideStage(group.rows[0]) : slideStage(row);
                 const started = row.timing?.textStartedAt ? Date.parse(row.timing.textStartedAt) : null;
                 const running = tone === "active" && started && now > 0 ? now - started : null;
+                const many = group.rows.length > 1;
                 return (
                   <li
-                    key={row.sequence}
+                    key={group.first}
                     className={`flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors ${
                       tone === "active" ? "bg-[var(--hud-cyan)]/[0.07] ring-1 ring-inset ring-[var(--hud-cyan)]/25" : ""
                     }`}
@@ -162,15 +167,16 @@ export function LessonBuildScreen({
                         <span className="h-1.5 w-1.5 rounded-full border border-[var(--hud-text-faint)]/50" />
                       )}
                     </span>
-                    <span className="w-5 shrink-0 text-[11px] tabular-nums text-[var(--hud-text-faint)]">
-                      {row.sequence + 1}
+                    <span className="w-9 shrink-0 text-[11px] tabular-nums text-[var(--hud-text-faint)]">
+                      {many ? `${group.first + 1}–${group.last + 1}` : group.first + 1}
                     </span>
                     <span
                       className={`min-w-0 flex-1 truncate text-[13px] ${
                         tone === "waiting" ? "text-[var(--hud-text-faint)]/60" : "text-[var(--hud-text)]"
                       }`}
                     >
-                      {row.title}
+                      {group.title}
+                      {many && <span className="ml-2 text-[11px] text-[var(--hud-text-faint)]">{group.rows.length} boards</span>}
                     </span>
                     <span
                       className={`shrink-0 text-[11px] tabular-nums ${
@@ -178,6 +184,7 @@ export function LessonBuildScreen({
                       }`}
                     >
                       {label}
+                      {many && tone !== "done" && group.readyCount > 0 ? ` · ${group.readyCount} of ${group.rows.length} ready` : ""}
                       {running !== null ? ` · ${seconds(running)}` : ""}
                     </span>
                   </li>

@@ -54,6 +54,14 @@ function stageOf(state: string): GateStage {
   return state === "attending" ? "candidate" : state as GateStage;
 }
 
+/**
+ * How long after her question a voice still counts as its answer (see setExpectingAnswer): short in
+ * a lecture, where the room's noise is the risk; long where a question sits on screen until the
+ * student answers it (planning), and thinking for half a minute is normal.
+ */
+export const ANSWER_WINDOW_MS = 15_000;
+export const ANSWER_WINDOW_CONVERSATION_MS = 90_000;
+
 export class SharedVoiceGate {
   readonly log = new EventLog();
   private readonly pipeline: TurnPipeline;
@@ -94,12 +102,25 @@ export class SharedVoiceGate {
 
   setTutorSpeaking(speaking: boolean, now: number): void {
     this.tutorSpeaking = speaking;
-    this.pipeline.setTutor({ speaking, expectingAnswer: this.expectingAnswer, speakingAs: this.speakingAs }, now);
+    this.pipeline.setTutor({ speaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs }, now);
   }
-  setExpectingAnswer(expecting: boolean): void { this.expectingAnswer = expecting; }
+  /*
+   * An answer comes soon after the question. "Expecting an answer" used to last until her next
+   * turn, so after "say continue whenever you're ready?" any voice minutes later — the TV, a phone
+   * call — counted as the answer and was let in. It now lapses ANSWER_WINDOW_MS after she asks.
+   */
+  setExpectingAnswer(expecting: boolean): void {
+    this.expectingAnswer = expecting;
+    this.expectingSince = expecting ? Date.now() : 0;
+  }
+  private expectingSince = 0;
+  private expecting(): boolean {
+    const window = this.speakingAs === "lecture" ? ANSWER_WINDOW_MS : ANSWER_WINDOW_CONVERSATION_MS;
+    return this.expectingAnswer && Date.now() - this.expectingSince < window;
+  }
   setTopicWords(words: Iterable<string>): void { this.pipeline.setTopicWords(words); }
   push(pcm: Float32Array, now: number, vadProbability: number | null = null): void {
-    this.pipeline.setTutor({ speaking: this.tutorSpeaking, expectingAnswer: this.expectingAnswer, speakingAs: this.speakingAs }, now);
+    this.pipeline.setTutor({ speaking: this.tutorSpeaking, expectingAnswer: this.expecting(), speakingAs: this.speakingAs }, now);
     const verdict = this.pipeline.push(pcm, now, vadProbability);
     if (verdict.speech) this.lastReason = verdict.reason;
   }

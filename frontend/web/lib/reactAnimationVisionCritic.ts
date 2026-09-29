@@ -6,6 +6,8 @@ import * as ReactModule from "react";
 import { createElement, Fragment, type ReactNode } from "react";
 import type { Beat } from "./lessonContent";
 import { ANIM_SANDBOX_RUNTIME } from "./anim/sandboxRuntime";
+import { BOARD_LABELS_SOURCE, FINISHED_BOARD_PROPS, MOTION_MODULE_NAMES, STATIC_MOTION_SOURCE } from "./anim/sandboxMotion";
+import { BOARD_FONT_FACES, BOARD_HEADING_WEIGHT } from "./anim/boardFont";
 import { costFor } from "./modelPricing";
 import { labelIsGrounded, sourceVocabulary, ungroundedTerms, type BeatSourceGrounding } from "./sourceGrounding";
 import {
@@ -239,12 +241,16 @@ export async function renderStaticFrame(code: string, assetRuntime?: string, bas
     // (Named `fakeModule`, not `module` — Next.js flags reassigning/shadowing the real Node
     // `module` binding, even though this scope is a local const, not the actual CJS module object.)
     const fakeModule = { exports: {} as { default?: (props: { progress: number }) => ReactNode } };
+    // Motion cannot run here, so each motion element renders settled at its `animate` target — the
+    // frame the student's sandbox shows once the glide lands (lib/anim/sandboxMotion.ts).
+    const motion = new Function("React", `${STATIC_MOTION_SOURCE}\nreturn staticMotion(React);`)(React);
     const fakeRequire = (name: string) => {
       if (name === "react") return React;
       if (name === "react-dom") return {};
       if (name === "react/jsx-runtime" || name === "react/jsx-dev-runtime") {
         return { jsx: createElement, jsxs: createElement, Fragment };
       }
+      if (MOTION_MODULE_NAMES.includes(name)) return { motion };
       throw new Error(`Module not available in the board sandbox: ${name}`);
     };
     // The generated component calls the animation helpers the SANDBOX injects at runtime —
@@ -257,14 +263,18 @@ export async function renderStaticFrame(code: string, assetRuntime?: string, bas
     // `assetRuntime` follows for the same reason: it defines <Asset/> and the artwork the board
     // places. Rendering without it would throw or silently drop the illustration, and the score
     // would then describe a picture the student never sees.
+    //
+    // The board's own code runs inside a BLOCK, as it does in the sandbox (its `try { … }`): a board
+    // that declares its own `const motion` then shadows the library instead of colliding with it.
     const factory = new Function(
       "module",
       "exports",
       "require",
       "React",
-      `${ANIM_SANDBOX_RUNTIME}\n${assetRuntime ?? ""}\n${transpiled}`,
+      "__boardMotion",
+      `${ANIM_SANDBOX_RUNTIME}\n${assetRuntime ?? ""}\nvar motion = __boardMotion;\n${BOARD_LABELS_SOURCE}\n{\n${transpiled}\n}`,
     );
-    factory(fakeModule, fakeModule.exports, fakeRequire, React);
+    factory(fakeModule, fakeModule.exports, fakeRequire, React, motion);
     const Animation = fakeModule.exports.default;
     if (typeof Animation !== "function") {
       return { svg: null, failure: { kind: "component", message: "no default-exported Animation component" } };
@@ -280,7 +290,9 @@ export async function renderStaticFrame(code: string, assetRuntime?: string, bas
     } catch (err) {
       return { svg: null, failure: { kind: "environment", message: `react-dom/server unavailable: ${err instanceof Error ? err.message : "error"}` } };
     }
-    const element = createElement(Animation, { progress: 1 });
+    // The finished frame: progress 1 for a timeline board, every sentence revealed for a Motion
+    // board (a board ignores the props its contract does not use).
+    const element = createElement(Animation as (props: typeof FINISHED_BOARD_PROPS) => ReactNode, FINISHED_BOARD_PROPS);
     return { svg: renderToStaticMarkup(element) };
   } catch (err) {
     const message = err instanceof Error ? err.message : "error";
@@ -316,18 +328,18 @@ export function svgForRasterizer(markup: string): string {
 }
 
 /**
- * The board font, for the rasteriser: the same Playpen Sans the sandbox embeds (its .ttf twins in
- * public/fonts, which resvg can read). Without it resvg drew the critics' picture in whatever system
- * font the server had — on a Linux container, possibly none, so the vision critics judged boards whose
- * labels were missing or in a different face and width from the student's. Empty when the files are
- * absent, in which case the render falls back to system fonts exactly as before.
+ * The board font, for the rasteriser: the same TTFs the sandbox embeds (lib/anim/boardFont.ts), which
+ * resvg can read. Without them resvg drew the critics' picture in whatever system font the server had —
+ * on a Linux container, possibly none, so the vision critics judged boards whose labels were missing or
+ * in a different face and width from the student's. Empty when the files are absent, in which case the
+ * render falls back to system fonts exactly as before.
  */
-const BOARD_FONT_FAMILY = "Playpen Sans";
+const [BODY_FACE, HEADING_FACE] = BOARD_FONT_FACES;
 let boardFontFiles: string[] | null = null;
 export function rasterFontFiles(): string[] {
   if (!boardFontFiles) {
-    boardFontFiles = ["PlaypenSans-SemiBold.ttf", "PlaypenSans-ExtraBold.ttf"]
-      .map((file) => appPath("public", "fonts", file))
+    boardFontFiles = BOARD_FONT_FACES
+      .map((face) => appPath("public", "fonts", face.file))
       .filter((file) => existsSync(file));
   }
   return boardFontFiles;
@@ -335,14 +347,20 @@ export function rasterFontFiles(): string[] {
 
 /**
  * Every font-family on the frame replaced by the board font — what the sandbox's
- * `svg text { font-family: "Playpen Sans" … !important }` does in the browser, which resvg has no
- * stylesheet for. Font weight is left as authored, so headings still pick the ExtraBold face.
+ * `svg text { font-family: "Aria Board" … !important }` does in the browser, which resvg has no
+ * stylesheet for. resvg cannot alias two families under one name, so each <text> is given the REAL
+ * family of the face its weight selects: the heading face above weight 650, the body face otherwise.
  */
 export function withBoardFont(svg: string): string {
+  const body = BODY_FACE.family;
   return svg
-    .replace(/font-family\s*=\s*"[^"]*"/g, `font-family="${BOARD_FONT_FAMILY}"`)
-    .replace(/font-family:\s*[^;"]+/g, `font-family:${BOARD_FONT_FAMILY}`)
-    .replace(/^<svg\b(?![^>]*\bfont-family=)/, `<svg font-family="${BOARD_FONT_FAMILY}"`);
+    .replace(/font-family\s*=\s*"[^"]*"/g, `font-family="${body}"`)
+    .replace(/font-family:\s*[^;"]+/g, `font-family:${body}`)
+    .replace(/<text\b([^>]*)>/g, (tag, attrs: string) =>
+      fontWeightOf(attrs) >= BOARD_HEADING_WEIGHT
+        ? `<text${attrs.replace(/font-family\s*=\s*"[^"]*"/, "").replace(/font-family:\s*[^;"]+;?/, "")} font-family="${HEADING_FACE.family}">`
+        : tag)
+    .replace(/^<svg\b(?![^>]*\bfont-family=)/, `<svg font-family="${body}"`);
 }
 
 async function rasterize(svg: string): Promise<string | null> {
@@ -375,7 +393,7 @@ async function rasterize(svg: string): Promise<string | null> {
     const r = fontFiles.length
       ? new resvg.Resvg(withBoardFont(wrapped), {
           fitTo: { mode: "width", value: 1000 },
-          font: { fontFiles, loadSystemFonts: true, defaultFontFamily: BOARD_FONT_FAMILY },
+          font: { fontFiles, loadSystemFonts: true, defaultFontFamily: BODY_FACE.family },
         })
       : new resvg.Resvg(wrapped, { fitTo: { mode: "width", value: 1000 } });
     const png = r.render().asPng();
@@ -474,29 +492,26 @@ type TextBox = { text: string; x: number; y: number; w: number; h: number; ink: 
  * model to shorten or paraphrase the source's own words; and the padding hid real collisions,
  * because a box that big has to overlap a lot before a third of it is covered.
  *
- * The board font is Playpen Sans, embedded in the sandbox (components/sketch/ReactAnimationSandbox.tsx:
- * SemiBold for weights up to 650, ExtraBold above), so these are ITS advances — measured in Chromium
- * from public/fonts/PlaypenSans-*.woff2 with the sandbox's own @font-face rules — in thousandths of
+ * The board font is Nunito SemiBold for weights up to 650 and Outfit ExtraBold above (lib/anim/
+ * boardFont.ts), so these are THEIR advances — measured in Chromium from public/fonts/*.ttf — in thousandths of
  * an em, printable ASCII from U+0020. The symbols boards use are listed separately; anything else
  * counts as a full em. A 3% allowance covers kerning and hinting. Regenerate if the board font changes
  * (the measuring script renders "H<ch>H" minus "HH" per character with getComputedTextLength).
  */
 const SEMIBOLD_ADVANCE = [
-  323, 296, 442, 612, 629, 872, 797, 257, 388, 381, 507, 650, 258, 471, 272, 413, 738, 468, 704, 657, 674, 641, 703, 573,
-  626, 593, 291, 291, 650, 650, 650, 519, 865, 780, 677, 749, 794, 625, 583, 828, 782, 319, 608, 715, 583, 939, 789, 809,
-  637, 810, 732, 624, 674, 768, 698, 1042, 664, 630, 643, 477, 466, 473, 650, 514, 503, 655, 589, 539, 607, 537, 461, 595,
-  602, 298, 321, 646, 298, 926, 611, 575, 614, 602, 498, 470, 458, 599, 546, 819, 552, 577, 527, 432, 322, 422, 650,
+  264, 237, 417, 600, 600, 937, 708, 231, 336, 336, 452, 600, 237, 429, 237, 297, 600, 600, 600, 600, 600, 600, 600, 600,
+  600, 600, 237, 237, 600, 600, 600, 450, 948, 736, 682, 676, 751, 589, 554, 731, 767, 268, 338, 643, 552, 861, 743, 775,
+  642, 775, 677, 622, 611, 733, 700, 1107, 660, 631, 596, 333, 297, 333, 600, 500, 366, 537, 591, 467, 591, 537, 347, 594,
+  576, 243, 246, 516, 306, 866, 576, 565, 591, 591, 373, 484, 365, 569, 520, 846, 534, 520, 468, 370, 275, 370, 600,
 ];
 const EXTRABOLD_ADVANCE = [
-  320, 291, 471, 616, 654, 876, 834, 263, 379, 372, 507, 650, 248, 459, 279, 416, 744, 486, 699, 653, 687, 638, 705, 576,
-  626, 600, 296, 296, 650, 650, 650, 519, 878, 793, 693, 736, 796, 622, 588, 818, 788, 329, 613, 745, 586, 938, 795, 812,
-  657, 805, 735, 625, 675, 756, 705, 1058, 671, 636, 632, 472, 460, 468, 650, 505, 500, 692, 606, 560, 628, 546, 512, 618,
-  625, 316, 358, 687, 312, 941, 621, 598, 633, 626, 531, 484, 507, 616, 583, 865, 570, 580, 584, 454, 326, 444, 650,
+  185, 297, 471, 673, 613, 698, 658, 254, 315, 315, 489, 571, 287, 463, 304, 420, 671, 390, 576, 569, 613, 568, 579, 530,
+  569, 579, 300, 286, 571, 571, 571, 496, 766, 734, 650, 692, 761, 627, 602, 791, 739, 305, 550, 703, 567, 866, 748, 812,
+  634, 828, 649, 582, 649, 708, 722, 1012, 710, 670, 617, 352, 376, 352, 474, 517, 338, 603, 603, 501, 603, 554, 452, 588,
+  583, 275, 288, 563, 276, 879, 583, 582, 603, 603, 453, 471, 410, 550, 550, 800, 538, 541, 495, 349, 308, 349, 571,
 ];
 const SYMBOL_ADVANCE: Record<string, number> = {
-  "→": 1000, "←": 1000, "↑": 723, "↓": 723, "⇌": 1000, "²": 537, "³": 523, "₂": 500, "₆": 500, "·": 285, "°": 439,
-  "–": 527, "—": 1023, "’": 197, "‘": 197, "“": 392, "”": 377, "×": 650, "÷": 650, "≈": 650, "≤": 650, "≥": 650,
-  "µ": 645, "é": 546,
+  "→": 1000, "←": 1000, "↑": 723, "↓": 723, "⇌": 1000, "²": 380, "³": 380, "₂": 380, "₆": 380, "·": 237, "°": 375, "–": 500, "—": 1000, "’": 237, "‘": 237, "“": 416, "”": 416, "×": 600, "÷": 600, "≈": 600, "≤": 600, "≥": 600, "µ": 600, "é": 537, "β": 556, "θ": 556, "Σ": 600, "∂": 600, "Δ": 737, "π": 602, "ŷ": 520, "−": 600,
 };
 const ADVANCE_ALLOWANCE = 1.03;
 
@@ -513,21 +528,21 @@ export function measuredTextWidth(text: string, fontSize: number, fontWeight = 4
 
 /**
  * The INK above and below the baseline, per line, as fractions of the font size — the part of a line
- * that can actually collide. Measured on Playpen Sans: capitals, digits and ascenders (b d f h i k l t)
- * reach 0.79-0.84 em, the x-height is 0.57 em; descenders (g j p q y) drop 0.31 em, everything else
- * ~0.02 em. A box sized for the tallest and deepest glyphs of every line would call "nucleus" over
+ * that can actually collide. Measured on the board faces (Nunito / Outfit): capitals, digits and
+ * ascenders (b d f h i k l t) reach 0.71-0.74 em, the x-height is 0.49-0.50 em; descenders (g j p q y)
+ * drop 0.19-0.22 em, everything else ~0.02 em. A box sized for the tallest and deepest glyphs of every line would call "nucleus" over
  * "vacuole" at a normal line gap a collision; the old box (1.35 em, from 1.05 em above the baseline)
  * missed a 34px title and a 23px subtitle 26 px apart, whose descender and capital DO overprint.
  */
 function inkExtent(text: string): { ascent: number; descent: number } {
   return {
-    ascent: /[A-Z0-9bdfhijklt'"!?()[\]{}\/\\|#$%&@^*À-ÿ]/.test(text) ? 0.84 : 0.6,
-    descent: /[gjpqyQ,;()[\]{}\/|$@_]/.test(text) ? 0.31 : 0.03,
+    ascent: /[A-Z0-9bdfhijklt'"!?()[\]{}\/\\|#$%&@^*À-ÿ]/.test(text) ? 0.75 : 0.51,
+    descent: /[gjpqyQ,;()[\]{}\/|$@_]/.test(text) ? 0.23 : 0.03,
   };
 }
 /** The tallest and deepest regular glyphs, for boxes that must not depend on the word. */
-const FULL_ASCENT = 0.84;
-const FULL_DESCENT = 0.31;
+const FULL_ASCENT = 0.75;
+const FULL_DESCENT = 0.23;
 /** Ink that overlaps by more than this in BOTH directions is overprinting, not a near miss. */
 const INK_OVERLAP_PX = 2;
 
@@ -928,9 +943,11 @@ const CONNECTOR_RUBRIC = `CONNECTORS ARE SCORED AS HARD AS CONTENT. Report each 
 - an arrow, curve or leader that ends in blank space, joins nothing, or merely duplicates another;
 - a node or element left with no relation drawn to anything, when the board is about relations.
 
-NO LABELS. Animated boards carry no labels: the title is the only writing, and the narration names
-the parts. Any label, callout, caption, note or leader line on the board is a defect whose fix is to
-DELETE it — never ask for a label to be added, moved or reworded.`;
+KEY NOTES AND FEW LABELS. A board writes 2-4 short key notes in its left column and labels at most
+three parts, and only when naming the parts is the slide's point — most boards carry none. The host
+places labels in the right column with leaders ending ON their parts. A label whose dot is not on the
+part it names is a defect (fix: move its point inside that part). More than three labels, or labels on
+a slide about a process, is a defect whose fix is to DELETE them. Never ask for a label to be added.`;
 
 const REFINE_SYSTEM_PROMPT = `You review a teaching whiteboard illustration and list what to fix. Output ONLY JSON:
 { "score": 1-5, "defects": [ { "what": string, "where": string, "fix": string } ] }
@@ -938,7 +955,7 @@ const REFINE_SYSTEM_PROMPT = `You review a teaching whiteboard illustration and 
 Score against a TEXTBOOK-QUALITY reference, not against "can I tell what it is":
 5 = internal structure is drawn (cartilage rings, lobes, branching, chambers, layers), each part
     is recognisable WITHOUT a label, the drawing fills its area, and nothing is clipped or
-    overlapping. The board carries no labels by design — never mark it down for that.
+    overlapping. Key notes are written beside it; labels (at most three, usually none) — never ask for more.
 4 = one clear shortcoming.
 3 = recognizable but essentially an outline: the named internal parts are missing.
 2 = generic shapes standing in for the subject (plain ovals, circles, bare lines).

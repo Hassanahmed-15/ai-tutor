@@ -27,10 +27,15 @@ export type TierDecision = { tier: AnimationTier; reason: string };
 
 const MODEL = process.env.OPENAI_ANIMATION_TIER_MODEL ?? "gpt-4o-mini";
 
+/*
+ * Every tier draws with luna (2026-09-29, the owner's call on cost): terra boards cost $0.10-0.25
+ * and sol $0.29-0.44 against luna's $0.02-0.03. The tier is still classified and logged, and each
+ * tier can still be pointed elsewhere with ANIMATION_MODEL_LIGHT/MODERATE/HEAVY.
+ */
 const DEFAULT_TIER_MODELS: Record<AnimationTier, string> = {
   light: "gpt-5.6-luna",
-  moderate: "gpt-5.6-terra",
-  heavy: "gpt-5.6-sol",
+  moderate: "gpt-5.6-luna",
+  heavy: "gpt-5.6-luna",
 };
 
 const TIER_ENV: Record<AnimationTier, string> = {

@@ -34,6 +34,8 @@ import type {
   ProgressiveVisualKind,
 } from "./progressiveLectureTypes";
 import { fillReactAnimationOps, type ReactAnimationFillOptions, type ReactAnimationFillStats } from "./reactAnimationGen";
+import type { LectureMemoryOption } from "./illustratedBoard";
+import { picturesFromBoardCodes } from "./lecturePictures";
 import { animationModelLabel, type AnimationModel } from "./animationModels";
 import { animationTierRoutingEnabled, classifyAnimationTier, modelForTier, type TierDecision } from "./animationTier";
 import { fillSpecBoardOps, repeatsCode } from "./specBoardGen";
@@ -805,6 +807,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
         visualKind === "code" ? await codeBoardSource(session, candidate.sourceBlockIds) : undefined,
         boardSource,
         visualKind === "code" ? await otherCodeFor(sessionId, sequence) : undefined,
+        visualKind === "react-animation" ? await lectureMemoryFor(sessionId, sequence) : undefined,
       );
       // The single most expensive call in the pipeline — an animation generation plus its vision
       // critic and refine pass. Timed separately from the enclosing task so the rest of enrichment
@@ -1084,6 +1087,8 @@ async function fillPremium(
   grounding?: BeatSourceGrounding,
   /** Listings earlier code boards already showed — a new code board must not repeat them. */
   priorCode?: string[],
+  /** What this lecture has already pictured (lib/lecturePictures.ts). */
+  lecture?: LectureMemoryOption,
 ) {
   if (!process.env.OPENAI_API_KEY) return { success: false, costUsd: 0, error: "OPENAI_API_KEY is not set." };
   if (kind === "react-animation" && process.env.REACT_ANIMATIONS_ENABLED !== "1") return disabled(kind);
@@ -1101,6 +1106,7 @@ async function fillPremium(
         ? { model: tierModel }
         : {}),
     ...(grounding ? { sourceByBeatId: { [beat.id]: grounding } } : {}),
+    ...(lecture ? { lecture } : {}),
   };
   const stats = kind === "react-animation"
     ? await fillReactAnimationOps(client, [beat], animationOptions)
@@ -1305,6 +1311,20 @@ async function otherCodeFor(sessionId: string, sequence: number): Promise<string
     .flatMap((doc) => doc.beat?.draw?.ops ?? [])
     .map((op) => (op.kind === "codeBoard" ? (op.spec as { code?: unknown } | undefined)?.code : undefined))
     .filter((code): code is string => typeof code === "string" && code.trim().length > 0);
+}
+
+/**
+ * The lecture's picture memory for a board: keyed by the session, with the pictures every OTHER
+ * saved board of it was built on — so a subtopic's later pass builds on its picture, and a new
+ * subtopic never pictures the same thing again, even when another process drew the earlier board.
+ */
+async function lectureMemoryFor(sessionId: string, sequence: number): Promise<LectureMemoryOption> {
+  const docs = await progressiveBeats(sessionId);
+  const codes = docs
+    .filter((doc) => doc.sequence !== sequence)
+    .flatMap((doc) => doc.beat?.draw?.ops ?? [])
+    .map((op) => (op.kind === "reactAnimation" ? op.code : undefined));
+  return { key: `session:${sessionId}`, earlier: picturesFromBoardCodes(codes) };
 }
 
 async function codeBoardSource(session: ProgressiveLectureSessionDoc, sourceBlockIds?: string[]) {

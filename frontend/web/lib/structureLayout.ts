@@ -148,15 +148,17 @@ function elkGraphFor(spec: StructureSpec): ElkNode {
       // At the default the label had nowhere to sit and was drawn over the boxes it connects.
       "elk.layered.spacing.nodeNodeBetweenLayers": cyclic ? "150" : "130",
       "elk.spacing.edgeLabel": "12",
-      "elk.edgeRouting": "POLYLINE",
+      // Right angles, not free polylines: a slanted route cut back through the boxes it passed.
+      "elk.edgeRouting": "ORTHOGONAL",
       "elk.layered.mergeEdges": "true",
       // A five-stage chain lays out ~870x60: inherently wide and flat, so it stays a thin strip
       // across an otherwise empty board no matter how it is scaled (width is the binding
       // constraint, not height). Wrapping lets ELK break the chain into rows and fill the frame,
       // and the aspect ratio target is the board's own 1000x560.
+      // No wrapping here. It drew a chain's row-to-row arrows out round the side and back diagonally
+      // through the boxes (reported 2026-09-29, "look at the arrows"); a chain — the only shape
+      // that grew too wide — is now laid out as a snake instead (snakeLayout, below).
       "elk.aspectRatio": String(BOARD_W / BOARD_H),
-      "elk.layered.wrapping.strategy": "SINGLE_EDGE",
-      "elk.layered.wrapping.additionalEdgeSpacing": "40",
     },
     children: spec.nodes.map((n) => {
       const { width, height } = boxFor(n.label);
@@ -232,8 +234,94 @@ function clipToBox(from: { x: number; y: number }, to: { x: number; y: number },
  * falls back to its normal board" instead of breaking the lesson — the same contract the spec
  * validator and the Manim renderer already follow.
  */
+/**
+ * The nodes in order when the graph is ONE chain — A → B → C → … with no branches, covering every
+ * node — or null. A process, a pipeline, a sequence of causes.
+ */
+export function chainOrder(spec: StructureSpec): string[] | null {
+  const n = spec.nodes.length;
+  if (n < 2 || spec.edges.length !== n - 1) return null;
+  const outOf = new Map<string, string>();
+  const into = new Map<string, number>();
+  for (const e of spec.edges) {
+    if (outOf.has(e.from)) return null;
+    outOf.set(e.from, e.to);
+    into.set(e.to, (into.get(e.to) ?? 0) + 1);
+  }
+  if ([...into.values()].some((c) => c > 1)) return null;
+  const starts = spec.nodes.filter((node) => !into.has(node.id));
+  if (starts.length !== 1) return null;
+  const order: string[] = [];
+  for (let at: string | undefined = starts[0].id; at && order.length <= n; at = outOf.get(at)) order.push(at);
+  return order.length === n && new Set(order).size === n ? order : null;
+}
+
+/**
+ * A CHAIN AS A SNAKE: rows read left to right, then right to left, so the step from one row to the
+ * next is one short arrow straight down between two boxes — never a route back across the board
+ * through the diagram. Every box is the same size; the gaps leave room for the arrows' words.
+ */
+function snakeLayout(spec: StructureSpec, order: string[]): StructureLayout {
+  const n = order.length;
+  const cols = n <= 3 ? n : n === 4 ? 2 : n <= 9 ? 3 : 4;
+  const rows = Math.ceil(n / cols);
+  const byId = new Map(spec.nodes.map((node) => [node.id, node]));
+  const boxes = order.map((id) => boxFor(byId.get(id)?.label ?? id));
+  const bw = Math.min(260, Math.max(...boxes.map((b) => b.width)));
+  const bh = Math.max(...boxes.map((b) => b.height));
+  const labelW = Math.max(0, ...spec.edges.map((e) => (e.label ? measureLabel(e.label, 16) : 0)));
+  const gapX = Math.max(110, labelW + 44);
+  const gapY = 96;
+  const rawW = cols * bw + (cols - 1) * gapX;
+  const rawH = rows * bh + (rows - 1) * gapY;
+  const scale = Math.min((BOARD_W - PADDING * 2) / rawW, (BOARD_H - PADDING * 2) / rawH, 1.6);
+  const offsetX = (BOARD_W - rawW * scale) / 2;
+  const offsetY = (BOARD_H - rawH * scale) / 2;
+  const w = bw * scale;
+  const h = bh * scale;
+
+  const nodes: LaidOutNode[] = order.map((id, i) => {
+    const row = Math.floor(i / cols);
+    const k = i % cols;
+    const col = row % 2 === 0 ? k : cols - 1 - k;
+    const label = byId.get(id)?.label ?? id;
+    const lines = wrapLabel(label, NODE_FONT);
+    return {
+      id,
+      label,
+      x: offsetX + col * (bw + gapX) * scale,
+      y: offsetY + row * (bh + gapY) * scale,
+      w,
+      h,
+      lines,
+      fontSize: fittedFontSize(lines, w, h, scale),
+    };
+  });
+  const at = new Map(nodes.map((node, i) => [node.id, { node, row: Math.floor(i / cols) }]));
+  const gap = 6;
+  const edges: LaidOutEdge[] = spec.edges.map((e) => {
+    const a = at.get(e.from);
+    const b = at.get(e.to);
+    if (!a || !b) return { from: e.from, to: e.to, label: e.label, points: [] };
+    const A = a.node, B = b.node;
+    if (a.row === b.row) {
+      const rightward = B.x > A.x;
+      const y = A.y + A.h / 2;
+      return {
+        from: e.from, to: e.to, label: e.label,
+        points: rightward ? [{ x: A.x + A.w + gap, y }, { x: B.x - gap, y }] : [{ x: A.x - gap, y }, { x: B.x + B.w + gap, y }],
+      };
+    }
+    const x = A.x + A.w / 2;
+    return { from: e.from, to: e.to, label: e.label, points: [{ x, y: A.y + A.h + gap }, { x, y: B.y - gap }] };
+  });
+  return { nodes, edges };
+}
+
 export async function layoutStructure(spec: StructureSpec): Promise<StructureLayout | null> {
   if (spec.kind === "cycle") return circularLayout(spec);
+  const chain = spec.kind === "tree" ? null : chainOrder(spec);
+  if (chain && chain.length >= 4) return snakeLayout(spec, chain);
   try {
     const elk = new ELK();
     const res = await elk.layout(elkGraphFor(spec));

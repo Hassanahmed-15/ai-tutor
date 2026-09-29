@@ -83,3 +83,10 @@ frontend/web/drizzle/
 /gemini-live-test-app/
 /unity-campus-poc/
 .vercel
+
+# Stray test-build copies, local PDF scratch, benchmark runs and one-off debug scripts.
+frontend/web/.test-build-*/
+/output/
+/tmp/
+anim-lab/runs/
+frontend/web/scripts/.tmp-*.mts

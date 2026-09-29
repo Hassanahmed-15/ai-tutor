@@ -768,7 +768,7 @@ export const SANDBOX_LAYOUT_HOST = String.raw`
     var bandBottom = authored.y + authored.height * 0.23;
     var band = entries.filter(function (e) { return e.box.y < bandBottom && fontSizeOf(e.text) >= 15; });
     var rest = entries.filter(function (e) { return band.indexOf(e) < 0; });
-    // Text boxes are the font's ascent+descent (Playpen Sans ships with 0.90/0.31em, a hair outside
+    // Text boxes are the font's ascent+descent (the board font's box is 1.0/0.35em, well outside
     // its letter ink), so boxes that merely touch are already clear of each other: push only on a
     // real overlap. The heading band keeps one unit of air so a title's descenders never kiss.
     var bandDy = separateVertically(band.map(function (e) { return e.box; }), { gap: 1, allowLift: true, minTop: authored.y + 10 });
@@ -1233,7 +1233,104 @@ export const SANDBOX_LAYOUT_HOST = String.raw`
     fitTextsToContainers(svg, fresh, authored);
     clearRows(svg, fresh);
     clearStrokeEnds(svg, fresh);
+    clearTextsFromStrokes(svg, fresh);
     return true;
+  }
+
+  /*
+   * WORDS KEEP OFF LINES. A caption written across a curve ("careful gradients matter" struck through
+   * by the board's own arc) or a note running into a panel's border (reported 2026-09-29). The
+   * passes above keep words off NODES — circles and boxes as solid things — but a stroke is only a
+   * line, so nothing looked at it. Each word box is sampled against every stroke that could touch it
+   * (isPointInStroke, in the stroke's own coordinates); a crossed text moves the smallest distance up
+   * or down that clears every stroke and every other word, or shrinks a little from its anchor, and
+   * is otherwise left where it was — never moved far from what it describes.
+   */
+  function clearTextsFromStrokes(svg, texts) {
+    var screen = svg.getScreenCTM && svg.getScreenCTM();
+    if (!screen || !window.DOMPoint) return;
+    var strokes = Array.prototype.slice.call(svg.querySelectorAll("path, line, polyline, polygon, rect, circle, ellipse")).filter(function (el) {
+      if (insideSkipped(el, svg) || (el.closest && el.closest("[data-board-labels],[data-board-pen],[data-board-annotation]"))) return false;
+      if (typeof el.isPointInStroke !== "function") return false;
+      try {
+        var cs = getComputedStyle(el);
+        if (!cs.stroke || cs.stroke === "none" || parseFloat(cs.strokeWidth) <= 0 || parseFloat(cs.opacity) === 0) return false;
+      } catch (e) { return false; }
+      return true;
+    }).map(function (el) {
+      var box = rootBox(svg, el);
+      var local = null;
+      try { local = el.getScreenCTM().inverse().multiply(screen); } catch (e) {}
+      return box && local ? { el: el, box: box, local: local } : null;
+    }).filter(Boolean);
+    if (!strokes.length) return;
+    var others = texts.slice();
+    function crossings(box) {
+      var n = 0;
+      var near = strokes.filter(function (s) {
+        return s.box.x < box.x + box.width + 6 && box.x < s.box.x + s.box.width + 6 && s.box.y < box.y + box.height + 6 && box.y < s.box.y + s.box.height + 6;
+      });
+      if (!near.length) return 0;
+      // A margin round the words: a stroke grazing the last letter is as bad as one through it.
+      var M = 3;
+      var ys = [box.y - M, box.y + box.height * 0.3, box.y + box.height * 0.55, box.y + box.height * 0.8, box.y + box.height + M];
+      for (var r = 0; r < ys.length; r += 1) {
+        var y = ys[r];
+        for (var x = box.x - M; x <= box.x + box.width + M; x += 2.5) {
+          for (var k = 0; k < near.length; k += 1) {
+            try {
+              var pt = new DOMPoint(x, y).matrixTransform(near[k].local);
+              if (near[k].el.isPointInStroke(pt)) { n += 1; break; }
+            } catch (e) {}
+          }
+        }
+      }
+      return n;
+    }
+    function hitsWords(box, self) {
+      return others.some(function (t) {
+        if (t === self) return false;
+        var o = rootBox(svg, t);
+        return o && o.width > 0 && box.x < o.x + o.width + 2 && o.x < box.x + box.width + 2 && box.y < o.y + o.height + 2 && o.y < box.y + box.height + 2;
+      });
+    }
+    texts.forEach(function (text) {
+      if (text.closest && text.closest("[data-board-labels],[data-board-pen],[data-board-annotation]")) return;
+      var box = rootBox(svg, text);
+      if (!box || box.width <= 0) return;
+      var hits = crossings(box);
+      if (hits === 0) return;
+      // First a little smaller, from its anchor: a note stays beside its bullet, a caption on its line.
+      var size = fontSizeOf(text);
+      for (var scale = 0.92; scale >= 0.83; scale -= 0.08) {
+        text.style.fontSize = (size * scale) + "px";
+        var smaller = rootBox(svg, text);
+        if (smaller && crossings(smaller) === 0) { text.setAttribute("data-host-stroke", "shrunk " + scale.toFixed(2)); return; }
+      }
+      text.style.fontSize = size + "px";
+      // Then the smallest move up or down that clears every stroke and every other word. Words held
+      // inside a node or panel do not move out of it.
+      if (!text.__hostInNode) {
+        // Nearest first: straight up or down, then sideways, then diagonally — a caption on a
+        // slanted arrow clears it sideways, where no vertical move ever would.
+        var moves = [];
+        [4, 8, 12, 16, 22, 28, 36].forEach(function (d) {
+          moves.push([0, d], [0, -d], [d, 0], [-d, 0], [d, d], [-d, d], [d, -d], [-d, -d]);
+        });
+        moves.sort(function (a, b) { return Math.hypot(a[0], a[1]) - Math.hypot(b[0], b[1]); });
+        var frame = authoredFrame(svg);
+        for (var i = 0; i < moves.length; i += 1) {
+          var moved = { x: box.x + moves[i][0], y: box.y + moves[i][1], width: box.width, height: box.height };
+          if (moved.x < frame.x + 8 || moved.x + moved.width > frame.x + frame.width - 8) continue;
+          if (crossings(moved) === 0 && !hitsWords(moved, text)) {
+            shiftText(svg, text, moves[i][0], moves[i][1]);
+            text.setAttribute("data-host-stroke", "moved " + moves[i].join(","));
+            return;
+          }
+        }
+      }
+      text.setAttribute("data-host-stroke", "unresolved " + hits + (text.__hostInNode ? " in-node" : ""));
+    });
   }
 
   /* ---------- the drawing's extent, and fitting it to the pane ---------- */

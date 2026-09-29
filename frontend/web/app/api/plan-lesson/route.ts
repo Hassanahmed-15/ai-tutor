@@ -16,6 +16,8 @@ import {
   applyDiagnostic,
   sanitizeLearnerProfile,
   hasEnoughSignal,
+  verifyingDiagnostics,
+  MIN_CONCEPT_QUESTIONS,
   profileSummary,
   resolveDepth,
   type DepthLevel,
@@ -23,7 +25,7 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
-import { capQuestionOutline, directQuestionInstruction, isDirectQuestion, outlineLearnerInstruction } from "@/lib/planPrompt";
+import { capQuestionOutline, directQuestionInstruction, isDirectQuestion, isTopicRequest, outlineLearnerInstruction, topicLessonInstruction } from "@/lib/planPrompt";
 import { polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
@@ -278,7 +280,7 @@ function sanitizeDiagnosticQuestion(raw: unknown): { question: string; kind: str
   const question = typeof rec.question === "string" ? undash(rec.question.trim()) : "";
   if (!question) return null;
   const options = Array.isArray(rec.options)
-    ? rec.options.filter((o): o is string => typeof o === "string" && o.trim().length > 0).map((o) => undash(o.trim()).slice(0, 40)).slice(0, 4)
+    ? rec.options.filter((o): o is string => typeof o === "string" && o.trim().length > 0).map((o) => undash(o.trim()).slice(0, 60)).slice(0, 4)
     : [];
   const kind = typeof rec.kind === "string" && ["explain", "predict", "compare", "apply", "goal"].includes(rec.kind)
     ? rec.kind
@@ -822,7 +824,10 @@ export async function POST(req: Request) {
        * occasionally want one more question, and "do not ask ten questions before teaching" has to
        * hold even when it does.
        */
-      const forced = exchanges.length >= MAX_DIAGNOSTIC_QUESTIONS || hasEnoughSignal(profile);
+      // Enough evidence stops the questions only once two real concept questions have been answered:
+      // that is what tells the profile which ideas the student is shaky on (MIN_CONCEPT_QUESTIONS).
+      const forced = exchanges.length >= MAX_DIAGNOSTIC_QUESTIONS
+        || (hasEnoughSignal(profile) && verifyingDiagnostics(profile) >= MIN_CONCEPT_QUESTIONS);
       const nextQuestion = forced ? null : sanitizeDiagnosticQuestion(parsed.nextQuestion);
       // "This is what I'm noticing" — occasional, model-chosen, never every turn (see the prompt's
       // own restraint rules). null far more often than not; the client only shows it when present.
@@ -924,7 +929,9 @@ export async function POST(req: Request) {
     const preference = typeof body.teachingPreference === "string" && ["quick", "balanced", "deep"].includes(body.teachingPreference)
       ? `\nThe student's saved teaching preference is "${body.teachingPreference}"; their words in the request override it.`
       : "";
-    const questionLine = directQuestion ? directQuestionInstruction(questionText) : "";
+    const questionLine = directQuestion
+      ? directQuestionInstruction(questionText)
+      : isTopicRequest(questionText) ? topicLessonInstruction(questionText) : "";
     const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined);
   }

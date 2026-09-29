@@ -196,6 +196,18 @@ export class TurnArbiter {
   /** The narration's recent sentences (see setEchoText). */
   private echoTexts: Array<{ words: Set<string>; at: number }> = [];
 
+  /**
+   * A near-miss in the student's OWN voice is for her. Background speech lost the easy credit that
+   * let any question through (see the idle credit in addressing.ts); the student's plain "what
+   * happens next?" should not lose it with it. A voice the verifier has enrolled from their earlier
+   * turns and matches now tips a sentence that was only just short. Unknown and other voices get
+   * nothing extra.
+   */
+  private creditStudentVoice(verdict: AddressingVerdict): AddressingVerdict {
+    if (verdict.addressed || verdict.score < 0.4 || this.speakerVerdict() !== "student") return verdict;
+    return { addressed: true, score: Math.min(1, verdict.score + 0.1), reason: `${verdict.reason} + the student's own voice` };
+  }
+
   /** Whether a transcript is mostly the narration's own recent words (and names nobody). */
   private isEcho(text: string, now: number): boolean {
     if (!this.tutor.speaking) return false;
@@ -280,9 +292,22 @@ export class TurnArbiter {
     this.verifyingAudio = [];
     const clean = text.trim();
     if (clean) this.everTranscribed = true;
-    const verdict = clean
+    let verdict = clean
       ? classifyAddressing(clean, { expectingAnswer: this.tutor.expectingAnswer, tutorSpeaking: this.tutor.speaking, topicWords: this.topicWords, wakeNames: this.wakeNames })
       : { addressed: false, score: 0, reason: "no words in the second opinion" };
+    /*
+     * The same two vetoes the local words get (provideTranscript). The second opinion is the path
+     * phone and TV audio took: the browser recogniser barely hears a loudspeaker across the room,
+     * the server transcriber hears it perfectly, and its words were judged with no check that the
+     * voice was the student's or that they were not the lecture's own narration coming back.
+     */
+    if (verdict.addressed && this.speakerVerdict() === "other") {
+      verdict = { addressed: false, score: verdict.score, reason: `${verdict.reason}, but the voice is not the student's` };
+    }
+    verdict = this.creditStudentVoice(verdict);
+    if (verdict.addressed && this.isEcho(clean, now) && !/\bby name\b/.test(verdict.reason)) {
+      verdict = { addressed: false, score: 0, reason: ECHO_REASON };
+    }
     this.lastTranscript = clean;
     this.lastVerdict = verdict;
     if (!verdict.addressed) {
@@ -422,6 +447,7 @@ export class TurnArbiter {
     if (verdict.addressed && this.speakerVerdict() === "other") {
       verdict = { addressed: false, score: verdict.score, reason: `${verdict.reason}, but the voice is not the student's` };
     }
+    verdict = this.creditStudentVoice(verdict);
     // Echo is dropped unless her name was actually said: "Aria, what is that?" is never an echo.
     if (echo && !/\bby name\b/.test(verdict.reason)) {
       verdict = { addressed: false, score: 0, reason: ECHO_REASON };

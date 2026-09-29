@@ -6,6 +6,8 @@ import { validateStructureSpec } from "./structureSpec";
 import { validatePlotSpec } from "./plotSpec";
 import { validateEquationSpec } from "./equationSpec";
 import { validateCodeSpec } from "./codeSpec";
+import { ILLUSTRATION_ID_PATTERN } from "./anim/illustratedLayout";
+import { isMotionBoard } from "./anim/sandboxMotion";
 
 /**
  * Defensive validation for LLM-generated DrawScript lectures — never trust raw model
@@ -606,6 +608,13 @@ export type ReactAnimationCodeDiagnostics = {
   boardPlanPresent: boolean;
   visualSpecPresent: boolean;
   tagCounts: Record<string, number>;
+  /**
+   * A MOTION BOARD (lib/anim/sandboxMotion.ts): it reveals itself with Motion from the sentence
+   * clock, so its "timeline steps" are motion elements keyed to a sentence (reveal(N), draw(N),
+   * on(N), sentence >= N) rather than data-teach-* attributes. The counts above keep their meaning
+   * — revealed steps, the sentences they are spread across — so ranking and feedback work unchanged.
+   */
+  motionBoard: boolean;
 };
 
 /** True if a hex color (#rgb or #rrggbb) is so dark it vanishes into the near-black board
@@ -670,6 +679,7 @@ export function getReactAnimationCodeDiagnostics(
     boardPlanPresent: false,
     visualSpecPresent: false,
     tagCounts: {},
+    motionBoard: isMotionBoard(code),
     safetyIssue: null as string | null,
   };
   // Hard safety/structural gate — these ALSO set safetyIssue, so callers that only want to reject
@@ -681,8 +691,9 @@ export function getReactAnimationCodeDiagnostics(
     const m = "too large; keep the scene focused and under 48KB";
     return { ...base, issue: m, safetyIssue: m };
   }
-  if (!REACT_ANIMATION_EXPORT_PATTERN.test(code)) {
-    const m = "missing exact export signature: export default function Animation({ progress })";
+  const motionBoard = base.motionBoard;
+  if (!motionBoard && !REACT_ANIMATION_EXPORT_PATTERN.test(code)) {
+    const m = "missing exact export signature: export default function Animation({ sentence, sentenceProgress })";
     return { ...base, issue: m, safetyIssue: m };
   }
   const banned = REACT_ANIMATION_BANNED_PATTERNS.find((re) => re.test(code));
@@ -695,14 +706,16 @@ export function getReactAnimationCodeDiagnostics(
     return { ...base, issue: m, safetyIssue: m };
   }
 
-  const primitiveTags = [...code.matchAll(/<\s*(path|circle|rect|ellipse|polygon|polyline|line|text)\b/gi)].map((match) =>
+  // A motion element IS the SVG element it wraps (<motion.path> is a path): counted the same, or a
+  // Motion board reads as empty and flat to every density gate below.
+  const primitiveTags = [...code.matchAll(/<\s*(?:motion\.)?(path|circle|rect|ellipse|polygon|polyline|line|text)\b/gi)].map((match) =>
     match[1].toLowerCase()
   );
   const tagCounts = primitiveTags.reduce<Record<string, number>>((counts, tag) => {
     counts[tag] = (counts[tag] ?? 0) + 1;
     return counts;
   }, {});
-  const groupCount = (code.match(/<\s*g\b/gi) ?? []).length;
+  const groupCount = (code.match(/<\s*(?:motion\.)?g\b/gi) ?? []).length;
   // NOTE: repeaters (Array.from/.map calls) intentionally no longer add a flat score bonus.
   // A per-call bonus regardless of array length rewarded wrapping ANY tiny repeated cluster in
   // a .map() as a cheap way to inflate the score — the direct cause of scenes where every
@@ -769,6 +782,16 @@ export function getReactAnimationCodeDiagnostics(
     .map((match) => Number(match[1] ?? match[2]))
     .filter(Number.isFinite);
   const distinctTimelineSentences = new Set(timelineSentenceValues).size;
+  // A Motion board's steps: each motion element whose own tag is keyed to a sentence. The tag runs to
+  // the next "<" — attribute expressions never contain one except a rare `sentence < N`.
+  const motionStepTags = motionBoard
+    ? code.split(/<motion\.\w+\b/).slice(1).map((rest) => rest.slice(0, rest.indexOf("<") >= 0 ? rest.indexOf("<") : rest.length))
+      .filter((tag) => /\b(?:reveal|draw|on)\(\s*\d+\s*\)|\bsentence\s*>=?\s*\d+/.test(tag))
+    : [];
+  const motionStepSentences = motionStepTags.flatMap((tag) =>
+    [...tag.matchAll(/\b(?:reveal|draw|on)\(\s*(\d+)\s*\)|\bsentence\s*>=?\s*(\d+)/g)].map((match) => Number(match[1] ?? match[2])),
+  );
+  const motionSentenceRefs = motionBoard ? (code.match(/\bsentence(?:Progress)?\b/g) ?? []).length : 0;
   const boardPlanPresent = /\bconst\s+boardPlan\s*=/.test(code) && /reservedRegions/.test(code) && /readingPath/.test(code);
   const visualSpecPresent =
     /\bconst\s+visualSpec\s*=/.test(code) &&
@@ -787,31 +810,78 @@ export function getReactAnimationCodeDiagnostics(
     silhouetteCount,
     lineLikeCount,
     textCount,
-    directlyTimedTextCount,
+    // A Motion board times its text through the groups that reveal it; there are no per-node attributes.
+    directlyTimedTextCount: motionBoard ? textCount : directlyTimedTextCount,
     distinctPrimitiveTypes: distinctPrimitiveTypes.size,
     progressRefs,
-    progressDriveScore,
+    // A Motion board is driven by the sentence clock: its revealed steps, its clock reads, and its
+    // interpolations are the evidence of motion that progress reads are for a timeline board.
+    progressDriveScore: motionBoard ? motionStepTags.length + motionSentenceRefs + interpolationRefs : progressDriveScore,
     repeaters,
     darkFillCount,
     brightFillCount,
-    timelineStepCount,
-    timelineSentenceCount,
-    distinctTimelineSentences,
+    timelineStepCount: motionBoard ? motionStepTags.length : timelineStepCount,
+    timelineSentenceCount: motionBoard ? motionStepTags.length : timelineSentenceCount,
+    distinctTimelineSentences: motionBoard ? new Set(motionStepSentences).size : distinctTimelineSentences,
     boardPlanPresent,
     visualSpecPresent,
     tagCounts,
+    motionBoard,
   };
   if (!boardPlanPresent) {
     return { ...metrics, issue: "missing the required boardPlan with composition, readingPath, and reservedRegions" };
   }
+  /*
+   * A PICTURE BOARD (lib/anim/illustratedLayout.ts) is composed by code around a generated textbook
+   * illustration, not written by a model. The density floors below count hand-drawn SVG shapes —
+   * silhouettes, object primitives, fills — and a picture board draws none: its substance is the
+   * picture, and since 2026-09-29 it may carry no labels at all ("label only where it is the
+   * point"). Safety and size were checked above; here it needs only a reveal spread over the talk.
+   */
+  if (motionBoard && ILLUSTRATION_ID_PATTERN.test(code)) {
+    return { ...metrics, issue: metrics.distinctTimelineSentences < 2 ? "the picture board reveals everything at once; key its notes to the sentences that say them" : null };
+  }
   const minTimelineSteps = sourceFaithful ? 6 : 8;
-  if (timelineStepCount < minTimelineSteps || timelineKindCount < timelineStepCount || timelineWeightCount < timelineStepCount || timelineSentenceCount < timelineStepCount) {
+  if (motionBoard) {
+    if (metrics.timelineStepCount < minTimelineSteps) {
+      return { ...metrics, issue: `missing a complete sentence-synchronized reveal; wrap at least ${minTimelineSteps} parts in motion elements keyed to their sentence — animate={reveal(N)} for a group, animate={draw(N)} for a stroke` };
+    }
+    if (metrics.distinctTimelineSentences < 3) {
+      return { ...metrics, issue: "the reveal is front-loaded; key the motion elements to at least three different spoken sentences with literal numbers, e.g. reveal(0), reveal(2), draw(3)" };
+    }
+    /*
+     * A FEW LABELS: title, subtitle and at most five labels — one of which may wrap onto a second
+     * line. Abstract and strict boards are exempt: a node's value or a source figure's own labels
+     * are the content itself.
+     */
+    /*
+     * Labels are LISTED in <BoardLabels /> and laid out by the host (lib/anim/sandboxMotion.ts), at
+     * most three — none is fine, and usual unless the slide is about naming parts (2026-09-29). A
+     * strict board names its source figure's labels, a few more at most.
+     */
+    const boardLabelCount = (code.match(/<BoardLabels\b[\s\S]*?\/>/g) ?? [])
+      .reduce((sum, block) => sum + (block.match(/\btext\s*:/g) ?? []).length, 0);
+    if (boardLabelCount > (sourceFaithful ? 8 : 3)) {
+      return { ...metrics, issue: `too many labels (${boardLabelCount}); list at most three in <BoardLabels />, and only when naming the parts is the slide's point — write key notes instead` };
+    }
+    if (!relaxed && textCount > 8) {
+      return { ...metrics, issue: `too many labels (${textCount} text elements); keep the title, an optional subtitle and at most five short labels naming the key parts` };
+    }
+    /*
+     * An abstract diagram writes its values and node names, so it may carry more — but not a wall of
+     * it: the dense boards on the 2026-09-29 bench (16-20 text elements) were the ones whose cards and
+     * labels overprinted. Title, subtitle and ten more, plus two wrapped lines of slack.
+     */
+    if (abstract && !sourceFaithful && textCount > 14) {
+      return { ...metrics, issue: `too crowded (${textCount} text elements); an abstract board carries at most ten text elements besides its title and subtitle — show fewer steps or merge notes` };
+    }
+  } else if (timelineStepCount < minTimelineSteps || timelineKindCount < timelineStepCount || timelineWeightCount < timelineStepCount || timelineSentenceCount < timelineStepCount) {
     return { ...metrics, issue: `missing a complete sentence-synchronized teacher timeline; add at least ${minTimelineSteps} ordered steps and give every step data-teach-order, data-teach-kind, data-teach-weight, and data-teach-sentence` };
   }
-  if (timelineSentenceValues.length < timelineStepCount || distinctTimelineSentences < 3) {
+  if (!motionBoard && (timelineSentenceValues.length < timelineStepCount || distinctTimelineSentences < 3)) {
     return { ...metrics, issue: "the teacher timeline is front-loaded; use literal data-teach-sentence values and distribute the board actions across at least three different spoken sentences" };
   }
-  if (textCount > 0 && directlyTimedTextCount < textCount) {
+  if (!motionBoard && textCount > 0 && directlyTimedTextCount < textCount) {
     return { ...metrics, issue: "every SVG text element must carry its own complete teaching timeline attributes directly on the text node so marker tracking uses the exact text bounds" };
   }
   if (groupCount < (relaxed ? 3 : 5)) {
@@ -865,7 +935,7 @@ export function getReactAnimationCodeDiagnostics(
 
   // A strict board's motion is the host's reveal of the source's own parts; asking for more
   // progress-driven change there asks for animated content the source does not describe.
-  if (progressDriveScore < (sourceFaithful ? 4 : 8)) {
+  if (metrics.progressDriveScore < (sourceFaithful ? 4 : 8)) {
     return { ...metrics, issue: "motion is not driven enough by progress; add setup, transformation, and result phases" };
   }
   if (!/(lerp|clamp|phase|transform|opacity|translate|scale|rotate)/i.test(code)) {

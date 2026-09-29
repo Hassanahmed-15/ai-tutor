@@ -66,9 +66,62 @@ function programmingLesson(input: ProgressiveLectureInput): boolean {
   return isProgrammingTopic(`${input.topic ?? ""} ${input.focus ?? ""} ${titles}`);
 }
 
+/**
+ * A QUESTION ASKED OF A REFERENCE DOCUMENT IS A LESSON ON THE QUESTION.
+ *
+ * The document's own section plan always won, so "explain me bst del in c++" against a reference PDF
+ * on the subject walked the PDF top to bottom — its first section was titled with the page reader's
+ * "(Images with nodes and connections)" — instead of teaching deletion. The question matched every
+ * section, so the question filter kept them all. In reference mode the planner's outline FOR THE
+ * QUESTION is the plan, and the document is what each board draws on (referenceBlocksFor). Strict
+ * mode, a dragged selection, and "teach the whole document" keep the document's structure.
+ */
+function referenceQuestionLesson(input: ProgressiveLectureInput): boolean {
+  if (input.sourceScope?.fidelity !== "reference" || input.selection) return false;
+  if (!(input.outline?.subtopics ?? []).some((item) => clean(item.title))) return false;
+  const focus = input.focus ?? "";
+  return input.sourceScope.breadth.kind === "section" || isSpecificDocumentRequest(focus, input.suprnotes);
+}
+
+/**
+ * The document passages a question-lesson board draws on: those sharing at least two content terms
+ * with the board's title and objective, best three, in document order. Beats read these as their
+ * reference text, and a matching code block makes the board quote the document's own code.
+ */
+function referenceBlocksFor(input: ProgressiveLectureInput, entry: { title: string; objective: string }): string[] {
+  if (!isSuprnotesLessonInput(input.suprnotes)) return [];
+  const want = new Set(contentStems(`${entry.title} ${entry.objective}`));
+  if (want.size === 0) return [];
+  const blocks = input.suprnotes.contentBlocks ?? [];
+  return blocks
+    .map((block, order) => ({
+      id: block.id,
+      order: block.sourceOrder ?? order,
+      score: new Set(contentStems(`${block.heading ?? ""} ${block.text ?? ""}`).filter((stem) => want.has(stem))).size,
+    }))
+    .filter((block) => block.score >= 2)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .sort((a, b) => a.order - b.order)
+    .map((block) => block.id);
+}
+
+function referenceSourceFields(input: ProgressiveLectureInput, entry: { title: string; objective: string }): { sourceBlockIds?: string[] } {
+  const ids = referenceBlocksFor(input, entry);
+  return ids.length > 0 ? { sourceBlockIds: ids } : {};
+}
+
+/** A question-lesson board about an implementation, whose passages hold the document's code, shows THAT code. */
+function referenceCodeFromDocument(input: ProgressiveLectureInput, entry: { title: string; objective: string }): ProgressiveVisualKind | null {
+  if (!isSuprnotesLessonInput(input.suprnotes) || !CODE_BEAT_PATTERN.test(`${entry.title} ${entry.objective}`) && !/\b(?:c\+\+|java|python|code)\b/i.test(entry.title)) return null;
+  const ids = referenceBlocksFor(input, entry);
+  return ids.length > 0 ? sourceCodeKind(input.suprnotes, ids) : null;
+}
+
 /** Builds the global map synchronously so no model round-trip delays the first beat. */
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
-  const sourcePlan = sourceDocumentPlan(input);
+  const answersQuestion = referenceQuestionLesson(input);
+  const sourcePlan = answersQuestion ? [] : sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
   // The THING the lesson is about, not the sentence the student typed: "What is overfitting?"
   // is a lesson on Overfitting, and its boards are titled for overfitting.
@@ -147,7 +200,8 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     conceptPasses: entry.passes,
     role: roleForPass(roleByTitle.get(entry.title) ?? "mechanism", entry.passRole),
     prerequisiteConceptIds: prerequisitesFor(entries, sequence),
-    visualKind: visualKindFor(sequence, entries.length, input, entry),
+    ...(answersQuestion ? referenceSourceFields(input, entry) : {}),
+    visualKind: (answersQuestion ? referenceCodeFromDocument(input, entry) : null) ?? visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
   }));
   // A prompted lecture should exercise the live animation engine, not accidentally collapse into

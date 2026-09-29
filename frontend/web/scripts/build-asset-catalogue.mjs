@@ -64,7 +64,7 @@ export const MIN_PAGE_FILL = 0.1;
 const MEASURE_LONG_SIDE = 2048;
 /** Alpha (0-255) at which a pixel counts as drawn — anti-aliasing haze below it does not. */
 const ALPHA_VISIBLE = 16;
-const BOARD_FONTS = ["PlaypenSans-SemiBold.ttf", "PlaypenSans-ExtraBold.ttf"]
+const BOARD_FONTS = ["Nunito-SemiBold.ttf", "Outfit-ExtraBold.ttf"]
   .map((file) => path.join(ROOT, "public", "fonts", file))
   .filter((file) => existsSync(file));
 
@@ -113,7 +113,7 @@ export function pageOf(svgText, pixelWidth, pixelHeight) {
  * units even when the root's width/height ("1.73in" x "1.81in") disagree with its viewBox.
  */
 export function measureAsset(svgText, Resvg, fontFiles = BOARD_FONTS) {
-  const font = { loadSystemFonts: false, fontFiles, defaultFontFamily: "Playpen Sans" };
+  const font = { loadSystemFonts: false, fontFiles, defaultFontFamily: "Nunito" };
   try {
     const probe = new Resvg(svgText, { font });
     const page = pageOf(svgText, probe.width, probe.height);
