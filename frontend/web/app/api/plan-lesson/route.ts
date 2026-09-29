@@ -916,7 +916,21 @@ export async function POST(req: Request) {
 
     // The student's own words, when they say more than the topic — "in C++", "the code", "for my exam".
     const requestText = typeof body.request === "string" ? body.request.trim().slice(0, 300) : "";
-    const requestLine = requestText && requestText.toLowerCase() !== topic.toLowerCase()
+    /*
+     * A REFERENCE LESSON ON THE WHOLE DOCUMENT IS PLANNED FROM THE DOCUMENT.
+     *
+     * The typed words used to fence the outline ("must answer THIS, and nothing beyond it"), so a
+     * deck uploaded with "camera sensor" typed on the front page got a camera-sensor lesson that
+     * never mentioned a slide. The document travels with the request (sourceDocLine, page images);
+     * it just lost to the fence. When the student chose "use it as a reference", selected pages
+     * and typed a subject rather than a question, the pages ARE the syllabus and the words only say
+     * what to call it or emphasise. A direct question, or a request that narrowed the breadth to a
+     * part ("explain the CNN part"), keeps the fence: that is the answer they asked for.
+     */
+    const documentIsSyllabus = Boolean(sourceDocument) && scope?.fidelity === "reference" && scope.breadth.kind === "whole" && !directQuestion;
+    const requestLine = documentIsSyllabus
+      ? `\nThe student uploaded this document to learn FROM it. Plan the lesson from the document's own content listed above: every subtopic is built on material in those sections, in a sensible teaching order, and together the subtopics cover the selected pages as a whole — not one section of them.${requestText ? ` The student typed "${requestText}" — use it only as what they call the subject or as what to emphasise.` : ""} If the typed words name something the document does not cover, the document wins; never plan a subtopic the document has no material for. You may go beyond the document when TEACHING each subtopic, not when choosing them.`
+      : requestText && requestText.toLowerCase() !== topic.toLowerCase()
       ? directQuestion
         ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it.`
         : `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it. Honour what it asks for (e.g. a language, code, an exam focus), but title subtopics by the subject, never by this phrasing.`

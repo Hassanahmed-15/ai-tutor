@@ -34,6 +34,7 @@ import { Loader2 } from "lucide-react";
 import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
 import { lectureSubject } from "@/lib/lectureSubject";
 import { firstPageTitle } from "@/lib/sectionTitle";
+import { isDirectQuestion } from "@/lib/planPrompt";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
@@ -1804,6 +1805,11 @@ type BuildCost =
    * A caller that has just parsed a document already knows its source and scope before React has
    * committed state. `fresh` carries those values into either document planning or generation.
    */
+  /** The student chose "use it as a reference" on the source-mode screen. Strict never plans. */
+  function referencePlanning(): boolean {
+    return sourceModeChosenRef.current && sourceScopeRef.current.fidelity === "reference";
+  }
+
   async function startPlanning(t: string, forceBuild = false, fresh?: FreshUpload) {
     const raw = t.trim();
     if (!raw) return;
@@ -1823,7 +1829,7 @@ type BuildCost =
      * still travels with every request (requestOutline sends it, with the scope and the profile); it
      * just stops dictating the shape. Strict never reaches this function.
      */
-    const referenceChosen = sourceModeChosenRef.current && sourceScopeRef.current.fidelity === "reference";
+    const referenceChosen = referencePlanning();
     const planningDocument = fresh?.sourceDocument ?? sourceDocument;
     const planningFocus = fresh?.focus ?? uploadFocus;
     const planningKind = fresh?.kind ?? uploadedFile?.kind;
@@ -1834,10 +1840,14 @@ type BuildCost =
     /*
      * A reference lesson is TITLED BY ITS DOCUMENT'S FIRST PAGE — the cover or opening heading says
      * what the document is. Naming it after the typed words titled an actuators PDF "Camera Sensor".
+     * When page 1 has no usable title (a deck whose first slide is "Slide 1"), the subject is still
+     * named from the DOCUMENT, not the typed words — the namer reads the document when the text
+     * only points at it. A typed question keeps its own subject: that is what the lecture answers.
      * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
      */
-    const trimmed = (referenceChosen && firstPageTitle(planningDocument))
-      || await nameSubject(raw, planningDocument, fresh?.documentId ?? documentId);
+    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw);
+    const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
+      || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
     setTopic(trimmed);
 
     if (referenceChosen) {
@@ -2027,6 +2037,8 @@ type BuildCost =
       accountContext: accountContextLine(),
       // So Aria asks about what she does not know yet, not what her portrait already says.
       ...personaField(),
+      // A reference lesson's questions are about the document's content, not a bare topic string.
+      ...(referencePlanning() && sourceDocument ? { sourceDocument } : {}),
     });
     if (!data) return null;
 

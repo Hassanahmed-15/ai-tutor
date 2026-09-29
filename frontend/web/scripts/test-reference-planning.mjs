@@ -5,13 +5,19 @@
  * watch what happens next. This is the check the unit tests could not make — they exercised the plan
  * builder with an outline supplied, never the screen that decides whether an outline is asked for.
  *
- *   node scripts/test-reference-planning.mjs <pdf> <email> <password-file> [out-dir] [--strict] [--headed]
+ *   node scripts/test-reference-planning.mjs <pdf|pptx> <email> <password-file> [out-dir] [--strict] [--headed]
+ *        [--subject "camera sensor"] [--expect word,word,...] [--question]
  *
  * Reference (default) asserts:
  *   1. the depth question appears — "How deep do you want to go with …?", the typed flow's first step;
  *   2. the topic it names is the PDF's FIRST-PAGE title, not the typed words;
  *   3. no lecture build started.
  * --strict asserts the opposite: no depth question, the build starts straight away.
+ *
+ * --subject types words on the front page before attaching, as a student does. With --expect (content
+ * words from the document) the script answers the planning questions and reads the OUTLINE: its
+ * topics must come from the document, not from the typed words — the "camera sensor" deck bug. With
+ * --question the subject is a question, and the outline must be a 1-2 topic answer instead.
  * Costs the PDF parse and the naming/clarify calls — cents. It stops before a lecture is generated.
  */
 import { chromium } from "playwright";
@@ -21,7 +27,12 @@ import process from "node:process";
 
 const BASE = process.env.LAB_URL ?? "http://localhost:3000";
 const args = process.argv.slice(2);
-const positional = args.filter((a) => !a.startsWith("--"));
+const valueFlags = new Set(["--subject", "--expect"]);
+const flagValue = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] ?? "" : ""; };
+const positional = args.filter((a, i) => !a.startsWith("--") && !valueFlags.has(args[i - 1]));
+const subject = flagValue("--subject");
+const expectWords = flagValue("--expect").split(",").map((w) => w.trim().toLowerCase()).filter(Boolean);
+const questionRun = args.includes("--question");
 const [pdf, email, pwFile, outDir = path.resolve("reference-planning-out")] = positional;
 if (!pdf || !email || !pwFile) {
   console.error("usage: node scripts/test-reference-planning.mjs <pdf> <email> <password-file> [out-dir] [--strict]");
@@ -49,6 +60,7 @@ if (await page.getByRole("button", { name: /start learning/i }).count()) {
   await page.waitForTimeout(3000);
 }
 
+if (subject) await page.locator("#brief").fill(subject);
 await page.locator('input[type="file"]').first().setInputFiles(pdf);
 await page.getByRole("button", { name: /use all pages/i }).click({ timeout: 90_000 });
 log("pages accepted; waiting for the parse and the source-mode choice");
@@ -80,7 +92,40 @@ if (strictRun) {
   else {
     log(`lecture titled: "${titled}"`);
     fs.writeFileSync(path.join(outDir, "reference-title.txt"), titled);
-    if (/camera|sensor|explain|teach me/i.test(titled)) problems.push(`the title "${titled}" came from typed words, not the PDF`);
+    if (/^(slides?|pages?)\s*\d+/i.test(titled)) problems.push(`the title "${titled}" is a parser placeholder, not the document's subject`);
+    if (!questionRun && /camera|sensor|explain|teach me/i.test(titled)) problems.push(`the title "${titled}" came from typed words, not the document`);
+  }
+}
+
+// Answer the planning conversation with the first offered option until the outline is ready.
+if (!strictRun && outcome === "depth" && (expectWords.length || questionRun)) {
+  const buildButton = page.getByRole("button", { name: /Build lesson/i }).first();
+  const titleInputs = page.locator('input[aria-label^="Topic "][aria-label$=" title"]');
+  for (let i = 0; i < 120; i++) {
+    await page.waitForTimeout(1000);
+    if (await buildButton.isVisible().catch(() => false) && await titleInputs.count() && !(await page.getByText("Planning…").isVisible().catch(() => false))) break;
+    const option = page.locator("button:has(span:text-is('A'))").first();
+    if (await option.isVisible().catch(() => false) && await option.isEnabled().catch(() => false)) {
+      await option.click().catch(() => {});
+      log("answered a planning question with option A");
+      await page.waitForTimeout(1500);
+    }
+  }
+  await page.waitForTimeout(2000);
+  const titles = [];
+  for (let i = 0; i < await titleInputs.count(); i++) titles.push(await titleInputs.nth(i).inputValue());
+  await page.screenshot({ path: path.join(outDir, "reference-outline.png"), fullPage: true });
+  fs.writeFileSync(path.join(outDir, "reference-outline.txt"), titles.join("\n"));
+  log(`outline (${titles.length}): ${titles.map((t) => `"${t}"`).join(", ")}`);
+  if (!titles.length) problems.push("no outline appeared after answering the planning questions");
+  else if (questionRun) {
+    if (titles.length > 2) problems.push(`a question got a ${titles.length}-topic outline; it should be a 1-2 topic answer`);
+  } else {
+    const typed = subject.toLowerCase().split(/\s+/).filter((w) => w.length > 3);
+    const fromTyped = titles.filter((t) => typed.some((w) => t.toLowerCase().includes(w)));
+    if (fromTyped.length) problems.push(`outline topics came from the typed words "${subject}": ${fromTyped.join(" | ")}`);
+    const fromDoc = titles.filter((t) => expectWords.some((w) => t.toLowerCase().includes(w)));
+    if (fromDoc.length * 2 < titles.length) problems.push(`only ${fromDoc.length}/${titles.length} outline topics name the document's content (${expectWords.join(", ")})`);
   }
 }
 await browser.close();

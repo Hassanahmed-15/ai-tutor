@@ -60,3 +60,35 @@ test("section titles a student can read (moved from progressivePlan, unchanged)"
   assert.equal(referenceSectionTitle("DC MOTORS AND ACTUATORS"), "DC Motors and Actuators");
   assert.equal(referenceSectionTitle("Step 2: Download HOL4"), "Step 2: Download HOL4");
 });
+
+/**
+ * A parser's placeholder is not a title. parse-pptx names a slide with no title placeholder
+ * "Slide N", and parse-pdf/pdfOcr name pages "Page N"; the deck's subject is in the slide's text.
+ */
+test("a deck whose first slide has no title is named by the slide's text, not 'Slide 1'", () => {
+  const title = firstPageTitle(doc([
+    { id: "s1", pageNumber: 1, sourceOrder: 1, heading: "Slide 1", text: "Photosynthesis\nHow plants make food from light" },
+    { id: "s2", pageNumber: 2, sourceOrder: 2, heading: "Light reactions", text: "Chlorophyll absorbs light." },
+  ]));
+  assert.equal(title, "Photosynthesis");
+});
+
+test("'Page 1' from the PDF parser is skipped for the page's real title", () => {
+  const title = firstPageTitle(doc([
+    { id: "p1", pageNumber: 1, sourceOrder: 0, heading: "Page 1", text: "Heat Transfer Basics. Conduction moves heat through a solid." },
+  ]));
+  assert.equal(title, "Heat Transfer Basics");
+});
+
+test("a text that begins with a 'Slide 1' line gives the line after it", () => {
+  const title = firstPageTitle(doc([
+    { id: "s1", pageNumber: 1, sourceOrder: 1, text: "Slide 1:\nBinary Search Trees\nKeys stay ordered." },
+  ]));
+  assert.equal(title, "Binary Search Trees");
+});
+
+test("only placeholders on page 1 is no title, so the caller names the subject from the document", () => {
+  assert.equal(firstPageTitle(doc([{ id: "s1", pageNumber: 1, sourceOrder: 1, heading: "Slide 1", text: "Slide 1" }])), "");
+  assert.equal(firstPageTitle(doc([{ id: "s1", pageNumber: 1, sourceOrder: 1, heading: "Untitled", text: "" }])), "");
+  assert.equal(firstPageTitle(doc([{ id: "s1", pageNumber: 1, sourceOrder: 1, heading: "Title slide", text: "Pages 1-3 (selected area)" }])), "");
+});

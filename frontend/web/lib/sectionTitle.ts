@@ -46,9 +46,17 @@ export function referenceSectionTitle(raw: string): string {
 }
 
 /** A title is a handful of words with real letters in it — not a sentence, not a page number. */
+/**
+ * A label a PARSER made up, not a title a person wrote: "Slide 1" (parse-pptx, for a slide with no
+ * title placeholder), "Page 3" / "Pages 2-4" / "Page 2 (selected area)" (parse-pdf, pdfOcr), or a
+ * deck's own "Untitled"/"Title slide". One of these titled a reference lecture "Slide 1", so every
+ * planning question was about "Slide 1" instead of the deck.
+ */
+const PLACEHOLDER_TITLE = /^(?:(?:slides?|pages?|sections?|parts?|chapters?)\s*\d+(?:\s*[-–—]\s*\d+)?(?:\s*\(.*\))?|untitled(?:\s+\w+)?|title\s+slide|\d+)[.:]?$/i;
+
 function usableTitle(title: string): boolean {
   const words = title.split(/\s+/).filter(Boolean).length;
-  return /[A-Za-z]{3,}/.test(title) && words > 0 && words <= 10;
+  return /[A-Za-z]{3,}/.test(title) && words > 0 && words <= 10 && !PLACEHOLDER_TITLE.test(title.trim());
 }
 
 /**
@@ -76,9 +84,14 @@ export function firstPageTitle(document: unknown): string {
     const heading = referenceSectionTitle(clean(block.heading));
     if (usableTitle(heading)) return heading;
     const raw = typeof block.text === "string" ? block.text : "";
-    const firstLine = raw.split(/\n|\s[-–—|]\s|,\s|(?<=[.!?])\s/)[0] ?? "";
-    const title = referenceSectionTitle(firstLine);
-    if (usableTitle(title)) return title;
+    // The first line that is a title, not a placeholder: a slide exported to PDF, or a pptx text
+    // chunk, often starts with "Slide 1" and only then says what the slide is about.
+    const lines = raw.split(/\n|\s[-–—|]\s|,\s|(?<=[.!?])\s/);
+    for (const line of lines.slice(0, 3)) {
+      const title = referenceSectionTitle(line ?? "");
+      if (usableTitle(title)) return title;
+      if (!PLACEHOLDER_TITLE.test(clean(line))) break;
+    }
   }
   return "";
 }
