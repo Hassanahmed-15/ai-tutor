@@ -238,3 +238,38 @@ test("a lesson built from a selected area says so first", () => {
   assert.match(context, /selected region/);
   assert.doesNotMatch(buildDocumentContext({ contentBlocks: [] }, "", "", "whole doc"), /SELECTED/);
 });
+
+/**
+ * A lecture is generated while it plays, so the chat's outline used to stop at the last beat
+ * written. A question about part 6, asked during part 2, found no part 6 to point to.
+ */
+test("planned parts not generated yet are listed as still to come, with what they teach", () => {
+  const beats = [beat(0, "What an Actuator Does", "An actuator turns energy into motion."), beat(1, "Electric Actuators", "Motors drive most of them.")];
+  const planned = [
+    { sequence: 0, title: "What an Actuator Does", objective: "Define an actuator" },
+    { sequence: 1, title: "Electric Actuators", objective: "Motors and solenoids" },
+    { sequence: 2, title: "Hydraulic Actuators", objective: "How pressurised oil gives large force" },
+  ];
+  const context = buildLessonContext(beats, 0, planned);
+  assert.match(context, /3\. Hydraulic Actuators \(still to come\)\n {3}How pressurised oil gives large force/);
+  // Generated parts are not listed a second time.
+  assert.equal(context.match(/Electric Actuators/g)?.length, 1);
+});
+
+test("several passes over one planned concept are listed once", () => {
+  const beats = [beat(0, "Intro", "Start.")];
+  const planned = [
+    { sequence: 0, title: "Intro" },
+    { sequence: 1, title: "Hydraulic Actuators", objective: "pass one" },
+    { sequence: 2, title: "Hydraulic Actuators", objective: "pass two" },
+    { sequence: 3, title: "Pneumatic Actuators" },
+  ];
+  const context = buildLessonContext(beats, 0, planned);
+  assert.equal(context.match(/Hydraulic Actuators/g)?.length, 1);
+  assert.match(context, /4\. Pneumatic Actuators \(still to come\)/);
+});
+
+test("without a plan the outline is exactly what it was", () => {
+  const beats = [beat(0, "A", "one"), beat(1, "B", "two")];
+  assert.equal(buildLessonContext(beats, 0, []), buildLessonContext(beats, 0));
+});

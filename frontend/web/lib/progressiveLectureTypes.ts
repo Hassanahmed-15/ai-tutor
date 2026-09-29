@@ -244,6 +244,8 @@ export type ProgressiveLectureSnapshot = {
   beatStatus?: Array<{
     sequence: number;
     title: string;
+    /** What the part teaches — lets the chat say "that's coming in part 5" before part 5 exists. */
+    objective?: string;
     state: ProgressiveBeatState | "not-started";
     visualKind: string;
     timing?: BeatTiming;

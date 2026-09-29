@@ -222,6 +222,7 @@ export async function progressiveSnapshot(
       return {
         sequence: planned.sequence,
         title: planned.title,
+        objective: planned.objective,
         state: doc?.state ?? "not-started",
         visualKind: doc?.timing?.visualKind ?? planned.visualKind,
         timing: doc?.timing,

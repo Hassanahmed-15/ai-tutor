@@ -120,7 +120,10 @@ export function describeBoard(beat: Beat | undefined | null, highlighted = ""): 
  * next?" are the questions this exists to answer, and a bare title cannot answer either. Distant
  * beats are titles only — enough to say what the lesson covers without pasting the whole thing.
  */
-export function buildLessonContext(beats: Beat[], currentIndex: number): string {
+/** A planned part of the lecture, generated or not — the snapshot's `beatStatus` entries. */
+export type PlannedPart = { sequence: number; title: string; objective?: string };
+
+export function buildLessonContext(beats: Beat[], currentIndex: number, planned: PlannedPart[] = []): string {
   if (!beats.length) return "";
 
   const lines = beats.map((beat, i) => {
@@ -132,6 +135,27 @@ export function buildLessonContext(beats: Beat[], currentIndex: number): string 
     const body = limit ? script.slice(0, limit) : "";
     return `${i + 1}. ${title}${marker}${body ? `\n   ${body}${script.length > limit ? "…" : ""}` : ""}`;
   });
+
+  /*
+   * THE PARTS NOT WRITTEN YET.
+   *
+   * A lecture is generated while it plays, so `beats` is only what exists so far. "Is that coming
+   * up later?" was answered against that — and a question about part 6, asked during part 2, found
+   * no part 6 to point to. The plan has every part's title and objective from the start. Several
+   * passes over one concept share a title, so a run of them is listed once.
+   */
+  let lastTitle = clean(beats[beats.length - 1]?.title).toLowerCase();
+  const upcoming = [...planned]
+    .filter((part) => part.sequence >= beats.length)
+    .sort((a, b) => a.sequence - b.sequence);
+  for (const part of upcoming) {
+    const title = clean(part.title);
+    if (!title || title.toLowerCase() === lastTitle) continue;
+    lastTitle = title.toLowerCase();
+    const objective = clean(part.objective);
+    const body = objective.slice(0, UPCOMING_PREVIEW_CHARS);
+    lines.push(`${part.sequence + 1}. ${title} (still to come)${body ? `\n   ${body}${objective.length > UPCOMING_PREVIEW_CHARS ? "…" : ""}` : ""}`);
+  }
 
   return lines.join("\n").slice(0, MAX_LESSON_CHARS);
 }

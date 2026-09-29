@@ -44,7 +44,7 @@ import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdCheckin } from "@/lib/adhd/events";
 import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
 import { MazeGame } from "@/components/adhd/games/MazeGame";
-import { buildDocumentContext, buildLessonContext, describeBoard } from "@/lib/lessonChatContext";
+import { buildDocumentContext, buildLessonContext, describeBoard, type PlannedPart } from "@/lib/lessonChatContext";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -272,6 +272,7 @@ export function LessonPlayer({
   fullDocumentText = "",
   hasMoreBeats = false,
   totalBeatCount,
+  plannedParts,
   onBeatIndexChange,
   onLearnerInteraction,
   onSummarize,
@@ -329,6 +330,8 @@ export function LessonPlayer({
   /** True while the progressive worker is still appending future beats. */
   hasMoreBeats?: boolean;
   totalBeatCount?: number;
+  /** Every planned part, generated or not, so the chat can point to parts not written yet. Absent for strict. */
+  plannedParts?: PlannedPart[];
   onBeatIndexChange?: (index: number) => void;
   onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
   /** Opens the one-slide summary of the lecture; the caller owns it (components/LectureSummarySlide). */
@@ -855,7 +858,7 @@ export function LessonPlayer({
      * into the panel beside her got one quoted from the document. Reading through the same two
      * functions is what stops the voice and the text drifting apart again.
      */
-    getLessonContext: () => buildLessonContext(beats, indexRef.current),
+    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts),
     getDocumentContext: liveTutorDocumentContext,
     mood,
     onBoardRequest: (board) => setLiveBoard(board),
@@ -1282,7 +1285,7 @@ export function LessonPlayer({
     // of code do?" had no code to look at.
     getBeatContext: () => describeBoard(beat, highlightedTextRef.current) + boardContextExtras(),
     // Read at ask time, not captured: the lecture moves while the panel is open.
-    getLessonContext: () => buildLessonContext(beats, indexRef.current),
+    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
     documentId,
     lessonQuestion,

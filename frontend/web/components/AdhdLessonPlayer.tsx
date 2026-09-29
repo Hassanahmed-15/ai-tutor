@@ -14,7 +14,7 @@ import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
-import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
+import { buildDocumentContext, buildLessonContext, type PlannedPart } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import type { SourceScope } from "@/lib/sourceScope";
@@ -50,11 +50,11 @@ type Stage = "slide" | "board";
 
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null, sourceScope,
-  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "", hasMoreBeats = false, totalBeatCount, plannedParts, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
   /** The student's fidelity choice for an uploaded source; strict binds the ask box and the live tutor to it. */
   sourceScope?: SourceScope;
-  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string; hasMoreBeats?: boolean; totalBeatCount?: number; plannedParts?: PlannedPart[]; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -166,7 +166,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
-    getLessonContext: () => buildLessonContext(beats, index),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     documentId,
     lessonQuestion,
@@ -198,7 +198,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       `${beatRef.current.title}: ${beatRef.current.script}` +
       (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
-    getLessonContext: () => buildLessonContext(beats, index),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
     getDocumentContext: () => {
       const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
       return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
