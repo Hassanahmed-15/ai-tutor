@@ -76,6 +76,62 @@ export function isReferenceLesson(input: ProgressiveLectureInput): boolean {
   return input.sourceScope?.fidelity === "reference" && isSuprnotesLessonInput(input.suprnotes);
 }
 
+/*
+ * REFERENCE-MODE SECTION TITLES.
+ *
+ * A section is titled at parse time by the first SENTENCE of its text (lib/pdfLessonPipeline.ts), and
+ * every full stop ends a sentence — so a cover slide reading "ACTUATORS Dr. Ahmed Khan" was cut after
+ * "Dr." and taught as "ACTUATORS DR". The parser also serves strict mode, whose titles must not
+ * change, so reference mode cleans its own titles here instead.
+ */
+const HONORIFIC_TAIL = /\s+(?:dr|prof|mr|mrs|ms|engr|sir)\.?$/i;
+/** "— Dr. Ahmed Khan" at the end: the name words must be capitalised, so "Sir Isaac's laws" is not a byline. */
+const BYLINE_TAIL = /\s*(?:[-–—|,]\s*)?(?:[Bb]y\s+)?(?:DR|Dr|dr|PROF|Prof|MR|Mr|MRS|Mrs|MS|Ms|ENGR|Engr|SIR|Sir)\.?\s+[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}$/;
+/** Replacement characters and box glyphs a PDF's text layer leaves where a bullet or symbol was. */
+const BROKEN_GLYPHS = /[�■□▪▫▯☐\u0000-\u001F\u007F]/g;
+/** Words kept lower-case when an ALL-CAPS title is re-cased. */
+const MINOR_WORDS = new Set(["a", "an", "and", "as", "at", "by", "for", "in", "of", "on", "or", "the", "to", "vs"]);
+
+/** A section title a student can read: no stray glyphs, no lecturer's name, not shouted. */
+export function referenceSectionTitle(raw: string): string {
+  let title = clean(raw).replace(BROKEN_GLYPHS, " ").replace(/\s+/g, " ").trim();
+  // "CONTENTS ▯ What Is an Actuator?" — the listing's label is not part of the topic.
+  title = title.replace(/^(?:table\s+of\s+)?contents\b\s*[:\-–—|]?\s*(?=\S)/i, "");
+  title = title.replace(BYLINE_TAIL, "").replace(HONORIFIC_TAIL, "").replace(/[\s.:;,\-–—|]+$/, "").trim();
+  const letters = title.replace(/[^A-Za-z]/g, "");
+  if (letters.length >= 4 && letters === letters.toUpperCase()) {
+    title = title
+      .split(" ")
+      .map((word, index) => {
+        const bare = word.replace(/[^A-Za-z]/g, "").toLowerCase();
+        if (index > 0 && MINOR_WORDS.has(bare)) return word.toLowerCase();
+        // Short all-caps words are acronyms — DC, LED, PWM — and keep their capitals.
+        if (bare.length <= 3 && !MINOR_WORDS.has(bare)) return word;
+        return word.charAt(0) + word.slice(1).toLowerCase();
+      })
+      .join(" ");
+  }
+  return title || clean(raw);
+}
+
+const FRONT_MATTER_TITLE =
+  /^(?:table\s+of\s+)?contents\b|^(?:agenda|outline|index|references|bibliography|acknowledge?ments?)\s*$|^thank\s*(?:you|s)\b|^any\s+questions\b|^questions\s*\??\s*$|^q\s*&\s*a\s*$/i;
+const COVER_MARKERS = /\b(?:dr|prof|engr)\.?\s+[A-Z]|\bpresented\s+by\b|\blecturer\b|\binstructor\b|\buniversity\b|\bdepartment\b|\bfaculty\b/i;
+
+/**
+ * A section that is the document's packaging, not its teaching: a table of contents, a cover page,
+ * an agenda, a thank-you slide. In reference mode these are not taught as parts of the lecture.
+ */
+export function isFrontMatterSection(title: string, text: string, index: number): boolean {
+  const plain = clean(title).replace(BROKEN_GLYPHS, " ").trim();
+  if (FRONT_MATTER_TITLE.test(plain)) return true;
+  const body = clean(text);
+  if (/^\s*(?:table\s+of\s+)?contents\b/i.test(body)) return true;
+  // The cover: the opening section, a handful of words, naming the lecturer or the institution.
+  const words = body.split(/\s+/).filter(Boolean).length;
+  return index === 0 && words > 0 && words < 30 && COVER_MARKERS.test(body);
+}
+
 /** Block ids whose text shares at least this many content words with a beat are its source. */
 const REFERENCE_MATCH_MIN_SHARED = 2;
 /** More than this and a beat's context stops being "its pages" and becomes the document. */
@@ -275,8 +331,20 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
     // A document section planned as a recap/summary is dropped too — no lecture ends on a recap.
     // Except in strict mode, where it is part of the source the student chose to be taught.
     .filter((item) => item.title && (strict || !isRecapTitle(item.title)));
+  /*
+   * REFERENCE MODE teaches the document's ideas, not its packaging: contents pages, the cover and
+   * thank-you slides are dropped, and titles are cleaned ("ACTUATORS DR" → "Actuators"). Never down
+   * to nothing — a document that is all front matter keeps its sections. Strict is untouched.
+   */
+  const reference = !strict && isReferenceLesson(input);
+  const referenceKept = reference
+    ? plannedRaw.filter((item, index) => !isFrontMatterSection(item.title, scopedBlockText(document.contentBlocks ?? [], item.sourceBlockIds), index))
+    : plannedRaw;
+  const referenceClean = reference
+    ? (referenceKept.length > 0 ? referenceKept : plannedRaw).map((item) => ({ ...item, title: referenceSectionTitle(item.title) }))
+    : plannedRaw;
   // A listing the planner cut across beats is re-joined, so the code board shows the whole function.
-  const merged = mergeSplitCodeBeats(plannedRaw, (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
+  const merged = mergeSplitCodeBeats(referenceClean, (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
   /*
    * A QUESTION ABOUT THE DOCUMENT IS ANSWERED FROM ITS PART OF THE DOCUMENT. The plan used to be
    * every section of the PDF whatever the student asked, so "what is starch in here" produced a
@@ -347,7 +415,10 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
    * ("Worked Example" over a section with no example in it) — see polishBeatPlan's sourceOpening.
    */
   const polished = polishBeatPlan(fallback, fallback[0]?.title || input.topic, {
-    sourceOpening: (item) => sourceOpeningWords(document, item.sourceBlockIds),
+    // Reference mode's fallback title gets the same cleaning: its sentence split cuts at "Dr." too.
+    sourceOpening: (item) => reference
+      ? referenceSectionTitle(sourceOpeningWords(document, item.sourceBlockIds))
+      : sourceOpeningWords(document, item.sourceBlockIds),
   });
   const provenance = new Map(polished.map((item) => [item.title, item]));
   const expanded = expandConceptPasses(

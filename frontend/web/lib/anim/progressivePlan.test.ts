@@ -8,7 +8,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { descends } from "../lessonLadder";
-import { buildProgressivePlan } from "../progressivePlan";
+import { buildProgressivePlan, isFrontMatterSection, referenceSectionTitle } from "../progressivePlan";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 
 const input = (topic: string, depth: "concise" | "balanced" | "deep" = "balanced"): ProgressiveLectureInput => ({
@@ -211,4 +211,82 @@ test("a TYPED TOPIC is not a reference lesson, even though it carries fidelity '
     outline: approvedOutline,
   });
   assert.ok(plan.every((b) => b.sourceBlockIds === undefined), "no document, so no source blocks");
+});
+
+/*
+ * REFERENCE-MODE SECTION TITLES. A cover slide "ACTUATORS Dr. Ahmed Khan" was cut at the full stop
+ * after "Dr." and taught as "ACTUATORS DR", followed by the contents page as a lesson section. Strict
+ * keeps its titles exactly — the parser that made them serves strict mode too.
+ */
+const actuatorDocument = {
+  schemaVersion: "suprnotes.lesson_input.v1",
+  title: "Actuators",
+  contentBlocks: [
+    { id: "cover", pageNumber: 1, text: "ACTUATORS Dr. Ahmed Khan, Department of Mechatronics, University of Engineering" },
+    { id: "toc", pageNumber: 2, text: "Contents 1. What Is an Actuator? 2. Types of Actuators 3. Selection" },
+    { id: "types", pageNumber: 3, text: "Actuators convert electrical, hydraulic or pneumatic energy into motion. Electric motors, hydraulic cylinders and pneumatic cylinders are the three main types, chosen by force, speed and precision." },
+    { id: "thanks", pageNumber: 9, text: "Thank you! Any questions?" },
+  ],
+  lessonPlan: {
+    beats: [
+      { title: "ACTUATORS DR", objective: "Teach these source blocks.", sourceBlockIds: ["cover"] },
+      { title: "CONTENTS \uFFFD What Is an Actuator?", objective: "Teach these source blocks.", sourceBlockIds: ["toc"] },
+      { title: "TYPES OF ACTUATORS", objective: "Teach these source blocks.", sourceBlockIds: ["types"] },
+      { title: "Thank You", objective: "Teach these source blocks.", sourceBlockIds: ["thanks"] },
+    ],
+  },
+};
+const actuatorInput = (fidelity: "strict" | "reference"): ProgressiveLectureInput => ({
+  ...input("actuators"),
+  sourceType: "pdf",
+  suprnotes: actuatorDocument,
+  sourceScope: { fidelity, breadth: { kind: "whole" }, documentLabels: [] },
+});
+
+test("REFERENCE: no cut-off lecturer's name, no contents page, no thank-you slide", () => {
+  const titles = buildProgressivePlan(actuatorInput("reference")).map((b) => b.title);
+  assert.ok(titles.length > 0, "something is still taught");
+  for (const title of titles) {
+    assert.doesNotMatch(title, /\bDR\b/i, `"${title}" carries the lecturer's cut-off name`);
+    assert.doesNotMatch(title, /\uFFFD|contents|thank you/i, `"${title}" is front matter`);
+    assert.notEqual(title, title.toUpperCase(), `"${title}" is shouted`);
+  }
+  assert.ok(titles.some((t) => /types of actuators/i.test(t)), `the real section is kept: ${titles.join(" | ")}`);
+});
+
+test("STRICT keeps every section and the titles it always had", () => {
+  const plan = buildProgressivePlan(actuatorInput("strict"));
+  // "TYPES of ACTUATORS" is polishBeatPlan's long-standing minor-word casing, applied to strict before
+  // this change as after it; the reference cleaning never runs here.
+  assert.deepEqual(plan.map((b) => b.title), ["ACTUATORS DR", "CONTENTS \uFFFD What Is an Actuator?", "TYPES of ACTUATORS", "Thank You"]);
+});
+
+test("REFERENCE never drops a document down to nothing", () => {
+  const onlyFrontMatter = {
+    ...actuatorDocument,
+    lessonPlan: { beats: [{ title: "Contents", objective: "x", sourceBlockIds: ["toc"] }] },
+  };
+  const plan = buildProgressivePlan({ ...actuatorInput("reference"), suprnotes: onlyFrontMatter });
+  assert.equal(plan.length, 1);
+});
+
+test("section titles a student can read", () => {
+  assert.equal(referenceSectionTitle("ACTUATORS DR"), "Actuators");
+  assert.equal(referenceSectionTitle("Actuators — Dr. Ahmed Khan"), "Actuators");
+  assert.equal(referenceSectionTitle("DC MOTORS AND ACTUATORS"), "DC Motors and Actuators");
+  assert.equal(referenceSectionTitle("CONTENTS \uFFFD What Is an Actuator?"), "What Is an Actuator?");
+  // A colon clause is the informative part of a title and stays.
+  assert.equal(referenceSectionTitle("Step 2: Download HOL4"), "Step 2: Download HOL4");
+  // "Sir Isaac Newton's laws" is not a byline: its name words are not all capitalised.
+  assert.equal(referenceSectionTitle("Motion and Sir Isaac Newton's laws"), "Motion and Sir Isaac Newton's laws");
+});
+
+test("front matter is recognised; teaching is not", () => {
+  assert.equal(isFrontMatterSection("Contents", "", 1), true);
+  assert.equal(isFrontMatterSection("Thank You", "", 7), true);
+  assert.equal(isFrontMatterSection("Page 2", "Contents 1. Intro 2. Types", 1), true);
+  assert.equal(isFrontMatterSection("Actuators", "ACTUATORS Dr. Ahmed Khan, University of Engineering", 0), true, "the cover");
+  // The same lecturer-ish words deep in a real section are not a cover.
+  assert.equal(isFrontMatterSection("History", "The motor was improved by Dr. Tesla at a university lab over many years of experiments and patents.", 3), false);
+  assert.equal(isFrontMatterSection("Types of Actuators", "Electric motors, hydraulic and pneumatic cylinders.", 2), false);
 });
