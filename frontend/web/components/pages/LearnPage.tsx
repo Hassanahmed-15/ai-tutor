@@ -1821,7 +1821,19 @@ type BuildCost =
     const planningKind = fresh?.kind ?? uploadedFile?.kind;
     const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
 
+    /*
+     * A REFERENCE LESSON PLANS LIKE A TYPED TOPIC.
+     *
+     * The three document branches below — exact question, scope chips, whole-document outline — were
+     * reference mode's whole conversation, and none of them ran the depth question and diagnostic
+     * that a typed topic gets. Choosing "use it as a reference" now skips all three and falls through
+     * to that flow: the document still travels with every request (requestOutline sends it, with the
+     * scope and the profile), it just stops dictating the shape. Strict never reaches this function.
+     */
+    const referenceChosen = sourceModeChosenRef.current && sourceScopeRef.current.fidelity === "reference";
+
     const shouldPlanExactQuestion = isPdfOrDeck
+      && !referenceChosen
       && !isWholeDocumentRequest(planningFocus)
       && (Boolean(fresh?.scopeSelected) || isSpecificDocumentRequest(planningFocus, planningDocument));
 
@@ -1844,7 +1856,7 @@ type BuildCost =
       return;
     }
 
-    if (!forceBuild && isPdfOrDeck && !fresh?.scopeSelected && shouldPlanDocumentScope(planningDocument, planningFocus)) {
+    if (!forceBuild && isPdfOrDeck && !referenceChosen && !fresh?.scopeSelected && shouldPlanDocumentScope(planningDocument, planningFocus)) {
       setDocumentPlanningActive(true);
       setPhase("outline");
       setPlanLoading(true);
@@ -1880,7 +1892,7 @@ type BuildCost =
      * The approved outline is now read by generation for the full-lecture shape, so steering it here
      * actually changes the lecture. A focused question keeps its own path above and is untouched.
      */
-    if (!forceBuild && isPdfOrDeck) {
+    if (!forceBuild && isPdfOrDeck && !referenceChosen) {
       setDocumentPlanningActive(true);
       focusedPlanningFreshRef.current = {
         ...fresh,

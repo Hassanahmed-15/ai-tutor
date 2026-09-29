@@ -123,7 +123,13 @@ export async function POST(req: Request) {
       ? `The whole lesson as an outline. "← PLAYING NOW" is where the student is; "(already taught)" and "(still to come)" say what they have and have not seen. If a later section answers this question, say that it is coming and name it:\n${lessonContext}\n\n`
       : "") +
     (documentContext
-      ? `The student's own uploaded document. Answer from THIS when the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${documentContext}\n\n`
+      ? sourceScope?.fidelity === "reference"
+        /*
+         * A REFERENCE LESSON's chat is not fenced by the document, and says so only in passing. The
+         * student wants to know what came from their PDF without a label on every answer.
+         */
+        ? `The student's uploaded document, as REFERENCE material. When it covers the question, answer from it and mention that in passing ("your notes call this…", "the figure in your document shows…"). When it does not, answer from what you know and signal that just as lightly ("your document doesn't go into this, but…"). Never refuse because the document is silent, and never label or announce sources:\n${documentContext}\n\n`
+        : `The student's own uploaded document. Answer from THIS when the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${documentContext}\n\n`
       : "") +
     (lessonQuestion
       ? `This whole lesson was built to answer one question the student asked: "${lessonQuestion}". Keep that in view — if their new question relates to it, connect the two rather than answering in isolation.

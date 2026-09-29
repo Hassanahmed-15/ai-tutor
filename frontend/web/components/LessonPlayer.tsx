@@ -804,7 +804,15 @@ export function LessonPlayer({
    */
   const liveTutorDocumentContext = () => {
     const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages);
-    return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
+    if (strictSource) return withStrictSourceHeader(document, beatSourceFor(beatRef.current));
+    /*
+     * Reference mode: the same implicit-attribution rule the text chat gets, riding at the head of the
+     * context the live tutor reads (its hook takes strings only, and stays untouched).
+     */
+    if (sourceScope?.fidelity === "reference" && document) {
+      return `This document is the student's REFERENCE material, not a limit. Answer from it when it covers the question and mention that in passing ("your notes say…"); when it does not, answer from what you know and signal that lightly ("your document doesn't cover this, but…"). Never label sources.\n\n${document}`;
+    }
+    return document;
   };
 
   /**
@@ -2385,7 +2393,12 @@ export function LessonPlayer({
   const statusText = waitingForNextBeat ? "preparing next part" : speaking ? "explaining" : waitingOnCheckpoint ? "waiting on you" : stage === "slide" ? "setting up" : "drawing";
   const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
   const currentCaption = sentenceCue.text || beat.script;
-  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope);
+  /*
+   * The split PDF workspace is STRICT mode's screen. A reference lesson takes ideas from the document
+   * rather than walking through it, so it gets the same screen as a typed topic: the board, the chat
+   * beside it, no page viewer. Everything downstream of this flag falls back to that layout.
+   */
+  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope) && sourceScope?.fidelity === "strict";
   // Where the spoken passage sits on the PDF, for the arrow that joins it to the board.
   const [pointerRect, setPointerRect] = useState<DOMRect | null>(null);
   const workspaceRef = useRef<HTMLDivElement | null>(null);
@@ -2399,7 +2412,9 @@ export function LessonPlayer({
    * A part whose source has a printed figure is taught ON that figure (SourceFigureBoard): the
    * student's own diagram, each part lit up as it is named. Everything else keeps its drawn board.
    */
-  const beatFigure = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
+  // Gated on the DOCUMENT, not the workspace: a reference lesson has no page viewer but still reuses a
+  // printed figure on the part that matches it — the student's own diagram beats a redrawn one.
+  const beatFigure = sourceScope && isSuprnotesLessonInput(sourceDocument)
     ? sourceFigureFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds)
     : null;
   const spokenSoFar = beatFigure

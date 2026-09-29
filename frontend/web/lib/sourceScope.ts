@@ -113,7 +113,14 @@ export function sourceScopeInstruction(scope: SourceScope): string {
       ? STRICT_SOURCE_RULE
       : "SOURCE AS REFERENCE. Use the uploaded material as the foundation, but freely expand with " +
         "outside knowledge, additional examples, and context that helps teaching — the source anchors " +
-        "the lesson, it does not fence it in.";
+        "the lesson, it does not fence it in. Teach the idea, not the page: reorder, condense or skip " +
+        "what the document says when that teaches better. " +
+        // Attribution is IMPLICIT — woven into what she says, never a label. The student wants to know
+        // what came from their document without being told "SOURCE:" at every turn.
+        "When a point comes from the student's document, say so naturally in passing — 'your notes put " +
+        "it as…', 'the figure in your document shows…'. When you go beyond it, signal that just as " +
+        "lightly — 'this isn't in your document, but it helps…'. Never label, badge or announce sources; " +
+        "a phrase inside the sentence is all it takes.";
 
   const breadthLine =
     scope.breadth.kind === "whole"

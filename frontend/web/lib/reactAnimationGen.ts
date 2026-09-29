@@ -383,7 +383,9 @@ function sourcePromptBlock(source: BeatSourceGrounding, strict: boolean, heading
   const lines = [
     strict
       ? "SOURCE — the student's own material for this board. It is the ONLY content allowed on the board:"
-      : "SOURCE — the student's own material for this board. Keep to its facts and its wording:",
+      // Reached only with a document present (a grounding object exists), so this is the REFERENCE
+      // line — strict takes the branch above. Start from the material; do not stop at it.
+      : "SOURCE — the student's own material for this board, for reference. Start from its figure and its facts, and add what teaches the idea better:",
     '"""',
     text,
     '"""',

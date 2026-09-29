@@ -48,7 +48,7 @@ import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { depthBudget, strictDepthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
-import { buildProgressivePlan, clean, sourceRoleFor } from "./progressivePlan";
+import { buildProgressivePlan, clean, isReferenceLesson, sourceRoleFor } from "./progressivePlan";
 import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
 import type { BeatSourceGrounding } from "./sourceGrounding";
 import {
@@ -419,7 +419,13 @@ async function generateOneBeat(
       isCheckpoint,
       adaptation,
       sourceContext: context,
-      sourceInstruction: strict && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      /*
+       * Reference lessons get their instruction too. It used to be strict-only, so the one line ever
+       * written for reference mode — "the source anchors the lesson, it does not fence it in", and how
+       * to mention where a point came from — never reached the script writer.
+       */
+      sourceInstruction: (strict || isReferenceLesson(input)) && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      referenceSource: !strict && isReferenceLesson(input),
       strict,
       codeInstruction: codeInstruction(input, session, planned, strict),
       selectionScoped: Boolean(input.selection?.transcript.trim()),

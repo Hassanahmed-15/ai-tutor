@@ -66,9 +66,59 @@ function programmingLesson(input: ProgressiveLectureInput): boolean {
   return isProgrammingTopic(`${input.topic ?? ""} ${input.focus ?? ""} ${titles}`);
 }
 
+/**
+ * A PDF taught AS A REFERENCE: a document is present and the student chose reference, not strict.
+ *
+ * Both halves matter. A typed topic carries `fidelity: "reference"` by default, so fidelity alone
+ * would sweep prompt lessons into this path.
+ */
+export function isReferenceLesson(input: ProgressiveLectureInput): boolean {
+  return input.sourceScope?.fidelity === "reference" && isSuprnotesLessonInput(input.suprnotes);
+}
+
+/** Block ids whose text shares at least this many content words with a beat are its source. */
+const REFERENCE_MATCH_MIN_SHARED = 2;
+/** More than this and a beat's context stops being "its pages" and becomes the document. */
+const REFERENCE_MATCH_MAX_BLOCKS = 4;
+
+/**
+ * The document blocks an outline beat draws on, by the words they share.
+ *
+ * A reference beat is planned from the student-approved outline, not from the PDF's sections, so it
+ * has no blocks of its own. Giving it the few blocks that talk about the same thing keeps what the
+ * document is good for — its own figure shown on the beat that matches it, and its facts in the
+ * beat's context — without letting the document's order or length dictate the lecture. No match is
+ * an ordinary answer: the beat is taught from the idea alone.
+ */
+export function referenceBlocksFor(document: SuprnotesLessonInput, beatText: string): string[] {
+  const wanted = new Set(contentStems(beatText));
+  if (wanted.size === 0) return [];
+  return (document.contentBlocks ?? [])
+    .map((block) => {
+      const shared = new Set(contentStems(block.text ?? "").filter((word) => wanted.has(word)));
+      return { id: block.id, shared: shared.size };
+    })
+    .filter((match) => match.shared >= REFERENCE_MATCH_MIN_SHARED)
+    .sort((a, b) => b.shared - a.shared)
+    .slice(0, REFERENCE_MATCH_MAX_BLOCKS)
+    .map((match) => match.id);
+}
+
 /** Builds the global map synchronously so no model round-trip delays the first beat. */
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
-  const sourcePlan = sourceDocumentPlan(input);
+  /*
+   * A REFERENCE LESSON IS BUILT FROM THE OUTLINE THE STUDENT APPROVED.
+   *
+   * The document's own section plan used to win whenever one existed — in reference mode too — so a
+   * student could plan, revise and approve an outline and then be taught the PDF's section list
+   * instead. Reference mode takes the document's ideas, not its structure: with an outline it plans
+   * exactly like a typed topic (opener, ladder, depth passes), and each beat is matched to the
+   * document blocks it draws on. Strict, and a reference lesson with no outline, are unchanged.
+   */
+  const referenceDocument = isReferenceLesson(input) && (input.outline?.subtopics?.length ?? 0) > 0
+    ? (input.suprnotes as SuprnotesLessonInput)
+    : null;
+  const sourcePlan = referenceDocument ? [] : sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
   // The THING the lesson is about, not the sentence the student typed: "What is overfitting?"
   // is a lesson on Overfitting, and its boards are titled for overfitting.
@@ -149,6 +199,7 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     prerequisiteConceptIds: prerequisitesFor(entries, sequence),
     visualKind: visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
+    ...(referenceDocument ? referenceSourceFor(referenceDocument, entry) : {}),
   }));
   // A prompted lecture should exercise the live animation engine, not accidentally collapse into
   // blackboards/structure boards because every outline title matched a broad keyword. Prefer the
@@ -162,6 +213,12 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     if (candidate) candidate.visualKind = "react-animation";
   }
   return plan;
+}
+
+/** A reference beat's matched blocks, as a field only when there are any. */
+function referenceSourceFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }): { sourceBlockIds?: string[] } {
+  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`);
+  return ids.length ? { sourceBlockIds: ids } : {};
 }
 
 /**

@@ -132,3 +132,83 @@ test("a specific question about a PDF keeps only the section that answers it", a
   assert.equal(sectionsForQuestion(sections, "explain this pdf", textOf).length, 4, "an open request keeps the whole document");
   assert.equal(sectionsForQuestion(sections, "what is a mitochondrion?", textOf).length, 4, "a question the document never mentions keeps the whole plan");
 });
+
+/*
+ * "USE IT AS A REFERENCE": the approved outline is the lecture, and the document is material.
+ *
+ * The document's own section plan used to win in reference mode too, so a student could plan,
+ * revise and approve an outline and then be taught the PDF's section list instead. Strict mode must
+ * keep the section plan exactly as before — these tests pin both sides.
+ */
+const bstDocument = {
+  schemaVersion: "suprnotes.lesson_input.v1",
+  title: "Binary search trees",
+  contentBlocks: [
+    { id: "blk-insert", pageNumber: 1, text: "Insertion places a new key in a binary search tree by walking left or right from the root until an empty leaf position is found." },
+    { id: "blk-remove", pageNumber: 1, text: "Removal is the hardest operation: removing a node with two children replaces it with the smallest node of its right subtree, the inorder successor." },
+    { id: "blk-figure", pageNumber: 1, role: "figure-labels", text: "Figure 19.3 deletion of node 5 with one child, before and after: the child is linked to the parent." },
+  ],
+  lessonPlan: {
+    beats: [
+      { title: "Section 19.1 Basic Ideas", objective: "Teach these source blocks completely and in order.", sourceBlockIds: ["blk-insert", "blk-remove", "blk-figure"] },
+    ],
+  },
+};
+const approvedOutline = {
+  topic: "binary search tree removal",
+  subtopics: [
+    { title: "Why removal is the hardest operation", caption: "Removing a node can disconnect the tree, unlike insertion." },
+    { title: "Removing a node with two children", caption: "Replace it with the inorder successor from the right subtree." },
+    { title: "Balanced trees keep operations fast", caption: "Rotations bound the height so search stays logarithmic." },
+  ],
+};
+const pdfInput = (fidelity: "strict" | "reference", outline?: typeof approvedOutline): ProgressiveLectureInput => ({
+  ...input("binary search tree removal"),
+  sourceType: "pdf",
+  suprnotes: bstDocument,
+  sourceScope: { fidelity, breadth: { kind: "whole" }, documentLabels: [] },
+  ...(outline ? { outline } : {}),
+});
+
+test("REFERENCE with an approved outline: the outline IS the lecture, not the PDF's sections", () => {
+  const plan = buildProgressivePlan(pdfInput("reference", approvedOutline));
+  const titles = plan.map((b) => b.title);
+  // The student's subtopics are taught; the document's single section title is not the lecture.
+  assert.ok(!titles.includes("Section 19.1 Basic Ideas"), `taught the PDF's section list: ${titles.join(" | ")}`);
+  for (const sub of approvedOutline.subtopics) {
+    assert.ok(titles.some((t) => t.toLowerCase().includes(sub.title.split(" ").slice(-2).join(" ").toLowerCase()) || plan.some((b) => b.objective.includes(sub.caption))), `missing outline subtopic "${sub.title}"`);
+  }
+  // It plans like a typed topic: the ladder, so every board has a rung.
+  assert.ok(plan.every((b) => b.role), "every board carries its rung");
+});
+
+test("REFERENCE: each outline beat is matched to the document blocks it draws on", () => {
+  const plan = buildProgressivePlan(pdfInput("reference", approvedOutline));
+  const twoChildren = plan.find((b) => /two children/i.test(b.title) || /inorder successor/i.test(b.objective));
+  assert.ok(twoChildren, "the two-children beat exists");
+  assert.ok(twoChildren!.sourceBlockIds?.includes("blk-remove"), `matched ${JSON.stringify(twoChildren!.sourceBlockIds)}`);
+  // A beat the document says nothing about is taught from the idea alone — no invented source.
+  const balanced = plan.find((b) => /balanced/i.test(b.title));
+  assert.ok(balanced, "the balanced-trees beat exists");
+  assert.equal(balanced!.sourceBlockIds, undefined, "no document blocks for a point the PDF does not make");
+});
+
+test("STRICT is untouched: the PDF's section plan wins even with an outline", () => {
+  const plan = buildProgressivePlan(pdfInput("strict", approvedOutline));
+  assert.deepEqual(plan.map((b) => b.title), ["Section 19.1 Basic Ideas"]);
+  assert.deepEqual(plan[0].sourceBlockIds, ["blk-insert", "blk-remove", "blk-figure"]);
+});
+
+test("REFERENCE with no outline keeps today's section plan", () => {
+  const plan = buildProgressivePlan(pdfInput("reference"));
+  assert.deepEqual(plan.map((b) => b.title), ["Section 19.1 Basic Ideas"]);
+});
+
+test("a TYPED TOPIC is not a reference lesson, even though it carries fidelity 'reference'", () => {
+  const plan = buildProgressivePlan({
+    ...input("binary search tree removal"),
+    sourceScope: { fidelity: "reference", breadth: { kind: "whole" }, documentLabels: [] },
+    outline: approvedOutline,
+  });
+  assert.ok(plan.every((b) => b.sourceBlockIds === undefined), "no document, so no source blocks");
+});
