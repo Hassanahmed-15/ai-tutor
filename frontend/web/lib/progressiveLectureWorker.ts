@@ -39,6 +39,7 @@ import { picturesFromBoardCodes } from "./lecturePictures";
 import { animationModelLabel, type AnimationModel } from "./animationModels";
 import { animationTierRoutingEnabled, classifyAnimationTier, modelForTier, type TierDecision } from "./animationTier";
 import { fillSpecBoardOps, repeatsCode } from "./specBoardGen";
+import { looksQuantitative } from "./quantitativeBeat";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
@@ -49,7 +50,7 @@ import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { depthBudget, strictDepthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
-import { buildProgressivePlan, clean, sourceRoleFor } from "./progressivePlan";
+import { buildProgressivePlan, clean, isReferenceLesson, sourceRoleFor } from "./progressivePlan";
 import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
 import type { BeatSourceGrounding } from "./sourceGrounding";
 import {
@@ -420,10 +421,13 @@ async function generateOneBeat(
       isCheckpoint,
       adaptation,
       sourceContext: context,
-      // Both fidelities: strict fences the lesson in; reference says to explain beyond the document.
-      // Reference used to get nothing here, so the writer saw only the pages ("they ARE the source")
-      // and taught a reference PDF as if it were strict.
-      sourceInstruction: input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      /*
+       * Reference lessons get their instruction too. It used to be strict-only, so the one line ever
+       * written for reference mode — "the source anchors the lesson, it does not fence it in", and how
+       * to mention where a point came from — never reached the script writer.
+       */
+      sourceInstruction: (strict || isReferenceLesson(input)) && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      referenceSource: !strict && isReferenceLesson(input),
       strict,
       codeInstruction: codeInstruction(input, session, planned, strict),
       selectionScoped: Boolean(input.selection?.transcript.trim()),
@@ -985,7 +989,9 @@ async function chooseProgressiveVisual(
    * and nothing on the rest, which keeps the latency win for ordinary animated beats.
    */
   const opening = sequence === 0;
-  const quantitative = QUANTITATIVE_BEAT.test(beat.title);
+  // Title, on-screen points and the narration's opening — the title alone often only names the topic
+  // (lib/quantitativeBeat.ts has the board that proved it). QUANTITATIVE_BEAT is kept as the floor.
+  const quantitative = QUANTITATIVE_BEAT.test(beat.title) || looksQuantitative(beat);
   if (fallback === "react-animation" && !opening && !quantitative) {
     return { kind: fallback, costUsd: 0 };
   }

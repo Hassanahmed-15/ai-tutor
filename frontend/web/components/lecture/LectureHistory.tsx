@@ -76,6 +76,8 @@ export function LectureHistory({
   refreshKey?: number;
 }) {
   const [items, setItems] = useState<HistoryItem[]>([]);
+  /** Every lecture this learner has, not just the page of them shown below. */
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [openingId, setOpeningId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -87,7 +89,11 @@ export function LectureHistory({
         const response = await fetch("/api/lectures", { cache: "no-store", signal: controller.signal });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(data.error || "Could not load lecture history.");
-        if (!controller.signal.aborted) setItems(Array.isArray(data.lectures) ? data.lectures : []);
+        if (controller.signal.aborted) return;
+        const lectures: HistoryItem[] = Array.isArray(data.lectures) ? data.lectures : [];
+        setItems(lectures);
+        // An older server that does not send a total still gets a number, just the page's own.
+        setTotal(typeof data.total === "number" ? data.total : lectures.length);
       } catch (requestError) {
         if (controller.signal.aborted) return;
         setError(requestError instanceof Error ? requestError.message : "Could not load lecture history.");
@@ -127,7 +133,8 @@ export function LectureHistory({
           </h2>
         </div>
         <span className="text-xs font-semibold text-[var(--hud-text-faint)]">
-          {items.length} saved
+          {/* Say so when the list is only part of the total, rather than quietly reporting the page. */}
+          {total > items.length ? `showing ${items.length} of ${total} saved` : `${total} saved`}
         </span>
       </div>
 

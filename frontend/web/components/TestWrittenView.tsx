@@ -5,8 +5,9 @@ import { HudCorners, HudEyebrow } from "@/components/hud/HudKit";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 
 /** Written test: exam-paper layout, all questions on one page, submit-all-at-once, then one
- *  batch rubric-grading call (/api/grade-test). Blank answers are allowed and graded as wrong
- *  rather than blocking submission. */
+ *  batch rubric-grading call (/api/grade-test). Every question must have something written in it
+ *  before the paper can be handed in — a blank left by accident used to be graded as wrong, which
+ *  is a harsh way to find out you missed one. */
 export function TestWrittenView({
   bank,
   onGraded,
@@ -20,8 +21,12 @@ export function TestWrittenView({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /** Whitespace is not an answer, so the count is of questions with something actually written. */
+  const answered = bank.questions.filter((q) => (answers[q.id] ?? "").trim().length > 0).length;
+  const unanswered = bank.questions.length - answered;
+
   async function submit() {
-    if (submitting) return;
+    if (submitting || unanswered > 0) return;
     setSubmitting(true);
     setError(null);
     try {
@@ -80,11 +85,17 @@ export function TestWrittenView({
 
         <button
           onClick={submit}
-          disabled={submitting}
-          className="w-full rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-500 py-4 text-base font-black shadow-[0_0_40px_rgba(129,140,248,0.3)] transition hover:shadow-[0_0_60px_rgba(129,140,248,0.5)] disabled:opacity-40"
+          disabled={submitting || unanswered > 0}
+          className="w-full rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-500 py-4 text-base font-black shadow-[0_0_40px_rgba(129,140,248,0.3)] transition hover:shadow-[0_0_60px_rgba(129,140,248,0.5)] disabled:opacity-40 disabled:shadow-none"
         >
           {submitting ? "Grading…" : "Submit test"}
         </button>
+        {/* A disabled button with no reason beside it is just a broken button. */}
+        {unanswered > 0 && (
+          <p className="text-center text-sm font-semibold text-[var(--hud-text-faint)]">
+            {answered} of {bank.questions.length} answered — {unanswered === 1 ? "one question is" : `${unanswered} questions are`} still blank.
+          </p>
+        )}
       </div>
     </section>
   );

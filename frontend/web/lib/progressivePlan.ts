@@ -17,6 +17,9 @@ import type { ProgressiveBeatPlan, ProgressiveLectureInput, ProgressiveVisualKin
 import { isStrictSource } from "./sourceScope";
 import { isSpecificDocumentRequest, isWholeDocumentRequest } from "./documentLessonPlanning";
 import { contentStems } from "./sourceGrounding";
+import { BROKEN_GLYPHS, referenceSectionTitle } from "./sectionTitle";
+
+export { referenceSectionTitle };
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 
 /** The depth slider as the three names the budget and the pass-count both speak. */
@@ -67,61 +70,76 @@ function programmingLesson(input: ProgressiveLectureInput): boolean {
 }
 
 /**
- * A QUESTION ASKED OF A REFERENCE DOCUMENT IS A LESSON ON THE QUESTION.
+ * A PDF taught AS A REFERENCE: a document is present and the student chose reference, not strict.
  *
- * The document's own section plan always won, so "explain me bst del in c++" against a reference PDF
- * on the subject walked the PDF top to bottom — its first section was titled with the page reader's
- * "(Images with nodes and connections)" — instead of teaching deletion. The question matched every
- * section, so the question filter kept them all. In reference mode the planner's outline FOR THE
- * QUESTION is the plan, and the document is what each board draws on (referenceBlocksFor). Strict
- * mode, a dragged selection, and "teach the whole document" keep the document's structure.
+ * Both halves matter. A typed topic carries `fidelity: "reference"` by default, so fidelity alone
+ * would sweep prompt lessons into this path.
  */
-function referenceQuestionLesson(input: ProgressiveLectureInput): boolean {
-  if (input.sourceScope?.fidelity !== "reference" || input.selection) return false;
-  if (!(input.outline?.subtopics ?? []).some((item) => clean(item.title))) return false;
-  const focus = input.focus ?? "";
-  return input.sourceScope.breadth.kind === "section" || isSpecificDocumentRequest(focus, input.suprnotes);
+export function isReferenceLesson(input: ProgressiveLectureInput): boolean {
+  return input.sourceScope?.fidelity === "reference" && isSuprnotesLessonInput(input.suprnotes);
 }
+
+const FRONT_MATTER_TITLE =
+  /^(?:table\s+of\s+)?contents\b|^(?:agenda|outline|index|references|bibliography|acknowledge?ments?)\s*$|^thank\s*(?:you|s)\b|^any\s+questions\b|^questions\s*\??\s*$|^q\s*&\s*a\s*$/i;
+const COVER_MARKERS = /\b(?:dr|prof|engr)\.?\s+[A-Z]|\bpresented\s+by\b|\blecturer\b|\binstructor\b|\buniversity\b|\bdepartment\b|\bfaculty\b/i;
 
 /**
- * The document passages a question-lesson board draws on: those sharing at least two content terms
- * with the board's title and objective, best three, in document order. Beats read these as their
- * reference text, and a matching code block makes the board quote the document's own code.
+ * A section that is the document's packaging, not its teaching: a table of contents, a cover page,
+ * an agenda, a thank-you slide. In reference mode these are not taught as parts of the lecture.
  */
-function referenceBlocksFor(input: ProgressiveLectureInput, entry: { title: string; objective: string }): string[] {
-  if (!isSuprnotesLessonInput(input.suprnotes)) return [];
-  const want = new Set(contentStems(`${entry.title} ${entry.objective}`));
-  if (want.size === 0) return [];
-  const blocks = input.suprnotes.contentBlocks ?? [];
-  return blocks
-    .map((block, order) => ({
-      id: block.id,
-      order: block.sourceOrder ?? order,
-      score: new Set(contentStems(`${block.heading ?? ""} ${block.text ?? ""}`).filter((stem) => want.has(stem))).size,
-    }))
-    .filter((block) => block.score >= 2)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .sort((a, b) => a.order - b.order)
-    .map((block) => block.id);
+export function isFrontMatterSection(title: string, text: string, index: number): boolean {
+  const plain = clean(title).replace(BROKEN_GLYPHS, " ").trim();
+  if (FRONT_MATTER_TITLE.test(plain)) return true;
+  const body = clean(text);
+  if (/^\s*(?:table\s+of\s+)?contents\b/i.test(body)) return true;
+  // The cover: the opening section, a handful of words, naming the lecturer or the institution.
+  const words = body.split(/\s+/).filter(Boolean).length;
+  return index === 0 && words > 0 && words < 30 && COVER_MARKERS.test(body);
 }
 
-function referenceSourceFields(input: ProgressiveLectureInput, entry: { title: string; objective: string }): { sourceBlockIds?: string[] } {
-  const ids = referenceBlocksFor(input, entry);
-  return ids.length > 0 ? { sourceBlockIds: ids } : {};
-}
+/** Block ids whose text shares at least this many content words with a beat are its source. */
+const REFERENCE_MATCH_MIN_SHARED = 2;
+/** More than this and a beat's context stops being "its pages" and becomes the document. */
+const REFERENCE_MATCH_MAX_BLOCKS = 4;
 
-/** A question-lesson board about an implementation, whose passages hold the document's code, shows THAT code. */
-function referenceCodeFromDocument(input: ProgressiveLectureInput, entry: { title: string; objective: string }): ProgressiveVisualKind | null {
-  if (!isSuprnotesLessonInput(input.suprnotes) || !CODE_BEAT_PATTERN.test(`${entry.title} ${entry.objective}`) && !/\b(?:c\+\+|java|python|code)\b/i.test(entry.title)) return null;
-  const ids = referenceBlocksFor(input, entry);
-  return ids.length > 0 ? sourceCodeKind(input.suprnotes, ids) : null;
+/**
+ * The document blocks an outline beat draws on, by the words they share.
+ *
+ * A reference beat is planned from the student-approved outline, not from the PDF's sections, so it
+ * has no blocks of its own. Giving it the few blocks that talk about the same thing keeps what the
+ * document is good for — its own figure shown on the beat that matches it, and its facts in the
+ * beat's context — without letting the document's order or length dictate the lecture. No match is
+ * an ordinary answer: the beat is taught from the idea alone.
+ */
+export function referenceBlocksFor(document: SuprnotesLessonInput, beatText: string): string[] {
+  const wanted = new Set(contentStems(beatText));
+  if (wanted.size === 0) return [];
+  return (document.contentBlocks ?? [])
+    .map((block) => {
+      const shared = new Set(contentStems(block.text ?? "").filter((word) => wanted.has(word)));
+      return { id: block.id, shared: shared.size };
+    })
+    .filter((match) => match.shared >= REFERENCE_MATCH_MIN_SHARED)
+    .sort((a, b) => b.shared - a.shared)
+    .slice(0, REFERENCE_MATCH_MAX_BLOCKS)
+    .map((match) => match.id);
 }
 
 /** Builds the global map synchronously so no model round-trip delays the first beat. */
 export function buildProgressivePlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
-  const answersQuestion = referenceQuestionLesson(input);
-  const sourcePlan = answersQuestion ? [] : sourceDocumentPlan(input);
+  /*
+   * A REFERENCE LESSON IS BUILT FROM THE OUTLINE THE STUDENT APPROVED.
+   *
+   * The document's own section plan used to win whenever one existed — in reference mode too — so a
+   * student could plan, revise and approve an outline and then be taught the PDF's section list
+   * instead. Reference mode takes the document's ideas, not its structure: with an outline it plans
+   * exactly like a typed topic (opener, ladder, depth passes), and each beat is matched to the
+   * document blocks it draws on. Strict, and a reference lesson with no outline, are unchanged.
+   */
+  const referenceDocument = isReferenceLesson(input) && (input.outline?.subtopics?.length ?? 0) > 0
+    ? (input.suprnotes as SuprnotesLessonInput)
+    : null;
+  const sourcePlan = referenceDocument ? [] : sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
   // The THING the lesson is about, not the sentence the student typed: "What is overfitting?"
   // is a lesson on Overfitting, and its boards are titled for overfitting.
@@ -200,9 +218,9 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     conceptPasses: entry.passes,
     role: roleForPass(roleByTitle.get(entry.title) ?? "mechanism", entry.passRole),
     prerequisiteConceptIds: prerequisitesFor(entries, sequence),
-    ...(answersQuestion ? referenceSourceFields(input, entry) : {}),
-    visualKind: (answersQuestion ? referenceCodeFromDocument(input, entry) : null) ?? visualKindFor(sequence, entries.length, input, entry),
+    visualKind: (referenceDocument ? referenceCodeFor(referenceDocument, entry) : null) ?? visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
+    ...(referenceDocument ? referenceSourceFor(referenceDocument, entry) : {}),
   }));
   // A prompted lecture should exercise the live animation engine, not accidentally collapse into
   // blackboards/structure boards because every outline title matched a broad keyword. Prefer the
@@ -216,6 +234,23 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     if (candidate) candidate.visualKind = "react-animation";
   }
   return plan;
+}
+
+/**
+ * A reference board about an implementation, whose matched passages hold the document's code, shows
+ * THAT code rather than code written from scratch ("explain bst deletion in c++" against a PDF that
+ * prints the C++). Kept from the local reference-question work when the two reference plans merged.
+ */
+function referenceCodeFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }): ProgressiveVisualKind | null {
+  if (!CODE_BEAT_PATTERN.test(`${entry.title} ${entry.objective}`) && !/\b(?:c\+\+|java|python|code)\b/i.test(entry.title)) return null;
+  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`);
+  return ids.length > 0 ? sourceCodeKind(document, ids) : null;
+}
+
+/** A reference beat's matched blocks, as a field only when there are any. */
+function referenceSourceFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }): { sourceBlockIds?: string[] } {
+  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`);
+  return ids.length ? { sourceBlockIds: ids } : {};
 }
 
 /**
@@ -272,8 +307,20 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
     // A document section planned as a recap/summary is dropped too — no lecture ends on a recap.
     // Except in strict mode, where it is part of the source the student chose to be taught.
     .filter((item) => item.title && (strict || !isRecapTitle(item.title)));
+  /*
+   * REFERENCE MODE teaches the document's ideas, not its packaging: contents pages, the cover and
+   * thank-you slides are dropped, and titles are cleaned ("ACTUATORS DR" → "Actuators"). Never down
+   * to nothing — a document that is all front matter keeps its sections. Strict is untouched.
+   */
+  const reference = !strict && isReferenceLesson(input);
+  const referenceKept = reference
+    ? plannedRaw.filter((item, index) => !isFrontMatterSection(item.title, scopedBlockText(document.contentBlocks ?? [], item.sourceBlockIds), index))
+    : plannedRaw;
+  const referenceClean = reference
+    ? (referenceKept.length > 0 ? referenceKept : plannedRaw).map((item) => ({ ...item, title: referenceSectionTitle(item.title) }))
+    : plannedRaw;
   // A listing the planner cut across beats is re-joined, so the code board shows the whole function.
-  const merged = mergeSplitCodeBeats(plannedRaw, (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
+  const merged = mergeSplitCodeBeats(referenceClean, (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
   /*
    * A QUESTION ABOUT THE DOCUMENT IS ANSWERED FROM ITS PART OF THE DOCUMENT. The plan used to be
    * every section of the PDF whatever the student asked, so "what is starch in here" produced a
@@ -344,7 +391,10 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
    * ("Worked Example" over a section with no example in it) — see polishBeatPlan's sourceOpening.
    */
   const polished = polishBeatPlan(fallback, fallback[0]?.title || input.topic, {
-    sourceOpening: (item) => sourceOpeningWords(document, item.sourceBlockIds),
+    // Reference mode's fallback title gets the same cleaning: its sentence split cuts at "Dr." too.
+    sourceOpening: (item) => reference
+      ? referenceSectionTitle(sourceOpeningWords(document, item.sourceBlockIds))
+      : sourceOpeningWords(document, item.sourceBlockIds),
   });
   const provenance = new Map(polished.map((item) => [item.title, item]));
   const expanded = expandConceptPasses(

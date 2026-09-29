@@ -330,6 +330,23 @@ export async function listLecturesForUser(userId: string, limit = 30): Promise<L
   }));
 }
 
+/**
+ * How many lectures this learner actually has.
+ *
+ * The list above stops at `limit`, so counting what it returned reported "30 saved" to anyone with
+ * more than thirty — the number was a page size wearing a total's clothes. This counts the rows.
+ */
+export async function countLecturesForUser(userId: string): Promise<number> {
+  await ensureContainers();
+  const { resources } = await lectures().items
+    .query<number>(
+      { query: "SELECT VALUE COUNT(1) FROM c WHERE c.userId = @userId", parameters: [{ name: "@userId", value: userId }] },
+      { partitionKey: userId },
+    )
+    .fetchAll();
+  return typeof resources[0] === "number" ? resources[0] : 0;
+}
+
 export async function lectureForUser(userId: string, lectureId: string): Promise<LectureDoc | null> {
   await ensureContainers();
   const { resource } = await lectures().item(lectureId, userId).read<LectureDoc>();

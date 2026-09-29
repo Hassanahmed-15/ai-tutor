@@ -35,6 +35,8 @@ import { Loader2 } from "lucide-react";
 import { isPointingPhrase, looksLikeTitle, subjectFromTranscript } from "@/lib/pdfFocus";
 import { DOCUMENT_LIMITS } from "@/lib/documentLimits";
 import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
+import { firstPageTitle } from "@/lib/sectionTitle";
+import { isDirectQuestion } from "@/lib/planPrompt";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
@@ -599,6 +601,9 @@ type BuildCost =
   const warmedOpeningRef = useRef(false);
   const [memoryNote, setMemoryNote] = useState<string | null>(null);
   const [buildBeats, setBuildBeats] = useState<{ beats: NonNullable<ProgressiveLectureSnapshot["beatStatus"]>; startedAt?: string } | null>(null);
+  // The whole plan, for the chat to say "that's coming in part 5" before part 5 is written. Not for
+  // a strict lecture: its chat is left exactly as it was.
+  const chatPlannedParts = isStrictScope(sourceScope) ? undefined : buildBeats?.beats;
   /*
    * One request, shared. Planning AWAITS it rather than reading whatever has arrived: this screen
    * mounts at the moment a topic is submitted and planning starts in the same breath, so a plain
@@ -1875,6 +1880,11 @@ type BuildCost =
    * A caller that has just parsed a document already knows its source and scope before React has
    * committed state. `fresh` carries those values into either document planning or generation.
    */
+  /** The student chose "use it as a reference" on the source-mode screen. Strict never plans. */
+  function referencePlanning(): boolean {
+    return sourceModeChosenRef.current && sourceScopeRef.current.fidelity === "reference";
+  }
+
   async function startPlanning(t: string, forceBuild = false, fresh?: FreshUpload) {
     const raw = t.trim();
     if (!raw) return;
@@ -1883,17 +1893,54 @@ type BuildCost =
     resetPlanning();
     if (fresh?.documentId) planDocumentIdRef.current = fresh.documentId;
     requestTextRef.current = raw;
-    // Shown at once from the local cleaner, then replaced by the named subject a moment later.
-    setTopic(topicKeywords(raw) || raw);
-    const trimmed = await nameSubject(raw, fresh?.sourceDocument ?? sourceDocument, fresh?.documentId ?? documentId);
-    setTopic(trimmed);
-
+    /*
+     * A REFERENCE LESSON PLANS LIKE A TYPED TOPIC.
+     *
+     * The three document branches below — exact question, scope chips, whole-document outline — were
+     * reference mode's whole conversation, and none of them ran the depth question and diagnostic
+     * that a typed topic gets. Choosing "use it as a reference" skips all three, AND the
+     * shouldSkipPlanning() build that follows them — which is true for every PDF, so it had been
+     * sending reference lessons straight to build() with no questions and no outline. The document
+     * still travels with every request (requestOutline sends it, with the scope and the profile); it
+     * just stops dictating the shape. Strict never reaches this function.
+     */
+    const referenceChosen = referencePlanning();
     const planningDocument = fresh?.sourceDocument ?? sourceDocument;
     const planningFocus = fresh?.focus ?? uploadFocus;
     const planningKind = fresh?.kind ?? uploadedFile?.kind;
     const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
 
+    // Shown at once from the local cleaner, then replaced by the named subject a moment later.
+    setTopic(topicKeywords(raw) || raw);
+    /*
+     * A reference lesson is TITLED BY ITS DOCUMENT'S FIRST PAGE — the cover or opening heading says
+     * what the document is. Naming it after the typed words titled an actuators PDF "Camera Sensor".
+     * When page 1 has no usable title (a deck whose first slide is "Slide 1"), the subject is still
+     * named from the DOCUMENT, not the typed words — the namer reads the document when the text
+     * only points at it. A typed question keeps its own subject: that is what the lecture answers.
+     * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
+     */
+    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw);
+    const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
+      || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
+    setTopic(trimmed);
+
+    if (referenceChosen) {
+      /*
+       * The typed flow's approve builds with focusedPlanningFreshRef — which only the skipped document
+       * branches used to fill. Set it here, or a lesson on a DRAGGED REGION loses its region, its
+       * transcript and its focus when the outline is approved.
+       */
+      focusedPlanningFreshRef.current = {
+        ...fresh,
+        sourceDocument: planningDocument ?? undefined,
+        focus: planningFocus,
+        kind: planningKind,
+      };
+    }
+
     const shouldPlanExactQuestion = isPdfOrDeck
+      && !referenceChosen
       && !isWholeDocumentRequest(planningFocus)
       && (Boolean(fresh?.scopeSelected) || isSpecificDocumentRequest(planningFocus, planningDocument));
 
@@ -1916,7 +1963,7 @@ type BuildCost =
       return;
     }
 
-    if (!forceBuild && isPdfOrDeck && !fresh?.scopeSelected && shouldPlanDocumentScope(planningDocument, planningFocus)) {
+    if (!forceBuild && isPdfOrDeck && !referenceChosen && !fresh?.scopeSelected && shouldPlanDocumentScope(planningDocument, planningFocus)) {
       setDocumentPlanningActive(true);
       setPhase("outline");
       setPlanLoading(true);
@@ -1949,10 +1996,12 @@ type BuildCost =
      * app/api/plan-lesson/route.ts), so this is the identical call a typed topic makes, with the
      * document attached — not a second planning path that can drift from the first.
      *
-     * The approved outline is now read by generation for the full-lecture shape, so steering it here
-     * actually changes the lecture. A focused question keeps its own path above and is untouched.
+     * NOTE: on this path the outline is only a preview. For a document lesson the lecture is built from
+     * the document's own section plan (lib/progressivePlan.ts sourceDocumentPlan); only a REFERENCE
+     * lesson — which skips this branch for the typed-topic flow above — is built from its outline.
+     * A focused question keeps its own path above and is untouched.
      */
-    if (!forceBuild && isPdfOrDeck) {
+    if (!forceBuild && isPdfOrDeck && !referenceChosen) {
       setDocumentPlanningActive(true);
       focusedPlanningFreshRef.current = {
         ...fresh,
@@ -1970,7 +2019,8 @@ type BuildCost =
       return;
     }
 
-    if (forceBuild || shouldSkipPlanning()) {
+    // Every PDF counts as "skip planning" here — except one the student chose to use as a reference.
+    if (forceBuild || (shouldSkipPlanning() && !referenceChosen)) {
       const normalizedFresh = isPdfOrDeck && isWholeDocumentRequest(planningFocus)
         ? { ...fresh, sourceDocument: planningDocument, focus: "", kind: planningKind }
         : fresh;
@@ -2062,6 +2112,8 @@ type BuildCost =
       accountContext: accountContextLine(),
       // So Aria asks about what she does not know yet, not what her portrait already says.
       ...personaField(),
+      // A reference lesson's questions are about the document's content, not a bare topic string.
+      ...(referencePlanning() && sourceDocument ? { sourceDocument } : {}),
     });
     if (!data) return null;
 
@@ -2833,6 +2885,8 @@ type BuildCost =
     setProgressiveSessionId(null);
     setProgressiveComplete(true);
     setProgressivePlannedBeatCount(0);
+    // The last build's plan is not this lecture's: the chat would point to parts it does not have.
+    setBuildBeats(null);
     lecturePlayheadRef.current = -1;
     setBeats(lecture.beats);
     setBuiltTopic(lecture.topic);
@@ -2918,8 +2972,8 @@ type BuildCost =
   ) : null;
 
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.
-  // Blind mode forces oral-only (a typed exam is a poor fit for an already voice-first mode);
-  // every other mode gets to choose written or oral on the offer screen.
+  // The written test is the test. Blind mode still sits the oral one, because a typed exam is a
+  // poor fit for an already voice-first mode; no other mode is offered the choice.
   function onLectureComplete() {
     // The final beat is never "moved past", so say explicitly that it was watched to the end.
     if (progressiveSessionId && lecturePlayheadRef.current >= 0) {
@@ -3175,7 +3229,6 @@ type BuildCost =
   if (phase === "test-results" && testBank && testResults) {
     return (
       <TestResultsView
-        topic={builtTopic}
         bank={testBank}
         results={testResults}
         answers={testAnswers}
@@ -3237,19 +3290,19 @@ type BuildCost =
         player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
     }
     return (
       <div className="relative">
@@ -3641,8 +3694,9 @@ function EntryStatus({
   );
 }
 
-/** Shown right after a lecture finishes — offers a quiz on the content. One primary action: the
- *  written quiz, or for blind learners the spoken one (voice-first already; typing is a poor fit). */
+/** Shown right after a lecture finishes — offers a real test on the content. Everyone takes the
+ *  written test; blind mode takes the oral one, because it is voice-first and a typed exam is not a
+ *  test it can sit. Nobody is asked to choose. */
 function TestOfferScreen({
   mode,
   topic,
@@ -3664,42 +3718,47 @@ function TestOfferScreen({
   onSkip: () => void;
   onGoDeeper?: () => void;
 }) {
-  // A topic read off a page can be anything ("(a) (b)"); only a real title is named on screen.
-  const subject = looksLikeTitle(topic) ? topic : "";
   return (
     <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10">
-      <div className="relative z-10 w-full max-w-lg">
-        <div className="rounded-2xl border border-[var(--hud-line)] bg-white/[0.03] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:p-10">
-          <HudEyebrow>Lesson complete</HudEyebrow>
-          <h1 className="mt-4 font-display text-[2.1rem] leading-[1.1] tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.5rem]">
-            Check what you&apos;ve learned
+      <div className="relative z-10 w-full max-w-xl">
+        <div className="relative z-10">
+          <HudEyebrow>End of lecture</HudEyebrow>
+          <h1 className="mt-6 font-display text-[2.6rem] leading-[1.0] tracking-[-0.025em] sm:text-[3.4rem]">
+            Now find out what
+            <br />
+            actually <span className="text-[var(--hud-text)]">stuck.</span>
           </h1>
-          <p className="mt-4 text-[1rem] leading-[1.7] text-[var(--hud-text-dim)]">
-            {subject ? (
-              <>A short quiz on <span className="font-semibold text-[var(--hud-text)]">{subject}</span>.</>
-            ) : (
-              <>A short quiz on this lesson.</>
-            )}{" "}
-            Every question comes from what you just covered, and any answer you miss is explained.
+          <p className="mt-7 border-t border-[var(--hud-line)] pt-6 text-[1.02rem] leading-[1.8] text-[var(--hud-text-dim)]">
+            Real questions on <span className="text-[var(--hud-text)]">{topic}</span>, marked against
+            what was taught rather than string-matched. Anything you miss is explained.
           </p>
 
-          {error && <p className="mt-5 rounded-lg border border-rose-400/30 bg-rose-500/10 px-3 py-2 text-sm font-semibold text-rose-200">{error}</p>}
+          {error && <p className="mt-6 text-sm font-semibold text-rose-300">⚠️ {error}</p>}
 
-          <div className="mt-8">
-            {/* Blind learners take the quiz by voice — typing an exam is a poor fit for them. */}
-            <HudButton onClick={forceOral ? onOral : onWritten} disabled={loading} className="w-full">
-              {loading ? "Preparing your quiz…" : "Start the quiz"}
-            </HudButton>
-          </div>
-
-          <div className="mt-5 flex items-center justify-between gap-4 border-t border-[var(--hud-line)] pt-5 text-sm font-semibold">
-            {onGoDeeper ? (
-              <button onClick={onGoDeeper} disabled={loading} className="text-[var(--hud-cyan)] transition-colors hover:text-[var(--hud-text)] disabled:opacity-40">
-                Go deeper on this topic
+          <div className="mt-9 flex flex-col items-center gap-3">
+            {forceOral ? (
+              <HudButton onClick={onOral} disabled={loading} className="w-full">
+                {loading ? "Preparing…" : "Take the oral exam →"}
+              </HudButton>
+            ) : (
+              /*
+               * One way in: the written test. The oral exam used to sit beside it as a choice and is
+               * no longer offered — blind mode above still gets it, because a typed exam is not a
+               * test a blind learner can take, so removing it there would remove the exam itself.
+               */
+              <div className="flex w-full flex-col gap-3">
+                <HudButton onClick={onWritten} disabled={loading} className="w-full">
+                  {loading ? "Preparing…" : "Take the test →"}
+                </HudButton>
+              </div>
+            )}
+            {onGoDeeper && (
+              <button onClick={onGoDeeper} disabled={loading} className="mt-1 text-sm font-bold text-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40">
+                Go deeper on this →
               </button>
-            ) : <span />}
-            <button onClick={onSkip} disabled={loading} className="text-[var(--hud-text-faint)] transition-colors hover:text-[var(--hud-text)] disabled:opacity-40">
-              Skip for now
+            )}
+            <button onClick={onSkip} disabled={loading} className="mt-2 text-sm font-bold text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40">
+              Skip, I&apos;m done
             </button>
           </div>
         </div>

@@ -111,12 +111,19 @@ export function sourceScopeInstruction(scope: SourceScope): string {
   const fidelityLine =
     scope.fidelity === "strict"
       ? STRICT_SOURCE_RULE
-      : "SOURCE AS REFERENCE. The uploaded material is the foundation and the lesson follows it, but it " +
-        "does not fence the lesson in: freely expand with outside knowledge — the intuition behind what it " +
-        "states, worked examples it leaves out, and context that makes it understood. What the document states, " +
-        "teach faithfully (its terms, its figures, its code). For a programming topic, show and explain " +
-        "the code — the document's own code where it has it, otherwise a short, correct implementation of " +
-        "your own, walked through step by step.";
+      : "SOURCE AS REFERENCE. Use the uploaded material as the foundation, but freely expand with " +
+        "outside knowledge, additional examples, and context that helps teaching — the source anchors " +
+        "the lesson, it does not fence it in. Teach the idea, not the page: reorder, condense or skip " +
+        "what the document says when that teaches better. What you do take from it, teach faithfully " +
+        "(its terms, its figures, its code). For a programming topic, show and explain the code — the " +
+        "document's own code where it has it, otherwise a short, correct implementation of your own, " +
+        "walked through step by step. " +
+        // Attribution is IMPLICIT — woven into what she says, never a label. The student wants to know
+        // what came from their document without being told "SOURCE:" at every turn.
+        "When a point comes from the student's document, say so naturally in passing — 'your notes put " +
+        "it as…', 'the figure in your document shows…'. When you go beyond it, signal that just as " +
+        "lightly — 'this isn't in your document, but it helps…'. Never label, badge or announce sources; " +
+        "a phrase inside the sentence is all it takes.";
 
   const breadthLine =
     scope.breadth.kind === "whole"

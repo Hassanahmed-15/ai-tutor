@@ -49,20 +49,48 @@ test("the current beat is marked, so the answer knows where the student is", () 
   assert.match(line, /Simpson/);
 });
 
-test("nearby beats carry their script; distant ones are titles only", () => {
-  // A lecture long enough to HAVE a distant beat — with only five sections every one is within the
-  // window, which is correct behaviour and simply does not exercise the cap.
+test("nearby beats carry their script; distant past ones are titles only", () => {
+  // A lecture long enough to HAVE distant beats — with only five sections every one is within the
+  // window, which is correct behaviour and simply does not exercise the cap. Scripts are long enough
+  // that a preview is visibly a preview.
+  const tail = " It then goes on at length about the details, the caveats and a worked example.".repeat(4);
   const long = Array.from({ length: 14 }, (_, i) =>
-    beat(i, `Section ${i}`, `The full teaching script for section ${i}, which is only sent when near.`),
+    beat(i, `Section ${i}`, `The full teaching script for section ${i}.${tail} END-OF-SECTION-${i}`),
   );
   const context = buildLessonContext(long, 6);
 
   // Neighbouring content is what "what did you just say?" needs.
   assert.match(context, /full teaching script for section 6/);
   assert.match(context, /full teaching script for section 7/);
-  // The far end stays a title, so one question does not paste the whole lecture into the prompt.
-  assert.ok(!context.includes("full teaching script for section 13"));
-  assert.match(context, /Section 13/, "but it is still listed, so the chat knows it exists");
+  // A section taught long ago stays a title: the chat can point back to it by name.
+  assert.ok(!context.includes("full teaching script for section 0"));
+  assert.match(context, /Section 0/, "but it is still listed, so the chat knows it exists");
+});
+
+test("THE FIX: a section far ahead carries a preview, so the chat can say 'that's coming in part N'", () => {
+  /*
+   * Titles alone could not answer "is this coming later?". A student asking why L1 zeroes weights
+   * during part 2 should hear "part 9 covers exactly that" — which needs part 9 to say what it
+   * covers, not just to be called "Types of Regularization".
+   */
+  const tail = " It then goes on at length about the details, the caveats and a worked example.".repeat(4);
+  const long = Array.from({ length: 14 }, (_, i) =>
+    beat(i, `Section ${i}`, `The full teaching script for section ${i}.${tail} END-OF-SECTION-${i}`),
+  );
+  const context = buildLessonContext(long, 2);
+
+  // Far outside the ±2 window, but still to come: its opening is there…
+  // (Displayed 1-based, so the fourteenth section is "14.")
+  assert.match(context, /14\. Section 13 \(still to come\)\n\s+The full teaching script for section 13/);
+  // …as a preview, not the whole script — one question must not paste the lecture into the prompt.
+  assert.ok(!context.includes("END-OF-SECTION-13"), "a far section is previewed, never sent whole");
+  assert.match(context, /section 13\.[^\n]*…/, "and the cut is marked");
+});
+
+test("the whole outline still fits its cap with a preview on every upcoming section", () => {
+  const tail = " A long script.".repeat(60);
+  const huge = Array.from({ length: 40 }, (_, i) => beat(i, `A reasonably descriptive section title ${i}`, `Script ${i}.${tail}`));
+  assert.ok(buildLessonContext(huge, 0).length <= 8000);
 });
 
 test("an empty lecture produces nothing rather than a header with no body", () => {
@@ -209,4 +237,39 @@ test("a lesson built from a selected area says so first", () => {
   assert.match(context, /^The student built this lesson from an area they SELECTED on page 2/);
   assert.match(context, /selected region/);
   assert.doesNotMatch(buildDocumentContext({ contentBlocks: [] }, "", "", "whole doc"), /SELECTED/);
+});
+
+/**
+ * A lecture is generated while it plays, so the chat's outline used to stop at the last beat
+ * written. A question about part 6, asked during part 2, found no part 6 to point to.
+ */
+test("planned parts not generated yet are listed as still to come, with what they teach", () => {
+  const beats = [beat(0, "What an Actuator Does", "An actuator turns energy into motion."), beat(1, "Electric Actuators", "Motors drive most of them.")];
+  const planned = [
+    { sequence: 0, title: "What an Actuator Does", objective: "Define an actuator" },
+    { sequence: 1, title: "Electric Actuators", objective: "Motors and solenoids" },
+    { sequence: 2, title: "Hydraulic Actuators", objective: "How pressurised oil gives large force" },
+  ];
+  const context = buildLessonContext(beats, 0, planned);
+  assert.match(context, /3\. Hydraulic Actuators \(still to come\)\n {3}How pressurised oil gives large force/);
+  // Generated parts are not listed a second time.
+  assert.equal(context.match(/Electric Actuators/g)?.length, 1);
+});
+
+test("several passes over one planned concept are listed once", () => {
+  const beats = [beat(0, "Intro", "Start.")];
+  const planned = [
+    { sequence: 0, title: "Intro" },
+    { sequence: 1, title: "Hydraulic Actuators", objective: "pass one" },
+    { sequence: 2, title: "Hydraulic Actuators", objective: "pass two" },
+    { sequence: 3, title: "Pneumatic Actuators" },
+  ];
+  const context = buildLessonContext(beats, 0, planned);
+  assert.equal(context.match(/Hydraulic Actuators/g)?.length, 1);
+  assert.match(context, /4\. Pneumatic Actuators \(still to come\)/);
+});
+
+test("without a plan the outline is exactly what it was", () => {
+  const beats = [beat(0, "A", "one"), beat(1, "B", "two")];
+  assert.equal(buildLessonContext(beats, 0, []), buildLessonContext(beats, 0));
 });

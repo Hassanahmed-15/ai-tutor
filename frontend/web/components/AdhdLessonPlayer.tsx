@@ -14,7 +14,7 @@ import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
 import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
-import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
+import { buildDocumentContext, buildLessonContext, type PlannedPart } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
 import type { SourceScope } from "@/lib/sourceScope";
@@ -50,11 +50,11 @@ type Stage = "slide" | "board";
 
 export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null, sourceScope,
-  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", mood = "", hasMoreBeats = false, totalBeatCount, plannedParts, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
   /** The student's fidelity choice for an uploaded source; strict binds the ask box and the live tutor to it. */
   sourceScope?: SourceScope;
-  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; mood?: string; hasMoreBeats?: boolean; totalBeatCount?: number; plannedParts?: PlannedPart[]; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [cameraEnabled, setCameraEnabled] = useState(false);
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -166,7 +166,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
-    getLessonContext: () => buildLessonContext(beats, index),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     documentId,
     lessonQuestion,
@@ -198,7 +198,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       `${beatRef.current.title}: ${beatRef.current.script}` +
       (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
-    getLessonContext: () => buildLessonContext(beats, index),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
     getDocumentContext: () => {
       const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
       return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
@@ -543,7 +543,20 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       lesson.pause("user");
     } else {
       unlockAudio();
+      /*
+       * PLAY TAKES THE FLOOR BACK. Pressing Play while Aria is still answering used to start the
+       * lecture over her: a typed-chat answer is spoken outside the voice director, so nothing held
+       * the lecture for it. Pressing Play is the student saying "carry on" — so she stops, and the
+       * lecture continues. A live-session reply is silenced the same way; the session stays open.
+       */
+      if (chat.explainBoard) chat.closeExplanation();
+      else chat.stopSpeaking();
+      const tutorWasSpeaking = tutor.isSpeaking();
+      if (tutorWasSpeaking) tutor.silence();
       lesson.requestResume();
+      // Just after silence() the director can still read her as speaking and defer; this is the
+      // machine's own "she has finished" path, which honours the request at once.
+      if (tutorWasSpeaking) lesson.flushDeferredResume();
     }
   }
   function retryVoice() {

@@ -14,6 +14,7 @@ import {
   canRedo,
   canUndo,
   clearBoard,
+  clearKind,
   EMPTY_ANNOTATIONS,
   eraseAt,
   hasMarks,
@@ -164,4 +165,30 @@ test("marks made in the margin beside the board are rejected", () => {
   assert.equal(withinBoard({ x: 0.5, y: 0.5 }), true);
   assert.equal(withinBoard({ x: -0.02, y: 0.5 }), false, "left of the drawing");
   assert.equal(withinBoard({ x: 0.5, y: 1.4 }), false, "below the drawing");
+});
+
+test("closing the tools clears the highlights and keeps the pen notes", () => {
+  // Highlight something, ask about it, close the tools: the question is done, the board goes back.
+  let state = addStroke(EMPTY_ANNOTATIONS, "b1", stroke("pen1", [[0.1, 0.1], [0.2, 0.2]], "pen"));
+  state = addStroke(state, "b1", stroke("hl1", [[0.3, 0.3], [0.5, 0.3]], "highlight"));
+  state = addStroke(state, "b1", stroke("hl2", [[0.3, 0.6], [0.5, 0.6]], "highlight"));
+  state = addStroke(state, "b2", stroke("hl-other", [[0.3, 0.3], [0.5, 0.3]], "highlight"));
+
+  const closed = clearKind(state, "b1", "highlight");
+  assert.deepEqual(strokesFor(closed, "b1").map((s) => s.id), ["pen1"], "only the student's own notes remain");
+  assert.deepEqual(strokesFor(closed, "b2").map((s) => s.id), ["hl-other"], "another board is not touched");
+});
+
+test("a highlight closed by mistake comes back with Undo", () => {
+  let state = addStroke(EMPTY_ANNOTATIONS, "b1", stroke("hl1", [[0.3, 0.3], [0.5, 0.3]], "highlight"));
+  state = clearKind(state, "b1", "highlight");
+  assert.equal(strokesFor(state, "b1").length, 0);
+  assert.equal(canUndo(state), true);
+  assert.deepEqual(strokesFor(undo(state), "b1").map((s) => s.id), ["hl1"]);
+});
+
+test("no highlights means no change and no wasted undo step", () => {
+  const state = addStroke(EMPTY_ANNOTATIONS, "b1", stroke("pen1", [[0.1, 0.1], [0.2, 0.2]], "pen"));
+  assert.equal(clearKind(state, "b1", "highlight"), state, "same object back");
+  assert.equal(clearKind(EMPTY_ANNOTATIONS, "b1", "highlight"), EMPTY_ANNOTATIONS);
 });

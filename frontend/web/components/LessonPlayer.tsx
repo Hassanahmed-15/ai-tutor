@@ -8,6 +8,7 @@ import { unlockAudio, splitNarrationSentences, playNarration, type NarrationHand
 import { scriptClockFromNarration, sentenceWeight, timingFromProgress } from "@/lib/narrationClock";
 import { animationChipDetail } from "@/lib/animationModels";
 import { useVoiceDirector, type VoiceDirector } from "@/lib/useVoiceDirector";
+import { usePlaybackRate } from "@/lib/playbackPrefs";
 import { useLessonMachine } from "@/lib/lessonMachine";
 import { backstopRecovery, narrationRecovery } from "@/lib/narrationRecovery";
 import { isAdaptiveQuestion } from "@/lib/adaptiveQuestion";
@@ -20,7 +21,7 @@ import { BoardDock } from "@/components/board/BoardDock";
 import { PdfSourcePanel } from "@/components/teaching/PdfSourcePanel";
 import { SourceFigureBoard, activeFigureIndex, sourceFiguresFor } from "@/components/teaching/SourceFigureBoard";
 import { BoardStage } from "@/components/board/BoardStage";
-import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, undo as annUndo } from "@/lib/board/annotations";
+import { EMPTY_ANNOTATIONS, canUndo as annCanUndo, clearKind, undo as annUndo } from "@/lib/board/annotations";
 import { buildLessonTeachingMap, conceptProgress } from "@/lib/board/teachingState";
 import { coordinateTeachingTimeline } from "@/lib/board/teachingTimeline";
 import { captureSelectedBoardRegion } from "@/lib/board/captureSelection";
@@ -49,7 +50,7 @@ import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdCheckin } from "@/lib/adhd/events";
 import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
 import { MazeGame } from "@/components/adhd/games/MazeGame";
-import { buildDocumentContext, buildLessonContext, describeBoard } from "@/lib/lessonChatContext";
+import { buildDocumentContext, buildLessonContext, describeBoard, type PlannedPart } from "@/lib/lessonChatContext";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -288,6 +289,7 @@ export function LessonPlayer({
   fullDocumentText = "",
   hasMoreBeats = false,
   totalBeatCount,
+  plannedParts,
   onBeatIndexChange,
   onLearnerInteraction,
   onSummarize,
@@ -345,6 +347,8 @@ export function LessonPlayer({
   /** True while the progressive worker is still appending future beats. */
   hasMoreBeats?: boolean;
   totalBeatCount?: number;
+  /** Every planned part, generated or not, so the chat can point to parts not written yet. Absent for strict. */
+  plannedParts?: PlannedPart[];
   onBeatIndexChange?: (index: number) => void;
   onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
   /** Opens the one-slide summary of the lecture; the caller owns it (components/LectureSummarySlide). */
@@ -468,7 +472,16 @@ export function LessonPlayer({
     };
   }, []);
   const [drawProgress, setDrawProgress] = useState(0);
-  const [rate, setRate] = useState(1);
+  /*
+   * The student's playback speed, remembered between lectures (lib/playbackPrefs.ts).
+   *
+   * Read by the narration effect through `rateRef`, NOT as a dependency. As a dependency, touching
+   * the speed control ran that effect's cleanup — which cancels the narration — and replayed the beat
+   * from its first sentence. The change is pushed into the running narration instead, below.
+   */
+  const [rate, setRate] = usePlaybackRate();
+  const rateRef = useRef(rate);
+  useEffect(() => { rateRef.current = rate; }, [rate]);
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const beat = beats[index];
   const teachingMap = useMemo(() => buildLessonTeachingMap(beats), [beats]);
@@ -846,7 +859,15 @@ export function LessonPlayer({
    */
   const liveTutorDocumentContext = () => {
     const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages);
-    return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
+    if (strictSource) return withStrictSourceHeader(document, beatSourceFor(beatRef.current));
+    /*
+     * Reference mode: the same implicit-attribution rule the text chat gets, riding at the head of the
+     * context the live tutor reads (its hook takes strings only, and stays untouched).
+     */
+    if (sourceScope?.fidelity === "reference" && document) {
+      return `This document is the student's REFERENCE material, not a limit. Answer from it when it covers the question and mention that in passing ("your notes say…"); when it does not, answer from what you know and signal that lightly ("your document doesn't cover this, but…"). Never label sources.\n\n${document}`;
+    }
+    return document;
   };
 
   /**
@@ -900,7 +921,7 @@ export function LessonPlayer({
      * into the panel beside her got one quoted from the document. Reading through the same two
      * functions is what stops the voice and the text drifting apart again.
      */
-    getLessonContext: () => buildLessonContext(beats, indexRef.current),
+    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts),
     getDocumentContext: liveTutorDocumentContext,
     mood,
     onBoardRequest: (board) => showLiveBoardRef.current(board),
@@ -1361,13 +1382,17 @@ export function LessonPlayer({
    * has not started yet is waited for separately, below, and only for a bounded time.
    */
   /*
-   * WHILE NOTHING IS BEING EXPLAINED, THE TITLE STAYS.
+   * THE CARD YIELDS ONCE THE BOARD IS READY, PLAYING OR NOT.
    *
-   * Measured on the real animation path: the board became "ready" before the lecture was playing,
-   * so there was nothing to wait for and the card left at ~400ms; Play then started the bridge
-   * sentence over a board that reveals nothing until the script begins — five seconds of white.
-   * A beat that is not playing has no reason to uncover its board, so its card simply stays, and
-   * the bounded waits below only start counting once the lecture is actually playing.
+   * It used to hold until the lecture was playing, so that pressing Play could not reveal a board
+   * that stays blank until the script begins. That reasoning only ever applied to a lecture about to
+   * start narrating — and it made REOPENING a saved lecture land on a full-screen title card with no
+   * way to dismiss it, because a replay mounts paused and nothing ever set `playing`. A card that
+   * covers the board until you find the Play button is not a title, it is an overlay in the way.
+   *
+   * So the waits below are bounded by the board, not by playback: the title is readable, the board
+   * appears behind it when it is ready, and a lecture you have not started yet shows you the lesson
+   * rather than a lid on it.
    *
    * Bridged beats (every beat in standard mode) hold through two more things, in order: the voice
    * starting (bounded by VOICE_WAIT_MAX_MS, so a blocked voice cannot trap the card) and the bridge
@@ -1379,17 +1404,20 @@ export function LessonPlayer({
   const holdForVoice = bridged && !speaking && !voiceWaited;
   const holdForBridge = bridged && speaking && stage !== "board";
   useEffect(() => {
-    if (continuesConcept || isCheckpoint || !lesson.playing) return;
+    if (continuesConcept || isCheckpoint) return;
     const ceiling = setTimeout(() => setCardDismissed(true), BOARD_WAIT_MAX_MS);
     const voice = setTimeout(() => setVoiceWaited(true), VOICE_WAIT_MAX_MS);
     return () => {
       clearTimeout(ceiling);
       clearTimeout(voice);
     };
-  }, [beat.id, continuesConcept, isCheckpoint, lesson.playing]);
+  }, [beat.id, continuesConcept, isCheckpoint]);
   useEffect(() => {
-    if (continuesConcept || isCheckpoint || !lesson.playing) return;
-    if (!boardContentReady || holdForVoice || holdForBridge) return;
+    if (continuesConcept || isCheckpoint) return;
+    // A lecture that is not playing has no bridge to speak and no voice to wait for, so those holds
+    // apply only while it is running — otherwise a paused lecture waits for something that cannot
+    // arrive, which is how the card got stuck over a replayed lesson.
+    if (!boardContentReady || (lesson.playing && (holdForVoice || holdForBridge))) return;
     // Everything is ready; hold only long enough for the title to have been readable.
     const elapsed = performance.now() - titleShownAtRef.current;
     const t = setTimeout(() => setCardDismissed(true), Math.max(0, TITLE_MIN_MS - elapsed));
@@ -1486,7 +1514,7 @@ export function LessonPlayer({
     // of code do?" had no code to look at.
     getBeatContext: () => describeBoard(beat, highlightedTextRef.current) + boardContextExtras(),
     // Read at ask time, not captured: the lecture moves while the panel is open.
-    getLessonContext: () => buildLessonContext(beats, indexRef.current),
+    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
     documentId,
     lessonQuestion,
@@ -1990,7 +2018,8 @@ export function LessonPlayer({
                */
               if (lesson.modeRef.current !== "teaching" || mcqRef.current) return;
               advanceFromHeld(heldIndex);
-            }, BOARD_HOLD_AFTER_NARRATION_MS);
+              // The pause after a finished board keeps pace with the voice before it.
+            }, BOARD_HOLD_AFTER_NARRATION_MS / rateRef.current);
           }
         },
         onBlocked: () => {
@@ -1999,7 +2028,8 @@ export function LessonPlayer({
           setSpeaking(false);
           setVoiceBlocked(true);
         },
-        rate,
+        // Read through the ref, not as a dependency: changing speed must not restart the narration.
+        rate: rateRef.current,
       },
       "lecture",
       { force },
@@ -2033,7 +2063,13 @@ export function LessonPlayer({
     // effect's cleanup as soon as a question opens, which cancels (rather than pauses) the preserved
     // lecture handle and makes the eventual resume restart the beat from line one.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, bridgeSentences, rate, deafMode, animationBlocking]);
+  }, [index, startNonce, isCheckpoint, adhd, narrationText, transitionIn, bridgeSentences, deafMode, animationBlocking]);
+
+  // A speed change reaches the narration that is already speaking, mid-sentence, without a restart.
+  const setTeacherRate = voice.setTeacherRate;
+  useEffect(() => {
+    setTeacherRate(rate);
+  }, [rate, setTeacherRate]);
 
   /** Beat whose narration has ended and whose move to the next slide is still owed. */
   const pendingAdvanceRef = useRef<number | null>(null);
@@ -2578,7 +2614,22 @@ export function LessonPlayer({
       lesson.pause("user");
     } else {
       unlockAudio();
+      /*
+       * PLAY TAKES THE FLOOR BACK. Pressing Play while Aria is still answering used to start the
+       * lecture over her: a typed-chat answer is spoken outside the voice director, so nothing held
+       * the lecture for it. Pressing Play is the student saying "carry on" — so she stops, and the
+       * lecture continues. A live-session reply is silenced the same way; the session stays open.
+       * EXPLICIT: after she answers, the lecture is held for the student (see holdForStudent), and
+       * only an explicit resume lifts that hold — Play is exactly that.
+       */
+      if (chat.explainBoard) chat.closeExplanation();
+      else chat.stopSpeaking();
+      const tutorWasSpeaking = tutor.isSpeaking();
+      if (tutorWasSpeaking) tutor.silence();
       lesson.requestResume({ explicit: true });
+      // Just after silence() the director can still read her as speaking and defer; this is the
+      // machine's own "she has finished" path, which honours the request at once.
+      if (tutorWasSpeaking) lesson.flushDeferredResume();
     }
   }
   /**
@@ -2678,9 +2729,6 @@ export function LessonPlayer({
       setWaitingForNextBeat(true);
     }
   }
-  function cycleRate() {
-    setRate((r) => (r >= 1.5 ? 0.85 : r === 0.85 ? 1 : 1.25));
-  }
 
   const hasStarted = lesson.mode !== "idle" || index > 0 || stage === "board";
   const progressPct = ((index + (stage === "board" ? 0.5 : 0)) / displayBeatCount) * 100;
@@ -2689,13 +2737,11 @@ export function LessonPlayer({
   const accent = deafMode ? "var(--accent-deaf)" : "var(--hud-cyan)";
   const currentCaption = sentenceCue.text || beat.script;
   /*
-   * The PDF workspace — the pages beside the board, the passage boxed, the arrow, "n/m covered" — is
-   * for a STRICT lesson, which teaches the document part by part. A reference lesson teaches the
-   * student's question with the document behind it; walking the pages was exactly the wrong frame
-   * ("it started teaching me the whole source"). It gets the ordinary lecture layout; Aria and the
-   * ask box still read the document (they take it from `sourceDocument` / `documentId`, not this).
+   * The split PDF workspace is STRICT mode's screen. A reference lesson takes ideas from the document
+   * rather than walking through it, so it gets the same screen as a typed topic: the board, the chat
+   * beside it, no page viewer. Everything downstream of this flag falls back to that layout.
    */
-  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope && strictSource);
+  const pdfWorkspace = Boolean(documentId && sourceDocument && sourceScope) && sourceScope?.fidelity === "strict";
   // Where the spoken passage sits on the PDF, for the arrow that joins it to the board.
   const [pointerRect, setPointerRect] = useState<DOMRect | null>(null);
   const workspaceRef = useRef<HTMLDivElement | null>(null);
@@ -2709,7 +2755,9 @@ export function LessonPlayer({
    * A part whose source has a printed figure is taught ON that figure (SourceFigureBoard): the
    * student's own diagram, each part lit up as it is named. Everything else keeps its drawn board.
    */
-  const beatFigures = pdfWorkspace && isSuprnotesLessonInput(sourceDocument)
+  // Gated on the DOCUMENT, not the workspace: a reference lesson has no page viewer but still reuses a
+  // printed figure on the part that matches it — the student's own diagram beats a redrawn one.
+  const beatFigures = sourceScope && isSuprnotesLessonInput(sourceDocument)
     ? sourceFiguresFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds, sourceDocument.assets ?? [])
     : [];
   const spokenSentences = beatFigures.length
@@ -3247,10 +3295,18 @@ export function LessonPlayer({
           onNext={skipForward}
           onSummarize={onSummarize}
           summaryUnlocked={summaryUnlocked}
+          speed={rate}
+          onSpeedChange={setRate}
           canGoPrevious={index > 0}
           canGoNext={index < displayBeatCount - 1 && !waitingForNextBeat}
           tool={boardTool}
           onToolChange={setBoardTool}
+          /* Closing the tools puts the board back: the highlight was the question, and it has been
+             asked. Pen notes stay, and Undo restores a highlight closed by mistake. */
+          onCloseTools={() => {
+            setAnnotations((current) => clearKind(current, beat.id, "highlight"));
+            setExplainDismissed(true);
+          }}
           onUndo={() => setAnnotations(annUndo(annotations))}
           canUndo={annCanUndo(annotations)}
           micOn={tutor.status === "live" && !tutor.muted}

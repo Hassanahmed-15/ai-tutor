@@ -8,6 +8,7 @@
  * too; the output is git- and upload-ignored.
  */
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -20,7 +21,12 @@ while (!(fs.existsSync(path.join(pkgDir, "package.json")) && JSON.parse(fs.readF
   pkgDir = parent;
 }
 const dist = path.join(pkgDir, "dist");
-const out = path.resolve(new URL(".", import.meta.url).pathname, "../public/ort");
+/*
+ * fileURLToPath, not `.pathname`. On Windows a file URL's pathname is "/E:/Vs%20Code%20Folders/…" —
+ * a leading slash and percent-escaped spaces — so path.resolve treated it as relative and produced
+ * "E:\E:\Vs%20Code%20Folders\…". predev then died on mkdir and `npm run dev` never started at all.
+ */
+const out = path.resolve(fileURLToPath(new URL(".", import.meta.url)), "../public/ort");
 fs.mkdirSync(out, { recursive: true });
 let copied = 0;
 for (const name of fs.readdirSync(dist)) {

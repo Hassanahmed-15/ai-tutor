@@ -92,6 +92,21 @@ export function eraseAt(
   return { boards: { ...state.boards, [boardId]: survivors }, ...remember(state, boardId) };
 }
 
+/**
+ * Remove one KIND of mark from one board — the highlights, say, leaving the pen notes.
+ *
+ * A highlight is a question in progress: the student marks something, asks about it, and when they
+ * close the tools they expect the board back as it was. Pen strokes are their own notes and stay.
+ * Recorded like any other edit, so Undo restores a highlight closed by mistake; nothing of that kind
+ * on the board means no change and no wasted undo step.
+ */
+export function clearKind(state: AnnotationState, boardId: string, kind: AnnotationKind): AnnotationState {
+  const current = strokesFor(state, boardId);
+  const survivors = current.filter((stroke) => stroke.kind !== kind);
+  if (survivors.length === current.length) return state;
+  return { boards: { ...state.boards, [boardId]: survivors }, ...remember(state, boardId) };
+}
+
 export function clearBoard(state: AnnotationState, boardId: string): AnnotationState {
   if (!hasMarks(state, boardId)) return state;
   return { boards: { ...state.boards, [boardId]: [] }, ...remember(state, boardId) };

@@ -409,3 +409,22 @@ test("BEAT SOURCE JSON: the beat's blocks with roles and captions — no whole-d
   assert.equal(whole.match(/Every other section/g)?.length, 1, "the whole-document plan is sent once, not twice");
   assert.match(whole, /green leaf/, "the document scope is otherwise unchanged");
 });
+
+test("REFERENCE pages are material to draw on; STRICT and TYPED-TOPIC lines are unchanged", () => {
+  // A reference lesson takes the idea, not the page. "They ARE the source" bound it to the PDF.
+  const reference = buildBeatScriptMessages({ ...promptInput(false), hasPageImages: true, referenceSource: true });
+  const referenceText = `${reference.system}\n${reference.user}`;
+  assert.match(referenceText, /attached for reference/);
+  assert.match(referenceText, /not bound to the page/);
+  assert.doesNotMatch(referenceText, /They ARE the source/);
+
+  // A typed topic with page images keeps its line exactly.
+  const ordinary = buildBeatScriptMessages({ ...promptInput(false), hasPageImages: true });
+  assert.match(`${ordinary.system}\n${ordinary.user}`, /They ARE the source/);
+
+  // Strict keeps its own line, whatever the reference flag says.
+  const strict = buildBeatScriptMessages({ ...promptInput(true), hasPageImages: true, referenceSource: true });
+  const strictText = `${strict.system}\n${strict.user}`;
+  assert.doesNotMatch(strictText, /attached for reference/);
+  assert.doesNotMatch(strictText, /not bound to the page/);
+});

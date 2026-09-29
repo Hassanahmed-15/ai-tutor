@@ -57,6 +57,11 @@ export interface BeatScriptPromptInput {
   selectionScoped?: boolean;
   /** Page images are attached to the user message, so the beat can teach what a scan actually shows. */
   hasPageImages?: boolean;
+  /**
+   * The document is a REFERENCE: its figures and facts are for drawing on, not a text to walk
+   * through. Only ever set with a document present and strict off.
+   */
+  referenceSource?: boolean;
   /** Set on a regeneration: exactly what the previous attempt repeated, so the model can fix it. */
   repetitionFeedback?: Array<{ finding: RepetitionFinding; matchedTitle?: string }>;
   /**
@@ -188,7 +193,10 @@ export function buildBeatScriptMessages(input: BeatScriptPromptInput): { system:
     input.hasPageImages
       ? strict
         ? STRICT_LINES.pages
-        : "The pages this board is built from are attached as images. They ARE the source: teach what they actually show — their text, code, figures and worked examples — even where sourceContext is thin or empty."
+        : input.referenceSource
+          // A reference lesson takes the idea, not the page — "They ARE the source" bound it to the PDF.
+          ? "The student's document pages are attached for reference. Draw on their figures, facts and examples where they help, but teach the idea — you are not bound to the page, its order or its wording."
+          : "The pages this board is built from are attached as images. They ARE the source: teach what they actually show — their text, code, figures and worked examples — even where sourceContext is thin or empty."
       : "",
     input.sourceInstruction ?? "",
     /*

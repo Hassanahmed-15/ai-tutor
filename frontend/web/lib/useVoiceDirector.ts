@@ -62,6 +62,8 @@ export type VoiceDirector = {
   stopTeacher: () => void;
   /** Cancel just a transient utterance, leaving a frozen lecture intact. */
   stopUtterance: () => void;
+  /** Change the speed of whatever the teacher is saying now, without restarting it. */
+  setTeacherRate: (rate: number) => void;
   /** True when there is a frozen lecture that `resumeTeacher` could continue. */
   hasFrozenTeacher: () => boolean;
   /**
@@ -120,6 +122,11 @@ export function useVoiceDirector({
     frozenRef.current = false;
     release();
   }, [stopUtterance, release]);
+
+  const setTeacherRate = useCallback((rate: number) => {
+    lectureRef.current?.setRate(rate);
+    utteranceRef.current?.setRate(rate);
+  }, []);
 
   const pauseTeacher = useCallback(() => {
     // NOTE: deliberately does NOT touch a transient utterance. Freezing the lecture is exactly what
@@ -240,6 +247,7 @@ export function useVoiceDirector({
     resumeTeacher,
     stopTeacher,
     stopUtterance,
+    setTeacherRate,
     hasFrozenTeacher,
     hasPendingUtterance,
     isChatbotSpeaking,

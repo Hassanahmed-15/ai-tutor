@@ -27,6 +27,23 @@ A correct answer may be phrased completely differently from modelAnswer and stil
 An answer that uses similar words/phrasing to the rubric but misses the actual substance, or that matches "commonMistake", is WRONG.
 Be a fair but genuinely rigorous grader — this is a hard test, not a participation check. A vague, evasive, or empty answer is WRONG.`;
 
+/**
+ * WHY, not just what.
+ *
+ * The grader used to be asked for "one short sentence explaining the judgment", and what came back
+ * restated the verdict: "Your answer does not address why node removal is difficult." The student
+ * already knows it was marked wrong — the mark is at the top of the card. What they cannot see is
+ * which idea they missed, or, when they were right, which part of their answer earned it. That is
+ * the whole value of being graded by a model rather than by string matching, and it was being
+ * thrown away.
+ */
+export const GRADE_FEEDBACK_INSTRUCTION = `"feedback" is 1-2 sentences, addressed to the student as "you", explaining WHY the answer was judged the way it was. Never merely restate the verdict.
+
+If CORRECT: name the specific idea they got right, in their own terms where you can — "you correctly said the successor has to come from the right subtree, which is what keeps the ordering intact". If they were right but left something thin, say so in a clause.
+If WRONG: name the specific key point that is missing or the specific thing that is mistaken, and say in one clause why it matters — "you described finding the node but not what replaces it, which is the part that decides whether the tree stays ordered". If the answer was empty, evasive, or unrelated, say that plainly rather than inventing a misconception they did not express.
+
+Be concrete about THEIR answer. Never write a sentence that would fit equally well under any other question.`;
+
 export const REMEDIATION_SYSTEM_PROMPT = `You are Aria, writing a SHORT 1-3 beat follow-up mini-lesson that fixes ONE specific misunderstanding.
 Return JSON only: { "beats": Beat[] } using the exact same Beat/DrawScript schema as a normal lecture beat (id, title, teacherMove, stepLabel, slideKind, points, script, draw with DrawOp ops — checkpoint beats are not needed here).
 

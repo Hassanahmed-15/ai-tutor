@@ -20,7 +20,7 @@ import { ComfortControls } from "./dyslexia/ComfortControls";
 import { KaraokeLine } from "./dyslexia/KaraokeLine";
 import { WordHelp, type WordHelpTarget } from "./dyslexia/WordHelp";
 import { cachedRewrite, fetchRewrite } from "@/lib/dyslexiaChunkCache";
-import { buildDocumentContext, buildLessonContext } from "@/lib/lessonChatContext";
+import { buildDocumentContext, buildLessonContext, type PlannedPart } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import type { SourceScope } from "@/lib/sourceScope";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
@@ -55,11 +55,11 @@ type Phase = "dense" | "calibrating" | "chunks";
 
 export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
   sourceDocument = null, sourceScope,
-  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", hasMoreBeats = false, totalBeatCount, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
+  slideContext = "", ocrTranscript = "", documentId = "", lessonQuestion = "", fullDocumentText = "", title = "Photosynthesis", hasMoreBeats = false, totalBeatCount, plannedParts, onBeatIndexChange, onLearnerInteraction }: { onExit?: () => void; onComplete?: () => void; beats?: Beat[];
   sourceDocument?: unknown;
   /** The student's fidelity choice for an uploaded source; strict binds the ask box to it. */
   sourceScope?: SourceScope;
-  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; hasMoreBeats?: boolean; totalBeatCount?: number; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
+  slideContext?: string; ocrTranscript?: string; documentId?: string; lessonQuestion?: string; fullDocumentText?: string; title?: string; hasMoreBeats?: boolean; totalBeatCount?: number; plannedParts?: PlannedPart[]; onBeatIndexChange?: (index: number) => void; onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void }) {
   const [index, setIndex] = useState(0);
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
   const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
@@ -218,7 +218,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
-    getLessonContext: () => buildLessonContext(beats, index),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     documentId,
     lessonQuestion,
@@ -425,7 +425,12 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     setPlaying(true);
   }
   function togglePlay() {
-    if (!playing) unlockAudio();
+    if (!playing) {
+      unlockAudio();
+      // Play while Aria is answering: she stops, and the lecture carries on (not both voices at once).
+      if (chat.explainBoard) chat.closeExplanation();
+      else chat.stopSpeaking();
+    }
     setPlaying((p) => !p);
   }
   function retryVoice() {

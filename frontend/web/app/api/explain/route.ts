@@ -134,17 +134,23 @@ export async function POST(req: Request) {
     ? strictUserMessage({ topic, lessonContext, documentContext, beatSource, lessonQuestion, beatContext, question, visualMode, reuseContext, offer, visualHint })
     : `The lecture topic is "${topic || "this subject"}". ` +
     (lessonContext
-      ? `The whole lesson, in order, so you can answer about what is coming or what has already been covered:\n${lessonContext}\n\n`
+      ? `The whole lesson as an outline. "← PLAYING NOW" is where the student is; "(already taught)" and "(still to come)" say what they have and have not seen. If a "(still to come)" section covers this question, still answer it now, then add one short sentence saying that section goes into it later and naming it ("we'll go deeper on this in Hydraulic Actuators"). Never skip that sentence when such a section exists:\n${lessonContext}\n\n`
       : "") +
     (documentContext
-      ? `The student's own uploaded document, used as a REFERENCE. When the question is about the document itself (a passage, a figure, its code), answer that exact question from THIS — quote its wording rather than paraphrasing from general knowledge. When it goes beyond the document (why, another example, code the document does not print, a related topic), answer fully from your own knowledge; the document anchors the lesson, it does not fence it in:\n${documentContext}\n\n`
+      ? sourceScope?.fidelity === "reference"
+        /*
+         * A REFERENCE LESSON's chat is not fenced by the document, and says so only in passing. The
+         * student wants to know what came from their PDF without a label on every answer.
+         */
+        ? `The student's uploaded document, as REFERENCE material. When the question is about the document itself (a passage, a figure, its code), answer that exact question from it — quote its wording — and mention that in passing ("your notes call this…", "the figure in your document shows…"). When the passage you answered from carries a [page N] label, always say where it is, in the same light way ("your slides cover this on slide 5", "page 5 of your notes goes into this"); for a slide deck the [page N] labels are slides. When it goes beyond the document (why, another example, code the document does not print, a related topic), answer fully from what you know and signal that just as lightly ("your document doesn't go into this, but…"). Never refuse because the document is silent, and never label or announce sources:\n${documentContext}\n\n`
+        : `The student's own uploaded document. Answer from THIS when the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${documentContext}\n\n`
       : "") +
     (lessonQuestion
       ? `This whole lesson was built to answer one question the student asked: "${lessonQuestion}". Keep that in view — if their new question relates to it, connect the two rather than answering in isolation.
 
 `
       : "") +
-    (beatContext ? `The student is on this part right now: "${beatContext}". ` : "") +
+    (beatContext ? `The part playing now, and the board the student is looking at (anything under "ON THE BOARD" is on their screen):\n${beatContext}\n\n` : "") +
     `They asked: "${question}". ` +
     (offer
       ? `Answer it in words. Propose a drawing only if the answer genuinely needs one.`

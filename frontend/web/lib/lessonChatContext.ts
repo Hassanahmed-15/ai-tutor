@@ -19,6 +19,16 @@ import type { Beat } from "./lessonContent";
 const SCRIPT_PREVIEW_CHARS = 260;
 /** Beats either side of the current one that get their script rather than just a title. */
 const NEARBY_WINDOW = 2;
+/**
+ * Every section still to come, however far off, gets this much of its script.
+ *
+ * Titles alone could not answer "is that coming up later?" — "Types of Regularization" does not say
+ * whether it covers why L1 zeroes weights. A hundred and twenty characters usually does, and it is
+ * what lets the chat say "that's part 4" instead of teaching part 4 early. Sections already taught
+ * stay titles past the window: the chat can point back to them by name, and their content is not
+ * the question it is being asked to judge.
+ */
+const UPCOMING_PREVIEW_CHARS = 120;
 /** Hard ceilings, mirrored by the endpoint so neither side can be surprised by the other. */
 const MAX_LESSON_CHARS = 8000;
 /**
@@ -110,16 +120,42 @@ export function describeBoard(beat: Beat | undefined | null, highlighted = ""): 
  * next?" are the questions this exists to answer, and a bare title cannot answer either. Distant
  * beats are titles only — enough to say what the lesson covers without pasting the whole thing.
  */
-export function buildLessonContext(beats: Beat[], currentIndex: number): string {
+/** A planned part of the lecture, generated or not — the snapshot's `beatStatus` entries. */
+export type PlannedPart = { sequence: number; title: string; objective?: string };
+
+export function buildLessonContext(beats: Beat[], currentIndex: number, planned: PlannedPart[] = []): string {
   if (!beats.length) return "";
 
   const lines = beats.map((beat, i) => {
     const marker = i === currentIndex ? " ← PLAYING NOW" : i < currentIndex ? " (already taught)" : " (still to come)";
     const title = clean(beat.title) || `Section ${i + 1}`;
     const near = Math.abs(i - currentIndex) <= NEARBY_WINDOW;
-    const body = near ? clean(beat.script).slice(0, SCRIPT_PREVIEW_CHARS) : "";
-    return `${i + 1}. ${title}${marker}${body ? `\n   ${body}${beat.script && beat.script.length > SCRIPT_PREVIEW_CHARS ? "…" : ""}` : ""}`;
+    const limit = near ? SCRIPT_PREVIEW_CHARS : i > currentIndex ? UPCOMING_PREVIEW_CHARS : 0;
+    const script = clean(beat.script);
+    const body = limit ? script.slice(0, limit) : "";
+    return `${i + 1}. ${title}${marker}${body ? `\n   ${body}${script.length > limit ? "…" : ""}` : ""}`;
   });
+
+  /*
+   * THE PARTS NOT WRITTEN YET.
+   *
+   * A lecture is generated while it plays, so `beats` is only what exists so far. "Is that coming
+   * up later?" was answered against that — and a question about part 6, asked during part 2, found
+   * no part 6 to point to. The plan has every part's title and objective from the start. Several
+   * passes over one concept share a title, so a run of them is listed once.
+   */
+  let lastTitle = clean(beats[beats.length - 1]?.title).toLowerCase();
+  const upcoming = [...planned]
+    .filter((part) => part.sequence >= beats.length)
+    .sort((a, b) => a.sequence - b.sequence);
+  for (const part of upcoming) {
+    const title = clean(part.title);
+    if (!title || title.toLowerCase() === lastTitle) continue;
+    lastTitle = title.toLowerCase();
+    const objective = clean(part.objective);
+    const body = objective.slice(0, UPCOMING_PREVIEW_CHARS);
+    lines.push(`${part.sequence + 1}. ${title} (still to come)${body ? `\n   ${body}${objective.length > UPCOMING_PREVIEW_CHARS ? "…" : ""}` : ""}`);
+  }
 
   return lines.join("\n").slice(0, MAX_LESSON_CHARS);
 }
