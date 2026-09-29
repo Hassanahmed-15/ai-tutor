@@ -33,6 +33,7 @@ import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { Loader2 } from "lucide-react";
 import { isPointingPhrase, subjectFromTranscript } from "@/lib/pdfFocus";
 import { lectureSubject } from "@/lib/lectureSubject";
+import { firstPageTitle } from "@/lib/sectionTitle";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
@@ -1811,26 +1812,47 @@ type BuildCost =
     resetPlanning();
     if (fresh?.documentId) planDocumentIdRef.current = fresh.documentId;
     requestTextRef.current = raw;
-    // Shown at once from the local cleaner, then replaced by the named subject a moment later.
-    setTopic(topicKeywords(raw) || raw);
-    const trimmed = await nameSubject(raw, fresh?.sourceDocument ?? sourceDocument, fresh?.documentId ?? documentId);
-    setTopic(trimmed);
-
-    const planningDocument = fresh?.sourceDocument ?? sourceDocument;
-    const planningFocus = fresh?.focus ?? uploadFocus;
-    const planningKind = fresh?.kind ?? uploadedFile?.kind;
-    const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
-
     /*
      * A REFERENCE LESSON PLANS LIKE A TYPED TOPIC.
      *
      * The three document branches below — exact question, scope chips, whole-document outline — were
      * reference mode's whole conversation, and none of them ran the depth question and diagnostic
-     * that a typed topic gets. Choosing "use it as a reference" now skips all three and falls through
-     * to that flow: the document still travels with every request (requestOutline sends it, with the
-     * scope and the profile), it just stops dictating the shape. Strict never reaches this function.
+     * that a typed topic gets. Choosing "use it as a reference" skips all three, AND the
+     * shouldSkipPlanning() build that follows them — which is true for every PDF, so it had been
+     * sending reference lessons straight to build() with no questions and no outline. The document
+     * still travels with every request (requestOutline sends it, with the scope and the profile); it
+     * just stops dictating the shape. Strict never reaches this function.
      */
     const referenceChosen = sourceModeChosenRef.current && sourceScopeRef.current.fidelity === "reference";
+    const planningDocument = fresh?.sourceDocument ?? sourceDocument;
+    const planningFocus = fresh?.focus ?? uploadFocus;
+    const planningKind = fresh?.kind ?? uploadedFile?.kind;
+    const isPdfOrDeck = (planningKind === "pdf" || planningKind === "pptx") && Boolean(planningDocument);
+
+    // Shown at once from the local cleaner, then replaced by the named subject a moment later.
+    setTopic(topicKeywords(raw) || raw);
+    /*
+     * A reference lesson is TITLED BY ITS DOCUMENT'S FIRST PAGE — the cover or opening heading says
+     * what the document is. Naming it after the typed words titled an actuators PDF "Camera Sensor".
+     * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
+     */
+    const trimmed = (referenceChosen && firstPageTitle(planningDocument))
+      || await nameSubject(raw, planningDocument, fresh?.documentId ?? documentId);
+    setTopic(trimmed);
+
+    if (referenceChosen) {
+      /*
+       * The typed flow's approve builds with focusedPlanningFreshRef — which only the skipped document
+       * branches used to fill. Set it here, or a lesson on a DRAGGED REGION loses its region, its
+       * transcript and its focus when the outline is approved.
+       */
+      focusedPlanningFreshRef.current = {
+        ...fresh,
+        sourceDocument: planningDocument ?? undefined,
+        focus: planningFocus,
+        kind: planningKind,
+      };
+    }
 
     const shouldPlanExactQuestion = isPdfOrDeck
       && !referenceChosen
@@ -1889,8 +1911,10 @@ type BuildCost =
      * app/api/plan-lesson/route.ts), so this is the identical call a typed topic makes, with the
      * document attached — not a second planning path that can drift from the first.
      *
-     * The approved outline is now read by generation for the full-lecture shape, so steering it here
-     * actually changes the lecture. A focused question keeps its own path above and is untouched.
+     * NOTE: on this path the outline is only a preview. For a document lesson the lecture is built from
+     * the document's own section plan (lib/progressivePlan.ts sourceDocumentPlan); only a REFERENCE
+     * lesson — which skips this branch for the typed-topic flow above — is built from its outline.
+     * A focused question keeps its own path above and is untouched.
      */
     if (!forceBuild && isPdfOrDeck && !referenceChosen) {
       setDocumentPlanningActive(true);
@@ -1910,7 +1934,8 @@ type BuildCost =
       return;
     }
 
-    if (forceBuild || shouldSkipPlanning()) {
+    // Every PDF counts as "skip planning" here — except one the student chose to use as a reference.
+    if (forceBuild || (shouldSkipPlanning() && !referenceChosen)) {
       const normalizedFresh = isPdfOrDeck && isWholeDocumentRequest(planningFocus)
         ? { ...fresh, sourceDocument: planningDocument, focus: "", kind: planningKind }
         : fresh;

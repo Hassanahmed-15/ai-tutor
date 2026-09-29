@@ -17,6 +17,9 @@ import type { ProgressiveBeatPlan, ProgressiveLectureInput, ProgressiveVisualKin
 import { isStrictSource } from "./sourceScope";
 import { isSpecificDocumentRequest, isWholeDocumentRequest } from "./documentLessonPlanning";
 import { contentStems } from "./sourceGrounding";
+import { BROKEN_GLYPHS, referenceSectionTitle } from "./sectionTitle";
+
+export { referenceSectionTitle };
 import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 
 /** The depth slider as the three names the budget and the pass-count both speak. */
@@ -74,44 +77,6 @@ function programmingLesson(input: ProgressiveLectureInput): boolean {
  */
 export function isReferenceLesson(input: ProgressiveLectureInput): boolean {
   return input.sourceScope?.fidelity === "reference" && isSuprnotesLessonInput(input.suprnotes);
-}
-
-/*
- * REFERENCE-MODE SECTION TITLES.
- *
- * A section is titled at parse time by the first SENTENCE of its text (lib/pdfLessonPipeline.ts), and
- * every full stop ends a sentence — so a cover slide reading "ACTUATORS Dr. Ahmed Khan" was cut after
- * "Dr." and taught as "ACTUATORS DR". The parser also serves strict mode, whose titles must not
- * change, so reference mode cleans its own titles here instead.
- */
-const HONORIFIC_TAIL = /\s+(?:dr|prof|mr|mrs|ms|engr|sir)\.?$/i;
-/** "— Dr. Ahmed Khan" at the end: the name words must be capitalised, so "Sir Isaac's laws" is not a byline. */
-const BYLINE_TAIL = /\s*(?:[-–—|,]\s*)?(?:[Bb]y\s+)?(?:DR|Dr|dr|PROF|Prof|MR|Mr|MRS|Mrs|MS|Ms|ENGR|Engr|SIR|Sir)\.?\s+[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}$/;
-/** Replacement characters and box glyphs a PDF's text layer leaves where a bullet or symbol was. */
-const BROKEN_GLYPHS = /[�■□▪▫▯☐\u0000-\u001F\u007F]/g;
-/** Words kept lower-case when an ALL-CAPS title is re-cased. */
-const MINOR_WORDS = new Set(["a", "an", "and", "as", "at", "by", "for", "in", "of", "on", "or", "the", "to", "vs"]);
-
-/** A section title a student can read: no stray glyphs, no lecturer's name, not shouted. */
-export function referenceSectionTitle(raw: string): string {
-  let title = clean(raw).replace(BROKEN_GLYPHS, " ").replace(/\s+/g, " ").trim();
-  // "CONTENTS ▯ What Is an Actuator?" — the listing's label is not part of the topic.
-  title = title.replace(/^(?:table\s+of\s+)?contents\b\s*[:\-–—|]?\s*(?=\S)/i, "");
-  title = title.replace(BYLINE_TAIL, "").replace(HONORIFIC_TAIL, "").replace(/[\s.:;,\-–—|]+$/, "").trim();
-  const letters = title.replace(/[^A-Za-z]/g, "");
-  if (letters.length >= 4 && letters === letters.toUpperCase()) {
-    title = title
-      .split(" ")
-      .map((word, index) => {
-        const bare = word.replace(/[^A-Za-z]/g, "").toLowerCase();
-        if (index > 0 && MINOR_WORDS.has(bare)) return word.toLowerCase();
-        // Short all-caps words are acronyms — DC, LED, PWM — and keep their capitals.
-        if (bare.length <= 3 && !MINOR_WORDS.has(bare)) return word;
-        return word.charAt(0) + word.slice(1).toLowerCase();
-      })
-      .join(" ");
-  }
-  return title || clean(raw);
 }
 
 const FRONT_MATTER_TITLE =
