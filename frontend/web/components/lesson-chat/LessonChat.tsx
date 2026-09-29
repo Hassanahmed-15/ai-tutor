@@ -54,6 +54,8 @@ export interface LessonChatState {
   ask: (question: string) => void;
   startVoice: () => void;
   stopVoice: () => void;
+  /** Stop her spoken answer now, keeping the chat log and any open offer. */
+  stopSpeaking: () => void;
   closeExplanation: () => void;
   /** Append a finished conversation turn directly (used by the live voice tutor transcript). */
   appendTurn: (role: "you" | "aria", text: string) => void;
@@ -373,6 +375,7 @@ export function useLessonChat(opts: {
     ask,
     startVoice,
     stopVoice: stopVoiceCapture,
+    stopSpeaking: stopNarration,
     closeExplanation,
     appendTurn,
     // A words-only answer has no board to hold the lecture, so her voice and an open offer hold it

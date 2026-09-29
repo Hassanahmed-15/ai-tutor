@@ -2295,7 +2295,20 @@ export function LessonPlayer({
       lesson.pause("user");
     } else {
       unlockAudio();
+      /*
+       * PLAY TAKES THE FLOOR BACK. Pressing Play while Aria is still answering used to start the
+       * lecture over her: a typed-chat answer is spoken outside the voice director, so nothing held
+       * the lecture for it. Pressing Play is the student saying "carry on" — so she stops, and the
+       * lecture continues. A live-session reply is silenced the same way; the session stays open.
+       */
+      if (chat.explainBoard) chat.closeExplanation();
+      else chat.stopSpeaking();
+      const tutorWasSpeaking = tutor.isSpeaking();
+      if (tutorWasSpeaking) tutor.silence();
       lesson.requestResume();
+      // Just after silence() the director can still read her as speaking and defer; this is the
+      // machine's own "she has finished" path, which honours the request at once.
+      if (tutorWasSpeaking) lesson.flushDeferredResume();
     }
   }
   /**

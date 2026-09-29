@@ -425,7 +425,12 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     setPlaying(true);
   }
   function togglePlay() {
-    if (!playing) unlockAudio();
+    if (!playing) {
+      unlockAudio();
+      // Play while Aria is answering: she stops, and the lecture carries on (not both voices at once).
+      if (chat.explainBoard) chat.closeExplanation();
+      else chat.stopSpeaking();
+    }
     setPlaying((p) => !p);
   }
   function retryVoice() {
