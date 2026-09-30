@@ -70,6 +70,8 @@ import { beatSourceGroundingFor, isStrictScope, referenceVoicePartContext, stric
 import { useEngagementScore } from "@/lib/useEngagementScore";
 import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
+import { LessonCanvas, type CanvasPanelInput } from "./canvas/LessonCanvas";
+import type { CanvasBoardSpec } from "@/lib/canvas/types";
 import { CheckinOverlay } from "./adhd/CheckinOverlay";
 import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
 import { DrawOverlay } from "./sketch/DrawOverlay";
@@ -1192,6 +1194,30 @@ export function LessonPlayer({
   }, [adhd]);
   const lesson = useLessonMachine(voice);
 
+  /*
+   * THE LESSON CANVAS (components/canvas/LessonCanvas.tsx). A lecture whose beats carry canvas
+   * boards is taught on one world instead of a board per beat: the canvas replaces BoardStage, the
+   * camera flight replaces the title card, and a board with a task (Try it / Draw it) holds the
+   * lecture after its narration until the student continues — the way a checkpoint holds it.
+   */
+  const canvasPanels = useMemo(() => canvasPanelsOf(beats), [beats]);
+  const canvasLesson = canvasPanels.length > 0;
+  const canvasIndex = canvasLesson ? canvasPanels.findIndex((p) => p.key === beat.id) : -1;
+  const canvasTask = canvasIndex >= 0 ? canvasPanels[canvasIndex].spec.interaction : undefined;
+  const canvasTaskRef = useRef(false);
+  useEffect(() => {
+    canvasTaskRef.current = Boolean(canvasTask);
+  });
+  /** The beat whose narration has finished, and the beat held for the student's task. */
+  const [narrationDoneIndex, setNarrationDoneIndex] = useState<number | null>(null);
+  const [canvasHoldIndex, setCanvasHoldIndex] = useState<number | null>(null);
+  const speakCanvasLine = useCallback((text: string) => {
+    voiceRef.current?.speakAsTeacher(text, { onStart: () => {}, onEnd: () => {}, onBlocked: () => {} }, "utterance");
+  }, []);
+  const tellAriaCanvas = useCallback((note: string) => {
+    tutorRef.current.addContext?.(note);
+  }, []);
+
   const showLiveBoard = useCallback(
     (board: GeminiLiveBoard) => {
       // She drew for the student: the lecture waits for them (see holdForStudent).
@@ -1986,6 +2012,12 @@ export function LessonPlayer({
           // A pending question holds the beat the way a checkpoint does: the learner's answer
           // advances it, not the end of the narration.
           if (mcqRef.current) return;
+          setNarrationDoneIndex(index);
+          // A canvas board with a task holds here: the student's "Continue" advances it.
+          if (canvasTaskRef.current) {
+            setCanvasHoldIndex(index);
+            return;
+          }
           /*
            * A checkpoint beat must not HOLD in the ADHD track.
            *
@@ -2937,6 +2969,27 @@ export function LessonPlayer({
                 maxAttempts={MAX_ATTEMPTS}
                 onRevealAnswer={revealCheckpointAnswer}
               />
+            ) : canvasLesson ? (
+              <div className="relative h-full">
+                <PaintSignal key={beat.id} onPainted={handleBoardPainted} />
+                <LessonCanvas
+                  panels={canvasPanels}
+                  currentIndex={canvasIndex}
+                  sentence={stage === "board" ? narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).index : -1}
+                  sentenceProgress={narrationSentenceTiming(beat.script, sentenceCue.index, drawProgress).progress}
+                  finished={narrationDoneIndex === index}
+                  waitingForStudent={canvasHoldIndex === index}
+                  playing={lesson.playing}
+                  topic={title}
+                  onSpeak={speakCanvasLine}
+                  onTellAria={tellAriaCanvas}
+                  onContinue={() => {
+                    setCanvasHoldIndex(null);
+                    bumpInteraction();
+                    advanceFromCheckpoint();
+                  }}
+                />
+              </div>
             ) : (
               <BoardStage
                 boardKey={beat.id}
@@ -3573,6 +3626,11 @@ function VisualDirector({
         manimEnabled: MANIM_RENDER_ENABLED && !manimFailed,
       })
     : null;
+
+  const canvasOp = beat.draw?.ops.find((op) => (op as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
+  if (canvasOp?.spec) {
+    return <LessonCanvas panels={[{ key: beat.id, spec: canvasOp.spec }]} currentIndex={0} sentence={Number.MAX_SAFE_INTEGER} sentenceProgress={1} finished waitingForStudent={false} topic={beat.title} onSpeak={() => {}} onTellAria={() => {}} onContinue={() => {}} />;
+  }
 
   if (bespokeScene) {
     return (
@@ -4566,3 +4624,25 @@ function boardNotesFor(beat: Beat): string[] {
   return out;
 }
 
+/** The canvas boards of a lecture, in order; empty for a lecture taught on ordinary boards. */
+function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
+  return beats.flatMap((b) => {
+    const op = b.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
+    return op?.spec ? [{ key: b.id, spec: op.spec }] : [];
+  });
+}
+
+/** Reports "the board has painted" two frames after mounting — what BoardStage does for its boards. */
+function PaintSignal({ onPainted }: { onPainted: () => void }) {
+  useEffect(() => {
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(onPainted);
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, [onPainted]);
+  return null;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import Link from "next/link";
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
@@ -80,7 +81,19 @@ export default function Home() {
 
   return (
     <AuthGate>
-      <VoiceModeSwitch>{routed}</VoiceModeSwitch>
+      <VoiceModeSwitch>
+        {routed}
+        {/* The lesson canvas (beta), for every signed-in student — this sits inside the auth gate.
+            NEXT_PUBLIC_CANVAS_ENABLED=0 at build time hides it. */}
+        {process.env.NEXT_PUBLIC_CANVAS_ENABLED !== "0" && (page === "landing" || page === "learn" || page === "tracks") && (
+          <Link
+            href="/canvas-lab"
+            className="fixed bottom-5 left-5 z-[60] flex items-center gap-2 rounded-full border border-amber-300/40 bg-[#11100f]/90 px-4 py-2.5 text-sm font-black text-amber-200 shadow-[0_0_30px_rgba(251,191,36,0.25)] backdrop-blur hover:bg-black"
+          >
+            ✨ New whiteboard <span className="rounded-full bg-amber-300/20 px-1.5 py-0.5 text-[0.62rem] uppercase tracking-wider">beta</span>
+          </Link>
+        )}
+      </VoiceModeSwitch>
     </AuthGate>
   );
 }

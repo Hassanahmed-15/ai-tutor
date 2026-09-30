@@ -187,7 +187,7 @@ export function pngPixelsOnly(png: Buffer): Buffer {
   return Buffer.concat(chunks);
 }
 
-async function drawIllustration(client: OpenAI, subject: string): Promise<{ jpeg: Buffer; display: Buffer; paper: string; costUsd: number }> {
+export async function drawIllustration(client: OpenAI, subject: string): Promise<{ jpeg: Buffer; display: Buffer; paper: string; costUsd: number }> {
   const res = await client.images.generate({ model: IMAGE_MODEL, prompt: `Scientific illustration of ${subject} ${STYLE}`, size: "1536x1024", quality: "medium" });
   const b64 = res.data?.[0]?.b64_json;
   if (!b64) throw new Error("the image model returned no picture");

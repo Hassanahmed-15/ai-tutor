@@ -1,4 +1,6 @@
 import type { Beat } from "./lessonContent";
+import { describeCanvasSpec } from "./canvas/describe";
+import type { CanvasBoardSpec } from "./canvas/types";
 
 /**
  * What the side chat is allowed to know.
@@ -76,6 +78,8 @@ function opLines(op: LooseOp): string[] {
     }
     case "plotBoard":
       return op.plotBrief ? [`Chart: ${clean(str(op.plotBrief))}`] : [];
+    case "canvasBoard":
+      return op.spec ? [describeCanvasSpec(op.spec as CanvasBoardSpec)] : [];
     case "manimScene":
       return op.sceneBrief ? [`Animation: ${clean(str(op.sceneBrief))}`] : [];
     case "image":
