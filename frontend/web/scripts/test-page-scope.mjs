@@ -94,6 +94,24 @@ async function waitForParse(parses) {
   await ctx.close();
 }
 
+// ── 2b. The picker's own Ask button, and Enter, send the question with every page.
+for (const how of ["button", "enter"]) {
+  const { ctx, page, parses } = await session();
+  await page.locator('input[type="file"]').first().setInputFiles(pdf);
+  await page.getByRole("button", { name: /^Select page \d/ }).nth(1).click({ timeout: 120_000 });
+  const ask = page.locator("button[data-ask-question]");
+  check(await ask.isDisabled(), "2b. the Ask button is disabled while the box is empty");
+  await page.locator("#page-prompt").fill("explain the flow chart diagram");
+  const label = (await ask.innerText()).replace(/\s+/g, " ").trim();
+  check(/all pages/i.test(label), `2b. with a question the Ask button reads "${label}"`);
+  if (how === "button") await ask.click();
+  else await page.locator("#page-prompt").press("Enter");
+  await sourceMode(page).waitFor({ timeout: 240_000 });
+  const parse = await waitForParse(parses);
+  check(JSON.stringify(pagesOf(parse?.response)) === JSON.stringify(ALL_PDF_PAGES), `2b. sent by ${how === "button" ? "the Ask button" : "Enter"}: the lecture's document holds every page (${pagesOf(parse?.response).join(",")})`);
+  await ctx.close();
+}
+
 // ── 3. Page 2 ticked, no question: only page 2 for the lecture; the chat text has every page.
 {
   const { ctx, page, parses } = await session();

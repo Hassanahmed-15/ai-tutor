@@ -103,3 +103,11 @@ test("a topic, or nothing typed, uses the ticked pages", () => {
   assert.deepEqual(pagesForLecture("", [4, 1]), [4, 1]);
   assert.deepEqual(pagesForLecture("", []), []);
 });
+
+test("anything typed in the picker's box uses every page, however it is worded", () => {
+  assert.deepEqual(pagesForLecture("explain the flow chart diagram", [2], true), []);
+  // The same words from the front page are a topic, and the ticked pages stand.
+  assert.deepEqual(pagesForLecture("explain the flow chart diagram", [2]), [2]);
+  // An empty picker box leaves the ticked pages.
+  assert.deepEqual(pagesForLecture("", [2], true), [2]);
+});

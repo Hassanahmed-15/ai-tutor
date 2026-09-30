@@ -11,8 +11,13 @@ import { isDirectQuestion } from "./planPrompt";
  * whatever was ticked: the answer may sit on a page the student did not think to pick. Anything
  * else (a topic, or nothing typed) is taught from the ticked pages. `[]` means the whole document,
  * exactly as both parsers read an empty `pages` field. The chat sees the whole file either way.
+ *
+ * Anything typed in the page picker's own question box counts, whatever its wording ("explain the
+ * flow chart diagram" is a question about the file); words from the front page count only when they
+ * are a real question, since a plain topic there ("camera sensor") is not asking anything.
  */
-export function pagesForLecture(request: string, ticked: number[]): number[] {
+export function pagesForLecture(request: string, ticked: number[], askedInPicker = false): number[] {
+  if (askedInPicker && request.trim()) return [];
   return isDirectQuestion(request) ? [] : ticked;
 }
 

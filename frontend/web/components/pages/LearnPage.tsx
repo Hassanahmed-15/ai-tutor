@@ -999,10 +999,12 @@ type BuildCost =
     if (!sources.length) return;
     /*
      * A QUESTION IS ANSWERED FROM EVERY PAGE. The request is read the same way `focus` is below
-     * (the picker's box first, then what was typed on the front page); a real question takes the
-     * whole file whatever was ticked, anything else takes the ticked pages (pagesForLecture).
+     * (the picker's box first, then what was typed on the front page). Anything typed in the
+     * picker's box, or a real question from the front page, takes the whole file whatever was
+     * ticked; otherwise the ticked pages are the lecture (pagesForLecture).
      */
-    const request = (sources[activeSourceIndex] ?? sources[0]).selection.prompt.trim() || topic.trim() || input.trim();
+    const pickerPrompt = (sources[activeSourceIndex] ?? sources[0]).selection.prompt.trim();
+    const request = pickerPrompt || topic.trim() || input.trim();
     /**
      * Stay on the selection screen while the chosen pages are parsed.
      *
@@ -1024,7 +1026,7 @@ type BuildCost =
        */
       const parsed = await Promise.all(
         sources.map(async (source) => {
-          const pages = pagesForLecture(request, source.selection.pages);
+          const pages = pagesForLecture(request, source.selection.pages, Boolean(pickerPrompt));
           const fd = new FormData();
           fd.append("file", source.file);
           if (pages.length > 0) fd.append("pages", pages.join(","));
@@ -3251,8 +3253,8 @@ type BuildCost =
   if (uploadPhase === "choosing" || parsingPages) {
     const label = activeSource?.kind === "pptx" ? "slides" : "pages";
     const totalSelected = pendingSources.reduce((sum, s) => sum + s.selection.pages.length, 0);
-    // A question in the picker's box takes every page, so the button says so.
-    const questionTyped = isDirectQuestion(pageSelection.prompt.trim());
+    // Anything typed in the picker's box is a question about the file, and takes every page.
+    const questionTyped = pageSelection.prompt.trim().length > 0;
     return (
       <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
@@ -3377,6 +3379,12 @@ type BuildCost =
                 el.style.height = "auto";
                 el.style.height = `${Math.min(el.scrollHeight, 180)}px`;
               }}
+              // Enter sends the question, as in every other box on the site; Shift+Enter is a new line.
+              onKeyDown={(e) => {
+                if (e.key !== "Enter" || e.shiftKey) return;
+                e.preventDefault();
+                if (pageSelection.prompt.trim() && !pagesLoading && !parsingPages) void parseSelectedPages();
+              }}
               rows={2}
               placeholder={`Ask a question about this file (it uses all ${label}), or leave empty to learn the ${label} you selected…`}
               className="max-h-[180px] w-full resize-none overflow-y-auto rounded-[var(--radius)] border bg-transparent px-3 py-2 text-[0.85rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1"
@@ -3390,6 +3398,18 @@ type BuildCost =
                 showLabel
                 className="inline-flex items-center gap-1.5 rounded-[var(--radius)] border px-2.5 py-1 text-[0.75rem] transition-colors"
               />
+              {/* Send the question from where it was typed, rather than hunting for the header's
+                  Use button. A real question reads every page (pagesForLecture); the label says so. */}
+              <button
+                type="button"
+                data-ask-question
+                onClick={() => void parseSelectedPages()}
+                disabled={!pageSelection.prompt.trim() || pagesLoading || parsingPages}
+                className="hud-btn-primary ml-auto inline-flex items-center gap-1.5 px-4 py-1.5 text-[0.8rem] disabled:opacity-40"
+              >
+                {parsingPages ? "Reading…" : `Ask · all ${label}`}
+                <span aria-hidden="true">↵</span>
+              </button>
             </div>
           </div>
         </div>

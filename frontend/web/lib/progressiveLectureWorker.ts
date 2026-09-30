@@ -42,7 +42,7 @@ import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
 import { scopedBlockText } from "./beatSourceScope";
 import { isStrictSource, sourceScopeInstruction } from "./sourceScope";
-import { asksForCode, isProgrammingTopic } from "./codeSpec";
+import { asksForCode, isPlainlyNotCode, isProgrammingTopic } from "./codeSpec";
 import { getDocumentImages } from "./pageImageStore";
 import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { depthBudget, strictDepthBudget } from "./lectureDepth";
@@ -853,6 +853,23 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
       }
 
       /*
+       * A CODE BOARD SHOWS CODE. A paper's results table, transcribed as LaTeX
+       * (`\begin{array}{|c|c|}`, `\text{Config}`), reached a code board labelled "C++" with numbered
+       * lines — the routing words ("array", "classes in") and the braces both looked like code. The
+       * listing actually on the board is checked; typeset maths or plain prose is dropped, and the
+       * rescue below gives the slide an ordinary board instead.
+       */
+      if (visualKind === "code" && success) {
+        const code = codeOnBoard(candidate);
+        if (code && isPlainlyNotCode(code)) {
+          clearCodeBoard(candidate, true, "the listing is not code");
+          success = false;
+          error = "code board's listing is not code";
+          console.error(`[progressive-worker] beat=${candidate.id} code board held no code (maths or prose); dropped`);
+        }
+      }
+
+      /*
        * A REFUSED BOARD DROPS TO A WRITTEN ONE — it does not leave the student a blank board.
        *
        * When a board fails (refused by the critic, or never produced) this published the
@@ -1377,14 +1394,14 @@ function codeOnBoard(beat: Beat): string | null {
 }
 
 /** Empty a beat's code board so it can be regenerated, or (`failed`) so it is never shown. */
-function clearCodeBoard(beat: Beat, failed = false): void {
+function clearCodeBoard(beat: Beat, failed = false, reason = "repeated another board's code"): void {
   for (const op of beat.draw?.ops ?? []) {
     if (op.kind !== "codeBoard") continue;
     const board = op as { spec?: unknown; status?: string; error?: string };
     delete board.spec;
     if (failed) {
       board.status = "failed";
-      board.error = "repeated another board's code";
+      board.error = reason;
     } else {
       delete board.status;
       delete board.error;
