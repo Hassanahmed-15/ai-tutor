@@ -136,6 +136,18 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     void refresh();
   }, [refresh]);
 
+  /*
+   * The account's accessibility choices, applied wherever the student signs in. "Reduce motion" is
+   * set on <html>, where useReducedMotion and globals.css both read it — the same effect as the
+   * operating-system setting, so a school computer does not undo what the student chose.
+   */
+  const reducedMotion = profile?.reducedMotion === true;
+  useEffect(() => {
+    const root = document.documentElement;
+    if (reducedMotion) root.setAttribute("data-reduced-motion", "1");
+    else root.removeAttribute("data-reduced-motion");
+  }, [reducedMotion]);
+
   const openSettings = useCallback(() => setSettingsOpen(true), []);
 
   if (state === "loading") {

@@ -122,10 +122,38 @@ export function studyLevelsFor(country: string | null | undefined): LevelOption[
   ];
 }
 
+/**
+ * Study levels for a country AND the student's subjects (owner's spec, 2026-09-30: "personalized
+ * based on the learner's location and subject context").
+ *
+ * The country gives the local names; the subjects change what is offered and in what order. A
+ * subject taught only after school — medicine, law, most engineering — brings its own stages
+ * (medical school, residency; law school) and puts the university levels first, because nobody
+ * studies medicine in middle school. Anything else keeps the country's school-first order.
+ */
+export function studyLevelOptions(country: string | null | undefined, subjects: EduOption[] = []): LevelOption[] {
+  const base = studyLevelsFor(country);
+  const groups = new Set(subjects.map(subjectGroup).filter((g): g is SubjectGroup => Boolean(g)));
+  const extras: LevelOption[] = [];
+  if (groups.has("medicine")) {
+    extras.push(l("medical-school", "Medical school (MBBS / MD)", "undergrad"), l("residency", "Residency / specialty training", "postgrad"));
+  }
+  if (groups.has("law")) extras.push(l("law-school", "Law school (LLB / JD)", "undergrad"));
+  if (groups.has("business")) extras.push(l("prof-qualification", "Professional qualification (ACCA / CFA / CPA)", "professional"));
+  if (groups.has("computing")) extras.push(l("bootcamp", "Bootcamp / self-taught", "professional"));
+  const universityOnly = groups.size > 0 && [...groups].every((g) => g === "medicine" || g === "law" || g === "engineering");
+  const tertiary = (x: LevelOption) => x.band === "undergrad" || x.band === "postgrad" || x.band === "professional";
+  const ordered = universityOnly ? [...extras, ...base.filter(tertiary), ...base.filter((x) => !tertiary(x))] : [...base, ...extras];
+  const seen = new Set<string>();
+  return ordered.filter((x) => (seen.has(x.id) ? false : (seen.add(x.id), true)));
+}
+
 /** Every level from every country, for search ("I'm in Pakistan but doing A-Levels"). */
 export function allStudyLevels(): LevelOption[] {
   const seen = new Map<string, LevelOption>();
   for (const c of ["GB", "US", "PK", "IN", "AU", "CA", "AE", "XX"]) for (const level of studyLevelsFor(c)) if (!seen.has(level.id)) seen.set(level.id, level);
+  const fields: EduOption[] = [{ id: "medicine", label: "Medicine" }, { id: "law", label: "Law" }, { id: "business", label: "Business Studies" }, { id: "programming", label: "Programming" }];
+  for (const level of studyLevelOptions("XX", fields)) if (!seen.has(level.id)) seen.set(level.id, level);
   return [...seen.values()];
 }
 
@@ -146,10 +174,17 @@ export function levelBand(level: EduOption | null | undefined): LevelBand | null
 
 /* ------------------------------------------------------------------ subjects */
 
-type SubjectDef = EduOption & { group: SubjectGroup; aliases?: string[]; keywords?: string[] };
+type SubjectDef = EduOption & {
+  group: SubjectGroup;
+  aliases?: string[];
+  keywords?: string[];
+  /** A subject taught mainly in these countries (Urdu, Pakistan Studies). Absent = studied everywhere. */
+  countries?: string[];
+};
 export type SubjectGroup = "math" | "science" | "medicine" | "computing" | "engineering" | "business" | "humanities" | "languages" | "arts" | "law" | "social";
 
-const s = (id: string, label: string, group: SubjectGroup, aliases: string[] = [], keywords: string[] = []): SubjectDef => ({ id, label, group, aliases, keywords });
+const s = (id: string, label: string, group: SubjectGroup, aliases: string[] = [], keywords: string[] = [], countries?: string[]): SubjectDef => ({ id, label, group, aliases, keywords, ...(countries ? { countries } : {}) });
+const ARAB = [...GULF, "EG", "JO", "PS", "IQ", "LB", "SY", "YE", "MA", "DZ", "TN", "LY", "SD"];
 
 /**
  * Subjects, with the words a lesson topic uses (for the evolving profile's subject-wise view,
@@ -199,16 +234,32 @@ export const SUBJECTS: SubjectDef[] = [
   s("earth-science", "Earth Science", "science", ["geology"], ["rock", "volcano", "plate", "mineral"]),
   s("astronomy", "Astronomy", "science", [], ["planet", "star", "galaxy", "orbit", "universe"]),
   s("general-science", "Science", "science", ["science"], []),
-  s("urdu", "Urdu", "languages"), s("arabic", "Arabic", "languages"), s("french", "French", "languages"), s("spanish", "Spanish", "languages"),
-  s("german", "German", "languages"), s("hindi", "Hindi", "languages"), s("chinese", "Chinese (Mandarin)", "languages", ["mandarin"]),
-  s("islamic-studies", "Islamic Studies", "humanities", ["islamiat"]), s("pakistan-studies", "Pakistan Studies", "social"),
+  s("urdu", "Urdu", "languages", [], [], ["PK", "IN"]), s("arabic", "Arabic", "languages", [], [], ARAB), s("french", "French", "languages"), s("spanish", "Spanish", "languages"),
+  s("german", "German", "languages"), s("hindi", "Hindi", "languages", [], [], ["IN"]), s("chinese", "Chinese (Mandarin)", "languages", ["mandarin"]),
+  s("islamic-studies", "Islamic Studies", "humanities", ["islamiat"], [], ["PK", "BD", "MY", "ID", ...ARAB]), s("pakistan-studies", "Pakistan Studies", "social", [], [], ["PK"]),
+  s("sindhi", "Sindhi", "languages", [], [], ["PK"]), s("bengali", "Bengali", "languages", ["bangla"], [], ["BD", "IN"]), s("malay", "Bahasa Melayu", "languages", ["malay"], [], ["MY", "SG", "BN"]),
+  s("irish", "Irish (Gaeilge)", "languages", ["gaeilge"], [], ["IE"]), s("welsh", "Welsh", "languages", [], [], ["GB"]), s("us-history", "US History", "humanities", ["american history"], [], ["US"]),
+  s("civics", "Civics / Government", "social", [], [], ["US", "IN", "CA"]), s("afrikaans", "Afrikaans", "languages", [], [], ["ZA"]), s("swahili", "Kiswahili", "languages", ["swahili"], [], ["KE", "TZ", "UG"]),
   s("religious-studies", "Religious Studies", "humanities"),
   s("art", "Art & Design", "arts", ["art"]), s("music", "Music", "arts"), s("design-technology", "Design & Technology", "engineering", ["dt"]),
   s("physical-education", "Physical Education", "social", ["pe", "sport"]),
 ];
 
-export function subjectOptions(): EduOption[] {
-  return SUBJECTS.map(({ id, label }) => ({ id, label }));
+/**
+ * Subjects, ordered for where the student studies (owner's spec, 2026-09-30: location surfaces the
+ * relevant options). Subjects studied everywhere keep their order; the country's own subjects
+ * (Urdu and Pakistan Studies in Pakistan, Hindi in India) join them near the top; another
+ * country's local subjects move to the end — still searchable, never offered first. With no
+ * country, everything in catalogue order.
+ */
+export function subjectOptions(country?: string | null): EduOption[] {
+  const plain = ({ id, label }: SubjectDef): EduOption => ({ id, label });
+  const c = (country ?? "").toUpperCase();
+  if (!c) return SUBJECTS.map(plain);
+  const everywhere = SUBJECTS.filter((x) => !x.countries);
+  const local = SUBJECTS.filter((x) => x.countries?.includes(c));
+  const elsewhere = SUBJECTS.filter((x) => x.countries && !x.countries.includes(c));
+  return [...everywhere.slice(0, 6), ...local, ...everywhere.slice(6), ...elsewhere].map(plain);
 }
 
 export function subjectGroup(subject: EduOption): SubjectGroup | null {
@@ -232,7 +283,8 @@ export function subjectForTopic(topic: string, subjects: EduOption[]): EduOption
   for (const subject of subjects) {
     const def = SUBJECTS.find((x) => x.id === subject.id || x.label.toLowerCase() === subject.label.toLowerCase());
     const words = [subject.label.toLowerCase(), ...(def?.aliases ?? []), ...(def?.keywords ?? [])];
-    const score = words.filter((w) => w && t.includes(w.length <= 3 ? ` ${w} ` : w)).length;
+    // A keyword counts only at the start of a word: "evolution" is not in "the French Revolution".
+    const score = words.filter((w) => w && (w.length <= 3 ? t.includes(` ${w} `) : new RegExp(`(?:^|[^a-z])${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`).test(t))).length;
     if (score > 0 && (!best || score > best.score)) best = { subject, score };
   }
   return best?.subject ?? null;
@@ -426,6 +478,29 @@ export function sanitizeOptions(raw: unknown, max: number): EduOption[] {
 
 export function sanitizeOption(raw: unknown): EduOption | null {
   return sanitizeOptions(raw ? [raw] : [], 1)[0] ?? null;
+}
+
+const COUNTRY_ALIASES: Record<string, string> = {
+  uk: "GB", "u.k.": "GB", britain: "GB", "great britain": "GB", england: "GB", scotland: "GB", wales: "GB", "northern ireland": "GB",
+  usa: "US", "u.s.": "US", "u.s.a.": "US", america: "US", "united states of america": "US", us: "US",
+  uae: "AE", emirates: "AE", ksa: "SA", "saudi": "SA", "south korea": "KR", korea: "KR", "north korea": "KP", russia: "RU",
+  holland: "NL", "czech republic": "CZ", turkey: "TR", "ivory coast": "CI", vietnam: "VN", iran: "IR", syria: "SY", laos: "LA",
+};
+
+/**
+ * A country the student TYPED, matched to its code: the code itself ("PK"), its name in any case,
+ * or a common short name ("UK", "USA", "UAE"). Null when it is not recognisably a country — the
+ * picker then says so rather than dropping the entry without a word.
+ */
+export function matchCountry(text: string | null | undefined): string | null {
+  const t = (text ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+  if (!t) return null;
+  if (COUNTRY_ALIASES[t]) return COUNTRY_ALIASES[t];
+  if (/^[a-z]{2}$/.test(t) && COUNTRY_CODES.includes(t.toUpperCase())) return t.toUpperCase();
+  const exact = COUNTRY_CODES.find((code) => countryName(code).toLowerCase() === t);
+  if (exact) return exact;
+  const starts = COUNTRY_CODES.filter((code) => countryName(code).toLowerCase().startsWith(t));
+  return t.length >= 4 && starts.length === 1 ? starts[0] : null;
 }
 
 export function sanitizeCountry(raw: unknown): string | null {

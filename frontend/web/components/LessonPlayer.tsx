@@ -296,8 +296,14 @@ export function LessonPlayer({
   summaryUnlocked = false,
   selectionPages = [],
   sourceScope,
+  captions = false,
 }: {
   onExit?: () => void;
+  /**
+   * The student asked for captions (onboarding's accessibility screen, or settings): what Aria says
+   * is written across the bottom of the board in every lesson — not only in the Deaf track.
+   */
+  captions?: boolean;
   /**
    * Fired whenever a checkpoint is graded, so the learner model keeps updating while teaching.
    *
@@ -3087,7 +3093,7 @@ export function LessonPlayer({
                     bins, hiding the one thing a player has to see to answer at all. The caption is narration
                     the student has already heard by the time a question appears, so yielding is
                     the right call — nothing is lost. */}
-                {deafMode && <div
+                {(deafMode || captions) && <div
                   className={`pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5 ${
                     quiz.phase !== "idle" ? "hidden" : ""
                   }`}

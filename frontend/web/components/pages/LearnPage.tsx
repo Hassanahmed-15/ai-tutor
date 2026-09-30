@@ -16,6 +16,7 @@ import { warmNarration } from "@/lib/useNarrationPrefetch";
 import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
+import { knownLevelForTopic } from "@/lib/learnerBasics";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -633,7 +634,11 @@ type BuildCost =
     // Aria's portrait first (the script writer reads its "How to teach them" line), then the
     // learner profile: country, level, curriculum, subjects and how each is going
     // (lib/learnerProfileView.ts) — background, so terms and examples fit from the first lesson.
-    const profileLines = learnerContextForPrompt(learnerProfileView(profile?.learner ?? null, learnerMemoryRef.current)).slice(0, 1_000);
+    const profileLines = learnerContextForPrompt(learnerProfileView(profile?.learner ?? null, learnerMemoryRef.current), {
+      slowerPace: profile?.slowerPace,
+      simplerLanguage: profile?.simplerLanguage,
+      notes: profile?.notes,
+    }).slice(0, 1_400);
     const block = [personaForPrompt(learnerMemoryRef.current), profileLines].filter(Boolean).join("\n\n");
     return block ? { learnerPersona: block } : {};
   }
@@ -2071,6 +2076,20 @@ type BuildCost =
     lastStudentAnswerRef.current = "";
     spokenQuestionRef.current = "";
     isDepthQuestionRef.current = true;
+    /*
+     * NOT ASKING WHAT THE PROFILE ALREADY SAYS (owner's spec, 2026-09-30: personalise "without
+     * repeatedly asking the user for information it already knows"). A topic in one of the student's
+     * subjects, whose level is on their profile, is answered from the profile — through the same path
+     * a clicked answer takes — and the note says so, so "simpler" or "deeper" is one sentence away.
+     * A topic outside their subjects is new ground, and the question is asked.
+     */
+    const known = knownLevelForTopic(profile?.learner ?? null, trimmed);
+    if (known) {
+      const option = DEPTH_OPTIONS.find((o) => o.level === known.depth) ?? DEPTH_OPTIONS[2];
+      setMemoryNote(`Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile. Say "simpler" or "deeper" any time.`);
+      setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
+      return;
+    }
     setDiagnosticQuestion({
       question: depthQuestion(trimmed),
       options: DEPTH_OPTIONS.map((o) => o.label),
@@ -2148,12 +2167,25 @@ type BuildCost =
   }
 
   // The voice session's callbacks are built once; they reach the latest runDiagnostic through this.
-  const runDiagnosticRef = useRef<(answer: string) => Promise<void>>(async () => {});
+  const runDiagnosticRef = useRef<(answer: string, askedQuestion?: string) => Promise<void>>(async () => {});
   useEffect(() => {
     runDiagnosticRef.current = runDiagnostic;
   });
-  async function runDiagnostic(answer: string) {
-    const question = diagnosticQuestion?.question ?? openingQuestion(topic);
+  /*
+   * The level answered from the profile runs AFTER the render that set the new topic, so the turn
+   * sees this lesson's topic rather than the previous one (startPlanning's closure still has it).
+   */
+  const [autoDepth, setAutoDepth] = useState<{ answer: string; question: string } | null>(null);
+  useEffect(() => {
+    if (!autoDepth) return;
+    const pending = autoDepth;
+    queueMicrotask(() => {
+      setAutoDepth(null);
+      void runDiagnosticRef.current(pending.answer, pending.question);
+    });
+  }, [autoDepth]);
+  async function runDiagnostic(answer: string, askedQuestion?: string) {
+    const question = askedQuestion ?? diagnosticQuestion?.question ?? openingQuestion(topic);
     lastStudentAnswerRef.current = answer;
     setDiagnosticQuestion(null);
 
@@ -3301,13 +3333,13 @@ type BuildCost =
         player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} captions={profile?.captions === true} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">

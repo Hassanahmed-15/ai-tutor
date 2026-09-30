@@ -27,6 +27,8 @@ const MINUTES_PER_BEAT = 0.75;
 export type SubjectProfile = {
   subject: LearnerOption | null;
   studyLevel: LearnerOption | null;
+  /** This subject's curricula/exams — its own where set or learned, else the student's main ones. */
+  curricula: LearnerOption[];
   strong: ConceptMemory[];
   weak: string[];
   mastered: ConceptMemory[];
@@ -87,6 +89,7 @@ export function learnerProfileView(basics: LearnerBasics | null | undefined, mem
       entry = {
         subject,
         studyLevel: (subject && b?.subjectLevels?.[subject.id]) ?? b?.studyLevel ?? null,
+        curricula: (subject && b?.subjectCurricula?.[subject.id]) || b?.curricula || [],
         strong: [], weak: [], mastered: [], needsReview: [], weakConcepts: [], currentTopics: [],
       };
       bySubject.set(key, entry);
@@ -142,9 +145,22 @@ export function learnerProfileView(basics: LearnerBasics | null | undefined, mem
  * terms, examples and level fit their country, curriculum and subjects, and what they have already
  * mastered is not re-taught while what they are weak on gets care.
  */
-export function learnerContextForPrompt(view: LearnerProfileView): string {
+export type TeachingPreferences = {
+  /** Accessibility-screen choices that change how a lesson is WRITTEN (not how it plays). */
+  slowerPace?: boolean | null;
+  simplerLanguage?: boolean | null;
+  /** What the student wrote about themselves on the onboarding screens. */
+  notes?: string | null;
+};
+
+export function learnerContextForPrompt(view: LearnerProfileView, prefs: TeachingPreferences = {}): string {
   const b = view.basics;
-  if (!b && view.subjects.length === 0) return "";
+  const how: string[] = [];
+  if (prefs.slowerPace) how.push("Prefers a slower pace: one idea at a time, short sentences, a pause-worthy recap before moving on, nothing rushed.");
+  if (prefs.simplerLanguage) how.push("Prefers simpler language: plain everyday words, every technical term defined the first time it appears, short sentences.");
+  const notes = prefs.notes?.replace(/\s+/g, " ").trim().slice(0, 300);
+  if (notes) how.push(`What they told Aria about themselves: "${notes}"`);
+  if (!b && view.subjects.length === 0 && how.length === 0) return "";
   const lines: string[] = ["THE STUDENT'S PROFILE (background — their own request always wins):"];
   if (b?.country) lines.push(`Studies in: ${countryLabel(b.country)}.`);
   if (b?.studyLevel) lines.push(`Study level: ${b.studyLevel.label}.`);
@@ -152,8 +168,10 @@ export function learnerContextForPrompt(view: LearnerProfileView): string {
   if (b?.subjects.length) lines.push(`Subjects: ${b.subjects.map((s) => s.label).join(", ")}.`);
   for (const s of view.subjects) {
     const name = s.subject?.label ?? "Other topics";
+    const ownCurricula = s.subject && b?.subjectCurricula?.[s.subject.id]?.length ? s.curricula : [];
     const bits = [
       s.studyLevel && s.subject && b?.subjectLevels?.[s.subject.id] ? `level ${s.studyLevel.label}` : "",
+      ownCurricula.length ? `studying for ${ownCurricula.map((c) => c.label).join(", ")}` : "",
       s.mastered.length ? `mastered ${s.mastered.slice(0, 4).map((c) => c.label).join(", ")}` : "",
       s.strong.length ? `strong on ${s.strong.slice(0, 4).map((c) => c.label).join(", ")}` : "",
       s.weakConcepts.length ? `weak on ${s.weakConcepts.slice(0, 4).map((c) => c.label).join(", ")}` : "",
@@ -164,6 +182,7 @@ export function learnerContextForPrompt(view: LearnerProfileView): string {
   }
   if (view.currentTopics.length) lines.push(`Currently studying: ${view.currentTopics.slice(0, 4).join(", ")}.`);
   if (view.preferredExplanation) lines.push(`Learns best with: ${view.preferredExplanation}.`);
+  lines.push(...how);
   return lines.join("\n");
 }
 

@@ -9,6 +9,7 @@ import { isLearnerProfileSnapshot, shouldIncludeCodeExamples, type LearnerProfil
 import { sanitizeLearnerProfile } from "@/lib/learnerProfile";
 import { recordLesson, snapshotFrom } from "@/lib/learnerModel";
 import { updateLearnerMemory } from "@/lib/learnerMemoryStore";
+import { learnFromLesson } from "@/lib/learnerBasicsStore";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { isProgrammingTopic } from "@/lib/codeSpec";
 
@@ -82,6 +83,9 @@ export async function POST(request: Request) {
       goal: input.learnerProfile.goal,
     }))
       .catch((error) => console.error("[learner-memory] could not record the lesson:", error));
+    // The profile learns this subject's level and curriculum from the request ("A-level physics").
+    await learnFromLesson(auth.userId, `${topic} ${input.focus ?? ""}`, learner?.background)
+      .catch((error) => console.error("[learner-profile] could not learn from the lesson:", error));
     await dispatchProgressiveTasks([{ version: 1, type: "plan", sessionId: lecture.id, userId: auth.userId }]);
     return NextResponse.json({
       sessionId: lecture.id,

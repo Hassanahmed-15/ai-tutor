@@ -106,7 +106,14 @@ export function providerConfig(id: OAuthProviderId, env: Env = process.env): Pro
 }
 
 export function configuredProviders(env: Env = process.env): Record<OAuthProviderId, boolean> {
-  return { google: Boolean(providerConfig("google", env)), apple: Boolean(providerConfig("apple", env)), microsoft: Boolean(providerConfig("microsoft", env)) };
+  // Without a usable AUTH_SECRET no sign-in attempt can be signed, so no provider is usable either —
+  // the buttons then say so up front instead of failing after the click.
+  const secretOk = Boolean(env.AUTH_SECRET && env.AUTH_SECRET.length >= 32);
+  return {
+    google: secretOk && Boolean(providerConfig("google", env)),
+    apple: secretOk && Boolean(providerConfig("apple", env)),
+    microsoft: secretOk && Boolean(providerConfig("microsoft", env)),
+  };
 }
 
 /**

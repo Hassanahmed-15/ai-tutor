@@ -23,16 +23,28 @@ import { useSyncExternalStore } from "react";
 
 const QUERY = "(prefers-reduced-motion: reduce)";
 
+/**
+ * The account's own "reduce motion" choice (onboarding's accessibility screen, or settings), set on
+ * <html data-reduced-motion="1"> by the auth gate — so the preference follows the student to any
+ * device, not only one whose operating system is set to reduce motion. Either one is enough.
+ */
+const ATTRIBUTE = "data-reduced-motion";
+
 function subscribe(onChange: () => void): () => void {
-  if (typeof window === "undefined" || !window.matchMedia) return () => {};
-  const query = window.matchMedia(QUERY);
-  query.addEventListener("change", onChange);
-  return () => query.removeEventListener("change", onChange);
+  if (typeof window === "undefined") return () => {};
+  const query = window.matchMedia?.(QUERY);
+  query?.addEventListener("change", onChange);
+  const observer = typeof MutationObserver !== "undefined" ? new MutationObserver(onChange) : null;
+  observer?.observe(document.documentElement, { attributes: true, attributeFilter: [ATTRIBUTE] });
+  return () => {
+    query?.removeEventListener("change", onChange);
+    observer?.disconnect();
+  };
 }
 
 function getSnapshot(): boolean {
-  if (typeof window === "undefined" || !window.matchMedia) return false;
-  return window.matchMedia(QUERY).matches;
+  if (typeof window === "undefined") return false;
+  return document.documentElement.getAttribute(ATTRIBUTE) === "1" || Boolean(window.matchMedia?.(QUERY).matches);
 }
 
 /** The server has no media queries; assume motion is fine and let the client correct it. */

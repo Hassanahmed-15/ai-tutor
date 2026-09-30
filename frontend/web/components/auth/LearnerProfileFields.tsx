@@ -1,16 +1,17 @@
 "use client";
 
-import { useMemo } from "react";
-import { allCurricula, allStudyLevels, countryName, countryOptions, curriculaFor, studyLevelsFor, subjectOptions, type EduOption } from "@/lib/education";
+import { useMemo, useState } from "react";
+import { allCurricula, allStudyLevels, countryName, countryOptions, curriculaFor, matchCountry, studyLevelOptions, subjectOptions, type EduOption } from "@/lib/education";
 import { OptionPicker, QuickChips } from "./OptionPicker";
 
 /**
  * THE LEARNER PROFILE'S BASICS — country, study level, subjects, curriculum/exam/track — used by
  * onboarding screen 1 and by settings, so the two cannot drift apart.
  *
- * Every list is CONTEXTUAL (lib/education.ts): the country gives the local level names first, and
- * the country + level + subjects pick which curricula are suggested (USMLE only with medicine, SAT
- * only around high school). Nothing is a hard filter: every picker searches the whole catalogue,
+ * Every list is CONTEXTUAL (lib/education.ts): the country gives the local level names and puts its
+ * own subjects first; the subjects shape the levels (medical school for medicine); and the country
+ * + level + subjects pick which curricula are suggested (USMLE only with medicine, SAT only around
+ * high school). Nothing is a hard filter: every picker searches the whole catalogue,
  * asks Aria when that runs dry, and accepts the student's own entry.
  */
 export type LearnerFieldsValue = {
@@ -33,7 +34,9 @@ export function LearnerProfileFields({
 }) {
   const set = (patch: Partial<LearnerFieldsValue>) => onChange({ ...value, ...patch });
   const countries = useMemo(() => countryOptions(), []);
-  const localLevels = useMemo(() => studyLevelsFor(value.country), [value.country]);
+  const [countryProblem, setCountryProblem] = useState<string | null>(null);
+  const localLevels = useMemo(() => studyLevelOptions(value.country, value.subjects), [value.country, value.subjects]);
+  const subjects = useMemo(() => subjectOptions(value.country), [value.country]);
   const levelOptions = useMemo(() => {
     const seen = new Set(localLevels.map((l) => l.id));
     return [...localLevels, ...allStudyLevels().filter((l) => !seen.has(l.id))];
@@ -56,7 +59,9 @@ export function LearnerProfileFields({
         <OptionPicker
           label="Country"
           hint={
-            detecting
+            countryProblem
+              ? countryProblem
+              : detecting
               ? "Detecting your location…"
               : value.countrySource === "ip" || value.countrySource === "language"
                 ? "Detected from your location — change it if it's not right."
@@ -66,9 +71,14 @@ export function LearnerProfileFields({
           value={countryValue}
           onChange={(next) => {
             const picked = next[0];
-            // A typed "country" that is not a real one is not kept: the list covers every country.
-            if (picked && !picked.custom) set({ country: picked.id, countrySource: "user" });
-            else if (!picked) set({ country: null, countrySource: "user" });
+            setCountryProblem(null);
+            if (!picked) return set({ country: null, countrySource: "user" });
+            if (!picked.custom) return set({ country: picked.id, countrySource: "user" });
+            // Typed rather than picked: "UK", "usa", "Pakistan" are matched to the country; anything
+            // else is said out loud instead of being dropped without a word.
+            const code = matchCountry(picked.label);
+            if (code) set({ country: code, countrySource: "user" });
+            else setCountryProblem(`"${picked.label}" isn't a country we recognise — pick yours from the list.`);
           }}
           multiple={false}
           placeholder={value.country ? `${countryName(value.country)} — search to change` : "Search for your country"}
@@ -104,7 +114,7 @@ export function LearnerProfileFields({
         label="Subjects"
         required
         hint="Choose one or more — search, or type a subject that isn't listed."
-        options={subjectOptions()}
+        options={subjects}
         value={value.subjects}
         onChange={(subjects) => set({ subjects })}
         multiple

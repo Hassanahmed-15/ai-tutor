@@ -1173,3 +1173,15 @@ textarea {
     mask-image: none;
   }
 }
+
+/* The account's "reduce motion" choice (components/auth/AuthGate.tsx) — the same finished-state
+   contract as prefers-reduced-motion, for students whose device is not set to reduce motion. */
+html[data-reduced-motion="1"] *,
+html[data-reduced-motion="1"] *::before,
+html[data-reduced-motion="1"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+

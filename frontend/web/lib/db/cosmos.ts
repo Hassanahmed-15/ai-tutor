@@ -74,7 +74,13 @@ export const ACCESSIBILITY_PROFILES: AccessibilityProfile[] = [
 export type OAuthProviderId = "google" | "apple" | "microsoft";
 
 /** One chosen or typed option (a subject, a level, a curriculum) — see lib/education.ts. */
-export type LearnerOption = { id: string; label: string; custom?: boolean };
+export type LearnerOption = {
+  id: string;
+  label: string;
+  custom?: boolean;
+  /** Set when Aria learned it from the student's lessons rather than the student choosing it. */
+  learned?: boolean;
+};
 
 export type LearnerBasics = {
   /** ISO 3166 alpha-2. */
@@ -85,8 +91,14 @@ export type LearnerBasics = {
   subjects: LearnerOption[];
   /** Curricula, exams or study tracks. */
   curricula: LearnerOption[];
-  /** Per-subject study level where it differs from `studyLevel` (keyed by subject id), set in settings. */
+  /**
+   * Per-subject study level where it differs from `studyLevel` (keyed by subject id). Set in
+   * settings, and LEARNED from lessons — "A-level physics" in a request (lib/learnerBasics.ts
+   * learnSubjectContext). A choice the student made is never overwritten by a learned one.
+   */
   subjectLevels?: Record<string, LearnerOption>;
+  /** Per-subject curricula/exams/tracks where they differ from `curricula` — set and learned the same way. */
+  subjectCurricula?: Record<string, LearnerOption[]>;
   /** When screen 1 was completed. */
   completedAt: string | null;
   updatedAt: string;

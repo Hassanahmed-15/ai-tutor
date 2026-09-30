@@ -15,7 +15,7 @@ const TEACHING_DEPTHS: { value: TeachingDepth; label: string; hint: string }[] =
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { LearnerProfileInsights } from "@/components/memory/LearnerProfileInsights";
 import { LearnerProfileFields, type LearnerFieldsValue } from "./LearnerProfileFields";
-import { allStudyLevels, studyLevelsFor, type EduOption } from "@/lib/education";
+import { allCurricula, allStudyLevels, curriculaFor, studyLevelOptions, type EduOption } from "@/lib/education";
 
 /**
  * Profile and settings.
@@ -65,12 +65,21 @@ export function SettingsScreen({
     subjects: profile?.learner?.subjects ?? [],
     curricula: profile?.learner?.curricula ?? [],
   });
-  const [subjectLevels, setSubjectLevels] = useState<Record<string, EduOption>>(profile?.learner?.subjectLevels ?? {});
-  const levelChoices = (() => {
-    const local = studyLevelsFor(learnerFields.country);
+  // Per subject, where it differs from the main ones — chosen here, or learned from lessons
+  // (lib/learnerBasics.ts learnSubjectContext; `learned` marks those, and saving keeps the mark).
+  const [subjectLevels, setSubjectLevels] = useState<Record<string, EduOption & { learned?: boolean }>>(profile?.learner?.subjectLevels ?? {});
+  const [subjectCurricula, setSubjectCurricula] = useState<Record<string, Array<EduOption & { learned?: boolean }>>>(profile?.learner?.subjectCurricula ?? {});
+  const levelChoicesFor = (subject: EduOption) => {
+    const local = studyLevelOptions(learnerFields.country, [subject]);
     const seen = new Set(local.map((l) => l.id));
     return [...local, ...allStudyLevels().filter((l) => !seen.has(l.id))];
-  })();
+  };
+  const curriculumChoicesFor = (subject: EduOption) => {
+    const suggested = curriculaFor({ country: learnerFields.country, level: subjectLevels[subject.id] ?? learnerFields.studyLevel, subjects: [subject] });
+    const current = subjectCurricula[subject.id] ?? [];
+    const seen = new Set(suggested.map((c) => c.id));
+    return [...suggested, ...current.filter((c) => !seen.has(c.id)), ...allCurricula().filter((c) => !seen.has(c.id) && !current.some((x) => x.id === c.id))];
+  };
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -109,8 +118,9 @@ export function SettingsScreen({
           notes,
           learner: {
             ...learnerFields,
-            // Only subjects still chosen keep their own level.
+            // Only subjects still chosen keep their own level and curriculum.
             subjectLevels: Object.fromEntries(Object.entries(subjectLevels).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
+            subjectCurricula: Object.fromEntries(Object.entries(subjectCurricula).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
           },
         }),
       });
@@ -231,32 +241,60 @@ export function SettingsScreen({
               <LearnerProfileFields value={learnerFields} onChange={setLearnerFields} />
               {learnerFields.subjects.length > 0 && (
                 <div className="mt-6">
-                  <p className="mb-2 text-[0.84rem] font-medium text-[var(--hud-text)]">Study level by subject</p>
-                  <p className="mb-3 text-[0.76rem] text-[var(--hud-text-faint)]">Only where a subject is at a different level from your main one.</p>
-                  <div className="space-y-2">
-                    {learnerFields.subjects.map((subject) => (
-                      <div key={subject.id} className="grid grid-cols-[1fr_1.4fr] items-center gap-3">
-                        <label htmlFor={`subject-level-${subject.id}`} className="truncate text-[0.84rem] text-[var(--hud-text-dim)]">{subject.label}</label>
-                        <select
-                          id={`subject-level-${subject.id}`}
-                          value={subjectLevels[subject.id]?.id ?? ""}
-                          onChange={(e) => {
-                            const picked = levelChoices.find((l) => l.id === e.target.value);
-                            setSubjectLevels((prev) => {
-                              const next = { ...prev };
-                              if (picked) next[subject.id] = { id: picked.id, label: picked.label };
-                              else delete next[subject.id];
-                              return next;
-                            });
-                          }}
-                          className="w-full rounded-[var(--radius)] border bg-[var(--hud-bg)] px-3 py-2 text-[0.85rem] text-[var(--hud-text)]"
-                          style={{ borderColor: "var(--hud-line)" }}
-                        >
-                          <option value="">Same as my study level</option>
-                          {levelChoices.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
-                        </select>
-                      </div>
-                    ))}
+                  <p className="mb-2 text-[0.84rem] font-medium text-[var(--hud-text)]">Level and curriculum by subject</p>
+                  <p className="mb-3 text-[0.76rem] text-[var(--hud-text-faint)]">Only where a subject differs from your main ones. Aria also fills these in from your lessons.</p>
+                  <div className="space-y-3">
+                    {learnerFields.subjects.map((subject) => {
+                      const level = subjectLevels[subject.id];
+                      const curriculum = subjectCurricula[subject.id]?.[0];
+                      const learned = Boolean(level?.learned || curriculum?.learned);
+                      return (
+                        <div key={subject.id} className="grid grid-cols-[1fr_1.3fr_1.3fr] items-center gap-2">
+                          <span className="min-w-0 truncate text-[0.84rem] text-[var(--hud-text-dim)]">
+                            {subject.label}
+                            {learned && <span className="ml-1.5 whitespace-nowrap text-[0.68rem] text-[var(--hud-cyan-bright)]">learned from your lessons</span>}
+                          </span>
+                          <label htmlFor={`subject-level-${subject.id}`} className="sr-only">{`${subject.label} study level`}</label>
+                          <select
+                            id={`subject-level-${subject.id}`}
+                            value={level?.id ?? ""}
+                            onChange={(e) => {
+                              const picked = levelChoicesFor(subject).find((l) => l.id === e.target.value);
+                              setSubjectLevels((prev) => {
+                                const next = { ...prev };
+                                if (picked) next[subject.id] = { id: picked.id, label: picked.label };
+                                else delete next[subject.id];
+                                return next;
+                              });
+                            }}
+                            className="w-full rounded-[var(--radius)] border bg-[var(--hud-bg)] px-2.5 py-2 text-[0.82rem] text-[var(--hud-text)]"
+                            style={{ borderColor: "var(--hud-line)" }}
+                          >
+                            <option value="">Same level as my main one</option>
+                            {levelChoicesFor(subject).map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
+                          </select>
+                          <label htmlFor={`subject-curriculum-${subject.id}`} className="sr-only">{`${subject.label} curriculum, exam or track`}</label>
+                          <select
+                            id={`subject-curriculum-${subject.id}`}
+                            value={curriculum?.id ?? ""}
+                            onChange={(e) => {
+                              const picked = curriculumChoicesFor(subject).find((c) => c.id === e.target.value);
+                              setSubjectCurricula((prev) => {
+                                const next = { ...prev };
+                                if (picked) next[subject.id] = [{ id: picked.id, label: picked.label }];
+                                else delete next[subject.id];
+                                return next;
+                              });
+                            }}
+                            className="w-full rounded-[var(--radius)] border bg-[var(--hud-bg)] px-2.5 py-2 text-[0.82rem] text-[var(--hud-text)]"
+                            style={{ borderColor: "var(--hud-line)" }}
+                          >
+                            <option value="">Same curriculum as my main one</option>
+                            {curriculumChoicesFor(subject).map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
+                          </select>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
