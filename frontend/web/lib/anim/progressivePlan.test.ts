@@ -290,3 +290,61 @@ test("front matter is recognised; teaching is not", () => {
   assert.equal(isFrontMatterSection("History", "The motor was improved by Dr. Tesla at a university lab over many years of experiments and patents.", 3), false);
   assert.equal(isFrontMatterSection("Types of Actuators", "Electric motors, hydraulic and pneumatic cylinders.", 2), false);
 });
+
+/**
+ * "GET A LECTURE FROM THIS AREA" TEACHES THE AREA.
+ *
+ * Shaped like a real parse of a box drawn on page 2 of a paper: the page's own text-layer blocks,
+ * one block for the box ("Page 2 (selected area)"), and a document plan whose first section holds
+ * the box together with the paragraphs around it, followed by the page's other sections. Every one
+ * of them used to become a board.
+ */
+const boxTranscript = "SMOTE with XGBoost on Tabular Data. Siagian evaluated SMOTE-balanced XGBoost on two tabular datasets, reporting F1-score and ROC-AUC.";
+const pageTwo = {
+  schemaVersion: "suprnotes.lesson_input.v1",
+  title: "Ablation study",
+  contentBlocks: [
+    { id: "above", pageNumber: 2, heading: "Page 2", text: "Rahman tackled detection from chest X-rays by stacking four corrections with SMOTE resampling and focal loss." },
+    { id: "box-heading", pageNumber: 2, heading: "Page 2", text: "SMOTE with XGBoost on Tabular Data" },
+    { id: "box-body", pageNumber: 2, heading: "Page 2", text: "Siagian evaluated SMOTE-balanced XGBoost on two tabular datasets, reporting F1-score and ROC-AUC." },
+    { id: "below", pageNumber: 2, heading: "Page 2", text: "Figure 2 illustrates per-feature distributions stratified by class for every tabular dataset feature." },
+    { id: "gaps", pageNumber: 2, heading: "Page 2", text: "Research gaps: no study compares every combination of corrections on the same data." },
+    { id: "crop", pageNumber: 2, heading: "Page 2 (selected area)", text: boxTranscript },
+  ],
+  lessonPlan: {
+    beats: [
+      { title: "Page 2 (selected area)", objective: "Teach these blocks.", sourceBlockIds: ["crop", "above", "box-heading", "box-body", "below"] },
+      { title: "E. Research Gaps", objective: "Teach these blocks.", sourceBlockIds: ["gaps"] },
+    ],
+  },
+};
+const areaInput = (fidelity: "strict" | "reference", selection = true): ProgressiveLectureInput => ({
+  ...input("SMOTE with XGBoost on Tabular Data"),
+  sourceType: "pdf",
+  suprnotes: pageTwo,
+  sourceScope: { fidelity, breadth: { kind: "whole" }, documentLabels: [] },
+  ...(selection ? { selection: { pages: [2], transcript: boxTranscript, description: "SMOTE with XGBoost on Tabular Data" } } : {}),
+});
+
+for (const fidelity of ["strict", "reference"] as const) {
+  test(`${fidelity.toUpperCase()} area lecture: one board, on the box only — not the page's other sections or neighbours`, () => {
+    const plan = buildProgressivePlan(areaInput(fidelity));
+    assert.equal(plan.length, 1, plan.map((b) => b.title).join(" | "));
+    assert.deepEqual([...(plan[0].sourceBlockIds ?? [])].sort(), ["box-body", "box-heading", "crop"]);
+    // The subject, not the parser's "Page 2 (selected area)" label (title-cased like every board).
+    assert.match(plan[0].title, /^SMOTE with XGBoost on Tabular Data$/i);
+  });
+}
+
+test("a box whose block no section holds is still taught, as one board of its own", () => {
+  const orphan = { ...pageTwo, lessonPlan: { beats: [{ title: "E. Research Gaps", objective: "Teach these blocks.", sourceBlockIds: ["gaps"] }] } };
+  const plan = buildProgressivePlan({ ...areaInput("strict"), suprnotes: orphan });
+  assert.equal(plan.length, 1);
+  assert.ok((plan[0].sourceBlockIds ?? []).includes("crop"));
+  assert.ok(!(plan[0].sourceBlockIds ?? []).includes("gaps"));
+});
+
+test("with no area drawn the page's plan is unchanged", () => {
+  const plan = buildProgressivePlan(areaInput("strict", false));
+  assert.equal(plan.length, 2);
+});

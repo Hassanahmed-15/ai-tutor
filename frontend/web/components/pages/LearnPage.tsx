@@ -1848,7 +1848,8 @@ type BuildCost =
      * only points at it. A typed question keeps its own subject: that is what the lecture answers.
      * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
      */
-    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw);
+    // A drawn area keeps the subject read off the area itself (lectureSubject), not the document's.
+    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw) && !fresh?.scopeSelected;
     const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
       || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
     setTopic(trimmed);
@@ -1867,10 +1868,16 @@ type BuildCost =
       };
     }
 
+    /*
+     * A DRAWN AREA IS PLANNED FROM THE AREA, in reference mode too. Reference skipping this branch
+     * sent a box through the whole-document conversation, whose outline was planned from every
+     * section of the page — a lecture "from this area" that taught the page around it.
+     */
+    const regionDrawn = Boolean(fresh?.scopeSelected);
     const shouldPlanExactQuestion = isPdfOrDeck
-      && !referenceChosen
+      && (!referenceChosen || regionDrawn)
       && !isWholeDocumentRequest(planningFocus)
-      && (Boolean(fresh?.scopeSelected) || isSpecificDocumentRequest(planningFocus, planningDocument));
+      && (regionDrawn || isSpecificDocumentRequest(planningFocus, planningDocument));
 
     if (!forceBuild && shouldPlanExactQuestion) {
       setFocusedDocumentPlanningActive(true);

@@ -161,8 +161,28 @@ export function planTranscription(
 export function isTranscriptionRefusal(text: string): boolean {
   const t = text.trim();
   if (!t) return true;
+  /*
+   * AN ECHO IS NOT A TRANSCRIPT EITHER. The model sometimes returns these instructions instead of
+   * the image's text — measured on a box drawn over two paragraphs of a paper — and the lecture
+   * "from this area" was then planned with no idea what the area said. Long, so it is checked before
+   * the length gate below.
+   */
+  if (echoesTranscribePrompt(t)) return true;
   if (t.length > 240) return false;
   return /^(?:i['’]?m\s+sorry|sorry|i\s+(?:can(?:no|['’])t|cannot|am\s+unable|'m\s+unable)|unfortunately|i\s+apologi[sz]e)\b|\b(?:can(?:no|['’])t|cannot|unable\s+to)\s+(?:transcribe|read|assist|help|process)\b/i.test(t);
+}
+
+/** The reply repeats the transcription instructions: two or more of their distinctive phrases. */
+function echoesTranscribePrompt(text: string): boolean {
+  const phrases = [
+    /transcribe everything visible in this image/i,
+    /preserve every subscript, superscript/i,
+    /do not redraw them in text/i,
+    /on a separate line beginning ['‘’]?shape:/i,
+    /do not summari[sz]e, do not explain/i,
+    /write \[illegible\] there rather than guessing/i,
+  ];
+  return phrases.filter((phrase) => phrase.test(text)).length >= 2;
 }
 
 export const TRANSCRIBE_PROMPT = [

@@ -10,7 +10,7 @@
 import { isRecapTitle, polishBeatPlan } from "./beatPresentation";
 import { defaultLadderObjectives, inferRole, orderByLadder, subjectPhrase, type TeachingRole } from "./lessonLadder";
 import { expandConceptPasses, type ConceptPass } from "./board/conceptPasses";
-import { scopedBlockText } from "./beatSourceScope";
+import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
 import { boardCountFor, depthBudget, type DepthLevelName } from "./lectureDepth";
 import { CODE_BEAT_PATTERN, asksForCode, isProgrammingTopic, looksLikeCode, mergeSplitCodeBeats } from "./codeSpec";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput, ProgressiveVisualKind } from "./progressiveLectureTypes";
@@ -267,6 +267,66 @@ export function sourceRoleFor(document: SuprnotesLessonInput, title: string, sou
   return allQuestions || /^questions?\b/i.test(title) ? "questions" : "source";
 }
 
+type PlannedSection = { title: string; objective: string; sourceBlockIds: string[]; visualKind: ProgressiveVisualKind };
+
+/** Lower-cased words of four or more letters — enough to tell the same text from a neighbour's. */
+const wordsOf = (text: string): string[] => text.toLowerCase().match(/[a-z][a-z0-9-]{3,}/g) ?? [];
+
+/**
+ * A LECTURE "FROM THIS AREA" TEACHES THE AREA.
+ *
+ * The parse returns the whole page's blocks plus one block for the box ("Page N (selected area)"),
+ * and the document's plan is built over all of them. Every section was kept whenever a selection
+ * existed, so a box drawn over one paragraph produced a board for every section on its page — the
+ * box was one board among four, sharing it with blocks from all around it.
+ *
+ * Only the sections holding the box survive, each narrowed to the box's blocks: the box's own
+ * block, and the page's text-layer blocks that carry the same words (`blocksForSelection`), so a
+ * strict board can still quote the page's own wording. If no section holds the box — its block
+ * was not grouped anywhere — the box is taught as one board of its own.
+ */
+function sectionsForSelection<T extends PlannedSection>(
+  sections: T[],
+  document: SuprnotesLessonInput,
+  selection: { pages: number[]; transcript: string; description?: string },
+): Array<T | PlannedSection> {
+  const blocks = document.contentBlocks ?? [];
+  const candidates = new Set(blocksForSelection(blocks, selection));
+  if (candidates.size === 0) return sections;
+  const cropIds = new Set(
+    blocks.filter((block) => candidates.has(block.id) && /\(selected area\)/i.test(block.heading ?? "")).map((block) => block.id),
+  );
+  /*
+   * Two shared words is enough for `blocksForSelection` to call a page block "part of the box", and
+   * on a paper every paragraph shares "SMOTE" and "dataset" — the paragraphs above and below the box
+   * came along. With the box's own transcript to compare against, a page block counts only when most
+   * of its words are IN that transcript: it is the text layer of the same lines, not a neighbour.
+   */
+  const boxWords = new Set(wordsOf(selection.transcript));
+  const inBox = cropIds.size > 0
+    ? new Set([...candidates].filter((id) => {
+        if (cropIds.has(id)) return true;
+        const block = blocks.find((candidate) => candidate.id === id);
+        const words = wordsOf(`${block?.heading ?? ""} ${block?.text ?? ""}`).filter((word) => !/^page$/.test(word));
+        return words.length > 0 && words.filter((word) => boxWords.has(word)).length / words.length >= 0.6;
+      }))
+    : candidates;
+  // With a crop block the box is exact; without one (a deck, an unreadable crop) the page words decide.
+  const anchor = cropIds.size > 0 ? cropIds : inBox;
+  // "Page 2 (Selected Area)" is the parser's label for the box, not something to title a board with.
+  const described = clean(selection.description);
+  const kept = sections
+    .filter((section) => section.sourceBlockIds.some((id) => anchor.has(id)))
+    .map((section) => ({
+      ...section,
+      title: described && /\(selected area\)/i.test(section.title) ? described : section.title,
+      sourceBlockIds: section.sourceBlockIds.filter((id) => inBox.has(id)),
+    }));
+  if (kept.length > 0) return kept;
+  const title = clean(selection.description) || clean(blocks.find((block) => anchor.has(block.id))?.heading) || "Selected area";
+  return [{ title, objective: `Teach the area the student selected: ${title}`, sourceBlockIds: [...inBox], visualKind: sourceVisualKind({}) }];
+}
+
 function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan[] {
   if (!isSuprnotesLessonInput(input.suprnotes)) return [];
   const document = input.suprnotes;
@@ -317,7 +377,9 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
    * that answer it are kept (see sectionsForQuestion); a question the document does not match keeps
    * the whole plan rather than teaching nothing.
    */
-  const planned = input.selection ? merged : sectionsForQuestion(merged, input.focus ?? "", (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
+  const planned = input.selection
+    ? sectionsForSelection(merged, document, input.selection)
+    : sectionsForQuestion(merged, input.focus ?? "", (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
   /*
    * DEPTH CAPS THE BEAT COUNT FOR A DOCUMENT TOO, not just for a typed topic.
    *

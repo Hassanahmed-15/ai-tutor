@@ -27,7 +27,7 @@ import { capQuestionOutline, directQuestionInstruction, isDirectQuestion, outlin
 import { polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
-import { focusFromTranscript, focusPassages, focusPromptSection, subjectFromFocus } from "@/lib/pdfFocus";
+import { focusFromTranscript, focusPassages, focusPromptSection, isPointingPhrase, subjectFromFocus } from "@/lib/pdfFocus";
 import { sourceScopeInstruction, type SourceScope } from "@/lib/sourceScope";
 import { getDocumentImages } from "@/lib/pageImageStore";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
@@ -752,7 +752,14 @@ export async function POST(req: Request) {
     const topicFromBody = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
     const fallbackTopic = (focus ? subjectFromFocus(focus) : "") || topicFromBody || "Focused explanation";
     const userContent = focus
-      ? `${focusPromptSection(focus)}${angleInstructionLine(angle)}\n\nPlan the answer now. The quoted passages above are the complete permitted planning scope.`
+      ? `${focusPromptSection(focus)}${angleInstructionLine(angle)}\n\nPlan the answer now. The quoted passages above are the complete permitted planning scope.${
+          // A box drawn with no question typed IS the request: teach all of it, not the part that
+          // happens to look most like an answer. Measured: a box over two paragraphs and a figure
+          // caption was planned from the caption and one paragraph, dropping the other.
+          transcript && isPointingPhrase(question)
+            ? " The student selected this area without asking anything more specific: cover EVERYTHING in it, part by part in reading order, leaving none of its paragraphs, figures or headings out."
+            : ""
+        }`
       : [
           "THE STUDENT ASKED ONE SPECIFIC QUESTION ABOUT THE DOCUMENT BELOW.",
           `Their question: "${question || "Explain what this document covers."}"`,

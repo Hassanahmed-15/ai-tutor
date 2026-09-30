@@ -40,7 +40,7 @@ import { fillSpecBoardOps, repeatsCode } from "./specBoardGen";
 import { looksQuantitative } from "./quantitativeBeat";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
-import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
+import { scopedBlockText } from "./beatSourceScope";
 import { isStrictSource, sourceScopeInstruction } from "./sourceScope";
 import { asksForCode, isProgrammingTopic } from "./codeSpec";
 import { getDocumentImages } from "./pageImageStore";
@@ -126,12 +126,6 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
     await failSession(session, error);
     throw error;
   }
-}
-
-/** The blocks of the dragged area, or [] when the lecture is not from a selection. */
-function selectionBlockIds(input: ProgressiveLectureInput): string[] {
-  if (!input.selection || !isSuprnotesLessonInput(input.suprnotes)) return [];
-  return blocksForSelection(input.suprnotes.contentBlocks ?? [], input.selection);
 }
 
 /** The selection, stated as the lecture's subject — for every beat's context and its board. */
