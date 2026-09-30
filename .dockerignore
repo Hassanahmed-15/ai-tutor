@@ -63,6 +63,14 @@ backend/packages/*/node_modules
 **/artifacts
 **/manim-cache
 **/lecture-cache
+# Dot-prefixed local caches: generated lectures and pictures (lib/lectureCache.ts, lib/canvas/store.ts)
+# and the compiled test build. Student content must never be baked into a shipped image.
+**/.lecture-cache
+**/.canvas-cache
+**/.test-build*
+# The standalone animation lab and scratch output — not part of the tutor image.
+anim-lab
+output
 **/*.log
 **/tmp
 **/temp
