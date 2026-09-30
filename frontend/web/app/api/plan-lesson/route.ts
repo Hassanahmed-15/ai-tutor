@@ -23,7 +23,7 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
-import { capQuestionOutline, directQuestionInstruction, isDirectQuestion, outlineLearnerInstruction } from "@/lib/planPrompt";
+import { PROMPT_OUTLINE_RULES, capQuestionOutline, directQuestionInstruction, isDirectQuestion, outlineLearnerInstruction } from "@/lib/planPrompt";
 import { polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
@@ -945,8 +945,10 @@ export async function POST(req: Request) {
     const preference = typeof body.teachingPreference === "string" && ["quick", "balanced", "deep"].includes(body.teachingPreference)
       ? `\nThe student's saved teaching preference is "${body.teachingPreference}"; their words in the request override it.`
       : "";
-    const questionLine = directQuestion ? directQuestionInstruction(questionText) : "";
-    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}`;
+    const questionLine = directQuestion ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument }) : "";
+    // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
+    const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
+    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${promptRules}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined);
   }
 
@@ -965,7 +967,7 @@ export async function POST(req: Request) {
   const focusedRevisionLine = revisionFocus
     ? `\n\nThis is a question-specific document outline. It must continue to answer ONLY this question and use ONLY these passages:\n${focusPromptSection(revisionFocus)}`
     : sourceDocLine;
-  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}${personaLine(body.learnerPersona)}`;
+  const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}${personaLine(body.learnerPersona)}${sourceDocument ? "" : PROMPT_OUTLINE_RULES}`;
   return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, withPages(userContent, pageImages), currentOutline.topic, Boolean(revisionFocus));
 }
 

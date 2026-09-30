@@ -128,6 +128,21 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
   }
 }
 
+/**
+ * A TYPED QUESTION IS ANSWERED, NOT SURVEYED.
+ *
+ * The planner already sizes a question to one or two slides, but each slide's writer was only handed
+ * the student's words as background, and wrote a general explanation of the whole topic on each.
+ * For a typed-prompt lecture planned as a question, every slide is told what it is for. Document
+ * lectures are untouched.
+ */
+function promptQuestionSection(input: ProgressiveLectureInput): string {
+  if (input.sourceType !== "prompt" || isSuprnotesLessonInput(input.suprnotes) || input.outline?.scope !== "question") return "";
+  const question = (input.focus || input.topic || "").replace(/\s+/g, " ").trim();
+  if (!question) return "";
+  return `THIS LECTURE ANSWERS ONE QUESTION: "${question}". This slide answers it directly: start with the answer, then give only what is needed to understand it. No history, no background the question did not ask for, no tangents, and do not restate the question.`;
+}
+
 /** The selection, stated as the lecture's subject — for every beat's context and its board. */
 function selectionSection(input: ProgressiveLectureInput): string {
   const selection = input.selection;
@@ -389,6 +404,7 @@ async function generateOneBeat(
   const pageImages = textOnly ? [] : beatPageImages(input, planned.sourceBlockIds);
   // A Questions board is shown where the answers are, so it can name them without answering past them.
   const context = [
+    promptQuestionSection(input),
     sourceContext(input, planned.sourceBlockIds, strict),
     source.answerText
       ? `EARLIER SOURCE SECTIONS ON THIS PAGE — only for saying WHERE a question's answer is (quote them if they state it); never re-teach them:\n${source.answerText}`

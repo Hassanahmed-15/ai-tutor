@@ -348,3 +348,88 @@ test("with no area drawn the page's plan is unchanged", () => {
   const plan = buildProgressivePlan(areaInput("strict", false));
   assert.equal(plan.length, 2);
 });
+
+/**
+ * TYPED-PROMPT LECTURES: noun-phrase titles, each topic once, one topic per slide except at deep,
+ * and a question in two slides at most. Document lectures keep their own rules (tests above).
+ */
+const bigTopics = {
+  topic: "photosynthesis",
+  subtopics: [
+    { title: "How Light Reactions Work", caption: "The mechanism that splits water and makes ATP step by step." },
+    { title: "Calvin Cycle", caption: "The cycle that fixes carbon dioxide into sugar, stage by stage." },
+    { title: "Why Does Light Intensity Matter?", caption: "How the rate of the process changes with light." },
+  ],
+};
+
+test("PROMPT: slide titles are noun phrases, never questions or 'How X Works'", () => {
+  const plan = buildProgressivePlan({ ...input("photosynthesis"), outline: bigTopics });
+  for (const beat of plan) {
+    assert.doesNotMatch(beat.title, /\?/, `"${beat.title}" is a question`);
+    assert.doesNotMatch(beat.title, /^(?:why|how|what)\b/i, `"${beat.title}" starts like a question`);
+    assert.doesNotMatch(beat.title, /\bworks?$/i, `"${beat.title}" is a 'how it works' sentence`);
+  }
+});
+
+test("PROMPT at balanced: every topic is exactly one slide", () => {
+  const plan = buildProgressivePlan({ ...input("photosynthesis", "balanced"), outline: bigTopics });
+  assert.ok(plan.every((beat) => (beat.conceptPasses ?? 1) === 1), plan.map((b) => `${b.title}(${b.conceptPasses})`).join(", "));
+});
+
+test("PROMPT at deep: a big topic may still take a second slide", () => {
+  const plan = buildProgressivePlan({ ...input("photosynthesis", "deep"), outline: bigTopics });
+  assert.ok(plan.some((beat) => (beat.conceptPasses ?? 1) > 1));
+});
+
+test("PROMPT: a near-duplicate topic is dropped, so the same content is not taught twice", () => {
+  const plan = buildProgressivePlan({
+    ...input("photosynthesis"),
+    outline: {
+      topic: "photosynthesis",
+      subtopics: [
+        { title: "Photosynthesis Process", caption: "How plants turn light, water and carbon dioxide into glucose." },
+        { title: "How Photosynthesis Works", caption: "Plants turn light, water and carbon dioxide into glucose." },
+        { title: "Limiting Factors", caption: "Light, temperature and carbon dioxide cap the rate." },
+      ],
+    },
+  });
+  const titles = plan.map((b) => b.title.toLowerCase());
+  assert.equal(titles.filter((t) => /photosynthesis/.test(t) && !/^photosynthesis$/.test(t)).length <= 1, true, titles.join(" | "));
+  assert.ok(titles.some((t) => /limiting/.test(t)));
+});
+
+test("PROMPT question: at most two slides, no opener", () => {
+  const plan = buildProgressivePlan({
+    ...input("Why do leaves look green?"),
+    outline: {
+      topic: "leaf colour",
+      scope: "question",
+      subtopics: [
+        { title: "Chlorophyll and Leaf Colour", caption: "Chlorophyll absorbs red and blue light and reflects green." },
+        { title: "Accessory Pigments", caption: "Carotenoids show in autumn when chlorophyll breaks down." },
+        { title: "Light Spectrum", caption: "White light is a mix of colours." },
+      ],
+    },
+  });
+  assert.ok(plan.length <= 2, plan.map((b) => b.title).join(" | "));
+  assert.equal(plan[0].title, "Chlorophyll and Leaf Colour");
+});
+
+test("nounTitle: questions, 'how it works' and filler become the concept's name", async () => {
+  const { nounTitle } = await import("../beatPresentation");
+  assert.equal(nounTitle("Why Do Leaves Look Green?"), "Leaves Look Green");
+  assert.equal(nounTitle("Understanding Hydraulic Actuators"), "Hydraulic Actuators");
+  assert.equal(nounTitle("Photosynthesis Explained"), "Photosynthesis");
+  assert.equal(nounTitle("How Light Reactions Work"), "Light Reactions");
+  assert.equal(nounTitle("What Is Photosynthesis?"), "Photosynthesis");
+  assert.equal(nounTitle("Calvin Cycle"), "Calvin Cycle");
+  assert.equal(nounTitle("The ?"), "The ?", "never stripped down to nothing");
+  assert.ok(nounTitle("Why?").length > 0);
+});
+
+test("a comparison counts as a question", async () => {
+  const { isDirectQuestion } = await import("../planPrompt");
+  assert.equal(isDirectQuestion("difference between TCP and UDP"), true);
+  assert.equal(isDirectQuestion("TCP vs UDP"), true);
+  assert.equal(isDirectQuestion("photosynthesis"), false);
+});

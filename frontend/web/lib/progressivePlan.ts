@@ -7,7 +7,7 @@
  * worker imports from here; nothing here imports from the worker.
  */
 
-import { isRecapTitle, polishBeatPlan } from "./beatPresentation";
+import { isRecapTitle, nounTitle, polishBeatPlan } from "./beatPresentation";
 import { defaultLadderObjectives, inferRole, orderByLadder, subjectPhrase, type TeachingRole } from "./lessonLadder";
 import { expandConceptPasses, type ConceptPass } from "./board/conceptPasses";
 import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
@@ -144,9 +144,19 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
   // The THING the lesson is about, not the sentence the student typed: "What is overfitting?"
   // is a lesson on Overfitting, and its boards are titled for overfitting.
   const subject = subjectPhrase(input.topic);
-  const supplied = (input.outline?.subtopics ?? [])
-    .map((item) => ({ title: clean(item.title), objective: clean(item.caption || item.reason || item.title) }))
+  /*
+   * A TYPED-PROMPT LECTURE (no uploaded document) is held to three rules the student asked for:
+   * every slide title is a noun phrase naming its concept, each topic is taught once, and one topic
+   * is one slide except at "deep". Document lectures (strict and reference) keep their own rules.
+   */
+  const promptLecture = input.sourceType === "prompt" && !isSuprnotesLessonInput(input.suprnotes);
+  const outlined = (input.outline?.subtopics ?? [])
+    .map((item) => ({
+      title: promptLecture ? nounTitle(clean(item.title)) : clean(item.title),
+      objective: clean(item.caption || item.reason || item.title),
+    }))
     .filter((item) => item.title);
+  const supplied = promptLecture ? withoutNearDuplicates(outlined) : outlined;
   /*
    * THE CONCEPTS DECIDE THE COUNT — see lib/lectureDepth.ts.
    *
@@ -187,7 +197,8 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
   const subtopics = supplied.length > 0
     // A question's boards keep the planner's own titles ("Why Underfitting Happens"): polishing
     // would retitle the first as the subject and strip its "Why".
-    ? question ? middle : polishBeatPlan([opener, ...middle], subject)
+    // A typed-prompt QUESTION is answered in two slides at most, however many the planner sent.
+    ? question ? (promptLecture ? middle.slice(0, 2) : middle) : polishBeatPlan([opener, ...middle], subject)
     : [opener, ...middle].slice(0, boardCountFor(middle.length + 1));
 
   /*
@@ -205,7 +216,14 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
    * with nothing new for the second to say.
    */
   // A question never gets "now an example" / "now go deeper" boards it did not ask for.
-  const entries = expandConceptPasses(ordered, supplied.length > 0 && !question ? depthLevel(input.learnerProfile.depth) : "concise", slug);
+  /*
+   * ONE TOPIC, ONE SLIDE for a typed prompt: a continuation pass repeats its topic under the same
+   * title ("now an example", "where it breaks"), which read as the same content twice. Only "deep"
+   * keeps them, where a big topic may take a second slide. Document lectures keep the depth rule.
+   */
+  const depth = depthLevel(input.learnerProfile.depth);
+  const passDepth = supplied.length === 0 || question ? "concise" : promptLecture && depth !== "deep" ? "concise" : depth;
+  const entries = expandConceptPasses(ordered, passDepth, slug);
 
   const plan = entries.map((entry, sequence) => ({
     // The id stays per-beat and unique; the CONCEPT is what repeats.
@@ -265,6 +283,28 @@ export function sourceRoleFor(document: SuprnotesLessonInput, title: string, sou
   const own = (document.contentBlocks ?? []).filter((block) => wanted.has(block.id));
   const allQuestions = own.length > 0 && own.every((block) => block.role === "questions" || block.role === "figure-labels") && own.some((block) => block.role === "questions");
   return allQuestions || /^questions?\b/i.test(title) ? "questions" : "source";
+}
+
+/**
+ * EACH TOPIC ONCE. The planner is told not to plan the same idea twice, and sometimes does anyway:
+ * "Photosynthesis Process" beside "How Photosynthesis Works", each its own slide saying the same
+ * thing. A subtopic whose content words (title and caption) mostly repeat an earlier one's — 70% or
+ * more of the smaller set — is dropped. The earlier one stays, since it came first in the order.
+ */
+function withoutNearDuplicates<T extends { title: string; objective: string }>(subtopics: T[]): T[] {
+  const kept: Array<{ item: T; stems: Set<string> }> = [];
+  for (const item of subtopics) {
+    const stems = new Set(contentStems(`${item.title} ${item.objective}`));
+    const repeats = kept.some((earlier) => {
+      const smaller = Math.min(stems.size, earlier.stems.size);
+      if (smaller === 0) return false;
+      let shared = 0;
+      for (const stem of stems) if (earlier.stems.has(stem)) shared++;
+      return shared / smaller >= 0.7;
+    });
+    if (!repeats) kept.push({ item, stems });
+  }
+  return kept.map((entry) => entry.item);
 }
 
 type PlannedSection = { title: string; objective: string; sourceBlockIds: string[]; visualKind: ProgressiveVisualKind };
