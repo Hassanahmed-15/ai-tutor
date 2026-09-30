@@ -8,6 +8,7 @@ import {
   type UserDoc,
 } from "@/lib/db/cosmos";
 import { currentUser } from "@/lib/auth";
+import { LearnerBasicsError, mergeLearnerBasics } from "@/lib/learnerBasics";
 
 export const runtime = "nodejs";
 
@@ -47,11 +48,23 @@ function accessibility(value: unknown): AccessibilityProfile | null {
 export function mergeProfile(body: Record<string, unknown>, existing: UserDoc["profile"]): NonNullable<UserDoc["profile"]> {
   const has = (k: string) => Object.hasOwn(body, k);
   const ageRaw = Number(body.age);
+  const displayName = has("displayName")
+    ? (typeof body.displayName === "string" ? body.displayName.trim().slice(0, 80) || null : null)
+    : existing?.displayName ?? null;
+  // The learner profile's basics (onboarding screen 1 / settings) — see lib/learnerBasics.ts.
+  let learner = existing?.learner ?? null;
+  if (has("learner")) {
+    try {
+      learner = mergeLearnerBasics(body.learner, existing?.learner, displayName);
+    } catch (err) {
+      if (err instanceof LearnerBasicsError) throw new InvalidProfileValue(err.message);
+      throw err;
+    }
+  }
 
   return {
-    displayName: has("displayName")
-      ? (typeof body.displayName === "string" ? body.displayName.trim().slice(0, 80) || null : null)
-      : existing?.displayName ?? null,
+    displayName,
+    learner,
     // An implausible age is dropped quietly rather than erroring: a typo should not stop someone
     // from starting to learn.
     age: has("age")
@@ -96,7 +109,14 @@ export async function POST(request: Request) {
 
   await users()
     .item(session.userId, session.userId)
-    .replace({ ...user, profile, onboardedAt: user.onboardedAt ?? new Date().toISOString() });
+    .replace({
+      ...user,
+      profile,
+      // Onboarding has two screens now: the learner profile, then accessibility. Screen 1 saves with
+      // `complete: false`, so leaving between them resumes at screen 2; the last screen (and any
+      // older caller that sends no `complete`) finishes onboarding exactly as before.
+      onboardedAt: user.onboardedAt ?? (body.complete === false ? null : new Date().toISOString()),
+    });
 
   return NextResponse.json({ ok: true, profile });
 }

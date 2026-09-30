@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { HudCorners, HudEyebrow, HudButton, type PageName } from "@/components/hud/HudKit";
+import { HudCorners, type PageName } from "@/components/hud/HudKit";
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { LectureSummarySlide } from "@/components/LectureSummarySlide";
 import type { LectureSummary } from "@/lib/lectureSummary";
@@ -26,12 +26,13 @@ import { useAuth } from "@/components/auth/AuthGate";
 import { trackForProfile, isAdhdLearner } from "@/lib/adhd/gate";
 import { getSpeechRecognition, type SpeechRecognitionLike } from "@/lib/speech";
 import { matchSpokenAnswer } from "@/lib/spokenAnswer";
+import { learnerContextForPrompt, learnerProfileView } from "@/lib/learnerProfileView";
 import { takePendingBrief } from "@/lib/pendingBrief";
 import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/upload/PageSelector";
 import { PageStack } from "@/components/upload/PageStack";
 import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
-import { Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, Layers, Loader2, Mic } from "lucide-react";
 import { isPointingPhrase, looksLikeTitle, subjectFromTranscript } from "@/lib/pdfFocus";
 import { DOCUMENT_LIMITS } from "@/lib/documentLimits";
 import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
@@ -629,7 +630,11 @@ type BuildCost =
    * field, spread into each request; empty until memory has loaded, and for a new student.
    */
   function personaField(): { learnerPersona?: string } {
-    const block = personaForPrompt(learnerMemoryRef.current);
+    // Aria's portrait first (the script writer reads its "How to teach them" line), then the
+    // learner profile: country, level, curriculum, subjects and how each is going
+    // (lib/learnerProfileView.ts) — background, so terms and examples fit from the first lesson.
+    const profileLines = learnerContextForPrompt(learnerProfileView(profile?.learner ?? null, learnerMemoryRef.current)).slice(0, 1_000);
+    const block = [personaForPrompt(learnerMemoryRef.current), profileLines].filter(Boolean).join("\n\n");
     return block ? { learnerPersona: block } : {};
   }
 
@@ -3718,49 +3723,90 @@ function TestOfferScreen({
   onSkip: () => void;
   onGoDeeper?: () => void;
 }) {
+  /*
+   * What next, in the student's words: a finished lecture, then three plain choices — test
+   * yourself, go deeper, or stop. Each card says what actually happens when you press it; the old
+   * copy ("marked against what was taught rather than string-matched") described the marker to a
+   * developer, not the choice to a student.
+   */
+  const card =
+    "group flex w-full items-center gap-4 rounded-[var(--radius-lg)] border px-5 py-4 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-40";
   return (
     <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10">
       <div className="relative z-10 w-full max-w-xl">
-        <div className="relative z-10">
-          <HudEyebrow>End of lecture</HudEyebrow>
-          <h1 className="mt-6 font-display text-[2.6rem] leading-[1.0] tracking-[-0.025em] sm:text-[3.4rem]">
-            Now find out what
-            <br />
-            actually <span className="text-[var(--hud-text)]">stuck.</span>
-          </h1>
-          <p className="mt-7 border-t border-[var(--hud-line)] pt-6 text-[1.02rem] leading-[1.8] text-[var(--hud-text-dim)]">
-            Real questions on <span className="text-[var(--hud-text)]">{topic}</span>, marked against
-            what was taught rather than string-matched. Anything you miss is explained.
+        <p className="inline-flex items-center gap-2 text-[0.8rem] font-medium text-[var(--hud-cyan-bright)]">
+          <CheckCircle2 aria-hidden="true" size={16} strokeWidth={2} />
+          Lecture complete
+        </p>
+        <h1 className="mt-4 font-display text-[2.2rem] leading-[1.1] tracking-[-0.025em] text-[var(--hud-text)] sm:text-[2.7rem]">
+          Nice work. What would you like to do next?
+        </h1>
+        {topic && (
+          <p className="mt-4 text-[1rem] leading-relaxed text-[var(--hud-text-dim)]">
+            You just finished <span className="text-[var(--hud-text)]">{topic}</span>.
           </p>
+        )}
 
-          {error && <p className="mt-6 text-sm font-semibold text-rose-300">⚠️ {error}</p>}
+        {error && <p role="alert" className="mt-6 text-sm font-semibold text-rose-300">{error}</p>}
 
-          <div className="mt-9 flex flex-col items-center gap-3">
-            {forceOral ? (
-              <HudButton onClick={onOral} disabled={loading} className="w-full">
-                {loading ? "Preparing…" : "Take the oral exam →"}
-              </HudButton>
-            ) : (
-              /*
-               * One way in: the written test. The oral exam used to sit beside it as a choice and is
-               * no longer offered — blind mode above still gets it, because a typed exam is not a
-               * test a blind learner can take, so removing it there would remove the exam itself.
-               */
-              <div className="flex w-full flex-col gap-3">
-                <HudButton onClick={onWritten} disabled={loading} className="w-full">
-                  {loading ? "Preparing…" : "Take the test →"}
-                </HudButton>
-              </div>
-            )}
-            {onGoDeeper && (
-              <button onClick={onGoDeeper} disabled={loading} className="mt-1 text-sm font-bold text-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40">
-                Go deeper on this →
-              </button>
-            )}
-            <button onClick={onSkip} disabled={loading} className="mt-2 text-sm font-bold text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-40">
-              Skip, I&apos;m done
+        <div className="mt-9 space-y-3">
+          {/* The test is the recommended next step, so it is the one filled card. Blind mode takes
+              the oral exam, because a typed exam is not a test it can sit; nobody else is asked
+              to choose between the two. */}
+          <button
+            type="button"
+            onClick={forceOral ? onOral : onWritten}
+            disabled={loading}
+            className={card}
+            style={{ borderColor: "var(--hud-cyan)", background: "var(--hud-cyan-glow)" }}
+          >
+            <span className="grid size-10 shrink-0 place-items-center rounded-full" style={{ background: "var(--hud-cyan)", color: "var(--hud-bg)" }}>
+              {loading ? <Loader2 aria-hidden="true" size={18} className="animate-spin" /> : forceOral ? <Mic aria-hidden="true" size={18} /> : <ClipboardCheck aria-hidden="true" size={18} />}
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[1rem] font-semibold text-[var(--hud-text)]">
+                {loading ? "Writing your questions…" : forceOral ? "Take a spoken test" : "Test yourself"}
+              </span>
+              <span className="mt-0.5 block text-[0.85rem] leading-snug text-[var(--hud-text-dim)]">
+                {forceOral
+                  ? "Answer a few questions out loud. Aria tells you what you got right and explains anything you missed."
+                  : "A few short questions on what you just learned. Aria explains anything you get wrong."}
+              </span>
+            </span>
+            <ArrowRight aria-hidden="true" size={18} className="shrink-0 text-[var(--hud-text-dim)] transition-transform group-hover:translate-x-0.5" />
+          </button>
+
+          {onGoDeeper && (
+            <button
+              type="button"
+              onClick={onGoDeeper}
+              disabled={loading}
+              className={`${card} hover:bg-[var(--hud-surface)]`}
+              style={{ borderColor: "var(--hud-line)" }}
+            >
+              <span className="grid size-10 shrink-0 place-items-center rounded-full border" style={{ borderColor: "var(--hud-line-strong)", color: "var(--hud-text-dim)" }}>
+                <Layers aria-hidden="true" size={18} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[1rem] font-semibold text-[var(--hud-text)]">Go deeper</span>
+                <span className="mt-0.5 block text-[0.85rem] leading-snug text-[var(--hud-text-dim)]">
+                  Plan a more detailed lecture on this topic, building on what you just covered.
+                </span>
+              </span>
+              <ArrowRight aria-hidden="true" size={18} className="shrink-0 text-[var(--hud-text-faint)] transition-transform group-hover:translate-x-0.5" />
             </button>
-          </div>
+          )}
+        </div>
+
+        <div className="mt-6 text-center">
+          <button
+            type="button"
+            onClick={onSkip}
+            disabled={loading}
+            className="text-[0.9rem] text-[var(--hud-text-faint)] underline-offset-4 transition-colors hover:text-[var(--hud-text)] hover:underline disabled:opacity-40"
+          >
+            I&apos;m done for now
+          </button>
         </div>
       </div>
     </section>

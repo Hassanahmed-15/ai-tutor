@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 import { databaseConfigured, ensureContainers, users, type UserDoc } from "@/lib/db/cosmos";
 import { createSession, hashPassword, setAuthCookies, signAccessToken } from "@/lib/auth";
+import { passwordProblem } from "@/lib/passwordRules";
 
 export const runtime = "nodejs";
 
 /** Length beats composition rules, which mostly produce P@ssw0rd1. */
-const MIN_PASSWORD = 10;
 
 /**
  * Look a user up by email.
@@ -75,12 +75,9 @@ export async function POST(request: Request) {
   if (usernameProblem) {
     return NextResponse.json({ error: usernameProblem }, { status: 400 });
   }
-  if (password.length < MIN_PASSWORD) {
-    return NextResponse.json(
-      { error: `Use at least ${MIN_PASSWORD} characters — length matters more than symbols.` },
-      { status: 400 },
-    );
-  }
+  // The same rules the sign-up screen checks live (lib/passwordRules.ts).
+  const passwordIssue = passwordProblem(password, { email, username });
+  if (passwordIssue) return NextResponse.json({ error: passwordIssue }, { status: 400 });
 
   // Cosmos enforces unique keys only WITHIN a partition, and users partition by id, so the
   // container's unique-key policy cannot guarantee a unique email on its own. This check is the

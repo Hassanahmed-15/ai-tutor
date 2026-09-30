@@ -71,6 +71,27 @@ export const ACCESSIBILITY_PROFILES: AccessibilityProfile[] = [
   "deaf",
 ];
 
+export type OAuthProviderId = "google" | "apple" | "microsoft";
+
+/** One chosen or typed option (a subject, a level, a curriculum) — see lib/education.ts. */
+export type LearnerOption = { id: string; label: string; custom?: boolean };
+
+export type LearnerBasics = {
+  /** ISO 3166 alpha-2. */
+  country: string | null;
+  /** Where the country came from: detected by IP / browser language, or chosen by the student. */
+  countrySource: "ip" | "language" | "user" | null;
+  studyLevel: LearnerOption | null;
+  subjects: LearnerOption[];
+  /** Curricula, exams or study tracks. */
+  curricula: LearnerOption[];
+  /** Per-subject study level where it differs from `studyLevel` (keyed by subject id), set in settings. */
+  subjectLevels?: Record<string, LearnerOption>;
+  /** When screen 1 was completed. */
+  completedAt: string | null;
+  updatedAt: string;
+};
+
 export type UserDoc = {
   id: string;
   email: string;
@@ -79,6 +100,11 @@ export type UserDoc = {
   passwordHash: string;
   createdAt: string;
   onboardedAt: string | null;
+  /**
+   * Sign-in providers linked to this account (Google, Apple, Microsoft — lib/oauth.ts). An account
+   * made through a provider has an empty `passwordHash`, so password sign-in simply never matches.
+   */
+  identities?: Array<{ provider: OAuthProviderId; subject: string; email: string | null; linkedAt: string }>;
   /** Embedded rather than a separate container — see the note above. */
   profile: {
     displayName: string | null;
@@ -100,6 +126,14 @@ export type UserDoc = {
     /** Saved teaching depth ("adaptive" = decide per request). A request's own words override it. */
     teachingDepth?: "quick" | "balanced" | "deep" | "adaptive" | null;
     notes: string | null;
+    /**
+     * The learner profile's basics, set on onboarding screen 1 and editable in settings
+     * (components/auth/OnboardingScreen.tsx). Absent on accounts made before it existed — those are
+     * shown screen 1 once (see /api/auth/me `needsLearnerProfile`). The evolving half of the profile
+     * (strong/weak areas, mastered, needs review…) is derived from the learner memory, not stored
+     * here — see lib/learnerProfileView.ts.
+     */
+    learner?: LearnerBasics | null;
     updatedAt: string;
   } | null;
   /**

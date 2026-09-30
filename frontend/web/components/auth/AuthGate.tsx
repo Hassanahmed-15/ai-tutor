@@ -4,13 +4,17 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 import { AuthScreen } from "./AuthScreen";
 import { OnboardingScreen } from "./OnboardingScreen";
 import { SettingsScreen } from "./SettingsScreen";
-import type { AccessibilityProfile } from "@/lib/db/cosmos";
+import type { AccessibilityProfile, LearnerBasics } from "@/lib/db/cosmos";
 
 export type SessionUser = {
   id: string;
   email: string;
   username: string;
   onboarded: boolean;
+  /** Onboarding screen 1 (learner profile) not yet completed — see /api/auth/me. */
+  needsLearnerProfile?: boolean;
+  hasPassword?: boolean;
+  providers?: string[];
   createdAt?: string;
 };
 
@@ -25,6 +29,8 @@ export type LearnerProfile = {
   /** How much Aria teaches by default; the student's own words in a request override it. */
   teachingDepth?: TeachingDepth | null;
   notes: string | null;
+  /** The learner profile's basics (onboarding screen 1; editable in settings). */
+  learner?: LearnerBasics | null;
 } | null;
 
 export type TeachingDepth = "quick" | "balanced" | "deep" | "adaptive";
@@ -115,7 +121,8 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       if (!data.user) return setState("anon");
       setUser(data.user);
       setProfile(data.profile ?? null);
-      setState(data.user.onboarded ? "ready" : "onboarding");
+      // Onboarding until both screens are done; an account from before screen 1 existed sees it once.
+      setState(data.user.onboarded && !data.user.needsLearnerProfile ? "ready" : "onboarding");
     } catch {
       // Still degrades open — a network failure must not lock a student out of a lesson they were
       // mid-way through — but it is reported now rather than mimicking a no-database deployment.
@@ -163,7 +170,17 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
     );
   }
   if (state === "anon") return <AuthScreen onAuthenticated={refresh} />;
-  if (state === "onboarding") return <OnboardingScreen email={user?.email ?? ""} onDone={refresh} />;
+  if (state === "onboarding") {
+    return (
+      <OnboardingScreen
+        email={user?.email ?? ""}
+        profile={profile}
+        // Already onboarded: only the learner profile is missing — screen 1, then straight in.
+        profileOnly={Boolean(user?.onboarded)}
+        onDone={refresh}
+      />
+    );
+  }
 
   return (
     <AuthContext.Provider value={{ user, profile, refresh, openSettings }}>

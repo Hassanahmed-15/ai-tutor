@@ -13,7 +13,7 @@ import { narrationRecovery } from "@/lib/narrationRecovery";
 import { useTeacherQuiz } from "@/lib/useTeacherQuiz";
 import { QuizPrompt } from "./QuizPrompt";
 import { useAttentionMonitor } from "@/lib/useAttentionMonitor";
-import { initialFocus, advanceFocus, mayInterrupt, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
+import { initialFocus, advanceFocus, hyperfocusMinutes, type FocusTracker } from "@/lib/adhd/focusState";
 import { buildDocumentContext, buildLessonContext, type PlannedPart } from "@/lib/lessonChatContext";
 import { useLessonChat, ChatPanel, ExplainOverlay } from "./lesson-chat/LessonChat";
 import { useGeminiLiveTutor, type GeminiLiveBoard } from "@/lib/useGeminiLiveTutor";
@@ -23,8 +23,6 @@ import { beatSourceGroundingFor, isStrictScope, withStrictSourceHeader } from "@
 import { DrawOverlay } from "./sketch/DrawOverlay";
 import { HighlightOverlay, type HlStroke } from "./sketch/HighlightOverlay";
 import { HudCorners } from "./hud/HudKit";
-
-const UNDERSTANDING_CHECK_EVERY = 4;
 
 // Historical env name retained for deployment compatibility; the live tutor now runs on Gemini.
 const REALTIME_TUTOR_ENABLED = process.env.NEXT_PUBLIC_REALTIME_TUTOR_ENABLED === "1";
@@ -110,7 +108,6 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const highlightCtxTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [drawingContext, setDrawingContext] = useState("");
   const [exportingPdf, setExportingPdf] = useState(false);
-  const comprehensionAskedForRef = useRef(-1);
 
   const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -466,24 +463,8 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
     if (holdTimer.current) clearTimeout(holdTimer.current);
   }, []);
 
-  // The teacher's own periodic comprehension check (same cadence as the standard LessonPlayer),
-  // on top of the camera-based drift detection above — a real teacher checks in occasionally even
-  // when attention looks fine.
-  useEffect(() => {
-    if (!lesson.playing || comprehensionAskedForRef.current === index || isCheckpoint || waitingOnCheckpoint) return;
-    const due = index > 0 && index % UNDERSTANDING_CHECK_EVERY === 0 && stage === "board" && !speaking;
-    if (!due) return;
-    // Not while they are locked in. This check is scheduled by US, on a beat count that knows
-    // nothing about the learner's state — and breaking a hyperfocus run to ask "are you following?"
-    // is the single most expensive moment to ask. It fires at the next eligible beat instead.
-    if (!mayInterrupt(focus)) return;
-    comprehensionAskedForRef.current = index;
-    quiz.ask({
-      kind: "comprehension",
-      question: `Quick check — in your own words, what's the main idea of "${beat.title}" so far?`,
-      expected: beat.script,
-    });
-  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, index, stage, speaking, quiz, beat.title, beat.script, focus]);
+  // The periodic "Quick check" pop-up was removed at the owner's request (2026-09-30), here as in
+  // the standard LessonPlayer; the flown checkpoints and drift detection above are unaffected.
 
   function resumeFromFocusPause() {
     if (holdTimer.current) clearTimeout(holdTimer.current);

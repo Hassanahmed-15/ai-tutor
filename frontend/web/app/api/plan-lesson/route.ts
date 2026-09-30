@@ -111,7 +111,8 @@ const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
  * earlier-lesson background, which what the student says now overrides. Capped here regardless.
  */
 function personaLine(value: unknown): string {
-  const text = typeof value === "string" ? value.trim().slice(0, 1_000) : "";
+  // Aria's portrait (≤ 900) plus the learner profile's lines (lib/learnerProfileView.ts).
+  const text = typeof value === "string" ? value.trim().slice(0, 2_000) : "";
   return text ? `\n\n${text}` : "";
 }
 const OUTLINE_MAX_TOKENS = Math.max(1_700, Math.min(16_000, Number(process.env.OPENAI_PLAN_MAX_TOKENS ?? 8_000)));

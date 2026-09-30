@@ -98,8 +98,6 @@ const MAX_CHECKIN_RECONNECTS = 3;
 // away never stops the lecture; the board then freezes for a beat before offering Resume.
 const DRIFT_HOLD_MS = 2000;
 const FOCUS_HOLD_MS = 5000;
-/** How often (in beats) the teacher breaks off to check comprehension, the way a real one would. */
-const UNDERSTANDING_CHECK_EVERY = 4;
 
 // Client-side mirror of the server's REACT_ANIMATIONS_ENABLED kill switch (see
 // app/api/generate-lecture/route.ts). When off, beats never carry filled `code` anyway (the
@@ -699,7 +697,6 @@ export function LessonPlayer({
   const [beatQuestions, setBeatQuestions] = useState(0);
   const [driftEvents, setDriftEvents] = useState(0);
   const [lastInteractionAt, setLastInteractionAt] = useState(() => Date.now());
-  const comprehensionAskedForRef = useRef(-1);
   // Focus-pause flow: null = running, "stopped" = frozen during the hold, "ready" = awaiting Resume.
   const [focusPause, setFocusPause] = useState<null | "stopped" | "ready">(null);
   const focusHoldTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -2283,27 +2280,9 @@ export function LessonPlayer({
     lesson.requestResume();
   }
 
-  // Comprehension check: fires once per beat when engagement is in the 30-50 band, or on a
-  // periodic cadence regardless of engagement — a real teacher checks in occasionally even when
-  // things seem fine, not only when a student looks lost. Tracked via a ref keyed by beat index
-  // (never rendered) rather than boolean state, so no reset-on-beat-change effect is needed.
-  useEffect(() => {
-    if (!lesson.playing || comprehensionAskedForRef.current === index || isCheckpoint || waitingOnCheckpoint) return;
-    /*
-     * The ADHD track asks ONE kind of question: the flown checkpoint every third beat. Standard mode
-     * keeps this check exactly as it was — non-ADHD has seen no change throughout this work.
-     */
-    if (adhd) return;
-    const dueToEngagement = engagement.low && !engagement.critical;
-    const dueToPeriod = index > 0 && index % UNDERSTANDING_CHECK_EVERY === 0 && stage === "board" && !speaking;
-    if (!dueToEngagement && !dueToPeriod) return;
-    comprehensionAskedForRef.current = index;
-    quiz.ask({
-      kind: dueToEngagement ? "understanding" : "comprehension",
-      question: `Quick check — in your own words, what's the main idea of "${beat.title}" so far?`,
-      expected: beat.script,
-    });
-  }, [lesson.playing, isCheckpoint, waitingOnCheckpoint, engagement.low, engagement.critical, index, stage, speaking, quiz, adhd, beat.title, beat.script]);
+  // The periodic "Quick check — in your own words…" pop-up was removed at the owner's request
+  // (2026-09-30): it interrupted the lecture every few parts. The plan's own checkpoints and the
+  // focus pause above are unaffected.
 
   /**
    * Aria goes quiet for the question.

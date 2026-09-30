@@ -11,6 +11,7 @@ import { isAdhdLearner } from "@/lib/adhd/gate";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { LectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
 import { setPendingLecture } from "@/lib/pendingLecture";
+import { PromptTiles } from "@/components/pages/PromptTiles";
 
 /**
  * The front page. One panel, centred, and nothing else.
@@ -236,6 +237,16 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
             </div>
           )}
         </form>
+
+        {/* Lecture recommendations from the learner profile — signed-in learners only. */}
+        {user && (
+          <PromptTiles
+            onPick={(prompt) => {
+              setPendingBrief({ topic: prompt, file: null });
+              go("learn");
+            }}
+          />
+        )}
 
         <div className="mt-10 text-left">
           <LectureHistory onReplay={replayLecture} />

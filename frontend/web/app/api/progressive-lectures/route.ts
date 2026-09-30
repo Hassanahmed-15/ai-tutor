@@ -70,7 +70,7 @@ export async function POST(request: Request) {
       confirmedAt: snapshot.confirmedAt || new Date().toISOString(),
     },
     learner,
-    learnerPersona: text(body.learnerPersona, 1_000),
+    learnerPersona: text(body.learnerPersona, 2_000),
   };
 
   try {

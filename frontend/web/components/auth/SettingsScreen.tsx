@@ -13,6 +13,9 @@ const TEACHING_DEPTHS: { value: TeachingDepth; label: string; hint: string }[] =
   { value: "deep", label: "Deep", hint: "Go further: mechanism, edge cases, more examples." },
 ];
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
+import { LearnerProfileInsights } from "@/components/memory/LearnerProfileInsights";
+import { LearnerProfileFields, type LearnerFieldsValue } from "./LearnerProfileFields";
+import { allStudyLevels, studyLevelsFor, type EduOption } from "@/lib/education";
 
 /**
  * Profile and settings.
@@ -54,6 +57,20 @@ export function SettingsScreen({
   });
   const [notes, setNotes] = useState(profile?.notes ?? "");
   const [teachingDepth, setTeachingDepth] = useState<TeachingDepth>(profile?.teachingDepth ?? "adaptive");
+  // The learner profile's basics — the same fields as onboarding screen 1 — and per-subject levels.
+  const [learnerFields, setLearnerFields] = useState<LearnerFieldsValue>({
+    country: profile?.learner?.country ?? null,
+    countrySource: profile?.learner?.countrySource ?? null,
+    studyLevel: profile?.learner?.studyLevel ?? null,
+    subjects: profile?.learner?.subjects ?? [],
+    curricula: profile?.learner?.curricula ?? [],
+  });
+  const [subjectLevels, setSubjectLevels] = useState<Record<string, EduOption>>(profile?.learner?.subjectLevels ?? {});
+  const levelChoices = (() => {
+    const local = studyLevelsFor(learnerFields.country);
+    const seen = new Set(local.map((l) => l.id));
+    return [...local, ...allStudyLevels().filter((l) => !seen.has(l.id))];
+  })();
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,6 +107,11 @@ export function SettingsScreen({
           ...prefs,
           teachingDepth,
           notes,
+          learner: {
+            ...learnerFields,
+            // Only subjects still chosen keep their own level.
+            subjectLevels: Object.fromEntries(Object.entries(subjectLevels).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
+          },
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -199,6 +221,45 @@ export function SettingsScreen({
                   />
                 </div>
               </div>
+            </section>
+
+            <section>
+              <h3 className="mb-1 text-[0.95rem] text-[var(--hud-text)]">Your learner profile</h3>
+              <p className="mb-4 text-[0.78rem] leading-relaxed text-[var(--hud-text-faint)]">
+                What you study and where. Aria uses it for suggestions, examples and terminology.
+              </p>
+              <LearnerProfileFields value={learnerFields} onChange={setLearnerFields} />
+              {learnerFields.subjects.length > 0 && (
+                <div className="mt-6">
+                  <p className="mb-2 text-[0.84rem] font-medium text-[var(--hud-text)]">Study level by subject</p>
+                  <p className="mb-3 text-[0.76rem] text-[var(--hud-text-faint)]">Only where a subject is at a different level from your main one.</p>
+                  <div className="space-y-2">
+                    {learnerFields.subjects.map((subject) => (
+                      <div key={subject.id} className="grid grid-cols-[1fr_1.4fr] items-center gap-3">
+                        <label htmlFor={`subject-level-${subject.id}`} className="truncate text-[0.84rem] text-[var(--hud-text-dim)]">{subject.label}</label>
+                        <select
+                          id={`subject-level-${subject.id}`}
+                          value={subjectLevels[subject.id]?.id ?? ""}
+                          onChange={(e) => {
+                            const picked = levelChoices.find((l) => l.id === e.target.value);
+                            setSubjectLevels((prev) => {
+                              const next = { ...prev };
+                              if (picked) next[subject.id] = { id: picked.id, label: picked.label };
+                              else delete next[subject.id];
+                              return next;
+                            });
+                          }}
+                          className="w-full rounded-[var(--radius)] border bg-[var(--hud-bg)] px-3 py-2 text-[0.85rem] text-[var(--hud-text)]"
+                          style={{ borderColor: "var(--hud-line)" }}
+                        >
+                          <option value="">Same as my study level</option>
+                          {levelChoices.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
 
             <section>
@@ -365,6 +426,14 @@ export function SettingsScreen({
               </span>
             </div>
           </form>
+
+          <section className="mt-8 border-t pt-6" style={{ borderColor: "var(--hud-line)" }}>
+            <h3 className="mb-1 text-[0.95rem] text-[var(--hud-text)]">How you&apos;re doing</h3>
+            <p className="mb-4 text-[0.8rem] text-[var(--hud-text-faint)]">
+              Your profile as Aria has come to know it, subject by subject. It grows with every lesson — correct anything that&apos;s wrong.
+            </p>
+            <LearnerProfileInsights basics={profile?.learner ?? null} />
+          </section>
 
           <section className="mt-8 border-t pt-6" style={{ borderColor: "var(--hud-line)" }}>
             <h3 className="mb-1 text-[0.95rem] text-[var(--hud-text)]">What Aria remembers about you</h3>
