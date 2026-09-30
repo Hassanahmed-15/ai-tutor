@@ -2,6 +2,19 @@ import type { SuprnotesLessonInput } from "./suprnotes";
 import type { PdfFidelity } from "./sourceScope";
 import type { DepthLevel } from "./learnerProfile";
 import { DEPTH_OPTIONS } from "./diagnosticPrompt";
+import { isDirectQuestion } from "./planPrompt";
+
+/**
+ * WHICH PAGES A LECTURE IS BUILT FROM.
+ *
+ * A real question ("why does SMOTE help the minority class?") is answered from the WHOLE file,
+ * whatever was ticked: the answer may sit on a page the student did not think to pick. Anything
+ * else (a topic, or nothing typed) is taught from the ticked pages. `[]` means the whole document,
+ * exactly as both parsers read an empty `pages` field. The chat sees the whole file either way.
+ */
+export function pagesForLecture(request: string, ticked: number[]): number[] {
+  return isDirectQuestion(request) ? [] : ticked;
+}
 
 export type DocumentPlanningOption = {
   label: string;

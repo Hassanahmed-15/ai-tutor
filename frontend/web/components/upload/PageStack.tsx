@@ -1,8 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { PageAreaSelect } from "@/components/upload/PageAreaSelect";
-import type { DocumentPage, NormalisedRect } from "@/components/upload/PageSelector";
+import type { DocumentPage } from "@/components/upload/PageSelector";
 
 /**
  * A continuous, Acrobat-style scroller through every page of the upload, replacing what used to be
@@ -13,28 +12,20 @@ import type { DocumentPage, NormalisedRect } from "@/components/upload/PageSelec
  * written from the complete document in one model call, so twenty already-rendered `data:` URI
  * thumbnails is nothing to lazily gate; mounting all of them plainly is simpler and cannot repeat
  * the "hundreds of getPage() calls flood the worker" bug that virtualization exists to prevent
- * in the viewer. Each page keeps its own independent crop-region selector (PageAreaSelect) so a
- * region can be dragged on any page without first "opening" it, and its own selection control, so
- * choosing pages happens in the document itself rather than in a separate grid.
+ * in the viewer. Each page has its own selection control, so choosing pages happens in the document
+ * itself rather than in a separate grid. Pages are chosen whole: dragging a box over part of a page
+ * was removed — a question now uses every page, and otherwise the ticked pages are the lecture.
  */
 export function PageStack({
   pages,
-  regions,
-  onRegionChange,
   selected,
   onToggleSelected,
-  onUseRegion,
   label = "pages",
 }: {
   pages: DocumentPage[];
-  regions: Record<number, NormalisedRect>;
-  onRegionChange: (pageNumber: number, rect: NormalisedRect | undefined) => void;
   /** Page numbers chosen so far, in the order they were chosen. */
   selected: number[];
   onToggleSelected: (pageNumber: number) => void;
-  /** Build a lecture from just this page's cropped region right now, without waiting for the
-   *  header's "Use N pages" button. */
-  onUseRegion: (pageNumber: number) => void;
   /** "pages" for a PDF, "slides" for a deck. */
   label?: "pages" | "slides";
 }) {
@@ -45,15 +36,14 @@ export function PageStack({
       <div className="mx-auto flex max-w-2xl flex-col gap-10">
         {/*
          * HOW TO USE THIS, in plain words. The page picker explained nothing: a student did not know
-         * they could pick pages, drag over one part, or ask a question — so they uploaded and hoped.
+         * they could pick pages or ask a question — so they uploaded and hoped.
          */}
         <div className="rounded-xl border border-[var(--hud-line-strong)] bg-white/[0.03] px-5 py-4">
           <p className="text-[0.95rem] font-semibold text-[var(--hud-text)]">How to learn from your {label === "pages" ? "PDF" : "slides"}</p>
           <ol className="mt-2.5 space-y-2 text-[0.88rem] leading-relaxed text-[var(--hud-text-dim)]">
             <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">1</span>Press <span className="font-semibold text-[var(--hud-text)]">Select {label === "pages" ? "page" : "slide"}</span> on the {label} you want to learn from. Skip this to use all of them.</li>
-            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">2</span>Only want one part, like a diagram or a formula? <span className="font-semibold text-[var(--hud-text)]">Drag a box over it</span> on the {label === "pages" ? "page" : "slide"}.</li>
-            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">3</span>Have a question? Type it in the box at the bottom, for example <span className="italic text-[var(--hud-text)]">&ldquo;What is starch?&rdquo;</span> Aria will answer only that. Leave it empty to learn everything you selected.</li>
-            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">4</span>Press <span className="font-semibold text-[var(--hud-text)]">Use</span> at the top right to start.</li>
+            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">2</span>Have a question? Type it in the box at the bottom, for example <span className="italic text-[var(--hud-text)]">&ldquo;What is starch?&rdquo;</span> Aria answers it from all of the {label}, whichever you selected. Leave it empty to learn the {label} you selected.</li>
+            <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">3</span>Press <span className="font-semibold text-[var(--hud-text)]">Use</span> at the top right to start.</li>
           </ol>
         </div>
         {pages.map((page) => {
@@ -65,9 +55,7 @@ export function PageStack({
                 <p className="text-[0.72rem] font-semibold text-[var(--hud-text-faint)]">
                   {label === "pages" ? "Page" : "Slide"} {page.pageNumber}
                 </p>
-                {/* Selection lives here, not in a separate grid — a small control next to the page
-                    label, deliberately outside the draggable image so it never fights the
-                    crop-region drag gesture. */}
+                {/* Selection lives here, not in a separate grid — a small control next to the page label. */}
                 <button
                   type="button"
                   onClick={() => onToggleSelected(page.pageNumber)}
@@ -100,13 +88,15 @@ export function PageStack({
                 className="rounded-[var(--radius)] transition-shadow"
                 style={{ boxShadow: isSelected ? "0 0 0 3px var(--hud-cyan)" : "none" }}
               >
-                <PageAreaSelect
+                {/* eslint-disable-next-line @next/next/no-img-element -- a data: URI has no remote host to
+                    optimise and next/image would only add overhead here. */}
+                <img
                   src={page.thumbnail}
-                  alt={`Page ${page.pageNumber}`}
-                  rect={regions[page.pageNumber]}
-                  onChange={(rect) => onRegionChange(page.pageNumber, rect)}
-                  fill={false}
-                  onUseRegion={() => onUseRegion(page.pageNumber)}
+                  alt={`${label === "pages" ? "Page" : "Slide"} ${page.pageNumber}`}
+                  draggable={false}
+                  data-page-image
+                  className="block w-full max-w-2xl select-none rounded-[var(--radius)] border bg-white object-contain"
+                  style={{ borderColor: "var(--hud-line)" }}
                 />
               </div>
             </div>

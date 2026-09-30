@@ -5,6 +5,7 @@ import {
   fallbackDocumentScopeQuestion,
   isSpecificDocumentRequest,
   isWholeDocumentRequest,
+  pagesForLecture,
   sanitizeDocumentPlanningQuestions,
   shouldPlanDocumentScope,
 } from "../documentLessonPlanning";
@@ -86,4 +87,19 @@ test("document question sanitization rejects a scope response without whole-sour
   assert.equal(result[1].kind, "emphasis");
   assert.match(result[1].question, /Procedure and Code/);
   assert.match(result[1].options[0].instruction, /only material present/i);
+});
+
+/**
+ * A question is answered from EVERY page, whatever was ticked; anything else is taught from the
+ * ticked pages. `[]` is the whole document, as both parsers read an empty `pages` field.
+ */
+test("a question uses every page, even when some were ticked", () => {
+  assert.deepEqual(pagesForLecture("Why does SMOTE help the minority class?", [2]), []);
+  assert.deepEqual(pagesForLecture("how does the ablation work", [2, 3]), []);
+});
+
+test("a topic, or nothing typed, uses the ticked pages", () => {
+  assert.deepEqual(pagesForLecture("camera sensor", [2]), [2]);
+  assert.deepEqual(pagesForLecture("", [4, 1]), [4, 1]);
+  assert.deepEqual(pagesForLecture("", []), []);
 });
