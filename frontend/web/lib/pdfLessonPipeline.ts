@@ -934,7 +934,9 @@ export function buildPdfLessonPlan(blocks: SuprnotesContentBlock[], assets: Supr
     beats.push({
       id: `pdf-${beats.length + 1}`,
       title,
-      objective: `Teach these source blocks completely and in order${pageGroup.length ? ` from page${pageGroup.length > 1 ? "s" : ""} ${pageGroup.join("-")}` : ""}, connecting them as one coherent explanation.`,
+      // No page number here: the objective reaches the script, and "from page 3" came back as the
+      // teacher saying where things are. The page stays in `pageNumbers` for the PDF highlight.
+      objective: "Teach these source blocks completely and in order, connecting them as one coherent explanation.",
       sourceBlockIds,
       pageNumbers: pageGroup,
       visualMode: useImage ? "provided_image" : useSvg ? "svg_diagram" : "paper_whiteboard",

@@ -98,7 +98,10 @@ export const STRICT_SOURCE_RULE =
   "teacher, in plain, simple words — say what each part means and how the pieces connect. Everyday " +
   "explaining words are fine; what must come ONLY from the source is the CONTENT: every fact, technical " +
   "term, name, number, cause and example. A sentence that adds content the source does not have is " +
-  "deleted before the student hears it.";
+  "deleted before the student hears it. TEACH THE CONTENT, NOT THE DOCUMENT: never say where something " +
+  "is or what a part of the document does, with no \"this section discusses\", \"this board explains\", \"this part covers\", \"the " +
+  "source says\", \"the paper states\", \"on page 3\" or \"next it turns to\". Say the idea itself; the student " +
+  "already sees the passage highlighted on their PDF.";
 
 /**
  * The instruction handed to both the outline planner and the lecture writer.

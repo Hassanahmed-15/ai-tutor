@@ -2430,7 +2430,9 @@ export function LessonPlayer({
    */
   // Gated on the DOCUMENT, not the workspace: a reference lesson has no page viewer but still reuses a
   // printed figure on the part that matches it — the student's own diagram beats a redrawn one.
-  const beatFigure = sourceScope && isSuprnotesLessonInput(sourceDocument)
+  // Never in STRICT: its PDF is on screen beside the board with the passage boxed, so a crop of the
+  // same page on the board only repeated it. The slide keeps its drawn board there.
+  const beatFigure = sourceScope && sourceScope.fidelity !== "strict" && isSuprnotesLessonInput(sourceDocument)
     ? sourceFigureFor(sourceDocument.contentBlocks ?? [], beat.sourceBlockIds)
     : null;
   const spokenSoFar = beatFigure

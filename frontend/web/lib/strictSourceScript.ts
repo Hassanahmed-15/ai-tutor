@@ -69,6 +69,46 @@ function clean(value: unknown): string {
 }
 
 /** The beat's own blocks, in the document's reading order. */
+/**
+ * NARRATION THAT POINTS AT THE DOCUMENT INSTEAD OF TEACHING IT.
+ *
+ * A strict lecture shows the passage being taught boxed on the student's PDF, so the teacher saying
+ * "This section discusses…", "Next, the source turns to I." or "As shown on page 3, …" is noise —
+ * and the second one read out a bare heading. The prompt forbids it; this is the guarantee. A
+ * pointer phrase is cut from its sentence and the sentence kept when real content remains ("This
+ * section discusses related work on imbalance." → "Related work on imbalance."); a sentence that was
+ * only a pointer ("Next, the source turns to I.") is dropped.
+ */
+const POINTER_OPENERS: RegExp[] = [
+  /^(?:next|now|then)[,:]?\s+(?:the\s+)?(?:source|paper|document|text|pdf|author|authors|notes)\s+(?:turns|moves|goes|shifts)\s+(?:on\s+)?to\s+/i,
+  /^(?:in\s+)?(?:this|the\s+next|the\s+following|the\s+previous|that)\s+(?:section|part|page|paragraph|passage|slide|board)(?:\s+of\s+the\s+(?:paper|document|source|text|pdf))?,?\s+(?:we\s+)?(?:looks\s+at|focuses\s+on|deals\s+with|turns\s+to|is\s+about|talks\s+about|goes\s+over|look\s+at|see|[a-z]+s)\s+/i,
+  // ("…[a-z]+s" is any present-tense verb: the model found "compares" and "highlights" once the
+  // listed ones were ruled out, so the subject — "this section/board/part/page" — is what's matched.)
+  /^(?:in|within|on)\s+this\s+(?:section|part|page|paragraph|passage|slide|board),?\s+/i,
+  /^(?:the|this|your)\s+(?:source|paper|document|text|pdf|author|authors)\s+(?:says|states|notes|explains|describes|shows|mentions|argues|points\s+out|tells\s+us)(?:\s+that)?,?\s+/i,
+  /^(?:as\s+(?:shown|stated|described|noted|mentioned)\s+)?(?:on|in)\s+page\s+\d+,?\s+/i,
+  /^(?:according\s+to\s+the\s+(?:source|paper|document|text|pdf)),?\s+/i,
+];
+const POINTER_INLINE = /,?\s*(?:as\s+(?:shown|stated|described|noted)\s+)?(?:on|in)\s+page\s+\d+(?:\s+of\s+the\s+(?:paper|document|source|pdf))?/gi;
+
+export function withoutSourcePointers(text: string): string {
+  const sentences = text.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()).filter(Boolean);
+  const kept: string[] = [];
+  for (const sentence of sentences) {
+    let rest = sentence;
+    for (const opener of POINTER_OPENERS) rest = rest.replace(opener, "");
+    rest = rest.replace(POINTER_INLINE, "").trim();
+    if (rest === sentence) {
+      kept.push(sentence);
+      continue;
+    }
+    // What is left must still say something: three words, not a bare heading like "I." or "E.".
+    if ((rest.match(/[A-Za-z]{2,}/g) ?? []).length < 3) continue;
+    kept.push(rest.charAt(0).toUpperCase() + rest.slice(1));
+  }
+  return kept.join(" ");
+}
+
 export function beatSourceBlocks<T extends SourceBlock>(blocks: T[], sourceBlockIds?: string[]): T[] {
   if (!sourceBlockIds?.length) return [];
   const wanted = new Set(sourceBlockIds);

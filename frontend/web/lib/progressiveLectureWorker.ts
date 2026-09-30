@@ -65,6 +65,7 @@ import {
   strictAdaptationNotes,
   strictRepetitionFindings,
   ungroundedScriptSentences,
+  withoutSourcePointers,
 } from "./strictSourceScript";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
@@ -519,16 +520,22 @@ async function generateOneBeat(
       sourceScript: source.spoken,
       // A neutral bridge: the ordinary fallback promises "a concrete example" whenever a title says
       // "try" or "practice", which a strict source may not have.
-      fallbackTransition: continuationPass(planned)
+      // No spoken bridge after the first board: "Next, the source turns to I." read out a bare
+      // heading and pointed at the document. The title card already says what comes next.
+      fallbackTransition: continuationPass(planned) || planned.sequence > 0
         ? undefined
-        : planned.sequence > 0
-          ? `Next, the source turns to ${planned.title}.`
-          : openingSentence(undefined, session.topic),
+        : openingSentence(undefined, session.topic),
     });
     if (grounded.removed.length > 0) {
       console.log(`[grounding] session=${session.id} seq=${planned.sequence} deleted=${grounded.removed.length} starter=${blocksPlayback} :: ${grounded.removed.map((s) => `"${s.slice(0, 80)}"`).join(" | ")}`);
     }
-    beat = grounded.beat;
+    // The teacher teaches the content, never the document ("This section discusses…", "on page 3").
+    beat = {
+      ...grounded.beat,
+      // A script that was nothing but pointers keeps its words rather than going silent.
+      script: withoutSourcePointers(grounded.beat.script ?? "") || grounded.beat.script,
+      ...(grounded.beat.transitionIn ? { transitionIn: withoutSourcePointers(grounded.beat.transitionIn) } : {}),
+    };
   }
   logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}${strict ? ` strict=1 words=${wordRange}` : ""}`);
   // The board generators read this as AUDIENCE guidance, so the visual is pitched like the script.
