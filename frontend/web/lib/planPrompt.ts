@@ -242,6 +242,25 @@ export function isDirectQuestion(text: string): boolean {
 }
 
 /**
+ * A QUESTION THAT NAMES A WHOLE TOPIC, AND NOTHING MORE.
+ *
+ * "What is photosynthesis?" is phrased as a question, but it asks for the topic: the student wants
+ * the lesson, not a one-slide definition. "How is the counter incremented in a while loop?" asks one
+ * specific thing and is answered in one or two slides. The difference is what follows the question
+ * word: a bare subject of a few words (no "how", "why", "in", "between", "role of" …) is a topic.
+ */
+export function isBroadTopicQuestion(text: string): boolean {
+  const value = text.trim().toLowerCase().replace(/[?.!\s]+$/, "").replace(/\s+/g, " ");
+  const match = value.match(/^(?:what\s+(?:is|are|was|were)|what'?s|whats|who\s+(?:is|are|was|were)|define|tell\s+me\s+about|explain)\s+(?:an?\s+|the\s+)?(.+)$/);
+  if (!match) return false;
+  const subject = match[1].trim();
+  if (!subject) return false;
+  // Anything that narrows it is a specific question: a relation, a part, a context, a condition.
+  if (/\b(?:difference|differences|between|vs\.?|versus|role|purpose|function|use|uses|used|meaning|mean|cause|causes|effect|effects|reason|reasons|happens?|why|how|when|where|if|does|do|did|in|of|for|with|during|after|before|inside|on|at|by|from|to|and|or)\b/.test(subject)) return false;
+  return subject.split(" ").length <= 4;
+}
+
+/**
  * The planner's instruction for a direct question: answer it, in one board, two at most.
  *
  * `nounTitles` is for a TYPED-PROMPT lecture, whose titles are noun phrases (PROMPT_OUTLINE_RULES):

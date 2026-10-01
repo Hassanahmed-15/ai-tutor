@@ -594,8 +594,32 @@ export function sectionsForQuestion<T extends { title: string; sourceBlockIds: s
 ): T[] {
   if (sections.length <= 2 || !question.trim()) return sections;
   if (isWholeDocumentRequest(question) || !isSpecificDocumentRequest(question)) return sections;
-  const asked = new Set(contentStems(question).filter((stem) => !/^(?:pdf|document|here|page|slide|explain|mean|meant)$/.test(stem)));
+  /*
+   * The words that carry the question. Request verbs ("used", "show", "list") match every section
+   * and decided the ranking on their own when the real word was misspelt: "what are datsets used"
+   * picked a section for saying "used" twice.
+   */
+  const filler = new Set(contentStems("pdf document paper here page slide explain mean meant use used using show tell give list describe mention work help"));
+  const asked = new Set(contentStems(question).filter((stem) => !filler.has(stem)));
   if (asked.size === 0) return sections;
+  /* A typo is still the word: "datsets" asks about datasets. One edit apart, on words of 5+ letters. */
+  const oneEditApart = (a: string, b: string): boolean => {
+    if (a === b) return true;
+    if (Math.min(a.length, b.length) < 5 || Math.abs(a.length - b.length) > 1) return false;
+    let i = 0;
+    let j = 0;
+    let edits = 0;
+    while (i < a.length && j < b.length) {
+      if (a[i] === b[j]) { i++; j++; continue; }
+      if (++edits > 1) return false;
+      if (a.length > b.length) i++;
+      else if (b.length > a.length) j++;
+      else { i++; j++; }
+    }
+    return edits + (a.length - i) + (b.length - j) <= 1;
+  };
+  const askedList = [...asked];
+  const isAsked = (stem: string) => asked.has(stem) || askedList.some((word) => oneEditApart(word, stem));
   /*
    * "WHAT IS X" IS ANSWERED WHERE X IS DEFINED. Counting mentions alone sent "what is starch" to
    * the section that TESTS for starch (starch in its title, starch on every line) instead of the
@@ -618,14 +642,30 @@ export function sectionsForQuestion<T extends { title: string; sourceBlockIds: s
     const raw = textOf(section.sourceBlockIds);
     const body = contentStems(raw);
     const title = contentStems(section.title);
-    const mentions = body.filter((stem) => asked.has(stem)).length + 2 * title.filter((stem) => asked.has(stem)).length;
-    const score = mentions + (definitional && mentions > 0 && defines(raw) ? 100 : 0);
+    /*
+     * DENSITY, NOT VOLUME, and the title above all. Raw counts let a 300-word abstract that says
+     * "dataset" three times outrank the 70-word "Dataset Selection" section, and on a student's paper
+     * a section that merely mentioned "five datasets" opened the answer. Body mentions are scored per
+     * 80 words; a title naming the asked word is worth more than any body.
+     */
+    const bodyMentions = body.filter(isAsked).length;
+    const titleMentions = title.filter(isAsked).length;
+    const mentions = bodyMentions + titleMentions;
+    const density = (bodyMentions * 80) / Math.max(80, body.length);
+    // A bibliography names every topic and answers none of them ("[8] N. Siagian, SMOTE-balanced…").
+    if (/^\s*(?:\[\d+\]|references\b|bibliography\b)/i.test(section.title)) return { section, index, score: 0 };
+    const score = density + 6 * titleMentions + (definitional && mentions > 0 && defines(raw) ? 100 : 0);
     return { section, index, score };
   });
   const best = Math.max(...scored.map((entry) => entry.score));
   if (best <= 0) return sections;
+  /*
+   * ONE SECTION ANSWERS, unless a second is nearly as strong. "At least half the best" kept a section
+   * that merely mentioned the asked word beside the one that is about it, and the student got a
+   * useless first slide; a second section now has to score three quarters of the best.
+   */
   const keep = scored
-    .filter((entry) => entry.score >= best / 2)
+    .filter((entry) => entry.score >= best * 0.75)
     .sort((a, b) => b.score - a.score || a.index - b.index)
     // A "what is X" the document defines is answered by the defining section alone.
     .slice(0, definitional && best >= 100 ? 1 : 2)

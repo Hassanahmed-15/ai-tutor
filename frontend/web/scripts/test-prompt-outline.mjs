@@ -19,8 +19,11 @@ const problems = [];
 
 const CASES = [
   { prompt: "Teach me photosynthesis", question: false },
+  // A whole-topic question is a full lesson, not a one-slide definition.
+  { prompt: "what is photosynthesis", question: false, minTopics: 3 },
   { prompt: "Why do leaves look green?", question: true },
   { prompt: "difference between TCP and UDP", question: true },
+  { prompt: "how in while how counter is incremented", question: true },
 ];
 
 const words = (t) => (t.toLowerCase().match(/[a-z]{4,}/g) ?? []).map((w) => w.replace(/(?:ing|es|s)$/, ""));
@@ -66,6 +69,7 @@ for (const [n, c] of CASES.entries()) {
     if (a.size && b.size && shared / Math.min(a.size, b.size) >= 0.8 && Math.min(a.size, b.size) >= 2) fail(`"${titles[i]}" repeats "${titles[j]}"`);
   }
   if (c.question && titles.length > 2) fail(`a question got ${titles.length} topics (max 2)`);
+  if (c.minTopics && titles.length < c.minTopics) fail(`a whole-topic question got ${titles.length} topic(s); a full lesson needs ${c.minTopics}+`);
   await ctx.close();
 }
 await browser.close();

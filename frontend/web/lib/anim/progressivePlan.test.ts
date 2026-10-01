@@ -433,3 +433,45 @@ test("a comparison counts as a question", async () => {
   assert.equal(isDirectQuestion("TCP vs UDP"), true);
   assert.equal(isDirectQuestion("photosynthesis"), false);
 });
+
+/**
+ * "what are datsets used" on a paper: the answer is the section listing the datasets. The section
+ * that merely MENTIONS "five binary datasets" while tuning thresholds came along as a useless first
+ * slide — the typo "datsets" matched nothing, so "used" decided the ranking.
+ */
+test("a question about a PDF is answered by the section that answers it, not one that mentions it", async () => {
+  const { sectionsForQuestion } = await import("../progressivePlan");
+  const sections = [
+    { title: "Threshold Tuning Across Five Domains", sourceBlockIds: ["a"] },
+    { title: "Training Set", sourceBlockIds: ["b"] },
+    { title: "Results", sourceBlockIds: ["c"] },
+  ];
+  const text: Record<string, string> = {
+    a: "We tuned the decision threshold on five binary datasets used in different domains, and the threshold used for each was chosen on validation data.",
+    b: "The training set consists of five datasets. The Oil Spill dataset contains satellite images. The CIC-IDS2017 dataset contains network flows. The Credit Card Fraud dataset contains card transactions. Each dataset is binary.",
+    c: "Class weighting gave the best macro-F1 on every domain, and stacking corrections was worst.",
+  };
+  const textOf = (ids: string[]) => ids.map((id) => text[id]).join(" ");
+  for (const question of ["what are datsets used", "what datasets are used?", "Which datasets are used in this paper?"]) {
+    const kept = sectionsForQuestion(sections, question, textOf);
+    assert.deepEqual(kept.map((s) => s.title), ["Training Set"], `"${question}" kept ${kept.map((s) => s.title).join(" + ")}`);
+  }
+});
+
+test("a whole-topic question is a lesson; a specific question is not", async () => {
+  const { isBroadTopicQuestion, isDirectQuestion } = await import("../planPrompt");
+  for (const broad of ["what is photosynthesis", "What is photosynthesis?", "what are neural networks", "what is the French Revolution", "explain recursion", "tell me about black holes"]) {
+    assert.equal(isBroadTopicQuestion(broad), true, `"${broad}" names a whole topic`);
+  }
+  for (const specific of [
+    "how in while how counter is incremented",
+    "how is the counter incremented in a while loop?",
+    "what is the difference between TCP and UDP",
+    "what is the role of chlorophyll in photosynthesis",
+    "why do leaves look green?",
+    "what happens when a node with two children is deleted",
+  ]) {
+    assert.equal(isBroadTopicQuestion(specific), false, `"${specific}" asks one specific thing`);
+    assert.equal(isDirectQuestion(specific), true, `"${specific}" is still a question (1-2 slides)`);
+  }
+});

@@ -23,8 +23,8 @@ import {
 } from "@/lib/learnerProfile";
 import { DIAGNOSTIC_SYSTEM_PROMPT, buildDiagnosticUserMessage } from "@/lib/diagnosticPrompt";
 import { learnerInstruction } from "@/lib/learnerProfile";
-import { PROMPT_OUTLINE_RULES, capQuestionOutline, directQuestionInstruction, isDirectQuestion, outlineLearnerInstruction } from "@/lib/planPrompt";
-import { polishBeatPlan } from "@/lib/beatPresentation";
+import { PROMPT_OUTLINE_RULES, capQuestionOutline, directQuestionInstruction, isBroadTopicQuestion, isDirectQuestion, outlineLearnerInstruction } from "@/lib/planPrompt";
+import { nounTitle, polishBeatPlan } from "@/lib/beatPresentation";
 import { costFor } from "@/lib/modelPricing";
 import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning";
 import { focusFromTranscript, focusPassages, focusPromptSection, isPointingPhrase, subjectFromFocus } from "@/lib/pdfFocus";
@@ -539,6 +539,10 @@ function streamOutline(
   focused = false,
   /** Set for a direct question: its outline is held to 1-2 subtopics with the model's own titles. */
   question?: string,
+  /** A general "what is X" prompt: always a full lesson, whatever scope the model returned. */
+  forceLesson = false,
+  /** A typed-prompt outline: its titles are shown as noun phrases ("Light Reactions", not "… Overview"). */
+  nounTitles = false,
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -597,7 +601,9 @@ function streamOutline(
          */
         const rawOutline = question
           ? { ...parsed, scope: "question" as const, subtopics: capQuestionOutline(parsed.subtopics, question) }
-          : parsed;
+          : forceLesson ? { ...parsed, scope: "lesson" as const } : parsed;
+        // The outline the student reviews shows the same titles the lecture will use.
+        if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
         const outline = focused
           ? {
               topic: rawOutline.topic || fallbackTopic,
@@ -902,7 +908,13 @@ export async function POST(req: Request) {
     // The student's own words decide question vs lesson — the topic has already been renamed to a
     // subject ("Underfitting in Machine Learning") and no longer carries the "why".
     const questionText = (typeof body.request === "string" && body.request.trim()) || topic;
-    const directQuestion = isDirectQuestion(questionText);
+    /*
+     * "What is photosynthesis?" names a whole topic: for a typed prompt it gets the full lesson, not
+     * one slide. A specific question ("how is the counter incremented in a while loop?") stays 1-2
+     * slides. With a document, any question is still answered from the document as before.
+     */
+    const broadTopic = !sourceDocument && isBroadTopicQuestion(questionText);
+    const directQuestion = isDirectQuestion(questionText) && !broadTopic;
     const learnerLine = body.learnerProfile
       ? outlineLearnerInstruction(
           learnerInstruction(
@@ -937,6 +949,8 @@ export async function POST(req: Request) {
     const documentIsSyllabus = Boolean(sourceDocument) && scope?.fidelity === "reference" && scope.breadth.kind === "whole" && !directQuestion;
     const requestLine = documentIsSyllabus
       ? `\nThe student uploaded this document to learn FROM it. Plan the lesson from the document's own content listed above: every subtopic is built on material in those sections, in a sensible teaching order, and together the subtopics cover the selected pages as a whole — not one section of them.${requestText ? ` The student typed "${requestText}" — use it only as what they call the subject or as what to emphasise.` : ""} If the typed words name something the document does not cover, the document wins; never plan a subtopic the document has no material for. You may go beyond the document when TEACHING each subtopic, not when choosing them.`
+      // A whole-topic question is not fenced to "answer THIS and nothing beyond it": it asks for the topic.
+      : broadTopic ? ""
       : requestText && requestText.toLowerCase() !== topic.toLowerCase()
       ? directQuestion
         ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it.`
@@ -948,8 +962,11 @@ export async function POST(req: Request) {
     const questionLine = directQuestion ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument }) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
-    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${promptRules}`;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined);
+    const broadLine = broadTopic
+      ? `\n\nTHIS IS A GENERAL QUESTION ABOUT A WHOLE TOPIC: "${questionText}". Set "scope": "lesson" and plan a comprehensive lesson that teaches the topic properly, from what it is to how it works and why it matters. It is not a one-slide definition.`
+      : "";
+    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${broadLine}${promptRules}`;
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined, broadTopic, !sourceDocument);
   }
 
   // mode === "revise"
