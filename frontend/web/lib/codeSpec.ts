@@ -345,9 +345,38 @@ export function pickCodeBeats<T extends { sequence: number; title: string; objec
  * long line. Several hits across at least two KINDS of syntax is the bar — a stray semicolon or one
  * quoted `f(x)` in prose is not a listing.
  */
+const LATEX_COMMAND = /\\(?:begin|end|hline|text|textbf|textit|mathrm|mathbf|frac|sqrt|sum|int|left|right|cdot|times|alpha|beta|gamma|delta|rho|sigma|mu|lambda|theta|pi|leq|geq|approx|rightarrow)\b/g;
+
+/** Three or more LaTeX commands: a formula or a typeset table, not a program. */
+function isLatexHeavy(value: string): boolean {
+  return (value.match(LATEX_COMMAND) ?? []).length >= 3;
+}
+
+/**
+ * A listing that is plainly not a program — for refusing a code board AFTER it was written.
+ *
+ * Deliberately narrower than `!looksLikeCode`: a three-line snippet is real code but has too few
+ * tells for `looksLikeCode`, and must not be thrown away. Only text that is typeset maths or has no
+ * code punctuation at all (prose) is refused.
+ */
+export function isPlainlyNotCode(value: string | undefined | null): boolean {
+  const text = (value ?? "").trim();
+  if (!text) return false;
+  return isLatexHeavy(text) || !/[;{}()=<>[\]]/.test(text);
+}
+
 export function looksLikeCode(value: string | undefined | null): boolean {
   if (!value) return false;
-  const count = (re: RegExp) => (value.match(re) ?? []).length;
+  /*
+   * LATEX IS NOT CODE. A table transcribed as `\begin{array}{|c|c|c|}` with `\text{…}` cells, or a
+   * formula full of `\frac{…}{…}`, is nothing but braces — and braces count as code below, so a
+   * paper's results table was shown on a "C++" code board, line-numbered. Text dominated by LaTeX
+   * commands is refused outright; otherwise the commands and their brace groups are removed before
+   * anything is counted.
+   */
+  if (isLatexHeavy(value)) return false;
+  const text = value.replace(/\\[a-zA-Z]+(?:\{[^{}]*\})*/g, " ").replace(/\\\\/g, " ");
+  const count = (re: RegExp) => (text.match(re) ?? []).length;
   const kinds = [
     count(/\b(?:if|while|for|switch|elif)\s*\(/g),
     count(/\w\s*->\s*\w/g),

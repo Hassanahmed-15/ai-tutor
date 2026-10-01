@@ -428,3 +428,30 @@ test("REFERENCE pages are material to draw on; STRICT and TYPED-TOPIC lines are 
   assert.doesNotMatch(strictText, /attached for reference/);
   assert.doesNotMatch(strictText, /not bound to the page/);
 });
+
+/**
+ * The PDF shows where each passage is; the teacher never says it. "Next, the source turns to I."
+ * and "This section discusses…" were spoken in a real strict lecture.
+ */
+test("strict narration never points at the document", async () => {
+  const { withoutSourcePointers } = await import("../strictSourceScript");
+  // A pointer with nothing after it but a heading is dropped.
+  assert.equal(withoutSourcePointers("Next, the source turns to I."), "");
+  assert.equal(withoutSourcePointers("Next, the source turns to E. Research gaps remain."), "Research gaps remain.");
+  // A pointer in front of real content is cut; the content stays.
+  assert.equal(
+    withoutSourcePointers("This section discusses related work on correction strategies for imbalanced datasets."),
+    "Related work on correction strategies for imbalanced datasets.",
+  );
+  assert.equal(withoutSourcePointers("In this section, SMOTE creates synthetic minority samples."), "SMOTE creates synthetic minority samples.");
+  // Seen in a real lecture after "section" was ruled out: the model said "board" instead.
+  assert.equal(withoutSourcePointers("This board explains the dataset used for classification tasks."), "The dataset used for classification tasks.");
+  // Any verb after "this section/board": seen next were "compares" and "highlights".
+  assert.equal(withoutSourcePointers("This section compares different correction strategies for class imbalance."), "Different correction strategies for class imbalance.");
+  assert.equal(withoutSourcePointers("This board highlights the precision-recall trade-off."), "The precision-recall trade-off.");
+  assert.equal(withoutSourcePointers("The paper states that class weighting raised recall."), "Class weighting raised recall.");
+  assert.equal(withoutSourcePointers("As shown on page 3, the threshold is the only difference."), "The threshold is the only difference.");
+  // Ordinary teaching is untouched, including words like "part" and "source" used as content.
+  const plain = "SMOTE adds synthetic samples. The minority class is the part that is misclassified. Energy flows from the source to the load.";
+  assert.equal(withoutSourcePointers(plain), plain);
+});

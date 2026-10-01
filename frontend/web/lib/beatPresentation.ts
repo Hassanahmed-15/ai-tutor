@@ -18,7 +18,7 @@ function trimWords(value: string, maximum: number): string {
  * purpose and" — a title that visibly stops mid-phrase. The dangling connective is dropped instead.
  */
 // A title cut from a sentence must not end mid-clause: "Remove Operation Is Difficult Because".
-const DANGLING_TAIL = /[\s,;:—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that|because|which|who|whose|where|when|while|if|so|but|as|than|since|although|unless|until|whether|nor|yet)?$/i;
+const DANGLING_TAIL = /[\s,;:|—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that|because|which|who|whose|where|when|while|if|so|but|as|than|since|although|unless|until|whether|nor|yet)?$/i;
 
 /**
  * A title taken from a document line keeps the line's typography unless it is stripped: a bulleted
@@ -69,6 +69,32 @@ export function topicKeywords(value: string, maxWords = MAX_TITLE_WORDS): string
       return word.replace(/[A-Za-z]/, (letter) => letter.toUpperCase());
     })
     .join(" ");
+}
+
+/**
+ * A SLIDE TITLE AS A NOUN PHRASE, for a typed-prompt lecture.
+ *
+ * The planner is asked for noun-phrase titles ("Hydraulic Actuators"), and this is the safety net for
+ * when it still writes a question or a sentence: "Why Do Leaves Look Green?" becomes "Leaves Look
+ * Green", "Understanding Hydraulic Actuators" becomes "Hydraulic Actuators", "How X Works" becomes
+ * "X", "Photosynthesis Explained" becomes "Photosynthesis". It never returns less than a word of the
+ * original: if stripping leaves nothing, the original stands.
+ */
+export function nounTitle(value: string): string {
+  const original = compact(value);
+  const stripped = original
+    .replace(/[?!.]+$/, "")
+    .replace(/^(?:what|why|how|when|where|which|who)\s+(?:is|are|was|were|does|do|did|can|could|will|would|should)\s+/i, "")
+    .replace(/^(?:what|why|how|when|where|which|who)\s+/i, "")
+    .replace(/^(?:understanding|exploring|learning about|discovering|examining|introducing|mastering)\s+/i, "")
+    .replace(INSTRUCTION_OPENER, "")
+    .replace(/^(?:an?\s+)?(?:introduction|intro|overview|basics|fundamentals)\s+(?:to|of)\s+/i, "")
+    .replace(/[\s:,-]+(?:explained|an overview|overview|basics|an introduction|introduction|in a nutshell)$/i, "")
+    .replace(/\s+(?:works?|matters?|happens?|occurs?)$/i, "")
+    .replace(/^(?:a|an|the)\s+/i, "")
+    .trim();
+  if (!/[A-Za-z]{3,}/.test(stripped)) return original;
+  return topicKeywords(stripped, 6) || original;
 }
 
 function keywordTitle(value: string, topic: string, maxWords = MAX_TITLE_WORDS): string {

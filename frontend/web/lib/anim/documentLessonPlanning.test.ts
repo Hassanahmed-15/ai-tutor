@@ -5,6 +5,7 @@ import {
   fallbackDocumentScopeQuestion,
   isSpecificDocumentRequest,
   isWholeDocumentRequest,
+  pagesForLecture,
   sanitizeDocumentPlanningQuestions,
   shouldPlanDocumentScope,
 } from "../documentLessonPlanning";
@@ -86,4 +87,30 @@ test("document question sanitization rejects a scope response without whole-sour
   assert.equal(result[1].kind, "emphasis");
   assert.match(result[1].question, /Procedure and Code/);
   assert.match(result[1].options[0].instruction, /only material present/i);
+});
+
+/**
+ * A question is answered from EVERY page, whatever was ticked; anything else is taught from the
+ * ticked pages. `[]` is the whole document, as both parsers read an empty `pages` field.
+ */
+test("a question uses every page, even when some were ticked", () => {
+  assert.deepEqual(pagesForLecture("Why does SMOTE help the minority class?", [2]), []);
+  assert.deepEqual(pagesForLecture("how is the decision threshold chosen?", [2, 3]), []);
+  // "How does X work" asks for the whole topic (isTopicRequest), so from the front page the ticked
+  // pages stand; typed in the picker's box it still reads every page (test below).
+  assert.deepEqual(pagesForLecture("how does the ablation work", [2, 3]), [2, 3]);
+});
+
+test("a topic, or nothing typed, uses the ticked pages", () => {
+  assert.deepEqual(pagesForLecture("camera sensor", [2]), [2]);
+  assert.deepEqual(pagesForLecture("", [4, 1]), [4, 1]);
+  assert.deepEqual(pagesForLecture("", []), []);
+});
+
+test("anything typed in the picker's box uses every page, however it is worded", () => {
+  assert.deepEqual(pagesForLecture("explain the flow chart diagram", [2], true), []);
+  // The same words from the front page are a topic, and the ticked pages stand.
+  assert.deepEqual(pagesForLecture("explain the flow chart diagram", [2]), [2]);
+  // An empty picker box leaves the ticked pages.
+  assert.deepEqual(pagesForLecture("", [2], true), [2]);
 });

@@ -290,3 +290,188 @@ test("front matter is recognised; teaching is not", () => {
   assert.equal(isFrontMatterSection("History", "The motor was improved by Dr. Tesla at a university lab over many years of experiments and patents.", 3), false);
   assert.equal(isFrontMatterSection("Types of Actuators", "Electric motors, hydraulic and pneumatic cylinders.", 2), false);
 });
+
+/**
+ * "GET A LECTURE FROM THIS AREA" TEACHES THE AREA.
+ *
+ * Shaped like a real parse of a box drawn on page 2 of a paper: the page's own text-layer blocks,
+ * one block for the box ("Page 2 (selected area)"), and a document plan whose first section holds
+ * the box together with the paragraphs around it, followed by the page's other sections. Every one
+ * of them used to become a board.
+ */
+const boxTranscript = "SMOTE with XGBoost on Tabular Data. Siagian evaluated SMOTE-balanced XGBoost on two tabular datasets, reporting F1-score and ROC-AUC.";
+const pageTwo = {
+  schemaVersion: "suprnotes.lesson_input.v1",
+  title: "Ablation study",
+  contentBlocks: [
+    { id: "above", pageNumber: 2, heading: "Page 2", text: "Rahman tackled detection from chest X-rays by stacking four corrections with SMOTE resampling and focal loss." },
+    { id: "box-heading", pageNumber: 2, heading: "Page 2", text: "SMOTE with XGBoost on Tabular Data" },
+    { id: "box-body", pageNumber: 2, heading: "Page 2", text: "Siagian evaluated SMOTE-balanced XGBoost on two tabular datasets, reporting F1-score and ROC-AUC." },
+    { id: "below", pageNumber: 2, heading: "Page 2", text: "Figure 2 illustrates per-feature distributions stratified by class for every tabular dataset feature." },
+    { id: "gaps", pageNumber: 2, heading: "Page 2", text: "Research gaps: no study compares every combination of corrections on the same data." },
+    { id: "crop", pageNumber: 2, heading: "Page 2 (selected area)", text: boxTranscript },
+  ],
+  lessonPlan: {
+    beats: [
+      { title: "Page 2 (selected area)", objective: "Teach these blocks.", sourceBlockIds: ["crop", "above", "box-heading", "box-body", "below"] },
+      { title: "E. Research Gaps", objective: "Teach these blocks.", sourceBlockIds: ["gaps"] },
+    ],
+  },
+};
+const areaInput = (fidelity: "strict" | "reference", selection = true): ProgressiveLectureInput => ({
+  ...input("SMOTE with XGBoost on Tabular Data"),
+  sourceType: "pdf",
+  suprnotes: pageTwo,
+  sourceScope: { fidelity, breadth: { kind: "whole" }, documentLabels: [] },
+  ...(selection ? { selection: { pages: [2], transcript: boxTranscript, description: "SMOTE with XGBoost on Tabular Data" } } : {}),
+});
+
+for (const fidelity of ["strict", "reference"] as const) {
+  test(`${fidelity.toUpperCase()} area lecture: one board, on the box only — not the page's other sections or neighbours`, () => {
+    const plan = buildProgressivePlan(areaInput(fidelity));
+    assert.equal(plan.length, 1, plan.map((b) => b.title).join(" | "));
+    assert.deepEqual([...(plan[0].sourceBlockIds ?? [])].sort(), ["box-body", "box-heading", "crop"]);
+    // The subject, not the parser's "Page 2 (selected area)" label (title-cased like every board).
+    assert.match(plan[0].title, /^SMOTE with XGBoost on Tabular Data$/i);
+  });
+}
+
+test("a box whose block no section holds is still taught, as one board of its own", () => {
+  const orphan = { ...pageTwo, lessonPlan: { beats: [{ title: "E. Research Gaps", objective: "Teach these blocks.", sourceBlockIds: ["gaps"] }] } };
+  const plan = buildProgressivePlan({ ...areaInput("strict"), suprnotes: orphan });
+  assert.equal(plan.length, 1);
+  assert.ok((plan[0].sourceBlockIds ?? []).includes("crop"));
+  assert.ok(!(plan[0].sourceBlockIds ?? []).includes("gaps"));
+});
+
+test("with no area drawn the page's plan is unchanged", () => {
+  const plan = buildProgressivePlan(areaInput("strict", false));
+  assert.equal(plan.length, 2);
+});
+
+/**
+ * TYPED-PROMPT LECTURES: noun-phrase titles, each topic once, one topic per slide except at deep,
+ * and a question in two slides at most. Document lectures keep their own rules (tests above).
+ */
+const bigTopics = {
+  topic: "photosynthesis",
+  subtopics: [
+    { title: "How Light Reactions Work", caption: "The mechanism that splits water and makes ATP step by step." },
+    { title: "Calvin Cycle", caption: "The cycle that fixes carbon dioxide into sugar, stage by stage." },
+    { title: "Why Does Light Intensity Matter?", caption: "How the rate of the process changes with light." },
+  ],
+};
+
+test("PROMPT: slide titles are noun phrases, never questions or 'How X Works'", () => {
+  const plan = buildProgressivePlan({ ...input("photosynthesis"), outline: bigTopics });
+  for (const beat of plan) {
+    assert.doesNotMatch(beat.title, /\?/, `"${beat.title}" is a question`);
+    assert.doesNotMatch(beat.title, /^(?:why|how|what)\b/i, `"${beat.title}" starts like a question`);
+    assert.doesNotMatch(beat.title, /\bworks?$/i, `"${beat.title}" is a 'how it works' sentence`);
+  }
+});
+
+test("PROMPT at balanced: every topic is exactly one slide", () => {
+  const plan = buildProgressivePlan({ ...input("photosynthesis", "balanced"), outline: bigTopics });
+  assert.ok(plan.every((beat) => (beat.conceptPasses ?? 1) === 1), plan.map((b) => `${b.title}(${b.conceptPasses})`).join(", "));
+});
+
+test("PROMPT at deep: a big topic may still take a second slide", () => {
+  const plan = buildProgressivePlan({ ...input("photosynthesis", "deep"), outline: bigTopics });
+  assert.ok(plan.some((beat) => (beat.conceptPasses ?? 1) > 1));
+});
+
+test("PROMPT: a near-duplicate topic is dropped, so the same content is not taught twice", () => {
+  const plan = buildProgressivePlan({
+    ...input("photosynthesis"),
+    outline: {
+      topic: "photosynthesis",
+      subtopics: [
+        { title: "Photosynthesis Process", caption: "How plants turn light, water and carbon dioxide into glucose." },
+        { title: "How Photosynthesis Works", caption: "Plants turn light, water and carbon dioxide into glucose." },
+        { title: "Limiting Factors", caption: "Light, temperature and carbon dioxide cap the rate." },
+      ],
+    },
+  });
+  const titles = plan.map((b) => b.title.toLowerCase());
+  assert.equal(titles.filter((t) => /photosynthesis/.test(t) && !/^photosynthesis$/.test(t)).length <= 1, true, titles.join(" | "));
+  assert.ok(titles.some((t) => /limiting/.test(t)));
+});
+
+test("PROMPT question: at most two slides, no opener", () => {
+  const plan = buildProgressivePlan({
+    ...input("Why do leaves look green?"),
+    outline: {
+      topic: "leaf colour",
+      scope: "question",
+      subtopics: [
+        { title: "Chlorophyll and Leaf Colour", caption: "Chlorophyll absorbs red and blue light and reflects green." },
+        { title: "Accessory Pigments", caption: "Carotenoids show in autumn when chlorophyll breaks down." },
+        { title: "Light Spectrum", caption: "White light is a mix of colours." },
+      ],
+    },
+  });
+  assert.ok(plan.length <= 2, plan.map((b) => b.title).join(" | "));
+  assert.equal(plan[0].title, "Chlorophyll and Leaf Colour");
+});
+
+test("nounTitle: questions, 'how it works' and filler become the concept's name", async () => {
+  const { nounTitle } = await import("../beatPresentation");
+  assert.equal(nounTitle("Why Do Leaves Look Green?"), "Leaves Look Green");
+  assert.equal(nounTitle("Understanding Hydraulic Actuators"), "Hydraulic Actuators");
+  assert.equal(nounTitle("Photosynthesis Explained"), "Photosynthesis");
+  assert.equal(nounTitle("How Light Reactions Work"), "Light Reactions");
+  assert.equal(nounTitle("What Is Photosynthesis?"), "Photosynthesis");
+  assert.equal(nounTitle("Calvin Cycle"), "Calvin Cycle");
+  assert.equal(nounTitle("The ?"), "The ?", "never stripped down to nothing");
+  assert.ok(nounTitle("Why?").length > 0);
+});
+
+test("a comparison counts as a question", async () => {
+  const { isDirectQuestion } = await import("../planPrompt");
+  assert.equal(isDirectQuestion("difference between TCP and UDP"), true);
+  assert.equal(isDirectQuestion("TCP vs UDP"), true);
+  assert.equal(isDirectQuestion("photosynthesis"), false);
+});
+
+/**
+ * "what are datsets used" on a paper: the answer is the section listing the datasets. The section
+ * that merely MENTIONS "five binary datasets" while tuning thresholds came along as a useless first
+ * slide — the typo "datsets" matched nothing, so "used" decided the ranking.
+ */
+test("a question about a PDF is answered by the section that answers it, not one that mentions it", async () => {
+  const { sectionsForQuestion } = await import("../progressivePlan");
+  const sections = [
+    { title: "Threshold Tuning Across Five Domains", sourceBlockIds: ["a"] },
+    { title: "Training Set", sourceBlockIds: ["b"] },
+    { title: "Results", sourceBlockIds: ["c"] },
+  ];
+  const text: Record<string, string> = {
+    a: "We tuned the decision threshold on five binary datasets used in different domains, and the threshold used for each was chosen on validation data.",
+    b: "The training set consists of five datasets. The Oil Spill dataset contains satellite images. The CIC-IDS2017 dataset contains network flows. The Credit Card Fraud dataset contains card transactions. Each dataset is binary.",
+    c: "Class weighting gave the best macro-F1 on every domain, and stacking corrections was worst.",
+  };
+  const textOf = (ids: string[]) => ids.map((id) => text[id]).join(" ");
+  for (const question of ["what are datsets used", "what datasets are used?", "Which datasets are used in this paper?"]) {
+    const kept = sectionsForQuestion(sections, question, textOf);
+    assert.deepEqual(kept.map((s) => s.title), ["Training Set"], `"${question}" kept ${kept.map((s) => s.title).join(" + ")}`);
+  }
+});
+
+test("a whole-topic question is a lesson; a specific question is not", async () => {
+  const { isBroadTopicQuestion, isDirectQuestion } = await import("../planPrompt");
+  for (const broad of ["what is photosynthesis", "What is photosynthesis?", "what are neural networks", "what is the French Revolution", "explain recursion", "tell me about black holes"]) {
+    assert.equal(isBroadTopicQuestion(broad), true, `"${broad}" names a whole topic`);
+  }
+  for (const specific of [
+    "how in while how counter is incremented",
+    "how is the counter incremented in a while loop?",
+    "what is the difference between TCP and UDP",
+    "what is the role of chlorophyll in photosynthesis",
+    "why do leaves look green?",
+    "what happens when a node with two children is deleted",
+  ]) {
+    assert.equal(isBroadTopicQuestion(specific), false, `"${specific}" asks one specific thing`);
+    assert.equal(isDirectQuestion(specific), true, `"${specific}" is still a question (1-2 slides)`);
+  }
+});

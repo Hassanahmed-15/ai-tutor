@@ -232,3 +232,12 @@ test("a refusal to transcribe is never taken as the selected area's text", async
   assert.equal(isTranscriptionRefusal("Node* s = p->right;\nwhile (s->left != NULL) s = s->left;"), false);
   assert.equal(isTranscriptionRefusal("Sorry is not a word in this code: " + "x = 1; ".repeat(60)), false, "a long real transcript is kept");
 });
+
+test("the model echoing its instructions is never taken as the selected area's text", async () => {
+  const { isTranscriptionRefusal, TRANSCRIBE_PROMPT } = await import("../pdfOcr");
+  // Measured on a box drawn over two paragraphs of a paper: the reply was the prompt, word for word.
+  assert.equal(isTranscriptionRefusal(TRANSCRIBE_PROMPT), true);
+  assert.equal(isTranscriptionRefusal(`--- page 2, selected region ---\n${TRANSCRIBE_PROMPT}`), true);
+  // A real transcript that happens to use one of the words is kept.
+  assert.equal(isTranscriptionRefusal("D. SMOTE with XGBoost on Tabular Data\nSiagian et al. evaluated SMOTE-balanced XGBoost. Do not summarise results early."), false);
+});

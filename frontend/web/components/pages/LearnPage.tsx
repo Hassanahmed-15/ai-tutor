@@ -65,6 +65,7 @@ import {
   fallbackDocumentScopeQuestion,
   isSpecificDocumentRequest,
   isWholeDocumentRequest,
+  pagesForLecture,
   shouldPlanDocumentScope,
   type DocumentPlanningOption,
   documentSectionTitles,
@@ -771,7 +772,6 @@ type BuildCost =
   const [parsingPages, setParsingPages] = useState(false);
   const activeSource: PendingSource | undefined = pendingSources[activeSourceIndex];
   const pageSelection = activeSource?.selection ?? { pages: [], prompt: "" };
-  const pageRegions = activeSource?.regions ?? {};
   /** Selection now lives on the page itself (a click in the scroller), not a separate grid — this
    *  is the one place that mutates a source's selection. Order is preserved, since the order
    *  pages were chosen in is meaningful when assembling an explanation. Always applies to the
@@ -796,18 +796,6 @@ type BuildCost =
       }),
     );
   }, [activeSourceIndex]);
-  const setPageRegions = useCallback(
-    (updater: Record<number, NormalisedRect> | ((current: Record<number, NormalisedRect>) => Record<number, NormalisedRect>)) => {
-      setPendingSources((current) =>
-        current.map((source, index) => {
-          if (index !== activeSourceIndex) return source;
-          const next = typeof updater === "function" ? updater(source.regions) : updater;
-          return { ...source, regions: next };
-        }),
-      );
-    },
-    [activeSourceIndex],
-  );
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
@@ -993,6 +981,7 @@ type BuildCost =
    * second run a no-op.
    */
   const briefHandledRef = useRef(false);
+  const questionSkipsPickerRef = useRef(false);
   useEffect(() => {
     if (briefHandledRef.current) return;
     briefHandledRef.current = true;
@@ -1010,6 +999,8 @@ type BuildCost =
     }
 
     if (brief.file) {
+      // A real question typed with the file is answered from every page: no page picker.
+      questionSkipsPickerRef.current = isDirectQuestion(brief.topic ?? "");
       // Route through the same handler the on-page picker uses, so PDF/PPTX/JSON parsing, page
       // limits and error reporting stay in exactly one place.
       void ingestFiles([brief.file]);
@@ -1033,6 +1024,24 @@ type BuildCost =
    * PPTX, Suprnotes JSON, task folder), so there is one rule instead of four copies of it. The
    * parsers set a title as they finish, and that title is the topic to plan from.
    */
+  /*
+   * A QUESTION FROM THE FRONT PAGE SKIPS THE PAGE PICKER. It is answered from the whole file, so
+   * there is nothing to pick: once the previews are in (the picker would now appear), every page is
+   * read straight away and the student goes on to choose Strict or Reference. Runs once per upload.
+   */
+  useEffect(() => {
+    if (uploadPhase !== "choosing" || !questionSkipsPickerRef.current || pendingSources.length === 0) return;
+    // A file longer than a lesson carries needs its pages chosen: the picker stays.
+    if (pendingSources.some((source) => (source.pageCount ?? source.pages.length) > DOCUMENT_LIMITS.MAX_PAGES)) {
+      questionSkipsPickerRef.current = false;
+      return;
+    }
+    questionSkipsPickerRef.current = false;
+    void parseSelectedPages();
+    // parseSelectedPages reads this render's state; re-running on its identity would re-parse.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadPhase, pendingSources.length]);
+
   const autoPlannedRef = useRef(false);
   useEffect(() => {
     if (uploadPhase !== "ready" || autoPlannedRef.current) return;
@@ -1070,15 +1079,17 @@ type BuildCost =
    * general lecture on the paper's subject. The topic still drives planning; `focus` is what lets
    * the server find the passage and pin the lecture to it.
    */
-  /**
-   * `pagesOverride` lets a caller act on pages that haven't made it into `pageSelection` state yet
-   * — specifically the per-page "Get a lecture from this area" button, which selects a page and
-   * parses it in the same click. Reading `pageSelection.pages` there would race the state update
-   * (still the old value on this render), so the override is the source of truth when given.
-   */
-  async function parseSelectedPages(activeOverride?: number[]) {
+  async function parseSelectedPages() {
     const sources = pendingSources;
     if (!sources.length) return;
+    /*
+     * A QUESTION IS ANSWERED FROM EVERY PAGE. The request is read the same way `focus` is below
+     * (the picker's box first, then what was typed on the front page). Anything typed in the
+     * picker's box, or a real question from the front page, takes the whole file whatever was
+     * ticked; otherwise the ticked pages are the lecture (pagesForLecture).
+     */
+    const pickerPrompt = (sources[activeSourceIndex] ?? sources[0]).selection.prompt.trim();
+    const request = pickerPrompt || topic.trim() || input.trim();
     /**
      * Stay on the selection screen while the chosen pages are parsed.
      *
@@ -1097,30 +1108,17 @@ type BuildCost =
        * should wait on the first — and mergeSourceDocuments() combines the results into the one
        * flat sourceDocument every downstream planning/generation call already expects, tagging
        * each block with which file it came from.
-       *
-       * `activeOverride` only applies to the ACTIVE source (the "Get a lecture from this area"
-       * button acts on one page of one file); every other source parses its own selection as-is.
        */
       const parsed = await Promise.all(
-        sources.map(async (source, index) => {
-          const chosen = index === activeSourceIndex && activeOverride ? activeOverride : source.selection.pages;
-          /*
-           * A DRAGGED AREA ON AN UNTICKED PAGE STILL COUNTS. The header button parses the ticked
-           * pages; with none ticked it parsed the whole document and silently dropped the area the
-           * student had drawn — a general lecture instead of one on their selection. Its page is
-           * added, exactly as "Get a lecture from this area" does.
-           */
-          const regionOnly = Object.keys(source.regions).map(Number).filter((page) => Number.isInteger(page) && page > 0);
-          const pages = chosen.length === 0 && regionOnly.length > 0 ? regionOnly : chosen;
+        sources.map(async (source) => {
+          // A file longer than a lesson carries is read from the chosen pages, question or not.
+          const fits = (source.pageCount ?? source.pages.length) <= DOCUMENT_LIMITS.MAX_PAGES;
+          const pages = fits ? pagesForLecture(request, source.selection.pages, Boolean(pickerPrompt)) : source.selection.pages;
           const fd = new FormData();
           fd.append("file", source.file);
           if (pages.length > 0) fd.append("pages", pages.join(","));
-          // Only for pages still selected: deselecting a page must not leave its region behind to
-          // be read from a page the student has since taken out of the lesson.
-          const regions = pages
-            .filter((page) => source.regions[page])
-            .map((page) => ({ page, rect: source.regions[page] }));
-          if (regions.length > 0) fd.append("regions", JSON.stringify(regions));
+          // Boxes can no longer be drawn on a page, so no `regions` are sent.
+          const regions: Array<{ page: number }> = [];
           // Same request, same fields, different parser — that is what "treated exactly the same" means.
           const res = await fetch(source.kind === "pptx" ? "/api/parse-pptx" : "/api/parse-pdf", { method: "POST", body: fd });
           const data = await res.json().catch(() => ({}));
@@ -1297,24 +1295,24 @@ type BuildCost =
     if (fidelity === "strict") {
       // The selected source already contains the syllabus. No diagnostic, outline, scope or depth
       // questionnaire is allowed to stand between this choice and generation.
-      void build(next.subject, undefined, next.fresh, []);
+      /*
+       * A QUESTION IS NOT A TITLE. Strict went straight to build with the student's words as the
+       * lecture's name, cut to five words on the build screen — "why threshold tuning …" became
+       * "Why Threshold Tuning". The subject is named first, the same call reference mode makes
+       * (nameSubject: one small model call, 4 s cap, falls back to the old title). The question
+       * itself still travels as the focus.
+       */
+      const asked = next.fresh.focus?.trim() ?? "";
+      void (async () => {
+        const subject = asked && (question || isDirectQuestion(asked))
+          ? await nameSubject(asked, next.fresh.sourceDocument, next.fresh.documentId)
+          : next.subject;
+        setTopic(subject);
+        void build(subject, undefined, next.fresh, []);
+      })();
     } else {
       void startPlanning(next.subject, false, next.fresh);
     }
-  }
-
-  /**
-   * "Get a lecture from this area" — the button that appears the instant a region is cropped, so
-   * building from just that crop does not require scrolling back up to the header's "Use N pages".
-   * Marks the page selected (so the header stays truthful about what is about to be sent) and
-   * parses immediately, passing the page explicitly rather than waiting a render for `pageSelection`
-   * to reflect the toggle.
-   */
-  function useRegionAsLecture(pageNumber: number) {
-    setPageSelection((current) =>
-      current.pages.includes(pageNumber) ? current : { ...current, pages: [...current.pages, pageNumber] },
-    );
-    void parseSelectedPages([pageNumber]);
   }
 
   async function ingestFiles(files: File[]) {
@@ -1930,7 +1928,8 @@ type BuildCost =
      * only points at it. A typed question keeps its own subject: that is what the lecture answers.
      * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
      */
-    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw);
+    // A drawn area keeps the subject read off the area itself (lectureSubject), not the document's.
+    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw) && !fresh?.scopeSelected;
     const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
       || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
     setTopic(trimmed);
@@ -1949,10 +1948,16 @@ type BuildCost =
       };
     }
 
+    /*
+     * A DRAWN AREA IS PLANNED FROM THE AREA, in reference mode too. Reference skipping this branch
+     * sent a box through the whole-document conversation, whose outline was planned from every
+     * section of the page — a lecture "from this area" that taught the page around it.
+     */
+    const regionDrawn = Boolean(fresh?.scopeSelected);
     const shouldPlanExactQuestion = isPdfOrDeck
-      && !referenceChosen
+      && (!referenceChosen || regionDrawn)
       && !isWholeDocumentRequest(planningFocus)
-      && (Boolean(fresh?.scopeSelected) || isSpecificDocumentRequest(planningFocus, planningDocument));
+      && (regionDrawn || isSpecificDocumentRequest(planningFocus, planningDocument));
 
     if (!forceBuild && shouldPlanExactQuestion) {
       setFocusedDocumentPlanningActive(true);
@@ -3399,6 +3404,10 @@ type BuildCost =
     const mustChoose = totalSelected === 0 && drawnAreas === 0 &&
       pendingSources.some((s) => (s.pageCount ?? s.pages.length) > DOCUMENT_LIMITS.MAX_PAGES);
     const overSelected = totalSelected > DOCUMENT_LIMITS.MAX_PAGES;
+    // Anything typed in the picker's box is a question about the file, and takes every page —
+    // unless the file is longer than a lesson carries, when the chosen pages are what is read.
+    const questionTyped = pageSelection.prompt.trim().length > 0 && !mustChoose && !overSelected
+      && !pendingSources.some((s) => (s.pageCount ?? s.pages.length) > DOCUMENT_LIMITS.MAX_PAGES);
     return (
       <main className="hud-canvas hud-grain relative flex h-screen flex-col overflow-hidden text-[var(--hud-text)]">
         <header
@@ -3414,7 +3423,7 @@ type BuildCost =
           <div className="flex items-center gap-3">
             {totalSelected > 0 && (
               <p className="text-[0.78rem] text-[var(--hud-text-faint)]">
-                {totalSelected} {label} selected
+                {totalSelected} {totalSelected === 1 ? label.slice(0, -1) : label} selected
               </p>
             )}
             <button
@@ -3437,12 +3446,9 @@ type BuildCost =
                   ? `Select up to ${DOCUMENT_LIMITS.MAX_PAGES} ${label}`
                   : overSelected
                     ? `Up to ${DOCUMENT_LIMITS.MAX_PAGES} ${label} — ${totalSelected} selected`
-                    : totalSelected > 0
+                    : totalSelected > 0 && !questionTyped
                   ? `Use ${totalSelected} page${totalSelected === 1 ? "" : "s"}`
-                  // An area is drawn and no page ticked: that area is what gets used.
-                  : drawnAreas > 0
-                    ? "Use the selected area"
-                    : "Use all pages"}
+                  : "Use all pages"}
             </button>
           </div>
         </header>
@@ -3505,18 +3511,8 @@ type BuildCost =
               )}
               <PageStack
                 pages={activeSource.pages}
-                regions={pageRegions}
-                onRegionChange={(pageNumber, rect) =>
-                  setPageRegions((current) => {
-                    const next = { ...current };
-                    if (rect) next[pageNumber] = rect;
-                    else delete next[pageNumber];
-                    return next;
-                  })
-                }
                 selected={pageSelection.pages}
                 onToggleSelected={togglePageSelected}
-                onUseRegion={useRegionAsLecture}
                 label={label}
               />
             </>
@@ -3528,7 +3524,7 @@ type BuildCost =
         <div className="shrink-0 border-t p-3" style={{ borderColor: "var(--hud-line)" }}>
           <div className="mx-auto max-w-4xl">
             <label htmlFor="page-prompt" className="sr-only">
-              What should Aria explain about the selected {label}?
+              Ask a question about this file
             </label>
             <textarea
               id="page-prompt"
@@ -3540,12 +3536,14 @@ type BuildCost =
                 el.style.height = "auto";
                 el.style.height = `${Math.min(el.scrollHeight, 180)}px`;
               }}
+              // Enter sends the question, as in every other box on the site; Shift+Enter is a new line.
+              onKeyDown={(e) => {
+                if (e.key !== "Enter" || e.shiftKey) return;
+                e.preventDefault();
+                if (pageSelection.prompt.trim() && !pagesLoading && !parsingPages && !mustChoose && !overSelected) void parseSelectedPages();
+              }}
               rows={2}
-              placeholder={
-                pageSelection.pages.length > 0
-                  ? `What should Aria explain about ${pageSelection.pages.length === 1 ? "this page" : `these ${label}`}?`
-                  : `Ask about specific ${label}…`
-              }
+              placeholder={`Ask a question about this file (it uses all ${label}), or leave empty to learn the ${label} you selected…`}
               className="max-h-[180px] w-full resize-none overflow-y-auto rounded-[var(--radius)] border bg-transparent px-3 py-2 text-[0.85rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1"
               style={{ borderColor: "var(--hud-line)" }}
             />
@@ -3557,6 +3555,18 @@ type BuildCost =
                 showLabel
                 className="inline-flex items-center gap-1.5 rounded-[var(--radius)] border px-2.5 py-1 text-[0.75rem] transition-colors"
               />
+              {/* Send the question from where it was typed, rather than hunting for the header's
+                  Use button. A real question reads every page (pagesForLecture); the label says so. */}
+              <button
+                type="button"
+                data-ask-question
+                onClick={() => void parseSelectedPages()}
+                disabled={!pageSelection.prompt.trim() || pagesLoading || parsingPages || mustChoose || overSelected}
+                className="hud-btn-primary ml-auto inline-flex items-center gap-1.5 px-4 py-1.5 text-[0.8rem] disabled:opacity-40"
+              >
+                {parsingPages ? "Reading…" : questionTyped ? `Ask · all ${label}` : "Ask"}
+                <span aria-hidden="true">↵</span>
+              </button>
             </div>
           </div>
         </div>

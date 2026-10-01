@@ -687,6 +687,9 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[], normaliz
     // class and titled a slide "abels: …".
     .replace(/^\s*(?:fig(?:ure)?|table|chart|diagram)\s*[#.]?\s*[\divxlcdm.-]+\b\s*[:.-]?\s*/i, "")
     .replace(/\s*\([a-z]\)\s*(?:before|after)[\s\S]*$/i, "")
+    // Two columns read as one table row arrive as "left cell | right cell": the title is the first
+    // cell. Cutting the joined row to length left a dangling separator — "No Resampling, Threshold Default |".
+    .split(/\s+\|\s+/)[0]
     .trim();
   if (opening) {
     // Prefer the first sentence; a whole paragraph is not a title.
@@ -706,7 +709,7 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[], normaliz
     }
     const firstLine = opening.split(/(?<=[.?!])\s|\s{2,}/)[0]?.trim() ?? opening;
     const candidate = firstLine.length >= 3 && firstLine.length <= 80 ? firstLine : opening.slice(0, 80).trim();
-    const named = stripLineMarks(candidate).replace(/[.:;,]\s*$/, "");
+    const named = stripLineMarks(candidate).replace(/[\s|.:;,]+$/, "");
     if (named) return named;
   }
   return pages.length > 1 ? `Pages ${pages[0]}-${pages[pages.length - 1]}` : `Page ${pages[0] ?? 1}`;
@@ -957,7 +960,9 @@ export function buildPdfLessonPlan(blocks: SuprnotesContentBlock[], assets: Supr
     beats.push({
       id: `pdf-${beats.length + 1}`,
       title,
-      objective: `Teach these source blocks completely and in order${pageGroup.length ? ` from page${pageGroup.length > 1 ? "s" : ""} ${pageGroup.join("-")}` : ""}, connecting them as one coherent explanation.`,
+      // No page number here: the objective reaches the script, and "from page 3" came back as the
+      // teacher saying where things are. The page stays in `pageNumbers` for the PDF highlight.
+      objective: "Teach these source blocks completely and in order, connecting them as one coherent explanation.",
       sourceBlockIds,
       pageNumbers: pageGroup,
       visualMode: useImage ? "provided_image" : useSvg ? "svg_diagram" : "paper_whiteboard",

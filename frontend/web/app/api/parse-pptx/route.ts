@@ -56,6 +56,12 @@ type ParsePptxResponse = {
   slideCount: number;
   slides: ParsedSlide[];
   fullText: string;
+  /**
+   * Every slide's text, ticked or not, labelled `[slide N]` — the PDF route's field of the same
+   * name. The LECTURE is built only from the ticked slides; the chat and the voice tutor read this,
+   * so a question about a slide the student did not pick is still answered from the deck.
+   */
+  fullDocumentText: string;
   diagramHints: string;
   /** Present whenever at least one slide image was successfully read — gives the lecture
    *  pipeline the same grounded-asset treatment (vision verification, image-only mode,
@@ -687,8 +693,23 @@ export async function POST(req: NextRequest) {
   const slides: ParsedSlide[] = [];
   const textChunks: string[] = [];
   const diagramSlides: string[] = [];
+  /*
+   * ONLY THE TICKED SLIDES ARE THE LECTURE. The tick list used to reach only the stored images, so
+   * ticking slides 2-3 of a deck still taught every slide. None ticked means the whole deck, as
+   * the PDF route reads an empty `pages` field.
+   */
+  const tickedSlides = new Set(scopedSlides);
+  const inLecture = (slideIndex: number) => tickedSlides.size === 0 || tickedSlides.has(slideIndex);
+  const fullDocumentText = assembledSlides
+    .map((s) => {
+      const text = [s.title, s.body].filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+      return text ? `[slide ${s.index}] ${text}` : "";
+    })
+    .filter(Boolean)
+    .join("\n\n");
 
   for (const s of assembledSlides) {
+    if (!inLecture(s.index)) continue;
     const slideTextParts: string[] = [];
     if (s.title) slideTextParts.push(`Title: ${s.title}`);
     if (s.body) slideTextParts.push(s.body);
@@ -744,6 +765,7 @@ export async function POST(req: NextRequest) {
     const contentBlocks: SuprnotesContentBlock[] = [];
 
     for (const s of assembledSlides) {
+      if (!inLecture(s.index)) continue;
       const blockId = `slide-${s.index}`;
       const assetIds: string[] = [];
       for (const rId of s.imageRIds) {
@@ -969,6 +991,7 @@ export async function POST(req: NextRequest) {
     slideCount: slides.length,
     slides,
     fullText,
+    fullDocumentText,
     diagramHints,
     /**
      * What was read out of the slides' pictures.

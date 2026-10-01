@@ -134,3 +134,18 @@ test("a raw Figure 19.4 locator becomes the caption's concept title", () => {
   const plan = buildPdfLessonPlan(blocks, []);
   assert.equal(plan.beats[0]?.title, "Deletion of node 2 with two children");
 });
+
+/**
+ * Two columns read as one table row reach the plan as "left | right". A section titled from that
+ * row was cut to length and kept the separator: "No Resampling, Threshold Default |".
+ */
+test("a title taken from a two-column row is its first cell, with no dangling separator", () => {
+  const plan = buildPdfLessonPlan([
+    { id: "row", type: "table", pageNumber: 6, sourceOrder: 1, heading: "Page 6", text: "No Resampling, Threshold Default | Sensitivity Experiment and Failed Strategies" },
+    { id: "body", type: "paragraph", pageNumber: 6, sourceOrder: 2, heading: "Page 6", text: "The default threshold of 0.5 is kept, so only the class weights change between runs." },
+  ] as SuprnotesContentBlock[], []);
+  const titles = (plan.beats ?? []).map((beat: { title: string }) => beat.title);
+  assert.ok(titles.length > 0);
+  for (const title of titles) assert.doesNotMatch(title, /\|\s*$/, `"${title}" ends on a separator`);
+  assert.equal(titles[0], "No Resampling, Threshold Default");
+});

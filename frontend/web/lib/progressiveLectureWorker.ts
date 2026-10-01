@@ -42,9 +42,9 @@ import { fillSpecBoardOps, repeatsCode } from "./specBoardGen";
 import { looksQuantitative } from "./quantitativeBeat";
 import { fillStructureSceneOps } from "./structureSceneGen";
 import { compactSuprnotesForPrompt, isSuprnotesLessonInput, type SuprnotesLessonInput } from "./suprnotes";
-import { blocksForSelection, scopedBlockText } from "./beatSourceScope";
+import { scopedBlockText } from "./beatSourceScope";
 import { isStrictSource, sourceScopeInstruction } from "./sourceScope";
-import { asksForCode, isProgrammingTopic } from "./codeSpec";
+import { asksForCode, isPlainlyNotCode, isProgrammingTopic } from "./codeSpec";
 import { getDocumentImages } from "./pageImageStore";
 import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { depthBudget, strictDepthBudget } from "./lectureDepth";
@@ -67,6 +67,7 @@ import {
   strictAdaptationNotes,
   strictRepetitionFindings,
   ungroundedScriptSentences,
+  withoutSourcePointers,
 } from "./strictSourceScript";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
@@ -130,10 +131,19 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
   }
 }
 
-/** The blocks of the dragged area, or [] when the lecture is not from a selection. */
-function selectionBlockIds(input: ProgressiveLectureInput): string[] {
-  if (!input.selection || !isSuprnotesLessonInput(input.suprnotes)) return [];
-  return blocksForSelection(input.suprnotes.contentBlocks ?? [], input.selection);
+/**
+ * A TYPED QUESTION IS ANSWERED, NOT SURVEYED.
+ *
+ * The planner already sizes a question to one or two slides, but each slide's writer was only handed
+ * the student's words as background, and wrote a general explanation of the whole topic on each.
+ * For a typed-prompt lecture planned as a question, every slide is told what it is for. Document
+ * lectures are untouched.
+ */
+function promptQuestionSection(input: ProgressiveLectureInput): string {
+  if (input.sourceType !== "prompt" || isSuprnotesLessonInput(input.suprnotes) || input.outline?.scope !== "question") return "";
+  const question = (input.focus || input.topic || "").replace(/\s+/g, " ").trim();
+  if (!question) return "";
+  return `THIS LECTURE ANSWERS ONE QUESTION: "${question}". This slide answers it directly: start with the answer, then give only what is needed to understand it. No history, no background the question did not ask for, no tangents, and do not restate the question.`;
 }
 
 /** The selection, stated as the lecture's subject — for every beat's context and its board. */
@@ -397,6 +407,7 @@ async function generateOneBeat(
   const pageImages = textOnly ? [] : beatPageImages(input, planned.sourceBlockIds);
   // A Questions board is shown where the answers are, so it can name them without answering past them.
   const context = [
+    promptQuestionSection(input),
     sourceContext(input, planned.sourceBlockIds, strict),
     source.answerText
       ? `EARLIER SOURCE SECTIONS ON THIS PAGE — only for saying WHERE a question's answer is (quote them if they state it); never re-teach them:\n${source.answerText}`
@@ -511,16 +522,22 @@ async function generateOneBeat(
       sourceScript: source.spoken,
       // A neutral bridge: the ordinary fallback promises "a concrete example" whenever a title says
       // "try" or "practice", which a strict source may not have.
-      fallbackTransition: continuationPass(planned)
+      // No spoken bridge after the first board: "Next, the source turns to I." read out a bare
+      // heading and pointed at the document. The title card already says what comes next.
+      fallbackTransition: continuationPass(planned) || planned.sequence > 0
         ? undefined
-        : planned.sequence > 0
-          ? `Next, the source turns to ${planned.title}.`
-          : openingSentence(undefined, session.topic),
+        : openingSentence(undefined, session.topic),
     });
     if (grounded.removed.length > 0) {
       console.log(`[grounding] session=${session.id} seq=${planned.sequence} deleted=${grounded.removed.length} starter=${blocksPlayback} :: ${grounded.removed.map((s) => `"${s.slice(0, 80)}"`).join(" | ")}`);
     }
-    beat = grounded.beat;
+    // The teacher teaches the content, never the document ("This section discusses…", "on page 3").
+    beat = {
+      ...grounded.beat,
+      // A script that was nothing but pointers keeps its words rather than going silent.
+      script: withoutSourcePointers(grounded.beat.script ?? "") || grounded.beat.script,
+      ...(grounded.beat.transitionIn ? { transitionIn: withoutSourcePointers(grounded.beat.transitionIn) } : {}),
+    };
   }
   logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}${strict ? ` strict=1 words=${wordRange}` : ""}`);
   // The board generators read this as AUDIENCE guidance, so the visual is pitched like the script.
@@ -845,6 +862,23 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
             error = "code board repeated another board's code";
             console.error(`[progressive-worker] beat=${candidate.id} code repeated an earlier board; dropped`);
           }
+        }
+      }
+
+      /*
+       * A CODE BOARD SHOWS CODE. A paper's results table, transcribed as LaTeX
+       * (`\begin{array}{|c|c|}`, `\text{Config}`), reached a code board labelled "C++" with numbered
+       * lines — the routing words ("array", "classes in") and the braces both looked like code. The
+       * listing actually on the board is checked; typeset maths or plain prose is dropped, and the
+       * rescue below gives the slide an ordinary board instead.
+       */
+      if (visualKind === "code" && success) {
+        const code = codeOnBoard(candidate);
+        if (code && isPlainlyNotCode(code)) {
+          clearCodeBoard(candidate, true, "the listing is not code");
+          success = false;
+          error = "code board's listing is not code";
+          console.error(`[progressive-worker] beat=${candidate.id} code board held no code (maths or prose); dropped`);
         }
       }
 
@@ -1390,14 +1424,14 @@ function codeOnBoard(beat: Beat): string | null {
 }
 
 /** Empty a beat's code board so it can be regenerated, or (`failed`) so it is never shown. */
-function clearCodeBoard(beat: Beat, failed = false): void {
+function clearCodeBoard(beat: Beat, failed = false, reason = "repeated another board's code"): void {
   for (const op of beat.draw?.ops ?? []) {
     if (op.kind !== "codeBoard") continue;
     const board = op as { spec?: unknown; status?: string; error?: string };
     delete board.spec;
     if (failed) {
       board.status = "failed";
-      board.error = "repeated another board's code";
+      board.error = reason;
     } else {
       delete board.status;
       delete board.error;

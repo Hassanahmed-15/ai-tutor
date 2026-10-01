@@ -104,7 +104,7 @@ export function passInstruction(planned: BeatScriptPromptInput["planned"]): stri
  * visibly a change to both.
  */
 const STRICT_LINES = {
-  transition: `transitionIn: one sentence of 8-18 words, spoken over this board's title card, that names what this part of the source is about in the source's own words. On the FIRST board it is the source's opening idea said plainly — never a greeting. It asserts nothing the source does not state.`,
+  transition: `transitionIn: one sentence of 8-18 words, spoken over this board's title card, that states this board's main idea plainly, in the source's own words. On the FIRST board it is the source's opening idea said plainly — never a greeting. It asserts nothing the source does not state, and it never refers to the document itself: no "this section", "this board", "this part", "the source", "the paper", "the text", "on page 3" or "next it turns to".`,
   length: (range: string) => `The script must be ${range} words — sized to this board's source, not to a lecture slot: explain every source sentence once, clearly, and stop. Never pad it to length with anything the source does not say.`,
   opening: `OPENING AND CLOSING. Begin with the first statement of this board's own source; end on its last. Never add a sentence about why the topic matters, how important understanding it is, or what the next board will cover — they carry no information and are removed before the board is shown.`,
   keyClaims: `keyClaims: 2-4 short sentences, each a statement THIS board's source makes, in the source's own words. They are shown to every later board as "already established", so a claim the source does not make here would spread through the rest of the lecture.`,

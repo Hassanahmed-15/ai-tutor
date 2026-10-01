@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { looksLikeCode, parseCodeSpec, validateCodeSpec } from "../codeSpec";
+import { isPlainlyNotCode, looksLikeCode, parseCodeSpec, validateCodeSpec } from "../codeSpec";
 import { selectAnimationRenderer } from "../animationRouting";
 
 /**
@@ -228,4 +228,35 @@ test("'From your document' is only claimed for code that is in the document", as
     "a scanned chapter's prose has no listing to quote",
   );
   assert.equal(verifyFromSource("TreeNode* deleteNode(TreeNode* root, int key) { if (!root) return root; }", BST_REMOVE_FROM_PDF), false, "different code");
+});
+
+test("a LaTeX table or formula is not code, however many braces it has", () => {
+  // The results table from a paper, as the page reader transcribes it: it was shown on a "C++" code board.
+  const table = [
+    "hyperparameters tuned for their C = 0 twin, so the threshold is the only difference.",
+    "\[",
+    "\begin{array}{|c|c|c|c|c|}",
+    "\hline",
+    "\text{Config} & \text{A} & \text{B} & \text{C} & \rho_{\text{eff}} \\\\",
+    "\hline",
+    "\text{c0 none} & 0 & 0 & 0 & 1/IR \\\\",
+    "\text{c1} & 1 & 0 & 0 & 1 \\\\",
+    "\end{array}",
+    "\]",
+  ].join("\n");
+  assert.equal(looksLikeCode(table), false);
+  assert.equal(looksLikeCode("F1 = \frac{2 \cdot P \cdot R}{P + R} where P = \frac{TP}{TP + FP}"), false);
+  // Real code still is.
+  assert.equal(looksLikeCode(BST_REMOVE_FROM_PDF), true);
+  assert.equal(looksLikeCode(LISTING), true);
+});
+
+test("a code board refuses maths and prose, but keeps a short real snippet", () => {
+  const table = ["\\begin{array}{|c|c|}", "\\hline", "\\text{Config} & \\text{A} \\\\", "\\end{array}"].join("\n");
+  assert.equal(isPlainlyNotCode(table), true, "a typeset table");
+  assert.equal(isPlainlyNotCode("The threshold is the only difference between the two configurations."), true, "prose");
+  // Three lines of real code have too few tells for looksLikeCode, and must still be shown.
+  assert.equal(isPlainlyNotCode("x = 1\nprint(x)"), false);
+  assert.equal(isPlainlyNotCode("int main() { return 0; }"), false);
+  assert.equal(isPlainlyNotCode(""), false);
 });

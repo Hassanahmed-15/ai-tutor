@@ -138,6 +138,18 @@ export function PdfSourcePanel({
 
   useEffect(() => { void loadPages(); }, [loadPages]);
 
+  /*
+   * A NEW PART TAKES THE PANEL BACK TO THE SOURCE. Scrolling the panel by hand pauses following —
+   * the student is looking at something — but it used to pause it for the rest of the lecture, so
+   * one stray wheel left every later part's passage off-screen until the ⌖ button was found. The
+   * pause now lasts for the part it happened in.
+   */
+  const [followedIndex, setFollowedIndex] = useState(currentIndex);
+  if (followedIndex !== currentIndex) {
+    setFollowedIndex(currentIndex);
+    setFollowTeacher(true);
+  }
+
   useEffect(() => {
     if (!followTeacher || focus.activePage === null) return;
     const target = pageRefs.current.get(focus.activePage);

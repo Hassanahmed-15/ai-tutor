@@ -107,6 +107,21 @@ Do not attach a safetyNet to a simple introductory step. Prefer fewer, high-impa
 "scopingQuestion" (OPTIONAL, per-subtopic): for scope "lesson" attach one to 2-3 subtopics TOTAL across the whole outline; for scope "question" attach none. Ask about THAT SPECIFIC subtopic only ("should I keep this one as planned, cut it, or adjust it?" grounded in its actual title/caption/reason) — never a generic whole-lecture question and never restate the "confidence" field. Each has 2-4 short "options", and each option's "instruction" is a complete, ready-to-send freeform edit instruction in Aria's voice describing exactly what to change if picked (e.g. { "label": "Add a primer", "instruction": "Add a short beginner-level subtopic explaining embeddings before this one." }). If an option should make NO change, still write a no-op instruction like "Keep this subtopic as-is — no change needed." Spread the 2-3 questions across DIFFERENT subtopics through the outline, not clustered on the first ones.
 Output ONLY the JSON object — no scripts, no drawing instructions, no board content.`;
 
+/**
+ * TYPED-PROMPT OUTLINES: noun-phrase titles, and every topic once.
+ *
+ * The shared outline prompt asks for role-varied titles (a curiosity question for a hook, an action
+ * title for a mechanism), which put "Why Does Overfitting Happen?" and "How Pressure Moves the Piston"
+ * on the slides. A typed-prompt lecture titles every slide by the concept it teaches instead. Sent
+ * only when there is no uploaded document, so document outlines keep their titling.
+ */
+export const PROMPT_OUTLINE_RULES =
+  "\n\nTITLES FOR THIS LESSON (these override any other titling guidance): every title is a noun phrase in Title Case " +
+  "naming the concept it teaches, 2-5 words, for example \"Hydraulic Actuators\", \"Calvin Cycle\", \"Chlorophyll and Leaf Colour\". " +
+  "Never a question, never a sentence or a verb phrase (\"How X Works\", \"Why X Happens\", \"Explore X\"), and never " +
+  "\"Explained\", \"Overview\", \"Introduction\" or \"Basics\". " +
+  "EACH TOPIC ONCE: two subtopics must never cover the same idea, or nearly the same idea, in different words. Merge them into one.";
+
 export const REVISE_OUTLINE_SYSTEM_PROMPT = `You are Aria, revising a lesson outline per the student's freeform request.
 Return JSON only: { "topic": string, "subtopics": [{ "title": string, "caption": string, "reason": string, "confidence"?: "low", "safetyNet"?: { "prerequisite": string, "diagnostic": string, "masterySignal": string, "rescueMove": string, "reinforceAfter": 1|2|3, "reinforcementPrompt": string }, "scopingQuestion"?: { "question": string, "options": [{ "label": string, "instruction": string }] } }] }
 
@@ -221,7 +236,10 @@ export function isDirectQuestion(text: string): boolean {
   if (isTopicRequest(value)) return false;
   const words = value.split(/\s+/).length;
   if (words > 30) return false;
-  return /^(?:why|how|what|when|where|which|who|whose|does|do|did|is|are|was|were|can|could|should|would|will|explain why|explain how|explain what|tell me why|tell me how)\b/.test(value) || value.endsWith("?");
+  return /^(?:why|how|what|when|where|which|who|whose|does|do|did|is|are|was|were|can|could|should|would|will|explain why|explain how|explain what|tell me why|tell me how)\b/.test(value)
+    || value.endsWith("?")
+    // A comparison is a question too, however it is phrased: "difference between TCP and UDP", "TCP vs UDP".
+    || /\b(?:difference|differences) between\b|\b(?:vs\.?|versus)\s/.test(value);
 }
 
 /**
@@ -256,13 +274,43 @@ export function topicLessonInstruction(request: string): string {
   );
 }
 
-/** The planner's instruction for a direct question: answer it, in one board, two at most. */
-export function directQuestionInstruction(question: string): string {
+/**
+ * A QUESTION THAT NAMES A WHOLE TOPIC, AND NOTHING MORE.
+ *
+ * "What is photosynthesis?" is phrased as a question, but it asks for the topic: the student wants
+ * the lesson, not a one-slide definition. "How is the counter incremented in a while loop?" asks one
+ * specific thing and is answered in one or two slides. The difference is what follows the question
+ * word: a bare subject of a few words (no "how", "why", "in", "between", "role of" …) is a topic.
+ */
+export function isBroadTopicQuestion(text: string): boolean {
+  const value = text.trim().toLowerCase().replace(/[?.!\s]+$/, "").replace(/\s+/g, " ");
+  const match = value.match(/^(?:what\s+(?:is|are|was|were)|what'?s|whats|who\s+(?:is|are|was|were)|define|tell\s+me\s+about|explain)\s+(?:an?\s+|the\s+)?(.+)$/);
+  if (!match) return false;
+  const subject = match[1].trim();
+  if (!subject) return false;
+  // Anything that narrows it is a specific question: a relation, a part, a context, a condition.
+  if (/\b(?:difference|differences|between|vs\.?|versus|role|purpose|function|use|uses|used|meaning|mean|cause|causes|effect|effects|reason|reasons|happens?|why|how|when|where|if|does|do|did|in|of|for|with|during|after|before|inside|on|at|by|from|to|and|or)\b/.test(subject)) return false;
+  return subject.split(" ").length <= 4;
+}
+
+/**
+ * The planner's instruction for a direct question: answer it, in one board, two at most.
+ *
+ * `nounTitles` is for a TYPED-PROMPT lecture, whose titles are noun phrases (PROMPT_OUTLINE_RULES):
+ * the title names what the answer is about ("Chlorophyll and Leaf Colour"), never "Why X Happens".
+ * A document lecture keeps the answer-framing title it has always had.
+ */
+export function directQuestionInstruction(question: string, options: { nounTitles?: boolean } = {}): string {
+  const titleRule = options.nounTitles
+    ? `The first subtopic's title is a noun phrase naming what the answer is about (for "why do leaves look green?": ` +
+      `"Chlorophyll and Leaf Colour"), never the question itself and never "Why X Happens". `
+    : `The first subtopic's title states the answer's own framing (for "why does X happen?": "Why X Happens" or the ` +
+      `cause itself), never just the topic's name. `;
   return (
     `\n\nTHIS IS A DIRECT QUESTION: "${question}". Set "scope": "question". Plan exactly ONE subtopic that ` +
     `answers it head-on — TWO only if the answer genuinely has two separate parts that cannot share one board. ` +
-    `The first subtopic's title states the answer's own framing (for "why does X happen?": "Why X Happens" or the ` +
-    `cause itself), never just the topic's name. Do NOT add an introduction, a standalone definition, a separate ` +
+    titleRule +
+    `Do NOT add an introduction, a standalone definition, a separate ` +
     `example, a related concept or a comparison unless the question itself asks for it — a one-line definition or ` +
     `example belongs INSIDE the answer, not as its own topic. The caption says what the answer explains.`
   );
