@@ -18,7 +18,7 @@ function trimWords(value: string, maximum: number): string {
  * purpose and" — a title that visibly stops mid-phrase. The dangling connective is dropped instead.
  */
 // A title cut from a sentence must not end mid-clause: "Remove Operation Is Difficult Because".
-const DANGLING_TAIL = /[\s,;:—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that|because|which|who|whose|where|when|while|if|so|but|as|than|since|although|unless|until|whether|nor|yet)?$/i;
+const DANGLING_TAIL = /[\s,;:|—-]+(?:and|or|of|the|to|with|in|for|a|an|vs\.?|versus|by|on|at|from|into|its|their|how|why|what|that|because|which|who|whose|where|when|while|if|so|but|as|than|since|although|unless|until|whether|nor|yet)?$/i;
 
 function trimTitle(value: string, maxWords = MAX_TITLE_WORDS): string {
   const words = trimWords(value.replace(/[.!]+$/, ""), maxWords);

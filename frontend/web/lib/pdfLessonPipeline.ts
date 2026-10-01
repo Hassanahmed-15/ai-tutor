@@ -675,6 +675,9 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[], normaliz
     // class and titled a slide "abels: …".
     .replace(/^\s*(?:fig(?:ure)?|table|chart|diagram)\s*[#.]?\s*[\divxlcdm.-]+\b\s*[:.-]?\s*/i, "")
     .replace(/\s*\([a-z]\)\s*(?:before|after)[\s\S]*$/i, "")
+    // Two columns read as one table row arrive as "left cell | right cell": the title is the first
+    // cell. Cutting the joined row to length left a dangling separator — "No Resampling, Threshold Default |".
+    .split(/\s+\|\s+/)[0]
     .trim();
   if (opening) {
     // Prefer the first sentence; a whole paragraph is not a title.
@@ -684,7 +687,7 @@ function titleForGroup(group: SuprnotesContentBlock[], pages: number[], normaliz
     // Keeping the clause after it is what makes the outline readable.
     const firstLine = opening.split(/(?<=[.?!])\s|\s{2,}/)[0]?.trim() ?? opening;
     const candidate = firstLine.length >= 3 && firstLine.length <= 80 ? firstLine : opening.slice(0, 80).trim();
-    if (candidate) return candidate.replace(/[.:;,]\s*$/, "");
+    if (candidate) return candidate.replace(/[\s|.:;,]+$/, "");
   }
   return pages.length > 1 ? `Pages ${pages[0]}-${pages[pages.length - 1]}` : `Page ${pages[0] ?? 1}`;
 }
