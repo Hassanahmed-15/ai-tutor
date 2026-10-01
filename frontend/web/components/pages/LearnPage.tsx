@@ -1207,7 +1207,21 @@ type BuildCost =
     if (fidelity === "strict") {
       // The selected source already contains the syllabus. No diagnostic, outline, scope or depth
       // questionnaire is allowed to stand between this choice and generation.
-      void build(next.subject, undefined, next.fresh, []);
+      /*
+       * A QUESTION IS NOT A TITLE. Strict went straight to build with the student's words as the
+       * lecture's name, cut to five words on the build screen — "why threshold tuning …" became
+       * "Why Threshold Tuning". The subject is named first, the same call reference mode makes
+       * (nameSubject: one small model call, 4 s cap, falls back to the old title). The question
+       * itself still travels as the focus.
+       */
+      const asked = next.fresh.focus?.trim() ?? "";
+      void (async () => {
+        const subject = asked && (question || isDirectQuestion(asked))
+          ? await nameSubject(asked, next.fresh.sourceDocument, next.fresh.documentId)
+          : next.subject;
+        setTopic(subject);
+        void build(subject, undefined, next.fresh, []);
+      })();
     } else {
       void startPlanning(next.subject, false, next.fresh);
     }
