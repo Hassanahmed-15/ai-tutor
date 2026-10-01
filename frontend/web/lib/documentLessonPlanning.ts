@@ -2,7 +2,7 @@ import type { SuprnotesLessonInput } from "./suprnotes";
 import type { PdfFidelity } from "./sourceScope";
 import type { DepthLevel } from "./learnerProfile";
 import { DEPTH_OPTIONS } from "./diagnosticPrompt";
-import { isDirectQuestion } from "./planPrompt";
+import { isQuestionAboutFile } from "./planPrompt";
 
 /**
  * WHICH PAGES A LECTURE IS BUILT FROM.
@@ -18,7 +18,7 @@ import { isDirectQuestion } from "./planPrompt";
  */
 export function pagesForLecture(request: string, ticked: number[], askedInPicker = false): number[] {
   if (askedInPicker && request.trim()) return [];
-  return isDirectQuestion(request) ? [] : ticked;
+  return isQuestionAboutFile(request) ? [] : ticked;
 }
 
 export type DocumentPlanningOption = {

@@ -38,7 +38,7 @@ import { isPointingPhrase, looksLikeTitle, subjectFromTranscript } from "@/lib/p
 import { DOCUMENT_LIMITS } from "@/lib/documentLimits";
 import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
 import { firstPageTitle } from "@/lib/sectionTitle";
-import { isDirectQuestion } from "@/lib/planPrompt";
+import { isQuestionAboutFile } from "@/lib/planPrompt";
 import { buildDocumentContext } from "@/lib/lessonChatContext";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 import { PLANNING_TOOLS, buildPlanningVoiceInstruction } from "@/lib/planningVoiceContract";
@@ -1000,7 +1000,7 @@ type BuildCost =
 
     if (brief.file) {
       // A real question typed with the file is answered from every page: no page picker.
-      questionSkipsPickerRef.current = isDirectQuestion(brief.topic ?? "");
+      questionSkipsPickerRef.current = isQuestionAboutFile(brief.topic ?? "");
       // Route through the same handler the on-page picker uses, so PDF/PPTX/JSON parsing, page
       // limits and error reporting stay in exactly one place.
       void ingestFiles([brief.file]);
@@ -1304,7 +1304,7 @@ type BuildCost =
        */
       const asked = next.fresh.focus?.trim() ?? "";
       void (async () => {
-        const subject = asked && (question || isDirectQuestion(asked))
+        const subject = asked && (question || isQuestionAboutFile(asked))
           ? await nameSubject(asked, next.fresh.sourceDocument, next.fresh.documentId)
           : next.subject;
         setTopic(subject);
@@ -1929,7 +1929,7 @@ type BuildCost =
      * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
      */
     // A drawn area keeps the subject read off the area itself (lectureSubject), not the document's.
-    const referenceNamesDocument = referenceChosen && !isDirectQuestion(raw) && !fresh?.scopeSelected;
+    const referenceNamesDocument = referenceChosen && !isQuestionAboutFile(raw) && !fresh?.scopeSelected;
     const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
       || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
     setTopic(trimmed);
@@ -3478,7 +3478,9 @@ type BuildCost =
           </div>
         )}
 
-        <div className="min-h-0 flex-1">
+        {/* A column that clips: a deck's "rebuilt previews" banner sits above the stack, and the stack
+            used to take the full height beside it — spilling the banner's height over the prompt bar. */}
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
           {pagesLoading && (activeSource?.pages.length ?? 0) === 0 ? (
             /*
              * A PAGE-SHAPED SKELETON, not a spinner in an empty pane.
@@ -3509,12 +3511,14 @@ type BuildCost =
                   These are rebuilt previews, not the real slides — layout and fonts will differ.
                 </p>
               )}
-              <PageStack
-                pages={activeSource.pages}
-                selected={pageSelection.pages}
-                onToggleSelected={togglePageSelected}
-                label={label}
-              />
+              <div className="min-h-0 flex-1">
+                <PageStack
+                  pages={activeSource.pages}
+                  selected={pageSelection.pages}
+                  onToggleSelected={togglePageSelected}
+                  label={label}
+                />
+              </div>
             </>
           )}
         </div>

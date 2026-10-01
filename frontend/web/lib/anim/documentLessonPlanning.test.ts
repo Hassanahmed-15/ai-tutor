@@ -96,9 +96,9 @@ test("document question sanitization rejects a scope response without whole-sour
 test("a question uses every page, even when some were ticked", () => {
   assert.deepEqual(pagesForLecture("Why does SMOTE help the minority class?", [2]), []);
   assert.deepEqual(pagesForLecture("how is the decision threshold chosen?", [2, 3]), []);
-  // "How does X work" asks for the whole topic (isTopicRequest), so from the front page the ticked
-  // pages stand; typed in the picker's box it still reads every page (test below).
-  assert.deepEqual(pagesForLecture("how does the ablation work", [2, 3]), [2, 3]);
+  // Asked of the file, a whole-topic question reads every page too (it is planned as a full lesson).
+  assert.deepEqual(pagesForLecture("how does the ablation work", [2, 3]), []);
+  assert.deepEqual(pagesForLecture("what is API testing?", [2]), []);
 });
 
 test("a topic, or nothing typed, uses the ticked pages", () => {

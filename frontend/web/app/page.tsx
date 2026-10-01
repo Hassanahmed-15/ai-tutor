@@ -85,7 +85,8 @@ export default function Home() {
         {routed}
         {/* The lesson canvas (beta), for every signed-in student — this sits inside the auth gate.
             NEXT_PUBLIC_CANVAS_ENABLED=0 at build time hides it. */}
-        {process.env.NEXT_PUBLIC_CANVAS_ENABLED !== "0" && (page === "landing" || page === "learn" || page === "tracks") && (
+        {/* The home page only: on the learn page it sat over the page picker's prompt and the lecture's controls. */}
+        {process.env.NEXT_PUBLIC_CANVAS_ENABLED !== "0" && page === "landing" && (
           <Link
             href="/canvas-lab"
             className="fixed bottom-5 left-5 z-[60] flex items-center gap-2 rounded-full border border-amber-300/40 bg-[#11100f]/90 px-4 py-2.5 text-sm font-black text-amber-200 shadow-[0_0_30px_rgba(251,191,36,0.25)] backdrop-blur hover:bg-black"

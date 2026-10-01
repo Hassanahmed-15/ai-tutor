@@ -230,10 +230,22 @@ export function outlineGroundingInstruction(outline: PlanOutline): string {
  * a question, and its outline is held to that afterwards (capQuestionOutline).
  */
 export function isDirectQuestion(text: string): boolean {
+  // A whole topic asked as a question ("what is photosynthesis") is a lesson, not a 1-2 slide answer.
+  return !isTopicRequest(text.trim().toLowerCase()) && isQuestionAboutFile(text);
+}
+
+/**
+ * IS THE STUDENT ASKING SOMETHING — of the file they uploaded?
+ *
+ * Wider than `isDirectQuestion`, on purpose: "what is API testing?" typed with a deck is a question
+ * about that deck, so the page picker is skipped and every page is read — even though, planned, it
+ * is a whole-topic lesson rather than a one-slide answer. Page choice uses this; slide count uses
+ * `isDirectQuestion`.
+ */
+export function isQuestionAboutFile(text: string): boolean {
   const value = text.trim().toLowerCase();
   if (!value) return false;
   if (/\b(?:teach me|lesson on|course on|learn about|everything about|full lesson|from scratch|in depth|deeply|in detail)\b/.test(value)) return false;
-  if (isTopicRequest(value)) return false;
   const words = value.split(/\s+/).length;
   if (words > 30) return false;
   return /^(?:why|how|what|when|where|which|who|whose|does|do|did|is|are|was|were|can|could|should|would|will|explain why|explain how|explain what|tell me why|tell me how)\b/.test(value)
