@@ -70,7 +70,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [mode, setMode] = useState<"follow" | "free" | "overview">("follow");
 
   /** Paper, chalkboard or the classroom mix — the student's choice, remembered per browser. */
-  const [themeChoice, setThemeChoice] = useState<CanvasThemeChoice>("paper");
+  const [themeChoice, setThemeChoice] = useState<CanvasThemeChoice>(DEFAULT_THEME);
   useEffect(() => {
     const t = window.setTimeout(() => setThemeChoice(storedTheme()), 0);
     return () => window.clearTimeout(t);
@@ -500,18 +500,26 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
       <div className="absolute right-3 top-3 z-10 flex gap-2" onPointerDown={(e) => e.stopPropagation()}>
-        <button
-          onClick={() => {
-            const next = CANVAS_THEMES[(CANVAS_THEMES.indexOf(themeChoice) + 1) % CANVAS_THEMES.length];
-            storeTheme(next);
-            setThemeChoice(next);
-          }}
-          title={`Board: ${THEME_LABEL[themeChoice]} — click for ${THEME_LABEL[CANVAS_THEMES[(CANVAS_THEMES.indexOf(themeChoice) + 1) % CANVAS_THEMES.length]]}`}
-          className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-xs font-bold text-white/85 backdrop-blur hover:bg-black/80"
-        >
-          <Palette size={13} />
-          {THEME_LABEL[themeChoice]}
-        </button>
+        {/* The board's surface: three named swatches, so it reads as a choice at a glance. */}
+        <div role="radiogroup" aria-label="Board style" className="flex items-center gap-0.5 rounded-full border border-white/15 bg-black/60 p-0.5 backdrop-blur">
+          <Palette size={13} className="mx-1.5 text-white/60" aria-hidden="true" />
+          {CANVAS_THEMES.map((choice) => (
+            <button
+              key={choice}
+              role="radio"
+              aria-checked={themeChoice === choice}
+              onClick={() => {
+                storeTheme(choice);
+                setThemeChoice(choice);
+              }}
+              title={THEME_HINT[choice]}
+              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold transition-colors ${themeChoice === choice ? "bg-white/90 text-black" : "text-white/80 hover:bg-white/10"}`}
+            >
+              <span aria-hidden="true" className="h-3 w-3 rounded-full border border-black/30" style={{ background: THEME_SWATCH[choice] }} />
+              {choice === "chalk" ? "Chalk" : THEME_LABEL[choice]}
+            </button>
+          ))}
+        </div>
         <button
           onClick={() => {
             const next = !soundOn;
@@ -1053,13 +1061,25 @@ function paperShadow(): string | null {
 
 const CHALK_CSS = chalkCss();
 const THEME_KEY = "aria.canvas.theme";
+/** A classroom: the working on the chalkboard, pictures pinned up on paper. */
+const DEFAULT_THEME: CanvasThemeChoice = "mix";
+const THEME_SWATCH: Record<CanvasThemeChoice, string> = {
+  paper: "#fbfaf6",
+  chalk: CHALK.slate,
+  mix: `linear-gradient(135deg, #fbfaf6 50%, ${CHALK.slate} 50%)`,
+};
+const THEME_HINT: Record<CanvasThemeChoice, string> = {
+  paper: "Every board on paper",
+  chalk: "Every board on a chalkboard",
+  mix: "Equations, graphs and processes on the chalkboard; pictures on paper",
+};
 
 function storedTheme(): CanvasThemeChoice {
   try {
     const v = localStorage.getItem(THEME_KEY);
-    return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : "paper";
+    return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : DEFAULT_THEME;
   } catch {
-    return "paper";
+    return DEFAULT_THEME;
   }
 }
 
