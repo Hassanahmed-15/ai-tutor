@@ -49,23 +49,67 @@ export function recapTour(recap: TourBeat, earlier: TourBeat[]): CanvasBoardSpec
  * more boards with no colour gets one from the palette.
  */
 export function unifyConceptColours(specs: CanvasBoardSpec[]): void {
-  type Coloured = { id: string; color?: string };
-  const elements = (spec: CanvasBoardSpec): Coloured[] => {
-    const st = spec.stage;
-    if (st.kind === "flow") return st.nodes;
-    if (st.kind === "scene") return st.items;
-    if (st.kind === "equation") return st.tokens.filter((t) => !/^[+=→←⇌−-]$/.test(t.text.trim()));
-    return [];
-  };
   const colour = new Map<string, string>();
   const seen = new Map<string, number>();
   for (const spec of specs) {
-    for (const el of elements(spec)) {
+    for (const el of colouredElements(spec)) {
       seen.set(el.id, (seen.get(el.id) ?? 0) + 1);
       if (el.color && !colour.has(el.id)) colour.set(el.id, el.color);
     }
   }
   let next = 0;
   for (const [id, count] of seen) if (count > 1 && !colour.has(id)) colour.set(id, PALETTE[next++ % PALETTE.length]);
-  for (const spec of specs) for (const el of elements(spec)) if (colour.has(el.id)) el.color = colour.get(el.id);
+  for (const spec of specs) applyConceptColours(spec, colour);
+}
+
+type Coloured = { id: string; color?: string };
+
+/** The elements of a board that stand for a concept and so carry its colour. */
+function colouredElements(spec: CanvasBoardSpec): Coloured[] {
+  const st = spec.stage;
+  if (st.kind === "flow") return st.nodes;
+  if (st.kind === "scene") return st.items;
+  if (st.kind === "equation") return st.tokens.filter((t) => !/^[+=→←⇌−-]$/.test(t.text.trim()));
+  return [];
+}
+
+/**
+ * The same rule when boards are written ONE AT A TIME (a progressive lecture, lib/canvas/progressive.ts):
+ * no board can wait for the others, so the colours are decided from the plan instead. Every object
+ * the plan puts on two or more boards gets a palette colour up front, in order of first appearance.
+ */
+export function planConceptColours(plan: Array<{ objects: string[] }>): Record<string, string> {
+  const count = new Map<string, number>();
+  for (const beat of plan) for (const id of new Set(beat.objects)) count.set(id, (count.get(id) ?? 0) + 1);
+  const out: Record<string, string> = {};
+  const free = PALETTE.filter((c) => !Object.values(CONVENTIONS).includes(c));
+  let next = 0;
+  for (const [id, n] of count) {
+    if (n < 2) continue;
+    const convention = Object.entries(CONVENTIONS).find(([word]) => new RegExp(`(^|-)${word}`).test(id));
+    out[id] = convention ? convention[1] : free[next++ % free.length];
+  }
+  return out;
+}
+
+/** The colours students already know these things by (the spec prompt asks for the same ones). */
+const CONVENTIONS: Record<string, string> = {
+  sun: "#d97706",
+  light: "#d97706",
+  water: "#2563eb",
+  "carbon-dioxide": "#475569",
+  oxygen: "#0284c7",
+  glucose: "#c2410c",
+  sugar: "#c2410c",
+  plant: "#15803d",
+  leaf: "#15803d",
+};
+
+/** Paints every element whose id has a lesson colour in that colour. */
+export function applyConceptColours(spec: CanvasBoardSpec, colours: Map<string, string> | Record<string, string>): void {
+  const get = (id: string) => (colours instanceof Map ? colours.get(id) : colours[id]);
+  for (const el of colouredElements(spec)) {
+    const c = get(el.id);
+    if (c) el.color = c;
+  }
 }

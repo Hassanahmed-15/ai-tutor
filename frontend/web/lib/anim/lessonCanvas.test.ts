@@ -7,6 +7,10 @@ import { fitView, flightMs, viewAt } from "../canvas/camera";
 import { activeCues } from "../canvas/cues";
 import { describeCanvasSpec } from "../canvas/describe";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec } from "../canvas/types";
+import { canvasBoardDurationMs, canvasEngineFor, canvasPlanRequest } from "../canvas/lessonRequest";
+import { applyConceptColours, planConceptColours, recapTour, unifyConceptColours } from "../canvas/lessonPasses";
+import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
+import { chalkCss, chalkTint, panelTheme, recolour } from "../canvas/theme";
 
 /* ── the expression language ──────────────────────────────────────────────────────────────── */
 
@@ -207,13 +211,13 @@ test("Aria can be told what a canvas board shows and what the student can do on 
 
 /* ── predict questions, the recap tour, one colour per concept ────────────────────────────── */
 
-import { recapTour, unifyConceptColours } from "../canvas/lessonPasses";
 
 test("a predict question needs exactly one right answer, and every option explains itself", () => {
   const ok = validateInteraction({ kind: "quiz", question: "What happens next?", options: [{ text: "A", correct: true, feedback: "Yes, because…" }, { text: "B", correct: false, feedback: "Tempting, but…" }, { text: "C", correct: false, feedback: "No — …" }] });
   assert.equal(ok?.kind, "quiz");
   assert.equal(validateInteraction({ kind: "quiz", question: "?", options: [{ text: "A", correct: true, feedback: "x" }, { text: "B", correct: true, feedback: "y" }] }), undefined, "two right answers");
   assert.equal(validateInteraction({ kind: "quiz", question: "?", options: [{ text: "A", correct: true }, { text: "B", correct: false, feedback: "y" }] }), undefined, "an option with no feedback");
+  assert.equal(validateInteraction({ kind: "quiz", question: "?", options: [{ text: "They stop", correct: true, feedback: "Correct: none of these is quite right." }, { text: "B", correct: false, feedback: "y" }] }), undefined, "a 'correct' answer its own feedback disowns");
 });
 
 test("a visit cue names a board, and the camera leaves it when the sentence ends", () => {
@@ -241,4 +245,110 @@ test("the same concept is drawn in the same colour on every board", () => {
   const glucoseNode = flow.stage.nodes.find((n) => n.id === "glucose")!.color;
   assert.ok(glucoseNode && glucoseNode === eq.stage.tokens.find((t) => t.id === "glucose")?.color, "an uncoloured shared concept gets one colour");
   assert.equal(eq.stage.tokens.find((t) => t.id === "arrow")?.color, undefined, "operators are never recoloured");
+});
+
+/* ── the board's ink: pressure strokes, hand-drawn frames, arcing terms, morphs ───────────── */
+
+import { arcKeyframes, arrowHead, inkWidth, quadPoints, roughRect, taperedStroke } from "../canvas/ink";
+
+test("a pen stroke swells in the middle and tapers more at the lift-off than the press", () => {
+  assert.ok(inkWidth(0.5, 10) > inkWidth(0.02, 10), "thicker in the middle than at the start");
+  assert.ok(inkWidth(0.98, 10) < inkWidth(0.02, 10), "the lift-off end is the thinnest");
+  assert.ok(inkWidth(0, 10) > 0, "never vanishes entirely");
+  const d = taperedStroke(quadPoints({ x: 0, y: 0 }, { x: 50, y: -40 }, { x: 100, y: 0 }, 10), 6);
+  assert.match(d, /^M[\d.-]+ [\d.-]+ .*Z$/, "a closed, filled outline");
+  assert.equal(arrowHead({ x: 100, y: 0 }, { x: 80, y: 0 }).length, 2, "an open pen arrowhead is two strokes");
+});
+
+test("hand-drawn frames are stable for the same element and differ between elements", () => {
+  assert.equal(roughRect("box-a", 10, 10, 200, 60), roughRect("box-a", 10, 10, 200, 60), "no jitter on re-render");
+  assert.notEqual(roughRect("box-a", 10, 10, 200, 60), roughRect("box-b", 10, 10, 200, 60));
+});
+
+test("an equation term arcs over and lands exactly, lifting more the further it travels", () => {
+  const short = arcKeyframes({ x: 0, y: 100 }, { x: 60, y: 100 });
+  const long = arcKeyframes({ x: 0, y: 100 }, { x: 400, y: 100 });
+  assert.deepEqual(long[0], { x: 0, y: 100 });
+  assert.ok(Math.abs(long[long.length - 1].x - 400) < 1e-9 && Math.abs(long[long.length - 1].y - 100) < 1e-9, "lands on its new place");
+  const peak = (frames: Array<{ y: number }>) => Math.min(...frames.map((f) => f.y));
+  assert.ok(peak(long) < peak(short), "a longer move lifts higher");
+});
+
+test("a morph is kept only when it changes something, on a real sentence", () => {
+  const spec = validateCanvasSpec({
+    heading: "Melting",
+    notes: [],
+    stage: { kind: "flow", arrangement: "chain", nodes: [{ id: "ice", label: "Ice", icon: "water", s: 0, becomes: { label: "Water", s: 2 } }, { id: "heat", label: "Heat", icon: "flame", s: 1, becomes: { s: 2 } }], arrows: [] },
+    cues: [],
+  }, 4)!;
+  if (spec.stage.kind !== "flow") return assert.fail();
+  assert.deepEqual(spec.stage.nodes[0].becomes, { icon: undefined, label: "Water", s: 2 });
+  assert.equal(spec.stage.nodes[1].becomes, undefined, "a morph into nothing new is dropped");
+  const node = layoutPanel(spec).marks.find((m) => m.id === "ice");
+  assert.equal(node?.type === "node" ? node.becomes?.label : null, "Water", "the layout carries it to the renderer");
+});
+
+/* ── canvas lectures in the ordinary flow ─────────────────────────────────────────────────── */
+
+const promptInput = (over: Partial<ProgressiveLectureInput> = {}): ProgressiveLectureInput => ({
+  topic: "What is photosynthesis",
+  mood: "",
+  sourceType: "prompt",
+  mode: "standard",
+  learnerProfile: { expertise: "beginner", depth: "balanced", goal: "school", codeExamples: false, preferredExamples: "visual", rationale: "", confirmedAt: "" },
+  ...over,
+});
+
+test("typed-prompt lectures are taught on the canvas; documents and programming are not", () => {
+  assert.equal(canvasEngineFor(promptInput(), {}), true);
+  assert.equal(canvasEngineFor(promptInput(), { CANVAS_LECTURES: "0" }), false, "the switch puts every lecture back");
+  assert.equal(canvasEngineFor(promptInput({ sourceType: "pdf" }), {}), false);
+  assert.equal(canvasEngineFor(promptInput({ suprnotes: { blocks: [] } }), {}), false);
+  assert.equal(canvasEngineFor(promptInput({ context: "slide text" }), {}), false);
+  assert.equal(canvasEngineFor(promptInput({ topic: "Explain for loops in Python" }), {}), false, "no code board on the canvas");
+});
+
+test("the canvas plan follows the approved outline and the chosen depth", () => {
+  const outline = { topic: "Photosynthesis", scope: "lesson" as const, subtopics: [{ title: "Why plants need light", caption: "" }, { title: "Inside the chloroplast", caption: "where it happens" }] };
+  const lesson = canvasPlanRequest(promptInput({ outline }));
+  assert.match(lesson, /1\. Why plants need light\n2\. Inside the chloroplast — where it happens/);
+  assert.match(lesson, /5 boards/);
+  assert.match(canvasPlanRequest(promptInput({ outline: { ...outline, scope: "question" } })), /3 or 4 boards/);
+  assert.match(canvasPlanRequest(promptInput({ learnerProfile: { ...promptInput().learnerProfile, depth: "concise" } })), /4 or 5 boards/);
+  assert.ok(canvasBoardDurationMs("one two three four five") > 3000);
+});
+
+test("lesson colours are fixed from the plan, keeping the colours students know", () => {
+  const colours = planConceptColours([{ objects: ["water", "leaf", "stomata"] }, { objects: ["water", "stomata"] }, { objects: ["leaf"] }]);
+  assert.equal(colours.water, "#2563eb", "water stays blue");
+  assert.equal(colours.leaf, "#15803d");
+  assert.ok(colours.stomata && colours.stomata !== colours.water, "another shared thing gets its own colour");
+  const spec = { v: 1, heading: "x", notes: [], cues: [], stage: { kind: "scene", items: [{ id: "water", kind: "icon", label: "Water", cell: "A1", s: 0, color: "#ff0000" }], arrows: [] } } as unknown as CanvasBoardSpec;
+  applyConceptColours(spec, colours);
+  assert.equal(spec.stage.kind === "scene" ? spec.stage.items[0].color : null, "#2563eb");
+});
+
+/* ── board themes ─────────────────────────────────────────────────────────────────────────── */
+
+test("chalk keeps a colour's hue but lifts it to a pastel that reads on slate, and never twice", () => {
+  const blue = chalkTint("#2563eb");
+  assert.notEqual(blue, "#2563eb");
+  assert.equal(chalkTint(blue), blue, "idempotent");
+  assert.equal(chalkTint("#fde68a"), "#fde68a", "an already-light colour is left alone");
+  assert.equal(chalkTint("not a colour"), "not a colour");
+  const lum = (hex: string) => parseInt(hex.slice(1, 3), 16) + parseInt(hex.slice(3, 5), 16) + parseInt(hex.slice(5, 7), 16);
+  assert.ok(lum(chalkTint("#15803d")) > lum("#15803d") + 150, "dark green becomes chalk green");
+});
+
+test("the classroom mix puts the working on chalk and pictures on paper", () => {
+  assert.equal(panelTheme("mix", "equation"), "chalk");
+  assert.equal(panelTheme("mix", "graph"), "chalk");
+  assert.equal(panelTheme("mix", "illustration"), "paper");
+  assert.equal(panelTheme("paper", "equation"), "paper");
+  assert.equal(panelTheme("chalk", "illustration"), "chalk");
+  const spec = { stage: { kind: "flow", nodes: [{ id: "a", color: "#15803d", label: "x" }] }, notes: [{ id: "n", text: "t" }] };
+  const out = recolour(spec, () => "#abcdef");
+  assert.equal(out.stage.nodes[0].color, "#abcdef");
+  assert.equal(spec.stage.nodes[0].color, "#15803d", "the lesson's own data is never changed");
+  assert.match(chalkCss(), /\.cv-chalk \[fill="#1f2937"\]\{fill:#f1eee4\}/);
 });

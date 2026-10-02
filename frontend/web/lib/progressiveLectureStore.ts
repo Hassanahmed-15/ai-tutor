@@ -1,6 +1,7 @@
 import "server-only";
 
 import { CODE_BEAT_PATTERN } from "./codeSpec";
+import { canvasEngineFor } from "./canvas/lessonRequest";
 
 import { randomUUID } from "node:crypto";
 import {
@@ -65,6 +66,7 @@ export async function createProgressiveLectureSession(
   const now = new Date().toISOString();
   const inputBlobName = progressiveLectureInputBlobName(userId, id);
   await uploadJsonBlob(inputBlobName, input);
+  const canvas = canvasEngineFor(input);
   const doc: ProgressiveLectureSessionDoc = {
     id,
     userId,
@@ -98,6 +100,12 @@ export async function createProgressiveLectureSession(
      */
     starterBeatCount: 2,
     starterBufferMs: 50_000,
+    /*
+     * A canvas lecture starts on its first board: every board is queued at once (see
+     * lib/progressiveDispatch.ts) and each is written in well under the ~40 s a board is spoken
+     * for, so the next one is ready before the student reaches it.
+     */
+    ...(canvas ? { boardEngine: "canvas" as const, starterBeatCount: 1, starterBufferMs: 30_000 } : {}),
     lectureId: null,
     costUsd: 0,
     createdAt: now,
@@ -293,9 +301,12 @@ export async function prepareAdaptiveRevision(
   firstMutable: number,
 ): Promise<void> {
   const docs = await progressiveBeats(session.id);
+  // A written canvas board stays as it is: its script was fixed when the lesson was planned, so
+  // there is nothing to rewrite, and resetting it would only hide it from the player for a moment.
+  const keep = (doc: ProgressiveBeatDoc) => session.boardEngine === "canvas" && doc.state === "ready" && Boolean(doc.beat);
   await Promise.all(docs
     .filter((doc) => doc.sequence >= firstMutable && doc.revision < session.planRevision)
-    .map((doc) => upsertProgressiveBeat({
+    .map((doc) => upsertProgressiveBeat(keep(doc) ? { ...doc, revision: session.planRevision } : {
       ...doc,
       revision: session.planRevision,
       state: "planned",

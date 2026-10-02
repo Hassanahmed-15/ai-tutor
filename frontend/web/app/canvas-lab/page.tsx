@@ -1,7 +1,9 @@
 "use client";
 
 /**
- * THE LESSON CANVAS (beta) — for signed-in students.
+ * THE LESSON CANVAS LAB — a development tool (app/canvas-lab/layout.tsx; CANVAS_LAB=1 in production).
+ * Students meet the canvas in the ordinary flow: every typed-prompt lecture is taught on it
+ * (lib/canvas/progressive.ts). This page makes one straight from a topic, for working on boards.
  *
  * Type a topic, and a canvas lecture is generated end to end (lib/canvas/generate.ts) and played in
  * the REAL LessonPlayer: same narration, same Aria, same pause/resume and questions — the only thing

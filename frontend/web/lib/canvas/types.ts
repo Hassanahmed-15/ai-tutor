@@ -18,7 +18,7 @@ export const PANEL_H = 560;
 export const CANVAS_ICONS = [
   "sun", "water", "gas", "leaf", "chloroplast", "sugar", "oxygen", "energy", "cell", "plant",
   "root", "cloud", "flame", "atom", "battery", "person", "earth", "gear", "heart", "lungs",
-  "stomata", "animal", "factory", "book", "airplane", "wing", "force", "magnet", "bulb", "wave", "car",
+  "stomata", "animal", "factory", "book", "airplane", "wing", "force", "magnet", "bulb", "wave", "car", "ice", "steam",
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
@@ -39,7 +39,11 @@ export type FlowNode = {
   s: number;
   /** 0-1 expression over the try-it variables: how strongly the node glows (e.g. the sun's brightness). */
   glow?: string;
+  /** A change of STATE that is the concept itself (ice → water): on sentence `s` this element morphs into the new icon/label. */
+  becomes?: Becomes;
 };
+
+export type Becomes = { icon?: CanvasIcon; label?: string; s: number };
 
 export type FlowArrow = {
   id: string;
@@ -148,6 +152,7 @@ export type SceneItem = {
   span?: string;
   color?: string;
   s: number;
+  becomes?: Becomes;
 };
 export type SceneStage = {
   kind: "scene";
@@ -219,4 +224,18 @@ export type CanvasBoardOp = {
   spec: CanvasBoardSpec;
   at: 0;
   endAt: 1;
+};
+
+/** One board of a canvas lecture as the plan writes it, before its spec is written. */
+export type CanvasPlanBeat = {
+  id: string;
+  title: string;
+  script: string;
+  stage: CanvasStage;
+  brief: string;
+  objects: string[];
+  inside: { beat: string; object: string } | null;
+  carry: string[];
+  interaction: "try" | "draw" | "quiz" | null;
+  overview: boolean;
 };

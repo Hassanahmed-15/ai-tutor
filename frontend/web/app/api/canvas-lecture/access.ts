@@ -15,6 +15,21 @@ export async function canvasUser(): Promise<{ userId: string } | { error: string
   return { error: "Please sign in to use the lesson canvas.", status: 401 };
 }
 
+/**
+ * The canvas LAB — make a canvas lecture straight from a topic, outside the ordinary flow — is a
+ * development tool now: typed-prompt lectures are taught on the canvas through the progressive
+ * worker (lib/canvas/progressive.ts). CANVAS_LAB=1 opens it in production.
+ */
+export function canvasLabOpen(): boolean {
+  return process.env.NODE_ENV !== "production" || process.env.CANVAS_LAB === "1";
+}
+
+/** canvasUser, for the lab's own routes. */
+export async function canvasLabUser(): Promise<{ userId: string } | { error: string; status: number }> {
+  if (!canvasLabOpen()) return { error: "Not found.", status: 404 };
+  return canvasUser();
+}
+
 /** Lectures one student may generate per 24 hours (each costs ~$0.10-0.20). 0 = no limit. */
 export function canvasDailyLimit(): number {
   const raw = process.env.CANVAS_DAILY_LIMIT;

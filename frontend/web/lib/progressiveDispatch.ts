@@ -22,7 +22,10 @@ import { dueSequences, lookaheadFromEnv } from "./progressiveWindow";
 export async function dispatchDueBeats(session: ProgressiveLectureSessionDoc): Promise<number[]> {
   if (session.status === "failed" || session.plan.length === 0) return [];
   const docs = await progressiveBeats(session.id);
-  const { lookahead, animationLookahead } = lookaheadFromEnv();
+  const ordinary = lookaheadFromEnv();
+  // A canvas lecture's boards are cheap and refer to each other (the recap visits them all), so
+  // every one is queued as soon as the plan exists.
+  const { lookahead, animationLookahead } = session.boardEngine === "canvas" ? { lookahead: session.plan.length, animationLookahead: session.plan.length } : ordinary;
   const due = dueSequences({
     planLength: session.plan.length,
     playhead: session.playhead,

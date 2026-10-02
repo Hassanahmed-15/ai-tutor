@@ -248,6 +248,22 @@ export function IconGlyph({ name, color }: { name: CanvasIcon; color: string }) 
           <circle cx={24} cy={14} r={10} fill="#1f2937" />
         </g>
       );
+    case "ice":
+      return (
+        <g>
+          <path d="M-30 -14 L 0 -32 L 30 -14 L 30 22 L 0 40 L -30 22 Z" fill="#e0f2fe" stroke="#0284c7" strokeWidth={3} strokeLinejoin="round" />
+          <path d="M-30 -14 L 0 4 L 30 -14 M 0 4 L 0 40" fill="none" stroke="#0284c7" strokeWidth={2.5} strokeLinejoin="round" />
+          <path d="M-20 -12 L -6 -20" stroke="#fff" strokeWidth={4} strokeLinecap="round" />
+        </g>
+      );
+    case "steam":
+      return (
+        <g fill="none" stroke="#94a3b8" strokeWidth={5} strokeLinecap="round">
+          <path d="M-18 36 C -30 20 -6 10 -18 -6 C -28 -20 -10 -30 -16 -42" />
+          <path d="M2 36 C -10 20 14 10 2 -6 C -8 -20 10 -30 4 -42" />
+          <path d="M22 36 C 10 20 34 10 22 -6 C 12 -20 30 -30 24 -42" />
+        </g>
+      );
     case "book":
       return (
         <g>

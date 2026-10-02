@@ -9,7 +9,7 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
-import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasIcon, type CompareStage, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage } from "./types";
+import { PANEL_H, PANEL_W, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CompareStage, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -17,7 +17,7 @@ export type Pt = { x: number; y: number };
 export type Mark =
   | { type: "heading"; id: string; text: string; x: number; y: number; size: number; s: number }
   | { type: "note"; id: string; lines: string[]; x: number; y: number; size: number; s: number; bullet: Pt }
-  | { type: "node"; id: string; cx: number; cy: number; r: number; icon?: CanvasIcon; label: string; sub?: string; color: string; s: number; glow?: string; labelY: number; labelSize: number }
+  | { type: "node"; id: string; cx: number; cy: number; r: number; icon?: CanvasIcon; label: string; sub?: string; color: string; s: number; glow?: string; labelY: number; labelSize: number; becomes?: Becomes }
   | { type: "arrow"; id: string; p0: Pt; c: Pt; p1: Pt; label?: string; labelAt: Pt; s: number; flow: boolean; rate?: string; color: string }
   | { type: "picture"; id: string; rect: Rect; src?: string; paper?: string; s: number; subject: string }
   | { type: "part"; id: string; cx: number; cy: number; name: string; s: number }
@@ -154,7 +154,7 @@ function nodeMark(node: FlowStage["nodes"][number], i: number, cx: number, cy: n
   const labelY = cy + r + labelSize + 6;
   const labelW = Math.max(textWidth(node.label, labelSize), node.sub ? textWidth(node.sub, 15) : 0);
   add(node.id, union([{ x: cx - r, y: cy - r, w: r * 2, h: r * 2 }, { x: cx - labelW / 2, y: labelY - labelSize, w: labelW, h: labelSize * (node.sub ? 2.2 : 1.3) }]), node.s);
-  return { type: "node", id: node.id, cx, cy, r, icon: node.icon, label: node.label, sub: node.sub, color: colorAt(i, node.color), s: node.s, glow: node.glow, labelY, labelSize };
+  return { type: "node", id: node.id, cx, cy, r, icon: node.icon, label: node.label, sub: node.sub, color: colorAt(i, node.color), s: node.s, glow: node.glow, labelY, labelSize, becomes: node.becomes };
 }
 
 function edgePoint(from: Pt, to: Pt, r: number, pad = 10): Pt {
@@ -434,7 +434,7 @@ function layoutScene(stage: SceneStage, box: Rect, marks: Mark[], add: Add) {
       const r = Math.min(rect.w, rect.h - 30) / 2 - 4;
       const cx = rect.x + rect.w / 2;
       const cy = rect.y + r + 4;
-      itemMarks.push({ type: "node", id: item.id, cx, cy, r, icon: item.icon, label: item.label ?? "", color, s: item.s, labelY: cy + r + 22, labelSize: 17 });
+      itemMarks.push({ type: "node", id: item.id, cx, cy, r, icon: item.icon, label: item.label ?? "", color, s: item.s, labelY: cy + r + 22, labelSize: 17, becomes: item.becomes });
       centres.set(item.id, { c: { x: cx, y: cy }, r, below: item.label ? 26 : 0 });
       add(item.id, rect, item.s);
     } else if (item.kind === "box") {

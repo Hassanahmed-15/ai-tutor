@@ -34,7 +34,9 @@ export type ProgressiveVisualKind =
   | "structure"
   | "plot"
   | "equation"
-  | "code";
+  | "code"
+  /** A lesson-canvas board (lib/canvas): one panel of the canvas, written whole by the worker. */
+  | "canvas";
 
 export type ProgressiveBeatPlan = {
   id: string;
@@ -63,6 +65,8 @@ export type ProgressiveBeatPlan = {
   visualKind: ProgressiveVisualKind;
   estimatedDurationMs: number;
   sourceBlockIds?: string[];
+  /** A canvas lecture's board, as its plan wrote it: the script is fixed at planning time. */
+  canvas?: import("./canvas/types").CanvasPlanBeat;
 };
 
 export type ProgressiveLectureStatus =
@@ -145,6 +149,12 @@ export type ProgressiveLectureSessionDoc = {
    * before it existed, which then adapt exactly as before.
    */
   sourceFidelity?: PdfFidelity;
+  /**
+   * "canvas": the lecture is taught on the lesson canvas (lib/canvas) — the plan writes every
+   * board's script at once and each board is one spec, so there is no separate enrich step.
+   * Absent: the ordinary boards.
+   */
+  boardEngine?: "canvas";
 };
 
 export type ProgressiveBeatState = "planned" | "generating" | "playable" | "ready" | "failed";
