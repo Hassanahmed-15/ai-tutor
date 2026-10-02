@@ -225,3 +225,17 @@ export type CanvasBoardOp = {
   at: 0;
   endAt: 1;
 };
+
+/** One board of a canvas lecture as the plan writes it, before its spec is written. */
+export type CanvasPlanBeat = {
+  id: string;
+  title: string;
+  script: string;
+  stage: CanvasStage;
+  brief: string;
+  objects: string[];
+  inside: { beat: string; object: string } | null;
+  carry: string[];
+  interaction: "try" | "draw" | "quiz" | null;
+  overview: boolean;
+};

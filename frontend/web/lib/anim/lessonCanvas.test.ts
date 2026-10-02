@@ -7,6 +7,9 @@ import { fitView, flightMs, viewAt } from "../canvas/camera";
 import { activeCues } from "../canvas/cues";
 import { describeCanvasSpec } from "../canvas/describe";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec } from "../canvas/types";
+import { canvasBoardDurationMs, canvasEngineFor, canvasPlanRequest } from "../canvas/lessonRequest";
+import { applyConceptColours, planConceptColours, recapTour, unifyConceptColours } from "../canvas/lessonPasses";
+import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 
 /* ── the expression language ──────────────────────────────────────────────────────────────── */
 
@@ -207,7 +210,6 @@ test("Aria can be told what a canvas board shows and what the student can do on 
 
 /* ── predict questions, the recap tour, one colour per concept ────────────────────────────── */
 
-import { recapTour, unifyConceptColours } from "../canvas/lessonPasses";
 
 test("a predict question needs exactly one right answer, and every option explains itself", () => {
   const ok = validateInteraction({ kind: "quiz", question: "What happens next?", options: [{ text: "A", correct: true, feedback: "Yes, because…" }, { text: "B", correct: false, feedback: "Tempting, but…" }, { text: "C", correct: false, feedback: "No — …" }] });
@@ -283,4 +285,44 @@ test("a morph is kept only when it changes something, on a real sentence", () =>
   assert.equal(spec.stage.nodes[1].becomes, undefined, "a morph into nothing new is dropped");
   const node = layoutPanel(spec).marks.find((m) => m.id === "ice");
   assert.equal(node?.type === "node" ? node.becomes?.label : null, "Water", "the layout carries it to the renderer");
+});
+
+/* ── canvas lectures in the ordinary flow ─────────────────────────────────────────────────── */
+
+const promptInput = (over: Partial<ProgressiveLectureInput> = {}): ProgressiveLectureInput => ({
+  topic: "What is photosynthesis",
+  mood: "",
+  sourceType: "prompt",
+  mode: "standard",
+  learnerProfile: { expertise: "beginner", depth: "balanced", goal: "school", codeExamples: false, preferredExamples: "visual", rationale: "", confirmedAt: "" },
+  ...over,
+});
+
+test("typed-prompt lectures are taught on the canvas; documents and programming are not", () => {
+  assert.equal(canvasEngineFor(promptInput(), {}), true);
+  assert.equal(canvasEngineFor(promptInput(), { CANVAS_LECTURES: "0" }), false, "the switch puts every lecture back");
+  assert.equal(canvasEngineFor(promptInput({ sourceType: "pdf" }), {}), false);
+  assert.equal(canvasEngineFor(promptInput({ suprnotes: { blocks: [] } }), {}), false);
+  assert.equal(canvasEngineFor(promptInput({ context: "slide text" }), {}), false);
+  assert.equal(canvasEngineFor(promptInput({ topic: "Explain for loops in Python" }), {}), false, "no code board on the canvas");
+});
+
+test("the canvas plan follows the approved outline and the chosen depth", () => {
+  const outline = { topic: "Photosynthesis", scope: "lesson" as const, subtopics: [{ title: "Why plants need light", caption: "" }, { title: "Inside the chloroplast", caption: "where it happens" }] };
+  const lesson = canvasPlanRequest(promptInput({ outline }));
+  assert.match(lesson, /1\. Why plants need light\n2\. Inside the chloroplast — where it happens/);
+  assert.match(lesson, /5 boards/);
+  assert.match(canvasPlanRequest(promptInput({ outline: { ...outline, scope: "question" } })), /3 or 4 boards/);
+  assert.match(canvasPlanRequest(promptInput({ learnerProfile: { ...promptInput().learnerProfile, depth: "concise" } })), /4 or 5 boards/);
+  assert.ok(canvasBoardDurationMs("one two three four five") > 3000);
+});
+
+test("lesson colours are fixed from the plan, keeping the colours students know", () => {
+  const colours = planConceptColours([{ objects: ["water", "leaf", "stomata"] }, { objects: ["water", "stomata"] }, { objects: ["leaf"] }]);
+  assert.equal(colours.water, "#2563eb", "water stays blue");
+  assert.equal(colours.leaf, "#15803d");
+  assert.ok(colours.stomata && colours.stomata !== colours.water, "another shared thing gets its own colour");
+  const spec = { v: 1, heading: "x", notes: [], cues: [], stage: { kind: "scene", items: [{ id: "water", kind: "icon", label: "Water", cell: "A1", s: 0, color: "#ff0000" }], arrows: [] } } as unknown as CanvasBoardSpec;
+  applyConceptColours(spec, colours);
+  assert.equal(spec.stage.kind === "scene" ? spec.stage.items[0].color : null, "#2563eb");
 });

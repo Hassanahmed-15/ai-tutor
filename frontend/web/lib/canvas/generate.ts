@@ -8,7 +8,7 @@ import { drawIllustration, locateParts, pictureSubject, verifyParts } from "../i
 import { layoutPanel } from "./layout";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
-import { CANVAS_STAGES, type CanvasBoardOp, type CanvasBoardSpec, type CanvasStage } from "./types";
+import { CANVAS_STAGES, type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat, type CanvasStage } from "./types";
 import { slug, validateCanvasSpec } from "./validate";
 import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
 
@@ -28,25 +28,14 @@ export type { CanvasLecture };
  * look at a picture's points — never a board.
  */
 
-const PLAN_MODEL = process.env.CANVAS_PLAN_MODEL ?? "gpt-5.6-terra";
+export const PLAN_MODEL = process.env.CANVAS_PLAN_MODEL ?? "gpt-5.6-terra";
 const SPEC_MODEL = process.env.CANVAS_SPEC_MODEL ?? "gpt-5.6-luna";
 const BUDGET_MS = Number(process.env.CANVAS_BUDGET_MS) || 195_000;
 
 /** Time left before the lecture must be finished, for this generation. */
-type Clock = { left: () => number };
+export type Clock = { left: () => number };
 
-export type CanvasPlanBeat = {
-  id: string;
-  title: string;
-  script: string;
-  stage: CanvasStage;
-  brief: string;
-  objects: string[];
-  inside: { beat: string; object: string } | null;
-  carry: string[];
-  interaction: "try" | "draw" | "quiz" | null;
-  overview: boolean;
-};
+export type { CanvasPlanBeat };
 
 export type CanvasProgress = { step: string; detail?: string };
 
@@ -55,12 +44,12 @@ export function canvasSentences(script: string): string[] {
   return script.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
 }
 
-function client(): OpenAI {
+export function client(): OpenAI {
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not set");
   return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 }
 
-function bounded<T>(work: Promise<T>, ms: number, what: string): Promise<T> {
+export function bounded<T>(work: Promise<T>, ms: number, what: string): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | undefined;
   const limit = new Promise<never>((_, reject) => {
     timer = setTimeout(() => reject(new Error(`${what} timed out after ${Math.round(ms / 1000)}s`)), ms);
@@ -68,7 +57,7 @@ function bounded<T>(work: Promise<T>, ms: number, what: string): Promise<T> {
   return Promise.race([work, limit]).finally(() => clearTimeout(timer));
 }
 
-async function jsonCall(openai: OpenAI, model: string, system: string, user: string, maxTokens: number): Promise<{ json: unknown; costUsd: number }> {
+export async function jsonCall(openai: OpenAI, model: string, system: string, user: string, maxTokens: number): Promise<{ json: unknown; costUsd: number }> {
   const res = await openai.chat.completions.create({
     model,
     messages: [
@@ -136,7 +125,7 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
 /** Words that mean "this turns into that" — a board where a morph IS the explanation. */
 const CHANGE_OF_STATE = /\b(melt|boil|freez|evaporat|condens|sublimat|becom|turn(?:s|ed|ing)? into|transform|convert|chang(?:e|es|ed|ing) into|grow(?:s|n)? into|split(?:s)? into|break(?:s)? down into)/i;
 
-function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, lastError?: string): string {
+function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, lastError?: string, extra: string[] = []): string {
   const index = plan.indexOf(beat);
   const sentences = canvasSentences(beat.script);
   const outline = plan.map((b) => `${b.id}. ${b.title} (${b.stage})${b.id === beat.id ? "   ← THIS BOARD" : ""}`).join("\n");
@@ -166,12 +155,13 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
       ? [`This board is about something TURNING INTO something else: the element that changes MUST carry "becomes" on the sentence where it changes.`]
       : []),
     ...(beat.overview ? [`This is the recap. Earlier boards you can "visit": ${plan.slice(0, index).map((b) => `${b.id} "${b.title}"`).join(", ")}.`] : []),
+    ...extra,
   ];
   if (lastError) lines.push("", `Your previous answer could not be used: ${lastError}. Return a complete, valid board.`);
   return lines.join("\n");
 }
 
-async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
+export async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, clock: Clock, extra: string[] = []): Promise<{ spec: CanvasBoardSpec; costUsd: number; attempts: number }> {
   const sentences = canvasSentences(beat.script);
   let costUsd = 0;
   let lastError: string | undefined;
@@ -179,7 +169,7 @@ async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[
     // A retry is optional work: with too little time left the board falls back instead.
     if (attempt > 1 && clock.left() < 75_000) break;
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError), 6000), Math.min(45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
+      const { json, costUsd: c } = await bounded(jsonCall(openai, SPEC_MODEL, CANVAS_SPEC_PROMPT, specUserPrompt(topic, plan, beat, lastError, extra), 6000), Math.min(45_000, Math.max(10_000, clock.left() - 60_000)), `board ${beat.id}`);
       costUsd += c;
       const raw = json as Record<string, unknown>;
       // The plan decides the stage; a model that drifted to another one is corrected, not trusted.
@@ -210,7 +200,7 @@ async function generateSpec(openai: OpenAI, topic: string, plan: CanvasPlanBeat[
 }
 
 /** A board that always draws: the heading, and the lesson's objects as a simple scene. */
-function fallbackSpec(beat: CanvasPlanBeat): CanvasBoardSpec {
+export function fallbackSpec(beat: CanvasPlanBeat): CanvasBoardSpec {
   const sentences = canvasSentences(beat.script);
   const items = (beat.objects.length ? beat.objects : [beat.title]).slice(0, 4).map((name, i) => ({
     id: slug(name, `item-${i + 1}`),
@@ -225,7 +215,7 @@ function fallbackSpec(beat: CanvasPlanBeat): CanvasBoardSpec {
 
 /* ── pictures ─────────────────────────────────────────────────────────────────────────────── */
 
-async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
+export async function illustrate(openai: OpenAI, userId: string, lectureId: string, beat: CanvasPlanBeat, spec: CanvasBoardSpec, log: string[], clock: Clock): Promise<{ spec: CanvasBoardSpec; costUsd: number }> {
   if (spec.stage.kind !== "illustration") return { spec, costUsd: 0 };
   const stage = spec.stage;
   const started = Date.now();
@@ -277,6 +267,23 @@ async function illustrate(openai: OpenAI, userId: string, lectureId: string, bea
     // No picture: keep the board, drawn as a scene of its parts, so the lesson never loses a board.
     return { spec: { ...spec, stage: { kind: "scene", items: stage.parts.slice(0, 6).map((p, i) => ({ id: p.id, kind: "box" as const, label: p.name, cell: `${"ABC"[i % 3]}${i < 3 ? 1 : 3}`, span: "2x2", s: p.s })), arrows: [] } }, costUsd };
   }
+}
+
+/** The ordinary lesson Beat that carries one canvas board. */
+export function canvasBeat(id: string, beat: CanvasPlanBeat, index: number, spec: CanvasBoardSpec): Beat {
+  const op: CanvasBoardOp = { kind: "canvasBoard", spec, at: 0, endAt: 1 };
+  return {
+    id,
+    title: beat.title,
+    conceptId: slug(beat.title, beat.id),
+    teacherMove: beat.brief,
+    stepLabel: `${index + 1} · ${beat.title}`,
+    slideKind: "intro",
+    points: spec.notes.map((n) => n.text),
+    keyClaims: spec.notes.map((n) => n.text),
+    script: beat.script,
+    draw: { caption: spec.heading, ops: [op as never] },
+  };
 }
 
 /* ── the lecture ──────────────────────────────────────────────────────────────────────────── */
@@ -353,19 +360,7 @@ export async function generateCanvasLecture(topic: string, userId: string, onPro
     spec.cues = spec.cues.filter((c) => c.action !== "visit" || earlierIds.has(c.beat ?? ""));
     if (beat.overview && !spec.cues.some((c) => c.action === "visit")) spec.cues = [...spec.cues, ...recapTour(beat, planBeats.slice(0, i))];
     spec.cues = spec.cues.map((c) => (c.action === "visit" ? { ...c, beat: beatIdOf(c.beat!) } : c));
-    const op: CanvasBoardOp = { kind: "canvasBoard", spec, at: 0, endAt: 1 };
-    return {
-      id: beatIdOf(beat.id),
-      title: beat.title,
-      conceptId: slug(beat.title, beat.id),
-      teacherMove: beat.brief,
-      stepLabel: `${i + 1} · ${beat.title}`,
-      slideKind: "intro",
-      points: spec.notes.map((n) => n.text),
-      keyClaims: spec.notes.map((n) => n.text),
-      script: beat.script,
-      draw: { caption: spec.heading, ops: [op as never] },
-    };
+    return canvasBeat(beatIdOf(beat.id), beat, i, spec);
   });
 
   const lecture: CanvasLecture = { id: lectureId, topic, title: plan.title, beats, costUsd: Math.round(costUsd * 1000) / 1000, createdAt: new Date().toISOString(), ms: Date.now() - started, log };

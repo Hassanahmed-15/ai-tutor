@@ -51,6 +51,8 @@ import { depthBudget, strictDepthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
 import { buildProgressivePlan, clean, isReferenceLesson, sourceRoleFor } from "./progressivePlan";
+import { canvasSpecOf, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
+import type { CanvasPlanBeat } from "./canvas/types";
 import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
 import type { BeatSourceGrounding } from "./sourceGrounding";
 import {
@@ -117,6 +119,13 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
   if (session.plan.length > 0) return;
   try {
     const input = await progressiveInput(session);
+    if (session.boardEngine === "canvas") {
+      const canvas = await planCanvasLecture(input);
+      const next = await setProgressivePlan({ ...session, costUsd: session.costUsd + canvas.costUsd }, canvas.plan);
+      console.log(`[canvas] session=${sessionId} plan=${canvas.plan.map((b) => `${b.id}=${b.canvas?.stage}${b.canvas?.interaction ? `[${b.canvas.interaction}]` : ""}`).join(" ")}`);
+      await dispatchDueBeats(next);
+      return;
+    }
     const plan = buildProgressivePlan(input);
     const next = await setProgressivePlan(session, plan);
     /*
@@ -178,6 +187,7 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
   const existing = await progressiveBeat(sessionId, sequence);
   if (existing && existing.revision > revision) return;
   if (existing?.beat && existing.revision === revision && ["playable", "ready"].includes(existing.state)) return;
+  if (session.boardEngine === "canvas") return generateCanvasBoard(session, sequence, revision, existing, queuedMs);
 
   const now = new Date().toISOString();
   const baseDoc: ProgressiveBeatDoc = {
@@ -238,6 +248,70 @@ async function generateBeat(userId: string, sessionId: string, sequence: number,
   await dispatchProgressiveTasks([
     { version: 1, type: "enrich-beat", sessionId, userId, sequence, revision },
   ]);
+}
+
+/**
+ * A canvas lecture's board (lib/canvas/progressive.ts). Its script was fixed when the lesson was
+ * planned, so the board is written whole here and goes straight to ready: there is no separate
+ * enrich step. An adaptive revision does not rewrite a board that is already written — the script
+ * it would be drawn for has not changed.
+ */
+async function generateCanvasBoard(
+  session: ProgressiveLectureSessionDoc,
+  sequence: number,
+  revision: number,
+  existing: ProgressiveBeatDoc | null,
+  queuedMs?: number,
+): Promise<void> {
+  const startedAt = performance.now();
+  const { id: sessionId, userId } = session;
+  const plan = session.plan.map((p) => p.canvas).filter((b): b is CanvasPlanBeat => Boolean(b));
+  const now = new Date().toISOString();
+  const baseDoc: ProgressiveBeatDoc = {
+    id: `${sessionId}:${sequence}`,
+    sessionId,
+    userId,
+    sequence,
+    revision,
+    state: "generating",
+    enrichmentState: "running",
+    beat: existing?.beat ?? null,
+    fallbackUsed: false,
+    costUsd: existing?.costUsd ?? 0,
+    createdAt: existing?.createdAt ?? now,
+    updatedAt: now,
+    error: null,
+  };
+
+  let beat = canvasSpecOf(existing?.beat) ? existing!.beat! : null;
+  let costUsd = 0;
+  let fallbackUsed = existing?.fallbackUsed ?? false;
+  if (!beat) {
+    await upsertProgressiveBeat(baseDoc);
+    if (plan.length !== session.plan.length) throw new Error("The canvas lecture's plan is missing its boards.");
+    const docs = await progressiveBeats(sessionId);
+    const earlier = plan.map((_, i) => (i < sequence ? canvasSpecOf(docs.find((d) => d.sequence === i)?.beat) : undefined));
+    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes });
+    beat = written.beat;
+    costUsd = written.costUsd;
+    fallbackUsed = written.fallback;
+    console.log(`[canvas] session=${sessionId} ${written.log.join(" | ")}`);
+  }
+
+  const latest = await progressiveBeat(sessionId, sequence);
+  if (latest && latest.revision > revision) return;
+  const ms = Math.round(performance.now() - startedAt);
+  await upsertProgressiveBeat({
+    ...baseDoc,
+    state: "ready",
+    enrichmentState: "ready",
+    beat,
+    fallbackUsed,
+    costUsd: baseDoc.costUsd + costUsd,
+    timing: { queuedMs, textMs: ms, premiumMs: ms, enrichMs: ms, visualKind: "canvas", readyAt: new Date().toISOString() },
+  });
+  await dispatchDueBeats(await requiredSession(userId, sessionId));
+  await maybeFinalize(userId, sessionId);
 }
 
 /** The "How to teach them" sentence of the portrait block, for the board brief. */

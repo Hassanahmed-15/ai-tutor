@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { generateCanvasLecture } from "@/lib/canvas/generate";
 import { canvasLecturesToday, canvasStoreReady, listCanvasLectures, loadCanvasLecture } from "@/lib/canvas/store";
-import { canvasDailyLimit, canvasUser } from "./access";
+import { canvasDailyLimit, canvasLabUser } from "./access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,7 +9,7 @@ export const maxDuration = 300;
 
 /** GET ?id=… opens one of the student's lectures; with no id, lists them (newest first). */
 export async function GET(request: Request) {
-  const who = await canvasUser();
+  const who = await canvasLabUser();
   if ("error" in who) return NextResponse.json({ error: who.error }, { status: who.status });
   const id = new URL(request.url).searchParams.get("id");
   if (!id) {
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
 /** POST {topic} streams NDJSON: progress lines, then {type:"done", lecture} or {type:"error"}. */
 export async function POST(request: Request) {
-  const who = await canvasUser();
+  const who = await canvasLabUser();
   if ("error" in who) return NextResponse.json({ error: who.error }, { status: who.status });
   if (!canvasStoreReady()) return NextResponse.json({ error: "Lecture storage is not configured." }, { status: 503 });
   const body = (await request.json().catch(() => ({}))) as { topic?: unknown };
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   if (topic.length < 3) return NextResponse.json({ error: "Tell me what you'd like to learn about." }, { status: 400 });
   const limit = canvasDailyLimit();
   if (limit && (await canvasLecturesToday(who.userId)) >= limit) {
-    return NextResponse.json({ error: `You've made ${limit} canvas lectures today — that's the daily limit for the beta. Your saved lectures are below.` }, { status: 429 });
+    return NextResponse.json({ error: `You've made ${limit} canvas lectures today — that's the daily limit. Your saved lectures are below.` }, { status: 429 });
   }
 
   const encoder = new TextEncoder();
