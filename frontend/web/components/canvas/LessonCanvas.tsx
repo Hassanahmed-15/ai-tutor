@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles } from "lucide-react";
+import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
 import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
@@ -9,7 +9,10 @@ import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInter
 import { activeCues } from "@/lib/canvas/cues";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
-import { CANVAS_CSS, CanvasPanel, markerPoint } from "./CanvasPanel";
+import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
+import { quadPoints, roughEllipse } from "@/lib/canvas/ink";
+import { playScratch, playTick, playWhoosh, setSoundEnabled, soundEnabled } from "./sound";
+import { Confetti } from "./Confetti";
 
 /**
  * THE LESSON CANVAS — every board of the lecture on one world, taught by a camera and a pen.
@@ -54,7 +57,8 @@ type Props = {
   playing?: boolean;
 };
 
-const ARIA = "#e11d48";
+/** Aria's coral: her pen, her highlighter, her corrections — one colour that always means "Aria". */
+const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
 export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true }: Props) {
@@ -86,6 +90,27 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [strokes, setStrokes] = useState<Record<string, Pt[][]>>({});
   const [corrections, setCorrections] = useState<Record<string, DrawingCheck>>({});
   const [reactionPoint, setReactionPoint] = useState<{ key: string; target: string; at: number } | null>(null);
+  /** Slider values before the student's last drag, per board: the graph draws them as a ghost. */
+  const [ghostVars, setGhostVars] = useState<Record<string, Record<string, number>>>({});
+  /** The three sounds are OFF unless the student turns them on (remembered per browser). */
+  const [soundOn, setSoundOn] = useState(false);
+  useEffect(() => {
+    const t = window.setTimeout(() => setSoundOn(soundEnabled()), 0);
+    return () => window.clearTimeout(t);
+  }, []);
+  /** Bumped on a correct answer — the only thing that earns confetti. */
+  const [celebration, setCelebration] = useState(0);
+  useEffect(() => {
+    if (!celebration) return;
+    const t = window.setTimeout(() => setCelebration(0), 1700);
+    return () => window.clearTimeout(t);
+  }, [celebration]);
+  /** Paper grain, baked ONCE into a small image (a live turbulence filter would re-render every camera frame). */
+  const [grainUrl, setGrainUrl] = useState<string | null>(null);
+  useEffect(() => {
+    const t = window.setTimeout(() => setGrainUrl(paperGrain()), 0);
+    return () => window.clearTimeout(t);
+  }, []);
 
 
   const interaction = current?.spec.interaction;
@@ -99,6 +124,18 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const focusId = penCue?.target;
   /** Picture hotspots: out while the student can explore — paused, finished, or moving the camera. */
   const exploring = !playing || finished || currentIndex < 0 || mode !== "follow";
+  // A tick when Aria's pen taps, a pencil scratch when a sentence puts new ink on the board. Both are
+  // silent unless the student switched sound on (sound.ts), and each is throttled.
+  const penKey = penCue && current ? `${current.key}|${penCue.s}|${penCue.action}|${penCue.target}` : "";
+  useEffect(() => {
+    if (penKey.includes("|point|")) playTick();
+  }, [penKey]);
+  const inkKey = current && currentIndex >= 0 && !finished ? `${current.key}|${sentence}` : "";
+  useEffect(() => {
+    if (inkKey && currentLayout?.marks.some((m) => m.s === sentence)) playScratch();
+    // Keyed on the board and sentence only: the scratch marks new ink, not re-renders.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inkKey]);
 
   /* ── the camera ───────────────────────────────────────────────────────────────────────── */
 
@@ -141,6 +178,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       // Keep the aspect of the target; a resize mid-flight is corrected by the next flight.
       const start = performance.now();
       const duration = flightMs(from, target);
+      if (duration > 1100) playWhoosh();
       const fromFitted = fitView(from, target.w / target.h, 0);
       const step = (now: number) => {
         const t = Math.min(1, (now - start) / duration);
@@ -272,6 +310,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       const check = (await res.json()) as DrawingCheck;
       if (!res.ok || typeof check.feedback !== "string") throw new Error("check failed");
       setCorrections((prev) => ({ ...prev, [current.key]: check }));
+      if (check.correct) setCelebration(Date.now());
       if (check.feedback) onSpeak(check.feedback);
       onTellAria(`The student was asked to "${interaction.prompt}" and drew on the board. Your check: ${check.correct ? "correct" : "not yet right"} — ${check.feedback}`);
     } catch {
@@ -323,6 +362,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
   const fontCss = BOARD_FONT_FACES.map((f) => `@font-face{font-family:"${BOARD_FONT_FAMILY}";src:url("${f.url}") format("truetype");font-weight:${f.weight};font-display:swap;}`).join("");
   const showOverviewBadges = mode === "overview" || (current?.spec.overview && finished);
+  const rackFocus = mode === "follow" && currentIndex >= 0 && !showOverviewBadges && visitIndex < 0;
 
   return (
     <div
@@ -345,6 +385,11 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           <filter id="cv-shadow" x="-10%" y="-10%" width="120%" height="130%">
             <feGaussianBlur stdDeviation={14} />
           </filter>
+          {grainUrl && (
+            <pattern id="cv-grain" width={220} height={220} patternUnits="userSpaceOnUse">
+              <image href={grainUrl} width={220} height={220} />
+            </pattern>
+          )}
           <radialGradient id="cv-glow">
             <stop offset="0%" stopColor="#fbbf24" stopOpacity={0.85} />
             <stop offset="100%" stopColor="#fbbf24" stopOpacity={0} />
@@ -355,7 +400,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           const at = placements[panel.key];
           const live = i === shownIndex && currentIndex >= 0;
           return (
-            <g key={panel.key} data-panel={panel.key} data-live={live ? "true" : undefined} transform={`translate(${at.x},${at.y}) scale(${at.scale})`}>
+            <g
+              key={panel.key}
+              data-panel={panel.key}
+              data-live={live ? "true" : undefined}
+              transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
+              // RACK FOCUS: while the camera is with Aria, every other board steps back.
+              style={{ opacity: rackFocus && !live && visitIndex !== i ? 0.38 : 1, transition: "opacity 700ms ease" }}
+            >
               <MemoPanel
                 layout={layouts[i]}
                 spec={panel.spec}
@@ -363,6 +415,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                 sentenceProgress={live ? sentenceProgress : 0}
                 live={live}
                 vars={vars[panel.key] ?? EMPTY}
+                ghostVars={ghostVars[panel.key]}
                 focusId={live ? focusId : reactionPoint?.key === panel.key ? reactionPoint.target : undefined}
                 carryFrom={carryFrom[panel.key] ?? EMPTY_RECTS}
                 reducedMotion={reducedMotion}
@@ -395,9 +448,24 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           );
         })}
       </svg>
+      {celebration > 0 && <Confetti key={celebration} seed={celebration} />}
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
       <div className="absolute right-3 top-3 z-10 flex gap-2" onPointerDown={(e) => e.stopPropagation()}>
+        <button
+          onClick={() => {
+            const next = !soundOn;
+            setSoundEnabled(next);
+            setSoundOn(next);
+            if (next) playTick();
+          }}
+          aria-pressed={soundOn}
+          title={soundOn ? "Board sounds on" : "Board sounds off"}
+          className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1.5 text-xs font-bold text-white/85 backdrop-blur hover:bg-black/80"
+        >
+          {soundOn ? <Volume2 size={13} /> : <VolumeX size={13} />}
+          <span className="sr-only">{soundOn ? "Turn board sounds off" : "Turn board sounds on"}</span>
+        </button>
         {mode !== "follow" && (
           <button onClick={() => setMode("follow")} className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-xs font-bold text-white/85 backdrop-blur hover:bg-black/80">
             <Crosshair size={13} /> Follow Aria
@@ -420,6 +488,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           task={interaction}
           values={vars[current.key] ?? {}}
           onChange={(v) => setVars((prev) => ({ ...prev, [current.key]: { ...(prev[current.key] ?? {}), ...v } }))}
+          onGrab={() => setGhostVars((prev) => ({ ...prev, [current.key]: { ...(vars[current.key] ?? {}) } }))}
           onRelease={(v) => react(current.key, interaction, { ...(vars[current.key] ?? {}), ...v })}
           onContinue={() => {
             const values = vars[current.key] ?? {};
@@ -435,6 +504,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           options={interaction.options}
           onAnswer={(i) => {
             const o = interaction.options[i];
+            if (o.correct) setCelebration(Date.now());
             onSpeak(o.feedback);
             onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (${o.correct ? "correct" : "not correct"}). You told them: "${o.feedback}"`);
           }}
@@ -502,17 +572,40 @@ function Pen({ cue, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars:
   // The pen rests just OFF the element's lower-right, pointing in, so it never covers what it shows.
   const tip: Pt =
     cue.action === "circle" ? { x: cx + (r.w / 2 + 16) * 0.72, y: cy + (r.h / 2 + 14) * 0.72 }
-    : cue.action === "underline" ? { x: r.x + r.w + 4, y: r.y + r.h + 8 }
+    : cue.action === "underline" ? { x: r.x + r.w + 8, y: r.y + r.h * 0.62 }
     : { x: r.x + r.w * 0.82, y: r.y + r.h * 0.86 };
   const key = `${cue.s}-${cue.action}-${cue.target}`;
   return (
     <g pointerEvents="none">
       {cue.action === "circle" && (
-        <ellipse key={`c${key}`} cx={cx} cy={cy} rx={r.w / 2 + 16} ry={r.h / 2 + 14} fill="none" stroke={ARIA} strokeWidth={4} strokeLinecap="round" className="cv-ring" pathLength={1} opacity={0.9} />
+        // A hand-drawn ring, gone round twice, the way a teacher circles something on a board.
+        <path key={`c${key}`} d={roughEllipse(`ring-${key}`, cx, cy, r.w / 2 + 16, r.h / 2 + 14)} fill="none" stroke={ARIA} strokeWidth={3.6} strokeLinecap="round" className="cv-ring" pathLength={1} opacity={0.92} />
       )}
-      {cue.action === "underline" && (
-        <path key={`u${key}`} d={`M${r.x - 4} ${r.y + r.h + 8} Q ${cx} ${r.y + r.h + 14} ${r.x + r.w + 4} ${r.y + r.h + 7}`} fill="none" stroke={ARIA} strokeWidth={4} strokeLinecap="round" className="cv-ring" pathLength={1} />
-      )}
+      {cue.action === "underline" && (() => {
+        // THE HIGHLIGHTER SWIPE (Vox): a translucent marker band across each line of the words,
+        // multiply-blended so the text stays crisp, landing with the pen and the element's own glow.
+        // A note's box includes its bullet, so the band starts after it.
+        const lines = Math.max(1, Math.min(3, Math.round(r.h / 30)));
+        const lineH = r.h / lines;
+        const x0 = r.x + (cue.target && layout.marks.find((m) => m.id === cue.target)?.type === "note" ? 24 : 0);
+        return Array.from({ length: lines }, (_, k) => {
+          const y = r.y + lineH * (k + 0.6);
+          return (
+            <path
+              key={`u${key}-${k}`}
+              d={`M${x0} ${y} Q ${(x0 + r.x + r.w) / 2} ${y - 2} ${r.x + r.w} ${y + 1}`}
+              fill="none"
+              stroke={ARIA}
+              strokeOpacity={0.3}
+              strokeWidth={Math.min(24, lineH * 0.62)}
+              strokeLinecap="round"
+              className="cv-swipe"
+              pathLength={1}
+              style={{ mixBlendMode: "multiply", animationDelay: `${k * 220}ms` }}
+            />
+          );
+        });
+      })()}
       {cue.action === "point" && <circle key={`p${key}`} cx={tip.x} cy={tip.y} r={14} fill="none" stroke={ARIA} strokeWidth={3} className="cv-tap" />}
       <g style={{ transform: `translate(${tip.x}px, ${tip.y}px)`, transition: "transform 650ms cubic-bezier(.65,0,.25,1)" }}>
         <circle r={26} fill={ARIA} opacity={0.14} />
@@ -554,7 +647,7 @@ function Corrections({ layout, check }: { layout: PanelLayout; check?: DrawingCh
           if (!t) return null;
           return (
             <g key={i}>
-              <ellipse cx={t.x + t.w / 2} cy={t.y + t.h / 2} rx={t.w / 2 + 18} ry={t.h / 2 + 16} fill="none" stroke={ARIA} strokeWidth={4} strokeDasharray="1" className="cv-ring" pathLength={1} style={{ animationDelay: `${i * 450}ms` }} />
+              <path d={roughEllipse(`fix-${i}-${m.target}`, t.x + t.w / 2, t.y + t.h / 2, t.w / 2 + 18, t.h / 2 + 16)} fill="none" stroke={ARIA} strokeWidth={3.6} strokeLinecap="round" className="cv-ring" pathLength={1} style={{ animationDelay: `${i * 450}ms` }} />
               {m.label && <text x={t.x + t.w / 2} y={t.y - 24} textAnchor="middle" fontSize={17} fontWeight={800} fill={ARIA}>{m.label}</text>}
             </g>
           );
@@ -573,9 +666,10 @@ function Corrections({ layout, check }: { layout: PanelLayout; check?: DrawingCh
         const hd = Math.hypot(hx, hy) || 1;
         const [vx, vy] = [hx / hd, hy / hd];
         return (
+          // Aria's correction in her own ink: a pen stroke drawn on, then its arrowhead.
           <g key={i}>
-            <path d={`M${p0.x} ${p0.y} Q ${c.x} ${c.y} ${p1.x} ${p1.y}`} fill="none" stroke={ARIA} strokeWidth={4.5} strokeLinecap="round" strokeDasharray="1" className="cv-ring" pathLength={1} style={{ animationDelay: `${i * 450}ms` }} />
-            <path d={`M${p1.x} ${p1.y} L${p1.x - vx * 16 - vy * 9} ${p1.y - vy * 16 + vx * 9} L${p1.x - vx * 16 + vy * 9} ${p1.y - vy * 16 - vx * 9} Z`} fill={ARIA} />
+            <Ink points={quadPoints(p0, c, p1, 20)} width={5.4} color={ARIA} />
+            <path d={`M${p1.x} ${p1.y} L${p1.x - vx * 16 - vy * 9} ${p1.y - vy * 16 + vx * 9} L${p1.x - vx * 16 + vy * 9} ${p1.y - vy * 16 - vx * 9} Z`} fill={ARIA} className="cv-in cv-late" />
             {m.label && <text x={c.x} y={c.y - 10} textAnchor="middle" fontSize={16} fontWeight={800} fill={ARIA}>{m.label}</text>}
           </g>
         );
@@ -659,7 +753,7 @@ async function schematic(layout: PanelLayout, strokes: Pt[][]): Promise<{ image:
 
 /* ── the task cards ───────────────────────────────────────────────────────────────────────── */
 
-function TryItCard({ task, values, onChange, onRelease, onContinue }: { task: TryItInteraction; values: Record<string, number>; onChange: (v: Record<string, number>) => void; onRelease: (v: Record<string, number>) => void; onContinue: () => void }) {
+function TryItCard({ task, values, onChange, onGrab, onRelease, onContinue }: { task: TryItInteraction; values: Record<string, number>; onChange: (v: Record<string, number>) => void; onGrab: () => void; onRelease: (v: Record<string, number>) => void; onContinue: () => void }) {
   return (
     <div className="absolute right-4 top-1/2 z-20 w-[min(340px,calc(100%-2rem))] -translate-y-1/2 rounded-2xl border border-amber-300/25 bg-[#11100f]/92 p-4 text-white shadow-2xl backdrop-blur" onPointerDown={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()}>
       <p className="flex items-center gap-1.5 text-[0.68rem] font-black uppercase tracking-[0.18em] text-amber-300/90">
@@ -684,6 +778,8 @@ function TryItCard({ task, values, onChange, onRelease, onContinue }: { task: Tr
               step={c.step ?? (c.max - c.min) / 100}
               value={v}
               onChange={(e) => onChange({ [c.var]: Number(e.target.value) })}
+              onPointerDown={onGrab}
+              onKeyDown={(e) => { if (!e.repeat) onGrab(); }}
               onPointerUp={(e) => onRelease({ [c.var]: Number((e.target as HTMLInputElement).value) })}
               onKeyUp={(e) => onRelease({ [c.var]: Number((e.target as HTMLInputElement).value) })}
               className="mt-1.5 w-full accent-amber-400"
@@ -695,7 +791,7 @@ function TryItCard({ task, values, onChange, onRelease, onContinue }: { task: Tr
         <p key={r.label} className="mt-2 flex justify-between rounded-lg bg-white/[0.06] px-2.5 py-1.5 text-xs font-bold text-white/75">
           <span>{r.label}</span>
           <span className="tabular-nums text-white">
-            {Math.round(evalExpr(r.expr, values, 0) * 10) / 10}
+            <SpringNumber value={Math.round(evalExpr(r.expr, values, 0) * 10) / 10} />
             {r.unit ? ` ${r.unit}` : ""}
           </span>
         </p>
@@ -836,6 +932,55 @@ function MiniMap({ panels, worldRects, shownIndex, visitIndex, onPick }: { panel
       </svg>
     </div>
   );
+}
+
+/** Fine, warm paper grain as a small tiling image — generated once on the client. */
+function paperGrain(): string | null {
+  try {
+    const size = 220;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    const img = ctx.createImageData(size, size);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const v = 200 + Math.random() * 55;
+      img.data[i] = v;
+      img.data[i + 1] = v * 0.985;
+      img.data[i + 2] = v * 0.95;
+      img.data[i + 3] = Math.random() < 0.5 ? 28 : 12;
+    }
+    ctx.putImageData(img, 0, 0);
+    return canvas.toDataURL("image/png");
+  } catch {
+    return null;
+  }
+}
+
+/** A number that springs to its new value (a short ease-out-back count) instead of jumping. */
+function SpringNumber({ value }: { value: number }) {
+  const [shown, setShown] = useState(value);
+  const from = useRef(value);
+  useEffect(() => {
+    const start = performance.now();
+    const a = from.current;
+    let raf = 0;
+    const ease = (t: number) => 1 + 2.2 * Math.pow(t - 1, 3) + 1.2 * Math.pow(t - 1, 2);
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / 380);
+      const v = a + (value - a) * ease(t);
+      setShown(Math.round(v * 10) / 10);
+      if (t < 1) raf = requestAnimationFrame(step);
+      else from.current = value;
+    };
+    raf = requestAnimationFrame(step);
+    return () => {
+      cancelAnimationFrame(raf);
+      from.current = value;
+    };
+  }, [value]);
+  return <>{shown}</>;
 }
 
 export type { PanelPlacement };

@@ -214,6 +214,7 @@ test("a predict question needs exactly one right answer, and every option explai
   assert.equal(ok?.kind, "quiz");
   assert.equal(validateInteraction({ kind: "quiz", question: "?", options: [{ text: "A", correct: true, feedback: "x" }, { text: "B", correct: true, feedback: "y" }] }), undefined, "two right answers");
   assert.equal(validateInteraction({ kind: "quiz", question: "?", options: [{ text: "A", correct: true }, { text: "B", correct: false, feedback: "y" }] }), undefined, "an option with no feedback");
+  assert.equal(validateInteraction({ kind: "quiz", question: "?", options: [{ text: "They stop", correct: true, feedback: "Correct: none of these is quite right." }, { text: "B", correct: false, feedback: "y" }] }), undefined, "a 'correct' answer its own feedback disowns");
 });
 
 test("a visit cue names a board, and the camera leaves it when the sentence ends", () => {
@@ -241,4 +242,45 @@ test("the same concept is drawn in the same colour on every board", () => {
   const glucoseNode = flow.stage.nodes.find((n) => n.id === "glucose")!.color;
   assert.ok(glucoseNode && glucoseNode === eq.stage.tokens.find((t) => t.id === "glucose")?.color, "an uncoloured shared concept gets one colour");
   assert.equal(eq.stage.tokens.find((t) => t.id === "arrow")?.color, undefined, "operators are never recoloured");
+});
+
+/* ── the board's ink: pressure strokes, hand-drawn frames, arcing terms, morphs ───────────── */
+
+import { arcKeyframes, arrowHead, inkWidth, quadPoints, roughRect, taperedStroke } from "../canvas/ink";
+
+test("a pen stroke swells in the middle and tapers more at the lift-off than the press", () => {
+  assert.ok(inkWidth(0.5, 10) > inkWidth(0.02, 10), "thicker in the middle than at the start");
+  assert.ok(inkWidth(0.98, 10) < inkWidth(0.02, 10), "the lift-off end is the thinnest");
+  assert.ok(inkWidth(0, 10) > 0, "never vanishes entirely");
+  const d = taperedStroke(quadPoints({ x: 0, y: 0 }, { x: 50, y: -40 }, { x: 100, y: 0 }, 10), 6);
+  assert.match(d, /^M[\d.-]+ [\d.-]+ .*Z$/, "a closed, filled outline");
+  assert.equal(arrowHead({ x: 100, y: 0 }, { x: 80, y: 0 }).length, 2, "an open pen arrowhead is two strokes");
+});
+
+test("hand-drawn frames are stable for the same element and differ between elements", () => {
+  assert.equal(roughRect("box-a", 10, 10, 200, 60), roughRect("box-a", 10, 10, 200, 60), "no jitter on re-render");
+  assert.notEqual(roughRect("box-a", 10, 10, 200, 60), roughRect("box-b", 10, 10, 200, 60));
+});
+
+test("an equation term arcs over and lands exactly, lifting more the further it travels", () => {
+  const short = arcKeyframes({ x: 0, y: 100 }, { x: 60, y: 100 });
+  const long = arcKeyframes({ x: 0, y: 100 }, { x: 400, y: 100 });
+  assert.deepEqual(long[0], { x: 0, y: 100 });
+  assert.ok(Math.abs(long[long.length - 1].x - 400) < 1e-9 && Math.abs(long[long.length - 1].y - 100) < 1e-9, "lands on its new place");
+  const peak = (frames: Array<{ y: number }>) => Math.min(...frames.map((f) => f.y));
+  assert.ok(peak(long) < peak(short), "a longer move lifts higher");
+});
+
+test("a morph is kept only when it changes something, on a real sentence", () => {
+  const spec = validateCanvasSpec({
+    heading: "Melting",
+    notes: [],
+    stage: { kind: "flow", arrangement: "chain", nodes: [{ id: "ice", label: "Ice", icon: "water", s: 0, becomes: { label: "Water", s: 2 } }, { id: "heat", label: "Heat", icon: "flame", s: 1, becomes: { s: 2 } }], arrows: [] },
+    cues: [],
+  }, 4)!;
+  if (spec.stage.kind !== "flow") return assert.fail();
+  assert.deepEqual(spec.stage.nodes[0].becomes, { icon: undefined, label: "Water", s: 2 });
+  assert.equal(spec.stage.nodes[1].becomes, undefined, "a morph into nothing new is dropped");
+  const node = layoutPanel(spec).marks.find((m) => m.id === "ice");
+  assert.equal(node?.type === "node" ? node.becomes?.label : null, "Water", "the layout carries it to the renderer");
 });

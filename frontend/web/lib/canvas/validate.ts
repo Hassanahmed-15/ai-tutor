@@ -150,6 +150,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         if (!label) return null;
         const glow = str(n.glow, 120);
         const role = str(n.role, 8);
+        const becomes = becomesOf(n.becomes, sentence);
         return {
           id: unique(n.id ?? label, `node-${i + 1}`),
           label,
@@ -159,6 +160,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
           role: (["input", "core", "output"].includes(role) ? role : undefined) as FlowStage["nodes"][number]["role"],
           s: sentence(n.s ?? n.sentence, i),
           glow: glow && exprUsesOnly(glow, vars) ? glow : undefined,
+          ...(becomes ? { becomes } : {}),
         };
       })
       .filter((n): n is NonNullable<typeof n> => Boolean(n))
@@ -320,6 +322,7 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
         span: /^[1-6]x[1-4]$/.test(str(it.span, 3)) ? str(it.span, 3) : undefined,
         color: color(it.color),
         s: sentence(it.s ?? it.sentence, i),
+        ...(becomesOf(it.becomes, sentence) ? { becomes: becomesOf(it.becomes, sentence) } : {}),
       };
     })
     .filter((it): it is NonNullable<typeof it> => Boolean(it))
@@ -327,6 +330,14 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
   if (!items.length) return null;
   const stage: SceneStage = { kind: "scene", items, arrows: validateArrows(r.arrows, sentence, unique, new Set(items.map((i) => i.id)), vars) };
   return stage;
+}
+
+/** A morph is only kept when it changes something and happens on a real sentence. */
+function becomesOf(raw: unknown, sentence: (v: unknown, f?: number) => number): { icon?: CanvasIcon; label?: string; s: number } | undefined {
+  const b = obj(raw);
+  const next = { icon: icon(b.icon), label: str(b.label, 24) || undefined };
+  if (!next.icon && !next.label) return undefined;
+  return { ...next, s: sentence(b.s ?? b.sentence, 1) };
 }
 
 export function validateInteraction(raw: unknown): CanvasInteraction | undefined {
@@ -344,7 +355,12 @@ export function validateInteraction(raw: unknown): CanvasInteraction | undefined
       .map((o) => ({ text: str(o.text, 90), correct: o.correct === true, feedback: str(o.feedback, 260) }))
       .filter((o) => o.text && o.feedback)
       .slice(0, 4);
-    return options.length >= 2 && options.filter((o) => o.correct).length === 1 ? { kind: "quiz", question: prompt, options } : undefined;
+    const right = options.filter((o) => o.correct);
+    // The right answer must be right on its own. A model that marks an option correct and then says
+    // "none of these is quite right" has written a broken question — refuse it, so the board is redone.
+    const selfDoubting = /none of (these|the above)|not quite right|isn'?t (quite )?right|neither is|is (actually )?wrong/i;
+    if (right.length !== 1 || selfDoubting.test(right[0].feedback)) return undefined;
+    return options.length >= 2 ? { kind: "quiz", question: prompt, options } : undefined;
   }
   if (kind !== "try") return undefined;
   const controls = arr(r.controls)

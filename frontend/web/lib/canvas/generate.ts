@@ -133,6 +133,9 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
 
 /* ── one board ────────────────────────────────────────────────────────────────────────────── */
 
+/** Words that mean "this turns into that" — a board where a morph IS the explanation. */
+const CHANGE_OF_STATE = /\b(melt|boil|freez|evaporat|condens|sublimat|becom|turn(?:s|ed|ing)? into|transform|convert|chang(?:e|es|ed|ing) into|grow(?:s|n)? into|split(?:s)? into|break(?:s)? down into)/i;
+
 function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanBeat, lastError?: string): string {
   const index = plan.indexOf(beat);
   const sentences = canvasSentences(beat.script);
@@ -159,6 +162,9 @@ function specUserPrompt(topic: string, plan: CanvasPlanBeat[], beat: CanvasPlanB
         ? `"interaction": a "${beat.interaction}" interaction is REQUIRED on this board.`
         : `"interaction": null.`,
     `"overview": ${beat.overview}.`,
+    ...(CHANGE_OF_STATE.test(`${beat.title} ${beat.brief} ${beat.script}`) && (beat.stage === "flow" || beat.stage === "scene")
+      ? [`This board is about something TURNING INTO something else: the element that changes MUST carry "becomes" on the sentence where it changes.`]
+      : []),
     ...(beat.overview ? [`This is the recap. Earlier boards you can "visit": ${plan.slice(0, index).map((b) => `${b.id} "${b.title}"`).join(", ")}.`] : []),
   ];
   if (lastError) lines.push("", `Your previous answer could not be used: ${lastError}. Return a complete, valid board.`);
