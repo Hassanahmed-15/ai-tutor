@@ -10,6 +10,7 @@ import { PANEL_H, PANEL_W, type CanvasBoardSpec } from "../canvas/types";
 import { canvasBoardDurationMs, canvasEngineFor, canvasPlanRequest } from "../canvas/lessonRequest";
 import { applyConceptColours, planConceptColours, recapTour, unifyConceptColours } from "../canvas/lessonPasses";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
+import { chalkCss, chalkTint, panelTheme, recolour } from "../canvas/theme";
 
 /* ── the expression language ──────────────────────────────────────────────────────────────── */
 
@@ -325,4 +326,29 @@ test("lesson colours are fixed from the plan, keeping the colours students know"
   const spec = { v: 1, heading: "x", notes: [], cues: [], stage: { kind: "scene", items: [{ id: "water", kind: "icon", label: "Water", cell: "A1", s: 0, color: "#ff0000" }], arrows: [] } } as unknown as CanvasBoardSpec;
   applyConceptColours(spec, colours);
   assert.equal(spec.stage.kind === "scene" ? spec.stage.items[0].color : null, "#2563eb");
+});
+
+/* ── board themes ─────────────────────────────────────────────────────────────────────────── */
+
+test("chalk keeps a colour's hue but lifts it to a pastel that reads on slate, and never twice", () => {
+  const blue = chalkTint("#2563eb");
+  assert.notEqual(blue, "#2563eb");
+  assert.equal(chalkTint(blue), blue, "idempotent");
+  assert.equal(chalkTint("#fde68a"), "#fde68a", "an already-light colour is left alone");
+  assert.equal(chalkTint("not a colour"), "not a colour");
+  const lum = (hex: string) => parseInt(hex.slice(1, 3), 16) + parseInt(hex.slice(3, 5), 16) + parseInt(hex.slice(5, 7), 16);
+  assert.ok(lum(chalkTint("#15803d")) > lum("#15803d") + 150, "dark green becomes chalk green");
+});
+
+test("the classroom mix puts the working on chalk and pictures on paper", () => {
+  assert.equal(panelTheme("mix", "equation"), "chalk");
+  assert.equal(panelTheme("mix", "graph"), "chalk");
+  assert.equal(panelTheme("mix", "illustration"), "paper");
+  assert.equal(panelTheme("paper", "equation"), "paper");
+  assert.equal(panelTheme("chalk", "illustration"), "chalk");
+  const spec = { stage: { kind: "flow", nodes: [{ id: "a", color: "#15803d", label: "x" }] }, notes: [{ id: "n", text: "t" }] };
+  const out = recolour(spec, () => "#abcdef");
+  assert.equal(out.stage.nodes[0].color, "#abcdef");
+  assert.equal(spec.stage.nodes[0].color, "#15803d", "the lesson's own data is never changed");
+  assert.match(chalkCss(), /\.cv-chalk \[fill="#1f2937"\]\{fill:#f1eee4\}/);
 });

@@ -1,12 +1,13 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
+import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
 import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues } from "@/lib/canvas/cues";
+import { CANVAS_THEMES, CHALK, THEME_LABEL, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
@@ -68,7 +69,16 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [aspect, setAspect] = useState(16 / 9);
   const [mode, setMode] = useState<"follow" | "free" | "overview">("follow");
 
-  const layouts = useMemo(() => panels.map((p) => layoutPanel(p.spec)), [panels]);
+  /** Paper, chalkboard or the classroom mix — the student's choice, remembered per browser. */
+  const [themeChoice, setThemeChoice] = useState<CanvasThemeChoice>("paper");
+  useEffect(() => {
+    const t = window.setTimeout(() => setThemeChoice(storedTheme()), 0);
+    return () => window.clearTimeout(t);
+  }, []);
+  const themes = useMemo((): BoardTheme[] => panels.map((p) => panelTheme(themeChoice, p.spec.stage.kind)), [panels, themeChoice]);
+  // A chalk board's own colours are lifted to chalk pastels before it is laid out (theme.ts).
+  const specs = useMemo(() => panels.map((p, i) => (themes[i] === "chalk" ? recolour(p.spec, chalkTint) : p.spec)), [panels, themes]);
+  const layouts = useMemo(() => specs.map((spec, i) => (themes[i] === "chalk" ? recolour(layoutPanel(spec), chalkTint) : layoutPanel(spec))), [specs, themes]);
   const placements = useMemo(
     () => placePanels(panels.map((p, i) => ({ key: p.key, inside: p.spec.inside, layout: layouts[i] }))),
     [panels, layouts],
@@ -108,10 +118,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   /** Paper grain, baked ONCE into a small image (a live turbulence filter would re-render every camera frame). */
   const [grainUrl, setGrainUrl] = useState<string | null>(null);
   const [shadowUrl, setShadowUrl] = useState<string | null>(null);
+  const [dustUrl, setDustUrl] = useState<string | null>(null);
+  const [speckleUrl, setSpeckleUrl] = useState<string | null>(null);
   useEffect(() => {
     const t = window.setTimeout(() => {
       setGrainUrl(paperGrain());
       setShadowUrl(paperShadow());
+      setDustUrl(chalkDust());
+      setSpeckleUrl(chalkSpeckle());
     }, 0);
     return () => window.clearTimeout(t);
   }, []);
@@ -396,13 +410,29 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       onPointerCancel={onPointerUp}
       aria-label="Lesson canvas"
     >
-      <style>{fontCss + CANVAS_CSS}</style>
+      <style>{fontCss + CANVAS_CSS + CHALK_CSS}</style>
       <svg ref={svgRef} className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
         <defs>
           {shadowUrl && <image id="cv-shadow-img" href={shadowUrl} x={-SHADOW_PAD} y={-SHADOW_PAD + 10} width={PANEL_W + SHADOW_PAD * 2} height={PANEL_H + SHADOW_PAD * 2} preserveAspectRatio="none" />}
           {grainUrl && (
             <pattern id="cv-grain" width={220} height={220} patternUnits="userSpaceOnUse">
               <image href={grainUrl} width={220} height={220} />
+            </pattern>
+          )}
+          {/* The chalkboard: room light across the slate, old eraser smudges, and the speckle that
+              breaks chalk strokes up — all baked once (see chalkDust / chalkSpeckle). */}
+          <radialGradient id="cv-slate-light" cx="45%" cy="30%" r="75%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity={0.07} />
+            <stop offset="100%" stopColor="#000000" stopOpacity={0.12} />
+          </radialGradient>
+          {dustUrl && (
+            <pattern id="cv-dust" width={600} height={350} patternUnits="userSpaceOnUse">
+              <image href={dustUrl} width={600} height={350} />
+            </pattern>
+          )}
+          {speckleUrl && (
+            <pattern id="cv-speckle" width={160} height={160} patternUnits="userSpaceOnUse">
+              <image href={speckleUrl} width={160} height={160} />
             </pattern>
           )}
           <radialGradient id="cv-glow">
@@ -417,12 +447,14 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             <g
               key={panel.key}
               data-panel={panel.key}
+              className={themes[i] === "chalk" ? "cv-chalk" : undefined}
               data-live={live ? "true" : undefined}
               transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
             >
               <MemoPanel
                 layout={layouts[i]}
-                spec={panel.spec}
+                spec={specs[i]}
+                theme={themes[i]}
                 shownThrough={live && !finished ? sentence : Infinity}
                 sentenceProgress={live ? sentenceProgress : 0}
                 live={live}
@@ -468,6 +500,18 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
       <div className="absolute right-3 top-3 z-10 flex gap-2" onPointerDown={(e) => e.stopPropagation()}>
+        <button
+          onClick={() => {
+            const next = CANVAS_THEMES[(CANVAS_THEMES.indexOf(themeChoice) + 1) % CANVAS_THEMES.length];
+            storeTheme(next);
+            setThemeChoice(next);
+          }}
+          title={`Board: ${THEME_LABEL[themeChoice]} — click for ${THEME_LABEL[CANVAS_THEMES[(CANVAS_THEMES.indexOf(themeChoice) + 1) % CANVAS_THEMES.length]]}`}
+          className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-xs font-bold text-white/85 backdrop-blur hover:bg-black/80"
+        >
+          <Palette size={13} />
+          {THEME_LABEL[themeChoice]}
+        </button>
         <button
           onClick={() => {
             const next = !soundOn;
@@ -533,6 +577,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
         </p>
       )}
       <MiniMap
+        themes={themes}
         panels={panels}
         worldRects={worldRects}
         shownIndex={shownIndex}
@@ -920,7 +965,7 @@ function QuizCard({ question, options, onAnswer, onContinue }: { question: strin
 }
 
 /** The whole lesson in the corner: every board so far, where Aria is, and a click to fly anywhere. */
-function MiniMap({ panels, worldRects, shownIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; worldRects: Rect[]; shownIndex: number; visitIndex: number; onPick: (i: number) => void }) {
+function MiniMap({ panels, themes, worldRects, shownIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; themes: BoardTheme[]; worldRects: Rect[]; shownIndex: number; visitIndex: number; onPick: (i: number) => void }) {
   const top = panels.map((p, i) => ({ p, i })).filter(({ p }) => !p.spec.inside);
   if (top.length < 2) return null;
   const all = unionRects(top.map(({ i }) => worldRects[i]));
@@ -936,9 +981,9 @@ function MiniMap({ panels, worldRects, shownIndex, visitIndex, onPick }: { panel
           const here = i === shownIndex || (panels[shownIndex]?.spec.inside && panels.findIndex((q) => q.key === panels[shownIndex].spec.inside!.beat) === i);
           return (
             <g key={p.key} style={{ cursor: shown ? "pointer" : "default" }} onClick={() => shown && onPick(i)}>
-              <rect x={6 + (r.x - all.x) * k} y={6 + (r.y - all.y) * k} width={r.w * k} height={r.h * k} rx={3} fill={shown ? "#fbfaf6" : "#1f2937"} opacity={shown ? 0.9 : 0.5} stroke={here ? "#f59e0b" : visitIndex === i ? "#fbbf24" : "transparent"} strokeWidth={2.5} />
+              <rect x={6 + (r.x - all.x) * k} y={6 + (r.y - all.y) * k} width={r.w * k} height={r.h * k} rx={3} fill={shown ? (themes[i] === "chalk" ? CHALK.card : "#fbfaf6") : "#1f2937"} opacity={shown ? 0.9 : 0.5} stroke={here ? "#f59e0b" : visitIndex === i ? "#fbbf24" : "transparent"} strokeWidth={2.5} />
               {shown && (
-                <text x={6 + (r.x - all.x + r.w / 2) * k} y={6 + (r.y - all.y + r.h / 2) * k + 4} textAnchor="middle" fontSize={11} fontWeight={800} fill="#1f2937">
+                <text x={6 + (r.x - all.x + r.w / 2) * k} y={6 + (r.y - all.y + r.h / 2) * k + 4} textAnchor="middle" fontSize={11} fontWeight={800} fill={themes[i] === "chalk" ? CHALK.chalk : "#1f2937"}>
                   {i + 1}
                 </text>
               )}
@@ -1000,6 +1045,82 @@ function paperShadow(): string | null {
     ctx.beginPath();
     ctx.roundRect(SHADOW_PAD * k, SHADOW_PAD * k, PANEL_W * k, PANEL_H * k, 24 * k);
     ctx.fill();
+    return canvas.toDataURL("image/png");
+  } catch {
+    return null;
+  }
+}
+
+const CHALK_CSS = chalkCss();
+const THEME_KEY = "aria.canvas.theme";
+
+function storedTheme(): CanvasThemeChoice {
+  try {
+    const v = localStorage.getItem(THEME_KEY);
+    return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : "paper";
+  } catch {
+    return "paper";
+  }
+}
+
+function storeTheme(choice: CanvasThemeChoice): void {
+  try {
+    localStorage.setItem(THEME_KEY, choice);
+  } catch {
+    // A blocked store just means the choice is not remembered.
+  }
+}
+
+/** Old eraser smudges on a chalkboard: soft, wide, barely-there swirls of white. */
+function chalkDust(): string | null {
+  try {
+    const w = 300;
+    const h = 175;
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    ctx.filter = "blur(6px)";
+    for (let i = 0; i < 7; i++) {
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+      const r = 30 + Math.random() * 60;
+      const from = Math.random() * Math.PI;
+      const to = from + Math.PI * (0.6 + Math.random() * 0.8);
+      ctx.strokeStyle = `rgba(255,255,255,${0.025 + Math.random() * 0.035})`;
+      ctx.lineWidth = 14 + Math.random() * 18;
+      // Drawn again one tile over in every direction, so the pattern repeats without a seam.
+      for (const dx of [-w, 0, w]) {
+        for (const dy of [-h, 0, h]) {
+          ctx.beginPath();
+          ctx.arc(x + dx, y + dy, r, from, to);
+          ctx.stroke();
+        }
+      }
+    }
+    return canvas.toDataURL("image/png");
+  } catch {
+    return null;
+  }
+}
+
+/** Tiny flecks of the slate's colour, laid over chalk writing so each stroke skips like chalk. */
+function chalkSpeckle(): string | null {
+  try {
+    const size = 160;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    for (let i = 0; i < 900; i++) {
+      ctx.fillStyle = `rgba(34,48,42,${0.25 + Math.random() * 0.45})`;
+      const r = 0.4 + Math.random() * 1.1;
+      ctx.beginPath();
+      ctx.arc(Math.random() * size, Math.random() * size, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
     return canvas.toDataURL("image/png");
   } catch {
     return null;

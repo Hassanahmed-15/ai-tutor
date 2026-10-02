@@ -5,6 +5,7 @@ import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { graphPoint, INK, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type GraphStage } from "@/lib/canvas/types";
+import { CHALK, type BoardTheme } from "@/lib/canvas/theme";
 import { IconGlyph } from "./icons";
 
 /**
@@ -42,9 +43,12 @@ type PanelProps = {
   /** Where a carried element came from, in this panel's own coordinates. */
   carryFrom: Record<string, Rect>;
   reducedMotion: boolean;
+  /** The surface this board is drawn on (lib/canvas/theme.ts). */
+  theme?: BoardTheme;
 };
 
-export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion }: PanelProps) {
+export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live, vars, ghostVars, focusId, carryFrom, reducedMotion, theme = "paper" }: PanelProps) {
+  const chalk = theme === "chalk";
   const visible = layout.marks.filter((m) => m.s <= shownThrough);
   const headingW = layout.targets.heading?.w ?? 200;
   return (
@@ -57,14 +61,56 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
         <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill={PAPER} stroke="#e7e2d6" strokeWidth={2} />
         {/* Paper grain: a faint, soft texture baked once into an image pattern — no blend mode, which
             forced the whole board through an extra compositing pass per frame. */}
-        <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" pointerEvents="none" />
+        {chalk ? <ChalkSurface /> : <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" pointerEvents="none" />}
         <Ink points={[{ x: 48, y: 88 }, { x: 48 + (headingW + 20) * 0.5, y: 86.5 }, { x: Math.min(PANEL_W - 48, 48 + headingW + 20), y: 88.5 }]} width={4.2} color="#f59e0b" opacity={0.6} />
         {visible.map((mark) => (
-          <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} />
+          <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} />
         ))}
+        {/* Chalk never lays down solid: a fine speckle of the slate over the writing breaks every
+            stroke up the way chalk skips over a board — one rectangle, not a filter per stroke. */}
+        {chalk && <ChalkSpeckle layout={layout} />}
       </g>
     </g>
     </InkDrawing.Provider>
+  );
+}
+
+/**
+ * A chalkboard's surface over the slate: the light from the room falling across it, old eraser
+ * smudges, a wooden frame and the chalk tray along the bottom. All baked or plain shapes — nothing
+ * here is recomputed on a camera frame.
+ */
+function ChalkSurface() {
+  return (
+    <>
+      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-slate-light)" pointerEvents="none" />
+      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-dust)" pointerEvents="none" />
+      <rect x={-7} y={-7} width={PANEL_W + 14} height={PANEL_H + 14} rx={27} fill="none" stroke={CHALK.frame} strokeWidth={14} />
+      <rect x={-1} y={-1} width={PANEL_W + 2} height={PANEL_H + 2} rx={22} fill="none" stroke={CHALK.frameLight} strokeWidth={2} opacity={0.7} />
+      <rect x={-14} y={PANEL_H + 6} width={PANEL_W + 28} height={16} rx={4} fill={CHALK.frame} />
+      <rect x={-14} y={PANEL_H + 6} width={PANEL_W + 28} height={4} rx={2} fill={CHALK.frameLight} opacity={0.8} />
+      <rect x={PANEL_W - 230} y={PANEL_H - 2} width={58} height={11} rx={5} fill="#f6f3ea" />
+      <rect x={PANEL_W - 160} y={PANEL_H - 1} width={40} height={10} rx={5} fill="#f6d77a" />
+      <rect x={110} y={PANEL_H - 4} width={96} height={13} rx={3} fill="#3b2a1d" />
+      <rect x={110} y={PANEL_H - 4} width={96} height={5} rx={2} fill="#cfcac0" />
+    </>
+  );
+}
+
+/** The speckle over chalk writing — everywhere but a taped-up photo, which is paper, not chalk. */
+function ChalkSpeckle({ layout }: { layout: PanelLayout }) {
+  const id = useId().replace(/:/g, "");
+  const photos = layout.marks.filter((m): m is Extract<Mark, { type: "picture" }> => m.type === "picture");
+  if (!photos.length) return <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-speckle)" pointerEvents="none" />;
+  // A clip with holes (even-odd) is plain geometry — no offscreen mask.
+  const holes = photos.map((p) => `M${p.rect.x - 12} ${p.rect.y - 26} h${p.rect.w + 24} v${p.rect.h + 38} h${-(p.rect.w + 24)} Z`).join(" ");
+  return (
+    <>
+      <clipPath id={`spk${id}`}>
+        <path d={`M0 0 H${PANEL_W} V${PANEL_H} H0 Z ${holes}`} clipRule="evenodd" />
+      </clipPath>
+      <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-speckle)" pointerEvents="none" clipPath={`url(#spk${id})`} />
+    </>
   );
 }
 
@@ -157,6 +203,7 @@ type MarkProps = {
   carry?: Rect;
   targetRect?: Rect;
   reducedMotion: boolean;
+  chalk?: boolean;
 };
 
 function MarkView(props: MarkProps) {
@@ -172,7 +219,7 @@ function MarkView(props: MarkProps) {
   return <g data-mark={mark.id}>{body}</g>;
 }
 
-function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion }: MarkProps) {
+function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, focused, focusId, reducedMotion, chalk }: MarkProps) {
   const focus = focused ? " cv-focus" : "";
   switch (mark.type) {
     case "heading":
@@ -201,6 +248,14 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
     case "picture":
       return (
         <g className="cv-in">
+          {/* On a chalkboard a picture is a photo taped to the board: a white border and two strips of tape. */}
+          {chalk && (
+            <>
+              <rect x={mark.rect.x - 12} y={mark.rect.y - 12} width={mark.rect.w + 24} height={mark.rect.h + 24} rx={6} fill="#f8f6f0" />
+              <rect x={mark.rect.x + 18} y={mark.rect.y - 26} width={92} height={28} fill="#efe3bf" opacity={0.82} transform={`rotate(-9 ${mark.rect.x + 64} ${mark.rect.y - 12})`} />
+              <rect x={mark.rect.x + mark.rect.w - 110} y={mark.rect.y - 26} width={92} height={28} fill="#efe3bf" opacity={0.82} transform={`rotate(8 ${mark.rect.x + mark.rect.w - 64} ${mark.rect.y - 12})`} />
+            </>
+          )}
           <clipPath id={`clip-${mark.id}`}>
             <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={16} />
           </clipPath>
