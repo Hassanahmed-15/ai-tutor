@@ -1,3 +1,5 @@
+import { contentStems, splitSentences } from "./sourceGrounding";
+
 const MAX_TITLE_CHARS = 42;
 const MAX_TITLE_WORDS = 5;
 const MAX_TRANSITION_WORDS = 18;
@@ -82,10 +84,21 @@ export function topicKeywords(value: string, maxWords = MAX_TITLE_WORDS): string
  */
 export function nounTitle(value: string): string {
   const original = compact(value);
-  const stripped = original
+  /*
+   * A SENTENCE IS NOT A TITLE. "Photosynthesis is how plants convert light into chemical energy" was
+   * cut to five words for a heading and the board read "Photosynthesis is how plants convert". The
+   * subject before "is / are / how / that …" is the title; the rest was the caption's job. A title
+   * with another verb ("Chlorophyll captures light energy") stays whole — cut to "Chlorophyll" it
+   * would lose the idea.
+   */
+  // The question word goes first ("What is photosynthesis" → "photosynthesis"), then a sentence is
+  // cut to its subject — the other way round cut "What Is Photosynthesis" to "What".
+  const asked = original
     .replace(/[?!.]+$/, "")
     .replace(/^(?:what|why|how|when|where|which|who)\s+(?:is|are|was|were|does|do|did|can|could|will|would|should)\s+/i, "")
-    .replace(/^(?:what|why|how|when|where|which|who)\s+/i, "")
+    .replace(/^(?:what|why|how|when|where|which|who)\s+/i, "");
+  const subjectOnly = asked.replace(/^(.+?)\s+(?:is|are|was|were|isn['’]?t|aren['’]?t|refers?\s+to|means|describes|how|why|that|which|when|where)\s+.+$/i, "$1");
+  const stripped = (subjectOnly !== asked && /[A-Za-z]{3,}/.test(subjectOnly) && subjectOnly.split(/\s+/).length <= 6 ? subjectOnly : asked)
     .replace(/^(?:understanding|exploring|learning about|discovering|examining|introducing|mastering)\s+/i, "")
     .replace(INSTRUCTION_OPENER, "")
     .replace(/^(?:an?\s+)?(?:introduction|intro|overview|basics|fundamentals)\s+(?:to|of)\s+/i, "")
@@ -150,7 +163,8 @@ function objectiveTitle(objective: string): string {
     .replace(/^(?:open with|define|explain|show|demonstrate|apply|trace|teach|introduce|connect|contrast|compare|expose and repair|give)\s+/i, "")
     .split(/[.;!?]/, 1)[0]
     .replace(/^(?:that|how|why)\s+/i, "");
-  return trimTitle(stripped.replace(/^(?:a|an|the)\s+/i, ""));
+  // A caption is a sentence; its subject is the title, never its first five words.
+  return trimTitle(nounTitle(stripped.replace(/^(?:a|an|the)\s+/i, "")));
 }
 
 /**
@@ -322,4 +336,21 @@ function oneSentence(raw: unknown, fallback: string): string {
   let result = words.join(" ").slice(0, 160).trim();
   if (!/[.!?]$/.test(result)) result += ".";
   return result || fallback;
+}
+
+/**
+ * A later pass that opens with the concept's own sentence again — most of board 1's opening words,
+ * in a sentence of its own — reads as the same slide repeated. That sentence goes; the rest of the
+ * script is the pass's real content. A script that is only that sentence keeps it.
+ */
+export function withoutRepeatedOpening(script: string, conceptOpening: string): string {
+  const sentences = splitSentences(script);
+  if (sentences.length < 2) return script;
+  const opening = new Set(contentStems(conceptOpening));
+  if (opening.size === 0) return script;
+  const first = contentStems(sentences[0]);
+  if (first.length === 0) return script;
+  const shared = first.filter((stem) => opening.has(stem)).length;
+  if (shared / Math.min(first.length, opening.size) < 0.6) return script;
+  return sentences.slice(1).join(" ").trim() || script;
 }

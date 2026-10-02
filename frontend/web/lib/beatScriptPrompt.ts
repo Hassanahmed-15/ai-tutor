@@ -23,6 +23,8 @@ export interface BeatScriptPromptInput {
     role?: TeachingRole;
     conceptPass?: number;
     conceptPasses?: number;
+    /** The first sentence of this concept's first board — a later pass must not open the same way. */
+    conceptOpening?: string;
   };
   plan: LessonMapBeat[];
   /** Boards already taught: their claims, plus the full script of the one immediately before. */
@@ -93,7 +95,14 @@ export function passInstruction(planned: BeatScriptPromptInput["planned"]): stri
   if (pass === 1) {
     return ` This concept is taught across ${total} boards and THIS IS BOARD 1 of ${total}: establish the idea itself and STOP there. Do not work the example or cover the edge cases; later boards of this same concept do that. End at a natural pause, not a summary.`;
   }
-  return ` This is BOARD ${pass} of ${total} ON THE SAME CONCEPT, continuing directly underneath the work already on the board. The student can still SEE the earlier boards, so do NOT re-introduce, re-define or re-motivate the idea, and do not summarise it — open as a teacher continuing mid-explanation. Teach ONLY this pass's job: ${planned.objective}`;
+  /*
+   * THE OPENING LINE IS WHERE THE REPEAT SHOWED. Three boards of one concept each began with the
+   * concept's own sentence ("Chlorophyll captures light energy…"), and read as the same slide three
+   * times. A later pass opens inside the work — the example's first step, the subtle case, a
+   * question — never by naming the topic, and never the way board 1 began.
+   */
+  const opening = planned.conceptOpening?.trim();
+  return ` This is BOARD ${pass} of ${total} ON THE SAME CONCEPT, continuing directly underneath the work already on the board. The student can still SEE the earlier boards, so do NOT re-introduce, re-define or re-motivate the idea, and do not summarise it — open as a teacher continuing mid-explanation. YOUR FIRST SENTENCE must not name or restate the topic and must not begin the way board 1 began${opening ? ` (board 1 opened: "${opening}")` : ""}: start inside the work — the example's first step, the subtle case, a question, or "Now…". Teach ONLY this pass's job: ${planned.objective}`;
 }
 
 /*

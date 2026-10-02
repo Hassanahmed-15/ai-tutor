@@ -7,7 +7,7 @@ import { planBeatVisual, specToBrief, type BeatVisualSpec } from "./beatVisualSp
 import { direct, type BoardKind, type VisualForm } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
-import { openingSentence, transitionSentence } from "./beatPresentation";
+import { openingSentence, transitionSentence, withoutRepeatedOpening } from "./beatPresentation";
 import { boardBriefFor, pointsFromScript } from "./boardBrief";
 import { hasUsableBoard, rescueEmptyBoards } from "./boardFallback";
 import { fillManimSceneOps } from "./manimSceneGen";
@@ -52,7 +52,7 @@ import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } fro
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
 import { buildProgressivePlan, clean, isReferenceLesson, sourceRoleFor } from "./progressivePlan";
 import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
-import type { BeatSourceGrounding } from "./sourceGrounding";
+import { splitSentences, type BeatSourceGrounding } from "./sourceGrounding";
 import {
   beatNeedsBoard,
   beatSourceGrounding,
@@ -418,10 +418,14 @@ async function generateOneBeat(
     repetition?: Parameters<typeof buildBeatScriptMessages>[0]["repetitionFeedback"];
     grounding?: Parameters<typeof buildBeatScriptMessages>[0]["groundingFeedback"];
   };
+  // The first sentence of this concept's first board, so a later pass cannot open the same way.
+  const conceptOpening = continuationPass(planned)
+    ? splitSentences(priorDocs.find((doc) => (session.plan[doc.sequence]?.conceptId ?? "") === (planned.conceptId ?? "") && (session.plan[doc.sequence]?.conceptPass ?? 1) === 1)?.beat?.script ?? "")[0]
+    : undefined;
   const messagesFor = (feedback: ScriptFeedback = {}): OpenAI.Chat.Completions.ChatCompletionMessageParam[] => {
     const { system, user } = buildBeatScriptMessages({
       topic: input.topic,
-      planned: { ...planned, role },
+      planned: { ...planned, role, conceptOpening },
       plan: session.plan.map(({ sequence, title, objective, role }) => ({ sequence, title, objective, role })),
       taught,
       wordRange,
@@ -531,6 +535,12 @@ async function generateOneBeat(
     if (grounded.removed.length > 0) {
       console.log(`[grounding] session=${session.id} seq=${planned.sequence} deleted=${grounded.removed.length} starter=${blocksPlayback} :: ${grounded.removed.map((s) => `"${s.slice(0, 80)}"`).join(" | ")}`);
     }
+    // A continuation pass that still opened like its concept's first board loses that sentence.
+    if (conceptOpening && input.sourceType === "prompt" && !isSuprnotesLessonInput(input.suprnotes)) {
+      const trimmed = withoutRepeatedOpening(beat.script, conceptOpening);
+      if (trimmed !== beat.script) console.log(`[passes] session=${session.id} seq=${planned.sequence} dropped an opening that repeated board 1`);
+      beat = { ...beat, script: trimmed };
+    }
     // The teacher teaches the content, never the document ("This section discusses…", "on page 3").
     beat = {
       ...grounded.beat,
@@ -557,6 +567,7 @@ async function generateOneBeat(
 function continuationPass(planned: ProgressiveBeatPlan): boolean {
   return (planned.conceptPass ?? 1) > 1;
 }
+
 
 /**
  * The title of the last DIFFERENT concept, for the spoken bridge.
