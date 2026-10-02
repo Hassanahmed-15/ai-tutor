@@ -279,7 +279,17 @@ function deterministicTransition(previousTitle: string, currentTitle: string): s
   if (/\b(?:check|predict|test)\b/i.test(current)) {
     return `Before we continue, let’s use ${current} to check the key idea.`;
   }
-  return `That foundation leads directly into ${current}.`;
+  // Chosen by the two titles, so a join is stable on replay but the lecture's joins differ.
+  const lines = [
+    `Next, ${current}.`,
+    `Now let’s look at ${current}.`,
+    `With that in place, on to ${current}.`,
+    `Here’s where ${current} comes in.`,
+    `Let’s build on that with ${current}.`,
+  ];
+  let hash = 0;
+  for (const char of `${previousTitle}|${current}`.toLowerCase()) hash = (hash * 31 + char.charCodeAt(0)) % 100_000;
+  return lines[hash % lines.length];
 }
 
 /** One short, speakable sentence. Missing values get a deterministic bridge for old lectures. */

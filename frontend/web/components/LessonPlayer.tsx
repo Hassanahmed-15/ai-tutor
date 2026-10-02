@@ -568,7 +568,7 @@ export function LessonPlayer({
   // of beats turns each of those into a ~12ms cache hit by the time the student arrives.
   useNarrationPrefetch(
     useMemo(() => beats.map((b, beatIndex) => {
-      if (!standardTransitionsEnabled) return b.script ?? "";
+      if (!standardTransitionsEnabled || isCanvasBeat(b)) return b.script ?? "";
       const bridge = beatIndex === 0
         ? openingSentence(b.transitionIn, title)
         : transitionSentence(b.transitionIn, beats[beatIndex - 1]?.title ?? title, b.title);
@@ -654,7 +654,10 @@ export function LessonPlayer({
    * carries an opening line (lib/beatPresentation.ts openingSentence), which puts it on the same
    * path as every other beat: narration starts on the slide, and nothing downstream special-cases it.
    */
-  const transitionIn = !standardTransitionsEnabled
+  // A canvas lecture's scripts were written together and already lead from one board into the
+  // next, so a canvas board gets no bridge — a stock bridge before every board was the same line
+  // ("That foundation leads directly into …") again and again.
+  const transitionIn = !standardTransitionsEnabled || isCanvasBeat(beat)
     ? ""
     : index > 0
       ? transitionSentence(beat.transitionIn, beats[index - 1]?.title ?? title, beat.title)
@@ -4633,6 +4636,10 @@ function boardNotesFor(beat: Beat): string[] {
 }
 
 /** The canvas boards of a lecture, in order; empty for a lecture taught on ordinary boards. */
+function isCanvasBeat(b: Beat | undefined): boolean {
+  return Boolean(b?.draw?.ops.some((o) => (o as { kind: string }).kind === "canvasBoard"));
+}
+
 function canvasPanelsOf(beats: Beat[]): CanvasPanelInput[] {
   return beats.flatMap((b) => {
     const op = b.draw?.ops.find((o) => (o as { kind: string }).kind === "canvasBoard") as { spec?: CanvasBoardSpec } | undefined;
