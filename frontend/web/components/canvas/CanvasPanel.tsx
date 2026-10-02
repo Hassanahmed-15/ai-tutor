@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useMemo, useRef } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef } from "react";
 import { evalExpr } from "@/lib/canvas/expr";
 import { arcKeyframes, arrowHead, centreLine, quadPoints, roughEllipse, roughRect, taperedStroke } from "@/lib/canvas/ink";
 import { graphPoint, INK, type Mark, type PanelLayout, type Pt, type Rect } from "@/lib/canvas/layout";
@@ -48,20 +48,32 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
   const visible = layout.marks.filter((m) => m.s <= shownThrough);
   const headingW = layout.targets.heading?.w ?? 200;
   return (
+    <InkDrawing.Provider value={live && !reducedMotion}>
     <g className={live && !reducedMotion ? "cv-live" : "cv-settled"}>
       <g className="cv-lift">
-        <rect x={-10} y={-4} width={PANEL_W + 20} height={PANEL_H + 20} rx={28} fill="#000" opacity={0.3} filter="url(#cv-shadow)" className="cv-lift-shadow" />
+        {/* The shadow is a picture baked once (LessonCanvas paperShadow): a live blur filter under
+            every board was re-blurred on every frame of a camera flight, and the flights stuttered. */}
+        <use href="#cv-shadow-img" />
         <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill={PAPER} stroke="#e7e2d6" strokeWidth={2} />
-        {/* Paper grain: a faint texture baked once into an image pattern (never a live filter). */}
-        <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" opacity={0.5} style={{ mixBlendMode: "multiply" }} pointerEvents="none" />
+        {/* Paper grain: a faint, soft texture baked once into an image pattern — no blend mode, which
+            forced the whole board through an extra compositing pass per frame. */}
+        <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" pointerEvents="none" />
         <Ink points={[{ x: 48, y: 88 }, { x: 48 + (headingW + 20) * 0.5, y: 86.5 }, { x: Math.min(PANEL_W - 48, 48 + headingW + 20), y: 88.5 }]} width={4.2} color="#f59e0b" opacity={0.6} />
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} />
         ))}
       </g>
     </g>
+    </InkDrawing.Provider>
   );
 }
+
+/**
+ * Whether ink on this board is still being written. Only the live board draws its ink on; every
+ * other board's ink is finished, so it is a plain path — a mask per stroke on every board was the
+ * bulk of each camera frame's cost.
+ */
+const InkDrawing = createContext(false);
 
 /* ── ink primitives ───────────────────────────────────────────────────────────────────────── */
 
@@ -73,9 +85,27 @@ export function Ink({ points, width, color, opacity = 1, className, dash }: { po
   const id = useId().replace(/:/g, "");
   const outline = useMemo(() => taperedStroke(points, width), [points, width]);
   const line = useMemo(() => centreLine(points), [points]);
+  const drawing = useContext(InkDrawing);
+  // The mask covers the stroke and no more: a board-sized mask per stroke cost a board-sized
+  // offscreen buffer per stroke, on every frame.
+  const box = useMemo(() => {
+    const pad = width * 2 + 12;
+    const xs = points.map((p) => p.x);
+    const ys = points.map((p) => p.y);
+    const x = Math.min(...xs) - pad;
+    const y = Math.min(...ys) - pad;
+    return { x, y, w: Math.max(...xs) + pad - x, h: Math.max(...ys) + pad - y };
+  }, [points, width]);
+  if (!drawing) {
+    return (
+      <g className={className} opacity={opacity}>
+        <path d={outline} fill={color} strokeDasharray={dash ? "10 9" : undefined} />
+      </g>
+    );
+  }
   return (
     <g className={className} opacity={opacity}>
-      <mask id={`ink${id}`} maskUnits="userSpaceOnUse" x={-200} y={-200} width={PANEL_W + 400} height={PANEL_H + 400}>
+      <mask id={`ink${id}`} maskUnits="userSpaceOnUse" x={box.x} y={box.y} width={box.w} height={box.h}>
         <path d={line} fill="none" stroke="#fff" strokeWidth={width * 2.6 + 4} strokeLinecap="round" strokeLinejoin="round" pathLength={1} className="cv-stroke" />
       </mask>
       <path d={outline} fill={color} mask={`url(#ink${id})`} strokeDasharray={dash ? "10 9" : undefined} />
@@ -637,8 +667,6 @@ export const CANVAS_CSS = `
 .cv-live .cv-write { animation: cv-write 900ms steps(24, end) both; }
 .cv-live .cv-stroke { stroke-dasharray: 1; animation: cv-stroke 850ms cubic-bezier(.45,0,.25,1) both; }
 .cv-live .cv-slow { animation-duration: 1800ms; }
-.cv-live .cv-lift { animation: cv-lift 900ms cubic-bezier(.2,.8,.2,1) 850ms both; transform-box: fill-box; transform-origin: center; }
-.cv-live .cv-lift-shadow { animation: cv-lift-shadow 900ms ease-out 850ms both; }
 .cv-live .cv-morph-out { animation: cv-morph-out 600ms cubic-bezier(.5,0,.75,0) both; transform-box: fill-box; transform-origin: center; }
 .cv-live .cv-morph-in { animation: cv-morph-in 700ms cubic-bezier(.2,.9,.3,1.3) 380ms both; transform-box: fill-box; transform-origin: center; }
 .cv-live .cv-morph-ring { animation: cv-morph-ring 900ms ease-out 300ms both; transform-box: fill-box; transform-origin: center; }
@@ -647,8 +675,6 @@ export const CANVAS_CSS = `
 @keyframes cv-in { 0% { opacity: 0; transform: translateY(6px) scale(.94); } 60% { opacity: 1; transform: scale(1.02); } 100% { opacity: 1; transform: none; } }
 @keyframes cv-write { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes cv-stroke { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes cv-lift { 0% { transform: none; } 45% { transform: translateY(-3px) scale(1.006); } 100% { transform: none; } }
-@keyframes cv-lift-shadow { 0% { opacity: .3; } 45% { opacity: .48; } 100% { opacity: .3; } }
 @keyframes cv-morph-out { 0% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(1.25, .15); } }
 @keyframes cv-morph-in { 0% { opacity: 0; transform: scale(.2, 1.4); } 70% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: none; } }
 @keyframes cv-morph-ring { 0% { opacity: .9; transform: scale(.9); } 100% { opacity: 0; transform: scale(1.6); } }
@@ -660,5 +686,5 @@ export const CANVAS_CSS = `
 .cv-swipe { stroke-dasharray: 1; animation: cv-swipe 420ms cubic-bezier(.3,0,.2,1) both; }
 @keyframes cv-hotspot { 0% { transform: scale(.8); opacity: .95; } 100% { transform: scale(2.3); opacity: 0; } }
 .cv-hotspot { transform-box: fill-box; transform-origin: center; animation: cv-hotspot 1600ms ease-out infinite; }
-@media (prefers-reduced-motion: reduce) { .cv-live .cv-in, .cv-live .cv-write, .cv-live .cv-stroke, .cv-live .cv-lift, .cv-live .cv-lift-shadow, .cv-live .cv-morph-in, .cv-ring, .cv-swipe, .cv-tap, .cv-hotspot { animation: none !important; } .cv-morph-out, .cv-morph-ring { display: none; } }
+@media (prefers-reduced-motion: reduce) { .cv-live .cv-in, .cv-live .cv-write, .cv-live .cv-stroke, .cv-live .cv-morph-in, .cv-ring, .cv-swipe, .cv-tap, .cv-hotspot { animation: none !important; } .cv-morph-out, .cv-morph-ring { display: none; } }
 `;

@@ -107,8 +107,12 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   }, [celebration]);
   /** Paper grain, baked ONCE into a small image (a live turbulence filter would re-render every camera frame). */
   const [grainUrl, setGrainUrl] = useState<string | null>(null);
+  const [shadowUrl, setShadowUrl] = useState<string | null>(null);
   useEffect(() => {
-    const t = window.setTimeout(() => setGrainUrl(paperGrain()), 0);
+    const t = window.setTimeout(() => {
+      setGrainUrl(paperGrain());
+      setShadowUrl(paperShadow());
+    }, 0);
     return () => window.clearTimeout(t);
   }, []);
 
@@ -166,10 +170,26 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
   const viewRef = useRef<View>(followView);
   const flightRef = useRef(0);
+  /*
+   * The camera writes the viewBox itself, every frame, and React never does: a viewBox rendered by
+   * React jumped to the destination for a frame whenever the board changed, before the flight
+   * started from where the camera really was. The dot grid behind the boards is a CSS background
+   * moved with it — as an SVG pattern it was thousands of tiny circles redrawn every frame.
+   */
   const applyView = useCallback((v: View) => {
     viewRef.current = v;
     svgRef.current?.setAttribute("viewBox", `${v.x} ${v.y} ${v.w} ${v.h}`);
+    const el = containerRef.current;
+    if (el && v.w > 0) {
+      const scale = el.clientWidth / v.w;
+      const cell = DOT_CELL * scale;
+      el.style.backgroundSize = `${cell}px ${cell}px`;
+      el.style.backgroundPosition = `${-v.x * scale}px ${-v.y * scale}px`;
+    }
   }, []);
+  useLayoutEffect(() => {
+    applyView(viewRef.current);
+  }, [applyView]);
   const flyTo = useCallback(
     (target: View) => {
       cancelAnimationFrame(flightRef.current);
@@ -368,7 +388,7 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     <div
       ref={containerRef}
       className="relative h-full w-full select-none overflow-hidden bg-[#0b0f14]"
-      style={{ touchAction: "none", cursor: drawing ? "crosshair" : mode === "follow" ? "default" : "grab" }}
+      style={{ touchAction: "none", cursor: drawing ? "crosshair" : mode === "follow" ? "default" : "grab", backgroundImage: "radial-gradient(circle at 2px 2px, #1f2a37 1.4px, transparent 1.8px)" }}
       onWheel={onWheel}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -377,14 +397,9 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       aria-label="Lesson canvas"
     >
       <style>{fontCss + CANVAS_CSS}</style>
-      <svg ref={svgRef} className="absolute inset-0 h-full w-full" viewBox={`${followView.x} ${followView.y} ${followView.w} ${followView.h}`} preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
+      <svg ref={svgRef} className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet" style={{ fontFamily: BOARD_FONT_STACK }}>
         <defs>
-          <pattern id="cv-dots" width={48} height={48} patternUnits="userSpaceOnUse">
-            <circle cx={2} cy={2} r={1.6} fill="#1f2a37" />
-          </pattern>
-          <filter id="cv-shadow" x="-10%" y="-10%" width="120%" height="130%">
-            <feGaussianBlur stdDeviation={14} />
-          </filter>
+          {shadowUrl && <image id="cv-shadow-img" href={shadowUrl} x={-SHADOW_PAD} y={-SHADOW_PAD + 10} width={PANEL_W + SHADOW_PAD * 2} height={PANEL_H + SHADOW_PAD * 2} preserveAspectRatio="none" />}
           {grainUrl && (
             <pattern id="cv-grain" width={220} height={220} patternUnits="userSpaceOnUse">
               <image href={grainUrl} width={220} height={220} />
@@ -395,7 +410,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
             <stop offset="100%" stopColor="#fbbf24" stopOpacity={0} />
           </radialGradient>
         </defs>
-        <rect x={-40000} y={-40000} width={80000} height={80000} fill="url(#cv-dots)" />
         {panels.slice(0, shownIndex + 1).map((panel, i) => {
           const at = placements[panel.key];
           const live = i === shownIndex && currentIndex >= 0;
@@ -405,8 +419,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               data-panel={panel.key}
               data-live={live ? "true" : undefined}
               transform={`translate(${at.x},${at.y}) scale(${at.scale})`}
-              // RACK FOCUS: while the camera is with Aria, every other board steps back.
-              style={{ opacity: rackFocus && !live && visitIndex !== i ? 0.38 : 1, transition: "opacity 700ms ease" }}
             >
               <MemoPanel
                 layout={layouts[i]}
@@ -435,6 +447,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
                   }}
                 />
               )}
+              {/* RACK FOCUS: while the camera is with Aria, every other board steps back — under a veil
+                  of the background colour, which looks the same as fading the board but is one
+                  rectangle to draw, where an opacity on the whole board was a second full render of it. */}
+              <rect x={-2} y={-2} width={PANEL_W + 4} height={PANEL_H + 4} rx={23} fill="#0b0f14" pointerEvents="none" style={{ opacity: rackFocus && !live && visitIndex !== i ? 0.62 : 0, transition: "opacity 700ms ease" }} />
               {visitIndex === i && <rect x={-14} y={-14} width={PANEL_W + 28} height={PANEL_H + 28} rx={32} fill="none" stroke="#f59e0b" strokeWidth={6} opacity={0.85} className="cv-live" />}
               {showOverviewBadges && !panel.spec.inside && (
                 <g transform="translate(-26,-26)">
@@ -937,26 +953,61 @@ function MiniMap({ panels, worldRects, shownIndex, visitIndex, onPick }: { panel
 /** Fine, warm paper grain as a small tiling image — generated once on the client. */
 function paperGrain(): string | null {
   try {
+    // Noise drawn at half size and smoothed up: a per-pixel speckle shimmered as the camera scaled it.
     const size = 220;
+    const small = document.createElement("canvas");
+    small.width = size / 2;
+    small.height = size / 2;
+    const sctx = small.getContext("2d");
+    if (!sctx) return null;
+    const img = sctx.createImageData(size / 2, size / 2);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const v = 120 + Math.random() * 60;
+      img.data[i] = v;
+      img.data[i + 1] = v * 0.97;
+      img.data[i + 2] = v * 0.9;
+      img.data[i + 3] = 4 + Math.random() * 10;
+    }
+    sctx.putImageData(img, 0, 0);
     const canvas = document.createElement("canvas");
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext("2d");
     if (!ctx) return null;
-    const img = ctx.createImageData(size, size);
-    for (let i = 0; i < img.data.length; i += 4) {
-      const v = 200 + Math.random() * 55;
-      img.data[i] = v;
-      img.data[i + 1] = v * 0.985;
-      img.data[i + 2] = v * 0.95;
-      img.data[i + 3] = Math.random() < 0.5 ? 28 : 12;
-    }
-    ctx.putImageData(img, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(small, 0, 0, size, size);
     return canvas.toDataURL("image/png");
   } catch {
     return null;
   }
 }
+
+const SHADOW_PAD = 40;
+
+/** A board's soft drop shadow, blurred once into a small picture and stretched under every board. */
+function paperShadow(): string | null {
+  try {
+    const k = 0.25;
+    const w = Math.round((PANEL_W + SHADOW_PAD * 2) * k);
+    const h = Math.round((PANEL_H + SHADOW_PAD * 2) * k);
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    ctx.filter = `blur(${14 * k}px)`;
+    ctx.fillStyle = "rgba(0,0,0,0.42)";
+    ctx.beginPath();
+    ctx.roundRect(SHADOW_PAD * k, SHADOW_PAD * k, PANEL_W * k, PANEL_H * k, 24 * k);
+    ctx.fill();
+    return canvas.toDataURL("image/png");
+  } catch {
+    return null;
+  }
+}
+
+/** The background dot grid's spacing, in world units. */
+const DOT_CELL = 48;
 
 /** A number that springs to its new value (a short ease-out-back count) instead of jumping. */
 function SpringNumber({ value }: { value: number }) {
