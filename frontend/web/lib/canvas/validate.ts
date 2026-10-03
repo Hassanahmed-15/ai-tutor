@@ -360,7 +360,13 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
       const picked = (Array.isArray(st.lines) ? st.lines : [st.lines ?? st.line]).map(lineNo).filter(Boolean);
       if (picked.length === 0) return null;
       const note = str(st.note, 48);
-      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}) };
+      // What the variables hold after these lines: an object {"count": 1} or a list of {name, value}.
+      const rawState = st.state ?? st.vars;
+      const stateList = Array.isArray(rawState)
+        ? rawState.map((v) => obj(v)).map((v) => ({ name: str(v.name, 14), value: cell(v.value) }))
+        : Object.entries(obj(rawState)).map(([name, value]) => ({ name: str(name, 14), value: cell(value) }));
+      const state = stateList.filter((v) => v.name && /^[A-Za-z_][\w.\[\]]*$/.test(v.name)).slice(0, 5);
+      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}), ...(state.length ? { state } : {}) };
     })
     .filter((st): st is NonNullable<typeof st> => Boolean(st))
     .sort((a, b) => a.s - b.s)
@@ -378,10 +384,36 @@ function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, uniq
   const outputText = typeof outputRaw.text === "string" ? outputRaw.text.split("\n").slice(0, 4).map((l) => l.slice(0, 48)).join("\n").trim() : "";
   if (rows.length) unique("trace", "trace");
   if (outputText) unique("output", "output");
+  const groups = arr(r.groups)
+    .map((g) => obj(g))
+    .map((g, i) => {
+      const from = lineNo(g.from);
+      const to = lineNo(g.to ?? g.from);
+      const label = str(g.label, 18);
+      return from && to && to >= from && label ? { from, to, label, s: sentence(g.s ?? g.sentence, i) } : null;
+    })
+    .filter((g): g is NonNullable<typeof g> => Boolean(g))
+    .filter((g, i, all) => !all.slice(0, i).some((h) => g.from <= h.to && h.from <= g.to))
+    .slice(0, 4);
+  const edits = arr(r.edits)
+    .map((e) => obj(e))
+    .map((e) => {
+      const line = lineNo(e.line);
+      const from = typeof e.from === "string" ? e.from.replace(/\t/g, "    ").replace(/\s+$/, "").slice(0, 72) : "";
+      return line && from !== lines[line - 1] ? { s: sentence(e.s ?? e.sentence, 1), line, from } : null;
+    })
+    .filter((e): e is NonNullable<typeof e> => Boolean(e))
+    .filter((e, i, all) => all.findIndex((x) => x.line === e.line) === i)
+    .slice(0, 3);
+  if (groups.length) groups.forEach((_, i) => unique(`group-${i + 1}`, `group-${i + 1}`));
+  if (steps.some((st) => st.state)) unique("state", "state");
   return {
     kind: "code",
     language: str(r.language, 20).toLowerCase() || "python",
     lines,
+    ...(r.reveal === "all" ? { reveal: "all" as const } : {}),
+    ...(groups.length ? { groups } : {}),
+    ...(edits.length ? { edits } : {}),
     steps: steps.length ? steps : [{ s: 0, lines: [1] }],
     ...(rows.length ? { trace: { vars, rows } } : {}),
     ...(outputText ? { output: { s: sentence(outputRaw.s ?? outputRaw.sentence, 0), text: outputText } } : {}),

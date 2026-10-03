@@ -367,6 +367,8 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
       return <CodeView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
     case "trace":
       return <TraceView mark={mark} shownThrough={shownThrough} />;
+    case "state":
+      return <StateView mark={mark} shownThrough={shownThrough} />;
     case "output":
       return (
         <g className={`cv-in${focus}`}>
@@ -404,46 +406,87 @@ function codeTokens(line: string): Array<{ text: string; color: string; italic?:
   return out;
 }
 
+const GROUP_COLOURS = ["#0f766e", "#7c3aed", "#c2410c", "#2563eb"];
+
 function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type: "code" }>; shownThrough: number; focusId?: string }) {
   const { rect, size, lineH, gutter } = mark;
   // The step being explained: the latest one whose sentence has come. A finished board rests on its last.
-  const step = [...mark.steps].reverse().find((st) => st.s <= shownThrough);
+  const reached = mark.steps.filter((st) => st.s <= shownThrough);
+  const step = reached.at(-1);
+  const last = mark.steps.at(-1);
   const lit = new Set(step?.lines ?? []);
   const top = rect.y + 14;
   const baseline = (i: number) => top + i * lineH + lineH * 0.7;
   const textX = rect.x + gutter + 14;
   const first = step ? Math.min(...step.lines) : 0;
-  const lineEnd = first ? textX + mark.lines[first - 1].length * 0.6 * size : 0;
+  // BUILD-UP: the code writes itself as Aria reaches each line (Code Hike's scrollycoding); the last
+  // step, or a finished board, shows it whole. "all" shows the listing from the start.
+  const upTo = (steps: typeof reached) => Math.max(0, ...steps.flatMap((st) => st.lines));
+  const shown = mark.reveal === "all" || !step || step === last || shownThrough === Infinity ? mark.lines.length : upTo(reached);
+  const before = mark.reveal === "all" ? mark.lines.length : upTo(reached.slice(0, -1));
+  const textOf = (i: number) => {
+    const edit = mark.edits.find((e) => e.line === i + 1);
+    return edit && shownThrough < edit.s ? edit.from : mark.lines[i];
+  };
+  const lineEnd = first ? textX + textOf(first - 1).length * 0.6 * size : 0;
   return (
     <g>
       <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
       <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
       <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
       {/* The lines being talked about, lit; the pointer glides between steps. */}
-      {[...lit].map((n) => (
+      {[...lit].filter((n) => n <= shown).map((n) => (
         // fillOpacity, not opacity: the cv-in reveal animates opacity to 1 and would make the band solid.
         <rect key={`lit-${n}`} x={rect.x + gutter} y={top + (n - 1) * lineH} width={rect.w - gutter - 6} height={lineH} fill="#fbbf24" fillOpacity={0.16} className="cv-in" />
       ))}
-      {step && (
+      {/* A line that has just been fixed glows green once. */}
+      {mark.edits.filter((e) => step && e.s === step.s && e.line <= shown).map((e) => (
+        <rect key={`fix-${e.line}`} x={rect.x + gutter} y={top + (e.line - 1) * lineH} width={rect.w - gutter - 6} height={lineH} fill="#22c55e" fillOpacity={0.2} className="cv-in" />
+      ))}
+      {step && first <= shown && (
         <g style={{ transform: `translate(${rect.x + gutter - 15}px, ${top + (first - 1) * lineH + lineH / 2}px)`, transition: "transform 450ms cubic-bezier(.65,0,.25,1)" }}>
           <path d="M-5 -6 L5 0 L-5 6 Z" fill="#fbbf24" />
         </g>
       )}
-      {mark.lines.map((line, i) => (
-        <g key={i} className="cv-in" style={{ animationDelay: `${i * 55}ms` }}>
-          <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
-            {i + 1}
-          </text>
-          <text x={textX} y={baseline(i)} fontSize={size} fontFamily={MONO_FONT} xmlSpace="preserve" style={{ whiteSpace: "pre" }} className={focusId === `line-${i + 1}` ? "cv-focus" : undefined}>
-            {codeTokens(line).map((t, k) => (
-              <tspan key={k} fill={t.color} fontStyle={t.italic ? "italic" : undefined}>
-                {t.text}
-              </tspan>
-            ))}
-          </text>
-        </g>
-      ))}
-      {step?.note && (() => {
+      {mark.lines.slice(0, shown).map((_, i) => {
+        const edit = mark.edits.find((e) => e.line === i + 1);
+        const fixedNow = edit && shownThrough >= edit.s;
+        return (
+          <g key={i} className="cv-in" style={{ animationDelay: `${Math.max(0, i - before) * 60}ms` }}>
+            <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
+              {i + 1}
+            </text>
+            {/* The bug lifts away as its fix writes itself in (Shiki Magic Move's idea, for one line). */}
+            {fixedNow && (
+              <text key={`old-${edit.s}`} x={textX} y={baseline(i)} fontSize={size} fontFamily={MONO_FONT} xmlSpace="preserve" style={{ whiteSpace: "pre" }} fill="#f87171" textDecoration="line-through" className="cv-morph-out">
+                {edit.from}
+              </text>
+            )}
+            <text key={fixedNow ? `new-${edit.s}` : "line"} x={textX} y={baseline(i)} fontSize={size} fontFamily={MONO_FONT} xmlSpace="preserve" style={{ whiteSpace: "pre" }} className={`${fixedNow ? "cv-write" : ""}${focusId === `line-${i + 1}` ? " cv-focus" : ""}`}>
+              {codeTokens(textOf(i)).map((t, k) => (
+                <tspan key={k} fill={t.color} fontStyle={t.italic ? "italic" : undefined}>
+                  {t.text}
+                </tspan>
+              ))}
+            </text>
+          </g>
+        );
+      })}
+      {/* SUBGOAL LABELS: what each chunk of lines is FOR (Margulieux) — a bracket and its name. */}
+      {mark.groups.filter((g) => g.s <= shownThrough && g.to <= shown).map((g, i) => {
+        const y1 = top + (g.from - 1) * lineH + 5;
+        const y2 = top + g.to * lineH - 5;
+        const colour = GROUP_COLOURS[i % GROUP_COLOURS.length];
+        return (
+          <g key={`g-${g.from}`} className="cv-in">
+            <path d={`M${g.x} ${y1} h7 V${y2} h-7`} fill="none" stroke={colour} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />
+            <text x={g.x + 15} y={(y1 + y2) / 2 + 5} fontSize={13.5} fontWeight={800} fill={colour}>
+              {g.label}
+            </text>
+          </g>
+        );
+      })}
+      {step?.note && first <= shown && (() => {
         // Beside the line it explains when it fits (the layout widens the card for it); otherwise on
         // its own pill in the card's corner, never printed over code.
         const noteSize = Math.max(12, size * 0.78);
@@ -460,6 +503,38 @@ function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type:
           </g>
         );
       })()}
+    </g>
+  );
+}
+
+/**
+ * THE VARIABLES PANEL — what the program's variables hold right now, the way a debugger (or Python
+ * Tutor) shows it: it follows the execution pointer, and a value that just changed flashes.
+ */
+function StateView({ mark, shownThrough }: { mark: Extract<Mark, { type: "state" }>; shownThrough: number }) {
+  const { rect } = mark;
+  const withState = mark.steps.filter((st) => st.state && st.s <= shownThrough);
+  const now = withState.at(-1)?.state ?? [];
+  const before = withState.at(-2)?.state ?? [];
+  const names = [...new Set(mark.steps.flatMap((st) => (st.state ?? []).map((v) => v.name)))];
+  return (
+    <g className="cv-in">
+      <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={12} fill="#fff" stroke="#e7e2d6" strokeWidth={2} />
+      <text x={rect.x + 14} y={rect.y + 22} fontSize={11} fontWeight={800} letterSpacing={1.2} fill="#64748b">VARIABLES</text>
+      {names.map((name, i) => {
+        const v = now.find((x) => x.name === name);
+        const changed = v && before.find((x) => x.name === name)?.value !== v.value;
+        const y = rect.y + 44 + i * 26;
+        return (
+          <g key={name}>
+            {changed && <rect key={`flash-${v.value}`} x={rect.x + 8} y={y - 16} width={rect.w - 16} height={22} rx={6} fill="#fbbf24" fillOpacity={0.22} className="cv-in" />}
+            <text x={rect.x + 16} y={y} fontSize={15} fontFamily={MONO_FONT} fill="#64748b">{name}</text>
+            <text x={rect.x + rect.w - 16} y={y} textAnchor="end" fontSize={15} fontWeight={700} fontFamily={MONO_FONT} fill={v ? "#1f2937" : "#cbd5e1"} key={`v-${v?.value ?? "none"}`} className="cv-in">
+              {v ? v.value : "—"}
+            </text>
+          </g>
+        );
+      })}
     </g>
   );
 }

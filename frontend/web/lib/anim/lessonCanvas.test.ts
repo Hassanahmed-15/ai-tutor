@@ -404,3 +404,35 @@ test("the classroom mix puts the working on chalk and pictures on paper", () => 
   assert.equal(spec.stage.nodes[0].color, "#15803d", "the lesson's own data is never changed");
   assert.match(chalkCss(), /\.cv-chalk \[fill="#1f2937"\]\{fill:#f1eee4\}/);
 });
+
+test("a code board explains like a tutor: subgoal labels, a variables panel, a bug that becomes its fix", () => {
+  const spec = validateCanvasSpec({
+    heading: "Fixing an infinite loop",
+    notes: [],
+    stage: {
+      kind: "code",
+      lines: ["count = 0", "while count < 3:", "    print(count)", "    count += 1"],
+      steps: [
+        { s: 0, lines: [1], state: { count: 0 } },
+        { s: 1, lines: [2], state: [{ name: "count", value: 0 }] },
+        { s: 3, lines: [4], state: { count: 1 } },
+      ],
+      groups: [{ from: 1, to: 1, label: "set up", s: 0 }, { from: 2, to: 4, label: "repeat and update", s: 1 }, { from: 3, to: 3, label: "overlapping", s: 1 }, { from: 5, to: 6, label: "no such lines", s: 1 }],
+      edits: [{ s: 3, line: 4, from: "    pass" }, { s: 2, line: 1, from: "count = 0" }],
+    },
+    cues: [{ s: 1, action: "point", target: "group-2" }],
+  }, 5)!;
+  if (spec.stage.kind !== "code") return assert.fail();
+  assert.deepEqual(spec.stage.groups?.map((g) => g.label), ["set up", "repeat and update"], "overlapping or impossible groups are dropped");
+  assert.deepEqual(spec.stage.edits, [{ s: 3, line: 4, from: "    pass" }], "an edit that changes nothing is dropped");
+  assert.deepEqual(spec.stage.steps[1].state, [{ name: "count", value: "0" }], "state as a list or an object, numbers as text");
+  assert.equal(spec.stage.reveal, undefined, "build-up is the default");
+  assert.deepEqual(spec.cues.map((c) => c.target), ["group-2"], "a subgoal can be pointed at");
+  const layout = layoutPanel(spec);
+  const code = layout.marks.find((m) => m.type === "code");
+  assert.ok(code && code.type === "code" && code.groups.length === 2 && code.groups[0].x > code.rect.x + code.rect.w, "labels sit beside the card");
+  assert.ok(layout.marks.some((m) => m.type === "state"), "a Variables panel");
+  for (const t of Object.values(layout.targets)) assert.ok(t.x + t.w <= PANEL_W + 1 && t.y + t.h <= PANEL_H + 1, "on the board");
+  assert.match(describeCanvasSpec(spec), /lines 2-4 repeat and update/);
+  assert.match(describeCanvasSpec(spec), /Line 4 was first shown wrong \("    pass"\) and then fixed/);
+});

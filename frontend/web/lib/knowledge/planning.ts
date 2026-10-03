@@ -36,7 +36,9 @@ export async function knowledgeForPlanning(userId: string, input: ProgressiveLec
   };
   // A prerequisite the student never met is only worth a refresher when several lectures agree it
   // is one; one they met and are shaky on always is.
-  const shakyRaw = shakyPrerequisites(centralKeys, edges, mastery, 4).filter((s) => s.mastery !== undefined || s.confidence >= 0.64);
+  // A refresher BOARD is only for something the student met and is shaky on. A prerequisite they
+  // never met is not evidence of a gap — adding a board for it is the padding lectures must not have.
+  const shakyRaw = shakyPrerequisites(centralKeys, edges, mastery, 4).filter((s) => s.mastery !== undefined);
   const neighbours = [...new Set([...edges.map((e) => e.from), ...edges.map((e) => e.to)])];
   const graphConcepts = await conceptsMatching([...shakyRaw.map((s) => s.key), ...neighbours]);
   const label = (key: string) => memory.concepts[key]?.label ?? graphConcepts.find((c) => c.id === key)?.label ?? topical.find((c) => c.id === key)?.label ?? key;

@@ -37,6 +37,8 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
     case "code":
       // The listing itself, numbered, so Aria can answer "what does line 3 do?" from what is on screen.
       lines.push(`Code (${stage.language}), as shown on the board:\n${stage.lines.map((l, i) => `${i + 1}  ${l}`).join("\n")}`);
+      if (stage.groups?.length) lines.push(`Its parts: ${stage.groups.map((g) => `lines ${g.from}-${g.to} ${g.label}`).join("; ")}.`);
+      for (const e of stage.edits ?? []) lines.push(`Line ${e.line} was first shown wrong ("${e.from}") and then fixed to "${stage.lines[e.line - 1]}".`);
       if (stage.trace) lines.push(`Trace of ${stage.trace.vars.join(", ")}: ${stage.trace.rows.map((r) => r.values.join("/")).join(" → ")}.`);
       if (stage.output) lines.push(`It prints: ${stage.output.text.replace(/\n/g, " | ")}`);
       break;

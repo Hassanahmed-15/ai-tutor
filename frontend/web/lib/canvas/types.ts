@@ -168,10 +168,19 @@ export type SceneStage = {
 export type CodeStage = {
   kind: "code";
   language: string;
-  /** The listing, one string per line, indentation kept. */
+  /** The listing, one string per line, indentation kept — its FINAL form. */
   lines: string[];
-  /** On sentence `s`, lines (1-based) are lit and the pointer sits on the first; `note` is said beside it. */
-  steps: Array<{ s: number; lines: number[]; note?: string }>;
+  /**
+   * On sentence `s`, lines (1-based) are lit and the pointer sits on the first; `note` is said beside
+   * it; `state` is what the variables hold once those lines have run (the Variables panel).
+   */
+  steps: Array<{ s: number; lines: number[]; note?: string; state?: Array<{ name: string; value: string }> }>;
+  /** "build" (default): the code writes itself as Aria reaches each line. "all": shown whole at once. */
+  reveal?: "build" | "all";
+  /** Subgoal labels: chunks of lines named by what they do ("set up", "check", "update"). */
+  groups?: Array<{ from: number; to: number; label: string; s: number }>;
+  /** A line that reads `from` until sentence `s`, then turns into its final text — a bug becoming its fix. */
+  edits?: Array<{ s: number; line: number; from: string }>;
   trace?: { vars: string[]; rows: Array<{ s: number; values: string[] }> };
   output?: { s: number; text: string };
 };

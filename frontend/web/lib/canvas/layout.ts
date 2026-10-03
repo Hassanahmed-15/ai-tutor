@@ -29,7 +29,8 @@ export type Mark =
   | { type: "link"; id: string; p0: Pt; p1: Pt; s: number }
   | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number }
   | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
-  | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; s: number }
+  | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; reveal: "build" | "all"; groups: Array<{ from: number; to: number; label: string; s: number; x: number }>; edits: NonNullable<CodeStage["edits"]>; s: number }
+  | { type: "state"; id: string; rect: Rect; steps: CodeStage["steps"]; s: number }
   | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
   | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number };
 
@@ -162,13 +163,31 @@ const MONO = 0.6;
  */
 function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
   const rowH = 24;
+  // The bottom row: the Variables panel, the trace, the output — whichever the board has, packed left
+  // to right. Short of room, the trace goes first (the live Variables panel says more).
+  const stateNames = [...new Set(st.steps.flatMap((p) => (p.state ?? []).map((v) => v.name)))];
+  const stateW = stateNames.length ? Math.max(170, ...st.steps.flatMap((p) => (p.state ?? []).map((v) => (v.name.length + v.value.length + 4) * MONO * 16 + 40))) : 0;
+  const stateH = stateNames.length ? stateNames.length * 26 + 44 : 0;
+  const traceW = st.trace ? Math.min(area.w, Math.max(64, ...st.trace.vars.map((v) => v.length * MONO * 16 + 24), ...st.trace.rows.flatMap((r) => r.values.map((v) => v.length * MONO * 16 + 24))) * st.trace.vars.length + 16) : 0;
   const traceH = st.trace ? (st.trace.rows.length + 1) * rowH + 22 : 0;
   const outputLines = st.output ? st.output.text.split("\n").length : 0;
+  const outputW = st.output ? Math.max(200, ...st.output.text.split("\n").map((l) => l.length * MONO * 16 + 36)) : 0;
   const outputH = st.output ? outputLines * 22 + 44 : 0;
-  const bottomH = Math.max(traceH, outputH);
+  const panels: Array<{ kind: "state" | "trace" | "output"; w: number; h: number }> = [];
+  if (stateW) panels.push({ kind: "state", w: stateW, h: stateH });
+  if (traceW) panels.push({ kind: "trace", w: traceW, h: traceH });
+  if (outputW) panels.push({ kind: "output", w: outputW, h: outputH });
+  const fits = () => panels.reduce((t, p) => t + p.w, 0) + 16 * Math.max(0, panels.length - 1) <= area.w;
+  if (!fits()) panels.splice(panels.findIndex((p) => p.kind === "trace") >= 0 ? panels.findIndex((p) => p.kind === "trace") : panels.length - 1, 1);
+  while (panels.length && !fits()) panels.pop();
+  const bottomH = Math.max(0, ...panels.map((p) => p.h));
   const gap = bottomH ? 16 : 0;
-  const codeArea = { x: area.x, y: area.y, w: area.w, h: area.h - bottomH - gap };
-  const maxLen = Math.max(8, ...st.lines.map((l) => l.length));
+
+  // Subgoal labels sit in a column to the right of the card.
+  const groups = st.groups ?? [];
+  const groupW = groups.length ? Math.max(...groups.map((g) => g.label.length * 7.6 + 34)) : 0;
+  const codeArea = { x: area.x, y: area.y, w: area.w - groupW, h: area.h - bottomH - gap };
+  const maxLen = Math.max(8, ...st.lines.map((l) => l.length), ...(st.edits ?? []).map((e) => e.from.length));
   const gutter = st.lines.length >= 10 ? 46 : 38;
   const size = Math.max(12, Math.min(20, Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)))));
   const lineH = Math.round(size * 1.5);
@@ -179,27 +198,34 @@ function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
   // A short listing sits in the middle of its area rather than hugging the top of the board.
   const slack = Math.max(0, area.h - (h + gap + bottomH));
   const rect = { x: codeArea.x, y: codeArea.y + Math.round(slack * 0.4), w, h };
-  marks.push({ type: "code", id: "code", rect, lines: st.lines, language: st.language, size, lineH, gutter, steps: st.steps, s: st.steps[0]?.s ?? 0 });
-  add("code", rect, st.steps[0]?.s ?? 0);
+  const first = st.steps[0]?.s ?? 0;
+  marks.push({
+    type: "code", id: "code", rect, lines: st.lines, language: st.language, size, lineH, gutter, steps: st.steps,
+    reveal: st.reveal ?? "build", groups: groups.map((g) => ({ ...g, x: rect.x + w + 10 })), edits: st.edits ?? [], s: first,
+  });
+  add("code", rect, first);
   st.lines.forEach((line, i) => {
     const indent = (line.length - line.trimStart().length) * MONO * size;
-    add(`line-${i + 1}`, { x: rect.x + gutter + 14 + indent, y: rect.y + 14 + i * lineH, w: Math.max(24, line.trim().length * MONO * size), h: lineH }, st.steps[0]?.s ?? 0);
+    add(`line-${i + 1}`, { x: rect.x + gutter + 14 + indent, y: rect.y + 14 + i * lineH, w: Math.max(24, line.trim().length * MONO * size), h: lineH }, first);
   });
+  groups.forEach((g, i) => add(`group-${i + 1}`, { x: rect.x + w + 4, y: rect.y + 14 + (g.from - 1) * lineH, w: groupW, h: (g.to - g.from + 1) * lineH }, g.s));
+
   const by = rect.y + rect.h + gap;
   let x = area.x;
-  if (st.trace) {
-    const colW = Math.max(64, ...st.trace.vars.map((v) => v.length * MONO * 16 + 24), ...st.trace.rows.flatMap((r) => r.values.map((v) => v.length * MONO * 16 + 24)));
-    const tw = Math.min(area.w * (st.output ? 0.56 : 1), colW * st.trace.vars.length + 16);
-    const trect = { x, y: by, w: tw, h: traceH };
-    marks.push({ type: "trace", id: "trace", rect: trect, vars: st.trace.vars, rows: st.trace.rows, size: 16, s: st.trace.rows[0]?.s ?? 0 });
-    add("trace", trect, st.trace.rows[0]?.s ?? 0);
-    x += tw + 16;
-  }
-  if (st.output) {
-    const ow = Math.min(area.x + area.w - x, Math.max(220, ...st.output.text.split("\n").map((l) => l.length * MONO * 16 + 36)));
-    const orect = { x, y: by, w: ow, h: outputH };
-    marks.push({ type: "output", id: "output", rect: orect, text: st.output.text, size: 16, s: st.output.s });
-    add("output", orect, st.output.s);
+  for (const p of panels) {
+    const prect = { x, y: by, w: p.w, h: p.h };
+    if (p.kind === "state") {
+      const s0 = st.steps.find((q) => q.state)?.s ?? first;
+      marks.push({ type: "state", id: "state", rect: prect, steps: st.steps, s: s0 });
+      add("state", prect, s0);
+    } else if (p.kind === "trace" && st.trace) {
+      marks.push({ type: "trace", id: "trace", rect: prect, vars: st.trace.vars, rows: st.trace.rows, size: 16, s: st.trace.rows[0]?.s ?? 0 });
+      add("trace", prect, st.trace.rows[0]?.s ?? 0);
+    } else if (p.kind === "output" && st.output) {
+      marks.push({ type: "output", id: "output", rect: prect, text: st.output.text, size: 16, s: st.output.s });
+      add("output", prect, st.output.s);
+    }
+    x += p.w + 16;
   }
 }
 
