@@ -72,7 +72,11 @@
     "lib/lessonRepetition.ts",
     "lib/beatScriptPrompt.ts",
     "lib/progressivePlan.ts",
-    "lib/board/sandboxBridge.ts"
+    "lib/board/sandboxBridge.ts",
+    "lib/youtube/videoUrl.ts",
+    "lib/youtube/videoSource.ts",
+    "lib/youtube/videoNotes.ts",
+    "lib/youtube/videoCoverage.ts"
   ],
   "exclude": ["node_modules"]
 }

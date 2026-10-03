@@ -8,6 +8,8 @@ export type PendingLecture = {
   sourceType: LectureSourceType;
   mode: LectureMode;
   beats: Beat[];
+  /** A video lecture's source, so its chat knows the video on replay (lib/lectureArchive.ts). */
+  sourceDocument?: unknown;
 };
 
 let pending: PendingLecture | null = null;

@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FileText, Layers, MessageSquare, Presentation as PresentationIcon, Loader2 } from "lucide-react";
+import { FileText, Layers, MessageSquare, Presentation as PresentationIcon, Loader2, Video } from "lucide-react";
 import type { Beat } from "@/lib/lessonContent";
 import type { LectureMode } from "@/lib/db/cosmos";
 
 type HistoryItem = {
   id: string;
   topic: string;
-  sourceType: "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder";
+  sourceType: "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube";
   mode?: LectureMode;
   status: "processing-videos" | "ready" | "ready-with-errors" | "failed";
   beatCount: number;
@@ -23,6 +23,8 @@ export type ReplayPackage = {
   sourceType: HistoryItem["sourceType"];
   mode?: LectureMode;
   beats: Beat[];
+  /** A video lecture's source: its key points and transcript, for the chat (lib/lectureArchive.ts). */
+  sourceDocument?: unknown;
 };
 
 const SOURCE_LABELS: Record<HistoryItem["sourceType"], string> = {
@@ -31,6 +33,7 @@ const SOURCE_LABELS: Record<HistoryItem["sourceType"], string> = {
   pptx: "Presentation",
   suprnotes: "Suprnotes",
   "task-folder": "Task folder",
+  youtube: "Video",
 };
 
 /** One glance at the icon tells you what kind of lecture this was, before reading a word of the
@@ -42,6 +45,7 @@ const SOURCE_ICONS: Record<HistoryItem["sourceType"], typeof FileText> = {
   pptx: PresentationIcon,
   suprnotes: Layers,
   "task-folder": Layers,
+  youtube: Video,
 };
 
 /**
@@ -56,6 +60,7 @@ const SOURCE_ACCENTS: Record<HistoryItem["sourceType"], { text: string; wash: st
   pptx: { text: "text-amber-300", wash: "from-amber-500/20 via-amber-500/5 to-transparent", ring: "group-hover:border-amber-400/50" },
   suprnotes: { text: "text-emerald-300", wash: "from-emerald-500/20 via-emerald-500/5 to-transparent", ring: "group-hover:border-emerald-400/50" },
   "task-folder": { text: "text-emerald-300", wash: "from-emerald-500/20 via-emerald-500/5 to-transparent", ring: "group-hover:border-emerald-400/50" },
+  youtube: { text: "text-sky-300", wash: "from-sky-500/20 via-sky-500/5 to-transparent", ring: "group-hover:border-sky-400/50" },
 };
 
 const MODE_LABELS: Record<LectureMode, string> = {

@@ -7,7 +7,7 @@ import { planBeatVisual, specToBrief, type BeatVisualSpec } from "./beatVisualSp
 import { direct, type BoardKind, type VisualForm } from "./director";
 import { archiveLecture } from "./lectureArchive";
 import type { Beat, CheckpointSpec, SlideKind } from "./lessonContent";
-import { openingSentence, transitionSentence } from "./beatPresentation";
+import { openingSentence, repeatsOpening, transitionSentence, withoutRepeatedOpening } from "./beatPresentation";
 import { boardBriefFor, pointsFromScript } from "./boardBrief";
 import { hasUsableBoard, rescueEmptyBoards } from "./boardFallback";
 import { fillManimSceneOps } from "./manimSceneGen";
@@ -57,7 +57,9 @@ import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/plannin
 import { loadLectureKnowledge, mergeLectureIntoGraph, saveLectureKnowledge } from "./knowledge/store";
 import type { CanvasPlanBeat } from "./canvas/types";
 import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
-import type { BeatSourceGrounding } from "./sourceGrounding";
+import { splitSentences, type BeatSourceGrounding } from "./sourceGrounding";
+import { VIDEO_SCRIPT_WORDS_PER_NOTE_WORD, isVideoSource, videoSourceInstruction, videoTranscriptStretch } from "./youtube/videoSource";
+import { uncoveredKeyPoints, videoKeyPoints } from "./youtube/videoCoverage";
 import {
   beatNeedsBoard,
   beatSourceGrounding,
@@ -411,7 +413,10 @@ function beatSourceFor(input: ProgressiveLectureInput, session: ProgressiveLectu
     : planned.role;
   const answerIds = strict && role === "questions" ? questionAnswerBlockIds(session.plan, planned.sequence, blocks) : [];
   const answerText = answerIds.length ? cleanSourceText(scopedBlockText(blocks, answerIds)) : "";
-  const scriptSource = fence && answerText ? { ...fence, text: `${fence.text}\n\n${answerText}` } : fence;
+  const answered = fence && answerText ? { ...fence, text: `${fence.text}\n\n${answerText}` } : fence;
+  // A video board is checked against what the video said over its stretch, not only its key points.
+  const stretch = answered && document && isVideoSource(document) ? videoTranscriptStretch(document, planned.sourceBlockIds) : "";
+  const scriptSource = answered && stretch ? { ...answered, text: `${answered.text}\n\n${cleanSourceText(stretch)}` } : answered;
   const checkable = scriptSource && scriptSource.text.split(/\s+/).filter(Boolean).length >= MIN_GROUNDING_WORDS ? scriptSource : null;
   const figure = document && input.documentId ? sourceFigureRegion(blocks, planned.sourceBlockIds) : null;
   return {
@@ -445,8 +450,17 @@ async function generateOneBeat(
    * A strict board is sized to its SOURCE instead (lib/lectureDepth.ts strictDepthBudget): asked
    * for 300 words about a 75-word section, the only way to comply is to invent the other 225.
    */
+  /*
+   * A VIDEO board is sized to its key points, whatever the depth setting says. Its source is every
+   * idea of a stretch of the video; a "concise" ceiling of 240 words under 200 words of notes could
+   * only be met by leaving ideas out, which is the one thing a video lesson may not do. So the
+   * ceiling is the deepest budget's, and the ratio is the video's own (lib/youtube/videoSource.ts).
+   */
+  const video = strict && isVideoSource(input.suprnotes);
   const budget = strict && source.words > 0
-    ? strictDepthBudget(source.words, depthBudget(input.learnerProfile.depth))
+    ? video
+      ? strictDepthBudget(source.words, depthBudget("deep"), VIDEO_SCRIPT_WORDS_PER_NOTE_WORD)
+      : strictDepthBudget(source.words, depthBudget(input.learnerProfile.depth))
     : depthBudget(input.learnerProfile.depth);
   const wordRange = `${budget.wordRange[0]}-${budget.wordRange[1]}`;
   const isCheckpoint = isCheckpointBeat(planned.sequence, session.plan.length, session.sourceType);
@@ -527,11 +541,16 @@ async function generateOneBeat(
   type ScriptFeedback = {
     repetition?: Parameters<typeof buildBeatScriptMessages>[0]["repetitionFeedback"];
     grounding?: Parameters<typeof buildBeatScriptMessages>[0]["groundingFeedback"];
+    coverage?: string[];
   };
+  // The first sentence of this concept's first board, so a later pass cannot open the same way.
+  const conceptOpening = continuationPass(planned)
+    ? splitSentences(priorDocs.find((doc) => (session.plan[doc.sequence]?.conceptId ?? "") === (planned.conceptId ?? "") && (session.plan[doc.sequence]?.conceptPass ?? 1) === 1)?.beat?.script ?? "")[0]
+    : undefined;
   const messagesFor = (feedback: ScriptFeedback = {}): OpenAI.Chat.Completions.ChatCompletionMessageParam[] => {
     const { system, user } = buildBeatScriptMessages({
       topic: input.topic,
-      planned: { ...planned, role },
+      planned: { ...planned, role, conceptOpening },
       plan: session.plan.map(({ sequence, title, objective, role }) => ({ sequence, title, objective, role })),
       taught,
       wordRange,
@@ -547,14 +566,19 @@ async function generateOneBeat(
        * written for reference mode — "the source anchors the lesson, it does not fence it in", and how
        * to mention where a point came from — never reached the script writer.
        */
-      sourceInstruction: (strict || isReferenceLesson(input)) && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
+      // A video's rule is the strict rule in a video's words: no page, no printed figure, no PDF.
+      sourceInstruction: video
+        ? videoSourceInstruction()
+        : (strict || isReferenceLesson(input)) && input.sourceScope ? sourceScopeInstruction(input.sourceScope) : "",
       referenceSource: !strict && isReferenceLesson(input),
+      videoSource: video,
       strict,
       codeInstruction: codeInstruction(input, session, planned, strict),
       selectionScoped: Boolean(input.selection?.transcript.trim()),
       hasPageImages: pageImages.length > 0,
       repetitionFeedback: feedback.repetition,
       groundingFeedback: feedback.grounding,
+      coverageFeedback: feedback.coverage,
     });
     if (pageImages.length === 0) return [{ role: "system", content: system }, { role: "user", content: user }];
     // Multimodal: the pages ride with the user message so the beat writer can read them.
@@ -627,6 +651,25 @@ async function generateOneBeat(
       console.log(`[repetition] session=${session.id} seq=${planned.sequence} attempt=2 findings=${findings.length} repaired=${fixed.repaired} removed=${fixed.removed.length}`);
     }
   }
+  /*
+   * THE COVERAGE GATE (video lessons only). The two gates above check that the board says nothing
+   * it should not. This one checks the opposite: that every key point of the board's source was
+   * taught (lib/youtube/videoCoverage.ts). A board that skipped some is written once more with the
+   * skipped points quoted back, and the rewrite is kept only if it covers more than the original —
+   * so this can add what was missing but never trade one omission for another. It runs before the
+   * grounding gate so the rewrite is held to the source like any other script.
+   */
+  const keyPoints = video && isSuprnotesLessonInput(input.suprnotes)
+    ? videoKeyPoints(input.suprnotes.contentBlocks ?? [], planned.sourceBlockIds)
+    : [];
+  if (keyPoints.length > 0) {
+    const missed = uncoveredKeyPoints(beat.script, keyPoints);
+    if (missed.length > 0) {
+      console.log(`[coverage] session=${session.id} seq=${planned.sequence} attempt=1 missed=${missed.length}/${keyPoints.length} :: ${missed.map((point) => `"${point.slice(0, 80)}"`).join(" | ")}`);
+      const retried = sanitizeGeneratedBeat(await writeScript({ coverage: missed }), planned, session, isCheckpoint, role);
+      if (uncoveredKeyPoints(retried.script, keyPoints).length < missed.length) beat = retried;
+    }
+  }
   if (gate) {
     const grounded = groundBeatToSource(beat, gate, {
       sourceScript: source.spoken,
@@ -641,6 +684,12 @@ async function generateOneBeat(
     if (grounded.removed.length > 0) {
       console.log(`[grounding] session=${session.id} seq=${planned.sequence} deleted=${grounded.removed.length} starter=${blocksPlayback} :: ${grounded.removed.map((s) => `"${s.slice(0, 80)}"`).join(" | ")}`);
     }
+    // A continuation pass that still opened like its concept's first board loses that sentence.
+    if (conceptOpening && input.sourceType === "prompt" && !isSuprnotesLessonInput(input.suprnotes)) {
+      const trimmed = withoutRepeatedOpening(beat.script, conceptOpening);
+      if (trimmed !== beat.script) console.log(`[passes] session=${session.id} seq=${planned.sequence} dropped an opening that repeated board 1`);
+      beat = { ...beat, script: trimmed };
+    }
     // The teacher teaches the content, never the document ("This section discusses…", "on page 3").
     beat = {
       ...grounded.beat,
@@ -648,6 +697,20 @@ async function generateOneBeat(
       script: withoutSourcePointers(grounded.beat.script ?? "") || grounded.beat.script,
       ...(grounded.beat.transitionIn ? { transitionIn: withoutSourcePointers(grounded.beat.transitionIn) } : {}),
     };
+  }
+  /*
+   * SAID ONCE. A video board whose title-card line still restates its first sentence loses the card
+   * line, not the sentence: the sentence carries a key point the coverage gate counted, and without a
+   * line of its own the player speaks its standard short bridge ("Now let's look at Layers.").
+   */
+  if (video && beat.transitionIn && repeatsOpening(beat.transitionIn, beat.script)) {
+    console.log(`[opening] session=${session.id} seq=${planned.sequence} dropped a title-card line that repeated the first sentence: "${beat.transitionIn.slice(0, 80)}"`);
+    beat = { ...beat, transitionIn: undefined };
+  }
+  if (keyPoints.length > 0) {
+    // Measured on what will actually be spoken, after the grounding gate has had its say.
+    const missed = uncoveredKeyPoints(beat.script, keyPoints);
+    console.log(`[coverage] session=${session.id} seq=${planned.sequence} final=${keyPoints.length - missed.length}/${keyPoints.length}${missed.length ? ` :: STILL MISSING ${missed.map((point) => `"${point.slice(0, 80)}"`).join(" | ")}` : ""}`);
   }
   logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}${strict ? ` strict=1 words=${wordRange}` : ""}`);
   // The board generators read this as AUDIENCE guidance, so the visual is pitched like the script.
@@ -667,6 +730,7 @@ async function generateOneBeat(
 function continuationPass(planned: ProgressiveBeatPlan): boolean {
   return (planned.conceptPass ?? 1) > 1;
 }
+
 
 /**
  * The title of the last DIFFERENT concept, for the spoken bridge.
@@ -1307,6 +1371,7 @@ async function maybeFinalize(userId: string, sessionId: string): Promise<void> {
       mode: session.mode,
       beats: ordered,
       learnerProfile: input.learnerProfile,
+      sourceDocument: input.suprnotes,
     });
     await replaceProgressiveSession({ ...finalizing, status: "complete", lectureId: archived.lectureId });
     // Playback/history are already available because archiveLecture durably wrote the JSON first.

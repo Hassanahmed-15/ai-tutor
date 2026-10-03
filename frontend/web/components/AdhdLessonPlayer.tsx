@@ -163,7 +163,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
-    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts, sourceDocument),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     documentId,
     lessonQuestion,
@@ -195,7 +195,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
       `${beatRef.current.title}: ${beatRef.current.script}` +
       (highlightedTextRef.current ? `\nThe student has highlighted on the board: "${highlightedTextRef.current}"` : ""),
     mood,
-    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts, sourceDocument),
     getDocumentContext: () => {
       const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText);
       return strictSource ? withStrictSourceHeader(document, beatSourceFor(beatRef.current)) : document;
@@ -599,7 +599,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               />
             ) : (
               <div className="beat-fade-in relative h-full">
-                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} />
+                <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={stage === "board" && !lesson.playing} />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5">
                   <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center text-base font-bold leading-snug text-white shadow-2xl backdrop-blur-md">
                     {sentenceCue.text || beat.script}

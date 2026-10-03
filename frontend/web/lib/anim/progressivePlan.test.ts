@@ -475,3 +475,49 @@ test("a whole-topic question is a lesson; a specific question is not", async () 
     assert.equal(isDirectQuestion(specific), true, `"${specific}" is still a question (1-2 slides)`);
   }
 });
+
+/**
+ * A board's heading is its title, drawn as given. "Photosynthesis is how plants convert" was a
+ * caption cut to five words; a sentence is cut back to its subject instead.
+ */
+test("a sentence is never a title: the subject before is/are/how is", async () => {
+  const { nounTitle } = await import("../beatPresentation");
+  assert.equal(nounTitle("Photosynthesis is how plants convert light into chemical energy"), "Photosynthesis");
+  assert.equal(nounTitle("Chlorophyll is the pigment that absorbs light"), "Chlorophyll");
+  // A title with another verb keeps its idea, title-cased.
+  assert.equal(nounTitle("Chlorophyll captures light energy"), "Chlorophyll Captures Light Energy");
+  assert.equal(nounTitle("Calvin Cycle"), "Calvin Cycle");
+});
+
+test("a planner caption rescued as a title is the subject, not a five-word fragment", () => {
+  const plan = buildProgressivePlan({
+    ...input("photosynthesis"),
+    outline: {
+      topic: "photosynthesis",
+      subtopics: [
+        { title: "Introduction", caption: "Photosynthesis is how plants convert light into chemical energy." },
+        { title: "Calvin Cycle", caption: "The cycle that fixes carbon dioxide into sugar, stage by stage." },
+      ],
+    },
+  });
+  for (const beat of plan) {
+    assert.doesNotMatch(beat.title, /is how|convert$/i, `"${beat.title}" is a sentence fragment`);
+    assert.doesNotMatch(beat.title, /^(?:what|why|how)/i);
+  }
+});
+
+/**
+ * Boards 2 and 3 of one concept each began with the concept's own sentence, and read as the same
+ * slide three times. A repeated opening is dropped; a fresh one is kept.
+ */
+test("a continuation pass that opens like board 1 loses that sentence, and only that", async () => {
+  const { withoutRepeatedOpening } = await import("../beatPresentation");
+  const opening = "Chlorophyll captures light energy in the thylakoid membranes of the chloroplast.";
+  const repeated = "Chlorophyll captures light energy inside the thylakoid membranes. Take a single red photon: it is absorbed and excites an electron.";
+  assert.equal(withoutRepeatedOpening(repeated, opening), "Take a single red photon: it is absorbed and excites an electron.");
+  const fresh = "Take a single red photon: it is absorbed and excites an electron. That electron is what the next step uses.";
+  assert.equal(withoutRepeatedOpening(fresh, opening), fresh);
+  // Never emptied.
+  assert.equal(withoutRepeatedOpening("Chlorophyll captures light energy in the thylakoid membranes.", opening), "Chlorophyll captures light energy in the thylakoid membranes.");
+});
+

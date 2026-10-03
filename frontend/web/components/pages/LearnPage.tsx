@@ -60,6 +60,8 @@ import { isSuprnotesLessonInput, type SuprnotesLessonInput } from "@/lib/suprnot
 import { mergeSourceDocuments } from "@/lib/mergeSourceDocuments";
 import { readStreamedPages } from "@/lib/streamedPages";
 import { emptySourceScope, type PdfFidelity, type SourceScope } from "@/lib/sourceScope";
+import { ingestYouTubeVideo, type VideoIngestProgress } from "@/lib/youtube/ingestVideo";
+import { isVideoSource, videoTranscriptFromDocument } from "@/lib/youtube/videoSource";
 import { isStrictScope, lectureSourceText } from "@/lib/strictSourceAnswers";
 import {
   fallbackDocumentScopeQuestion,
@@ -129,7 +131,7 @@ type OutlineStreamEvent =
 type LecturePayload = {
   topic: string;
   mood: string;
-  sourceType: "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder";
+  sourceType: "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube";
   mode: LectureMode;
   context?: string;
   diagramHints?: string;
@@ -327,7 +329,7 @@ type BuildCost =
   const [slideContext, setSlideContext] = useState("");
   const [diagramHints, setDiagramHints] = useState("");
   const [slideImages, setSlideImages] = useState<Array<{ slide: number; descriptions: string[] }>>([]);
-  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder"; assetCount?: number } | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<{ name: string; slideCount?: number; kind: "pptx" | "pdf" | "suprnotes" | "task-folder" | "youtube"; assetCount?: number } | null>(null);
   const [sourceDocument, setSourceDocument] = useState<unknown>(null);
   /** What the student asked about their upload, kept verbatim for the generator. */
   const [uploadFocus, setUploadFocus] = useState("");
@@ -797,6 +799,8 @@ type BuildCost =
     );
   }, [activeSourceIndex]);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  /** How far the reading of a YouTube video has got; null whenever no video is being read. */
+  const [videoProgress, setVideoProgress] = useState<VideoIngestProgress | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Second, separate hidden input for a task-folder pick (webkitdirectory forces the native picker
   // into folder-selection mode, so it must be its own <input> — it can't share fileInputRef, which
@@ -993,8 +997,13 @@ type BuildCost =
     const brief = takePendingBrief();
     // Nothing handed over (a reload, a bookmark, a stray link): the front page is where a lesson
     // starts, so go there rather than show a second copy of it.
-    if (!brief || (!brief.file && !brief.topic?.trim())) {
+    if (!brief || (!brief.file && !brief.videoUrl && !brief.topic?.trim())) {
       go("landing");
+      return;
+    }
+
+    if (brief.videoUrl) {
+      void ingestVideo(brief.videoUrl);
       return;
     }
 
@@ -1312,6 +1321,69 @@ type BuildCost =
       })();
     } else {
       void startPlanning(next.subject, false, next.fresh);
+    }
+  }
+
+  /**
+   * A YouTube link becomes a lesson source, then a lesson — with nothing asked in between.
+   *
+   * The video is read into the same shape a parsed PDF arrives in (lib/youtube/videoSource.ts), so
+   * from here on it IS an upload: the same state is set and the same build() runs. Two things differ.
+   *
+   * There is no strict-or-reference question. A link was pasted to get a short version of that
+   * video, which is exactly what strict + whole means — every part of the source, nothing from
+   * outside it — so the scope is set rather than asked for.
+   *
+   * And the progress is real: the reading takes a minute or more per ten minutes of video on a busy
+   * model, so the student is shown how far through the video it has got.
+   */
+  const videoAbortRef = useRef<AbortController | null>(null);
+  async function ingestVideo(url: string) {
+    // Cancel on the reading screen stops the reading, not just the screen (leaveToHome aborts this).
+    videoAbortRef.current?.abort();
+    const controller = new AbortController();
+    videoAbortRef.current = controller;
+    setUploadPhase("reading");
+    setUploadError(null);
+    setVideoProgress({ stage: "opening", label: "Opening the video", fraction: 0 });
+    const scope: SourceScope = { fidelity: "strict", breadth: { kind: "whole" }, documentLabels: [] };
+    setSourceScope(scope);
+    sourceScopeRef.current = scope;
+    sourceModeChosenRef.current = true;
+    setSourceModeStart(null);
+    // A new source is a new lecture: its cost starts here, with the reading of it.
+    resetCostLedger();
+    setSlideContext("");
+    setDiagramHints("");
+    setSlideImages([]);
+    setUploadedFile(null);
+    setSourceDocument(null);
+    setDocumentId(null);
+    setOcrTranscript("");
+    setSelectionPages([]);
+
+    try {
+      const video = await ingestYouTubeVideo(url, { onProgress: setVideoProgress, signal: controller.signal });
+      if (controller.signal.aborted) return;
+      addCost("document", video.costUsd);
+      setSourceDocument(video.document);
+      // The whole transcript, for the chat and the voice tutor: the lesson is short, the video is not.
+      setFullDocumentText(video.fullDocumentText);
+      setUploadedFile({ name: video.title, kind: "youtube" });
+      setTopic(video.title);
+      // The video's title is the whole request; nothing typed narrows the lesson to part of it.
+      requestTextRef.current = video.title;
+      // build() is called here with the fresh values, so the upload-finished effect must not plan too.
+      autoPlannedRef.current = true;
+      setUploadPhase("ready");
+      setVideoProgress(null);
+      void build(video.title, undefined, { sourceDocument: video.document, kind: "youtube", documentId: null }, []);
+    } catch (error) {
+      // The student left: nothing to report, and no lecture to build.
+      if (controller.signal.aborted) return;
+      setVideoProgress(null);
+      setUploadError(error instanceof Error ? error.message : "That video could not be read.");
+      setUploadPhase("error");
     }
   }
 
@@ -1866,6 +1938,7 @@ type BuildCost =
     const structuredUpload =
       uploadedFile?.kind === "suprnotes" ||
       uploadedFile?.kind === "task-folder" ||
+      uploadedFile?.kind === "youtube" ||
       uploadedFile?.kind === "pdf" ||
       uploadedFile?.kind === "pptx";
     return structuredUpload || Boolean(slideContext && !sourceDocument) || (DEMO_HARDCODED && !sourceDocument && !slideContext);
@@ -2428,6 +2501,7 @@ type BuildCost =
 
   /** Leaving planning — Back from the plan, Stop during a build — goes to the front page. */
   function leaveToHome() {
+    videoAbortRef.current?.abort();
     planAbortRef.current?.abort();
     buildAbortRef.current?.abort();
     resetPlanning();
@@ -2495,7 +2569,7 @@ type BuildCost =
     focus?: string;
     transcript?: string;
     slideContext?: string;
-    kind?: "pdf" | "pptx" | "suprnotes" | "task-folder";
+    kind?: "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube";
     /** A dragged page region is already an explicit scope choice; never ask the student again. */
     scopeSelected?: boolean;
     /** Handle for the page images this parse rendered. Null when none were produced. */
@@ -2642,7 +2716,11 @@ type BuildCost =
     // for exactly one tick after an upload.
     const docImagesId = fresh?.documentId ?? documentId;
 
-    setBuildStatus(doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards");
+    setBuildStatus(
+      (fresh?.kind ?? uploadedFile?.kind) === "youtube"
+        ? "Building a short version of the video"
+        : doc ? `Building from your uploaded ${uploadedFile?.kind === "pdf" ? "PDF" : uploadedFile?.kind === "pptx" ? "presentation" : "source"}` : "Writing the lecture script and boards",
+    );
 
     /*
      * The learner profile reaches the lecture writer through `mood`, which is already the channel
@@ -2908,7 +2986,7 @@ type BuildCost =
     }).catch(() => {});
   }
 
-  function openSavedLecture(lecture: { topic: string; beats: Beat[] }) {
+  function openSavedLecture(lecture: { topic: string; beats: Beat[]; sourceDocument?: unknown }) {
     resetLectureSummary();
     // Replaying costs only what is spent from here (narration, questions); its build was paid before.
     resetCostLedger();
@@ -2930,6 +3008,19 @@ type BuildCost =
     // The last build's plan is not this lecture's: the chat would point to parts it does not have.
     setBuildBeats(null);
     lecturePlayheadRef.current = -1;
+    /*
+     * A VIDEO LECTURE COMES BACK WITH ITS VIDEO. Its source document is saved with it, carrying the
+     * key points and the whole transcript, so the chat and the voice tutor know the video on a replay
+     * exactly as they did live — and the scope is set as ingestVideo sets it, so the conversation is
+     * the video lesson's (built strictly, talked about freely).
+     */
+    if (isVideoSource(lecture.sourceDocument)) {
+      setSourceDocument(lecture.sourceDocument);
+      setFullDocumentText(videoTranscriptFromDocument(lecture.sourceDocument));
+      const scope: SourceScope = { fidelity: "strict", breadth: { kind: "whole" }, documentLabels: [] };
+      setSourceScope(scope);
+      sourceScopeRef.current = scope;
+    }
     setBeats(lecture.beats);
     setBuiltTopic(lecture.topic);
     setBuildCost(null);
@@ -3327,24 +3418,32 @@ type BuildCost =
     let player: React.ReactNode;
     // Freeform learner-mode string for the live tutor's realtime session instructions.
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
+    /*
+     * A VIDEO LESSON IS BUILT STRICTLY AND TALKED ABOUT FREELY. The lecture teaches only what the
+     * video says (that is what makes it a short version of the video), but the chat and the voice
+     * tutor are given the whole transcript so the student can ask about anything in it and past it.
+     * A strict scope there would refuse every question the video does not answer. Documents keep
+     * the scope the student chose.
+     */
+    const playerScope: SourceScope = isVideoSource(sourceDocument) ? { ...sourceScope, fidelity: "reference" } : sourceScope;
     switch (selectedMode.page) {
       case "blind-demo":
         player = <BlindLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} autoStart hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} />;
         break;
       case "adhd-demo":
-        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
+        player = <AdhdLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
         break;
       case "dyslexia-demo":
-        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={sourceScope} />;
+        player = <DyslexiaLessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} sourceScope={playerScope} />;
         break;
       case "deaf-demo":
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mode="deaf" mood={moodString} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
         break;
       case "demo":
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={sourceScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
@@ -3653,6 +3752,7 @@ type BuildCost =
           uploadPhase={uploadPhase}
           uploadError={uploadError}
           fileName={uploadedFile?.name ?? null}
+          videoProgress={videoProgress}
           topic={topic}
           onHome={leaveToHome}
           onRetry={topic ? () => void startPlanning(topic) : undefined}
@@ -3701,6 +3801,7 @@ function EntryStatus({
   uploadPhase,
   uploadError,
   fileName,
+  videoProgress,
   topic,
   onHome,
   onRetry,
@@ -3710,13 +3811,16 @@ function EntryStatus({
   uploadPhase: "idle" | "reading" | "choosing" | "ready" | "error";
   uploadError: string | null;
   fileName: string | null;
+  /** Set while a YouTube video is being read: what to say, and how far through it is. */
+  videoProgress: VideoIngestProgress | null;
   topic: string;
   onHome: () => void;
   onRetry?: () => void;
 }) {
   const failed = phase === "error" ? error : uploadPhase === "error" ? uploadError : null;
   const title = failed
-    ? phase === "error" ? "That lesson could not be built" : "That file could not be read"
+    ? phase === "error" ? "That lesson could not be built" : "That could not be read"
+    : videoProgress ? videoProgress.label
     : uploadPhase === "reading" ? `Reading ${fileName ?? "your file"}…` : topic ? `Getting "${topic}" ready…` : "Getting your lesson ready…";
   return (
     <section className="hud-canvas hud-grain relative z-10 grid min-h-screen w-full place-items-center p-6">
@@ -3726,6 +3830,20 @@ function EntryStatus({
         )}
         <h1 className="font-display text-2xl tracking-[-0.02em] text-[var(--hud-text)]">{title}</h1>
         {failed && <p className="mt-3 text-sm text-rose-300">{failed}</p>}
+        {!failed && videoProgress && (
+          <>
+            <div
+              className="mx-auto mt-5 h-1 w-56 overflow-hidden rounded-full bg-[var(--hud-line)]"
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(videoProgress.fraction * 100)}
+            >
+              <div className="h-full rounded-full bg-[var(--hud-text)] transition-[width] duration-500" style={{ width: `${Math.round(videoProgress.fraction * 100)}%` }} />
+            </div>
+            <p className="mt-3 text-sm text-[var(--hud-text-dim)]">Reading the whole video so the short version leaves nothing out.</p>
+          </>
+        )}
         <div className="mt-8 flex items-center justify-center gap-3">
           {failed && onRetry && phase === "error" && (
             <button type="button" onClick={onRetry} className="hud-btn-primary rounded-full px-5 py-2 text-sm font-bold">

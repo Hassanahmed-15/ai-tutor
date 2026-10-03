@@ -83,15 +83,21 @@ const EXPLICIT_ORDINALS: Record<string, number> = { first: 1, second: 2, third: 
 
 /**
  * "Go back to slide 2", "on the first slide", "the previous slide": the slide the student named,
- * 0-based, when it is an earlier one.
+ * 0-based.
+ *
+ * "The LAST slide" is the lecture's final slide, not the one before this — "what's in the last
+ * slide?" was answered with the previous slide (reported 2026-10-03). "Previous", "earlier" and
+ * "the slide before" still mean the one before. With no `total` known, "last" cannot be placed and
+ * is not treated as a slide reference at all.
  */
-export function explicitSlide(question: string, currentIndex: number): number | null {
+export function explicitSlide(question: string, currentIndex: number, total?: number): number | null {
   const q = question.toLowerCase();
   const numbered = /\b(?:slide|part|board)\s*(?:number\s*)?(\d{1,2})\b/.exec(q);
   if (numbered) return Number(numbered[1]) - 1;
   const ordinal = /\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\s+(?:slide|part|board)\b/.exec(q);
   if (ordinal) return EXPLICIT_ORDINALS[ordinal[1]] - 1;
-  if (/\b(?:previous|last|earlier)\s+(?:slide|part|board)\b/.test(q)) return currentIndex - 1;
+  if (/\b(?:previous|earlier)\s+(?:slide|part|board)\b|\b(?:slide|part|board)\s+before\b/.test(q)) return currentIndex - 1;
+  if (/\b(?:last|final)\s+(?:slide|part|board)\b/.test(q)) return typeof total === "number" && total > 0 ? total - 1 : null;
   return null;
 }
 
@@ -107,12 +113,27 @@ export type RevisitTarget = { index: number; reason: "named" | "taught"; terms: 
  * particular and is not counted. The slide with the most wins; a tie goes to the earliest, where the
  * idea was first taught.
  */
-export function findRevisitTarget(question: string, beats: Beat[], currentIndex: number): RevisitTarget | null {
+export function findRevisitTarget(
+  question: string,
+  beats: Beat[],
+  currentIndex: number,
+  options: {
+    /** How many slides the lecture has, planned ones included, so "the last slide" can be placed. */
+    total?: number;
+    /**
+     * Only a slide the student NAMED goes back. A video lesson's chat holds the whole transcript, so
+     * a question that merely shares words with an earlier slide is better answered there than from
+     * that one slide's short script (which /api/revisit may not go beyond).
+     */
+    namedOnly?: boolean;
+  } = {},
+): RevisitTarget | null {
   const hasBoard = (beat: Beat | undefined) => Boolean(beat && beat.slideKind !== "checkpoint" && beat.draw?.ops?.length);
-  const named = explicitSlide(question, currentIndex);
+  const named = explicitSlide(question, currentIndex, options.total ?? beats.length);
   if (named !== null) {
     return named >= 0 && named < currentIndex && hasBoard(beats[named]) ? { index: named, reason: "named", terms: [] } : null;
   }
+  if (options.namedOnly) return null;
   const terms = questionTerms(question);
   if (!terms.length || currentIndex <= 0) return null;
   const seen = beats.slice(0, currentIndex + 1).map(vocabulary);

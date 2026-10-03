@@ -15,6 +15,8 @@
 export type PendingBrief = {
   topic: string;
   file: File | null;
+  /** A YouTube link pasted into the prompt box: the lesson is a short version of that video. */
+  videoUrl?: string;
 };
 
 let pending: PendingBrief | null = null;

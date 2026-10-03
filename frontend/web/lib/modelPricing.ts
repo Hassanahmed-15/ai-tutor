@@ -42,6 +42,12 @@ const PRICES: Record<string, Price> = {
   // Narration. Text input and AUDIO output tokens, from the speech endpoint's SSE usage event.
   // Checked 2026-09-18 on developers.openai.com/api/docs/pricing.
   "gpt-4o-mini-tts": { input: 0.6, output: 12.0 },
+  // Reading a YouTube video (lib/youtube/geminiVideo.ts). Paid tier, text/image/video input and
+  // output including thinking; $0 on a free-tier key. From ai.google.dev/gemini-api/docs/pricing,
+  // checked 2026-10-03. These rates are listed as doubling on 2027-01-01 ($1.50 / $7.50).
+  "gemini-3.8-flash": { input: 0.75, output: 3.75 },
+  "gemini-3.7-flash": { input: 0.75, output: 3.75 },
+  "gemini-3.5-flash-lite": { input: 0.3, output: 2.5 },
 };
 
 /** The most expensive entry, used when a model id is unrecognised. See the header note. */

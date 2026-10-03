@@ -75,10 +75,10 @@ export function depthBudget(depth: string | undefined): DepthBudget {
  *
  * Shorter scripts are also faster: output tokens are the bulk of a script call's time.
  */
-export function strictDepthBudget(sourceWords: number, budget: DepthBudget): DepthBudget {
+export function strictDepthBudget(sourceWords: number, budget: DepthBudget, wordsPerSourceWord = 1.6): DepthBudget {
   const ceiling = budget.wordRange[1];
   const words = Number.isFinite(sourceWords) ? Math.max(0, sourceWords) : 0;
-  const target = Math.round(Math.min(ceiling, Math.max(60, 1.6 * words + 30)));
+  const target = Math.round(Math.min(ceiling, Math.max(60, wordsPerSourceWord * words + 30)));
   const floor = Math.min(target, Math.max(40, Math.round(target * 0.6)));
   return {
     wordRange: [floor, target],

@@ -12,6 +12,8 @@ import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
 import { LectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
 import { setPendingLecture } from "@/lib/pendingLecture";
 import { PromptTiles } from "@/components/pages/PromptTiles";
+import { findYouTubeLink } from "@/lib/youtube/videoUrl";
+import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 
 /**
  * The front page. One panel, centred, and nothing else.
@@ -30,6 +32,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   const [topic, setTopic] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
+  /** A link typed into the prompt box, handed to the YouTube launcher; `key` remounts it per hand-over. */
+  const [videoHandOff, setVideoHandOff] = useState<{ url: string; key: number } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const { user, profile, openSettings } = useAuth();
   const adhd = isAdhdLearner(profile);
@@ -50,8 +54,25 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
     go("learn");
   }
 
+  /** A checked video link (YouTubeLauncher): the lesson is a short version of that video. */
+  function startWithVideo(url: string) {
+    setPendingBrief({ topic: "", file: null, videoUrl: url });
+    go("learn");
+  }
+
   function start() {
     if (!canStart) return;
+    /*
+     * A YOUTUBE LINK IN THE BOX IS A SOURCE, NOT A SUBJECT. The video pipeline has its own button,
+     * but a link pasted here is still understood: it is handed to that button's launcher, so it
+     * goes through the same length check and long-video warning. With a file attached the file
+     * wins, as it always has.
+     */
+    const video = file ? null : findYouTubeLink(topic);
+    if (video) {
+      setVideoHandOff({ url: video.link.url, key: Date.now() });
+      return;
+    }
     // The file itself is handed over, not just its name — the student chose it here and must not
     // be asked to choose it again on the next screen.
     setPendingBrief({ topic: topic.trim(), file });
@@ -79,6 +100,10 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           <span className="max-w-[10rem] truncate">{user.username}</span>
         </button>
       )}
+
+      {/* The YouTube pipeline's own door, fixed in the bottom-left corner (see YouTubeLauncher). A
+          direct child of <main>: an animated ancestor's transform would pin it to that ancestor. */}
+      <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} />
 
       <div className="relative z-10 w-full max-w-xl text-center">
         <h1 className="hud-materialize font-display text-[3.6rem] leading-none tracking-[-0.04em] text-[var(--hud-text)] sm:text-[4.6rem]">

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { buildGeminiLiveInstructions } from "@/lib/geminiLiveContract";
 import { buildLessonDesignInstructions } from "@/lib/lessonDesignContract";
+import { MAX_VIDEO_CONTEXT_CHARS, MAX_VIDEO_LESSON_CHARS, isVideoLessonContext, isVideoTranscriptContext } from "@/lib/youtube/videoSource";
 
 /**
  * gemini-3.8-live: the newest general Live model on this account, verified to open a session with
@@ -25,12 +26,16 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
   const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
   const beatContext = typeof body.beatContext === "string" ? body.beatContext.trim().slice(0, 4000) : "";
-  const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 20_000) : "";
+  const rawLessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim() : "";
+  // A video lesson's whole short lecture is carried in full, like its transcript below.
+  const lessonContext = rawLessonContext.slice(0, isVideoLessonContext(rawLessonContext) ? MAX_VIDEO_LESSON_CHARS : 20_000);
   /*
    * The student's uploaded document. Capped like the lesson context: a Live session's instruction is
    * fixed for the life of its socket, so anything sent here is carried for the whole conversation.
    */
-  const documentContext = typeof body.documentContext === "string" ? body.documentContext.trim().slice(0, 30_000) : "";
+  // A video's transcript is carried whole: the document cap is about half an hour of speech.
+  const rawDocumentContext = typeof body.documentContext === "string" ? body.documentContext.trim() : "";
+  const documentContext = rawDocumentContext.slice(0, isVideoTranscriptContext(rawDocumentContext) ? MAX_VIDEO_CONTEXT_CHARS : 30_000);
   const lessonQuestion = typeof body.lessonQuestion === "string" ? body.lessonQuestion.trim().slice(0, 500) : "";
   const mood = typeof body.mood === "string" ? body.mood.trim().slice(0, 500) : "";
   const adhdMode = body.adhdMode === true;

@@ -52,6 +52,12 @@ export type SuprnotesContentBlock = {
    *  together — see lib/mergeSourceDocuments.ts. Absent for a single-document upload, so every
    *  existing consumer that never reads this field is unaffected. */
   documentLabel?: string;
+  /**
+   * On a block built from a video (lib/youtube/videoSource.ts): the stretch of the video its key
+   * points were taken from, in seconds. A video's counterpart of `pageNumber`; absent everywhere else.
+   */
+  startSec?: number;
+  endSec?: number;
 };
 
 export type SuprnotesWebPreviewItem = {
