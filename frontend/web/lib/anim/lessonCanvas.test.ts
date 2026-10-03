@@ -8,6 +8,7 @@ import { activeCues } from "../canvas/cues";
 import { describeCanvasSpec } from "../canvas/describe";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec } from "../canvas/types";
 import { canvasBoardDurationMs, canvasEngineFor, canvasPlanRequest } from "../canvas/lessonRequest";
+import { validatePlan } from "../canvas/plan";
 import { applyConceptColours, planConceptColours, recapTour, unifyConceptColours } from "../canvas/lessonPasses";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { chalkCss, chalkTint, panelTheme, recolour } from "../canvas/theme";
@@ -299,23 +300,74 @@ const promptInput = (over: Partial<ProgressiveLectureInput> = {}): ProgressiveLe
   ...over,
 });
 
-test("typed-prompt lectures are taught on the canvas; documents and programming are not", () => {
+test("every typed-prompt lecture is taught on the canvas — programming too; documents are not", () => {
   assert.equal(canvasEngineFor(promptInput(), {}), true);
   assert.equal(canvasEngineFor(promptInput(), { CANVAS_LECTURES: "0" }), false, "the switch puts every lecture back");
   assert.equal(canvasEngineFor(promptInput({ sourceType: "pdf" }), {}), false);
   assert.equal(canvasEngineFor(promptInput({ suprnotes: { blocks: [] } }), {}), false);
   assert.equal(canvasEngineFor(promptInput({ context: "slide text" }), {}), false);
-  assert.equal(canvasEngineFor(promptInput({ topic: "Explain for loops in Python" }), {}), false, "no code board on the canvas");
+  assert.equal(canvasEngineFor(promptInput({ topic: "Explain while loops in Python" }), {}), true, "the canvas has a code stage");
 });
 
-test("the canvas plan follows the approved outline and the chosen depth", () => {
-  const outline = { topic: "Photosynthesis", scope: "lesson" as const, subtopics: [{ title: "Why plants need light", caption: "" }, { title: "Inside the chloroplast", caption: "where it happens" }] };
-  const lesson = canvasPlanRequest(promptInput({ outline }));
-  assert.match(lesson, /1\. Why plants need light\n2\. Inside the chloroplast — where it happens/);
-  assert.match(lesson, /5 boards/);
-  assert.match(canvasPlanRequest(promptInput({ outline: { ...outline, scope: "question" } })), /3 or 4 boards/);
-  assert.match(canvasPlanRequest(promptInput({ learnerProfile: { ...promptInput().learnerProfile, depth: "concise" } })), /4 or 5 boards/);
+test("the planner's outline decides how many boards — never a template", () => {
+  const two = { topic: "Photosynthesis", scope: "lesson" as const, subtopics: [{ title: "Why plants need light", caption: "" }, { title: "Inside the chloroplast", caption: "where it happens" }] };
+  const lesson = canvasPlanRequest(promptInput({ outline: two }));
+  assert.match(lesson, /exactly 2 boards, one per part/);
+  assert.match(lesson, /b1\. Why plants need light\nb2\. Inside the chloroplast — where it happens/);
+  assert.doesNotMatch(lesson, /recap|6 to 8|3 or 4 boards/i, "no recap board, no template count");
+  const oneQuestion = canvasPlanRequest(promptInput({ focus: "Why does overfitting happen?", outline: { topic: "Overfitting", scope: "question", subtopics: [{ title: "Why Overfitting Happens", caption: "" }] } }));
+  assert.match(oneQuestion, /exactly 1 board,/);
+  assert.match(oneQuestion, /ANSWERS ONE QUESTION/);
+  assert.match(oneQuestion, /complete on this one board/, "a one-board answer is allowed to be a whole answer");
+  const twelve = { topic: "ML evaluation", scope: "lesson" as const, subtopics: Array.from({ length: 12 }, (_, i) => ({ title: `Part ${i + 1}`, caption: "" })) };
+  assert.match(canvasPlanRequest(promptInput({ outline: twelve })), /exactly 12 boards/, "a big topic may be long");
+  assert.match(canvasPlanRequest(promptInput({ topic: "Why is the sky blue?" })), /Answer it on ONE board/, "no outline: a question is one board");
+  assert.match(canvasPlanRequest(promptInput({ outline: two, learnerProfile: { ...promptInput().learnerProfile, depth: "deep" } })), /6 to 8 sentences/, "depth buys words per board");
   assert.ok(canvasBoardDurationMs("one two three four five") > 3000);
+});
+
+test("a plan is never padded or recapped by the validator: one board is a lesson", () => {
+  const board = (title: string, stage = "code") => ({ title, script: "First sentence here. Second sentence here.", stage, objects: ["counter"] });
+  const one = validatePlan({ title: "Infinite loops", beats: [board("Why a loop never ends")] })!;
+  assert.equal(one.beats.length, 1);
+  assert.equal(one.beats[0].overview, false, "a lone board is not turned into a recap");
+  assert.equal(one.beats[0].stage, "code");
+  const five = validatePlan({ beats: [1, 2, 3, 4, 5].map((n) => board(`Board ${n}`, "flow")) })!;
+  assert.equal(five.beats.at(-1)!.overview, false, "the last board is only an overview when the plan made it one");
+  const synth = validatePlan({ beats: [1, 2, 3, 4].map((n) => ({ ...board(`Board ${n}`, "scene"), overview: n === 4 })) })!;
+  assert.equal(synth.beats[3].overview, true);
+  const long = validatePlan({ beats: Array.from({ length: 13 }, (_, n) => board(`Board ${n}`, "scene")) })!;
+  assert.equal(long.beats.length, 13, "no cap below a long lesson");
+});
+
+test("a code board: listing kept as written, steps on real lines, every line a target", () => {
+  const spec = validateCanvasSpec({
+    heading: "A while loop",
+    notes: [],
+    stage: {
+      kind: "code",
+      language: "Python",
+      lines: ["count = 3", "while count > 0:", "\tprint(count)", "    count -= 1", "print('done')", "", ""],
+      steps: [{ s: 0, lines: [1] }, { s: 1, lines: [2], note: "checked every time" }, { s: 2, lines: [3, 4, 99] }, { s: 9, lines: [] }],
+      trace: { vars: ["count"], rows: [{ s: 2, values: ["3"] }, { s: 3, values: ["2"] }] },
+      output: { s: 3, text: "3\n2\n1\ndone" },
+    },
+    cues: [{ s: 1, action: "underline", target: "line-2" }, { s: 2, action: "point", target: "line-99" }],
+  }, 5)!;
+  if (spec.stage.kind !== "code") return assert.fail("code stage kept");
+  assert.equal(spec.stage.language, "python");
+  assert.deepEqual(spec.stage.lines, ["count = 3", "while count > 0:", "    print(count)", "    count -= 1", "print('done')"], "indentation kept, tabs to spaces, trailing blanks gone");
+  assert.deepEqual(spec.stage.steps.map((st) => st.lines), [[1], [2], [3, 4]], "a step naming no real line is dropped");
+  assert.equal(spec.stage.steps[1].note, "checked every time");
+  assert.deepEqual(spec.cues.map((c) => c.target), ["line-2"], "only real lines can be pointed at");
+  const layout = layoutPanel(spec);
+  const code = layout.marks.find((m) => m.type === "code");
+  assert.ok(code && code.type === "code");
+  for (let n = 1; n <= 5; n++) assert.ok(layout.targets[`line-${n}`], `line-${n} is a target`);
+  assert.ok(layout.targets.trace && layout.targets.output);
+  for (const t of Object.values(layout.targets)) assert.ok(t.x >= 0 && t.y >= 0 && t.x + t.w <= PANEL_W + 1 && t.y + t.h <= PANEL_H + 1, "everything on the board");
+  assert.match(describeCanvasSpec(spec), /2  while count > 0:/, "Aria can read the code");
+  assert.equal(validateCanvasSpec({ heading: "x", notes: [], stage: { kind: "code", lines: ["", "  "], steps: [] }, cues: [] }, 3), null, "no code, no code board");
 });
 
 test("lesson colours are fixed from the plan, keeping the colours students know", () => {

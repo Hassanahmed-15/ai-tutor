@@ -8,7 +8,8 @@ import { drawIllustration, locateParts, pictureSubject, verifyParts } from "../i
 import { layoutPanel } from "./layout";
 import { recapTour, unifyConceptColours } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT, CANVAS_SPEC_PROMPT } from "./prompts";
-import { CANVAS_STAGES, type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat, type CanvasStage } from "./types";
+import { canvasSentences, validatePlan } from "./plan";
+import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
 import { slug, validateCanvasSpec } from "./validate";
 import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
 
@@ -36,13 +37,10 @@ const BUDGET_MS = Number(process.env.CANVAS_BUDGET_MS) || 195_000;
 export type Clock = { left: () => number };
 
 export type { CanvasPlanBeat };
+export { canvasSentences, validatePlan } from "./plan";
 
 export type CanvasProgress = { step: string; detail?: string };
 
-/** Mirrors splitNarrationSentences in lib/voice.ts, which numbers the sentences the player speaks. */
-export function canvasSentences(script: string): string[] {
-  return script.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
-}
 
 export function client(): OpenAI {
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not set");
@@ -75,53 +73,6 @@ export async function jsonCall(openai: OpenAI, model: string, system: string, us
   } catch {
     throw Object.assign(new Error(`model returned invalid JSON (${text.length} chars, finish=${res.choices[0]?.finish_reason})`), { costUsd });
   }
-}
-
-/* ── plan ─────────────────────────────────────────────────────────────────────────────────── */
-
-export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBeat[] } | null {
-  const r = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
-  const list = Array.isArray(r.beats) ? r.beats : [];
-  const beats: CanvasPlanBeat[] = [];
-  list.slice(0, 9).forEach((item, i) => {
-    const b = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
-    const script = typeof b.script === "string" ? b.script.replace(/\s+/g, " ").trim() : "";
-    const title = typeof b.title === "string" ? b.title.trim().slice(0, 60) : "";
-    const stage = (CANVAS_STAGES as readonly string[]).includes(String(b.stage)) ? (b.stage as CanvasStage) : "scene";
-    if (!script || !title || canvasSentences(script).length < 2) return;
-    const id = `b${beats.length + 1}`;
-    const objects = (Array.isArray(b.objects) ? b.objects : []).map((o) => slug(o, "")).filter(Boolean).slice(0, 4);
-    const inside = b.inside && typeof b.inside === "object" ? (b.inside as Record<string, unknown>) : null;
-    const earlier = inside ? beats.find((p) => p.id === String(inside.beat)) : undefined;
-    const insideObject = inside ? slug(inside.object, "") : "";
-    beats.push({
-      id,
-      title,
-      script,
-      stage,
-      brief: typeof b.brief === "string" ? b.brief.slice(0, 300) : "",
-      objects,
-      inside: earlier && earlier.objects.includes(insideObject) ? { beat: earlier.id, object: insideObject } : null,
-      carry: (Array.isArray(b.carry) ? b.carry : []).map((c) => slug(c, "")).filter((c) => objects.includes(c) && (beats[beats.length - 1]?.objects ?? []).includes(c)).slice(0, 2),
-      interaction: b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null,
-      overview: b.overview === true,
-      // A refresher opens the lesson: only on the first two boards, and only one (below).
-      ...(b.refresher === true && beats.length < 2 ? { refresher: true } : {}),
-    });
-    void i;
-  });
-  if (beats.length < 3) return null;
-  // One of each interaction at most — the first the model marked wins.
-  const used = new Set<string>();
-  for (const beat of beats) {
-    if (!beat.interaction) continue;
-    if (used.has(beat.interaction)) beat.interaction = null;
-    else used.add(beat.interaction);
-  }
-  beats.forEach((beat, i) => (beat.overview = i === beats.length - 1));
-  let refreshers = 0;
-  for (const beat of beats) if (beat.refresher && (refreshers++ > 0 || beat.overview)) delete beat.refresher;
-  return { title: typeof r.title === "string" && r.title.trim() ? r.title.trim().slice(0, 80) : beats[0].title, beats };
 }
 
 /* ── one board ────────────────────────────────────────────────────────────────────────────── */

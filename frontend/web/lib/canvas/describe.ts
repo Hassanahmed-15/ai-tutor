@@ -34,6 +34,12 @@ export function describeCanvasSpec(spec: CanvasBoardSpec): string {
     case "scene":
       lines.push(`Scene: ${stage.items.map((i) => i.label ?? i.icon ?? i.id).join(", ")}.`);
       break;
+    case "code":
+      // The listing itself, numbered, so Aria can answer "what does line 3 do?" from what is on screen.
+      lines.push(`Code (${stage.language}), as shown on the board:\n${stage.lines.map((l, i) => `${i + 1}  ${l}`).join("\n")}`);
+      if (stage.trace) lines.push(`Trace of ${stage.trace.vars.join(", ")}: ${stage.trace.rows.map((r) => r.values.join("/")).join(" → ")}.`);
+      if (stage.output) lines.push(`It prints: ${stage.output.text.replace(/\n/g, " | ")}`);
+      break;
   }
   if (spec.interaction?.kind === "try") {
     lines.push(`Try-it controls the student can move: ${spec.interaction.controls.map((c) => `${c.label} (${c.min}–${c.max}${c.unit ? ` ${c.unit}` : ""})`).join(", ")}. Task: ${spec.interaction.prompt}`);

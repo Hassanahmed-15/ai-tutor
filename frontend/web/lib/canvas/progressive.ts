@@ -4,7 +4,7 @@ import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
 import { bounded, canvasBeat, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
 import { layoutPanel } from "./layout";
-import { canvasBoardDurationMs, canvasPlanRequest } from "./lessonRequest";
+import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasRefresherAllowed } from "./lessonRequest";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT } from "./prompts";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
@@ -37,13 +37,23 @@ export function canvasBeatId(sessionId: string, planId: string): string {
 export async function planCanvasLecture(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
   const openai = client();
   const request = canvasPlanRequest(input, knowledge);
+  // The approved outline sized the lecture; the plan may not grow it (only a refresher may be added).
+  const outlined = canvasBoardCount(input);
+  const allowed = outlined > 0 ? outlined + (canvasRefresherAllowed(input, knowledge) ? 1 : 0) : 0;
   let costUsd = 0;
   let lastError = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, request, 9000), 120_000, "canvas plan");
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PLAN_MODEL, CANVAS_PLAN_PROMPT, attempt > 1 && lastError ? `${request}\n\nYour previous plan could not be used: ${lastError}` : request, 9000), 120_000, "canvas plan");
       costUsd += c;
-      const plan = validatePlan(json);
+      let plan = validatePlan(json);
+      if (plan && allowed > 0 && plan.beats.length > allowed) {
+        lastError = `it had ${plan.beats.length} boards; the outline has exactly ${outlined}${allowed > outlined ? " (plus the one refresher)" : ""}`;
+        if (attempt < 2) continue;
+        // Still over: keep the refresher (if first) and the outline's boards, drop the extras.
+        const keep = plan.beats.filter((b, i) => (b.refresher && i === 0) || !b.refresher).slice(0, allowed);
+        plan = { ...plan, beats: keep };
+      }
       if (plan) {
         return {
           costUsd,

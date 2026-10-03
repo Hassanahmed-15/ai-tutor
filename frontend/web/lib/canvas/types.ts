@@ -22,7 +22,7 @@ export const CANVAS_ICONS = [
 ] as const;
 export type CanvasIcon = (typeof CANVAS_ICONS)[number];
 
-export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene"] as const;
+export const CANVAS_STAGES = ["illustration", "flow", "equation", "graph", "compare", "scene", "code"] as const;
 export type CanvasStage = (typeof CANVAS_STAGES)[number];
 
 /** A written key note in the notes column, revealed on the sentence that says it. */
@@ -160,7 +160,23 @@ export type SceneStage = {
   arrows: FlowArrow[];
 };
 
-export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage;
+/**
+ * A PROGRAM, WALKED THROUGH. The listing is shown whole; each step lights the lines Aria is talking
+ * about while an execution pointer moves to them, so the narration and the code advance together.
+ * A trace shows what the variables hold as it runs; the output is what it prints.
+ */
+export type CodeStage = {
+  kind: "code";
+  language: string;
+  /** The listing, one string per line, indentation kept. */
+  lines: string[];
+  /** On sentence `s`, lines (1-based) are lit and the pointer sits on the first; `note` is said beside it. */
+  steps: Array<{ s: number; lines: number[]; note?: string }>;
+  trace?: { vars: string[]; rows: Array<{ s: number; values: string[] }> };
+  output?: { s: number; text: string };
+};
+
+export type StageSpec = FlowStage | IllustrationStage | EquationStage | GraphStage | CompareStage | SceneStage | CodeStage;
 
 /** What the pointer (Aria's pen) or the camera does on a sentence. */
 export type CanvasCue = {

@@ -363,7 +363,134 @@ function renderMark({ mark, shownThrough, sentenceProgress, vars, ghostVars, foc
           {mark.text}
         </text>
       );
+    case "code":
+      return <CodeView mark={mark} shownThrough={shownThrough} focusId={focusId} />;
+    case "trace":
+      return <TraceView mark={mark} shownThrough={shownThrough} />;
+    case "output":
+      return (
+        <g className={`cv-in${focus}`}>
+          <rect x={mark.rect.x} y={mark.rect.y} width={mark.rect.w} height={mark.rect.h} rx={12} fill="#0f172a" />
+          <text x={mark.rect.x + 14} y={mark.rect.y + 22} fontSize={11} fontWeight={800} letterSpacing={1.2} fill="#64748b">OUTPUT</text>
+          {mark.text.split("\n").map((line, i) => (
+            <text key={i} x={mark.rect.x + 14} y={mark.rect.y + 44 + i * 22} fontSize={mark.size} fontFamily={MONO_FONT} fill="#a7f3d0" className="cv-write">
+              {line}
+            </text>
+          ))}
+        </g>
+      );
   }
+}
+
+/* ── code: a listing walked through, line by line ─────────────────────────────────────────── */
+
+const MONO_FONT = "ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace";
+const CODE_KEYWORDS = new Set(("and as break case catch class const continue def do elif else except false finally for from function if import in int is lambda let not null or pass print public range return static switch this throw true try var void while with yield None True False fn struct mut match").split(" "));
+
+/** Light syntax colouring: enough to read structure (keywords, strings, numbers, calls, comments). */
+function codeTokens(line: string): Array<{ text: string; color: string; italic?: boolean }> {
+  const out: Array<{ text: string; color: string; italic?: boolean }> = [];
+  const re = /(#.*$|\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\b\d+(?:\.\d+)?\b)|([A-Za-z_][A-Za-z0-9_]*)(?=\s*\()|([A-Za-z_][A-Za-z0-9_]*)|(\s+)|([^\sA-Za-z0-9_"'#]+)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(line))) {
+    if (m[1]) out.push({ text: m[1], color: "#7f8aa8", italic: true });
+    else if (m[2]) out.push({ text: m[2], color: "#c3e88d" });
+    else if (m[3]) out.push({ text: m[3], color: "#f78c6c" });
+    else if (m[4]) out.push({ text: m[4], color: CODE_KEYWORDS.has(m[4]) ? "#c792ea" : "#82aaff" });
+    else if (m[5]) out.push({ text: m[5], color: CODE_KEYWORDS.has(m[5]) ? "#c792ea" : "#e6e9f0" });
+    else if (m[6]) out.push({ text: m[6], color: "#e6e9f0" });
+    else out.push({ text: m[7], color: "#89ddff" });
+  }
+  return out;
+}
+
+function CodeView({ mark, shownThrough, focusId }: { mark: Extract<Mark, { type: "code" }>; shownThrough: number; focusId?: string }) {
+  const { rect, size, lineH, gutter } = mark;
+  // The step being explained: the latest one whose sentence has come. A finished board rests on its last.
+  const step = [...mark.steps].reverse().find((st) => st.s <= shownThrough);
+  const lit = new Set(step?.lines ?? []);
+  const top = rect.y + 14;
+  const baseline = (i: number) => top + i * lineH + lineH * 0.7;
+  const textX = rect.x + gutter + 14;
+  const first = step ? Math.min(...step.lines) : 0;
+  const lineEnd = first ? textX + mark.lines[first - 1].length * 0.6 * size : 0;
+  return (
+    <g>
+      <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={14} fill="#1e2030" />
+      <rect x={rect.x} y={rect.y} width={gutter} height={rect.h} rx={14} fill="#191a29" />
+      <rect x={rect.x + gutter - 14} y={rect.y} width={14} height={rect.h} fill="#191a29" />
+      {/* The lines being talked about, lit; the pointer glides between steps. */}
+      {[...lit].map((n) => (
+        // fillOpacity, not opacity: the cv-in reveal animates opacity to 1 and would make the band solid.
+        <rect key={`lit-${n}`} x={rect.x + gutter} y={top + (n - 1) * lineH} width={rect.w - gutter - 6} height={lineH} fill="#fbbf24" fillOpacity={0.16} className="cv-in" />
+      ))}
+      {step && (
+        <g style={{ transform: `translate(${rect.x + gutter - 15}px, ${top + (first - 1) * lineH + lineH / 2}px)`, transition: "transform 450ms cubic-bezier(.65,0,.25,1)" }}>
+          <path d="M-5 -6 L5 0 L-5 6 Z" fill="#fbbf24" />
+        </g>
+      )}
+      {mark.lines.map((line, i) => (
+        <g key={i} className="cv-in" style={{ animationDelay: `${i * 55}ms` }}>
+          <text x={rect.x + gutter - 22} y={baseline(i)} textAnchor="end" fontSize={size * 0.78} fontFamily={MONO_FONT} fill={lit.has(i + 1) ? "#e6e9f0" : "#4b5068"}>
+            {i + 1}
+          </text>
+          <text x={textX} y={baseline(i)} fontSize={size} fontFamily={MONO_FONT} xmlSpace="preserve" style={{ whiteSpace: "pre" }} className={focusId === `line-${i + 1}` ? "cv-focus" : undefined}>
+            {codeTokens(line).map((t, k) => (
+              <tspan key={k} fill={t.color} fontStyle={t.italic ? "italic" : undefined}>
+                {t.text}
+              </tspan>
+            ))}
+          </text>
+        </g>
+      ))}
+      {step?.note && (() => {
+        // Beside the line it explains when it fits (the layout widens the card for it); otherwise on
+        // its own pill in the card's corner, never printed over code.
+        const noteSize = Math.max(12, size * 0.78);
+        const noteW = (step.note.length + 2) * noteSize * 0.56;
+        const fits = lineEnd + 18 + noteW < rect.x + rect.w - 8;
+        const x = fits ? lineEnd + 18 : rect.x + rect.w - noteW - 18;
+        const y = fits ? baseline(first - 1) : rect.y - 12;
+        return (
+          <g key={`note-${step.s}`} className="cv-in">
+            {!fits && <rect x={x - 8} y={y - noteSize - 2} width={noteW + 16} height={noteSize + 12} rx={(noteSize + 12) / 2} fill="#1e2030" />}
+            <text x={x} y={y} fontSize={noteSize} fontWeight={700} fill="#fbbf24">
+              {fits ? "← " : `line ${first}: `}{step.note}
+            </text>
+          </g>
+        );
+      })()}
+    </g>
+  );
+}
+
+/** What the variables hold as the code runs: a row appears on its sentence; the newest is lit. */
+function TraceView({ mark, shownThrough }: { mark: Extract<Mark, { type: "trace" }>; shownThrough: number }) {
+  const { rect } = mark;
+  const rowH = 24;
+  const colW = (rect.w - 16) / mark.vars.length;
+  const shown = mark.rows.filter((r) => r.s <= shownThrough);
+  return (
+    <g className="cv-in">
+      <rect x={rect.x} y={rect.y} width={rect.w} height={rect.h} rx={12} fill="#fff" stroke="#e7e2d6" strokeWidth={2} />
+      {mark.vars.map((v, k) => (
+        <text key={v} x={rect.x + 8 + colW * k + colW / 2} y={rect.y + 26} textAnchor="middle" fontSize={14} fontWeight={800} fontFamily={MONO_FONT} fill="#1f2937">
+          {v}
+        </text>
+      ))}
+      <line x1={rect.x + 10} y1={rect.y + 34} x2={rect.x + rect.w - 10} y2={rect.y + 34} stroke="#e7e2d6" strokeWidth={1.5} />
+      {shown.map((row, i) => (
+        <g key={i} className="cv-in">
+          {i === shown.length - 1 && <rect x={rect.x + 6} y={rect.y + 36 + i * rowH} width={rect.w - 12} height={rowH - 2} rx={5} fill="#fbbf24" fillOpacity={0.2} />}
+          {row.values.map((value, k) => (
+            <text key={k} x={rect.x + 8 + colW * k + colW / 2} y={rect.y + 53 + i * rowH} textAnchor="middle" fontSize={mark.size} fontFamily={MONO_FONT} fill="#1f2937">
+              {value}
+            </text>
+          ))}
+        </g>
+      ))}
+    </g>
+  );
 }
 
 /* ── nodes (with morphs) and arrows (with flowing particles) ──────────────────────────────── */
@@ -659,16 +786,27 @@ function GraphView({ mark, shownThrough, sentenceProgress, vars, ghostVars, focu
       {ghostDiffers && spec.curves.filter((c) => c.s <= shownThrough).map((c, i) => (
         <path key={`ghost-${c.id}`} d={curvePath(plot, spec, c.expr, ghostVars!)} stroke={c.color ?? ["#15803d", "#2563eb", "#d97706"][i % 3]} strokeWidth={3} strokeDasharray="6 7" fill="none" opacity={0.3} />
       ))}
-      {spec.curves.filter((c) => c.s <= shownThrough).map((c, i) => {
+      {(() => {
+        // Curve names sit at their curves' ends; ends that meet would print one name over another, so
+        // the names are spaced at least a line apart, each staying as close to its own curve as it can.
+        const shown = spec.curves.filter((c) => c.s <= shownThrough);
+        const ends = shown.map((c) => graphPoint(plot, spec, spec.x.max, evalExpr(c.expr, { ...vars, x: spec.x.max }, spec.y.min)));
+        const order = shown.map((_, i) => i).filter((i) => shown[i].label).sort((a, b) => ends[a].y - ends[b].y);
+        const labelY: Record<number, number> = {};
+        let last = -Infinity;
+        for (const i of order) {
+          labelY[i] = Math.max(ends[i].y - 12, last + 18, plot.y + 4);
+          last = labelY[i];
+        }
+        return shown.map((c, i) => ({ c, i, end: ends[i], y: labelY[i] }));
+      })().map(({ c, i, end, y }) => {
         const color = c.color ?? ["#15803d", "#2563eb", "#d97706"][i % 3];
         const d = curvePath(plot, spec, c.expr, vars);
-        const endX = spec.x.max;
-        const end = graphPoint(plot, spec, endX, evalExpr(c.expr, { ...vars, x: endX }, spec.y.min));
         return (
           <g key={c.id} className={focusId === c.id ? "cv-focus" : undefined}>
             <path d={d} stroke={color} strokeWidth={4} fill="none" strokeLinecap="round" strokeLinejoin="round" className="cv-stroke cv-slow" pathLength={1} />
             {c.label && (
-              <text x={Math.min(end.x, plot.x + plot.w - 4)} y={end.y - 12} textAnchor="end" fontSize={15} fontWeight={800} fill={color} className="cv-in cv-late">
+              <text x={Math.min(end.x, plot.x + plot.w - 4)} y={y ?? end.y - 12} textAnchor="end" fontSize={15} fontWeight={800} fill={color} className="cv-in cv-late">
                 {c.label}
               </text>
             )}

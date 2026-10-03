@@ -15,6 +15,7 @@ import {
   type CanvasCue,
   type CanvasIcon,
   type CanvasInteraction,
+  type CodeStage,
   type CompareStage,
   type EquationStage,
   type FlowArrow,
@@ -141,6 +142,8 @@ function validateArrows(raw: unknown, sentence: (v: unknown, f?: number) => numb
 function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string, vars: string[]): StageSpec | null {
   const kind = str(r.kind, 16) as StageSpec["kind"];
   if (!(CANVAS_STAGES as readonly string[]).includes(kind)) return null;
+
+  if (kind === "code") return validateCode(r, sentence, unique);
 
   if (kind === "flow") {
     const nodes = arr(r.nodes)
@@ -333,6 +336,64 @@ function validateStage(r: Raw, sentence: (v: unknown, f?: number) => number, uni
 }
 
 /** A morph is only kept when it changes something and happens on a real sentence. */
+/**
+ * A program as the model wrote it, made safe to draw: lines keep their indentation (tabs become
+ * spaces) and are capped in number and length; every step and trace row lands on a real sentence;
+ * a step names real lines. The listing must be real code — at least one line that is not blank.
+ */
+function validateCode(r: Raw, sentence: (v: unknown, f?: number) => number, unique: (v: unknown, f: string) => string): CodeStage | null {
+  const rawLines = Array.isArray(r.lines) ? r.lines : typeof r.code === "string" ? r.code.split("\n") : [];
+  const lines = rawLines
+    .map((l) => (typeof l === "string" ? l.replace(/\t/g, "    ").replace(/\s+$/, "").slice(0, 72) : ""))
+    .slice(0, 18);
+  while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
+  if (!lines.some((l) => l.trim())) return null;
+  unique("code", "code");
+  lines.forEach((_, i) => unique(`line-${i + 1}`, `line-${i + 1}`));
+  const lineNo = (v: unknown) => {
+    const n = Math.round(num(v, 0));
+    return n >= 1 && n <= lines.length ? n : 0;
+  };
+  const steps = arr(r.steps)
+    .map((st) => obj(st))
+    .map((st, i) => {
+      const picked = (Array.isArray(st.lines) ? st.lines : [st.lines ?? st.line]).map(lineNo).filter(Boolean);
+      if (picked.length === 0) return null;
+      const note = str(st.note, 48);
+      return { s: sentence(st.s ?? st.sentence, i), lines: [...new Set(picked)].slice(0, 6), ...(note ? { note } : {}) };
+    })
+    .filter((st): st is NonNullable<typeof st> => Boolean(st))
+    .sort((a, b) => a.s - b.s)
+    .slice(0, 10);
+  const traceRaw = obj(r.trace);
+  const vars = arr(traceRaw.vars).map((v) => str(v, 14)).filter(Boolean).slice(0, 4);
+  const rows = vars.length
+    ? arr(traceRaw.rows)
+        .map((row) => obj(row))
+        // Values are often numbers or booleans in the model's JSON: each is written as text.
+        .map((row, i) => ({ s: sentence(row.s ?? row.sentence, i), values: vars.map((_, k) => cell(arr(row.values)[k])) }))
+        .slice(0, 8)
+    : [];
+  const outputRaw = obj(r.output);
+  const outputText = typeof outputRaw.text === "string" ? outputRaw.text.split("\n").slice(0, 4).map((l) => l.slice(0, 48)).join("\n").trim() : "";
+  if (rows.length) unique("trace", "trace");
+  if (outputText) unique("output", "output");
+  return {
+    kind: "code",
+    language: str(r.language, 20).toLowerCase() || "python",
+    lines,
+    steps: steps.length ? steps : [{ s: 0, lines: [1] }],
+    ...(rows.length ? { trace: { vars, rows } } : {}),
+    ...(outputText ? { output: { s: sentence(outputRaw.s ?? outputRaw.sentence, 0), text: outputText } } : {}),
+  };
+}
+
+/** One trace cell as text: a number, boolean or string, capped. */
+function cell(v: unknown): string {
+  if (typeof v === "number" || typeof v === "boolean") return String(v);
+  return str(v, 14);
+}
+
 function becomesOf(raw: unknown, sentence: (v: unknown, f?: number) => number): { icon?: CanvasIcon; label?: string; s: number } | undefined {
   const b = obj(raw);
   const next = { icon: icon(b.icon), label: str(b.label, 24) || undefined };

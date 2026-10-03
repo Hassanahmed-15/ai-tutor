@@ -9,7 +9,7 @@
  * A panel is 1000 x 560: heading across the top, a notes column on the left, the stage on the right.
  */
 
-import { PANEL_H, PANEL_W, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CompareStage, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage } from "./types";
+import { PANEL_H, PANEL_W, type Becomes, type CanvasBoardSpec, type CanvasIcon, type CodeStage, type CompareStage, type EquationStage, type FlowStage, type GraphStage, type IllustrationStage, type SceneStage } from "./types";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Pt = { x: number; y: number };
@@ -28,7 +28,10 @@ export type Mark =
   | { type: "item"; id: string; text: string; rect: Rect; color: string; s: number; size: number }
   | { type: "link"; id: string; p0: Pt; p1: Pt; s: number }
   | { type: "box"; id: string; rect: Rect; label?: string; color: string; s: number; icon?: CanvasIcon; size: number }
-  | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number };
+  | { type: "text"; id: string; rect: Rect; text: string; color: string; s: number; size: number }
+  | { type: "code"; id: string; rect: Rect; lines: string[]; language: string; size: number; lineH: number; gutter: number; steps: CodeStage["steps"]; s: number }
+  | { type: "trace"; id: string; rect: Rect; vars: string[]; rows: Array<{ s: number; values: string[] }>; size: number; s: number }
+  | { type: "output"; id: string; rect: Rect; text: string; size: number; s: number };
 
 export type PanelLayout = {
   marks: Mark[];
@@ -138,10 +141,66 @@ export function layoutPanel(spec: CanvasBoardSpec): PanelLayout {
     case "scene":
       layoutScene(spec.stage, stage, marks, add);
       break;
+    case "code":
+      layoutCode(spec.stage, stage, marks, add);
+      break;
   }
   targets.stage = { ...stage, s: 0 };
   targets.board = { x: 0, y: 0, w: PANEL_W, h: PANEL_H, s: 0 };
   return { marks, targets, stage };
+}
+
+/* ── code ─────────────────────────────────────────────────────────────────────────────────── */
+
+/** Monospace advance, in em. */
+const MONO = 0.6;
+
+/**
+ * A listing in an editor card, sized so its longest line and all its lines fit; under it, side by
+ * side, the trace table and the output when the board has them. Every line is a target, so Aria's
+ * pen can point at it and the camera can zoom to it.
+ */
+function layoutCode(st: CodeStage, area: Rect, marks: Mark[], add: Add) {
+  const rowH = 24;
+  const traceH = st.trace ? (st.trace.rows.length + 1) * rowH + 22 : 0;
+  const outputLines = st.output ? st.output.text.split("\n").length : 0;
+  const outputH = st.output ? outputLines * 22 + 44 : 0;
+  const bottomH = Math.max(traceH, outputH);
+  const gap = bottomH ? 16 : 0;
+  const codeArea = { x: area.x, y: area.y, w: area.w, h: area.h - bottomH - gap };
+  const maxLen = Math.max(8, ...st.lines.map((l) => l.length));
+  const gutter = st.lines.length >= 10 ? 46 : 38;
+  const size = Math.max(12, Math.min(20, Math.floor(Math.min((codeArea.w - gutter - 36) / (maxLen * MONO), (codeArea.h - 28) / (st.lines.length * 1.5)))));
+  const lineH = Math.round(size * 1.5);
+  // Wide enough for the longest line, and for each step's note written beside the line it explains.
+  const noteRoom = Math.max(0, ...st.steps.filter((p) => p.note).map((p) => gutter + 14 + (st.lines[Math.min(...p.lines) - 1]?.length ?? 0) * MONO * size + 22 + (p.note!.length + 2) * Math.max(12, size * 0.78) * 0.56 + 14));
+  const w = Math.min(codeArea.w, Math.max(320, gutter + maxLen * MONO * size + 48, noteRoom));
+  const h = st.lines.length * lineH + 28;
+  // A short listing sits in the middle of its area rather than hugging the top of the board.
+  const slack = Math.max(0, area.h - (h + gap + bottomH));
+  const rect = { x: codeArea.x, y: codeArea.y + Math.round(slack * 0.4), w, h };
+  marks.push({ type: "code", id: "code", rect, lines: st.lines, language: st.language, size, lineH, gutter, steps: st.steps, s: st.steps[0]?.s ?? 0 });
+  add("code", rect, st.steps[0]?.s ?? 0);
+  st.lines.forEach((line, i) => {
+    const indent = (line.length - line.trimStart().length) * MONO * size;
+    add(`line-${i + 1}`, { x: rect.x + gutter + 14 + indent, y: rect.y + 14 + i * lineH, w: Math.max(24, line.trim().length * MONO * size), h: lineH }, st.steps[0]?.s ?? 0);
+  });
+  const by = rect.y + rect.h + gap;
+  let x = area.x;
+  if (st.trace) {
+    const colW = Math.max(64, ...st.trace.vars.map((v) => v.length * MONO * 16 + 24), ...st.trace.rows.flatMap((r) => r.values.map((v) => v.length * MONO * 16 + 24)));
+    const tw = Math.min(area.w * (st.output ? 0.56 : 1), colW * st.trace.vars.length + 16);
+    const trect = { x, y: by, w: tw, h: traceH };
+    marks.push({ type: "trace", id: "trace", rect: trect, vars: st.trace.vars, rows: st.trace.rows, size: 16, s: st.trace.rows[0]?.s ?? 0 });
+    add("trace", trect, st.trace.rows[0]?.s ?? 0);
+    x += tw + 16;
+  }
+  if (st.output) {
+    const ow = Math.min(area.x + area.w - x, Math.max(220, ...st.output.text.split("\n").map((l) => l.length * MONO * 16 + 36)));
+    const orect = { x, y: by, w: ow, h: outputH };
+    marks.push({ type: "output", id: "output", rect: orect, text: st.output.text, size: 16, s: st.output.s });
+    add("output", orect, st.output.s);
+  }
 }
 
 /* ── flow ─────────────────────────────────────────────────────────────────────────────────── */
