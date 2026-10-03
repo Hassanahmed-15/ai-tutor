@@ -216,6 +216,8 @@ export type CanvasBoardSpec = {
   interaction?: CanvasInteraction;
   /** Frame the whole lesson when this board finishes — the recap's zoom-out. */
   overview?: boolean;
+  /** A short refresher of a prerequisite, before the topic proper (lib/knowledge). */
+  refresher?: boolean;
 };
 
 /** The draw op a canvas beat carries (Beat.draw.ops). */
@@ -238,4 +240,6 @@ export type CanvasPlanBeat = {
   carry: string[];
   interaction: "try" | "draw" | "quiz" | null;
   overview: boolean;
+  /** A short board refreshing a prerequisite the student is shaky on, before the topic proper. */
+  refresher?: boolean;
 };

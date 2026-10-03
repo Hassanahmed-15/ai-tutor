@@ -8,6 +8,7 @@ import { canvasBoardDurationMs, canvasPlanRequest } from "./lessonRequest";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT } from "./prompts";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
+import type { PlanningKnowledge } from "../knowledge/graph";
 import { slug } from "./validate";
 
 /**
@@ -33,9 +34,9 @@ export function canvasBeatId(sessionId: string, planId: string): string {
   return `cv-${sessionId}-${planId}`;
 }
 
-export async function planCanvasLecture(input: ProgressiveLectureInput): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
+export async function planCanvasLecture(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): Promise<{ plan: ProgressiveBeatPlan[]; costUsd: number }> {
   const openai = client();
-  const request = canvasPlanRequest(input);
+  const request = canvasPlanRequest(input, knowledge);
   let costUsd = 0;
   let lastError = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
@@ -126,6 +127,7 @@ export async function writeCanvasBoard(args: {
 
   // The recap's visits go back to boards the student has seen, by their deterministic ids.
   if (beat.overview) spec.overview = true;
+  if (beat.refresher) spec.refresher = true;
   const earlierIds = new Set(plan.slice(0, index).map((b) => b.id));
   spec.cues = spec.cues.filter((c) => c.action !== "visit" || earlierIds.has(c.beat ?? ""));
   if (beat.overview && !spec.cues.some((c) => c.action === "visit")) spec.cues = [...spec.cues, ...recapTour(beat, plan.slice(0, index))];

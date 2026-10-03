@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, FileUp, Paperclip, Settings, X } from "lucide-react";
+import { ArrowRight, FileUp, Orbit, Paperclip, Settings, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { useAuth } from "@/components/auth/AuthGate";
@@ -246,6 +246,19 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
               go("learn");
             }}
           />
+        )}
+
+        {/* What they have learned so far, as a map (lib/knowledge) — signed-in learners only. */}
+        {user && (
+          <button
+            type="button"
+            onClick={() => go("knowledge")}
+            className="mx-auto mt-8 flex items-center gap-2 rounded-full border px-4 py-2 text-[0.85rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+            style={{ borderColor: "var(--hud-line)", background: "var(--hud-surface)" }}
+          >
+            <Orbit aria-hidden="true" size={15} strokeWidth={1.8} className="text-amber-300" />
+            Your knowledge map
+          </button>
         )}
 
         <div className="mt-10 text-left">

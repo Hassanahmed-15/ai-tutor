@@ -105,6 +105,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
       carry: (Array.isArray(b.carry) ? b.carry : []).map((c) => slug(c, "")).filter((c) => objects.includes(c) && (beats[beats.length - 1]?.objects ?? []).includes(c)).slice(0, 2),
       interaction: b.interaction === "try" || b.interaction === "draw" || b.interaction === "quiz" ? b.interaction : null,
       overview: b.overview === true,
+      // A refresher opens the lesson: only on the first two boards, and only one (below).
+      ...(b.refresher === true && beats.length < 2 ? { refresher: true } : {}),
     });
     void i;
   });
@@ -117,6 +119,8 @@ export function validatePlan(raw: unknown): { title: string; beats: CanvasPlanBe
     else used.add(beat.interaction);
   }
   beats.forEach((beat, i) => (beat.overview = i === beats.length - 1));
+  let refreshers = 0;
+  for (const beat of beats) if (beat.refresher && (refreshers++ > 0 || beat.overview)) delete beat.refresher;
   return { title: typeof r.title === "string" && r.title.trim() ? r.title.trim().slice(0, 80) : beats[0].title, beats };
 }
 

@@ -70,7 +70,8 @@ import { beatSourceGroundingFor, isStrictScope, referenceVoicePartContext, stric
 import { useEngagementScore } from "@/lib/useEngagementScore";
 import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
-import { LessonCanvas, type CanvasPanelInput } from "./canvas/LessonCanvas";
+import { LessonCanvas, type CanvasKnowledge, type CanvasPanelInput } from "./canvas/LessonCanvas";
+import { BoardPeek, type PeekTarget } from "./knowledge/BoardPeek";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
 import { CheckinOverlay } from "./adhd/CheckinOverlay";
 import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
@@ -1226,6 +1227,72 @@ export function LessonPlayer({
   const tellAriaCanvas = useCallback((note: string) => {
     tutorRef.current.addContext?.(note);
   }, []);
+
+  /*
+   * THE KNOWLEDGE GRAPH ON THIS LECTURE (lib/knowledge, GET /api/knowledge/lecture): which concept
+   * each drawn element is, and what this student already knew of each before the lecture began.
+   * The worker writes it a few seconds after the plan, so it is polled for briefly; the boards are
+   * marked once it arrives. A canvas board's id carries its lecture's id (cv-<session>-b<n>).
+   */
+  const canvasSessionId = useMemo(() => canvasPanels.map((p) => /^cv-([a-f0-9-]{36})-b\d+$/.exec(p.key)?.[1]).find(Boolean) ?? null, [canvasPanels]);
+  const [knowledgeState, setKnowledgeState] = useState<{ session: string; data: CanvasKnowledge } | null>(null);
+  const canvasKnowledge = knowledgeState && knowledgeState.session === canvasSessionId ? knowledgeState.data : null;
+  useEffect(() => {
+    if (!canvasSessionId) return;
+    let alive = true;
+    let tries = 0;
+    let timer = 0;
+    const load = () => {
+      fetch(`/api/knowledge/lecture?session=${encodeURIComponent(canvasSessionId)}`)
+        .then(async (res) => {
+          if (!alive) return;
+          if (res.status === 204) {
+            if (tries++ < 20) timer = window.setTimeout(load, 4000);
+            return;
+          }
+          if (!res.ok) return;
+          const data = (await res.json()) as CanvasKnowledge;
+          if (alive) setKnowledgeState({ session: canvasSessionId, data });
+        })
+        .catch(() => {});
+    };
+    load();
+    return () => {
+      alive = false;
+      window.clearTimeout(timer);
+    };
+  }, [canvasSessionId]);
+  // Aria is told once what the student already knows, so her answers build on it.
+  const knowledgeToldRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!canvasKnowledge || !canvasSessionId || knowledgeToldRef.current === canvasSessionId) return;
+    knowledgeToldRef.current = canvasSessionId;
+    const all = Object.values(canvasKnowledge.concepts);
+    const known = all.filter((c) => c.status === "known").map((c) => c.label);
+    const shaky = all.filter((c) => c.status === "shaky").map((c) => c.label);
+    const gaps = [...new Set(all.flatMap((c) => (c.gaps ?? []).map((g) => g.label)))];
+    const lines = [
+      known.length ? `already knows from earlier lessons: ${known.join(", ")}` : "",
+      shaky.length ? `has met but is shaky on: ${shaky.join(", ")}` : "",
+      gaps.length ? `may be missing these foundations: ${gaps.join(", ")}` : "",
+    ].filter(Boolean);
+    if (lines.length) tellAriaCanvas(`About this student's knowledge (for your answers; do not announce it): they ${lines.join("; ")}. Build on what they know; if a question shows a gap, explain the foundation first.`);
+  }, [canvasKnowledge, canvasSessionId, tellAriaCanvas]);
+  /** A Predict-it answer or a drawing check is evidence of what they know (POST /api/knowledge/evidence). */
+  const recordCanvasTask = useCallback((kind: "quiz" | "drawing", correct: boolean, options?: number) => {
+    if (!canvasSessionId || canvasIndex < 0) return;
+    void fetch("/api/knowledge/evidence", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session: canvasSessionId, sequence: canvasIndex, kind, correct, options }),
+    }).catch(() => {});
+    if (correct || !canvasKnowledge) return;
+    const board = canvasKnowledge.beats.find((b) => b.sequence === canvasIndex);
+    const gap = (board?.concepts ?? []).map((k) => ({ concept: canvasKnowledge.concepts[k], gap: canvasKnowledge.concepts[k]?.gaps?.[0] })).find((x) => x.gap);
+    if (gap?.gap) tellAriaCanvas(`The student missed that question. It builds on ${gap.gap.label}, which they have not shown they know — if they ask, explain ${gap.gap.label} briefly first, then ${gap.concept?.label ?? "this idea"}.`);
+  }, [canvasSessionId, canvasIndex, canvasKnowledge, tellAriaCanvas]);
+  /** "↩ from <lecture>": the board where they learned it, in a window; the lecture waits meanwhile. */
+  const [peek, setPeek] = useState<PeekTarget | null>(null);
 
   const showLiveBoard = useCallback(
     (board: GeminiLiveBoard) => {
@@ -2994,12 +3061,19 @@ export function LessonPlayer({
                   topic={title}
                   onSpeak={speakCanvasLine}
                   onTellAria={tellAriaCanvas}
+                  knowledge={canvasKnowledge}
+                  onTaskResult={recordCanvasTask}
+                  onOpenEarlier={(from) => {
+                    lesson.pause("user");
+                    setPeek(from);
+                  }}
                   onContinue={() => {
                     setCanvasHoldIndex(null);
                     bumpInteraction();
                     advanceFromCheckpoint();
                   }}
                 />
+                {peek && <BoardPeek target={peek} onClose={() => setPeek(null)} />}
               </div>
             ) : (
               <BoardStage

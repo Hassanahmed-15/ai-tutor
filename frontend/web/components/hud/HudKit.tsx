@@ -18,6 +18,8 @@ import type { ReactNode } from "react";
 
 export type PageName =
   | "landing"
+  /** Everything the student has learned, as a map (components/knowledge/KnowledgeMapPage.tsx). */
+  | "knowledge"
   | "tracks"
   | "about"
   | "features"

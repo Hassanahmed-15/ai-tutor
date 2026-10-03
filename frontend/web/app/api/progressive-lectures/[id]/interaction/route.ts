@@ -5,6 +5,8 @@ import { prepareAdaptiveRevision, progressiveBeat, progressiveBeats, progressive
 import type { LearnerInteraction, LearnerInteractionKind } from "@/lib/progressiveLectureTypes";
 import { addExcerpts, applyCheckpoint, applyLectureProgress, LEARNER_SIGNALS, recordSignal, type LearnerSignal } from "@/lib/learnerModel";
 import { updateLearnerMemory } from "@/lib/learnerMemoryStore";
+import { loadLectureKnowledge } from "@/lib/knowledge/store";
+import { recordTaught } from "@/lib/knowledge/overlay";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -63,15 +65,28 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const docs = watchedSequences.length || checkpointSequence !== null ? await progressiveBeats(id).catch(() => []) : [];
   const conceptOf = (sequence: number) =>
     docs.find((doc) => doc.sequence === sequence)?.beat?.definitionTerm?.trim() || next.plan[sequence]?.title || "";
-  const watched = watchedSequences.map((sequence) => ({ concept: conceptOf(sequence) })).filter((w) => w.concept);
+  // A lecture with a knowledge record credits the concepts each board taught, by the graph's keys —
+  // the same stars on the knowledge map. Without one (older lectures), the board's own term.
+  const knowledge = watchedSequences.length ? await loadLectureKnowledge(id, auth.userId).catch(() => null) : null;
+  const labelOf = (key: string) => knowledge?.concepts.find((c) => c.key === key)?.label ?? key;
+  const taughtItems = knowledge
+    ? watchedSequences.flatMap((sequence) => {
+        const board = knowledge.beats.find((b) => b.sequence === sequence);
+        const beatDoc = docs.find((doc) => doc.sequence === sequence);
+        const at = { lectureId: id, sequence, beatId: beatDoc?.beat?.id ?? `${id}:${sequence}`, title: next.plan[sequence]?.title ?? "", topic: next.topic };
+        return (board?.concepts ?? []).map((key) => ({ key, label: labelOf(key), at }));
+      })
+    : [];
+  const watched = knowledge ? [] : watchedSequences.map((sequence) => ({ concept: conceptOf(sequence) })).filter((w) => w.concept);
   const checkpointConcept = checkpointSequence !== null ? conceptOf(checkpointSequence) || undefined : undefined;
   // A question asked mid-lecture is the student in their own words: it goes into the portrait.
   const asked = interaction.kind === "question" && interaction.detail?.trim() ? interaction.detail.trim() : null;
   // And what they DID — asked for code, to go deeper, for simpler — tallied: it is who they are.
   const signal = (LEARNER_SIGNALS as string[]).includes(interaction.kind) ? (interaction.kind as LearnerSignal) : null;
-  if (watched.length > 0 || checkpointConcept || asked || signal) {
+  if (watched.length > 0 || taughtItems.length > 0 || checkpointConcept || asked || signal) {
     await updateLearnerMemory(auth.userId, (memory) => {
       let updated = applyLectureProgress(memory, next.topic, watched);
+      if (taughtItems.length) updated = recordTaught(updated, taughtItems);
       if (checkpointConcept) updated = applyCheckpoint(updated, checkpointConcept, interaction.correct === true, next.topic);
       if (asked) updated = addExcerpts(updated, [{ source: "question", topic: next.topic, text: asked }]);
       if (signal) updated = recordSignal(updated, signal);

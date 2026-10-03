@@ -32,6 +32,8 @@ export const PROGRESSIVE_LECTURE_BEATS_CONTAINER = "progressive-lecture-beats";
 export const LEARNER_PROFILES_CONTAINER = "learner-profiles";
 export const VIEWER_DOCUMENTS_CONTAINER = "viewer-documents";
 export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
+/** The shared concept graph (lib/knowledge): concepts and the links between them, no student data. */
+export const KNOWLEDGE_GRAPH_CONTAINER = "knowledge-graph";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -373,6 +375,10 @@ export function viewerDocuments(): Container {
   return client().database(DATABASE_ID).container(VIEWER_DOCUMENTS_CONTAINER);
 }
 
+export function knowledgeGraph(): Container {
+  return client().database(DATABASE_ID).container(KNOWLEDGE_GRAPH_CONTAINER);
+}
+
 export function lectureJobs(): Container {
   return client().database(DATABASE_ID).container(LECTURE_JOBS_CONTAINER);
 }
@@ -444,6 +450,12 @@ export async function ensureContainers(): Promise<void> {
     // Job rows are diagnostic breadcrumbs with a short useful life; TTL retires them the same way
     // it retires sessions, so nothing has to sweep them.
     defaultTtl: -1,
+  });
+  await database.containers.createIfNotExists({
+    id: KNOWLEDGE_GRAPH_CONTAINER,
+    // Concepts and links are read by id (a concept's key, a link's from|type|to), and the graph is
+    // small enough that the few queries over it can fan out.
+    partitionKey: { paths: ["/id"] },
   });
   ensured = true;
 }

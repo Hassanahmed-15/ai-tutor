@@ -1,5 +1,6 @@
 import { asksForCode, isProgrammingTopic } from "../codeSpec";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
+import type { PlanningKnowledge } from "../knowledge/graph";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -26,7 +27,7 @@ export function canvasEngineFor(input: ProgressiveLectureInput, env: Record<stri
  * generic one — the outline the student approved in the planning conversation, at the depth they
  * chose. The system prompt's "6 to 8 boards" is the default these lines override.
  */
-export function canvasPlanRequest(input: ProgressiveLectureInput): string {
+export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: PlanningKnowledge): string {
   const lines = [`Topic: ${input.topic}`];
   const asked = input.focus?.replace(/\s+/g, " ").trim();
   if (asked && asked.toLowerCase() !== input.topic.toLowerCase()) lines.push(`The student asked: "${asked.slice(0, 400)}"`);
@@ -50,6 +51,14 @@ export function canvasPlanRequest(input: ProgressiveLectureInput): string {
         ? "Every part serves the one question; do not add parts the outline does not have."
         : "One board per part. A short hook may open the lesson if the first part is not one, and the recap closes it; merge two neighbouring parts only if the lesson would otherwise pass 9 boards.",
     );
+  }
+
+  // What the knowledge graph says about this student and topic (lib/knowledge/planning.ts).
+  if (knowledge && (knowledge.mastered.length || knowledge.shaky.length || knowledge.earlier.length)) {
+    lines.push("", "WHAT THIS STUDENT ALREADY KNOWS (from their earlier lessons):");
+    if (knowledge.mastered.length) lines.push(`- Already solid: ${knowledge.mastered.join(", ")}. Do not teach these again — mention them in passing as things they know.`);
+    if (knowledge.earlier.length) lines.push(`- Learned in earlier lessons: ${knowledge.earlier.map((e) => `${e.label} (in "${e.topic}")`).join(", ")}. Where this lesson uses one, connect to it in a few words ("remember glucose?").`);
+    if (knowledge.shaky.length) lines.push(`- Shaky on what this builds on: ${knowledge.shaky.map((s) => `${s.label} (needed for ${s.for})`).join(", ")}. Open with ONE short board that refreshes ${knowledge.shaky[0].label} — 3 sentences, set "refresher": true on it — then teach the topic. This board is extra: it does not replace a part of the outline.`);
   }
 
   lines.push("", "LENGTH (this overrides the board count in your instructions):");

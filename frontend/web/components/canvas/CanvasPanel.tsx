@@ -63,6 +63,14 @@ export function CanvasPanel({ layout, spec, shownThrough, sentenceProgress, live
             forced the whole board through an extra compositing pass per frame. */}
         {chalk ? <ChalkSurface /> : <rect x={0} y={0} width={PANEL_W} height={PANEL_H} rx={22} fill="url(#cv-grain)" pointerEvents="none" />}
         <Ink points={[{ x: 48, y: 88 }, { x: 48 + (headingW + 20) * 0.5, y: 86.5 }, { x: Math.min(PANEL_W - 48, 48 + headingW + 20), y: 88.5 }]} width={4.2} color="#f59e0b" opacity={0.6} />
+        {/* A refresher of something the lesson builds on (lib/knowledge): labelled, so the student
+            knows why it is here and that the topic proper comes next. */}
+        {spec.refresher && (
+          <g pointerEvents="none">
+            <rect x={PANEL_W - 214} y={22} width={186} height={34} rx={17} fill="#7c3aed" opacity={0.92} />
+            <text x={PANEL_W - 121} y={44.5} textAnchor="middle" fontSize={15} fontWeight={800} fill="#ffffff">↺ Quick refresher</text>
+          </g>
+        )}
         {visible.map((mark) => (
           <MarkView key={mark.id} mark={mark} layout={layout} spec={spec} shownThrough={shownThrough} sentenceProgress={sentenceProgress} vars={vars} ghostVars={ghostVars} focused={focusId === mark.id} focusId={focusId} carry={carryFrom[mark.id]} targetRect={layout.targets[mark.id]} reducedMotion={reducedMotion} chalk={chalk} />
         ))}

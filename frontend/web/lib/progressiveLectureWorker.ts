@@ -52,6 +52,9 @@ import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } fro
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
 import { buildProgressivePlan, clean, isReferenceLesson, sourceRoleFor } from "./progressivePlan";
 import { canvasSpecOf, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
+import { extractLectureKnowledge } from "./knowledge/extract";
+import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/planning";
+import { loadLectureKnowledge, mergeLectureIntoGraph, saveLectureKnowledge } from "./knowledge/store";
 import type { CanvasPlanBeat } from "./canvas/types";
 import { scriptRoleFor, type TeachingRole } from "./lessonLadder";
 import type { BeatSourceGrounding } from "./sourceGrounding";
@@ -120,10 +123,20 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
   try {
     const input = await progressiveInput(session);
     if (session.boardEngine === "canvas") {
-      const canvas = await planCanvasLecture(input);
+      // What the student already knows about this topic, from the knowledge graph — bounded, so a
+      // slow lookup only costs the plan its personal touches, never the lecture.
+      const known = await Promise.race([
+        knowledgeForPlanning(userId, input).catch((error) => {
+          console.warn(`[knowledge] planning lookup failed for ${sessionId}: ${messageFor(error)}`);
+          return NO_PLANNING_KNOWLEDGE;
+        }),
+        new Promise<typeof NO_PLANNING_KNOWLEDGE>((resolve) => setTimeout(() => resolve(NO_PLANNING_KNOWLEDGE), 6_000)),
+      ]);
+      const canvas = await planCanvasLecture(input, known);
       const next = await setProgressivePlan({ ...session, costUsd: session.costUsd + canvas.costUsd }, canvas.plan);
-      console.log(`[canvas] session=${sessionId} plan=${canvas.plan.map((b) => `${b.id}=${b.canvas?.stage}${b.canvas?.interaction ? `[${b.canvas.interaction}]` : ""}`).join(" ")}`);
+      console.log(`[canvas] session=${sessionId} plan=${canvas.plan.map((b) => `${b.id}=${b.canvas?.stage}${b.canvas?.interaction ? `[${b.canvas.interaction}]` : ""}${b.canvas?.refresher ? "[refresher]" : ""}`).join(" ")} known=${known.mastered.length}/${known.shaky.length}/${known.earlier.length}`);
       await dispatchDueBeats(next);
+      await growKnowledge(next);
       return;
     }
     const plan = buildProgressivePlan(input);
@@ -134,9 +147,32 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
      * along the way shapes the beats they have not reached yet.
      */
     await dispatchDueBeats(next);
+    await growKnowledge(next);
   } catch (error) {
     await failSession(session, error);
     throw error;
+  }
+}
+
+/**
+ * THE KNOWLEDGE GRAPH GROWS BY ONE LECTURE (lib/knowledge). Runs after the boards are queued, so it
+ * costs the student nothing; once per lecture (a retried task finds the record and stops); and it
+ * can never fail the lecture — the graph is an extra, the lesson is the product.
+ */
+async function growKnowledge(session: ProgressiveLectureSessionDoc): Promise<void> {
+  if (process.env.KNOWLEDGE_GRAPH === "0") return;
+  const startedAt = performance.now();
+  try {
+    if (await loadLectureKnowledge(session.id, session.userId)) return;
+    const { knowledge, costUsd } = await extractLectureKnowledge(session.topic, session.plan);
+    if (!knowledge) return;
+    const merged = await mergeLectureIntoGraph(session.id, knowledge);
+    await saveLectureKnowledge({ ...merged, sessionId: session.id, userId: session.userId, topic: session.topic, createdAt: new Date().toISOString() });
+    console.log(`[knowledge] session=${session.id} concepts=${merged.concepts.length} links=${merged.edges.length} boards=${merged.beats.length} cost=$${costUsd.toFixed(4)}`);
+  } catch (error) {
+    console.warn(`[knowledge] could not grow the graph from ${session.id}: ${messageFor(error)}`);
+  } finally {
+    logTiming("knowledge", session.id, startedAt);
   }
 }
 

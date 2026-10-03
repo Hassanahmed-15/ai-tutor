@@ -37,6 +37,16 @@ export type ConceptMemory = {
   evidence: ConceptEvidence[];
   lastSeen: string;
   topics: string[];
+  /** When this concept was first recorded for the student (absent on concepts recorded earlier). */
+  firstSeen?: string;
+  /** Review schedule, FSRS-shaped (lib/knowledge/graph.ts): days a memory lasts, and when it is due. */
+  stability?: number;
+  lastPracticed?: string;
+  reviewDue?: string;
+  /** Where it was taught: lecture (its id), board, title — most recent last, capped. */
+  taught?: Array<{ lectureId: string; sequence: number; beatId: string; title: string; topic: string; at: string }>;
+  /** The student's own rating on the knowledge map, which the map shows beside Aria's estimate. */
+  selfRating?: "know" | "unsure";
 };
 
 export type MisconceptionMemory = {
@@ -131,7 +141,8 @@ export function conceptKey(label: string): string {
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
     .filter(Boolean)
-    .map((word) => (word.length > 4 && word.endsWith("ices") ? `${word.slice(0, -4)}ix` : word.length > 3 && word.endsWith("s") && !word.endsWith("ss") ? word.slice(0, -1) : word))
+    // "-is", "-us", "-ics", "-ous" are not plurals: photosynthesis, nucleus, physics, porous.
+    .map((word) => (word.length > 4 && word.endsWith("ices") ? `${word.slice(0, -4)}ix` : word.length > 3 && word.endsWith("s") && !/(?:ss|is|us|ics|ous)$/.test(word) ? word.slice(0, -1) : word))
     .join(" ")
     .trim();
 }

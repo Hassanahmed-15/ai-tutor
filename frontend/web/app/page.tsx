@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { LessonPlayer } from "@/components/LessonPlayer";
+import { KnowledgeMapPage } from "@/components/knowledge/KnowledgeMapPage";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
@@ -70,6 +71,8 @@ export default function Home() {
       return <AboutPage go={go} onStart={() => go("tracks")} />;
     case "features":
       return <FeaturesPage go={go} onStart={() => go("tracks")} />;
+    case "knowledge":
+      return <KnowledgeMapPage go={go} />;
     case "complete":
       return <CompletePage go={go} lastTrack={lastTrack} onReplay={() => startLesson(lastTrack)} />;
     case "landing":

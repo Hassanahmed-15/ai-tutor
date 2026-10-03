@@ -56,13 +56,25 @@ type Props = {
   onContinue: () => void;
   /** The lecture is playing. Paused, the student may explore: picture hotspots appear. */
   playing?: boolean;
+  /** This lecture through the student's knowledge graph (GET /api/knowledge/lecture): marks the boards. */
+  knowledge?: CanvasKnowledge | null;
+  /** A Predict-it answer or a drawing check — evidence of what the student knows. First try only. */
+  onTaskResult?: (kind: "quiz" | "drawing", correct: boolean, options?: number) => void;
+  /** The student tapped "from <earlier lecture>" on a concept. */
+  onOpenEarlier?: (from: EarlierBoard) => void;
+};
+
+export type EarlierBoard = { lectureId: string; sequence: number; beatId: string; title: string; topic: string };
+export type CanvasKnowledge = {
+  beats: Array<{ sequence: number; concepts: string[]; elements: Record<string, string> }>;
+  concepts: Record<string, { label: string; status: "known" | "shaky" | "new"; mastery: number | null; from?: EarlierBoard; gaps?: Array<{ key: string; label: string; mastery: number | null }> }>;
 };
 
 /** Aria's coral: her pen, her highlighter, her corrections — one colour that always means "Aria". */
 const ARIA = ARIA_INK;
 const STUDENT = "#2563eb";
 
-export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true }: Props) {
+export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress, finished, waitingForStudent, topic, onSpeak, onTellAria, onContinue, playing = true, knowledge, onTaskResult, onOpenEarlier }: Props) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -154,6 +166,29 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
     // Keyed on the board and sentence only: the scratch marks new ink, not re-renders.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inkKey]);
+
+  /* ── the knowledge graph on the boards ────────────────────────────────────────────────── */
+
+  /** Tasks already reported as evidence: only a first try says what the student knew. */
+  const reported = useRef(new Set<string>());
+  /** Per board: element id → concept, and the first board each concept appears on in this lecture. */
+  const boardConcepts = useMemo(() => {
+    const byBoard = panels.map((_, i) => knowledge?.beats.find((b) => b.sequence === i));
+    const firstBoard: Record<string, number> = {};
+    byBoard.forEach((b, i) => {
+      for (const key of Object.values(b?.elements ?? {})) if (firstBoard[key] === undefined) firstBoard[key] = i;
+    });
+    return { byBoard, firstBoard };
+  }, [panels, knowledge]);
+  /** After a wrong prediction: the prerequisite this board's ideas build on that the student is shaky on. */
+  const quizHint = useMemo(() => {
+    const keys = boardConcepts.byBoard[shownIndex]?.concepts ?? [];
+    for (const key of keys) {
+      const gap = knowledge?.concepts[key]?.gaps?.[0];
+      if (gap) return `This builds on ${gap.label} — ask Aria for a quick refresher.`;
+    }
+    return undefined;
+  }, [boardConcepts, knowledge, shownIndex]);
 
   /* ── the camera ───────────────────────────────────────────────────────────────────────── */
 
@@ -344,6 +379,10 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
       const check = (await res.json()) as DrawingCheck;
       if (!res.ok || typeof check.feedback !== "string") throw new Error("check failed");
       setCorrections((prev) => ({ ...prev, [current.key]: check }));
+      if (!reported.current.has(`draw:${current.key}`)) {
+        reported.current.add(`draw:${current.key}`);
+        onTaskResult?.("drawing", check.correct);
+      }
       if (check.correct) setCelebration(Date.now());
       if (check.feedback) onSpeak(check.feedback);
       onTellAria(`The student was asked to "${interaction.prompt}" and drew on the board. Your check: ${check.correct ? "correct" : "not yet right"} — ${check.feedback}`);
@@ -466,6 +505,17 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
               />
               <Corrections layout={layouts[i]} check={corrections[panel.key]} />
               <Strokes strokes={strokes[panel.key] ?? []} live={live && drawing ? liveStroke : null} />
+              {knowledge && (
+                <KnowledgeMarks
+                  layout={layouts[i]}
+                  elements={boardConcepts.byBoard[i]?.elements}
+                  concepts={knowledge.concepts}
+                  boardIndex={i}
+                  firstBoard={boardConcepts.firstBoard}
+                  shownThrough={live && !finished ? sentence : Infinity}
+                  onOpenEarlier={onOpenEarlier}
+                />
+              )}
               {live && penCue && <Pen cue={penCue} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {!live && reactionPoint?.key === panel.key && <Pen cue={{ s: 0, action: "point", target: reactionPoint.target }} layout={layouts[i]} vars={vars[panel.key] ?? EMPTY} />}
               {(live ? exploring : mode !== "follow") && (
@@ -570,8 +620,13 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
           key={current.key}
           question={interaction.question}
           options={interaction.options}
+          hint={quizHint}
           onAnswer={(i) => {
             const o = interaction.options[i];
+            if (!reported.current.has(`quiz:${current.key}`)) {
+              reported.current.add(`quiz:${current.key}`);
+              onTaskResult?.("quiz", o.correct, interaction.options.length);
+            }
             if (o.correct) setCelebration(Date.now());
             onSpeak(o.feedback);
             onTellAria(`Asked "${interaction.question}", the student chose "${o.text}" (${o.correct ? "correct" : "not correct"}). You told them: "${o.feedback}"`);
@@ -932,7 +987,7 @@ function Hotspots({ layout, spec, onTap }: { layout: PanelLayout; spec: CanvasBo
   );
 }
 
-function QuizCard({ question, options, onAnswer, onContinue }: { question: string; options: Array<{ text: string; correct: boolean; feedback: string }>; onAnswer: (i: number) => void; onContinue: () => void }) {
+function QuizCard({ question, options, onAnswer, onContinue, hint }: { question: string; options: Array<{ text: string; correct: boolean; feedback: string }>; onAnswer: (i: number) => void; onContinue: () => void; hint?: string }) {
   const [picked, setPicked] = useState<number[]>([]);
   const last = picked[picked.length - 1];
   const solved = picked.some((i) => options[i].correct);
@@ -965,6 +1020,10 @@ function QuizCard({ question, options, onAnswer, onContinue }: { question: strin
       {last !== undefined && (
         <p className={`mt-2.5 rounded-lg px-2.5 py-2 text-xs font-semibold leading-relaxed ${options[last].correct ? "bg-emerald-400/15 text-emerald-100" : "bg-rose-400/15 text-rose-100"}`}>{options[last].feedback}</p>
       )}
+      {/* A wrong prediction often comes from a gap underneath it: the knowledge graph names it. */}
+      {last !== undefined && !options[last].correct && hint && (
+        <p className="mt-2 rounded-lg border border-amber-300/25 bg-amber-300/10 px-2.5 py-1.5 text-[11px] font-semibold leading-relaxed text-amber-100">{hint}</p>
+      )}
       <button onClick={onContinue} disabled={!picked.length} className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl bg-violet-400 px-3 py-2 text-sm font-black text-black hover:bg-violet-300 disabled:opacity-40">
         <Play size={14} /> {solved ? "Continue the lesson" : picked.length ? "Continue anyway" : "Choose an answer"}
       </button>
@@ -973,6 +1032,103 @@ function QuizCard({ question, options, onAnswer, onContinue }: { question: strin
 }
 
 /** The whole lesson in the corner: every board so far, where Aria is, and a click to fly anywhere. */
+/**
+ * THE KNOWLEDGE GRAPH, ON THE BOARD. Beside each drawn element that stands for a concept: a small
+ * check when the student already knew it before this lecture, "new" the first time a concept they
+ * have never met appears, and "from <lecture>" when they learned it in an earlier lecture — tap it
+ * to see that board again. Each mark appears with its element, never before.
+ */
+function KnowledgeMarks({ layout, elements, concepts, boardIndex, firstBoard, shownThrough, onOpenEarlier }: {
+  layout: PanelLayout;
+  elements?: Record<string, string>;
+  concepts: CanvasKnowledge["concepts"];
+  boardIndex: number;
+  firstBoard: Record<string, number>;
+  shownThrough: number;
+  onOpenEarlier?: (from: EarlierBoard) => void;
+}) {
+  if (!elements) return null;
+  const marked = new Set<string>();
+  let newTags = 0;
+  return (
+    <g>
+      {Object.entries(elements).map(([elementId, key]) => {
+        const c = concepts[key];
+        let mark = layout.marks.find((m) => m.id === elementId) ?? layout.marks.find((m) => m.type === "equation" && m.tokens.some((tk) => tk.id === elementId));
+        let t: Rect | undefined = layout.targets[elementId];
+        // A part of a picture is a point; its mark goes on its written label, and an unlabelled
+        // part is not marked at all (a tag floating on a picture says nothing).
+        if (mark?.type === "part") {
+          const label = layout.marks.find((m) => m.type === "callout" && m.partId === elementId);
+          if (!label || label.type !== "callout") return null;
+          mark = label;
+          t = label.box;
+        }
+        if (!c || !t || !mark || mark.s > shownThrough || marked.has(key)) return null;
+        // Two "new" tags a board at most: more is clutter, not information.
+        if (c.status === "new" && (firstBoard[key] !== boardIndex || newTags >= 2)) return null;
+        if (c.status === "new") newTags += 1;
+        marked.add(key);
+        const x = t.x + t.w - 4;
+        const y = t.y + 4;
+        if (c.status === "known") {
+          const chip = c.from && onOpenEarlier && firstBoard[key] === boardIndex;
+          return (
+            <g key={elementId} className="cv-in">
+              <circle cx={x} cy={y} r={12} fill="#16a34a" stroke="#fff" strokeWidth={2.5} />
+              <path d={`M${x - 5} ${y} l3.5 3.5 l6.5 -7`} fill="none" stroke="#fff" strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round" />
+              <title>{`You already know ${c.label}`}</title>
+              {chip && <EarlierChip x={t.x + t.w / 2} y={t.y + t.h + 14} from={c.from!} onOpen={onOpenEarlier!} />}
+            </g>
+          );
+        }
+        if (c.status === "shaky" && c.from && onOpenEarlier && firstBoard[key] === boardIndex) {
+          return (
+            <g key={elementId} className="cv-in">
+              <EarlierChip x={t.x + t.w / 2} y={t.y + t.h + 14} from={c.from} onOpen={onOpenEarlier} />
+            </g>
+          );
+        }
+        if (c.status === "new" && firstBoard[key] === boardIndex) {
+          return (
+            <g key={elementId} className="cv-in" pointerEvents="none">
+              <rect x={x - 22} y={y - 11} width={44} height={22} rx={11} fill="#f59e0b" />
+              <text x={x} y={y + 5} textAnchor="middle" fontSize={12.5} fontWeight={800} fill="#1c1206">NEW</text>
+              <title>{`New to you: ${c.label}`}</title>
+            </g>
+          );
+        }
+        return null;
+      })}
+    </g>
+  );
+}
+
+/** "↩ from <lecture>": the board where the student learned this, one tap away. */
+function EarlierChip({ x, y, from, onOpen }: { x: number; y: number; from: EarlierBoard; onOpen: (from: EarlierBoard) => void }) {
+  const text = `↩ from ${from.topic.length > 26 ? `${from.topic.slice(0, 25)}…` : from.topic}`;
+  const w = Math.max(90, text.length * 7.4 + 22);
+  return (
+    <g
+      role="button"
+      tabIndex={0}
+      aria-label={`See where you learned this, in ${from.topic}`}
+      style={{ cursor: "pointer" }}
+      onPointerDown={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        onOpen(from);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onOpen(from);
+      }}
+    >
+      <rect x={x - w / 2} y={y - 12} width={w} height={24} rx={12} fill="#1e293b" opacity={0.92} />
+      <text x={x} y={y + 4.5} textAnchor="middle" fontSize={12.5} fontWeight={700} fill="#e2e8f0">{text}</text>
+    </g>
+  );
+}
+
 function MiniMap({ panels, themes, worldRects, shownIndex, visitIndex, onPick }: { panels: CanvasPanelInput[]; themes: BoardTheme[]; worldRects: Rect[]; shownIndex: number; visitIndex: number; onPick: (i: number) => void }) {
   const top = panels.map((p, i) => ({ p, i })).filter(({ p }) => !p.spec.inside);
   if (top.length < 2) return null;
