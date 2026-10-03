@@ -57,7 +57,7 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (knowledge && (knowledge.mastered.length || knowledge.shaky.length || knowledge.earlier.length)) {
     lines.push("", "WHAT THIS STUDENT ALREADY KNOWS (from their earlier lessons):");
     if (knowledge.mastered.length) lines.push(`- Already solid: ${knowledge.mastered.join(", ")}. Do not teach these again — mention them in passing as things they know.`);
-    if (knowledge.earlier.length) lines.push(`- Learned in earlier lessons: ${knowledge.earlier.map((e) => `${e.label} (in "${e.topic}")`).join(", ")}. Where this lesson uses one, connect to it in a few words ("remember glucose?").`);
+    if (knowledge.earlier.length) lines.push(`- Learned in earlier lessons: ${knowledge.earlier.map((e) => `${e.label} (in "${e.topic}")`).join(", ")}. Build on these instead of re-explaining them, and say so out loud at least once, naming the earlier lesson ("remember electron shells from your lesson on atoms?").`);
     if (knowledge.shaky.length) lines.push(`- Shaky on what this builds on: ${knowledge.shaky.map((s) => `${s.label} (needed for ${s.for})`).join(", ")}. Open with ONE short board that refreshes ${knowledge.shaky[0].label} — 3 sentences, set "refresher": true on it — then teach the topic. This board is extra: it does not replace a part of the outline.`);
   }
 

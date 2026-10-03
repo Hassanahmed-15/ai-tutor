@@ -127,10 +127,12 @@ export function validateLectureKnowledge(raw: unknown, beatCount: number): Lectu
   const seen = new Set<string>();
   for (const item of Array.isArray(r.edges) ? r.edges.slice(0, 80) : []) {
     const e = (item && typeof item === "object" ? item : {}) as Record<string, unknown>;
-    const from = resolve(str(e.from, 60));
-    const to = resolve(str(e.to, 60));
+    let from = resolve(str(e.from, 60));
+    let to = resolve(str(e.to, 60));
     const type = (EDGE_TYPES as string[]).includes(String(e.type)) ? (e.type as EdgeType) : null;
     if (!from || !to || from === to || !type) continue;
+    // "related" has no direction: one order for it, so A~B and B~A are one link.
+    if (type === "related" && from > to) [from, to] = [to, from];
     const id = edgeId(from, type, to);
     if (seen.has(id)) continue;
     if (type === "needs" && reaches(edges, to, from)) continue;

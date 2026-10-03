@@ -35,6 +35,8 @@ test("an extraction is cleaned: duplicates merged, links only between its concep
       { from: "photosynthesis", to: "unicorns", type: "needs" },
       { from: "photosynthesis", to: "photosynthesis", type: "related" },
       { from: "photosynthesis", to: "chlorophyll", type: "bogus" },
+      { from: "chlorophyll", to: "carbon dioxide", type: "related" },
+      { from: "carbon dioxide", to: "chlorophyll", type: "related" },
     ],
     beats: [
       { sequence: 0, concepts: ["photosynthesis", "CO2"], elements: { leaf: "photosynthesis", "co2-gas": "co2", "Bad Id": "chlorophyll" } },
@@ -44,7 +46,7 @@ test("an extraction is cleaned: duplicates merged, links only between its concep
   assert.deepEqual(k.concepts.map((c) => c.key), ["photosynthesis", "chlorophyll", "carbon dioxide"]);
   assert.ok(k.concepts[1].aliases.includes("green pigment"), "a duplicate's aliases are kept");
   assert.equal(k.concepts[0].subject, "biology");
-  assert.deepEqual(k.edges.map((e) => `${e.from}>${e.to}`), ["photosynthesis>chlorophyll", "photosynthesis>carbon dioxide"], "the reverse link would loop; unknown and self links are dropped");
+  assert.deepEqual(k.edges.map((e) => `${e.from}>${e.to}`), ["photosynthesis>chlorophyll", "photosynthesis>carbon dioxide", "carbon dioxide>chlorophyll"], "the reverse link would loop; unknown and self links are dropped; a related pair is one link");
   assert.deepEqual(k.beats, [{ sequence: 0, concepts: ["photosynthesis", "carbon dioxide"], elements: { leaf: "photosynthesis", "co2-gas": "carbon dioxide" } }]);
   assert.equal(validateLectureKnowledge({ concepts: [] }, 3), null);
 });

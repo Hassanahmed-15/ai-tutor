@@ -44,7 +44,9 @@ export async function GET(request: Request) {
     const status = conceptStatus(mastery(c.key), before);
     const earlier = (m?.taught ?? []).filter((t) => t.lectureId !== id).at(-1);
     // A prerequisite this lecture itself teaches is not a gap — the student is about to learn it.
-    const gaps = shakyPrerequisites([c.key], edges, mastery, 4).filter((g) => !taughtHere.has(g.key)).slice(0, 2).map((g) => ({ key: g.key, label: labelOf(g.key), mastery: g.mastery ?? null }));
+    // A gap is shown when the student met it and is shaky, or when several lectures agree it is a
+    // prerequisite — one lecture's word is not enough to tell a student what they are missing.
+    const gaps = shakyPrerequisites([c.key], edges, mastery, 4).filter((g) => !taughtHere.has(g.key) && (g.mastery !== undefined || g.confidence >= 0.64)).slice(0, 2).map((g) => ({ key: g.key, label: labelOf(g.key), mastery: g.mastery ?? null }));
     return [c.key, {
       label: c.label,
       status,

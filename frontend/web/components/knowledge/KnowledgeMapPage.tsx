@@ -34,8 +34,9 @@ type MapNode = {
 };
 type MapLink = { from: string; to: string; type: "needs" | "part-of" | "related"; confidence: number };
 
-const W = 1600;
-const H = 1000;
+/** The sky's base size; it grows with the number of stars so labels keep their room. */
+const BASE_W = 1600;
+const BASE_H = 1000;
 const HUES = ["#38bdf8", "#a78bfa", "#34d399", "#fbbf24", "#f472b6", "#fb923c", "#22d3ee", "#a3e635"];
 
 function hueFor(subject: string, subjects: string[]): string {
@@ -66,6 +67,14 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   }, [nonce]);
 
   const subjects = useMemo(() => [...new Set((data?.nodes ?? []).map((n) => n.subject))].sort(), [data]);
+  const size = useMemo(() => {
+    const k = Math.max(1, Math.sqrt((data?.nodes.length ?? 0) / 16));
+    return { w: Math.round(BASE_W * k), h: Math.round(BASE_H * k) };
+  }, [data]);
+  const W = size.w;
+  const H = size.h;
+  /** Stars and labels grow with the sky, so they stay the same size on screen. */
+  const k = W / BASE_W;
   const positions = useMemo(() => {
     if (!data) return {};
     const degree: Record<string, number> = {};
@@ -76,10 +85,10 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
     return layoutKnowledgeMap(
       data.nodes.map((n) => ({ key: n.key, subject: n.subject, weight: degree[n.key] ?? 0 })),
       data.links.map((l) => ({ from: l.from, to: l.to, strength: l.type === "related" ? 0.3 : 0.6 + 0.4 * l.confidence })),
-      W,
-      H,
+      size.w,
+      size.h,
     );
-  }, [data]);
+  }, [data, size]);
   const byKey = useMemo(() => new Map((data?.nodes ?? []).map((n) => [n.key, n])), [data]);
   const learned = (data?.nodes ?? []).filter((n) => n.status === "learned");
   const due = learned.filter((n) => n.due).sort((a, b) => Date.parse(a.reviewDue ?? "") - Date.parse(b.reviewDue ?? ""));
@@ -88,7 +97,9 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   const neighbours = useMemo(() => new Set((data?.links ?? []).flatMap((l) => (l.from === selected ? [l.to] : l.to === selected ? [l.from] : []))), [data, selected]);
 
   /* ── pan & zoom ─────────────────────────────────────────────────────────────────────────── */
-  const [view, setView] = useState({ x: 0, y: 0, w: W, h: H });
+  // null = the whole sky; set once the student pans or zooms.
+  const [zoomed, setView] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const view = zoomed ?? { x: 0, y: 0, w: W, h: H };
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<{ x: number; y: number; view: typeof view; moved: boolean } | null>(null);
   const toWorld = (clientX: number, clientY: number) => {
@@ -104,7 +115,10 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   };
 
   const review = useCallback((n: MapNode) => {
-    const t = n.taught.at(-1);
+    // The board that INTRODUCED it in the latest lecture — where it is taught, often with its
+    // question — rather than a recap that only mentions it.
+    const latest = n.taught.at(-1)?.lectureId;
+    const t = n.taught.filter((x) => x.lectureId === latest).sort((a, b) => a.sequence - b.sequence)[0];
     if (!t) return;
     setPeek({ ...t, review: { concepts: [{ key: n.key, label: n.label }] } });
   }, []);
@@ -214,7 +228,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                     d={`M${a.x} ${a.y} Q${mx} ${my} ${b.x} ${b.y}`}
                     fill="none"
                     stroke={lit ? "#fbbf24" : "#94a3b8"}
-                    strokeWidth={lit ? 2.2 : 1.2}
+                    strokeWidth={(lit ? 2.2 : 1.2) * k}
                     strokeOpacity={lit ? 0.9 : l.type === "related" ? 0.12 : 0.18 + 0.4 * l.confidence}
                     strokeDasharray={l.type === "part-of" ? "4 6" : undefined}
                     markerEnd={l.type === "needs" ? "url(#km-arrow)" : undefined}
@@ -227,7 +241,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                 const m = n.mastery ?? 0;
                 const isNext = n.status === "next";
                 const dim = selected && selected !== n.key && !neighbours.has(n.key);
-                const r = isNext ? 5 : 5 + 5 * m;
+                const r = (isNext ? 5 : 5 + 5 * m) * k;
                 return (
                   <g
                     key={n.key}
@@ -239,10 +253,10 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                     aria-label={`${n.label}${isNext ? ", not learned yet" : `, ${Math.round(m * 100)}% known`}`}
                   >
                     {!isNext && <circle r={r * 3.2} fill={`url(#km-${subjects.indexOf(n.subject)})`} opacity={0.25 + 0.6 * m} />}
-                    {n.due && <circle r={r + 8} fill="none" stroke="#fbbf24" strokeWidth={2} className="km-due" />}
-                    {selected === n.key && <circle r={r + 13} fill="none" stroke="#fff" strokeWidth={1.5} strokeDasharray="3 4" />}
-                    <circle r={r} fill={isNext ? "transparent" : "#f8fafc"} stroke={hueFor(n.subject, subjects)} strokeWidth={isNext ? 1.5 : 2} strokeDasharray={isNext ? "3 3" : undefined} opacity={isNext ? 0.7 : 0.35 + 0.65 * m} />
-                    <text y={r + 17} textAnchor="middle" fontSize={13} fontWeight={600} fill={isNext ? "#94a3b8" : "#e2e8f0"} opacity={isNext ? 0.75 : 0.6 + 0.4 * m}>
+                    {n.due && <circle r={r + 8 * k} fill="none" stroke="#fbbf24" strokeWidth={2 * k} className="km-due" />}
+                    {selected === n.key && <circle r={r + 13 * k} fill="none" stroke="#fff" strokeWidth={1.5 * k} strokeDasharray={`${3 * k} ${4 * k}`} />}
+                    <circle r={r} fill={isNext ? "transparent" : "#f8fafc"} stroke={hueFor(n.subject, subjects)} strokeWidth={(isNext ? 1.5 : 2) * k} strokeDasharray={isNext ? `${3 * k} ${3 * k}` : undefined} opacity={isNext ? 0.7 : 0.35 + 0.65 * m} />
+                    <text y={r + 17 * k} textAnchor="middle" fontSize={13 * k} fontWeight={600} fill={isNext ? "#94a3b8" : "#e2e8f0"} opacity={isNext ? 0.75 : 0.6 + 0.4 * m}>
                       {n.label}
                     </text>
                   </g>
