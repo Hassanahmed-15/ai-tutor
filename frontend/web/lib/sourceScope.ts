@@ -128,10 +128,16 @@ export function sourceScopeInstruction(scope: SourceScope): string {
         "lightly — 'this isn't in your document, but it helps…'. Never label, badge or announce sources; " +
         "a phrase inside the sentence is all it takes.";
 
+  /*
+   * A QUESTION IS ANSWERED, AND NOTHING ELSE. "Cover only: …" lost to the strict rule's "teach every
+   * selected block completely" and to reference mode's licence to expand, and a question about
+   * insertion got a slide on deletion (reported 2026-10-03). Said plainly, after the fidelity line, so
+   * it is the last word on scope.
+   */
   const breadthLine =
     scope.breadth.kind === "whole"
       ? "Cover the complete selected source."
-      : `Cover only: ${scope.breadth.focus}.`;
+      : `ANSWER ONLY THIS: "${scope.breadth.focus}". The student asked this one thing. Teach what answers it, and leave out every other topic — even one printed right beside it in the selected source (another operation, another case, another figure). A short lecture that answers exactly this is correct.`;
 
   const docsLine =
     scope.documentLabels.length > 1

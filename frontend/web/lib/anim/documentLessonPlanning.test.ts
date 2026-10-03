@@ -43,6 +43,15 @@ test("a precise source question and an explicit whole-document request bypass pl
   assert.equal(isSpecificDocumentRequest("How does two-child deletion use the inorder successor?", source), true);
   assert.equal(isSpecificDocumentRequest("Explain this particular example", source), true);
   assert.equal(isSpecificDocumentRequest("Explain this formula", source), true);
+  // A request verb with a subject of its own is a question, however short (reported 2026-10-03).
+  assert.equal(isSpecificDocumentRequest("explain me insertion of bst", source), true);
+  assert.equal(isSpecificDocumentRequest("teach me heaps", source), true);
+  assert.equal(isSpecificDocumentRequest("show how rotation works", source), true);
+  // Pointing at the document is still the whole document; a bare subject is still a subject.
+  assert.equal(isSpecificDocumentRequest("explain me this pdf", source), false);
+  assert.equal(isSpecificDocumentRequest("teach me the slides", source), false);
+  assert.equal(isSpecificDocumentRequest("explain this", source), false);
+  assert.equal(isSpecificDocumentRequest("camera sensor", source), false);
   assert.equal(shouldPlanDocumentScope(source, "How does two-child deletion use the inorder successor?"), false);
   assert.equal(shouldPlanDocumentScope(source, "Explain this particular example"), false);
   assert.equal(isWholeDocumentRequest("Teach the entire PDF"), true);

@@ -2002,7 +2002,8 @@ type BuildCost =
      * The typed request is not lost: it stays in requestTextRef and travels as the planning focus.
      */
     // A drawn area keeps the subject read off the area itself (lectureSubject), not the document's.
-    const referenceNamesDocument = referenceChosen && !isQuestionAboutFile(raw) && !fresh?.scopeSelected;
+    // A question about the document keeps its own subject, however it is worded (isSpecificDocumentRequest).
+    const referenceNamesDocument = referenceChosen && !isQuestionAboutFile(raw) && !isSpecificDocumentRequest(raw, planningDocument) && !fresh?.scopeSelected;
     const trimmed = (referenceNamesDocument && firstPageTitle(planningDocument))
       || await nameSubject(referenceNamesDocument ? "explain this document" : raw, planningDocument, fresh?.documentId ?? documentId);
     setTopic(trimmed);
