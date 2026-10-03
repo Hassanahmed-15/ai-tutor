@@ -51,6 +51,7 @@ import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdChec
 import { mcqForCheckpoint, checkpointDueAt, questionSourceFor } from "@/lib/adhd/games/mcq";
 import { MazeGame } from "@/components/adhd/games/MazeGame";
 import { buildDocumentContext, buildLessonContext, describeBoard, type PlannedPart } from "@/lib/lessonChatContext";
+import { isVideoSource } from "@/lib/youtube/videoSource";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
@@ -868,6 +869,8 @@ export function LessonPlayer({
   const liveTutorDocumentContext = () => {
     const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages);
     if (strictSource) return withStrictSourceHeader(document, beatSourceFor(beatRef.current));
+    // A video's transcript goes as it is: the token route recognises it and adds a video's own rules.
+    if (isVideoSource(sourceDocument)) return document;
     /*
      * Reference mode: the same implicit-attribution rule the text chat gets, riding at the head of the
      * context the live tutor reads (its hook takes strings only, and stays untouched).
@@ -929,7 +932,7 @@ export function LessonPlayer({
      * into the panel beside her got one quoted from the document. Reading through the same two
      * functions is what stops the voice and the text drifting apart again.
      */
-    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts),
+    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts, sourceDocument),
     getDocumentContext: liveTutorDocumentContext,
     mood,
     onBoardRequest: (board) => showLiveBoardRef.current(board),
@@ -1328,10 +1331,13 @@ export function LessonPlayer({
   );
   const revisitQuestion = useCallback(
     async (question: string) => {
-      const target = findRevisitTarget(question, beats, indexRef.current);
+      const target = findRevisitTarget(question, beats, indexRef.current, {
+        total: Math.max(beats.length, totalBeatCount ?? 0),
+        namedOnly: isVideoSource(sourceDocument),
+      });
       return target ? showRevisit(target.index, question) : null;
     },
-    [beats, showRevisit],
+    [beats, showRevisit, totalBeatCount, sourceDocument],
   );
   /*
    * Spoken questions: Aria calls revisit_slide. The slide comes back at once and she is told what it
@@ -1346,7 +1352,7 @@ export function LessonPlayer({
       const hasBoard = (i: number) => Boolean(beats[i]?.draw?.ops?.length) && beats[i]?.slideKind !== "checkpoint";
       const index = Number.isFinite(named) && named >= 0 && named < current && hasBoard(named)
         ? named
-        : findRevisitTarget(question, beats, current)?.index ?? -1;
+        : findRevisitTarget(question, beats, current, { total: Math.max(beats.length, totalBeatCount ?? 0), namedOnly: isVideoSource(sourceDocument) })?.index ?? -1;
       if (index < 0) return "That is not an earlier slide with a board. Answer the question here, without going back.";
       lesson.holdForStudent();
       const past = beats[index];
@@ -1546,7 +1552,7 @@ export function LessonPlayer({
     // of code do?" had no code to look at.
     getBeatContext: () => describeBoard(beat, highlightedTextRef.current) + boardContextExtras(),
     // Read at ask time, not captured: the lecture moves while the panel is open.
-    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts),
+    getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts, sourceDocument),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
     documentId,
     lessonQuestion,
@@ -3047,7 +3053,7 @@ export function LessonPlayer({
                         {boardNotePoints.length > 0 && <div className="min-w-0 flex-[2] border-l border-slate-200">{boardNotes(true)}</div>}
                       </div>
                       <div className="relative min-h-0 flex-1">
-                        <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                        <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={hasStarted && !lesson.playing} onSandboxReady={handleSandboxReady} />
                       </div>
                     </div>
                   ) : (
@@ -3067,13 +3073,13 @@ export function LessonPlayer({
                       <div className="flex min-h-0 min-w-0 flex-1 flex-col">
                         {boardNotePoints.length > 0 && <div className="max-h-[34%] min-h-0 shrink-0 border-b border-slate-200">{boardNotes(true)}</div>}
                         <div className="relative min-h-0 flex-1">
-                          <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                          <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={hasStarted && !lesson.playing} onSandboxReady={handleSandboxReady} />
                         </div>
                       </div>
                     </div>
                   )
                 ) : (
-                  <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={handleSandboxReady} />
+                  <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={hasStarted && !lesson.playing} onSandboxReady={handleSandboxReady} />
                 )}
                 {/* The "From past you" echo is removed from the lesson surface. It replayed the
                     student's own earlier wording as a floating card over the board, which
@@ -3569,11 +3575,17 @@ export function Board({
   beat,
   sentenceCue,
   drawProgress,
+  paused = false,
   onSandboxReady,
 }: {
   beat: Beat;
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
+  /**
+   * The lesson is paused. The board's pen stops on the word it is writing instead of carrying on
+   * through everything already revealed (ReactAnimationSandbox `settled`).
+   */
+  paused?: boolean;
   /** The generated animation is on screen and listening — see ReactAnimationSandbox.onReady. */
   onSandboxReady?: () => void;
 }) {
@@ -3583,7 +3595,7 @@ export function Board({
   const visualRevision = visualFingerprint(beat);
   return (
     <div className="absolute inset-0 bg-slate-950">
-      <VisualDirector key={`${beat.id}:${visualRevision}`} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} onSandboxReady={onSandboxReady} />
+      <VisualDirector key={`${beat.id}:${visualRevision}`} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={paused} onSandboxReady={onSandboxReady} />
     </div>
   );
 }
@@ -3602,11 +3614,13 @@ function VisualDirector({
   beat,
   sentenceCue,
   drawProgress,
+  paused = false,
   onSandboxReady,
 }: {
   beat: Beat;
   sentenceCue: { index: number; total: number; text: string };
   drawProgress?: number;
+  paused?: boolean;
   onSandboxReady?: () => void;
 }) {
   const text = sentenceCue.text;
@@ -3696,6 +3710,13 @@ function VisualDirector({
             sentenceIndex={sentenceTiming.index}
             sentenceProgress={sentenceTiming.progress}
             sentenceTotal={sentenceTiming.total}
+            /*
+             * PAUSE STOPS THE PEN. The sandbox has always had this switch, and nothing turned it on:
+             * paused, the narration froze but the pen kept writing every line already revealed and
+             * only stopped seconds later, when it ran out of text. Now it finishes the word it is on
+             * and stops, and picks up from there on Play.
+             */
+            settled={paused}
             onReady={onSandboxReady}
             // A failed sandbox falls back to a board that paints synchronously, so from the title
             // card's point of view the board is ready — it must not wait on a ready that never comes.

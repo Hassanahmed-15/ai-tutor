@@ -5,6 +5,7 @@ import {
   downloadJsonBlob,
   lecturePackageBlobName,
   lectureVideoBlobName,
+  progressiveLectureInputBlobName,
   uploadJsonBlob,
   uploadVideoBlob,
 } from "./blobStorage";
@@ -41,6 +42,11 @@ export type LecturePackage = {
   beats: Beat[];
   manimVideos: LectureVideoDoc[];
   videoErrors: Array<{ id: string; beatIds: string[]; message: string }>;
+  /**
+   * A video lecture's source (lib/youtube/videoSource.ts): its key points and its whole transcript,
+   * so a replay's chat knows the video as the live lesson's did. Only saved for sourceType "youtube".
+   */
+  sourceDocument?: unknown;
 };
 
 export type LectureHistoryItem = Pick<
@@ -75,7 +81,7 @@ function configuredQuality(): ManimQuality {
 }
 
 export function normalizeLectureSourceType(value: unknown): LectureSourceType {
-  return value === "pdf" || value === "pptx" || value === "suprnotes" || value === "task-folder"
+  return value === "pdf" || value === "pptx" || value === "suprnotes" || value === "task-folder" || value === "youtube"
     ? value
     : "prompt";
 }
@@ -165,6 +171,8 @@ export async function archiveLecture(input: {
   mode: LectureMode;
   beats: Beat[];
   learnerProfile?: LearnerProfileSnapshot;
+  /** Kept with the lecture only for a YouTube lecture; see LecturePackage.sourceDocument. */
+  sourceDocument?: unknown;
 }): Promise<ArchivedLecture> {
   await ensureContainers();
 
@@ -187,6 +195,7 @@ export async function archiveLecture(input: {
     beats: cloneBeats(input.beats),
     manimVideos: [],
     videoErrors: [],
+    ...(input.sourceType === "youtube" && input.sourceDocument ? { sourceDocument: input.sourceDocument } : {}),
   };
 
   let doc: LectureDoc = {
@@ -358,6 +367,15 @@ export async function packageForUser(userId: string, lectureId: string): Promise
   if (!doc || doc.status === "failed") return null;
   const lecturePackage = await downloadJsonBlob<LecturePackage>(doc.packageBlobName);
   if (lecturePackage.userId !== userId || lecturePackage.lectureId !== lectureId) return null;
+  /*
+   * A video lecture saved before its source was kept with it: the source is still in the input its
+   * progressive session was built from (a progressive lecture's id is its session id). Best effort —
+   * a miss just leaves the replay's chat with the slides alone, as before.
+   */
+  if (lecturePackage.sourceType === "youtube" && !lecturePackage.sourceDocument) {
+    const input = await downloadJsonBlob<{ suprnotes?: unknown }>(progressiveLectureInputBlobName(userId, lectureId)).catch(() => null);
+    if (input?.suprnotes) lecturePackage.sourceDocument = input.suprnotes;
+  }
   // Packages written before mode tracking remain replayable and are accurately labelled Standard:
   // that was the only generated visual mode the old archive path could produce.
   return {

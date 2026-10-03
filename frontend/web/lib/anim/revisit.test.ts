@@ -48,6 +48,11 @@ test("the student can name the slide", () => {
   assert.equal(explicitSlide("go back to slide 2 please", 5), 1);
   assert.equal(explicitSlide("on the first slide you said", 5), 0);
   assert.equal(explicitSlide("what was on the previous slide", 5), 4);
+  assert.equal(explicitSlide("what was on the slide before", 5), 4);
+  // "The last slide" is the lecture's final slide, wherever the student is.
+  assert.equal(explicitSlide("what's in the last slide?", 2, 7), 6);
+  assert.equal(explicitSlide("what does the final slide cover", 2, 7), 6);
+  assert.equal(explicitSlide("what's in the last slide?", 2), null, "with no total, 'last' is not placed");
   assert.equal(findRevisitTarget("can we go back to slide 1", LECTURE, 3)?.reason, "named");
   assert.equal(findRevisitTarget("show slide 4 again", LECTURE, 3), null, "slide 4 is the current one");
 });
@@ -64,4 +69,14 @@ test("the old board's words are what it wrote and pictured, and a part is ringed
   assert.ok(stroma && stroma.x > 396 && stroma.y > 124, "an unlabelled part is ringed on the picture");
   assert.ok(marks.some((m) => "text" in m && m.text === "grana"), "a labelled part is ringed where its label is written");
   assert.equal(marks.length, 3, "at most three, and only what is on the board");
+});
+
+test("a video lesson goes back only to a slide the student names", () => {
+  // The same question that is sent back to slide 1 in an ordinary lesson…
+  assert.equal(findRevisitTarget("wait, what was the stroma again?", LECTURE, 3)?.index, 0);
+  // …is answered by the chat in a video lesson, which holds the whole transcript.
+  assert.equal(findRevisitTarget("wait, what was the stroma again?", LECTURE, 3, { namedOnly: true }), null);
+  assert.equal(findRevisitTarget("go back to slide 1", LECTURE, 3, { namedOnly: true })?.index, 0);
+  // The last slide is ahead of the student: not a revisit, so the chat answers it.
+  assert.equal(findRevisitTarget("what's in the last slide?", LECTURE, 1, { total: 6, namedOnly: true }), null);
 });

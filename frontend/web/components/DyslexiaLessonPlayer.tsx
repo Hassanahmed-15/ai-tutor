@@ -218,7 +218,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
   const chat = useLessonChat({
     topic: title,
     // The whole lecture, so "what's next?" and "what did you just say?" are answerable here too.
-    getLessonContext: () => buildLessonContext(beats, index, plannedParts),
+    getLessonContext: () => buildLessonContext(beats, index, plannedParts, sourceDocument),
     getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText),
     documentId,
     lessonQuestion,

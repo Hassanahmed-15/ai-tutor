@@ -353,6 +353,20 @@ function oneSentence(raw: unknown, fallback: string): string {
  * in a sentence of its own — reads as the same slide repeated. That sentence goes; the rest of the
  * script is the pass's real content. A script that is only that sentence keeps it.
  */
+/**
+ * Does this title-card line say what the script's first sentence says? Same measure as
+ * withoutRepeatedOpening: 60% of the smaller sentence's content words shared. The player speaks
+ * the card line straight into the script, so a line that repeats it is heard twice.
+ */
+export function repeatsOpening(transition: string, script: string): boolean {
+  const said = contentStems(transition);
+  const first = contentStems(splitSentences(script)[0] ?? "");
+  if (said.length === 0 || first.length === 0) return false;
+  const opening = new Set(first);
+  const shared = new Set(said.filter((stem) => opening.has(stem))).size;
+  return shared / Math.min(new Set(said).size, opening.size) >= 0.6;
+}
+
 export function withoutRepeatedOpening(script: string, conceptOpening: string): string {
   const sentences = splitSentences(script);
   if (sentences.length < 2) return script;

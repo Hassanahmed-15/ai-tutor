@@ -1,6 +1,7 @@
 import type { Beat } from "./lessonContent";
 import { describeCanvasSpec } from "./canvas/describe";
 import type { CanvasBoardSpec } from "./canvas/types";
+import { MAX_VIDEO_CONTEXT_CHARS, MAX_VIDEO_LESSON_CHARS, VIDEO_LESSON_HEADING, isVideoSource } from "./youtube/videoSource";
 
 /**
  * What the side chat is allowed to know.
@@ -127,7 +128,8 @@ export function describeBoard(beat: Beat | undefined | null, highlighted = ""): 
 /** A planned part of the lecture, generated or not — the snapshot's `beatStatus` entries. */
 export type PlannedPart = { sequence: number; title: string; objective?: string };
 
-export function buildLessonContext(beats: Beat[], currentIndex: number, planned: PlannedPart[] = []): string {
+export function buildLessonContext(beats: Beat[], currentIndex: number, planned: PlannedPart[] = [], sourceDocument?: unknown): string {
+  if (isVideoSource(sourceDocument)) return buildVideoLessonContext(beats, currentIndex, planned, sourceDocument);
   if (!beats.length) return "";
 
   const lines = beats.map((beat, i) => {
@@ -165,6 +167,45 @@ export function buildLessonContext(beats: Beat[], currentIndex: number, planned:
 }
 
 /**
+ * THE WHOLE SHORT LECTURE, for a lesson made from a video.
+ *
+ * A document lesson's outline gives the chat titles and short previews, which is enough to say
+ * "that's part 4". A video lesson's student asks about the lesson itself — "what's in the last
+ * slide?" — and the outline could not answer: past slides were titles only, and a slide not yet
+ * generated was a title and 120 characters (reported 2026-10-03). The lecture is short (about a
+ * thousand words for a twenty-minute video), so the chat is given all of it: every generated
+ * slide's full narration, and for every slide still to come, the key points it will teach (its
+ * blocks in the source's plan). Together with the transcript (buildDocumentContext), the chat
+ * knows the whole video and the whole short version of it.
+ */
+function buildVideoLessonContext(beats: Beat[], currentIndex: number, planned: PlannedPart[], sourceDocument: unknown): string {
+  const doc = sourceDocument as {
+    contentBlocks?: Array<{ id: string; text?: string }>;
+    lessonPlan?: { beats?: Array<{ title?: string; sourceBlockIds?: string[] }> };
+  };
+  const blockText = new Map((doc.contentBlocks ?? []).map((block) => [block.id, clean(block.text)]));
+  const planBeats = Array.isArray(doc.lessonPlan?.beats) ? doc.lessonPlan.beats : [];
+  const plannedBySequence = new Map(planned.map((part) => [part.sequence, part]));
+  const total = Math.max(beats.length, planBeats.length, planned.length);
+  if (total === 0) return "";
+  const slides: string[] = [];
+  for (let i = 0; i < total; i++) {
+    const beat = beats[i];
+    const plan = planBeats[i];
+    const marker = i === currentIndex ? " ← PLAYING NOW" : i < currentIndex ? " (already taught)" : " (still to come)";
+    const title = clean(beat?.title) || clean(plannedBySequence.get(i)?.title) || clean(plan?.title) || `Slide ${i + 1}`;
+    const head = `Slide ${i + 1}${i === total - 1 ? " (the LAST slide)" : ""}: ${title}${marker}`;
+    if (beat?.script) {
+      slides.push(`${head}\n   Said: ${clean(beat.script)}`);
+      continue;
+    }
+    const points = (plan?.sourceBlockIds ?? []).map((id) => blockText.get(id) ?? "").filter(Boolean).join(" ");
+    slides.push(points ? `${head}\n   Will teach: ${points}` : head);
+  }
+  return `${VIDEO_LESSON_HEADING} The whole short lecture made from the video, slide by slide (${total} slides). "Said" is the narration of a slide already written; "Will teach" is what a slide not yet written will cover.\n${slides.join("\n")}`.slice(0, MAX_VIDEO_LESSON_CHARS);
+}
+
+/**
  * The student's uploaded document, flattened to text with its page or slide labels kept.
  *
  * Labels are worth their characters: they let the answer say "on page 4 it defines…", which is the
@@ -183,11 +224,25 @@ export function buildDocumentContext(
   /** The pages the student dragged an area on, when the lesson was built "from this area". */
   selectionPages: number[] = [],
 ): string {
-  const body = buildDocumentBody(sourceDocument, slideContext, transcript, fullDocumentText);
+  const cap = documentCharCap(sourceDocument);
+  const body = buildDocumentBody(sourceDocument, slideContext, transcript, fullDocumentText, cap);
   if (selectionPages.length === 0 || !body) return body;
   // Said first, so the tutor knows the lesson's subject is that area — not the whole document.
   const lead = `The student built this lesson from an area they SELECTED on page ${selectionPages.join(", ")}; what was read off that area comes first below. The rest is the whole document, for background.\n\n`;
-  return (lead + body).slice(0, MAX_DOCUMENT_CHARS);
+  return (lead + body).slice(0, cap);
+}
+
+/**
+ * A VIDEO IS CARRIED WHOLE.
+ *
+ * 30,000 characters is a realistic paper; it is about half an hour of speech. A lecture built from
+ * a one-hour video would leave its chat unable to answer anything from the second half — and the
+ * point of a video lecture's chat is that it knows the whole video, including what the shortened
+ * lecture did not dwell on. Only a video source gets the larger cap (lib/youtube/videoSource.ts);
+ * a document's is unchanged.
+ */
+function documentCharCap(sourceDocument: unknown): number {
+  return isVideoSource(sourceDocument) ? MAX_VIDEO_CONTEXT_CHARS : MAX_DOCUMENT_CHARS;
 }
 
 function buildDocumentBody(
@@ -195,6 +250,7 @@ function buildDocumentBody(
   slideContext = "",
   transcript = "",
   fullDocumentText = "",
+  cap = MAX_DOCUMENT_CHARS,
 ): string {
   const doc = sourceDocument as { contentBlocks?: unknown[] } | null;
   const blocks = Array.isArray(doc?.contentBlocks) ? doc.contentBlocks : [];
@@ -211,13 +267,13 @@ function buildDocumentBody(
    * First rather than appended, because the cap below truncates the tail: the transcript is the part
    * that cannot be recovered from anywhere else, so it must not be what gets cut.
    */
-  const read = clean(transcript).slice(0, MAX_DOCUMENT_CHARS);
+  const read = clean(transcript).slice(0, cap);
   const readSection = read ? `Read directly from the page images (this is content the extracted text below does NOT contain):
 ${read}` : "";
   // The blank line joining the two sections counts toward the cap as well; without it the result
   // lands two characters over, which is the kind of miss a cap exists to prevent in the first place.
-  const room = MAX_DOCUMENT_CHARS - readSection.length - (readSection ? 2 : 0);
-  if (room <= 0) return readSection.slice(0, MAX_DOCUMENT_CHARS);
+  const room = cap - readSection.length - (readSection ? 2 : 0);
+  if (room <= 0) return readSection.slice(0, cap);
 
   /*
    * THE WHOLE DOCUMENT WINS OVER THE PARSED BLOCKS.

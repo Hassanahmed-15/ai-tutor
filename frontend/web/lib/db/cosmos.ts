@@ -261,7 +261,7 @@ export type LectureJobDoc = {
   ttl: number;
 };
 
-export type LectureSourceType = "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder";
+export type LectureSourceType = "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube";
 export type LectureMode = "standard" | "blind" | "low-vision" | "adhd" | "dyslexia" | "deaf";
 
 export type LectureVideoDoc = {

@@ -8,7 +8,21 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   const auth = await currentUser();
   if (!auth) return new Response("Authentication required.", { status: 401 });
   const { id } = await params;
-  const first = await progressiveSnapshot(auth.userId, id).catch(() => null);
+  /*
+   * A JUST-CREATED LECTURE CAN BE MISSED BY THE FIRST READ. The page opens this stream the moment
+   * the lecture is created, and a read in that first instant sometimes found no session (measured
+   * 2026-10-03: four of six streams opened within ~100 ms of creation got 404). EventSource never
+   * retries a 404, so the build screen froze on "Starting" while the lecture was being written. The
+   * first read is therefore retried for up to three seconds before "not found" is believed.
+   */
+  let first: Awaited<ReturnType<typeof progressiveSnapshot>> = null;
+  for (let attempt = 0; attempt < 7 && !first && !request.signal.aborted; attempt++) {
+    if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 500));
+    first = await progressiveSnapshot(auth.userId, id).catch((error) => {
+      console.error(`[progressive-events] snapshot for ${id} failed: ${error instanceof Error ? error.message : String(error)}`);
+      return null;
+    });
+  }
   if (!first) return new Response("Progressive lecture not found.", { status: 404 });
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({

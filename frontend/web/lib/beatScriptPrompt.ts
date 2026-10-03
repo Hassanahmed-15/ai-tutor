@@ -71,7 +71,27 @@ export interface BeatScriptPromptInput {
    * does not, with the words that gave them away (lib/strictSourceScript.ts).
    */
   groundingFeedback?: Array<{ sentence: string; missing: string[] }>;
+  /**
+   * Set on a video lesson's regeneration: the key points of this board's source that the previous
+   * attempt did not teach (lib/youtube/videoCoverage.ts).
+   */
+  coverageFeedback?: string[];
+  /**
+   * The source is a video's key points (lib/youtube/videoSource.ts). Changes one line: the title-card
+   * sentence leads into the topic instead of stating the main idea, which the narration states.
+   */
+  videoSource?: boolean;
 }
+
+/**
+ * A video board's title-card line. The strict line asks for the board's main idea "in the source's
+ * own words", and the strict opening asks the script to begin with the source's first statement. For
+ * a document those differ often enough; for a video's key points they are the same sentence, and the
+ * player speaks the card line straight into the script — so the student heard it twice ("Humans
+ * recognize digits by piecing together components, like loops and lines." then "…such as loops and
+ * lines."), measured 2026-10-03.
+ */
+const VIDEO_TRANSITION_LINE = `transitionIn: one short sentence of 6-14 words, spoken over this board's title card, that leads from the previous board into this one by NAMING its topic. Vary the wording from board to board ("So how are those neurons arranged?", "That brings us to layers.", "Now for the part that does the learning.") rather than opening every board the same way. It must NOT state any fact, definition, number or key point: the script states them, and anything said here would be said twice. On the FIRST board it names what the whole lesson is about ("Let's see what a neural network really is.") — never "next", never a greeting. Never mention the video, the speaker or "this section".`;
 
 /** What the model must return. `keyClaims` is new: the board's own summary of what it established. */
 export type GeneratedBeatPayload = {
@@ -149,18 +169,28 @@ function groundingFeedbackBlock(feedback: NonNullable<BeatScriptPromptInput["gro
     .join("\n")}`;
 }
 
+/** What a video lesson's regeneration is told when the previous attempt skipped part of its source. */
+function coverageFeedbackBlock(missed: string[]): string {
+  return `\n\nYOUR PREVIOUS ATTEMPT AT THIS BOARD LEFT OUT PARTS OF ITS SOURCE. Write the board again so that it ALSO teaches each of the statements below, where they fall in the source's order, keeping everything the previous attempt did teach. Say each in plain words using its own terms and numbers; add nothing the source does not state:\n${missed
+    .map((point) => `- "${point}"`)
+    .join("\n")}`;
+}
+
 export function buildBeatScriptMessages(input: BeatScriptPromptInput): { system: string; user: string } {
   const strict = Boolean(input.strict);
   const role = scriptRoleFor(input.planned.role, strict);
   const feedback = [
     input.repetitionFeedback?.length ? repetitionFeedbackBlock(input.repetitionFeedback, strict) : "",
     strict && input.groundingFeedback?.length ? groundingFeedbackBlock(input.groundingFeedback) : "",
+    input.coverageFeedback?.length ? coverageFeedbackBlock(input.coverageFeedback) : "",
   ].join("");
 
   const system = [
     `You write one board of a spoken, adaptive tutor lecture. Return JSON only with title, transitionIn, teacherMove, slideKind, points, script, keyClaims, optional definitionTerm/definitionMeaning, and optional checkpoint. Keep the supplied board title exactly; it is the canonical title already approved in the plan.`,
     `points: 4-6 short board notes (at most 12 words each), one for each idea the script covers, in the order the script says them. They are written on the board one by one as the narration reaches them, so each must match what is being said at that moment.`,
-    strict
+    input.videoSource
+      ? VIDEO_TRANSITION_LINE
+      : strict
       ? STRICT_LINES.transition
       : `transitionIn: for every board after the first, one natural 8-18 word sentence that connects the previous board's insight to this one without a generic phrase such as "moving on". On the FIRST board it is instead one warm, specific 8-16 word opening line — never a greeting.`,
     strict

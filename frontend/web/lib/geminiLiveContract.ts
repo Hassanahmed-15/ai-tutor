@@ -1,4 +1,5 @@
 import { REFERENCE_VOICE_RULES, STRICT_VOICE_RULES, formatBeatSource, readStrictSourceHeader } from "./strictSourceAnswers";
+import { VIDEO_CHAT_RULES, isVideoTranscriptContext } from "./youtube/videoSource";
 
 export const SHOW_BOARD_TOOL = {
   name: "show_board",
@@ -197,9 +198,11 @@ export function buildGeminiLiveInstructions(input: {
    * add depth and "another example". Without the header this is today's instruction, unchanged.
    */
   const fidelity = readStrictSourceHeader(input.documentContext ?? "");
+  // A lesson made from a video carries the video's transcript, with rules written for a video.
+  const video = !fidelity.strict && isVideoTranscriptContext(input.documentContext ?? "");
   const parts = [TUTOR_PERSONA];
   if (fidelity.strict) parts.push(STRICT_VOICE_RULES);
-  else if (input.documentContext?.trim()) parts.push(REFERENCE_VOICE_RULES);
+  else if (input.documentContext?.trim() && !video) parts.push(REFERENCE_VOICE_RULES);
   parts.push(`Lesson topic: ${input.topic || "the current lesson"}.`);
   if (input.lessonQuestion) parts.push(`This lesson was built to answer: "${input.lessonQuestion}". Keep every answer connected to it.`);
   /*
@@ -215,6 +218,8 @@ export function buildGeminiLiveInstructions(input: {
     if (fidelity.document) {
       parts.push(`SOURCE — the student's own uploaded document. It is the ONLY material you may teach or answer from:\n${fidelity.document}`);
     }
+  } else if (video) {
+    parts.push(`${VIDEO_CHAT_RULES}\n${input.documentContext}`);
   } else if (input.documentContext) {
     parts.push(
       `The student's own uploaded document. Answer from THIS whenever the question is about their material — quote its wording rather than paraphrasing from general knowledge:\n${input.documentContext}`,

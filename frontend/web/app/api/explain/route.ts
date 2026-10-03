@@ -10,6 +10,7 @@ import { fillSpecBoardOps } from "@/lib/specBoardGen";
 import { isCodeQuestion } from "@/lib/codeSpec";
 import type { Beat } from "@/lib/lessonContent";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
+import { MAX_VIDEO_CONTEXT_CHARS, MAX_VIDEO_LESSON_CHARS, VIDEO_CHAT_RULES, isVideoLessonContext, isVideoTranscriptContext } from "@/lib/youtube/videoSource";
 import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
 import {
   STRICT_ANSWER_RULES,
@@ -70,7 +71,9 @@ export async function POST(req: Request) {
    * Both are capped. A whole lecture plus a parsed paper is far more than this call needs, and a
    * prompt that large costs latency on every question asked mid-lesson.
    */
-  const lessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim().slice(0, 8000) : "";
+  // A video lesson's whole short lecture is carried in full (lib/lessonChatContext.ts buildVideoLessonContext).
+  const rawLessonContext = typeof body.lessonContext === "string" ? body.lessonContext.trim() : "";
+  const lessonContext = rawLessonContext.slice(0, isVideoLessonContext(rawLessonContext) ? MAX_VIDEO_LESSON_CHARS : 8000);
   /*
    * STRICT SOURCE. The typed ask box sends the scope and the current beat's source explicitly. The
    * live voice tutor's board requests cannot (its hook forwards a fixed set of strings), so its
@@ -79,7 +82,14 @@ export async function POST(req: Request) {
    * prompt calls only the document "the document".
    */
   const fidelityHeader = readStrictSourceHeader(typeof body.documentContext === "string" ? body.documentContext.trim() : "");
-  const documentContext = fidelityHeader.document.trim().slice(0, 30000);
+  /*
+   * A VIDEO'S TRANSCRIPT IS CARRIED WHOLE (lib/youtube/videoSource.ts): 30,000 characters is about
+   * half an hour of speech, so a document's cap would cut a video lesson's chat off from the second
+   * half of its own video. A document keeps the cap it had.
+   */
+  const rawDocumentContext = fidelityHeader.document.trim();
+  const videoContext = isVideoTranscriptContext(rawDocumentContext);
+  const documentContext = rawDocumentContext.slice(0, videoContext ? MAX_VIDEO_CONTEXT_CHARS : 30000);
   const sourceScope = sanitizeSourceScope(body.sourceScope);
   const strictRequested = sourceScope ? sourceScope.fidelity === "strict" : fidelityHeader.strict;
   const beatSource: BeatSourceGrounding | null =
@@ -132,11 +142,18 @@ export async function POST(req: Request) {
     : "";
   const baseUserMsg = strict
     ? strictUserMessage({ topic, lessonContext, documentContext, beatSource, lessonQuestion, beatContext, question, visualMode, reuseContext, offer, visualHint })
-    : `The lecture topic is "${topic || "this subject"}". ` +
+    /*
+     * A video's transcript goes FIRST. It is the same text on every question of a lesson, and it is
+     * most of the prompt; leading with it makes it a stable prefix, which is what the provider's
+     * prompt cache bills at the cached rate from the second question on. The lesson outline and the
+     * board change with every question, so they follow it.
+     */
+    : (videoContext && documentContext ? `${VIDEO_CHAT_RULES}\n${documentContext}\n\n` : "") +
+    `The lecture topic is "${topic || "this subject"}". ` +
     (lessonContext
       ? `The whole lesson as an outline. "← PLAYING NOW" is where the student is; "(already taught)" and "(still to come)" say what they have and have not seen. If a "(still to come)" section covers this question, still answer it now, then add one short sentence saying that section goes into it later and naming it ("we'll go deeper on this in Hydraulic Actuators"). Never skip that sentence when such a section exists:\n${lessonContext}\n\n`
       : "") +
-    (documentContext
+    (documentContext && !videoContext
       ? sourceScope?.fidelity === "reference"
         /*
          * A REFERENCE LESSON's chat is not fenced by the document, and says so only in passing. The
@@ -152,6 +169,8 @@ export async function POST(req: Request) {
       : "") +
     (beatContext ? `The part playing now, and the board the student is looking at (anything under "ON THE BOARD" is on their screen):\n${beatContext}\n\n` : "") +
     `They asked: "${question}". ` +
+    // Said next to the question, where it is weighed most: a moment the student can go and watch.
+    (videoContext && documentContext ? `If the answer comes from the video, say around when it is said there, from its [m:ss] labels ("around 1:23 in the video"). ` : "") +
     (offer
       ? `Answer it in words. Propose a drawing only if the answer genuinely needs one.`
       : `Preferred visual mode: "${visualMode}". ` +
