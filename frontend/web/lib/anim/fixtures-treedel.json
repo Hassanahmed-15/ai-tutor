@@ -1,0 +1,144 @@
+{
+ "title": "Data Structures And Problem Solving Using C++ 2nd ed - Mark Weiss.pdf",
+ "adapter": "pdf-upload",
+ "contentBlocks": [
+  {
+   "id": "ocr-p1-0-0",
+   "type": "caption",
+   "role": "caption",
+   "heading": "Page 1",
+   "text": "Figure 19.2 Binary search trees (a) before and (b) after the insertion of 6.",
+   "pageNumber": 1,
+   "sourceOrder": 0
+  },
+  {
+   "id": "ocr-p1-0-1",
+   "type": "caption",
+   "role": "caption",
+   "heading": "Page 1",
+   "text": "Figure 19.3 Deletion of node 5 with one child: (a) before and (b) after.",
+   "pageNumber": 1,
+   "sourceOrder": 1
+  },
+  {
+   "id": "ocr-p1-0-2",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "Page 1",
+   "text": "The hardest operation is remove. Once we have found the node to be removed, we need to consider several possibilities. The problem is that the removal of a node may disconnect parts of the tree. If that happens, we must carefully reattach the tree and maintain the binary search tree property. We also want to avoid making the tree unnecessarily deep because the depth of the tree affects the running time of the tree algorithms.",
+   "pageNumber": 1,
+   "sourceOrder": 2
+  },
+  {
+   "id": "ocr-p1-0-3",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "Page 1",
+   "text": "When we are designing a complex algorithm, solving the simplest case first is often easiest, leaving the most complicated case until last. Thus, in examining the various cases, we start with the easiest. If the node is a leaf, its removal does not disconnect the tree, so we can delete it immediately. If the node has only one child, we can remove the node after adjusting its parent’s child link to bypass the node. This is illustrated in Figure 19.3, with the removal of node 5. Note that removeMin and removeMax are not complex because the affected nodes are either leaves or have only one child. Note also that the root is a special case because it does not have a parent. However, when the remove method is implemented, the special case is handled automatically.",
+   "pageNumber": 1,
+   "sourceOrder": 3
+  },
+  {
+   "id": "ocr-p1-0-4",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "Page 1",
+   "text": "The remove operation is difficult because nonleaf nodes hold the tree together and we do not want to disconnect the tree.",
+   "pageNumber": 1,
+   "sourceOrder": 4
+  },
+  {
+   "id": "ocr-p1-0-5",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "Page 1",
+   "text": "If a node has one child, it can be removed by having its parent bypass it. The root is a special case because it does not have a parent.",
+   "pageNumber": 1,
+   "sourceOrder": 5
+  },
+  {
+   "id": "ocr-p2-1-0",
+   "type": "caption",
+   "role": "caption",
+   "heading": "Page 2",
+   "text": "Figure 19.4 Deletion of node 2 with two children: (a) before and (b) after.",
+   "pageNumber": 2,
+   "sourceOrder": 6
+  },
+  {
+   "id": "ocr-p2-1-1",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "Page 2",
+   "text": "A node with two children is replaced by using the smallest item in the right subtree. Then another node is removed.",
+   "pageNumber": 2,
+   "sourceOrder": 7
+  },
+  {
+   "id": "ocr-p2-1-2",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "Page 2",
+   "text": "The complicated case deals with a node having two children. The general strategy is to replace the item in this node with the smallest item in the right subtree (which is easily found, as mentioned earlier) and then remove that node (which is now logically empty). The second remove is easy to do because, as just indicated, the minimum node in a tree does not have a left child. Figure 19.4 shows an initial tree and the result of removing node 2. We replace the node with the smallest node (3) in its right subtree and then remove 3 from the right subtree. Note that in all cases removing a node does not make the tree deeper.¹ Many alternatives do make the tree deeper; thus these alternatives are poor options.",
+   "pageNumber": 2,
+   "sourceOrder": 8
+  },
+  {
+   "id": "ocr-p2-1-3",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "C++ Implementation",
+   "text": "In principle, the binary search tree is easy to implement. To keep the C++ features from clogging up the code, we introduce a few simplifications. First, Figure 19.5 shows the BinaryNode class. We could try to inherit the class from Section 18.2, but things start to get messy because of privacy considerations. Reuse is nice, but at some point practicality must take over. In the new BinaryNode class, we make everything private but then use a friend declaration to grant visibility to all the classes involved in the binary search tree implementation. Because we want to be able to use the same declarations for a more advanced binary search tree (discussed in Section 19.2), we include an additional class member at line 7 that is not used in the implementation in this section. The BinaryNode class contains the usual list of",
+   "pageNumber": 2,
+   "sourceOrder": 9
+  },
+  {
+   "id": "ocr-p2-1-4",
+   "type": "paragraph",
+   "role": "paragraph",
+   "heading": "C++ Implementation",
+   "text": "¹ The deletion can, however, increase the average node depth if a shallow node is removed.",
+   "pageNumber": 2,
+   "sourceOrder": 10
+  }
+ ],
+ "lessonPlan": {
+  "beats": [
+   {
+    "id": "pdf-1",
+    "title": "Binary search trees",
+    "objective": "Teach these source blocks completely and in order, connecting them as one coherent explanation.",
+    "sourceBlockIds": [
+     "ocr-p1-0-0",
+     "ocr-p1-0-1",
+     "ocr-p1-0-2",
+     "ocr-p1-0-3",
+     "ocr-p1-0-4",
+     "ocr-p1-0-5"
+    ],
+    "visualMode": "svg_diagram"
+   },
+   {
+    "id": "pdf-2",
+    "title": "Deletion of node 2 with two children",
+    "objective": "Teach these source blocks completely and in order, connecting them as one coherent explanation.",
+    "sourceBlockIds": [
+     "ocr-p2-1-0",
+     "ocr-p2-1-1",
+     "ocr-p2-1-2"
+    ],
+    "visualMode": "svg_diagram"
+   },
+   {
+    "id": "pdf-3",
+    "title": "C++ Implementation",
+    "objective": "Teach these source blocks completely and in order, connecting them as one coherent explanation.",
+    "sourceBlockIds": [
+     "ocr-p2-1-3",
+     "ocr-p2-1-4"
+    ],
+    "visualMode": "svg_diagram"
+   }
+  ]
+ }
+}

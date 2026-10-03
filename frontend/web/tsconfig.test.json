@@ -76,7 +76,11 @@
     "lib/youtube/videoUrl.ts",
     "lib/youtube/videoSource.ts",
     "lib/youtube/videoNotes.ts",
-    "lib/youtube/videoCoverage.ts"
+    "lib/youtube/videoCoverage.ts",
+    "lib/sourceScope.ts",
+    "lib/questionBlocks.ts",
+    "lib/documentLessonPlanning.ts",
+    "lib/sectionTitle.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -17,6 +17,9 @@ import type { ProgressiveBeatPlan, ProgressiveLectureInput, ProgressiveVisualKin
 import { isStrictSource } from "./sourceScope";
 import { isSpecificDocumentRequest, isWholeDocumentRequest } from "./documentLessonPlanning";
 import { contentStems } from "./sourceGrounding";
+import { questionBlocks, questionMatcher, topicalStems } from "./questionBlocks";
+
+export { questionBlocks, topicalStems };
 import { BROKEN_GLYPHS, referenceSectionTitle } from "./sectionTitle";
 
 export { referenceSectionTitle };
@@ -75,6 +78,27 @@ function programmingLesson(input: ProgressiveLectureInput): boolean {
  * Both halves matter. A typed topic carries `fidelity: "reference"` by default, so fidelity alone
  * would sweep prompt lessons into this path.
  */
+/**
+ * The lecture answers one question asked of the document: the page judged the typed words a
+ * specific question and narrowed the scope to it (LearnPage questionFromUpload → breadth "section").
+ */
+export function questionScoped(input: ProgressiveLectureInput): boolean {
+  const breadth = input.sourceScope?.breadth;
+  return Boolean(breadth && breadth.kind !== "whole" && breadth.focus.trim());
+}
+
+/**
+ * For a reference lecture answering a question: the blocks that answer it, which are the only ones
+ * its slides may draw on. Undefined when the lecture is not a question, or nothing in the document
+ * matches it (then slides are matched across the document, as before).
+ */
+export function answeringBlocksFor(input: ProgressiveLectureInput, document: SuprnotesLessonInput | null): Set<string> | undefined {
+  const breadth = input.sourceScope?.breadth;
+  if (!document || !breadth || breadth.kind === "whole" || !breadth.focus.trim()) return undefined;
+  const ids = questionBlocks(document.contentBlocks ?? [], breadth.focus);
+  return ids.length > 0 ? new Set(ids) : undefined;
+}
+
 export function isReferenceLesson(input: ProgressiveLectureInput): boolean {
   return input.sourceScope?.fidelity === "reference" && isSuprnotesLessonInput(input.suprnotes);
 }
@@ -111,15 +135,25 @@ const REFERENCE_MATCH_MAX_BLOCKS = 4;
  * beat's context — without letting the document's order or length dictate the lecture. No match is
  * an ordinary answer: the beat is taught from the idea alone.
  */
-export function referenceBlocksFor(document: SuprnotesLessonInput, beatText: string): string[] {
+export function referenceBlocksFor(document: SuprnotesLessonInput, beatText: string, options: { onlyFrom?: Set<string> } = {}): string[] {
   const wanted = new Set(contentStems(beatText));
   if (wanted.size === 0) return [];
-  return (document.contentBlocks ?? [])
+  /*
+   * A QUESTION'S SLIDES DRAW ONLY ON THE PART OF THE DOCUMENT THAT ANSWERS IT. "Insertion in a
+   * Binary Search Tree" shares "binary, search, tree, node" with every paragraph of a chapter on
+   * deletion, so those paragraphs became the insertion slide's source and the lecture drifted onto
+   * deletion (reported 2026-10-03, tree del.pdf). In a lecture answering a question, a slide is
+   * matched only among the blocks that answer it (questionBlocks); none matching is an ordinary
+   * answer, taught from the idea.
+   */
+  const candidates = (document.contentBlocks ?? []).filter((block) => !options.onlyFrom || options.onlyFrom.has(block.id));
+  return candidates
     .map((block) => {
       const shared = new Set(contentStems(block.text ?? "").filter((word) => wanted.has(word)));
       return { id: block.id, shared: shared.size };
     })
-    .filter((match) => match.shared >= REFERENCE_MATCH_MIN_SHARED)
+    // Among the blocks that answer the question, one word in common is a match: they are all on topic.
+    .filter((match) => match.shared >= (options.onlyFrom ? 1 : REFERENCE_MATCH_MIN_SHARED))
     .sort((a, b) => b.shared - a.shared)
     .slice(0, REFERENCE_MATCH_MAX_BLOCKS)
     .map((match) => match.id);
@@ -139,6 +173,8 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
   const referenceDocument = isReferenceLesson(input) && (input.outline?.subtopics?.length ?? 0) > 0
     ? (input.suprnotes as SuprnotesLessonInput)
     : null;
+  // A reference lecture answering a question: its slides draw only on the blocks that answer it.
+  const answeringBlocks = answeringBlocksFor(input, referenceDocument);
   const sourcePlan = referenceDocument ? [] : sourceDocumentPlan(input);
   if (sourcePlan.length > 0) return sourcePlan;
   // The THING the lesson is about, not the sentence the student typed: "What is overfitting?"
@@ -236,9 +272,9 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
     conceptPasses: entry.passes,
     role: roleForPass(roleByTitle.get(entry.title) ?? "mechanism", entry.passRole),
     prerequisiteConceptIds: prerequisitesFor(entries, sequence),
-    visualKind: (referenceDocument ? referenceCodeFor(referenceDocument, entry) : null) ?? visualKindFor(sequence, entries.length, input, entry),
+    visualKind: (referenceDocument ? referenceCodeFor(referenceDocument, entry, answeringBlocks) : null) ?? visualKindFor(sequence, entries.length, input, entry),
     estimatedDurationMs: depthBudget(input.learnerProfile.depth).boardMs,
-    ...(referenceDocument ? referenceSourceFor(referenceDocument, entry) : {}),
+    ...(referenceDocument ? referenceSourceFor(referenceDocument, entry, answeringBlocks) : {}),
   }));
   // A prompted lecture should exercise the live animation engine, not accidentally collapse into
   // blackboards/structure boards because every outline title matched a broad keyword. Prefer the
@@ -259,15 +295,15 @@ export function buildProgressivePlan(input: ProgressiveLectureInput): Progressiv
  * THAT code rather than code written from scratch ("explain bst deletion in c++" against a PDF that
  * prints the C++). Kept from the local reference-question work when the two reference plans merged.
  */
-function referenceCodeFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }): ProgressiveVisualKind | null {
+function referenceCodeFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }, onlyFrom?: Set<string>): ProgressiveVisualKind | null {
   if (!CODE_BEAT_PATTERN.test(`${entry.title} ${entry.objective}`) && !/\b(?:c\+\+|java|python|code)\b/i.test(entry.title)) return null;
-  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`);
+  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`, { onlyFrom });
   return ids.length > 0 ? sourceCodeKind(document, ids) : null;
 }
 
 /** A reference beat's matched blocks, as a field only when there are any. */
-function referenceSourceFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }): { sourceBlockIds?: string[] } {
-  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`);
+function referenceSourceFor(document: SuprnotesLessonInput, entry: { title: string; objective: string }, onlyFrom?: Set<string>): { sourceBlockIds?: string[] } {
+  const ids = referenceBlocksFor(document, `${entry.title} ${entry.objective}`, { onlyFrom });
   return ids.length ? { sourceBlockIds: ids } : {};
 }
 
@@ -428,9 +464,34 @@ function sourceDocumentPlan(input: ProgressiveLectureInput): ProgressiveBeatPlan
    * that answer it are kept (see sectionsForQuestion); a question the document does not match keeps
    * the whole plan rather than teaching nothing.
    */
-  const planned = input.selection
+  const documentBlocks = document.contentBlocks ?? [];
+  const topical = topicalStems(documentBlocks.map((block) => block.text ?? ""));
+  const question = input.focus ?? "";
+  const sectionsKept = input.selection
     ? sectionsForSelection(merged, document, input.selection)
-    : sectionsForQuestion(merged, input.focus ?? "", (ids) => scopedBlockText(document.contentBlocks ?? [], ids));
+    : sectionsForQuestion(merged, question, (ids) => scopedBlockText(documentBlocks, ids), topical, document);
+  /*
+   * AND ONLY ITS BLOCKS. The sections that answer a question are cut down to the blocks that do, so
+   * a page that is mostly about something else contributes only its part (questionBlocks). A
+   * section left with nothing is dropped; if nothing anywhere matches, the sections stand as before.
+   */
+  const askedSpecifically = !input.selection && isSpecificDocumentRequest(question, document) && !isWholeDocumentRequest(question);
+  const answering = askedSpecifically ? new Set(questionBlocks(documentBlocks, question, topical)) : null;
+  const narrowed = answering && answering.size > 0
+    ? sectionsKept
+        .map((section) => ({ ...section, sourceBlockIds: section.sourceBlockIds.filter((id) => answering.has(id)) }))
+        .filter((section) => section.sourceBlockIds.length > 0)
+    : [];
+  /*
+   * A ONE-SLIDE ANSWER IS TITLED FOR THE QUESTION'S SUBJECT, which the page has already named
+   * (input.topic). The section's own title described the whole page it came from — "Binary search
+   * trees" over the slide on insertion, or, on a scanned page, whatever OCR read as a heading
+   * ("End{array}", 2026-10-03).
+   */
+  const subjectTitle = clean(input.topic);
+  const planned = narrowed.length === 1 && subjectTitle
+    ? [{ ...narrowed[0], title: subjectTitle }]
+    : narrowed.length > 0 ? narrowed : sectionsKept;
   /*
    * DEPTH CAPS THE BEAT COUNT FOR A DOCUMENT TOO, not just for a typed topic.
    *
@@ -614,35 +675,15 @@ export function sectionsForQuestion<T extends { title: string; sourceBlockIds: s
   sections: T[],
   question: string,
   textOf: (ids: string[]) => string,
+  topical: Set<string> = new Set(),
+  /** The document, so words that pick out a part of it count as a question (isSpecificDocumentRequest). */
+  document?: unknown,
 ): T[] {
-  if (sections.length <= 2 || !question.trim()) return sections;
-  if (isWholeDocumentRequest(question) || !isSpecificDocumentRequest(question)) return sections;
-  /*
-   * The words that carry the question. Request verbs ("used", "show", "list") match every section
-   * and decided the ranking on their own when the real word was misspelt: "what are datsets used"
-   * picked a section for saying "used" twice.
-   */
-  const filler = new Set(contentStems("pdf document paper here page slide explain mean meant use used using show tell give list describe mention work help"));
-  const asked = new Set(contentStems(question).filter((stem) => !filler.has(stem)));
-  if (asked.size === 0) return sections;
-  /* A typo is still the word: "datsets" asks about datasets. One edit apart, on words of 5+ letters. */
-  const oneEditApart = (a: string, b: string): boolean => {
-    if (a === b) return true;
-    if (Math.min(a.length, b.length) < 5 || Math.abs(a.length - b.length) > 1) return false;
-    let i = 0;
-    let j = 0;
-    let edits = 0;
-    while (i < a.length && j < b.length) {
-      if (a[i] === b[j]) { i++; j++; continue; }
-      if (++edits > 1) return false;
-      if (a.length > b.length) i++;
-      else if (b.length > a.length) j++;
-      else { i++; j++; }
-    }
-    return edits + (a.length - i) + (b.length - j) <= 1;
-  };
-  const askedList = [...asked];
-  const isAsked = (stem: string) => asked.has(stem) || askedList.some((word) => oneEditApart(word, stem));
+  // Two sections are narrowed too: a two-page upload was always taught whole, whatever was asked.
+  if (sections.length <= 1 || !question.trim()) return sections;
+  if (isWholeDocumentRequest(question) || !isSpecificDocumentRequest(question, document)) return sections;
+  const { asked, isAsked, namesSubject } = questionMatcher(question, topical);
+  if (asked.size === 0 || namesSubject) return sections;
   /*
    * "WHAT IS X" IS ANSWERED WHERE X IS DEFINED. Counting mentions alone sent "what is starch" to
    * the section that TESTS for starch (starch in its title, starch on every line) instead of the

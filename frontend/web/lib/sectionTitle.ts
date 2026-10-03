@@ -83,6 +83,13 @@ export function firstPageTitle(document: unknown): string {
   for (const block of pageOne) {
     const heading = referenceSectionTitle(clean(block.heading));
     if (usableTitle(heading)) return heading;
+    /*
+     * BODY TEXT IS NOT A TITLE. A scanned textbook page has no heading, only captions and paragraphs,
+     * and the first sentence of one became the lesson's name: "How deep do you want to go with The
+     * hardest operation is \texttt{remove}" (reported 2026-10-03). With no heading on page 1 the
+     * caller names the subject from the document instead.
+     */
+    if (block.role === "paragraph" || block.role === "caption") continue;
     const raw = typeof block.text === "string" ? block.text : "";
     // The first line that is a title, not a placeholder: a slide exported to PDF, or a pptx text
     // chunk, often starts with "Slide 1" and only then says what the slide is about.
