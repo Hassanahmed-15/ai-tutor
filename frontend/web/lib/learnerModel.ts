@@ -47,6 +47,8 @@ export type ConceptMemory = {
   taught?: Array<{ lectureId: string; sequence: number; beatId: string; title: string; topic: string; at: string }>;
   /** The student's own rating on the knowledge map, which the map shows beside Aria's estimate. */
   selfRating?: "know" | "unsure";
+  /** Not a concept (a slide title, a figure reference): kept in memory, never drawn on the map. */
+  offMap?: boolean;
 };
 
 export type MisconceptionMemory = {
@@ -77,6 +79,8 @@ export type LearnerMemory = {
   excerpts: MemoryExcerpt[];
   /** Aria's written portrait of the student, synthesised from everything above. */
   persona: LearnerPersona | null;
+  /** When older concepts were last organised onto the knowledge graph (lib/knowledge/organise.ts). */
+  mapOrganisedAt?: string;
   updatedAt: string;
 };
 
@@ -442,6 +446,7 @@ export function parseMemory(raw: unknown): LearnerMemory {
     signals: r.signals && typeof r.signals === "object" ? r.signals : {},
     excerpts: Array.isArray(r.excerpts) ? r.excerpts : [],
     persona: r.persona && typeof r.persona === "object" && typeof r.persona.summary === "string" ? r.persona : null,
+    ...(typeof r.mapOrganisedAt === "string" ? { mapOrganisedAt: r.mapOrganisedAt } : {}),
     updatedAt: typeof r.updatedAt === "string" ? r.updatedAt : new Date().toISOString(),
   };
 }

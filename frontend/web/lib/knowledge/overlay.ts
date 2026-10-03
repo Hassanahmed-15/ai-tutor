@@ -118,3 +118,47 @@ export function dueForReview(memory: LearnerMemory, now = Date.now(), limit = 8)
     .sort((a, b) => Date.parse(a.reviewDue!) - Date.parse(b.reviewDue!))
     .slice(0, limit);
 }
+
+/**
+ * ORGANISE OLDER MEMORIES onto the graph's concepts. Before the knowledge graph, a lecture recorded
+ * its board TITLES as concepts ("Why Overfitting Happens", "Understanding overfitting", "Figure
+ * 19.4"). `mapping` (from lib/knowledge/organise.ts) says which real concept each old key was, or
+ * null when it was not a concept at all. Old entries merge into one concept per key — the best
+ * mastery, the earliest first sighting, the latest last one, their evidence and topics together —
+ * and the non-concepts stay in memory, marked off the map.
+ */
+export function reorganiseConcepts(
+  memory: LearnerMemory,
+  mapping: Record<string, { key: string; label: string } | null>,
+  now = new Date().toISOString(),
+): LearnerMemory {
+  const next: LearnerMemory = structuredClone(memory);
+  for (const [oldKey, target] of Object.entries(mapping)) {
+    const old = next.concepts[oldKey];
+    if (!old) continue;
+    if (!target) {
+      old.offMap = true;
+      continue;
+    }
+    if (target.key === oldKey) {
+      old.label = target.label;
+      continue;
+    }
+    const into = next.concepts[target.key];
+    if (!into) {
+      next.concepts[target.key] = { ...old, key: target.key, label: target.label };
+    } else {
+      into.mastery = Math.max(into.mastery, old.mastery);
+      into.evidence = [...into.evidence, ...old.evidence].sort((a, b) => a.at.localeCompare(b.at)).slice(-MEMORY_LIMITS.evidencePerConcept);
+      into.lastSeen = into.lastSeen > old.lastSeen ? into.lastSeen : old.lastSeen;
+      into.topics = [...new Set([...into.topics, ...old.topics])].slice(-8);
+      const firsts = [into.firstSeen, old.firstSeen].filter((v): v is string => Boolean(v)).sort();
+      if (firsts[0]) into.firstSeen = firsts[0];
+      if (old.taught?.length) into.taught = [...(into.taught ?? []), ...old.taught].slice(-4);
+    }
+    delete next.concepts[oldKey];
+  }
+  next.mapOrganisedAt = now;
+  next.updatedAt = now;
+  return boundMemory(next);
+}

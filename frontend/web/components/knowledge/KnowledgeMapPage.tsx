@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, Clock, Loader2, Sparkles } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
-import { layoutKnowledgeMap } from "@/lib/knowledge/layout";
+import { layoutKnowledgeMap, mapBounds, shortLabel, visibleLabels } from "@/lib/knowledge/layout";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { BoardPeek, type PeekTarget } from "./BoardPeek";
 
@@ -34,10 +34,13 @@ type MapNode = {
 };
 type MapLink = { from: string; to: string; type: "needs" | "part-of" | "related"; confidence: number };
 
-/** The sky's base size; it grows with the number of stars so labels keep their room. */
-const BASE_W = 1600;
-const BASE_H = 1000;
 const HUES = ["#38bdf8", "#a78bfa", "#34d399", "#fbbf24", "#f472b6", "#fb923c", "#22d3ee", "#a3e635"];
+
+/** "machine-learning" → "Machine learning". */
+function subjectName(subject: string): string {
+  const text = subject.replace(/[-_]+/g, " ").trim();
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
 
 function hueFor(subject: string, subjects: string[]): string {
   return HUES[Math.max(0, subjects.indexOf(subject)) % HUES.length];
@@ -67,14 +70,6 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   }, [nonce]);
 
   const subjects = useMemo(() => [...new Set((data?.nodes ?? []).map((n) => n.subject))].sort(), [data]);
-  const size = useMemo(() => {
-    const k = Math.max(1, Math.sqrt((data?.nodes.length ?? 0) / 16));
-    return { w: Math.round(BASE_W * k), h: Math.round(BASE_H * k) };
-  }, [data]);
-  const W = size.w;
-  const H = size.h;
-  /** Stars and labels grow with the sky, so they stay the same size on screen. */
-  const k = W / BASE_W;
   const positions = useMemo(() => {
     if (!data) return {};
     const degree: Record<string, number> = {};
@@ -85,11 +80,20 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
     return layoutKnowledgeMap(
       data.nodes.map((n) => ({ key: n.key, subject: n.subject, weight: degree[n.key] ?? 0 })),
       data.links.map((l) => ({ from: l.from, to: l.to, strength: l.type === "related" ? 0.3 : 0.6 + 0.4 * l.confidence })),
-      size.w,
-      size.h,
     );
-  }, [data, size]);
+  }, [data]);
+  /** The view fits whatever the stars cover. */
+  const bounds = useMemo(() => mapBounds(positions), [positions]);
   const byKey = useMemo(() => new Map((data?.nodes ?? []).map((n) => [n.key, n])), [data]);
+  // Which labels to write at this zoom: the most important first, none over another.
+  const degreeOf = useMemo(() => {
+    const d: Record<string, number> = {};
+    for (const l of data?.links ?? []) {
+      d[l.from] = (d[l.from] ?? 0) + 1;
+      d[l.to] = (d[l.to] ?? 0) + 1;
+    }
+    return d;
+  }, [data]);
   const learned = (data?.nodes ?? []).filter((n) => n.status === "learned");
   const due = learned.filter((n) => n.due).sort((a, b) => Date.parse(a.reviewDue ?? "") - Date.parse(b.reviewDue ?? ""));
   const solid = learned.filter((n) => (n.mastery ?? 0) >= 0.7).length;
@@ -99,8 +103,37 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   /* ── pan & zoom ─────────────────────────────────────────────────────────────────────────── */
   // null = the whole sky; set once the student pans or zooms.
   const [zoomed, setView] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
-  const view = zoomed ?? { x: 0, y: 0, w: W, h: H };
+  const view = zoomed ?? bounds;
   const svgRef = useRef<SVGSVGElement>(null);
+  /** The map's size on screen, so stars and labels keep one size on screen at any zoom. */
+  const [px, setPx] = useState({ w: 1100, h: 700 });
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      const r = el.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) setPx({ w: r.width, h: r.height });
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [data]);
+  /** Map units per screen pixel ("meet" fit: the tighter axis decides). */
+  const k = Math.max(view.w / Math.max(200, px.w), view.h / Math.max(150, px.h));
+  const labelled = useMemo(() => visibleLabels(
+    (data?.nodes ?? []).filter((n) => positions[n.key]).map((n) => {
+      const m = n.mastery ?? 0;
+      return {
+        key: n.key,
+        x: positions[n.key].x,
+        y: positions[n.key].y,
+        r: (n.status === "next" ? 5 : 5 + 5 * m) * k,
+        text: shortLabel(n.label),
+        priority: (n.key === selected ? 1000 : 0) + (n.due ? 200 : 0) + (n.status === "learned" ? 100 : 0) + m * 50 + (degreeOf[n.key] ?? 0) * 8,
+      };
+    }),
+    k,
+  ), [data, positions, k, selected, degreeOf]);
+
   const drag = useRef<{ x: number; y: number; view: typeof view; moved: boolean } | null>(null);
   const toWorld = (clientX: number, clientY: number) => {
     const r = svgRef.current!.getBoundingClientRect();
@@ -109,7 +142,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   const onWheel = (e: React.WheelEvent) => {
     const p = toWorld(e.clientX, e.clientY);
     const k = Math.exp(Math.max(-0.3, Math.min(0.3, e.deltaY * 0.0015)));
-    const w = Math.max(300, Math.min(W * 1.6, view.w * k));
+    const w = Math.max(bounds.w * 0.06, Math.min(bounds.w * 1.6, view.w * k));
     const h = (w / view.w) * view.h;
     setView({ x: p.x - ((p.x - view.x) * w) / view.w, y: p.y - ((p.y - view.y) * h) / view.h, w, h });
   };
@@ -153,7 +186,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
           {subjects.map((s) => (
             <span key={s} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] capitalize text-white/75">
               <span className="h-2 w-2 rounded-full" style={{ background: hueFor(s, subjects) }} />
-              {s}
+              {subjectName(s)}
             </span>
           ))}
         </div>
@@ -163,7 +196,10 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
         <div className="relative min-w-0 flex-1">
           {!data && !error && (
             <div className="grid h-full place-items-center text-white/60">
-              <Loader2 className="animate-spin" size={22} />
+              <div className="flex flex-col items-center gap-2">
+                <Loader2 className="animate-spin" size={22} />
+                <p className="text-xs text-white/50">Organising what you&apos;ve learned…</p>
+              </div>
             </div>
           )}
           {error && <p className="grid h-full place-items-center text-sm text-white/70">{error}</p>}
@@ -235,6 +271,18 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                   />
                 );
               })}
+              {/* Each subject's name above its cluster: the sky reads before any zooming. */}
+              {subjects.map((sub) => {
+                const pts = (data.nodes ?? []).filter((n) => n.subject === sub && positions[n.key]).map((n) => positions[n.key]);
+                if (pts.length < 2) return null;
+                const cx = pts.reduce((t, p) => t + p.x, 0) / pts.length;
+                const top = Math.min(...pts.map((p) => p.y));
+                return (
+                  <text key={`subject-${sub}`} x={cx} y={top - 34 * k} textAnchor="middle" fontSize={15 * k} fontWeight={800} letterSpacing={2 * k} fill={hueFor(sub, subjects)} opacity={0.55} pointerEvents="none">
+                    {subjectName(sub).toUpperCase()}
+                  </text>
+                );
+              })}
               {data.nodes.map((n) => {
                 const p = positions[n.key];
                 if (!p) return null;
@@ -256,9 +304,12 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                     {n.due && <circle r={r + 8 * k} fill="none" stroke="#fbbf24" strokeWidth={2 * k} className="km-due" />}
                     {selected === n.key && <circle r={r + 13 * k} fill="none" stroke="#fff" strokeWidth={1.5 * k} strokeDasharray={`${3 * k} ${4 * k}`} />}
                     <circle r={r} fill={isNext ? "transparent" : "#f8fafc"} stroke={hueFor(n.subject, subjects)} strokeWidth={(isNext ? 1.5 : 2) * k} strokeDasharray={isNext ? `${3 * k} ${3 * k}` : undefined} opacity={isNext ? 0.7 : 0.35 + 0.65 * m} />
-                    <text y={r + 17 * k} textAnchor="middle" fontSize={13 * k} fontWeight={600} fill={isNext ? "#94a3b8" : "#e2e8f0"} opacity={isNext ? 0.75 : 0.6 + 0.4 * m}>
-                      {n.label}
-                    </text>
+                    {labelled.has(n.key) && (
+                      <text y={r + 17 * k} textAnchor="middle" fontSize={13 * k} fontWeight={600} fill={isNext ? "#94a3b8" : "#e2e8f0"} opacity={isNext ? 0.75 : 0.6 + 0.4 * m}>
+                        {shortLabel(n.label)}
+                      </text>
+                    )}
+                    <title>{n.label}</title>
                   </g>
                 );
               })}
@@ -328,7 +379,7 @@ function ConceptPanel({ node, color, builds, leadsTo, onRate, onReview, onSee, o
   const dueIn = node.dueInDays;
   return (
     <div>
-      <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color }}>{node.subject}</p>
+      <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color }}>{subjectName(node.subject)}</p>
       <h2 className="mt-0.5 text-lg font-semibold">{node.label}</h2>
       {node.summary && <p className="mt-1 text-xs leading-relaxed text-white/65">{node.summary}</p>}
       {node.status === "next" ? (

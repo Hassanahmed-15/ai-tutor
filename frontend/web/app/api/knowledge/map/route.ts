@@ -4,9 +4,12 @@ import { effectiveMastery } from "@/lib/learnerModel";
 import { loadLearnerMemory } from "@/lib/learnerMemoryStore";
 import { edgeConfidence } from "@/lib/knowledge/graph";
 import { conceptsMatching, edgesTouching } from "@/lib/knowledge/store";
+import { ORGANISE_THRESHOLD, organiseMemory, unorganised } from "@/lib/knowledge/organise";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// The first visit may organise a long history (one model call); later visits are quick.
+export const maxDuration = 120;
 
 /**
  * THE STUDENT'S KNOWLEDGE MAP: every concept they have met, with Aria's estimate of how well they
@@ -17,9 +20,19 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const auth = await currentUser();
   if (!auth) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
-  const memory = await loadLearnerMemory(auth.userId);
+  let memory = await loadLearnerMemory(auth.userId);
+  // Older memories (board titles from before the graph) are organised into real concepts the first
+  // time there are enough of them — once, then only again as new unorganised ones pile up.
+  const before = new Set((await conceptsMatching(Object.keys(memory.concepts)).catch(() => [])).map((c) => c.id));
+  if (unorganised(memory, before).length >= ORGANISE_THRESHOLD) {
+    await organiseMemory(auth.userId).catch((error) => console.warn(`[knowledge] organising ${auth.userId} failed: ${(error as Error).message}`));
+    memory = await loadLearnerMemory(auth.userId);
+  }
   const now = Date.now();
-  const learned = Object.values(memory.concepts);
+  const allKeys = Object.keys(memory.concepts);
+  const graphKnown = new Set((await conceptsMatching(allKeys).catch(() => [])).map((c) => c.id));
+  // A star is a real concept: one the graph knows or a lecture taught — never an unorganised title.
+  const learned = Object.values(memory.concepts).filter((c) => !c.offMap && (graphKnown.has(c.key) || (c.taught?.length ?? 0) > 0));
   const keys = learned.map((c) => c.key);
   const edges = keys.length ? await edgesTouching(keys).catch(() => []) : [];
   const known = new Set(keys);

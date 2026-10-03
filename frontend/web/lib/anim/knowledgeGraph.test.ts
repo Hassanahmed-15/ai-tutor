@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { bktUpdate, canonicalKey, conceptStatus, edgeConfidence, implicitCredit, mergeConcept, mergeEdge, nextStability, retrievability, shakyPrerequisites, validateLectureKnowledge } from "../knowledge/graph";
-import { dueForReview, rateConcept, recordAnswer, recordTaught } from "../knowledge/overlay";
-import { layoutKnowledgeMap } from "../knowledge/layout";
+import { dueForReview, rateConcept, recordAnswer, recordTaught, reorganiseConcepts } from "../knowledge/overlay";
+import { layoutKnowledgeMap, mapBounds, shortLabel, STAR_SPACING, visibleLabels } from "../knowledge/layout";
 import { emptyMemory } from "../learnerModel";
 import { canvasPlanRequest } from "../canvas/lessonRequest";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
@@ -126,12 +126,45 @@ test("the planner is told what the student knows, and to open with one refresher
 
 /* ── the map ──────────────────────────────────────────────────────────────────────────────── */
 
-test("the map layout is deterministic, inside its frame, and keeps linked stars closer than unlinked ones", () => {
+test("the map layout is deterministic, keeps linked stars close, and never piles stars up — even 200 unlinked ones", () => {
   const nodes = ["a", "b", "c", "d", "e", "f"].map((key, i) => ({ key, subject: i < 3 ? "biology" : "physics", weight: 1 }));
   const links = [{ from: "a", to: "b", strength: 1 }, { from: "d", to: "e", strength: 1 }];
-  const one = layoutKnowledgeMap(nodes, links, 1600, 1000);
-  assert.deepEqual(one, layoutKnowledgeMap(nodes, links, 1600, 1000), "same input, same sky");
-  for (const p of Object.values(one)) assert.ok(p.x >= 40 && p.x <= 1560 && p.y >= 40 && p.y <= 960);
-  const d = (a: string, b: string) => Math.hypot(one[a].x - one[b].x, one[a].y - one[b].y);
-  assert.ok(d("a", "b") < d("a", "e"), "a linked pair sits closer than stars of different subjects");
+  const one = layoutKnowledgeMap(nodes, links);
+  assert.deepEqual(one, layoutKnowledgeMap(nodes, links), "same input, same sky");
+  const d = (p: Record<string, { x: number; y: number }>, a: string, b: string) => Math.hypot(p[a].x - p[b].x, p[a].y - p[b].y);
+  assert.ok(d(one, "a", "b") < d(one, "a", "e"), "a linked pair sits closer than stars of different subjects");
+  // The account that broke the first layout: 200 concepts, one subject, no links.
+  const many = Array.from({ length: 200 }, (_, i) => ({ key: `c${i}`, subject: "general", weight: 0 }));
+  const sky = layoutKnowledgeMap(many, []);
+  const pts = Object.values(sky);
+  let closest = Infinity;
+  for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) closest = Math.min(closest, Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y));
+  assert.ok(closest >= STAR_SPACING * 0.55, `no two stars touch (closest ${Math.round(closest)})`);
+  const b = mapBounds(sky);
+  assert.ok(b.w / b.h < 2.5 && b.h / b.w < 2.5, "a round sky, not rows along the edges");
+});
+
+test("labels never print over each other, the important ones win, and zooming in shows more", () => {
+  const stars = Array.from({ length: 30 }, (_, i) => ({ key: `s${i}`, x: (i % 6) * 40, y: Math.floor(i / 6) * 40, r: 6, text: `Concept number ${i}`, priority: i === 7 ? 1000 : i }));
+  const far = visibleLabels(stars, 1);
+  assert.ok(far.has("s7"), "the selected star's label always shows");
+  const near = visibleLabels(stars, 0.2);
+  assert.ok(near.size > far.size, "more room when zoomed in");
+  assert.equal(shortLabel("Understanding how while loops repeat until their condition fails"), "Understanding how while…");
+  assert.equal(shortLabel("Glucose"), "Glucose");
+});
+
+test("older memories are organised onto real concepts: duplicates merged, non-concepts kept off the map", () => {
+  let m = emptyMemory("2026-01-01T00:00:00.000Z");
+  const add = (key: string, label: string, mastery: number, at: string) => (m.concepts[key] = { key, label, mastery, evidence: [{ source: "lecture", at, note: "" }], lastSeen: at, topics: ["Overfitting"], firstSeen: at });
+  add("why overfitting happen", "Why Overfitting Happens", 0.4, "2026-02-01T00:00:00.000Z");
+  add("understanding overfitting", "Understanding overfitting", 0.8, "2026-03-01T00:00:00.000Z");
+  add("figure 19 4", "Figure 19.4", 0.55, "2026-03-02T00:00:00.000Z");
+  m = reorganiseConcepts(m, { "why overfitting happen": { key: "overfitting", label: "Overfitting" }, "understanding overfitting": { key: "overfitting", label: "Overfitting" }, "figure 19 4": null }, "2026-10-03T00:00:00.000Z");
+  assert.deepEqual(Object.keys(m.concepts).sort(), ["figure 19 4", "overfitting"]);
+  assert.equal(m.concepts.overfitting.mastery, 0.8, "the best evidence wins");
+  assert.equal(m.concepts.overfitting.firstSeen, "2026-02-01T00:00:00.000Z");
+  assert.equal(m.concepts.overfitting.evidence.length, 2);
+  assert.equal(m.concepts["figure 19 4"].offMap, true, "kept, but never a star");
+  assert.equal(m.mapOrganisedAt, "2026-10-03T00:00:00.000Z");
 });
