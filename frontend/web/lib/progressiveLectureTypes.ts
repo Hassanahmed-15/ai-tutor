@@ -118,6 +118,8 @@ export type ProgressiveLectureInput = {
    * planning profile above is about THIS topic; this is about the person across every topic.
    */
   learnerPersona?: string;
+  /** Who the lesson is for — grade, country, curriculum, subjects — as rules (lib/studentCard.ts). */
+  studentCard?: import("./studentCard").StudentCard;
 };
 
 export type ProgressiveLectureSessionDoc = {

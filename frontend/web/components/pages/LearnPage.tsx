@@ -16,7 +16,8 @@ import { warmNarration } from "@/lib/useNarrationPrefetch";
 import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
-import { knownLevelForTopic } from "@/lib/learnerBasics";
+import { profileLevelForTopic } from "@/lib/learnerBasics";
+import { buildStudentCard, studentCardInstruction } from "@/lib/studentCard";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -2161,10 +2162,14 @@ type BuildCost =
      * a clicked answer takes — and the note says so, so "simpler" or "deeper" is one sentence away.
      * A topic outside their subjects is new ground, and the question is asked.
      */
-    const known = knownLevelForTopic(profile?.learner ?? null, trimmed);
+    // The grade applies in EVERY subject (lib/studentCard.ts): a topic outside their subjects is new
+    // ground at the same grade, not a reason to ask their level again.
+    const known = profileLevelForTopic(profile?.learner ?? null, trimmed);
     if (known) {
       const option = DEPTH_OPTIONS.find((o) => o.level === known.depth) ?? DEPTH_OPTIONS[2];
-      setMemoryNote(`Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile. Say "simpler" or "deeper" any time.`);
+      setMemoryNote(known.subject
+        ? `Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile. Say "simpler" or "deeper" any time.`
+        : `Pitched for your ${known.level.label} level. This isn't one of your subjects, so Aria starts from the basics. Say "simpler" or "deeper" any time.`);
       setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
       return;
     }
@@ -3417,7 +3422,9 @@ type BuildCost =
   if (phase === "teaching") {
     let player: React.ReactNode;
     // Freeform learner-mode string for the live tutor's realtime session instructions.
-    const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}`;
+    // Aria's live voice hears who she is teaching from the first word (lib/studentCard.ts).
+    const card = studentCardInstruction(buildStudentCard(profile?.learner ?? null, builtTopic || topic));
+    const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}${card ? `\n${card}` : ""}`;
     /*
      * A VIDEO LESSON IS BUILT STRICTLY AND TALKED ABOUT FREELY. The lecture teaches only what the
      * video says (that is what makes it a short version of the video), but the chat and the voice

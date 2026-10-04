@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { currentUser } from "@/lib/auth";
+import { studentCardFor } from "@/lib/learnerBasicsStore";
+import { studentCardPlanningLine } from "@/lib/studentCard";
 import OpenAI from "openai";
 import {
   CLARIFY_TOPIC_SYSTEM_PROMPT,
@@ -971,9 +974,12 @@ export async function POST(req: Request) {
     const questionLine = directQuestion
       ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument })
       : topicRequest ? topicLessonInstruction(questionText) : "";
+    // The student card (lib/studentCard.ts): their grade and whether this topic is in their syllabus.
+    const signedIn = await currentUser().catch(() => null);
+    const cardLine = signedIn ? studentCardPlanningLine(await studentCardFor(signedIn.userId, `${topic} ${requestText}`).catch(() => null)) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
-    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${promptRules}`;
+    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${promptRules}`;
     return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined, !sourceDocument && topicRequest, !sourceDocument);
   }
 

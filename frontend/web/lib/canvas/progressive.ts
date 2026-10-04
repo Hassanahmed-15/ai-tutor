@@ -2,7 +2,8 @@ import "server-only";
 
 import type { Beat } from "../lessonContent";
 import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiveLectureTypes";
-import { bounded, canvasBeat, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
+import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
+import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
 import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasRefresherAllowed } from "./lessonRequest";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
@@ -55,6 +56,12 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
         plan = { ...plan, beats: keep };
       }
       if (plan) {
+        // CHECK THE PITCH: a model told a grade still writes above it, so each script is measured
+        // and the ones too hard for this student are rewritten simpler (lib/studentCard.ts).
+        if (input.studentCard) {
+          const fixed = await pitchScripts(openai, plan.beats, input.studentCard.readingGrade);
+          costUsd += fixed.costUsd;
+        }
         return {
           costUsd,
           plan: plan.beats.map((beat, sequence) => ({
@@ -146,6 +153,41 @@ export async function writeCanvasBoard(args: {
   log.unshift(`${beat.id}: ${spec.stage.kind} in ${Math.round((Date.now() - started) / 1000)}s, ${made.attempts < 0 ? "FALLBACK board" : `${made.attempts} attempt(s)`}`);
   return { beat: canvasBeat(canvasBeatId(sessionId, beat.id), beat, index, spec), costUsd: made.costUsd + pictured.costUsd, fallback: made.attempts < 0, log };
 }
+
+/**
+ * Rewrites the scripts written above the student's reading level, keeping every fact, the order and
+ * EXACTLY the number of sentences (each sentence is timed to its board's drawing). A rewrite that
+ * changes the count, or is no easier, is not used. Best effort: on any failure the plan stands.
+ */
+async function pitchScripts(openai: ReturnType<typeof client>, beats: CanvasPlanBeat[], grade: number): Promise<{ costUsd: number }> {
+  const rules = gradeRules(grade);
+  let costUsd = 0;
+  // Two passes at most: a first rewrite often lands a grade short, and the second sees its own score.
+  for (let pass = 1; pass <= 2; pass++) {
+    const tooHard = beats.filter((b) => readingGrade(b.script) > grade + 2);
+    if (tooHard.length === 0) break;
+    const system = `You rewrite a teacher's spoken narration so a student reading at GRADE ${grade} follows every word. For each script: keep every fact and idea, the same order, and EXACTLY the same number of sentences — each sentence is timed to a drawing. Aim for grade ${Math.max(2, grade - 1)}: sentences of at most ${rules.sentenceWords} words, mostly short everyday words of one or two syllables ("main government", not "central authority"; "fights inside", not "internal conflicts"). A technical term the lesson needs stays, followed by a few plain words saying what it means. Never add new content. Return JSON only: {"scripts": {"<id>": "<rewritten script>"}}.`;
+    const user = tooHard.map((b) => `${b.id} (${canvasSentences(b.script).length} sentences, reads at grade ${readingGrade(b.script)}):\n${b.script}`).join("\n\n");
+    try {
+      const { json, costUsd: c } = await bounded(jsonCall(openai, PITCH_MODEL, system, user, 5000), 45_000, "pitch");
+      costUsd += c;
+      const out = (json && typeof json === "object" ? (json as Record<string, unknown>).scripts : null) as Record<string, unknown> | null;
+      for (const b of tooHard) {
+        const next = typeof out?.[b.id] === "string" ? (out[b.id] as string).replace(/\s+/g, " ").trim() : "";
+        if (!next || canvasSentences(next).length !== canvasSentences(b.script).length) continue;
+        if (readingGrade(next) >= readingGrade(b.script)) continue;
+        console.log(`[pitch] ${b.id} pass ${pass}: grade ${readingGrade(b.script)} -> ${readingGrade(next)} (target ${grade})`);
+        b.script = next;
+      }
+    } catch (error) {
+      console.warn(`[pitch] could not rewrite for grade ${grade}: ${(error as Error).message}`);
+      break;
+    }
+  }
+  return { costUsd };
+}
+
+const PITCH_MODEL = process.env.CANVAS_PITCH_MODEL ?? "gpt-5.6-luna";
 
 /** The spec a written canvas Beat carries, if it is one. */
 export function canvasSpecOf(beat: Beat | null | undefined): CanvasBoardSpec | undefined {

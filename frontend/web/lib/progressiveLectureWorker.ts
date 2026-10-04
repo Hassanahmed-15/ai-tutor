@@ -15,6 +15,7 @@ import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
 import { dispatchDueBeats } from "./progressiveDispatch";
 import { learnerBrief } from "./learnerBrief";
+import { studentCardInstruction, studentReadingRule } from "./studentCard";
 import { learnerInstruction, resolveDepth } from "./learnerProfile";
 import {
   progressiveBeat,
@@ -491,7 +492,13 @@ async function generateOneBeat(
    * "strong on" skips source material the student chose to be taught, "how to teach them" asks for
    * analogies — and a strict lesson's content is its source.
    */
-  const personaSection = !strict && input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : "";
+  /*
+   * THE STUDENT CARD (lib/studentCard.ts): their grade as reading-level rules, and whether this is
+   * one of their syllabus subjects. A strict lesson keeps only the reading level — its content is
+   * its source, so no syllabus scope and no local examples.
+   */
+  const cardSection = input.studentCard ? `\n${strict ? studentReadingRule(input.studentCard) : studentCardInstruction(input.studentCard)}` : "";
+  const personaSection = `${cardSection}${!strict && input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : ""}`;
   if (personaSection && planned.sequence === 0) console.log(`[persona] script prompt for ${session.id} carries the student portrait (${personaSection.length} chars)`);
 
   /*

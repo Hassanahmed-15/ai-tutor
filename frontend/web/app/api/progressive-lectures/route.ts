@@ -9,7 +9,7 @@ import { isLearnerProfileSnapshot, shouldIncludeCodeExamples, type LearnerProfil
 import { sanitizeLearnerProfile } from "@/lib/learnerProfile";
 import { recordLesson, snapshotFrom } from "@/lib/learnerModel";
 import { updateLearnerMemory } from "@/lib/learnerMemoryStore";
-import { learnFromLesson } from "@/lib/learnerBasicsStore";
+import { learnFromLesson, studentCardFor } from "@/lib/learnerBasicsStore";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { isProgrammingTopic } from "@/lib/codeSpec";
 
@@ -73,6 +73,10 @@ export async function POST(request: Request) {
     learner,
     learnerPersona: text(body.learnerPersona, 2_000),
   };
+  // The student card: their grade, country, curriculum and subjects from the profile, as rules —
+  // the grade applies to every subject, the subject list decides whether to follow their syllabus.
+  const card = await studentCardFor(auth.userId, `${topic} ${input.focus ?? ""}`).catch(() => null);
+  if (card) input.studentCard = card;
 
   try {
     const lecture = await createProgressiveLectureSession(auth.userId, input);

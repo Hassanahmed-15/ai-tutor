@@ -1,6 +1,7 @@
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { isDirectQuestion, isTopicRequest } from "../planPrompt";
+import { studentCardInstruction } from "../studentCard";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -38,8 +39,12 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     "",
     `THE STUDENT: ${p.expertise}, learning for ${p.goal === "curiosity" ? "curiosity" : `${p.goal} reasons`}, who learns best from ${p.preferredExamples === "mixed" ? "a mix of" : p.preferredExamples} examples. Pitch every script — its words, its examples, how much it assumes — for this student.`,
   );
+  // The grade, country, curriculum and subjects as RULES (lib/studentCard.ts) — before the portrait,
+  // which is background and may be cut.
+  const card = studentCardInstruction(input.studentCard);
+  if (card) lines.push("", card);
   const persona = input.learnerPersona?.trim();
-  if (persona) lines.push(persona.slice(0, 1200));
+  if (persona) lines.push("", persona.slice(0, 2000));
 
   const parts = input.outline?.subtopics.filter((s) => s.title.trim()) ?? [];
   const request = `${input.topic} ${input.focus ?? ""}`;

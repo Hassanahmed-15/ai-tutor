@@ -137,3 +137,16 @@ export function knownLevelForTopic(basics: LearnerBasics | null | undefined, top
   const band = levelBand(level);
   return level && band ? { depth: BAND_DEPTH[band], level, subject } : null;
 }
+
+/**
+ * The level to pitch ANY topic at: the subject's own level when the topic is one of their subjects
+ * (knownLevelForTopic), otherwise their main study level — a Grade 8 student is in Grade 8 in every
+ * subject. `subject` is null when the topic is outside their subjects (new ground, same grade).
+ */
+export function profileLevelForTopic(basics: LearnerBasics | null | undefined, topic: string): { depth: 1 | 2 | 3 | 4 | 5; level: LearnerOption; subject: LearnerOption | null } | null {
+  const known = knownLevelForTopic(basics, topic);
+  if (known) return known;
+  const level = basics?.studyLevel;
+  const band = levelBand(level);
+  return level && band ? { depth: BAND_DEPTH[band], level, subject: null } : null;
+}
