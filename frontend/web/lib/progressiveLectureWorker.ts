@@ -51,7 +51,7 @@ import { buildImageParts, type ContentPart } from "./fullDocumentContext";
 import { depthBudget, strictDepthBudget } from "./lectureDepth";
 import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } from "./beatScriptPrompt";
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
-import { buildProgressivePlan, clean, isReferenceLesson, sourceRoleFor } from "./progressivePlan";
+import { buildProgressivePlan, clean, isReferenceLesson, questionScoped, sourceRoleFor } from "./progressivePlan";
 import { canvasSpecOf, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
 import { extractLectureKnowledge } from "./knowledge/extract";
 import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/planning";
@@ -382,6 +382,11 @@ type BeatSource = {
   scriptGrounding: BeatSourceGrounding | null;
   /** The Questions board's answer sections, as text for the prompt. */
   answerText: string;
+  /**
+   * A strict answer to a question the document barely covers: the blocks that answer it are too few
+   * words to teach from (see questionPageText). The board says so, rather than stopping short.
+   */
+  thinAnswer?: boolean;
   /** How many words the beat's own source says, which sizes a strict script. */
   words: number;
   /** The beat's source as speakable text: a strict lesson's floor when generation fails. */
@@ -417,7 +422,20 @@ function beatSourceFor(input: ProgressiveLectureInput, session: ProgressiveLectu
   const answered = fence && answerText ? { ...fence, text: `${fence.text}\n\n${answerText}` } : fence;
   // A video board is checked against what the video said over its stretch, not only its key points.
   const stretch = answered && document && isVideoSource(document) ? videoTranscriptStretch(document, planned.sourceBlockIds) : "";
-  const scriptSource = answered && stretch ? { ...answered, text: `${answered.text}\n\n${cleanSourceText(stretch)}` } : answered;
+  const withStretch = answered && stretch ? { ...answered, text: `${answered.text}\n\n${cleanSourceText(stretch)}` } : answered;
+  /*
+   * A QUESTION'S SHORT ANSWER IS STILL CHECKED. Answering a question narrows a strict board to the few
+   * blocks that answer it — for "explain me insertion process in bst" against tree del.pdf, one
+   * 14-word figure caption. Under MIN_GROUNDING_WORDS the check used to be skipped (a thin text layer
+   * meant a scanned page whose images are the source), and the board added textbook facts the PDF
+   * never states: "values to the left are smaller", "new nodes are added at the leaves" (2026-10-03).
+   * Such a board is checked against the text of the pages its blocks are on: describing the figure in
+   * the page's own terms passes, outside material does not.
+   */
+  const pageFence = strict && withStretch && document && questionScoped(input) && sourceWordCount(blocks, planned.sourceBlockIds) < MIN_GROUNDING_WORDS
+    ? questionPageText(blocks, planned.sourceBlockIds)
+    : "";
+  const scriptSource = withStretch && pageFence ? { ...withStretch, text: `${withStretch.text}\n\n${cleanSourceText(pageFence)}` } : withStretch;
   const checkable = scriptSource && scriptSource.text.split(/\s+/).filter(Boolean).length >= MIN_GROUNDING_WORDS ? scriptSource : null;
   const figure = document && input.documentId ? sourceFigureRegion(blocks, planned.sourceBlockIds) : null;
   return {
@@ -428,8 +446,18 @@ function beatSourceFor(input: ProgressiveLectureInput, session: ProgressiveLectu
     words: grounding ? sourceWordCount(blocks, planned.sourceBlockIds) : 0,
     spoken: grounding ? sourceScriptFromBlocks(blocks, planned.sourceBlockIds) : "",
     role,
+    ...(pageFence ? { thinAnswer: true } : {}),
     ...(figure && input.documentId ? { figure: { documentId: input.documentId, ...figure } } : {}),
   };
+}
+
+/** All the text on the pages a beat's blocks sit on — the page the student sees its passage on. */
+function questionPageText(blocks: Array<{ id: string; text?: string; heading?: string; pageNumber?: number }>, sourceBlockIds: string[] | undefined): string {
+  const wanted = new Set(sourceBlockIds ?? []);
+  const pages = new Set(blocks.filter((block) => wanted.has(block.id) && typeof block.pageNumber === "number").map((block) => block.pageNumber));
+  if (pages.size === 0) return "";
+  const onPages = blocks.filter((block) => pages.has(block.pageNumber));
+  return scopedBlockText(onPages, onPages.map((block) => block.id));
 }
 
 async function generateOneBeat(
@@ -715,6 +743,15 @@ async function generateOneBeat(
    * line, not the sentence: the sentence carries a key point the coverage gate counted, and without a
    * line of its own the player speaks its standard short bridge ("Now let's look at Layers.").
    */
+  /*
+   * A STRICT ANSWER THE DOCUMENT BARELY GIVES SAYS SO. Asked about insertion, tree del.pdf offers one
+   * figure caption; the strict board teaches that and nothing more, which left a student with one
+   * sentence and no idea why (2026-10-03). This closing line is ours, not content, so it is added after
+   * the gates: it tells the student the document goes no further and where a fuller answer is.
+   */
+  if (source.thinAnswer && beat.script) {
+    beat = { ...beat, script: `${beat.script.trim()} That is all your document says about this. For a fuller explanation, choose "Use it as a reference" when you upload it.` };
+  }
   if (video && beat.transitionIn && repeatsOpening(beat.transitionIn, beat.script)) {
     console.log(`[opening] session=${session.id} seq=${planned.sequence} dropped a title-card line that repeated the first sentence: "${beat.transitionIn.slice(0, 80)}"`);
     beat = { ...beat, transitionIn: undefined };

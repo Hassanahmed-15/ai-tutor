@@ -932,7 +932,16 @@ export async function POST(req: Request) {
      */
     // The student's own words decide question vs lesson — the topic has already been renamed to a
     // subject ("Underfitting in Machine Learning") and no longer carries the "why".
-    const questionText = (typeof body.request === "string" && body.request.trim()) || topic;
+    /*
+     * A QUESTION ASKED OF THE DOCUMENT IS A QUESTION. The page decides that when the file arrives
+     * (LearnPage questionFromUpload) and narrows the scope to it; the planner used to re-judge the
+     * words itself, and "explain me insertion process in bst" — no "how", no "?" — was planned as a
+     * lesson, not held to the 1-2 subtopics a question gets, and taught deletion too (reported
+     * 2026-10-03). The scope's question is the question.
+     */
+    const askedScope = sourceDocument ? sanitizeSourceScope(body.sourceScope) : undefined;
+    const scopedQuestion = askedScope && askedScope.breadth.kind !== "whole" ? askedScope.breadth.focus : "";
+    const questionText = scopedQuestion || (typeof body.request === "string" && body.request.trim()) || topic;
     /*
      * "What is photosynthesis?" names a whole topic: for a typed prompt it gets the full lesson, not
      * one slide. A specific question ("how is the counter incremented in a while loop?") stays 1-2
@@ -941,8 +950,8 @@ export async function POST(req: Request) {
     const broadTopic = !sourceDocument && isBroadTopicQuestion(questionText);
     // A whole topic asked as a question ("what is photosynthesis") is taught as a lesson — by either
     // rule: isTopicRequest (which also keeps it out of isDirectQuestion) or isBroadTopicQuestion.
-    const topicRequest = isTopicRequest(questionText) || broadTopic;
-    const directQuestion = isDirectQuestion(questionText) && !broadTopic;
+    const topicRequest = !scopedQuestion && (isTopicRequest(questionText) || broadTopic);
+    const directQuestion = (Boolean(scopedQuestion) || isDirectQuestion(questionText)) && !broadTopic;
     const sessionLearner = body.learnerProfile ? sanitizeLearnerProfile(body.learnerProfile, topic) : null;
     const learnerLine = sessionLearner
       ? outlineLearnerInstruction(

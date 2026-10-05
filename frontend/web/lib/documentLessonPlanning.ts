@@ -3,6 +3,7 @@ import type { PdfFidelity } from "./sourceScope";
 import type { DepthLevel } from "./learnerProfile";
 import { DEPTH_OPTIONS } from "./diagnosticPrompt";
 import { isQuestionAboutFile } from "./planPrompt";
+import { questionBlocks } from "./questionBlocks";
 
 /**
  * WHICH PAGES A LECTURE IS BUILT FROM.
@@ -94,11 +95,39 @@ export function isSpecificDocumentRequest(value: string, sourceDocument?: unknow
   const sourceTitle = cleanTitle(lesson?.title).toLowerCase();
   if (sourceTitle && text.toLowerCase() === sourceTitle) return false;
 
+  /*
+   * A REQUEST ABOUT SOMETHING IS A QUESTION, HOWEVER SHORT. "explain me insertion of bst" is five
+   * words with no "how" and no "?", so it fell under every rule below and was taught as the whole
+   * PDF — a chapter on deletion (reported 2026-10-03). A request verb with a subject of its own asks
+   * about that subject. Pointing at the document instead ("explain this pdf", "teach me the slides")
+   * still means the whole document, and a bare subject with no verb ("camera sensor") is still a
+   * subject, not a question.
+   */
+  const request = text.match(/^(?:please\s+)?(?:(?:can|could|would)\s+you\s+)?(?:explain|teach|show|describe|tell|walk\s+(?:me|us)\s+through|help\s+(?:me|us)\s+(?:understand|learn)|go\s+over|clarify|break\s+down)\b\s*(.*)$/i);
+  if (request) {
+    const object = request[1].replace(/^(?:me|us|to\s+me)\s+/i, "").replace(/^(?:about|on)\s+/i, "").replace(/[.!?]+$/, "").trim();
+    const pointsAtDocument = /^(?:this|that|these|those|it|everything|all of (?:it|this))$|^(?:the|this|my|these)\s+(?:whole\s+|entire\s+)?(?:document|pdf|file|slides?|deck|presentation|chapter|notes?|pages?|lecture|lesson|material|upload)$/i.test(object);
+    if (object && !pointsAtDocument) return true;
+  }
+
   const asksQuestion = /\?|\b(what|why|how|when|where|which|compare|difference|derive|prove|solve|explain how|explain why)\b/i.test(text);
   // Short deictic requests can still name an exact object in the selected pages. Treating
   // "explain this particular example" as broad used to open a whole-document scope survey.
   const namesSourceObject = /\b(example|worked example|case|exercise|problem|equation|formula|proof|derivation|algorithm|figure|diagram|chart|table|code|snippet)\b/i.test(text);
-  return asksQuestion || namesSourceObject || text.split(/\s+/).length >= 6;
+  if (asksQuestion || namesSourceObject || text.split(/\s+/).length >= 6) return true;
+  /*
+   * WHATEVER IS TYPED IN THE BOX IS THE QUESTION (the student's rule, 2026-10-03: "anything in the
+   * box will be a question"). The rules above recognise a question by its shape, and every shape
+   * they missed — "insertion in bst", five words, no verb — was taught as the whole PDF. So the
+   * document decides: typed words that pick out a PART of it are a question about that part.
+   *
+   * Two cases stay "teach the document", and both are the document's doing, not the wording's:
+   * words the document never uses (a deck uploaded with "camera sensor" typed is still taught as the
+   * deck — the 2026-09-29 fix), and words found all through it (they name its subject, not a part).
+   * questionBlocks returns nothing for both.
+   */
+  const blocks = (Array.isArray(doc?.contentBlocks) ? doc.contentBlocks : []) as Array<{ id: string; text?: string; role?: string }>;
+  return questionBlocks(blocks.filter((block) => block && typeof block.id === "string"), text).length > 0;
 }
 
 /** Ask only when the selected source genuinely contains several teachable concepts. */
