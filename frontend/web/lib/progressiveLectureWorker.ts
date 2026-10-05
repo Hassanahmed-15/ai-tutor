@@ -15,7 +15,7 @@ import { costFor, isModernModel } from "./modelPricing";
 import { dispatchProgressiveTasks } from "./progressiveLectureQueue";
 import { dispatchDueBeats } from "./progressiveDispatch";
 import { learnerBrief } from "./learnerBrief";
-import { studentCardInstruction, studentReadingRule } from "./studentCard";
+import { buildTeachingPolicy, policyForBoards, policyForWriter } from "./teachingPolicy";
 import { learnerInstruction, resolveDepth } from "./learnerProfile";
 import {
   progressiveBeat,
@@ -478,10 +478,15 @@ async function generateOneBeat(
    */
   const learner = input.learner;
   const depth = learner ? resolveDepth(learner) : null;
+  // THE TEACHING POLICY (lib/teachingPolicy.ts): the student card and this lesson's evidence as one
+  // set of decisions. It owns pacing and how much worked-example guidance to give, so the planning
+  // profile below keeps only what they know, and the beat brief is pitched by the same guidance.
+  const policy = input.studentCard ? buildTeachingPolicy(input.studentCard, { learner, depth }) : null;
+  const briefOptions = { strict, guidance: policy?.guidance };
   const learnerSection = learner && depth
     ? strict
-      ? `THIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth, { strict: true })}`
-      : `${learnerInstruction(learner, depth)}\nTHIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth)}`
+      ? `THIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth, briefOptions)}`
+      : `${learnerInstruction(learner, depth, { pacing: !policy })}\nTHIS BEAT, FOR THIS STUDENT: ${learnerBrief(learner, planned, "script", depth, briefOptions)}`
     : "";
   /*
    * WHO THEY ARE ACROSS LESSONS. The portrait Aria keeps of this student (lib/learnerModel.ts
@@ -493,11 +498,11 @@ async function generateOneBeat(
    * analogies — and a strict lesson's content is its source.
    */
   /*
-   * THE STUDENT CARD (lib/studentCard.ts): their grade as reading-level rules, and whether this is
-   * one of their syllabus subjects. A strict lesson keeps only the reading level — its content is
-   * its source, so no syllabus scope and no local examples.
+   * THE TEACHING POLICY in the writer's words: grade as reading-level rules, syllabus scope,
+   * examples, pacing, questions and goal. A strict lesson keeps only the reading level — its content
+   * is its source, so no syllabus scope, no interests and no local examples.
    */
-  const cardSection = input.studentCard ? `\n${strict ? studentReadingRule(input.studentCard) : studentCardInstruction(input.studentCard)}` : "";
+  const cardSection = policy ? `\n${policyForWriter(policy, { strict })}` : "";
   const personaSection = `${cardSection}${!strict && input.learnerPersona?.trim() ? `\n${input.learnerPersona.trim()}` : ""}`;
   if (personaSection && planned.sequence === 0) console.log(`[persona] script prompt for ${session.id} carries the student portrait (${personaSection.length} chars)`);
 
@@ -721,7 +726,8 @@ async function generateOneBeat(
   }
   logTiming("beat-script", session.id, scriptStartedAt, `seq=${planned.sequence} model=${MODEL}${strict ? ` strict=1 words=${wordRange}` : ""}`);
   // The board generators read this as AUDIENCE guidance, so the visual is pitched like the script.
-  if (learner && depth) beat.learnerBrief = learnerBrief(learner, planned, "visual", depth, { strict });
+  if (learner && depth) beat.learnerBrief = learnerBrief(learner, planned, "visual", depth, briefOptions);
+  if (policy) beat.learnerBrief = `${beat.learnerBrief ? `${beat.learnerBrief} ` : ""}${policyForBoards(policy)}`;
   // The portrait's teaching plan reaches the boards too, through the same audience brief — except
   // in a strict lesson, where "how to teach them" is not the source.
   const teachingPlan = strict ? "" : teachingPlanFrom(input.learnerPersona);

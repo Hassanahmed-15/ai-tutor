@@ -1185,3 +1185,9 @@ html[data-reduced-motion="1"] *::after {
   scroll-behavior: auto !important;
 }
 
+/* The "How do you like to learn?" questions (components/auth/LearningPreferencesFlow.tsx): each
+   question rises in; with less motion asked for, it simply appears. */
+.pref-step-in { animation: slide-rise-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .pref-step-in { animation: none; }
+}

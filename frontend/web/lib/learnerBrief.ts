@@ -30,6 +30,8 @@ export const BRIEF_MAX_CHARS = 600;
 
 type Band = "novice" | "intermediate" | "expert";
 
+const GUIDANCE_BAND: Record<"worked" | "faded" | "independent", Band> = { worked: "novice", faded: "intermediate", independent: "expert" };
+
 function band(depth: DepthLevel): Band {
   return depth <= 2 ? "novice" : depth === 3 ? "intermediate" : "expert";
 }
@@ -94,9 +96,11 @@ export function learnerBrief(
   beat: { title: string; objective?: string },
   purpose: "script" | "visual",
   depth: DepthLevel = resolveDepth(profile),
-  options: { strict?: boolean } = {},
+  options: { strict?: boolean; guidance?: "worked" | "faded" | "independent" } = {},
 ): string {
-  const level = band(depth);
+  // The Teaching Policy's guidance (lib/teachingPolicy.ts) when there is one — it weighs the
+  // student's chosen challenge and grade as well as this lesson's depth — else the depth alone.
+  const level: Band = options.guidance ? GUIDANCE_BAND[options.guidance] : band(depth);
   /*
    * Strict: the pitch only. The profile-concept lines below re-teach prerequisites ("re-establish
    * it briefly"), correct misconceptions ("show why this is wrong") and skip what they know ("do not

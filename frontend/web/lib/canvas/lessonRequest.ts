@@ -1,7 +1,8 @@
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
 import type { PlanningKnowledge } from "../knowledge/graph";
 import { isDirectQuestion, isTopicRequest } from "../planPrompt";
-import { studentCardInstruction } from "../studentCard";
+import { resolveDepth } from "../learnerProfile";
+import { buildTeachingPolicy, policyForCanvasPlan, type TeachingPolicy } from "../teachingPolicy";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -35,14 +36,16 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
   if (asked && asked.toLowerCase() !== input.topic.toLowerCase()) lines.push(`The student asked: "${asked.slice(0, 400)}"`);
 
   const p = input.learnerProfile;
+  // THE TEACHING POLICY (lib/teachingPolicy.ts) — grade, preferences, support and this lesson's
+  // evidence as rules — before the portrait, which is background and may be cut. Without a profile,
+  // the planning conversation's summary is all there is.
+  const policy = canvasPolicy(input);
   lines.push(
     "",
-    `THE STUDENT: ${p.expertise}, learning for ${p.goal === "curiosity" ? "curiosity" : `${p.goal} reasons`}, who learns best from ${p.preferredExamples === "mixed" ? "a mix of" : p.preferredExamples} examples. Pitch every script — its words, its examples, how much it assumes — for this student.`,
+    policy
+      ? `${policyForCanvasPlan(policy)}\nOn this topic they are ${p.expertise}. Pitch every script — its words, its examples, how much it assumes — for this student.`
+      : `THE STUDENT: ${p.expertise}, learning for ${p.goal === "curiosity" ? "curiosity" : `${p.goal} reasons`}, who learns best from ${p.preferredExamples === "mixed" ? "a mix of" : p.preferredExamples} examples. Pitch every script — its words, its examples, how much it assumes — for this student.`,
   );
-  // The grade, country, curriculum and subjects as RULES (lib/studentCard.ts) — before the portrait,
-  // which is background and may be cut.
-  const card = studentCardInstruction(input.studentCard);
-  if (card) lines.push("", card);
   const persona = input.learnerPersona?.trim();
   if (persona) lines.push("", persona.slice(0, 2000));
 
@@ -87,6 +90,12 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     : "4 to 6 sentences (60 to 100 words)";
   lines.push("", `SCRIPT LENGTH: each board's script is ${length}.`);
   return lines.join("\n");
+}
+
+/** The lecture's Teaching Policy, or null for a student without a profile. */
+export function canvasPolicy(input: ProgressiveLectureInput): TeachingPolicy | null {
+  if (!input.studentCard) return null;
+  return buildTeachingPolicy(input.studentCard, { learner: input.learner, depth: input.learner ? resolveDepth(input.learner) : null });
 }
 
 /**

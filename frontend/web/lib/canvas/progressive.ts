@@ -5,7 +5,8 @@ import type { ProgressiveBeatPlan, ProgressiveLectureInput } from "../progressiv
 import { bounded, canvasBeat, canvasSentences, client, fallbackSpec, generateSpec, illustrate, jsonCall, PLAN_MODEL, validatePlan, type Clock } from "./generate";
 import { gradeRules, readingGrade } from "../studentCard";
 import { layoutPanel } from "./layout";
-import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasRefresherAllowed } from "./lessonRequest";
+import { canvasBoardCount, canvasBoardDurationMs, canvasPlanRequest, canvasPolicy, canvasRefresherAllowed } from "./lessonRequest";
+import { policyForBoards } from "../teachingPolicy";
 import { applyConceptColours, planConceptColours, recapTour } from "./lessonPasses";
 import { CANVAS_PLAN_PROMPT } from "./prompts";
 import type { CanvasBoardSpec, CanvasPlanBeat } from "./types";
@@ -58,9 +59,14 @@ export async function planCanvasLecture(input: ProgressiveLectureInput, knowledg
       if (plan) {
         // CHECK THE PITCH: a model told a grade still writes above it, so each script is measured
         // and the ones too hard for this student are rewritten simpler (lib/studentCard.ts).
-        if (input.studentCard) {
-          const fixed = await pitchScripts(openai, plan.beats, input.studentCard.readingGrade);
+        // The target is the policy's reading grade: plainer English or simpler language lowers it.
+        const policy = canvasPolicy(input);
+        if (policy) {
+          const fixed = await pitchScripts(openai, plan.beats, policy.readingGrade);
           costUsd += fixed.costUsd;
+          // Each board is written later, from its plan beat alone: it carries the policy's board brief.
+          const audience = policyForBoards(policy);
+          for (const beat of plan.beats) beat.audience = audience;
         }
         return {
           costUsd,
@@ -111,6 +117,7 @@ export async function writeCanvasBoard(args: {
   const extra: string[] = [];
   const shared = beat.objects.filter((o) => colours[o]);
   if (shared.length) extra.push(`Lesson colours — these things appear on several boards, so give them exactly these colours: ${shared.map((o) => `${o} ${colours[o]}`).join(", ")}.`);
+  if (beat.audience) extra.push(`How to pitch this board for the student (presentation only — never change what it depicts): ${beat.audience}`);
   if (args.notes.length) extra.push(`What the student has shown so far (pitch the notes, cues and any interaction to it): ${args.notes.slice(-3).join(" ")}`);
 
   let made: { spec: CanvasBoardSpec; costUsd: number; attempts: number };

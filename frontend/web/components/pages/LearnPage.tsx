@@ -17,7 +17,8 @@ import { splitNarrationSentences } from "@/lib/voice";
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { DEPTH_OPTIONS, depthQuestion, openingQuestion, wantsToStart } from "@/lib/diagnosticPrompt";
 import { profileLevelForTopic } from "@/lib/learnerBasics";
-import { buildStudentCard, studentCardInstruction } from "@/lib/studentCard";
+import { buildStudentCard } from "@/lib/studentCard";
+import { buildTeachingPolicy, policyForVoice } from "@/lib/teachingPolicy";
 import { AdhdLessonPlayer } from "@/components/AdhdLessonPlayer";
 import { DyslexiaLessonPlayer } from "@/components/DyslexiaLessonPlayer";
 import { TestWrittenView } from "@/components/TestWrittenView";
@@ -642,6 +643,8 @@ type BuildCost =
       slowerPace: profile?.slowerPace,
       simplerLanguage: profile?.simplerLanguage,
       notes: profile?.notes,
+      // With a learner profile the server builds the Teaching Policy, which applies pace and language.
+      teachingPolicy: Boolean(profile?.learner),
     }).slice(0, 1_400);
     const block = [personaForPrompt(learnerMemoryRef.current), profileLines].filter(Boolean).join("\n\n");
     return block ? { learnerPersona: block } : {};
@@ -2167,9 +2170,13 @@ type BuildCost =
     const known = profileLevelForTopic(profile?.learner ?? null, trimmed);
     if (known) {
       const option = DEPTH_OPTIONS.find((o) => o.level === known.depth) ?? DEPTH_OPTIONS[2];
+      // What the lesson will lean on, from "How do you like to learn?" (lib/teachingPolicy.ts).
+      const card = buildStudentCard(profile?.learner ?? null, trimmed, {}, profile);
+      const leaning = card ? buildTeachingPolicy(card).because.slice(1, 3) : [];
+      const leaningLine = leaning.length ? ` Leaning on ${leaning.join(" and ")}, as you asked.` : "";
       setMemoryNote(known.subject
-        ? `Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile. Say "simpler" or "deeper" any time.`
-        : `Pitched for your ${known.level.label} level. This isn't one of your subjects, so Aria starts from the basics. Say "simpler" or "deeper" any time.`);
+        ? `Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile.${leaningLine} Say "simpler" or "deeper" any time.`
+        : `Pitched for your ${known.level.label} level. This isn't one of your subjects, so Aria starts from the basics.${leaningLine} Say "simpler" or "deeper" any time.`);
       setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
       return;
     }
@@ -3422,8 +3429,9 @@ type BuildCost =
   if (phase === "teaching") {
     let player: React.ReactNode;
     // Freeform learner-mode string for the live tutor's realtime session instructions.
-    // Aria's live voice hears who she is teaching from the first word (lib/studentCard.ts).
-    const card = studentCardInstruction(buildStudentCard(profile?.learner ?? null, builtTopic || topic));
+    // Aria's live voice hears who she is teaching, and how, from the first word (lib/teachingPolicy.ts).
+    const studentCard = buildStudentCard(profile?.learner ?? null, builtTopic || topic, {}, profile);
+    const card = studentCard ? policyForVoice(buildTeachingPolicy(studentCard)) : "";
     const moodString = `${selectedMode.name} learning mode: ${selectedMode.detail}${card ? `\n${card}` : ""}`;
     /*
      * A VIDEO LESSON IS BUILT STRICTLY AND TALKED ABOUT FREELY. The lecture teaches only what the

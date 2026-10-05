@@ -1,4 +1,5 @@
 import type { LearnerBasics, LearnerOption } from "./db/cosmos";
+import { sanitizePreferences } from "./learningPreferences";
 import { allCurricula, levelBand, sanitizeCountry, sanitizeOption, sanitizeOptions, studyLevelOptions, subjectForTopic, type LevelBand } from "./education";
 
 /**
@@ -38,6 +39,8 @@ export function mergeLearnerBasics(raw: unknown, existing: LearnerBasics | null 
     curricula: has("curricula") ? sanitizeOptions(body.curricula, 8) : existing?.curricula ?? [],
     subjectLevels: has("subjectLevels") ? subjectLevels : existing?.subjectLevels ?? {},
     subjectCurricula: has("subjectCurricula") ? subjectCurricula : existing?.subjectCurricula ?? {},
+    // "How do you like to learn?" — merged field by field, so settings can change one answer.
+    ...(has("preferences") || existing?.preferences ? { preferences: has("preferences") ? sanitizePreferences(body.preferences, existing?.preferences, now) : existing?.preferences ?? null } : {}),
     completedAt: existing?.completedAt ?? null,
     updatedAt: now,
   };

@@ -151,13 +151,19 @@ export type TeachingPreferences = {
   simplerLanguage?: boolean | null;
   /** What the student wrote about themselves on the onboarding screens. */
   notes?: string | null;
+  /** True when the requests carry a Teaching Policy, which already applies the two choices above. */
+  teachingPolicy?: boolean;
 };
 
 export function learnerContextForPrompt(view: LearnerProfileView, prefs: TeachingPreferences = {}): string {
   const b = view.basics;
   const how: string[] = [];
-  if (prefs.slowerPace) how.push("Prefers a slower pace: one idea at a time, short sentences, a pause-worthy recap before moving on, nothing rushed.");
-  if (prefs.simplerLanguage) how.push("Prefers simpler language: plain everyday words, every technical term defined the first time it appears, short sentences.");
+  // Slower pace and simpler language reach the lesson through the Teaching Policy (lib/teachingPolicy.ts),
+  // which weighs them against the grade; here they would only be a second, unweighed copy.
+  if (!prefs.teachingPolicy) {
+    if (prefs.slowerPace) how.push("Prefers a slower pace: one idea at a time, short sentences, a pause-worthy recap before moving on, nothing rushed.");
+    if (prefs.simplerLanguage) how.push("Prefers simpler language: plain everyday words, every technical term defined the first time it appears, short sentences.");
+  }
   const notes = prefs.notes?.replace(/\s+/g, " ").trim().slice(0, 300);
   if (notes) how.push(`What they told Aria about themselves: "${notes}"`);
   if (!b && view.subjects.length === 0 && how.length === 0) return "";

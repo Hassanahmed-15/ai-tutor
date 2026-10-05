@@ -1,12 +1,15 @@
 import { countryName, levelBand, subjectForTopic, SUBJECTS, type EduOption, type LevelBand } from "./education";
-import type { LearnerBasics } from "./db/cosmos";
+import type { AccessibilityProfile, LearnerBasics } from "./db/cosmos";
+import type { LearningPreferences } from "./learningPreferences";
 
 /**
  * THE STUDENT CARD — who the lesson is for, sent with every lecture to the planner, the lecture
  * writer and Aria. Pure, unit-tested in lib/anim/studentCard.test.ts.
  *
  * Built from the profile the student gave at onboarding (lib/learnerBasics.ts): their grade, their
- * country, their curriculum and their subjects. Three rules decide how it is used:
+ * country, their curriculum and their subjects, plus how they like to learn and the support they
+ * chose. The card is the FACTS; lib/teachingPolicy.ts turns them into how to teach, and is the only
+ * thing that writes them into a prompt. Three rules decide how the grade is used:
  *
  *   1. THE GRADE ALWAYS APPLIES, in every subject: it sets how simple the language is and what can be
  *      assumed. A Grade 8 student asking about history is still in Grade 8.
@@ -34,7 +37,15 @@ export type StudentCard = {
   /** The level for THIS subject when the student set or showed one that differs from their main level. */
   subjectLevel: string | null;
   subjectCurricula: string[];
+  /** How they like to learn (onboarding's preferences screen), when they answered it. */
+  preferences: LearningPreferences | null;
+  /** Support chosen on the accessibility screen that changes how a lesson is WRITTEN. */
+  support: StudentSupport;
+  /** How many times they have asked for more examples (lib/learnerModel.ts signals). */
+  moreExamples: number;
 };
+
+export type StudentSupport = { simplerLanguage: boolean; slowerPace: boolean; accessibility: AccessibilityProfile | null };
 
 const BAND_GRADE: Record<LevelBand, number> = { primary: 4, middle: 7, secondary: 9, senior: 11, undergrad: 13, postgrad: 15, professional: 14 };
 
@@ -51,14 +62,26 @@ export function readingGradeFor(level: EduOption | null | undefined): number | n
  * The card for one lesson. `signals` are the student's own tallies (lib/learnerModel.ts): asking for
  * "simpler" again and again moves the reading level down a grade, asking "deeper" moves it up.
  */
-export function buildStudentCard(basics: LearnerBasics | null | undefined, topic: string, signals: { simpler?: number; deeper?: number } = {}): StudentCard | null {
+export function buildStudentCard(
+  basics: LearnerBasics | null | undefined,
+  topic: string,
+  signals: { simpler?: number; deeper?: number; moreExamples?: number } = {},
+  support: { simplerLanguage?: boolean | null; slowerPace?: boolean | null; accessibility?: AccessibilityProfile | null } | null = null,
+): StudentCard | null {
   if (!basics) return null;
   const mine = subjectForTopic(topic, basics.subjects);
   const general = mine ?? subjectForTopic(topic, SUBJECTS.map((s) => ({ id: s.id, label: s.label })));
   const subjectLevel = mine ? basics.subjectLevels?.[mine.id] ?? null : null;
   const level = subjectLevel ?? basics.studyLevel;
   const base = readingGradeFor(level);
-  if (base === null && !basics.country && basics.subjects.length === 0) return null;
+  const preferences = basics.preferences ?? null;
+  const helped: StudentSupport = {
+    simplerLanguage: support?.simplerLanguage === true,
+    slowerPace: support?.slowerPace === true,
+    accessibility: support?.accessibility ?? null,
+  };
+  const anySupport = helped.simplerLanguage || helped.slowerPace || (helped.accessibility !== null && helped.accessibility !== "none");
+  if (base === null && !basics.country && basics.subjects.length === 0 && !preferences?.completedAt && !anySupport) return null;
   const lean = (signals.simpler ?? 0) - (signals.deeper ?? 0);
   const nudge = lean >= 2 ? -1 : lean <= -2 ? 1 : 0;
   return {
@@ -72,6 +95,9 @@ export function buildStudentCard(basics: LearnerBasics | null | undefined, topic
     topicSubject: general?.label ?? null,
     subjectLevel: subjectLevel?.label ?? null,
     subjectCurricula: mine ? (basics.subjectCurricula?.[mine.id] ?? []).map((c) => c.label) : [],
+    preferences,
+    support: helped,
+    moreExamples: signals.moreExamples ?? 0,
   };
 }
 
@@ -82,50 +108,6 @@ export function gradeRules(readingGrade: number): { sentenceWords: number; newTe
   if (readingGrade <= 10) return { sentenceWords: 20, newTerms: 3, assume: "school algebra and basic science vocabulary — no calculus", examples: "school life, technology they use, local news, sport" };
   if (readingGrade <= 12) return { sentenceWords: 24, newTerms: 3, assume: "secondary-school maths and science, including some functions and graphs", examples: "exams, technology, society, careers" };
   return { sentenceWords: 28, newTerms: 4, assume: "university-level background in their field", examples: "real research, industry and professional practice" };
-}
-
-/** What the lecture writers are told — the card in words, with the grade turned into rules. */
-export function studentCardInstruction(card: StudentCard | null | undefined): string {
-  if (!card) return "";
-  const r = gradeRules(card.readingGrade);
-  const where = card.country ? ` in ${card.country}` : "";
-  const lines = [`THE STUDENT: ${card.level ? `${card.level}${where}` : `a student${where}`}${card.curricula.length ? ` (${card.curricula.join(", ")})` : ""}.`];
-  if (card.inSubject) {
-    const syllabus = card.subjectCurricula.length ? card.subjectCurricula.join(", ") : card.curricula.join(", ");
-    lines.push(`This is ${card.inSubject}, one of their school subjects${card.subjectLevel ? `, which they study at ${card.subjectLevel}` : ""}: teach it the way ${syllabus ? `the ${syllabus} syllabus` : "their syllabus"} teaches it at their level — its scope, its terms, its usual examples — and nothing it leaves for later years.`);
-  } else if (card.topicSubject) {
-    lines.push(`${card.topicSubject} is not one of their school subjects, so treat it as new ground — but they are still ${card.level ?? "the same student"}: same language, same age.`);
-  }
-  lines.push(
-    `WRITE FOR A READING LEVEL OF GRADE ${card.readingGrade}: sentences of at most ${r.sentenceWords} words; at most ${r.newTerms} new technical term${r.newTerms === 1 ? "" : "s"} per board, each explained in plain words the first time it appears; assume ${r.assume}.`,
-    `Examples from their own life (${r.examples})${card.country ? `, set in ${card.country} — its places, its money, its everyday life — unless the topic is about somewhere else` : ""}.`,
-  );
-  return lines.join("\n");
-}
-
-/** What the outline planner is told: who the lesson is for and how far it should go — not how to write. */
-export function studentCardPlanningLine(card: StudentCard | null | undefined): string {
-  if (!card) return "";
-  const who = `${card.level ?? "A student"}${card.country ? ` in ${card.country}` : ""}${card.curricula.length ? ` (${card.curricula.join(", ")})` : ""}`;
-  const scope = card.inSubject
-    ? `${card.inSubject} is one of their school subjects${card.subjectLevel ? ` (at ${card.subjectLevel})` : ""}: plan what their syllabus covers at this level, and nothing it leaves for later years.`
-    : card.topicSubject
-      ? `${card.topicSubject} is not one of their school subjects: plan it as new ground, pitched for their level.`
-      : "Pitch the plan for their level.";
-  return `\nWHO THE LESSON IS FOR: ${who}. ${scope}`;
-}
-
-/** Only the reading level — for a strict lesson, whose content is its source. */
-export function studentReadingRule(card: StudentCard): string {
-  const r = gradeRules(card.readingGrade);
-  return `WRITE FOR A READING LEVEL OF GRADE ${card.readingGrade}${card.level ? ` (${card.level})` : ""}: sentences of at most ${r.sentenceWords} words; explain every technical term in plain words the first time it appears.`;
-}
-
-/** The one-line note the planning screen shows, so the student can see and change what Aria assumed. */
-export function studentCardNote(card: StudentCard | null | undefined): string {
-  if (!card || !card.level) return "";
-  const parts = [card.level, card.country, card.inSubject ? card.subjectCurricula[0] ?? card.curricula[0] : null].filter(Boolean);
-  return `Pitched for ${parts.join(" · ")}`;
 }
 
 /* ── checking the result ──────────────────────────────────────────────────────────────────── */

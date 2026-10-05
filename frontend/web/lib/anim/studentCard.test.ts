@@ -1,10 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildStudentCard, gradeRules, readingGrade, readingGradeFor, studentCardInstruction, studentCardNote, studentCardPlanningLine, studentReadingRule } from "../studentCard";
+import { buildStudentCard, gradeRules, readingGrade, readingGradeFor, type StudentCard } from "../studentCard";
+import { buildTeachingPolicy, policyForPlanner, policyForWriter, policyNote } from "../teachingPolicy";
 import { profileLevelForTopic } from "../learnerBasics";
 import { canvasPlanRequest } from "../canvas/lessonRequest";
 import type { LearnerBasics } from "../db/cosmos";
 import type { ProgressiveLectureInput } from "../progressiveLectureTypes";
+
+// The card as the writers see it: through the Teaching Policy (lib/teachingPolicy.ts).
+const studentCardInstruction = (card: StudentCard) => policyForWriter(buildTeachingPolicy(card));
+const studentCardNote = (card: StudentCard) => policyNote(buildTeachingPolicy(card));
+const studentCardPlanningLine = (card: StudentCard) => policyForPlanner(buildTeachingPolicy(card));
+const studentReadingRule = (card: StudentCard) => policyForWriter(buildTeachingPolicy(card), { strict: true });
 
 const grade8: LearnerBasics = {
   country: "PK",

@@ -4,29 +4,37 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { PREFERENCES, PROFILE_OPTIONS } from "@/lib/accessibilityProfiles";
 import type { AccessibilityProfile } from "@/lib/db/cosmos";
+import { levelBand } from "@/lib/education";
+import type { LearningPreferences } from "@/lib/learningPreferences";
 import type { LearnerProfile } from "./AuthGate";
 import { LearnerProfileFields, type LearnerFieldsValue } from "./LearnerProfileFields";
+import { LearningPreferencesFlow } from "./LearningPreferencesFlow";
 
 /**
- * ONBOARDING, TWO SCREENS (owner's spec, 2026-09-29).
+ * ONBOARDING, THREE SCREENS (owner's spec, 2026-09-29; the middle one added 2026-10-05).
  *
  *  1. THE LEARNER PROFILE — name, age, country (detected from the IP address, always editable),
  *     study level, subjects, curriculum/exam/track. It sets up the learner's educational context so
  *     Aria's homepage suggestions, terminology, examples and questions fit from the first lesson.
  *     Name, level and at least one subject are required; the rest can be skipped.
- *  2. ACCESSIBILITY — first a single question. "No, continue" finishes onboarding without the full
+ *  2. HOW THEY LIKE TO LEARN — five tap-only questions, one at a time, every one skippable
+ *     (components/auth/LearningPreferencesFlow.tsx). They become the Teaching Policy every lecture
+ *     follows (lib/teachingPolicy.ts).
+ *  3. ACCESSIBILITY — first a single question. "No, continue" finishes onboarding without the full
  *     menu; "Yes, customize my experience" opens it. Whatever is chosen is stored on the profile and
  *     applied automatically in every session, exactly as before.
  *
- * An account made before screen 1 existed (`profileOnly`) sees screen 1 once, prefilled, and goes
- * straight back in: its accessibility choices are kept as they are.
+ * An account made before a screen existed (`profileOnly`) sees just the screens it is missing — the
+ * profile and/or the preferences — once, prefilled, and goes straight back in: its accessibility
+ * choices are kept as they are.
  *
- * ONE PROFILE, NOT A CHECKLIST (screen 2, unchanged). A lecture cannot be simultaneously audio-only
+ * ONE PROFILE, NOT A CHECKLIST (screen 3, unchanged). A lecture cannot be simultaneously audio-only
  * (blind) and caption-first (deaf), and the ADHD and dyslexia tracks restructure the same beats in
  * different ways, so the profile is one choice; the preferences under it DO compose. Unanswered is
  * stored as null rather than false — silence is not a "no".
  */
 type Tri = boolean | null;
+type Step = "profile" | "preferences" | "access";
 
 type Access = {
   accessibility: AccessibilityProfile | null;
@@ -45,17 +53,27 @@ export function OnboardingScreen({
   email,
   profile,
   profileOnly = false,
+  needsPreferences = false,
   onDone,
 }: {
   email: string;
   profile?: LearnerProfile;
-  /** Already onboarded before the learner profile existed: screen 1 only. */
+  /** Already onboarded before the newer screens existed: only the missing ones. */
   profileOnly?: boolean;
+  /** The preferences screen has not been seen yet. */
+  needsPreferences?: boolean;
   onDone: () => void;
 }) {
   const learner = profile?.learner ?? null;
-  // A new account that finished screen 1 but not screen 2 resumes on screen 2.
-  const [step, setStep] = useState<1 | 2>(!profileOnly && learner?.completedAt ? 2 : 1);
+  // The screens this account still needs, in order. A new account resumes where it left off.
+  const steps: Step[] = profileOnly
+    ? ([] as Step[]).concat(learner?.completedAt ? [] : ["profile"], needsPreferences ? ["preferences"] : [])
+    : ["profile", "preferences", "access"];
+  const firstStep: Step = profileOnly
+    ? steps[0] ?? "profile"
+    : !learner?.completedAt ? "profile" : !learner.preferences?.completedAt ? "preferences" : "access";
+  const [step, setStep] = useState<Step>(firstStep);
+  const stepAfter = (current: Step): Step | null => steps[steps.indexOf(current) + 1] ?? null;
   const [displayName, setDisplayName] = useState(profile?.displayName ?? "");
   const [age, setAge] = useState(profile?.age ? String(profile.age) : "");
   const [fields, setFields] = useState<LearnerFieldsValue>({
@@ -117,20 +135,44 @@ export function OnboardingScreen({
         displayName: displayName.trim(),
         age: age ? Number(age) : null,
         learner: { ...fields, complete: true },
-        // Screen 1 of 2 for a new account; an existing one is already onboarded.
+        // Screen 1 of 3 for a new account; an existing one is already onboarded.
         ...(profileOnly ? {} : { complete: false }),
       });
-      if (profileOnly) onDone();
-      else {
-        setBusy(false);
-        setStep(2);
-        window.scrollTo({ top: 0 });
-      }
+      goTo(stepAfter("profile"));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save that.");
       setBusy(false);
     }
   }
+
+  /** On to the next screen, or into the app when this was the last one this account needed. */
+  function goTo(next: Step | null) {
+    if (!next) return onDone();
+    setBusy(false);
+    setError(null);
+    setStep(next);
+    window.scrollTo({ top: 0 });
+  }
+
+  async function savePreferences(prefs: LearningPreferences) {
+    if (busy) return;
+    setBusy(true);
+    setError(null);
+    try {
+      await save({
+        // Finishing — answered or skipped — marks the screen seen, so it is shown once.
+        learner: { preferences: { ...prefs, complete: true } },
+        ...(profileOnly ? {} : { complete: false }),
+      });
+      goTo(stepAfter("preferences"));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not save that.");
+      setBusy(false);
+    }
+  }
+
+  // Primary-school students read the kid wording on the preferences screen.
+  const kid = levelBand(fields.studyLevel) === "primary" || (Number(age) > 0 && Number(age) <= 11);
 
   async function finish(withSupport: boolean) {
     if (busy) return;
@@ -152,14 +194,25 @@ export function OnboardingScreen({
 
   return (
     <main className="hud-canvas hud-grain relative min-h-screen overflow-y-auto px-6 py-14">
-      <div className="relative z-10 mx-auto w-full max-w-lg">
-        {!profileOnly && (
+      <div className={`relative z-10 mx-auto w-full ${step === "preferences" ? "max-w-2xl" : "max-w-lg"}`}>
+        {steps.length > 1 && step !== "preferences" && (
           <p className="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-[var(--hud-text-faint)]" aria-live="polite">
-            Step {step} of 2
+            Step {steps.indexOf(step) + 1} of {steps.length}
           </p>
         )}
 
-        {step === 1 ? (
+        {step === "preferences" ? (
+          <LearningPreferencesFlow
+            initial={learner?.preferences ?? null}
+            kid={kid}
+            name={displayName}
+            saving={busy}
+            error={error}
+            finishLabel={stepAfter("preferences") ? "Continue" : "Start learning"}
+            onFinish={(prefs) => void savePreferences(prefs)}
+            onBack={steps.includes("profile") ? () => goTo("profile") : undefined}
+          />
+        ) : step === "profile" ? (
           <>
             <h1 className="font-display text-[2.3rem] leading-tight tracking-[-0.03em] text-[var(--hud-text)]">
               {profileOnly ? "Tell Aria about your studies." : "Before we start."}
@@ -347,11 +400,11 @@ export function OnboardingScreen({
 
             <button
               type="button"
-              onClick={() => { setStep(1); setError(null); }}
+              onClick={() => { setStep("preferences"); setError(null); }}
               disabled={busy}
               className="mt-8 inline-flex items-center gap-1.5 text-[0.84rem] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
             >
-              <ArrowLeft aria-hidden="true" size={14} /> Back to your profile
+              <ArrowLeft aria-hidden="true" size={14} /> Back to how you like to learn
             </button>
           </>
         )}

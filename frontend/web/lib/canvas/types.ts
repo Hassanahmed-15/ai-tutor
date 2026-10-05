@@ -266,5 +266,6 @@ export type CanvasPlanBeat = {
   interaction: "try" | "draw" | "quiz" | null;
   overview: boolean;
   /** A short board refreshing a prerequisite the student is shaky on, before the topic proper. */
-  refresher?: boolean;
+  refresher?: boolean;  /** How to pitch the board for this student (lib/teachingPolicy.ts policyForBoards), set after planning. */
+  audience?: string;
 };

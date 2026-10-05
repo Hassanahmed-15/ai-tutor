@@ -42,6 +42,8 @@ export async function GET() {
       // Screen 1 of onboarding (the learner profile) is not done: new accounts meet it first, and
       // accounts made before it existed are shown it once.
       needsLearnerProfile: !user.profile?.learner?.completedAt,
+      // "How do you like to learn?" not seen yet — every account sees it once, new or old.
+      needsPreferences: !user.profile?.learner?.preferences?.completedAt,
       // Signed up through a provider only — no password to change in settings.
       hasPassword: Boolean(user.passwordHash),
       providers: (user.identities ?? []).map((identity) => identity.provider),

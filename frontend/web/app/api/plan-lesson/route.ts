@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
 import { studentCardFor } from "@/lib/learnerBasicsStore";
-import { studentCardPlanningLine } from "@/lib/studentCard";
+import { buildTeachingPolicy, policyForPlanner, policyForQuestions } from "@/lib/teachingPolicy";
+import type { StudentCard } from "@/lib/studentCard";
 import OpenAI from "openai";
 import {
   CLARIFY_TOPIC_SYSTEM_PROMPT,
@@ -113,6 +114,17 @@ const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
  * personaForPrompt), as a block for the planning prompts. The client sends it already framed:
  * earlier-lesson background, which what the student says now overrides. Capped here regardless.
  */
+/**
+ * The signed-in student's card (lib/studentCard.ts), or null. Capped so a slow profile read costs a
+ * planning turn its personal touches, never its speed.
+ */
+async function signedInCard(topic: string): Promise<StudentCard | null> {
+  const signedIn = await currentUser().catch(() => null);
+  if (!signedIn) return null;
+  const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), 1_000));
+  return Promise.race([studentCardFor(signedIn.userId, topic).catch(() => null), timeout]);
+}
+
 function personaLine(value: unknown): string {
   // Aria's portrait (≤ 900) plus the learner profile's lines (lib/learnerProfileView.ts).
   const text = typeof value === "string" ? value.trim().slice(0, 2_000) : "";
@@ -815,6 +827,9 @@ export async function POST(req: Request) {
       : [];
     const accountContext = typeof body.accountContext === "string" ? body.accountContext.slice(0, 400) : "";
     const learnerPersona = personaLine(body.learnerPersona);
+    // The questions and their cards are read by the student: a Grade 4 child gets Grade 4 words.
+    const card = await signedInCard(`${topic} ${typeof body.request === "string" ? body.request.slice(0, 300) : ""}`);
+    const questionWording = card ? policyForQuestions(buildTeachingPolicy(card)) : "";
 
     try {
       const completion = await client.chat.completions.create({
@@ -825,6 +840,7 @@ export async function POST(req: Request) {
             role: "user",
             content: buildDiagnosticUserMessage({ topic, profile: incoming, exchanges, accountContext })
               + learnerPersona
+              + questionWording
               + sourceDocLine,
           },
         ],
@@ -927,12 +943,10 @@ export async function POST(req: Request) {
     // rule: isTopicRequest (which also keeps it out of isDirectQuestion) or isBroadTopicQuestion.
     const topicRequest = isTopicRequest(questionText) || broadTopic;
     const directQuestion = isDirectQuestion(questionText) && !broadTopic;
-    const learnerLine = body.learnerProfile
+    const sessionLearner = body.learnerProfile ? sanitizeLearnerProfile(body.learnerProfile, topic) : null;
+    const learnerLine = sessionLearner
       ? outlineLearnerInstruction(
-          learnerInstruction(
-            sanitizeLearnerProfile(body.learnerProfile, topic),
-            topicComplexity(body.depth),
-          ),
+          learnerInstruction(sessionLearner, topicComplexity(body.depth)),
           { question: directQuestion },
         )
       : "";
@@ -974,9 +988,10 @@ export async function POST(req: Request) {
     const questionLine = directQuestion
       ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument })
       : topicRequest ? topicLessonInstruction(questionText) : "";
-    // The student card (lib/studentCard.ts): their grade and whether this topic is in their syllabus.
-    const signedIn = await currentUser().catch(() => null);
-    const cardLine = signedIn ? studentCardPlanningLine(await studentCardFor(signedIn.userId, `${topic} ${requestText}`).catch(() => null)) : "";
+    // The Teaching Policy (lib/teachingPolicy.ts): their grade, whether this topic is in their
+    // syllabus, their goal and how big the steps should be.
+    const card = await signedInCard(`${topic} ${requestText}`);
+    const cardLine = card ? policyForPlanner(buildTeachingPolicy(card, { learner: sessionLearner, depth: sessionLearner ? resolveDepth(sessionLearner) : null })) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
     const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${promptRules}`;

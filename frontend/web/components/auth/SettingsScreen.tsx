@@ -15,7 +15,9 @@ const TEACHING_DEPTHS: { value: TeachingDepth; label: string; hint: string }[] =
 import { LearnerMemoryPanel } from "@/components/memory/LearnerMemoryPanel";
 import { LearnerProfileInsights } from "@/components/memory/LearnerProfileInsights";
 import { LearnerProfileFields, type LearnerFieldsValue } from "./LearnerProfileFields";
-import { allCurricula, allStudyLevels, curriculaFor, studyLevelOptions, type EduOption } from "@/lib/education";
+import { allCurricula, allStudyLevels, curriculaFor, levelBand, studyLevelOptions, type EduOption } from "@/lib/education";
+import { emptyPreferences, preferenceSummary, type LearningPreferences } from "@/lib/learningPreferences";
+import { LearningPreferencesFlow } from "./LearningPreferencesFlow";
 
 /**
  * Profile and settings.
@@ -68,6 +70,9 @@ export function SettingsScreen({
   // Per subject, where it differs from the main ones — chosen here, or learned from lessons
   // (lib/learnerBasics.ts learnSubjectContext; `learned` marks those, and saving keeps the mark).
   const [subjectLevels, setSubjectLevels] = useState<Record<string, EduOption & { learned?: boolean }>>(profile?.learner?.subjectLevels ?? {});
+  // "How do you like to learn?" — the same questions as onboarding, opened here on request.
+  const [learning, setLearning] = useState<LearningPreferences>(profile?.learner?.preferences ?? emptyPreferences());
+  const [editingLearning, setEditingLearning] = useState(false);
   const [subjectCurricula, setSubjectCurricula] = useState<Record<string, Array<EduOption & { learned?: boolean }>>>(profile?.learner?.subjectCurricula ?? {});
   const levelChoicesFor = (subject: EduOption) => {
     const local = studyLevelOptions(learnerFields.country, [subject]);
@@ -121,6 +126,7 @@ export function SettingsScreen({
             // Only subjects still chosen keep their own level and curriculum.
             subjectLevels: Object.fromEntries(Object.entries(subjectLevels).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
             subjectCurricula: Object.fromEntries(Object.entries(subjectCurricula).filter(([id]) => learnerFields.subjects.some((s) => s.id === id))),
+            preferences: { ...learning, complete: true },
           },
         }),
       });
@@ -296,6 +302,43 @@ export function SettingsScreen({
                       );
                     })}
                   </div>
+                </div>
+              )}
+            </section>
+
+            <section>
+              <h3 className="mb-1 text-[0.95rem] text-[var(--hud-text)]">How you like to learn</h3>
+              <p className="mb-4 text-[0.78rem] leading-relaxed text-[var(--hud-text-faint)]">
+                What lessons lean on: your goal, what helps, how big the steps are, your interests for examples.
+              </p>
+              {editingLearning ? (
+                <div className="rounded-[calc(var(--radius)+4px)] border p-5" style={{ borderColor: "var(--hud-line)" }}>
+                  <LearningPreferencesFlow
+                    initial={learning}
+                    kid={levelBand(learnerFields.studyLevel) === "primary"}
+                    saving={false}
+                    finishLabel="Done"
+                    onFinish={(next) => { setLearning(next); setEditingLearning(false); }}
+                    onBack={() => setEditingLearning(false)}
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {preferenceSummary(learning).map((phrase) => (
+                    <span key={phrase} className="rounded-full border px-2.5 py-1 text-[0.78rem] text-[var(--hud-text-dim)]" style={{ borderColor: "var(--hud-line)" }}>
+                      {phrase}
+                    </span>
+                  ))}
+                  {preferenceSummary(learning).length === 0 && (
+                    <span className="text-[0.82rem] text-[var(--hud-text-faint)]">Not answered yet.</span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setEditingLearning(true)}
+                    className="ml-1 text-[0.82rem] text-[var(--hud-cyan-bright)] underline decoration-[var(--hud-line-strong)] underline-offset-4"
+                  >
+                    {preferenceSummary(learning).length ? "Change" : "Answer now"}
+                  </button>
                 </div>
               )}
             </section>

@@ -13,6 +13,8 @@ export type SessionUser = {
   onboarded: boolean;
   /** Onboarding screen 1 (learner profile) not yet completed — see /api/auth/me. */
   needsLearnerProfile?: boolean;
+  /** The "How do you like to learn?" screen not yet seen — see /api/auth/me. */
+  needsPreferences?: boolean;
   hasPassword?: boolean;
   providers?: string[];
   createdAt?: string;
@@ -121,8 +123,8 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       if (!data.user) return setState("anon");
       setUser(data.user);
       setProfile(data.profile ?? null);
-      // Onboarding until both screens are done; an account from before screen 1 existed sees it once.
-      setState(data.user.onboarded && !data.user.needsLearnerProfile ? "ready" : "onboarding");
+      // Onboarding until every screen is done; an account from before a screen existed sees it once.
+      setState(data.user.onboarded && !data.user.needsLearnerProfile && !data.user.needsPreferences ? "ready" : "onboarding");
     } catch {
       // Still degrades open — a network failure must not lock a student out of a lesson they were
       // mid-way through — but it is reported now rather than mimicking a no-database deployment.
@@ -187,8 +189,9 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       <OnboardingScreen
         email={user?.email ?? ""}
         profile={profile}
-        // Already onboarded: only the learner profile is missing — screen 1, then straight in.
+        // Already onboarded: only the screens it is missing, then straight in.
         profileOnly={Boolean(user?.onboarded)}
+        needsPreferences={Boolean(user?.needsPreferences)}
         onDone={refresh}
       />
     );

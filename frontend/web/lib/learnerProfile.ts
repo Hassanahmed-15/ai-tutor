@@ -300,7 +300,7 @@ function depthLine(depth: DepthLevel): string {
  * than a page of "none recorded" lines, which would otherwise teach the model that these fields are
  * usually empty and can be ignored.
  */
-export function learnerInstruction(profile: LearnerProfile, depth: DepthLevel): string {
+export function learnerInstruction(profile: LearnerProfile, depth: DepthLevel, options: { pacing?: boolean } = {}): string {
   const parts: string[] = [
     `\n\nSTUDENT PROFILE — this lesson is for ONE person, and this is what is known about them. Teach THEM, not a generic audience.`,
     depthLine(depth),
@@ -358,7 +358,9 @@ export function learnerInstruction(profile: LearnerProfile, depth: DepthLevel): 
    * load, but a learner who is simultaneously missing a prerequisite and holding a wrong model is
    * demonstrably carrying more than one who is not.
    */
-  const load = cognitiveLoad(profile, depth);
+  // `pacing: false` when the Teaching Policy is in the same prompt: it already weighs this load
+  // together with the student's chosen pace (lib/teachingPolicy.ts), and two pacing rules disagree.
+  const load = options.pacing === false ? "medium" : cognitiveLoad(profile, depth);
   if (load === "high") {
     parts.push(
       `PACING — HIGH LOAD. This student is juggling several unfamiliar things at once. One new idea per board, ` +

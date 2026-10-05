@@ -101,6 +101,12 @@ export type LearnerBasics = {
   subjectLevels?: Record<string, LearnerOption>;
   /** Per-subject curricula/exams/tracks where they differ from `curricula` — set and learned the same way. */
   subjectCurricula?: Record<string, LearnerOption[]>;
+  /**
+   * How they like to learn — the "How do you like to learn?" screen (lib/learningPreferences.ts),
+   * turned into the Teaching Policy every lecture follows (lib/teachingPolicy.ts). Absent until the
+   * screen is seen; it is shown once, and `completedAt` is set even when every question is skipped.
+   */
+  preferences?: import("../learningPreferences").LearningPreferences | null;
   /** When screen 1 was completed. */
   completedAt: string | null;
   updatedAt: string;
