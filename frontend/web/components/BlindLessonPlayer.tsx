@@ -968,7 +968,7 @@ export function BlindLessonPlayer({
                 stopVoice();
                 onExit();
               }}
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-bold text-white/80 transition hover:bg-white/10"
+              className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
               aria-label="Exit lecture"
             >
               Exit
@@ -977,20 +977,20 @@ export function BlindLessonPlayer({
         </header>
 
         {voiceBlocked && (
-          <div className="rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3.5">
-            <p className="text-sm font-bold text-amber-200">Your browser blocked audio. Press Space to enable sound and start.</p>
+          <div className="rounded-2xl border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3.5">
+            <p className="text-sm font-medium text-[var(--hud-text)]">Your browser blocked audio. Press Space to enable sound and start.</p>
           </div>
         )}
 
         {/* Voice-control status. The mic is on for the whole session, but commands only run
             after the wake name: "Nova, start", "Nova, stop", "Nova, repeat", etc. */}
         {micSupported ? (
-          <div className={`flex flex-wrap items-center gap-3 rounded-2xl border px-5 py-3.5 transition-colors ${thinking ? "border-violet-400/50 bg-violet-500/15" : awaitingCommand ? "border-emerald-400/50 bg-emerald-500/15" : "border-accent-blind/25 bg-accent-blind/10"}`}>
-            <span className={`grid size-9 shrink-0 place-items-center rounded-full ${thinking ? "bg-violet-400/40 text-violet-100 animate-pulse" : awaitingCommand ? "bg-emerald-400/40 text-emerald-100" : micOn ? "bg-emerald-500/25 text-emerald-200" : "bg-white/10 text-white/50"}`} aria-hidden="true">
+          <div className={`flex flex-wrap items-center gap-3 rounded-2xl border px-5 py-3.5 transition-colors ${thinking ? "border-[var(--hud-cyan)] bg-[var(--accent-soft)]" : awaitingCommand ? "border-[var(--ok)] bg-[var(--ok-dim)]" : "border-accent-blind/25 bg-accent-blind/10"}`}>
+            <span className={`grid size-9 shrink-0 place-items-center rounded-full ${thinking ? "bg-[var(--accent-soft)] text-[var(--hud-cyan-bright)] animate-pulse" : awaitingCommand ? "bg-[var(--ok-dim)] text-[var(--ok)]" : micOn ? "bg-[var(--ok-dim)] text-[var(--ok)]" : "bg-[var(--hud-surface-2)] text-[var(--hud-text-dim)]"}`} aria-hidden="true">
               {thinking ? "✦" : awaitingCommand ? "👂" : "🎙"}
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-bold text-white/85" aria-live="polite">
+              <p className="text-sm font-bold text-[var(--hud-text)]" aria-live="polite">
                 {!micOn
                   ? "Microphone is off."
                   : thinking
@@ -1004,13 +1004,13 @@ export function BlindLessonPlayer({
             </div>
             <button
               onClick={() => (micOn ? stopMic() : startMic())}
-              className="shrink-0 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-bold text-white/80 transition hover:bg-white/10"
+              className="shrink-0 rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
             >
               {micOn ? "Turn mic off" : "Turn mic on"}
             </button>
           </div>
         ) : (
-          <p className="rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3.5 text-sm font-bold text-amber-200">
+          <p className="rounded-2xl border border-[var(--hud-cyan)] bg-[var(--accent-soft)] px-5 py-3.5 text-sm font-bold text-[var(--hud-cyan)]">
             Voice control isn&rsquo;t available in this browser — use the keyboard controls below (Space to start).
           </p>
         )}
@@ -1019,7 +1019,7 @@ export function BlindLessonPlayer({
           <button
             onClick={start}
             className="rounded-full px-6 py-3 text-base font-black"
-            style={{ background: "linear-gradient(180deg, var(--accent-blind-bright), var(--accent-blind))", color: "#0c0a2e", boxShadow: "0 0 24px var(--accent-blind-glow)" }}
+            style={{ background: "var(--accent-blind)", color: "var(--accent-on)" }}
             autoFocus
           >
             {index === 0 ? 'Start lecture (or say "Nova, start")' : 'Resume (or say "Nova, start")'}
@@ -1029,7 +1029,7 @@ export function BlindLessonPlayer({
         {/* The transcript: low-vision users get visual confirmation, screen readers announce
             it live without needing focus moved anywhere. This is supplementary, not primary —
             the lecture is fully usable with this region entirely unread, by sound alone. */}
-        <section aria-live="polite" aria-atomic="true" className="min-h-[3em] rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-lg font-semibold leading-relaxed text-white/90">
+        <section aria-live="polite" aria-atomic="true" className="min-h-[3em] rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-lg font-semibold leading-relaxed text-[var(--hud-text)]">
           {announcement}
         </section>
 
@@ -1041,23 +1041,23 @@ export function BlindLessonPlayer({
               submitAnswer();
             }}
           >
-            <label htmlFor="blind-answer" className="text-sm font-bold text-white/60">
+            <label htmlFor="blind-answer" className="text-sm font-bold text-[var(--hud-text-dim)]">
               {micSupported ? 'Speak your answer aloud starting with "Nova"' : "Your answer"}{checkpointAttempts > 0 ? ` (attempt ${checkpointAttempts + 1} of ${MAX_ATTEMPTS})` : ""}
-              {micSupported && <span className="ml-2 font-semibold text-white/40">— for example, “Nova, oxygen”</span>}
+              {micSupported && <span className="ml-2 font-semibold text-[var(--hud-text-dim)]">— for example, “Nova, oxygen”</span>}
             </label>
             <input
               id="blind-answer"
               ref={answerInputRef}
               value={answerValue}
               onChange={(e) => setAnswerValue(e.target.value)}
-              className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-lg font-semibold text-white placeholder:text-white/30 focus:border-accent-blind focus:outline-none"
+              className="rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3.5 text-lg font-semibold text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-accent-blind focus:outline-none"
               placeholder="Type your answer and press Enter"
               autoComplete="off"
             />
             <button
               type="submit"
               className="self-start rounded-2xl px-6 py-3 text-base font-black"
-              style={{ background: "linear-gradient(180deg, var(--accent-blind-bright), var(--accent-blind))", color: "#0c0a2e", boxShadow: "0 0 24px var(--accent-blind-glow)" }}
+              style={{ background: "var(--accent-blind)", color: "var(--accent-on)" }}
             >
               Submit answer (Enter)
             </button>
@@ -1065,20 +1065,20 @@ export function BlindLessonPlayer({
         )}
 
         {checkpointResult && phase === "feedback" && (
-          <p className={`rounded-2xl px-5 py-3.5 text-base font-bold ${checkpointResult.correct ? "bg-emerald-500/15 text-emerald-200" : "bg-amber-500/15 text-amber-200"}`}>
+          <p className={`rounded-2xl px-5 py-3.5 text-base font-bold ${checkpointResult.correct ? "bg-[var(--ok-dim)] text-[var(--ok)]" : "bg-[var(--accent-soft)] text-[var(--hud-cyan)]"}`}>
             {checkpointResult.feedback}
           </p>
         )}
 
         {awaitingQuickCheckKey && (
-          <p className="text-sm font-bold uppercase tracking-[0.15em] text-fuchsia-300">Say “Nova” or press any key to continue…</p>
+          <p className="text-sm font-bold uppercase tracking-[0.15em] text-[var(--hud-cyan)]">Say “Nova” or press any key to continue…</p>
         )}
 
         {phase === "done" && (
           <button
             onClick={restart}
             className="self-start rounded-full px-6 py-3 text-base font-black"
-            style={{ background: "linear-gradient(180deg, var(--accent-blind-bright), var(--accent-blind))", color: "#0c0a2e", boxShadow: "0 0 24px var(--accent-blind-glow)" }}
+            style={{ background: "var(--accent-blind)", color: "var(--accent-on)" }}
           >
             Restart (R)
           </button>
@@ -1086,17 +1086,17 @@ export function BlindLessonPlayer({
 
         <nav aria-label="Voice and keyboard controls" className="mt-auto flex flex-col gap-3">
           <p className="text-sm font-semibold text-accent-blind/80">
-            Say <span className="font-black text-white/90">“Nova”</span>, then talk to her naturally — without that name, noise is ignored.
-            Try <span className="font-black text-white/90">“Nova, explain the light part again”</span>, <span className="font-black text-white/90">“Nova, I&rsquo;m a bit lost”</span>, <span className="font-black text-white/90">“Nova, go back”</span>, or quick commands like <span className="font-black text-white/90">“Nova, stop”</span> / <span className="font-black text-white/90">“Nova, next”</span> / <span className="font-black text-white/90">“Nova, exit”</span>. At a checkpoint, answer the same way: <span className="font-black text-white/90">“Nova, oxygen”</span>.
+            Say <span className="font-black text-[var(--hud-text)]">“Nova”</span>, then talk to her naturally — without that name, noise is ignored.
+            Try <span className="font-black text-[var(--hud-text)]">“Nova, explain the light part again”</span>, <span className="font-black text-[var(--hud-text)]">“Nova, I&rsquo;m a bit lost”</span>, <span className="font-black text-[var(--hud-text)]">“Nova, go back”</span>, or quick commands like <span className="font-black text-[var(--hud-text)]">“Nova, stop”</span> / <span className="font-black text-[var(--hud-text)]">“Nova, next”</span> / <span className="font-black text-[var(--hud-text)]">“Nova, exit”</span>. At a checkpoint, answer the same way: <span className="font-black text-[var(--hud-text)]">“Nova, oxygen”</span>.
           </p>
-          <div className="grid grid-cols-2 gap-2 text-sm font-semibold text-white/40 sm:grid-cols-3">
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">Space</kbd> play / pause</p>
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">←</kbd> / <kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">→</kbd> previous / next beat</p>
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">A</kbd> repeat description</p>
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">E</kbd> explain this</p>
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">R</kbd> restart</p>
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">Esc</kbd> exit</p>
-          <p><kbd className="rounded bg-white/10 px-1.5 py-0.5 text-white/70">Enter</kbd> submit answer</p>
+          <div className="grid grid-cols-2 gap-2 text-sm font-semibold text-[var(--hud-text-dim)] sm:grid-cols-3">
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">Space</kbd> play / pause</p>
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">←</kbd> / <kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">→</kbd> previous / next beat</p>
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">A</kbd> repeat description</p>
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">E</kbd> explain this</p>
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">R</kbd> restart</p>
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">Esc</kbd> exit</p>
+          <p><kbd className="rounded bg-[var(--hud-surface-2)] px-1.5 py-0.5 text-[var(--hud-text-dim)]">Enter</kbd> submit answer</p>
           </div>
         </nav>
       </div>

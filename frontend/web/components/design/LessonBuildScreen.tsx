@@ -100,7 +100,7 @@ export function LessonBuildScreen({
      */
     <div
       data-quiet-screen="lesson-build"
-      className="min-h-screen bg-[var(--hud-bg,#0b0d12)] px-5 py-10 text-[var(--hud-text)]"
+      className="min-h-screen bg-[var(--hud-bg)] px-5 py-10 text-[var(--hud-text)]"
     >
       <div className="mx-auto w-full max-w-3xl">
         <header className="text-center">
@@ -118,14 +118,14 @@ export function LessonBuildScreen({
         </header>
 
         {/* THE HEADLINE BAR. One number, one bar — the answer to "how much longer". */}
-        <section className="mt-8 rounded-2xl border border-[var(--hud-line)] bg-black/25 p-5">
+        <section className="mt-8 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5">
           <div className="flex items-baseline justify-between gap-3">
             <span className="text-sm font-semibold">
               {ready ? "Finished" : (LESSON_DESIGN_STAGES[currentStage]?.label ?? progress.status)}
             </span>
             <span className="text-2xl font-bold tabular-nums text-[var(--hud-cyan)]">{Math.round(percent * 100)}%</span>
           </div>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/[0.06]">
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[var(--hud-surface-2)]">
             <div
               className="h-full rounded-full bg-[var(--hud-cyan)] transition-[width] duration-700 ease-out"
               style={{ width: `${Math.max(2, percent * 100)}%` }}
@@ -140,7 +140,7 @@ export function LessonBuildScreen({
         {/* THE SLIDES. The centre of the screen, because it is the only part that answers "what is
             happening right now" rather than "how far along". */}
         {slides.length > 0 && (
-          <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-black/25 p-5">
+          <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5">
             <h2 className="text-sm font-semibold">Slides</h2>
             <ul className="mt-3 space-y-1.5">
               {groupSlides(slides).map((group) => {
@@ -162,7 +162,7 @@ export function LessonBuildScreen({
                       {tone === "done" ? (
                         <Check size={13} strokeWidth={3} className="text-[var(--hud-cyan)]" />
                       ) : tone === "active" ? (
-                        <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--hud-cyan)] shadow-[0_0_7px_var(--hud-cyan)]" />
+                        <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
                       ) : (
                         <span className="h-1.5 w-1.5 rounded-full border border-[var(--hud-text-faint)]/50" />
                       )}
@@ -196,7 +196,7 @@ export function LessonBuildScreen({
 
         {/* THE STAGES. Kept small and secondary: it explains the phase the build is in, which the
             slide list cannot show before any slide has been planned. */}
-        <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-black/25 p-5">
+        <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5">
           <h2 className="text-sm font-semibold">Steps</h2>
           <ul className="mt-3 space-y-1">
             {LESSON_DESIGN_STAGES.map((stage, index) => {
@@ -218,7 +218,7 @@ export function LessonBuildScreen({
                     {done ? (
                       <Check size={11} strokeWidth={3} />
                     ) : active ? (
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--hud-cyan)] shadow-[0_0_6px_var(--hud-cyan)]" />
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
                     ) : (
                       <span className="h-1.5 w-1.5 rounded-full border border-current" />
                     )}
@@ -233,14 +233,14 @@ export function LessonBuildScreen({
         <div className="mt-7 flex items-center justify-center gap-3">
           <button
             onClick={onStop}
-            className="inline-flex h-10 items-center gap-2 rounded-md border border-[var(--hud-line)] px-4 text-xs font-semibold text-[var(--hud-text-dim)] transition hover:bg-white/[0.04]"
+            className="inline-flex h-10 items-center gap-2 rounded-md border border-[var(--hud-line)] px-4 text-xs font-semibold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
           >
             <Square size={14} aria-hidden /> Stop
           </button>
           {ready && (
             <button
               onClick={onStart}
-              className="inline-flex h-10 items-center gap-2 rounded-md bg-[var(--hud-cyan)] px-6 text-xs font-black uppercase tracking-[0.14em] text-black transition hover:brightness-110"
+              className="inline-flex h-10 items-center gap-2 rounded-md bg-[var(--hud-cyan)] px-6 text-xs font-black uppercase tracking-[0.14em] text-[var(--accent-on)] transition hover:brightness-110"
             >
               <Play size={15} aria-hidden /> Start lecture
             </button>

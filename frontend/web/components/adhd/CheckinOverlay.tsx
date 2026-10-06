@@ -1,5 +1,6 @@
 "use client";
 
+import { Mic, MicOff } from "lucide-react";
 import { useEffect, useState } from "react";
 
 /**
@@ -62,13 +63,13 @@ export function CheckinOverlay({
   accentGlowVar?: string;
 }) {
   return (
-    <div className="beat-fade-in absolute inset-0 z-[80] grid place-items-center bg-slate-950/95 p-10 text-center backdrop-blur-md">
+    <div className="beat-fade-in absolute inset-0 z-[80] grid place-items-center bg-[var(--hud-surface)] p-10 text-center backdrop-blur-md">
       <div className="max-w-xl">
         <p className="hud-eyebrow text-[0.7rem] tracking-[0.2em]" style={{ color: accentVar }}>
           {fallback ? "Taking a break" : speaking ? "Aria is talking" : "Aria is listening"}
         </p>
 
-        <p className="mx-auto mt-5 text-4xl font-black leading-tight text-white">
+        <p className="mx-auto mt-5 text-4xl font-black leading-tight text-[var(--hud-text)]">
           {fallback
             ? "Let’s take a breather."
             : phase === "chatting"
@@ -76,7 +77,7 @@ export function CheckinOverlay({
               : "Whenever you’re ready."}
         </p>
 
-        <p className="mt-6 text-lg font-bold text-white/55">
+        <p className="mt-6 text-lg font-bold text-[var(--hud-text-dim)]">
           {fallback
             ? "The lecture is paused. Take a moment, then pick it back up whenever you want."
             : phase === "chatting"
@@ -88,7 +89,7 @@ export function CheckinOverlay({
           <>
             <Dots active={!speaking} accentVar={accentVar} />
             {transcript && (
-              <p className="mx-auto mt-5 max-w-lg text-base font-semibold italic text-white/40">“{transcript}”</p>
+              <p className="mx-auto mt-5 max-w-lg text-base font-semibold italic text-[var(--hud-text-dim)]">“{transcript}”</p>
             )}
             {/* The ONLY control here. Nothing that ends the session or touches the lecture — the way
                 out is agreeing out loud, and a button would just be a fourth thing to skip. */}
@@ -97,11 +98,11 @@ export function CheckinOverlay({
               aria-pressed={muted}
               className={`mt-7 rounded-full border px-5 py-2 text-sm font-bold transition ${
                 muted
-                  ? "border-rose-400/40 bg-rose-500/15 text-rose-200"
-                  : "border-white/15 bg-white/5 text-white/60 hover:text-white/85"
+                  ? "border-[var(--hud-danger)] bg-[var(--danger-dim)] text-[var(--hud-danger)]"
+                  : "border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
               }`}
             >
-              {muted ? "🔇 Mic off — tap to talk" : "🎙 Mic on"}
+              <span className="inline-flex items-center gap-1.5">{muted ? <MicOff size={14} aria-hidden="true" /> : <Mic size={14} aria-hidden="true" />}{muted ? "Mic off — tap to talk" : "Mic on"}</span>
             </button>
           </>
         )}
@@ -124,9 +125,9 @@ export function CheckinOverlay({
         {(fallback || phase === "closing") && (
           <button
             onClick={onManualResume}
-            className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-slate-950 transition"
+            className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-[var(--accent-on)] transition"
             style={{
-              background: `linear-gradient(to right, ${accentBrightVar}, ${accentVar})`,
+              background: accentVar,
               boxShadow: `0 0 36px ${accentGlowVar}`,
             }}
           >

@@ -574,8 +574,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
           : "drawing";
 
   return (
-    <main className="hud-canvas hud-grain relative h-screen overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(249,168,212,0.18),transparent_32%),radial-gradient(circle_at_88%_18%,rgba(96,165,250,0.18),transparent_34%),linear-gradient(180deg,#06080d_0%,#020617_72%)]" />
+    <main className="hud-canvas hud-grain relative h-screen overflow-hidden">
 
       <div className="absolute inset-0">
         {/* Header now carries more controls (engagement meter, draw/highlight, PDF export) than
@@ -586,7 +585,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               Continuous ambient motion directly competes with useAttentionMonitor's
               gaze/blink signal, so it's a hard rule for this file: brackets are fine,
               animation is not. */}
-          <section className="relative min-h-0 overflow-hidden rounded-xl border border-[var(--hud-line)] bg-slate-950/80 shadow-[0_32px_110px_rgba(0,0,0,0.34)]">
+          <section className="relative min-h-0 overflow-hidden rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-1)]">
             <HudCorners accent="var(--accent-adhd)" />
             {stage === "slide" || isCheckpoint ? (
               <SlideStage
@@ -601,7 +600,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               <div className="beat-fade-in relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} drawProgress={drawProgress} paused={stage === "board" && !lesson.playing} />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-5">
-                  <div className="mx-auto max-w-5xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center text-base font-bold leading-snug text-white shadow-2xl backdrop-blur-md">
+                  <div className="mx-auto max-w-5xl rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3 text-center text-base font-bold leading-snug text-[var(--hud-text)] shadow-[var(--elev-2)] backdrop-blur-md">
                     {sentenceCue.text || beat.script}
                   </div>
                 </div>
@@ -698,7 +697,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
           </div>
         </div>
 
-        <header className="absolute left-4 right-4 top-4 z-50 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--hud-line)] bg-slate-950/76 px-5 py-3.5 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl lg:left-6 lg:right-6 lg:top-6">
+        <header className="absolute left-4 right-4 top-4 z-50 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3.5 shadow-[var(--elev-1)] backdrop-blur-xl lg:left-6 lg:right-6 lg:top-6">
           <HudCorners accent="var(--accent-adhd)" />
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
@@ -724,7 +723,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               aria-label="Draw on the board"
               title="Sketch on the board, then ask Aria about it"
               className={`rounded-full border px-3 py-2.5 text-sm font-black transition lg:px-4 ${
-                drawMode ? "border-cyan-300/50 bg-cyan-300/15 text-cyan-100" : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
+                drawMode ? "border-[var(--hud-cyan)] bg-[var(--accent-soft)] text-[var(--hud-cyan-bright)]" : "border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"
               }`}
             >
               <span aria-hidden="true">✎</span><span className="hidden lg:inline"> Draw</span>
@@ -737,7 +736,7 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               aria-label="Highlight the board"
               title="Sweep the marker over anything on the board to ask about it"
               className={`rounded-full border px-3 py-2.5 text-sm font-black transition lg:px-4 ${
-                highlightMode ? "border-amber-300/50 bg-amber-300/15 text-amber-100" : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
+                highlightMode ? "border-[var(--hud-cyan)] bg-[var(--accent-soft)] text-[var(--hud-cyan-bright)]" : "border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"
               }`}
             >
               <span aria-hidden="true">▧</span><span className="hidden lg:inline"> Highlight</span>
@@ -767,22 +766,22 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
               }}
               disabled={exportingPdf}
               title="Export this lesson as a PDF"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-black text-white/80 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2.5 text-sm font-black text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)] disabled:cursor-not-allowed disabled:opacity-40"
             >
               {exportingPdf ? "Exporting…" : "Export PDF"}
             </button>
             <button
               onClick={hasStarted ? togglePlay : startLesson}
               className="rounded-full px-6 py-2.5 text-sm font-black"
-              style={{ background: "linear-gradient(180deg, var(--accent-adhd-bright), var(--accent-adhd))", color: "#2b0a1a", boxShadow: "0 0 24px var(--accent-adhd-glow)" }}
+              style={{ background: "var(--accent-adhd)", color: "var(--accent-on)" }}
             >
               {!hasStarted ? "Start lecture ▶" : lesson.playing ? "Pause ❙❙" : "Resume ▶"}
             </button>
-            <button onClick={restart} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
+            <button onClick={restart} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]">
               Restart
             </button>
             {onExit && (
-              <button onClick={onExit} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
+              <button onClick={onExit} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]">
                 Exit
               </button>
             )}
@@ -799,15 +798,15 @@ export function AdhdLessonPlayer({ onExit, onComplete, beats = demoBeats,
         )}
 
         {attention.error && hasStarted && (
-          <div className="absolute left-4 right-4 top-28 z-50 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3.5 backdrop-blur-xl lg:left-6 lg:right-6">
-            <p className="text-sm font-bold text-amber-200">{attention.error} Auto-pause is unavailable — the lecture still plays normally.</p>
+          <div className="absolute left-4 right-4 top-28 z-50 rounded-2xl border border-[var(--hud-cyan)] bg-[var(--accent-soft)] px-5 py-3.5 backdrop-blur-xl lg:left-6 lg:right-6">
+            <p className="text-sm font-bold text-[var(--hud-cyan)]">{attention.error} Auto-pause is unavailable — the lecture still plays normally.</p>
           </div>
         )}
 
         {voiceBlocked && (
-          <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3.5 backdrop-blur-xl lg:left-6 lg:right-6">
-            <p className="text-sm font-bold text-amber-200">Your browser blocked the teacher&rsquo;s voice. Tap to enable sound.</p>
-            <button onClick={retryVoice} className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-black text-amber-950">
+          <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-2xl border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3.5 backdrop-blur-xl lg:left-6 lg:right-6">
+            <p className="text-sm font-medium text-[var(--hud-text)]">Your browser blocked the teacher&rsquo;s voice. Tap to enable sound.</p>
+            <button onClick={retryVoice} className="shrink-0 rounded-full bg-[var(--hud-cyan)] px-5 py-2 text-sm font-black text-[var(--accent-on)]">
               Enable sound
             </button>
           </div>
@@ -834,11 +833,11 @@ function EngagementMeter({
   return (
     <div className="flex items-center gap-2">
       <div
-        className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2"
+        className="flex items-center gap-2 rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3.5 py-2"
         title="Live engagement (camera-based, processed on-device)"
       >
-        <span className={`size-2 rounded-full ${attention.drifting ? "bg-amber-400" : "bg-accent-adhd"}`} />
-        <span className="text-xs font-black tabular-nums text-white/75">
+        <span className={`size-2 rounded-full ${attention.drifting ? "bg-[var(--hud-cyan)]" : "bg-accent-adhd"}`} />
+        <span className="text-xs font-black tabular-nums text-[var(--hud-text-dim)]">
           {attention.ready ? `${pct}% engaged` : "starting…"}
         </span>
       </div>
@@ -850,11 +849,11 @@ function EngagementMeter({
       */}
       {locked && (
         <div
-          className="flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-2"
+          className="flex items-center gap-2 rounded-full border border-[var(--ok)] bg-[var(--ok-dim)] px-3.5 py-2"
           title="You are in a focused stretch, so check-ins are paused until it ends."
         >
-          <span className="size-2 rounded-full bg-emerald-300" />
-          <span className="text-xs font-black tabular-nums text-emerald-200">
+          <span className="size-2 rounded-full bg-[var(--ok)]" />
+          <span className="text-xs font-black tabular-nums text-[var(--ok)]">
             {mins >= 1 ? `locked in · ${mins}m` : "locked in"}
           </span>
         </div>
@@ -870,19 +869,19 @@ function EngagementMeter({
  *  no ambient/infinite motion is added, consistent with this player's no-new-motion rule. */
 function FocusPauseOverlay({ state, onResume }: { state: "stopped" | "ready"; onResume: () => void }) {
   return (
-    <div className="beat-fade-in absolute inset-0 z-50 grid place-items-center bg-slate-950/80 p-10 text-center backdrop-blur-md">
+    <div className="beat-fade-in absolute inset-0 z-50 grid place-items-center bg-[var(--hud-surface)] p-10 text-center backdrop-blur-md">
       <div>
         <p className="hud-eyebrow text-[0.7rem] tracking-[0.2em] text-accent-adhd">Focus check</p>
-        <p className="mx-auto mt-5 max-w-xl text-4xl font-black leading-tight text-white">
+        <p className="mx-auto mt-5 max-w-xl text-4xl font-black leading-tight text-[var(--hud-text)]">
           Looks like your focus drifted — the lecture is paused.
         </p>
         {state === "stopped" ? (
-          <p className="mt-6 text-lg font-bold text-white/55">Take a breather… hang tight for a moment.</p>
+          <p className="mt-6 text-lg font-bold text-[var(--hud-text-dim)]">Take a breather… hang tight for a moment.</p>
         ) : (
           <button
             onClick={onResume}
-            className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-slate-950 shadow-[0_0_36px_var(--accent-adhd-glow)] transition hover:shadow-[0_0_52px_var(--accent-adhd-glow)]"
-            style={{ background: "linear-gradient(to right, var(--accent-adhd-bright), var(--accent-adhd))" }}
+            className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-[var(--accent-on)] transition"
+            style={{ background: "var(--accent-adhd)" }}
           >
             Resume lecture ▶
           </button>

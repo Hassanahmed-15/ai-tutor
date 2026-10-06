@@ -1,5 +1,6 @@
 "use client";
 
+import { Volume2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { playNarration } from "@/lib/voice";
 
@@ -94,23 +95,23 @@ export function WordHelp({
       aria-modal="true"
       aria-label={`Help with the word ${target.word}`}
       className="fixed inset-0 z-[70] grid place-items-center p-6"
-      style={{ background: "rgba(0,0,0,0.55)" }}
+      style={{ background: "var(--scrim)" }}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
-        className="w-full max-w-md rounded-[1.6rem] border border-white/15 p-6 text-center"
-        style={{ background: "#14151c" }}
+        className="w-full max-w-md rounded-[1.6rem] border border-[var(--hud-line)] p-6 text-center"
+        style={{ background: "var(--hud-surface)" }}
       >
-        <p className="text-[0.72rem] uppercase tracking-[0.18em] text-white/40">The word</p>
-        <p className="mt-2 text-[2.1rem] font-black leading-tight text-white">{target.word}</p>
+        <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[var(--hud-text-dim)]">The word</p>
+        <p className="mt-2 text-[2.1rem] font-black leading-tight text-[var(--hud-text)]">{target.word}</p>
 
         {syllables && syllables.length > 1 && (
           <p className="mt-3 text-[1.4rem] font-bold text-accent-dyslexia">
             {syllables.map((piece, i) => (
               <span key={i}>
-                {i > 0 && <span className="text-white/30"> · </span>}
+                {i > 0 && <span className="text-[var(--hud-text-faint)]"> · </span>}
                 {piece}
               </span>
             ))}
@@ -120,16 +121,16 @@ export function WordHelp({
         <button
           type="button"
           onClick={speak}
-          className="mt-4 rounded-full border border-white/20 px-5 py-2 text-[0.95rem] text-white hover:bg-white/10"
+          className="mt-4 rounded-full border border-[var(--hud-line-strong)] px-5 py-2 text-[0.95rem] text-[var(--hud-text)] hover:bg-[var(--hud-surface-2)]"
         >
-          🔊 Hear it
+          <Volume2 size={14} aria-hidden="true" className="inline" /> Hear it
         </button>
 
         <div className="mt-5 min-h-[3rem]">
-          {loading && !meaning && <p className="text-[0.95rem] text-white/40">Looking it up…</p>}
-          {meaning && <p className="text-[1.05rem] leading-relaxed text-white/85">{meaning}</p>}
+          {loading && !meaning && <p className="text-[0.95rem] text-[var(--hud-text-dim)]">Looking it up…</p>}
+          {meaning && <p className="text-[1.05rem] leading-relaxed text-[var(--hud-text)]">{meaning}</p>}
           {!loading && !meaning && (
-            <p className="text-[0.95rem] text-white/40">No description available — but you can hear it above.</p>
+            <p className="text-[0.95rem] text-[var(--hud-text-dim)]">No description available — but you can hear it above.</p>
           )}
         </div>
 
@@ -137,7 +138,7 @@ export function WordHelp({
           ref={closeRef}
           type="button"
           onClick={onClose}
-          className="mt-5 w-full rounded-[var(--radius)] bg-white/90 py-2.5 text-[0.95rem] font-bold text-black"
+          className="mt-5 w-full rounded-[var(--radius)] bg-[var(--hud-cyan)] py-2.5 text-[0.95rem] font-bold text-[var(--accent-on)]"
         >
           Back to the lesson
         </button>

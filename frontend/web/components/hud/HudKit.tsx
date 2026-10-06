@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { AriaLockup } from "@/components/brand/AriaMark";
 
 /**
  * Shared primitives for THE PRESS — the editorial rebuild.
@@ -63,16 +64,11 @@ export function HudPanel({
   );
 }
 
-/** The masthead. One word, set in the display serif — the logo IS the typography. */
+/** The masthead: the mark and the name. */
 export function HudLogo({ size = 34, onClick }: { size?: number; onClick?: () => void }) {
   return (
-    <button onClick={onClick} className="group flex items-baseline gap-2" aria-label="Aria home">
-      <span
-        className="font-display leading-none tracking-[-0.02em] text-[var(--hud-text)] transition-opacity group-hover:opacity-60"
-        style={{ fontSize: size * 0.72 }}
-      >
-        Aria
-      </span>
+    <button onClick={onClick} className="group flex items-center rounded-[var(--radius)] transition-opacity hover:opacity-80" aria-label="Aria home">
+      <AriaLockup size={Math.round(size * 0.72)} />
     </button>
   );
 }

@@ -60,9 +60,9 @@ if (await page.getByRole("button", { name: /start learning/i }).count()) {
   await page.waitForTimeout(3000);
 }
 
-if (subject) await page.locator("#brief").fill(subject);
 await page.locator('input[type="file"]').first().setInputFiles(pdf);
-await page.getByRole("button", { name: /use all pages/i }).click({ timeout: 90_000 });
+if (subject) await askInPicker(page, subject);
+else await page.getByRole("button", { name: /use all pages/i }).click({ timeout: 90_000 });
 log("pages accepted; waiting for the parse and the source-mode choice");
 
 const choice = strictRun ? /strictly from source|strict/i : /use it as a reference/i;
@@ -137,3 +137,13 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(strictRun ? "\nStrict goes straight to building, as before." : "\nReference mode plans like a typed topic, titled from the PDF's first page.");
+
+/** The uploader is separate from the prompt box: a question about the document is asked in the page picker. */
+async function askInPicker(page, question) {
+  const box = page.locator("#page-prompt");
+  await box.waitFor({ timeout: 180_000 });
+  await box.fill(question);
+  const ask = page.locator("button[data-ask-question]");
+  if (await ask.isEnabled().catch(() => false)) await ask.click();
+  else await box.press("Enter");
+}

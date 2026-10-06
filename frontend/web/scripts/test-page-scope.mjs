@@ -57,22 +57,31 @@ const ALL_PDF_PAGES = [1, 2, 3, 4, 5, 6, 7];
 const sourceMode = (page) => page.getByRole("button", { name: /use it as a reference/i }).first();
 const pagesOf = (resp) => [...new Set((resp?.sourceDocument?.contentBlocks ?? []).map((b) => b.pageNumber))].sort((a, b) => a - b);
 const labelsIn = (text, unit) => [...new Set([...String(text ?? "").matchAll(new RegExp(`\\[${unit} (\\d+)\\]`, "g"))].map((m) => Number(m[1])))].sort((a, b) => a - b);
+async function askInPicker(page, question) {
+  const box = page.locator("#page-prompt");
+  await box.waitFor({ timeout: 180_000 });
+  await box.fill(question);
+  const ask = page.locator("button[data-ask-question]");
+  if (await ask.isEnabled().catch(() => false)) await ask.click();
+  else await box.press("Enter");
+}
+
 async function waitForParse(parses) {
   for (let i = 0; i < 240 && !(parses.at(-1)?.response); i++) await new Promise((r) => setTimeout(r, 500));
   return parses.at(-1);
 }
 
-// ── 1. Front-page question: the picker is skipped and every page is read.
+// ── 1. A question asked in the picker with nothing ticked: every page is read.
+//    (The uploader no longer takes the front page's text, so a question is always asked here.)
 {
   const { ctx, page, parses } = await session();
-  await page.locator("#brief").fill("Why does SMOTE help the minority class?");
   await page.locator('input[type="file"]').first().setInputFiles(pdf);
-  let pickerClicked = false;
+  await askInPicker(page, "Why does SMOTE help the minority class?");
   await sourceMode(page).waitFor({ timeout: 240_000 });
   const parse = await waitForParse(parses);
-  await page.screenshot({ path: path.join(outDir, "1-front-question.png") });
-  check(!pickerClicked && parses.length === 1, "1. front-page question: reached the Strict/Reference choice without pressing anything in the page picker");
-  check(JSON.stringify(pagesOf(parse?.response)) === JSON.stringify(ALL_PDF_PAGES), `1. front-page question: the lecture's document holds every page (${pagesOf(parse?.response).join(",")})`);
+  await page.screenshot({ path: path.join(outDir, "1-picker-question.png") });
+  check(parses.length === 1, "1. picker question: reached the Strict/Reference choice after one parse");
+  check(JSON.stringify(pagesOf(parse?.response)) === JSON.stringify(ALL_PDF_PAGES), `1. picker question: the lecture's document holds every page (${pagesOf(parse?.response).join(",")})`);
   await ctx.close();
 }
 

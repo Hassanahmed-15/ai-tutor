@@ -2,8 +2,8 @@
 @import "../components/viewer/viewer.css";
 
 :root {
-  --background: #0b0713;
-  --foreground: #f7f3ff;
+  --background: var(--page);
+  --foreground: var(--text);
 }
 
 /**
@@ -13,8 +13,8 @@
  */
 .font-display {
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 @theme inline {
@@ -69,8 +69,8 @@ textarea {
 }
 
 ::selection {
-  background: rgba(232, 121, 249, 0.3);
-  color: #f7f3ff;
+  background: var(--accent-soft);
+  color: var(--text);
 }
 
 /* Hand-drawn whiteboard draw-in: stroke animates from invisible to fully drawn,
@@ -775,65 +775,90 @@ textarea {
    redefining values restyles everything without touching a call site. The
    `--hud-*` prefix is now a historical artefact, not a description.
    ============================================================================ */
-:root {
-  /* Deep violet-black. Not pure black and not grey: the ground carries a real
-     purple cast, so surfaces lifted off it read as violet rather than as dirty
-     white. Every surface token is a violet tint rather than a neutral one,
-     which is what stops the "grey box on black" look of the previous pass. */
-  --hud-bg: #0b0713;
-  --hud-bg-2: #140d21;
-  --hud-surface: rgba(167, 121, 255, 0.06);
-  --hud-surface-2: rgba(167, 121, 255, 0.11);
-  --hud-line: rgba(167, 121, 255, 0.16);
-  --hud-line-strong: rgba(167, 121, 255, 0.34);
-  --hud-grid: rgba(167, 121, 255, 0.05);
+:root,
+[data-theme="light"] {
+  color-scheme: light;
 
-  --hud-text: #f7f3ff;
-  --hud-text-dim: rgba(232, 221, 255, 0.62);
-  --hud-text-faint: rgba(232, 221, 255, 0.36);
+  /* ── THE PALETTE ───────────────────────────────────────────────────────────
+     Warm neutrals do the work; one deep indigo marks the thing to do next (the
+     primary action, the selected item, the focus ring). Every other colour means
+     a status and always comes with an icon or a word. Text and muted text clear
+     4.5:1 on page and surface; icons, input borders and focus clear 3:1. */
+  --page: #F7F7F5;
+  --surface: #FFFFFF;
+  --surface-2: #F0EFEC;
+  --border: #E4E3DF;
+  --border-strong: #C9C8C3;
+  /* The outline of a text field: 3:1 on surface and page, so the field can be found. */
+  --input-border: #8F8E89;
+  --text: #141414;
+  --text-muted: #5F5E5A;
+  --text-faint: #8A8984;
+  --accent: #3F4BB8;
+  --accent-hover: #3540A3;
+  --accent-ink: #2F3A99;
+  --accent-on: #FFFFFF;
+  --accent-soft: #ECEEFB;
+  --success: #2F7D4F;
+  --success-soft: #E8F3EC;
+  --warning: #9A6400;
+  --warning-soft: #FBF1DF;
+  --danger: #B4443A;
+  --danger-soft: #FBEAE8;
+  --scrim: rgba(20, 20, 20, 0.32);
+  /* The history sidebar: one step off the page, like a desk beside the sheet. */
+  --sidebar: #F0EFEC;
+  --sidebar-hover: #E6E5E1;
 
-  /* The accent runs violet → pink. `--hud-cyan` is the emphasis token every
-     component already references; keeping the name means no call site changes.
-     The gradient pair is used on the primary action and on emphasised words,
-     which is the only place two colours appear together. */
-  --hud-cyan: #a779ff;
-  --hud-cyan-bright: #f0abfc;
-  --hud-cyan-deep: #7c3aed;
-  --hud-cyan-glow: rgba(167, 121, 255, 0.22);
-  --hud-cyan-glow-soft: rgba(167, 121, 255, 0.09);
-  --accent-gradient: linear-gradient(100deg, #a779ff 0%, #e879f9 100%);
+  /* Knowledge map: one quiet tone per subject, each clearing 3:1 on the page. */
+  --map-1: #3F4BB8;
+  --map-2: #2F7D4F;
+  --map-3: #9A6400;
+  --map-4: #B4443A;
+  --map-5: #2F6FD6;
+  --map-6: #7A4FA0;
+  --map-7: #1F7A7A;
+  --map-8: #6B6A2E;
 
-  /* ── SEMANTIC COLOUR ───────────────────────────────────────────────────────
-     The marketing shell is greyscale. The classroom is not, and cannot be: a
-     student needs to know at a glance whether the mic is live, whether Aria is
-     speaking, and whether the connection dropped. These are the only hues in
-     the product, and each one means exactly one thing.
+  /* ── THE OLD NAMES ─────────────────────────────────────────────────────────
+     Referenced several hundred times across components, so they keep their names
+     and take the new values. `--hud-cyan` is the accent; the prefix is history. */
+  --hud-bg: var(--page);
+  --hud-bg-2: var(--surface-2);
+  --hud-surface: var(--surface);
+  --hud-surface-2: var(--surface-2);
+  --hud-line: var(--border);
+  --hud-line-strong: var(--border-strong);
+  --hud-grid: transparent;
 
-     Every state that uses colour is ALSO given a distinct icon and a text
-     label, so nothing depends on hue alone (WCAG 2.2 AA, 1.4.1). All values are
-     checked to clear 4.5:1 against the classroom ground. */
-  --ok: #4ade80;        /* connected, ready, correct */
-  --ok-dim: rgba(74, 222, 128, 0.14);
-  --listening: #60a5fa; /* the student's channel — mic open, student speaking */
-  --listening-dim: rgba(96, 165, 250, 0.16);
-  --speaking: #c084fc;  /* Aria's channel — deliberately NOT the listening hue,
-                           because who-is-speaking is the single most important
-                           thing this interface communicates */
-  --speaking-dim: rgba(192, 132, 252, 0.16);
-  --hud-warn: #fbbf24;  /* paused, degraded, reconnecting */
-  --warn-dim: rgba(251, 191, 36, 0.15);
-  --hud-danger: #f87171; /* error, permission blocked, destructive */
-  --danger-dim: rgba(248, 113, 113, 0.15);
+  --hud-text: var(--text);
+  --hud-text-dim: var(--text-muted);
+  --hud-text-faint: var(--text-faint);
 
-  /* ── SHAPE ─────────────────────────────────────────────────────────────────
-     6-8px per the brief. Pills are reserved for nothing: a control that looks
-     like a tag does not read as a button. */
+  --hud-cyan: var(--accent);
+  --hud-cyan-bright: var(--accent-ink);
+  --hud-cyan-deep: var(--accent-ink);
+  --hud-cyan-glow: rgba(63, 75, 184, 0.14);
+  --hud-cyan-glow-soft: var(--accent-soft);
+  --accent-gradient: linear-gradient(var(--accent), var(--accent));
+
+  /* Status. Each state is also given an icon and a label, so nothing rests on hue. */
+  --ok: var(--success);
+  --ok-dim: var(--success-soft);
+  --listening: #2F6FD6;
+  --listening-dim: #E6EEFB;
+  --speaking: var(--accent);
+  --speaking-dim: var(--accent-soft);
+  --hud-warn: var(--warning);
+  --warn-dim: var(--warning-soft);
+  --hud-danger: var(--danger);
+  --danger-dim: var(--danger-soft);
+
+  /* ── SHAPE, SPACE, DEPTH, MOTION ─────────────────────────────────────────── */
   --radius-sm: 6px;
   --radius: 8px;
   --radius-lg: 12px;
 
-  /* ── SPACING ───────────────────────────────────────────────────────────────
-     A 4px base scale, so panel padding and control gaps stay in step. */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -842,50 +867,85 @@ textarea {
   --space-6: 32px;
   --space-7: 48px;
 
-  /* ── ELEVATION ─────────────────────────────────────────────────────────────
-     Two levels only. On a near-black ground a shadow reads as a smudge, so
-     depth comes mostly from the border; the shadow only separates overlays. */
-  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --elev-2: 0 8px 28px rgba(0, 0, 0, 0.55);
+  /* Depth comes from a lighter surface and a hairline; the soft shadow is kept for
+     floating panels only. */
+  --elev-1: 0 1px 2px rgba(20, 20, 20, 0.05);
+  --elev-2: 0 1px 2px rgba(20, 20, 20, 0.05), 0 8px 24px rgba(20, 20, 20, 0.08);
 
-  /* ── MOTION ────────────────────────────────────────────────────────────────
-     Fast enough to feel responsive, slow enough to read as a transition. */
   --motion-fast: 120ms;
-  --motion: 200ms;
-  --motion-slow: 320ms;
+  --motion: 180ms;
+  --motion-slow: 240ms;
 
-  /* Mode accents all resolve to the one ink. The mode SELECTOR is gone from the
-     UI, but the mode players still read these tokens; collapsing them keeps
-     those screens coherent instead of reintroducing six competing hues. */
-  --accent-standard: #a779ff;
-  --accent-standard-bright: #f0abfc;
-  --accent-standard-glow: rgba(167, 121, 255, 0.22);
-
-  --accent-blind: #a779ff;
-  --accent-blind-bright: #f0abfc;
-  --accent-blind-glow: rgba(167, 121, 255, 0.22);
-
-  --accent-adhd: #a779ff;
-  --accent-adhd-bright: #f0abfc;
-  --accent-adhd-glow: rgba(167, 121, 255, 0.22);
-
-  --accent-autism: #a779ff;
-  --accent-autism-bright: #f0abfc;
-  --accent-autism-glow: rgba(167, 121, 255, 0.22);
-
-  --accent-dyslexia: #a779ff;
-  --accent-dyslexia-bright: #f0abfc;
-  --accent-dyslexia-glow: rgba(167, 121, 255, 0.22);
-
-  --accent-dysgraphia: #a779ff;
-  --accent-dysgraphia-bright: #f0abfc;
-  --accent-dysgraphia-glow: rgba(167, 121, 255, 0.22);
-
-  --accent-deaf: #a779ff;
-  --accent-deaf-bright: #f0abfc;
-  --accent-deaf-glow: rgba(167, 121, 255, 0.22);
+  /* Mode accents all resolve to the one accent, so the mode players stay coherent. */
+  --accent-standard: var(--accent);
+  --accent-standard-bright: var(--accent-ink);
+  --accent-standard-glow: var(--hud-cyan-glow);
+  --accent-blind: var(--accent);
+  --accent-blind-bright: var(--accent-ink);
+  --accent-blind-glow: var(--hud-cyan-glow);
+  --accent-adhd: var(--accent);
+  --accent-adhd-bright: var(--accent-ink);
+  --accent-adhd-glow: var(--hud-cyan-glow);
+  --accent-autism: var(--accent);
+  --accent-autism-bright: var(--accent-ink);
+  --accent-autism-glow: var(--hud-cyan-glow);
+  --accent-dyslexia: var(--accent);
+  --accent-dyslexia-bright: var(--accent-ink);
+  --accent-dyslexia-glow: var(--hud-cyan-glow);
+  --accent-dysgraphia: var(--accent);
+  --accent-dysgraphia-bright: var(--accent-ink);
+  --accent-dysgraphia-glow: var(--hud-cyan-glow);
+  --accent-deaf: var(--accent);
+  --accent-deaf-bright: var(--accent-ink);
+  --accent-deaf-glow: var(--hud-cyan-glow);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Dark: the same system one step down. Chosen in Settings, or by the device when the
+   student has not chosen. The script in app/layout.tsx sets data-theme before paint. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --page: #111110;
+  --surface: #1A1A19;
+  --surface-2: #232321;
+  --border: #2E2E2B;
+  --border-strong: #3D3D39;
+  --input-border: #706F6A;
+  --text: #F2F2F0;
+  --text-muted: #A3A29D;
+  --text-faint: #7C7B76;
+  --accent: #8B95F0;
+  --accent-hover: #A3ABF4;
+  --accent-ink: #C5CAF8;
+  --accent-on: #111110;
+  --accent-soft: #22264A;
+  --success: #62C28A;
+  --success-soft: rgba(98, 194, 138, 0.14);
+  --warning: #E0AC3C;
+  --warning-soft: rgba(224, 172, 60, 0.14);
+  --danger: #E8705F;
+  --danger-soft: rgba(232, 112, 95, 0.14);
+  --scrim: rgba(0, 0, 0, 0.55);
+  --sidebar: #161615;
+  --sidebar-hover: #232321;
+
+  --map-1: #8B95F0;
+  --map-2: #62C28A;
+  --map-3: #E0AC3C;
+  --map-4: #E8705F;
+  --map-5: #7FA9F5;
+  --map-6: #B99AE0;
+  --map-7: #5FC4C4;
+  --map-8: #C4C27A;
+
+  --hud-cyan-glow: rgba(139, 149, 240, 0.18);
+  --listening: #7FA9F5;
+  --listening-dim: rgba(127, 169, 245, 0.16);
+
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 /**
@@ -897,13 +957,21 @@ textarea {
  * cinema does to its walls. Same token names, so no component needs conditional styling.
  */
 .reading-room {
-  --hud-bg: #060607;
-  --hud-bg-2: #0d0d0e;
-  --hud-line: rgba(255, 253, 250, 0.07);
-  --hud-line-strong: rgba(255, 253, 250, 0.16);
-
   background-color: var(--hud-bg);
   color: var(--hud-text);
+}
+
+/* One visible focus ring for every control that does not draw its own. In the base layer, so a
+   component's own focus utilities (Tailwind's layer) still win over it. */
+@layer base {
+  /* A bare `border` is a hairline, not the text colour (Tailwind v4's default). */
+  *, ::before, ::after, ::backdrop {
+    border-color: var(--hud-line);
+  }
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 /* Baseline OS-level respect for reduced motion. */
@@ -940,23 +1008,12 @@ textarea {
    viewport — the single loudest element on every screen. This is a plain warm
    ground; the sheet does not need ruling. */
 .hud-canvas::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(90% 60% at 15% -10%, rgba(167, 121, 255, 0.14), transparent 70%), radial-gradient(70% 50% at 90% 0%, rgba(232, 121, 249, 0.08), transparent 72%);
-  z-index: 0;
+  content: none;
 }
 
 /* A whisper of tooth, so large flat areas of paper do not read as flat vector. */
 .hud-grain::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.022;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  content: none;
 }
 
 /* Emphasis by ink and italic, not by light. */
@@ -999,50 +1056,54 @@ textarea {
 /* Entrances: text rises and settles, the way a page is set. */
 .hud-materialize {
   opacity: 0;
-  animation: hud-materialize 0.8s var(--ease) forwards;
+  animation: hud-materialize var(--motion) var(--ease) forwards;
 }
 @keyframes hud-materialize {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* The primary action: solid ink, square, letterspaced. The one place the accent
    appears at full strength. */
 .hud-btn-primary {
-  background: var(--accent-gradient);
-  color: #150c22;
+  background: var(--accent);
+  color: var(--accent-on);
   border: 1px solid transparent;
   border-radius: var(--radius);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
-  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
+  transition: background-color var(--motion) var(--ease), color var(--motion) var(--ease);
 }
 .hud-btn-primary:hover {
-  filter: brightness(1.08);
+  background: var(--accent-hover);
+}
+.hud-btn-primary:disabled {
+  background: var(--surface-2);
+  color: var(--text-faint);
 }
 
 /* The secondary action is a rule and a word. */
 .hud-btn-ghost {
-  background: transparent;
-  border: 1px solid var(--hud-line-strong);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  color: var(--hud-text);
-  transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease);
+  color: var(--text);
+  transition: border-color var(--motion) var(--ease), background-color var(--motion) var(--ease);
 }
 .hud-btn-ghost:hover {
-  border-color: var(--hud-text);
-  background: var(--hud-surface);
+  border-color: var(--border-strong);
+  background: var(--surface-2);
 }
 
 /* Section marks: small, letterspaced, quiet. Deliberately sets no colour — a
    Tailwind text utility on the same element has equal specificity, so whichever
    loaded later would win at random. Colour comes from the call site. */
 .hud-eyebrow {
-  font-family: var(--font-hud-mono);
-  font-size: 0.68rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 /* Retired ambient loops. Between them, something on every screen was always

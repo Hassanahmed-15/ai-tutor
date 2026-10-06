@@ -164,7 +164,7 @@ export function OptionPicker({
           role="listbox"
           aria-label={label}
           aria-multiselectable={multiple || undefined}
-          className="absolute inset-x-0 z-30 mt-1 max-h-64 overflow-y-auto rounded-[var(--radius)] border bg-[#12141a] p-1 shadow-2xl"
+          className="absolute inset-x-0 z-30 mt-1 max-h-64 overflow-y-auto rounded-[var(--radius)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-1 shadow-[var(--elev-2)]"
           style={{ borderColor: "var(--hud-line-strong)" }}
         >
           {rows.map((row, i) => (
@@ -175,7 +175,7 @@ export function OptionPicker({
               aria-selected={i === active}
               onMouseDown={(e) => { e.preventDefault(); pick(row.option); }}
               onMouseEnter={() => setActive(i)}
-              className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-[0.88rem] ${i === active ? "bg-white/[0.07] text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"}`}
+              className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-[0.88rem] ${i === active ? "bg-[var(--hud-surface-2)] text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"}`}
             >
               {row.kind === "custom" ? <Plus aria-hidden="true" size={14} /> : row.kind === "ai" ? <Sparkles aria-hidden="true" size={14} className="text-[var(--hud-cyan)]" /> : <Check aria-hidden="true" size={14} className="opacity-0" />}
               <span className="min-w-0 flex-1 truncate">{row.kind === "custom" ? `Add “${row.option.label}”` : row.option.label}</span>

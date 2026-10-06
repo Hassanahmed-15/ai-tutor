@@ -132,7 +132,7 @@ export function PageSelector({
           {/* Said out loud, because a redrawing that looks plausible is worse than one that admits
               it: without this, a region cropped from an approximate preview looks simply wrong. */}
           {approximate && (
-            <p className="mt-1 text-[0.7rem] text-amber-300/80">
+            <p className="mt-1 text-[0.7rem] text-[var(--hud-cyan)]">
               These are rebuilt previews, not the real slides — layout and fonts will differ.
             </p>
           )}
@@ -181,7 +181,7 @@ export function PageSelector({
                   <img
                     src={page.thumbnail}
                     alt=""
-                    className="block aspect-[3/4] w-full bg-white object-cover object-top transition-opacity"
+                    className="block aspect-[3/4] w-full bg-[var(--hud-surface)] object-cover object-top transition-opacity"
                     style={{ opacity: isSelected ? 1 : 0.62 }}
                   />
 

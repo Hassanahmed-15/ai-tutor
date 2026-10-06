@@ -44,7 +44,7 @@ export function ComfortControls({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="dys-comfort"
-        className="rounded-[var(--radius)] border border-white/15 px-3 py-1.5 text-[0.8rem] text-white/70 transition-colors hover:text-white"
+        className="rounded-[var(--radius)] border border-[var(--hud-line)] px-3 py-1.5 text-[0.8rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
       >
         Reading comfort{changed ? " ·" : ""}
       </button>
@@ -52,8 +52,8 @@ export function ComfortControls({
       {open && (
         <div
           id="dys-comfort"
-          className="absolute right-0 z-50 mt-2 w-[19rem] rounded-[var(--radius-lg)] border border-white/15 p-4 shadow-xl"
-          style={{ background: "#12131a" }}
+          className="absolute right-0 z-50 mt-2 w-[19rem] rounded-[var(--radius-lg)] border border-[var(--hud-line)] p-4 shadow-xl"
+          style={{ background: "var(--hud-surface)" }}
         >
           <Row label="Typeface">
             <div className="flex gap-1.5">
@@ -65,8 +65,8 @@ export function ComfortControls({
                   aria-pressed={prefs.font === font}
                   className="flex-1 rounded-[var(--radius)] border px-2 py-1.5 text-[0.78rem] transition-colors"
                   style={{
-                    borderColor: prefs.font === font ? "var(--accent-dyslexia)" : "rgba(255,255,255,0.15)",
-                    color: prefs.font === font ? "var(--accent-dyslexia)" : "rgba(255,255,255,0.7)",
+                    borderColor: prefs.font === font ? "var(--accent-dyslexia)" : "var(--hud-line)",
+                    color: prefs.font === font ? "var(--accent-dyslexia)" : "var(--hud-text-dim)",
                   }}
                 >
                   {font === "opendyslexic" ? "OpenDyslexic" : "Plain sans"}
@@ -113,13 +113,13 @@ export function ComfortControls({
                   className="size-7 rounded-full border-2 transition-transform"
                   style={{
                     background: tint === "none" ? "transparent" : TINT_COLORS[tint],
-                    borderColor: prefs.tint === tint ? "var(--accent-dyslexia)" : "rgba(255,255,255,0.2)",
+                    borderColor: prefs.tint === tint ? "var(--accent-dyslexia)" : "var(--hud-line-strong)",
                     transform: prefs.tint === tint ? "scale(1.12)" : "none",
                   }}
                 >
                   {/* Colour alone must not carry the choice. */}
                   <span className="sr-only">{TINT_LABELS[tint]}</span>
-                  {tint === "none" && <span aria-hidden="true" className="text-[0.7rem] text-white/60">✕</span>}
+                  {tint === "none" && <span aria-hidden="true" className="text-[0.7rem] text-[var(--hud-text-dim)]">✕</span>}
                 </button>
               ))}
             </div>
@@ -139,7 +139,7 @@ export function ComfortControls({
           <button
             type="button"
             onClick={reset}
-            className="mt-3 w-full rounded-[var(--radius)] border border-white/15 py-1.5 text-[0.78rem] text-white/60 hover:text-white"
+            className="mt-3 w-full rounded-[var(--radius)] border border-[var(--hud-line)] py-1.5 text-[0.78rem] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
           >
             Reset to defaults
           </button>
@@ -152,7 +152,7 @@ export function ComfortControls({
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="mb-3">
-      <p className="mb-1.5 text-[0.72rem] uppercase tracking-[0.14em] text-white/45">{label}</p>
+      <p className="mb-1.5 text-[0.72rem] uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">{label}</p>
       {children}
     </div>
   );
@@ -178,9 +178,9 @@ function Slider({
   const id = `dys-${label.replace(/\s+/g, "-").toLowerCase()}`;
   return (
     <div className="mb-3">
-      <label htmlFor={id} className="mb-1 flex items-center justify-between text-[0.72rem] uppercase tracking-[0.14em] text-white/45">
+      <label htmlFor={id} className="mb-1 flex items-center justify-between text-[0.72rem] uppercase tracking-[0.14em] text-[var(--hud-text-dim)]">
         <span>{label}</span>
-        <span className="tabular-nums text-white/35">{format(value)}</span>
+        <span className="tabular-nums text-[var(--hud-text-dim)]">{format(value)}</span>
       </label>
       <input
         id={id}

@@ -40,10 +40,10 @@ export function Leaderboard() {
   if (!entries) return null;
 
   return (
-    <section className="mt-8 w-full rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur">
+    <section className="mt-8 w-full rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 backdrop-blur">
       <div className="mb-3 flex items-baseline justify-between">
-        <h2 className="text-[0.7rem] font-black uppercase tracking-[0.15em] text-teal-300">Focus leaderboard</h2>
-        <span className="text-[0.66rem] text-white/35">ADHD track</span>
+        <h2 className="text-[0.7rem] font-black uppercase tracking-[0.15em] text-[var(--hud-cyan)]">Focus leaderboard</h2>
+        <span className="text-[0.66rem] text-[var(--hud-text-dim)]">ADHD track</span>
       </div>
 
       {/*
@@ -55,12 +55,12 @@ export function Leaderboard() {
         Saying what earns a place is also the only moment the scoring rules get explained anywhere.
       */}
       {entries.length === 0 && (
-        <p className="px-2.5 py-1.5 text-[0.8rem] leading-relaxed text-white/45">
+        <p className="px-2.5 py-1.5 text-[0.8rem] leading-relaxed text-[var(--hud-text-dim)]">
           No scores yet — finish a lesson to take the top spot.{" "}
           {/* Concrete numbers, now that there are only two and neither ever goes down. The whole
               point of a flat scale is that a learner can predict it, which they cannot do from a
               description of where points "come from". */}
-          <span className="text-white/30">
+          <span className="text-[var(--hud-text-faint)]">
             5 points a part, 20 for a checkpoint you get right. Nothing is ever taken away.
           </span>
         </p>
@@ -71,23 +71,23 @@ export function Leaderboard() {
           <li
             key={e.userId}
             className={`flex items-center gap-3 rounded-lg px-2.5 py-1.5 text-sm ${
-              e.isYou ? "bg-teal-400/12 ring-1 ring-teal-400/30" : ""
+              e.isYou ? "bg-[var(--accent-soft)] ring-1 ring-[var(--hud-cyan)]" : ""
             }`}
           >
             {/* tabular-nums so ranks and scores line up as columns rather than drifting by digit width */}
             <span
               className={`w-6 shrink-0 text-right text-[0.75rem] font-black tabular-nums ${
-                e.rank === 1 ? "text-amber-300" : e.rank <= 3 ? "text-white/70" : "text-white/35"
+                e.rank === 1 ? "text-[var(--hud-cyan)]" : e.rank <= 3 ? "text-[var(--hud-text-dim)]" : "text-[var(--hud-text-dim)]"
               }`}
             >
               {e.rank}
             </span>
-            <span className={`min-w-0 flex-1 truncate ${e.isYou ? "font-bold text-white" : "text-white/75"}`}>
+            <span className={`min-w-0 flex-1 truncate ${e.isYou ? "font-bold text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"}`}>
               {e.displayName || e.username}
-              {e.isYou && <span className="ml-2 text-[0.66rem] font-bold text-teal-300">you</span>}
+              {e.isYou && <span className="ml-2 text-[0.66rem] font-bold text-[var(--hud-cyan)]">you</span>}
             </span>
-            <span className="shrink-0 text-[0.75rem] font-black tabular-nums text-amber-300">{e.xp}</span>
-            <span className="w-14 shrink-0 text-right text-[0.66rem] tabular-nums text-white/30">
+            <span className="shrink-0 text-[0.75rem] font-black tabular-nums text-[var(--hud-cyan)]">{e.xp}</span>
+            <span className="w-14 shrink-0 text-right text-[0.66rem] tabular-nums text-[var(--hud-text-faint)]">
               {e.sessions} {e.sessions === 1 ? "lesson" : "lessons"}
             </span>
           </li>

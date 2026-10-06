@@ -1,5 +1,6 @@
 "use client";
 
+import { MessageCircle, Mic, MicOff, Square } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { CodeBoard } from "@/components/sketch/CodeBoard";
@@ -561,7 +562,7 @@ function OfferChips({
           className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition disabled:cursor-default disabled:opacity-40 ${
             chip.accept
               ? "border-[var(--hud-cyan)]/40 bg-[var(--hud-cyan)]/15 text-[var(--hud-text)] enabled:hover:bg-[var(--hud-cyan)]/25"
-              : "border-white/10 bg-white/[0.04] text-[var(--hud-text-dim)] enabled:hover:bg-white/[0.08]"
+              : "border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)] enabled:hover:bg-[var(--hud-surface-2)]"
           }`}
         >
           {chip.label}
@@ -635,9 +636,9 @@ export function ChatPanel({
     return (
       <div className="relative">
         {showThread && (
-          <div className="absolute inset-x-0 bottom-[calc(100%+12px)] z-30 max-h-56 overflow-y-auto rounded-xl border border-white/10 bg-[#0d0f14]/97 p-2.5 shadow-2xl backdrop-blur-xl">
-            <button type="button" onClick={() => setDismissedAt(chat.length)} aria-label="Hide the conversation" className="float-right -mr-1 -mt-1 grid size-6 place-items-center rounded-md text-white/45 hover:bg-white/10 hover:text-white">×</button>
-            {liveError && <p className="mb-1.5 text-xs font-semibold text-rose-300">{liveError}</p>}
+          <div className="absolute inset-x-0 bottom-[calc(100%+12px)] z-30 max-h-56 overflow-y-auto rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-2.5 shadow-[var(--elev-2)] backdrop-blur-xl">
+            <button type="button" onClick={() => setDismissedAt(chat.length)} aria-label="Hide the conversation" className="float-right -mr-1 -mt-1 grid size-6 place-items-center rounded-md text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]">×</button>
+            {liveError && <p className="mb-1.5 text-xs font-semibold text-[var(--hud-danger)]">{liveError}</p>}
             {chat.slice(-4).map((t, i) => (
               <div key={i} className="mb-1.5 text-[0.8rem] leading-relaxed text-[var(--hud-text-dim)] last:mb-0">
                 <span className={`mr-1.5 text-[10px] font-black uppercase tracking-wider ${t.role === "you" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"}`}>{t.role === "you" ? "You" : "Aria"}</span>
@@ -645,7 +646,7 @@ export function ChatPanel({
                 {t.chips && onAnswerOffer && <OfferChips chips={t.chips} disabled={t.answered === true} onChoose={onAnswerOffer} />}
               </div>
             ))}
-            {listening && <p className="text-[0.8rem] text-rose-200">Listening… {interim}</p>}
+            {listening && <p className="text-[0.8rem] text-[var(--listening)]">Listening… {interim}</p>}
             {explaining && <p className="text-[0.8rem] text-[var(--hud-cyan)]">Aria is answering…</p>}
             <div ref={endRef} />
           </div>
@@ -666,7 +667,7 @@ export function ChatPanel({
             onChange={(e) => setQuestion(e.target.value)}
             placeholder={liveActive ? "Live conversation — just speak…" : "Ask Aria about this part…"}
             disabled={explaining || (liveActive && !liveAlwaysOn)}
-            className="h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-black/40 px-3.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none disabled:opacity-50"
+            className="h-11 min-w-0 flex-1 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none disabled:opacity-50"
           />
           <button type="submit" disabled={explaining || (liveActive && !liveAlwaysOn) || !question.trim()} className="hud-btn-primary h-11 shrink-0 rounded-xl px-4 text-sm font-black disabled:opacity-40">
             Ask
@@ -685,7 +686,7 @@ export function ChatPanel({
     <HudPanel className={`flex min-h-0 flex-col overflow-hidden !rounded-[1.5rem] [&>div]:flex [&>div]:h-full [&>div]:min-h-0 [&>div]:flex-col ${compact ? "!rounded-xl" : ""}`}>
       {!compact && (
         <div className="flex items-center gap-2.5 border-b border-[var(--hud-line)] px-5 py-4">
-          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--hud-cyan)]/15 text-sm">💬</span>
+          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--accent-soft)] text-[var(--hud-cyan)]"><MessageCircle size={15} aria-hidden="true" /></span>
           <div>
             <p className="text-sm font-bold text-[var(--hud-text)]">Ask Aria anything</p>
             <p className="text-[11px] leading-tight text-[var(--hud-text-faint)]">
@@ -704,7 +705,7 @@ export function ChatPanel({
               className={`${compact ? "shrink-0 max-w-[42%] rounded-xl px-3 py-1.5 text-[0.72rem]" : "max-w-[90%] rounded-2xl px-4 py-3 text-sm"} leading-relaxed shadow-sm ${
                 t.role === "you"
                   ? "ml-auto rounded-br-md bg-[var(--hud-cyan)]/20 text-[var(--hud-text)]"
-                  : "rounded-bl-md border border-white/5 bg-white/[0.05] text-[var(--hud-text-dim)]"
+                  : "rounded-bl-md border border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)]"
               }`}
             >
               <span className={`${compact ? "mr-1 inline" : "mb-1 block"} text-[10px] font-black uppercase tracking-wider ${t.role === "you" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"}`}>
@@ -721,8 +722,8 @@ export function ChatPanel({
           ))
         )}
         {listening && (
-          <div className="flex items-center gap-2 rounded-2xl bg-rose-500/10 px-4 py-3 text-sm font-medium text-rose-200">
-            <span className="size-2 animate-pulse rounded-full bg-rose-400" /> Listening… {interim && <span className="text-[var(--hud-text-dim)]">{interim}</span>}
+          <div className="flex items-center gap-2 rounded-2xl bg-[var(--listening-dim)] px-4 py-3 text-sm font-medium text-[var(--listening)]">
+            <span className="size-2 animate-pulse rounded-full bg-[var(--listening)]" /> Listening… {interim && <span className="text-[var(--hud-text-dim)]">{interim}</span>}
           </div>
         )}
         {explaining && (
@@ -738,13 +739,13 @@ export function ChatPanel({
           <div className="mb-2 flex items-center justify-between gap-2">
             {liveAlwaysOn ? (
               // Always listening: no call to start or end, only her state and the mute below.
-              <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveMuted ? "bg-white/5 text-white/50" : "bg-cyan-400/10 text-cyan-200"}`}>
-                <span className={`size-2 rounded-full ${liveMuted ? "bg-white/30" : "animate-pulse bg-cyan-300"}`} />
+              <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveMuted ? "bg-[var(--hud-surface)] text-[var(--hud-text-dim)]" : "bg-[var(--accent-soft)] text-[var(--hud-cyan)]"}`}>
+                <span className={`size-2 rounded-full ${liveMuted ? "bg-[var(--hud-line-strong)]" : "animate-pulse bg-[var(--hud-cyan)]"}`} />
                 {liveMuted ? "Muted" : liveStatusLabel || "Listening"}
               </div>
             ) : (
-              <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveActive ? "bg-rose-500/15 text-rose-300" : "bg-cyan-400/10 text-cyan-200"}`}>
-                <span className={`size-2 rounded-full ${liveActive ? "animate-pulse bg-rose-400" : "bg-cyan-300"}`} />
+              <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] ${liveActive ? "bg-[var(--danger-dim)] text-[var(--hud-danger)]" : "bg-[var(--accent-soft)] text-[var(--hud-cyan)]"}`}>
+                <span className={`size-2 rounded-full ${liveActive ? "animate-pulse bg-[var(--hud-danger)]" : "bg-[var(--hud-cyan)]"}`} />
                 {liveActive ? liveStatusLabel || "Live — costs apply" : "Voice ready · muted"}
               </div>
             )}
@@ -752,29 +753,32 @@ export function ChatPanel({
               <button
                 type="button"
                 onClick={onLiveMute}
-                className="shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-bold text-white/80 transition hover:bg-white/10"
+                className="shrink-0 rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-1.5 text-[11px] font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
               >
-                {liveMuted ? "🔇 Unmute" : "🎙 Mute"}
+                <span className="inline-flex items-center gap-1.5">{liveMuted ? <MicOff size={12} aria-hidden="true" /> : <Mic size={12} aria-hidden="true" />}{liveMuted ? "Unmute" : "Mute"}</span>
               </button>
             )}
           </div>
         )}
-        {liveError && <p className="mb-2 text-xs font-semibold text-rose-300">{liveError}</p>}
+        {liveError && <p className="mb-2 text-xs font-semibold text-[var(--hud-danger)]">{liveError}</p>}
         {voiceOnly ? (
           <button
             onClick={onVoice}
             disabled={(explaining || !voiceSupported) && !liveActive}
             className={`w-full rounded-full py-3 text-sm font-black transition disabled:opacity-40 ${
-              liveActive || listening ? "bg-rose-500 text-white" : "hud-btn-primary"
+              liveActive || listening ? "bg-[var(--hud-danger)] text-[var(--accent-on)]" : "hud-btn-primary"
             }`}
           >
-            {liveActive
-              ? "⏹ End live conversation"
-              : !voiceSupported
-                ? "Voice not supported here"
-                : listening
-                  ? "⏹ Stop & ask"
-                  : "🎙 Talk to Aria live"}
+            <span className="inline-flex items-center justify-center gap-2">
+              {liveActive || listening ? <Square size={13} fill="currentColor" aria-hidden="true" /> : voiceSupported ? <Mic size={15} aria-hidden="true" /> : null}
+              {liveActive
+                ? "End live conversation"
+                : !voiceSupported
+                  ? "Voice not supported here"
+                  : listening
+                    ? "Stop & ask"
+                    : "Talk to Aria live"}
+            </span>
           </button>
         ) : (
           <form
@@ -807,14 +811,14 @@ export function ChatPanel({
                 className={`shrink-0 rounded-full px-3 py-2.5 text-sm font-black transition disabled:opacity-40 ${
                   liveAlwaysOn
                     ? liveMuted
-                      ? "bg-rose-500 text-white"
+                      ? "bg-[var(--hud-danger)] text-[var(--accent-on)]"
                       : "hud-btn-ghost"
                     : liveActive || listening
-                      ? "bg-rose-500 text-white"
+                      ? "bg-[var(--hud-danger)] text-[var(--accent-on)]"
                       : "hud-btn-ghost"
                 }`}
               >
-                {liveAlwaysOn ? (liveMuted ? "🔇" : "🎙") : liveActive ? "⏹" : liveReady && liveMuted ? "🔇" : "🎙"}
+                {liveAlwaysOn ? (liveMuted ? <MicOff size={16} aria-hidden="true" /> : <Mic size={16} aria-hidden="true" />) : liveActive ? <Square size={14} fill="currentColor" aria-hidden="true" /> : liveReady && liveMuted ? <MicOff size={16} aria-hidden="true" /> : <Mic size={16} aria-hidden="true" />}
               </button>
             )}
             <input
@@ -829,7 +833,7 @@ export function ChatPanel({
                     : "Ask about this part…"
               }
               disabled={explaining || (liveActive && !liveAlwaysOn)}
-              className="min-w-0 flex-1 rounded-full border border-[var(--hud-line-strong)] bg-black/40 px-4 py-2.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none disabled:opacity-50"
+              className="min-w-0 flex-1 rounded-full border border-[var(--hud-line-strong)] bg-[var(--hud-surface)] px-4 py-2.5 text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none disabled:opacity-50"
             />
             <button type="submit" disabled={explaining || (liveActive && !liveAlwaysOn) || !question.trim()} className="hud-btn-primary shrink-0 rounded-full px-4 py-2.5 text-sm font-black disabled:opacity-40">
               Ask

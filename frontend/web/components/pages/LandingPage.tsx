@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, FileUp, Orbit, Paperclip, Settings, X } from "lucide-react";
+import { ArrowUp, FileUp, Orbit, PanelLeft, Settings, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { useAuth } from "@/components/auth/AuthGate";
@@ -14,17 +14,14 @@ import { setPendingLecture } from "@/lib/pendingLecture";
 import { PromptTiles } from "@/components/pages/PromptTiles";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
+import { AriaLockup } from "@/components/brand/AriaMark";
 
 /**
- * The front page. One panel, centred, and nothing else.
+ * The front page: lecture history in a sidebar on the left, a quiet header with the YouTube door,
+ * the knowledge map and the account on the right, and between them the two ways in — type a
+ * subject, or bring a PDF or deck.
  *
- * Everything else has been removed on purpose: no masthead, no navigation, no feature columns, no
- * preview, no footer. Previous versions of this page carried all of that and the result was either
- * empty-looking or busy — the actual product does one thing, so the door to it should offer one
- * thing.
- *
- * What is left is the wordmark and the way in: type a subject, or attach a PDF or deck. The
- * handoff to LearnPage carries whatever was provided via sessionStorage, because the router only
+ * The handoff to LearnPage carries whatever was provided via sessionStorage, because the router only
  * passes a page name and this page has no other channel to it. LearnPage owns the parsing pipeline
  * and keeps owning it — nothing about upload handling is duplicated here.
  */
@@ -35,6 +32,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   /** A link typed into the prompt box, handed to the YouTube launcher; `key` remounts it per hand-over. */
   const [videoHandOff, setVideoHandOff] = useState<{ url: string; key: number } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  /** The history sidebar, on a narrow screen where it is a drawer. */
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user, profile, openSettings } = useAuth();
   const adhd = isAdhdLearner(profile);
 
@@ -43,14 +42,13 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   /**
    * A chosen file goes straight through.
    *
-   * Attaching used to leave the student on this screen with a chip and a submit button, when the
-   * upload IS the request — the very next screen asks which pages and which part, which is the
-   * question they came here to answer. Typing a topic first was a step that asked for something
-   * they did not have.
+   * The upload IS the request — the very next screen asks which pages and which part. The uploader
+   * is separate from the prompt box, so it never carries the box's text along: a question about the
+   * document is typed on the page picker, beside the pages it is about.
    */
   function startWithFile(chosen: File) {
     setFile(chosen);
-    setPendingBrief({ topic: topic.trim(), file: chosen });
+    setPendingBrief({ topic: "", file: chosen });
     go("learn");
   }
 
@@ -85,98 +83,154 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   }
 
   return (
-    <main className="hud-canvas hud-grain relative flex min-h-screen justify-center overflow-y-auto px-6 pt-[12vh] pb-16">
-      {/* The only chrome on the page, and deliberately in the corner: the door to the product is
-          the field below, and an account control should never compete with it. Absent entirely
-          when auth is disabled, so the no-database path still renders exactly as before. */}
-      {user && (
+    <main className="hud-canvas relative flex min-h-screen">
+      {/*
+        THE HISTORY SIDEBAR, as ChatGPT and Claude keep past conversations: always there on a wide
+        screen, a drawer on a narrow one. The page beside it holds only the ways in.
+      */}
+      {sidebarOpen && (
         <button
           type="button"
-          onClick={openSettings}
-          className="absolute right-5 top-5 z-20 inline-flex items-center gap-2 rounded-[var(--radius)] border px-3 py-1.5 text-[0.8rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
-          style={{ borderColor: "var(--hud-line)", background: "var(--hud-surface)" }}
-        >
-          <Settings aria-hidden="true" size={14} strokeWidth={1.8} />
-          <span className="max-w-[10rem] truncate">{user.username}</span>
-        </button>
+          aria-label="Close the sidebar"
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 z-30 bg-[var(--scrim)] lg:hidden"
+        />
       )}
-
-      {/* The YouTube pipeline's own door, fixed in the bottom-left corner (see YouTubeLauncher). A
-          direct child of <main>: an animated ancestor's transform would pin it to that ancestor. */}
-      <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} />
-
-      <div className="relative z-10 w-full max-w-xl text-center">
-        <h1 className="hud-materialize font-display text-[3.6rem] leading-none tracking-[-0.04em] text-[var(--hud-text)] sm:text-[4.6rem]">
-          Aria
-        </h1>
-        <p
-          className="hud-materialize mt-3 text-[0.95rem] text-[var(--hud-text-dim)]"
-          style={{ animationDelay: "0.08s" }}
-        >
-          {/* The tagline is spoken TO Aria, so the learner's name cannot be folded into it — it
-              gets its own line above. */}
-          Teach me anything.
-        </p>
-        {profile?.displayName && (
-          <p
-            className="hud-materialize mt-1 text-[0.82rem] text-[var(--hud-text-faint)]"
-            style={{ animationDelay: "0.12s" }}
+      <aside
+        aria-label="Your lectures"
+        className={`fixed inset-y-0 left-0 z-40 flex w-[17rem] shrink-0 flex-col border-r border-[var(--hud-line)] bg-[var(--sidebar)] transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex h-[4.25rem] shrink-0 items-center justify-between px-4">
+          <AriaLockup size={24} />
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close the sidebar"
+            className="grid size-8 place-items-center rounded-[var(--radius)] text-[var(--hud-text-dim)] hover:bg-[var(--sidebar-hover)] hover:text-[var(--hud-text)] lg:hidden"
           >
-            Welcome back, {profile.displayName}.
-          </p>
-        )}
+            <X aria-hidden="true" size={16} />
+          </button>
+        </div>
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          <LectureHistory onReplay={replayLecture} />
+        </div>
+      </aside>
 
-        <form
-          className="hud-materialize mt-10"
-          style={{ animationDelay: "0.16s" }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            start();
-          }}
-        >
-          {/* One composed field: the text input and the attach control share a border so they read
-              as a single place to begin, rather than two competing entry points. */}
-          <div
-            className="flex items-center gap-2 rounded-[var(--radius-lg)] border px-2 py-2 transition-colors focus-within:border-[var(--hud-line-strong)]"
-            style={{
-              background: "var(--hud-surface)",
-              borderColor: "var(--hud-line)",
-              transitionDuration: "var(--motion-fast)",
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-20 flex h-[4.25rem] items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg)] px-4 sm:px-6">
+          <div className="flex items-center gap-2 lg:invisible">
+            <button
+              type="button"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open your lectures"
+              className="grid size-9 place-items-center rounded-[var(--radius)] text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] lg:hidden"
+            >
+              <PanelLeft aria-hidden="true" size={18} strokeWidth={1.8} />
+            </button>
+            <span className="lg:hidden">
+              <AriaLockup size={22} />
+            </span>
+          </div>
+          <nav aria-label="Main" className="flex items-center gap-1">
+            {/* The YouTube pipeline's own door, top right beside the knowledge map (see
+                YouTubeLauncher). Remounted per hand-over from the prompt box. */}
+            <YouTubeLauncher key={videoHandOff?.key ?? 0} initialUrl={videoHandOff?.url} onStart={startWithVideo} />
+            {/* Absent entirely when auth is disabled, so the no-database path still renders as before. */}
+            {user && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => go("knowledge")}
+                  className="inline-flex h-9 items-center gap-2 rounded-[var(--radius)] px-3 text-[0.875rem] text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
+                >
+                  <Orbit aria-hidden="true" size={15} strokeWidth={1.8} />
+                  <span className="max-sm:sr-only">Your knowledge map</span>
+                </button>
+                <button
+                  type="button"
+                  data-account-button
+                  onClick={openSettings}
+                  className="ml-1 inline-flex h-9 items-center gap-2 rounded-[var(--radius)] border border-[var(--hud-line)] bg-[var(--hud-surface)] py-1 pl-1 pr-3 text-[0.875rem] text-[var(--hud-text)] transition-colors hover:bg-[var(--hud-surface-2)]"
+                >
+                  <span aria-hidden="true" className="grid size-7 place-items-center rounded-full bg-[var(--hud-surface-2)] text-[var(--hud-text-dim)]">
+                    <Settings size={14} strokeWidth={1.8} />
+                  </span>
+                  <span className="max-w-[10rem] truncate max-sm:sr-only">{user.username}</span>
+                </button>
+              </>
+            )}
+          </nav>
+        </header>
+
+        <div className="mx-auto flex w-full max-w-[760px] flex-col gap-10 px-5 pb-24 pt-12 sm:pt-16">
+          <section className="hud-materialize flex flex-col gap-3">
+            {profile?.displayName && (
+              <p className="text-[0.875rem] text-[var(--hud-text-dim)]">Welcome back, {profile.displayName}.</p>
+            )}
+            <h1 className="text-[2rem] font-semibold leading-tight tracking-[-0.02em] text-[var(--hud-text)]">
+              What do you want to learn?
+            </h1>
+            <p className="text-[0.95rem] text-[var(--hud-text-dim)]">
+              Ask anything. Aria plans the lesson with you and teaches it on a board.
+            </p>
+          </section>
+
+          <form
+            className="hud-materialize"
+            onSubmit={(e) => {
+              e.preventDefault();
+              start();
             }}
           >
-            <label htmlFor="brief" className="sr-only">
-              What should Aria teach?
-            </label>
-            {/* A textarea, not an input, so a long brief stays visible.
-                A single-line input scrolls the beginning of the text out of sight the moment it
-                overflows — a student writing a real question could not read back what they had
-                written. This grows to a cap and then scrolls. Enter still submits (Shift+Enter for
-                a newline), so the quick path is unchanged. */}
-            <textarea
-              id="brief"
-              value={topic}
-              onChange={(e) => {
-                setTopic(e.target.value);
-                const el = e.currentTarget;
-                el.style.height = "auto";
-                el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  start();
-                }
-              }}
-              rows={1}
-              placeholder="Explain the Krebs cycle…"
-              autoFocus
-              className="min-w-0 flex-1 resize-none self-center bg-transparent px-3 py-2 text-[0.98rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
-            />
+            <div className="flex flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 shadow-[var(--elev-1)] transition-colors focus-within:border-[var(--hud-line-strong)]">
+              <label htmlFor="brief" className="sr-only">
+                What should Aria teach?
+              </label>
+              {/* A textarea, not an input, so a long brief stays visible. It grows to a cap and then
+                  scrolls. Enter still submits (Shift+Enter for a newline). */}
+              <textarea
+                id="brief"
+                value={topic}
+                onChange={(e) => {
+                  setTopic(e.target.value);
+                  const el = e.currentTarget;
+                  el.style.height = "auto";
+                  el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    start();
+                  }
+                }}
+                rows={2}
+                placeholder="Explain the Krebs cycle…"
+                autoFocus
+                className="min-h-[3.5rem] w-full resize-none bg-transparent px-1 text-[1rem] leading-relaxed text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus-visible:outline-none"
+              />
+              <div className="flex items-center justify-end gap-2">
+                <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Speak your topic" />
+                <button
+                  type="submit"
+                  disabled={!canStart}
+                  aria-label="Start the lesson"
+                  className="hud-btn-primary grid size-9 shrink-0 place-items-center disabled:cursor-not-allowed"
+                >
+                  <ArrowUp aria-hidden="true" size={17} strokeWidth={2.2} />
+                </button>
+              </div>
+            </div>
+          </form>
 
-            {/* Dictation sits with the other input affordances, before the attach control: it is a
-                way to fill the field, not a way to send it. */}
-            <VoicePromptButton baseText={topic} onTranscript={setTopic} title="Speak your topic" />
-
+          {/* THE UPLOADER, ON ITS OWN. A document is a different way in from a question: the student
+              may have nothing to type, only pages to pick. Choosing a file never takes text from the
+              box above; a question about the document is asked on the page picker, next to the pages. */}
+          <section aria-labelledby="upload-heading" className="hud-materialize flex flex-col gap-3">
+            <h2 id="upload-heading" className="text-[0.8125rem] font-medium text-[var(--hud-text-dim)]">
+              Or teach from your own document
+            </h2>
             <input
               ref={fileRef}
               type="file"
@@ -190,22 +244,6 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
               }}
               aria-label="Attach a PDF, slide deck, or document"
             />
-            <button
-              type="submit"
-              disabled={!canStart}
-              aria-label="Start the lesson"
-              className="hud-btn-primary grid size-9 shrink-0 place-items-center disabled:cursor-not-allowed disabled:opacity-30"
-            >
-              <ArrowRight aria-hidden="true" size={17} strokeWidth={2.2} />
-            </button>
-          </div>
-
-          {/* An explicit drop zone.
-              The paperclip alone was too quiet for something that is half the product — a student
-              who has a lecture PDF in hand should see that this accepts it without hunting for an
-              icon. Drag-and-drop AND a click target, because both are expected of an upload area,
-              and it collapses once a file is chosen so it never competes with the field above. */}
-          {!file && (
             <div
               onDragOver={(e) => {
                 e.preventDefault();
@@ -219,82 +257,50 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
                 if (dropped) startWithFile(dropped);
               }}
               onClick={() => fileRef.current?.click()}
-              className="mt-3 cursor-pointer rounded-[var(--radius-lg)] border border-dashed px-4 py-5 text-center transition-colors"
-              style={{
-                borderColor: dragging ? "var(--hud-cyan)" : "var(--hud-line)",
-                background: dragging ? "var(--hud-surface-2)" : "transparent",
-                transitionDuration: "var(--motion-fast)",
-              }}
+              className={`flex cursor-pointer flex-col items-center gap-4 rounded-[var(--radius-lg)] border border-dashed px-6 py-7 text-center transition-colors sm:flex-row sm:text-left ${
+                dragging
+                  ? "border-[var(--hud-cyan)] bg-[var(--accent-soft)]"
+                  : "border-[var(--hud-line-strong)] bg-[var(--hud-surface)] hover:bg-[var(--hud-surface-2)]"
+              }`}
             >
-              <div className="flex items-center justify-center gap-2 text-[var(--hud-text-dim)]">
-                <FileUp aria-hidden="true" size={16} strokeWidth={1.8} />
-                <span className="text-[0.86rem]">
-                  Drop a PDF or slide deck, or <span className="text-[var(--hud-cyan-bright)]">browse</span>
-                </span>
-              </div>
-              <p className="mt-1.5 text-[0.72rem] text-[var(--hud-text-faint)]">
-                PDF · PPTX · DOCX — the lesson is built from its pages
-              </p>
-            </div>
-          )}
-
-          {/* The attached file, once chosen. Replaces the drop zone rather than adding to it. */}
-          {file && (
-            <div className="mt-3 flex items-center justify-center">
-              <span
-                className="inline-flex max-w-full items-center gap-2 rounded-[var(--radius)] border px-3 py-1.5"
-                style={{ borderColor: "var(--hud-line)", background: "var(--hud-surface)" }}
-              >
-                <Paperclip aria-hidden="true" size={12} className="shrink-0 text-[var(--hud-text-faint)]" />
-                <span className="truncate text-[0.8rem] text-[var(--hud-text-dim)]">{file.name}</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFile(null);
-                    if (fileRef.current) fileRef.current.value = "";
-                  }}
-                  aria-label={`Remove ${file.name}`}
-                  className="shrink-0 rounded-[var(--radius-sm)] p-0.5 text-[var(--hud-text-faint)] transition-colors hover:text-[var(--hud-text)]"
-                >
-                  <X aria-hidden="true" size={13} />
-                </button>
+              <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-[var(--radius)] bg-[var(--hud-surface-2)] text-[var(--hud-text-dim)]">
+                <FileUp size={18} strokeWidth={1.8} />
               </span>
+              <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                <span className="text-[0.95rem] font-medium text-[var(--hud-text)]">Drop a PDF or slide deck here</span>
+                <span className="text-[0.8125rem] text-[var(--hud-text-dim)]">
+                  PDF · PPTX · DOCX. You choose the pages next, and can ask a question about them there.
+                </span>
+              </span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fileRef.current?.click();
+                }}
+                className="hud-btn-ghost inline-flex h-9 shrink-0 items-center px-4 text-[0.875rem] font-medium"
+              >
+                Choose file
+              </button>
             </div>
+          </section>
+
+          {/* Lecture recommendations from the learner profile — signed-in learners only. */}
+          {user && (
+            <PromptTiles
+              onPick={(prompt) => {
+                setPendingBrief({ topic: prompt, file: null });
+                go("learn");
+              }}
+            />
           )}
-        </form>
 
-        {/* Lecture recommendations from the learner profile — signed-in learners only. */}
-        {user && (
-          <PromptTiles
-            onPick={(prompt) => {
-              setPendingBrief({ topic: prompt, file: null });
-              go("learn");
-            }}
-          />
-        )}
-
-        {/* What they have learned so far, as a map (lib/knowledge) — signed-in learners only. */}
-        {user && (
-          <button
-            type="button"
-            onClick={() => go("knowledge")}
-            className="mx-auto mt-8 flex items-center gap-2 rounded-full border px-4 py-2 text-[0.85rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
-            style={{ borderColor: "var(--hud-line)", background: "var(--hud-surface)" }}
-          >
-            <Orbit aria-hidden="true" size={15} strokeWidth={1.8} className="text-amber-300" />
-            Your knowledge map
-          </button>
-        )}
-
-        <div className="mt-10 text-left">
-          <LectureHistory onReplay={replayLecture} />
+          {/* The prompt page is where a learner starts, so it is where a standings table is actually
+              seen. Gated on the profile — nobody outside the ADHD track is shown a board they can
+              never appear on. The API gate is separate and independent; this one is only cosmetic. */}
+          {adhd && <Leaderboard />}
+          {adhd && <Thoughts />}
         </div>
-
-        {/* The prompt page is where a learner starts, so it is where a standings table is actually
-            seen. Gated on the profile — nobody outside the ADHD track is shown a board they can
-            never appear on. The API gate is separate and independent; this one is only cosmetic. */}
-        {adhd && <Leaderboard />}
-        {adhd && <Thoughts />}
       </div>
     </main>
   );

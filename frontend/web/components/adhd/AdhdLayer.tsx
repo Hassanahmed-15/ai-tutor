@@ -343,7 +343,7 @@ export function AdhdLayer({
         {!capturing && consent !== "unknown" && (
           <button
             onClick={() => setCapturing(true)}
-            className="pointer-events-auto rounded-full border border-white/12 bg-black/55 px-3 py-1.5 text-[0.68rem] font-bold text-white/60 backdrop-blur transition hover:text-white/90"
+            className="pointer-events-auto rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-1.5 text-[0.68rem] font-bold text-[var(--hud-text-dim)] backdrop-blur transition hover:text-[var(--hud-text)]"
             title="Park a distracting thought without stopping the lecture (Shift+Space)"
           >
             ⇧␣ park a thought{captured.length > 0 ? ` · ${captured.length}` : ""}
@@ -355,8 +355,8 @@ export function AdhdLayer({
         <div
           className={`pointer-events-none absolute bottom-24 left-1/2 z-40 -translate-x-1/2 rounded-xl border px-4 py-2.5 text-[0.8rem] font-bold backdrop-blur beat-fade-in ${
             toast.tone === "loot"
-              ? "border-amber-400/40 bg-amber-400/15 text-amber-100"
-              : "border-white/15 bg-black/70 text-white/85"
+              ? "border-[var(--hud-cyan)] bg-[var(--accent-soft)] text-[var(--hud-cyan-bright)]"
+              : "border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text)]"
           }`}
         >
           {toast.text}
@@ -386,34 +386,34 @@ function describeReward(r: LootReward): string {
  */
 function ConsentCard({ onChoose }: { onChoose: (c: Consent) => void }) {
   return (
-    <div className="absolute inset-0 z-50 grid place-items-center bg-black/72 backdrop-blur-sm">
-      <div className="mx-4 max-w-md rounded-2xl border border-white/12 bg-[#0e1119] p-6 shadow-2xl">
-        <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-teal-300">ADHD mode</p>
-        <h2 className="mt-2 text-lg font-bold text-white">Use your camera to notice when focus slips?</h2>
-        <p className="mt-3 text-sm leading-relaxed text-white/65">
+    <div className="absolute inset-0 z-50 grid place-items-center bg-[var(--scrim)] backdrop-blur-sm">
+      <div className="mx-4 max-w-md rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-6 shadow-[var(--elev-2)]">
+        <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-[var(--hud-cyan)]">ADHD mode</p>
+        <h2 className="mt-2 text-lg font-bold text-[var(--hud-text)]">Use your camera to notice when focus slips?</h2>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--hud-text-dim)]">
           A face-tracking model reads head position and blink rate to estimate engagement.
-          <strong className="text-white/85"> Everything runs on your device and no video is ever sent
+          <strong className="text-[var(--hud-text)]"> Everything runs on your device and no video is ever sent
           anywhere</strong> — not to us, not to anyone.
         </p>
-        <p className="mt-2 text-sm leading-relaxed text-white/65">
+        <p className="mt-2 text-sm leading-relaxed text-[var(--hud-text-dim)]">
           It lets the lesson notice a drift and change how it explains, and it pauses check-ins while
           you are deep in something.
         </p>
         <div className="mt-5 flex gap-2.5">
           <button
             onClick={() => onChoose("granted")}
-            className="flex-1 rounded-lg bg-teal-400 px-4 py-2.5 text-sm font-bold text-teal-950 transition hover:bg-teal-300"
+            className="flex-1 rounded-lg bg-[var(--hud-cyan)] px-4 py-2.5 text-sm font-bold text-[var(--accent-on)] transition hover:bg-[var(--accent-hover)]"
           >
             Use my camera
           </button>
           <button
             onClick={() => onChoose("declined")}
-            className="flex-1 rounded-lg border border-white/15 px-4 py-2.5 text-sm font-bold text-white/75 transition hover:bg-white/5"
+            className="flex-1 rounded-lg border border-[var(--hud-line)] px-4 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
           >
             Not now
           </button>
         </div>
-        <p className="mt-3 text-center text-[0.72rem] text-white/40">
+        <p className="mt-3 text-center text-[0.72rem] text-[var(--hud-text-dim)]">
           The lecture works exactly the same either way.
         </p>
       </div>
@@ -440,7 +440,7 @@ function FocusNote({ focus, cameraOn }: { focus: FocusTracker; cameraOn: boolean
   if (!note) return null;
 
   return (
-    <span className="rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[0.66rem] font-bold text-white/60 backdrop-blur">
+    <span className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-2.5 py-1 text-[0.66rem] font-bold text-[var(--hud-text-dim)] backdrop-blur">
       {note}
     </span>
   );
@@ -454,8 +454,8 @@ function CaptureBar({ onSave, onClose }: { onSave: (t: string) => void; onClose:
 
   return (
     <div className="absolute bottom-4 left-1/2 z-50 w-[min(520px,90vw)] -translate-x-1/2">
-      <div className="flex items-center gap-2 rounded-xl border border-teal-400/30 bg-[#0e1119]/95 px-3 py-2.5 shadow-2xl backdrop-blur">
-        <span className="text-[0.66rem] font-black uppercase tracking-wider text-teal-300">park</span>
+      <div className="flex items-center gap-2 rounded-xl border border-[var(--hud-cyan)] bg-[var(--hud-surface)] px-3 py-2.5 shadow-[var(--elev-2)] backdrop-blur">
+        <span className="text-[0.66rem] font-black uppercase tracking-wider text-[var(--hud-cyan)]">park</span>
         <input
           ref={ref}
           value={text}
@@ -465,16 +465,16 @@ function CaptureBar({ onSave, onClose }: { onSave: (t: string) => void; onClose:
             if (e.key === "Escape") onClose();
           }}
           placeholder="reply to Sana about Friday…"
-          className="min-w-0 flex-1 bg-transparent text-sm text-white placeholder:text-white/30 focus:outline-none"
+          className="min-w-0 flex-1 bg-transparent text-sm text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
         />
         <button
           onClick={() => { onSave(text); onClose(); }}
-          className="rounded-lg bg-teal-400 px-3 py-1.5 text-[0.72rem] font-bold text-teal-950"
+          className="rounded-lg bg-[var(--hud-cyan)] px-3 py-1.5 text-[0.72rem] font-bold text-[var(--accent-on)]"
         >
           Save
         </button>
       </div>
-      <p className="mt-1.5 text-center text-[0.68rem] text-white/35">The lecture keeps playing.</p>
+      <p className="mt-1.5 text-center text-[0.68rem] text-[var(--hud-text-dim)]">The lecture keeps playing.</p>
     </div>
   );
 }

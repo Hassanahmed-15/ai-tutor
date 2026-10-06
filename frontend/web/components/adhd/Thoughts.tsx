@@ -48,10 +48,10 @@ export function Thoughts() {
   if (!items) return null;
 
   return (
-    <section className="mt-6 w-full rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur">
+    <section className="mt-6 w-full rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 backdrop-blur">
       <div className="mb-3 flex items-baseline justify-between">
-        <h2 className="text-[0.7rem] font-black uppercase tracking-[0.15em] text-amber-300">Parked thoughts</h2>
-        <span className="text-[0.66rem] text-white/35">{items.length ? `${items.length} waiting` : "ADHD track"}</span>
+        <h2 className="text-[0.7rem] font-black uppercase tracking-[0.15em] text-[var(--hud-cyan)]">Parked thoughts</h2>
+        <span className="text-[0.66rem] text-[var(--hud-text-dim)]">{items.length ? `${items.length} waiting` : "ADHD track"}</span>
       </div>
 
       {/*
@@ -60,9 +60,9 @@ export function Thoughts() {
         discover the feature exists if the only sign of it is a panel that never appears.
       */}
       {items.length === 0 ? (
-        <p className="px-1 text-[0.8rem] leading-relaxed text-white/45">
+        <p className="px-1 text-[0.8rem] leading-relaxed text-[var(--hud-text-dim)]">
           Nothing parked. During a lesson press{" "}
-          <span className="font-bold text-white/70">Shift + Space</span> to set a thought aside without
+          <span className="font-bold text-[var(--hud-text-dim)]">Shift + Space</span> to set a thought aside without
           losing your place — it will wait here.
         </p>
       ) : (
@@ -71,18 +71,18 @@ export function Thoughts() {
             <li
               key={t.id}
               data-thought
-              className="flex items-start gap-3 rounded-lg bg-white/[0.04] px-3 py-2 text-sm text-white/85"
+              className="flex items-start gap-3 rounded-lg bg-[var(--hud-surface)] px-3 py-2 text-sm text-[var(--hud-text)]"
             >
               <span className="min-w-0 flex-1">
                 {t.text}
-                {t.topic && <span className="ml-2 text-[0.68rem] text-white/35">· {t.topic}</span>}
+                {t.topic && <span className="ml-2 text-[0.68rem] text-[var(--hud-text-dim)]">· {t.topic}</span>}
               </span>
               <button
                 data-thought-done
                 onClick={() => done(t.id)}
                 disabled={busy === t.id}
                 title="Done with this — remove it"
-                className="shrink-0 rounded-md px-2 py-1 text-[0.68rem] font-bold text-white/45 transition hover:bg-emerald-400/15 hover:text-emerald-200 disabled:opacity-40"
+                className="shrink-0 rounded-md px-2 py-1 text-[0.68rem] font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--ok-dim)] hover:text-[var(--ok)] disabled:opacity-40"
               >
                 done
               </button>

@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 import { AuthScreen } from "./AuthScreen";
 import { OnboardingScreen } from "./OnboardingScreen";
 import { SettingsScreen } from "./SettingsScreen";
+import { AriaMark } from "@/components/brand/AriaMark";
 import type { AccessibilityProfile, LearnerBasics } from "@/lib/db/cosmos";
 
 export type SessionUser = {
@@ -165,16 +166,14 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
       <main className="hud-canvas grid min-h-screen place-items-center" role="status" aria-live="polite">
         <div className="flex flex-col items-center gap-5">
           <div className="relative grid h-16 w-16 place-items-center">
-            {/* A ring that sweeps rather than a spinner glyph — the wordmark stays still and legible
+            {/* A ring that sweeps rather than a spinner glyph — the mark stays still and legible
                 while the motion happens around it. */}
             <span
               aria-hidden
               className="absolute inset-0 rounded-full border-2 border-[var(--hud-line)] border-t-[var(--hud-cyan)]"
               style={{ animation: "aria-boot-spin 900ms linear infinite" }}
             />
-            <span className="font-display text-xl leading-none tracking-[-0.02em] text-[var(--hud-text)]">
-              A
-            </span>
+            <AriaMark size={32} />
           </div>
           <p className="text-[0.82rem] font-medium text-[var(--hud-text-dim)]">Starting Aria…</p>
         </div>
@@ -212,9 +211,9 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
           reach accounts right now" and "this build has no accounts" no longer look identical.
           Dismissible, because a student mid-lecture does not need it a second time. */}
       {state === "unavailable" && !noticeDismissed && (
-        <div className="fixed bottom-4 left-1/2 z-[100] w-[min(92vw,30rem)] -translate-x-1/2 rounded-[var(--radius)] border border-amber-400/30 bg-amber-500/10 px-4 py-3 backdrop-blur-xl">
+        <div className="fixed bottom-4 left-1/2 z-[100] w-[min(92vw,30rem)] -translate-x-1/2 rounded-[var(--radius)] border border-[var(--hud-line)] bg-[var(--warn-dim)] px-4 py-3 shadow-[var(--elev-2)]">
           <div className="flex items-start gap-3">
-            <p className="flex-1 text-[0.8rem] leading-relaxed text-amber-100/85">
+            <p className="flex-1 text-[0.8rem] leading-relaxed text-[var(--hud-text)]">
               <span className="font-bold">Accounts are unavailable.</span>{" "}
               Signing in, settings and your saved learning profile can’t be reached — lessons still
               work, but progress won’t be saved.
@@ -222,7 +221,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={() => setNoticeDismissed(true)}
-              className="shrink-0 rounded-[var(--radius-sm)] px-2 py-0.5 text-[0.75rem] font-bold text-amber-200/70 transition-colors hover:text-amber-100"
+              className="shrink-0 rounded-[var(--radius-sm)] px-2 py-0.5 text-[0.75rem] font-semibold text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
             >
               Dismiss
             </button>

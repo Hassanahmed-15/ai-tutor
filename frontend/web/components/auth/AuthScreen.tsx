@@ -1,5 +1,6 @@
 "use client";
 
+import { AriaMark } from "@/components/brand/AriaMark";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, Check, Eye, EyeOff, Loader2, X } from "lucide-react";
 import { MIN_PASSWORD, passwordChecks } from "@/lib/passwordRules";
@@ -63,7 +64,7 @@ function ProviderIcon({ id }: { id: ProviderId }) {
 }
 
 const INPUT =
-  "w-full rounded-[var(--radius)] border bg-[var(--hud-surface)] px-4 py-3 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1 focus:ring-[var(--hud-cyan)]";
+  "w-full rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] px-4 py-3 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--hud-cyan-glow)]";
 const LABEL = "mb-1.5 block text-[0.84rem] font-medium text-[var(--hud-text)]";
 
 export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void }) {
@@ -143,13 +144,14 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: () => void })
   }
 
   return (
-    <main className="hud-canvas hud-grain relative flex min-h-screen items-center justify-center px-6 py-12">
+    <main className="hud-canvas relative flex min-h-screen items-center justify-center px-6 py-12">
       <div className="relative z-10 w-full max-w-sm">
-        <h1 className="text-center font-display text-[3rem] leading-none tracking-[-0.04em] text-[var(--hud-text)]">
-          Aria
+        <h1 className="flex flex-col items-center gap-4 text-center text-[1.375rem] font-semibold leading-tight tracking-[-0.01em] text-[var(--hud-text)]">
+          <AriaMark size={44} />
+          {isSignup ? "Create your Aria account" : "Sign in to Aria"}
         </h1>
-        <p className="mt-3 text-center text-[0.9rem] text-[var(--hud-text-dim)]">
-          {isSignup ? "Create an account to begin." : "Welcome back."}
+        <p className="mt-2 text-center text-[0.9375rem] text-[var(--hud-text-dim)]">
+          Your tutor that teaches on a board and answers out loud.
         </p>
 
         {/* WAY ONE: an account you already have. */}

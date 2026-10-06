@@ -38,7 +38,7 @@ export function PageStack({
          * HOW TO USE THIS, in plain words. The page picker explained nothing: a student did not know
          * they could pick pages or ask a question — so they uploaded and hoped.
          */}
-        <div className="rounded-xl border border-[var(--hud-line-strong)] bg-white/[0.03] px-5 py-4">
+        <div className="rounded-xl border border-[var(--hud-line-strong)] bg-[var(--hud-surface)] px-5 py-4">
           <p className="text-[0.95rem] font-semibold text-[var(--hud-text)]">How to learn from your {label === "pages" ? "PDF" : "slides"}</p>
           <ol className="mt-2.5 space-y-2 text-[0.88rem] leading-relaxed text-[var(--hud-text-dim)]">
             <li><span className="mr-2 font-semibold text-[var(--hud-cyan)]">1</span>Press <span className="font-semibold text-[var(--hud-text)]">Select {label === "pages" ? "page" : "slide"}</span> on the {label} you want to learn from. Skip this to use all of them.</li>
@@ -95,7 +95,7 @@ export function PageStack({
                   alt={`${label === "pages" ? "Page" : "Slide"} ${page.pageNumber}`}
                   draggable={false}
                   data-page-image
-                  className="block w-full max-w-2xl select-none rounded-[var(--radius)] border bg-white object-contain"
+                  className="block w-full max-w-2xl select-none rounded-[var(--radius)] border bg-[var(--hud-surface)] object-contain"
                   style={{ borderColor: "var(--hud-line)" }}
                 />
               </div>

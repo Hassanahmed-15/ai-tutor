@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, X } from "lucide-react";
 import { HudEyebrow } from "@/components/hud/HudKit";
 import type { TestBank, TestGradeResult } from "@/lib/testPrompt";
 
@@ -25,8 +26,7 @@ export function TestResultsView({
   const score = results.filter((r) => r.correct).length;
 
   return (
-    <section className="relative z-10 min-h-screen w-full overflow-y-auto bg-gradient-to-b from-[#05040c] via-[#0a0810] to-[#05040c] p-6 lg:p-10">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(99,102,241,0.15),transparent_50%)]" />
+    <section className="relative z-10 min-h-screen w-full overflow-y-auto p-6 lg:p-10 bg-[var(--hud-bg)]">
 
       <div className="relative z-20 mx-auto mb-10 flex max-w-3xl items-center justify-between">
         <div>
@@ -47,11 +47,11 @@ export function TestResultsView({
           return (
             <div
               key={q.id}
-              className={`rounded-2xl border p-6 ${result.correct ? "border-emerald-400/30 bg-emerald-400/[0.04]" : "border-rose-400/30 bg-rose-400/[0.04]"}`}
+              className={`rounded-2xl border p-6 ${result.correct ? "border-[var(--ok)] bg-[var(--ok-dim)]" : "border-[var(--hud-danger)] bg-[var(--danger-dim)]"}`}
             >
               <div className="flex items-start justify-between gap-4">
                 <p className="font-display text-lg font-semibold leading-snug text-[var(--hud-text)]">
-                  {result.correct ? "✓" : "✗"} {q.prompt}
+                  {result.correct ? <Check size={16} aria-label="Correct" className="mr-1 inline align-[-2px]" /> : <X size={16} aria-label="Not quite" className="mr-1 inline align-[-2px]" />}{q.prompt}
                 </p>
               </div>
               {answers?.[q.id] && <p className="mt-2 text-sm text-[var(--hud-text-dim)]">Your answer: {answers[q.id]}</p>}

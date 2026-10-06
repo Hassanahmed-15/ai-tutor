@@ -62,7 +62,7 @@ export function LectureCostBadge({
   return (
     <div ref={ref} style={{ top }} className="pointer-events-none absolute left-0 right-0 z-[60] flex justify-end px-4 sm:justify-center">
       <div
-        className="hud-eyebrow flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 rounded-full border border-[var(--hud-line-strong)] bg-black/70 px-3.5 py-1.5 text-[0.65rem] backdrop-blur-md"
+        className="hud-eyebrow flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 rounded-full border border-[var(--hud-line-strong)] bg-[var(--hud-surface)] px-3.5 py-1.5 text-[0.65rem] backdrop-blur-md"
         title="Measured from the usage each provider returned. Rises as narration plays and questions are asked."
       >
         <span className="text-[var(--hud-text-faint)] normal-case tracking-normal font-semibold">
@@ -84,7 +84,7 @@ export function LectureCostBadge({
           <span className="text-[var(--hud-text-faint)] normal-case tracking-normal opacity-70">· still generating</span>
         )}
         {ledger.unpriced > 0 && (
-          <span className="text-amber-300/80 normal-case tracking-normal">
+          <span className="text-[var(--hud-cyan)] normal-case tracking-normal">
             + {ledger.unpriced} unpriced call{ledger.unpriced === 1 ? "" : "s"}
           </span>
         )}

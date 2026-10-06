@@ -75,7 +75,7 @@ try {
         speaking: /Aria is speak/i.test(text),
         figurePanel: /From your source/.test(text),
         teachingHere: /Aria is teaching here/.test(text),
-        sourceBox: document.querySelectorAll("[class*='border-amber'][style*='left']").length,
+        sourceBox: document.querySelectorAll("[data-source-highlight][style*='left']").length,
         arrow: Boolean(document.querySelector("svg path[stroke-dasharray], svg line[stroke-dasharray]")),
         unavailable: /Board unavailable|Source preview unavailable|could not/i.test(text) ? text.match(/(Board unavailable|Source preview unavailable)[^\n]*/)?.[0] ?? "some unavailable text" : null,
       };

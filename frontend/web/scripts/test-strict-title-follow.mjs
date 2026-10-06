@@ -20,8 +20,8 @@ const login = await page.request.post(`${BASE}/api/auth/login`, { data: { email,
 if (!login.ok()) throw new Error(`login failed: ${login.status()}`);
 await page.goto(BASE, { waitUntil: "domcontentloaded" });
 await page.waitForTimeout(4000);
-await page.locator("#brief").fill(question);
 await page.locator('input[type="file"]').first().setInputFiles(pdf);
+await askInPicker(page, question);
 await page.getByRole("button", { name: /strict source/i }).first().click({ timeout: 240_000 });
 
 // 1. The build screen's title.
@@ -60,3 +60,13 @@ await browser.close();
 
 if (problems.length) { console.error(`\nPROBLEMS:\n  - ${problems.join("\n  - ")}`); process.exit(1); }
 console.log("\nTitled by its subject; the panel follows the source again on the next part.");
+
+/** The uploader is separate from the prompt box: a question about the document is asked in the page picker. */
+async function askInPicker(page, question) {
+  const box = page.locator("#page-prompt");
+  await box.waitFor({ timeout: 180_000 });
+  await box.fill(question);
+  const ask = page.locator("button[data-ask-question]");
+  if (await ask.isEnabled().catch(() => false)) await ask.click();
+  else await box.press("Enter");
+}

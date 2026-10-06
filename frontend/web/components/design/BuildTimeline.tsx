@@ -64,7 +64,7 @@ export function BuildTimeline({ beats, createdAt }: { beats: BeatRow[]; createdA
   const grand = totals.reduce((sum, seg) => sum + seg.ms, 0);
 
   return (
-    <section data-build-timeline className="mt-6 rounded-xl border border-[var(--hud-line)] bg-black/30 p-4 text-left">
+    <section data-build-timeline className="mt-6 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 text-left">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="text-sm font-semibold text-[var(--hud-text)]">How your lesson is being built</h3>
         {createdAt && <span className="text-xs text-[var(--hud-text-faint)]">started {seconds(now - Date.parse(createdAt))} ago</span>}
@@ -92,7 +92,7 @@ export function BuildTimeline({ beats, createdAt }: { beats: BeatRow[]; createdA
                       {t?.animationTier ? ` · ${t.animationTier}${tierModel(t) ? ` → ${tierModel(t)}` : ""}` : ""}
                     </span>
                   </span>
-                  <span className="mt-1 flex h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
+                  <span className="mt-1 flex h-1.5 overflow-hidden rounded-full bg-[var(--hud-surface)]">
                     {t && row.state === "ready"
                       ? SEGMENTS.map((seg) => {
                           const ms = seg.value(t);

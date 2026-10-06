@@ -30,6 +30,15 @@ if (!pdf || !question || !["strict", "reference"].includes(mode) || !email || !p
 }
 fs.mkdirSync(outDir, { recursive: true });
 const log = (...parts) => console.log(new Date().toISOString().slice(11, 19), ...parts);
+async function askInPicker(page, question) {
+  const box = page.locator("#page-prompt");
+  await box.waitFor({ timeout: 180_000 });
+  await box.fill(question);
+  const ask = page.locator("button[data-ask-question]");
+  if (await ask.isEnabled().catch(() => false)) await ask.click();
+  else await box.press("Enter");
+}
+
 const problems = [];
 
 const browser = await chromium.launch();
@@ -51,9 +60,9 @@ page.on("response", async (response) => {
 
 await page.goto(BASE, { waitUntil: "domcontentloaded" });
 await page.locator("#brief").waitFor({ timeout: 60_000 });
-await page.locator("#brief").fill(question);
 await page.locator('input[type="file"]').first().setInputFiles(pdf);
-log(`typed "${question}" and attached ${path.basename(pdf)}`);
+await askInPicker(page, question);
+log(`attached ${path.basename(pdf)} and asked "${question}" in the page picker`);
 
 // The page picker appears unless the question skips it; then the strict-or-reference choice.
 const useAll = page.getByRole("button", { name: /use all pages|use \d+ pages?/i }).first();

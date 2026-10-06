@@ -202,51 +202,51 @@ export function PdfSourcePanel({
   const currentPosition = pages.findIndex((page) => page.pageNumber === currentPage);
 
   return (
-    <section aria-label="Source document" className={`relative flex min-h-0 flex-col overflow-hidden bg-[#11100f] ${embedded ? "border-b border-[var(--hud-line)] lg:border-b-0 lg:border-r" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
+    <section aria-label="Source document" className={`relative flex min-h-0 flex-col overflow-hidden bg-[var(--hud-surface)] ${embedded ? "border-b border-[var(--hud-line)] lg:border-b-0 lg:border-r" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
       {/* ONE bar, the same height as the board's "Part N" strip beside it, so the two halves line up
           as one surface. Page navigation lives here too — the footer it had cost the page a row. */}
       <div className="flex h-11 shrink-0 items-center gap-1 border-b border-[var(--hud-line)] px-2">
-        <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.12em] ${fidelity === "strict" ? "bg-amber-300/15 text-amber-200" : "bg-cyan-300/10 text-cyan-200"}`}>
+        <span className={`shrink-0 rounded-md px-1.5 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.12em] ${fidelity === "strict" ? "bg-[var(--accent-soft)] text-[var(--hud-cyan)]" : "bg-[var(--accent-soft)] text-[var(--hud-cyan)]"}`}>
           {fidelity === "strict" ? "Strict" : "Reference"}
         </span>
         <p className="hidden min-w-0 truncate px-1 text-[0.7rem] tabular-nums text-[var(--hud-text-faint)] xl:block" aria-live="polite">
           {total > 0 ? `${completed}/${total} covered` : "Following the lesson"}
         </p>
         <div className="mx-auto flex items-center">
-          <button type="button" onClick={() => movePage(-1)} disabled={!pages.length || currentPage === pages[0]?.pageNumber} aria-label={`Previous ${unit}`} className="grid size-8 place-items-center rounded-lg text-white/60 hover:bg-white/10 disabled:opacity-25"><ChevronLeft size={15} /></button>
-          <span className="min-w-20 text-center text-[0.72rem] font-semibold tabular-nums text-white/65">{pageLabel} {currentPage ?? "—"}{currentPosition >= 0 && pages.length > 1 ? ` · ${currentPosition + 1}/${pages.length}` : ""}</span>
-          <button type="button" onClick={() => movePage(1)} disabled={!pages.length || currentPage === pages[pages.length - 1]?.pageNumber} aria-label={`Next ${unit}`} className="grid size-8 place-items-center rounded-lg text-white/60 hover:bg-white/10 disabled:opacity-25"><ChevronRight size={15} /></button>
+          <button type="button" onClick={() => movePage(-1)} disabled={!pages.length || currentPage === pages[0]?.pageNumber} aria-label={`Previous ${unit}`} className="grid size-8 place-items-center rounded-lg text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] disabled:opacity-25"><ChevronLeft size={15} /></button>
+          <span className="min-w-20 text-center text-[0.72rem] font-semibold tabular-nums text-[var(--hud-text-dim)]">{pageLabel} {currentPage ?? "—"}{currentPosition >= 0 && pages.length > 1 ? ` · ${currentPosition + 1}/${pages.length}` : ""}</span>
+          <button type="button" onClick={() => movePage(1)} disabled={!pages.length || currentPage === pages[pages.length - 1]?.pageNumber} aria-label={`Next ${unit}`} className="grid size-8 place-items-center rounded-lg text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] disabled:opacity-25"><ChevronRight size={15} /></button>
         </div>
-        <button type="button" onClick={() => setFollowTeacher((value) => !value)} aria-pressed={followTeacher} className={`grid size-8 place-items-center rounded-lg transition ${followTeacher ? "bg-amber-300/15 text-amber-200" : "text-white/50 hover:bg-white/10"}`} title={followTeacher ? "Following Aria" : "Resume following Aria"}>
+        <button type="button" onClick={() => setFollowTeacher((value) => !value)} aria-pressed={followTeacher} className={`grid size-8 place-items-center rounded-lg transition ${followTeacher ? "bg-[var(--accent-soft)] text-[var(--hud-cyan)]" : "text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"}`} title={followTeacher ? "Following Aria" : "Resume following Aria"}>
           <LocateFixed size={15} />
         </button>
-        <button type="button" onClick={() => setZoom((value) => Math.max(0.7, Number((value - 0.1).toFixed(1))))} aria-label="Zoom out source" className="grid size-8 place-items-center rounded-lg text-white/60 hover:bg-white/10"><Minus size={15} /></button>
-        <span className="w-9 text-center text-[0.67rem] tabular-nums text-white/45">{Math.round(zoom * 100)}%</span>
-        <button type="button" onClick={() => setZoom((value) => Math.min(1.6, Number((value + 0.1).toFixed(1))))} aria-label="Zoom in source" className="grid size-8 place-items-center rounded-lg text-white/60 hover:bg-white/10"><Plus size={15} /></button>
+        <button type="button" onClick={() => setZoom((value) => Math.max(0.7, Number((value - 0.1).toFixed(1))))} aria-label="Zoom out source" className="grid size-8 place-items-center rounded-lg text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"><Minus size={15} /></button>
+        <span className="w-9 text-center text-[0.67rem] tabular-nums text-[var(--hud-text-dim)]">{Math.round(zoom * 100)}%</span>
+        <button type="button" onClick={() => setZoom((value) => Math.min(1.6, Number((value + 0.1).toFixed(1))))} aria-label="Zoom in source" className="grid size-8 place-items-center rounded-lg text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"><Plus size={15} /></button>
       </div>
 
-      <div className="h-0.5 shrink-0 bg-white/5" aria-hidden="true">
-        <div className="h-full bg-amber-300 transition-[width] duration-500" style={{ width: `${total ? (completed / total) * 100 : 0}%` }} />
+      <div className="h-0.5 shrink-0 bg-[var(--hud-line)]" aria-hidden="true">
+        <div className="h-full bg-[var(--hud-cyan)] transition-[width] duration-500" style={{ width: `${total ? (completed / total) * 100 : 0}%` }} />
       </div>
 
       {loading ? (
         <div className="grid min-h-0 flex-1 place-items-center text-center">
-          <div><Loader2 className="mx-auto animate-spin text-white/40" size={20} /><p className="mt-2 text-xs text-white/45">Opening the selected source…</p></div>
+          <div><Loader2 className="mx-auto animate-spin text-[var(--hud-text-dim)]" size={20} /><p className="mt-2 text-xs text-[var(--hud-text-dim)]">Opening the selected source…</p></div>
         </div>
       ) : error ? (
         <div className="grid min-h-0 flex-1 place-items-center p-6 text-center">
-          <div className="max-w-xs"><FileWarning className="mx-auto text-amber-200/70" size={24} /><p className="mt-3 text-sm font-semibold text-white/80">Source preview unavailable</p><p className="mt-1 text-xs leading-relaxed text-white/45">{error} The lesson can continue from its extracted source text.</p><button type="button" onClick={() => void loadPages()} className="mt-4 inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold text-white/70 hover:bg-white/10"><RefreshCw size={13} /> Retry preview</button></div>
+          <div className="max-w-xs"><FileWarning className="mx-auto text-[var(--hud-cyan)]" size={24} /><p className="mt-3 text-sm font-semibold text-[var(--hud-text-dim)]">Source preview unavailable</p><p className="mt-1 text-xs leading-relaxed text-[var(--hud-text-dim)]">{error} The lesson can continue from its extracted source text.</p><button type="button" onClick={() => void loadPages()} className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--hud-line)] px-3 py-2 text-xs font-semibold text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"><RefreshCw size={13} /> Retry preview</button></div>
         </div>
       ) : (
-        <div ref={scrollRef} className="min-h-0 flex-1 overflow-auto overscroll-contain bg-[#090807] p-3" onWheel={() => setFollowTeacher(false)}>
+        <div ref={scrollRef} className="min-h-0 flex-1 overflow-auto overscroll-contain bg-[var(--hud-surface-2)] p-3" onWheel={() => setFollowTeacher(false)}>
           <div className="mx-auto flex min-w-fit flex-col gap-5" style={{ width: `${zoom * 100}%`, maxWidth: `${zoom * 54}rem` }}>
             {pages.map((page) => {
               const active = focus.activePage === page.pageNumber;
               const pageHighlights = focus.highlights.filter((highlight) => highlight.pageNumber === page.pageNumber);
               return (
                 <div key={page.pageNumber} ref={(node) => { if (node) pageRefs.current.set(page.pageNumber, node); else pageRefs.current.delete(page.pageNumber); }} data-source-page={page.pageNumber} className="scroll-mt-3">
-                  <div className="mb-1.5 flex items-center justify-between text-[0.65rem] text-white/40"><span>{pageLabel} {page.pageNumber}</span>{active && <span className="font-semibold text-amber-200">Aria is teaching here</span>}</div>
-                  <div className={`relative overflow-hidden bg-white shadow-2xl transition-shadow ${active ? "ring-2 ring-amber-300 ring-offset-2 ring-offset-[#090807]" : "ring-1 ring-white/10"}`}>
+                  <div className="mb-1.5 flex items-center justify-between text-[0.65rem] text-[var(--hud-text-dim)]"><span>{pageLabel} {page.pageNumber}</span>{active && <span className="font-semibold text-[var(--hud-cyan)]">Aria is teaching here</span>}</div>
+                  <div className={`relative overflow-hidden bg-[var(--hud-surface)] shadow-[var(--elev-2)] transition-shadow ${active ? "ring-2 ring-[var(--hud-cyan)] ring-offset-2 ring-offset-[var(--hud-surface-2)]" : "ring-1 ring-[var(--hud-line)]"}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element -- private data URL from the parser. */}
                     <img src={page.dataUrl} alt={`${pageLabel} ${page.pageNumber}`} className="block h-auto w-full" />
                     {/* One even dim around the passage. Each box used to cast its own 9999px shadow,
@@ -268,14 +268,14 @@ export function PdfSourcePanel({
                       highlight.blockId === pointerBlockId ? (
                         <span key={highlight.blockId} ref={pointerRef} className="pointer-events-none absolute" style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }}>
                           {/* What Aria is saying NOW: a solid marker and an arrow pointing at it. */}
-                          <span className="absolute inset-0 rounded-[3px] border-[3px] border-amber-500 bg-amber-300/30 shadow-[0_0_0_3px_rgba(245,158,11,0.18)] transition-all duration-300" />
-                          <span aria-hidden="true" className="absolute top-1/2 -translate-y-1/2 animate-pulse text-[1.35rem] leading-none text-amber-500 drop-shadow" style={{ right: "calc(100% + 4px)" }}>▶</span>
+                          <span className="absolute inset-0 rounded-[3px] border-[3px] border-[var(--hud-cyan)] bg-[var(--hud-cyan-glow)] transition-all duration-300" />
+                          <span aria-hidden="true" className="absolute top-1/2 -translate-y-1/2 animate-pulse text-[1.35rem] leading-none text-[var(--hud-cyan)] drop-shadow" style={{ right: "calc(100% + 4px)" }}>▶</span>
                         </span>
                       ) : (
-                        <span key={highlight.blockId} className="pointer-events-none absolute rounded-[2px] border border-dashed border-amber-500/50 bg-amber-300/[0.06] transition-all duration-300" title={highlight.label} style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }} />
+                        <span key={highlight.blockId} data-source-highlight className="pointer-events-none absolute rounded-[2px] border border-dashed border-[var(--hud-cyan)] bg-[var(--hud-cyan-glow)] transition-all duration-300" title={highlight.label} style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }} />
                       )
                     ) : (
-                      <span key={highlight.blockId} className="pointer-events-none absolute inset-y-0 left-0 w-1.5 bg-amber-400" title={highlight.label} />
+                      <span key={highlight.blockId} className="pointer-events-none absolute inset-y-0 left-0 w-1.5 bg-[var(--hud-cyan)]" title={highlight.label} />
                     ))}
                     {/* The tag that names what is being taught, on the first highlighted passage —
                         the same words as the board's "Part N" strip beside it. */}
@@ -285,7 +285,7 @@ export function PdfSourcePanel({
                       if (!first || !beatTitle) return null;
                       return (
                         <span
-                          className="pointer-events-none absolute z-10 max-w-[70%] -translate-y-full truncate rounded-t-md bg-amber-500 px-1.5 py-0.5 text-[0.62rem] font-bold text-[#1a1206] shadow"
+                          className="pointer-events-none absolute z-10 max-w-[70%] -translate-y-full truncate rounded-t-md bg-[var(--hud-cyan)] px-1.5 py-0.5 text-[0.62rem] font-bold text-[var(--accent-on)] shadow"
                           style={{ left: `${first.x * 100}%`, top: `${first.y * 100}%` }}
                         >
                           Part {currentIndex + 1} · {beatTitle}

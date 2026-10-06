@@ -2190,7 +2190,7 @@ type BuildCost =
   /**
    * ONE turn of the pre-lesson conversation, shared by BOTH the text-chat diagnostic and the live
    * voice session — see the doc comment on `onTranscript` below for why. Grades `answer` against
-   * `question` (the open text-chat question when `source === "text"`, or a synthetic "what have
+   * `question`(the open text-chat question when`source === "text"`, or a synthetic "what have
    * they just told Aria" question when `source === "voice"`), updates the one shared
    * `learnerProfile`, and returns whatever the model decided — the caller decides what to DO with
    * that, which is the whole reason this is split out from `runDiagnostic` rather than being it.
@@ -3099,7 +3099,7 @@ type BuildCost =
     <button
       onClick={openLectureSummary}
       data-summarize-lecture=""
-      className="hud-btn-primary fixed bottom-6 right-6 z-40 rounded-full px-6 py-3 text-sm font-bold shadow-2xl"
+      className="hud-btn-primary fixed bottom-6 right-6 z-40 rounded-full px-6 py-3 text-sm font-bold shadow-[var(--elev-2)]"
     >
       Summarize the lecture in one slide
     </button>
@@ -3374,9 +3374,9 @@ type BuildCost =
   if (phase === "source-mode" && sourceModeStart) {
     return (
       <main className="hud-canvas hud-grain relative grid min-h-screen place-items-center overflow-hidden px-5 py-8 text-[var(--hud-text)]">
-        <section aria-labelledby="source-mode-title" className="relative z-10 w-full max-w-3xl rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-6 shadow-2xl sm:p-9">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[var(--hud-cyan-bright)]">Source ready</p>
-          <h1 id="source-mode-title" className="mt-3 max-w-2xl font-display text-3xl leading-tight tracking-[-0.025em] sm:text-4xl">
+        <section aria-labelledby="source-mode-title" className="relative z-10 w-full max-w-3xl rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-6 shadow-[var(--elev-2)] sm:p-9">
+          <p className="text-[0.8125rem] font-medium text-[var(--hud-text-dim)]">Source ready</p>
+          <h1 id="source-mode-title" className="mt-2 max-w-2xl font-display text-[1.75rem] leading-tight tracking-[-0.02em] sm:text-[2rem]">
             Do you want me to teach strictly from the selected source?
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--hud-text-dim)]">
@@ -3387,20 +3387,20 @@ type BuildCost =
             <button
               type="button"
               onClick={() => chooseSourceMode("strict")}
-              className="group rounded-[var(--radius-lg)] border border-amber-300/35 bg-amber-300/10 p-5 text-left transition hover:border-amber-200/70 hover:bg-amber-300/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300"
+              className="group rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
-              <span className="text-base font-bold text-amber-100">Yes — strict source</span>
-              <span className="mt-2 block text-[0.8rem] leading-relaxed text-amber-50/65">
+              <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Yes — strict source</span>
+              <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
                 Cover every selected page in source order. Clarify and illustrate it, but do not add unrelated material or ask planning questions.
               </span>
             </button>
             <button
               type="button"
               onClick={() => chooseSourceMode("reference")}
-              className="group rounded-[var(--radius-lg)] border border-cyan-300/25 bg-cyan-300/[0.06] p-5 text-left transition hover:border-cyan-200/55 hover:bg-cyan-300/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300"
+              className="group rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
-              <span className="text-base font-bold text-cyan-100">Use it as a reference</span>
-              <span className="mt-2 block text-[0.8rem] leading-relaxed text-cyan-50/60">
+              <span className="text-[1.0625rem] font-medium text-[var(--hud-text)]">Use it as a reference</span>
+              <span className="mt-2 block text-[0.875rem] leading-relaxed text-[var(--hud-text-dim)]">
                 Keep the selected pages central, then use the normal adaptive plan and add outside examples or context when useful.
               </span>
             </button>
@@ -3607,7 +3607,7 @@ type BuildCost =
           ) : (
             <>
               {activeSource.fidelity === "approximate" && (
-                <p className="border-b px-5 py-2 text-center text-[0.72rem] text-amber-300/80" style={{ borderColor: "var(--hud-line)" }}>
+                <p className="border-b px-5 py-2 text-center text-[0.72rem] text-[var(--hud-cyan)]" style={{ borderColor: "var(--hud-line)" }}>
                   These are rebuilt previews, not the real slides — layout and fonts will differ.
                 </p>
               )}
@@ -3830,7 +3830,7 @@ function EntryStatus({
           <div className="mx-auto mb-6 h-8 w-8 animate-spin rounded-full border-2 border-[var(--hud-line-strong)] border-t-[var(--hud-text)]" aria-hidden="true" />
         )}
         <h1 className="font-display text-2xl tracking-[-0.02em] text-[var(--hud-text)]">{title}</h1>
-        {failed && <p className="mt-3 text-sm text-rose-300">{failed}</p>}
+        {failed && <p data-entry-error className="mt-3 text-sm text-[var(--hud-danger)]">{failed}</p>}
         {!failed && videoProgress && (
           <>
             <div
@@ -3912,7 +3912,7 @@ function TestOfferScreen({
           </p>
         )}
 
-        {error && <p role="alert" className="mt-6 text-sm font-semibold text-rose-300">{error}</p>}
+        {error && <p role="alert" className="mt-6 text-sm font-semibold text-[var(--hud-danger)]">{error}</p>}
 
         <div className="mt-9 space-y-3">
           {/* The test is the recommended next step, so it is the one filled card. Blind mode takes
@@ -4001,7 +4001,7 @@ function ProfileChoice<T extends string>({
             key={id}
             onClick={() => onChange(id)}
             className={`rounded-full border px-3 py-1.5 text-xs font-black transition ${value === id
-              ? "border-transparent bg-[var(--hud-cyan)] text-black"
+              ? "border-transparent bg-[var(--hud-cyan)] text-[var(--accent-on)]"
               : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"}`}
           >
             {text}
@@ -4109,7 +4109,7 @@ function VoiceStrip({ voice }: { voice: VoiceState }) {
     <div className="flex items-center gap-2 px-1 pb-2">
       <span
         aria-hidden
-        className={`h-2 w-2 rounded-full ${live && !voice.muted ? "bg-[var(--hud-accent,#7c5cff)]" : "bg-[var(--hud-text-faint,#888)]"}`}
+        className={`h-2 w-2 rounded-full ${live && !voice.muted ? "bg-[var(--hud-cyan)]" : "bg-[var(--hud-line-strong)]"}`}
       />
       <span className="text-xs text-[var(--hud-text-faint)]">{label}</span>
       {live && (
@@ -4117,7 +4117,7 @@ function VoiceStrip({ voice }: { voice: VoiceState }) {
           type="button"
           onClick={voice.toggleMute}
           aria-pressed={voice.muted}
-          className="rounded-full border border-[var(--hud-line,#333)] px-2.5 py-1 text-[11px] text-[var(--hud-text-faint)] transition hover:text-[var(--hud-text)]"
+          className="rounded-full border border-[var(--hud-line)] px-2.5 py-1 text-[11px] text-[var(--hud-text-faint)] transition hover:text-[var(--hud-text)]"
         >
           {voice.muted ? "Unmute" : "Mute"}
         </button>
@@ -4203,7 +4203,7 @@ function PlanningQuestionsCard({
             type="button"
             disabled={loading}
             onClick={() => onChoose(current.question, option.label, option.instruction, option.focus, option.fidelity, option.depthLevel)}
-            className="rounded-full border border-[var(--hud-line-strong)] bg-white/[0.02] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40"
+            className="rounded-full border border-[var(--hud-line-strong)] bg-[var(--hud-surface)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-cyan)] hover:text-[var(--hud-text)] disabled:opacity-40"
           >
             {option.label}
           </button>
@@ -4245,9 +4245,9 @@ function StudentProfileCard({
   const map = conceptMap(profile);
   const groups: { status: ConceptMapEntry["status"]; label: string; dot: string }[] = [
     { status: "mastered", label: "Mastered", dot: "bg-[var(--hud-cyan)]" },
-    { status: "weak", label: "Shaky on", dot: "bg-amber-400" },
-    { status: "missing", label: "Gap", dot: "bg-rose-400" },
-    { status: "misconception", label: "Misconception", dot: "bg-rose-500" },
+    { status: "weak", label: "Shaky on", dot: "bg-[var(--hud-warn)]" },
+    { status: "missing", label: "Gap", dot: "bg-[var(--hud-danger)]" },
+    { status: "misconception", label: "Misconception", dot: "bg-[var(--hud-danger)]" },
   ];
   const hasAnyConcepts = map.length > 0;
   const hasSourceInfo = sourceScope.documentLabels.length > 0 || sourceScope.breadth.kind !== "whole" || sourceScope.fidelity === "strict";
@@ -4272,7 +4272,7 @@ function StudentProfileCard({
 
   return (
     <div
-      className="hud-materialize mb-6 overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-white/[0.02]"
+      className="hud-materialize mb-6 overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)]"
       style={{ animationDelay: "0.05s" }}
     >
       <div className="grid gap-px bg-[var(--hud-line)] md:grid-cols-3">
@@ -4385,7 +4385,7 @@ function LessonPreviewState({
   voice: VoiceState;
 }) {
   return (
-    <section className="relative z-10 min-h-screen w-full bg-[#08090c]">
+    <section className="relative z-10 min-h-screen w-full bg-[var(--hud-bg)]">
       <div className="mx-auto flex max-w-3xl items-center justify-between border-b border-[var(--hud-line)] px-6 py-4">
         <div className="min-w-0">
           <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">Ready to teach</p>
@@ -4398,7 +4398,7 @@ function LessonPreviewState({
         <StudentProfileCard profile={learnerProfile} depth={learnerDepth} sourceScope={sourceScope} />
 
         {outline && outline.subtopics.length > 0 && (
-          <div className="rounded-2xl border border-[var(--hud-line)] bg-white/[0.02] p-4">
+          <div className="rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4">
             <p className="text-xs font-bold uppercase tracking-wider text-[var(--hud-cyan)]">Lesson structure</p>
             <ol className="mt-3 space-y-3">
               {outline.subtopics.map((subtopic, index) => (
@@ -4788,7 +4788,7 @@ function OutlineReviewState({
     return (
       <div
         data-planning-chat
-        className={`pointer-events-auto overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/95 shadow-2xl backdrop-blur-xl ${inline ? "mt-6" : ""}`}
+        className={`pointer-events-auto overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-bg-2)]/95 shadow-[var(--elev-2)] backdrop-blur-xl ${inline ? "mt-6" : ""}`}
       >
         {(chatLog.length > 0 || diagnosticBusy) && (
           <div className={`${inline ? "max-h-[55vh] min-h-[16rem]" : "max-h-44"} overflow-y-auto border-b border-[var(--hud-line)] px-4 py-3`}>
@@ -4797,7 +4797,7 @@ function OutlineReviewState({
                 <div key={i} data-chat-role={m.role} className={m.role === "you" ? "text-right" : ""}>
                   <p
                     className={`inline-block max-w-[85%] rounded-lg px-3 py-2 text-left leading-snug ${inline ? "text-[15px]" : "text-sm"} ${
-                      m.role === "you" ? "bg-[var(--hud-text)] text-[#08090c]" : "bg-white/[0.05] text-[var(--hud-text-dim)]"
+                      m.role === "you" ? "bg-[var(--hud-surface-2)] text-[var(--hud-text)]" : "bg-[var(--hud-surface)] text-[var(--hud-text-dim)]"
                     }`}
                   >
                     {m.text}
@@ -4910,7 +4910,7 @@ function OutlineReviewState({
               <span
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-500 ${
-                  i < answered ? "w-6 bg-[var(--hud-cyan)]" : i === answered ? "w-10 bg-[var(--hud-cyan)]/70" : "w-6 bg-white/10"
+                  i < answered ? "w-6 bg-[var(--hud-cyan)]" : i === answered ? "w-10 bg-[var(--hud-cyan)]/70" : "w-6 bg-[var(--hud-surface-2)]"
                 }`}
               />
             ))}
@@ -4950,7 +4950,7 @@ function OutlineReviewState({
                       onClick={() => answerIt(option)}
                       disabled={sending || loading || Boolean(voicePick)}
                       className={`group flex items-center gap-4 rounded-xl border px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-cyan)]/[0.06] disabled:opacity-50 ${
-                        heard ? "border-[var(--hud-cyan)] bg-[var(--hud-cyan)]/[0.14] !opacity-100" : "border-[var(--hud-line)] bg-white/[0.02]"
+                        heard ? "border-[var(--hud-cyan)] bg-[var(--hud-cyan)]/[0.14] !opacity-100" : "border-[var(--hud-line)] bg-[var(--hud-surface)]"
                       }`}
                     >
                       <span className="grid size-7 shrink-0 place-items-center rounded-md border border-[var(--hud-line-strong)] text-xs font-semibold text-[var(--hud-text-faint)] group-hover:border-[var(--hud-cyan)] group-hover:text-[var(--hud-cyan)]">
@@ -4973,7 +4973,7 @@ function OutlineReviewState({
             <div className="mt-5 flex items-center gap-2.5 text-[0.85rem] text-[var(--hud-text-faint)]">
               <span
                 aria-hidden
-                className={`size-2 shrink-0 rounded-full ${live && !voice.muted ? "animate-pulse bg-[var(--hud-cyan)]" : "bg-white/20"}`}
+                className={`size-2 shrink-0 rounded-full ${live && !voice.muted ? "animate-pulse bg-[var(--hud-cyan)]" : "bg-[var(--hud-line-strong)]"}`}
               />
               <span className="min-w-0 flex-1">
                 {live ? (voice.muted ? "Mic muted — tap an answer" : "Tap an answer, or just say it") : "Tap an answer"}
@@ -5059,7 +5059,7 @@ function OutlineReviewState({
   }
 
   return (
-    <section className="relative z-10 min-h-screen w-full bg-[#08090c]">
+    <section className="relative z-10 min-h-screen w-full bg-[var(--hud-bg)]">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between border-b border-[var(--hud-line)] px-6 py-4 lg:px-10">
         <div className="min-w-0">
           <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">
@@ -5085,7 +5085,7 @@ function OutlineReviewState({
           role="dialog"
           aria-modal="true"
           aria-label="What Aria remembers about you"
-          className="fixed inset-0 z-50 overflow-y-auto bg-black/70 px-6 py-12 backdrop-blur-sm"
+          className="fixed inset-0 z-50 overflow-y-auto bg-[var(--scrim)] px-6 py-12 backdrop-blur-sm"
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) setShowMemory(false);
           }}
@@ -5190,9 +5190,9 @@ function OutlineReviewState({
                     return (
                       <p className="mt-2 text-[0.82rem] text-[var(--hud-text-dim)]">
                         <span className="text-[var(--hud-text-faint)]">Aria noticed — </span>
-                        {shaky.length > 0 && <>shaky on: <span className="text-amber-300/90">{shaky.join(", ")}</span></>}
+                        {shaky.length > 0 && <>shaky on: <span className="text-[var(--hud-warn)]">{shaky.join(", ")}</span></>}
                         {shaky.length > 0 && wrong.length > 0 && " · "}
-                        {wrong.length > 0 && <>to correct: <span className="text-rose-300/90">{wrong.join(", ")}</span></>}
+                        {wrong.length > 0 && <>to correct: <span className="text-[var(--hud-danger)]">{wrong.join(", ")}</span></>}
                       </p>
                     );
                   })()}
@@ -5209,9 +5209,9 @@ function OutlineReviewState({
                 {outline.subtopics.map((s, i) => (
                   <li
                     key={i}
-                    className="group flex items-start gap-4 rounded-xl border border-[var(--hud-line)] bg-white/[0.02] px-4 py-3.5 transition focus-within:border-[var(--hud-line-strong)] hover:border-[var(--hud-line-strong)]"
+                    className="group flex items-start gap-4 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3.5 transition focus-within:border-[var(--hud-line-strong)] hover:border-[var(--hud-line-strong)]"
                   >
-                    <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md bg-white/[0.05] text-xs font-semibold tabular-nums text-[var(--hud-text-faint)]">
+                    <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md bg-[var(--hud-surface-2)] text-xs font-semibold tabular-nums text-[var(--hud-text-faint)]">
                       {i + 1}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -5232,7 +5232,7 @@ function OutlineReviewState({
                     <div className="flex shrink-0 items-center gap-0.5 opacity-40 transition group-focus-within:opacity-100 group-hover:opacity-100">
                       <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up">▲</button>
                       <button onClick={() => move(i, 1)} disabled={i === outline.subtopics.length - 1} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move down">▼</button>
-                      <button onClick={() => remove(i)} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-rose-400" aria-label="Remove topic">✕</button>
+                      <button onClick={() => remove(i)} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-danger)]" aria-label="Remove topic">✕</button>
                     </div>
                   </li>
                 ))}
@@ -5262,7 +5262,7 @@ function OutlineReviewState({
 
               {voice.status === "live" && (
                 <div className="mt-4 flex items-center gap-2 text-[0.82rem] text-[var(--hud-text-faint)]">
-                  <span aria-hidden className={`size-2 shrink-0 rounded-full ${voice.muted ? "bg-white/20" : "animate-pulse bg-[var(--hud-cyan)]"}`} />
+                  <span aria-hidden className={`size-2 shrink-0 rounded-full ${voice.muted ? "bg-[var(--hud-line-strong)]" : "animate-pulse bg-[var(--hud-cyan)]"}`} />
                   <span className="min-w-0 flex-1 truncate">
                     {voice.muted
                       ? "Aria's mic is muted"
@@ -5282,7 +5282,7 @@ function OutlineReviewState({
                   sendChat(chatInput);
                   setChatInput("");
                 }}
-                className="mt-3 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-black/30 p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
+                className="mt-3 flex items-center gap-2 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-1.5 pl-4 focus-within:border-[var(--hud-line-strong)]"
               >
                 <input
                   ref={composerRef}
@@ -5301,18 +5301,18 @@ function OutlineReviewState({
                 </button>
               </form>
 
-              {error && !sending && <p className="mt-4 text-sm text-rose-400">{error}</p>}
+              {error && !sending && <p className="mt-4 text-sm text-[var(--hud-danger)]">{error}</p>}
 
               <button
                 onClick={onApprove}
                 disabled={loading || sending || outline.subtopics.length === 0}
-                className="mt-8 w-full rounded-xl bg-[var(--hud-text)] py-3.5 text-[0.95rem] font-semibold text-[#08090c] transition hover:opacity-90 disabled:opacity-40"
+                className="hud-btn-primary mt-8 w-full rounded-[var(--radius)] py-3.5 text-[0.95rem] disabled:cursor-not-allowed"
               >
                 Build lesson →
               </button>
             </div>
           ) : (
-            <p className="text-sm text-rose-400">{error ?? "Couldn't plan an outline."}</p>
+            <p className="text-sm text-[var(--hud-danger)]">{error ?? "Couldn't plan an outline."}</p>
           )}
         </div>
 
