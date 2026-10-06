@@ -34,7 +34,8 @@ type MapNode = {
 };
 type MapLink = { from: string; to: string; type: "needs" | "part-of" | "related"; confidence: number };
 
-const HUES = ["#38bdf8", "#a78bfa", "#34d399", "#fbbf24", "#f472b6", "#fb923c", "#22d3ee", "#a3e635"];
+/** One quiet tone per subject, defined per theme in globals.css (--map-1 … --map-8). */
+const HUES = ["var(--map-1)", "var(--map-2)", "var(--map-3)", "var(--map-4)", "var(--map-5)", "var(--map-6)", "var(--map-7)", "var(--map-8)"];
 
 /** "machine-learning" → "Machine learning". */
 function subjectName(subject: string): string {
@@ -165,26 +166,23 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
   };
 
   return (
-    <main className="relative flex h-screen flex-col overflow-hidden bg-[#05070d] text-white">
-      {/* The night sky: two layers of fixed stars, painted once by CSS. */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(1px 1px at 12% 18%, #fff8 50%, transparent 51%), radial-gradient(1px 1px at 72% 34%, #fff6 50%, transparent 51%), radial-gradient(1.5px 1.5px at 41% 77%, #fff7 50%, transparent 51%), radial-gradient(1px 1px at 88% 82%, #fff5 50%, transparent 51%), radial-gradient(1px 1px at 27% 52%, #fff4 50%, transparent 51%)", backgroundSize: "340px 260px" }} />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(56,189,248,0.07), transparent 60%), radial-gradient(ellipse at 80% 90%, rgba(167,139,250,0.06), transparent 55%)" }} />
+    <main className="relative flex h-screen flex-col overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
 
       <header className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-5 py-4">
         <div className="flex items-center gap-3">
-          <button type="button" onClick={() => go("landing")} className="rounded-full border border-white/15 p-2 text-white/75 hover:bg-white/10 hover:text-white" aria-label="Back">
+          <button type="button" onClick={() => go("landing")} className="rounded-full border border-[var(--hud-line)] p-2 text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]" aria-label="Back">
             <ArrowLeft size={16} />
           </button>
           <div>
             <h1 className="text-lg font-semibold tracking-tight">Your knowledge map</h1>
-            <p className="text-xs text-white/55">
+            <p className="text-xs text-[var(--hud-text-dim)]">
               {learned.length} concepts · {solid} solid · {due.length} due for review
             </p>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {subjects.map((s) => (
-            <span key={s} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] capitalize text-white/75">
+            <span key={s} className="flex items-center gap-1.5 rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-2.5 py-1 text-[11px] capitalize text-[var(--hud-text-dim)]">
               <span className="h-2 w-2 rounded-full" style={{ background: hueFor(s, subjects) }} />
               {subjectName(s)}
             </span>
@@ -195,21 +193,21 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
       <div className="relative z-10 flex min-h-0 flex-1">
         <div className="relative min-w-0 flex-1">
           {!data && !error && (
-            <div className="grid h-full place-items-center text-white/60">
+            <div className="grid h-full place-items-center text-[var(--hud-text-dim)]">
               <div className="flex flex-col items-center gap-2">
                 <Loader2 className="animate-spin" size={22} />
-                <p className="text-xs text-white/50">Organising what you&apos;ve learned…</p>
+                <p className="text-xs text-[var(--hud-text-dim)]">Organising what you&apos;ve learned…</p>
               </div>
             </div>
           )}
-          {error && <p className="grid h-full place-items-center text-sm text-white/70">{error}</p>}
+          {error && <p className="grid h-full place-items-center text-sm text-[var(--hud-text-dim)]">{error}</p>}
           {data && learned.length === 0 && (
             <div className="grid h-full place-items-center px-6 text-center">
               <div>
-                <Sparkles className="mx-auto text-amber-300" size={28} />
+                <Sparkles className="mx-auto text-[var(--hud-cyan)]" size={28} />
                 <p className="mt-3 text-base font-semibold">Your sky is still dark.</p>
-                <p className="mt-1 max-w-sm text-sm text-white/60">Every concept you learn becomes a star here, linked to what it builds on. Start a lesson and your first stars appear.</p>
-                <button type="button" onClick={() => go("landing")} className="mt-4 rounded-full bg-white px-4 py-2 text-sm font-bold text-black">Start a lesson</button>
+                <p className="mt-1 max-w-sm text-sm text-[var(--hud-text-dim)]">Every concept you learn becomes a star here, linked to what it builds on. Start a lesson and your first stars appear.</p>
+                <button type="button" onClick={() => go("landing")} className="mt-4 rounded-full bg-[var(--hud-cyan)] px-4 py-2 text-sm font-bold text-[var(--accent-on)]">Start a lesson</button>
               </div>
             </div>
           )}
@@ -241,12 +239,12 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
               <defs>
                 {subjects.map((s) => (
                   <radialGradient key={s} id={`km-${subjects.indexOf(s)}`}>
-                    <stop offset="0%" stopColor={hueFor(s, subjects)} stopOpacity={0.9} />
-                    <stop offset="100%" stopColor={hueFor(s, subjects)} stopOpacity={0} />
+                    <stop offset="0%" style={{ stopColor: hueFor(s, subjects) }} stopOpacity={0.9} />
+                    <stop offset="100%" style={{ stopColor: hueFor(s, subjects) }} stopOpacity={0} />
                   </radialGradient>
                 ))}
                 <marker id="km-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0 1 L9 5 L0 9 Z" fill="#94a3b8" opacity={0.7} />
+                  <path d="M0 1 L9 5 L0 9 Z" style={{ fill: "var(--text-faint)" }} opacity={0.9} />
                 </marker>
               </defs>
               <style>{`@keyframes km-due { 0%,100% { opacity: .35; } 50% { opacity: 1; } } .km-due { animation: km-due 2.4s ease-in-out infinite; } @media (prefers-reduced-motion: reduce) { .km-due { animation: none; } }`}</style>
@@ -263,7 +261,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                     key={`${l.from}|${l.type}|${l.to}`}
                     d={`M${a.x} ${a.y} Q${mx} ${my} ${b.x} ${b.y}`}
                     fill="none"
-                    stroke={lit ? "#fbbf24" : "#94a3b8"}
+                    style={{ stroke: lit ? "var(--accent)" : "var(--border-strong)" }}
                     strokeWidth={(lit ? 2.2 : 1.2) * k}
                     strokeOpacity={lit ? 0.9 : l.type === "related" ? 0.12 : 0.18 + 0.4 * l.confidence}
                     strokeDasharray={l.type === "part-of" ? "4 6" : undefined}
@@ -278,7 +276,7 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                 const cx = pts.reduce((t, p) => t + p.x, 0) / pts.length;
                 const top = Math.min(...pts.map((p) => p.y));
                 return (
-                  <text key={`subject-${sub}`} x={cx} y={top - 34 * k} textAnchor="middle" fontSize={15 * k} fontWeight={800} letterSpacing={2 * k} fill={hueFor(sub, subjects)} opacity={0.55} pointerEvents="none">
+                  <text key={`subject-${sub}`} x={cx} y={top - 34 * k} textAnchor="middle" fontSize={15 * k} fontWeight={800} letterSpacing={2 * k} style={{ fill: hueFor(sub, subjects) }} opacity={0.8} pointerEvents="none">
                     {subjectName(sub).toUpperCase()}
                   </text>
                 );
@@ -301,11 +299,11 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
                     aria-label={`${n.label}${isNext ? ", not learned yet" : `, ${Math.round(m * 100)}% known`}`}
                   >
                     {!isNext && <circle r={r * 3.2} fill={`url(#km-${subjects.indexOf(n.subject)})`} opacity={0.25 + 0.6 * m} />}
-                    {n.due && <circle r={r + 8 * k} fill="none" stroke="#fbbf24" strokeWidth={2 * k} className="km-due" />}
-                    {selected === n.key && <circle r={r + 13 * k} fill="none" stroke="#fff" strokeWidth={1.5 * k} strokeDasharray={`${3 * k} ${4 * k}`} />}
-                    <circle r={r} fill={isNext ? "transparent" : "#f8fafc"} stroke={hueFor(n.subject, subjects)} strokeWidth={(isNext ? 1.5 : 2) * k} strokeDasharray={isNext ? `${3 * k} ${3 * k}` : undefined} opacity={isNext ? 0.7 : 0.35 + 0.65 * m} />
+                    {n.due && <circle r={r + 8 * k} fill="none" style={{ stroke: "var(--warning)" }} strokeWidth={2 * k} className="km-due" />}
+                    {selected === n.key && <circle r={r + 13 * k} fill="none" style={{ stroke: "var(--text)" }} strokeWidth={1.5 * k} strokeDasharray={`${3 * k} ${4 * k}`} />}
+                    <circle r={r} style={{ fill: isNext ? "transparent" : "var(--surface)", stroke: hueFor(n.subject, subjects) }} strokeWidth={(isNext ? 1.5 : 2) * k} strokeDasharray={isNext ? `${3 * k} ${3 * k}` : undefined} opacity={isNext ? 0.7 : 0.35 + 0.65 * m} />
                     {labelled.has(n.key) && (
-                      <text y={r + 17 * k} textAnchor="middle" fontSize={13 * k} fontWeight={600} fill={isNext ? "#94a3b8" : "#e2e8f0"} opacity={isNext ? 0.75 : 0.6 + 0.4 * m}>
+                      <text y={r + 17 * k} textAnchor="middle" fontSize={13 * k} fontWeight={600} style={{ fill: isNext ? "var(--text-muted)" : "var(--text)" }} opacity={isNext ? 0.75 : 0.6 + 0.4 * m}>
                         {shortLabel(n.label)}
                       </text>
                     )}
@@ -316,12 +314,12 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
             </svg>
           )}
           {data && learned.length > 0 && (
-            <p className="pointer-events-none absolute bottom-3 left-4 text-[11px] text-white/45">Brighter = better known · amber ring = due for review · hollow = what comes next · drag to move, scroll to zoom</p>
+            <p className="pointer-events-none absolute bottom-3 left-4 text-[11px] text-[var(--hud-text-dim)]">Brighter = better known · amber ring = due for review · hollow = what comes next · drag to move, scroll to zoom</p>
           )}
         </div>
 
         {data && learned.length > 0 && (
-          <aside className="flex w-[330px] shrink-0 flex-col gap-3 overflow-y-auto border-l border-white/10 bg-black/30 p-4 backdrop-blur">
+          <aside className="flex w-[330px] shrink-0 flex-col gap-3 overflow-y-auto border-l border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 backdrop-blur">
             {chosen ? (
               <ConceptPanel
                 node={chosen}
@@ -335,20 +333,20 @@ export function KnowledgeMapPage({ go }: { go: (p: PageName) => void }) {
               />
             ) : (
               <div>
-                <h2 className="flex items-center gap-2 text-sm font-semibold"><Clock size={14} className="text-amber-300" /> Due for review</h2>
+                <h2 className="flex items-center gap-2 text-sm font-semibold"><Clock size={14} className="text-[var(--hud-cyan)]" /> Due for review</h2>
                 {due.length === 0 ? (
-                  <p className="mt-2 text-xs text-white/55">Nothing due — everything you have learned is still fresh. Tap any star to see it.</p>
+                  <p className="mt-2 text-xs text-[var(--hud-text-dim)]">Nothing due — everything you have learned is still fresh. Tap any star to see it.</p>
                 ) : (
                   <ul className="mt-2 space-y-1.5">
                     {due.slice(0, 8).map((n) => (
-                      <li key={n.key} className="flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-2">
-                        <button type="button" onClick={() => setSelected(n.key)} className="min-w-0 truncate text-left text-sm text-white/90 hover:text-white">{n.label}</button>
-                        <button type="button" onClick={() => review(n)} className="shrink-0 rounded-full bg-amber-400 px-2.5 py-1 text-[11px] font-bold text-black hover:bg-amber-300">Review</button>
+                      <li key={n.key} className="flex items-center justify-between gap-2 rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface)] px-2.5 py-2">
+                        <button type="button" onClick={() => setSelected(n.key)} className="min-w-0 truncate text-left text-sm text-[var(--hud-text)] hover:text-[var(--hud-text)]">{n.label}</button>
+                        <button type="button" onClick={() => review(n)} className="shrink-0 rounded-full bg-[var(--hud-cyan)] px-2.5 py-1 text-[11px] font-bold text-[var(--accent-on)] hover:bg-[var(--accent-hover)]">Review</button>
                       </li>
                     ))}
                   </ul>
                 )}
-                <p className="mt-4 text-xs leading-relaxed text-white/50">Reviews come back further apart each time you remember — the spacing that makes learning stick.</p>
+                <p className="mt-4 text-xs leading-relaxed text-[var(--hud-text-dim)]">Reviews come back further apart each time you remember — the spacing that makes learning stick.</p>
               </div>
             )}
           </aside>
@@ -381,45 +379,45 @@ function ConceptPanel({ node, color, builds, leadsTo, onRate, onReview, onSee, o
     <div>
       <p className="text-[11px] font-bold uppercase tracking-wider" style={{ color }}>{subjectName(node.subject)}</p>
       <h2 className="mt-0.5 text-lg font-semibold">{node.label}</h2>
-      {node.summary && <p className="mt-1 text-xs leading-relaxed text-white/65">{node.summary}</p>}
+      {node.summary && <p className="mt-1 text-xs leading-relaxed text-[var(--hud-text-dim)]">{node.summary}</p>}
       {node.status === "next" ? (
         <div className="mt-4">
-          <p className="text-xs text-white/60">You haven&apos;t learned this yet — it connects to what you know.</p>
-          <button type="button" onClick={onLearn} className="mt-3 w-full rounded-full bg-white py-2 text-sm font-bold text-black hover:bg-white/90">Learn it</button>
+          <p className="text-xs text-[var(--hud-text-dim)]">You haven&apos;t learned this yet — it connects to what you know.</p>
+          <button type="button" onClick={onLearn} className="mt-3 w-full rounded-full bg-[var(--hud-cyan)] py-2 text-sm font-bold text-[var(--accent-on)] hover:bg-[var(--accent-hover)]">Learn it</button>
         </div>
       ) : (
         <>
           {/* Aria's estimate beside the student's own: the two side by side is the point. */}
           <div className="mt-4">
-            <div className="flex justify-between text-[11px] text-white/60"><span>Aria thinks you know it</span><span>{Math.round(m * 100)}%</span></div>
-            <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full" style={{ width: `${Math.round(m * 100)}%`, background: color }} /></div>
+            <div className="flex justify-between text-[11px] text-[var(--hud-text-dim)]"><span>Aria thinks you know it</span><span>{Math.round(m * 100)}%</span></div>
+            <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[var(--hud-surface-2)]"><div className="h-full rounded-full" style={{ width: `${Math.round(m * 100)}%`, background: color }} /></div>
           </div>
           <div className="mt-3">
-            <p className="text-[11px] text-white/60">How well do you think you know it?</p>
+            <p className="text-[11px] text-[var(--hud-text-dim)]">How well do you think you know it?</p>
             <div className="mt-1.5 flex gap-1.5">
               {(["know", "unsure"] as const).map((r) => (
-                <button key={r} type="button" onClick={() => onRate(node.selfRating === r ? null : r)} className={`flex-1 rounded-full border px-2 py-1.5 text-xs font-bold ${node.selfRating === r ? "border-white bg-white text-black" : "border-white/15 text-white/80 hover:bg-white/10"}`}>
+                <button key={r} type="button" onClick={() => onRate(node.selfRating === r ? null : r)} className={`flex-1 rounded-full border px-2 py-1.5 text-xs font-bold ${node.selfRating === r ? "border-[var(--hud-line-strong)] bg-[var(--hud-cyan)] text-[var(--accent-on)]" : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"}`}>
                   {r === "know" ? "I know this" : "Not sure"}
                 </button>
               ))}
             </div>
-            {node.selfRating === "know" && m < 0.5 && <p className="mt-1.5 text-[11px] text-amber-200/85">You rate it higher than your answers so far — a quick review will tell.</p>}
-            {node.selfRating === "unsure" && m >= 0.7 && <p className="mt-1.5 text-[11px] text-emerald-200/85">Your answers say you know it better than you think.</p>}
+            {node.selfRating === "know" && m < 0.5 && <p className="mt-1.5 text-[11px] text-[var(--hud-cyan)]">You rate it higher than your answers so far — a quick review will tell.</p>}
+            {node.selfRating === "unsure" && m >= 0.7 && <p className="mt-1.5 text-[11px] text-[var(--ok)]">Your answers say you know it better than you think.</p>}
           </div>
-          <div className="mt-4 flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2">
-            <p className="text-xs text-white/70">{node.due ? "Due for review now" : dueIn !== null ? `Next review in ${Math.max(1, dueIn)} day${Math.max(1, dueIn) === 1 ? "" : "s"}` : "No review scheduled"}</p>
+          <div className="mt-4 flex items-center justify-between rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-2">
+            <p className="text-xs text-[var(--hud-text-dim)]">{node.due ? "Due for review now" : dueIn !== null ? `Next review in ${Math.max(1, dueIn)} day${Math.max(1, dueIn) === 1 ? "" : "s"}` : "No review scheduled"}</p>
             {node.taught.length > 0 && (
-              <button type="button" onClick={onReview} className="rounded-full bg-amber-400 px-2.5 py-1 text-[11px] font-bold text-black hover:bg-amber-300">Review</button>
+              <button type="button" onClick={onReview} className="rounded-full bg-[var(--hud-cyan)] px-2.5 py-1 text-[11px] font-bold text-[var(--accent-on)] hover:bg-[var(--accent-hover)]">Review</button>
             )}
           </div>
           {node.taught.length > 0 && (
             <div className="mt-4">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-white/50">Where you learned it</p>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--hud-text-dim)]">Where you learned it</p>
               <ul className="mt-1.5 space-y-1">
                 {[...node.taught].reverse().map((t) => (
                   <li key={`${t.lectureId}:${t.sequence}`}>
-                    <button type="button" onClick={() => onSee(t)} className="w-full rounded-lg px-2 py-1.5 text-left text-xs text-white/80 hover:bg-white/10">
-                      <span className="font-semibold text-white">{t.title}</span> <span className="text-white/50">· {t.topic}</span>
+                    <button type="button" onClick={() => onSee(t)} className="w-full rounded-lg px-2 py-1.5 text-left text-xs text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]">
+                      <span className="font-semibold text-[var(--hud-text)]">{t.title}</span> <span className="text-[var(--hud-text-dim)]">· {t.topic}</span>
                     </button>
                   </li>
                 ))}
@@ -429,9 +427,9 @@ function ConceptPanel({ node, color, builds, leadsTo, onRate, onReview, onSee, o
         </>
       )}
       {(builds.length > 0 || leadsTo.length > 0) && (
-        <div className="mt-4 space-y-1.5 text-xs text-white/65">
-          {builds.length > 0 && <p><span className="text-white/45">Builds on:</span> {builds.join(", ")}</p>}
-          {leadsTo.length > 0 && <p><span className="text-white/45">Leads to:</span> {leadsTo.join(", ")}</p>}
+        <div className="mt-4 space-y-1.5 text-xs text-[var(--hud-text-dim)]">
+          {builds.length > 0 && <p><span className="text-[var(--hud-text-dim)]">Builds on:</span> {builds.join(", ")}</p>}
+          {leadsTo.length > 0 && <p><span className="text-[var(--hud-text-dim)]">Leads to:</span> {leadsTo.join(", ")}</p>}
         </div>
       )}
     </div>

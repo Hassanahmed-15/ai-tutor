@@ -132,9 +132,9 @@ export function BoardDock(props: BoardDockProps) {
 
   return (
     <div className={`pointer-events-auto flex shrink-0 items-center justify-center gap-2 px-2 pb-2 sm:px-3 sm:pb-3 ${props.wide ? "pt-0" : "pt-2"}`}>
-      <div className={`flex max-w-full items-center gap-1 rounded-2xl border border-white/10 bg-[#0d0f14]/95 p-1.5 shadow-2xl backdrop-blur-xl ${props.wide ? "w-full" : ""}`}>
+      <div className={`flex max-w-full items-center gap-1 rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-1.5 shadow-[var(--elev-2)] ${props.wide ? "w-full" : ""}`}>
         {props.leading}
-        {props.leading && <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />}
+        {props.leading && <div className="mx-1 h-7 w-px bg-[var(--hud-line)]" aria-hidden="true" />}
         <DockButton
           onClick={props.onPrevious}
           disabled={!props.canGoPrevious}
@@ -147,7 +147,7 @@ export function BoardDock(props: BoardDockProps) {
         {/* The primary action, and the only one that is always labelled. */}
         <button
           onClick={props.onTogglePlay}
-          className="flex h-11 items-center gap-1.5 rounded-xl bg-white px-3 text-[0.9rem] font-semibold text-[#0d0f14] transition hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 sm:gap-2 sm:px-5"
+          className="flex h-11 items-center gap-1.5 rounded-[10px] bg-[var(--hud-cyan)] px-3.5 text-[0.9rem] font-medium text-[var(--accent-on)] transition hover:bg-[var(--accent-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)] sm:gap-2 sm:px-5"
           aria-label={props.playing ? "Pause the lecture" : "Play the lecture"}
         >
           {props.playing ? <Pause size={17} fill="currentColor" /> : <Play size={17} fill="currentColor" />}
@@ -167,10 +167,10 @@ export function BoardDock(props: BoardDockProps) {
               aria-haspopup="true"
               aria-expanded={speedOpen}
               data-speed-button
-              className={`flex h-11 min-w-[3.25rem] items-center justify-center rounded-xl px-2.5 text-[0.84rem] font-bold tabular-nums transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
+              className={`flex h-11 min-w-[3.25rem] items-center justify-center rounded-xl px-2.5 text-[0.84rem] font-bold tabular-nums transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)] ${
                 speedOpen || props.speed !== 1
-                  ? "bg-white/[0.12] text-white"
-                  : "text-white/70 hover:bg-white/[0.08] hover:text-white"
+                  ? "bg-[var(--hud-surface-2)] text-[var(--hud-text)]"
+                  : "text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
               }`}
             >
               {rateLabel(props.speed)}
@@ -179,7 +179,7 @@ export function BoardDock(props: BoardDockProps) {
               <div
                 role="group"
                 aria-label="Playback speed"
-                className="absolute bottom-[calc(100%+10px)] left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-2xl border border-white/10 bg-[#0d0f14]/98 p-1.5 shadow-2xl backdrop-blur-xl"
+                className="absolute bottom-[calc(100%+10px)] left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-1.5 shadow-[var(--elev-2)] backdrop-blur-xl"
               >
                 {PLAYBACK_RATES.map((choice) => (
                   <button
@@ -191,8 +191,8 @@ export function BoardDock(props: BoardDockProps) {
                       props.onSpeedChange?.(choice);
                       setSpeedOpen(false);
                     }}
-                    className={`h-9 min-w-[3.25rem] rounded-xl px-2.5 text-[0.84rem] font-bold tabular-nums transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 ${
-                      props.speed === choice ? "bg-white text-[#0d0f14]" : "text-white/75 hover:bg-white/[0.08] hover:text-white"
+                    className={`h-9 min-w-[3.25rem] rounded-xl px-2.5 text-[0.84rem] font-bold tabular-nums transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)] ${
+                      props.speed === choice ? "bg-[var(--hud-cyan)] text-[var(--accent-on)]" : "text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
                     }`}
                   >
                     {rateLabel(choice)}
@@ -203,10 +203,10 @@ export function BoardDock(props: BoardDockProps) {
           </div>
         )}
 
-        <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />
+        <div className="mx-1 h-7 w-px bg-[var(--hud-line)]" aria-hidden="true" />
 
         {props.center && <div className="min-w-0 flex-1">{props.center}</div>}
-        {props.center && <div className="mx-1 h-7 w-px bg-white/10" aria-hidden="true" />}
+        {props.center && <div className="mx-1 h-7 w-px bg-[var(--hud-line)]" aria-hidden="true" />}
 
         {/* Progressive disclosure: one button, not four, until the student wants to mark up. */}
         <div className="relative" ref={toolsRef}>
@@ -232,7 +232,7 @@ export function BoardDock(props: BoardDockProps) {
             <div
               role="group"
               aria-label="Markup tools"
-              className="absolute bottom-[calc(100%+10px)] left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-2xl border border-white/10 bg-[#0d0f14]/98 p-1.5 shadow-2xl backdrop-blur-xl"
+              className="absolute bottom-[calc(100%+10px)] left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-1.5 shadow-[var(--elev-2)] backdrop-blur-xl"
             >
               <ToolButton
                 active={props.tool === "pen"}
@@ -255,7 +255,7 @@ export function BoardDock(props: BoardDockProps) {
               >
                 <Eraser size={18} />
               </ToolButton>
-              <div className="mx-0.5 h-6 w-px bg-white/10" aria-hidden="true" />
+              <div className="mx-0.5 h-6 w-px bg-[var(--hud-line)]" aria-hidden="true" />
               <ToolButton active={false} onClick={props.onUndo} disabled={!props.canUndo} label="Undo" shortcut="⌘Z">
                 <Undo2 size={18} />
               </ToolButton>
@@ -267,7 +267,7 @@ export function BoardDock(props: BoardDockProps) {
           <button
             onClick={props.onExplainSelection}
             disabled={props.busy}
-            className="flex h-11 max-w-[16rem] items-center gap-2 rounded-xl bg-amber-300 px-3.5 text-[0.84rem] font-semibold text-[#12151c] transition hover:bg-amber-200 disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+            className="flex h-11 max-w-[16rem] items-center gap-2 rounded-xl bg-[var(--hud-cyan)] px-3.5 text-[0.84rem] font-medium text-[var(--accent-on)] transition hover:bg-[var(--accent-hover)] disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)]"
           >
             <Sparkles size={16} />
             <span className="truncate">{props.busy ? "Asking Aria…" : props.explainSelectionLabel}</span>
@@ -279,9 +279,9 @@ export function BoardDock(props: BoardDockProps) {
             onClick={props.onUnderstood}
             title="I understand this — end the lesson"
             aria-label="Got it — I understand, end the lesson"
-            className="flex h-11 shrink-0 items-center gap-1.5 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3 text-[0.84rem] font-semibold text-emerald-200 transition hover:bg-emerald-400/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+            className="flex h-11 shrink-0 items-center gap-1.5 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 text-[0.84rem] font-medium text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)]"
           >
-            <Check size={16} />
+            <Check size={16} className="text-[var(--ok)]" />
             <span>Got it</span>
           </button>
         )}
@@ -293,7 +293,7 @@ export function BoardDock(props: BoardDockProps) {
             data-summarize-lecture=""
             title={props.summaryUnlocked ? "See the whole lecture on one slide" : "Finish the whole lecture to unlock the one-slide summary"}
             aria-label={props.summaryUnlocked ? "Summarize the lecture in one slide" : "Summarize the lecture — unlocks when you finish the lecture"}
-            className="flex h-11 w-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-0 text-[0.84rem] font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 sm:w-auto sm:px-3.5"
+            className="flex h-11 w-11 items-center justify-center gap-2 rounded-xl border border-[var(--hud-line)] px-0 text-[0.84rem] font-semibold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)] disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)] sm:w-auto sm:px-3.5"
           >
             <FileText size={16} />
             <span className="hidden sm:inline">Summarize</span>
@@ -316,7 +316,7 @@ export function BoardDock(props: BoardDockProps) {
       </div>
 
       {!props.wide && (
-        <p className="hidden text-[0.8rem] tabular-nums text-white/40 sm:block" aria-live="polite">
+        <p className="hidden text-[0.8rem] tabular-nums text-[var(--hud-text-dim)] sm:block" aria-live="polite">
           {props.positionLabel}
         </p>
       )}
@@ -350,20 +350,20 @@ function DockButton({
       aria-label={label}
       aria-pressed={active}
       title={shortcut ? `${label} (${shortcut})` : label}
-      className={`group relative flex h-11 w-11 items-center justify-center rounded-xl transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 disabled:opacity-25 ${
+      className={`group relative flex h-11 w-11 items-center justify-center rounded-xl transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hud-cyan)] disabled:opacity-25 ${
         active
           ? tone === "live"
-            ? "bg-rose-500/20 text-rose-200"
-            : "bg-amber-400/20 text-amber-200"
-          : "text-white/70 hover:bg-white/10 hover:text-white"
+            ? "bg-[var(--danger-dim)] text-[var(--hud-danger)]"
+            : "bg-[var(--accent-soft)] text-[var(--hud-cyan)]"
+          : "text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
       }`}
     >
       {children}
       {/* A real tooltip, because an icon alone does not tell a first-time user what it does. */}
       {!suppressTooltip && (
-        <span className="pointer-events-none absolute bottom-[calc(100%+8px)] left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black px-2.5 py-1.5 text-[0.72rem] font-medium text-white opacity-0 shadow-xl transition group-hover:opacity-100 group-focus-visible:opacity-100">
+        <span className="pointer-events-none absolute bottom-[calc(100%+8px)] left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-lg bg-[var(--hud-text)] px-2.5 py-1.5 text-[0.72rem] font-medium text-[var(--hud-bg)] opacity-0 shadow-[var(--elev-2)] transition group-hover:opacity-100 group-focus-visible:opacity-100">
           {label}
-          {shortcut && <span className="ml-1.5 text-white/40">{shortcut}</span>}
+          {shortcut && <span className="ml-1.5 opacity-60">{shortcut}</span>}
         </span>
       )}
     </button>
@@ -391,13 +391,13 @@ function ToolButton({
       disabled={disabled}
       aria-label={label}
       aria-pressed={active}
-      className={`flex h-10 items-center gap-2 rounded-lg px-3 text-[0.82rem] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300 disabled:opacity-25 ${
-        active ? "bg-amber-400/20 text-amber-200" : "text-white/75 hover:bg-white/10 hover:text-white"
+      className={`flex h-10 items-center gap-2 rounded-lg px-3 text-[0.82rem] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)] disabled:opacity-25 ${
+        active ? "bg-[var(--accent-soft)] text-[var(--hud-cyan)]" : "text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
       }`}
     >
       {children}
       <span>{label}</span>
-      {shortcut && <span className="text-white/35">{shortcut}</span>}
+      {shortcut && <span className="text-[var(--hud-text-dim)]">{shortcut}</span>}
     </button>
   );
 }

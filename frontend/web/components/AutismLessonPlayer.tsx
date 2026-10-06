@@ -317,18 +317,14 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
   const secondsLeft = beats.slice(index + 1).reduce((sum, b) => sum + (autismBeatContent[b.id] ?? DEFAULT_AUTISM_BEAT).seconds, 0);
 
   // Sensory settings drive the visual treatment of the whole player.
-  const rootBg = settings.dimColors || settings.highContrast ? "bg-[#050505]" : "bg-[#0a0a0c]";
+  const rootBg = settings.dimColors || settings.highContrast ? "bg-[#050505]" : "bg-[var(--hud-bg)]";
   const captionTextSize = settings.largerText ? "text-xl lg:text-2xl" : "text-base";
 
   return (
     <main className={`hud-grain relative h-screen overflow-hidden text-[var(--hud-text)] ${rootBg} ${settings.reduceMotion ? "[&_*]:!animate-none [&_*]:!transition-none" : ""}`}>
-      {!settings.dimColors && !settings.highContrast && (
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(94,234,212,0.14),transparent_34%),radial-gradient(circle_at_90%_16%,rgba(52,211,153,0.1),transparent_34%),linear-gradient(180deg,#0a0a0c_0%,#050505_74%)]" />
-      )}
-
       <div className="absolute inset-0 flex flex-col gap-3 p-3 lg:p-4">
         {/* Header */}
-        <header className="relative flex flex-wrap items-center justify-between gap-3 rounded-[1.6rem] border border-white/10 bg-slate-950/76 px-5 py-3 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+        <header className="relative flex flex-wrap items-center justify-between gap-3 rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3 shadow-[var(--elev-1)] backdrop-blur-xl">
           <HudCorners accent="var(--accent-autism)" />
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
@@ -347,7 +343,7 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
             <button
               onClick={repeatCurrent}
               title="Hear the current line again"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10"
+              className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
             >
               🔁 Say again
             </button>
@@ -355,29 +351,29 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
               onClick={toggleDecode}
               aria-pressed={decodeIdioms}
               title="Show the plain meaning of figures of speech"
-              className={`rounded-full px-4 py-2.5 text-sm font-bold transition ${decodeIdioms ? "bg-accent-autism/90 text-slate-950" : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10"}`}
+              className={`rounded-full px-4 py-2.5 text-sm font-bold transition ${decodeIdioms ? "bg-accent-autism/90 text-[var(--accent-on)]" : "border border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"}`}
             >
               🔤 Plain words
             </button>
             <button
               onClick={() => setSettingsOpen(true)}
               title="Calm & sensory settings"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10"
+              className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
             >
               ⚙️ Calm settings
             </button>
             <button
               onClick={hasStarted ? togglePlay : startLesson}
               className="rounded-full px-6 py-2.5 text-sm font-black"
-              style={{ background: "linear-gradient(180deg, var(--accent-autism-bright), var(--accent-autism))", color: "#04140c", boxShadow: "0 0 24px var(--accent-autism-glow)" }}
+              style={{ background: "var(--accent-autism)", color: "var(--accent-on)" }}
             >
               {!hasStarted ? "Start lecture ▶" : playing && !paused ? "Pause ❙❙" : "Resume ▶"}
             </button>
-            <button onClick={restart} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
+            <button onClick={restart} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]">
               Restart
             </button>
             {onExit && (
-              <button onClick={onExit} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/80 transition hover:bg-white/10">
+              <button onClick={onExit} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]">
                 Exit
               </button>
             )}
@@ -388,9 +384,9 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
         <ScheduleStrip schedule={schedule} stepsLeft={stepsLeft} thisStepSeconds={thisStepSeconds} secondsLeft={secondsLeft} />
 
         {voiceBlocked && (
-          <div className="flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3">
-            <p className="text-sm font-bold text-amber-200">The teacher&rsquo;s voice was blocked. Tap to enable sound.</p>
-            <button onClick={retryVoice} className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-black text-amber-950">
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3">
+            <p className="text-sm font-medium text-[var(--hud-text)]">The teacher&rsquo;s voice was blocked. Tap to enable sound.</p>
+            <button onClick={retryVoice} className="shrink-0 rounded-full bg-[var(--hud-cyan)] px-5 py-2 text-sm font-black text-[var(--accent-on)]">
               Enable sound
             </button>
           </div>
@@ -398,7 +394,7 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
 
         {/* Main area: board + a live transcript side panel */}
         <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <section className="relative min-h-0 overflow-hidden rounded-[1.6rem] border border-white/10 bg-slate-950/80 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+          <section className="relative min-h-0 overflow-hidden rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-1)]">
             {stage === "slide" || isCheckpoint ? (
               <SlideStage
                 beat={beat}
@@ -412,7 +408,7 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
               <div className="beat-fade-in relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} />
                 <div className="absolute inset-x-0 bottom-0 z-40 p-3 lg:p-4">
-                  <div className={`mx-auto max-w-4xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center font-bold leading-snug text-white shadow-2xl backdrop-blur-md ${captionTextSize}`}>
+                  <div className={`mx-auto max-w-4xl rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3 text-center font-bold leading-snug text-[var(--hud-text)] shadow-[var(--elev-2)] backdrop-blur-md ${captionTextSize}`}>
                     <DecodedText text={sentenceCue.text || beat.script} decode={decodeIdioms} />
                   </div>
                 </div>
@@ -421,11 +417,11 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
 
             {/* Sensory pre-warning toast */}
             {sensoryWarning && (
-              <div className="beat-fade-in absolute left-4 top-4 z-50 flex max-w-sm items-start gap-3 rounded-2xl border border-amber-400/40 bg-amber-500/15 px-4 py-3 backdrop-blur-md">
+              <div className="beat-fade-in absolute left-4 top-4 z-50 flex max-w-sm items-start gap-3 rounded-2xl border border-[var(--hud-cyan)] bg-[var(--accent-soft)] px-4 py-3 backdrop-blur-md">
                 <span className="mt-0.5 text-xl" aria-hidden>🔊</span>
                 <div>
-                  <p className="text-[11px] font-black uppercase tracking-wide text-amber-300">Heads up</p>
-                  <p className="text-sm font-bold text-amber-100">{sensoryWarning}</p>
+                  <p className="text-[11px] font-black uppercase tracking-wide text-[var(--hud-cyan)]">Heads up</p>
+                  <p className="text-sm font-bold text-[var(--hud-cyan-bright)]">{sensoryWarning}</p>
                 </div>
               </div>
             )}
@@ -447,18 +443,18 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
 
           {/* Right column: live transcript on top, chat below */}
           <div className="hidden min-h-0 grid-rows-[1fr_minmax(0,0.9fr)] gap-3 lg:grid">
-            <aside className="flex min-h-0 flex-col rounded-[1.6rem] border border-white/10 bg-slate-950/76 p-4 backdrop-blur-xl">
+            <aside className="flex min-h-0 flex-col rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 backdrop-blur-xl">
               <p className="text-[11px] font-black uppercase tracking-[0.18em] text-accent-autism">Live transcript</p>
-              <p className="mt-1 text-[11px] font-semibold text-white/35">Tap any line to hear it again.</p>
+              <p className="mt-1 text-[11px] font-semibold text-[var(--hud-text-dim)]">Tap any line to hear it again.</p>
               <div className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
                 {transcript.length === 0 ? (
-                  <p className="text-sm font-semibold text-white/35">The teacher&rsquo;s words will appear here as they speak.</p>
+                  <p className="text-sm font-semibold text-[var(--hud-text-dim)]">The teacher&rsquo;s words will appear here as they speak.</p>
                 ) : (
                   transcript.map((line, i) => (
                     <button
                       key={i}
                       onClick={() => { unlockAudio(); speakOnce(line); }}
-                      className={`w-full rounded-lg bg-white/[0.04] px-3 py-2 text-left font-medium leading-snug text-white/80 transition hover:bg-white/[0.1] ${settings.largerText ? "text-base" : "text-sm"}`}
+                      className={`w-full rounded-lg bg-[var(--hud-surface)] px-3 py-2 text-left font-medium leading-snug text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)] ${settings.largerText ? "text-base" : "text-sm"}`}
                     >
                       <DecodedText text={line} decode={decodeIdioms} />
                     </button>
@@ -481,7 +477,7 @@ export function AutismLessonPlayer({ onExit, onComplete, beats = demoBeats, titl
         </div>
 
         {/* Direct control buttons — no verbal negotiation needed */}
-        <div className="flex flex-wrap items-center justify-center gap-3 rounded-[1.6rem] border border-white/10 bg-slate-950/76 px-4 py-3 backdrop-blur-xl">
+        <div className="flex flex-wrap items-center justify-center gap-3 rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3 backdrop-blur-xl">
           <ControlButton label="Explain Simply" icon="📋" active={panel === "explain"} onClick={() => openPanel("explain")} />
           <ControlButton label="Show Picture" icon="🖼️" active={panel === "picture"} onClick={() => openPanel("picture")} />
           <ControlButton label="Need Break" icon="⏸️" active={panel === "break"} onClick={() => openPanel("break")} />
@@ -522,11 +518,11 @@ function SensorySettingsModal({
     { key: "largerText", label: "Larger text", hint: "Make the captions and transcript bigger and easier to read." },
   ];
   return (
-    <div className="absolute inset-0 z-[60] grid place-items-center bg-slate-950/85 p-6 backdrop-blur-md" role="dialog" aria-label="Calm and sensory settings">
-      <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-slate-900/90 p-7">
+    <div className="absolute inset-0 z-[60] grid place-items-center bg-[var(--hud-surface)] p-6 backdrop-blur-md" role="dialog" aria-label="Calm and sensory settings">
+      <div className="w-full max-w-lg rounded-3xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-7">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-autism">Calm &amp; sensory settings</p>
         <h2 className="mt-2 text-2xl font-black">Make the screen feel right for you</h2>
-        <p className="mt-1 text-sm font-semibold text-white/50">These stay saved for next time.</p>
+        <p className="mt-1 text-sm font-semibold text-[var(--hud-text-dim)]">These stay saved for next time.</p>
 
         <div className="mt-6 space-y-2.5">
           {rows.map((r) => (
@@ -535,7 +531,7 @@ function SensorySettingsModal({
           <ToggleRow label="Plain words" hint="Show the simple meaning of figures of speech, like 'kitchen' or 'stove'." on={decodeIdioms} onToggle={onToggleDecode} />
         </div>
 
-        <button onClick={onClose} className="mt-7 w-full rounded-full bg-gradient-to-r from-accent-autism-bright to-accent-autism py-3 text-base font-black text-slate-950">
+        <button onClick={onClose} className="mt-7 w-full rounded-full from-accent-autism-bright to-accent-autism py-3 text-base font-black text-[var(--accent-on)] bg-[var(--hud-surface)]">
           Done
         </button>
       </div>
@@ -549,14 +545,14 @@ function ToggleRow({ label, hint, on, onToggle }: { label: string; hint: string;
       onClick={onToggle}
       role="switch"
       aria-checked={on}
-      className="flex w-full items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-left transition hover:bg-white/[0.07]"
+      className="flex w-full items-center justify-between gap-4 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3 text-left transition hover:bg-[var(--hud-surface-2)]"
     >
       <span>
-        <span className="block text-base font-black text-white">{label}</span>
-        <span className="mt-0.5 block text-sm font-medium text-white/50">{hint}</span>
+        <span className="block text-base font-black text-[var(--hud-text)]">{label}</span>
+        <span className="mt-0.5 block text-sm font-medium text-[var(--hud-text-dim)]">{hint}</span>
       </span>
-      <span className={`relative h-7 w-12 shrink-0 rounded-full transition ${on ? "bg-accent-autism" : "bg-white/15"}`}>
-        <span className={`absolute top-1 size-5 rounded-full bg-white transition-all ${on ? "left-6" : "left-1"}`} />
+      <span className={`relative h-7 w-12 shrink-0 rounded-full transition ${on ? "bg-accent-autism" : "bg-[var(--hud-surface-2)]"}`}>
+        <span className={`absolute top-1 size-5 rounded-full bg-[var(--hud-surface)] transition-all ${on ? "left-6" : "left-1"}`} />
       </span>
     </button>
   );
@@ -588,7 +584,7 @@ function DecodedText({ text, decode }: { text: string; decode: boolean }) {
               {part}
             </button>
             {isOpen && (
-              <span className="absolute bottom-full left-1/2 z-50 mb-2 w-56 -translate-x-1/2 rounded-xl border border-accent-autism/30 bg-slate-900 px-3 py-2 text-left text-xs font-semibold leading-snug text-white shadow-2xl">
+              <span className="absolute bottom-full left-1/2 z-50 mb-2 w-56 -translate-x-1/2 rounded-xl border border-accent-autism/30 bg-[var(--hud-surface)] px-3 py-2 text-left text-xs font-semibold leading-snug text-[var(--hud-text)] shadow-[var(--elev-2)]">
                 <span className="block text-[10px] font-black uppercase tracking-wide text-accent-autism">This means</span>
                 {match.literal}
               </span>
@@ -623,27 +619,27 @@ function ScheduleStrip({
     { tag: "Later", label: schedule.later },
   ];
   return (
-    <div className="rounded-[1.6rem] border border-white/10 bg-slate-950/60 p-2 backdrop-blur-xl">
+    <div className="rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-2 backdrop-blur-xl">
       <div className="grid grid-cols-3 gap-2">
         {cells.map((c, i) => (
           <div
             key={c.tag}
             className={`flex items-center gap-3 rounded-2xl px-4 py-2.5 transition ${
-              c.active ? "border border-accent-autism/50 bg-accent-autism/12" : "border border-white/8 bg-white/[0.02]"
+              c.active ? "border border-accent-autism/50 bg-accent-autism/12" : "border border-[var(--hud-line)] bg-[var(--hud-surface)]"
             }`}
           >
-            <span className={`text-[10px] font-black uppercase tracking-wider ${c.active ? "text-accent-autism" : "text-white/35"}`}>{c.tag}</span>
-            <span className={`truncate text-sm font-bold ${c.active ? "text-white" : "text-white/55"}`}>{c.label || "—"}</span>
-            {i < cells.length - 1 && <span className="ml-auto text-white/20">→</span>}
+            <span className={`text-[10px] font-black uppercase tracking-wider ${c.active ? "text-accent-autism" : "text-[var(--hud-text-dim)]"}`}>{c.tag}</span>
+            <span className={`truncate text-sm font-bold ${c.active ? "text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"}`}>{c.label || "—"}</span>
+            {i < cells.length - 1 && <span className="ml-auto text-[var(--hud-text-faint)]">→</span>}
           </div>
         ))}
       </div>
       {/* Predictable progress */}
-      <div className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 px-2 text-xs font-bold text-white/45">
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 px-2 text-xs font-bold text-[var(--hud-text-dim)]">
         <span>This step: about {formatSeconds(thisStepSeconds)}</span>
-        <span className="text-white/20">·</span>
+        <span className="text-[var(--hud-text-faint)]">·</span>
         <span>{stepsLeft > 0 ? `${stepsLeft} step${stepsLeft === 1 ? "" : "s"} left` : "Last step"}</span>
-        <span className="text-white/20">·</span>
+        <span className="text-[var(--hud-text-faint)]">·</span>
         <span>{secondsLeft > 0 ? `about ${formatSeconds(secondsLeft)} to the end` : "almost done"}</span>
       </div>
     </div>
@@ -663,8 +659,8 @@ function ControlButton({ label, icon, active, onClick }: { label: string; icon: 
       aria-pressed={active}
       className={`flex items-center gap-2.5 rounded-full px-6 py-3 text-base font-black transition ${
         active
-          ? "bg-gradient-to-r from-accent-autism-bright to-accent-autism text-slate-950"
-          : "border border-white/15 bg-white/5 text-white/85 hover:bg-white/10"
+          ? "from-accent-autism-bright to-accent-autism text-[var(--accent-on)] bg-[var(--hud-surface)]"
+          : "border border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text)] hover:bg-[var(--hud-surface-2)]"
       }`}
     >
       <span aria-hidden className="text-lg">{icon}</span>
@@ -688,28 +684,28 @@ function ControlPanel({
   onClose: () => void;
 }) {
   return (
-    <div className="beat-fade-in absolute inset-0 z-50 grid place-items-center bg-slate-950/88 p-6 backdrop-blur-md lg:p-10">
+    <div className="beat-fade-in absolute inset-0 z-50 grid place-items-center bg-[var(--hud-surface)] p-6 backdrop-blur-md lg:p-10">
       <div className="w-full max-w-2xl">
         {panel === "explain" && <ExplainSimply beat={beat} content={content} />}
         {panel === "picture" && (
-          <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-7 text-center">
+          <div className="rounded-3xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-7 text-center">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-autism">Show Picture</p>
-            <p className="mt-4 text-2xl font-black leading-snug text-white">Here is the picture for this step.</p>
-            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
+            <p className="mt-4 text-2xl font-black leading-snug text-[var(--hud-text)]">Here is the picture for this step.</p>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--hud-line)]">
               <Board key={`pic-${beat.id}`} beat={beat} sentenceCue={{ index: 99, total: 99, text: "" }} />
             </div>
           </div>
         )}
         {panel === "break" && (
-          <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-10 text-center">
+          <div className="rounded-3xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-10 text-center">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-autism">Need a break</p>
-            <p className="mt-5 text-3xl font-black leading-tight text-white">Take all the time you need.</p>
-            <p className="mt-4 text-lg font-semibold text-white/55">The lecture is paused and waiting. Nothing will change until you come back.</p>
+            <p className="mt-5 text-3xl font-black leading-tight text-[var(--hud-text)]">Take all the time you need.</p>
+            <p className="mt-4 text-lg font-semibold text-[var(--hud-text-dim)]">The lecture is paused and waiting. Nothing will change until you come back.</p>
           </div>
         )}
         <button
           onClick={onClose}
-          className="mx-auto mt-7 block rounded-full bg-gradient-to-r from-accent-autism-bright to-accent-autism px-8 py-3 text-base font-black text-slate-950 shadow-[0_0_32px_var(--accent-autism-glow)]"
+          className="mx-auto mt-7 block rounded-full from-accent-autism-bright to-accent-autism px-8 py-3 text-base font-black text-[var(--accent-on)] bg-[var(--hud-surface)]"
         >
           {panel === "break" ? "I'm ready — continue ▶" : "Got it — continue ▶"}
         </button>
@@ -730,13 +726,13 @@ function ExplainSimply({ beat, content }: { beat: Beat; content: import("@/lib/a
   const steps = content.literalSteps;
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-7">
+    <div className="rounded-3xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-7">
       <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-autism">Explain simply</p>
 
       {/* The original (possibly vague) instruction, as a speech bubble */}
-      <div className={`mt-4 rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.06] px-5 py-4 transition-all duration-500 ${rewritten ? "scale-95 opacity-40" : "scale-100 opacity-100"}`}>
-        <p className="text-[10px] font-black uppercase tracking-wide text-white/40">The teacher said</p>
-        <p className="mt-1 text-lg font-bold text-white/90">&ldquo;{original}&rdquo;</p>
+      <div className={`mt-4 rounded-2xl rounded-bl-sm border border-[var(--hud-line)] bg-[var(--hud-surface-2)] px-5 py-4 transition-all duration-500 ${rewritten ? "scale-95 opacity-40" : "scale-100 opacity-100"}`}>
+        <p className="text-[10px] font-black uppercase tracking-wide text-[var(--hud-text-dim)]">The teacher said</p>
+        <p className="mt-1 text-lg font-bold text-[var(--hud-text)]">&ldquo;{original}&rdquo;</p>
       </div>
 
       {/* The literal rewrite */}
@@ -745,14 +741,14 @@ function ExplainSimply({ beat, content }: { beat: Beat; content: import("@/lib/a
         {steps && steps.length > 0 ? (
           <ol className="mt-3 space-y-2.5">
             {steps.map((step, i) => (
-              <li key={i} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent-autism-bright to-accent-autism text-xs font-black text-slate-950">{i + 1}</span>
-                <span className="text-base font-bold leading-snug text-white/85">{step}</span>
+              <li key={i} className="flex items-start gap-3 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3">
+                <span className="grid size-6 shrink-0 place-items-center rounded-full from-accent-autism-bright to-accent-autism text-xs font-black text-[var(--accent-on)] bg-[var(--hud-surface)]">{i + 1}</span>
+                <span className="text-base font-bold leading-snug text-[var(--hud-text)]">{step}</span>
               </li>
             ))}
           </ol>
         ) : (
-          <p className="mt-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base font-medium leading-relaxed text-white/85">
+          <p className="mt-3 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3 text-base font-medium leading-relaxed text-[var(--hud-text)]">
             {content.explainSimply}
           </p>
         )}

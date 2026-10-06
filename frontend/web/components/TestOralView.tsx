@@ -110,10 +110,9 @@ export function TestOralView({
   const progressLabel = phase === "live" ? `Question ${Math.min(studentTurns + 1, questionCount)} of ${questionCount}` : undefined;
 
   return (
-    <section className="relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto bg-gradient-to-b from-[#05040c] via-[#0a0810] to-[#05040c] p-6 lg:p-10">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(99,102,241,0.15),transparent_50%)]" />
+    <section className="relative z-10 grid min-h-screen w-full place-items-center overflow-y-auto p-6 lg:p-10 bg-[var(--hud-bg)]">
 
-      <div className="relative z-20 w-full max-w-2xl rounded-[2.5rem] border border-[var(--hud-line)]/50 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-10">
+      <div className="relative z-20 w-full max-w-2xl rounded-[var(--radius-lg)] border border-[var(--hud-line)] p-10 bg-[var(--hud-surface)] shadow-[var(--elev-1)]">
         <HudCorners />
         <div className="relative z-10">
           <HudEyebrow>Oral exam</HudEyebrow>
@@ -140,7 +139,7 @@ export function TestOralView({
 
           {phase === "error" && (
             <>
-              <p className="mt-8 text-sm font-semibold text-rose-300">⚠️ {gradeError}</p>
+              <p className="mt-8 text-sm font-semibold text-[var(--hud-danger)]">{gradeError}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button onClick={onBack} className="hud-btn-ghost rounded-full px-6 py-3 text-sm font-bold">
                   Back

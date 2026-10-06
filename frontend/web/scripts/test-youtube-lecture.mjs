@@ -128,7 +128,7 @@ for (let i = 0; i < 900 && !payload; i++) {
   const failed = page.getByText(/could not be read|could not be opened/i).first();
   if (await failed.isVisible().catch(() => false)) {
     await shot("read-failed");
-    problems.push(`reading failed: ${(await page.locator("p.text-rose-300").first().innerText().catch(() => "")).slice(0, 200)}`);
+    problems.push(`reading failed: ${(await page.locator("p[data-entry-error]").first().innerText().catch(() => "")).slice(0, 200)}`);
     break;
   }
 }

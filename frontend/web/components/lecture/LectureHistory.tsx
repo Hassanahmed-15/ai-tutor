@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FileText, Layers, MessageSquare, Presentation as PresentationIcon, Loader2, Video } from "lucide-react";
+import { AlertCircle, FileText, Layers, MessageSquare, Presentation as PresentationIcon, Loader2, Video } from "lucide-react";
 import type { Beat } from "@/lib/lessonContent";
 import type { LectureMode } from "@/lib/db/cosmos";
 
@@ -46,21 +46,6 @@ const SOURCE_ICONS: Record<HistoryItem["sourceType"], typeof FileText> = {
   suprnotes: Layers,
   "task-folder": Layers,
   youtube: Video,
-};
-
-/**
- * Each source type gets its OWN colour, not just the one cyan the whole card grid used to share.
- * A monochrome icon badge on an otherwise identical bordered box still reads as one repeated
- * template with a different glyph swapped in — real visual distinction needs a second channel
- * (hue) alongside shape, so a page of cards actually looks like a page of different things.
- */
-const SOURCE_ACCENTS: Record<HistoryItem["sourceType"], { text: string; wash: string; ring: string }> = {
-  prompt: { text: "text-violet-300", wash: "from-violet-500/20 via-violet-500/5 to-transparent", ring: "group-hover:border-violet-400/50" },
-  pdf: { text: "text-rose-300", wash: "from-rose-500/20 via-rose-500/5 to-transparent", ring: "group-hover:border-rose-400/50" },
-  pptx: { text: "text-amber-300", wash: "from-amber-500/20 via-amber-500/5 to-transparent", ring: "group-hover:border-amber-400/50" },
-  suprnotes: { text: "text-emerald-300", wash: "from-emerald-500/20 via-emerald-500/5 to-transparent", ring: "group-hover:border-emerald-400/50" },
-  "task-folder": { text: "text-emerald-300", wash: "from-emerald-500/20 via-emerald-500/5 to-transparent", ring: "group-hover:border-emerald-400/50" },
-  youtube: { text: "text-sky-300", wash: "from-sky-500/20 via-sky-500/5 to-transparent", ring: "group-hover:border-sky-400/50" },
 };
 
 const MODE_LABELS: Record<LectureMode, string> = {
@@ -127,127 +112,77 @@ export function LectureHistory({
   }
 
   if (loading) {
-    return <p className="text-sm text-[var(--hud-text-faint)]">Loading your lecture history…</p>;
+    return <p className="px-3 py-2 text-[0.8125rem] text-[var(--hud-text-dim)]">Loading your lecture history…</p>;
   }
+  /*
+   * THE SIDEBAR LIST, the way ChatGPT and Claude show past conversations: one compact row per
+   * lecture, the title first, and a quiet line saying what kind of lecture it was and when. The
+   * kind is a small grey icon and a word, never a colour.
+   */
   return (
-    <section className="mb-12" aria-labelledby="lecture-history-heading">
-      <div className="mb-4 flex items-end justify-between gap-4">
-        <div>
-          <h2 id="lecture-history-heading" className="font-display text-2xl text-[var(--hud-text)]">
-            Lecture history
-          </h2>
-        </div>
-        <span className="text-xs font-semibold text-[var(--hud-text-faint)]">
+    <section className="flex min-h-0 flex-col" aria-labelledby="lecture-history-heading">
+      <div className="flex items-baseline justify-between gap-3 px-3 pb-1.5 pt-1">
+        <h2 id="lecture-history-heading" className="text-[0.75rem] font-medium text-[var(--hud-text-dim)]">
+          Lecture history
+        </h2>
+        <span className="text-[0.75rem] text-[var(--hud-text-faint)]">
           {/* Say so when the list is only part of the total, rather than quietly reporting the page. */}
-          {total > items.length ? `showing ${items.length} of ${total} saved` : `${total} saved`}
+          {total > items.length ? `${items.length} of ${total}` : `${total} saved`}
         </span>
       </div>
 
       {error && (
-        <p className="mb-3 rounded-xl border border-rose-400/30 bg-rose-500/[0.08] px-4 py-3 text-sm font-semibold text-rose-200">
+        <p role="alert" className="mx-2 flex items-start gap-2 rounded-[var(--radius)] bg-[var(--danger-dim)] px-3 py-2 text-[0.8125rem] text-[var(--hud-danger)]">
+          <AlertCircle aria-hidden="true" size={14} className="mt-0.5 shrink-0" />
           {error}
         </p>
       )}
 
       {!error && items.length === 0 && (
-        <p className="rounded-2xl border border-[var(--hud-line)] bg-white/[0.025] px-5 py-4 text-sm text-[var(--hud-text-faint)]">
+        <p className="px-3 py-2 text-[0.8125rem] text-[var(--hud-text-dim)]">
           No saved lectures yet. A lecture appears here as soon as generation finishes.
         </p>
       )}
 
-      {/*
-        REAL CARDS, NOT A REPEATED TEMPLATE. The previous pass added an icon and tags but kept
-        every card the same monochrome bordered box, so the grid still read as one shape stamped
-        out N times. Each card now gets: its own source-type ACCENT COLOUR (not just cyan) as a
-        soft gradient wash behind a larger icon block, a two-line title area with real vertical
-        room instead of a single truncated line, a hover lift (translate + shadow, not just a
-        border-colour change), and the play control moved down into its own footer row next to
-        the date instead of floating in the corner beside the title.
-      */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((item) => {
-          const processing = item.status === "processing-videos";
-          const failed = item.status === "failed";
-          const opening = openingId === item.id;
-          const Icon = SOURCE_ICONS[item.sourceType];
-          const accent = SOURCE_ACCENTS[item.sourceType];
-          return (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => void openLecture(item)}
-              disabled={failed || openingId !== null}
-              className={`group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-white/[0.025] text-left shadow-[0_1px_0_rgba(255,255,255,0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/[0.05] hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.6)] disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-50 disabled:shadow-none ${accent.ring}`}
-            >
-              {/* The accent wash — the one thing that makes a prompt card and a PDF card look
-                  like different KINDS of object, not the same card recoloured on hover. */}
-              <span
-                aria-hidden="true"
-                className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-br ${accent.wash} opacity-70`}
-              />
-
-              <div className="relative z-10 flex flex-1 flex-col gap-3 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="grid size-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-black/20 backdrop-blur-sm"
-                  >
-                    <Icon size={20} strokeWidth={1.7} className={accent.text} />
-                  </span>
-                  {failed && (
-                    <span className="rounded-full border border-rose-400/40 bg-rose-500/10 px-2 py-0.5 text-[0.65rem] font-bold text-rose-300">
-                      Save failed
-                    </span>
-                  )}
-                </div>
-
-                <span className="line-clamp-2 min-h-[2.6rem] font-bold leading-snug text-[var(--hud-text)]">
-                  {item.topic}
-                </span>
-
-                <span className="flex flex-wrap items-center gap-1.5">
-                  <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] font-semibold text-[var(--hud-text-faint)]">
-                    {MODE_LABELS[item.mode ?? "standard"]}
-                  </span>
-                  <span className={`rounded-full border border-white/10 bg-black/20 px-2 py-0.5 text-[0.68rem] font-semibold ${accent.text}`}>
-                    {SOURCE_LABELS[item.sourceType]}
-                  </span>
-                  <span className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.68rem] font-semibold text-[var(--hud-text-faint)]">
-                    {item.beatCount} sections
-                  </span>
-                </span>
-              </div>
-
-              {/* Footer — date on the left, the play control on the right, both anchored to the
-                  bottom so cards of different title lengths still align. */}
-              <div className="relative z-10 mt-auto flex items-center justify-between gap-3 border-t border-white/[0.06] px-4 py-3">
-                <span className="text-[0.7rem] text-[var(--hud-text-faint)]/80">
-                  {new Date(item.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
-                  {" · "}
-                  {new Date(item.createdAt).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}
-                  {processing && <span className="ml-1.5 text-[var(--hud-text-faint)]/60">· videos preparing</span>}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className={`grid size-8 shrink-0 place-items-center rounded-full border transition ${
-                    failed
-                      ? "border-rose-400/40 text-rose-300"
-                      : `border-white/10 bg-black/20 ${accent.text} group-hover:scale-105 group-hover:border-white/20`
-                  }`}
+      {items.length > 0 && (
+        <ul className="flex flex-col gap-0.5 px-2 pb-3">
+          {items.map((item) => {
+            const processing = item.status === "processing-videos";
+            const failed = item.status === "failed";
+            const opening = openingId === item.id;
+            const Icon = SOURCE_ICONS[item.sourceType];
+            const date = new Date(item.createdAt);
+            return (
+              <li key={item.id}>
+                <button
+                  type="button"
+                  onClick={() => void openLecture(item)}
+                  disabled={failed || openingId !== null}
+                  title={item.topic}
+                  className="group flex w-full items-start gap-2.5 rounded-[var(--radius)] px-2.5 py-2 text-left transition-colors hover:bg-[var(--sidebar-hover)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-transparent"
                 >
-                  {opening ? (
-                    <Loader2 size={14} className="animate-spin" />
-                  ) : failed ? (
-                    "!"
-                  ) : (
-                    <span className="text-[0.72rem]">▶</span>
-                  )}
-                </span>
-              </div>
-            </button>
-          );
-        })}
-      </div>
+                  <span aria-hidden="true" className="mt-0.5 shrink-0 text-[var(--hud-text-dim)]">
+                    {opening ? <Loader2 size={15} className="animate-spin" /> : failed ? <AlertCircle size={15} className="text-[var(--hud-danger)]" /> : <Icon size={15} strokeWidth={1.8} />}
+                  </span>
+                  <span className="flex min-w-0 flex-1 flex-col">
+                    <span className="truncate text-[0.875rem] text-[var(--hud-text)]">{item.topic}</span>
+                    <span className="truncate text-[0.75rem] text-[var(--hud-text-dim)]">
+                      {failed ? "Save failed · " : ""}
+                      {SOURCE_LABELS[item.sourceType]}
+                      {" · "}
+                      {item.beatCount} sections
+                      {(item.mode ?? "standard") !== "standard" ? ` · ${MODE_LABELS[item.mode ?? "standard"]}` : ""}
+                      {" · "}
+                      {date.toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                      {processing && " · videos preparing"}
+                    </span>
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </section>
   );
 }

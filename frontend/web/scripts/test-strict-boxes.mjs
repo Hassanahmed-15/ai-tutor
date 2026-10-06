@@ -28,9 +28,9 @@ if (!login.ok()) throw new Error(`login failed: ${login.status()}`);
 await page.goto(BASE, { waitUntil: "domcontentloaded" });
 await page.waitForTimeout(4000);
 
-if (question) await page.locator("#brief").fill(question);
 await page.locator('input[type="file"]').first().setInputFiles(pdf);
-if (!question) await page.getByRole("button", { name: /use all pages/i }).click({ timeout: 120_000 });
+if (question) await askInPicker(page, question);
+else await page.getByRole("button", { name: /use all pages/i }).click({ timeout: 120_000 });
 await page.getByRole("button", { name: /strict source/i }).first().click({ timeout: 240_000 });
 log(`chose STRICT${question ? ` for "${question}"` : " with all pages"}; waiting for the lecture`);
 
@@ -79,3 +79,13 @@ await browser.close();
 const noBox = report.filter((r) => r.boxes === 0).length;
 const crops = report.filter((r) => r.figureCrop).length;
 console.log(`\n${report.length} slides: ${noBox} without a box on the PDF, ${crops} with a cropped PDF figure. Screenshots in ${outDir}`);
+
+/** The uploader is separate from the prompt box: a question about the document is asked in the page picker. */
+async function askInPicker(page, question) {
+  const box = page.locator("#page-prompt");
+  await box.waitFor({ timeout: 180_000 });
+  await box.fill(question);
+  const ask = page.locator("button[data-ask-question]");
+  if (await ask.isEnabled().catch(() => false)) await ask.click();
+  else await box.press("Enter");
+}

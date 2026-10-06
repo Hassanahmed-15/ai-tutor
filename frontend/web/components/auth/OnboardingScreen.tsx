@@ -1,5 +1,6 @@
 "use client";
 
+import { AriaLockup } from "@/components/brand/AriaMark";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { PREFERENCES, PROFILE_OPTIONS } from "@/lib/accessibilityProfiles";
@@ -46,7 +47,7 @@ type Access = {
 };
 
 const INPUT =
-  "w-full rounded-[var(--radius)] border bg-[var(--hud-surface)] px-4 py-3 text-[0.93rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none focus:ring-1 focus:ring-[var(--hud-cyan)]";
+  "w-full rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] px-4 py-3 text-[0.93rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--hud-cyan-glow)]";
 const LABEL = "mb-1.5 block text-[0.84rem] font-medium text-[var(--hud-text)]";
 
 export function OnboardingScreen({
@@ -193,13 +194,21 @@ export function OnboardingScreen({
   }
 
   return (
-    <main className="hud-canvas hud-grain relative min-h-screen overflow-y-auto px-6 py-14">
+    <main className="hud-canvas relative min-h-screen overflow-y-auto px-6 py-14">
       <div className={`relative z-10 mx-auto w-full ${step === "preferences" ? "max-w-2xl" : "max-w-lg"}`}>
-        {steps.length > 1 && step !== "preferences" && (
-          <p className="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-[var(--hud-text-faint)]" aria-live="polite">
-            Step {steps.indexOf(step) + 1} of {steps.length}
-          </p>
-        )}
+        <div className="mb-10 flex items-center justify-between">
+          <AriaLockup size={24} />
+          {steps.length > 1 && step !== "preferences" && (
+            <p className="flex items-center gap-3 text-[0.8125rem] text-[var(--hud-text-dim)]" aria-live="polite">
+              Step {steps.indexOf(step) + 1} of {steps.length}
+              <span aria-hidden="true" className="flex gap-1">
+                {steps.map((s, i) => (
+                  <span key={s} className={`h-1 w-6 rounded-full ${i <= steps.indexOf(step) ? "bg-[var(--hud-cyan)]" : "bg-[var(--hud-line)]"}`} />
+                ))}
+              </span>
+            </p>
+          )}
+        </div>
 
         {step === "preferences" ? (
           <LearningPreferencesFlow
@@ -214,7 +223,7 @@ export function OnboardingScreen({
           />
         ) : step === "profile" ? (
           <>
-            <h1 className="font-display text-[2.3rem] leading-tight tracking-[-0.03em] text-[var(--hud-text)]">
+            <h1 className="font-display text-[1.75rem] leading-tight tracking-[-0.02em] text-[var(--hud-text)]">
               {profileOnly ? "Tell Aria about your studies." : "Before we start."}
             </h1>
             <p className="mt-3 text-[0.95rem] leading-relaxed text-[var(--hud-text-dim)]">
@@ -266,7 +275,7 @@ export function OnboardingScreen({
           </>
         ) : (
           <>
-            <h1 className="font-display text-[2.3rem] leading-tight tracking-[-0.03em] text-[var(--hud-text)]">
+            <h1 className="font-display text-[1.75rem] leading-tight tracking-[-0.02em] text-[var(--hud-text)]">
               Do you need any accessibility support while using Aria?
             </h1>
             <p className="mt-3 text-[0.95rem] leading-relaxed text-[var(--hud-text-dim)]">

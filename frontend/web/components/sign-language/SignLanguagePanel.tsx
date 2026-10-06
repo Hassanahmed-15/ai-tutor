@@ -31,8 +31,8 @@ export default function SignLanguagePanel({ transcript, active }: { transcript: 
     return (
       <div className="grid min-h-[15rem] place-items-center px-6 text-center">
         <div>
-          <p className="text-sm font-bold text-white/80">Signing data is unavailable</p>
-          <p className="mt-2 text-xs leading-5 text-white/45">The lesson captions remain available below.</p>
+          <p className="text-sm font-bold text-[var(--hud-text-dim)]">Signing data is unavailable</p>
+          <p className="mt-2 text-xs leading-5 text-[var(--hud-text-dim)]">The lesson captions remain available below.</p>
         </div>
       </div>
     );
@@ -41,7 +41,7 @@ export default function SignLanguagePanel({ transcript, active }: { transcript: 
   if (!alphabet) {
     return (
       <div className="grid min-h-[15rem] place-items-center" role="status">
-        <span className="text-xs font-bold text-white/45">Loading signing data…</span>
+        <span className="text-xs font-bold text-[var(--hud-text-dim)]">Loading signing data…</span>
       </div>
     );
   }
@@ -83,13 +83,13 @@ function SignPlayback({ alphabet, transcript, active }: { alphabet: AlphabetPose
   const frame: SignFrame | null = sampledFrames[Math.min(frameIndex, Math.max(0, sampledFrames.length - 1))] ?? null;
 
   return (
-    <div className="relative min-h-[17rem] overflow-hidden bg-[#101519]">
+    <div className="relative min-h-[17rem] overflow-hidden bg-[var(--hud-surface)]">
       <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-3 p-3">
         <div>
           <p className="text-[0.62rem] font-black uppercase tracking-[0.16em] text-[var(--accent-deaf)]">ASL fingerspelling</p>
-          <p className="mt-1 max-w-[13rem] truncate text-xs font-semibold text-white/55">{unit?.word ?? "Waiting for the teacher"}</p>
+          <p className="mt-1 max-w-[13rem] truncate text-xs font-semibold text-[var(--hud-text-dim)]">{unit?.word ?? "Waiting for the teacher"}</p>
         </div>
-        <span className="grid size-9 place-items-center rounded-md border border-white/10 bg-black/35 font-mono text-base font-black text-white">
+        <span className="grid size-9 place-items-center rounded-md border border-[var(--hud-line)] bg-[var(--hud-surface)] font-mono text-base font-black text-[var(--hud-text)]">
           {unit?.letter ?? "–"}
         </span>
       </div>
@@ -98,11 +98,11 @@ function SignPlayback({ alphabet, transcript, active }: { alphabet: AlphabetPose
         <SignHand frame={frame} active={active && Boolean(unit)} />
       </div>
 
-      <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-md border border-white/10 bg-black/55 px-3 py-2 backdrop-blur-md">
-        <p className="min-w-0 truncate text-[0.68rem] font-semibold text-white/65">
+      <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-md border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-2 backdrop-blur-md">
+        <p className="min-w-0 truncate text-[0.68rem] font-semibold text-[var(--hud-text-dim)]">
           {active ? unit ? `${unit.word} · letter ${unit.letterIndex + 1} of ${unit.word.length}` : "Caption ready" : "Paused with lesson"}
         </p>
-        <span className={`size-2 shrink-0 rounded-full ${active ? "bg-[var(--accent-deaf)]" : "bg-white/25"}`} aria-hidden />
+        <span className={`size-2 shrink-0 rounded-full ${active ? "bg-[var(--accent-deaf)]" : "bg-[var(--hud-line-strong)]"}`} aria-hidden />
       </div>
     </div>
   );

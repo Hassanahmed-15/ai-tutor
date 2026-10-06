@@ -45,8 +45,7 @@ export function TestWrittenView({
   }
 
   return (
-    <section className="relative z-10 min-h-screen w-full overflow-y-auto bg-gradient-to-b from-[#05040c] via-[#0a0810] to-[#05040c] p-6 lg:p-10">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(99,102,241,0.15),transparent_50%)]" />
+    <section className="relative z-10 min-h-screen w-full overflow-y-auto p-6 lg:p-10 bg-[var(--hud-bg)]">
 
       <div className="relative z-20 mx-auto mb-10 flex max-w-3xl items-center justify-between">
         <div>
@@ -61,7 +60,7 @@ export function TestWrittenView({
       </div>
 
       <div className="relative z-20 mx-auto max-w-3xl space-y-6">
-        <div className="relative rounded-[2rem] border border-[var(--hud-line)]/50 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8">
+        <div className="relative rounded-[var(--radius-lg)] border border-[var(--hud-line)] p-8 bg-[var(--hud-surface)] shadow-[var(--elev-1)]">
           <HudCorners />
           <div className="relative z-10 space-y-8">
             {bank.questions.map((q, i) => (
@@ -74,19 +73,19 @@ export function TestWrittenView({
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [q.id]: e.target.value }))}
                   placeholder="Your answer…"
                   rows={3}
-                  className="w-full rounded-2xl border border-[var(--hud-line)] bg-white/[0.04] px-5 py-4 text-base font-medium text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)]/60 focus:outline-none"
+                  className="w-full rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-4 text-base font-medium text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)]/60 focus:outline-none"
                 />
               </div>
             ))}
           </div>
         </div>
 
-        {error && <p className="text-sm font-semibold text-rose-300">⚠️ {error}</p>}
+        {error && <p className="text-sm font-semibold text-[var(--hud-danger)]">{error}</p>}
 
         <button
           onClick={submit}
           disabled={submitting || unanswered > 0}
-          className="w-full rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-500 py-4 text-base font-black shadow-[0_0_40px_rgba(129,140,248,0.3)] transition hover:shadow-[0_0_60px_rgba(129,140,248,0.5)] disabled:opacity-40 disabled:shadow-none"
+          className="hud-btn-primary w-full rounded-[var(--radius)] py-3.5 text-base disabled:cursor-not-allowed"
         >
           {submitting ? "Grading…" : "Submit test"}
         </button>

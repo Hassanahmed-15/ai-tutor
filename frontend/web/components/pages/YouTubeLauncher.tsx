@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { ArrowRight, Loader2, TriangleAlert, X } from "lucide-react";
+import { Loader2, TriangleAlert, X } from "lucide-react";
 import { formatTimestamp, parseYouTubeUrl } from "@/lib/youtube/videoUrl";
 
 /**
@@ -19,11 +19,9 @@ import { formatTimestamp, parseYouTubeUrl } from "@/lib/youtube/videoUrl";
  */
 
 /*
- * IN THE BOTTOM-LEFT CORNER, apart from everything else on the page (asked for 2026-10-03). The
- * button and its panel are fixed there; the panel opens upward. In development Next.js puts its own
- * "N" badge in that corner, so the button sits beside it rather than under it.
+ * IN THE TOP-RIGHT OF THE HEADER, beside the knowledge map (asked for 2026-10-06; it was in the
+ * bottom-left corner before). The panel drops down from the button.
  */
-const CORNER_LEFT = process.env.NODE_ENV === "development" ? 72 : 20;
 
 /** Past this a video gets a warning before it is read. */
 export const LONG_VIDEO_SEC = 30 * 60;
@@ -48,7 +46,7 @@ function readingMinutes(durationSec: number, concurrency: number): number {
 function PlayGlyph({ size = 22 }: { size?: number }) {
   return (
     <svg aria-hidden="true" width={size} height={size * 0.72} viewBox="0 0 28 20" className="shrink-0">
-      <rect width="28" height="20" rx="6" fill="#ff1f3d" />
+      <rect width="28" height="20" rx="6" fill="#C8302C" />
       <path d="M11.2 5.6v8.8L18.6 10z" fill="#fff" />
     </svg>
   );
@@ -142,59 +140,68 @@ export function YouTubeLauncher({
     setPhase({ kind: "closed" });
   }
 
-  if (phase.kind === "closed") {
-    return (
-      <span className="yt-corner">
-        <button
-          type="button"
-          onClick={() => setPhase({ kind: "editing" })}
-          onMouseEnter={() => setTipOpen(true)}
-          onMouseLeave={() => setTipOpen(false)}
-          onFocus={() => setTipOpen(true)}
-          onBlur={() => setTipOpen(false)}
-          aria-describedby={tipOpen ? tipId : undefined}
-          className="yt-launch group relative inline-flex items-center gap-2 overflow-hidden rounded-full border px-3 py-1.5 text-[0.76rem] font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff4d63]"
-        >
-          <PlayGlyph size={16} />
-          <span>Summarize a YouTube lecture</span>
-          <ArrowRight aria-hidden="true" size={12} strokeWidth={2.2} className="opacity-70 transition-transform duration-200 group-hover:translate-x-0.5" />
-        </button>
-        {tipOpen && (
-          <span
-            id={tipId}
-            role="tooltip"
-            className="pointer-events-none absolute bottom-full left-0 z-30 mb-2 whitespace-nowrap rounded-[var(--radius-sm)] border px-2.5 py-1.5 text-[0.75rem] text-[var(--hud-text)] shadow-lg"
-            style={{ background: "var(--hud-surface-2, #1a1625)", borderColor: "var(--hud-line)" }}
-          >
-            Get a summary of a YouTube lecture
-          </span>
-        )}
-        <YouTubeLauncherStyles />
-      </span>
-    );
-  }
+  const open = phase.kind !== "closed";
+
+  // Escape closes the panel, as it does any dropdown.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // close() only reads refs and a setter.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   return (
-    <div className="yt-corner yt-panel rounded-[var(--radius-lg)] border p-4 text-left shadow-2xl">
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => (open ? close() : setPhase({ kind: "editing" }))}
+        onMouseEnter={() => setTipOpen(true)}
+        onMouseLeave={() => setTipOpen(false)}
+        onFocus={() => setTipOpen(true)}
+        onBlur={() => setTipOpen(false)}
+        aria-expanded={open}
+        aria-describedby={tipOpen && !open ? tipId : undefined}
+        className={`inline-flex h-9 items-center gap-2 rounded-[var(--radius)] px-3 text-[0.875rem] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] ${
+          open ? "bg-[var(--hud-surface-2)] text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"
+        }`}
+      >
+        <PlayGlyph size={16} />
+        <span className="max-sm:sr-only">Summarize a YouTube lecture</span>
+      </button>
+      {tipOpen && !open && (
+        <span
+          id={tipId}
+          role="tooltip"
+          className="pointer-events-none absolute right-0 top-full z-30 mt-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-[var(--hud-text)] px-2.5 py-1.5 text-[0.75rem] text-[var(--hud-bg)] shadow-[var(--elev-2)]"
+        >
+          Get a summary of a YouTube lecture
+        </span>
+      )}
+      {open && (
+      <div className="absolute right-0 top-full z-50 mt-2 w-[min(420px,calc(100vw-2rem))] rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 text-left shadow-[var(--elev-2)]">
       <div className="flex items-center gap-2.5">
         <PlayGlyph size={20} />
-        <p className="flex-1 text-[0.88rem] font-semibold text-[var(--hud-text)]">Summarize a YouTube lecture</p>
+        <p className="flex-1 text-[0.9375rem] font-medium text-[var(--hud-text)]">Summarize a YouTube lecture</p>
         <button
           type="button"
           onClick={close}
           aria-label="Close"
-          className="rounded-[var(--radius-sm)] p-1 text-[var(--hud-text-faint)] transition-colors hover:text-[var(--hud-text)]"
+          className="rounded-[var(--radius-sm)] p-1.5 text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
         >
           <X aria-hidden="true" size={15} />
         </button>
       </div>
 
       {phase.kind === "long" ? (
-        <div className="mt-3 rounded-[var(--radius)] border border-amber-400/40 bg-amber-400/10 p-3" role="alert">
+        <div className="mt-3 rounded-[var(--radius)] border border-[var(--hud-line)] bg-[var(--warn-dim)] p-3" role="alert">
           <div className="flex gap-2.5">
-            <TriangleAlert aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-amber-300" />
-            <div className="text-[0.82rem] leading-relaxed text-amber-50/90">
-              <p className="font-semibold text-amber-200">
+            <TriangleAlert aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-[var(--hud-warn)]" />
+            <div className="text-[0.8125rem] leading-relaxed text-[var(--hud-text)]">
+              <p className="font-semibold">
                 This lecture is {formatTimestamp(phase.durationSec)} long{phase.title ? `: "${phase.title}"` : ""}.
               </p>
               <p className="mt-1">
@@ -207,7 +214,7 @@ export function YouTubeLauncher({
             <button
               type="button"
               onClick={() => setPhase({ kind: "editing" })}
-              className="rounded-full border border-[var(--hud-line)] px-4 py-1.5 text-[0.8rem] text-[var(--hud-text-dim)] transition-colors hover:text-[var(--hud-text)]"
+              className="hud-btn-ghost h-9 px-4 text-[0.8125rem] font-medium"
             >
               Use another video
             </button>
@@ -217,7 +224,7 @@ export function YouTubeLauncher({
                 const link = parseYouTubeUrl(url);
                 if (link) onStart(link.url);
               }}
-              className="rounded-full bg-amber-300 px-4 py-1.5 text-[0.8rem] font-semibold text-slate-950 transition-colors hover:bg-amber-200"
+              className="hud-btn-primary h-9 px-4 text-[0.8125rem]"
             >
               Continue anyway
             </button>
@@ -231,7 +238,7 @@ export function YouTubeLauncher({
             void submit();
           }}
         >
-          <div className="flex items-center gap-2 rounded-[var(--radius)] border px-2 py-1.5" style={{ borderColor: "rgba(255, 77, 99, 0.45)", background: "var(--hud-surface)" }}>
+          <div className="flex items-center gap-2 rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] py-1 pl-2 pr-1 focus-within:border-[var(--hud-cyan)]">
             <label htmlFor="youtube-url" className="sr-only">YouTube link</label>
             <input
               id="youtube-url"
@@ -250,7 +257,7 @@ export function YouTubeLauncher({
             <button
               type="submit"
               disabled={phase.kind === "checking" || !url.trim()}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#ff1f3d] px-3.5 py-1.5 text-[0.8rem] font-semibold text-white transition-colors hover:bg-[#ff4d63] disabled:cursor-not-allowed disabled:opacity-40"
+              className="hud-btn-primary inline-flex h-8 shrink-0 items-center gap-1.5 px-3.5 text-[0.8125rem] disabled:cursor-not-allowed"
             >
               {phase.kind === "checking" ? (
                 <>
@@ -263,49 +270,16 @@ export function YouTubeLauncher({
             </button>
           </div>
           {phase.kind === "editing" && phase.error ? (
-            <p className="mt-2 text-[0.78rem] text-rose-300" role="alert">{phase.error}</p>
+            <p className="mt-2 text-[0.8125rem] text-[var(--hud-danger)]" role="alert">{phase.error}</p>
           ) : (
-            <p className="mt-2 text-[0.74rem] text-[var(--hud-text-faint)]">
+            <p className="mt-2 text-[0.8125rem] text-[var(--hud-text-dim)]">
               Public videos up to 3 hours. Aria watches the whole video and teaches a short version of it, with her own drawings.
             </p>
           )}
         </form>
       )}
-      <YouTubeLauncherStyles />
+      </div>
+      )}
     </div>
-  );
-}
-
-/** The launcher's own look: a red edge that slowly catches the light, distinct from every other control. */
-function YouTubeLauncherStyles() {
-  return (
-    <style>{`
-      .yt-corner { position: fixed; bottom: 20px; left: ${CORNER_LEFT}px; z-index: 40; }
-      .yt-corner.yt-panel { width: min(420px, calc(100vw - ${CORNER_LEFT + 16}px)); }
-      @media (max-width: 520px) { .yt-corner.yt-panel { left: 16px; right: 16px; width: auto; bottom: 16px; } }
-      .yt-launch {
-        border-color: rgba(255, 77, 99, 0.55);
-        background:
-          linear-gradient(135deg, rgba(255, 31, 61, 0.22), rgba(255, 31, 61, 0.06) 55%, rgba(255, 140, 60, 0.14)),
-          #15111d;
-        box-shadow: 0 0 0 1px rgba(255, 31, 61, 0.08), 0 8px 28px -10px rgba(255, 31, 61, 0.55);
-      }
-      .yt-launch::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.16) 50%, transparent 70%);
-        transform: translateX(-120%);
-        animation: yt-sheen 4.5s ease-in-out infinite;
-        pointer-events: none;
-      }
-      .yt-launch:hover { box-shadow: 0 0 0 1px rgba(255, 31, 61, 0.2), 0 12px 34px -10px rgba(255, 31, 61, 0.75); }
-      .yt-panel {
-        border-color: rgba(255, 77, 99, 0.4);
-        background: linear-gradient(160deg, rgba(255, 31, 61, 0.16), rgba(21, 17, 29, 0) 45%), #15111d;
-      }
-      @keyframes yt-sheen { 0%, 55% { transform: translateX(-120%); } 85%, 100% { transform: translateX(120%); } }
-      @media (prefers-reduced-motion: reduce) { .yt-launch::after { animation: none; } .yt-launch { transition: none; } }
-    `}</style>
   );
 }

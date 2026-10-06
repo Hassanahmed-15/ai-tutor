@@ -81,7 +81,7 @@ const memoryBefore = (await (await page.request.get(`${BASE}/api/learner-memory`
 async function openMemory() {
   await page.goto(BASE);
   // The account button appears once /api/auth/me answers, which the dev server can take seconds over.
-  const settings = page.locator("button.absolute.right-5.top-5");
+  const settings = page.locator("button[data-account-button]");
   await settings.waitFor({ timeout: 90_000 });
   await settings.click();
   await page.locator("[data-learner-memory]").waitFor({ timeout: 30_000 });

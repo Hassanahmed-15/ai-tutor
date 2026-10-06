@@ -484,12 +484,11 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
     <main
       className="font-dyslexic hud-canvas hud-grain relative h-screen overflow-hidden"
       style={prefsToCssVars(prefs)}
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_0%,rgba(251,146,60,0.16),transparent_34%),radial-gradient(circle_at_88%_14%,rgba(217,119,87,0.14),transparent_34%),linear-gradient(180deg,#100a06_0%,#0a0603_74%)]" />
+    >
 
       <div className="absolute inset-0 flex flex-col gap-3 p-3 lg:p-5">
         {/* Header */}
-        <header className="relative flex flex-wrap items-center justify-between gap-3 rounded-[1.6rem] border border-white/10 bg-stone-950/76 px-5 py-3.5 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+        <header className="relative flex flex-wrap items-center justify-between gap-3 rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3.5 shadow-[var(--elev-1)] backdrop-blur-xl">
           <HudCorners accent="var(--accent-dyslexia)" />
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
@@ -505,21 +504,21 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <button onClick={repeatBeat} title="Read this part to me again" className="rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold text-white/85 transition hover:bg-white/10">
+            <button onClick={repeatBeat} title="Read this part to me again" className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2.5 text-sm font-bold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)]">
               🔁 Read again
             </button>
             <button
               onClick={hasStarted ? togglePlay : startLesson}
               className="rounded-full px-6 py-2.5 text-sm font-black"
-              style={{ background: "linear-gradient(180deg, var(--accent-dyslexia-bright), var(--accent-dyslexia))", color: "#241004", boxShadow: "0 0 24px var(--accent-dyslexia-glow)" }}
+              style={{ background: "var(--accent-dyslexia)", color: "var(--accent-on)" }}
             >
               {!hasStarted ? "Start lecture ▶" : playing ? "Pause ❙❙" : "Resume ▶"}
             </button>
-            <button onClick={restart} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/85 transition hover:bg-white/10">
+            <button onClick={restart} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)]">
               Restart
             </button>
             {onExit && (
-              <button onClick={onExit} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/85 transition hover:bg-white/10">
+              <button onClick={onExit} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)]">
                 Exit
               </button>
             )}
@@ -539,9 +538,9 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
         </div>
 
         {voiceBlocked && (
-          <div className="flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3">
-            <p className="text-sm font-bold text-amber-200">The voice was blocked. Tap to turn on sound.</p>
-            <button onClick={retryVoice} className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-black text-amber-950">
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3">
+            <p className="text-sm font-medium text-[var(--hud-text)]">The voice was blocked. Tap to turn on sound.</p>
+            <button onClick={retryVoice} className="shrink-0 rounded-full bg-[var(--hud-cyan)] px-5 py-2 text-sm font-black text-[var(--accent-on)]">
               Turn on sound
             </button>
           </div>
@@ -549,7 +548,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
 
         {/* Main stage + chat */}
         <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <section className="relative grid min-h-0 overflow-hidden rounded-[1.6rem] border border-white/10 bg-stone-950/80 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+          <section className="relative grid min-h-0 overflow-hidden rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-1)]">
             {isCheckpoint ? (
               <div className="grid place-items-center p-6 lg:p-10">
                 <div className="w-full">
@@ -566,8 +565,8 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
             ) : !hasStarted ? (
               <div className="grid place-items-center p-6 lg:p-10">
                 <div className="max-w-xl text-center">
-                  <p className="text-2xl font-black leading-relaxed text-white/85">No walls of text here.</p>
-                  <p className="mt-4 text-lg font-bold leading-relaxed text-white/55">
+                  <p className="text-2xl font-black leading-relaxed text-[var(--hud-text)]">No walls of text here.</p>
+                  <p className="mt-4 text-lg font-bold leading-relaxed text-[var(--hud-text-dim)]">
                     I read everything out loud, in short lines, with pictures — so you barely need to read at all.
                   </p>
                 </div>
@@ -576,7 +575,7 @@ export function DyslexiaLessonPlayer({ onExit, onComplete, beats = demoBeats,
               <BeatStage beat={beat} dense={dense} chunks={chunks} phase={phase} revealed={revealed} speaking={speaking} spokenWord={spokenWord} onWordTap={openWordHelp} drawProgress={drawProgress} />
             ) : (
               <div className="grid place-items-center p-6 lg:p-10">
-                <p className="text-center text-2xl font-black text-white/80">{beat.title}</p>
+                <p className="text-center text-2xl font-black text-[var(--hud-text-dim)]">{beat.title}</p>
               </div>
             )}
 
@@ -660,7 +659,7 @@ function BeatStage({
       <div className="grid h-full place-items-center p-6 lg:p-10">
         <div className="max-w-3xl text-center">
           <p className="text-[11px] font-black uppercase tracking-[0.2em] text-accent-dyslexia/70">The teacher said</p>
-          <p className={`mt-4 text-2xl font-medium leading-relaxed text-white/55 transition-all duration-500 ${phase === "calibrating" ? "scale-95 blur-[1px] opacity-40" : "opacity-100"}`}>
+          <p className={`mt-4 text-2xl font-medium leading-relaxed text-[var(--hud-text-dim)] transition-all duration-500 ${phase === "calibrating" ? "scale-95 blur-[1px] opacity-40" : "opacity-100"}`}>
             {dense}
           </p>
           {phase === "calibrating" && <p className="mt-8 text-sm font-bold text-accent-dyslexia">Making this simpler for you…</p>}
@@ -691,7 +690,7 @@ function BeatStage({
   if (isStructure) {
     return (
       <div className="flex h-full min-h-0 flex-col">
-        <div className="relative min-h-0 flex-[3] overflow-hidden border-b border-white/10 bg-slate-950">
+        <div className="relative min-h-0 flex-[3] overflow-hidden border-b border-[var(--hud-line)] bg-[var(--hud-surface)]">
           <Board key={beat.id} beat={beat} sentenceCue={boardCue} drawProgress={drawProgress} />
         </div>
         {/* Kept to a third of the height and scrollable: the diagram is the subject here, and the
@@ -707,18 +706,18 @@ function BeatStage({
                   shown
                     ? current
                       ? "chunk-line-in border-accent-dyslexia/60 bg-accent-dyslexia/15"
-                      : "chunk-line-in border-white/12 bg-white/[0.05]"
-                    : "border-white/5 bg-white/[0.01] opacity-25"
+                      : "chunk-line-in border-[var(--hud-line)] bg-[var(--hud-surface)]"
+                    : "border-[var(--hud-line)] bg-[var(--hud-surface)] opacity-25"
                 }`}
               >
-                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-stone-900/80 text-xl" aria-hidden>
+                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[var(--hud-surface)] text-xl" aria-hidden>
                   {chunk.icon}
                 </span>
                 <KaraokeLine
                   text={chunk.text}
                   activeWord={spokenWord.line === i && speaking ? spokenWord.word : -1}
                   onWordTap={onWordTap}
-                  className="text-lg font-bold leading-snug text-white"
+                  className="text-lg font-bold leading-snug text-[var(--hud-text)]"
                 />
               </div>
             );
@@ -730,7 +729,7 @@ function BeatStage({
 
   return (
     <div className="grid h-full min-h-0 lg:grid-cols-[1.1fr_1fr]">
-      <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden border-b border-white/10 bg-slate-950 lg:min-h-[480px] lg:border-b-0 lg:border-r">
+      <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden border-b border-[var(--hud-line)] bg-[var(--hud-surface)] lg:min-h-[480px] lg:border-b-0 lg:border-r">
         {/* Capped to the diagrams' native ~900:560 ratio so the hand-drawn scenes (which
          *  stretch to fill their box on both axes) don't distort in this split-panel. */}
         <div className="aspect-[900/560] h-full max-h-full w-full max-w-full">
@@ -749,11 +748,11 @@ function BeatStage({
                 shown
                   ? current
                     ? "chunk-line-in border-accent-dyslexia/60 bg-accent-dyslexia/15"
-                    : "chunk-line-in border-white/12 bg-white/[0.05]"
-                  : "border-white/5 bg-white/[0.01] opacity-25"
+                    : "chunk-line-in border-[var(--hud-line)] bg-[var(--hud-surface)]"
+                  : "border-[var(--hud-line)] bg-[var(--hud-surface)] opacity-25"
               }`}
             >
-              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-stone-900/80 text-2xl" aria-hidden>
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[var(--hud-surface)] text-2xl" aria-hidden>
                 {chunk.icon}
               </span>
               <KaraokeLine
@@ -761,7 +760,7 @@ function BeatStage({
                 // Only the line actually being narrated tracks a word; the rest render plainly.
                 activeWord={spokenWord.line === i && speaking ? spokenWord.word : -1}
                 onWordTap={onWordTap}
-                className="text-xl font-bold leading-snug text-white"
+                className="text-xl font-bold leading-snug text-[var(--hud-text)]"
               />
             </div>
           );
@@ -775,8 +774,8 @@ function BeatStage({
  *  start of each beat, and the student can set it themselves at any time. */
 function ReadLevelDial({ level, calibrating, onChange }: { level: ReadingLevel; calibrating: boolean; onChange: (l: ReadingLevel) => void }) {
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-[1.6rem] border border-white/10 bg-stone-950/60 px-4 py-3 backdrop-blur-xl">
-      <span className={`text-[11px] font-black uppercase tracking-[0.16em] ${calibrating ? "text-accent-dyslexia av-ring-dot" : "text-white/45"}`}>
+    <div className="flex flex-wrap items-center gap-3 rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3 backdrop-blur-xl">
+      <span className={`text-[11px] font-black uppercase tracking-[0.16em] ${calibrating ? "text-accent-dyslexia av-ring-dot" : "text-[var(--hud-text-dim)]"}`}>
         {calibrating ? "Checking your reading level…" : "Reading level"}
       </span>
       <div className="flex items-center gap-1.5">
@@ -787,7 +786,7 @@ function ReadLevelDial({ level, calibrating, onChange }: { level: ReadingLevel; 
             aria-pressed={level === l}
             title={READING_LEVEL_LABELS[l]}
             className={`rounded-full px-4 py-1.5 text-xs font-black transition ${
-              level === l ? "bg-gradient-to-r from-accent-dyslexia-bright to-accent-dyslexia text-stone-950" : "border border-white/15 bg-white/5 text-white/70 hover:bg-white/10"
+              level === l ? "from-accent-dyslexia-bright to-accent-dyslexia text-[var(--accent-on)] bg-[var(--hud-surface)]" : "border border-[var(--hud-line)] bg-[var(--hud-surface)] text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)]"
             }`}
           >
             {READING_LEVEL_LABELS[l]}

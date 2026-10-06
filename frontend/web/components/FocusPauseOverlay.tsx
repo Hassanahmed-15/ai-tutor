@@ -22,22 +22,22 @@ export function FocusPauseOverlay({
   accentGlowVar?: string;
 }) {
   return (
-    <div className="beat-fade-in absolute inset-0 z-50 grid place-items-center bg-slate-950/80 p-10 text-center backdrop-blur-md">
+    <div className="beat-fade-in absolute inset-0 z-50 grid place-items-center bg-[var(--hud-surface)] p-10 text-center backdrop-blur-md">
       <div>
         <p className="hud-eyebrow text-[0.7rem] tracking-[0.2em]" style={{ color: accentVar }}>
           Focus check
         </p>
-        <p className="mx-auto mt-5 max-w-xl text-4xl font-black leading-tight text-white">
+        <p className="mx-auto mt-5 max-w-xl text-4xl font-black leading-tight text-[var(--hud-text)]">
           Looks like your focus drifted — the lecture is paused.
         </p>
         {state === "stopped" ? (
-          <p className="mt-6 text-lg font-bold text-white/55">Take a breather… hang tight for a moment.</p>
+          <p className="mt-6 text-lg font-bold text-[var(--hud-text-dim)]">Take a breather… hang tight for a moment.</p>
         ) : (
           <button
             onClick={onResume}
-            className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-slate-950 transition"
+            className="mt-8 rounded-full px-9 py-3.5 text-lg font-black text-[var(--accent-on)] transition"
             style={{
-              background: `linear-gradient(to right, ${accentBrightVar}, ${accentVar})`,
+              background: accentVar,
               boxShadow: `0 0 36px ${accentGlowVar}`,
             }}
           >

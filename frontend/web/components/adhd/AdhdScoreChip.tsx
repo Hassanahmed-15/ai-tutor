@@ -17,17 +17,17 @@ export function AdhdScoreChip() {
   if (!s) return null;
 
   return (
-    <div className="flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">
+    <div className="flex shrink-0 items-center gap-2 rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-1.5">
       {/* tabular-nums so a rising score does not shuffle the chip's width on every beat */}
-      <span className="text-[0.72rem] font-black tabular-nums text-amber-300">{s.xp} XP</span>
+      <span className="text-[0.72rem] font-black tabular-nums text-[var(--hud-cyan)]">{s.xp} XP</span>
       {s.streak > 0 && (
-        <span className="text-[0.72rem] font-black tabular-nums text-white/55">{s.combo.toFixed(1)}×</span>
+        <span className="text-[0.72rem] font-black tabular-nums text-[var(--hud-text-dim)]">{s.combo.toFixed(1)}×</span>
       )}
-      <span className="text-[0.72rem] font-black tabular-nums text-teal-300">{s.coins}c</span>
-      {s.cards > 0 && <span className="text-[0.72rem] font-black tabular-nums text-white/40">{s.cards}🃏</span>}
+      <span className="text-[0.72rem] font-black tabular-nums text-[var(--hud-cyan)]">{s.coins}c</span>
+      {s.cards > 0 && <span className="text-[0.72rem] font-black tabular-nums text-[var(--hud-text-dim)]">{s.cards}🃏</span>}
       {s.locked && (
-        <span className="flex items-center gap-1 rounded-full bg-emerald-400/15 px-2 py-0.5 text-[0.66rem] font-black text-emerald-200">
-          <span className="size-1.5 rounded-full bg-emerald-300" />
+        <span className="flex items-center gap-1 rounded-full bg-[var(--ok-dim)] px-2 py-0.5 text-[0.66rem] font-black text-[var(--ok)]">
+          <span className="size-1.5 rounded-full bg-[var(--ok)]" />
           {s.lockedMins >= 1 ? `${s.lockedMins}m` : "focused"}
         </span>
       )}

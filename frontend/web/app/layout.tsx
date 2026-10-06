@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { JetBrains_Mono, Sora } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -22,19 +22,15 @@ export const revalidate = 0;
 /**
  * Typography: one family, used lightly.
  *
- * Sora — a geometric sans with slightly squared terminals and a distinctive lowercase. Inter and
- * the earlier serif were both rejected: Inter is the default of every AI product and reads as
- * anonymous, the serif read as a newspaper. Sora has a recognisable character at display sizes
- * while staying completely plain in a paragraph, which is what a headline needs to carry.
- * Loading one family also means the page has no flash of a mismatched fallback.
- *
- * The previous attempts loaded three sans faces (which read as an instrument panel) and then a
- * high-contrast serif (which read as a newspaper). Both were louder than the content.
+ * Geist: a plain, even sans that stays quiet in a paragraph and holds together at heading sizes.
+ * Inter was rejected as the default of every AI product; Sora, the previous face, had more
+ * character than a calm reading surface wants. One family means no flash of a mismatched fallback.
+ * The board keeps its own chalk and handwriting faces.
  */
-const bodyFont = Sora({
+const bodyFont = Geist({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -59,13 +55,29 @@ export const metadata: Metadata = {
     "Name a subject and Aria composes the lecture from nothing: a plan you approve, a board drawn while it speaks, and a teacher that stops the moment you have a question.",
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#111110" },
+  ],
+};
+
+/**
+ * Light or dark, set before the first paint so the page never flashes the wrong theme. The student's
+ * choice lives in this browser only (Settings → Appearance); with no choice, the device decides.
+ */
+const THEME_SCRIPT = `(function(){try{var c=localStorage.getItem("aria.theme");var d=c==="dark"||(c!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=d?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${bodyFont.variable} ${hudMonoFont.variable}`}>
+    <html lang="en" data-theme="light" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${hudMonoFont.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

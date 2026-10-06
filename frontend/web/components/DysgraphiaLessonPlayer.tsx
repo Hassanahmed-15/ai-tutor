@@ -259,10 +259,9 @@ export function DysgraphiaLessonPlayer({ onExit, onComplete, beats = demoBeats, 
 
   return (
     <main className="hud-canvas hud-grain relative h-screen overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_0%,rgba(192,132,252,0.16),transparent_34%),radial-gradient(circle_at_88%_16%,rgba(167,139,250,0.14),transparent_34%),linear-gradient(180deg,#06080d_0%,#030407_74%)]" />
 
       <div className="absolute inset-0 flex flex-col gap-3 p-3 lg:p-5">
-        <header className="relative flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--hud-line)] bg-violet-950/30 px-5 py-3.5 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+        <header className="relative flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--hud-line)] bg-[var(--accent-soft)] px-5 py-3.5 shadow-[var(--elev-1)] backdrop-blur-xl">
           <HudCorners accent="var(--accent-dysgraphia)" />
           <div className="flex items-center gap-4">
             <button onClick={onExit} className="group relative" aria-label="Exit lecture">
@@ -281,15 +280,15 @@ export function DysgraphiaLessonPlayer({ onExit, onComplete, beats = demoBeats, 
             <button
               onClick={hasStarted ? togglePlay : startLesson}
               className="rounded-full px-6 py-2.5 text-sm font-black"
-              style={{ background: "linear-gradient(180deg, var(--accent-dysgraphia-bright), var(--accent-dysgraphia))", color: "#1d0a33", boxShadow: "0 0 24px var(--accent-dysgraphia-glow)" }}
+              style={{ background: "var(--accent-dysgraphia)", color: "var(--accent-on)" }}
             >
               {!hasStarted ? "Start lecture ▶" : playing ? "Pause ❙❙" : "Resume ▶"}
             </button>
-            <button onClick={restart} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/85 transition hover:bg-white/10">
+            <button onClick={restart} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)]">
               Restart
             </button>
             {onExit && (
-              <button onClick={onExit} className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/85 transition hover:bg-white/10">
+              <button onClick={onExit} className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)]">
                 Exit
               </button>
             )}
@@ -297,16 +296,16 @@ export function DysgraphiaLessonPlayer({ onExit, onComplete, beats = demoBeats, 
         </header>
 
         {voiceBlocked && (
-          <div className="flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3">
-            <p className="text-sm font-bold text-amber-200">The teacher&rsquo;s voice was blocked. Tap to enable sound.</p>
-            <button onClick={retryVoice} className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-black text-amber-950">
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3">
+            <p className="text-sm font-medium text-[var(--hud-text)]">The teacher&rsquo;s voice was blocked. Tap to enable sound.</p>
+            <button onClick={retryVoice} className="shrink-0 rounded-full bg-[var(--hud-cyan)] px-5 py-2 text-sm font-black text-[var(--accent-on)]">
               Enable sound
             </button>
           </div>
         )}
 
         <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <section className="relative min-h-0 overflow-hidden rounded-[1.6rem] border border-white/10 bg-stone-950/80 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+          <section className="relative min-h-0 overflow-hidden rounded-[1.6rem] border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-1)]">
             {isCheckpoint ? (
               <ScribeStage
                 beat={beat}
@@ -326,7 +325,7 @@ export function DysgraphiaLessonPlayer({ onExit, onComplete, beats = demoBeats, 
               <div className="beat-fade-in relative h-full">
                 <Board key={beat.id} beat={beat} sentenceCue={sentenceCue} />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 p-3 lg:p-4">
-                  <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-slate-950/86 px-5 py-3 text-center text-base font-bold leading-snug text-white shadow-2xl backdrop-blur-md">
+                  <div className="mx-auto max-w-4xl rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-3 text-center text-base font-bold leading-snug text-[var(--hud-text)] shadow-[var(--elev-2)] backdrop-blur-md">
                     {sentenceCue.text || beat.script}
                   </div>
                 </div>
@@ -387,7 +386,7 @@ function ScribeStage({
         <p className="text-xs font-black uppercase tracking-[0.2em] text-accent-dysgraphia">{beat.checkpoint?.prompt ?? beat.title}</p>
 
         {!micSupported && (
-          <p className="mt-6 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3 text-sm font-bold text-amber-200">
+          <p className="mt-6 rounded-2xl border border-[var(--hud-cyan)] bg-[var(--accent-soft)] px-5 py-3 text-sm font-bold text-[var(--hud-cyan)]">
             Voice input isn&rsquo;t supported in this browser. Try Chrome to use the mic.
           </p>
         )}
@@ -396,12 +395,12 @@ function ScribeStage({
           <>
             <button
               onClick={onStartListening}
-              className="mx-auto mt-8 grid size-24 place-items-center rounded-full bg-gradient-to-br from-accent-dysgraphia to-violet-600 text-4xl shadow-[0_0_50px_var(--accent-dysgraphia-glow)] transition hover:scale-105"
+              className="mx-auto mt-8 grid size-24 place-items-center rounded-full from-accent-dysgraphia text-4xl transition hover:scale-105 bg-[var(--hud-surface)]"
               aria-label="Start speaking your answer"
             >
               🎙️
             </button>
-            <p className="mt-4 text-base font-bold text-white/60">Tap the mic and just talk — ramble all you want. I&rsquo;ll organize it for you.</p>
+            <p className="mt-4 text-base font-bold text-[var(--hud-text-dim)]">Tap the mic and just talk — ramble all you want. I&rsquo;ll organize it for you.</p>
           </>
         )}
 
@@ -410,7 +409,7 @@ function ScribeStage({
             <MessySoundwave words={rawWords} />
             <button
               onClick={onStopListening}
-              className="mx-auto mt-6 rounded-full bg-gradient-to-r from-rose-400 to-red-500 px-8 py-3 text-base font-black text-white shadow-[0_0_30px_rgba(244,63,94,0.4)]"
+              className="mx-auto mt-6 rounded-full px-8 py-3 text-base font-black text-[var(--hud-text)] bg-[var(--hud-surface)]"
             >
               ⏹ I&rsquo;m done — organize it
             </button>
@@ -426,20 +425,20 @@ function ScribeStage({
 
         {phase === "result" && (
           <>
-            <div className="beat-fade-in mt-7 rounded-3xl border border-accent-dysgraphia/30 bg-white p-7 text-left shadow-2xl">
-              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-violet-500">Your note, organized</p>
-              <p className="mt-3 text-lg font-medium leading-relaxed text-slate-900">{cleanNote}</p>
+            <div className="beat-fade-in mt-7 rounded-3xl border border-accent-dysgraphia/30 bg-[var(--hud-surface)] p-7 text-left shadow-[var(--elev-2)]">
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--hud-cyan)]">Your note, organized</p>
+              <p className="mt-3 text-lg font-medium leading-relaxed text-[var(--accent-on)]">{cleanNote}</p>
             </div>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
               <button
                 onClick={onReviseByVoice}
-                className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-bold text-white/85 transition hover:bg-white/10"
+                className="rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-2.5 text-sm font-bold text-[var(--hud-text)] transition hover:bg-[var(--hud-surface-2)]"
               >
                 🎙️ Edit by voice
               </button>
               <button
                 onClick={onContinue}
-                className="rounded-full bg-gradient-to-r from-accent-dysgraphia-bright to-violet-400 px-7 py-2.5 text-sm font-black text-violet-950 shadow-[0_0_30px_var(--accent-dysgraphia-glow)]"
+                className="rounded-full from-accent-dysgraphia-bright px-7 py-2.5 text-sm font-black text-[var(--hud-cyan)] bg-[var(--hud-surface)]"
               >
                 Looks good — continue ▶
               </button>
@@ -447,7 +446,7 @@ function ScribeStage({
           </>
         )}
 
-        {error && <p className="mt-5 rounded-xl border border-rose-400/30 bg-rose-500/10 px-4 py-3 text-sm font-bold text-rose-200">{error}</p>}
+        {error && <p className="mt-5 rounded-xl border border-[var(--hud-danger)] bg-[var(--danger-dim)] px-4 py-3 text-sm font-bold text-[var(--hud-danger)]">{error}</p>}
       </div>
     </div>
   );
@@ -467,7 +466,7 @@ function MessySoundwave({ words }: { words: string[] }) {
         return (
           <span
             key={i}
-            className={`soundwave-bar w-1.5 rounded-full ${isFiller ? "bg-rose-400/50" : "bg-accent-dysgraphia"}`}
+            className={`soundwave-bar w-1.5 rounded-full ${isFiller ? "bg-[var(--hud-danger)]" : "bg-accent-dysgraphia"}`}
             style={{ height: `${h}%`, animationDelay: `${(i % 5) * 70}ms`, animationDuration: `${0.3 + (i % 5) * 0.05}s` }}
           />
         );
@@ -476,7 +475,7 @@ function MessySoundwave({ words }: { words: string[] }) {
         {words.slice(-8).map((w, i) => (
           <span
             key={`${w}-${i}`}
-            className="chunk-line-in absolute text-xs font-bold text-white/40"
+            className="chunk-line-in absolute text-xs font-bold text-[var(--hud-text-dim)]"
             style={{
               left: `${10 + ((i * 37) % 80)}%`,
               top: `${(i * 23) % 100}%`,
@@ -510,7 +509,7 @@ function FilterAnimation({ words }: { words: string[] }) {
           </span>
         );
       })}
-      {kept.length === 0 && <span className="text-sm font-bold text-white/40">…</span>}
+      {kept.length === 0 && <span className="text-sm font-bold text-[var(--hud-text-dim)]">…</span>}
     </div>
   );
 }

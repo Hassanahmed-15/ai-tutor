@@ -17,10 +17,10 @@ export function EngagementMeter({
   accent?: string;
 }) {
   const { rate, low, usingCamera, reason } = engagement;
-  const tone = low ? "bg-amber-400" : rate >= 70 ? accent : "bg-sky-400";
+  const tone = low ? "bg-[var(--hud-cyan)]" : rate >= 70 ? accent : "bg-[var(--hud-cyan)]";
   return (
     <div
-      className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5"
+      className="flex items-center gap-2 rounded-full border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-1.5"
       title={`Engagement ${rate}% — ${reason}. ${
         usingCamera
           ? "Camera + activity signals (camera runs on-device, never uploaded)."
@@ -28,11 +28,11 @@ export function EngagementMeter({
       }`}
     >
       <span className={`size-2 rounded-full ${tone}`} />
-      <span className="text-xs font-black tabular-nums text-white/75">{rate}%</span>
-      <span className="h-1.5 w-12 overflow-hidden rounded-full bg-white/10">
+      <span className="text-xs font-black tabular-nums text-[var(--hud-text-dim)]">{rate}%</span>
+      <span className="h-1.5 w-12 overflow-hidden rounded-full bg-[var(--hud-surface-2)]">
         <span className={`block h-full rounded-full transition-all duration-700 ${tone}`} style={{ width: `${Math.max(4, rate)}%` }} />
       </span>
-      <span className="hidden text-[10px] font-bold uppercase tracking-wider text-white/35 sm:inline">
+      <span className="hidden text-[10px] font-bold uppercase tracking-wider text-[var(--hud-text-dim)] sm:inline">
         {usingCamera ? "cam+activity" : "activity"}
       </span>
     </div>

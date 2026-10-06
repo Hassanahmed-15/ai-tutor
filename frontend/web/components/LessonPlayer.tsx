@@ -2975,7 +2975,7 @@ export function LessonPlayer({
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(232,168,124,0.05),transparent_55%),linear-gradient(180deg,#0c0a09_0%,#080605_78%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[var(--hud-bg)]" />
 
       {/* The board is the visual priority, so the layout is a flex COLUMN rather than absolute
           boxes: status bar, then the board taking every remaining pixel, then controls.
@@ -3015,20 +3015,20 @@ export function LessonPlayer({
            * inside is aria-hidden, so without this the teaching surface is nameless to a screen
            * reader — and the "Explain this" anchor has nothing to measure against.
            */}
-          <section ref={boardSurfaceRef} aria-label="Teaching board" className={`relative min-h-0 flex-1 overflow-hidden bg-black ${pdfWorkspace ? "flex flex-col" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
+          <section ref={boardSurfaceRef} aria-label="Teaching board" className={`relative min-h-0 flex-1 overflow-hidden bg-[var(--hud-surface)] ${pdfWorkspace ? "flex flex-col" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
             {/*
              * THE LINK BETWEEN THE TWO HALVES. The same amber as the source highlight, naming the
              * part and where it comes from, level with the source panel's own bar — so the board
              * visibly explains the passage lit up beside it.
              */}
             {pdfWorkspace && (
-              <div className="flex h-11 shrink-0 items-center gap-2 border-b border-[var(--hud-line)] bg-[#11100f] px-3 text-[0.74rem]">
-                <span className="shrink-0 rounded-md bg-amber-300/15 px-1.5 py-0.5 font-bold tabular-nums text-amber-200">
+              <div className="flex h-11 shrink-0 items-center gap-2 border-b border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 text-[0.74rem]">
+                <span className="shrink-0 rounded-md bg-[var(--accent-soft)] px-1.5 py-0.5 font-bold tabular-nums text-[var(--hud-cyan)]">
                   Part {index + 1} of {displayBeatCount}
                 </span>
                 <span className="min-w-0 truncate font-semibold text-[var(--hud-text)]">{beat.title}</span>
                 {beatSourcePages.length > 0 && (
-                  <span className="ml-auto hidden shrink-0 items-center gap-1 text-amber-200/70 sm:flex">
+                  <span className="ml-auto hidden shrink-0 items-center gap-1 text-[var(--hud-cyan)] sm:flex">
                     <span aria-hidden="true">←</span>
                     highlighted on {beatSourcePages.length > 1 ? `pages ${beatSourcePages[0]}–${beatSourcePages[beatSourcePages.length - 1]}` : `page ${beatSourcePages[0]}`}
                   </span>
@@ -3375,10 +3375,10 @@ export function LessonPlayer({
                     data-reproach
                     className={`w-full rounded-xl px-3 py-2 text-center text-[0.78rem] font-semibold leading-snug beat-fade-in ${
                       face === "furious"
-                        ? "bg-red-500/12 text-red-200 ring-1 ring-red-400/25"
+                        ? "bg-[var(--danger-dim)] text-[var(--hud-danger)] ring-1 ring-[var(--hud-line)]"
                         : face === "sad"
-                          ? "bg-amber-500/10 text-amber-100/90 ring-1 ring-amber-400/20"
-                          : "bg-emerald-500/10 text-emerald-100/90 ring-1 ring-emerald-400/20"
+                          ? "bg-[var(--warn-dim)] text-[var(--hud-warn)] ring-1 ring-[var(--hud-line)]"
+                          : "bg-[var(--ok-dim)] text-[var(--ok)] ring-1 ring-[var(--hud-line)]"
                     }`}
                   >
                     {reproach}
@@ -3460,7 +3460,7 @@ export function LessonPlayer({
               onClick={onExit}
               aria-label="Leave the lecture"
               title="Leave the lecture"
-              className="flex h-11 shrink-0 items-center gap-1 rounded-xl px-2.5 text-[0.84rem] font-medium text-white/70 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300"
+              className="flex h-11 shrink-0 items-center gap-1 rounded-xl px-2.5 text-[0.84rem] font-medium text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--hud-cyan)]"
             >
               <ChevronLeft size={18} />
               <span className="hidden xl:inline">Leave</span>
@@ -3486,7 +3486,7 @@ export function LessonPlayer({
             <button
               onClick={onExit}
               aria-label="Leave the lecture"
-              className="flex h-9 shrink-0 items-center gap-1.5 rounded-lg px-2.5 text-[0.82rem] font-medium text-[var(--hud-text-dim)] transition hover:bg-white/10 hover:text-[var(--hud-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--listening)]"
+              className="flex h-9 shrink-0 items-center gap-1.5 rounded-lg px-2.5 text-[0.82rem] font-medium text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--listening)]"
             >
               <ChevronLeft size={17} />
               <span className="hidden sm:inline">Leave</span>
@@ -3507,11 +3507,11 @@ export function LessonPlayer({
         </header>}
 
         {voiceBlocked && (
-          <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-2xl border border-amber-400/30 bg-amber-500/10 px-5 py-3.5 backdrop-blur-xl lg:left-6 lg:right-6">
-            <p className="text-sm font-bold text-amber-200">
+          <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3.5 shadow-[var(--elev-2)] lg:left-6 lg:right-6">
+            <p className="text-sm font-medium text-[var(--hud-text)]">
               Your browser blocked the teacher&rsquo;s voice (autoplay is muted until you interact). Tap to enable sound.
             </p>
-            <button onClick={retryVoice} className="shrink-0 rounded-full bg-amber-400 px-5 py-2 text-sm font-black text-amber-950">
+            <button onClick={retryVoice} className="hud-btn-primary shrink-0 px-5 py-2 text-sm">
               Enable sound
             </button>
           </div>
@@ -3546,31 +3546,31 @@ function DeafAccessPanel({
   const lines = captionLog.length ? captionLog : [caption];
 
   return (
-    <aside className="relative flex h-full min-h-0 flex-col gap-3 overflow-y-auto rounded-xl border border-[var(--accent-deaf)]/25 bg-slate-950/86 p-4 shadow-[0_32px_110px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+    <aside className="relative flex h-full min-h-0 flex-col gap-3 overflow-y-auto rounded-xl border border-[var(--accent-deaf)]/25 bg-[var(--hud-surface)] p-4 shadow-[var(--elev-1)]">
       <HudCorners accent="var(--accent-deaf)" />
 
       <div className="rounded-lg border border-[var(--accent-deaf)]/25 bg-[var(--accent-deaf-glow)] px-4 py-3">
         <p className="text-[0.65rem] font-black uppercase tracking-[0.18em] text-[var(--accent-deaf)]">Deaf mode</p>
-        <h2 className="mt-1 text-lg font-black text-white">Caption-first lesson</h2>
+        <h2 className="mt-1 text-lg font-black text-[var(--hud-text)]">Caption-first lesson</h2>
       </div>
 
       <DeafSigningExtension transcript={signingTranscript} active={signingActive} />
 
-      <div className="rounded-lg border border-white/10 bg-black/30 p-4">
-        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Visual sound cue</p>
+      <div className="rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface-2)] p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-[var(--hud-text-dim)]">Visual sound cue</p>
         <div className="mt-3 flex items-center gap-3">
-          <span className={`size-4 rounded-full ${speaking ? "animate-pulse bg-[var(--accent-deaf)] shadow-[0_0_20px_var(--accent-deaf)]" : waitingOnCheckpoint ? "bg-amber-300" : "bg-white/30"}`} />
-          <p className="text-base font-black text-white">{visualState}</p>
+          <span className={`size-4 rounded-full ${speaking ? "animate-pulse bg-[var(--accent-deaf)] shadow-[0_0_20px_var(--accent-deaf)]" : waitingOnCheckpoint ? "bg-[var(--hud-warn)]" : "bg-[var(--hud-line-strong)]"}`} />
+          <p className="text-base font-black text-[var(--hud-text)]">{visualState}</p>
         </div>
       </div>
 
-      <div className="rounded-lg border border-white/10 bg-black/30 p-4">
-        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Current caption</p>
-        <p className="mt-3 text-base font-bold leading-snug text-white">{caption}</p>
+      <div className="rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface-2)] p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-[var(--hud-text-dim)]">Current caption</p>
+        <p className="mt-3 text-base font-bold leading-snug text-[var(--hud-text)]">{caption}</p>
       </div>
 
-      <div className="rounded-lg border border-white/10 bg-black/30 p-4">
-        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Key terms</p>
+      <div className="rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface-2)] p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-[var(--hud-text-dim)]">Key terms</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {terms.map((term) => (
             <span key={term} className="rounded-full border border-[var(--accent-deaf)]/25 bg-[var(--accent-deaf-glow)] px-3 py-1.5 text-xs font-black text-[var(--accent-deaf)]">
@@ -3580,11 +3580,11 @@ function DeafAccessPanel({
         </div>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-hidden rounded-lg border border-white/10 bg-black/30 p-4">
-        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-white/40">Recent transcript</p>
+      <div className="min-h-0 flex-1 overflow-hidden rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface-2)] p-4">
+        <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-[var(--hud-text-dim)]">Recent transcript</p>
         <div className="mt-3 flex max-h-full flex-col gap-2 overflow-y-auto pr-1">
           {lines.map((line, i) => (
-            <p key={`${i}-${line}`} className="rounded-lg bg-white/[0.05] px-3 py-2 text-sm font-semibold leading-snug text-white/80">
+            <p key={`${i}-${line}`} className="rounded-lg bg-[var(--hud-surface)] px-3 py-2 text-sm font-medium leading-snug text-[var(--hud-text)]">
               {line}
             </p>
           ))}
@@ -4666,11 +4666,11 @@ function SourceToBoardArrow({ pointer, workspace, board }: { pointer: DOMRect | 
     <svg className="pointer-events-none absolute inset-0 z-30 hidden h-full w-full overflow-visible lg:block" aria-hidden="true">
       <defs>
         <marker id="source-board-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="#f59e0b" />
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" />
         </marker>
       </defs>
-      <circle cx={sx} cy={sy} r="4.5" fill="#f59e0b" />
-      <path d={path} fill="none" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" strokeDasharray="7 6" markerEnd="url(#source-board-head)" className="source-board-arrow" />
+      <circle cx={sx} cy={sy} r="4.5" fill="var(--accent)" />
+      <path d={path} fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" strokeDasharray="7 6" markerEnd="url(#source-board-head)" className="source-board-arrow" />
       <style>{`.source-board-arrow{animation:source-board-flow 1.1s linear infinite}@keyframes source-board-flow{to{stroke-dashoffset:-26}}@media (prefers-reduced-motion:reduce){.source-board-arrow{animation:none}}`}</style>
     </svg>
   );

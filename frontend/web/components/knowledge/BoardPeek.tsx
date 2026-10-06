@@ -62,31 +62,31 @@ export function BoardPeek({ target, onClose, onReviewed }: { target: PeekTarget;
   };
 
   return (
-    <div role="dialog" aria-modal="true" aria-label={`${target.title}, from ${target.topic}`} className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="flex h-[min(80vh,620px)] w-[min(96vw,1040px)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0b0f14] shadow-2xl">
-        <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-2.5">
+    <div role="dialog" aria-modal="true" aria-label={`${target.title}, from ${target.topic}`} className="fixed inset-0 z-[80] flex items-center justify-center bg-[var(--scrim)] p-4 backdrop-blur-sm" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="flex h-[min(80vh,620px)] w-[min(96vw,1040px)] flex-col overflow-hidden rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-2)]">
+        <div className="flex items-center justify-between gap-3 border-b border-[var(--hud-line)] px-4 py-2.5">
           <div className="min-w-0">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300/80">{target.review ? "Review" : "Where you learned it"}</p>
-            <p className="truncate text-sm font-semibold text-white">{target.title} <span className="font-normal text-white/50">· {target.topic}</span></p>
+            <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--hud-cyan)]">{target.review ? "Review" : "Where you learned it"}</p>
+            <p className="truncate text-sm font-semibold text-[var(--hud-text)]">{target.title} <span className="font-normal text-[var(--hud-text-dim)]">· {target.topic}</span></p>
           </div>
-          <button type="button" onClick={onClose} aria-label="Close" className="rounded-full p-1.5 text-white/70 hover:bg-white/10 hover:text-white">
+          <button type="button" onClick={onClose} aria-label="Close" className="rounded-full p-1.5 text-[var(--hud-text-dim)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]">
             <X size={16} />
           </button>
         </div>
         <div className="relative min-h-0 flex-1">
           {!loaded && (
-            <div className="grid h-full place-items-center text-white/60">
+            <div className="grid h-full place-items-center text-[var(--hud-text-dim)]">
               <Loader2 className="animate-spin" size={20} />
             </div>
           )}
-          {loaded && "error" in loaded && <p className="grid h-full place-items-center px-6 text-center text-sm text-white/70">{loaded.error}</p>}
+          {loaded && "error" in loaded && <p className="grid h-full place-items-center px-6 text-center text-sm text-[var(--hud-text-dim)]">{loaded.error}</p>}
           {loaded && "beat" in loaded && !loaded.spec && (
-            <div className="h-full overflow-y-auto px-8 py-6 text-white/85">
-              <h3 className="text-lg font-bold text-white">{loaded.beat.title}</h3>
+            <div className="h-full overflow-y-auto px-8 py-6 text-[var(--hud-text)]">
+              <h3 className="text-lg font-bold text-[var(--hud-text)]">{loaded.beat.title}</h3>
               <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm">
                 {(loaded.beat.points ?? []).map((p, i) => <li key={i}>{p}</li>)}
               </ul>
-              <p className="mt-4 text-sm leading-relaxed text-white/70">{loaded.beat.script}</p>
+              <p className="mt-4 text-sm leading-relaxed text-[var(--hud-text-dim)]">{loaded.beat.script}</p>
             </div>
           )}
           {panels.length > 0 && (
@@ -107,14 +107,14 @@ export function BoardPeek({ target, onClose, onReviewed }: { target: PeekTarget;
           )}
         </div>
         {target.review && loaded && !hasQuiz && (
-          <div className="flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3">
-            <p className="text-sm text-white/75">{rated === null ? "Look it over. Do you still remember this?" : rated ? "Nice — it will come back later, further apart." : "No problem — it will come back sooner."}</p>
+          <div className="flex items-center justify-between gap-3 border-t border-[var(--hud-line)] px-4 py-3">
+            <p className="text-sm text-[var(--hud-text-dim)]">{rated === null ? "Look it over. Do you still remember this?" : rated ? "Nice — it will come back later, further apart." : "No problem — it will come back sooner."}</p>
             {rated === null && (
               <div className="flex gap-2">
-                <button type="button" onClick={() => { setRated(false); record(false, { kind: "review", concepts: target.review!.concepts, topic: target.topic }); }} className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-bold text-white/85 hover:bg-white/10">
+                <button type="button" onClick={() => { setRated(false); record(false, { kind: "review", concepts: target.review!.concepts, topic: target.topic }); }} className="rounded-full border border-[var(--hud-line)] px-3 py-1.5 text-xs font-bold text-[var(--hud-text)] hover:bg-[var(--hud-surface-2)]">
                   Not sure yet
                 </button>
-                <button type="button" onClick={() => { setRated(true); record(true, { kind: "review", concepts: target.review!.concepts, topic: target.topic }); }} className="rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-400">
+                <button type="button" onClick={() => { setRated(true); record(true, { kind: "review", concepts: target.review!.concepts, topic: target.topic }); }} className="rounded-full bg-[var(--ok)] px-3 py-1.5 text-xs font-bold text-[var(--accent-on)] hover:bg-[var(--ok)]">
                   I remembered it
                 </button>
               </div>

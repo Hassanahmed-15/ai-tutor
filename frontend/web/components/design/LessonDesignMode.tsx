@@ -641,7 +641,7 @@ export function LessonDesignMode({
                 aria-hidden
                 className={`h-1.5 w-1.5 rounded-full ${
                   liveStatus === "live" && !paused
-                    ? "bg-[var(--hud-cyan)] shadow-[0_0_6px_var(--hud-cyan)]"
+                    ? "bg-[var(--hud-cyan)]"
                     : "bg-[var(--hud-text-faint)]"
                 }`}
               />
@@ -671,9 +671,9 @@ export function LessonDesignMode({
           original reason for a fixed height) while letting a nearly-empty transcript occupy the
           space it actually needs.
         */}
-        <div className="mt-7 max-h-[13rem] min-h-[6.5rem] overflow-y-auto rounded-xl border border-[var(--hud-line)] bg-black/25 px-5 py-4">
+        <div className="mt-7 max-h-[13rem] min-h-[6.5rem] overflow-y-auto rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-5 py-4">
           {errorMessage || controlError ? (
-            <p className="rounded-md bg-rose-500/10 px-3 py-2 text-xs font-medium text-rose-300">{errorMessage ?? controlError}</p>
+            <p className="rounded-md bg-[var(--danger-dim)] px-3 py-2 text-xs font-medium text-[var(--hud-danger)]">{errorMessage ?? controlError}</p>
           ) : captions.length === 0 ? (
             <div className="flex min-h-[4.5rem] items-center justify-center gap-2 text-sm text-[var(--hud-text-faint)]">
               {/* Three dots that actually animate, so "connecting" looks like waiting rather than
@@ -738,14 +738,14 @@ export function LessonDesignMode({
             placeholder={paused ? "Resume to continue the conversation" : liveStatus === "live" ? "Type an answer instead…" : "Connecting…"}
             aria-label="Type a message to your tutor"
             disabled={liveStatus !== "live" || paused}
-            className="min-w-0 flex-1 rounded-lg border border-[var(--hud-line)] bg-black/30 px-4 py-2.5 text-sm text-[var(--hud-text)] outline-none transition placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)]/60 disabled:opacity-40"
+            className="min-w-0 flex-1 rounded-lg border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-2.5 text-sm text-[var(--hud-text)] outline-none transition placeholder:text-[var(--hud-text-faint)] focus:border-[var(--hud-cyan)]/60 disabled:opacity-40"
           />
           <button
             type="submit"
             disabled={liveStatus !== "live" || paused || !draft.trim()}
             title="Send message"
             aria-label="Send message"
-            className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-lg bg-[var(--hud-cyan)] text-black transition hover:brightness-110 disabled:opacity-35"
+            className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-lg bg-[var(--hud-cyan)] text-[var(--accent-on)] transition hover:brightness-110 disabled:opacity-35"
           >
             <Send size={17} aria-hidden />
           </button>
@@ -774,7 +774,7 @@ export function LessonDesignMode({
               Holding after the current operation.
             </p>
           ) : null}
-          <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white/8">
+          <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-[var(--hud-surface-2)]">
             <div
               className="h-full rounded-full bg-[var(--hud-cyan)] transition-[width] duration-700 ease-out"
               style={{ width: `${Math.max(2, Math.round(percent * 100))}%` }}
@@ -821,7 +821,7 @@ export function LessonDesignMode({
                       <Check size={11} strokeWidth={3} />
                     ) : active ? (
                       // The only moving marker on the list, so the eye lands on it directly.
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--hud-cyan)] shadow-[0_0_6px_var(--hud-cyan)]" />
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
                     ) : (
                       <span className="h-1.5 w-1.5 rounded-full border border-current" />
                     )}
@@ -870,7 +870,7 @@ export function LessonDesignMode({
                 stop();
                 onStart();
               }}
-              className="inline-flex h-10 items-center gap-2 rounded-md bg-[var(--hud-cyan)] px-5 text-xs font-black uppercase tracking-[0.14em] text-black transition hover:brightness-110"
+              className="inline-flex h-10 items-center gap-2 rounded-md bg-[var(--hud-cyan)] px-5 text-xs font-black uppercase tracking-[0.14em] text-[var(--accent-on)] transition hover:brightness-110"
             >
               <Play size={16} aria-hidden /> Start lecture
             </button>
