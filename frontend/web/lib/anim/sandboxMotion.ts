@@ -602,7 +602,8 @@ export const PEN_WRITER_SOURCE = `
       }
       if (annotation && !annotated && ts > instantUntil + 150) applyAnnotation(svg);
       if (current && (!current.el.isConnected || current.done)) current = null;
-      while (!current && queue.length) {
+      // Paused, the pen finishes the word it is on and then rests: it never starts another line.
+      while (!current && queue.length && !paused) {
         var next = queue.shift();
         if (next.el.isConnected && !next.done) current = next;
       }
@@ -627,7 +628,13 @@ export const PEN_WRITER_SOURCE = `
       var target = paused ? finishTo : 1;
       if (current.f < target) current.f = Math.min(target, current.f + dt * cps / current.chars);
       place(current, svg);
-      if (current.f >= 1) { finish(current); current = null; }
+      if (current.f >= 1) {
+        finish(current);
+        current = null;
+        // The "finish this word" mark belongs to the line just finished. Kept, a pause on a line's
+        // last word (mark = 1) went on to write every following line in full while paused.
+        finishTo = -1;
+      }
     }
     requestAnimationFrame(tick);
     return {
