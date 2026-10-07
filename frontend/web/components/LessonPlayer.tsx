@@ -55,7 +55,9 @@ import { isVideoSource } from "@/lib/youtube/videoSource";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
-import { VoiceState, derivePhase } from "@/components/classroom/VoiceState";
+import { VoiceState, derivePhase, type VoicePhase } from "@/components/classroom/VoiceState";
+import { AriaAvatar } from "@/components/avatar/AriaAvatar";
+import type { AvatarState } from "@/lib/avatar/face";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
 import { isPauseIntent, isResumeIntent } from "@/lib/voice/lectureIntent";
@@ -2924,6 +2926,24 @@ export function LessonPlayer({
   }, [chatCount, chatExplaining]);
   const sidePanelAlways = adhd || deafMode;
   const sideOpen = sidePanelAlways || askOpen;
+  /*
+   * ARIA'S FACE beside the board: a photoreal head lip-synced from her voice, on the student's own
+   * GPU (components/avatar/AriaAvatar.tsx). Off by a tap, remembered per browser; gone by itself
+   * where it cannot render. The ADHD track keeps its own drawn teacher.
+   */
+  const [avatarOn, setAvatarOn] = useState(true);
+  const [avatarUnavailable, setAvatarUnavailable] = useState(false);
+  useEffect(() => {
+    let remembered = true;
+    try { remembered = localStorage.getItem("aria.avatar") !== "off"; } catch { /* default on */ }
+    if (!remembered) queueMicrotask(() => setAvatarOn(false));
+  }, []);
+  const toggleAvatar = () => setAvatarOn((on) => {
+    try { localStorage.setItem("aria.avatar", on ? "off" : "on"); } catch { /* not remembered */ }
+    return !on;
+  });
+  const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
+  const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
     <ChatPanel
       onClose={sidePanelAlways ? undefined : () => setAskOpen(false)}
@@ -3452,6 +3472,8 @@ export function LessonPlayer({
           canUndo={annCanUndo(annotations)}
           askOpen={askOpen}
           onToggleAsk={!chatInDock && !sidePanelAlways ? () => setAskOpen((open) => !open) : undefined}
+          avatarOn={showAvatar}
+          onToggleAvatar={!avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
           micOn={tutor.status === "live" && !tutor.muted}
           onToggleMic={() => {
             if (tutor.status === "live") tutor.toggleMute();
@@ -3521,6 +3543,17 @@ export function LessonPlayer({
             <VoiceState phase={voicePhase} />
           </div>
         </header>}
+
+        {showAvatar && (
+          <div className="pointer-events-none absolute bottom-[5.5rem] right-4 z-30 hidden md:block lg:right-6">
+            <AriaAvatar
+              state={avatarState}
+              className="h-44 w-36 rounded-[18px] border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-2)]"
+              background="0x13132A"
+              onUnavailable={() => setAvatarUnavailable(true)}
+            />
+          </div>
+        )}
 
         {voiceBlocked && (
           <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3.5 shadow-[var(--elev-2)] lg:left-6 lg:right-6">
@@ -4771,4 +4804,12 @@ function PaintSignal({ onPainted }: { onPainted: () => void }) {
     };
   }, [onPainted]);
   return null;
+}
+
+/** Her face follows the voice: talking (hers or the lecture's) speaks, a reply being formed thinks, an open mic listens. */
+function avatarStateFor(phase: VoicePhase, talking: boolean): AvatarState {
+  if (talking || phase === "aria-speaking") return "speaking";
+  if (phase === "thinking" || phase === "drawing" || phase === "connecting" || phase === "reconnecting") return "thinking";
+  if (phase === "listening" || phase === "student-speaking") return "listening";
+  return "idle";
 }
