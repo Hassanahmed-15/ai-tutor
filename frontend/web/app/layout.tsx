@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -20,17 +20,24 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /**
- * Typography: one family, used lightly.
- *
- * Geist: a plain, even sans that stays quiet in a paragraph and holds together at heading sizes.
- * Inter was rejected as the default of every AI product; Sora, the previous face, had more
- * character than a calm reading surface wants. One family means no flash of a mismatched fallback.
- * The board keeps its own chalk and handwriting faces.
+ * Typography: a humanist sans for everything the student operates, and one sharp serif for the
+ * one line each screen says out loud (the question on the front page, a planning question, a
+ * lesson title). Instrument Sans and Instrument Serif are cut as a pair. Geist/Inter were dropped
+ * as the default of every AI product. The board keeps its own chalk and handwriting faces.
  */
-const bodyFont = Geist({
+const bodyFont = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-body",
   weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+/** The display face: a sharp serif for the one line each screen says out loud. */
+const displayFont = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-display-face",
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -57,8 +64,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
-    { media: "(prefers-color-scheme: dark)", color: "#111110" },
+    { media: "(prefers-color-scheme: light)", color: "#F4EFE4" },
+    { media: "(prefers-color-scheme: dark)", color: "#182420" },
   ],
 };
 
@@ -74,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${hudMonoFont.variable}`}>
+    <html lang="en" data-theme="light" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${displayFont.variable} ${hudMonoFont.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>

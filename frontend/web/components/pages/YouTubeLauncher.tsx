@@ -55,7 +55,10 @@ function PlayGlyph({ size = 22 }: { size?: number }) {
 export function YouTubeLauncher({
   onStart,
   initialUrl = "",
+  compact = false,
 }: {
+  /** A chip inside the composer (icon and one word) instead of the header button. */
+  compact?: boolean;
   /** A checked, confirmed video link: hand it to the lesson builder. */
   onStart: (url: string) => void;
   /**
@@ -165,12 +168,14 @@ export function YouTubeLauncher({
         onBlur={() => setTipOpen(false)}
         aria-expanded={open}
         aria-describedby={tipOpen && !open ? tipId : undefined}
-        className={`inline-flex h-9 items-center gap-2 rounded-[var(--radius)] px-3 text-[0.875rem] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] ${
+        className={compact
+          ? `inline-flex h-8 items-center gap-1.5 rounded-full border px-2.5 text-[0.8125rem] transition-colors ${open ? "border-[var(--hud-line-strong)] bg-[var(--hud-surface-2)] text-[var(--hud-text)]" : "border-[var(--hud-line)] text-[var(--hud-text-dim)] hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"}`
+          : `inline-flex h-9 items-center gap-2 rounded-[var(--radius)] px-3 text-[0.875rem] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] ${
           open ? "bg-[var(--hud-surface-2)] text-[var(--hud-text)]" : "text-[var(--hud-text-dim)]"
         }`}
       >
-        <PlayGlyph size={16} />
-        <span className="max-sm:sr-only">Summarize a YouTube lecture</span>
+        <PlayGlyph size={compact ? 14 : 16} />
+        <span className={compact ? "" : "max-sm:sr-only"}>{compact ? "Video" : "Summarize a YouTube lecture"}</span>
       </button>
       {tipOpen && !open && (
         <span
@@ -182,7 +187,7 @@ export function YouTubeLauncher({
         </span>
       )}
       {open && (
-      <div className="absolute right-0 top-full z-50 mt-2 w-[min(420px,calc(100vw-2rem))] rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 text-left shadow-[var(--elev-2)]">
+      <div className={`absolute ${compact ? "left-0" : "right-0"} top-full z-50 mt-2 w-[min(420px,calc(100vw-2rem))] rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-4 text-left shadow-[var(--elev-2)]`}>
       <div className="flex items-center gap-2.5">
         <PlayGlyph size={20} />
         <p className="flex-1 text-[0.9375rem] font-medium text-[var(--hud-text)]">Summarize a YouTube lecture</p>
