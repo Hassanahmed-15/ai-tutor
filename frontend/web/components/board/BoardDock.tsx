@@ -8,6 +8,7 @@ import {
   Eraser,
   FileText,
   Highlighter,
+  MessageCircle,
   Mic,
   MicOff,
   Pause,
@@ -57,6 +58,9 @@ export interface BoardDockProps {
   micOn: boolean;
   onToggleMic: () => void;
   micAvailable: boolean;
+  /** The typed-question panel: closed by default, opened here or by Aria answering. */
+  askOpen?: boolean;
+  onToggleAsk?: () => void;
   /** "Part 2 of 6" — the only progress text, because a ring around an avatar is not readable. */
   positionLabel: string;
   busy?: boolean;
@@ -298,6 +302,12 @@ export function BoardDock(props: BoardDockProps) {
             <FileText size={16} />
             <span className="hidden sm:inline">Summarize</span>
           </button>
+        )}
+
+        {props.onToggleAsk && (
+          <DockButton onClick={props.onToggleAsk} active={props.askOpen} label={props.askOpen ? "Close the questions" : "Ask Aria"}>
+            <MessageCircle size={19} />
+          </DockButton>
         )}
 
         {props.micAvailable && (

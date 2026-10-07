@@ -2908,8 +2908,25 @@ export function LessonPlayer({
     muted: tutor.muted,
     paused: !lesson.playing && hasStarted,
   });
+  /*
+   * THE QUESTIONS PANEL IS A SHEET, CLOSED UNTIL WANTED. A standing "chat with the tutor" beside
+   * the board is extraneous while the student watches (and, in the Khanmigo trial, went unused);
+   * it opens from the dock's Ask button, and opens itself the moment Aria answers or offers a
+   * drawing, so nothing she says is missed. The deaf and ADHD panels stay: they carry the lesson.
+   */
+  const [askOpen, setAskOpen] = useState(false);
+  const chatCount = chat.chat.length;
+  const chatExplaining = chat.explaining;
+  const seenChatCount = useRef(0);
+  useEffect(() => {
+    if (chatCount > seenChatCount.current || chatExplaining) setAskOpen(true);
+    seenChatCount.current = chatCount;
+  }, [chatCount, chatExplaining]);
+  const sidePanelAlways = adhd || deafMode;
+  const sideOpen = sidePanelAlways || askOpen;
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
     <ChatPanel
+      onClose={sidePanelAlways ? undefined : () => setAskOpen(false)}
       chat={chat.chat}
       explaining={chat.explaining}
       listening={chat.listening}
@@ -2993,7 +3010,7 @@ export function LessonPlayer({
            * bottom bar carries leave, transport, the ask input and status in one line.
            */
           ? "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] lg:grid-rows-[minmax(0,1fr)_auto]"
-          : "flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid xl:grid-cols-[minmax(0,1fr)_340px]"}
+          : `flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid ${sideOpen ? "xl:grid-cols-[minmax(0,1fr)_340px]" : "xl:grid-cols-[minmax(0,1fr)]"}`}
         >
           {pdfWorkspace && sourceScope && (
             <PdfSourcePanel
@@ -3358,9 +3375,10 @@ export function LessonPlayer({
             />
           </section>
 
-          {!chatInDock && <div className={pdfWorkspace
+          {!chatInDock && sideOpen && <div className={pdfWorkspace
             ? "flex min-h-0 flex-col gap-2 border-t border-[var(--hud-line)] p-2 lg:col-span-2"
-            : "hidden min-h-0 flex-col gap-3 xl:flex [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1"}
+            // A column beside the board on a wide screen; a sheet over its right edge on a narrow one.
+            : "home-sheet-in fixed inset-y-2 right-2 z-40 flex w-[min(22rem,92vw)] min-h-0 flex-col gap-3 xl:static xl:inset-auto xl:z-auto xl:w-auto [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1"}
           >
             {/*
               THE teacher, at a size that actually draws the eye.
@@ -3432,6 +3450,8 @@ export function LessonPlayer({
           }}
           onUndo={() => setAnnotations(annUndo(annotations))}
           canUndo={annCanUndo(annotations)}
+          askOpen={askOpen}
+          onToggleAsk={!chatInDock && !sidePanelAlways ? () => setAskOpen((open) => !open) : undefined}
           micOn={tutor.status === "live" && !tutor.muted}
           onToggleMic={() => {
             if (tutor.status === "live") tutor.toggleMute();

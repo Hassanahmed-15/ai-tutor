@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, Mic, MicOff, Square } from "lucide-react";
+import { MessageCircle, Mic, MicOff, Square , X} from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LiveSketch, type DrawScript } from "@/components/sketch/LiveSketch";
 import { CodeBoard } from "@/components/sketch/CodeBoard";
@@ -588,6 +588,7 @@ export function ChatPanel({
   liveMuted = false,
   onLiveMute,
   liveError = null,
+  onClose,
   liveAlwaysOn = false,
   compact = false,
   inline = false,
@@ -613,6 +614,8 @@ export function ChatPanel({
   onLiveMute?: () => void;
   /** Live-session error message (mic denied / connection dropped). */
   liveError?: string | null;
+  /** The panel is a sheet the student (or Aria, by answering) opens; this closes it. */
+  onClose?: () => void;
   /** Always-on mode (ADHD): the mic stays open; the button toggles mute instead of ending a call. */
   liveAlwaysOn?: boolean;
   /** Bottom-docked teaching-workspace variant: conversation remains visible without taking a column. */
@@ -685,14 +688,14 @@ export function ChatPanel({
      */
     <HudPanel className={`flex min-h-0 flex-col overflow-hidden !rounded-[1.5rem] [&>div]:flex [&>div]:h-full [&>div]:min-h-0 [&>div]:flex-col ${compact ? "!rounded-xl" : ""}`}>
       {!compact && (
-        <div className="flex items-center gap-2.5 border-b border-[var(--hud-line)] px-5 py-4">
+        <div className="flex items-center gap-2.5 border-b border-[var(--hud-line)] px-4 py-3">
           <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--accent-soft)] text-[var(--hud-cyan)]"><MessageCircle size={15} aria-hidden="true" /></span>
-          <div>
-            <p className="text-sm font-bold text-[var(--hud-text)]">Ask Aria anything</p>
-            <p className="text-[11px] leading-tight text-[var(--hud-text-faint)]">
-              {voiceOnly ? "Speak — she'll explain aloud." : "Type or speak — she answers in words, and offers a drawing when one would help."}
-            </p>
-          </div>
+          <p className="flex-1 font-display text-[1.15rem] text-[var(--hud-text)]">{voiceOnly ? "Talk to Aria" : "Ask Aria"}</p>
+          {onClose && (
+            <button type="button" onClick={onClose} aria-label="Close" className="grid size-8 place-items-center rounded-full text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]">
+              <X size={15} aria-hidden="true" />
+            </button>
+          )}
         </div>
       )}
       <div className={`min-h-0 overflow-y-auto ${compact ? `${chat.length || listening || explaining ? "flex" : "hidden"} max-h-24 items-center gap-2 space-y-0 px-3 pt-2` : "flex-1 space-y-3 p-4"}`}>
