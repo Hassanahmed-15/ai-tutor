@@ -907,45 +907,47 @@ textarea {
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --page: #182420;
-  --surface: #22302A;
-  --surface-2: #2C3B34;
-  --border: #35463E;
-  --border-strong: #4A5D53;
-  --input-border: #7F948A;
-  --text: #F1EEE4;
-  --text-muted: #B9C3BE;
-  --text-faint: #87968F;
-  --accent: #E7B04C;
-  --accent-hover: #F0C26A;
-  --accent-ink: #F4D28C;
-  --accent-on: #182420;
-  --accent-soft: #3A3524;
-  --success: #8FD1A5;
-  --success-soft: rgba(143, 209, 165, 0.14);
-  --warning: #E0AC3C;
-  --warning-soft: rgba(224, 172, 60, 0.14);
-  --danger: #F08A7A;
-  --danger-soft: rgba(240, 138, 122, 0.14);
-  --scrim: rgba(0, 0, 0, 0.6);
-  --sidebar: #142019;
-  --sidebar-hover: #22302A;
+  /* ── THE NIGHT PALETTE: deep violet, one violet light. The board keeps its own chalk slate. ── */
+  --page: #0B0713;
+  --surface: #140E22;
+  --surface-2: #1D1530;
+  --border: #2A2142;
+  --border-strong: #3F3260;
+  --input-border: #6E5F94;
+  --text: #F7F3FF;
+  --text-muted: #B9AEDC;
+  --text-faint: #7F74A3;
+  --accent: #A779FF;
+  --accent-hover: #B990FF;
+  --accent-ink: #D3BBFF;
+  --accent-on: #0B0713;
+  --accent-soft: #241A3E;
+  --success: #6EDB9A;
+  --success-soft: rgba(110, 219, 154, 0.14);
+  --warning: #F0C05A;
+  --warning-soft: rgba(240, 192, 90, 0.14);
+  --danger: #FF7A6B;
+  --danger-soft: rgba(255, 122, 107, 0.14);
+  --scrim: rgba(4, 2, 10, 0.66);
+  --sidebar: #0F0A1A;
+  --sidebar-hover: #1A1230;
 
-  --map-1: #E7B04C;
-  --map-2: #8FD1A5;
-  --map-3: #F0C26A;
-  --map-4: #8FB3F0;
-  --map-5: #C9A9E6;
-  --map-6: #7FD0CC;
-  --map-7: #F0A08C;
+  --map-1: #A779FF;
+  --map-2: #6EDB9A;
+  --map-3: #F0C05A;
+  --map-4: #7FB0FF;
+  --map-5: #F0ABFC;
+  --map-6: #5FD6D0;
+  --map-7: #FF9A8C;
   --map-8: #D2D08C;
 
-  --hud-cyan-glow: rgba(231, 176, 76, 0.18);
-  --listening: #8FB3F0;
-  --listening-dim: rgba(143, 179, 240, 0.16);
+  --hud-cyan-glow: rgba(167, 121, 255, 0.22);
+  --listening: #7FB0FF;
+  --listening-dim: rgba(127, 176, 255, 0.16);
+  --speaking: #F0ABFC;
 
-  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 28px rgba(0, 0, 0, 0.5);
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
 /**
@@ -1011,12 +1013,13 @@ textarea {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
   opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
-[data-theme="dark"] .hud-canvas::before { opacity: 0.07; }
+[data-theme="dark"] .hud-canvas::before { opacity: 0.06; }
 
 /* A whisper of tooth, so large flat areas of paper do not read as flat vector. */
 .hud-grain::after {
@@ -1274,4 +1277,35 @@ html[data-reduced-motion="1"] *::after {
 @media (prefers-reduced-motion: reduce) {
   .aria-breathe, .home-sheet-in { animation: none; }
   .home-lift:hover, .home-lift:focus-within { transform: none; }
+}
+
+/* ── THE ORB (components/pages/AriaHero.tsx) ─────────────────────────────────────────────────
+   A sphere of violet light with two rings in orbit, in real 3D (perspective + rotateX), tilting a
+   few degrees toward the pointer. Transforms and opacity only, so it costs the GPU and nothing
+   else; with less motion asked for, it rests. */
+.orb-scene { perspective: 900px; --tx: 0deg; --ty: 0deg; }
+/* Flat, not preserve-3d: a preserved-3d layer composites over the page grain as a faintly lighter
+   box. The rings carry their own rotateX, so the orbit still reads as a tilted disc. */
+.orb-rig { transform: rotateX(var(--tx)) rotateY(var(--ty)); transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
+.orb-core {
+  background:
+    radial-gradient(circle at 36% 32%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 28%),
+    radial-gradient(circle at 50% 50%, var(--accent-ink) 0%, var(--accent) 38%, #4C2AA6 66%, #1A1035 100%);
+  box-shadow: 0 0 60px var(--hud-cyan-glow), 0 0 160px rgba(167, 121, 255, 0.18), inset -18px -24px 60px rgba(0, 0, 0, 0.45);
+  animation: orb-breathe 6s ease-in-out infinite;
+}
+.orb-ring { border: 1.5px solid rgba(240, 171, 252, 0.55); border-radius: 50%; box-shadow: 0 0 18px rgba(240, 171, 252, 0.25); }
+.orb-ring-a { transform: rotateX(72deg); animation: orb-spin 14s linear infinite; }
+.orb-ring-b { transform: rotateX(72deg) rotateY(60deg); animation: orb-spin 22s linear infinite reverse; opacity: 0.7; }
+.orb-halo { background: radial-gradient(circle, rgba(167, 121, 255, 0.35), rgba(167, 121, 255, 0) 70%); animation: orb-breathe 6s ease-in-out infinite; }
+.orb-mote { background: var(--accent-ink); border-radius: 50%; animation: orb-float 9s ease-in-out infinite; }
+@keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes orb-spin { from { transform: rotateX(72deg) rotateZ(0deg); } to { transform: rotateX(72deg) rotateZ(360deg); } }
+@keyframes orb-float { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.6; } 50% { transform: translate3d(6px, -14px, 20px); opacity: 1; } }
+[data-theme="light"] .orb-core { background: radial-gradient(circle at 36% 32%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 28%), radial-gradient(circle at 50% 50%, #F0A89A 0%, var(--accent) 45%, #7A2412 100%); box-shadow: 0 0 50px var(--hud-cyan-glow), inset -18px -24px 60px rgba(0, 0, 0, 0.35); }
+[data-theme="light"] .orb-ring { border-color: rgba(184, 56, 31, 0.5); box-shadow: 0 0 14px rgba(184, 56, 31, 0.2); }
+[data-theme="light"] .orb-halo { background: radial-gradient(circle, rgba(184, 56, 31, 0.2), rgba(184, 56, 31, 0) 70%); }
+@media (prefers-reduced-motion: reduce) {
+  .orb-core, .orb-ring-a, .orb-ring-b, .orb-halo, .orb-mote { animation: none; }
+  .orb-rig { transition: none; transform: none; }
 }

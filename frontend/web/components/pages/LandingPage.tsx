@@ -15,6 +15,7 @@ import { PromptTiles } from "@/components/pages/PromptTiles";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
+import { AriaHero } from "@/components/pages/AriaHero";
 
 /**
  * THE FRONT PAGE, with as little to read as a page can have: one question in Aria's voice, one
@@ -129,10 +130,14 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
         </nav>
       </header>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-7 px-5 pb-20 pt-[8vh] sm:pt-[12vh]">
-        <h1 className="hud-materialize font-display text-[2.6rem] leading-[1.05] tracking-[-0.01em] text-[var(--hud-text)] sm:text-[3.4rem]" style={{ textWrap: "balance" }}>
-          What shall we <em className="text-[var(--hud-cyan)]">work on?</em>
-        </h1>
+      <div className="relative z-10 mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-7 px-5 pb-20 pt-[3vh] sm:pt-[5vh]">
+        {/* Her name, and nothing else, at the centre: over a sphere of light in orbit (AriaHero). */}
+        <div className="hud-materialize relative -mb-2 flex flex-col items-center">
+          <AriaHero size={168} />
+          <h1 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[4.2rem] italic leading-none tracking-[-0.02em] text-[var(--hud-text)] sm:text-[5.2rem]" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}>
+            Aria
+          </h1>
+        </div>
 
         <form className="hud-materialize" onSubmit={(e) => { e.preventDefault(); start(); }}>
           <div className="home-lift flex flex-col gap-2 rounded-[14px] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-3 shadow-[var(--elev-1)] focus-within:border-[var(--hud-line-strong)]">

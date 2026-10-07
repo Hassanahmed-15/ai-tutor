@@ -64,8 +64,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F4EFE4" },
-    { media: "(prefers-color-scheme: dark)", color: "#182420" },
+    { media: "(prefers-color-scheme: light)", color: "#0B0713" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0713" },
   ],
 };
 
@@ -73,7 +73,7 @@ export const viewport: Viewport = {
  * Light or dark, set before the first paint so the page never flashes the wrong theme. The student's
  * choice lives in this browser only (Settings → Appearance); with no choice, the device decides.
  */
-const THEME_SCRIPT = `(function(){try{var c=localStorage.getItem("aria.theme");var d=c==="dark"||(c!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=d?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
+const THEME_SCRIPT = `(function(){try{var c=localStorage.getItem("aria.theme");document.documentElement.dataset.theme=c==="light"?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();`;
 
 export default function RootLayout({
   children,
@@ -81,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${displayFont.variable} ${hudMonoFont.variable}`}>
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${displayFont.variable} ${hudMonoFont.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
