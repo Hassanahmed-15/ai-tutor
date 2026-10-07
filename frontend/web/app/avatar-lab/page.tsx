@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AriaAvatar, ARIA_HEADS, type AriaHead } from "@/components/avatar/AriaAvatar";
 import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, onMouthShape, speechScriptDebug, visemeWeights, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
 import type { AvatarState } from "@/lib/avatar/face";
+import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 
 /**
  * THE AVATAR LAB (development): Aria's face with a voice you can switch on without Gemini — your
@@ -175,8 +176,36 @@ export default function AvatarLab() {
             <div className="mt-2 h-1.5 w-full rounded-full bg-[var(--hud-surface-2)]"><div className="h-full rounded-full bg-[var(--hud-cyan)]" style={{ width: `${Math.round(mouth.open * 100)}%` }} /></div>
           </div>
           {note && <p className="text-[0.8rem] text-[var(--hud-warn)]">{note}</p>}
+          <GeminiProbe sentence={sentence} onSpeaking={(on) => setState(on ? "speaking" : "listening")} />
         </div>
       </div>
     </main>
+  );
+}
+
+/**
+ * The real thing: a Gemini Live session in the lab, so the lips can be checked against Aria's own
+ * voice — the same hook, bus, analyser, listener and script the lesson player uses.
+ */
+function GeminiProbe({ sentence, onSpeaking }: { sentence: string; onSpeaking: (on: boolean) => void }) {
+  const tutor = useGeminiLiveTutor({
+    topic: "Avatar lab",
+    getBeatContext: () => "A lip-sync check. Read any sentence you are given exactly as written, nothing else.",
+    onBoardRequest: () => undefined,
+    gateProfile: "lecture",
+    voiceSurface: "shared",
+    startMuted: true,
+  });
+  useEffect(() => { onSpeaking(tutor.speaking); }, [tutor.speaking, onSpeaking]);
+  return (
+    <div className="flex flex-col gap-2 rounded-[var(--radius-lg)] border border-[var(--hud-line)] p-3" data-gemini>
+      <span className="text-[var(--hud-text-dim)]">Real Gemini voice · {tutor.status}{tutor.speaking ? " · speaking" : ""}</span>
+      <div className="flex flex-wrap gap-2">
+        <button type="button" onClick={() => void tutor.start()} disabled={tutor.status === "live" || tutor.status === "connecting"} className="rounded-full border border-[var(--hud-line)] px-3 py-1.5 disabled:opacity-40">Start Gemini</button>
+        <button type="button" onClick={() => tutor.sendText(`Please read this sentence aloud exactly as written, and say nothing else: "${sentence}"`)} disabled={tutor.status !== "live"} className="rounded-full border border-[var(--hud-cyan)] px-3 py-1.5 disabled:opacity-40">Say the sentence</button>
+        <button type="button" onClick={tutor.stop} className="rounded-full border border-[var(--hud-line)] px-3 py-1.5 text-[var(--hud-text-dim)]">Stop</button>
+      </div>
+      {tutor.errorMessage && <p className="text-[0.8rem] text-[var(--hud-warn)]">{tutor.errorMessage}</p>}
+    </div>
   );
 }

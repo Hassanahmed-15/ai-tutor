@@ -55,6 +55,10 @@ type SpeechScript = { script: Script; startAt: number; endAt: number; cursor: nu
 type LipsyncRules = { preProcessText: (s: string) => string; wordsToVisemes: (w: string) => { visemes: string[]; durations: number[] } };
 let speech: SpeechScript | null = null;
 let scripted: VisemeWeights | null = null;
+/** The eased scripted weights: shapes attack in ~40 ms and release in ~90 ms, as lips do. */
+let scriptedEased: VisemeWeights = {};
+/** Lips lead the sound by this much: a shape is visible just before its sound is heard. */
+const SCRIPT_LEAD_S = 0.08;
 /** Words that arrived before the reply's first audio (Gemini sends the transcript ahead): the reply's opening. */
 let wordsAhead = "";
 let rulesPromise: Promise<LipsyncRules | null> | null = null;
@@ -121,6 +125,7 @@ export function speechScriptDebug(): { visemes: number; cursor: number; progress
 export function endSpeechScript(): void {
   speech = null;
   scripted = null;
+  scriptedEased = {};
   wordsAhead = "";
 }
 
@@ -208,6 +213,13 @@ let analyser: AnalyserNode | null = null;
 // will not accept the SharedArrayBuffer-compatible default.
 let timeBuf: Uint8Array<ArrayBuffer> | null = null;
 let freqBuf: Uint8Array<ArrayBuffer> | null = null;
+/**
+ * The voice's recent peak level, for automatic gain. Gemini's replies play at full scale, where
+ * `rms * 4.2` saturated at 1 for seconds at a time: a jaw pinned wide open, with no dip between
+ * syllables, which read as no lip-sync at all. Openness is now loudness relative to this peak,
+ * which rises at once and decays slowly, so a quiet voice and a loud one both move the mouth.
+ */
+let peakRms = 0.05;
 
 /**
  * Identifies which audio source owns the analyser.
@@ -287,6 +299,7 @@ export function attachMouthAnalyser(ctx: AudioContext, source: AudioNode): Mouth
   analyser = node;
   timeBuf = new Uint8Array(new ArrayBuffer(node.fftSize));
   freqBuf = new Uint8Array(new ArrayBuffer(node.frequencyBinCount));
+  peakRms = 0.05; // a new voice sets its own level
   owner = nextToken++;
   // The viseme listener on the same source, when the browser can run it; never awaited.
   detachVisemes();
@@ -318,8 +331,23 @@ function loop() {
     visemeNode.update(Math.min(100, now - lastVisemeTick));
     lastVisemeTick = now;
   }
-  // The script's shape for this moment, when a reply is being spoken and the voice is not in a pause.
-  scripted = speech && shape.open > 0.03 ? scriptedWeightsAt(analyser.context.currentTime) : null;
+  // The script's shape for this moment, when a reply is being spoken and the voice is not in a pause,
+  // eased so one shape becomes the next rather than switching.
+  const scriptTarget = speech && shape.open > 0.03 ? scriptedWeightsAt(analyser.context.currentTime + SCRIPT_LEAD_S) : null;
+  if (scriptTarget) {
+    const next: VisemeWeights = {};
+    for (const k of new Set([...Object.keys(scriptedEased), ...Object.keys(scriptTarget)])) {
+      const a = scriptedEased[k] ?? 0;
+      const b = scriptTarget[k] ?? 0;
+      const v = b > a ? a + (b - a) * 0.45 : a + (b - a) * 0.22;
+      if (v > 0.01) next[k] = v;
+    }
+    scriptedEased = next;
+    scripted = next;
+  } else {
+    scriptedEased = {};
+    scripted = null;
+  }
 
   analyser.getByteTimeDomainData(timeBuf);
   // RMS around the 128 midpoint of unsigned time-domain data. Peak amplitude would make the mouth
@@ -330,15 +358,20 @@ function loop() {
     sum += v * v;
   }
   const rms = Math.sqrt(sum / timeBuf.length);
+  peakRms = Math.max(0.03, rms > peakRms ? rms : peakRms * 0.995);
 
   analyser.getByteFrequencyData(freqBuf);
   const bands = bandEnergy(freqBuf, analyser.context.sampleRate);
-  const target = visemeFrom(bands, rms);
+  // Relative loudness: full peak is a fully open vowel; under a fifth of the peak is a pause.
+  // Real silence is an absolute floor (room tone must not twitch the mouth); within speech, a pause
+  // is under a fifth of the voice's own peak.
+  const relative = rms / peakRms;
+  const target = visemeFrom(bands, rms < 0.02 || relative < 0.2 ? 0 : Math.min(1, relative * 0.95) / 4.2);
 
-  // Asymmetric smoothing: open fast, close slower. A mouth that snaps shut between syllables reads
-  // as a glitch; one that eases shut reads as speech. Width is always eased — lips do not teleport.
+  // Asymmetric smoothing: open fast, close a little slower — but quickly enough that the dip
+  // between two syllables shows. Width is always eased: lips do not teleport.
   publish({
-    open: target.open > shape.open ? target.open : shape.open * 0.72 + target.open * 0.28,
+    open: target.open > shape.open ? target.open : shape.open * 0.6 + target.open * 0.4,
     width: shape.width * 0.8 + target.width * 0.2,
   });
 }
