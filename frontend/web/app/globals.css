@@ -12,9 +12,9 @@
  * gappy. Applied here rather than repeated as utility classes on every headline.
  */
 .font-display {
-  font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-variation-settings: "opsz" 96, "SOFT" 50;
-  font-weight: 400;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -25,10 +25,10 @@
   --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
   /* `--font-headline` is aliased to the body face: the editorial system loads one serif and one
      sans, and the only remaining consumers of `headline` are the out-of-scope mode players. */
-  --font-headline: var(--font-display-face), Georgia, "Times New Roman", serif;
+  --font-headline: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
   /* One family throughout. `font-display` call sites resolve to the same sans; the "display"
      treatment is weight 300 and tight tracking, not a different typeface. */
-  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --font-hud-mono: var(--font-hud-mono), "SFMono-Regular", Consolas, monospace;
 
@@ -911,22 +911,22 @@ textarea {
   color-scheme: dark;
 
   /* ── THE NIGHT PALETTE: deep violet, one violet light. The board keeps its own chalk slate. ── */
-  --page: #0B0A16;
-  --surface: #14122A;
-  --surface-2: #1C1936;
-  --border: #272443;
-  --border-strong: #3C3862;
-  --input-border: #6C6696;
-  --text: #F4F1FF;
-  --text-muted: #B4ADD6;
-  --text-faint: #7B759F;
-  --accent: #9D7BFF;
-  --accent-hover: #AE93FF;
-  --accent-ink: #CDBEFF;
-  --accent-on: #0B0A16;
-  --accent-soft: #231E40;
-  /* The warm light: peach, for what is due, the sun side of the orb, a day with a lesson. */
-  --warm: #FFB07A;
+  --page: #0A0A14;
+  --surface: #13132A;
+  --surface-2: #1B1B38;
+  --border: #26264A;
+  --border-strong: #3A3A66;
+  --input-border: #6B6A98;
+  --text: #F5F3FF;
+  --text-muted: #B3B0D4;
+  --text-faint: #777499;
+  --accent: #9F6BFF;
+  --accent-hover: #B089FF;
+  --accent-ink: #C9B6FF;
+  --accent-on: #0A0A14;
+  --accent-soft: #23203F;
+  /* The warm light: soft gold, for what is due and a day with a lesson. */
+  --warm: #F5C86B;
   --success: #6EDB9A;
   --success-soft: rgba(110, 219, 154, 0.14);
   --warning: #F0C05A;
@@ -946,7 +946,7 @@ textarea {
   --map-7: #FF9A8C;
   --map-8: #D2D08C;
 
-  --hud-cyan-glow: rgba(167, 121, 255, 0.22);
+  --hud-cyan-glow: rgba(159, 107, 255, 0.24);
   --listening: #7FB0FF;
   --listening-dim: rgba(127, 176, 255, 0.16);
   --speaking: #F0ABFC;
@@ -1024,7 +1024,7 @@ textarea {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
-[data-theme="dark"] .hud-canvas::before { opacity: 0.06; }
+[data-theme="dark"] .hud-canvas::before { opacity: 0; }
 
 /* A whisper of tooth, so large flat areas of paper do not read as flat vector. */
 .hud-grain::after {
@@ -1285,32 +1285,37 @@ html[data-reduced-motion="1"] *::after {
 }
 
 /* ── THE ORB (components/pages/AriaHero.tsx) ─────────────────────────────────────────────────
-   A sphere of violet light with two rings in orbit, in real 3D (perspective + rotateX), tilting a
-   few degrees toward the pointer. Transforms and opacity only, so it costs the GPU and nothing
-   else; with less motion asked for, it rests. */
-.orb-scene { perspective: 900px; --tx: 0deg; --ty: 0deg; }
-/* Flat, not preserve-3d: a preserved-3d layer composites over the page grain as a faintly lighter
-   box. The rings carry their own rotateX, so the orbit still reads as a tilted disc. */
-.orb-rig { transform: rotateX(var(--tx)) rotateY(var(--ty)); transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
+   A glossy sphere of violet light, blue at the rim. Depth without preserve-3d (a preserved layer
+   composites as a faintly lighter box): each ring is two halves, the far half under the sphere and
+   the near half over it, each tilted with its own perspective; motes run an elliptical offset-path
+   and change layer at the far side. The rig tilts toward the pointer. Transforms and opacity only;
+   with less motion asked for, everything rests. */
+.orb-scene { --tx: 0deg; --ty: 0deg; }
+.orb-tilt { transform: perspective(1100px) rotateX(var(--tx)) rotateY(var(--ty)); transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1); }
 .orb-core {
+  z-index: 2;
   background:
-    radial-gradient(circle at 34% 30%, rgba(255, 236, 214, 0.75), rgba(255, 176, 122, 0.35) 18%, rgba(255, 176, 122, 0) 36%),
-    radial-gradient(circle at 50% 50%, #CDBEFF 0%, #9D7BFF 34%, #C05CF0 56%, #3B2290 78%, #140F30 100%);
-  box-shadow: 0 0 60px var(--hud-cyan-glow), 0 0 160px rgba(157, 123, 255, 0.18), 0 0 90px rgba(255, 176, 122, 0.12), inset -18px -24px 60px rgba(0, 0, 0, 0.45);
-  animation: orb-breathe 6s ease-in-out infinite;
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.55) 6%, rgba(255, 255, 255, 0) 24%),
+    radial-gradient(circle at 50% 56%, #B892FF 0%, #8A5CFF 32%, #5B32E6 58%, #2A1A9E 80%, #120D4A 100%);
+  box-shadow:
+    inset 0 -34px 70px rgba(70, 150, 255, 0.45),
+    inset 0 18px 40px rgba(255, 255, 255, 0.06),
+    0 0 70px rgba(159, 107, 255, 0.45),
+    0 0 180px rgba(90, 120, 255, 0.22);
+  animation: orb-breathe 7s ease-in-out infinite;
 }
-.orb-ring { border: 1.5px solid rgba(255, 196, 160, 0.5); border-radius: 50%; box-shadow: 0 0 18px rgba(255, 176, 122, 0.22); }
-.orb-ring-a { transform: rotateX(72deg); animation: orb-spin 14s linear infinite; }
-.orb-ring-b { transform: rotateX(72deg) rotateY(60deg); animation: orb-spin 22s linear infinite reverse; opacity: 0.7; }
-.orb-halo { background: radial-gradient(circle, rgba(167, 121, 255, 0.35), rgba(167, 121, 255, 0) 70%); animation: orb-breathe 6s ease-in-out infinite; }
-.orb-mote { background: var(--warm); border-radius: 50%; animation: orb-float 9s ease-in-out infinite; }
-@keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
-@keyframes orb-spin { from { transform: rotateX(72deg) rotateZ(0deg); } to { transform: rotateX(72deg) rotateZ(360deg); } }
-@keyframes orb-float { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.6; } 50% { transform: translate3d(6px, -14px, 20px); opacity: 1; } }
-[data-theme="light"] .orb-core { background: radial-gradient(circle at 36% 32%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 28%), radial-gradient(circle at 50% 50%, #F0A89A 0%, var(--accent) 45%, #7A2412 100%); box-shadow: 0 0 50px var(--hud-cyan-glow), inset -18px -24px 60px rgba(0, 0, 0, 0.35); }
-[data-theme="light"] .orb-ring { border-color: rgba(184, 56, 31, 0.5); box-shadow: 0 0 14px rgba(184, 56, 31, 0.2); }
+.orb-halo { background: radial-gradient(circle, rgba(159, 107, 255, 0.34) 0%, rgba(90, 120, 255, 0.14) 40%, rgba(90, 120, 255, 0) 70%); animation: orb-breathe 7s ease-in-out infinite; }
+.orb-ring { border-radius: 50%; border: 1.5px solid rgba(201, 182, 255, 0.6); box-shadow: 0 0 16px rgba(159, 107, 255, 0.35); transform: perspective(900px) rotateX(var(--incl, 76deg)) rotateZ(var(--spin, 0deg)); }
+.orb-ring-far { z-index: 1; clip-path: inset(0 0 50% 0); }
+.orb-ring-near { z-index: 3; clip-path: inset(50% 0 0 0); }
+.orb-mote { z-index: 1; width: 5px; height: 5px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 10px rgba(201, 182, 255, 0.9), 0 0 22px rgba(159, 107, 255, 0.6); offset-rotate: 0deg; animation: orb-mote var(--dur, 12s) linear infinite; animation-delay: var(--delay, 0s); }
+@keyframes orb-mote { 0% { offset-distance: 0%; z-index: 3; } 49.9% { z-index: 3; } 50% { z-index: 1; } 100% { offset-distance: 100%; z-index: 1; } }
+@keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+[data-theme="light"] .orb-core { background: radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 24%), radial-gradient(circle at 50% 56%, #F2A58F 0%, #C94A2E 40%, #7A2412 80%, #3B1108 100%); box-shadow: inset 0 -34px 70px rgba(255, 170, 90, 0.35), 0 0 50px var(--hud-cyan-glow); }
+[data-theme="light"] .orb-ring { border-color: rgba(184, 56, 31, 0.45); box-shadow: 0 0 14px rgba(184, 56, 31, 0.2); }
 [data-theme="light"] .orb-halo { background: radial-gradient(circle, rgba(184, 56, 31, 0.2), rgba(184, 56, 31, 0) 70%); }
+[data-theme="light"] .orb-mote { background: #B8381F; box-shadow: 0 0 8px rgba(184, 56, 31, 0.6); }
 @media (prefers-reduced-motion: reduce) {
-  .orb-core, .orb-ring-a, .orb-ring-b, .orb-halo, .orb-mote { animation: none; }
-  .orb-rig { transition: none; transform: none; }
+  .orb-core, .orb-halo, .orb-mote { animation: none; }
+  .orb-tilt { transition: none; transform: none; }
 }

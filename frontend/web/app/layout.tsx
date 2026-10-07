@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, JetBrains_Mono, Manrope } from "next/font/google";
+import { JetBrains_Mono, Manrope, Outfit } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -20,9 +20,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /**
- * Typography: Manrope, a rounded modern sans, for everything the student operates, and Fraunces,
- * a soft serif with an optical-size axis, for the one line each screen says out loud (her name on
- * the front page, a planning question, a lesson title). Geist/Inter were dropped as the default
+ * Typography: Manrope, a rounded modern sans, for everything the student operates, and Outfit,
+ * the board's own clean geometric sans, for the one line each screen says out loud (her name on
+ * the front page, a planning question, a lesson title). Simple on purpose: one voice, two weights. Geist/Inter were dropped as the default
  * of every AI product. The board keeps its own chalk and handwriting faces.
  */
 const bodyFont = Manrope({
@@ -32,14 +32,12 @@ const bodyFont = Manrope({
   display: "swap",
 });
 
-/** The display face: Fraunces, a soft old-style serif with an optical-size axis, so the word at
- *  the centre of the front page and a planning question are cut for their size. */
-const displayFont = Fraunces({
+/** The display face: Outfit, the clean geometric sans the board already writes its notes in, so
+ *  her name on the front page and a planning question are the same hand as the lesson. */
+const displayFont = Outfit({
   subsets: ["latin"],
   variable: "--font-display-face",
-  weight: "variable",
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 

@@ -141,9 +141,9 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
 
       <div className="relative z-10 mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-7 px-5 pb-20 pt-[3vh] sm:pt-[5vh]">
         {/* Her name, and nothing else, at the centre: over a sphere of light in orbit (AriaHero). */}
-        <div className="hud-materialize relative -mb-2 flex flex-col items-center">
-          <AriaHero size={168} />
-          <h1 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[4.2rem] italic leading-none tracking-[-0.02em] text-[var(--hud-text)] sm:text-[5.2rem]" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}>
+        <div className="hud-materialize relative -mb-2 flex w-full flex-col items-center overflow-x-clip">
+          <AriaHero size={180} />
+          <h1 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[3.6rem] font-medium leading-none tracking-[-0.03em] text-white sm:text-[4.4rem]" style={{ textShadow: "0 2px 28px rgba(10,10,20,0.55)" }}>
             Aria
           </h1>
         </div>
