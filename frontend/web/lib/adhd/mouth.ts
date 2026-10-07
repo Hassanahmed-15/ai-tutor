@@ -18,6 +18,9 @@
  * subscribe and update only themselves.
  */
 
+import { appendToScript, EMPTY_SCRIPT, expectedIndex, reconcile, type Script } from "../avatar/script";
+import type { VisemeName } from "../avatar/visemes";
+
 /** The mouth shape. Both 0-1. `open` is jaw drop, `width` is how spread vs rounded the lips are. */
 export type MouthShape = { open: number; width: number };
 
@@ -38,7 +41,103 @@ const workletReady = new WeakMap<AudioContext, Promise<boolean>>();
 
 /** The live viseme weights (HeadAudio's Oculus names without the "viseme_" prefix); empty until the model listens. */
 export function visemeWeights(): VisemeWeights {
-  return visemes;
+  return scripted ?? visemes;
+}
+
+/*
+ * THE SCRIPT. Gemini sends the words of a reply before the audio that says them, so the mouth can
+ * know what shape is due and let the listener confirm it (lib/avatar/script.ts). The voice hook
+ * calls these: begin when a reply's first chunk is scheduled, append each piece of transcript,
+ * extend as each chunk is scheduled (the clock is the AudioContext's), end on finish or barge-in.
+ * Progress through the words = progress through the scheduled audio.
+ */
+type SpeechScript = { script: Script; startAt: number; endAt: number; cursor: number; pendingText: string; rules: LipsyncRules | null };
+type LipsyncRules = { preProcessText: (s: string) => string; wordsToVisemes: (w: string) => { visemes: string[]; durations: number[] } };
+let speech: SpeechScript | null = null;
+let scripted: VisemeWeights | null = null;
+/** Words that arrived before the reply's first audio (Gemini sends the transcript ahead): the reply's opening. */
+let wordsAhead = "";
+let rulesPromise: Promise<LipsyncRules | null> | null = null;
+
+function loadRules(): Promise<LipsyncRules | null> {
+  rulesPromise ??= import("../avatar/vendor/lipsync-en.mjs").then((m) => new m.LipsyncEn() as LipsyncRules).catch((error) => {
+    console.warn("[mouth] text rules unavailable:", error);
+    return null;
+  });
+  return rulesPromise;
+}
+
+/** A reply is starting: its first audio is scheduled at `startAt` on the context's clock. */
+export function beginSpeechScript(startAt: number): void {
+  speech = { script: EMPTY_SCRIPT, startAt, endAt: startAt, cursor: 0, pendingText: wordsAhead, rules: null };
+  wordsAhead = "";
+  scripted = null;
+  void loadRules().then((rules) => {
+    if (speech && rules) {
+      speech.rules = rules;
+      if (speech.pendingText) {
+        const text = speech.pendingText;
+        speech.pendingText = "";
+        appendSpeechText(text);
+      }
+    }
+  });
+}
+
+/** Words of the reply, as the transcript brings them. */
+export function appendSpeechText(text: string): void {
+  if (!speech) {
+    // No audio yet: these words open the reply about to be heard.
+    wordsAhead = `${wordsAhead} ${text}`.slice(-600);
+    return;
+  }
+  if (!speech.rules) {
+    speech.pendingText += text;
+    return;
+  }
+  const clean = speech.rules.preProcessText(text);
+  for (const word of clean.split(/\s+/)) {
+    const w = word.replace(/[^A-Za-z']/g, "");
+    if (!w) continue;
+    const out = speech.rules.wordsToVisemes(w);
+    speech.script = appendToScript(speech.script, out.visemes, out.durations);
+  }
+}
+
+/** The audio of the reply now runs to `endAt` on the context's clock. */
+export function extendSpeechAudio(endAt: number): void {
+  if (speech && endAt > speech.endAt) speech.endAt = endAt;
+}
+
+/** For the lab: where the script is. */
+export function speechScriptDebug(): { visemes: number; cursor: number; progress: number } | null {
+  if (!speech) return null;
+  const ctx = analyser?.context;
+  const now = ctx ? ctx.currentTime : speech.startAt;
+  return { visemes: speech.script.visemes.length, cursor: speech.cursor, progress: speech.endAt > speech.startAt ? Math.round(((now - speech.startAt) / (speech.endAt - speech.startAt)) * 100) / 100 : 0 };
+}
+
+/** The reply is over, or was cut off. */
+export function endSpeechScript(): void {
+  speech = null;
+  scripted = null;
+  wordsAhead = "";
+}
+
+/** The viseme the script expects at the context's `now`, reconciled with what the listener hears. */
+function scriptedWeightsAt(now: number): VisemeWeights | null {
+  if (!speech || speech.script.visemes.length === 0 || speech.endAt <= speech.startAt) return null;
+  const progress = (now - speech.startAt) / (speech.endAt - speech.startAt);
+  if (progress < 0 || progress > 1.05) return null;
+  const expected = expectedIndex(speech.script, Math.min(1, progress));
+  let heard: VisemeName | null = null;
+  let best = 0.45; // only a confident ear may move the script
+  for (const [k, v] of Object.entries(visemes)) if (k !== "sil" && v > best) { best = v; heard = k as VisemeName; }
+  const r = reconcile(speech.script, speech.cursor, expected, heard);
+  speech.cursor = r.cursor;
+  if (!r.viseme) return null;
+  // The listener's own weights when it agreed; else the script's shape at speaking strength.
+  return heard === r.viseme ? visemes : { [r.viseme]: 0.65 };
 }
 
 /** Load the worklet once per context. False when the browser or the network says no. */
@@ -219,6 +318,8 @@ function loop() {
     visemeNode.update(Math.min(100, now - lastVisemeTick));
     lastVisemeTick = now;
   }
+  // The script's shape for this moment, when a reply is being spoken and the voice is not in a pause.
+  scripted = speech && shape.open > 0.03 ? scriptedWeightsAt(analyser.context.currentTime) : null;
 
   analyser.getByteTimeDomainData(timeBuf);
   // RMS around the 128 midpoint of unsigned time-domain data. Peak amplitude would make the mouth

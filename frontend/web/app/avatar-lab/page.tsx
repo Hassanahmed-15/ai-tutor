@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AriaAvatar, ARIA_HEADS, type AriaHead } from "@/components/avatar/AriaAvatar";
-import { attachMouthAnalyser, detachMouthAnalyser, onMouthShape, visemeWeights, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
+import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, onMouthShape, speechScriptDebug, visemeWeights, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
 import type { AvatarState } from "@/lib/avatar/face";
 
 /**
@@ -14,13 +14,15 @@ import type { AvatarState } from "@/lib/avatar/face";
 export default function AvatarLab() {
   const [head, setHead] = useState<AriaHead>("Jane");
   const [state, setState] = useState<AvatarState>("idle");
-  const [source, setSource] = useState<"none" | "synth" | "mic">("none");
+  const [source, setSource] = useState<"none" | "synth" | "mic" | "file">("none");
+  const [sentence, setSentence] = useState("Peter and Mary bought fresh figs. The moon was full, so we sat by the sea and talked about photosynthesis.");
   const [mouth, setMouth] = useState<MouthShape>({ open: 0, width: 0.5 });
   const [visemeLine, setVisemeLine] = useState("");
   useEffect(() => {
     const id = window.setInterval(() => {
       const live = Object.entries(visemeWeights()).filter(([, v]) => v > 0.05).sort((a, b) => b[1] - a[1]).slice(0, 3);
-      setVisemeLine(live.map(([k, v]) => `${k} ${v.toFixed(2)}`).join("  "));
+      const d = speechScriptDebug();
+      setVisemeLine(live.map(([k, v]) => `${k} ${v.toFixed(2)}`).join("  ") + (d ? `   script ${d.cursor}/${d.visemes} @${d.progress}` : ""));
     }, 100);
     return () => window.clearInterval(id);
   }, []);
@@ -44,7 +46,34 @@ export default function AvatarLab() {
   function stopAudio() {
     audioRef.current?.stop();
     audioRef.current = null;
+    endSpeechScript();
     setSource("none");
+  }
+
+  /**
+   * A recording of the sentence, played the way a Gemini reply is: the words handed to the script
+   * first, the audio scheduled on the context's clock, the listener on the same bus.
+   */
+  async function playFileWithScript(file: File) {
+    stopAudio();
+    const ctx = new AudioContext();
+    await ctx.resume();
+    const buffer = await ctx.decodeAudioData(await file.arrayBuffer());
+    const bus = ctx.createGain();
+    bus.connect(ctx.destination);
+    const token = attachMouthAnalyser(ctx, bus);
+    const src = ctx.createBufferSource();
+    src.buffer = buffer;
+    src.connect(bus);
+    const startAt = ctx.currentTime + 0.15;
+    beginSpeechScript(startAt);
+    appendSpeechText(sentence);
+    extendSpeechAudio(startAt + buffer.duration);
+    src.start(startAt);
+    src.onended = () => { endSpeechScript(); detachMouthAnalyser(token); setSource("none"); };
+    audioRef.current = { ctx, token, stop: () => { try { src.stop(); } catch { /* ended */ } detachMouthAnalyser(token); void ctx.close(); } };
+    setSource("file");
+    setState("speaking");
   }
 
   /** A voice-like buzz (a sawtooth at ~140 Hz through a formant-ish filter), opened and closed in syllables. */
@@ -134,6 +163,11 @@ export default function AvatarLab() {
               <button type="button" onClick={() => void startMic()} aria-pressed={source === "mic"} className={`rounded-full border px-3 py-1.5 ${source === "mic" ? "border-[var(--hud-cyan)]" : "border-[var(--hud-line)] text-[var(--hud-text-dim)]"}`}>My microphone</button>
               <button type="button" onClick={stopAudio} className="rounded-full border border-[var(--hud-line)] px-3 py-1.5 text-[var(--hud-text-dim)]">Stop</button>
             </div>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <span className="text-[var(--hud-text-dim)]">Sentence + recording (as a Gemini reply)</span>
+            <textarea value={sentence} onChange={(e) => setSentence(e.target.value)} rows={2} className="w-full rounded-[var(--radius)] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-3 py-2 text-[0.85rem] text-[var(--hud-text)]" data-sentence />
+            <input type="file" accept="audio/*" data-speech-file onChange={(e) => { const f = e.target.files?.[0]; if (f) void playFileWithScript(f); }} className="text-[0.8rem] text-[var(--hud-text-dim)]" />
           </div>
           <div className="rounded-[var(--radius-lg)] border border-[var(--hud-line)] p-3 font-[family-name:var(--font-hud-mono)] text-[0.75rem] text-[var(--hud-text-dim)]" data-mouth>
             open {mouth.open.toFixed(2)} · width {mouth.width.toFixed(2)}
