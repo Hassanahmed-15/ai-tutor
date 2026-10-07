@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, BookOpen, Orbit, Paperclip, Play, X } from "lucide-react";
+import { ArrowUp, CircleHelp, Paperclip, X } from "lucide-react";
 import type { PageName } from "@/components/hud/HudKit";
 import { setPendingBrief } from "@/lib/pendingBrief";
 import { useAuth } from "@/components/auth/AuthGate";
@@ -9,7 +9,9 @@ import { Leaderboard } from "@/components/adhd/Leaderboard";
 import { Thoughts } from "@/components/adhd/Thoughts";
 import { isAdhdLearner } from "@/lib/adhd/gate";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
-import { fetchReplay, LectureHistory, useLectureHistory, type HistoryItem, type ReplayPackage } from "@/components/lecture/LectureHistory";
+import { LectureHistory, type ReplayPackage } from "@/components/lecture/LectureHistory";
+import { GuideSheet, guideSeen } from "@/components/pages/GuideSheet";
+import { LibraryDoor, MapDoor } from "@/components/pages/HomeDoors";
 import { setPendingLecture } from "@/lib/pendingLecture";
 import { PromptTiles } from "@/components/pages/PromptTiles";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
@@ -31,6 +33,7 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
   const [topic, setTopic] = useState("");
   const [dragging, setDragging] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(false);
   /** A link typed into the prompt box, handed to the YouTube launcher; `key` remounts it per hand-over. */
   const [videoHandOff, setVideoHandOff] = useState<{ url: string; key: number } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -63,6 +66,13 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
     setPendingLecture({ ...lecture, mode: lecture.mode ?? "standard" });
     go("learn");
   }
+
+  // A brand-new account meets the guide once, by itself; after that it waits behind its door.
+  useEffect(() => {
+    if (!user) return;
+    const t = window.setTimeout(() => { if (!guideSeen()) setGuideOpen(true); }, 900);
+    return () => window.clearTimeout(t);
+  }, [user]);
 
   // Escape closes the library, as it closes any sheet.
   useEffect(() => {
@@ -112,10 +122,9 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           <span aria-hidden="true" className="aria-breathe absolute -right-1.5 -top-1.5 size-2.5 rounded-full bg-[var(--hud-cyan)]" />
         </span>
         <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2">
+          <IconWord icon={<CircleHelp size={18} strokeWidth={1.7} />} word="Guide" onClick={() => setGuideOpen(true)} pressed={guideOpen} />
           {user && (
             <>
-              <IconWord icon={<BookOpen size={18} strokeWidth={1.7} />} word="Library" onClick={() => setLibraryOpen(true)} pressed={libraryOpen} />
-              <IconWord icon={<Orbit size={18} strokeWidth={1.7} />} word="Map" onClick={() => go("knowledge")} />
               <button
                 type="button"
                 data-account-button
@@ -182,7 +191,13 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           </div>
         </form>
 
-        {user && <ResumeCard onReplay={replayLecture} />}
+        {/* The two doors, for anyone: the Library (your lectures) and the Map (what you know). */}
+        {user && (
+          <div className="hud-materialize grid gap-3 sm:grid-cols-2">
+            <LibraryDoor onOpenAll={() => setLibraryOpen(true)} onReplay={replayLecture} />
+            <MapDoor onOpen={() => go("knowledge")} />
+          </div>
+        )}
 
         {user && (
           <PromptTiles
@@ -198,6 +213,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
         {adhd && <Leaderboard />}
         {adhd && <Thoughts />}
       </div>
+
+      {guideOpen && <GuideSheet onClose={() => setGuideOpen(false)} onTry={(t) => setTopic(t)} />}
 
       {/* THE LIBRARY SHEET: every lecture, on shelves by day, from the right. */}
       {libraryOpen && (
@@ -235,53 +252,6 @@ function IconWord({ icon, word, onClick, pressed }: { icon: React.ReactNode; wor
   );
 }
 
-/** The last lecture, to go back to: a small drawn board, its title, and Play. */
-function ResumeCard({ onReplay }: { onReplay: (lecture: ReplayPackage) => void }) {
-  const { items, loading } = useLectureHistory();
-  const [opening, setOpening] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const last: HistoryItem | undefined = items.find((i) => i.status !== "failed");
-  if (loading || !last) return null;
-  return (
-    <button
-      type="button"
-      disabled={opening}
-      onClick={async () => {
-        setOpening(true);
-        setError(null);
-        try { onReplay(await fetchReplay(last.id)); } catch (e) { setError(e instanceof Error ? e.message : "Could not open it."); setOpening(false); }
-      }}
-      className="home-lift hud-materialize group flex w-full items-center gap-4 rounded-[14px] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-3 text-left shadow-[var(--elev-1)] disabled:opacity-70"
-    >
-      <BoardSketch parts={last.beatCount} />
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate text-[0.95rem] font-medium text-[var(--hud-text)]">{last.topic}</span>
-        <span className="font-[family-name:var(--font-hud-mono)] text-[0.6875rem] tabular-nums text-[var(--hud-text-faint)]">
-          {error ?? `${last.beatCount} parts`}
-        </span>
-      </span>
-      <span aria-hidden="true" className="grid size-9 shrink-0 place-items-center rounded-full bg-[var(--hud-cyan)] text-[var(--accent-on)] transition-transform group-hover:scale-105">
-        <Play size={15} fill="currentColor" />
-      </span>
-    </button>
-  );
-}
-
-/** A board the size of a stamp: a few chalk strokes, one in the pen's colour. */
-function BoardSketch({ parts }: { parts: number }) {
-  const strokes = Math.max(2, Math.min(5, parts));
-  const widths = [34, 22, 30, 18, 26];
-  return (
-    <svg aria-hidden="true" width="64" height="46" viewBox="0 0 64 46" className="shrink-0">
-      <rect x="1" y="1" width="62" height="44" rx="6" fill="var(--hud-surface-2)" stroke="var(--hud-line)" />
-      {Array.from({ length: strokes }, (_, i) => (
-        <line key={i} x1="12" y1={11 + i * 6.5} x2={12 + widths[i]} y2={11 + i * 6.5} stroke={i === 0 ? "var(--hud-cyan)" : "var(--hud-text-faint)"} strokeWidth={i === 0 ? 2.2 : 1.6} strokeLinecap="round" />
-      ))}
-      <circle cx="50" cy="30" r="5" fill="none" stroke="var(--hud-text-faint)" strokeWidth="1.4" />
-    </svg>
-  );
-}
-
 /** Seven dots, one per day this week, filled on the days with a lesson. No number to beat. */
 function WeekDots() {
   const [days, setDays] = useState<boolean[] | null>(null);
@@ -310,7 +280,7 @@ function WeekDots() {
       {days.map((on, i) => (
         <span
           key={i}
-          className={`size-2 rounded-full transition-colors ${on ? "bg-[var(--hud-cyan)]" : "bg-[var(--hud-line-strong)]"} ${i === todayIndex ? "ring-2 ring-[var(--hud-cyan-glow)]" : ""}`}
+          className={`size-2 rounded-full transition-colors ${on ? "bg-[var(--warm)]" : "bg-[var(--hud-line-strong)]"} ${i === todayIndex ? "ring-2 ring-[var(--hud-cyan-glow)]" : ""}`}
         />
       ))}
     </div>

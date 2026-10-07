@@ -13,6 +13,8 @@
  */
 .font-display {
   font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-variation-settings: "opsz" 96, "SOFT" 50;
+  font-weight: 400;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -806,6 +808,7 @@ textarea {
   --danger: #B4443A;
   --danger-soft: #F8E6E3;
   --scrim: rgba(31, 27, 21, 0.36);
+  --warm: #D9743A;
   /* The library sheet: one step off the page, like a desk beside the sheet. */
   --sidebar: #ECE6D8;
   --sidebar-hover: #E2DBCA;
@@ -908,20 +911,22 @@ textarea {
   color-scheme: dark;
 
   /* ── THE NIGHT PALETTE: deep violet, one violet light. The board keeps its own chalk slate. ── */
-  --page: #0B0713;
-  --surface: #140E22;
-  --surface-2: #1D1530;
-  --border: #2A2142;
-  --border-strong: #3F3260;
-  --input-border: #6E5F94;
-  --text: #F7F3FF;
-  --text-muted: #B9AEDC;
-  --text-faint: #7F74A3;
-  --accent: #A779FF;
-  --accent-hover: #B990FF;
-  --accent-ink: #D3BBFF;
-  --accent-on: #0B0713;
-  --accent-soft: #241A3E;
+  --page: #0B0A16;
+  --surface: #14122A;
+  --surface-2: #1C1936;
+  --border: #272443;
+  --border-strong: #3C3862;
+  --input-border: #6C6696;
+  --text: #F4F1FF;
+  --text-muted: #B4ADD6;
+  --text-faint: #7B759F;
+  --accent: #9D7BFF;
+  --accent-hover: #AE93FF;
+  --accent-ink: #CDBEFF;
+  --accent-on: #0B0A16;
+  --accent-soft: #231E40;
+  /* The warm light: peach, for what is due, the sun side of the orb, a day with a lesson. */
+  --warm: #FFB07A;
   --success: #6EDB9A;
   --success-soft: rgba(110, 219, 154, 0.14);
   --warning: #F0C05A;
@@ -1289,16 +1294,16 @@ html[data-reduced-motion="1"] *::after {
 .orb-rig { transform: rotateX(var(--tx)) rotateY(var(--ty)); transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1); }
 .orb-core {
   background:
-    radial-gradient(circle at 36% 32%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 28%),
-    radial-gradient(circle at 50% 50%, var(--accent-ink) 0%, var(--accent) 38%, #4C2AA6 66%, #1A1035 100%);
-  box-shadow: 0 0 60px var(--hud-cyan-glow), 0 0 160px rgba(167, 121, 255, 0.18), inset -18px -24px 60px rgba(0, 0, 0, 0.45);
+    radial-gradient(circle at 34% 30%, rgba(255, 236, 214, 0.75), rgba(255, 176, 122, 0.35) 18%, rgba(255, 176, 122, 0) 36%),
+    radial-gradient(circle at 50% 50%, #CDBEFF 0%, #9D7BFF 34%, #C05CF0 56%, #3B2290 78%, #140F30 100%);
+  box-shadow: 0 0 60px var(--hud-cyan-glow), 0 0 160px rgba(157, 123, 255, 0.18), 0 0 90px rgba(255, 176, 122, 0.12), inset -18px -24px 60px rgba(0, 0, 0, 0.45);
   animation: orb-breathe 6s ease-in-out infinite;
 }
-.orb-ring { border: 1.5px solid rgba(240, 171, 252, 0.55); border-radius: 50%; box-shadow: 0 0 18px rgba(240, 171, 252, 0.25); }
+.orb-ring { border: 1.5px solid rgba(255, 196, 160, 0.5); border-radius: 50%; box-shadow: 0 0 18px rgba(255, 176, 122, 0.22); }
 .orb-ring-a { transform: rotateX(72deg); animation: orb-spin 14s linear infinite; }
 .orb-ring-b { transform: rotateX(72deg) rotateY(60deg); animation: orb-spin 22s linear infinite reverse; opacity: 0.7; }
 .orb-halo { background: radial-gradient(circle, rgba(167, 121, 255, 0.35), rgba(167, 121, 255, 0) 70%); animation: orb-breathe 6s ease-in-out infinite; }
-.orb-mote { background: var(--accent-ink); border-radius: 50%; animation: orb-float 9s ease-in-out infinite; }
+.orb-mote { background: var(--warm); border-radius: 50%; animation: orb-float 9s ease-in-out infinite; }
 @keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
 @keyframes orb-spin { from { transform: rotateX(72deg) rotateZ(0deg); } to { transform: rotateX(72deg) rotateZ(360deg); } }
 @keyframes orb-float { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.6; } 50% { transform: translate3d(6px, -14px, 20px); opacity: 1; } }

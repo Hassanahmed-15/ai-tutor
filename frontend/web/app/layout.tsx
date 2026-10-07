@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -20,24 +20,26 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /**
- * Typography: a humanist sans for everything the student operates, and one sharp serif for the
- * one line each screen says out loud (the question on the front page, a planning question, a
- * lesson title). Instrument Sans and Instrument Serif are cut as a pair. Geist/Inter were dropped
- * as the default of every AI product. The board keeps its own chalk and handwriting faces.
+ * Typography: Manrope, a rounded modern sans, for everything the student operates, and Fraunces,
+ * a soft serif with an optical-size axis, for the one line each screen says out loud (her name on
+ * the front page, a planning question, a lesson title). Geist/Inter were dropped as the default
+ * of every AI product. The board keeps its own chalk and handwriting faces.
  */
-const bodyFont = Instrument_Sans({
+const bodyFont = Manrope({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["400", "500", "600"],
+  weight: "variable",
   display: "swap",
 });
 
-/** The display face: a sharp serif for the one line each screen says out loud. */
-const displayFont = Instrument_Serif({
+/** The display face: Fraunces, a soft old-style serif with an optical-size axis, so the word at
+ *  the centre of the front page and a planning question are cut for their size. */
+const displayFont = Fraunces({
   subsets: ["latin"],
   variable: "--font-display-face",
-  weight: "400",
+  weight: "variable",
   style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
   display: "swap",
 });
 
