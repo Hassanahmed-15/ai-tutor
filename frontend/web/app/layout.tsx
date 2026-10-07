@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Manrope, Outfit } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -20,17 +20,24 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 /**
- * Typography: one family, used lightly.
- *
- * Geist: a plain, even sans that stays quiet in a paragraph and holds together at heading sizes.
- * Inter was rejected as the default of every AI product; Sora, the previous face, had more
- * character than a calm reading surface wants. One family means no flash of a mismatched fallback.
- * The board keeps its own chalk and handwriting faces.
+ * Typography: Manrope, a rounded modern sans, for everything the student operates, and Outfit,
+ * the board's own clean geometric sans, for the one line each screen says out loud (her name on
+ * the front page, a planning question, a lesson title). Simple on purpose: one voice, two weights. Geist/Inter were dropped as the default
+ * of every AI product. The board keeps its own chalk and handwriting faces.
  */
-const bodyFont = Geist({
+const bodyFont = Manrope({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["400", "500", "600"],
+  weight: "variable",
+  display: "swap",
+});
+
+/** The display face: Outfit, the clean geometric sans the board already writes its notes in, so
+ *  her name on the front page and a planning question are the same hand as the lesson. */
+const displayFont = Outfit({
+  subsets: ["latin"],
+  variable: "--font-display-face",
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
@@ -57,8 +64,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
-    { media: "(prefers-color-scheme: dark)", color: "#111110" },
+    { media: "(prefers-color-scheme: light)", color: "#0B0713" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0713" },
   ],
 };
 
@@ -66,7 +73,7 @@ export const viewport: Viewport = {
  * Light or dark, set before the first paint so the page never flashes the wrong theme. The student's
  * choice lives in this browser only (Settings → Appearance); with no choice, the device decides.
  */
-const THEME_SCRIPT = `(function(){try{var c=localStorage.getItem("aria.theme");var d=c==="dark"||(c!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=d?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
+const THEME_SCRIPT = `(function(){try{var c=localStorage.getItem("aria.theme");document.documentElement.dataset.theme=c==="light"?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();`;
 
 export default function RootLayout({
   children,
@@ -74,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${hudMonoFont.variable}`}>
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`h-full antialiased ${bodyFont.variable} ${displayFont.variable} ${hudMonoFont.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>

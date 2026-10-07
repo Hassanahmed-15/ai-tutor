@@ -35,7 +35,7 @@ import type { DocumentPage, NormalisedRect, PageSelection } from "@/components/u
 import { PageStack } from "@/components/upload/PageStack";
 import { PageStackSkeleton } from "@/components/upload/PageStackSkeleton";
 import { VoicePromptButton } from "@/components/upload/VoicePromptButton";
-import { ArrowRight, CheckCircle2, ClipboardCheck, Layers, Loader2, Mic } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronLeft, ChevronUp, ClipboardCheck, Layers, Loader2, Mic, MicOff, Play, Sparkles, X } from "lucide-react";
 import { isPointingPhrase, looksLikeTitle, subjectFromTranscript } from "@/lib/pdfFocus";
 import { DOCUMENT_LIMITS } from "@/lib/documentLimits";
 import { documentLectureTitle, lectureSubject } from "@/lib/lectureSubject";
@@ -4930,8 +4930,8 @@ function OutlineReviewState({
               />
             ))}
           </div>
-          <span className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--hud-text-faint)]">
-            Before we start · {topic}
+          <span className="truncate font-[family-name:var(--font-hud-mono)] text-[0.6875rem] uppercase tracking-[0.1em] text-[var(--hud-text-faint)]">
+            {topic}
           </span>
         </div>
 
@@ -4941,12 +4941,12 @@ function OutlineReviewState({
 
         {busy || !shown ? (
           <div className="flex items-center gap-3 py-8 text-[var(--hud-text-dim)]">
-            <span className="size-2.5 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
-            <span className="text-lg">Aria is thinking about your answer…</span>
+            <span className="aria-breathe size-2.5 rounded-full bg-[var(--hud-cyan)]" />
+            <span className="font-display text-[1.6rem] italic">Thinking…</span>
           </div>
         ) : (
           <>
-            <h2 key={shown.question} className="beat-fade-in text-balance text-[1.9rem] font-medium leading-tight tracking-[-0.02em] text-[var(--hud-text)] sm:text-[2.3rem]">
+            <h2 key={shown.question} className="beat-fade-in font-display text-balance text-[2.1rem] leading-[1.1] tracking-[-0.01em] text-[var(--hud-text)] sm:text-[2.7rem]">
               {shown.question}
             </h2>
 
@@ -4964,7 +4964,7 @@ function OutlineReviewState({
                       type="button"
                       onClick={() => answerIt(option)}
                       disabled={sending || loading || Boolean(voicePick)}
-                      className={`group flex items-center gap-4 rounded-xl border px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] hover:bg-[var(--hud-cyan)]/[0.06] disabled:opacity-50 ${
+                      className={`home-lift group flex items-center gap-4 rounded-[14px] border px-4 py-3.5 text-left transition hover:border-[var(--hud-cyan)] disabled:opacity-50 ${
                         heard ? "border-[var(--hud-cyan)] bg-[var(--hud-cyan)]/[0.14] !opacity-100" : "border-[var(--hud-line)] bg-[var(--hud-surface)]"
                       }`}
                     >
@@ -4985,39 +4985,37 @@ function OutlineReviewState({
               * No typing here (the owner, 2026-09-29: "not to type the answer, just give the user
               * options so it can choose one"). Tap a card or say it — Aria is listening.
               */}
-            <div className="mt-5 flex items-center gap-2.5 text-[0.85rem] text-[var(--hud-text-faint)]">
-              <span
-                aria-hidden
-                className={`size-2 shrink-0 rounded-full ${live && !voice.muted ? "animate-pulse bg-[var(--hud-cyan)]" : "bg-[var(--hud-line-strong)]"}`}
-              />
-              <span className="min-w-0 flex-1">
-                {live ? (voice.muted ? "Mic muted — tap an answer" : "Tap an answer, or just say it") : "Tap an answer"}
-              </span>
-              {live && (
+            {/* Tap a card, or say it: the mic glyph says whether Aria can hear you. */}
+            {live && (
+              <div className="mt-4 flex items-center gap-2">
                 <button
                   type="button"
                   onClick={voice.toggleMute}
                   aria-pressed={voice.muted}
-                  className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs hover:text-[var(--hud-text)]"
+                  aria-label={voice.muted ? "Unmute: say your answer" : "Mute"}
+                  title={voice.muted ? "Unmute: say your answer" : "Mute"}
+                  className={`grid size-9 place-items-center rounded-full border transition-colors ${voice.muted ? "border-[var(--hud-line)] text-[var(--hud-text-faint)]" : "border-[var(--hud-cyan)] text-[var(--hud-cyan)]"}`}
                 >
-                  {voice.muted ? "Unmute" : "Mute"}
+                  {voice.muted ? <MicOff size={15} /> : <Mic size={15} />}
                 </button>
-              )}
-            </div>
+                {!voice.muted && <span aria-hidden className="aria-breathe size-1.5 rounded-full bg-[var(--hud-cyan)]" />}
+              </div>
+            )}
           </>
         )}
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--hud-line)] pt-5">
-          <p className="min-w-0 flex-1 text-[0.8rem] leading-relaxed text-[var(--hud-text-faint)]">
-            {memoryNote ?? "Aria asks a couple of quick questions so the lesson starts at the right level."}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+          {/* The pitch in one clause ("Pitched at your Grade 10 level in Biology"), not a paragraph. */}
+          <p className="min-w-0 flex-1 truncate text-[0.75rem] text-[var(--hud-text-faint)]">
+            {memoryNote ? memoryNote.split(/(?<=\.)\s/)[0].replace(/, from your profile\.?$/, "").replace(/\.$/, "") : ""}
           </p>
           <button
             type="button"
             onClick={() => (ask ? ask.skip() : answerDiagnostic("Just teach me"))}
             disabled={sending || loading || busy}
-            className="shrink-0 rounded-lg border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)] disabled:opacity-40"
+            className="shrink-0 rounded-full border border-[var(--hud-line)] px-4 py-2 text-[0.8125rem] font-medium text-[var(--hud-text-dim)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)] disabled:opacity-40"
           >
-            Skip — just teach me →
+            Just teach me →
           </button>
         </div>
       </div>
@@ -5075,25 +5073,21 @@ function OutlineReviewState({
 
   return (
     <section className="relative z-10 min-h-screen w-full bg-[var(--hud-bg)]">
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between border-b border-[var(--hud-line)] px-6 py-4 lg:px-10">
-        <div className="min-w-0">
-          <p className="text-xs font-medium uppercase tracking-wider text-[var(--hud-text-faint)]">
-            {documentPlanning ? "Plan from your source" : !outline && (diagnosticQuestion || diagnosticBusy) ? "Getting to know you" : "Lesson outline"}
-          </p>
-          <h1 className="mt-1 truncate text-lg font-medium text-[var(--hud-text)]">{topic}</h1>
-        </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setShowMemory(true)}
-            className="rounded-md border border-[var(--hud-line)] px-3 py-2 text-sm text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]"
-          >
-            What Aria remembers
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 lg:px-8">
+        <div className="flex min-w-0 items-center gap-2">
+          <button onClick={onBack} aria-label="Back" title="Back" className="grid size-10 shrink-0 place-items-center rounded-full text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]">
+            <ChevronLeft size={18} />
           </button>
-          <button onClick={onBack} className="shrink-0 rounded-md border border-[var(--hud-line)] px-4 py-2 text-sm font-medium text-[var(--hud-text-dim)] hover:text-[var(--hud-text)]">
-            Back
-          </button>
+          <h1 className="truncate font-display text-[1.25rem] text-[var(--hud-text)]">{topic}</h1>
         </div>
+        <button
+          type="button"
+          onClick={() => setShowMemory(true)}
+          className="flex h-12 w-16 shrink-0 flex-col items-center justify-center gap-0.5 rounded-[var(--radius)] text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
+        >
+          <Sparkles aria-hidden="true" size={17} strokeWidth={1.7} />
+          <span className="text-[0.625rem] font-medium tracking-[0.02em]">Memory</span>
+        </button>
       </div>
       {showMemory && (
         <div
@@ -5166,11 +5160,8 @@ function OutlineReviewState({
             // Also covers the hand-offs between planning steps (clarify → memory → first question),
             // where nothing is loading yet no outline exists — that is not a failure.
             <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-2xl flex-col items-center justify-center text-center">
-              <span className="size-3 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
-              <h2 className="mt-6 text-[1.7rem] font-medium tracking-[-0.02em] text-[var(--hud-text)]">
-                Aria is planning your lesson
-              </h2>
-              <p className="mt-2 text-[0.95rem] text-[var(--hud-text-faint)]">{topic}</p>
+              <span className="aria-breathe size-3 rounded-full bg-[var(--hud-cyan)]" />
+              <h2 className="mt-6 font-display text-[2rem] italic text-[var(--hud-text)]">Planning…</h2>
             </div>
           ) : outline ? (
             /*
@@ -5183,10 +5174,9 @@ function OutlineReviewState({
             <div className="mx-auto max-w-3xl">
               <div className="mb-6 flex items-end justify-between gap-4">
                 <div>
-                  <h2 className="text-[1.6rem] font-medium tracking-[-0.02em] text-[var(--hud-text)]">
-                    {outline.subtopics.length === 1 ? "1 topic" : `${outline.subtopics.length} topics`}
+                  <h2 className="font-display text-[2.1rem] leading-none text-[var(--hud-text)]">
+                    {outline.subtopics.length === 1 ? "1 part" : `${outline.subtopics.length} parts`}
                   </h2>
-                  <p className="mt-1 text-sm text-[var(--hud-text-faint)]">Edit, reorder or remove anything, then build the lesson.</p>
                   {/* What the questions showed, in one line: the lesson below is built around it. */}
                   {learnerProfile && (() => {
                     const map = conceptMap(learnerProfile);
@@ -5224,10 +5214,10 @@ function OutlineReviewState({
                 {outline.subtopics.map((s, i) => (
                   <li
                     key={i}
-                    className="group flex items-start gap-4 rounded-xl border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3.5 transition focus-within:border-[var(--hud-line-strong)] hover:border-[var(--hud-line-strong)]"
+                    className="group flex items-start gap-4 rounded-[14px] border border-[var(--hud-line)] bg-[var(--hud-surface)] px-4 py-3.5 transition focus-within:border-[var(--hud-line-strong)] hover:border-[var(--hud-line-strong)]"
                   >
-                    <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md bg-[var(--hud-surface-2)] text-xs font-semibold tabular-nums text-[var(--hud-text-faint)]">
-                      {i + 1}
+                    <span className="mt-1 font-[family-name:var(--font-hud-mono)] text-[0.75rem] tabular-nums text-[var(--hud-text-faint)]">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0 flex-1">
                       <input
@@ -5244,10 +5234,10 @@ function OutlineReviewState({
                         className="mt-0.5 w-full bg-transparent text-sm text-[var(--hud-text-dim)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
                       />
                     </div>
-                    <div className="flex shrink-0 items-center gap-0.5 opacity-40 transition group-focus-within:opacity-100 group-hover:opacity-100">
-                      <button onClick={() => move(i, -1)} disabled={i === 0} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up">▲</button>
-                      <button onClick={() => move(i, 1)} disabled={i === outline.subtopics.length - 1} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move down">▼</button>
-                      <button onClick={() => remove(i)} className="rounded p-1.5 text-[var(--hud-text-faint)] hover:text-[var(--hud-danger)]" aria-label="Remove topic">✕</button>
+                    <div className="flex shrink-0 items-center gap-0.5 opacity-0 transition focus-within:opacity-100 group-focus-within:opacity-100 group-hover:opacity-100">
+                      <button onClick={() => move(i, -1)} disabled={i === 0} className="grid size-7 place-items-center rounded-full text-[var(--hud-text-faint)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move up"><ChevronUp size={14} /></button>
+                      <button onClick={() => move(i, 1)} disabled={i === outline.subtopics.length - 1} className="grid size-7 place-items-center rounded-full text-[var(--hud-text-faint)] hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)] disabled:opacity-20" aria-label="Move down"><ChevronDown size={14} /></button>
+                      <button onClick={() => remove(i)} className="grid size-7 place-items-center rounded-full text-[var(--hud-text-faint)] hover:bg-[var(--danger-dim)] hover:text-[var(--hud-danger)]" aria-label="Remove part"><X size={14} /></button>
                     </div>
                   </li>
                 ))}
@@ -5255,9 +5245,9 @@ function OutlineReviewState({
 
               <button
                 onClick={addBlank}
-                className="mt-2 w-full rounded-xl border border-dashed border-[var(--hud-line)] py-3 text-sm font-medium text-[var(--hud-text-faint)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
+                className="mt-2 w-full rounded-[14px] border border-dashed border-[var(--hud-line)] py-2.5 text-[0.8125rem] font-medium text-[var(--hud-text-faint)] transition hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)]"
               >
-                + Add a topic
+                + Add
               </button>
 
               {/* One tap (or one sentence out loud) for the changes people ask for most. */}
@@ -5303,7 +5293,7 @@ function OutlineReviewState({
                   ref={composerRef}
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
-                  placeholder="Or ask Aria to change it — “make it shorter”, “add a topic on…”"
+                  placeholder="Ask for a change…"
                   disabled={loading || sending}
                   className="min-w-0 flex-1 bg-transparent py-2 text-[0.95rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none"
                 />
@@ -5321,9 +5311,9 @@ function OutlineReviewState({
               <button
                 onClick={onApprove}
                 disabled={loading || sending || outline.subtopics.length === 0}
-                className="hud-btn-primary mt-8 w-full rounded-[var(--radius)] py-3.5 text-[0.95rem] disabled:cursor-not-allowed"
+                className="hud-btn-primary mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-[1rem] disabled:cursor-not-allowed"
               >
-                Build lesson →
+                <Play size={15} fill="currentColor" /> Start
               </button>
             </div>
           ) : (

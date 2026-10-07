@@ -23,7 +23,9 @@ function readChoice(): ThemeChoice {
 }
 
 function apply(choice: ThemeChoice) {
-  const dark = choice === "dark" || (choice === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  // Aria is dark by default: "system" and "dark" both resolve to the night palette; only an explicit
+  // "light" gives paper. The script in app/layout.tsx makes the same call before first paint.
+  const dark = choice !== "light";
   document.documentElement.dataset.theme = dark ? "dark" : "light";
 }
 

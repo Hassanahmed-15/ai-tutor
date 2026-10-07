@@ -12,7 +12,9 @@
  * gappy. Applied here rather than repeated as utility classes on every headline.
  */
 .font-display {
-  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
@@ -23,10 +25,10 @@
   --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
   /* `--font-headline` is aliased to the body face: the editorial system loads one serif and one
      sans, and the only remaining consumers of `headline` are the out-of-scope mode players. */
-  --font-headline: var(--font-body), Arial, Helvetica, sans-serif;
+  --font-headline: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
   /* One family throughout. `font-display` call sites resolve to the same sans; the "display"
      treatment is weight 300 and tight tracking, not a different typeface. */
-  --font-display: var(--font-body), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --font-hud-mono: var(--font-hud-mono), "SFMono-Regular", Consolas, monospace;
 
@@ -784,40 +786,41 @@ textarea {
      primary action, the selected item, the focus ring). Every other colour means
      a status and always comes with an icon or a word. Text and muted text clear
      4.5:1 on page and surface; icons, input borders and focus clear 3:1. */
-  --page: #F7F7F5;
-  --surface: #FFFFFF;
-  --surface-2: #F0EFEC;
-  --border: #E4E3DF;
-  --border-strong: #C9C8C3;
+  --page: #F4EFE4;
+  --surface: #FBF8F1;
+  --surface-2: #ECE6D8;
+  --border: #DDD5C4;
+  --border-strong: #BFB5A0;
   /* The outline of a text field: 3:1 on surface and page, so the field can be found. */
-  --input-border: #8F8E89;
-  --text: #141414;
-  --text-muted: #5F5E5A;
-  --text-faint: #8A8984;
-  --accent: #3F4BB8;
-  --accent-hover: #3540A3;
-  --accent-ink: #2F3A99;
-  --accent-on: #FFFFFF;
-  --accent-soft: #ECEEFB;
-  --success: #2F7D4F;
-  --success-soft: #E8F3EC;
-  --warning: #9A6400;
-  --warning-soft: #FBF1DF;
+  --input-border: #8C8371;
+  --text: #1F1B15;
+  --text-muted: #5E574B;
+  --text-faint: #87806F;
+  --accent: #B8381F;
+  --accent-hover: #A02F18;
+  --accent-ink: #8E2A15;
+  --accent-on: #FFFBF4;
+  --accent-soft: #F6E3DC;
+  --success: #2E6B45;
+  --success-soft: #E4EFE6;
+  --warning: #8A5A00;
+  --warning-soft: #F8EDD6;
   --danger: #B4443A;
-  --danger-soft: #FBEAE8;
-  --scrim: rgba(20, 20, 20, 0.32);
-  /* The history sidebar: one step off the page, like a desk beside the sheet. */
-  --sidebar: #F0EFEC;
-  --sidebar-hover: #E6E5E1;
+  --danger-soft: #F8E6E3;
+  --scrim: rgba(31, 27, 21, 0.36);
+  --warm: #D9743A;
+  /* The library sheet: one step off the page, like a desk beside the sheet. */
+  --sidebar: #ECE6D8;
+  --sidebar-hover: #E2DBCA;
 
   /* Knowledge map: one quiet tone per subject, each clearing 3:1 on the page. */
-  --map-1: #3F4BB8;
-  --map-2: #2F7D4F;
-  --map-3: #9A6400;
-  --map-4: #B4443A;
-  --map-5: #2F6FD6;
-  --map-6: #7A4FA0;
-  --map-7: #1F7A7A;
+  --map-1: #B8381F;
+  --map-2: #2E6B45;
+  --map-3: #8A5A00;
+  --map-4: #2B57B8;
+  --map-5: #7A4FA0;
+  --map-6: #1F7A7A;
+  --map-7: #A1442F;
   --map-8: #6B6A2E;
 
   /* ── THE OLD NAMES ─────────────────────────────────────────────────────────
@@ -838,15 +841,15 @@ textarea {
   --hud-cyan: var(--accent);
   --hud-cyan-bright: var(--accent-ink);
   --hud-cyan-deep: var(--accent-ink);
-  --hud-cyan-glow: rgba(63, 75, 184, 0.14);
+  --hud-cyan-glow: rgba(184, 56, 31, 0.14);
   --hud-cyan-glow-soft: var(--accent-soft);
   --accent-gradient: linear-gradient(var(--accent), var(--accent));
 
   /* Status. Each state is also given an icon and a label, so nothing rests on hue. */
   --ok: var(--success);
   --ok-dim: var(--success-soft);
-  --listening: #2F6FD6;
-  --listening-dim: #E6EEFB;
+  --listening: #2B57B8;
+  --listening-dim: #E3E9F7;
   --speaking: var(--accent);
   --speaking-dim: var(--accent-soft);
   --hud-warn: var(--warning);
@@ -869,8 +872,8 @@ textarea {
 
   /* Depth comes from a lighter surface and a hairline; the soft shadow is kept for
      floating panels only. */
-  --elev-1: 0 1px 2px rgba(20, 20, 20, 0.05);
-  --elev-2: 0 1px 2px rgba(20, 20, 20, 0.05), 0 8px 24px rgba(20, 20, 20, 0.08);
+  --elev-1: 0 1px 2px rgba(31, 27, 21, 0.06);
+  --elev-2: 0 1px 2px rgba(31, 27, 21, 0.06), 0 10px 28px rgba(31, 27, 21, 0.10);
 
   --motion-fast: 120ms;
   --motion: 180ms;
@@ -907,46 +910,54 @@ textarea {
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --page: #111110;
-  --surface: #1A1A19;
-  --surface-2: #232321;
-  --border: #2E2E2B;
-  --border-strong: #3D3D39;
-  --input-border: #706F6A;
-  --text: #F2F2F0;
-  --text-muted: #A3A29D;
-  --text-faint: #7C7B76;
-  --accent: #8B95F0;
-  --accent-hover: #A3ABF4;
-  --accent-ink: #C5CAF8;
-  --accent-on: #111110;
-  --accent-soft: #22264A;
-  --success: #62C28A;
-  --success-soft: rgba(98, 194, 138, 0.14);
-  --warning: #E0AC3C;
-  --warning-soft: rgba(224, 172, 60, 0.14);
-  --danger: #E8705F;
-  --danger-soft: rgba(232, 112, 95, 0.14);
-  --scrim: rgba(0, 0, 0, 0.55);
-  --sidebar: #161615;
-  --sidebar-hover: #232321;
+  /* ── THE NIGHT PALETTE: deep violet, one violet light. The board keeps its own chalk slate. ── */
+  --page: #0A0A14;
+  --surface: #13132A;
+  --surface-2: #1B1B38;
+  --border: #26264A;
+  --border-strong: #3A3A66;
+  --input-border: #6B6A98;
+  --text: #F5F3FF;
+  --text-muted: #B3B0D4;
+  --text-faint: #777499;
+  --accent: #9F6BFF;
+  --accent-hover: #B089FF;
+  --accent-ink: #C9B6FF;
+  --accent-on: #0A0A14;
+  --accent-soft: #23203F;
+  /* The warm light: soft gold, for what is due and a day with a lesson. */
+  --warm: #F5C86B;
+  --success: #6EDB9A;
+  --success-soft: rgba(110, 219, 154, 0.14);
+  --warning: #F0C05A;
+  --warning-soft: rgba(240, 192, 90, 0.14);
+  --danger: #FF7A6B;
+  --danger-soft: rgba(255, 122, 107, 0.14);
+  --scrim: rgba(4, 2, 10, 0.66);
+  --sidebar: #0F0A1A;
+  --sidebar-hover: #1A1230;
 
-  --map-1: #8B95F0;
-  --map-2: #62C28A;
-  --map-3: #E0AC3C;
-  --map-4: #E8705F;
-  --map-5: #7FA9F5;
-  --map-6: #B99AE0;
-  --map-7: #5FC4C4;
-  --map-8: #C4C27A;
+  --map-1: #A779FF;
+  --map-2: #6EDB9A;
+  --map-3: #F0C05A;
+  --map-4: #7FB0FF;
+  --map-5: #F0ABFC;
+  --map-6: #5FD6D0;
+  --map-7: #FF9A8C;
+  --map-8: #D2D08C;
 
-  --hud-cyan-glow: rgba(139, 149, 240, 0.18);
-  --listening: #7FA9F5;
-  --listening-dim: rgba(127, 169, 245, 0.16);
+  --hud-cyan-glow: rgba(159, 107, 255, 0.24);
+  --listening: #7FB0FF;
+  --listening-dim: rgba(127, 176, 255, 0.16);
+  --speaking: #F0ABFC;
 
-  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.55);
 }
+
+/* The root canvas is the page colour too: a browser paints an unbacked <html> black in dark mode
+   (overscroll, a tile under an animated layer), which showed as a black band above the orb. */
+html { background-color: var(--page); }
 
 /**
  * THE READING ROOM — the lesson player, one stop darker than the rest.
@@ -1008,8 +1019,16 @@ textarea {
    viewport — the single loudest element on every screen. This is a plain warm
    ground; the sheet does not need ruling. */
 .hud-canvas::before {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
+[data-theme="dark"] .hud-canvas::before { opacity: 0; }
 
 /* A whisper of tooth, so large flat areas of paper do not read as flat vector. */
 .hud-grain::after {
@@ -1251,4 +1270,57 @@ html[data-reduced-motion="1"] *::after {
 .pref-step-in { animation: slide-rise-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 @media (prefers-reduced-motion: reduce) {
   .pref-step-in { animation: none; }
+}
+
+/* ── THE FRONT PAGE (components/pages/LandingPage.tsx) ────────────────────────────────────────
+   Aria's mark breathes while she waits; a card lifts a hair when it is the thing in hand. */
+@keyframes aria-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
+.aria-breathe { animation: aria-breathe 3.2s ease-in-out infinite; transform-origin: center; }
+.home-lift { transition: transform var(--motion) var(--ease), box-shadow var(--motion) var(--ease), border-color var(--motion) var(--ease); }
+.home-lift:hover, .home-lift:focus-within { transform: translateY(-1px); box-shadow: var(--elev-2); }
+.home-sheet-in { animation: home-sheet-in 260ms var(--ease) both; }
+@keyframes home-sheet-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .aria-breathe, .home-sheet-in { animation: none; }
+  .home-lift:hover, .home-lift:focus-within { transform: none; }
+}
+
+/* ── THE ORB (components/pages/AriaHero.tsx) ─────────────────────────────────────────────────
+   A glossy sphere of violet light, blue at the rim. Depth without preserve-3d (a preserved layer
+   composites as a faintly lighter box): each ring is two halves, the far half under the sphere and
+   the near half over it, each tilted with its own perspective; motes run an elliptical offset-path
+   and change layer at the far side. The rig tilts toward the pointer. Transforms and opacity only;
+   with less motion asked for, everything rests. */
+.orb-scene { --tx: 0deg; --ty: 0deg; }
+.orb-tilt { transform: perspective(1100px) rotateX(var(--tx)) rotateY(var(--ty)); transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1); }
+.orb-core {
+  z-index: 2;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.55) 6%, rgba(255, 255, 255, 0) 24%),
+    radial-gradient(circle at 50% 56%, #B892FF 0%, #8A5CFF 32%, #5B32E6 58%, #2A1A9E 80%, #120D4A 100%);
+  box-shadow:
+    inset 0 -34px 70px rgba(70, 150, 255, 0.45),
+    inset 0 18px 40px rgba(255, 255, 255, 0.06),
+    0 0 70px rgba(159, 107, 255, 0.45),
+    0 0 180px rgba(90, 120, 255, 0.22);
+}
+/* Only the halo breathes, and only by transform on its own compositor layer: scaling the sphere
+   re-rasterised its 180px shadow every frame, which some Macs showed as unpainted black tiles. */
+.orb-halo { background: radial-gradient(circle, rgba(159, 107, 255, 0.34) 0%, rgba(90, 120, 255, 0.14) 40%, rgba(90, 120, 255, 0) 70%); animation: orb-breathe 7s ease-in-out infinite; will-change: transform; }
+.orb-ring { border-radius: 50%; border: 1.5px solid rgba(201, 182, 255, 0.6); box-shadow: 0 0 16px rgba(159, 107, 255, 0.35); transform: perspective(900px) rotateX(var(--incl, 76deg)) rotateZ(var(--spin, 0deg)); }
+.orb-ring-far { z-index: 1; clip-path: inset(0 0 50% 0); }
+.orb-ring-near { z-index: 3; clip-path: inset(50% 0 0 0); }
+.orb-mote { z-index: 1; width: 5px; height: 5px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 10px rgba(201, 182, 255, 0.9), 0 0 22px rgba(159, 107, 255, 0.6); offset-rotate: 0deg; animation: orb-mote var(--dur, 12s) linear infinite; animation-delay: var(--delay, 0s); }
+@keyframes orb-mote { 0% { offset-distance: 0%; z-index: 3; } 49.9% { z-index: 3; } 50% { z-index: 1; } 100% { offset-distance: 100%; z-index: 1; } }
+@keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+[data-theme="light"] .orb-core { background: radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 24%), radial-gradient(circle at 50% 56%, #F2A58F 0%, #C94A2E 40%, #7A2412 80%, #3B1108 100%); box-shadow: inset 0 -34px 70px rgba(255, 170, 90, 0.35), 0 0 50px var(--hud-cyan-glow); }
+[data-theme="light"] .orb-ring { border-color: rgba(184, 56, 31, 0.45); box-shadow: 0 0 14px rgba(184, 56, 31, 0.2); }
+[data-theme="light"] .orb-halo { background: radial-gradient(circle, rgba(184, 56, 31, 0.2), rgba(184, 56, 31, 0) 70%); }
+[data-theme="light"] .orb-mote { background: #B8381F; box-shadow: 0 0 8px rgba(184, 56, 31, 0.6); }
+@media (prefers-reduced-motion: reduce) {
+  .orb-halo, .orb-mote { animation: none; }
+  .orb-tilt { transition: none; transform: none; }
 }
