@@ -3544,14 +3544,19 @@ export function LessonPlayer({
           </div>
         </header>}
 
+        {/*
+          ARIA AT THE BOARD. Not a video tile in a box: her bust as a cutout, standing at the lower
+          right of the board like a teacher at the edge of her slide, a soft light behind her when
+          she speaks. Pointer events pass through, so nothing under her is lost.
+        */}
         {showAvatar && (
-          <div className="pointer-events-none absolute bottom-[5.5rem] right-4 z-30 hidden md:block lg:right-6">
-            <AriaAvatar
-              state={avatarState}
-              className="h-44 w-36 rounded-[18px] border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-2)]"
-              background="0x13132A"
-              onUnavailable={() => setAvatarUnavailable(true)}
+          <div className="pointer-events-none absolute bottom-[4.75rem] right-2 z-30 hidden md:block lg:right-4">
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-[58%] -z-10 size-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-500"
+              style={{ background: "radial-gradient(circle, var(--hud-cyan-glow) 0%, rgba(0,0,0,0) 68%)", opacity: avatarState === "speaking" ? 1 : avatarState === "listening" ? 0.55 : 0.25 }}
             />
+            <AriaAvatar state={avatarState} transparent className="h-[19rem] w-[15rem] lg:h-[21rem] lg:w-[16.5rem]" onUnavailable={() => setAvatarUnavailable(true)} />
           </div>
         )}
 

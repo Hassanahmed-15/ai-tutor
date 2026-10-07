@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AriaAvatar, ARIA_HEADS, type AriaHead } from "@/components/avatar/AriaAvatar";
-import { attachMouthAnalyser, detachMouthAnalyser, onMouthShape, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
+import { attachMouthAnalyser, detachMouthAnalyser, onMouthShape, visemeWeights, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
 import type { AvatarState } from "@/lib/avatar/face";
 
 /**
@@ -16,6 +16,14 @@ export default function AvatarLab() {
   const [state, setState] = useState<AvatarState>("idle");
   const [source, setSource] = useState<"none" | "synth" | "mic">("none");
   const [mouth, setMouth] = useState<MouthShape>({ open: 0, width: 0.5 });
+  const [visemeLine, setVisemeLine] = useState("");
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      const live = Object.entries(visemeWeights()).filter(([, v]) => v > 0.05).sort((a, b) => b[1] - a[1]).slice(0, 3);
+      setVisemeLine(live.map(([k, v]) => `${k} ${v.toFixed(2)}`).join("  "));
+    }, 100);
+    return () => window.clearInterval(id);
+  }, []);
   const [note, setNote] = useState("");
   const audioRef = useRef<{ ctx: AudioContext; token: MouthToken; stop: () => void } | null>(null);
 
@@ -129,6 +137,7 @@ export default function AvatarLab() {
           </div>
           <div className="rounded-[var(--radius-lg)] border border-[var(--hud-line)] p-3 font-[family-name:var(--font-hud-mono)] text-[0.75rem] text-[var(--hud-text-dim)]" data-mouth>
             open {mouth.open.toFixed(2)} · width {mouth.width.toFixed(2)}
+            <div className="mt-1 h-4" data-visemes>{visemeLine || "visemes: listening…"}</div>
             <div className="mt-2 h-1.5 w-full rounded-full bg-[var(--hud-surface-2)]"><div className="h-full rounded-full bg-[var(--hud-cyan)]" style={{ width: `${Math.round(mouth.open * 100)}%` }} /></div>
           </div>
           {note && <p className="text-[0.8rem] text-[var(--hud-warn)]">{note}</p>}

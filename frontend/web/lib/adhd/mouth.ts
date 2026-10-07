@@ -21,6 +21,84 @@
 /** The mouth shape. Both 0-1. `open` is jaw drop, `width` is how spread vs rounded the lips are. */
 export type MouthShape = { open: number; width: number };
 
+/*
+ * VISEMES, FOR A REALISTIC FACE. The three-band shape above is enough for a cartoon mouth; Aria's
+ * photoreal head (components/avatar/AriaAvatar.tsx) wants to know WHICH sound it hears — lips sealed
+ * on p/b/m, lower lip under the teeth on f/v, rounded for "oo", spread for "ee". HeadAudio (MIT,
+ * lib/avatar/vendor) does that in an audio worklet from MFCC features, in about 50 ms, with a 14 kB
+ * model, no server. It is attached to the same bus, best-effort: where worklets are unavailable or
+ * the model fails to load, the shape above carries on alone and the face uses it.
+ */
+export type VisemeWeights = Record<string, number>;
+let visemes: VisemeWeights = {};
+let visemeNode: { update: (dt: number) => void; disconnect: () => void; stop?: () => void } | null = null;
+let visemeOwner: MouthToken = 0;
+let lastVisemeTick = 0;
+const workletReady = new WeakMap<AudioContext, Promise<boolean>>();
+
+/** The live viseme weights (HeadAudio's Oculus names without the "viseme_" prefix); empty until the model listens. */
+export function visemeWeights(): VisemeWeights {
+  return visemes;
+}
+
+/** Load the worklet once per context. False when the browser or the network says no. */
+function ensureWorklet(ctx: AudioContext): Promise<boolean> {
+  let ready = workletReady.get(ctx);
+  if (!ready) {
+    ready = (async () => {
+      if (typeof window === "undefined" || !ctx.audioWorklet) return false;
+      try {
+        await ctx.audioWorklet.addModule("/headaudio/headworklet.min.mjs");
+        return true;
+      } catch (error) {
+        console.warn("[mouth] viseme worklet unavailable:", error);
+        return false;
+      }
+    })();
+    workletReady.set(ctx, ready);
+  }
+  return ready;
+}
+
+/** Start listening for visemes on `source`; a token that stops owning the analyser is ignored when it resolves. */
+async function attachVisemes(ctx: AudioContext, source: AudioNode, token: MouthToken): Promise<void> {
+  if (!(await ensureWorklet(ctx))) return;
+  if (token !== owner) return;
+  try {
+    const { HeadAudio } = await import("../avatar/vendor/headaudio.min.mjs");
+    if (token !== owner) return;
+    // Aria's voice sits around 220 Hz; the model's Mel spacing stretches to match (its default is 150).
+    const node = new HeadAudio(ctx, { parameterData: { vadGateActiveDb: -46, vadGateInactiveDb: -56, speakerMeanHz: 220 } });
+    await node.loadModel("/headaudio/model-en-mixed.bin");
+    if (token !== owner) {
+      node.stop?.();
+      return;
+    }
+    node.onvalue = (key: string, value: number) => {
+      const name = key.startsWith("viseme_") ? key.slice(7) : key;
+      visemes = { ...visemes, [name]: value };
+    };
+    source.connect(node);
+    visemeNode = node;
+    visemeOwner = token;
+    lastVisemeTick = performance.now();
+  } catch (error) {
+    console.warn("[mouth] visemes unavailable:", error);
+  }
+}
+
+function detachVisemes() {
+  try {
+    visemeNode?.stop?.();
+    visemeNode?.disconnect();
+  } catch {
+    // Already gone with its context.
+  }
+  visemeNode = null;
+  visemeOwner = 0;
+  visemes = {};
+}
+
 type Listener = (shape: MouthShape) => void;
 
 const listeners = new Set<Listener>();
@@ -111,6 +189,9 @@ export function attachMouthAnalyser(ctx: AudioContext, source: AudioNode): Mouth
   timeBuf = new Uint8Array(new ArrayBuffer(node.fftSize));
   freqBuf = new Uint8Array(new ArrayBuffer(node.frequencyBinCount));
   owner = nextToken++;
+  // The viseme listener on the same source, when the browser can run it; never awaited.
+  detachVisemes();
+  void attachVisemes(ctx, source, owner);
   if (!raf) loop();
   return owner;
 }
@@ -122,6 +203,7 @@ export function detachMouthAnalyser(token?: MouthToken) {
   timeBuf = null;
   freqBuf = null;
   owner = 0;
+  detachVisemes();
   if (raf) cancelAnimationFrame(raf);
   raf = 0;
   publish({ open: 0, width: 0.5 }); // the mouth must close when the voice stops, not freeze mid-word
@@ -130,6 +212,13 @@ export function detachMouthAnalyser(token?: MouthToken) {
 function loop() {
   raf = requestAnimationFrame(loop);
   if (!analyser || !timeBuf || !freqBuf) return;
+
+  // The viseme weights ease toward the sound HeadAudio heard; it wants the frame time in ms.
+  if (visemeNode && visemeOwner === owner) {
+    const now = performance.now();
+    visemeNode.update(Math.min(100, now - lastVisemeTick));
+    lastVisemeTick = now;
+  }
 
   analyser.getByteTimeDomainData(timeBuf);
   // RMS around the 128 midpoint of unsigned time-domain data. Peak amplitude would make the mouth

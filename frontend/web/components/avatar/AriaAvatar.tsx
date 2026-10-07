@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { mouthShape } from "@/lib/adhd/mouth";
+import { mouthShape, visemeWeights } from "@/lib/adhd/mouth";
+import { faceFromVisemes, visemesActive } from "@/lib/avatar/visemes";
 import { blinkWeight, composeFrame, easeFrame, expressionTarget, headSway, mouthWeights, nextBlinkDelayMs, type AvatarState, type FaceFrame } from "@/lib/avatar/face";
 
 /**
@@ -34,14 +35,21 @@ export function AriaAvatar({
   state,
   head = DEFAULT_HEAD,
   background,
+  transparent = false,
   className = "",
   onReady,
   onUnavailable,
 }: {
   state: AvatarState;
   head?: AriaHead;
-  /** Hex like "0x0A0A14"; omitted = the renderer's default (black). */
+  /** Hex like "0x0A0A14"; omitted = the renderer's default (black). Ignored when `transparent`. */
   background?: string;
+  /**
+   * Draw her as a cutout on whatever is behind: the renderer always clears to an opaque colour, so
+   * while it creates its context the canvas is asked for alpha and its clear is forced to transparent
+   * (the trick gsplat-talkinghead uses). Only the canvas inside this host is affected.
+   */
+  transparent?: boolean;
   className?: string;
   onReady?: () => void;
   onUnavailable?: (reason: string) => void;
@@ -79,7 +87,10 @@ export function AriaAvatar({
         blink = blinkWeight(since);
         if (since > 180) blinkStartedAt = now + nextBlinkDelayMs(s);
       }
-      return composeFrame(expression, mouthWeights(mouthShape()), blink);
+      // The visemes when the listener hears them (which sound), else the loudness mouth (how much).
+      const mouth = mouthShape();
+      const live = visemeWeights();
+      return composeFrame(expression, visemesActive(live) ? faceFromVisemes(live, Math.min(1, mouth.open * 1.6 + 0.2)) : mouthWeights(mouth), blink);
     };
 
     const canRender = (() => {
@@ -104,15 +115,21 @@ export function AriaAvatar({
         if (cancelled) return;
         // `create` makes an isolated instance (v1.0.6+); the typings only declare the singleton `getInstance`.
         const Factory = mod.GaussianSplatRenderer as unknown as { create: (host: HTMLDivElement, asset: string, options: object) => Promise<unknown> };
-        const created = (await Factory.create(host, `/avatars/${head}.zip`, {
-          backgroundColor: background,
+        const restore = transparent ? forceTransparentCanvas(host) : null;
+        let created: Renderer;
+        try {
+          created = (await Factory.create(host, `/avatars/${head}.zip`, {
+          backgroundColor: transparent ? undefined : background,
           getChatState: () => RENDERER_STATE[stateRef.current],
           getExpressionData: frame,
           getNeckPose: () => ({ neck: headSway((performance.now() - t0) / 1000, stateRef.current, mouthShape().open, swayPhase) }),
           // Mutual gaze: the renderer solves the eye-look shapes so her eyes stay on the camera, whatever the head does.
           getGazeOffset: () => ({ yawDeg: 0, pitchDeg: 0 }),
           loadProgress: (p: number) => setProgress(Math.round(p)),
-        })) as unknown as Renderer;
+          })) as unknown as Renderer;
+        } finally {
+          restore?.();
+        }
         if (cancelled) {
           created.dispose?.();
           return;
@@ -147,7 +164,7 @@ export function AriaAvatar({
     };
     // A new head or background rebuilds the renderer; state changes are read per frame via the ref.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [head, background]);
+  }, [head, background, transparent]);
 
   return (
     <div className={`relative overflow-hidden ${className}`} aria-label="Aria" role="img">
@@ -160,4 +177,25 @@ export function AriaAvatar({
       )}
     </div>
   );
+}
+
+/**
+ * While the renderer sets up, any WebGL context made for a canvas inside `host` gets an alpha
+ * channel and a transparent clear colour, whatever the renderer asks for. Returns the undo.
+ */
+function forceTransparentCanvas(host: HTMLElement): () => void {
+  const original = HTMLCanvasElement.prototype.getContext;
+  const patched = function (this: HTMLCanvasElement, id: string, attributes?: unknown) {
+    if (!id.startsWith("webgl") || !host.contains(this)) return original.call(this, id, attributes as never);
+    const gl = original.call(this, id, { ...(attributes as object), alpha: true, premultipliedAlpha: true } as never) as WebGLRenderingContext | null;
+    if (gl) {
+      const clearColor = gl.clearColor.bind(gl);
+      gl.clearColor = () => clearColor(0, 0, 0, 0);
+    }
+    return gl;
+  };
+  HTMLCanvasElement.prototype.getContext = patched as typeof HTMLCanvasElement.prototype.getContext;
+  return () => {
+    if (HTMLCanvasElement.prototype.getContext === patched) HTMLCanvasElement.prototype.getContext = original;
+  };
 }
