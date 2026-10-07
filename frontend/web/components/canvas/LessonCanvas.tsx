@@ -1,13 +1,13 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
+import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
 import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues } from "@/lib/canvas/cues";
-import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
+import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, THEME_LABEL, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
@@ -561,6 +561,30 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
       <div className="absolute right-3 top-3 z-10 flex gap-2" onPointerDown={(e) => e.stopPropagation()}>
+        {/* The board's surface, chosen by the student: three named swatches, so it reads as a choice
+            at a glance (restored 2026-10-07). Until one is picked the board follows the app's theme. */}
+        <div role="radiogroup" aria-label="Board style" className="flex items-center gap-0.5 rounded-full border border-white/15 bg-black/60 p-0.5 backdrop-blur">
+          <Palette size={13} className="mx-1.5 text-white/60" aria-hidden="true" />
+          {CANVAS_THEMES.map((choice) => (
+            <button
+              key={choice}
+              type="button"
+              role="radio"
+              aria-checked={themeChoice === choice}
+              onClick={() => {
+                storeTheme(choice);
+                setThemeChoice(choice);
+              }}
+              title={THEME_HINT[choice]}
+              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white ${
+                themeChoice === choice ? "bg-white/90 text-black" : "text-white/80 hover:bg-white/10"
+              }`}
+            >
+              <span aria-hidden="true" className="h-3 w-3 rounded-full border border-black/30" style={{ background: THEME_SWATCH[choice] }} />
+              {choice === "chalk" ? "Chalk" : THEME_LABEL[choice]}
+            </button>
+          ))}
+        </div>
         <button
           onClick={() => {
             const next = !soundOn;
@@ -1208,6 +1232,19 @@ function paperShadow(): string | null {
 
 const CHALK_CSS = chalkCss();
 const THEME_KEY = "aria.canvas.theme";
+const THEME_HINT: Record<CanvasThemeChoice, string> = {
+  paper: "Every board on paper",
+  chalk: "Every board on a chalkboard",
+  mix: "Equations, graphs and processes on the chalkboard; pictures on paper",
+};
+/** The student's pick, kept in this browser; it outranks the app theme from then on. */
+function storeTheme(choice: CanvasThemeChoice) {
+  try {
+    localStorage.setItem(THEME_KEY, choice);
+  } catch {
+    // Storage unavailable: the choice still applies for this visit.
+  }
+}
 /** A classroom: the working on the chalkboard, pictures pinned up on paper. */
 const DEFAULT_THEME: CanvasThemeChoice = "mix";
 const THEME_SWATCH: Record<CanvasThemeChoice, string> = {

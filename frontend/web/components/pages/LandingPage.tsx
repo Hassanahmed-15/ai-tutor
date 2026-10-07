@@ -17,12 +17,11 @@ import { PromptTiles } from "@/components/pages/PromptTiles";
 import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
-import { AriaHero } from "@/components/pages/AriaHero";
+import { AriaBot } from "@/components/pages/AriaBot";
 
 /**
- * THE FRONT PAGE, with as little to read as a page can have: one question in Aria's voice, one
- * place to answer it, the last lecture to go back to, three ways in picked for this student, and
- * a week of dots. The library (every lecture) is a sheet opened from the top right, not a list
+ * THE FRONT PAGE, with as little to read as a page can have: Aria herself saying hello, one place
+ * to answer her, the last lecture to go back to, and three ways in picked for this student. The library (every lecture) is a sheet opened from the top right, not a list
  * beside the page — history is recognised from a shelf when it is wanted, never read past to start.
  *
  * Everything else is quieter than the composer. A file can be dropped anywhere on the page; a
@@ -140,12 +139,9 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
       </header>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-7 px-5 pb-20 pt-[3vh] sm:pt-[5vh]">
-        {/* Her name, and nothing else, at the centre: over a sphere of light in orbit (AriaHero). */}
-        <div className="hud-materialize relative -mb-2 flex w-full flex-col items-center overflow-x-clip">
-          <AriaHero size={180} />
-          <h1 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[3.6rem] font-medium leading-none tracking-[-0.03em] text-white sm:text-[4.4rem]" style={{ textShadow: "0 2px 28px rgba(10,10,20,0.55)" }}>
-            Aria
-          </h1>
+        {/* Aria at the centre, saying hello: a little box robot with a speech bubble (AriaBot). */}
+        <div className="hud-materialize relative flex w-full justify-center">
+          <AriaBot size={196} />
         </div>
 
         {/* Above the doors: the Video panel opens out of this card over them, and their fade-in
@@ -210,8 +206,6 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           />
         )}
 
-        {user && <WeekDots />}
-
         {adhd && <Leaderboard />}
         {adhd && <Thoughts />}
       </div>
@@ -251,40 +245,5 @@ function IconWord({ icon, word, onClick, pressed }: { icon: React.ReactNode; wor
       <span aria-hidden="true">{icon}</span>
       <span className="text-[0.625rem] font-medium tracking-[0.02em]">{word}</span>
     </button>
-  );
-}
-
-/** Seven dots, one per day this week, filled on the days with a lesson. No number to beat. */
-function WeekDots() {
-  const [days, setDays] = useState<boolean[] | null>(null);
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch("/api/learner-memory", { cache: "no-store", signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        const lessons: Array<{ at: string }> = Array.isArray(data?.memory?.lessons) ? data.memory.lessons : [];
-        const today = new Date();
-        const start = new Date(today.getFullYear(), today.getMonth(), today.getDate() - ((today.getDay() + 6) % 7));
-        const week = Array.from({ length: 7 }, (_, i) => {
-          const d0 = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i).getTime();
-          return lessons.some((l) => { const t = Date.parse(l.at); return t >= d0 && t < d0 + 86_400_000; });
-        });
-        setDays(week);
-      })
-      .catch(() => {});
-    return () => controller.abort();
-  }, []);
-  if (!days) return null;
-  const todayIndex = (new Date().getDay() + 6) % 7;
-  const count = days.filter(Boolean).length;
-  return (
-    <div className="hud-materialize flex items-center gap-2 px-1" role="img" aria-label={`${count} of 7 days this week with a lesson`}>
-      {days.map((on, i) => (
-        <span
-          key={i}
-          className={`size-2 rounded-full transition-colors ${on ? "bg-[var(--warm)]" : "bg-[var(--hud-line-strong)]"} ${i === todayIndex ? "ring-2 ring-[var(--hud-cyan-glow)]" : ""}`}
-        />
-      ))}
-    </div>
   );
 }
