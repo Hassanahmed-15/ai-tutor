@@ -3492,12 +3492,8 @@ export function LessonPlayer({
               <span className="hidden sm:inline">Leave</span>
             </button>
             <div className="min-w-0">
-              <p className="truncate text-[0.95rem] font-semibold leading-tight text-[var(--hud-text)]">{title}</p>
-              <p className="hidden truncate text-[0.72rem] text-[var(--hud-text-faint)] sm:block">
-                {teachingProgress.explained.length} established
-                {teachingProgress.current ? ` · ${teachingProgress.current.title}` : ` · Part ${index + 1}`}
-                {teachingProgress.next ? ` · next: ${teachingProgress.next.title}` : " · final concept"}
-              </p>
+              {/* The title alone: what is established and what comes next is the lesson's own business. */}
+              <p className="truncate font-display text-[1.15rem] leading-tight text-[var(--hud-text)]">{title}</p>
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">

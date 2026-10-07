@@ -1,8 +1,7 @@
 "use client";
 
 import { groupSlides } from "@/lib/anim/slideGroups";
-import { useEffect, useState } from "react";
-import { Check, Play, Square } from "lucide-react";
+import { Play, Square } from "lucide-react";
 import {
   LESSON_DESIGN_STAGES,
   estimateRemainingMs,
@@ -21,11 +20,10 @@ import type { ProgressiveLectureSnapshot } from "@/lib/progressiveLectureTypes";
  * voice session competing with the lecture's own, and — asked for directly — it is not what someone
  * watching a progress bar wants. This screen makes no sound, opens no socket and asks for nothing.
  *
- * What it shows instead is the thing the student actually came for: which slide is being written
- * right now, which are finished, and how much is left. The data was already being collected by the
- * worker per beat (BeatTiming); it was previously rendered only as a developer's timing breakdown
- * — attempt counts, model names, "Critic", "Database" — beneath the chat. Here it is the whole
- * screen, in the student's terms.
+ * What it shows instead is the lesson appearing: its parts as frames that fill in as each board is
+ * written, one thin line for how far along, and one whisper for how long is left. The per-slide
+ * timings the worker collects (BeatTiming) are not shown; a student waiting for a lesson wants to
+ * see it appear, not read a report about it appearing.
  */
 
 type BeatRow = NonNullable<ProgressiveLectureSnapshot["beatStatus"]>[number];
@@ -35,6 +33,7 @@ export type LessonBuildScreenProps = {
   progress: DesignProgress;
   ready: boolean;
   beatStatus?: BeatRow[];
+  /** Kept for callers; the screen no longer shows elapsed time. */
   buildStartedAt?: string;
   onStop: () => void;
   onStart: () => void;
@@ -54,42 +53,20 @@ function slideStage(row: BeatRow): { label: string; tone: "done" | "active" | "w
   }
 }
 
-const seconds = (ms: number) => (ms >= 60_000 ? `${Math.round(ms / 60_000)} min` : `${Math.max(1, Math.round(ms / 1000))} s`);
-
 export function LessonBuildScreen({
   topic,
   progress,
   ready,
   beatStatus,
-  buildStartedAt,
   onStop,
   onStart,
 }: LessonBuildScreenProps) {
-  /*
-   * Starts at 0, not Date.now().
-   *
-   * The server renders this component too, and a clock read during render differs between the
-   * server's HTML and the client's first paint — React then discards the tree with a hydration
-   * error. Zero means "no clock yet", every duration below falls back to a server-safe value until
-   * the first tick, and one interval drives the elapsed time and all per-slide durations together
-   * so they cannot drift apart.
-   */
-  const [now, setNow] = useState(0);
-  useEffect(() => {
-    setNow(Date.now());
-    const id = window.setInterval(() => setNow(Date.now()), 1000);
-    return () => window.clearInterval(id);
-  }, []);
-
   const percent = ready ? 1 : progressFor(progress.stage, progress.stageFraction);
   const currentStage = stageIndex(progress.stage);
   const remaining = ready ? null : formatRemaining(estimateRemainingMs(progress.elapsedMs, percent));
 
   const slides = beatStatus ?? [];
   const readyCount = slides.filter((s) => s.state === "ready").length;
-  // Before the first tick (server render, and the instant before the effect runs) fall back to the
-  // caller's own elapsed figure, which is the same on both sides.
-  const elapsed = buildStartedAt && now > 0 ? now - Date.parse(buildStartedAt) : progress.elapsedMs;
 
   return (
     /*
@@ -100,149 +77,69 @@ export function LessonBuildScreen({
      */
     <div
       data-quiet-screen="lesson-build"
-      className="min-h-screen bg-[var(--hud-bg)] px-5 py-10 text-[var(--hud-text)]"
+      className="hud-canvas flex min-h-screen flex-col items-center justify-center px-5 py-10 text-[var(--hud-text)]"
     >
-      <div className="mx-auto w-full max-w-3xl">
-        <header className="text-center">
-          <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[var(--hud-text-faint)]">
-            Preparing your lesson
-          </p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight">{topic}</h1>
-          <p className="mt-2 text-sm text-[var(--hud-text-dim)]">
-            {ready
-              ? "Your lesson is ready."
-              : slides.length > 0
-                ? `${readyCount} of ${slides.length} slides ready`
-                : (progress.detail ?? progress.status)}
-          </p>
-        </header>
+      {/*
+       * THE BUILD, WITH ALMOST NOTHING TO READ. The lesson's parts as frames that fill in as each
+       * board is written (the one being written breathes), one thin line for how far along, and
+       * one whisper for how long is left. The percentage, the slide table with its states and the
+       * seven-step checklist are gone: a student waiting for a lesson wants to see it appear, not
+       * read a report about it appearing.
+       */}
+      <div className="relative z-10 flex w-full max-w-2xl flex-col items-center text-center">
+        <h1 className="font-display text-[2.2rem] leading-[1.1] text-[var(--hud-text)] sm:text-[2.8rem]" style={{ textWrap: "balance" }}>{topic}</h1>
+        <p className="mt-3 font-[family-name:var(--font-hud-mono)] text-[0.75rem] uppercase tracking-[0.1em] text-[var(--hud-text-faint)]" aria-live="polite">
+          {ready ? "Ready" : remaining ? `about ${remaining}` : (LESSON_DESIGN_STAGES[currentStage]?.label ?? progress.status)}
+        </p>
 
-        {/* THE HEADLINE BAR. One number, one bar — the answer to "how much longer". */}
-        <section className="mt-8 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5">
-          <div className="flex items-baseline justify-between gap-3">
-            <span className="text-sm font-semibold">
-              {ready ? "Finished" : (LESSON_DESIGN_STAGES[currentStage]?.label ?? progress.status)}
-            </span>
-            <span className="text-2xl font-bold tabular-nums text-[var(--hud-cyan)]">{Math.round(percent * 100)}%</span>
-          </div>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[var(--hud-surface-2)]">
-            <div
-              className="h-full rounded-full bg-[var(--hud-cyan)] transition-[width] duration-700 ease-out"
-              style={{ width: `${Math.max(2, percent * 100)}%` }}
-            />
-          </div>
-          <p className="mt-2.5 flex flex-wrap justify-between gap-x-4 text-[11px] text-[var(--hud-text-faint)]">
-            <span>{seconds(elapsed)} elapsed</span>
-            {remaining && <span>about {remaining} left</span>}
-          </p>
-        </section>
+        <div className="mt-8 h-[3px] w-full max-w-md overflow-hidden rounded-full bg-[var(--hud-surface-2)]" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(percent * 100)}>
+          <div className="h-full rounded-full bg-[var(--hud-cyan)] transition-[width] duration-700 ease-out" style={{ width: `${Math.max(2, percent * 100)}%` }} />
+        </div>
 
-        {/* THE SLIDES. The centre of the screen, because it is the only part that answers "what is
-            happening right now" rather than "how far along". */}
         {slides.length > 0 && (
-          <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5">
-            <h2 className="text-sm font-semibold">Slides</h2>
-            <ul className="mt-3 space-y-1.5">
-              {groupSlides(slides).map((group) => {
-                // One line per subtopic: the stage of its most advanced board still in progress.
-                const active = group.rows.find((r) => slideStage(r).tone === "active");
-                const row = active ?? (group.readyCount === group.rows.length ? group.rows[0] : group.rows[group.rows.length - 1]);
-                const { label, tone } = group.readyCount === group.rows.length ? slideStage(group.rows[0]) : slideStage(row);
-                const started = row.timing?.textStartedAt ? Date.parse(row.timing.textStartedAt) : null;
-                const running = tone === "active" && started && now > 0 ? now - started : null;
-                const many = group.rows.length > 1;
-                return (
-                  <li
-                    key={group.first}
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors ${
-                      tone === "active" ? "bg-[var(--hud-cyan)]/[0.07] ring-1 ring-inset ring-[var(--hud-cyan)]/25" : ""
+          <ol className="mt-10 flex flex-wrap justify-center gap-3" aria-label={`${readyCount} of ${slides.length} boards ready`}>
+            {groupSlides(slides).map((group) => {
+              const active = group.rows.find((r) => slideStage(r).tone === "active");
+              const done = group.readyCount === group.rows.length;
+              const tone = done ? "done" : active ? "active" : "waiting";
+              return (
+                <li key={group.first} title={group.title} className="flex flex-col items-center gap-1.5">
+                  <span
+                    aria-hidden
+                    className={`relative block h-12 w-16 rounded-[6px] border transition-colors duration-500 ${
+                      tone === "done" ? "border-[var(--hud-line-strong)] bg-[var(--hud-surface)]" : tone === "active" ? "border-[var(--hud-cyan)] bg-[var(--accent-soft)]" : "border-dashed border-[var(--hud-line)]"
                     }`}
                   >
-                    <span aria-hidden className="grid h-5 w-5 shrink-0 place-items-center">
-                      {tone === "done" ? (
-                        <Check size={13} strokeWidth={3} className="text-[var(--hud-cyan)]" />
-                      ) : tone === "active" ? (
-                        <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
-                      ) : (
-                        <span className="h-1.5 w-1.5 rounded-full border border-[var(--hud-text-faint)]/50" />
-                      )}
-                    </span>
-                    <span className="w-9 shrink-0 text-[11px] tabular-nums text-[var(--hud-text-faint)]">
-                      {many ? `${group.first + 1}–${group.last + 1}` : group.first + 1}
-                    </span>
-                    <span
-                      className={`min-w-0 flex-1 truncate text-[13px] ${
-                        tone === "waiting" ? "text-[var(--hud-text-faint)]/60" : "text-[var(--hud-text)]"
-                      }`}
-                    >
-                      {group.title}
-                      {many && <span className="ml-2 text-[11px] text-[var(--hud-text-faint)]">{group.rows.length} boards</span>}
-                    </span>
-                    <span
-                      className={`shrink-0 text-[11px] tabular-nums ${
-                        tone === "active" ? "text-[var(--hud-cyan)]" : "text-[var(--hud-text-faint)]"
-                      }`}
-                    >
-                      {label}
-                      {many && tone !== "done" && group.readyCount > 0 ? ` · ${group.readyCount} of ${group.rows.length} ready` : ""}
-                      {running !== null ? ` · ${seconds(running)}` : ""}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        )}
-
-        {/* THE STAGES. Kept small and secondary: it explains the phase the build is in, which the
-            slide list cannot show before any slide has been planned. */}
-        <section className="mt-6 rounded-2xl border border-[var(--hud-line)] bg-[var(--hud-surface)] p-5">
-          <h2 className="text-sm font-semibold">Steps</h2>
-          <ul className="mt-3 space-y-1">
-            {LESSON_DESIGN_STAGES.map((stage, index) => {
-              const done = ready || index < currentStage;
-              const active = !ready && index === currentStage;
-              return (
-                <li
-                  key={stage.id}
-                  aria-current={active ? "step" : undefined}
-                  className={`flex items-center gap-2 text-[11px] leading-6 ${
-                    done
-                      ? "text-[var(--hud-text-dim)]"
-                      : active
-                        ? "font-semibold text-[var(--hud-cyan)]"
-                        : "text-[var(--hud-text-faint)]/40"
-                  }`}
-                >
-                  <span aria-hidden className="grid h-3 w-3 shrink-0 place-items-center">
-                    {done ? (
-                      <Check size={11} strokeWidth={3} />
-                    ) : active ? (
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--hud-cyan)]" />
-                    ) : (
-                      <span className="h-1.5 w-1.5 rounded-full border border-current" />
+                    {tone === "done" && (
+                      <svg viewBox="0 0 64 48" className="absolute inset-0 h-full w-full">
+                        <line x1="12" y1="14" x2="42" y2="14" stroke="var(--hud-cyan)" strokeWidth="2.2" strokeLinecap="round" />
+                        <line x1="12" y1="22" x2="34" y2="22" stroke="var(--hud-text-faint)" strokeWidth="1.6" strokeLinecap="round" />
+                        <line x1="12" y1="30" x2="38" y2="30" stroke="var(--hud-text-faint)" strokeWidth="1.6" strokeLinecap="round" />
+                        <circle cx="50" cy="31" r="5" fill="none" stroke="var(--hud-text-faint)" strokeWidth="1.4" />
+                      </svg>
                     )}
+                    {tone === "active" && <span className="aria-breathe absolute left-1/2 top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--hud-cyan)]" />}
                   </span>
-                  {stage.label}
+                  <span className="max-w-16 truncate text-[0.625rem] text-[var(--hud-text-faint)]">{group.title}</span>
                 </li>
               );
             })}
-          </ul>
-        </section>
+          </ol>
+        )}
 
-        <div className="mt-7 flex items-center justify-center gap-3">
+        <div className="mt-12 flex items-center gap-3">
           <button
             onClick={onStop}
-            className="inline-flex h-10 items-center gap-2 rounded-md border border-[var(--hud-line)] px-4 text-xs font-semibold text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
+            className="inline-flex h-10 items-center gap-2 rounded-full border border-[var(--hud-line)] px-4 text-[0.8125rem] font-medium text-[var(--hud-text-dim)] transition hover:bg-[var(--hud-surface-2)]"
           >
-            <Square size={14} aria-hidden /> Stop
+            <Square size={13} aria-hidden /> Stop
           </button>
           {ready && (
             <button
               onClick={onStart}
-              className="inline-flex h-10 items-center gap-2 rounded-md bg-[var(--hud-cyan)] px-6 text-xs font-black uppercase tracking-[0.14em] text-[var(--accent-on)] transition hover:brightness-110"
+              className="hud-btn-primary inline-flex h-11 items-center gap-2 rounded-full px-7 text-[1rem]"
             >
-              <Play size={15} aria-hidden /> Start lecture
+              <Play size={15} fill="currentColor" aria-hidden /> Start
             </button>
           )}
         </div>

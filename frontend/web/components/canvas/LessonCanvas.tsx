@@ -1,13 +1,13 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
+import { Compass, Crosshair, Eraser, Loader2, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
 import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues } from "@/lib/canvas/cues";
-import { CANVAS_THEMES, CHALK, THEME_LABEL, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
+import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
 import { ARIA_INK, CANVAS_CSS, CanvasPanel, Ink, markerPoint } from "./CanvasPanel";
@@ -81,11 +81,22 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
   const [aspect, setAspect] = useState(16 / 9);
   const [mode, setMode] = useState<"follow" | "free" | "overview">("follow");
 
-  /** Paper, chalkboard or the classroom mix — the student's choice, remembered per browser. */
+  /**
+   * THE BOARD IS MADE OF THE APP'S MATERIAL: paper when the app is light, chalk when it is dark
+   * (app/globals.css; Settings → Appearance). A choice stored by an earlier build's Paper/Chalk/Mix
+   * pill still wins for that browser; the pill itself is gone from the lesson, so a student is never
+   * asked to style a board mid-lesson.
+   */
   const [themeChoice, setThemeChoice] = useState<CanvasThemeChoice>(DEFAULT_THEME);
   useEffect(() => {
-    const t = window.setTimeout(() => setThemeChoice(storedTheme()), 0);
-    return () => window.clearTimeout(t);
+    const apply = () => setThemeChoice(storedTheme());
+    const t = window.setTimeout(apply, 0);
+    const observer = new MutationObserver(apply);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => {
+      window.clearTimeout(t);
+      observer.disconnect();
+    };
   }, []);
   const themes = useMemo((): BoardTheme[] => panels.map((p) => panelTheme(themeChoice, p.spec.stage.kind)), [panels, themeChoice]);
   // A chalk board's own colours are lifted to chalk pastels before it is laid out (theme.ts).
@@ -550,26 +561,6 @@ export function LessonCanvas({ panels, currentIndex, sentence, sentenceProgress,
 
       {/* Camera controls: see the whole lesson, or go back to following Aria. */}
       <div className="absolute right-3 top-3 z-10 flex gap-2" onPointerDown={(e) => e.stopPropagation()}>
-        {/* The board's surface: three named swatches, so it reads as a choice at a glance. */}
-        <div role="radiogroup" aria-label="Board style" className="flex items-center gap-0.5 rounded-full border border-white/15 bg-black/60 p-0.5 backdrop-blur">
-          <Palette size={13} className="mx-1.5 text-white/60" aria-hidden="true" />
-          {CANVAS_THEMES.map((choice) => (
-            <button
-              key={choice}
-              role="radio"
-              aria-checked={themeChoice === choice}
-              onClick={() => {
-                storeTheme(choice);
-                setThemeChoice(choice);
-              }}
-              title={THEME_HINT[choice]}
-              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold transition-colors ${themeChoice === choice ? "bg-white/90 text-black" : "text-white/80 hover:bg-white/10"}`}
-            >
-              <span aria-hidden="true" className="h-3 w-3 rounded-full border border-black/30" style={{ background: THEME_SWATCH[choice] }} />
-              {choice === "chalk" ? "Chalk" : THEME_LABEL[choice]}
-            </button>
-          ))}
-        </div>
         <button
           onClick={() => {
             const next = !soundOn;
@@ -1224,28 +1215,18 @@ const THEME_SWATCH: Record<CanvasThemeChoice, string> = {
   chalk: CHALK.slate,
   mix: `linear-gradient(135deg, #fbfaf6 50%, ${CHALK.slate} 50%)`,
 };
-const THEME_HINT: Record<CanvasThemeChoice, string> = {
-  paper: "Every board on paper",
-  chalk: "Every board on a chalkboard",
-  mix: "Equations, graphs and processes on the chalkboard; pictures on paper",
-};
 
+/** A choice this browser stored, else the app's material: chalk on a dark app, paper on a light one. */
 function storedTheme(): CanvasThemeChoice {
+  const fromApp = (): CanvasThemeChoice => (document.documentElement.dataset.theme === "dark" ? "chalk" : "paper");
   try {
     const v = localStorage.getItem(THEME_KEY);
-    return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : DEFAULT_THEME;
+    return (CANVAS_THEMES as readonly string[]).includes(v ?? "") ? (v as CanvasThemeChoice) : fromApp();
   } catch {
-    return DEFAULT_THEME;
+    return fromApp();
   }
 }
 
-function storeTheme(choice: CanvasThemeChoice): void {
-  try {
-    localStorage.setItem(THEME_KEY, choice);
-  } catch {
-    // A blocked store just means the choice is not remembered.
-  }
-}
 
 /** Old eraser smudges on a chalkboard: soft, wide, barely-there swirls of white. */
 function chalkDust(): string | null {
