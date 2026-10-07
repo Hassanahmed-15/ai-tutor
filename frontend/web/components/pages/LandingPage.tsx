@@ -148,7 +148,9 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           </h1>
         </div>
 
-        <form className="hud-materialize" onSubmit={(e) => { e.preventDefault(); start(); }}>
+        {/* Above the doors: the Video panel opens out of this card over them, and their fade-in
+            animation makes them a stacking layer of their own. */}
+        <form className="hud-materialize relative z-20" onSubmit={(e) => { e.preventDefault(); start(); }}>
           <div className="home-lift flex flex-col gap-2 rounded-[14px] border border-[var(--hud-line)] bg-[var(--hud-surface)] p-3 shadow-[var(--elev-1)] focus-within:border-[var(--hud-line-strong)]">
             <label htmlFor="brief" className="sr-only">What should Aria teach?</label>
             <textarea

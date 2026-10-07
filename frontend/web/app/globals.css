@@ -1306,9 +1306,10 @@ html[data-reduced-motion="1"] *::after {
     inset 0 18px 40px rgba(255, 255, 255, 0.06),
     0 0 70px rgba(159, 107, 255, 0.45),
     0 0 180px rgba(90, 120, 255, 0.22);
-  animation: orb-breathe 7s ease-in-out infinite;
 }
-.orb-halo { background: radial-gradient(circle, rgba(159, 107, 255, 0.34) 0%, rgba(90, 120, 255, 0.14) 40%, rgba(90, 120, 255, 0) 70%); animation: orb-breathe 7s ease-in-out infinite; }
+/* Only the halo breathes, and only by transform on its own compositor layer: scaling the sphere
+   re-rasterised its 180px shadow every frame, which some Macs showed as unpainted black tiles. */
+.orb-halo { background: radial-gradient(circle, rgba(159, 107, 255, 0.34) 0%, rgba(90, 120, 255, 0.14) 40%, rgba(90, 120, 255, 0) 70%); animation: orb-breathe 7s ease-in-out infinite; will-change: transform; }
 .orb-ring { border-radius: 50%; border: 1.5px solid rgba(201, 182, 255, 0.6); box-shadow: 0 0 16px rgba(159, 107, 255, 0.35); transform: perspective(900px) rotateX(var(--incl, 76deg)) rotateZ(var(--spin, 0deg)); }
 .orb-ring-far { z-index: 1; clip-path: inset(0 0 50% 0); }
 .orb-ring-near { z-index: 3; clip-path: inset(50% 0 0 0); }
@@ -1320,6 +1321,6 @@ html[data-reduced-motion="1"] *::after {
 [data-theme="light"] .orb-halo { background: radial-gradient(circle, rgba(184, 56, 31, 0.2), rgba(184, 56, 31, 0) 70%); }
 [data-theme="light"] .orb-mote { background: #B8381F; box-shadow: 0 0 8px rgba(184, 56, 31, 0.6); }
 @media (prefers-reduced-motion: reduce) {
-  .orb-core, .orb-halo, .orb-mote { animation: none; }
+  .orb-halo, .orb-mote { animation: none; }
   .orb-tilt { transition: none; transform: none; }
 }
