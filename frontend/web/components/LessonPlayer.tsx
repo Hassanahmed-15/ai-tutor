@@ -56,7 +56,7 @@ import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase, type VoicePhase } from "@/components/classroom/VoiceState";
-import { AriaAvatar } from "@/components/avatar/AriaAvatar";
+import { AvatarFlyer } from "@/components/avatar/AvatarFlyer";
 import type { AvatarState } from "@/lib/avatar/face";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
@@ -2944,6 +2944,22 @@ export function LessonPlayer({
   });
   const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
   const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
+  /*
+   * WHERE ARIA STANDS. One instance flies between places (components/avatar/AvatarFlyer.tsx):
+   * large on the section card when a part begins — the teacher introducing it — then beside the
+   * board in her own column (never over the drawing), or at the top of the questions sheet while
+   * it is open. On a screen too narrow for a column she takes the board's lower-right corner.
+   */
+  const mainRef = useRef<HTMLElement>(null);
+  const presenterSlotRef = useRef<HTMLDivElement>(null);
+  const asideSlotRef = useRef<HTMLDivElement>(null);
+  const cornerSlotRef = useRef<HTMLDivElement>(null);
+  const sheetSlotRef = useRef<HTMLDivElement>(null);
+  const coverSlotRef = useRef<HTMLDivElement>(null);
+  // Before the first Play she stands centre stage over the board; a section card is her stage too.
+  const avatarPlace: "sheet" | "stage" | "beside" = sideOpen && !chatInDock ? "sheet" : showSectionCard || !hasStarted ? "stage" : "beside";
+  const avatarSlots = avatarPlace === "sheet" ? [sheetSlotRef, asideSlotRef, cornerSlotRef] : avatarPlace === "stage" ? [presenterSlotRef, coverSlotRef, asideSlotRef, cornerSlotRef] : [asideSlotRef, cornerSlotRef];
+  const avatarColumn = showAvatar && !sideOpen && !pdfWorkspace;
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
     <ChatPanel
       onClose={sidePanelAlways ? undefined : () => setAskOpen(false)}
@@ -2981,7 +2997,7 @@ export function LessonPlayer({
   // paint light strokes on a dark ground and inverting that would break every animation the
   // pipeline produces. Every child keeps using the same token names.
   return (
-    <main className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
+    <main ref={mainRef} className="reading-room relative h-screen overflow-hidden bg-[var(--hud-bg)] text-[var(--hud-text)]">
       {adhd && <AdhdLayer index={index} beat={beats[index]} gameActive={!!mcq} />}
 
       {/*
@@ -3030,7 +3046,7 @@ export function LessonPlayer({
            * bottom bar carries leave, transport, the ask input and status in one line.
            */
           ? "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] lg:grid-rows-[minmax(0,1fr)_auto]"
-          : `flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid ${sideOpen ? "xl:grid-cols-[minmax(0,1fr)_340px]" : "xl:grid-cols-[minmax(0,1fr)]"}`}
+          : `flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid ${sideOpen ? "xl:grid-cols-[minmax(0,1fr)_340px]" : avatarColumn ? "xl:grid-cols-[minmax(0,1fr)_12.5rem]" : "xl:grid-cols-[minmax(0,1fr)]"}`}
         >
           {pdfWorkspace && sourceScope && (
             <PdfSourcePanel
@@ -3053,6 +3069,14 @@ export function LessonPlayer({
            * reader — and the "Explain this" anchor has nothing to measure against.
            */}
           <section ref={boardSurfaceRef} aria-label="Teaching board" className={`relative min-h-0 flex-1 overflow-hidden bg-[var(--hud-surface)] ${pdfWorkspace ? "flex flex-col" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
+            {/* Aria's corner, for screens with no room for her column beside the board. */}
+            {showAvatar && <div ref={cornerSlotRef} aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 z-10 hidden h-[10.5rem] w-[8.25rem] md:block xl:hidden" />}
+            {/* Centre stage before the lesson starts: she greets, then flies to her column on Play. */}
+            {showAvatar && !hasStarted && !showSectionCard && (
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10 grid place-items-center">
+                <div ref={coverSlotRef} className="aspect-[4/5] h-[min(64%,28rem)]" />
+              </div>
+            )}
             {/*
              * THE LINK BETWEEN THE TWO HALVES. The same amber as the source highlight, naming the
              * part and where it comes from, level with the source panel's own bar — so the board
@@ -3137,6 +3161,7 @@ export function LessonPlayer({
                    the student in front of a silent title wondering whether the lecture has hung. */
                 titlePending={currentAnimationPending}
                 onBoardPainted={handleBoardPainted}
+                presenterSlot={showAvatar ? presenterSlotRef : undefined}
               >
               <div className="relative h-full">
                 {beatFigure ? (
@@ -3395,6 +3420,12 @@ export function LessonPlayer({
             />
           </section>
 
+          {avatarColumn && (
+            <div className="hidden min-h-0 xl:flex xl:flex-col xl:justify-end">
+              <div ref={asideSlotRef} aria-hidden="true" className="aspect-[4/5] w-full" />
+            </div>
+          )}
+
           {!chatInDock && sideOpen && <div className={pdfWorkspace
             ? "flex min-h-0 flex-col gap-2 border-t border-[var(--hud-line)] p-2 lg:col-span-2"
             // A column beside the board on a wide screen; a sheet over its right edge on a narrow one.
@@ -3405,6 +3436,7 @@ export function LessonPlayer({
               She lived at 88px over the board and covered the slide title; here she has a 340px
               column to herself. Rendered outside ChatPanel so the standard player is untouched.
             */}
+            {showAvatar && <div ref={sheetSlotRef} aria-hidden="true" className="mx-auto aspect-[4/5] h-[9rem] shrink-0 xl:h-[11rem]" />}
             {adhd && (
               <div className="flex shrink-0 flex-col items-center gap-2 rounded-[1.5rem] border border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-3 py-3">
                 <TeacherAvatar speaking={speaking} size={150} expression={face} />
@@ -3544,20 +3576,10 @@ export function LessonPlayer({
           </div>
         </header>}
 
-        {/*
-          ARIA AT THE BOARD. Not a video tile in a box: her bust as a cutout, standing at the lower
-          right of the board like a teacher at the edge of her slide, a soft light behind her when
-          she speaks. Pointer events pass through, so nothing under her is lost.
-        */}
+        {/* ARIA, flown to whichever slot is hers (see `avatarPlace`): her bust as a cutout, a soft
+            light behind her when she speaks, pointer events passing through. */}
         {showAvatar && (
-          <div className="pointer-events-none absolute bottom-[4.75rem] right-2 z-30 hidden md:block lg:right-4">
-            <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-[58%] -z-10 size-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-500"
-              style={{ background: "radial-gradient(circle, var(--hud-cyan-glow) 0%, rgba(0,0,0,0) 68%)", opacity: avatarState === "speaking" ? 1 : avatarState === "listening" ? 0.55 : 0.25 }}
-            />
-            <AriaAvatar state={avatarState} transparent className="h-[19rem] w-[15rem] lg:h-[21rem] lg:w-[16.5rem]" onUnavailable={() => setAvatarUnavailable(true)} />
-          </div>
+          <AvatarFlyer within={mainRef} place={`${avatarPlace}:${sideOpen ? 1 : 0}:${showSectionCard ? 1 : 0}:${hasStarted ? 1 : 0}`} slots={avatarSlots} state={avatarState} onUnavailable={() => setAvatarUnavailable(true)} />
         )}
 
         {voiceBlocked && (

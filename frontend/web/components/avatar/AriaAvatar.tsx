@@ -29,7 +29,7 @@ type Renderer = { dispose?: () => void; viewer?: { camera?: { isPerspectiveCamer
 const RENDERER_STATE: Record<AvatarState, string> = { idle: "Idle", listening: "Listening", thinking: "Thinking", speaking: "Responding" };
 
 /** How the camera crops to the bust: the bundle leaves a lot of empty scene around the head. */
-const FRAME = { centerY: 0.47, height: 0.44 };
+const FRAME = { centerY: 0.445, height: 0.44 };
 
 export function AriaAvatar({
   state,

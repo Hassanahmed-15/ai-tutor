@@ -14,3 +14,8 @@ Run against the dev server (`npm run dev`) from `frontend/web`:
   (needs the API key the dev server uses); shows the track growing as chunks and words arrive.
 
 The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
+- `node scripts/avatar/places.mjs` — walks Aria through her places in `/player-preview` (centre
+  stage before Play, the section card at a transition, her column beside the board, the top of
+  the questions sheet) and saves `/tmp/aria-place-*.png`. Launches Chromium on the real GPU
+  (`--use-angle=metal`): on SwiftShader a masked WebGL canvas never composites, so the head
+  looks blank over the board there — that is the software renderer, not the page.

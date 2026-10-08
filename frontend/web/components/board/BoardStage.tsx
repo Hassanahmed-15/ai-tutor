@@ -1,5 +1,6 @@
 "use client";
 
+import type { RefObject } from "react";
 import { useEffect, useState } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
 import type { BoardMove } from "@/lib/board/teachingState";
@@ -56,6 +57,8 @@ export interface BoardStageProps {
   titleEyebrow?: string;
   /** The board behind the card is still being generated; show that rather than a silent title. */
   titlePending?: boolean;
+  /** Where Aria stands on the card to introduce the part (components/avatar/AvatarFlyer.tsx measures it). */
+  presenterSlot?: RefObject<HTMLDivElement | null>;
 }
 
 export type BoardStatus =
@@ -77,6 +80,7 @@ export function BoardStage({
   onBoardPainted,
   titleEyebrow,
   titlePending,
+  presenterSlot,
 }: BoardStageProps) {
   /*
    * "The board has painted" = two animation frames after this board mounted: one for the browser to
@@ -143,7 +147,7 @@ export function BoardStage({
 
       {overlay}
 
-      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} eyebrow={titleEyebrow} pending={titlePending} /> : null}
+      {shownTitle ? <SectionCard title={shownTitle} leaving={!title} eyebrow={titleEyebrow} pending={titlePending} presenterSlot={presenterSlot} /> : null}
 
       {veiled && <StatusVeil status={status} />}
     </section>
@@ -162,7 +166,7 @@ export function BoardStage({
  * It leaves on its own `board-title-out` animation rather than unmounting instantly, so the
  * hand-off is a dissolve into the board instead of a cut.
  */
-function SectionCard({ title, leaving, eyebrow, pending }: { title: string; leaving: boolean; eyebrow?: string; pending?: boolean }) {
+function SectionCard({ title, leaving, eyebrow, pending, presenterSlot }: { title: string; leaving: boolean; eyebrow?: string; pending?: boolean; presenterSlot?: RefObject<HTMLDivElement | null> }) {
   return (
     <div
       className="board-title-card pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-[#080a0e] px-8 lg:px-16"
@@ -174,7 +178,9 @@ function SectionCard({ title, leaving, eyebrow, pending }: { title: string; leav
           visual language from the board it was introducing, which is why it read as an interruption
           rather than as the lesson starting. */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(232,168,124,0.07),transparent_60%)]" />
-      <div className="relative w-full max-w-3xl">
+      {/* With Aria presenting, the card is a teacher beside her heading: title left, her bust right. */}
+      <div className={presenterSlot ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)_minmax(12rem,34%)] items-center gap-6 lg:gap-10" : "relative w-full max-w-3xl"}>
+      <div className="min-w-0">
         {eyebrow && (
           <p className="mb-4 text-[0.7rem] font-black uppercase tracking-[0.22em] text-white/30">{eyebrow}</p>
         )}
@@ -193,6 +199,8 @@ function SectionCard({ title, leaving, eyebrow, pending }: { title: string; leav
             Drawing the board…
           </p>
         )}
+      </div>
+      {presenterSlot && <div ref={presenterSlot} className="aspect-[4/5] h-[min(58vh,26rem)] justify-self-center" />}
       </div>
     </div>
   );
