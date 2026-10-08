@@ -19,3 +19,6 @@ The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
   the questions sheet) and saves `/tmp/aria-place-*.png`. Launches Chromium on the real GPU
   (`--use-angle=metal`): on SwiftShader a masked WebGL canvas never composites, so the head
   looks blank over the board there — that is the software renderer, not the page.
+- `node scripts/avatar/classroom-tour.mjs` — plays the classroom demo (`/classroom`) on the real GPU
+  for 40 s, printing each second what the teacher's brain is doing (place, activity, clip, pen,
+  marker) and saving frames while she writes to `/tmp/classroom-write-*.png`.

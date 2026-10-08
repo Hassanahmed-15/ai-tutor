@@ -9,6 +9,7 @@ import { isMotionBoard, motionBoardSentenceCount, MOTION_MODULE_NAMES, PEN_WRITE
 import { escapeStrayLessThan, type ParseLoc } from "../../lib/jsxRepair";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "../../lib/anim/boardFont";
 import { illustrationIdOf } from "../../lib/anim/illustratedLayout";
+import { PEN_HOLD_EVENT, PEN_TIP_EVENT, TEACHER_PRESENT_EVENT, isTeacherPresent } from "@/lib/classroom/penTip";
 
 /**
  * Renders an LLM-generated React component (a `reactAnimation` DrawOp's `code` string) live,
@@ -656,7 +657,7 @@ ${SANDBOX_LAYOUT_HOST}
     if (!data || typeof data !== "object") return;
     if (data.type === "snapshot") { postSnapshot(data.id); return; }
     if (data.type === "pen") {
-      if (MOTION_BOARD) PEN.pause(data.paused === true);
+      if (MOTION_BOARD) { PEN.pause(data.paused === true); PEN.glyph(data.glyph !== false); }
       return;
     }
     if (data.type === "annotate") {
@@ -802,11 +803,24 @@ export function ReactAnimationSandbox({
     iframeRef.current?.contentWindow?.postMessage({ type: "settle", scope: "line" }, "*");
   }, [srcDoc, failed, ready, settled, progress, sentenceIndex, sentenceProgress]);
 
-  // The board's pen (Motion boards) stops when the student pauses and goes on when they resume.
+  // The board's pen (Motion boards) stops when the student pauses and goes on when they resume; in the
+  // classroom it also waits while the teacher walks to it (lib/classroom/penTip.ts).
+  const [teacherHold, setTeacherHold] = useState(false);
+  const [teacherHere, setTeacherHere] = useState(isTeacherPresent);
+  useEffect(() => {
+    const onHold = (e: Event) => setTeacherHold((e as CustomEvent<boolean>).detail === true);
+    const onPresent = (e: Event) => setTeacherHere((e as CustomEvent<boolean>).detail === true);
+    window.addEventListener(PEN_HOLD_EVENT, onHold);
+    window.addEventListener(TEACHER_PRESENT_EVENT, onPresent);
+    return () => {
+      window.removeEventListener(PEN_HOLD_EVENT, onHold);
+      window.removeEventListener(TEACHER_PRESENT_EVENT, onPresent);
+    };
+  }, []);
   useEffect(() => {
     if (!srcDoc || failed || !ready) return;
-    iframeRef.current?.contentWindow?.postMessage({ type: "pen", paused: settled }, "*");
-  }, [srcDoc, failed, ready, settled]);
+    iframeRef.current?.contentWindow?.postMessage({ type: "pen", paused: settled || teacherHold, glyph: !teacherHere }, "*");
+  }, [srcDoc, failed, ready, settled, teacherHold, teacherHere]);
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
@@ -835,6 +849,14 @@ export function ReactAnimationSandbox({
       }
       if (data.type === "textmap" && Array.isArray(data.items) && iframeRef.current) {
         registerSandboxText(iframeRef.current, data.items.filter((item: unknown) => item && typeof item === "object"));
+      }
+      // The pen's tip, in page pixels, for anything that wants to follow the writing (the classroom teacher).
+      if (data.type === "pen-tip" && iframeRef.current) {
+        const r = iframeRef.current.getBoundingClientRect();
+        const detail = data.on === true && Number.isFinite(data.x) && Number.isFinite(data.y)
+          ? { on: true, x: r.left + data.x * r.width, y: r.top + data.y * r.height }
+          : { on: false };
+        window.dispatchEvent(new CustomEvent(PEN_TIP_EVENT, { detail }));
       }
       if (data.type === "marker") {
         setMarker({

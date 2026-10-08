@@ -394,8 +394,25 @@ export const PEN_WRITER_SOURCE = `
     var paused = false, finishTo = -1;
     var annotation = null, annotationKey = "", annotated = true;
     var CPS = 16, CATCH_UP_CPS = 30;
+    var glyphShown = true; // the classroom teacher's own marker replaces the floating pen icon
 
     function root() { return document.querySelector("#root > svg"); }
+    /*
+     * Where the tip is, for the page: the classroom teacher's hand follows it (components/classroom).
+     * Read-only and fraction-of-viewport, so the page maps it through the iframe's own box. Posted
+     * only when it moves, and "off" once when the pen rests.
+     */
+    var lastTip = "";
+    function reportTip(on) {
+      var msg;
+      if (on && pen) {
+        try { var c = pen.getScreenCTM(); msg = { type: "pen-tip", on: true, x: c.e / innerWidth, y: c.f / innerHeight }; } catch (e) { return; }
+      } else msg = { type: "pen-tip", on: false };
+      var key = msg.on ? msg.x.toFixed(4) + "," + msg.y.toFixed(4) : "off";
+      if (key === lastTip) return;
+      lastTip = key;
+      try { window.parent.postMessage(msg, "*"); } catch (e) {}
+    }
     function hidden(el, svg) {
       for (var n = el; n && n !== svg; n = n.parentNode) {
         if (n.tagName === "defs" || n.tagName === "clipPath" || n.tagName === "marker" || n.tagName === "mask") return true;
@@ -463,7 +480,7 @@ export const PEN_WRITER_SOURCE = `
         var tx = m.a * x + m.c * y + m.e, ty = m.b * x + m.d * y + m.f;
         var scale = Math.max(0.5, Math.min(1.6, state.box.height / 26));
         p.setAttribute("transform", "translate(" + tx.toFixed(1) + " " + ty.toFixed(1) + ") scale(" + scale.toFixed(2) + ")");
-        p.style.opacity = "1";
+        p.style.opacity = glyphShown ? "1" : "0";
       } catch (e) {}
     }
     /* A ring the pen draws: the stroke is uncovered along its length, the tip on its leading end. */
@@ -474,7 +491,7 @@ export const PEN_WRITER_SOURCE = `
       try {
         var pt = state.el.getPointAtLength(len * state.f);
         p.setAttribute("transform", "translate(" + pt.x.toFixed(1) + " " + pt.y.toFixed(1) + ") scale(1)");
-        p.style.opacity = "1";
+        p.style.opacity = glyphShown ? "1" : "0";
       } catch (e) {}
     }
     function toBoard(svg, el, x, y) {
@@ -610,12 +627,13 @@ export const PEN_WRITER_SOURCE = `
         idleFor = 0;
         if (!paused) current.f = Math.min(1, current.f + dt / 0.9);
         drawStroke(current, svg);
+        reportTip(true);
         if (current.f >= 1) { current.done = true; current = null; }
         return;
       }
       if (!current) {
         idleFor += dt;
-        if (pen && idleFor > 0.35) pen.style.opacity = "0";
+        if (pen && idleFor > 0.35) { pen.style.opacity = "0"; reportTip(false); }
         return;
       }
       idleFor = 0;
@@ -627,6 +645,7 @@ export const PEN_WRITER_SOURCE = `
       var target = paused ? finishTo : 1;
       if (current.f < target) current.f = Math.min(target, current.f + dt * cps / current.chars);
       place(current, svg);
+      reportTip(true);
       if (current.f >= 1) { finish(current); current = null; }
     }
     requestAnimationFrame(tick);
@@ -640,6 +659,8 @@ export const PEN_WRITER_SOURCE = `
       },
       /** The student paused (true) or resumed (false) the lesson. */
       pause: function (on) { paused = !!on; if (!on) finishTo = -1; },
+      /** Show (true) or hide (false) the floating pen icon; hidden while the classroom teacher writes. */
+      glyph: function (on) { glyphShown = !!on; if (!on && pen) pen.style.opacity = "0"; },
       /** Ring these words or points and write this note, with the pen (see applyAnnotation). */
       annotate: function (spec) {
         var key = JSON.stringify(spec || {});

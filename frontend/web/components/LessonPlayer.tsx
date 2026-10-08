@@ -57,6 +57,8 @@ import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Pla
 import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase, type VoicePhase } from "@/components/classroom/VoiceState";
 import { AvatarFlyer } from "@/components/avatar/AvatarFlyer";
+import { ClassroomRoom } from "@/components/classroom/ClassroomRoom";
+import { ClassroomTeacher } from "@/components/classroom/ClassroomTeacher";
 import type { AvatarState } from "@/lib/avatar/face";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
@@ -277,6 +279,7 @@ export function LessonPlayer({
   mode = "standard",
   mood = "",
   autoVoiceAssistant = true,
+  classroom = false,
   adhd = false,
   /**
    * The parsed document this lecture came from, when there was one.
@@ -331,6 +334,12 @@ export function LessonPlayer({
   mood?: string;
   /** Disable only for nested remediation players so one lesson never opens two mic sessions. */
   autoVoiceAssistant?: boolean;
+  /**
+   * The classroom: the board full size on a lit wall, and Aria as a whole teacher in front of it who
+   * walks to the board and writes with a marker where the pen writes (components/classroom). Laptop-
+   * class devices; the bust is not shown alongside her.
+   */
+  classroom?: boolean;
   /**
    * Mounts the ADHD overlay — camera consent, score, companion, thought capture.
    *
@@ -2943,7 +2952,10 @@ export function LessonPlayer({
     return !on;
   });
   const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
-  const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
+  const classroomMode = classroom && !adhd && !pdfWorkspace;
+  const [teacherUnavailable, setTeacherUnavailable] = useState(false);
+  const showTeacher = classroomMode && avatarOn && !teacherUnavailable;
+  const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace && !classroomMode;
   /*
    * WHERE ARIA STANDS. One instance flies between places (components/avatar/AvatarFlyer.tsx):
    * large on the section card when a part begins — the teacher introducing it — then beside the
@@ -3028,7 +3040,7 @@ export function LessonPlayer({
       {/* One warm wash. The predecessor layered two cyan radial glows and a 44px blue grid
           directly behind the board — the busiest possible backdrop for the one surface the
           student is meant to be reading. */}
-      <div className="pointer-events-none absolute inset-0 bg-[var(--hud-bg)]" />
+      {classroomMode ? <ClassroomRoom /> : <div className="pointer-events-none absolute inset-0 bg-[var(--hud-bg)]" />}
 
       {/* The board is the visual priority, so the layout is a flex COLUMN rather than absolute
           boxes: status bar, then the board taking every remaining pixel, then controls.
@@ -3046,7 +3058,10 @@ export function LessonPlayer({
            * bottom bar carries leave, transport, the ask input and status in one line.
            */
           ? "relative m-2 grid min-h-0 flex-1 grid-cols-1 grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] overflow-hidden rounded-[var(--radius)] border border-[var(--hud-line)] lg:m-3 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1.15fr)] lg:grid-rows-[minmax(0,1fr)_auto]"
-          : `flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid ${sideOpen ? "xl:grid-cols-[minmax(0,1fr)_340px]" : avatarColumn ? "xl:grid-cols-[minmax(0,1fr)_12.5rem]" : "xl:grid-cols-[minmax(0,1fr)]"}`}
+          : classroomMode
+            // The board on the wall, full height; her lane is the right fifth of the room.
+            ? "relative flex min-h-0 flex-1 pb-1 pl-[1.6%] pr-[21%] pt-[1.4%]"
+            : `flex min-h-0 flex-1 gap-2 p-2 lg:gap-3 lg:p-3 xl:grid ${sideOpen ? "xl:grid-cols-[minmax(0,1fr)_340px]" : avatarColumn ? "xl:grid-cols-[minmax(0,1fr)_12.5rem]" : "xl:grid-cols-[minmax(0,1fr)]"}`}
         >
           {pdfWorkspace && sourceScope && (
             <PdfSourcePanel
@@ -3068,7 +3083,7 @@ export function LessonPlayer({
            * inside is aria-hidden, so without this the teaching surface is nameless to a screen
            * reader — and the "Explain this" anchor has nothing to measure against.
            */}
-          <section ref={boardSurfaceRef} aria-label="Teaching board" className={`relative min-h-0 flex-1 overflow-hidden bg-[var(--hud-surface)] ${pdfWorkspace ? "flex flex-col" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
+          <section ref={boardSurfaceRef} aria-label="Teaching board" className={`relative min-h-0 flex-1 overflow-hidden bg-[var(--hud-surface)] ${pdfWorkspace ? "flex flex-col" : classroomMode ? "classroom-board !bg-[#fbf8ee] rounded-[5px] border-[7px] border-[#c3c8cf] shadow-[0_22px_40px_-24px_rgba(40,30,20,0.55),inset_0_0_0_1px_rgba(0,0,0,0.08)]" : "rounded-[var(--radius)] border border-[var(--hud-line)]"}`}>
             {/* Aria's corner, for screens with no room for her column beside the board. */}
             {showAvatar && <div ref={cornerSlotRef} aria-hidden="true" className="pointer-events-none absolute bottom-2 right-2 z-10 hidden h-[10.5rem] w-[8.25rem] md:block xl:hidden" />}
             {/* Centre stage before the lesson starts: she greets, then flies to her column on Play. */}
@@ -3428,6 +3443,8 @@ export function LessonPlayer({
 
           {!chatInDock && sideOpen && <div className={pdfWorkspace
             ? "flex min-h-0 flex-col gap-2 border-t border-[var(--hud-line)] p-2 lg:col-span-2"
+            : classroomMode
+            ? "home-sheet-in fixed inset-y-3 right-3 z-[70] flex w-[min(22rem,92vw)] min-h-0 flex-col gap-3 [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1"
             // A column beside the board on a wide screen; a sheet over its right edge on a narrow one.
             : "home-sheet-in fixed inset-y-2 right-2 z-40 flex w-[min(22rem,92vw)] min-h-0 flex-col gap-3 xl:static xl:inset-auto xl:z-auto xl:w-auto [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1"}
           >
@@ -3481,6 +3498,7 @@ export function LessonPlayer({
             `order-first` keeps it visually above the board while leaving it after the board in the
             DOM would have hurt nothing — but it reads top-to-bottom for a screen reader this way,
             which matches the visual order. */}
+        <div className={classroomMode ? "relative z-20 flex justify-center" : "contents"}>
         <BoardDock
           playing={lesson.playing}
           onTogglePlay={() => (hasStarted ? togglePlay() : startLesson())}
@@ -3504,8 +3522,8 @@ export function LessonPlayer({
           canUndo={annCanUndo(annotations)}
           askOpen={askOpen}
           onToggleAsk={!chatInDock && !sidePanelAlways ? () => setAskOpen((open) => !open) : undefined}
-          avatarOn={showAvatar}
-          onToggleAvatar={!avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
+          avatarOn={classroomMode ? showTeacher : showAvatar}
+          onToggleAvatar={classroomMode ? (!teacherUnavailable ? toggleAvatar : undefined) : !avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
           micOn={tutor.status === "live" && !tutor.muted}
           onToggleMic={() => {
             if (tutor.status === "live") tutor.toggleMute();
@@ -3543,6 +3561,7 @@ export function LessonPlayer({
           center={chatInDock ? renderChatPanel({ inline: true }) : undefined}
           trailing={pdfWorkspace ? <VoiceState phase={voicePhase} className="hidden shrink-0 lg:flex" /> : undefined}
         />
+        </div>
 
         {/*
          * THE TOP STRIP: who is teaching, what part, and one status word. Nothing else.
@@ -3555,7 +3574,21 @@ export function LessonPlayer({
          * Not in the source workspace: there the board's own "Part N · title" strip names what is
          * being taught, and a second title bar above it only took height from the PDF.
          */}
-        {!pdfWorkspace && <header className="order-first flex shrink-0 items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-4 py-2.5">
+        {/* In the classroom the top strip is a small card in her lane, above her head: the board keeps the height. */}
+        {classroomMode && (
+          <div className="absolute right-[1.2%] top-3 z-30 flex w-[18.6%] items-center gap-1.5 rounded-xl border border-black/10 bg-white/70 px-1.5 py-1 shadow-[0_6px_18px_-10px_rgba(0,0,0,0.4)] backdrop-blur">
+            <button
+              onClick={onExit}
+              aria-label="Leave the lecture"
+              className="flex h-8 shrink-0 items-center rounded-lg px-1.5 text-slate-600 transition hover:bg-black/5 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--listening)]"
+            >
+              <ChevronLeft size={17} />
+            </button>
+            <p className="min-w-0 flex-1 truncate font-display text-[0.92rem] leading-tight text-slate-800">{title}</p>
+          </div>
+        )}
+
+        {!pdfWorkspace && !classroomMode && <header className="order-first flex shrink-0 items-center justify-between gap-3 border-b border-[var(--hud-line)] bg-[var(--hud-bg-2)] px-4 py-2.5">
           <div className="flex min-w-0 items-center gap-3">
             <button
               onClick={onExit}
@@ -3575,6 +3608,18 @@ export function LessonPlayer({
             <VoiceState phase={voicePhase} />
           </div>
         </header>}
+
+        {showTeacher && (
+          <ClassroomTeacher
+            within={mainRef}
+            speaking={speaking || tutor.speaking}
+            listening={voicePhase === "listening" || voicePhase === "student-speaking"}
+            presenting={showSectionCard || !hasStarted}
+            active={lesson.playing}
+            rightInset={sideOpen && !chatInDock ? 380 : 0}
+            onUnavailable={() => setTeacherUnavailable(true)}
+          />
+        )}
 
         {/* ARIA, flown to whichever slot is hers (see `avatarPlace`): her bust as a cutout, a soft
             light behind her when she speaks, pointer events passing through. */}
