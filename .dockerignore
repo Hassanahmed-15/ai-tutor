@@ -68,8 +68,9 @@ backend/packages/*/node_modules
 **/.lecture-cache
 **/.canvas-cache
 **/.test-build*
-# The standalone animation lab and scratch output — not part of the tutor image.
+# The standalone animation lab, parked experiments and scratch output — not part of the tutor image.
 anim-lab
+experiments
 output
 **/*.log
 **/tmp
