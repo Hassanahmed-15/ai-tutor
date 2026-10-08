@@ -26,8 +26,11 @@ export const VISEME_SHAPES: Record<VisemeName, FaceFrame> = {
   O: { jawOpen: 0.45, mouthFunnel: 0.55, mouthPucker: 0.3, mouthLowerDownLeft: 0.1, mouthLowerDownRight: 0.1 },
   U: { jawOpen: 0.2, mouthPucker: 0.65, mouthFunnel: 0.4 },
   // Consonants
-  PP: { mouthClose: 0.8, mouthPressLeft: 0.5, mouthPressRight: 0.5, mouthRollLower: 0.2, mouthRollUpper: 0.2, jawOpen: 0.05 },
-  FF: { mouthRollLower: 0.55, mouthUpperUpLeft: 0.25, mouthUpperUpRight: 0.25, mouthPressLeft: 0.2, mouthPressRight: 0.2, jawOpen: 0.1 },
+  // A closure is the jaw shut plus a press: at rest this head's lips meet already. No lip roll and no
+  // mouthClose (ARKit's mouthClose seals lips over an OPEN jaw; over a shut one it pushes the lips
+  // through each other, which the splat head draws as a smear).
+  PP: { mouthPressLeft: 0.45, mouthPressRight: 0.45 },
+  FF: { mouthRollLower: 0.3, mouthUpperUpLeft: 0.25, mouthUpperUpRight: 0.25, mouthPressLeft: 0.15, mouthPressRight: 0.15, jawOpen: 0.1 },
   TH: { tongueOut: 0.45, jawOpen: 0.2, mouthUpperUpLeft: 0.15, mouthUpperUpRight: 0.15 },
   DD: { jawOpen: 0.18, mouthUpperUpLeft: 0.2, mouthUpperUpRight: 0.2, mouthLowerDownLeft: 0.1, mouthLowerDownRight: 0.1 },
   kk: { jawOpen: 0.25, mouthLowerDownLeft: 0.1, mouthLowerDownRight: 0.1 },
@@ -52,6 +55,38 @@ export function faceFromVisemes(weights: VisemeWeights, loudness = 1): FaceFrame
       frame[shape] = Math.min(1, (frame[shape] ?? 0) + v * w * gain);
     }
   }
+  return frame;
+}
+
+/**
+ * A SPEAKING FACE: JAW FROM THE VOICE, LIPS FROM THE WORDS (the JALI split). How far the jaw drops is
+ * the voice's own loudness at this instant (`open`, 0..1) — it opens on every syllable and closes
+ * between them, which is the rhythm the eye reads as speech. Which shape the lips make — rounded for
+ * "oo", spread for "ee", sealed for p/b/m, the lower lip under the teeth for f/v — comes from the
+ * aligned words. The table's own jaw values are dropped: they held the jaw half-open through whole
+ * phrases. A sealed lip shuts the jaw whatever the loudness says; lip shapes fade with the voice,
+ * except the closures, which happen in the quiet.
+ */
+const JAW_SHAPES = new Set(["jawOpen", "mouthLowerDownLeft", "mouthLowerDownRight"]);
+export function speakingFace(weights: VisemeWeights, open: number): FaceFrame {
+  const o = Math.max(0, Math.min(1, open));
+  const sealed = Math.min(1, Math.max(weights.PP ?? 0, (weights.FF ?? 0) * 0.7));
+  const voiced = Math.min(1, o * 2.5);
+  const frame: FaceFrame = {};
+  for (const name of VISEME_NAMES) {
+    const w = weights[name];
+    if (!w || w <= 0.001) continue;
+    const presence = name === "PP" || name === "FF" ? 1 : voiced;
+    for (const [shape, v] of Object.entries(VISEME_SHAPES[name])) {
+      if (JAW_SHAPES.has(shape)) continue;
+      frame[shape] = Math.min(1, (frame[shape] ?? 0) + v * w * presence);
+    }
+  }
+  const round = Math.min(1, (frame.mouthFunnel ?? 0) + (frame.mouthPucker ?? 0));
+  const jaw = o * 0.62 * (1 - sealed) * (1 - round * 0.3);
+  frame.jawOpen = jaw;
+  frame.mouthLowerDownLeft = Math.min(1, (frame.mouthLowerDownLeft ?? 0) + jaw * 0.45);
+  frame.mouthLowerDownRight = Math.min(1, (frame.mouthLowerDownRight ?? 0) + jaw * 0.45);
   return frame;
 }
 

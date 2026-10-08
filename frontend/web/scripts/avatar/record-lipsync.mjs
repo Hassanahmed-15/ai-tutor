@@ -48,7 +48,7 @@ await page.addInitScript(() => {
   };
   const play = HTMLMediaElement.prototype.play;
   HTMLMediaElement.prototype.play = function (...args) {
-    clips.push({ at: Date.now(), from: this.currentTime || 0, src: this.currentSrc || this.src });
+    clips.push({ at: Date.now(), from: this.currentTime || 0, src: this.src || this.currentSrc }); // `src`, not `currentSrc`: one element is reused per sentence, and at play() time currentSrc still names the previous clip
     return play.apply(this, args);
   };
 });

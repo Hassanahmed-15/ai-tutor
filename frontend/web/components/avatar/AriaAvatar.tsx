@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { mouthShape, visemeWeights } from "@/lib/adhd/mouth";
-import { faceFromVisemes, visemesActive } from "@/lib/avatar/visemes";
+import { speakingFace, visemesActive } from "@/lib/avatar/visemes";
 import { blinkWeight, composeFrame, easeFrame, expressionTarget, headSway, mouthWeights, nextBlinkDelayMs, type AvatarState, type FaceFrame } from "@/lib/avatar/face";
 
 /**
@@ -90,7 +90,15 @@ export function AriaAvatar({
       // The visemes when the listener hears them (which sound), else the loudness mouth (how much).
       const mouth = mouthShape();
       const live = visemeWeights();
-      return composeFrame(expression, visemesActive(live) ? faceFromVisemes(live, Math.min(1, mouth.open * 1.6 + 0.2)) : mouthWeights(mouth), blink);
+      // Jaw from the voice, lips from the words (lib/avatar/visemes.ts `speakingFace`).
+      const out = composeFrame(expression, visemesActive(live) ? speakingFace(live, mouth.open) : mouthWeights(mouth), blink);
+      // Dev builds: what the renderer is handed this frame, for scripts/avatar/rendered-sync.mjs.
+      if (process.env.NODE_ENV !== "production") {
+        const w = window as unknown as { __ariaRendered?: { at: number; jaw: number; close: number; funnel: number; smile: number }[] };
+        (w.__ariaRendered ??= []).push({ at: now, jaw: out.jawOpen ?? 0, close: out.mouthClose ?? 0, funnel: (out.mouthFunnel ?? 0) + (out.mouthPucker ?? 0), smile: out.mouthSmileLeft ?? 0 });
+        if (w.__ariaRendered.length > 20000) w.__ariaRendered.splice(0, 10000);
+      }
+      return out;
     };
 
     const canRender = (() => {

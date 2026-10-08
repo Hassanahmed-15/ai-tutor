@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { ARKIT_NAMES } from "../avatar/face";
-import { VISEME_NAMES, VISEME_SHAPES, faceFromVisemes, visemeKey, visemesActive } from "../avatar/visemes";
+import { VISEME_NAMES, VISEME_SHAPES, faceFromVisemes, speakingFace, visemeKey, visemesActive } from "../avatar/visemes";
 
 const names = new Set<string>(ARKIT_NAMES);
 
@@ -17,9 +17,9 @@ test("every viseme shape names real ARKit blendshapes within a speaking range", 
 
 test("the consonants that look different do look different", () => {
   const pp = faceFromVisemes({ PP: 1 });
-  assert.ok((pp.mouthClose ?? 0) > 0.6 && (pp.jawOpen ?? 0) < 0.1, "p/b/m: lips sealed");
+  assert.ok((pp.mouthPressLeft ?? 0) > 0.4 && (pp.jawOpen ?? 0) === 0 && (pp.mouthClose ?? 0) === 0, "p/b/m: jaw shut, lips pressed, no mouthClose smear");
   const ff = faceFromVisemes({ FF: 1 });
-  assert.ok((ff.mouthRollLower ?? 0) > 0.4 && (ff.mouthUpperUpLeft ?? 0) > 0.2, "f/v: lower lip under the teeth");
+  assert.ok((ff.mouthRollLower ?? 0) > 0.25 && (ff.mouthUpperUpLeft ?? 0) > 0.2, "f/v: lower lip under the teeth");
   const th = faceFromVisemes({ TH: 1 });
   assert.ok((th.tongueOut ?? 0) > 0.3, "th: tongue at the teeth");
   const ss = faceFromVisemes({ SS: 1 });
@@ -49,4 +49,25 @@ test("active means a mouth shape is live, and HeadAudio's keys resolve", () => {
   assert.equal(visemeKey("viseme_PP"), "PP");
   assert.equal(visemeKey("aa"), "aa");
   assert.equal(visemeKey("viseme_zz"), null);
+});
+
+test("a speaking face: the jaw follows the voice, the lips follow the words", () => {
+  // The same vowel, loud and between syllables: the jaw opens and closes with the voice.
+  const loud = speakingFace({ aa: 1 }, 1);
+  const between = speakingFace({ aa: 1 }, 0);
+  assert.ok((loud.jawOpen ?? 0) > 0.55, `open on the syllable (${loud.jawOpen})`);
+  assert.equal(between.jawOpen, 0, "shut between syllables");
+  // A consonant shape with a loud voice still opens; the table's own half-open jaw is not used.
+  assert.equal(speakingFace({ DD: 1 }, 0).jawOpen, 0, "no jaw held open by a consonant in the quiet");
+  // Lip shape from the words: oo rounds, ee spreads, at the same loudness.
+  const oo = speakingFace({ U: 1 }, 0.6), ee = speakingFace({ I: 1 }, 0.6);
+  assert.ok((oo.mouthPucker ?? 0) > 0.5 && (ee.mouthPucker ?? 0) === 0);
+  assert.ok((ee.mouthSmileLeft ?? 0) > 0.3 && (oo.mouthSmileLeft ?? 0) === 0);
+  assert.ok((oo.jawOpen ?? 0) < (speakingFace({ aa: 1 }, 0.6).jawOpen ?? 0), "a rounded vowel drops the jaw less");
+  // p/b/m seals the lips and shuts the jaw even if the voice is loud there.
+  const p = speakingFace({ PP: 1 }, 0.8);
+  assert.ok((p.mouthPressLeft ?? 0) > 0.4 && (p.jawOpen ?? 1) < 0.01);
+  // Lip shapes fade with the voice, but a closure holds in the quiet (that is where it happens).
+  assert.ok((speakingFace({ U: 1 }, 0).mouthPucker ?? 0) === 0);
+  assert.ok((speakingFace({ PP: 1 }, 0).mouthPressLeft ?? 0) > 0.4);
 });

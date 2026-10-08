@@ -23,3 +23,8 @@ The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
   every sentence "aligned", lag 16 ms, median r 0.95, closures in quiet audio 57–100%.
 - `node scripts/avatar/record-lipsync.mjs [seconds] [out.mp4]` — a close-up MP4 of her face during
   narration, with sound, to judge by eye and ear (default ~/Downloads/aria-lipsync-closeup.mp4).
+- `node scripts/avatar/rendered-sync.mjs [seconds]` — THE honest number: the jaw the renderer is
+  handed each frame vs the narration audio as it plays, both on the page clock. 2026-10-09: r 0.59
+  (jaw from the viseme table, hovering half-open) → 0.81–0.87 with `speakingFace` (jaw from the
+  voice, lips from the words). Earlier numbers compared the jaw to the audio it was built from and
+  overstated sync.
