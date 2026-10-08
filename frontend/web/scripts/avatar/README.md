@@ -22,3 +22,7 @@ The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
 - `node scripts/avatar/classroom-tour.mjs` — plays the classroom demo (`/classroom`) on the real GPU
   for 40 s, printing each second what the teacher's brain is doing (place, activity, clip, pen,
   marker) and saving frames while she writes to `/tmp/classroom-write-*.png`.
+- `node scripts/avatar/record-classroom.mjs [seconds] [out.mp4]` — records the classroom demo as a
+  shareable MP4 (H.264 + AAC, 1440×900) with Aria's narration: frames from Chrome's screencast on
+  the GPU, each narration clip captured when its blob is created and laid onto the timeline by
+  ffmpeg. Default 180 s to `~/Downloads/aria-classroom-demo.mp4`.
