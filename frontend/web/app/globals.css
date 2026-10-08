@@ -1288,39 +1288,34 @@ html[data-reduced-motion="1"] *::after {
   .home-lift:hover, .home-lift:focus-within { transform: none; }
 }
 
-/* ── THE ORB (components/pages/AriaHero.tsx) ─────────────────────────────────────────────────
-   A glossy sphere of violet light, blue at the rim. Depth without preserve-3d (a preserved layer
-   composites as a faintly lighter box): each ring is two halves, the far half under the sphere and
-   the near half over it, each tilted with its own perspective; motes run an elliptical offset-path
-   and change layer at the far side. The rig tilts toward the pointer. Transforms and opacity only;
-   with less motion asked for, everything rests. */
-.orb-scene { --tx: 0deg; --ty: 0deg; }
-.orb-tilt { transform: perspective(1100px) rotateX(var(--tx)) rotateY(var(--ty)); transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1); }
-.orb-core {
-  z-index: 2;
-  background:
-    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.55) 6%, rgba(255, 255, 255, 0) 24%),
-    radial-gradient(circle at 50% 56%, #B892FF 0%, #8A5CFF 32%, #5B32E6 58%, #2A1A9E 80%, #120D4A 100%);
-  box-shadow:
-    inset 0 -34px 70px rgba(70, 150, 255, 0.45),
-    inset 0 18px 40px rgba(255, 255, 255, 0.06),
-    0 0 70px rgba(159, 107, 255, 0.45),
-    0 0 180px rgba(90, 120, 255, 0.22);
-}
-/* Only the halo breathes, and only by transform on its own compositor layer: scaling the sphere
-   re-rasterised its 180px shadow every frame, which some Macs showed as unpainted black tiles. */
-.orb-halo { background: radial-gradient(circle, rgba(159, 107, 255, 0.34) 0%, rgba(90, 120, 255, 0.14) 40%, rgba(90, 120, 255, 0) 70%); animation: orb-breathe 7s ease-in-out infinite; will-change: transform; }
-.orb-ring { border-radius: 50%; border: 1.5px solid rgba(201, 182, 255, 0.6); box-shadow: 0 0 16px rgba(159, 107, 255, 0.35); transform: perspective(900px) rotateX(var(--incl, 76deg)) rotateZ(var(--spin, 0deg)); }
-.orb-ring-far { z-index: 1; clip-path: inset(0 0 50% 0); }
-.orb-ring-near { z-index: 3; clip-path: inset(50% 0 0 0); }
-.orb-mote { z-index: 1; width: 5px; height: 5px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 10px rgba(201, 182, 255, 0.9), 0 0 22px rgba(159, 107, 255, 0.6); offset-rotate: 0deg; animation: orb-mote var(--dur, 12s) linear infinite; animation-delay: var(--delay, 0s); }
-@keyframes orb-mote { 0% { offset-distance: 0%; z-index: 3; } 49.9% { z-index: 3; } 50% { z-index: 1; } 100% { offset-distance: 100%; z-index: 1; } }
-@keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-[data-theme="light"] .orb-core { background: radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 24%), radial-gradient(circle at 50% 56%, #F2A58F 0%, #C94A2E 40%, #7A2412 80%, #3B1108 100%); box-shadow: inset 0 -34px 70px rgba(255, 170, 90, 0.35), 0 0 50px var(--hud-cyan-glow); }
-[data-theme="light"] .orb-ring { border-color: rgba(184, 56, 31, 0.45); box-shadow: 0 0 14px rgba(184, 56, 31, 0.2); }
-[data-theme="light"] .orb-halo { background: radial-gradient(circle, rgba(184, 56, 31, 0.2), rgba(184, 56, 31, 0) 70%); }
-[data-theme="light"] .orb-mote { background: #B8381F; box-shadow: 0 0 8px rgba(184, 56, 31, 0.6); }
+/* ── ARIA, THE BOX ROBOT (components/pages/AriaBot.tsx) ─────────────────────────────────────────
+   Every colour is a theme token or a mix of one, so she is violet on dark and red on light with no
+   per-theme rules. Transforms and opacity only; with less motion asked for, she stands still. */
+.bot-scene { --ex: 0px; --ey: 0px; }
+.bot .bot-front { fill: var(--accent); }
+.bot .bot-shade { fill: color-mix(in srgb, var(--accent) 62%, #000); }
+.bot .bot-sheen { fill: #fff; opacity: 0.16; }
+.bot .bot-screen { fill: color-mix(in srgb, var(--accent) 16%, #0A0A14); stroke: color-mix(in srgb, var(--accent) 45%, #000); stroke-width: 2; }
+.bot .bot-eye-white { fill: color-mix(in srgb, var(--accent) 14%, #fff); }
+.bot .bot-pupil { fill: #0A0A14; transform: translate(var(--ex), var(--ey)); transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1); }
+.bot .bot-mouth { fill: color-mix(in srgb, var(--accent) 14%, #fff); transform-box: fill-box; transform-origin: center; }
+.bot .bot-antenna { stroke: color-mix(in srgb, var(--accent) 62%, #000); }
+.bot .bot-antenna-dot { fill: var(--warm); animation: bot-glow 2.4s ease-in-out infinite; }
+.bot .bot-shadow { fill: var(--hud-text); opacity: 0.12; transform-box: fill-box; transform-origin: center; animation: bot-shadow 3.4s ease-in-out infinite; }
+.bot .bot-bob { animation: bot-bob 3.4s ease-in-out infinite; }
+.bot .bot-eye { transform-box: fill-box; transform-origin: center; animation: bot-blink 5.2s ease-in-out infinite; }
+.bot .bot-eye + .bot-eye { animation-delay: 40ms; }
+.bot.bot-talking .bot-mouth { animation: bot-talk 170ms ease-in-out infinite alternate; }
+.bot-caret { display: inline-block; width: 0; margin-left: 1px; color: var(--hud-cyan); animation: bot-caret 900ms steps(1) infinite; }
+.bot-bubble-tail { position: absolute; width: 12px; height: 12px; background: var(--hud-surface); border-left: 1px solid var(--hud-line); border-bottom: 1px solid var(--hud-line); left: 50%; bottom: -7px; transform: translateX(-50%) rotate(-45deg); }
+@media (min-width: 640px) { .bot-bubble-tail { left: -7px; top: 50%; bottom: auto; transform: translateY(-50%) rotate(45deg); } }
+@keyframes bot-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes bot-shadow { 0%, 100% { transform: scaleX(1); opacity: 0.12; } 50% { transform: scaleX(0.86); opacity: 0.08; } }
+@keyframes bot-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.08); } }
+@keyframes bot-talk { from { transform: scaleY(1); } to { transform: scaleY(3.4); } }
+@keyframes bot-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@keyframes bot-caret { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .orb-halo, .orb-mote { animation: none; }
-  .orb-tilt { transition: none; transform: none; }
+  .bot .bot-bob, .bot .bot-eye, .bot .bot-shadow, .bot .bot-antenna-dot, .bot.bot-talking .bot-mouth, .bot-caret { animation: none; }
+  .bot .bot-pupil { transition: none; transform: none; }
 }

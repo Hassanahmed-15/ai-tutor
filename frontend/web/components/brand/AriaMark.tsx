@@ -2,9 +2,11 @@
  * THE ARIA MARK — an A drawn as one rounded pen stroke, with a dot where the crossbar would be:
  * the tip of the marker on the board, and the voice that explains it.
  *
- * The tile follows the theme accent (indigo on light, the lighter indigo on dark) and the stroke
- * the colour that sits on it, so the mark never sinks into the page. Below 24px the stroke thickens
- * and the dot grows, so it still reads as an A with a dot. `app/icon.svg` is the 16px version.
+ * The tile follows the theme accent (red on light, violet on dark) and the stroke the colour that
+ * sits on it, so the mark never sinks into the page. Below 24px the stroke thickens and the dot
+ * grows, so it still reads as an A with a dot. The tab icon is the same small mark:
+ * `app/icon.svg` (by device setting) and `public/aria-icon-{light,dark}.svg`, chosen by
+ * `components/theme/ThemeFavicon.tsx` to follow the app's theme.
  */
 export function AriaMark({ size = 24, label, className = "" }: { size?: number; label?: string; className?: string }) {
   const small = size < 24;

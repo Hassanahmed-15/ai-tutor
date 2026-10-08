@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Manrope, Outfit } from "next/font/google";
 import "./globals.css";
+import { ThemeFavicon } from "@/components/theme/ThemeFavicon";
 
 /**
  * NEVER CACHE THE APP SHELL.
@@ -64,8 +65,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0B0713" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B0713" },
+    { media: "(prefers-color-scheme: light)", color: "#F4EFE4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A14" },
   ],
 };
 
@@ -85,7 +86,10 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeFavicon />
+        {children}
+      </body>
     </html>
   );
 }

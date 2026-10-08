@@ -4,6 +4,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { HudCorners, type PageName } from "@/components/hud/HudKit";
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { LectureSummarySlide } from "@/components/LectureSummarySlide";
+import { MindMapView } from "@/components/MindMapView";
+import type { MindMap } from "@/lib/mindMap";
 import type { LectureSummary } from "@/lib/lectureSummary";
 import { BlindLessonPlayer } from "@/components/BlindLessonPlayer";
 import { type DesignProgress } from "@/components/design/LessonDesignMode";
@@ -228,6 +230,11 @@ type BuildCost =
   const [lectureSummary, setLectureSummary] = useState<LectureSummary | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(false);
   const [summaryError, setSummaryError] = useState<string | null>(null);
+  // The lecture as a mind map (components/MindMapView.tsx), offered beside the summary.
+  const [mindMapOpen, setMindMapOpen] = useState(false);
+  const [mindMap, setMindMap] = useState<MindMap | null>(null);
+  const [mindMapLoading, setMindMapLoading] = useState(false);
+  const [mindMapError, setMindMapError] = useState<string | null>(null);
   /**
    * Mirrors `builtLesson` for the hand-off.
    *
@@ -3047,6 +3054,11 @@ type BuildCost =
     setLectureSummary(null);
     setSummaryError(null);
     setSummaryLoading(false);
+    // The mind map belongs to the same lecture, so it is cleared with the summary.
+    setMindMapOpen(false);
+    setMindMap(null);
+    setMindMapError(null);
+    setMindMapLoading(false);
   }
 
   /**
@@ -3106,15 +3118,66 @@ type BuildCost =
     />
   ) : null;
 
-  /** The end-of-lecture screens' way in. Only rendered once the lecture is complete. */
+  async function fetchMindMap() {
+    setMindMapLoading(true);
+    setMindMapError(null);
+    try {
+      const res = await fetch("/api/mind-map", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: builtTopic,
+          request: requestTextRef.current,
+          beats: beats.map((beat) => ({ title: beat.title, points: beat.points, script: beat.script, conceptId: beat.conceptId })),
+          ...(strictLectureSource() ?? {}),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      recordJsonCost("questions", data);
+      if (!res.ok || !data.mindMap) throw new Error(data.error || "Couldn't map the lecture.");
+      setMindMap(data.mindMap as MindMap);
+    } catch (err) {
+      setMindMapError(err instanceof Error ? err.message : "Couldn't map the lecture.");
+    } finally {
+      setMindMapLoading(false);
+    }
+  }
+
+  function openMindMap() {
+    // Like the summary: only once the lecture has been watched to the end. Fetched once, then kept.
+    if (!lectureCompleted) return;
+    setMindMapOpen(true);
+    if (!mindMap && !mindMapLoading) void fetchMindMap();
+  }
+
+  const mindMapOverlay = mindMapOpen ? (
+    <MindMapView
+      mindMap={mindMap}
+      loading={mindMapLoading}
+      error={mindMapError}
+      onRetry={() => void fetchMindMap()}
+      onClose={() => setMindMapOpen(false)}
+    />
+  ) : null;
+
+  /** The end-of-lecture screens' way in: the mind map and the one-slide summary, side by side. */
   const summaryButton = lectureCompleted ? (
-    <button
-      onClick={openLectureSummary}
-      data-summarize-lecture=""
-      className="hud-btn-primary fixed bottom-6 right-6 z-40 rounded-full px-6 py-3 text-sm font-bold shadow-[var(--elev-2)]"
-    >
-      Summarize the lecture in one slide
-    </button>
+    <div className="fixed bottom-6 right-6 z-40 flex flex-wrap items-center justify-end gap-3">
+      <button
+        onClick={openMindMap}
+        data-mind-map=""
+        className="hud-btn-ghost rounded-full px-6 py-3 text-sm font-bold shadow-[var(--elev-2)]"
+      >
+        Mind map
+      </button>
+      <button
+        onClick={openLectureSummary}
+        data-summarize-lecture=""
+        className="hud-btn-primary rounded-full px-6 py-3 text-sm font-bold shadow-[var(--elev-2)]"
+      >
+        Summarize the lecture in one slide
+      </button>
+    </div>
   ) : null;
 
   // Fired when a lecture finishes naturally (last beat played) — offers a test on the content.
@@ -3312,6 +3375,15 @@ type BuildCost =
                 Summarize in one slide
               </button>
             )}
+            {lectureCompleted && (
+              <button
+                onClick={openMindMap}
+                data-mind-map=""
+                className="text-sm font-semibold text-[var(--hud-text)] underline-offset-4 transition-colors hover:underline"
+              >
+                Mind map
+              </button>
+            )}
             {/* The one door that genuinely discards the lecture, so it is the one that leaves. */}
             <button
               onClick={onExit}
@@ -3331,6 +3403,7 @@ type BuildCost =
           </div>
         </section>
         {summaryOverlay}
+        {mindMapOverlay}
       </main>
     );
   }
@@ -3350,8 +3423,9 @@ type BuildCost =
         onGoDeeper={goDeeper}
       />
       {/* The student lands here the moment the lecture ends — the summary is one click away. */}
-      {!summaryOpen && summaryButton}
+      {!summaryOpen && !mindMapOpen && summaryButton}
       {summaryOverlay}
+      {mindMapOverlay}
       </>
     );
   }
