@@ -56,7 +56,7 @@ import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
 import { VoiceState, derivePhase, type VoicePhase } from "@/components/classroom/VoiceState";
-import { AriaAvatar } from "@/components/avatar/AriaAvatar";
+import { BoardAvatar, type BoardAvatarMode } from "@/components/avatar/BoardAvatar";
 import type { AvatarState } from "@/lib/avatar/face";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
@@ -2944,6 +2944,14 @@ export function LessonPlayer({
   });
   const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
   const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
+  /*
+   * HER FACE NEVER COVERS A QUESTION (components/avatar/BoardAvatar.tsx): beside the questions panel
+   * while it is open, and a small picture in the board's corner while a question — a checkpoint, a
+   * quiz, or an answer she is drawing — is on the board.
+   */
+  const askPanelRef = useRef<HTMLDivElement>(null);
+  const questionOnBoard = quiz.phase !== "idle" || (isCheckpoint && Boolean(beat.checkpoint)) || Boolean(chat.explainBoard);
+  const avatarMode: BoardAvatarMode = questionOnBoard ? "pip" : sideOpen && !chatInDock ? "beside-panel" : "board";
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
     <ChatPanel
       onClose={sidePanelAlways ? undefined : () => setAskOpen(false)}
@@ -3395,7 +3403,7 @@ export function LessonPlayer({
             />
           </section>
 
-          {!chatInDock && sideOpen && <div className={pdfWorkspace
+          {!chatInDock && sideOpen && <div ref={askPanelRef} className={pdfWorkspace
             ? "flex min-h-0 flex-col gap-2 border-t border-[var(--hud-line)] p-2 lg:col-span-2"
             // A column beside the board on a wide screen; a sheet over its right edge on a narrow one.
             : "home-sheet-in fixed inset-y-2 right-2 z-40 flex w-[min(22rem,92vw)] min-h-0 flex-col gap-3 xl:static xl:inset-auto xl:z-auto xl:w-auto [&>*:last-child]:min-h-0 [&>*:last-child]:flex-1"}
@@ -3544,20 +3552,8 @@ export function LessonPlayer({
           </div>
         </header>}
 
-        {/*
-          ARIA AT THE BOARD. Not a video tile in a box: her bust as a cutout, standing at the lower
-          right of the board like a teacher at the edge of her slide, a soft light behind her when
-          she speaks. Pointer events pass through, so nothing under her is lost.
-        */}
         {showAvatar && (
-          <div className="pointer-events-none absolute bottom-[4.75rem] right-2 z-30 hidden md:block lg:right-4">
-            <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-[58%] -z-10 size-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-500"
-              style={{ background: "radial-gradient(circle, var(--hud-cyan-glow) 0%, rgba(0,0,0,0) 68%)", opacity: avatarState === "speaking" ? 1 : avatarState === "listening" ? 0.55 : 0.25 }}
-            />
-            <AriaAvatar state={avatarState} transparent className="h-[19rem] w-[15rem] lg:h-[21rem] lg:w-[16.5rem]" onUnavailable={() => setAvatarUnavailable(true)} />
-          </div>
+          <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} onUnavailable={() => setAvatarUnavailable(true)} />
         )}
 
         {voiceBlocked && (

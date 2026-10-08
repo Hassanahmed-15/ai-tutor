@@ -14,3 +14,6 @@ Run against the dev server (`npm run dev`) from `frontend/web`:
   (needs the API key the dev server uses); shows the track growing as chunks and words arrive.
 
 The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
+- `node scripts/avatar/question-clear.mjs` — checks at two laptop widths that Aria's bust never
+  overlaps the open questions panel (she moves beside it) or a checkpoint question on the board (she
+  becomes a small picture in the board's top-right corner). Exits 1 on any overlap.
