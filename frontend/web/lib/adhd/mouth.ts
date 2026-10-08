@@ -18,6 +18,8 @@
  * subscribe and update only themselves.
  */
 
+import { pauseAfterWord, unitsForWord } from "../avatar/align";
+import { lipTrackAudio, lipTrackBegin, lipTrackEnd, lipTrackWords, type VisemeTrack } from "../avatar/lipTrack";
 import { appendToScript, EMPTY_SCRIPT, expectedIndex, reconcile, type Script } from "../avatar/script";
 import type { VisemeName } from "../avatar/visemes";
 
@@ -64,11 +66,34 @@ let wordsAhead = "";
 let rulesPromise: Promise<LipsyncRules | null> | null = null;
 
 function loadRules(): Promise<LipsyncRules | null> {
-  rulesPromise ??= import("../avatar/vendor/lipsync-en.mjs").then((m) => new m.LipsyncEn() as LipsyncRules).catch((error) => {
+  rulesPromise ??= import("../avatar/vendor/lipsync-en.mjs").then((m) => {
+    const rules = new m.LipsyncEn() as LipsyncRules & { rules?: Record<string, { visemes: string[] }[]> };
+    // TalkingHead gives "w" the f/v shape (lower lip under the teeth). On a real face a "w" is a
+    // rounded lip, as in "oo": "we", "was", "with" are among a lecture's commonest words.
+    for (const rule of rules.rules?.W ?? []) rule.visemes = rule.visemes.map((v) => (v === "FF" ? "U" : v));
+    return rules as LipsyncRules;
+  }).catch((error) => {
     console.warn("[mouth] text rules unavailable:", error);
     return null;
   });
   return rulesPromise;
+}
+
+/*
+ * THE ALIGNED TRACK. Better than the script's guess at timing: each chunk's audio is analysed before
+ * it plays (lib/avatar/headFeatures.ts) and the words are aligned to that evidence
+ * (lib/avatar/align.ts, lib/avatar/lipTrack.ts), giving per-frame viseme weights on the audio
+ * clock. When the track covers the moment being heard, it is the mouth; the script below is the
+ * fallback for browsers that cannot run the worklet offline.
+ */
+let visemeTrack: VisemeTrack | null = null;
+
+function visemeFrameAt(at: number): VisemeWeights | null {
+  if (!visemeTrack) return null;
+  // Frame i's evidence is centred one hop after its start.
+  const i = Math.round((at - visemeTrack.startAt) / visemeTrack.hopS - 1);
+  if (i < 0 || i >= visemeTrack.weights.length) return null;
+  return visemeTrack.weights[i];
 }
 
 /** A reply is starting: its first audio is scheduled at `startAt` on the context's clock. */
@@ -76,6 +101,10 @@ export function beginSpeechScript(startAt: number): void {
   speech = { script: EMPTY_SCRIPT, startAt, endAt: startAt, cursor: 0, pendingText: wordsAhead, rules: null };
   wordsAhead = "";
   scripted = null;
+  visemeTrack = null;
+  lipTrackBegin(startAt, (t) => {
+    visemeTrack = t;
+  });
   void loadRules().then((rules) => {
     if (speech && rules) {
       speech.rules = rules;
@@ -105,6 +134,7 @@ export function appendSpeechText(text: string): void {
     if (!w) continue;
     const out = speech.rules.wordsToVisemes(w);
     speech.script = appendToScript(speech.script, out.visemes, out.durations);
+    lipTrackWords(unitsForWord(out.visemes, out.durations, 5, true, pauseAfterWord(word)));
   }
 }
 
@@ -127,6 +157,8 @@ export function endSpeechScript(): void {
   scripted = null;
   scriptedEased = {};
   wordsAhead = "";
+  visemeTrack = null;
+  lipTrackEnd();
 }
 
 /** The viseme the script expects at the context's `now`, reconciled with what the listener hears. */
@@ -220,6 +252,103 @@ let freqBuf: Uint8Array<ArrayBuffer> | null = null;
  * which rises at once and decays slowly, so a quiet voice and a loud one both move the mouth.
  */
 let peakRms = 0.05;
+
+/*
+ * THE TIMELINE: the mouth computed from the audio BEFORE it plays. Analysing the live output lags
+ * the sound by ~120 ms measured (the analyser's window and smoothing, then a render frame, then
+ * the easing), and the device's output latency sits on top (100–250 ms on Bluetooth), so the lips
+ * were a quarter of a second off the voice, which reads as no sync at all. Every reply chunk is a
+ * buffer we hold before it is scheduled, so its mouth can be worked out in advance, keyed to the
+ * audio clock, and read at `now − outputLatency + lead`: the lips move with the sound as it reaches
+ * the ear, a touch before, as real lips do (the mouth starts moving before the voice).
+ */
+export type MouthFrame = { at: number; open: number; width: number };
+const FRAME_S = 0.02;
+/** Lips lead the sound by this much. */
+const LEAD_S = 0.06;
+let timeline: MouthFrame[] = [];
+let timelineEndsAt = 0;
+/** The voice's level across the reply so far, for automatic gain on the frames. */
+let timelinePeak = 0.05;
+
+/**
+ * Work out the mouth for one chunk of PCM and put it on the timeline at `startAt` (audio clock).
+ * Per frame: loudness relative to the reply's running peak, and the spectral balance of the frame —
+ * the same rule the live analyser uses (visemeFrom), just ahead of time.
+ */
+export function scheduleMouthFrames(samples: Float32Array, sampleRate: number, startAt: number): void {
+  lipTrackAudio(samples, sampleRate, startAt);
+  const hop = Math.max(1, Math.round(sampleRate * FRAME_S));
+  const frames: MouthFrame[] = [];
+  for (let i = 0; i + hop <= samples.length; i += hop) {
+    let sum = 0;
+    for (let j = i; j < i + hop; j++) sum += samples[j] * samples[j];
+    const rms = Math.sqrt(sum / hop);
+    timelinePeak = Math.max(0.03, rms > timelinePeak ? rms : timelinePeak * 0.995);
+    const relative = rms / timelinePeak;
+    const bands = bandEnergyFromSamples(samples, i, hop, sampleRate);
+    const target = visemeFrom(bands, rms < 0.02 || relative < 0.2 ? 0 : Math.min(1, relative * 0.95) / 4.2);
+    frames.push({ at: startAt + i / sampleRate, open: target.open, width: target.width });
+  }
+  if (frames.length === 0) return;
+  // A chunk that starts before the end of the last one replaces that stretch (a reschedule).
+  if (timeline.length && frames[0].at < timelineEndsAt) timeline = timeline.filter((f) => f.at < frames[0].at);
+  timeline.push(...frames);
+  timelineEndsAt = frames[frames.length - 1].at + FRAME_S;
+  // What has played is of no further use.
+  if (timeline.length > 3000) timeline = timeline.slice(-2000);
+}
+
+/** The timeline is over: a reply finished or was cut off. The live analyser carries on alone. */
+export function clearMouthTimeline(): void {
+  timeline = [];
+  timelineEndsAt = 0;
+  timelinePeak = 0.05;
+}
+
+/** The frame due at `at` on the audio clock, or null when the timeline does not cover it. */
+export function mouthFrameAt(at: number): MouthFrame | null {
+  if (timeline.length === 0 || at < timeline[0].at - FRAME_S || at > timelineEndsAt) return null;
+  let lo = 0;
+  let hi = timeline.length - 1;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1;
+    if (timeline[mid].at <= at) lo = mid;
+    else hi = mid - 1;
+  }
+  return timeline[lo];
+}
+
+/** Three-band energy of one frame of samples: Goertzel at a few probe frequencies per band, cheap and enough for lip spread. */
+function bandEnergyFromSamples(samples: Float32Array, start: number, length: number, sampleRate: number): { low: number; mid: number; high: number } {
+  const probe = (hz: number) => {
+    const coeff = 2 * Math.cos((2 * Math.PI * hz) / sampleRate);
+    let s1 = 0, s2 = 0;
+    for (let n = 0; n < length; n++) {
+      const s0 = samples[start + n] + coeff * s1 - s2;
+      s2 = s1;
+      s1 = s0;
+    }
+    return Math.sqrt(Math.max(0, s1 * s1 + s2 * s2 - coeff * s1 * s2));
+  };
+  return {
+    low: probe(150) + probe(300) + probe(450),
+    mid: probe(700) + probe(1100) + probe(1600),
+    high: probe(2200) + probe(2900) + probe(3600),
+  };
+}
+
+let loopDebug: { clock: number; now: number; ahead: number | null; frames: number } = { clock: 0, now: 0, ahead: null, frames: 0 };
+/** What the mouth loop last read, for the lab. */
+export function mouthLoopDebug() {
+  return loopDebug;
+}
+
+/** The audio clock the lips should read: now, less the device's output latency, plus the lead. */
+function lipClock(ctx: BaseAudioContext): number {
+  const outputLatency = (ctx as AudioContext).outputLatency ?? 0;
+  return ctx.currentTime - outputLatency + LEAD_S;
+}
 
 /**
  * Identifies which audio source owns the analyser.
@@ -316,6 +445,7 @@ export function detachMouthAnalyser(token?: MouthToken) {
   freqBuf = null;
   owner = 0;
   detachVisemes();
+  clearMouthTimeline();
   if (raf) cancelAnimationFrame(raf);
   raf = 0;
   publish({ open: 0, width: 0.5 }); // the mouth must close when the voice stops, not freeze mid-word
@@ -333,13 +463,17 @@ function loop() {
   }
   // The script's shape for this moment, when a reply is being spoken and the voice is not in a pause,
   // eased so one shape becomes the next rather than switching.
-  const scriptTarget = speech && shape.open > 0.03 ? scriptedWeightsAt(analyser.context.currentTime + SCRIPT_LEAD_S) : null;
+  const aligned = visemeFrameAt(lipClock(analyser.context));
+  const scriptTarget = aligned ?? (speech && shape.open > 0.03 ? scriptedWeightsAt(lipClock(analyser.context) - LEAD_S + SCRIPT_LEAD_S) : null);
   if (scriptTarget) {
     const next: VisemeWeights = {};
+    // The aligned track has its own rise and fall built in, so it is followed closely.
+    const attack = aligned ? 0.7 : 0.45;
+    const release = aligned ? 0.5 : 0.22;
     for (const k of new Set([...Object.keys(scriptedEased), ...Object.keys(scriptTarget)])) {
       const a = scriptedEased[k] ?? 0;
-      const b = scriptTarget[k] ?? 0;
-      const v = b > a ? a + (b - a) * 0.45 : a + (b - a) * 0.22;
+      const b = (scriptTarget[k] ?? 0) * (aligned ? 0.75 : 1);
+      const v = b > a ? a + (b - a) * attack : a + (b - a) * release;
       if (v > 0.01) next[k] = v;
     }
     scriptedEased = next;
@@ -366,13 +500,18 @@ function loop() {
   // Real silence is an absolute floor (room tone must not twitch the mouth); within speech, a pause
   // is under a fifth of the voice's own peak.
   const relative = rms / peakRms;
-  const target = visemeFrom(bands, rms < 0.02 || relative < 0.2 ? 0 : Math.min(1, relative * 0.95) / 4.2);
+  const heardNow = visemeFrom(bands, rms < 0.02 || relative < 0.2 ? 0 : Math.min(1, relative * 0.95) / 4.2);
+  // The timeline, when it covers this moment, is the mouth for the sound reaching the ear now; the
+  // analyser is the fallback for sources that were never scheduled through it (narration, the lab).
+  const ahead = mouthFrameAt(lipClock(analyser.context));
+  loopDebug = { clock: lipClock(analyser.context), now: analyser.context.currentTime, ahead: ahead ? ahead.at : null, frames: timeline.length };
+  const target: MouthShape = ahead ? { open: ahead.open, width: ahead.width } : heardNow;
 
-  // Asymmetric smoothing: open fast, close a little slower — but quickly enough that the dip
-  // between two syllables shows. Width is always eased: lips do not teleport.
+  // Timeline frames are already at the right moment: show them. The analyser path keeps its
+  // asymmetric smoothing (open fast, close a little slower). Width is always eased: lips do not teleport.
   publish({
-    open: target.open > shape.open ? target.open : shape.open * 0.6 + target.open * 0.4,
-    width: shape.width * 0.8 + target.width * 0.2,
+    open: ahead ? (target.open > shape.open ? target.open : shape.open * 0.35 + target.open * 0.65) : target.open > shape.open ? target.open : shape.open * 0.6 + target.open * 0.4,
+    width: shape.width * 0.7 + target.width * 0.3,
   });
 }
 

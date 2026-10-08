@@ -8,7 +8,7 @@ import type { DrawScript } from "@/components/sketch/LiveSketch";
 // alias has no runtime resolver — the existing "@/components/..." line above survives only because
 // it is `import type` and erases at compile time. A value import must be relative or two unrelated
 // test files fail with "Cannot find module".
-import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, type MouthToken } from "./adhd/mouth";
+import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, clearMouthTimeline, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, scheduleMouthFrames, type MouthToken } from "./adhd/mouth";
 import { addCost, recordJsonCost } from "./costLedger";
 import { geminiLiveCostFor, type GeminiLiveUsage } from "./modelPricing";
 import {
@@ -788,6 +788,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
     playbackControllerRef.current?.invalidate();
     playbackTokenRef.current = null;
     endSpeechScript();
+    clearMouthTimeline();
     const context = audioContextRef.current;
     const bus = mouthBusRef.current;
     /*
@@ -1019,6 +1020,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       playingSourcesRef.current.add(source);
       nextPlayTimeRef.current = startAt + buffer.duration;
       extendSpeechAudio(nextPlayTimeRef.current);
+      // The mouth for this chunk, worked out now and keyed to when it will be heard.
+      scheduleMouthFrames(samples, OUTPUT_SAMPLE_RATE, startAt);
       setSpeaking(true);
       /*
        * The gate learns that the tutor is audible from `playingSourcesRef` on every mic frame —

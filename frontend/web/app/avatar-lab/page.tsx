@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AriaAvatar, ARIA_HEADS, type AriaHead } from "@/components/avatar/AriaAvatar";
-import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, onMouthShape, speechScriptDebug, visemeWeights, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
+import { lipTrackDebug } from "@/lib/avatar/lipTrack";
+import { analyseVisemeCosts } from "@/lib/avatar/headFeatures";
+import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, mouthFrameAt, mouthLoopDebug, mouthShape, onMouthShape, scheduleMouthFrames, speechScriptDebug, visemeWeights, type MouthShape, type MouthToken } from "@/lib/adhd/mouth";
 import type { AvatarState } from "@/lib/avatar/face";
 import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
 
@@ -12,8 +14,14 @@ import { useGeminiLiveTutor } from "@/lib/useGeminiLiveTutor";
  * lip-sync, blink, sway and the four states can be checked on their own. `?head=Sasha&state=speaking`
  * presets it for screenshots.
  */
+/** What the lab's scripts (scratchpad/*.mjs) read from `window.__ariaLab`: the mouth, the timeline, the track. */
+function labProbes() {
+  return { mouth: mouthShape, frameAt: mouthFrameAt, loop: mouthLoopDebug, track: lipTrackDebug, visemes: visemeWeights, analyse: analyseVisemeCosts };
+}
+
 export default function AvatarLab() {
   const [head, setHead] = useState<AriaHead>("Jane");
+  const [noHead, setNoHead] = useState(false);
   const [state, setState] = useState<AvatarState>("idle");
   const [source, setSource] = useState<"none" | "synth" | "mic" | "file">("none");
   const [sentence, setSentence] = useState("Peter and Mary bought fresh figs. The moon was full, so we sat by the sea and talked about photosynthesis.");
@@ -31,10 +39,13 @@ export default function AvatarLab() {
   const audioRef = useRef<{ ctx: AudioContext; token: MouthToken; stop: () => void } | null>(null);
 
   useEffect(() => {
+    (window as unknown as { __ariaLab?: unknown }).__ariaLab = labProbes();
     const p = new URLSearchParams(window.location.search);
     queueMicrotask(() => {
       const h = p.get("head");
       if (h && (ARIA_HEADS as string[]).includes(h)) setHead(h as AriaHead);
+      // `?head=none` leaves the head out, so the mouth loop can be measured at full frame rate.
+      if (h === "none") setNoHead(true);
       const s = p.get("state");
       if (s && ["idle", "listening", "thinking", "speaking"].includes(s)) setState(s as AvatarState);
       if (p.get("synth") === "1") void startSynth();
@@ -57,7 +68,8 @@ export default function AvatarLab() {
    */
   async function playFileWithScript(file: File) {
     stopAudio();
-    const ctx = new AudioContext();
+    // 24 kHz, Gemini's rate: the recording is decoded to it, so the file path is the tutor's path.
+    const ctx = new AudioContext({ sampleRate: 24000 });
     await ctx.resume();
     const buffer = await ctx.decodeAudioData(await file.arrayBuffer());
     const bus = ctx.createGain();
@@ -67,7 +79,10 @@ export default function AvatarLab() {
     src.buffer = buffer;
     src.connect(bus);
     const startAt = ctx.currentTime + 0.15;
+    // For the lab's measurements: the audio clock and where the recording starts on it.
+    (window as unknown as { __ariaLab?: unknown }).__ariaLab = { ...labProbes(), now: () => ctx.currentTime, startAt, outputLatency: ctx.outputLatency ?? 0, baseLatency: ctx.baseLatency ?? 0, pcm: buffer.getChannelData(0), sampleRate: buffer.sampleRate };
     beginSpeechScript(startAt);
+    scheduleMouthFrames(buffer.getChannelData(0), buffer.sampleRate, startAt);
     appendSpeechText(sentence);
     extendSpeechAudio(startAt + buffer.duration);
     src.start(startAt);
@@ -137,7 +152,7 @@ export default function AvatarLab() {
     <main className="hud-canvas min-h-screen px-6 py-8 text-[var(--hud-text)]">
       <div className="relative z-10 mx-auto flex max-w-5xl flex-col gap-6 lg:flex-row">
         <div className="flex-1">
-          <AriaAvatar state={state} head={head} className="aspect-[4/5] w-full max-w-md rounded-[20px] border border-[var(--hud-line)] bg-[var(--hud-surface)]" background="0x13132A" onUnavailable={(r) => setNote(`Unavailable: ${r}`)} />
+          {noHead ? <div className="aspect-[4/5] w-full max-w-md rounded-[20px] border border-[var(--hud-line)]" /> : <AriaAvatar state={state} head={head} className="aspect-[4/5] w-full max-w-md rounded-[20px] border border-[var(--hud-line)] bg-[var(--hud-surface)]" background="0x13132A" onUnavailable={(r) => setNote(`Unavailable: ${r}`)} />}
         </div>
         <div className="flex w-full max-w-sm flex-col gap-5 text-[0.9rem]">
           <h1 className="font-display text-[1.6rem]">Avatar lab</h1>
