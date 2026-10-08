@@ -20,6 +20,8 @@
 
 import { pauseAfterWord, unitsForWord } from "../avatar/align";
 import { lipTrackAudio, lipTrackBegin, lipTrackEnd, lipTrackWords, type VisemeTrack } from "../avatar/lipTrack";
+import type { ClipLipTrack } from "../avatar/clipLipSync";
+import { loadLipsyncRules, type LipsyncRules } from "../avatar/rules";
 import { appendToScript, EMPTY_SCRIPT, expectedIndex, reconcile, type Script } from "../avatar/script";
 import type { VisemeName } from "../avatar/visemes";
 
@@ -54,7 +56,6 @@ export function visemeWeights(): VisemeWeights {
  * Progress through the words = progress through the scheduled audio.
  */
 type SpeechScript = { script: Script; startAt: number; endAt: number; cursor: number; pendingText: string; rules: LipsyncRules | null };
-type LipsyncRules = { preProcessText: (s: string) => string; wordsToVisemes: (w: string) => { visemes: string[]; durations: number[] } };
 let speech: SpeechScript | null = null;
 let scripted: VisemeWeights | null = null;
 /** The eased scripted weights: shapes attack in ~40 ms and release in ~90 ms, as lips do. */
@@ -63,21 +64,7 @@ let scriptedEased: VisemeWeights = {};
 const SCRIPT_LEAD_S = 0.08;
 /** Words that arrived before the reply's first audio (Gemini sends the transcript ahead): the reply's opening. */
 let wordsAhead = "";
-let rulesPromise: Promise<LipsyncRules | null> | null = null;
-
-function loadRules(): Promise<LipsyncRules | null> {
-  rulesPromise ??= import("../avatar/vendor/lipsync-en.mjs").then((m) => {
-    const rules = new m.LipsyncEn() as LipsyncRules & { rules?: Record<string, { visemes: string[] }[]> };
-    // TalkingHead gives "w" the f/v shape (lower lip under the teeth). On a real face a "w" is a
-    // rounded lip, as in "oo": "we", "was", "with" are among a lecture's commonest words.
-    for (const rule of rules.rules?.W ?? []) rule.visemes = rule.visemes.map((v) => (v === "FF" ? "U" : v));
-    return rules as LipsyncRules;
-  }).catch((error) => {
-    console.warn("[mouth] text rules unavailable:", error);
-    return null;
-  });
-  return rulesPromise;
-}
+const loadRules = loadLipsyncRules;
 
 /*
  * THE ALIGNED TRACK. Better than the script's guess at timing: each chunk's audio is analysed before
@@ -141,6 +128,80 @@ export function appendSpeechText(text: string): void {
 /** The audio of the reply now runs to `endAt` on the context's clock. */
 export function extendSpeechAudio(endAt: number): void {
   if (speech && endAt > speech.endAt) speech.endAt = endAt;
+}
+
+/*
+ * THE NARRATION'S LIPS. A lecture sentence is a clip whose lip track was worked out before it played
+ * (lib/avatar/clipLipSync.ts). While it plays, the mouth is read straight from that track at the
+ * audio element's own time — less the output latency, plus a small lead, as lips lead the voice — on
+ * its own frame loop, so it moves even when the browser keeps Web Audio asleep. It overrides the
+ * output analyser for as long as it runs.
+ */
+type ClipPlayback = { track: ClipLipTrack; clock: () => number | null };
+let clip: ClipPlayback | null = null;
+let clipRaf = 0;
+/** Lips lead the narration by this much. */
+const CLIP_LEAD_S = 0.05;
+
+/** Play a clip's lip track against `clock` (seconds into the clip, or null while it is not sounding). Returns stop. */
+export function startClipLipSync(track: ClipLipTrack, clock: () => number | null): () => void {
+  const mine: ClipPlayback = { track, clock };
+  clip = mine;
+  if (!clipRaf) clipLoop();
+  return () => {
+    if (clip !== mine) return;
+    clip = null;
+    scriptedEased = {};
+    scripted = null;
+    publish({ open: 0, width: 0.5 });
+  };
+}
+
+/** For the lab and the tests: is a narration clip driving the mouth, and which frame. */
+export function clipLipSyncDebug(): { method: string; frame: number; frames: number } | null {
+  if (!clip) return null;
+  const t = clip.clock();
+  return { method: clip.track.method, frame: t === null ? -1 : Math.round((t + CLIP_LEAD_S) / clip.track.hopS - 1), frames: clip.track.weights.length };
+}
+
+/** How spread or rounded the lips are for a set of shapes: "ee" spreads, "oo" rounds. */
+function widthOf(w: VisemeWeights): number {
+  const spread = (w.I ?? 0) + (w.E ?? 0) * 0.7 + (w.SS ?? 0) * 0.6;
+  const round = (w.U ?? 0) + (w.O ?? 0) * 0.8 + (w.CH ?? 0) * 0.5 + (w.RR ?? 0) * 0.4;
+  return Math.max(0, Math.min(1, 0.5 + 0.35 * (spread - round)));
+}
+
+function clipLoop() {
+  if (!clip) {
+    clipRaf = 0;
+    return;
+  }
+  clipRaf = requestAnimationFrame(clipLoop);
+  const t = clip.clock();
+  if (t === null) return;
+  const { track } = clip;
+  // Frame i's evidence is centred one hop after its start.
+  const i = Math.round((t + CLIP_LEAD_S) / track.hopS - 1);
+  const target: VisemeWeights = i >= 0 && i < track.weights.length ? (track.weights[i] as VisemeWeights) : {};
+  const jaw = i >= 0 && i < track.open.length ? track.open[i] : 0;
+  const next: VisemeWeights = {};
+  for (const k of new Set([...Object.keys(scriptedEased), ...Object.keys(target)])) {
+    const a = scriptedEased[k] ?? 0;
+    const b = (target[k] ?? 0) * 0.8;
+    const v = b > a ? a + (b - a) * 0.7 : a + (b - a) * 0.5;
+    if (v > 0.01) next[k] = v;
+  }
+  scriptedEased = next;
+  scripted = Object.keys(next).length ? next : null;
+  // A sealed lip (p/b/m) closes the jaw whatever the loudness says.
+  const sealed = Math.max(next.PP ?? 0, (next.FF ?? 0) * 0.6);
+  const open = Math.max(0, jaw * (1 - sealed));
+  publish({ open: open > shape.open ? shape.open + (open - shape.open) * 0.75 : shape.open + (open - shape.open) * 0.55, width: shape.width * 0.6 + widthOf(next) * 0.4 });
+}
+
+// Dev builds: the mouth, for measurement scripts (scripts/avatar/narration-sync.mjs).
+if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+  (window as unknown as { __ariaMouth?: unknown }).__ariaMouth = { shape: () => shape, visemes: () => scripted ?? visemes, clip: () => clipLipSyncDebug() };
 }
 
 /** For the lab: where the script is. */
@@ -448,12 +509,13 @@ export function detachMouthAnalyser(token?: MouthToken) {
   clearMouthTimeline();
   if (raf) cancelAnimationFrame(raf);
   raf = 0;
-  publish({ open: 0, width: 0.5 }); // the mouth must close when the voice stops, not freeze mid-word
+  if (!clip) publish({ open: 0, width: 0.5 }); // the mouth must close when the voice stops, not freeze mid-word
 }
 
 function loop() {
   raf = requestAnimationFrame(loop);
   if (!analyser || !timeBuf || !freqBuf) return;
+  if (clip) return; // a narration clip's own track is the mouth
 
   // The viseme weights ease toward the sound HeadAudio heard; it wants the frame time in ms.
   if (visemeNode && visemeOwner === owner) {

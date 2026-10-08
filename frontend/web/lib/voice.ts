@@ -12,7 +12,8 @@
  *    "tap to enable sound" recovery action instead of just being mute.
  */
 
-import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
+import { attachMouthAnalyser, detachMouthAnalyser, startClipLipSync, type MouthToken } from "./adhd/mouth";
+import { prepareClipLipTrack, type ClipLipTrack } from "./avatar/clipLipSync";
 import { CLIP_FETCH_CONCURRENCY, SENTENCE_GAP_MS, sentenceAlignedProgress, sentenceWeight } from "./narrationClock";
 import { recordTtsResponse } from "./costLedger";
 import { ensureRunning, registerAudioContext, resumeAllAudio } from "./voice/audioOutput";
@@ -206,6 +207,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
   let objectUrl: string | null = null;
   /** True while a sentence clip is actually playing — false in the gaps between them. */
   let clipActive = false;
+  /** Stops the playing clip's lip track (see `trackFor`). A holder: it is set from a callback. */
+  const lips: { stop: (() => void) | null } = { stop: null };
   /** Wakes the loop awaiting the current clip, so cancel() never leaves it waiting forever. */
   let clipWaiter: (() => void) | null = null;
   const clearCues = () => {
@@ -227,6 +230,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       audio = null;
     }
     stopProgressLoop();
+    lips.stop?.();
+    lips.stop = null;
     detachMouthAnalyser(mouthToken);
     mouthToken = undefined;
     void audioContext?.close();
@@ -447,13 +452,23 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       }
       return null;
     };
+    /*
+     * EVERY SENTENCE'S LIPS, WORKED OUT AS ITS AUDIO ARRIVES — before it plays (clips are fetched
+     * ahead). The sentence's words are force-aligned to its own audio (lib/avatar/clipLipSync.ts),
+     * and the mouth reads the result from the element's clock while it plays.
+     */
+    const tracks: Array<Promise<ClipLipTrack | null> | undefined> = [];
+    const trackFor = (i: number, blob: Blob) => (tracks[i] ??= prepareClipLipTrack(blob, sentences[i]).catch(() => null));
     const pump = () => {
       while (!cancelled && inFlight < CLIP_FETCH_CONCURRENCY && nextToFetch < sentences.length) {
         const i = nextToFetch;
         nextToFetch += 1;
         inFlight += 1;
         fetchClip(sentences[i])
-          .then((blob) => resolvers[i](blob))
+          .then((blob) => {
+            if (blob) void trackFor(i, blob);
+            resolvers[i](blob);
+          })
           .finally(() => {
             inFlight -= 1;
             pump();
@@ -601,6 +616,24 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       if (cancelled) return;
       clipActive = true;
 
+      // Her lips for this sentence: its prepared track, read at the element's time less the output
+      // latency (in media seconds, so it holds at any speed).
+      {
+        const el = audio;
+        const ctx = audioContext;
+        const sentence = i;
+        const clock = () => {
+          if (cancelled || !el || el.paused || el.ended) return null;
+          const latency = ctx ? (ctx.outputLatency || 0) + (ctx.baseLatency || 0) : 0.03;
+          return Math.max(0, el.currentTime - latency * (el.playbackRate || 1));
+        };
+        void trackFor(sentence, blob).then((track) => {
+          if (!track || cancelled || audio !== el || el.ended || !clipActive) return;
+          lips.stop?.();
+          lips.stop = startClipLipSync(track, clock);
+        });
+      }
+
       // THE SYNC POINT: the teacher has just started saying sentence i, so the board moves now.
       // Sentence 0's cue was sent before any audio existed, so the board is ready as speech begins.
       if (i > 0) callbacks.onSentenceStart?.(i, sentences[i], sentences.length);
@@ -664,6 +697,8 @@ export function playNarration(text: string, callbacks: NarrationCallbacks): Narr
       });
       clipActive = false;
       stopProgressLoop();
+      lips.stop?.();
+      lips.stop = null;
       if (cancelled) return;
 
       elapsedBeforeMs += (Number.isFinite(audio.duration) ? audio.duration : 0) * 1000;

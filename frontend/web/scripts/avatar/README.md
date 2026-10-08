@@ -17,3 +17,9 @@ The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
 - `node scripts/avatar/question-clear.mjs` — checks at two laptop widths that Aria's bust never
   overlaps the open questions panel (she moves beside it) or a checkpoint question on the board (she
   becomes a small picture in the board's top-right corner). Exits 1 on any overlap.
+- `node scripts/avatar/narration-sync.mjs [seconds]` — plays real lecture narration in
+  /player-preview and, per sentence, cross-correlates her jaw with that sentence's own audio (lag,
+  r) and counts how many sealed-lip (p/b/m) frames fall in quiet audio. 2026-10-09 after the fix:
+  every sentence "aligned", lag 16 ms, median r 0.95, closures in quiet audio 57–100%.
+- `node scripts/avatar/record-lipsync.mjs [seconds] [out.mp4]` — a close-up MP4 of her face during
+  narration, with sound, to judge by eye and ear (default ~/Downloads/aria-lipsync-closeup.mp4).

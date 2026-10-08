@@ -1,4 +1,5 @@
 import { Aligner, weightsFromSegments, type Unit } from "./align";
+import { frameLoudness, withLoudnessPriors } from "./clipLipSync";
 import { analyseVisemeCosts, HOP_S, WINDOW_S } from "./headFeatures";
 import type { VisemeWeights } from "./visemes";
 
@@ -86,7 +87,8 @@ async function maybeAnalyse(t: Track): Promise<void> {
       t.full = true; // no ear: the plain shape carries on
       return;
     }
-    const fresh = costs.slice(firstNew - winStartFrame);
+    // The same loudness rules as narration: a sealed lip in the quiet, never over a vowel.
+    const fresh = withLoudnessPriors(costs, frameLoudness(samples, sr)).slice(firstNew - winStartFrame);
     if (fresh.length) t.aligner.addFrames(fresh);
     // Frames end where the last full window ends.
     t.analysedTo = (t.aligner.frameCount - 1) * hop + Math.round(WINDOW_S * sr);
