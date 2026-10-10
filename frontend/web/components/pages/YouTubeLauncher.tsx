@@ -236,13 +236,9 @@ export function YouTubeLauncher({
           </div>
         </div>
       ) : (
-        <form
-          className="mt-3"
-          onSubmit={(event) => {
-            event.preventDefault();
-            void submit();
-          }}
-        >
+        // Not a <form>: the launcher sits inside the composer's form, and a nested form's submit
+        // reloaded the whole page instead of checking the link. Summarize and Enter call submit().
+        <div className="mt-3">
           <div className="flex items-center gap-2 rounded-[var(--radius)] border border-[var(--input-border)] bg-[var(--hud-surface)] py-1 pl-2 pr-1 focus-within:border-[var(--hud-cyan)]">
             <label htmlFor="youtube-url" className="sr-only">YouTube link</label>
             <input
@@ -253,6 +249,12 @@ export function YouTubeLauncher({
                 setUrl(event.target.value);
                 if (phase.kind === "editing" && phase.error) setPhase({ kind: "editing" });
               }}
+              onKeyDown={(event) => {
+                if (event.key !== "Enter") return;
+                // Stops Enter submitting the composer's form, which would start a text lecture.
+                event.preventDefault();
+                if (phase.kind !== "checking" && url.trim()) void submit();
+              }}
               disabled={phase.kind === "checking"}
               placeholder="Paste a YouTube link, e.g. https://youtu.be/…"
               inputMode="url"
@@ -260,7 +262,8 @@ export function YouTubeLauncher({
               className="min-w-0 flex-1 bg-transparent px-2 py-1.5 text-[0.9rem] text-[var(--hud-text)] placeholder:text-[var(--hud-text-faint)] focus:outline-none disabled:opacity-60"
             />
             <button
-              type="submit"
+              type="button"
+              onClick={() => void submit()}
               disabled={phase.kind === "checking" || !url.trim()}
               className="hud-btn-primary inline-flex h-8 shrink-0 items-center gap-1.5 px-3.5 text-[0.8125rem] disabled:cursor-not-allowed"
             >
@@ -281,7 +284,7 @@ export function YouTubeLauncher({
               Public videos up to 3 hours. Aria watches the whole video and teaches a short version of it, with her own drawings.
             </p>
           )}
-        </form>
+        </div>
       )}
       </div>
       )}
