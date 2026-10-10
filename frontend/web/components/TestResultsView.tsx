@@ -16,12 +16,18 @@ export function TestResultsView({
   results,
   answers,
   onBack,
+  slideOf,
+  onReviewSlide,
 }: {
   bank: TestBank;
   results: TestGradeResult[];
   /** Written mode: typed answers keyed by question id. Oral mode: omitted (transcript-graded). */
   answers?: Record<string, string>;
   onBack: () => void;
+  /** The slide (0-based) a question's beat is, or -1. With `onReviewSlide`, a wrong answer links back to it. */
+  slideOf?: (beatId: string) => number;
+  /** Replays the lecture from that slide. Without it the scorecard is exactly as before. */
+  onReviewSlide?: (index: number) => void;
 }) {
   const score = results.filter((r) => r.correct).length;
 
@@ -44,6 +50,7 @@ export function TestResultsView({
         {bank.questions.map((q) => {
           const result = results.find((r) => r.id === q.id);
           if (!result) return null;
+          const slide = !result.correct && slideOf && onReviewSlide ? slideOf(q.beatId) : -1;
           return (
             <div
               key={q.id}
@@ -58,6 +65,16 @@ export function TestResultsView({
               <p className="mt-2 text-sm font-semibold text-[var(--hud-text-dim)]">{result.feedback}</p>
               {!result.correct && (
                 <p className="mt-2 text-sm italic text-[var(--hud-text-faint)]">A full answer: {q.rubric.modelAnswer}</p>
+              )}
+              {slide >= 0 && (
+                <button
+                  type="button"
+                  onClick={() => onReviewSlide?.(slide)}
+                  data-review-slide={slide + 1}
+                  className="hud-btn-ghost mt-3 rounded-full px-4 py-1.5 text-xs font-bold"
+                >
+                  Review slide {slide + 1} ▸
+                </button>
               )}
             </div>
           );

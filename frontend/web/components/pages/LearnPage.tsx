@@ -235,6 +235,11 @@ type BuildCost =
   const [mindMap, setMindMap] = useState<MindMap | null>(null);
   const [mindMapLoading, setMindMapLoading] = useState(false);
   const [mindMapError, setMindMapError] = useState<string | null>(null);
+  // Where the player starts when "teaching" mounts it: 0, or the slide picked in the mind map.
+  const [replayStartIndex, setReplayStartIndex] = useState(0);
+  // Slides (0-based) the student got a test question wrong on — kept after the results screen so the
+  // mind map can ring them; cleared with the lecture.
+  const [missedSlides, setMissedSlides] = useState<number[]>([]);
   /**
    * Mirrors `builtLesson` for the hand-off.
    *
@@ -3059,6 +3064,9 @@ type BuildCost =
     setMindMap(null);
     setMindMapError(null);
     setMindMapLoading(false);
+    // A new lecture starts at its first slide, whatever slide the last one was replayed from.
+    setReplayStartIndex(0);
+    setMissedSlides([]);
   }
 
   /**
@@ -3107,6 +3115,18 @@ type BuildCost =
     if (!lectureSummary && !summaryLoading) void fetchLectureSummary();
   }
 
+  // Linking back to slides (mind-map boxes, summary points, wrong test answers) and replaying from
+  // one are for the normal lecture only: the accessibility tracks (Blind, ADHD, Dyslexia, Deaf) keep
+  // these screens exactly as they were.
+  const clickableMindMap =
+    selectedMode.page !== "blind-demo" &&
+    selectedMode.page !== "adhd-demo" &&
+    selectedMode.page !== "dyslexia-demo" &&
+    selectedMode.page !== "deaf-demo" &&
+    !isAdhdLearner(profile);
+
+  // Summary points link to their slides on the end-of-lecture screens only; the summary opened
+  // inside the player stays as it was.
   const summaryOverlay = summaryOpen ? (
     <LectureSummarySlide
       fixed
@@ -3115,6 +3135,10 @@ type BuildCost =
       error={summaryError}
       onRetry={() => void fetchLectureSummary()}
       onClose={() => setSummaryOpen(false)}
+      onOpenSlide={clickableMindMap && (phase === "test-offer" || phase === "finished") ? (index) => {
+        setSummaryOpen(false);
+        replayLectureFrom(index);
+      } : undefined}
     />
   ) : null;
 
@@ -3157,6 +3181,9 @@ type BuildCost =
       error={mindMapError}
       onRetry={() => void fetchMindMap()}
       onClose={() => setMindMapOpen(false)}
+      slides={clickableMindMap ? beats : undefined}
+      onReplayFrom={clickableMindMap ? replayLectureFrom : undefined}
+      missedSlides={clickableMindMap ? missedSlides : undefined}
     />
   ) : null;
 
@@ -3282,7 +3309,14 @@ type BuildCost =
     if (bank) setPhase("test-oral");
   }
 
+  /** The slide (0-based) a test question was drawn from, or -1. */
+  function slideOfBeat(beatId: string) {
+    return beats.findIndex((beat) => beat.id === beatId);
+  }
+
   function onTestGraded(results: TestGradeResult[], answers?: Record<string, string>) {
+    const wrong = new Set(results.filter((r) => !r.correct).map((r) => r.id));
+    setMissedSlides([...new Set((testBank?.questions ?? []).filter((q) => wrong.has(q.id)).map((q) => slideOfBeat(q.beatId)).filter((i) => i >= 0))]);
     setTestResults(results);
     setTestAnswers(answers);
     setPhase("test-results");
@@ -3326,6 +3360,14 @@ type BuildCost =
   function replayLecture() {
     // Same beats, from the top. The player keys off its own index, so re-entering "teaching"
     // restarts it without regenerating anything.
+    setReplayStartIndex(0);
+    setPhase("teaching");
+  }
+
+  /** "Replay from this slide" in the mind map: the same beats, from the slide that taught that idea. */
+  function replayLectureFrom(index: number) {
+    setMindMapOpen(false);
+    setReplayStartIndex(Math.max(0, Math.min(index, beats.length - 1)));
     setPhase("teaching");
   }
 
@@ -3453,6 +3495,8 @@ type BuildCost =
         results={testResults}
         answers={testAnswers}
         onBack={backToLectureFromTest}
+        slideOf={clickableMindMap ? slideOfBeat : undefined}
+        onReviewSlide={clickableMindMap ? replayLectureFrom : undefined}
       />
     );
   }
@@ -3533,7 +3577,7 @@ type BuildCost =
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} startIndex={clickableMindMap ? replayStartIndex : undefined} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">

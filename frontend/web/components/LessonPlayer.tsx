@@ -292,6 +292,7 @@ export function LessonPlayer({
   hasMoreBeats = false,
   totalBeatCount,
   plannedParts,
+  startIndex = 0,
   onBeatIndexChange,
   onLearnerInteraction,
   onSummarize,
@@ -357,6 +358,8 @@ export function LessonPlayer({
   totalBeatCount?: number;
   /** Every planned part, generated or not, so the chat can point to parts not written yet. Absent for strict. */
   plannedParts?: PlannedPart[];
+  /** The slide to open on (0-based) — set when replaying from a slide picked in the mind map. */
+  startIndex?: number;
   onBeatIndexChange?: (index: number) => void;
   onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
   /** Opens the one-slide summary of the lecture; the caller owns it (components/LectureSummarySlide). */
@@ -368,7 +371,8 @@ export function LessonPlayer({
   /** Explicit source contract chosen after page selection; enables the synchronized PDF workspace. */
   sourceScope?: SourceScope;
 }) {
-  const [index, setIndex] = useState(0);
+  // Replay from a slide (the mind map's "Replay from this slide"): the lecture opens there.
+  const [index, setIndex] = useState(() => Math.max(0, Math.min(startIndex, beats.length - 1)));
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
   const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);

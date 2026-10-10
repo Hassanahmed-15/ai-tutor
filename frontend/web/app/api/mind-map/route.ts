@@ -62,14 +62,15 @@ export async function POST(req: Request) {
       const completion = await client.chat.completions.create({
         model: MODEL,
         temperature: strict ? 0.2 : 0.3,
-        max_tokens: 1400,
+        // Room for each node's slide numbers on top of the labels.
+        max_tokens: 1800,
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: strict ? `${MIND_MAP_SYSTEM_PROMPT}\n\n${MIND_MAP_STRICT_RULES}` : MIND_MAP_SYSTEM_PROMPT },
           { role: "user", content: issue ? `${userMsg}\n\nYour previous answer was rejected: ${issue}. Fix exactly that.` : userMsg },
         ],
       });
-      const parsed = parseMindMap(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), topic || "Lecture");
+      const parsed = parseMindMap(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), topic || "Lecture", beats.length);
       if (parsed.mindMap) return NextResponse.json({ mindMap: parsed.mindMap, costUsd: meter.totalUsd });
       issue = parsed.issue ?? "unusable mind map";
     } catch (err) {

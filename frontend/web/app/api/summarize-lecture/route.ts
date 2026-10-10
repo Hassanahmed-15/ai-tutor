@@ -66,14 +66,15 @@ export async function POST(req: Request) {
       const completion = await client.chat.completions.create({
         model: MODEL,
         temperature: strict ? 0.2 : 0.3,
-        max_tokens: 700,
+        // Room for each point's slide number on top of the summary itself.
+        max_tokens: 800,
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: strict ? `${LECTURE_SUMMARY_SYSTEM_PROMPT}\n\n${LECTURE_SUMMARY_STRICT_RULES}` : LECTURE_SUMMARY_SYSTEM_PROMPT },
           { role: "user", content: issue ? `${userMsg}\n\nYour previous answer was rejected: ${issue}. Fix exactly that.` : userMsg },
         ],
       });
-      const parsed = parseLectureSummary(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), topic || "Lecture summary");
+      const parsed = parseLectureSummary(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), topic || "Lecture summary", beats.length);
       if (parsed.summary && strict) {
         const grounded = groundLectureSummary(parsed.summary, source, topic || "Lecture summary");
         if (grounded.summary && !grounded.issue) return NextResponse.json({ summary: grounded.summary, costUsd: meter.totalUsd });

@@ -36,8 +36,43 @@ test("the transcript carries every beat, so the end of a lecture is never crowde
   const beats = Array.from({ length: 6 }, (_, i) => ({ title: `Beat ${i + 1}`, script: "word ".repeat(2000), points: [`point ${i + 1}`] }));
   const text = summaryTranscript(beats, 6000);
   assert.ok(text.length <= 6000);
-  for (let i = 1; i <= 6; i++) assert.ok(text.includes(`## ${i}. Beat ${i}`), `beat ${i} present`);
+  for (let i = 1; i <= 6; i++) assert.ok(text.includes(`## Slide ${i}. Beat ${i}`), `beat ${i} present`);
   assert.equal(summaryTranscript([]), "");
+});
+
+test("an empty beat is skipped without renumbering the slides after it", () => {
+  const text = summaryTranscript([{ title: "Intro", script: "Hello." }, { title: "", script: "" }, { title: "Anode", script: "Oxidation." }]);
+  assert.match(text, /## Slide 1\. Intro/);
+  assert.match(text, /## Slide 3\. Anode/);
+  assert.doesNotMatch(text, /## Slide 2\./);
+});
+
+test("points tagged with slides keep them, 1-based in and 0-based out, aligned with the text", () => {
+  const { summary } = parseLectureSummary({
+    crux: "The idea.",
+    points: [{ text: "First point.", slide: 1 }, { text: "No slide." }, { text: "Too far.", slide: 9 }, { text: "Third slide.", slide: "3" }, "A plain string."],
+  }, "Lecture", 4);
+  assert.deepEqual(summary?.points, ["First point.", "No slide.", "Too far.", "Third slide.", "A plain string."]);
+  assert.deepEqual(summary?.pointSlides, [0, null, null, 2, null]);
+
+  const plain = parseLectureSummary({ crux: "The idea.", points: ["a", "b", "c"] }, "Lecture", 4).summary;
+  assert.equal(plain && "pointSlides" in plain, false, "plain string points carry no slides at all");
+});
+
+test("strict grounding keeps each kept point's slide, and drops the promoted point's", () => {
+  const source = "The energy comes from light. The leaves absorb the energy of light. Glucose is a store of chemical potential energy.";
+  const tagged = {
+    title: "Energy",
+    crux: "The energy comes from light.",
+    points: ["The leaves absorb the energy of light.", "Mitochondria release it through cellular respiration.", "Glucose is a store of chemical potential energy."],
+    pointSlides: [0, 1, 2],
+  };
+  assert.deepEqual(groundLectureSummary(tagged, source).summary?.pointSlides, [0, 2], "the dropped point's slide goes with it");
+
+  const promoted = groundLectureSummary({ ...tagged, crux: "Plants are Earth's primary producers, feeding every food web.", points: [...tagged.points, "The energy comes from light."], pointSlides: [0, 1, 2, 3] }, source);
+  assert.equal(promoted.summary?.crux, "The leaves absorb the energy of light.");
+  assert.deepEqual(promoted.summary?.points, ["Glucose is a store of chemical potential energy.", "The energy comes from light."]);
+  assert.deepEqual(promoted.summary?.pointSlides, [2, 3]);
 });
 
 test("recap beats are recognised so plan builders can drop them", () => {

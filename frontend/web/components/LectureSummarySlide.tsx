@@ -19,6 +19,7 @@ export function LectureSummarySlide({
   onRetry,
   onClose,
   fixed = false,
+  onOpenSlide,
 }: {
   summary: LectureSummary | null;
   loading: boolean;
@@ -26,6 +27,8 @@ export function LectureSummarySlide({
   onRetry: () => void;
   onClose: () => void;
   fixed?: boolean;
+  /** Replays the lecture from a point's slide (0-based). Without it the points are plain text. */
+  onOpenSlide?: (index: number) => void;
 }) {
   const codeLines = useMemo(
     () => (summary?.code && summary.language ? highlightLines(summary.code, summary.language) : []),
@@ -70,14 +73,30 @@ export function LectureSummarySlide({
               {summary.crux}
             </p>
             <ol className="mt-6 space-y-2.5">
-              {summary.points.map((point, i) => (
-                <li key={i} data-summary-point={i + 1} className="flex gap-3 text-[0.95rem] leading-relaxed text-slate-700 lg:text-base">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-slate-900 text-xs font-black text-white">
-                    {i + 1}
-                  </span>
-                  <span>{point}</span>
-                </li>
-              ))}
+              {summary.points.map((point, i) => {
+                const slide = onOpenSlide ? summary.pointSlides?.[i] : null;
+                return (
+                  <li key={i} data-summary-point={i + 1} className="flex gap-3 text-[0.95rem] leading-relaxed text-slate-700 lg:text-base">
+                    <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-slate-900 text-xs font-black text-white">
+                      {i + 1}
+                    </span>
+                    <span>
+                      {point}
+                      {typeof slide === "number" && (
+                        <button
+                          type="button"
+                          onClick={() => onOpenSlide?.(slide)}
+                          data-summary-slide-link={slide + 1}
+                          aria-label={`Replay the lecture from slide ${slide + 1}`}
+                          className="ml-2 inline-flex items-center whitespace-nowrap rounded-full border border-slate-300 px-2 py-0.5 align-[1px] text-xs font-semibold text-slate-600 transition-colors hover:border-slate-900 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-slate-900"
+                        >
+                          Slide {slide + 1} ▸
+                        </button>
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
             </ol>
             {codeLines.length > 0 && (
               <div className="code-board mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 py-3 font-mono text-[13px] leading-6">
