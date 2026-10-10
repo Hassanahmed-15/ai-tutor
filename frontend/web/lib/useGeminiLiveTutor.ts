@@ -8,7 +8,7 @@ import type { DrawScript } from "@/components/sketch/LiveSketch";
 // alias has no runtime resolver — the existing "@/components/..." line above survives only because
 // it is `import type` and erases at compile time. A value import must be relative or two unrelated
 // test files fail with "Cannot find module".
-import { attachMouthAnalyser, detachMouthAnalyser, type MouthToken } from "./adhd/mouth";
+import { appendSpeechText, attachMouthAnalyser, beginSpeechScript, clearMouthTimeline, detachMouthAnalyser, endSpeechScript, extendSpeechAudio, scheduleMouthFrames, type MouthToken } from "./adhd/mouth";
 import { addCost, recordJsonCost } from "./costLedger";
 import { geminiLiveCostFor, type GeminiLiveUsage } from "./modelPricing";
 import {
@@ -544,6 +544,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
    */
   const mouthBusRef = useRef<GainNode | null>(null);
   const mouthTokenRef = useRef<MouthToken | undefined>(undefined);
+  /** True from a reply's first accepted chunk until its first scheduled one: the lip-sync script begins there. */
+  const speechScriptPendingRef = useRef(false);
   const nextPlayTimeRef = useRef(0);
   const responseInFlightRef = useRef(false);
   const turnCompleteRef = useRef(false);
@@ -785,6 +787,8 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
   const stopPlayback = useCallback(() => {
     playbackControllerRef.current?.invalidate();
     playbackTokenRef.current = null;
+    endSpeechScript();
+    clearMouthTimeline();
     const context = audioContextRef.current;
     const bus = mouthBusRef.current;
     /*
@@ -937,6 +941,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       if (!playbackToken) {
         playbackToken = playbackControllerRef.current!.begin(`gemini-${performance.now().toFixed(3)}`);
         playbackTokenRef.current = playbackToken;
+        speechScriptPendingRef.current = true;
         gateRef.current?.responseStarted?.(performance.now());
         machineRef.current?.dispatch({ type: "TUTOR_AUDIO_START", at: performance.now(), generation: playbackToken.generation });
       }
@@ -987,6 +992,7 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         if (currentGeneration && playingSourcesRef.current.size === 0 && !responseInFlightRef.current) {
           setSpeaking(false);
           // The reply is over — close the mouth rather than leaving it parked on the last chunk.
+          endSpeechScript();
           detachMouthAnalyser(mouthTokenRef.current);
           mouthTokenRef.current = undefined;
           mouthBusRef.current = null;
@@ -996,6 +1002,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         }
       };
       const startAt = Math.max(context.currentTime, nextPlayTimeRef.current);
+      // The first chunk of a reply opens the lip-sync script at its start time (lib/adhd/mouth.ts).
+      if (speechScriptPendingRef.current) {
+        speechScriptPendingRef.current = false;
+        beginSpeechScript(startAt);
+      }
       /*
        * The fade must be short relative to the chunk, or a very short buffer would be faded to
        * nothing. Half the chunk at most, so the envelope always has room to open and close.
@@ -1008,6 +1019,9 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
       source.start(startAt);
       playingSourcesRef.current.add(source);
       nextPlayTimeRef.current = startAt + buffer.duration;
+      extendSpeechAudio(nextPlayTimeRef.current);
+      // The mouth for this chunk, worked out now and keyed to when it will be heard.
+      scheduleMouthFrames(samples, OUTPUT_SAMPLE_RATE, startAt);
       setSpeaking(true);
       /*
        * The gate learns that the tutor is audible from `playingSourcesRef` on every mic frame —
@@ -1383,7 +1397,11 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
         // A held reply is not collected either, so its final transcript is empty and never shown.
         // Nor is a muted one (a narrated board, a "continue" handled locally): words she never said
         // aloud must not appear in the chat as hers.
-        if (!isHeldReply() && !muteRepliesUntilStudentRef.current) tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
+        if (!isHeldReply() && !muteRepliesUntilStudentRef.current) {
+          tutorTranscriptRef.current = appendTranscript(tutorTranscriptRef.current, outputText);
+          // The words reach the lips before the audio does: the face knows which shape is due.
+          appendSpeechText(outputText);
+        }
         // What Aria is saying is the best evidence of what a reply would be about.
         gateRef.current?.setTopicWords(
           topicWordsFrom(optionsRef.current.topic, optionsRef.current.getBeatContext(), tutorTranscriptRef.current.slice(-400)),

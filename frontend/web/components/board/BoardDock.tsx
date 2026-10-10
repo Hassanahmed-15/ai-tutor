@@ -16,6 +16,7 @@ import {
   Play,
   Sparkles,
   Undo2,
+  UserRound,
   X,
 } from "lucide-react";
 
@@ -61,6 +62,9 @@ export interface BoardDockProps {
   /** The typed-question panel: closed by default, opened here or by Aria answering. */
   askOpen?: boolean;
   onToggleAsk?: () => void;
+  /** Aria's face beside the board (components/avatar/AriaAvatar.tsx). */
+  avatarOn?: boolean;
+  onToggleAvatar?: () => void;
   /** "Part 2 of 6" — the only progress text, because a ring around an avatar is not readable. */
   positionLabel: string;
   busy?: boolean;
@@ -307,6 +311,12 @@ export function BoardDock(props: BoardDockProps) {
         {props.onToggleAsk && (
           <DockButton onClick={props.onToggleAsk} active={props.askOpen} label={props.askOpen ? "Close the questions" : "Ask Aria"}>
             <MessageCircle size={19} />
+          </DockButton>
+        )}
+
+        {props.onToggleAvatar && (
+          <DockButton onClick={props.onToggleAvatar} active={props.avatarOn} label={props.avatarOn ? "Hide Aria's face" : "Show Aria's face"}>
+            <UserRound size={19} />
           </DockButton>
         )}
 

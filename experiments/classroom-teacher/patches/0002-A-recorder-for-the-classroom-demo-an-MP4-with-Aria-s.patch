@@ -1,0 +1,157 @@
+From f80e5554324b5454515e3e75b2df0d6b3801e226 Mon Sep 17 00:00:00 2001
+From: Hassanahmed-15 <hassankzr2006@gmail.com>
+Date: Fri, 9 Oct 2026 02:12:13 +0500
+Subject: [PATCH 2/2] A recorder for the classroom demo: an MP4 with Aria's
+ voice, to share
+
+Chrome's screencast on the GPU for the frames; each narration clip captured as its blob becomes a
+URL (the player frees the URL right after use) and placed by ffmpeg where it started playing.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ frontend/web/scripts/avatar/README.md         |   4 +
+ .../web/scripts/avatar/record-classroom.mjs   | 120 ++++++++++++++++++
+ 2 files changed, 124 insertions(+)
+ create mode 100644 frontend/web/scripts/avatar/record-classroom.mjs
+
+diff --git a/frontend/web/scripts/avatar/README.md b/frontend/web/scripts/avatar/README.md
+index 22647d80..7542ff78 100644
+--- a/frontend/web/scripts/avatar/README.md
++++ b/frontend/web/scripts/avatar/README.md
+@@ -22,3 +22,7 @@ The fixture is OpenAI TTS at 24 kHz, Gemini's output rate.
+ - `node scripts/avatar/classroom-tour.mjs` — plays the classroom demo (`/classroom`) on the real GPU
+   for 40 s, printing each second what the teacher's brain is doing (place, activity, clip, pen,
+   marker) and saving frames while she writes to `/tmp/classroom-write-*.png`.
++- `node scripts/avatar/record-classroom.mjs [seconds] [out.mp4]` — records the classroom demo as a
++  shareable MP4 (H.264 + AAC, 1440×900) with Aria's narration: frames from Chrome's screencast on
++  the GPU, each narration clip captured when its blob is created and laid onto the timeline by
++  ffmpeg. Default 180 s to `~/Downloads/aria-classroom-demo.mp4`.
+diff --git a/frontend/web/scripts/avatar/record-classroom.mjs b/frontend/web/scripts/avatar/record-classroom.mjs
+new file mode 100644
+index 00000000..79fa95a1
+--- /dev/null
++++ b/frontend/web/scripts/avatar/record-classroom.mjs
+@@ -0,0 +1,120 @@
++// Records the classroom demo (/classroom) as an MP4 with Aria's narration, for sharing.
++//
++//   node scripts/avatar/record-classroom.mjs [seconds=180] [out=~/Downloads/aria-classroom-demo.mp4]
++//
++// Needs `npm run dev` and ffmpeg. Frames come from Chrome's screencast on the real GPU (Playwright's
++// own video is soft and silent); each narration clip is captured as it starts playing, with its
++// start time, and ffmpeg lays the clips onto the timeline.
++import { createRequire } from "node:module";
++import { mkdirSync, rmSync, writeFileSync } from "node:fs";
++import { execFileSync } from "node:child_process";
++import { homedir, tmpdir } from "node:os";
++import { join } from "node:path";
++const require = createRequire(import.meta.url);
++const { chromium } = require("playwright");
++
++const SECONDS = Number(process.argv[2] ?? 180);
++const OUT = process.argv[3] ?? join(homedir(), "Downloads", "aria-classroom-demo.mp4");
++const W = 1440, H = 900, FPS = 30;
++const work = join(tmpdir(), `aria-record-${process.pid}`);
++rmSync(work, { recursive: true, force: true });
++mkdirSync(join(work, "frames"), { recursive: true });
++
++const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=metal", "--enable-gpu", "--ignore-gpu-blocklist", "--autoplay-policy=no-user-gesture-required"] });
++const page = await browser.newPage({ viewport: { width: W, height: H }, colorScheme: "dark" });
++page.on("pageerror", (e) => console.log("pageerror:", String(e).slice(0, 200)));
++
++// Every narration clip, as it starts: when (wall clock) and its bytes. The bytes are taken when the
++// clip's blob becomes a URL — the player frees each URL right after use, so reading it at play time
++// loses the race.
++await page.addInitScript(() => {
++  const toB64 = (buf) => {
++    const bytes = new Uint8Array(buf);
++    let s = "";
++    for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
++    return btoa(s);
++  };
++  const blobs = new Map();
++  const clips = [];
++  window.__clips = clips;
++  window.__blobs = blobs;
++  const create = URL.createObjectURL;
++  URL.createObjectURL = function (obj) {
++    const url = create.call(URL, obj);
++    if (obj instanceof Blob) blobs.set(url, obj.arrayBuffer().then(toB64));
++    return url;
++  };
++  const play = HTMLMediaElement.prototype.play;
++  HTMLMediaElement.prototype.play = function (...args) {
++    clips.push({ at: Date.now(), from: this.currentTime || 0, src: this.currentSrc || this.src });
++    return play.apply(this, args);
++  };
++});
++
++await page.goto("http://localhost:3000/classroom", { waitUntil: "domcontentloaded", timeout: 120000 });
++await page.waitForFunction(() => window.__ariaClassroom, null, { timeout: 120000 });
++await page.waitForTimeout(1500);
++
++// Frames.
++const cdp = await page.context().newCDPSession(page);
++const frames = [];
++let n = 0;
++cdp.on("Page.screencastFrame", async ({ data, metadata, sessionId }) => {
++  const file = join(work, "frames", `${String(n++).padStart(6, "0")}.jpg`);
++  writeFileSync(file, Buffer.from(data, "base64"));
++  frames.push({ file, t: metadata.timestamp * 1000 });
++  try { await cdp.send("Page.screencastFrameAck", { sessionId }); } catch {}
++});
++await cdp.send("Page.startScreencast", { format: "jpeg", quality: 92, maxWidth: W, maxHeight: H, everyNthFrame: 1 });
++const t0 = Date.now();
++
++// The room before the lesson: Aria in the middle, then Play.
++await page.waitForTimeout(3500);
++await page.getByRole("button", { name: /^(Play|Start)/i }).first().click();
++await page.mouse.move(W - 6, H / 2); // no hover tooltips in the shot
++const step = 15;
++for (let s = 0; s < SECONDS; s += step) {
++  await page.waitForTimeout(step * 1000);
++  console.log(`recorded ${Math.min(SECONDS, s + step)}s / ${SECONDS}s, frames ${frames.length}`);
++}
++await cdp.send("Page.stopScreencast");
++const tEnd = Date.now();
++await page.waitForTimeout(500);
++const clips = await page.evaluate(async () => Promise.all(window.__clips.map(async (c) => ({ at: c.at, from: c.from, b64: window.__blobs.has(c.src) ? await window.__blobs.get(c.src) : null }))));
++await browser.close();
++
++// Video: each frame held until the next one, resampled to a steady 30 fps.
++const lines = [];
++for (let i = 0; i < frames.length; i++) {
++  const dur = ((frames[i + 1]?.t ?? tEnd) - frames[i].t) / 1000;
++  lines.push(`file '${frames[i].file}'`, `duration ${Math.max(0.001, dur).toFixed(4)}`);
++}
++lines.push(`file '${frames[frames.length - 1].file}'`);
++writeFileSync(join(work, "frames.txt"), lines.join("\n"));
++const videoStart = frames[0].t;
++
++// Audio: each clip placed where it started playing.
++const audioInputs = [];
++const filters = [];
++let k = 0;
++for (const c of clips) {
++  if (!c.b64) continue;
++  const delay = Math.max(0, Math.round(c.at - videoStart));
++  if (delay > tEnd - videoStart) continue;
++  const f = join(work, `clip-${k}.mp3`);
++  writeFileSync(f, Buffer.from(c.b64, "base64"));
++  audioInputs.push("-i", f);
++  filters.push(`[${k + 1}:a]atrim=start=${c.from.toFixed(3)},asetpts=PTS-STARTPTS,adelay=${delay}|${delay}[a${k}]`);
++  k++;
++}
++console.log(`frames ${frames.length} (${((tEnd - videoStart) / 1000).toFixed(1)}s), narration clips ${k} of ${clips.length}`);
++
++const args = ["-y", "-f", "concat", "-safe", "0", "-i", join(work, "frames.txt"), ...audioInputs];
++if (k > 0) {
++  const mix = filters.join(";") + ";" + Array.from({ length: k }, (_, i) => `[a${i}]`).join("") + `amix=inputs=${k}:normalize=0:dropout_transition=0,volume=1.6[aout]`;
++  args.push("-filter_complex", mix, "-map", "0:v", "-map", "[aout]", "-c:a", "aac", "-b:a", "160k");
++}
++args.push("-vf", `fps=${FPS},format=yuv420p`, "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-movflags", "+faststart", "-t", ((tEnd - videoStart) / 1000).toFixed(2), OUT);
++execFileSync("ffmpeg", args, { stdio: ["ignore", "ignore", "inherit"] });
++rmSync(work, { recursive: true, force: true });
++console.log(`wrote ${OUT}`);
+-- 
+2.52.0
+
