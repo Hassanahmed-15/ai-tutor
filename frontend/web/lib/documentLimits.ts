@@ -23,7 +23,28 @@ export const DOCUMENT_LIMITS = {
    */
   MAX_PREVIEW_PAGES: 400,
   MAX_BYTES: 20 * 1024 * 1024,
+  /**
+   * The most text a PDF may have, counted over the WHOLE file before any page is chosen (the
+   * student's rule, 2026-10-10). The lecture and its chat read the whole document, and the chat's
+   * context holds 30,000 characters — so a longer file is refused at upload rather than read in
+   * part. A scanned page has no text layer and counts as nothing here.
+   */
+  MAX_PDF_TEXT_CHARS: 30_000,
 } as const;
+
+/** The message shown when a PDF has more text than one lesson can read. */
+export function tooMuchTextMessage(actual: number): string {
+  return (
+    `This PDF has ${actual.toLocaleString("en-US")} characters of text, and the limit is ` +
+    `${DOCUMENT_LIMITS.MAX_PDF_TEXT_CHARS.toLocaleString("en-US")}. Aria reads the whole document, so it has to fit. ` +
+    `Upload a shorter file, or split this one and upload the part you want to learn.`
+  );
+}
+
+/** True when a PDF with this much text must be refused. */
+export function exceedsTextLimit(characters: number): boolean {
+  return Number.isFinite(characters) && characters > DOCUMENT_LIMITS.MAX_PDF_TEXT_CHARS;
+}
 
 /**
  * The message shown when a document is too long.

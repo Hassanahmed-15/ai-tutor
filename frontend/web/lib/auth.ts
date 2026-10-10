@@ -108,18 +108,34 @@ async function findSession(tokenHash: string): Promise<SessionDoc | null> {
  * real user cannot both keep using it, so the theft surfaces as an unexpected logout rather than
  * as silent indefinite access.
  */
-export async function rotateSession(token: string): Promise<{ userId: string; token: string } | null> {
+export async function rotateSession(token: string): Promise<{ userId: string; token: string | null } | null> {
   await ensureContainers();
   const hash = hashToken(token);
   const row = await findSession(hash);
   if (!row) return null;
   // Validity is checked here rather than in the query: Cosmos has no partial index to make a
   // filtered read cheaper, and the document is already in hand.
-  if (row.revokedAt || new Date(row.expiresAt) <= new Date()) return null;
-  await sessionsContainer().item(row.id, hash).replace({ ...row, revokedAt: new Date().toISOString() });
+  if (new Date(row.expiresAt) <= new Date()) return null;
+  if (row.revokedAt) {
+    /*
+     * REQUESTS SENT TOGETHER. Once the 15-minute access token has expired, a page that sends two
+     * requests at once (starting a strict lecture: naming it, building it, saving the persona)
+     * sends the same refresh token with each. The first rotated it; the others found it revoked
+     * and answered "Authentication required." — measured 2026-10-10, the build itself refused.
+     * A token rotated moments ago is still honoured, with no new refresh token (the request that
+     * rotated it already set that one). A token revoked by logging out never is.
+     */
+    if (row.rotatedAt && Date.now() - Date.parse(row.rotatedAt) < ROTATION_GRACE_MS) return { userId: row.userId, token: null };
+    return null;
+  }
+  const now = new Date().toISOString();
+  await sessionsContainer().item(row.id, hash).replace({ ...row, revokedAt: now, rotatedAt: now });
   const next = await createSession(row.userId);
   return { userId: row.userId, token: next };
 }
+
+/** How long a just-rotated refresh token still lets a request through (the ones sent with it). */
+const ROTATION_GRACE_MS = 30_000;
 
 export async function revokeSession(token: string): Promise<void> {
   await ensureContainers();
@@ -169,6 +185,9 @@ export async function currentUser(): Promise<{ userId: string; email: string } |
   const { resource: user } = await users().item(rotated.userId, rotated.userId).read<UserDoc>();
   if (!user) return null;
   const nextAccess = await signAccessToken(user.id, user.email);
-  await setAuthCookies(nextAccess, rotated.token);
+  if (rotated.token) await setAuthCookies(nextAccess, rotated.token);
+  // Within the grace window only the access cookie is renewed: the refresh cookie the rotating
+  // request set must not be overwritten with this one's revoked token.
+  else (await cookies()).set(ACCESS_COOKIE, nextAccess, { ...COOKIE_BASE, maxAge: ACCESS_TTL_SECONDS });
   return { userId: user.id, email: user.email };
 }

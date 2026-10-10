@@ -125,7 +125,8 @@ function words(text: string): string[] {
 export function contentStems(text: string): string[] {
   const out: string[] = [];
   for (const word of words(text)) {
-    if (FORMULA_WORDS[word]) {
+    // Own keys only: "constructor" (a word C++ notes use) found Object.prototype's and threw.
+    if (Object.hasOwn(FORMULA_WORDS, word)) {
       out.push(...FORMULA_WORDS[word].map(stem));
       continue;
     }

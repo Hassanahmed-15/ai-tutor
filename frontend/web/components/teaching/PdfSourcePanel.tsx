@@ -20,6 +20,7 @@ export function PdfSourcePanel({
   fidelity,
   embedded = false,
   activeSentence = "",
+  activeSentenceIndex,
   onPointerRect,
 }: {
   documentId: string;
@@ -31,6 +32,11 @@ export function PdfSourcePanel({
   embedded?: boolean;
   /** The sentence Aria is speaking right now — the pointer marks the part of the page it is about. */
   activeSentence?: string;
+  /**
+   * Which sentence of the part's script that is. A strict canvas lesson names, for every sentence,
+   * the passage it is about (Beat.sentenceBlockIds) — the pointer goes there, no guessing.
+   */
+  activeSentenceIndex?: number;
   /** Where the pointed-at passage is on screen (or null when it is scrolled out of view), so the
    *  player can draw the arrow from it to the board. */
   onPointerRect?: (rect: DOMRect | null) => void;
@@ -64,7 +70,10 @@ export function PdfSourcePanel({
     return map;
   }, [sourceDocument]);
   const lastPointerRef = useRef<{ index: number; blockId: string | null }>({ index: -1, blockId: null });
+  const namedBlockId = typeof activeSentenceIndex === "number" ? beats[currentIndex]?.sentenceBlockIds?.[activeSentenceIndex] : undefined;
   const pointerBlockId = useMemo(() => {
+    // The passage the planner tied to this sentence, when this part has one and it is on the page.
+    if (namedBlockId && focus.highlights.some((highlight) => highlight.blockId === namedBlockId && highlight.rect)) return namedBlockId;
     const said = new Set(contentStems(activeSentence));
     let best: { id: string; score: number } | null = null;
     if (said.size > 0) {
@@ -81,7 +90,7 @@ export function PdfSourcePanel({
     // Same part and no match: keep where the pointer was. A new part starts on its first block.
     if (last.index === currentIndex && last.blockId) return last.blockId;
     return focus.highlights.find((highlight) => highlight.rect)?.blockId ?? null;
-  }, [activeSentence, focus.highlights, blockText, currentIndex]);
+  }, [namedBlockId, activeSentence, focus.highlights, blockText, currentIndex]);
   useEffect(() => {
     lastPointerRef.current = { index: currentIndex, blockId: pointerBlockId };
   }, [currentIndex, pointerBlockId]);
@@ -266,13 +275,13 @@ export function PdfSourcePanel({
                     )}
                     {pageHighlights.map((highlight) => highlight.rect ? (
                       highlight.blockId === pointerBlockId ? (
-                        <span key={highlight.blockId} ref={pointerRef} className="pointer-events-none absolute" style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }}>
+                        <span key={highlight.blockId} ref={pointerRef} data-pointer-block={highlight.blockId} className="pointer-events-none absolute" style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }}>
                           {/* What Aria is saying NOW: a solid marker and an arrow pointing at it. */}
                           <span className="absolute inset-0 rounded-[3px] border-[3px] border-[var(--hud-cyan)] bg-[var(--hud-cyan-glow)] transition-all duration-300" />
                           <span aria-hidden="true" className="absolute top-1/2 -translate-y-1/2 animate-pulse text-[1.35rem] leading-none text-[var(--hud-cyan)] drop-shadow" style={{ right: "calc(100% + 4px)" }}>▶</span>
                         </span>
                       ) : (
-                        <span key={highlight.blockId} data-source-highlight className="pointer-events-none absolute rounded-[2px] border border-dashed border-[var(--hud-cyan)] bg-[var(--hud-cyan-glow)] transition-all duration-300" title={highlight.label} style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }} />
+                        <span key={highlight.blockId} data-source-highlight={highlight.blockId} className="pointer-events-none absolute rounded-[2px] border border-dashed border-[var(--hud-cyan)] bg-[var(--hud-cyan-glow)] transition-all duration-300" title={highlight.label} style={{ left: `${highlight.rect.x * 100}%`, top: `${highlight.rect.y * 100}%`, width: `${highlight.rect.width * 100}%`, height: `${highlight.rect.height * 100}%` }} />
                       )
                     ) : (
                       <span key={highlight.blockId} className="pointer-events-none absolute inset-y-0 left-0 w-1.5 bg-[var(--hud-cyan)]" title={highlight.label} />

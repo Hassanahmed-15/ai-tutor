@@ -12,7 +12,8 @@ import {
   isBoilerplateText,
 } from "@/lib/pdfLessonPipeline";
 import { cropFigurePagesWithPython, renderPdfWithPython, VISION_DPI, type PythonCrop } from "@/lib/pdfPythonPipeline";
-import { DOCUMENT_LIMITS, exceedsPageLimit, selectFewerPagesMessage } from "@/lib/documentLimits";
+import { DOCUMENT_LIMITS, exceedsPageLimit, exceedsTextLimit, selectFewerPagesMessage, tooMuchTextMessage } from "@/lib/documentLimits";
+import { pdfPageTexts, textLength } from "@/lib/pdfText";
 import { figureScope } from "@/lib/figureDetectionScope";
 import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
 import { figureRegionsFromCaptions, locateBlocks, ocrPageLayout, type OcrPageLayout } from "@/lib/ocrLayout";
@@ -802,6 +803,14 @@ async function parsePdfRequest(req: NextRequest) {
     return NextResponse.json({ error: "No pages found in the PDF." }, { status: 422 });
   }
 
+  // Every page's text, whatever pages were chosen: measured against the 30,000-character limit
+  // (also checked when the page picker opened — lib/documentLimits.ts), and kept for the chat below.
+  const allPageTexts = await pdfPageTexts(pythonBytes).catch(() => [] as string[]);
+  const textCharacters = textLength(allPageTexts);
+  if (exceedsTextLimit(textCharacters)) {
+    return NextResponse.json({ error: tooMuchTextMessage(textCharacters) }, { status: 413 });
+  }
+
   let metadataTitle = "";
   try {
     const metadata = await pdf.getMetadata();
@@ -887,14 +896,27 @@ async function parsePdfRequest(req: NextRequest) {
    * general knowledge instead, just as fluently. This keeps the text so questions can range over
    * the whole document while the LECTURE stays scoped to what they chose.
    */
-  const fullDocumentText = (pythonPages ?? [])
+  const pythonText = (pythonPages ?? [])
     .map((page) => {
       const text = (page.text ?? "").replace(/\s+/g, " ").trim();
       return text ? `[page ${page.pageNumber}] ${text}` : "";
     })
     .filter(Boolean)
-    .join("\n\n")
-    .slice(0, FULL_TEXT_CHARS);
+    .join("\n\n");
+  /*
+   * A file longer than MAX_PAGES has only its chosen pages rendered by Python, and a failed render
+   * leaves no text at all — then the whole file's text comes from pdf.js (read above), so the chat
+   * still sees every page.
+   */
+  const everyPage = (pythonPages?.length ?? 0) >= pdf.numPages;
+  const pdfjsText = allPageTexts
+    .map((text, i) => {
+      const flat = text.replace(/\s+/g, " ").trim();
+      return flat ? `[page ${i + 1}] ${flat}` : "";
+    })
+    .filter(Boolean)
+    .join("\n\n");
+  const fullDocumentText = (everyPage && pythonText ? pythonText : pdfjsText || pythonText).slice(0, FULL_TEXT_CHARS);
 
   /*
    * Which of the requested pages paint anything a figure detector could find.

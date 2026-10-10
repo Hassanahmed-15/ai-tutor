@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { renderPdfWithPython, streamPdfThumbnails } from "@/lib/pdfPythonPipeline";
 import { renderPptxSlides } from "@/lib/pptxRender";
 import { convertPptxToPdf } from "@/lib/pptxToPdf";
-import { DOCUMENT_LIMITS, exceedsPageLimit, exceedsPreviewLimit, tooLongToPreviewMessage, tooManyPagesMessage } from "@/lib/documentLimits";
+import { DOCUMENT_LIMITS, exceedsPageLimit, exceedsPreviewLimit, exceedsTextLimit, tooLongToPreviewMessage, tooManyPagesMessage, tooMuchTextMessage } from "@/lib/documentLimits";
+import { pdfPageTexts, textLength } from "@/lib/pdfText";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -167,6 +168,16 @@ async function documentPagesRequest(request: Request) {
   }
 
   const bytes = new Uint8Array(await file.arrayBuffer());
+
+  /*
+   * TOO MUCH TEXT IS REFUSED HERE, before the page picker opens (lib/documentLimits.ts
+   * MAX_PDF_TEXT_CHARS). The whole file counts, whatever pages are ticked later. A file pdf.js
+   * cannot open is not refused for that here — the parse reports it properly.
+   */
+  const characters = await pdfPageTexts(bytes).then(textLength).catch(() => 0);
+  if (exceedsTextLimit(characters)) {
+    return NextResponse.json({ error: tooMuchTextMessage(characters) }, { status: 413 });
+  }
 
   /*
    * STREAM THE PAGES, one NDJSON line each, as they are rendered.

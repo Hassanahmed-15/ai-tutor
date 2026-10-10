@@ -230,6 +230,8 @@ export type SessionDoc = {
   expiresAt: string;
   createdAt: string;
   revokedAt: string | null;
+  /** Set when the session was revoked by ROTATION (lib/auth.ts rotateSession), not by a logout. */
+  rotatedAt?: string;
   /** Cosmos deletes the document this many seconds after its last write. */
   ttl: number;
 };

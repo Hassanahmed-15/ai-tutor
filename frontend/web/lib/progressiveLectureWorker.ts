@@ -53,6 +53,7 @@ import { buildBeatScriptMessages, keyClaimsFrom, type GeneratedBeatPayload } fro
 import { auditBeat, claimsAllowedFor, describeFinding, repairScript, subjectTerms } from "./lessonRepetition";
 import { buildProgressivePlan, clean, isReferenceLesson, questionScoped, sourceRoleFor } from "./progressivePlan";
 import { canvasSpecOf, planCanvasLecture, writeCanvasBoard } from "./canvas/progressive";
+import { referenceDocumentOf, strictDocumentOf, videoDocumentOf } from "./canvas/lessonRequest";
 import { extractLectureKnowledge } from "./knowledge/extract";
 import { knowledgeForPlanning, NO_PLANNING_KNOWLEDGE } from "./knowledge/planning";
 import { loadLectureKnowledge, mergeLectureIntoGraph, saveLectureKnowledge } from "./knowledge/store";
@@ -137,7 +138,7 @@ async function planLecture(userId: string, sessionId: string): Promise<void> {
       ]);
       const canvas = await planCanvasLecture(input, known);
       const next = await setProgressivePlan({ ...session, costUsd: session.costUsd + canvas.costUsd }, canvas.plan);
-      console.log(`[canvas] session=${sessionId} plan=${canvas.plan.map((b) => `${b.id}=${b.canvas?.stage}${b.canvas?.interaction ? `[${b.canvas.interaction}]` : ""}${b.canvas?.refresher ? "[refresher]" : ""}`).join(" ")} known=${known.mastered.length}/${known.shaky.length}/${known.earlier.length}`);
+      console.log(`[canvas] session=${sessionId} plan=${canvas.plan.map((b) => `${b.id}=${b.canvas?.stage}${b.canvas?.interaction ? `[${b.canvas.interaction}]` : ""}${b.canvas?.refresher ? "[refresher]" : ""}${b.canvas?.source?.listing ? `[L${b.canvas.source.listing}${b.canvas.source.lines ? `:${b.canvas.source.lines.join("-")}` : ""}]` : ""}`).join(" ")} known=${known.mastered.length}/${known.shaky.length}/${known.earlier.length}`);
       await dispatchDueBeats(next);
       await growKnowledge(next);
       return;
@@ -330,7 +331,14 @@ async function generateCanvasBoard(
     if (plan.length !== session.plan.length) throw new Error("The canvas lecture's plan is missing its boards.");
     const docs = await progressiveBeats(sessionId);
     const earlier = plan.map((_, i) => (i < sequence ? canvasSpecOf(docs.find((d) => d.sequence === i)?.beat) : undefined));
-    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes });
+    // A PDF used as a reference: the board also reads its pages and copies its code.
+    const input = await progressiveInput(session);
+    const document = referenceDocumentOf(input);
+    // Strictly from a source (lib/canvas/sourceLessons.ts): a strict PDF, or a video.
+    const strictDoc = strictDocumentOf(input);
+    const video = videoDocumentOf(input);
+    const strictSource = strictDoc ? { mode: "strict" as const, doc: strictDoc } : video ? { mode: "video" as const, doc: video } : null;
+    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource });
     beat = written.beat;
     costUsd = written.costUsd;
     fallbackUsed = written.fallback;

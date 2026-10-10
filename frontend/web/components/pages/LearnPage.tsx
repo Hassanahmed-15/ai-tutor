@@ -356,6 +356,8 @@ type BuildCost =
   const [ocrTranscript, setOcrTranscript] = useState("");
   /** Pages the student dragged an area on — the lesson is about that area; chat and voice are told so. */
   const [selectionPages, setSelectionPages] = useState<number[]>([]);
+  /** The PDF pages the lesson was built from, when the student chose some ([] = every page). */
+  const [focusPages, setFocusPages] = useState<number[]>([]);
   /**
    * Handle for the page images the parse rendered and parked server-side.
    *
@@ -823,6 +825,8 @@ type BuildCost =
   // stays a plain single-file .pptx/.json picker exactly as it works today).
   const folderInputRef = useRef<HTMLInputElement>(null);
   const buildAbortRef = useRef<AbortController | null>(null);
+  /** The last build, so "Try again" can repeat a lecture that has no planning step (see onRetry). */
+  const lastBuildRef = useRef<{ t: string; approvedOutline?: PlanOutline; fresh?: FreshUpload; documentPlanningNotes: string[]; noPlanning: boolean } | null>(null);
   /** When the current build started, so elapsed time (and the remaining estimate) is real. */
   const buildStartedAtRef = useRef<number | null>(null);
 
@@ -1181,6 +1185,9 @@ type BuildCost =
       const parsedDocumentId = typeof primary.data.documentId === "string" ? primary.data.documentId : null;
       setDocumentId(parsedDocumentId);
       setFullDocumentText(parsed.map((p) => (typeof p.data.fullDocumentText === "string" ? p.data.fullDocumentText : "")).filter(Boolean).join("\n\n"));
+      // Which pages this lesson is about, when not all of them: the strict chat reads them first.
+      const used = Array.isArray(primary.data.pagesUsed) ? (primary.data.pagesUsed as unknown[]).filter((n): n is number => typeof n === "number") : [];
+      setFocusPages(parsed.length === 1 && used.length > 0 && used.length < (primary.data.pageCount ?? 0) ? used : []);
 
       /**
        * The question, from wherever the student actually asked it.
@@ -1329,9 +1336,16 @@ type BuildCost =
        */
       const asked = next.fresh.focus?.trim() ?? "";
       void (async () => {
-        const subject = asked && (question || isQuestionAboutFile(asked))
+        /*
+         * NO QUESTION: THE LECTURE IS ALL THE SELECTED PAGES, so its title names what they cover as
+         * a whole — not the first section heading the parse found ("Single Rotation" on a chapter
+         * about AVL trees). Text that only points at the document asks the namer to name the
+         * document itself; the pages it reads are the selected ones. Falls back to the old title.
+         */
+        const subject = question
           ? await nameSubject(asked, next.fresh.sourceDocument, next.fresh.documentId)
-          : next.subject;
+          : await nameSubject("Teach me everything in these pages of this document", next.fresh.sourceDocument, next.fresh.documentId)
+            .then((named) => (named && !/^teach|everything in these pages/i.test(named) ? named : next.subject));
         setTopic(subject);
         void build(subject, undefined, next.fresh, []);
       })();
@@ -1385,6 +1399,7 @@ type BuildCost =
       setSourceDocument(video.document);
       // The whole transcript, for the chat and the voice tutor: the lesson is short, the video is not.
       setFullDocumentText(video.fullDocumentText);
+      setFocusPages([]);
       setUploadedFile({ name: video.title, kind: "youtube" });
       setTopic(video.title);
       // The video's title is the whole request; nothing typed narrows the lesson to part of it.
@@ -2611,6 +2626,8 @@ type BuildCost =
   ) {
     const trimmed = t.trim();
     if (!trimmed) return;
+    // What "Try again" repeats for a lecture that has no planning step (strict source, a video).
+    lastBuildRef.current = { t, approvedOutline, fresh, documentPlanningNotes, noPlanning: sourceScopeRef.current?.fidelity === "strict" || fresh?.kind === "youtube" };
     resetLectureSummary();
     buildAbortRef.current?.abort();
     const controller = new AbortController();
@@ -3026,6 +3043,7 @@ type BuildCost =
     setSelectionPages([]);
     setDocumentId(null);
     setFullDocumentText("");
+    setFocusPages([]);
     setUploadedFile(null);
     setProgressiveSessionId(null);
     setProgressiveComplete(true);
@@ -3577,7 +3595,7 @@ type BuildCost =
       default:
         // `adhd` is the ONLY difference between the two tracks at this point: same player, same UI,
         // plus the overlay. The gate lives in lib/adhd/gate.ts so this is the one place that asks.
-        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} startIndex={clickableMindMap ? replayStartIndex : undefined} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} sourceScope={playerScope} captions={profile?.captions === true} />;
+        player = <LessonPlayer beats={beats} title={builtTopic} onExit={endLectureToHome} onComplete={onLectureComplete} onUnderstood={finishLectureUnderstood} onCheckpointGraded={recordCheckpointGrade} mood={moodString} adhd={isAdhdLearner(profile)} startIndex={clickableMindMap ? replayStartIndex : undefined} sourceDocument={sourceDocument} slideContext={slideContext} ocrTranscript={ocrTranscript} documentId={documentId ?? ""} lessonQuestion={uploadFocus} fullDocumentText={fullDocumentText} hasMoreBeats={!progressiveComplete} totalBeatCount={progressivePlannedBeatCount || undefined} plannedParts={chatPlannedParts} onBeatIndexChange={onLectureBeatChange} onLearnerInteraction={captureLearnerInteraction} onSummarize={openLectureSummary} summaryUnlocked={lectureCompleted} selectionPages={selectionPages} focusPages={clickableMindMap ? focusPages : undefined} sourceScope={playerScope} captions={profile?.captions === true} />;
     }
     return (
       <div className="relative">
@@ -3889,7 +3907,13 @@ type BuildCost =
           videoProgress={videoProgress}
           topic={topic}
           onHome={leaveToHome}
-          onRetry={topic ? () => void startPlanning(topic) : undefined}
+          onRetry={topic ? () => {
+            // A strict-source or video lecture has no planning conversation: it is built again as it
+            // was, never sent into the planning questions (which only reference mode and typed topics have).
+            const last = lastBuildRef.current;
+            if (last?.noPlanning) void build(last.t, last.approvedOutline, last.fresh, last.documentPlanningNotes);
+            else void startPlanning(topic);
+          } : undefined}
         />
       )}
     </main>
