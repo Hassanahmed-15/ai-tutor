@@ -21,7 +21,17 @@ import { CosmosClient, type Container } from "@azure/cosmos";
  * the single most common way a Cosmos bill and its latency both go wrong.
  */
 
-const DATABASE_ID = "aria";
+/*
+ * ONE SHARED 1,000 RU/s POOL, PAID FOR BY THE FREE TIER (2026-10-11). The old database `aria` gave
+ * each of its 11 containers 400 RU/s of its own — 4,400 RU/s billed around the clock, about
+ * $6.50 a day whether anyone used the app or not. `aria-shared` is created with 1,000 RU/s shared
+ * by every container (the account's free-tier allowance), and containers created in it take no
+ * throughput of their own. scripts/migrate-cosmos-shared.mjs copied the data across.
+ * COSMOS_DATABASE overrides the name (the cut-over used it); the default is the shared database,
+ * so nothing ever recreates the per-container one.
+ */
+const DATABASE_ID = process.env.COSMOS_DATABASE?.trim() || "aria-shared";
+const SHARED_THROUGHPUT = 1000;
 export const USERS_CONTAINER = "users";
 export const SESSIONS_CONTAINER = "sessions";
 export const LEADERBOARD_CONTAINER = "leaderboard";
@@ -401,7 +411,8 @@ export function lectureJobs(): Container {
 let ensured = false;
 export async function ensureContainers(): Promise<void> {
   if (ensured) return;
-  const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID });
+  // Throughput is set on the DATABASE: the containers below share it (none sets its own).
+  const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID, throughput: SHARED_THROUGHPUT });
   await database.containers.createIfNotExists({
     id: USERS_CONTAINER,
     partitionKey: { paths: ["/id"] },
