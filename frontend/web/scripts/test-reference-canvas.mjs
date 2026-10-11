@@ -129,7 +129,8 @@ if (promptTopic) {
   log(`typed prompt "${promptTopic}"`);
 } else if (isVideo) {
   // The header's YouTube launcher: paste the link, Summarize, and accept a long video's warning.
-  await page.getByRole("button", { name: /Summarize a YouTube lecture/ }).first().click();
+  // The header shows it compact, as "Video".
+  await page.getByRole("button", { name: /Summarize a YouTube lecture|^\s*Video\s*$/ }).first().click();
   await page.locator("#youtube-url").fill(pdf);
   await page.getByRole("button", { name: /^Summarize$/ }).click();
   await page.waitForTimeout(4000);
@@ -236,7 +237,7 @@ for (let i = 0; i < 720; i++) {
       canvas: Boolean(document.querySelector('[aria-label="Lesson canvas"]')),
       faceButton: [...document.querySelectorAll("button")].some((b) => /Aria's face/i.test(`${b.getAttribute("aria-label") ?? ""} ${b.title ?? ""} ${b.textContent ?? ""}`)),
       webglCanvases: [...document.querySelectorAll("canvas")].filter((c) => { try { return Boolean(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } }).length,
-      ended: /lecture complete|what you learned|mind map|test yourself/i.test(text("main")),
+      ended: /Lecture complete/.test(document.body?.innerText ?? ""),
     };
   }).catch(() => null);
   if (state) {
