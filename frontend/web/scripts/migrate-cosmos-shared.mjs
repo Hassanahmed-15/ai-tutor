@@ -23,6 +23,9 @@ const flag = (name, fallback) => {
   return at >= 0 ? args[at + 1] : fallback;
 };
 const dryRun = args.includes("--dry-run");
+// --since <unix seconds>: copy only items written after that moment (the catch-up after the switch;
+// the target may then hold newer items than the source, so counts are not compared).
+const since = Number(flag("--since", "0")) || 0;
 const FROM = flag("--from", "aria");
 const TO = flag("--to", "aria-shared");
 const SHARED_THROUGHPUT = 1000;
@@ -67,7 +70,9 @@ for (const def of containers) {
   const { container: to } = await target.containers.createIfNotExists(spec);
   const from = source.container(def.id);
   let copied = 0;
-  const iterator = from.items.query("SELECT * FROM c", { maxItemCount: 100 });
+  const iterator = since
+    ? from.items.query({ query: "SELECT * FROM c WHERE c._ts >= @since", parameters: [{ name: "@since", value: since }] }, { maxItemCount: 100 })
+    : from.items.query("SELECT * FROM c", { maxItemCount: 100 });
   while (iterator.hasMoreResults()) {
     const { resources } = await iterator.fetchNext();
     for (const item of resources ?? []) {
@@ -77,6 +82,10 @@ for (const def of containers) {
       await to.items.upsert(doc);
       copied++;
     }
+  }
+  if (since) {
+    console.log(`  ${def.id}: copied ${copied} item(s) written since ${new Date(since * 1000).toISOString()}`);
+    continue;
   }
   const [a, b] = [await count(from), await count(to)];
   if (a !== b) mismatches++;
