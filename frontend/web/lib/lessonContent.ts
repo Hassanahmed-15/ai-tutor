@@ -76,6 +76,11 @@ export interface Beat {
   /** Source-document provenance. PDF lessons use this to guarantee ordered block coverage and
    *  attach each extracted figure to the exact beat that teaches its page content. */
   sourceBlockIds?: string[];
+  /**
+   * A strict canvas lesson (lib/canvas/sourceLessons.ts): for each sentence of `script`, the source
+   * block it is about, so the PDF panel boxes the passage being spoken. Absent everywhere else.
+   */
+  sentenceBlockIds?: string[];
   draw?: DrawScript;
   /** Full-bleed real photo behind the slide (scene-setting beats only — hook/recap). Path under /public. */
   photoBackdrop?: string;

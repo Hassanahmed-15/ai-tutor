@@ -695,7 +695,7 @@ try {
   await browser.close();
   try {
     const conn = (readFileSync(".env.local", "utf8").match(/^COSMOS_CONNECTION_STRING=(.+)$/m) || [])[1].trim();
-    const db = new CosmosClient(conn).database("aria");
+    const db = new CosmosClient(conn).database(process.env.COSMOS_DATABASE || "aria-shared");
     const testUserIds = [];
     for (const [name, pk] of [["users", null], ["leaderboard", "adhd"]]) {
       const c = db.container(name);

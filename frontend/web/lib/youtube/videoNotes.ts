@@ -145,7 +145,9 @@ export function parseChapters(raw: unknown, durationSec: number): { title: strin
 
 /* ── Key points ───────────────────────────────────────────────────────────── */
 
-const POINT_DEFINITION = `A point is one self-contained sentence, at most 30 words, stating one IDEA the chapter teaches: a definition, a claim, a formula, a step of a method or derivation, a cause, a comparison, an example and what it shows, a warning about a mistake. The detail that makes the idea exact (the number, the name, the condition) goes inside the same sentence, not in a point of its own. State the content itself ("A neuron holds a number between 0 and 1, called its activation"), never a report of the video ("the speaker explains activations", "the video aims to show what a network is", "learning is covered in the next video"): the video, the speaker and other videos are never the subject of a point. Use the chapter's own terms, names, numbers and examples exactly. An equation is said in words first, then written.`;
+const POINT_DEFINITION = `A point is one self-contained sentence, at most 30 words, stating one IDEA the chapter teaches: a definition, a claim, a formula, a step of a method or derivation, a cause, a comparison, an example and what it shows, a warning about a mistake. The detail that makes the idea exact (the number, the name, the condition) goes inside the same sentence, not in a point of its own. State the content itself ("A neuron holds a number between 0 and 1, called its activation"), never a report of the video ("the speaker explains activations", "the video aims to show what a network is", "learning is covered in the next video"): the video, the speaker and other videos are never the subject of a point. Use the chapter's own terms, names, numbers and examples exactly. An equation is said in words first, then written.
+
+A WORKED EXAMPLE is the one exception to the 30 words: one point of up to 60 words that keeps the example's own data, so a tutor can show it on a board: what it starts from (the numbers, the tree, the values), the steps in the order they were done, briefly, and the result ("Example: a ball dropped from 20 m, with g taken as 10 m/s², falls for 2 s by h = ½gt², and lands at 20 m/s by v = gt"). Only the chapter's own data, never numbers of your own.`;
 
 export const NOTES_SYSTEM_PROMPT = `You turn one chapter of a lecture video into the complete set of its teaching points, for a tutor who will re-teach the chapter in less time to a student who has not watched it.
 
@@ -153,13 +155,13 @@ Return JSON only: {"sections":[{"heading":"...","points":[{"t":"M:SS","text":"..
 
 WHAT A POINT IS. ${POINT_DEFINITION}
 
-KEEP EVERY IDEA. Every distinct idea the chapter teaches gets a point; do not pick highlights, and do not drop an idea because it is small. The lecture gets shorter in two ways only. First, through what is not teaching at all: greetings, housekeeping, sponsor reads, requests to subscribe, previews of other videos, jokes, false starts, filler. Second, through condensing: when the chapter spends several sentences building one idea, or says it twice, or walks through an example step by step, write the idea once with its essential detail, and the example as one point saying what it shows.
+KEEP EVERY IDEA. Every distinct idea the chapter teaches gets a point; do not pick highlights, and do not drop an idea because it is small. The lecture gets shorter in two ways only. First, through what is not teaching at all: greetings, housekeeping, sponsor reads, requests to subscribe, previews of other videos, jokes, false starts, filler. Second, through condensing: when the chapter spends several sentences building one idea, or says it twice, or walks through an example step by step, write the idea once with its essential detail, and the example as one worked-example point that keeps its data (start, steps, result). Never reduce a worked example to the rule it illustrates: "a falling object speeds up by g every second" is the rule; the ball dropped from 20 m, its 2 s and its 20 m/s are the example, and both are kept.
 
 HOW MANY. The user message gives the number of points a chapter of this length usually comes to. Treat it as the grain to write at, not a limit: a chapter that teaches more distinct ideas gets more points (up to half as many again), and a thin one gets fewer. Never pad, and never merge two different ideas to hit the number.
 
-WHAT WAS SHOWN. The chapter comes with notes of what was on screen. A slide's text, an equation, code or a diagram that carries content the speech did not fully say is a teaching point too. State what it conveys in words: an equation written out, a diagram as what its parts are and how they connect. Ignore decoration, logos, and anything that teaches nothing.
+WHAT WAS SHOWN. The chapter comes with notes of what was on screen. A slide's text, an equation, code or a diagram that carries content the speech did not fully say is a teaching point too. State what it conveys in words: an equation written out, a diagram as what its parts are and how they connect, with its actual labels and values (the numbers in a tree's nodes, not just "a tree"), and a path traced on it in the order it was traced. Ignore decoration, logos, and anything that teaches nothing.
 
-ORDER AND GROUPING. Keep the chapter's order. Group the points under 1 to 4 headings; a heading is a topic name of 2 to 6 words, not a sentence. "t" is the moment the point is made, copied from the [m:ss] labels.
+ORDER AND GROUPING. Keep the chapter's order. Group the points under 1 to 4 headings; a heading is a topic name of 2 to 6 words, not a sentence. A diagram, a worked example or anything shown on screen goes under the heading of the idea it illustrates, beside that idea's points: never a heading of its own such as "Diagrams and Examples", "Examples" or "Visuals". "t" is the moment the point is made, copied from the [m:ss] labels.
 
 ADD NOTHING. Every point must be something this chapter says or shows. No outside facts, no examples of your own, no conclusion the chapter does not draw.
 
@@ -173,6 +175,7 @@ The notes are condensed on purpose: several sentences of the chapter become one 
 
 - Something the notes already say in other words is not missing.
 - A detail that only elaborates an idea the notes already have is not missing.
+- A worked example IS missing when the notes keep only the rule it illustrates and lose its data (what it started from, its steps, its result). Add it as one worked-example point.
 - Greetings, housekeeping, sponsor reads, jokes, filler and repetition are not teaching points.
 - "heading" is the existing heading the point belongs under, copied exactly, or a new 2 to 6 word topic name if none fits.
 - Add nothing the chapter does not say or show.
@@ -280,4 +283,105 @@ export function mergeGleaned(notes: VideoChapterNotes, raw: unknown): { notes: V
     added++;
   }
   return { notes: { ...notes, sections: sections.map(inTimeOrder) }, added };
+}
+
+/* ── What was shown, kept ─────────────────────────────────────────────────── */
+
+const NUMBER = /\d+(?:\.\d+)?/g;
+const numbersIn = (text: string): string[] => text.match(NUMBER) ?? [];
+
+/** Does `run` appear, in order and unbroken, in `numbers`? */
+function containsRun(numbers: string[], run: string[]): boolean {
+  for (let i = 0; i + run.length <= numbers.length; i++) {
+    if (run.every((n, j) => numbers[i + j] === n)) return true;
+  }
+  return false;
+}
+
+/** The section whose timed points sit nearest `at`; the last section when none is timed. */
+function nearestSection(sections: VideoNoteSection[], at: number): VideoNoteSection | undefined {
+  let best: VideoNoteSection | undefined;
+  let bestGap = Infinity;
+  for (const section of sections) {
+    for (const point of section.points) {
+      if (point.startSec === undefined) continue;
+      const gap = Math.abs(point.startSec - at);
+      if (gap < bestGap) {
+        best = section;
+        bestGap = gap;
+      }
+    }
+  }
+  return best ?? sections[sections.length - 1];
+}
+
+/** At most this many on-screen items are put back into one chapter's notes. */
+const MAX_SHOWN_KEPT = 6;
+
+/**
+ * WHAT THE VIDEO SHOWED, KEPT. A worked example lives on screen — the tree the teacher drew, the
+ * array the trace produced ("1 2 3 4 5 6 7") — and the notes model, asked to condense, keeps the rule
+ * and drops the example even when told not to (measured 2026-10-10: the same chapter kept it on one
+ * run and lost it on the next). A strict lecture may then teach only the rule, with nothing to show.
+ *
+ * So, after the notes are written: an on-screen item that carries data (two or more numbers, or any
+ * number in an equation or code) whose numbers no single point states in the same order is put back
+ * as a point at its own moment, under the section nearest it in time. In the same ORDER, not merely
+ * somewhere: the construction steps of that BST name every key from 1 to 7, and a check on the set
+ * of numbers took the traversal's "1 2 3 4 5 6 7" as already said. Deterministic, and never more
+ * than MAX_SHOWN_KEPT per chapter.
+ */
+export function keepShownData(notes: VideoChapterNotes, onScreen: VideoOnScreen[]): { notes: VideoChapterNotes; added: number } {
+  const sections = notes.sections.map((section) => ({ heading: section.heading, points: [...section.points] }));
+  const pointNumbers = sections.flatMap((section) => section.points.map((point) => numbersIn(point.text)));
+  const have = new Set(sections.flatMap((section) => section.points.map((point) => point.text.toLowerCase())));
+  const { startSec, endSec, title } = notes.chapter;
+  let added = 0;
+  for (const shown of [...onScreen].sort((a, b) => a.startSec - b.startSec)) {
+    if (added >= MAX_SHOWN_KEPT) break;
+    if (shown.startSec < startSec - 5 || shown.startSec > endSec + 5) continue;
+    const content = clean(shown.content);
+    const numbers = numbersIn(content);
+    const formal = /^(?:equation|code)$/i.test(clean(shown.kind));
+    if (numbers.length < (formal ? 1 : 2)) continue;
+    if (pointNumbers.some((said) => containsRun(said, numbers))) continue;
+    if (sections.length === 0) sections.push({ heading: title, points: [] });
+    const section = nearestSection(sections, shown.startSec)!;
+    // A bare line of text ("1 2 3 4 5 6 7") is named by its topic so it reads as content.
+    const text = /^text$/i.test(clean(shown.kind)) ? `${section.heading}: ${content}` : content;
+    if (have.has(text.toLowerCase())) continue;
+    have.add(text.toLowerCase());
+    pointNumbers.push(numbersIn(text));
+    section.points.push({ text, startSec: shown.startSec });
+    added++;
+  }
+  return { notes: { ...notes, sections: added ? sections.map(inTimeOrder) : notes.sections }, added };
+}
+
+/** "Examples and Diagrams", "Diagrams", "Visuals": a heading that names a kind of material, not a topic. */
+const VISUAL_HEADING = /^(?:(?:worked\s+)?examples?|diagrams?|visuals?|illustrations?|figures?)(?:\s*(?:and|&|,)\s*(?:(?:worked\s+)?examples?|diagrams?|visuals?|illustrations?|figures?))*$/i;
+
+/**
+ * A section of "Examples and Diagrams" is the examples cut off from the ideas they show: it becomes a
+ * board of its own with nothing to explain. Each of its points moves to the topic section nearest it
+ * in time (an untimed one to the section before it); with no topic section, the notes stay as they are.
+ */
+export function foldVisualSections(notes: VideoChapterNotes): VideoChapterNotes {
+  const topics = notes.sections.filter((section) => !VISUAL_HEADING.test(section.heading.trim()));
+  if (topics.length === 0 || topics.length === notes.sections.length) return notes;
+  const sections = topics.map((section) => ({ heading: section.heading, points: [...section.points] }));
+  let previous = sections[0];
+  for (const section of notes.sections) {
+    const own = sections.find((candidate) => candidate.heading === section.heading);
+    if (own) {
+      previous = own;
+      continue;
+    }
+    for (const point of section.points) {
+      const target = point.startSec === undefined ? previous : nearestSection(topics, point.startSec);
+      const into = sections.find((candidate) => candidate.heading === target?.heading) ?? previous;
+      into.points.push(point);
+    }
+  }
+  return { ...notes, sections: sections.map(inTimeOrder) };
 }

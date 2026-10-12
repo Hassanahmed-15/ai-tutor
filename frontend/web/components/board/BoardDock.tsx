@@ -16,7 +16,7 @@ import {
   Play,
   Sparkles,
   Undo2,
-  UserRound,
+  // UserRound, — the switched-off "Show Aria's face" button
   X,
 } from "lucide-react";
 
@@ -314,11 +314,12 @@ export function BoardDock(props: BoardDockProps) {
           </DockButton>
         )}
 
+        {/* Aria's face is switched off (components/LessonPlayer.tsx, ARIA'S FACE IS SWITCHED OFF).
         {props.onToggleAvatar && (
           <DockButton onClick={props.onToggleAvatar} active={props.avatarOn} label={props.avatarOn ? "Hide Aria's face" : "Show Aria's face"}>
             <UserRound size={19} />
           </DockButton>
-        )}
+        )} */}
 
         {props.micAvailable && (
           <DockButton

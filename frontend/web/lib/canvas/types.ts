@@ -268,4 +268,15 @@ export type CanvasPlanBeat = {
   /** A short board refreshing a prerequisite the student is shaky on, before the topic proper. */
   refresher?: boolean;  /** How to pitch the board for this student (lib/teachingPolicy.ts policyForBoards), set after planning. */
   audience?: string;
+  /**
+   * A lesson taught from the student's PDF (reference mode): the pages this board teaches from and,
+   * for a code board, which of the document's listings it shows and which of its printed lines
+   * (lib/canvas/documentContext.ts). Absent on a typed-prompt lesson.
+   */
+  source?: { pages: number[]; listing?: number; lines?: [number, number]; blocks?: string[] };
+  /**
+   * Strict-mode PDF and video lessons (lib/canvas/sourceLessons.ts): for each sentence of the
+   * script, the source block it is about — the PDF panel boxes that passage while it is spoken.
+   */
+  sentenceBlocks?: string[];
 };

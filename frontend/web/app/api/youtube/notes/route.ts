@@ -6,7 +6,9 @@ import { isModernModel } from "@/lib/modelPricing";
 import {
   GLEAN_SYSTEM_PROMPT,
   NOTES_SYSTEM_PROMPT,
+  foldVisualSections,
   gleanUserMessage,
+  keepShownData,
   mergeGleaned,
   notesUserMessage,
   parseNotes,
@@ -81,10 +83,14 @@ export async function POST(req: Request) {
       } catch (error) {
         console.warn(`[youtube] second look failed for "${title}": ${error instanceof Error ? error.message : error}`);
       }
+      // Examples go back beside the ideas they show, and what was shown with data in it is never lost.
+      notes = foldVisualSections(notes);
+      const shown = keepShownData(notes, request.onScreen);
+      notes = shown.notes;
       const points = notes.sections.reduce((n, section) => n + section.points.length, 0);
       // Said in the lecture's own record of what it left out, so an empty chapter is never invisible.
       if (points === 0 && notes.leftOut.length === 0) notes = { ...notes, leftOut: [`"${title}": nothing to teach in this stretch`] };
-      console.log(`[youtube] notes "${title}" ${startSec}-${endSec}s: ${points} points (${gleaned} from the second look), ${notes.leftOut.length} left out`);
+      console.log(`[youtube] notes "${title}" ${startSec}-${endSec}s: ${points} points (${gleaned} from the second look, ${shown.added} kept from the screen), ${notes.leftOut.length} left out`);
       return NextResponse.json({ notes, gleaned, costUsd: meter.totalUsd });
     } catch (error) {
       lastError = error instanceof Error ? error.message : lastError;

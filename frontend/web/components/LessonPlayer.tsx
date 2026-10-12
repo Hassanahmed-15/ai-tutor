@@ -55,9 +55,10 @@ import { isVideoSource } from "@/lib/youtube/videoSource";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
-import { VoiceState, derivePhase, type VoicePhase } from "@/components/classroom/VoiceState";
-import { BoardAvatar, type BoardAvatarMode } from "@/components/avatar/BoardAvatar";
-import type { AvatarState } from "@/lib/avatar/face";
+import { VoiceState, derivePhase /* , type VoicePhase — used by the switched-off avatar */ } from "@/components/classroom/VoiceState";
+// Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF below).
+// import { BoardAvatar, type BoardAvatarMode } from "@/components/avatar/BoardAvatar";
+// import type { AvatarState } from "@/lib/avatar/face";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
 import { isPauseIntent, isResumeIntent } from "@/lib/voice/lectureIntent";
@@ -294,11 +295,13 @@ export function LessonPlayer({
   hasMoreBeats = false,
   totalBeatCount,
   plannedParts,
+  startIndex = 0,
   onBeatIndexChange,
   onLearnerInteraction,
   onSummarize,
   summaryUnlocked = false,
   selectionPages = [],
+  focusPages,
   sourceScope,
   captions = false,
 }: {
@@ -359,6 +362,8 @@ export function LessonPlayer({
   totalBeatCount?: number;
   /** Every planned part, generated or not, so the chat can point to parts not written yet. Absent for strict. */
   plannedParts?: PlannedPart[];
+  /** The slide to open on (0-based) — set when replaying from a slide picked in the mind map. */
+  startIndex?: number;
   onBeatIndexChange?: (index: number) => void;
   onLearnerInteraction?: (signal: LearnerAdaptiveSignal) => void;
   /** Opens the one-slide summary of the lecture; the caller owns it (components/LectureSummarySlide). */
@@ -367,10 +372,16 @@ export function LessonPlayer({
   summaryUnlocked?: boolean;
   /** Pages the student dragged an area on, when this lecture was built "from this area". */
   selectionPages?: number[];
+  /**
+   * A STRICT lesson's chosen pages (empty = every page). The chat reads the student's question,
+   * these pages, then the rest of the PDF (lib/lessonChatContext.ts). Normal track only.
+   */
+  focusPages?: number[];
   /** Explicit source contract chosen after page selection; enables the synchronized PDF workspace. */
   sourceScope?: SourceScope;
 }) {
-  const [index, setIndex] = useState(0);
+  // Replay from a slide (the mind map's "Replay from this slide"): the lecture opens there.
+  const [index, setIndex] = useState(() => Math.max(0, Math.min(startIndex, beats.length - 1)));
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
   const [waitingForNextBeat, setWaitingForNextBeat] = useState(false);
   useEffect(() => onBeatIndexChange?.(index), [index, onBeatIndexChange]);
@@ -857,6 +868,8 @@ export function LessonPlayer({
    */
   const hasSourceDocument = isSuprnotesLessonInput(sourceDocument);
   const strictSource = hasSourceDocument && isStrictScope(sourceScope);
+  // A strict lesson's chat leads with the question and the chosen pages (lib/lessonChatContext.ts).
+  const chatFocus = strictSource && focusPages ? { question: lessonQuestion, pages: focusPages } : undefined;
   const beatSourceFor = useCallback(
     (target: Beat | undefined | null) => (hasSourceDocument ? beatSourceGroundingFor(sourceDocument, target?.sourceBlockIds, strictSource) : null),
     [hasSourceDocument, sourceDocument, strictSource],
@@ -870,7 +883,7 @@ export function LessonPlayer({
    * back out (lib/geminiLiveContract.ts, app/api/explain/route.ts). Reference mode is byte-identical.
    */
   const liveTutorDocumentContext = () => {
-    const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages);
+    const document = buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages, chatFocus);
     if (strictSource) return withStrictSourceHeader(document, beatSourceFor(beatRef.current));
     // A video's transcript goes as it is: the token route recognises it and adds a video's own rules.
     if (isVideoSource(sourceDocument)) return document;
@@ -1622,7 +1635,7 @@ export function LessonPlayer({
     getBeatContext: () => describeBoard(beat, highlightedTextRef.current) + boardContextExtras(),
     // Read at ask time, not captured: the lecture moves while the panel is open.
     getLessonContext: () => buildLessonContext(beats, indexRef.current, plannedParts, sourceDocument),
-    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages),
+    getDocumentContext: () => buildDocumentContext(sourceDocument, slideContext, ocrTranscript, fullDocumentText, selectionPages, chatFocus),
     documentId,
     lessonQuestion,
     ...(hasSourceDocument && sourceScope ? { sourceScope, getBeatSource: () => beatSourceFor(beat) } : {}),
@@ -2927,31 +2940,37 @@ export function LessonPlayer({
   const sidePanelAlways = adhd || deafMode;
   const sideOpen = sidePanelAlways || askOpen;
   /*
+   * ARIA'S FACE IS SWITCHED OFF (2026-10-10, the student's request: it must not appear on the board
+   * at all). The code is kept, commented out, so it can come back by uncommenting: this block, the
+   * <BoardAvatar> render and the dock's avatarOn/onToggleAvatar props below, avatarStateFor at the
+   * end of this file, the imports at the top, and the dock button in components/board/BoardDock.tsx.
+   * components/avatar/*, lib/avatar/* and public/avatars/* are untouched.
+   *
    * ARIA'S FACE beside the board: a photoreal head lip-synced from her voice, on the student's own
    * GPU (components/avatar/AriaAvatar.tsx). Off by a tap, remembered per browser; gone by itself
    * where it cannot render. The ADHD track keeps its own drawn teacher.
    */
-  const [avatarOn, setAvatarOn] = useState(true);
-  const [avatarUnavailable, setAvatarUnavailable] = useState(false);
-  useEffect(() => {
-    let remembered = true;
-    try { remembered = localStorage.getItem("aria.avatar") !== "off"; } catch { /* default on */ }
-    if (!remembered) queueMicrotask(() => setAvatarOn(false));
-  }, []);
-  const toggleAvatar = () => setAvatarOn((on) => {
-    try { localStorage.setItem("aria.avatar", on ? "off" : "on"); } catch { /* not remembered */ }
-    return !on;
-  });
-  const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
-  const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
+  // const [avatarOn, setAvatarOn] = useState(true);
+  // const [avatarUnavailable, setAvatarUnavailable] = useState(false);
+  // useEffect(() => {
+  //   let remembered = true;
+  //   try { remembered = localStorage.getItem("aria.avatar") !== "off"; } catch { /* default on */ }
+  //   if (!remembered) queueMicrotask(() => setAvatarOn(false));
+  // }, []);
+  // const toggleAvatar = () => setAvatarOn((on) => {
+  //   try { localStorage.setItem("aria.avatar", on ? "off" : "on"); } catch { /* not remembered */ }
+  //   return !on;
+  // });
+  // const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
+  // const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
   /*
    * HER FACE NEVER COVERS A QUESTION (components/avatar/BoardAvatar.tsx): beside the questions panel
    * while it is open, and a small picture in the board's corner while a question — a checkpoint, a
    * quiz, or an answer she is drawing — is on the board.
    */
   const askPanelRef = useRef<HTMLDivElement>(null);
-  const questionOnBoard = quiz.phase !== "idle" || (isCheckpoint && Boolean(beat.checkpoint)) || Boolean(chat.explainBoard);
-  const avatarMode: BoardAvatarMode = questionOnBoard ? "pip" : sideOpen && !chatInDock ? "beside-panel" : "board";
+  // const questionOnBoard = quiz.phase !== "idle" || (isCheckpoint && Boolean(beat.checkpoint)) || Boolean(chat.explainBoard);
+  // const avatarMode: BoardAvatarMode = questionOnBoard ? "pip" : sideOpen && !chatInDock ? "beside-panel" : "board";
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
     <ChatPanel
       onClose={sidePanelAlways ? undefined : () => setAskOpen(false)}
@@ -3049,6 +3068,7 @@ export function LessonPlayer({
               fidelity={sourceScope.fidelity}
               embedded
               activeSentence={sentenceCue.text}
+              activeSentenceIndex={sentenceCue.index}
               onPointerRect={setPointerRect}
             />
           )}
@@ -3083,7 +3103,8 @@ export function LessonPlayer({
             {/* Notes ABOVE the drawing: what Aria is saying is read first, right under the part strip, and
                 sits where the arrow from the PDF enters the board. */}
             {/* With a figure, the notes sit beside it instead (see the figure layout below). */}
-            {pdfWorkspace && !isCheckpoint && !beatFigure && boardNotes(false)}
+            {/* A canvas board writes its own notes beside its drawing; the strip would repeat them. */}
+            {pdfWorkspace && !isCheckpoint && !beatFigure && !canvasLesson && boardNotes(false)}
             <div className={pdfWorkspace ? "relative min-h-0 flex-1" : "contents"}>
             {isCheckpoint ? (
               <SlideStage
@@ -3480,8 +3501,9 @@ export function LessonPlayer({
           canUndo={annCanUndo(annotations)}
           askOpen={askOpen}
           onToggleAsk={!chatInDock && !sidePanelAlways ? () => setAskOpen((open) => !open) : undefined}
-          avatarOn={showAvatar}
-          onToggleAvatar={!avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
+          // Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF above).
+          // avatarOn={showAvatar}
+          // onToggleAvatar={!avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
           micOn={tutor.status === "live" && !tutor.muted}
           onToggleMic={() => {
             if (tutor.status === "live") tutor.toggleMute();
@@ -3552,9 +3574,10 @@ export function LessonPlayer({
           </div>
         </header>}
 
+        {/* Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF above).
         {showAvatar && (
           <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} onUnavailable={() => setAvatarUnavailable(true)} />
-        )}
+        )} */}
 
         {voiceBlocked && (
           <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3.5 shadow-[var(--elev-2)] lg:left-6 lg:right-6">
@@ -4807,10 +4830,14 @@ function PaintSignal({ onPainted }: { onPainted: () => void }) {
   return null;
 }
 
-/** Her face follows the voice: talking (hers or the lecture's) speaks, a reply being formed thinks, an open mic listens. */
-function avatarStateFor(phase: VoicePhase, talking: boolean): AvatarState {
-  if (talking || phase === "aria-speaking") return "speaking";
-  if (phase === "thinking" || phase === "drawing" || phase === "connecting" || phase === "reconnecting") return "thinking";
-  if (phase === "listening" || phase === "student-speaking") return "listening";
-  return "idle";
-}
+/*
+ * Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF in LessonPlayer).
+ *
+ * Her face follows the voice: talking (hers or the lecture's) speaks, a reply being formed thinks, an open mic listens.
+ * function avatarStateFor(phase: VoicePhase, talking: boolean): AvatarState {
+ *   if (talking || phase === "aria-speaking") return "speaking";
+ *   if (phase === "thinking" || phase === "drawing" || phase === "connecting" || phase === "reconnecting") return "thinking";
+ *   if (phase === "listening" || phase === "student-speaking") return "listening";
+ *   return "idle";
+ * }
+ */

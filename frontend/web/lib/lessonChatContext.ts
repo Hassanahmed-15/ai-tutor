@@ -223,13 +223,51 @@ export function buildDocumentContext(
   fullDocumentText = "",
   /** The pages the student dragged an area on, when the lesson was built "from this area". */
   selectionPages: number[] = [],
+  /**
+   * A STRICT lesson's focus (2026-10-10): the student's question and the pages they chose. The chat
+   * gets the whole PDF, and these first — what they asked, then the pages the lesson is about, then
+   * the rest of the file as background — so it answers about the right part and can still reach
+   * anywhere in the document. Reference lessons do not pass it and are unchanged.
+   */
+  focus?: { question?: string; pages?: number[] },
 ): string {
   const cap = documentCharCap(sourceDocument);
+  if (focus && fullDocumentText.trim()) {
+    const focused = focusedDocument(fullDocumentText, transcript, focus, cap);
+    if (focused) return focused;
+  }
   const body = buildDocumentBody(sourceDocument, slideContext, transcript, fullDocumentText, cap);
   if (selectionPages.length === 0 || !body) return body;
   // Said first, so the tutor knows the lesson's subject is that area — not the whole document.
   const lead = `The student built this lesson from an area they SELECTED on page ${selectionPages.join(", ")}; what was read off that area comes first below. The rest is the whole document, for background.\n\n`;
   return (lead + body).slice(0, cap);
+}
+
+/**
+ * The whole PDF ("[page N] …" paragraphs, from /api/parse-pdf) with the student's question first,
+ * then the pages they chose, then the rest — and what was read off scanned pages, which the text
+ * layer lacks. Null when the text has no page labels to split it by.
+ */
+function focusedDocument(fullDocumentText: string, transcript: string, focus: { question?: string; pages?: number[] }, cap: number): string | null {
+  const pages = new Map<number, string>();
+  for (const match of fullDocumentText.matchAll(/\[page (\d+)\]\s*([\s\S]*?)(?=\n*\[page \d+\]|$)/g)) {
+    const n = Number(match[1]);
+    pages.set(n, [pages.get(n), clean(match[2])].filter(Boolean).join(" "));
+  }
+  if (pages.size === 0) return null;
+  const chosen = (focus.pages ?? []).filter((n) => pages.has(n));
+  const inFocus = chosen.length ? chosen : [...pages.keys()];
+  const rest = [...pages.keys()].filter((n) => !inFocus.includes(n));
+  const sections = [
+    focus.question?.trim() ? `THE STUDENT'S QUESTION (what this lesson answers): "${focus.question.trim()}"` : "",
+    chosen.length && rest.length
+      ? `FOCUS — the pages the student selected for this lesson (${chosen.join(", ")}):\n${chosen.map((n) => `[page ${n}] ${pages.get(n)}`).join("\n")}`
+      : `THE WHOLE DOCUMENT (every page is part of this lesson):\n${inFocus.map((n) => `[page ${n}] ${pages.get(n)}`).join("\n")}`,
+    clean(transcript) ? `Read directly from the page images (content the text layer does NOT contain):\n${clean(transcript)}` : "",
+    // Last, so the cap trims background before anything the lesson is about.
+    rest.length ? `THE REST OF THE PDF (not selected — background, for questions that reach beyond the lesson):\n${rest.map((n) => `[page ${n}] ${pages.get(n)}`).join("\n")}` : "",
+  ];
+  return sections.filter(Boolean).join("\n\n").slice(0, cap);
 }
 
 /**

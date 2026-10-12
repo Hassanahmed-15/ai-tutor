@@ -36,6 +36,8 @@ import { sanitizeDocumentPlanningQuestions } from "@/lib/documentLessonPlanning"
 import { focusFromTranscript, focusPassages, focusPromptSection, isPointingPhrase, subjectFromFocus } from "@/lib/pdfFocus";
 import { sourceScopeInstruction, type SourceScope } from "@/lib/sourceScope";
 import { getDocumentImages } from "@/lib/pageImageStore";
+import { CANVAS_CODE_LINES, documentForCanvas, documentListings, listingIndex, type DocumentListing } from "@/lib/canvas/documentContext";
+import { asksForCode, isCodeQuestion } from "@/lib/codeSpec";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 
 /**
@@ -561,6 +563,8 @@ function streamOutline(
   forceLesson = false,
   /** A typed-prompt outline: its titles are shown as noun phrases ("Light Reactions", not "… Overview"). */
   nounTitles = false,
+  /** How many subtopics a question may keep: 2, or one per code listing for a question about a PDF's code. */
+  questionMax = 2,
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -618,7 +622,7 @@ function streamOutline(
          * title polishing forces the first to the subject's name and strips a leading "Why".
          */
         const rawOutline = question
-          ? { ...parsed, scope: "question" as const, subtopics: capQuestionOutline(parsed.subtopics, question) }
+          ? { ...parsed, scope: "question" as const, subtopics: capQuestionOutline(parsed.subtopics, question, questionMax) }
           : forceLesson ? { ...parsed, scope: "lesson" as const } : parsed;
         // The outline the student reviews shows the same titles the lecture will use.
         if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
@@ -720,7 +724,17 @@ export async function POST(req: Request) {
     }
   }
 
-  const sourceDocLine = sourceDocument
+  /*
+   * A PDF USED AS A REFERENCE IS PLANNED FROM ALL OF IT. The gist (40 blocks, 220 characters each)
+   * lost most of a chapter: the AVL deletion code on page 14 never reached the outline. Its lesson
+   * is taught on the canvas with the whole document (lib/canvas/documentContext.ts), and the outline
+   * is planned from the same text. Strict mode and every other upload keep the gist.
+   */
+  const referencePdf = sourceDocument && isPdfUpload(sourceDocument) && sanitizeSourceScope(body.sourceScope)?.fidelity === "reference" ? sourceDocument : null;
+  const referenceListings = referencePdf ? documentListings(referencePdf) : [];
+  const sourceDocLine = referencePdf
+    ? `\n\nThe student uploaded a source document to learn from. Here it is in full, page by page (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${documentForCanvas(referencePdf, 40_000)}${referenceListings.length ? `\n\nCODE LISTINGS in the document (every one of them):\n${listingIndex(referenceListings)}` : ""}`
+    : sourceDocument
     ? `\n\nThe student uploaded a source document. Its actual content (ground the outline/questions in THIS, not just the topic string — do not drift to a different, more generic subject in the same general area):\n${summarizeSourceDocumentForPlanning(sourceDocument)}`
     : "";
 
@@ -994,17 +1008,24 @@ export async function POST(req: Request) {
     const preference = typeof body.teachingPreference === "string" && ["quick", "balanced", "deep"].includes(body.teachingPreference)
       ? `\nThe student's saved teaching preference is "${body.teachingPreference}"; their words in the request override it.`
       : "";
-    const questionLine = directQuestion
+    // A question about a reference PDF's code is answered with ALL the code it covers, one subtopic per listing.
+    const codeQuestion = directQuestion && referenceListings.length > 0 && (asksForCode(questionText) || isCodeQuestion(questionText, referenceListings.map((l) => l.lines.join("\n")).join("\n")));
+    const questionLine = codeQuestion
+      ? documentCodeQuestionInstruction(questionText, referenceListings)
+      : directQuestion
       ? directQuestionInstruction(questionText, { nounTitles: !sourceDocument })
       : topicRequest ? topicLessonInstruction(questionText) : "";
+    const listingLine = referenceListings.length && documentIsSyllabus
+      ? `\nThe document's code listings are part of what it teaches: cover every one of them (a short listing can share a subtopic with the idea it implements; one longer than ${CANVAS_CODE_LINES} lines of code gets its own).`
+      : "";
     // The Teaching Policy (lib/teachingPolicy.ts): their grade, whether this topic is in their
     // syllabus, their goal and how big the steps should be.
     const card = await signedInCard(`${topic} ${requestText}`);
     const cardLine = card ? policyForPlanner(buildTeachingPolicy(card, { learner: sessionLearner, depth: sessionLearner ? resolveDepth(sessionLearner) : null })) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
-    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${promptRules}`;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined, !sourceDocument && topicRequest, !sourceDocument);
+    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${listingLine}${promptRules}`;
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined, !sourceDocument && topicRequest, !sourceDocument, codeQuestion ? 12 : 2);
   }
 
   // mode === "revise"
@@ -1024,6 +1045,27 @@ export async function POST(req: Request) {
     : sourceDocLine;
   const userContent = `Current outline:\n${JSON.stringify(currentOutline)}\n\nRequested change: "${instruction}"${focusedRevisionLine}${personaLine(body.learnerPersona)}${sourceDocument ? "" : PROMPT_OUTLINE_RULES}`;
   return streamOutline(client, REVISE_OUTLINE_SYSTEM_PROMPT, withPages(userContent, pageImages), currentOutline.topic, Boolean(revisionFocus));
+}
+
+/** An upload read by /api/parse-pdf (several PDFs merged keep the first one's source). */
+function isPdfUpload(doc: SuprnotesLessonInput): boolean {
+  return (doc.source as { adapter?: unknown } | undefined)?.adapter === "pdf-upload";
+}
+
+/**
+ * "explain me AVL code" with the chapter uploaded: the answer is the chapter's code — all of it, not
+ * the first routine. Each listing (or each piece of a long one) is one subtopic, so each gets its
+ * own code board, in the document's order.
+ */
+function documentCodeQuestionInstruction(question: string, listings: DocumentListing[]): string {
+  return (
+    `\n\nTHIS IS A QUESTION ABOUT THE DOCUMENT'S CODE: "${question}". Set "scope": "question". Answer it with the ` +
+    `document's own code listings (CODE LISTINGS above): one subtopic per listing the question covers — EVERY listing ` +
+    `when it names no particular routine (here that is ${listings.length}), in the document's order. A listing with more ` +
+    `than ${CANVAS_CODE_LINES} lines of code gets one subtopic per piece, split where one function ends and the next ` +
+    `begins (for example "The insert routine", then "The balance routine"). Title each subtopic by the routine it ` +
+    `explains; its caption says what that code does. No introduction, no separate definition or example subtopic.`
+  );
 }
 
 /** "Why — and how?" → "Why, and how?": em/en dashes and spaced hyphens become commas. */

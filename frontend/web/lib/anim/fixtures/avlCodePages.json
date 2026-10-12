@@ -1,0 +1,825 @@
+{
+ "contentBlocks": [
+  {
+   "id": "p1-b1",
+   "type": "table",
+   "heading": "Page 1",
+   "text": "144 | Chapter 4 Trees",
+   "columns": [
+    "144",
+    "Chapter 4 Trees"
+   ],
+   "rows": [],
+   "sourceOrder": 0,
+   "pageNumber": 1,
+   "role": "table"
+  },
+  {
+   "id": "p1-b2",
+   "type": "paragraph",
+   "heading": "Page 1",
+   "text": "actually proved this. In any event, this phenomenon appears to be mostly a theoretical novelty, because the effect does not show up at all for small trees, and, stranger still, if o(N2) insert/remove pairs are used, then the tree seems to gain balance! The main point of this discussion is that deciding what “average” means is gener- ally extremely difficult and can require assumptions that may or may not be valid. In the absence of deletions, or when lazy deletion is used, we can conclude that the average running times of the operations above are O(logN). Except for strange cases like the one discussed above, this result is very consistent with observed behavior. If the input comes into a tree presorted, then a series of inserts will take quadratic time and give a very expensive implementation of a linked list, since the tree will consist only of nodes with no left children. One solution to the problem is to insist on an extra structural condition called balance: No node is allowed to get too deep. There are quite a few general algorithms to implement balanced trees. Most are quite a bit more complicated than a standard binary search tree, and all take longer on average for updates. They do, however, provide protection against the embarrassingly simple cases. Below, we will sketch one of the oldest forms of balanced search trees, the AVL tree. A second method is to forgo the balance condition and allow the tree to be arbitrarily deep, but after every operation, a restructuring rule is applied that tends to make future operations efficient. These types of data structures are generally classified as self-adjusting.",
+   "sourceOrder": 1,
+   "pageNumber": 1,
+   "role": "paragraph"
+  },
+  {
+   "id": "p1-b3",
+   "type": "paragraph",
+   "heading": "Page 1",
+   "text": "In the case of a binary search tree, we can no longer guarantee an O(logN) bound on any single operation but can show that any sequence of M operations takes total time O(MlogN) in the worst case. This is generally sufficient protection against a bad worst case. The data structure we will discuss is known as a splay tree; its analysis is fairly intricate and is discussed in Chapter 11.",
+   "sourceOrder": 2,
+   "pageNumber": 1,
+   "role": "paragraph"
+  },
+  {
+   "id": "p1-b4",
+   "type": "paragraph",
+   "heading": "4.4 AVL Trees",
+   "text": "An AVL (Adelson-Velskii and Landis) tree is a binary search tree with a balance condition. The balance condition must be easy to maintain, and it ensures that the depth of the tree is O(logN). The simplest idea is to require that the left and right subtrees have the same height. As Figure 4.31 shows, this idea does not force the tree to be shallow.",
+   "sourceOrder": 3,
+   "pageNumber": 1,
+   "role": "paragraph"
+  },
+  {
+   "id": "p1-b5",
+   "type": "paragraph",
+   "heading": "4.4 AVL Trees",
+   "text": "Figure 4.31 A bad binary tree. Requiring balance at the root is not enough.",
+   "sourceOrder": 4,
+   "pageNumber": 1,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b1",
+   "type": "table",
+   "heading": "Page 11",
+   "text": "154 | Chapter 4 Trees",
+   "columns": [
+    "154",
+    "Chapter 4 Trees"
+   ],
+   "rows": [],
+   "sourceOrder": 80,
+   "pageNumber": 11,
+   "role": "table"
+  },
+  {
+   "id": "p11-b2",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "1 struct AvlNode 2 {",
+   "sourceOrder": 81,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b3",
+   "type": "table",
+   "heading": "Page 11",
+   "text": "3 | Comparable element;\n4 | AvlNode *left;\n5 | AvlNode *right;\n6 | int | height;",
+   "columns": [
+    "3",
+    "Comparable element;"
+   ],
+   "rows": [
+    [
+     "4",
+     "AvlNode *left;"
+    ],
+    [
+     "5",
+     "AvlNode *right;"
+    ],
+    [
+     "6",
+     "int",
+     "height;"
+    ]
+   ],
+   "sourceOrder": 82,
+   "pageNumber": 11,
+   "role": "table"
+  },
+  {
+   "id": "p11-b4",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "7",
+   "sourceOrder": 83,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b5",
+   "type": "table",
+   "heading": "Page 11",
+   "text": "8 | AvlNode( const Comparable & ele, AvlNode *lt, AvlNode *rt, int h = 0 )\n9 | : element{ ele }, left{ lt }, right{ rt }, height{ h } { }",
+   "columns": [
+    "8",
+    "AvlNode( const Comparable & ele, AvlNode *lt, AvlNode *rt, int h = 0 )"
+   ],
+   "rows": [
+    [
+     "9",
+     ": element{ ele }, left{ lt }, right{ rt }, height{ h } { }"
+    ]
+   ],
+   "sourceOrder": 84,
+   "pageNumber": 11,
+   "role": "table"
+  },
+  {
+   "id": "p11-b6",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "10",
+   "sourceOrder": 85,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b7",
+   "type": "table",
+   "heading": "Page 11",
+   "text": "11 | AvlNode( Comparable && ele, AvlNode *lt, AvlNode *rt, int h = 0 )\n12 | : element{ std::move( ele ) }, left{ lt }, right{ rt }, height{ h } { }",
+   "columns": [
+    "11",
+    "AvlNode( Comparable && ele, AvlNode *lt, AvlNode *rt, int h = 0 )"
+   ],
+   "rows": [
+    [
+     "12",
+     ": element{ std::move( ele ) }, left{ lt }, right{ rt }, height{ h } { }"
+    ]
+   ],
+   "sourceOrder": 86,
+   "pageNumber": 11,
+   "role": "table"
+  },
+  {
+   "id": "p11-b8",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "13 }; Figure 4.40 Node declaration for AVL trees",
+   "sourceOrder": 87,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b9",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "1 /** 2 * Return the height of node t or -1 if nullptr. 3 */ 4 int height( AvlNode *t ) const 5 {",
+   "sourceOrder": 88,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b10",
+   "type": "table",
+   "heading": "Page 11",
+   "text": "6 | return t == nullptr ? -1 : t->height;",
+   "columns": [
+    "6",
+    "return t == nullptr ? -1 : t->height;"
+   ],
+   "rows": [],
+   "sourceOrder": 89,
+   "pageNumber": 11,
+   "role": "table"
+  },
+  {
+   "id": "p11-b11",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "7 } Figure 4.41 Function to compute height of an AVL node",
+   "sourceOrder": 90,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p11-b12",
+   "type": "paragraph",
+   "heading": "Page 11",
+   "text": "With all this, we are ready to write the AVL routines. We show some of the code here; the rest is online. First, we need the AvlNode class. This is given in Figure 4.40. We also need a quick function to return the height of a node. This function is necessary to handle the annoying case of a nullptr pointer. This is shown in Figure 4.41. The basic insertion routine (see Figure 4.42) adds only a single line at the end that invokes a balancing method. The balancing method applies a single or double rotation if needed, updates the height, and returns the resulting tree. For the trees in Figure 4.43, rotateWithLeftChild converts the tree on the left to the tree on the right, returning a pointer to the new root. rotateWithRightChild is symmetric. The code is shown in Figure 4.44. Similarly, the double rotation pictured in Figure 4.45 can be implemented by the code shown in Figure 4.46. Since deletion in a binary search tree is somewhat more complicated than insertion, one can assume that deletion in an AVL tree is also more complicated. In a perfect world, one would hope that the deletion routine in Figure 4.26 could easily be modified by chang- ing the last line to return after calling the balance method, as was done for insertion. This would yield the code in Figure 4.47. This change works! A deletion could cause one side",
+   "sourceOrder": 91,
+   "pageNumber": 11,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b1",
+   "type": "table",
+   "heading": "Page 12",
+   "text": "4.4 AVL Trees | 155",
+   "columns": [
+    "4.4 AVL Trees",
+    "155"
+   ],
+   "rows": [],
+   "sourceOrder": 92,
+   "pageNumber": 12,
+   "role": "table"
+  },
+  {
+   "id": "p12-b2",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "1 /** 2 * Internal method to insert into a subtree. 3 * x is the item to insert. 4 * t is the node that roots the subtree. 5 * Set the new root of the subtree. 6 */ 7 void insert( const Comparable & x, AvlNode * & t ) 8 {",
+   "sourceOrder": 93,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b3",
+   "type": "table",
+   "heading": "Page 12",
+   "text": "9 | if( t == nullptr )\n10 | t = new AvlNode{ x, nullptr, nullptr };\n11 | else if( x < t->element )\n12 | insert( x, t->left );\n13 | else if( t->element < x )\n14 | insert( x, t->right );",
+   "columns": [
+    "9",
+    "if( t == nullptr )"
+   ],
+   "rows": [
+    [
+     "10",
+     "t = new AvlNode{ x, nullptr, nullptr };"
+    ],
+    [
+     "11",
+     "else if( x < t->element )"
+    ],
+    [
+     "12",
+     "insert( x, t->left );"
+    ],
+    [
+     "13",
+     "else if( t->element < x )"
+    ],
+    [
+     "14",
+     "insert( x, t->right );"
+    ]
+   ],
+   "sourceOrder": 94,
+   "pageNumber": 12,
+   "role": "table"
+  },
+  {
+   "id": "p12-b4",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "15",
+   "sourceOrder": 95,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b5",
+   "type": "table",
+   "heading": "Page 12",
+   "text": "16 | balance( t );",
+   "columns": [
+    "16",
+    "balance( t );"
+   ],
+   "rows": [],
+   "sourceOrder": 96,
+   "pageNumber": 12,
+   "role": "table"
+  },
+  {
+   "id": "p12-b6",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "17 } 18",
+   "sourceOrder": 97,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b7",
+   "type": "formula",
+   "heading": "Page 12",
+   "text": "19 static const int ALLOWED_IMBALANCE = 1;",
+   "sourceOrder": 98,
+   "pageNumber": 12,
+   "role": "formula"
+  },
+  {
+   "id": "p12-b8",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "20 21 // Assume t is balanced or within one of being balanced 22 void balance( AvlNode * & t ) 23 {",
+   "sourceOrder": 99,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b9",
+   "type": "table",
+   "heading": "Page 12",
+   "text": "24 | if( t == nullptr )\n25 | return;",
+   "columns": [
+    "24",
+    "if( t == nullptr )"
+   ],
+   "rows": [
+    [
+     "25",
+     "return;"
+    ]
+   ],
+   "sourceOrder": 100,
+   "pageNumber": 12,
+   "role": "table"
+  },
+  {
+   "id": "p12-b10",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "26",
+   "sourceOrder": 101,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b11",
+   "type": "table",
+   "heading": "Page 12",
+   "text": "27 | if( height( t->left ) - height( t->right ) > ALLOWED_IMBALANCE )\n28 | if( height( t->left->left ) >= height( t->left->right ) )\n29 | rotateWithLeftChild( t );\n30 | else\n31 | doubleWithLeftChild( t );\n32 | else\n33 | if( height( t->right ) - height( t->left ) > ALLOWED_IMBALANCE )\n34 | if( height( t->right->right ) >= height( t->right->left ) )\n35 | rotateWithRightChild( t );\n36 | else\n37 | doubleWithRightChild( t );",
+   "columns": [
+    "27",
+    "if( height( t->left ) - height( t->right ) > ALLOWED_IMBALANCE )"
+   ],
+   "rows": [
+    [
+     "28",
+     "if( height( t->left->left ) >= height( t->left->right ) )"
+    ],
+    [
+     "29",
+     "rotateWithLeftChild( t );"
+    ],
+    [
+     "30",
+     "else"
+    ],
+    [
+     "31",
+     "doubleWithLeftChild( t );"
+    ],
+    [
+     "32",
+     "else"
+    ],
+    [
+     "33",
+     "if( height( t->right ) - height( t->left ) > ALLOWED_IMBALANCE )"
+    ],
+    [
+     "34",
+     "if( height( t->right->right ) >= height( t->right->left ) )"
+    ],
+    [
+     "35",
+     "rotateWithRightChild( t );"
+    ],
+    [
+     "36",
+     "else"
+    ],
+    [
+     "37",
+     "doubleWithRightChild( t );"
+    ]
+   ],
+   "sourceOrder": 102,
+   "pageNumber": 12,
+   "role": "table"
+  },
+  {
+   "id": "p12-b12",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "38",
+   "sourceOrder": 103,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p12-b13",
+   "type": "table",
+   "heading": "Page 12",
+   "text": "39 | t->height = max( height( t->left ), height( t->right ) ) + 1;",
+   "columns": [
+    "39",
+    "t->height = max( height( t->left ), height( t->right ) ) + 1;"
+   ],
+   "rows": [],
+   "sourceOrder": 104,
+   "pageNumber": 12,
+   "role": "table"
+  },
+  {
+   "id": "p12-b14",
+   "type": "paragraph",
+   "heading": "Page 12",
+   "text": "40 } Figure 4.42 Insertion into an AVL tree",
+   "sourceOrder": 105,
+   "pageNumber": 12,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b1",
+   "type": "table",
+   "heading": "Page 13",
+   "text": "156 | Chapter 4 Trees",
+   "columns": [
+    "156",
+    "Chapter 4 Trees"
+   ],
+   "rows": [],
+   "sourceOrder": 106,
+   "pageNumber": 13,
+   "role": "table"
+  },
+  {
+   "id": "p13-b2",
+   "type": "table",
+   "heading": "Page 13",
+   "text": "k | k\n2 | 1\nk | k\n1 | 2\nZ | X\nX | Y | Y | Z",
+   "columns": [
+    "k",
+    "k"
+   ],
+   "rows": [
+    [
+     "2",
+     "1"
+    ],
+    [
+     "k",
+     "k"
+    ],
+    [
+     "1",
+     "2"
+    ],
+    [
+     "Z",
+     "X"
+    ],
+    [
+     "X",
+     "Y",
+     "Y",
+     "Z"
+    ]
+   ],
+   "sourceOrder": 107,
+   "pageNumber": 13,
+   "role": "table"
+  },
+  {
+   "id": "p13-b3",
+   "type": "paragraph",
+   "heading": "Page 13",
+   "text": "Figure 4.43 Single rotation",
+   "sourceOrder": 108,
+   "pageNumber": 13,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b4",
+   "type": "paragraph",
+   "heading": "Page 13",
+   "text": "1 /** 2 * Rotate binary tree node with left child. 3 * For AVL trees, this is a single rotation for case 1. 4 * Update heights, then set new root. 5 */ 6 void rotateWithLeftChild( AvlNode * & k2 ) 7 {",
+   "sourceOrder": 109,
+   "pageNumber": 13,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b5",
+   "type": "table",
+   "heading": "Page 13",
+   "text": "8 | AvlNode *k1 = k2->left;\n9 | k2->left = k1->right;\n10 | k1->right = k2;\n11 | k2->height = max( height( k2->left ), height( k2->right ) ) + 1;\n12 | k1->height = max( height( k1->left ), k2->height ) + 1;\n13 | k2 = k1;",
+   "columns": [
+    "8",
+    "AvlNode *k1 = k2->left;"
+   ],
+   "rows": [
+    [
+     "9",
+     "k2->left = k1->right;"
+    ],
+    [
+     "10",
+     "k1->right = k2;"
+    ],
+    [
+     "11",
+     "k2->height = max( height( k2->left ), height( k2->right ) ) + 1;"
+    ],
+    [
+     "12",
+     "k1->height = max( height( k1->left ), k2->height ) + 1;"
+    ],
+    [
+     "13",
+     "k2 = k1;"
+    ]
+   ],
+   "sourceOrder": 110,
+   "pageNumber": 13,
+   "role": "table"
+  },
+  {
+   "id": "p13-b6",
+   "type": "paragraph",
+   "heading": "Page 13",
+   "text": "14 } Figure 4.44 Routine to perform single rotation",
+   "sourceOrder": 111,
+   "pageNumber": 13,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b7",
+   "type": "table",
+   "heading": "Page 13",
+   "text": "k | k\n3 | 2\nk | k | k\n1 | 1 | 3",
+   "columns": [
+    "k",
+    "k"
+   ],
+   "rows": [
+    [
+     "3",
+     "2"
+    ],
+    [
+     "k",
+     "k",
+     "k"
+    ],
+    [
+     "1",
+     "1",
+     "3"
+    ]
+   ],
+   "sourceOrder": 112,
+   "pageNumber": 13,
+   "role": "table"
+  },
+  {
+   "id": "p13-b8",
+   "type": "paragraph",
+   "heading": "Page 13",
+   "text": "D k 2",
+   "sourceOrder": 113,
+   "pageNumber": 13,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b9",
+   "type": "table",
+   "heading": "Page 13",
+   "text": "A | A | B | C | D\nB | C",
+   "columns": [
+    "A",
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "rows": [
+    [
+     "B",
+     "C"
+    ]
+   ],
+   "sourceOrder": 114,
+   "pageNumber": 13,
+   "role": "table"
+  },
+  {
+   "id": "p13-b10",
+   "type": "paragraph",
+   "heading": "Page 13",
+   "text": "Figure 4.45 Double rotation",
+   "sourceOrder": 115,
+   "pageNumber": 13,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b11",
+   "type": "paragraph",
+   "heading": "Page 13",
+   "text": "of the tree to become two levels shallower than the other side. The case-by-case analy- sis is similar to the imbalances that are caused by insertion, but not exactly the same. For instance, case 1 in Figure 4.34, which would now reflect a deletion from tree Z (rather than an insertion into X), must be augmented with the possibility that tree Y could be as deep as tree X. Even so, it is easy to see that the rotation rebalances this case and the symmetric",
+   "sourceOrder": 116,
+   "pageNumber": 13,
+   "role": "paragraph"
+  },
+  {
+   "id": "p13-b12",
+   "type": "formula",
+   "heading": "Page 13",
+   "text": "case 4 in Figure 4.36. Thus the code for balance in Figure 4.42 lines 28 and 34 uses >=",
+   "sourceOrder": 117,
+   "pageNumber": 13,
+   "role": "formula"
+  },
+  {
+   "id": "p14-b1",
+   "type": "table",
+   "heading": "Page 14",
+   "text": "4.4 AVL Trees | 157",
+   "columns": [
+    "4.4 AVL Trees",
+    "157"
+   ],
+   "rows": [],
+   "sourceOrder": 118,
+   "pageNumber": 14,
+   "role": "table"
+  },
+  {
+   "id": "p14-b2",
+   "type": "paragraph",
+   "heading": "Page 14",
+   "text": "1 /** 2 * Double rotate binary tree node: first left child 3 * with its right child; then node k3 with new left child. 4 * For AVL trees, this is a double rotation for case 2. 5 * Update heights, then set new root. 6 */ 7 void doubleWithLeftChild( AvlNode * & k3 ) 8 {",
+   "sourceOrder": 119,
+   "pageNumber": 14,
+   "role": "paragraph"
+  },
+  {
+   "id": "p14-b3",
+   "type": "table",
+   "heading": "Page 14",
+   "text": "9 | rotateWithRightChild( k3->left );\n10 | rotateWithLeftChild( k3 );",
+   "columns": [
+    "9",
+    "rotateWithRightChild( k3->left );"
+   ],
+   "rows": [
+    [
+     "10",
+     "rotateWithLeftChild( k3 );"
+    ]
+   ],
+   "sourceOrder": 120,
+   "pageNumber": 14,
+   "role": "table"
+  },
+  {
+   "id": "p14-b4",
+   "type": "paragraph",
+   "heading": "Page 14",
+   "text": "11 } Figure 4.46 Routine to perform double rotation",
+   "sourceOrder": 121,
+   "pageNumber": 14,
+   "role": "paragraph"
+  },
+  {
+   "id": "p14-b5",
+   "type": "paragraph",
+   "heading": "Page 14",
+   "text": "1 /** 2 * Internal method to remove from a subtree. 3 * x is the item to remove. 4 * t is the node that roots the subtree. 5 * Set the new root of the subtree. 6 */ 7 void remove( const Comparable & x, AvlNode * & t ) 8 {",
+   "sourceOrder": 122,
+   "pageNumber": 14,
+   "role": "paragraph"
+  },
+  {
+   "id": "p14-b6",
+   "type": "table",
+   "heading": "Page 14",
+   "text": "9 | if( t == nullptr )\n10 | return; // Item not found; do nothing",
+   "columns": [
+    "9",
+    "if( t == nullptr )"
+   ],
+   "rows": [
+    [
+     "10",
+     "return; // Item not found; do nothing"
+    ]
+   ],
+   "sourceOrder": 123,
+   "pageNumber": 14,
+   "role": "table"
+  },
+  {
+   "id": "p14-b7",
+   "type": "paragraph",
+   "heading": "Page 14",
+   "text": "11",
+   "sourceOrder": 124,
+   "pageNumber": 14,
+   "role": "paragraph"
+  },
+  {
+   "id": "p14-b8",
+   "type": "table",
+   "heading": "Page 14",
+   "text": "12 | if( x < t->element )\n13 | remove( x, t->left );\n14 | else if( t->element < x )\n15 | remove( x, t->right );\n16 | else if( t->left != nullptr && t->right != nullptr ) // Two children\n17 | {\n18 | t->element = findMin( t->right )->element;\n19 | remove( t->element, t->right );\n20 | }\n21 | else\n22 | {\n23 | AvlNode *oldNode = t;\n24 | t = ( t->left != nullptr ) ? t->left : t->right;\n25 | delete oldNode;\n26 | }",
+   "columns": [
+    "12",
+    "if( x < t->element )"
+   ],
+   "rows": [
+    [
+     "13",
+     "remove( x, t->left );"
+    ],
+    [
+     "14",
+     "else if( t->element < x )"
+    ],
+    [
+     "15",
+     "remove( x, t->right );"
+    ],
+    [
+     "16",
+     "else if( t->left != nullptr && t->right != nullptr ) // Two children"
+    ],
+    [
+     "17",
+     "{"
+    ],
+    [
+     "18",
+     "t->element = findMin( t->right )->element;"
+    ],
+    [
+     "19",
+     "remove( t->element, t->right );"
+    ],
+    [
+     "20",
+     "}"
+    ],
+    [
+     "21",
+     "else"
+    ],
+    [
+     "22",
+     "{"
+    ],
+    [
+     "23",
+     "AvlNode *oldNode = t;"
+    ],
+    [
+     "24",
+     "t = ( t->left != nullptr ) ? t->left : t->right;"
+    ],
+    [
+     "25",
+     "delete oldNode;"
+    ],
+    [
+     "26",
+     "}"
+    ]
+   ],
+   "sourceOrder": 125,
+   "pageNumber": 14,
+   "role": "table"
+  },
+  {
+   "id": "p14-b9",
+   "type": "paragraph",
+   "heading": "Page 14",
+   "text": "27",
+   "sourceOrder": 126,
+   "pageNumber": 14,
+   "role": "paragraph"
+  },
+  {
+   "id": "p14-b10",
+   "type": "table",
+   "heading": "Page 14",
+   "text": "28 | balance( t );",
+   "columns": [
+    "28",
+    "balance( t );"
+   ],
+   "rows": [],
+   "sourceOrder": 127,
+   "pageNumber": 14,
+   "role": "table"
+  },
+  {
+   "id": "p14-b11",
+   "type": "paragraph",
+   "heading": "Page 14",
+   "text": "29 } Figure 4.47 Deletion in an AVL tree",
+   "sourceOrder": 128,
+   "pageNumber": 14,
+   "role": "paragraph"
+  }
+ ]
+}

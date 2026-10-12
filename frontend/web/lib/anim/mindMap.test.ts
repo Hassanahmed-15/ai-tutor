@@ -108,8 +108,45 @@ test("the transcript carries every beat in order, with its concept, within the b
     { title: "Faraday's first law", points: ["m ∝ Q"], script: "Mass deposited is proportional to charge.", conceptId: "faraday" },
     { title: "Copper plating", script: "Q = 2 A × 1800 s = 3600 C." },
   ], 2000);
-  assert.match(text, /## 1\. Faraday's first law \(concept: faraday\)/);
-  assert.match(text, /## 2\. Copper plating/);
+  assert.match(text, /## Slide 1\. Faraday's first law \(concept: faraday\)/);
+  assert.match(text, /## Slide 2\. Copper plating/);
   assert.ok(text.indexOf("first law") < text.indexOf("Copper plating"));
   assert.equal(mindMapTranscript([]), "");
+});
+
+test("an empty beat is skipped without renumbering the slides after it", () => {
+  const text = mindMapTranscript([{ title: "Intro", script: "Hello." }, { title: "", script: "" }, { title: "Anode", script: "Oxidation." }]);
+  assert.match(text, /## Slide 1\. Intro/);
+  assert.match(text, /## Slide 3\. Anode/);
+  assert.doesNotMatch(text, /## Slide 2\./);
+});
+
+test("each branch keeps the slides that taught it: 1-based in, 0-based out, only real slides", () => {
+  const { mindMap } = parseMindMap({
+    root: {
+      label: "Electrolysis",
+      slides: [1],
+      children: [
+        { label: "Faraday's laws", slides: [3, 2, 3, 9, 0, "slide 4", 2.5], children: [{ label: "First law", slides: [2] }] },
+        { label: "Electrodes", children: [{ label: "Cathode", slides: [6] }, { label: "Anode", slides: ["5"] }, { label: "Ions" }] },
+        { label: "Plating", slides: "7" },
+        { label: "Unknown", slides: [42] },
+      ],
+    },
+  }, "Lecture", 8);
+  const [laws, electrodes, plating, unknown] = mindMap!.root.children;
+  assert.equal(mindMap!.root.slides, undefined, "the root opens no slide");
+  assert.deepEqual(laws.slides, [2, 1, 3], "main first, repeats and impossible numbers dropped, at most 3");
+  assert.deepEqual(laws.children[0].slides, [1]);
+  assert.deepEqual(electrodes.slides, [4, 5], "a branch with none takes its children's, earliest first");
+  assert.equal(electrodes.children[2].slides, undefined);
+  assert.deepEqual(plating.slides, [6], "a single number is accepted");
+  assert.equal(unknown.slides, undefined, "a slide the lecture does not have is dropped");
+});
+
+test("the layout carries each box's slides", () => {
+  const { mindMap } = parseMindMap({ root: { label: "R", children: [{ label: "A", slides: [2] }, { label: "B", slides: [1] }] } }, "R", 3);
+  const layout = layoutMindMap(mindMap!.root, new Set(["0"]));
+  assert.deepEqual(layout.nodes.find((n) => n.label === "A")?.slides, [1]);
+  assert.deepEqual(layout.nodes.find((n) => n.label === "B")?.slides, [0]);
 });

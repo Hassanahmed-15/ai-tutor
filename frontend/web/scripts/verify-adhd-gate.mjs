@@ -201,7 +201,7 @@ try {
     const env = readFileSync(".env.local", "utf8");
     const conn = (env.match(/^COSMOS_CONNECTION_STRING=(.+)$/m) || [])[1];
     if (conn) {
-      const users = new CosmosClient(conn.trim()).database("aria").container("users");
+      const users = new CosmosClient(conn.trim()).database(process.env.COSMOS_DATABASE || "aria-shared").container("users");
       const { resources } = await users.items
         .query({ query: "SELECT c.id FROM c WHERE STARTSWITH(c.username, @p)", parameters: [{ name: "@p", value: PREFIX }] })
         .fetchAll();

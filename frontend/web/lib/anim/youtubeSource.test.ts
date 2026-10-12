@@ -25,7 +25,7 @@ import {
   type VideoChapterNotes,
   type VideoWindow,
 } from "../youtube/videoSource";
-import { mergeGleaned, parseChapters, parseNotes } from "../youtube/videoNotes";
+import { foldVisualSections, keepShownData, mergeGleaned, parseChapters, parseNotes } from "../youtube/videoNotes";
 import { coverageRatio, uncoveredKeyPoints, videoKeyPoints } from "../youtube/videoCoverage";
 import { buildDocumentContext, buildLessonContext } from "../lessonChatContext";
 import { repeatsOpening } from "../beatPresentation";
@@ -306,4 +306,82 @@ test("a title-card line that repeats the first sentence is recognised; a lead-in
   const script = "Humans recognize digits by piecing together components, such as loops and lines. Each loop is made of edges.";
   assert.equal(repeatsOpening("Humans recognize digits by piecing together components, like loops and lines.", script), true);
   assert.equal(repeatsOpening("Next, how the network finds those pieces.", script), false);
+});
+
+// The BST video (sXABdGalFNg), 7:41-11:22: the notes kept the rule and lost the traced example.
+const inorderChapter = { title: "Inorder Traversal", startSec: 461, endSec: 682 };
+const rulesOnly: VideoChapterNotes = {
+  chapter: inorderChapter,
+  sections: [
+    { heading: "Inorder Traversal", points: [{ text: "Inorder traversal of a binary search tree always results in a sorted array.", startSec: 461 }, { text: "Write a node when you reach it for the second time.", startSec: 510 }] },
+    { heading: "Height and Search", points: [{ text: "For seven elements the height is floor(log 7) = 2.", startSec: 644 }] },
+  ],
+  leftOut: [],
+};
+const bstScreen = [
+  { startSec: 462, kind: "text", content: "Inorder" },
+  { startSec: 485, kind: "diagram", content: "Two dummy child links added under each leaf node (1, 3, 5, 7) to trace tree traversal." },
+  { startSec: 523, kind: "text", content: "1 2 3 4 5 6 7" },
+  { startSec: 644, kind: "equation", content: "$\\lfloor \\log 7 \\rfloor = 2$" },
+];
+
+test("what the video showed with data in it is put back when the notes dropped it", () => {
+  const { notes, added } = keepShownData(rulesOnly, bstScreen);
+  assert.equal(added, 2, "the dummy-links diagram and the traced result; not the bare title, not the equation already said");
+  const inorder = notes.sections[0].points.map((p) => p.text);
+  assert.ok(inorder.includes("Two dummy child links added under each leaf node (1, 3, 5, 7) to trace tree traversal."));
+  assert.ok(inorder.includes("Inorder Traversal: 1 2 3 4 5 6 7"), "a bare line of text is named by its topic");
+  assert.deepEqual(notes.sections[0].points.map((p) => p.startSec), [461, 485, 510, 523], "each at its own moment, in time order");
+  assert.equal(notes.sections[1].points.length, 1, "the equation's numbers are already in the notes");
+});
+
+test("nothing is added when the notes already carry what was shown", () => {
+  const complete: VideoChapterNotes = {
+    ...rulesOnly,
+    sections: [{ heading: "Inorder Traversal", points: [{ text: "Example: dummy children under the leaves 1, 3, 5, 7; writing each node on its second visit gives 1, 2, 3, 4, 5, 6, 7.", startSec: 480 }, { text: "Height is floor(log 7) = 2.", startSec: 644 }] }],
+  };
+  const { notes, added } = keepShownData(complete, bstScreen);
+  assert.equal(added, 0);
+  assert.strictEqual(notes.sections, complete.sections, "untouched notes are returned as they were");
+  // An equation's single number counts; an item outside the chapter does not.
+  assert.equal(keepShownData(complete, [{ startSec: 600, kind: "equation", content: "$h = 9$" }]).added, 1);
+  assert.equal(keepShownData(complete, [{ startSec: 900, kind: "diagram", content: "Nodes 8 and 9." }]).added, 0);
+});
+
+test("numbers said in another context do not count: the traced result is still put back", () => {
+  // Run 2 on 2026-10-10: the construction steps name every key 1-7, so a check on the SET of numbers
+  // took "1 2 3 4 5 6 7" as said. The ORDER is what makes it the traversal's result.
+  const construction: VideoChapterNotes = {
+    ...rulesOnly,
+    sections: [{ heading: "Constructing a Binary Search Tree", points: [{ text: "Insert the keys 4, 2, 3, 6, 5, 7, 1 in turn; 1 is the leftmost and 7 the rightmost.", startSec: 470 }, { text: "Inorder traversal gives a sorted array.", startSec: 500 }] }],
+  };
+  const { notes, added } = keepShownData(construction, bstScreen);
+  const texts = notes.sections[0].points.map((p) => p.text);
+  assert.ok(texts.includes("Constructing a Binary Search Tree: 1 2 3 4 5 6 7"));
+  assert.ok(texts.some((t) => t.startsWith("Two dummy child links added under each leaf node (1, 3, 5, 7)")), "1, 3, 5, 7 in that order is not in the notes either");
+  assert.equal(added, 3, "the dummy links, the result, and the floor(log 7) = 2 equation none of these points states");
+});
+
+test("at most six on-screen items are put back into one chapter", () => {
+  const many = Array.from({ length: 10 }, (_, i) => ({ startSec: 470 + i, kind: "diagram", content: `Tree with nodes ${100 + i} and ${200 + i}.` }));
+  assert.equal(keepShownData(rulesOnly, many).added, 6);
+});
+
+test("an 'Examples and Diagrams' section is folded into the topics nearest in time", () => {
+  const withVisuals: VideoChapterNotes = {
+    chapter: { title: "BST", startSec: 0, endSec: 461 },
+    sections: [
+      { heading: "Binary Search Tree Properties", points: [{ text: "Left is smaller, right is larger.", startSec: 150 }] },
+      { heading: "Examples and Diagrams", points: [{ text: "Max heap: root 10 with children 8 and 7.", startSec: 230 }, { text: "Keys 4, 2, 3, 6, 5, 7, 1.", startSec: 360 }] },
+      { heading: "Constructing a BST", points: [{ text: "Start with 4 as the root.", startSec: 343 }] },
+    ],
+    leftOut: [],
+  };
+  const folded = foldVisualSections(withVisuals);
+  assert.deepEqual(folded.sections.map((s) => s.heading), ["Binary Search Tree Properties", "Constructing a BST"]);
+  assert.deepEqual(folded.sections[0].points.map((p) => p.startSec), [150, 230]);
+  assert.deepEqual(folded.sections[1].points.map((p) => p.startSec), [343, 360]);
+
+  const onlyVisuals: VideoChapterNotes = { ...withVisuals, sections: [withVisuals.sections[1]] };
+  assert.strictEqual(foldVisualSections(onlyVisuals), onlyVisuals, "with no topic to fold into, nothing moves");
 });

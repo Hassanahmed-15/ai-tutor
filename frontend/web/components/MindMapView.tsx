@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronsDownUp, ChevronsUpDown, Download, Loader2, Maximize2, Minus, Plus, X } from "lucide-react";
+import { ChevronsDownUp, ChevronsUpDown, Download, Loader2, Maximize2, Minus, Play, Plus, X } from "lucide-react";
 import { branchIds, layoutMindMap, type MeasuredLabel, type MindMap } from "@/lib/mindMap";
 
 /**
@@ -10,12 +10,17 @@ import { branchIds, layoutMindMap, type MeasuredLabel, type MindMap } from "@/li
  * NotebookLM draws one. Drag to move, scroll or the buttons to zoom, expand or collapse all, fit,
  * and download as a picture.
  *
+ * Every box below the root knows the slide(s) that taught it: clicking one (or Enter on it) opens a
+ * card with that slide's title and points, and "Replay from this slide" plays the lecture from there.
+ *
  * The colours are read from the theme tokens and written into the SVG as literal values, so the
  * downloaded PNG looks exactly like the screen. Motion is short transform transitions, none when
  * less motion is asked for.
  */
-type Palette = { page: string; node: string; root: string; line: string; text: string; dim: string; accent: string; accentOn: string; font: string };
+type Palette = { page: string; node: string; root: string; line: string; text: string; dim: string; accent: string; accentOn: string; warn: string; font: string };
 type View = { x: number; y: number; w: number; h: number };
+/** What the preview card shows of a slide — the lecture's own beat. */
+export type MindMapSlide = { title: string; points?: string[]; script?: string };
 
 const PAD = 48;
 const MAX_W = 260;
@@ -32,6 +37,7 @@ function readPalette(): Palette {
     dim: v("--text-muted", "#A3A29D"),
     accent: v("--accent", "#9F6BFF"),
     accentOn: v("--accent-on", "#0A0A14"),
+    warn: v("--warning", "#F0C05A"),
     font: getComputedStyle(document.body).fontFamily || "system-ui, sans-serif",
   };
 }
@@ -79,12 +85,21 @@ export function MindMapView({
   error,
   onRetry,
   onClose,
+  slides = [],
+  onReplayFrom,
+  missedSlides = [],
 }: {
   mindMap: MindMap | null;
   loading: boolean;
   error: string | null;
   onRetry: () => void;
   onClose: () => void;
+  /** The lecture's slides, in order — what a box's slide numbers point into. */
+  slides?: MindMapSlide[];
+  /** Plays the lecture from this slide (0-based); without it the card only previews. */
+  onReplayFrom?: (index: number) => void;
+  /** Slides (0-based) the student got a test question wrong on: their boxes get an amber ring. */
+  missedSlides?: number[];
 }) {
   const [palette, setPalette] = useState<Palette | null>(null);
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set(["0"]));
@@ -92,7 +107,15 @@ export function MindMapView({
   const svgRef = useRef<SVGSVGElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const movedRef = useRef(false);
-  const drag = useRef<{ x: number; y: number; view: View } | null>(null);
+  const drag = useRef<{ x: number; y: number; view: View; nodeId: string | null; dragging: boolean } | null>(null);
+  /** The box whose slide is being previewed, and which of its slides. */
+  const [selected, setSelected] = useState<{ id: string; slide: number } | null>(null);
+  const selectedRef = useRef(selected);
+  useEffect(() => {
+    selectedRef.current = selected;
+  }, [selected]);
+  const replayRef = useRef<HTMLButtonElement>(null);
+  const cardCloseRef = useRef<HTMLButtonElement>(null);
 
   // Theme colours, re-read when the app switches light/dark.
   useEffect(() => {
@@ -102,11 +125,13 @@ export function MindMapView({
     return () => observer.disconnect();
   }, []);
 
-  // Escape closes; focus starts inside the dialog.
+  // Escape closes the slide card first, then the map; focus starts inside the dialog.
   useEffect(() => {
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key !== "Escape") return;
+      if (selectedRef.current) closePreview();
+      else onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -163,6 +188,22 @@ export function MindMapView({
       else next.add(id);
       return next;
     });
+  const openNode = (id: string) => {
+    const node = layout?.nodes.find((n) => n.id === id);
+    const first = node?.slides?.find((i) => i < slides.length);
+    if (first === undefined) return;
+    setSelected({ id, slide: first });
+    // Focus moves into the card, so a keyboard user lands on what just opened.
+    requestAnimationFrame(() => (replayRef.current ?? cardCloseRef.current)?.focus());
+  };
+  function closePreview() {
+    const id = selectedRef.current?.id;
+    setSelected(null);
+    if (id) requestAnimationFrame(() => svgRef.current?.querySelector<SVGGElement>(`[data-mm-node="${id}"]`)?.focus());
+  }
+  const missed = useMemo(() => new Set(missedSlides), [missedSlides]);
+  const isMissed = (nodeSlides?: number[]) => Boolean(nodeSlides?.some((i) => missed.has(i)));
+  const anyMissed = Boolean(layout?.nodes.some((n) => isMissed(n.slides)));
   const allIds = useMemo(() => (mindMap ? branchIds(mindMap.root) : []), [mindMap]);
   const allOpen = allIds.length > 0 && allIds.every((id) => expanded.has(id));
   const expandOrCollapseAll = () => {
@@ -234,7 +275,7 @@ export function MindMapView({
       <div className="flex shrink-0 items-center justify-between gap-4 border-b border-[var(--hud-line)] px-5 py-3">
         <div className="min-w-0">
           <h2 id="mind-map-title" className="truncate text-[1.0625rem] font-semibold">{mindMap?.title ? `${mindMap.title} — mind map` : "Mind map"}</h2>
-          <p className="text-[0.75rem] text-[var(--hud-text-dim)]">Open a branch with its arrow · drag to move · scroll to zoom</p>
+          <p className="text-[0.75rem] text-[var(--hud-text-dim)]">{slides.length > 0 ? "Click a box to see the slide that taught it · " : ""}{anyMissed ? "Amber = a test question you missed · " : ""}Open a branch with its arrow · drag to move · scroll to zoom</p>
         </div>
         <button
           ref={closeRef}
@@ -279,19 +320,27 @@ export function MindMapView({
             onPointerDown={(e) => {
               if ((e.target as Element).closest("[data-mm-toggle]") || !view) return;
               (e.currentTarget as SVGSVGElement).setPointerCapture(e.pointerId);
-              drag.current = { x: e.clientX, y: e.clientY, view };
+              const nodeId = (e.target as Element).closest("[data-mm-node]")?.getAttribute("data-mm-node") ?? null;
+              drag.current = { x: e.clientX, y: e.clientY, view, nodeId, dragging: false };
             }}
             onPointerMove={(e) => {
               const d = drag.current;
               const svg = svgRef.current;
               if (!d || !svg) return;
+              // A press that barely moves is a click (on a box: open its slide), not a drag.
+              if (!d.dragging && Math.hypot(e.clientX - d.x, e.clientY - d.y) < 5) return;
+              d.dragging = true;
               const box = svg.getBoundingClientRect();
               const scale = Math.max(d.view.w / box.width, d.view.h / box.height);
               setView({ ...d.view, x: d.view.x - (e.clientX - d.x) * scale, y: d.view.y - (e.clientY - d.y) * scale });
               movedRef.current = true;
             }}
             onPointerUp={() => {
+              const d = drag.current;
               drag.current = null;
+              if (!d || d.dragging) return;
+              if (d.nodeId) openNode(d.nodeId);
+              else if (selectedRef.current) closePreview();
             }}
             style={{ fontFamily: palette.font }}
           >
@@ -304,17 +353,38 @@ export function MindMapView({
               const root = n.depth === 0;
               const size = root ? 17 : 15;
               const lineH = size + 6;
+              const slide = n.slides?.find((i) => i < slides.length);
+              const opens = slide !== undefined;
+              const isSelected = selected?.id === n.id;
+              const missedHere = isMissed(n.slides);
+              const described = `${n.note ? `${n.label}: ${n.note}` : n.label}${missedHere ? ". You missed a test question here" : ""}`;
               return (
                 <g
                   key={n.id}
                   role="treeitem"
                   aria-level={n.depth + 1}
                   aria-expanded={n.hasChildren ? n.expanded : undefined}
-                  aria-label={n.note ? `${n.label}: ${n.note}` : n.label}
+                  aria-label={opens ? `${described}. Taught on slide ${slide + 1} — press Enter to see it` : described}
+                  data-mm-node={opens ? n.id : undefined}
+                  tabIndex={opens ? 0 : undefined}
+                  onKeyDown={opens ? (e) => {
+                    if (e.target !== e.currentTarget || (e.key !== "Enter" && e.key !== " ")) return;
+                    e.preventDefault();
+                    openNode(n.id);
+                  } : undefined}
                   style={{ transform: `translate(${n.x}px, ${n.y}px)`, transition: nodeTransition }}
-                  className={still ? undefined : "mm-fade-in"}
+                  className={`${still ? "" : "mm-fade-in"} ${opens ? "mm-opens cursor-pointer outline-none" : ""}`}
                 >
-                  <rect width={n.w} height={n.h} rx={10} fill={root ? palette.root : palette.node} stroke={root ? palette.accent : palette.line} strokeWidth={root ? 1.5 : 1} />
+                  {opens && <title>{`See slide ${slide + 1}`}</title>}
+                  {missedHere && <rect data-mm-missed="" x={-5} y={-5} width={n.w + 10} height={n.h + 10} rx={14} fill="none" stroke={palette.warn} strokeWidth={2.5} />}
+                  <rect
+                    width={n.w}
+                    height={n.h}
+                    rx={10}
+                    fill={root ? palette.root : palette.node}
+                    stroke={root || isSelected ? palette.accent : palette.line}
+                    strokeWidth={isSelected ? 2.5 : root ? 1.5 : 1}
+                  />
                   <text x={16} y={13 + size} fill={palette.text} fontSize={size} fontWeight={500}>
                     {n.lines.map((line, i) => (
                       <tspan key={i} x={16} dy={i === 0 ? 0 : lineH}>{line}</tspan>
@@ -362,6 +432,20 @@ export function MindMapView({
           </svg>
         )}
 
+        {!loading && !error && selected && slides[selected.slide] && (
+          <SlideCard
+            slides={slides}
+            index={selected.slide}
+            others={(layout?.nodes.find((n) => n.id === selected.id)?.slides ?? []).filter((i) => i < slides.length)}
+            onPick={(slide) => setSelected({ ...selected, slide })}
+            onClose={closePreview}
+            onReplay={onReplayFrom ? () => onReplayFrom(selected.slide) : undefined}
+            missed={missed.has(selected.slide)}
+            replayRef={replayRef}
+            closeRef={cardCloseRef}
+          />
+        )}
+
         {!loading && !error && layout && (
           <div className="absolute bottom-5 right-5 flex flex-col items-center gap-2">
             <ControlButton label={allOpen ? "Collapse all" : "Expand all"} onClick={expandOrCollapseAll}>
@@ -385,7 +469,7 @@ export function MindMapView({
           </div>
         )}
       </div>
-      <style>{`.mm-fade-in { animation: mm-fade-in 220ms ease-out both; } @keyframes mm-fade-in { from { opacity: 0; } to { opacity: 1; } } @media (prefers-reduced-motion: reduce) { .mm-fade-in { animation: none; } }`}</style>
+      <style>{`.mm-fade-in { animation: mm-fade-in 220ms ease-out both; } @keyframes mm-fade-in { from { opacity: 0; } to { opacity: 1; } } @media (prefers-reduced-motion: reduce) { .mm-fade-in { animation: none; } } .mm-opens:hover > rect, .mm-opens:focus-visible > rect { stroke: ${palette?.accent ?? "currentColor"}; } .mm-opens:focus-visible > rect { stroke-width: 2.5px; }`}</style>
     </div>
   );
 }
@@ -401,5 +485,89 @@ function ControlButton({ label, onClick, children }: { label: string; onClick: (
     >
       {children}
     </button>
+  );
+}
+
+/**
+ * The slide a box was taught on: its title and points (or the start of what Aria said), the other
+ * slides that also taught it, and the way back into the lecture at that slide.
+ */
+function SlideCard({ slides, index, others, onPick, onClose, onReplay, missed, replayRef, closeRef }: {
+  slides: MindMapSlide[];
+  index: number;
+  others: number[];
+  onPick: (index: number) => void;
+  onClose: () => void;
+  onReplay?: () => void;
+  /** The student got a test question from this slide wrong. */
+  missed?: boolean;
+  replayRef: React.RefObject<HTMLButtonElement | null>;
+  closeRef: React.RefObject<HTMLButtonElement | null>;
+}) {
+  const slide = slides[index];
+  const points = (slide.points ?? []).filter((p) => p.trim()).slice(0, 5);
+  const script = slide.script?.replace(/\s+/g, " ").trim() ?? "";
+  const excerpt = script.length > 280 ? `${script.slice(0, 280).replace(/\s+\S*$/, "")}…` : script;
+  return (
+    <section
+      data-mm-slide-card
+      aria-labelledby="mm-slide-title"
+      className="absolute bottom-5 left-5 z-10 flex max-h-[min(60vh,440px)] w-[min(380px,calc(100%-6.5rem))] flex-col rounded-[14px] border border-[var(--hud-line)] bg-[var(--hud-surface)] shadow-[var(--elev-2)]"
+    >
+      <div className="flex items-start justify-between gap-3 px-4 pt-3.5">
+        <div className="min-w-0">
+          <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-[var(--hud-cyan)]">Slide {index + 1} of {slides.length}</p>
+          <h3 id="mm-slide-title" className="mt-0.5 text-[1rem] font-semibold leading-snug text-[var(--hud-text)]">{slide.title?.trim() || `Slide ${index + 1}`}</h3>
+        </div>
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={onClose}
+          aria-label="Close the slide preview"
+          className="grid size-8 shrink-0 place-items-center rounded-full text-[var(--hud-text-dim)] transition-colors hover:bg-[var(--hud-surface-2)] hover:text-[var(--hud-text)]"
+        >
+          <X aria-hidden="true" size={15} />
+        </button>
+      </div>
+      {missed && (
+        <p data-mm-card-missed="" className="mx-4 mt-2 rounded-[var(--radius)] border border-[var(--warning)] px-2.5 py-1.5 text-[0.75rem] font-medium text-[var(--warning)]">
+          You missed a test question from this slide
+        </p>
+      )}
+      <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-1 pt-2 text-[0.8125rem] leading-relaxed text-[var(--hud-text-dim)]">
+        {points.length > 0 ? (
+          <ul className="list-disc space-y-1 pl-4">
+            {points.map((p, i) => <li key={i}>{p}</li>)}
+          </ul>
+        ) : excerpt ? (
+          <p>{excerpt}</p>
+        ) : null}
+      </div>
+      {others.length > 1 && (
+        <div className="flex flex-wrap items-center gap-1.5 px-4 pt-2 text-[0.75rem] text-[var(--hud-text-dim)]">
+          <span>Taught on</span>
+          {others.map((i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => onPick(i)}
+              aria-pressed={i === index}
+              className={`rounded-full border px-2 py-0.5 font-medium transition-colors ${i === index ? "border-[var(--hud-cyan)] text-[var(--hud-text)]" : "border-[var(--hud-line)] hover:text-[var(--hud-text)]"}`}
+            >
+              Slide {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
+      {onReplay ? (
+        <div className="px-4 pb-4 pt-3">
+          <button ref={replayRef} type="button" onClick={onReplay} data-mm-replay="" className="hud-btn-primary inline-flex h-9 w-full items-center justify-center gap-2 rounded-full px-4 text-[0.8125rem] font-semibold">
+            <Play aria-hidden="true" size={14} /> Replay from this slide
+          </button>
+        </div>
+      ) : (
+        <div className="pb-3" />
+      )}
+    </section>
   );
 }
