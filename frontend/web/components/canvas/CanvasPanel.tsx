@@ -960,7 +960,9 @@ export const CANVAS_CSS = `
 .cv-tap { transform-box: fill-box; transform-origin: center; animation: cv-tap 900ms ease-out 2; }
 .cv-ring { stroke-dasharray: 1; animation: cv-ring 700ms cubic-bezier(.45,0,.25,1) both; }
 .cv-swipe { stroke-dasharray: 1; animation: cv-swipe 420ms cubic-bezier(.3,0,.2,1) both; }
+@keyframes cv-outline { from { opacity: 0; } to { opacity: 1; } }
+.cv-outline { animation: cv-outline 260ms ease-out both; }
 @keyframes cv-hotspot { 0% { transform: scale(.8); opacity: .95; } 100% { transform: scale(2.3); opacity: 0; } }
 .cv-hotspot { transform-box: fill-box; transform-origin: center; animation: cv-hotspot 1600ms ease-out infinite; }
-@media (prefers-reduced-motion: reduce) { .cv-live .cv-in, .cv-live .cv-write, .cv-live .cv-stroke, .cv-live .cv-morph-in, .cv-ring, .cv-swipe, .cv-tap, .cv-hotspot { animation: none !important; } .cv-morph-out, .cv-morph-ring { display: none; } }
+@media (prefers-reduced-motion: reduce) { .cv-live .cv-in, .cv-live .cv-write, .cv-live .cv-stroke, .cv-live .cv-morph-in, .cv-ring, .cv-swipe, .cv-tap, .cv-outline, .cv-hotspot { animation: none !important; } .cv-morph-out, .cv-morph-ring { display: none; } }
 `;

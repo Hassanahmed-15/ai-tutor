@@ -16,8 +16,9 @@ import {
   Play,
   Sparkles,
   Undo2,
-  // UserRound, — the switched-off "Show Aria's face" button
+  UserRound,
   X,
+  MousePointer2,
 } from "lucide-react";
 
 import type { BoardTool } from "./AnnotationLayer";
@@ -65,6 +66,9 @@ export interface BoardDockProps {
   /** Aria's face beside the board (components/avatar/AriaAvatar.tsx). */
   avatarOn?: boolean;
   onToggleAvatar?: () => void;
+  /** Dot may fly over to point at what the board names (components/avatar/BoardAvatar.tsx). */
+  avatarFlies?: boolean;
+  onToggleAvatarFlies?: () => void;
   /** "Part 2 of 6" — the only progress text, because a ring around an avatar is not readable. */
   positionLabel: string;
   busy?: boolean;
@@ -314,12 +318,17 @@ export function BoardDock(props: BoardDockProps) {
           </DockButton>
         )}
 
-        {/* Aria's face is switched off (components/LessonPlayer.tsx, ARIA'S FACE IS SWITCHED OFF).
         {props.onToggleAvatar && (
-          <DockButton onClick={props.onToggleAvatar} active={props.avatarOn} label={props.avatarOn ? "Hide Aria's face" : "Show Aria's face"}>
+          <DockButton onClick={props.onToggleAvatar} active={props.avatarOn} label={props.avatarOn ? "Hide Aria" : "Show Aria"}>
             <UserRound size={19} />
           </DockButton>
-        )} */}
+        )}
+
+        {props.onToggleAvatarFlies && (
+          <DockButton onClick={props.onToggleAvatarFlies} active={props.avatarFlies} label={props.avatarFlies ? "Aria points at the board — click to keep her in her corner" : "Let Aria point at the board"}>
+            <MousePointer2 size={18} />
+          </DockButton>
+        )}
 
         {props.micAvailable && (
           <DockButton

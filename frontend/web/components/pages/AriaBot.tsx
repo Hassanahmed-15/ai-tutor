@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { DotAvatar, type DotGaze, type DotMouthInput } from "@/components/avatar/DotAvatar";
+import type { VisemeName } from "@/lib/avatar/visemes";
 
 /**
- * ARIA, AS A LITTLE BOX ROBOT — a screen for a face, two eyes, and a greeting typed into a speech
- * bubble: "Hey, I'm Aria — your personalized tutor." (asked for 2026-10-07, in place of the orb).
+ * ARIA SAYING HELLO on the home page: Dot, the cartoon Aria (components/avatar/DotAvatar.tsx — the
+ * same character who teaches beside the board), with a greeting typed into a speech bubble: "Hey,
+ * I'm Aria — your personalized tutor." Replaced the box robot on 2026-10-12 at the owner's request.
  *
- * Every colour is a theme token, so she is violet on dark and red on light with no overrides. The
- * motion is transforms only: a slow bob, a blink, eyes that follow the pointer, and a mouth that
- * moves while the words type out. With less motion asked for (the device setting or the account's
- * `data-reduced-motion`), she stands still and the whole sentence is there at once. Clicking her
- * says it again.
+ * Her mouth shapes each letter as it types (a vowel opens, m/b/p shut the lips, f/v put the teeth on
+ * the lip), her eyes follow the pointer, and she blinks and breathes. With less motion asked for (the
+ * device setting or the account's `data-reduced-motion`), the whole sentence is there at once and
+ * she does not follow the pointer. Clicking her says it again.
  */
 const GREETING = "Hey, I'm Aria — your personalized tutor.";
 const TYPE_MS = 38;
@@ -27,7 +29,9 @@ export function AriaBot({ size = 196 }: { size?: number }) {
   const [typed, setTyped] = useState(0);
   const [run, setRun] = useState(0);
   const sceneRef = useRef<HTMLDivElement>(null);
-  const botRef = useRef<SVGSVGElement>(null);
+  const botRef = useRef<HTMLDivElement>(null);
+  const gaze = useRef<DotGaze>(null);
+  const mouth = useRef<DotMouthInput>(null);
 
   // The greeting types out once per visit, and again on each click.
   useEffect(() => {
@@ -70,8 +74,7 @@ export function AriaBot({ size = 196 }: { size?: number }) {
       const dy = last.clientY - (box.top + box.height * 0.42);
       const reach = Math.max(1, Math.hypot(dx, dy));
       const pull = Math.min(1, reach / 320);
-      scene.style.setProperty("--ex", `${((dx / reach) * 4 * pull).toFixed(2)}px`);
-      scene.style.setProperty("--ey", `${((dy / reach) * 3 * pull).toFixed(2)}px`);
+      gaze.current = { x: (dx / reach) * pull, y: (dy / reach) * pull };
     };
     const onMove = (event: PointerEvent) => {
       if (event.pointerType === "touch") return;
@@ -86,6 +89,10 @@ export function AriaBot({ size = 196 }: { size?: number }) {
   }, []);
 
   const talking = typed < GREETING.length;
+  // The letter just typed sets her mouth: the greeting is "said" as it appears.
+  useEffect(() => {
+    mouth.current = talking && typed > 0 ? letterMouth(GREETING, typed - 1) : null;
+  }, [typed, talking]);
 
   return (
     <div ref={sceneRef} className="bot-scene flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
@@ -95,37 +102,9 @@ export function AriaBot({ size = 196 }: { size?: number }) {
         aria-label="Say hello again"
         className="shrink-0 rounded-[var(--radius-lg)] focus-visible:outline-2 focus-visible:outline-offset-4"
       >
-        <svg ref={botRef} width={size} height={size} viewBox="0 0 200 200" aria-hidden="true" className={`bot ${talking ? "bot-talking" : ""}`}>
-          <ellipse className="bot-shadow" cx="100" cy="188" rx="50" ry="6" />
-          <g className="bot-bob">
-            {/* Antenna, with a light that breathes. */}
-            <line x1="100" y1="40" x2="100" y2="22" className="bot-antenna" strokeWidth="4" strokeLinecap="round" />
-            <circle cx="100" cy="18" r="6" className="bot-antenna-dot" />
-            {/* Feet. */}
-            <rect x="68" y="148" width="20" height="16" rx="6" className="bot-shade" />
-            <rect x="112" y="148" width="20" height="16" rx="6" className="bot-shade" />
-            {/* The box: a darker side for depth, the front, a sheen along the top. */}
-            <rect x="46" y="46" width="124" height="108" rx="26" className="bot-shade" />
-            <rect x="36" y="38" width="124" height="108" rx="26" className="bot-front" />
-            <rect x="50" y="44" width="96" height="10" rx="5" className="bot-sheen" />
-            {/* Ear bolts. */}
-            <circle cx="36" cy="92" r="7" className="bot-shade" />
-            <circle cx="160" cy="92" r="7" className="bot-shade" />
-            {/* The screen face. */}
-            <rect x="52" y="58" width="92" height="66" rx="16" className="bot-screen" />
-            <g className="bot-eyes">
-              <g className="bot-eye">
-                <ellipse cx="80" cy="88" rx="10" ry="12" className="bot-eye-white" />
-                <circle cx="80" cy="89" r="4.6" className="bot-pupil" />
-              </g>
-              <g className="bot-eye">
-                <ellipse cx="116" cy="88" rx="10" ry="12" className="bot-eye-white" />
-                <circle cx="116" cy="89" r="4.6" className="bot-pupil" />
-              </g>
-            </g>
-            <ellipse cx="98" cy="110" rx="9" ry="2.2" className="bot-mouth" />
-          </g>
-        </svg>
+        <div ref={botRef} style={{ width: size, height: size }} aria-hidden="true">
+          <DotAvatar state={talking ? "speaking" : "idle"} gaze={gaze} mouth={mouth} className="h-full w-full drop-shadow-[0_10px_28px_rgba(110,80,230,0.35)]" />
+        </div>
       </button>
 
       {/* The speech bubble. Its tail points at her: left on a wide screen, down on a narrow one. */}
@@ -143,4 +122,26 @@ export function AriaBot({ size = 196 }: { size?: number }) {
       </div>
     </div>
   );
+}
+
+/** The mouth for one typed letter of `text` (index `i`), as viseme weights. Spaces and punctuation rest. */
+function letterMouth(text: string, i: number): DotMouthInput {
+  const c = text[i]?.toLowerCase() ?? " ";
+  const next = text[i + 1]?.toLowerCase() ?? "";
+  const v: VisemeName | null =
+    c === "t" && next === "h" ? "TH"
+    : "a".includes(c) ? "aa"
+    : "e".includes(c) ? "E"
+    : "iy".includes(c) ? "I"
+    : "o".includes(c) ? "O"
+    : "uw".includes(c) ? "U"
+    : "mbp".includes(c) ? "PP"
+    : "fv".includes(c) ? "FF"
+    : "tdnl".includes(c) ? "DD"
+    : "szcx".includes(c) ? "SS"
+    : "kgq".includes(c) ? "kk"
+    : c === "r" ? "RR"
+    : "jh".includes(c) ? "CH"
+    : null;
+  return v ? { weights: { [v]: 1 }, open: 0.7 } : { weights: {}, open: 0 };
 }

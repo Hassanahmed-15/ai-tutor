@@ -1,12 +1,13 @@
 "use client";
 
-import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Compass, Crosshair, Eraser, Loader2, Palette, PenLine, Play, Sparkles, Volume2, VolumeX } from "lucide-react";
 import { fitView, flightMs, unionRects, viewAt, type View } from "@/lib/canvas/camera";
 import { evalExpr } from "@/lib/canvas/expr";
 import { layoutPanel, placePanels, toWorld, type Mark, type PanelLayout, type PanelPlacement, type Pt, type Rect } from "@/lib/canvas/layout";
 import { PANEL_H, PANEL_W, type CanvasBoardSpec, type CanvasCue, type TryItInteraction } from "@/lib/canvas/types";
 import { activeCues } from "@/lib/canvas/cues";
+import { dotPointer, onDotPointer, setPointTarget } from "@/lib/avatar/pointTarget";
 import { CANVAS_THEMES, CHALK, chalkCss, chalkTint, panelTheme, recolour, THEME_LABEL, type BoardTheme, type CanvasThemeChoice } from "@/lib/canvas/theme";
 import { BOARD_FONT_FACES, BOARD_FONT_FAMILY, BOARD_FONT_STACK } from "@/lib/anim/boardFont";
 import { useReducedMotion } from "@/lib/anim/useReducedMotion";
@@ -704,18 +705,39 @@ function initialVars(panels: CanvasPanelInput[]): Record<string, Record<string, 
 function Pen({ cue, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars: Record<string, number> }) {
   const rect = cue.target ? layout.targets[cue.target] : undefined;
   const marker = cue.target ? markerPoint(layout, cue.target, vars) : null;
+  const key = `${cue.s}-${cue.action}-${cue.target}`;
+  // Dot (components/avatar/BoardAvatar.tsx) stands in for the pen when she can: she flies beside the
+  // target and points; the ring / highlighter / outline stay, the pen body goes.
+  const dot = useSyncExternalStore(onDotPointer, dotPointer, () => false);
+  const targetRef = useRef<SVGRectElement>(null);
+  const shown = Boolean(rect || marker);
+  useEffect(() => {
+    const el = targetRef.current;
+    if (!el || !shown) return;
+    setPointTarget({ el, action: cue.action === "circle" || cue.action === "underline" ? cue.action : "point", key });
+    return () => setPointTarget(null);
+  }, [key, cue.action, shown]);
   if (!rect && !marker) return null;
   const r = marker ? { x: marker.x - 16, y: marker.y - 16, w: 32, h: 32 } : rect!;
   const cx = r.x + r.w / 2;
   const cy = r.y + r.h / 2;
-  // The pen rests just OFF the element's lower-right, pointing in, so it never covers what it shows.
+  // The pen rests just OFF the element's lower-right corner, pointing in, so it never covers what it
+  // shows (a "point" used to put the tip 82% of the way into the element, right on its last word).
   const tip: Pt =
     cue.action === "circle" ? { x: cx + (r.w / 2 + 16) * 0.72, y: cy + (r.h / 2 + 14) * 0.72 }
     : cue.action === "underline" ? { x: r.x + r.w + 8, y: r.y + r.h * 0.62 }
-    : { x: r.x + r.w * 0.82, y: r.y + r.h * 0.86 };
-  const key = `${cue.s}-${cue.action}-${cue.target}`;
+    : { x: r.x + r.w + 7, y: r.y + r.h + 5 };
   return (
     <g pointerEvents="none">
+      {/* What is pointed at, for Dot to measure (invisible): the element plus its ring or outline,
+          so she keeps clear of the mark as well as the thing. */}
+      {cue.action === "circle" ? (
+        <rect ref={targetRef} x={cx - r.w / 2 - 18} y={cy - r.h / 2 - 16} width={r.w + 36} height={r.h + 32} fill="none" stroke="none" />
+      ) : cue.action === "point" ? (
+        <rect ref={targetRef} x={r.x - 8} y={r.y - 6} width={r.w + 16} height={r.h + 12} fill="none" stroke="none" />
+      ) : (
+        <rect ref={targetRef} x={r.x} y={r.y} width={r.w} height={r.h} fill="none" stroke="none" />
+      )}
       {cue.action === "circle" && (
         // A hand-drawn ring, gone round twice, the way a teacher circles something on a board.
         <path key={`c${key}`} d={roughEllipse(`ring-${key}`, cx, cy, r.w / 2 + 16, r.h / 2 + 14)} fill="none" stroke={ARIA} strokeWidth={3.6} strokeLinecap="round" className="cv-ring" pathLength={1} opacity={0.92} />
@@ -745,16 +767,20 @@ function Pen({ cue, layout, vars }: { cue: CanvasCue; layout: PanelLayout; vars:
           );
         });
       })()}
-      {cue.action === "point" && <circle key={`p${key}`} cx={tip.x} cy={tip.y} r={14} fill="none" stroke={ARIA} strokeWidth={3} className="cv-tap" />}
-      <g style={{ transform: `translate(${tip.x}px, ${tip.y}px)`, transition: "transform 650ms cubic-bezier(.65,0,.25,1)" }}>
-        <circle r={26} fill={ARIA} opacity={0.14} />
+      {cue.action === "point" && dot && (
+        // Dot points from beside it; the thing itself gets a soft outline, never something on top.
+        <rect key={`o${key}`} x={r.x - 7} y={r.y - 5} width={r.w + 14} height={r.h + 10} rx={9} fill={ARIA} fillOpacity={0.07} stroke={ARIA} strokeOpacity={0.85} strokeWidth={2.6} className="cv-outline" />
+      )}
+      {cue.action === "point" && !dot && <circle key={`p${key}`} cx={tip.x} cy={tip.y} r={12} fill="none" stroke={ARIA} strokeWidth={3} className="cv-tap" />}
+      {!dot && <g style={{ transform: `translate(${tip.x}px, ${tip.y}px)`, transition: "transform 650ms cubic-bezier(.65,0,.25,1)" }}>
+        <circle r={14} fill={ARIA} opacity={0.12} />
         <g transform="rotate(140)">
           <path d="M0 0 L -6 -14 L -6 -52 L 6 -52 L 6 -14 Z" fill="#fff" stroke={ARIA} strokeWidth={2.5} strokeLinejoin="round" />
           <path d="M0 0 L -6 -14 L 6 -14 Z" fill={ARIA} />
           <rect x={-6} y={-60} width={12} height={9} rx={2} fill={ARIA} />
         </g>
         <circle r={4.5} fill={ARIA} />
-      </g>
+      </g>}
     </g>
   );
 }
