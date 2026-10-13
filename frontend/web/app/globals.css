@@ -809,6 +809,18 @@ textarea {
   --danger-soft: #F8E6E3;
   --scrim: rgba(31, 27, 21, 0.36);
   --warm: #D9743A;
+  /* Dot, the orb avatar (components/avatar/DotAvatar.tsx): Aria's orange on light, as the mark is. */
+  --dot-hi: #FFE6D3;
+  --dot-mid: #F6A673;
+  --dot-body: #E2773F;
+  --dot-edge: #B8381F;
+  --dot-rim: #B8381F;
+  --dot-cheek: #FF8A7A;
+  --dot-eye: #2A120A;
+  --dot-mouth: #4A1A0C;
+  --dot-lip: #F7B898;
+  --dot-trail: #D9743A;
+  --dot-shadow: rgba(184, 56, 31, 0.3);
   /* The library sheet: one step off the page, like a desk beside the sheet. */
   --sidebar: #ECE6D8;
   --sidebar-hover: #E2DBCA;
@@ -927,6 +939,18 @@ textarea {
   --accent-soft: #23203F;
   /* The warm light: soft gold, for what is due and a day with a lesson. */
   --warm: #F5C86B;
+  /* Dot, the orb avatar: violet at night, matching the accent. */
+  --dot-hi: #E2D3FF;
+  --dot-mid: #B892FF;
+  --dot-body: #9F6BFF;
+  --dot-edge: #7A50E6;
+  --dot-rim: #6E8BFF;
+  --dot-cheek: #F0ABFC;
+  --dot-eye: #1B1030;
+  --dot-mouth: #2A1650;
+  --dot-lip: #C2A4FF;
+  --dot-trail: #B892FF;
+  --dot-shadow: rgba(110, 80, 230, 0.35);
   --success: #6EDB9A;
   --success-soft: rgba(110, 219, 154, 0.14);
   --warning: #F0C05A;

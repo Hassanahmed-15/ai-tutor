@@ -349,12 +349,12 @@ function DotAtBoard({
     <>
       {/* The beam: a thin line of light from her to what she names, ending in a small dot. */}
       <svg ref={beamRef} aria-hidden="true" className="pointer-events-none absolute inset-0 z-30 h-full w-full overflow-visible" style={{ opacity: 0 }}>
-        <line stroke="#B892FF" strokeOpacity={0.75} strokeWidth={2.5} strokeLinecap="round" strokeDasharray="1 6" />
-        <circle r={3.5} fill="#B892FF" />
+        <line style={{ stroke: "var(--dot-trail)" }} strokeOpacity={0.75} strokeWidth={2.5} strokeLinecap="round" strokeDasharray="1 6" />
+        <circle r={3.5} style={{ fill: "var(--dot-trail)" }} />
       </svg>
       <div ref={anchorRef} className={anchorClass} style={anchorStyle}>
         <div ref={flyerRef} className={`${sizeClass} origin-center transition-[width,height] duration-500 ease-out will-change-transform`}>
-          <DotAvatar state={state} gaze={gaze} still={parked} className="h-full w-full drop-shadow-[0_6px_18px_rgba(110,80,230,0.35)]" />
+          <DotAvatar state={state} gaze={gaze} still={parked} className="h-full w-full drop-shadow-[0_6px_18px_var(--dot-shadow)]" />
         </div>
       </div>
     </>

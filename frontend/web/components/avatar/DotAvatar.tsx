@@ -133,10 +133,10 @@ export function DotAvatar({
     <svg ref={svgRef} viewBox="-12 -8 264 272" className={`overflow-visible ${className}`} role="img" aria-label="Aria">
       <defs>
         <radialGradient id={`${uid}g`} cx="38%" cy="30%" r="78%">
-          <stop offset="0" stopColor="#E2D3FF" />
-          <stop offset=".32" stopColor="#B892FF" />
-          <stop offset=".74" stopColor="#9F6BFF" />
-          <stop offset="1" stopColor="#7A50E6" />
+          <stop offset="0" style={{ stopColor: "var(--dot-hi)" }} />
+          <stop offset=".32" style={{ stopColor: "var(--dot-mid)" }} />
+          <stop offset=".74" style={{ stopColor: "var(--dot-body)" }} />
+          <stop offset="1" style={{ stopColor: "var(--dot-edge)" }} />
         </radialGradient>
         <filter id={`${uid}b`} x="-40%" y="-40%" width="180%" height="180%">
           <feGaussianBlur stdDeviation="12" />
@@ -146,36 +146,36 @@ export function DotAvatar({
         </clipPath>
       </defs>
       <g data-k="fig">
-        <circle data-k="glow" cx="120" cy="132" r="96" fill="#9F6BFF" opacity=".42" filter={`url(#${uid}b)`} />
+        <circle data-k="glow" cx="120" cy="132" r="96" style={{ fill: "var(--dot-body)" }} opacity=".42" filter={`url(#${uid}b)`} />
         <g transform="rotate(-11 120 184)">
           <path d="M4 184 A116 24 0 0 1 236 184" fill="none" stroke="#F5C86B" strokeWidth="4" strokeLinecap="round" opacity=".5" />
         </g>
         <circle cx="120" cy="132" r="90" fill={`url(#${uid}g)`} />
-        <circle cx="120" cy="132" r="89" fill="none" stroke="#6E8BFF" strokeWidth="2.5" opacity=".55" />
+        <circle cx="120" cy="132" r="89" fill="none" style={{ stroke: "var(--dot-rim)" }} strokeWidth="2.5" opacity=".55" />
         <path d="M56 96 A74 74 0 0 1 112 60" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" opacity=".55" />
-        <ellipse data-k="cheekL" cx="63" cy="166" rx="12" ry="7" fill="#F0ABFC" opacity=".4" />
-        <ellipse data-k="cheekR" cx="177" cy="166" rx="12" ry="7" fill="#F0ABFC" opacity=".4" />
+        <ellipse data-k="cheekL" cx="63" cy="166" rx="12" ry="7" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
+        <ellipse data-k="cheekR" cx="177" cy="166" rx="12" ry="7" style={{ fill: "var(--dot-cheek)" }} opacity=".4" />
         <g data-k="eyes">
           <g data-k="eyeL">
-            <rect x="78" y="123" width="21" height="36" rx="10.5" fill="#1B1030" />
+            <rect x="78" y="123" width="21" height="36" rx="10.5" style={{ fill: "var(--dot-eye)" }} />
             <circle cx="85" cy="133" r="3.8" fill="#FFF" />
             <circle cx="92" cy="145" r="1.7" fill="#FFF" opacity=".75" />
           </g>
           <g data-k="eyeR">
-            <rect x="141" y="123" width="21" height="36" rx="10.5" fill="#1B1030" />
+            <rect x="141" y="123" width="21" height="36" rx="10.5" style={{ fill: "var(--dot-eye)" }} />
             <circle cx="148" cy="133" r="3.8" fill="#FFF" />
             <circle cx="155" cy="145" r="1.7" fill="#FFF" opacity=".75" />
           </g>
         </g>
         <g transform="translate(120 170) scale(1.42) translate(-120 -170)">
-          <path data-k="mouth" fill="#2A1650" stroke="#2A1650" strokeWidth="2.4" strokeLinejoin="round" />
+          <path data-k="mouth" style={{ fill: "var(--dot-mouth)", stroke: "var(--dot-mouth)" }} strokeWidth="2.4" strokeLinejoin="round" />
           <g clipPath={`url(#${uid}mc)`}>
             <rect data-k="teeth" x="100" y="150" width="40" height="6" rx="2" fill="#FFFFFF" />
             <ellipse data-k="tongue" cx="120" cy="190" rx="9" ry="5" fill="#F28AB8" />
           </g>
-          <path data-k="lowerlip" fill="none" stroke="#C2A4FF" strokeWidth="2" strokeLinecap="round" opacity=".6" />
-          <path data-k="line" fill="none" stroke="#2A1650" strokeWidth="3.4" strokeLinecap="round" />
-          <rect data-k="fteeth" width="10" height="4.5" rx="1.6" fill="#FFFFFF" stroke="#2A1650" strokeWidth="1.2" style={{ display: "none" }} />
+          <path data-k="lowerlip" fill="none" style={{ stroke: "var(--dot-lip)" }} strokeWidth="2" strokeLinecap="round" opacity=".6" />
+          <path data-k="line" fill="none" style={{ stroke: "var(--dot-mouth)" }} strokeWidth="3.4" strokeLinecap="round" />
+          <rect data-k="fteeth" width="10" height="4.5" rx="1.6" fill="#FFFFFF" strokeWidth="1.2" style={{ display: "none", stroke: "var(--dot-mouth)" }} />
         </g>
         <g transform="rotate(-11 120 184)">
           <path d="M4 184 A116 24 0 0 0 236 184" fill="none" stroke="#F5C86B" strokeWidth="4" strokeLinecap="round" />
