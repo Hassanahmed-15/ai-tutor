@@ -51,7 +51,7 @@ async function meteredFetch(base: (url: string, init?: RequestInit) => Promise<R
   return response;
 }
 
-async function logCost(response: Response, endpoint: string, model: string, given: { tag: string | null; kind: SpendKind }) {
+async function logCost(response: Response, endpoint: string, model: string, given: { tag: string | null; kind: SpendKind; userId: string | null }) {
   // Pictures get their own line whichever part of the app asked for them: they are the priciest call.
   const scope = endpoint === "image" ? { ...given, kind: "pictures" as const } : given;
   try {
@@ -79,17 +79,25 @@ async function logCost(response: Response, endpoint: string, model: string, give
  * Who this call is for: the worker's scope when there is one, else the browser's own headers on the
  * API request being served (`x-aria-spend` = lesson tag, `x-aria-spend-kind` = part of the app).
  */
-export async function spendScopeNow(): Promise<{ tag: string | null; kind: SpendKind }> {
+export async function spendScopeNow(): Promise<{ tag: string | null; kind: SpendKind; userId: string | null }> {
   const scoped = currentSpendScope();
-  if (scoped) return scoped;
+  if (scoped) return { ...scoped, userId: scoped.userId ?? null };
   try {
-    const { headers } = await import("next/headers");
+    const { headers, cookies } = await import("next/headers");
     const h = await headers();
+    // The account, read from its access cookie only (no refresh, no cookie writes from here).
+    let userId: string | null = null;
+    const access = (await cookies()).get("aria_access")?.value;
+    if (access && process.env.AUTH_SECRET) {
+      const { jwtVerify } = await import("jose");
+      const { payload } = await jwtVerify(access, new TextEncoder().encode(process.env.AUTH_SECRET)).catch(() => ({ payload: null }));
+      userId = typeof payload?.sub === "string" ? payload.sub : null;
+    }
     const tag = h.get("x-aria-spend");
     const raw = h.get("x-aria-spend-kind") ?? "";
     const kind: SpendKind = (KINDS as readonly string[]).includes(raw) ? (raw as SpendKind) : "other";
-    return { tag: tag && tag.length <= 80 ? tag : null, kind };
+    return { tag: tag && tag.length <= 80 ? tag : null, kind, userId };
   } catch {
-    return { tag: null, kind: "other" };
+    return { tag: null, kind: "other", userId: null };
   }
 }

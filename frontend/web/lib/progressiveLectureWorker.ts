@@ -116,7 +116,7 @@ export async function processProgressiveLectureTask(task: ProgressiveLectureTask
   }
   try {
     // Every paid call this task makes is filed under the lecture (lib/spend, the cost badge).
-    await withSpendScope({ tag: task.sessionId, kind: "generation" }, async () => {
+    await withSpendScope({ tag: task.sessionId, kind: "generation", userId: task.userId }, async () => {
       if (task.type === "plan") await planLecture(task.userId, task.sessionId);
       else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
       else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);

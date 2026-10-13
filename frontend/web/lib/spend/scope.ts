@@ -7,7 +7,7 @@ import type { SpendKind } from "./usage";
  * filed under that lecture. Inside an API request the browser's own header says it instead (see
  * lib/openaiClient.ts).
  */
-export type SpendScope = { tag: string | null; kind: SpendKind };
+export type SpendScope = { tag: string | null; kind: SpendKind; userId?: string | null };
 
 const storage = new AsyncLocalStorage<SpendScope>();
 

@@ -271,7 +271,7 @@ async function readClip(url: string, startSec: number, endSec: number): Promise<
     promptTokens,
     outputTokens,
   };
-  void spendScopeNow().then((scope) => recordSpend({ tag: scope.tag, kind: "video", model, endpoint: "gemini-video", usd: cost.costUsd })).catch(() => {});
+  void spendScopeNow().then((scope) => recordSpend({ tag: scope.tag, userId: scope.userId, kind: "video", model, endpoint: "gemini-video", usd: cost.costUsd })).catch(() => {});
   const parsed = parseWindow(response.text ?? "", startSec, endSec);
   const cutShort = response.candidates?.[0]?.finishReason === "MAX_TOKENS";
   /*

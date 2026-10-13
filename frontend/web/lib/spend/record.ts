@@ -16,6 +16,8 @@ export type SpendEvent = {
   day: string;
   at: string;
   tag: string | null;
+  /** The signed-in account the call was made for (null for calls outside a signed-in request). */
+  userId?: string | null;
   kind: SpendKind;
   model: string;
   endpoint: string;
@@ -77,6 +79,21 @@ export async function spendForTags(tags: string[]): Promise<SpendSummary> {
     .query<SpendEvent>({ query: "SELECT c.kind, c.model, c.usd FROM c WHERE ARRAY_CONTAINS(@tags, c.tag)", parameters: [{ name: "@tags", value: wanted }] })
     .fetchAll();
   return summarize(resources);
+}
+
+/** One account's priced spend between two moments (used for its daily total, in Pakistan days). */
+export async function spendForUserBetween(userId: string, fromIso: string, toIso: string): Promise<SpendSummary> {
+  const days = [...new Set([fromIso.slice(0, 10), toIso.slice(0, 10)])];
+  const c = await container();
+  if (!c) return summarize(state.recent.filter((r) => r.userId === userId && r.at >= fromIso && r.at < toIso));
+  const rows: Array<Pick<SpendEvent, "kind" | "model" | "usd">> = [];
+  for (const day of days) {
+    const { resources } = await c.items
+      .query<SpendEvent>({ query: "SELECT c.kind, c.model, c.usd FROM c WHERE c.userId = @u AND c.at >= @from AND c.at < @to", parameters: [{ name: "@u", value: userId }, { name: "@from", value: fromIso }, { name: "@to", value: toIso }] }, { partitionKey: day })
+      .fetchAll();
+    rows.push(...resources);
+  }
+  return summarize(rows);
 }
 
 /** Every logged call on one UTC day (today by default), across the whole app. */

@@ -69,7 +69,7 @@ export async function POST(req: Request) {
     if (!shared) {
       // Narration is billed per sentence; the spend log needs every one (the badge, today's total).
       const scope = await spendScopeNow();
-      recordSpend({ tag: scope.tag, kind: "narration", model: TTS_MODEL, endpoint: estimated ? "speech-estimated" : "speech", usd: costUsd });
+      recordSpend({ tag: scope.tag, userId: scope.userId, kind: "narration", model: TTS_MODEL, endpoint: estimated ? "speech-estimated" : "speech", usd: costUsd });
       if (MAX_CACHE_ENTRIES > 0) {
         if (ttsCache.size >= MAX_CACHE_ENTRIES) {
           const oldestKey = ttsCache.keys().next().value;
