@@ -5,6 +5,8 @@ import { costFor } from "../modelPricing";
 import { readVideoCache, writeVideoCache } from "./videoCache";
 import { parseTimestamp } from "./videoUrl";
 import type { VideoOnScreen, VideoSegment, VideoWindow } from "./videoSource";
+import { spendScopeNow } from "../openaiClient";
+import { recordSpend } from "../spend/record";
 
 /**
  * Reading a YouTube video: Gemini is handed the link and fetches the video itself.
@@ -269,6 +271,7 @@ async function readClip(url: string, startSec: number, endSec: number): Promise<
     promptTokens,
     outputTokens,
   };
+  void spendScopeNow().then((scope) => recordSpend({ tag: scope.tag, kind: "video", model, endpoint: "gemini-video", usd: cost.costUsd })).catch(() => {});
   const parsed = parseWindow(response.text ?? "", startSec, endSec);
   const cutShort = response.candidates?.[0]?.finishReason === "MAX_TOKENS";
   /*

@@ -50,7 +50,7 @@ import {
  */
 
 const ENABLED = process.env.REACT_ANIMATION_VISION_CRITIC !== "0";
-const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna";
 const REJECT_BELOW = Number(process.env.REACT_ANIMATION_VISION_MIN_SCORE ?? 3); // 1-5 scale
 
 export function reactAnimationVisionCriticEnabled(): boolean {

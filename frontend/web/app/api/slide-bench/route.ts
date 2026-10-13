@@ -1,7 +1,6 @@
 import crypto from "node:crypto";
 
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 
 import { SLIDE_BENCH_CASES, slidePrompt, type SlideBenchCase } from "@/lib/slidebench/cases";
 import { SLIDE_BENCH_MODELS, slideBenchModel } from "@/lib/slidebench/models";
@@ -10,6 +9,7 @@ import { compositeScore, scoreSlideSource, stripCodeFences } from "@/lib/slidebe
 import { readSlideBenchRuns, recordSlideBenchRun, type SlideBenchRun } from "@/lib/slidebench/store";
 import { critiqueShapeRecognizability } from "@/lib/reactAnimationVisionCritic";
 import type { Beat } from "@/lib/lessonContent";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * The bench runner.
@@ -124,7 +124,7 @@ export async function POST(request: Request) {
             script: testCase.script,
           } as Beat;
           const critique = await critiqueShapeRecognizability(
-            new OpenAI({ apiKey: process.env.OPENAI_API_KEY }),
+            createOpenAI({ apiKey: process.env.OPENAI_API_KEY }),
             beat,
             generated.code,
             testCase.title,

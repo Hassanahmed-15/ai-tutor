@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * ANSWER ON THE SLIDE THAT TAUGHT IT (lib/revisit.ts).
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
   if (!question) return NextResponse.json({ error: "question is required" }, { status: 400 });
 
   const meter = createCostMeter();
-  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+  const client = meter.wrap(createOpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   try {
     const res = await client.chat.completions.create({
       model: MODEL,

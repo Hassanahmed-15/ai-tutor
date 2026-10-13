@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
-import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
 import { isModernModel } from "@/lib/modelPricing";
 import { CHAPTERS_SYSTEM_PROMPT, chaptersUserMessage, fallbackChapters, parseChapters, sanitizeSegments } from "@/lib/youtube/videoNotes";
 import { MAX_VIDEO_SEC } from "@/lib/youtube/videoSource";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -15,7 +15,7 @@ export const maxDuration = 300;
  * This call only has to find boundaries, so it is the one place the whole transcript goes to a
  * model at once. A transcript it cannot divide still becomes a lecture: equal six-minute chapters.
  */
-const MODEL = process.env.OPENAI_VIDEO_NOTES_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_VIDEO_NOTES_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   // Reading a video is metered; like building the lecture itself, it needs a signed-in student.
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
   if (segments.length === 0) return NextResponse.json({ error: "The video has no speech to build a lecture from." }, { status: 422 });
 
   const meter = createCostMeter();
-  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+  const client = meter.wrap(createOpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       const completion = await client.chat.completions.create({

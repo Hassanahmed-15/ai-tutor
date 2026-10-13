@@ -1,6 +1,6 @@
-import OpenAI from "openai";
 import { applyPersonaResult, personaEvidence, type LearnerMemory } from "./learnerModel";
 import { costFor } from "./modelPricing";
+import { createOpenAI } from "./openaiClient";
 
 /**
  * Writing "what Aria thinks about you".
@@ -44,7 +44,7 @@ Return JSON only:
 export type PersonaGeneration = { memory: LearnerMemory; costUsd: number; changed: boolean };
 
 /** Writes the portrait from everything in memory. Returns memory unchanged when the model fails. */
-export async function generatePersona(memory: LearnerMemory, client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })): Promise<PersonaGeneration> {
+export async function generatePersona(memory: LearnerMemory, client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })): Promise<PersonaGeneration> {
   const evidence = personaEvidence(memory);
   if (!evidence) return { memory, costUsd: 0, changed: false };
   const completion = await client.chat.completions.create({

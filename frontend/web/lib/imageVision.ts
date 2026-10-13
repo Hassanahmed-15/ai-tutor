@@ -12,7 +12,7 @@ import { costFor } from "./modelPricing";
  * On any failure/timeout the existing description is kept, so this only ever improves grounding.
  */
 
-const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna";
 const MAX_TOKENS = 400;
 const PER_IMAGE_TIMEOUT_MS = 25_000;
 

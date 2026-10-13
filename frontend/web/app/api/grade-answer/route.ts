@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Grades a spoken answer to a question the TEACHER asked mid-lecture.
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ correct: false, feedback: "I didn't catch an answer there — let's go over it again." });
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userMsg =
     `QUESTION I asked: "${question}"\n\n` +
     (expected ? `SOURCE MATERIAL I taught it from: "${expected}"\n\n` : "") +

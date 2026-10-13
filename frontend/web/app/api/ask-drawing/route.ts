@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { EXPLAIN_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation } from "@/lib/drawSanitize";
 import { fillSpecBoardOps } from "@/lib/specBoardGen";
@@ -11,6 +10,7 @@ import {
   groundAnswer,
   sanitizeBeatSourceGrounding,
 } from "@/lib/strictSourceAnswers";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * "Ask about my drawing" — the student sketches on the board (components/sketch/DrawOverlay.tsx)
@@ -19,7 +19,7 @@ import {
  * render it through the existing liveBoard → <ExplainOverlay> path with no new display code.
  */
 
-const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna";
 const MAX_TOKENS = 1_600;
 
 export async function POST(req: Request) {
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "image (data URI) is required" }, { status: 400 });
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   // DESCRIBE-ONLY: just read the sketch and return what's on it, so the caller can feed it into the
   // live tutor's context. No answer, no board — the student then simply ASKS Aria out loud and she

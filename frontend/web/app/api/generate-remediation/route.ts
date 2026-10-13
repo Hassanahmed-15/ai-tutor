@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { REMEDIATION_SYSTEM_PROMPT, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeBeat } from "@/lib/drawSanitize";
 import { fillImageOps } from "@/lib/imageGen";
 import { fillBlackboardOps } from "@/lib/blackboardGen";
 import type { Beat } from "@/lib/lessonContent";
 import { STRICT_REMEDIATION_RULES, boardTextIsUngrounded, groundAnswer, strictSourceOfQuestion } from "@/lib/strictSourceAnswers";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * "Explain this again" — a short, targeted 1-3 beat remediation mini-lesson grounded in ONE
@@ -19,7 +19,7 @@ import { STRICT_REMEDIATION_RULES, boardTextIsUngrounded, groundAnswer, strictSo
  * (same kill switches as generate-lecture) — much cheaper than a full lecture since it's at
  * most 3 beats. Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
-const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const IMAGE_GENERATION_ENABLED = process.env.IMAGE_GENERATION_ENABLED === "1";
 const BLACKBOARD_GEN_ENABLED = process.env.BLACKBOARD_GEN_ENABLED === "1";
 
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
    * forbids — and its spoken sentences and board text are checked against it before they ship.
    */
   const strictSource = strictSourceOfQuestion(question);
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userMsg = JSON.stringify({
     topic,
     question: question.prompt,

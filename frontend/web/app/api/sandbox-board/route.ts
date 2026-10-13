@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { fillReactAnimationOps } from "@/lib/reactAnimationGen";
 import type { Beat } from "@/lib/lessonContent";
 import { ANIMATION_ROTATION } from "@/lib/animationModels";
 import type { BeatSourceGrounding } from "@/lib/sourceGrounding";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Generates ONE sandbox board from a title + teaching point, for `/sandbox-lab`.
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     },
   } as unknown as Beat;
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const stats = await fillReactAnimationOps(client, [beat], {
     ...(model ? { model } : {}),
     ...(source ? { sourceByBeatId: { [beatId]: source } } : {}),

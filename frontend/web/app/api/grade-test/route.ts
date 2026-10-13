@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Batch grades a written test submission in one model call — every question/answer/rubric
@@ -10,7 +10,7 @@ import { sanitizeGradeResults } from "@/lib/testSanitize";
  * This is a genuine rubric judgment, not the app's existing lightweight keyword-set matching
  * used for mid-lecture checkpoints — the test questions are explicitly hard/open-ended.
  */
-const MODEL = process.env.OPENAI_TEST_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_TEST_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "questions are required" }, { status: 400 });
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const pairs = questions.map((q) => ({
     id: q.id,
     question: q.prompt,

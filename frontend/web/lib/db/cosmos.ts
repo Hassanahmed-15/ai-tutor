@@ -44,6 +44,8 @@ export const VIEWER_DOCUMENTS_CONTAINER = "viewer-documents";
 export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
 /** The shared concept graph (lib/knowledge): concepts and the links between them, no student data. */
 export const KNOWLEDGE_GRAPH_CONTAINER = "knowledge-graph";
+/** One row per paid AI call (lib/spend/record.ts), so every lecture's cost and the day's total can be read back. */
+export const SPEND_EVENTS_CONTAINER = "spend-events";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -391,6 +393,17 @@ export function learnerProfiles(): Container {
 
 export function viewerDocuments(): Container {
   return client().database(DATABASE_ID).container(VIEWER_DOCUMENTS_CONTAINER);
+}
+
+/**
+ * Paid AI calls, one row each. Partitioned by UTC day (the day's total is one partition) and kept
+ * for 90 days. Created on first use by lib/spend/record.ts, in the shared-throughput database, so
+ * it costs nothing extra.
+ */
+export async function spendEvents(): Promise<Container> {
+  const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID, throughput: SHARED_THROUGHPUT });
+  const { container } = await database.containers.createIfNotExists({ id: SPEND_EVENTS_CONTAINER, partitionKey: { paths: ["/day"] }, defaultTtl: 90 * 24 * 3600 });
+  return container;
 }
 
 export function knowledgeGraph(): Container {

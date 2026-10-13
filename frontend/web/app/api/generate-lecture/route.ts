@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createJob, failJob, finishJob, jobSteering, LectureJobCancelledError, replicaHint, setJobStage, waitForJobRunnable } from "@/lib/lectureJobs";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * The generation work outlives the request that starts it, so this invocation must be allowed to
@@ -106,7 +107,7 @@ const REAL_REFERENCE_IMAGES_ENABLED = process.env.REAL_REFERENCE_IMAGES_ENABLED 
  * Honesty: costs a real gpt-4o call + several medium-quality image calls per lecture. Image
  * generation adds latency. Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
-const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const TEXT_ATTEMPTS = Math.max(1, Math.min(5, Number(process.env.OPENAI_LECTURE_ATTEMPTS ?? 4)));
 // NOT the depth lever: measured completions run ~2,800-3,000 tokens with finish_reason "stop",
 // i.e. under 20% of this budget, so shallow lectures are the model choosing to write short rather
@@ -146,7 +147,7 @@ const GENERATION_PROFILE: Record<string, string | number | boolean> = {
   blackboardModel: process.env.OPENAI_BLACKBOARD_MODEL ?? MODEL,
   boardDirector: process.env.BOARD_DIRECTOR === "1",
   imageEnabled: IMAGE_GENERATION_ENABLED,
-  imageModel: process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1",
+  imageModel: process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1-mini",
   imageQuality: process.env.OPENAI_IMAGE_QUALITY ?? "medium",
   manimEnabled: MANIM_RENDER_ENABLED,
   // The board generators are part of the quality profile too. Without them a lecture cached
@@ -156,7 +157,7 @@ const GENERATION_PROFILE: Record<string, string | number | boolean> = {
   structureModel: process.env.OPENAI_STRUCTURE_MODEL ?? MODEL,
   specBoardModel: process.env.OPENAI_SPEC_BOARD_MODEL ?? MODEL,
   referenceImagesEnabled: REAL_REFERENCE_IMAGES_ENABLED,
-  visionModel: process.env.OPENAI_VISION_MODEL ?? "gpt-4o",
+  visionModel: process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna",
   // Pure-code quality changes must invalidate lectures produced before them. Otherwise the same
   // upload/question can keep replaying a cached "Figure 19.4" error board after the fix ships.
   focusedRetrievalVersion: 2,
@@ -1440,7 +1441,7 @@ export async function POST(req: Request) {
   const documentId = typeof body.documentId === "string" ? body.documentId : "";
   const fullContext = getDocumentImages(documentId);
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   /**
    * RETRIEVE the passages the region depends on.

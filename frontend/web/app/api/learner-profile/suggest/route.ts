@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { currentUser } from "@/lib/auth";
 import { learnerProfileForUser } from "@/lib/progressiveLectureStore";
 import { shouldIncludeCodeExamples, type LearnerProfileSnapshot } from "@/lib/progressiveLectureTypes";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
   try {
     const model = process.env.OPENAI_PROFILE_MODEL ?? "gpt-4o-mini";
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const completion = await client.chat.completions.create({
       model,
       messages: [

@@ -39,6 +39,7 @@ import { getDocumentImages } from "@/lib/pageImageStore";
 import { CANVAS_CODE_LINES, documentForCanvas, documentListings, listingIndex, type DocumentListing } from "@/lib/canvas/documentContext";
 import { asksForCode, isCodeQuestion } from "@/lib/codeSpec";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * At most this many uploaded pages ride along with a planning call. Planning needs to know what is
@@ -661,7 +662,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "mode must be subject, clarify, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   // Present whenever the student uploaded a PDF/PPTX and it's going through planning (unlike
   // Suprnotes JSON/task-folder uploads, which carry their own lessonPlan and skip planning

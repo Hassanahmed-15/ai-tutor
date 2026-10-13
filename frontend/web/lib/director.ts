@@ -94,7 +94,7 @@ export type DirectorPlan = {
   brief: string;
 };
 
-const MODEL = process.env.OPENAI_DIRECTOR_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_DIRECTOR_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 
 export const DIRECTOR_SYSTEM_PROMPT = `You classify a teaching beat into the ONE kind of visual it needs. Output ONLY JSON — no markdown, no commentary.
 

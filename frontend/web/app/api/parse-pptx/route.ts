@@ -15,6 +15,7 @@ import { renderPdfWithPython, VISION_DPI } from "@/lib/pdfPythonPipeline";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { DOCUMENT_LIMITS, exceedsPageLimit, tooManyPagesMessage } from "@/lib/documentLimits";
 import { putDocumentImages, type StoredPageImage, type StoredRegionImage } from "@/lib/pageImageStore";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -424,7 +425,7 @@ function mimeForExt(ext: string): string {
 async function transcribeImage(client: OpenAI, dataUri: string): Promise<string> {
   try {
     const completion = await client.chat.completions.create({
-      model: "gpt-4o",
+      model: process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna",
       max_tokens: 1500,
       messages: [{
         role: "user",
@@ -444,7 +445,7 @@ async function transcribeImage(client: OpenAI, dataUri: string): Promise<string>
 async function describeImage(client: OpenAI, dataUri: string): Promise<string> {
   try {
     const completion = await client.chat.completions.create({
-      model: "gpt-4o",
+      model: process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna",
       max_tokens: 200,
       messages: [
         {
@@ -511,7 +512,7 @@ export async function POST(req: NextRequest) {
   const openaiKey = process.env.OPENAI_API_KEY;
   // Every vision call this upload makes is priced from its own usage; see lib/costMeter.ts.
   const meter = createCostMeter();
-  const client = openaiKey ? meter.wrap(new OpenAI({ apiKey: openaiKey })) : null;
+  const client = openaiKey ? meter.wrap(createOpenAI({ apiKey: openaiKey })) : null;
 
   /**
    * Pages and regions, named and parsed exactly as the PDF route does.

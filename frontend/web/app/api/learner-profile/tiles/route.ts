@@ -7,6 +7,7 @@ import { loadLearnerMemory } from "@/lib/learnerMemoryStore";
 import { learnerProfileView } from "@/lib/learnerProfileView";
 import { costFor } from "@/lib/modelPricing";
 import { freshTilesFrom, promptTiles, type PromptTile } from "@/lib/promptTiles";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -43,7 +44,7 @@ export async function GET() {
   if (!fresh && basics?.subjects.length && process.env.OPENAI_API_KEY) {
     const mastered = view.subjects.flatMap((s) => s.mastered).map((c) => c.label).slice(0, 12);
     try {
-      const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
       const res = await client.chat.completions.create({
         model: MODEL,
         response_format: { type: "json_object" },

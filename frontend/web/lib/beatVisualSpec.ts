@@ -20,7 +20,7 @@ import { withAudience } from "./learnerBrief";
  * machine from a machine.
  */
 
-const MODEL = process.env.OPENAI_VISUAL_SPEC_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_VISUAL_SPEC_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 
 
 export type BeatVisualSpec = {

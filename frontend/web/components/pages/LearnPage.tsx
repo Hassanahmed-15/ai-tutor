@@ -76,6 +76,7 @@ import {
   type DocumentPlanningOption,
   documentSectionTitles,
 } from "@/lib/documentLessonPlanning";
+import { addSpendTag, endSpendTag, ensureSpendTag } from "@/lib/spendTag";
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
@@ -1138,6 +1139,8 @@ type BuildCost =
        * flat sourceDocument every downstream planning/generation call already expects, tagging
        * each block with which file it came from.
        */
+      // A new lesson's spend starts here, with its document (lib/spendTag.ts).
+      ensureSpendTag();
       const parsed = await Promise.all(
         sources.map(async (source) => {
           // A file longer than a lesson carries is read from the chosen pages, question or not.
@@ -1369,6 +1372,7 @@ type BuildCost =
    */
   const videoAbortRef = useRef<AbortController | null>(null);
   async function ingestVideo(url: string) {
+    ensureSpendTag();
     // Cancel on the reading screen stops the reading, not just the screen (leaveToHome aborts this).
     videoAbortRef.current?.abort();
     const controller = new AbortController();
@@ -1583,6 +1587,7 @@ type BuildCost =
       const [file] = files;
       const fd = new FormData();
       fd.append("file", file);
+      ensureSpendTag();
       const res = await fetch("/api/parse-pptx", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       recordJsonCost("document", data);
@@ -2000,6 +2005,7 @@ type BuildCost =
   async function startPlanning(t: string, forceBuild = false, fresh?: FreshUpload) {
     const raw = t.trim();
     if (!raw) return;
+    ensureSpendTag();
     setInput("");
     setError(null);
     resetPlanning();
@@ -2541,6 +2547,7 @@ type BuildCost =
 
   /** Leaving planning — Back from the plan, Stop during a build — goes to the front page. */
   function leaveToHome() {
+    endSpendTag();
     videoAbortRef.current?.abort();
     planAbortRef.current?.abort();
     buildAbortRef.current?.abort();
@@ -2846,6 +2853,8 @@ type BuildCost =
         setBuiltTopic(trimmed);
         setProgressiveComplete(false);
         setProgressiveSessionId(started.sessionId);
+        // The worker files its spend under the lecture's id; the badge reads both tags.
+        addSpendTag(started.sessionId);
         setBuildStatus("Preparing your opening beats");
         return;
       }

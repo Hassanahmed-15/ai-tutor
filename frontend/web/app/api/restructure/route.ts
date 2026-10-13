@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Dysgraphia "AI scribe": takes a messy, rambling spoken explanation (transcribed by the
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const completion = await client.chat.completions.create({
       model: MODEL,
       temperature: 0.3,

@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { sanitizeConceptFork } from "@/lib/conceptFork";
+import { createOpenAI } from "@/lib/openaiClient";
 
-const MODEL = process.env.OPENAI_FORK_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_FORK_MODEL ?? "gpt-5.6-luna";
 
 const SYSTEM_PROMPT = `You design a short counterfactual learning experience called Parallel Worlds.
 The student is in the middle of a lesson. Change exactly ONE condition that is explicitly present in the supplied beat, then make the student predict the first meaningful consequence.
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
   if (!title || !script) return NextResponse.json({ error: "A complete lesson beat is required." }, { status: 400 });
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
     let lastIssue = "The causal fork was not complete enough to use.";
     for (let attempt = 0; attempt < 2; attempt++) {
       const completion = await client.chat.completions.create({

@@ -36,7 +36,7 @@ type SpecBoardOp = PlotBoardOp | EquationBoardOp | CodeBoardOp;
  * other board it has — degraded, never broken.
  */
 
-const MODEL = process.env.OPENAI_SPEC_BOARD_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_SPEC_BOARD_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_SPEC_BOARD_MAX_TOKENS ?? 2_500)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_SPEC_BOARD_ATTEMPTS ?? 2)));
 /** How much of a beat's document text a code board is shown when looking for the code to quote. */

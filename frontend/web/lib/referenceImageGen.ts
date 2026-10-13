@@ -346,7 +346,7 @@ async function depictsSubject(
 ): Promise<{ ok: boolean; costUsd: number; reason?: string }> {
   try {
     const completion = await client.chat.completions.create({
-      model: process.env.OPENAI_VISION_MODEL ?? "gpt-4o",
+      model: process.env.OPENAI_VISION_MODEL ?? "gpt-5.6-luna",
       max_tokens: 200,
       temperature: 0,
       response_format: { type: "json_object" },

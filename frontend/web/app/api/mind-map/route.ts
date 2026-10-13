@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { currentUser } from "@/lib/auth";
 import { createCostMeter } from "@/lib/costMeter";
 import {
@@ -10,6 +9,7 @@ import {
   type MindMapBeatInput,
 } from "@/lib/mindMap";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * The mind map of a finished lecture (lib/mindMap.ts): one model call organises what the beats
@@ -18,7 +18,7 @@ import { sanitizeSourceScope } from "@/lib/sourceScope";
  * Built like the one-slide summary (app/api/summarize-lecture): the client offers it only once the
  * lecture has been watched to the end, and the route maps exactly the beats it is sent.
  */
-const MODEL = process.env.OPENAI_MIND_MAP_MODEL ?? process.env.OPENAI_SUMMARY_MODEL ?? process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_MIND_MAP_MODEL ?? process.env.OPENAI_SUMMARY_MODEL ?? process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   if (!(await currentUser())) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   const strict = sourceScope?.fidelity === "strict" && Boolean(source);
 
   const meter = createCostMeter();
-  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+  const client = meter.wrap(createOpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   const userMsg = [
     `Lecture subject: "${topic || "this lecture"}".`,
     request ? `What the student originally asked: "${request}".` : "",

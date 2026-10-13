@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getDocumentImages } from "@/lib/pageImageStore";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
-import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
 import { EXPLAIN_SYSTEM_PROMPT, EXPLAIN_TEXT_ONLY_SYSTEM_PROMPT, EXPLAIN_OFFER_SYSTEM_PROMPT } from "@/lib/drawPrompt";
 import { sanitizeExplanation, sanitizeTextExplanation, sanitizeOfferedExplanation } from "@/lib/drawSanitize";
@@ -23,6 +22,7 @@ import {
   relevantSourceExcerpt,
   sanitizeBeatSourceGrounding,
 } from "@/lib/strictSourceAnswers";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * The side-chat "explain this further" endpoint. Returns one spoken explanation plus a fresh
@@ -30,7 +30,7 @@ import {
  * premium React/SVG pipeline as the main lecture instead of the old generic client diagram.
  * Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
-const MODEL = process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
@@ -128,7 +128,7 @@ export async function POST(req: Request) {
 
   // Priced across every attempt, including failed ones and the animation built for the answer.
   const meter = createCostMeter();
-  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+  const client = meter.wrap(createOpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   /*
    * A FOLLOW-UP DRAWING. "Now show the deletion" after a drawing of the tree continues THAT board —
    * the new section sits under the old one and must not draw it again; a different figure is a new

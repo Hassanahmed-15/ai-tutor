@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
-import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
 import { isModernModel } from "@/lib/modelPricing";
 import {
@@ -16,6 +15,7 @@ import {
   sanitizeSegments,
   type NotesRequest,
 } from "@/lib/youtube/videoNotes";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -28,7 +28,7 @@ export const maxDuration = 300;
  * The notes are what the lecture is written from and checked against, so this is the script
  * writer's source, not a draft: it runs on the same model class the lecture text does.
  */
-const MODEL = process.env.OPENAI_VIDEO_NOTES_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_VIDEO_NOTES_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   // Reading a video is metered; like building the lecture itself, it needs a signed-in student.
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
   }
 
   const meter = createCostMeter();
-  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+  const client = meter.wrap(createOpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   const ask = async (system: string, user: string): Promise<unknown> => {
     const completion = await client.chat.completions.create({
       model: MODEL,

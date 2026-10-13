@@ -45,6 +45,7 @@ import { RevisitOverlay } from "./RevisitOverlay";
 import { REVISIT_SLIDE_TOOL } from "@/lib/geminiLiveContract";
 import { boardWordsOf, findRevisitTarget, revisitMarks, type RevisitMark } from "@/lib/revisit";
 import { recordJsonCost } from "@/lib/costLedger";
+import { ensureSpendTag } from "@/lib/spendTag";
 import { AdhdLayer } from "./adhd/AdhdLayer";
 import { AdhdScoreChip } from "./adhd/AdhdScoreChip";
 import { emitAdhdEvent, onAdhdCheckin, onAdhdFace, onAdhdSpeech, publishAdhdCheckin } from "@/lib/adhd/events";
@@ -55,10 +56,9 @@ import { isVideoSource } from "@/lib/youtube/videoSource";
 import type { Expression } from "@/lib/adhd/expression";
 import { ChevronLeft, Download, Highlighter, Loader2, LogOut, Pause, Pencil, Play, RotateCcw, SkipForward } from "lucide-react";
 import { IconButton } from "@/components/classroom/IconButton";
-import { VoiceState, derivePhase /* , type VoicePhase — used by the switched-off avatar */ } from "@/components/classroom/VoiceState";
-// Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF below).
-// import { BoardAvatar, type BoardAvatarMode } from "@/components/avatar/BoardAvatar";
-// import type { AvatarState } from "@/lib/avatar/face";
+import { VoiceState, derivePhase, type VoicePhase } from "@/components/classroom/VoiceState";
+import { BoardAvatar, type AvatarLook, type BoardAvatarMode } from "@/components/avatar/BoardAvatar";
+import type { AvatarState } from "@/lib/avatar/face";
 import { isSuprnotesLessonInput } from "@/lib/suprnotes";
 import { sentenceIsGrounded, sourceVocabulary, splitSentences } from "@/lib/sourceGrounding";
 import { isPauseIntent, isResumeIntent } from "@/lib/voice/lectureIntent";
@@ -380,6 +380,10 @@ export function LessonPlayer({
   /** Explicit source contract chosen after page selection; enables the synchronized PDF workspace. */
   sourceScope?: SourceScope;
 }) {
+  // A lecture opened on its own (the Library, the canvas lab) still files its spend under a lesson tag.
+  useEffect(() => {
+    ensureSpendTag();
+  }, []);
   // Replay from a slide (the mind map's "Replay from this slide"): the lecture opens there.
   const [index, setIndex] = useState(() => Math.max(0, Math.min(startIndex, beats.length - 1)));
   const displayBeatCount = Math.max(1, totalBeatCount ?? beats.length);
@@ -2940,37 +2944,52 @@ export function LessonPlayer({
   const sidePanelAlways = adhd || deafMode;
   const sideOpen = sidePanelAlways || askOpen;
   /*
-   * ARIA'S FACE IS SWITCHED OFF (2026-10-10, the student's request: it must not appear on the board
-   * at all). The code is kept, commented out, so it can come back by uncommenting: this block, the
-   * <BoardAvatar> render and the dock's avatarOn/onToggleAvatar props below, avatarStateFor at the
-   * end of this file, the imports at the top, and the dock button in components/board/BoardDock.tsx.
-   * components/avatar/*, lib/avatar/* and public/avatars/* are untouched.
+   * History: on 2026-10-10 (commit e44a6b86) the face was switched off at a student's request ("it
+   * must not appear on the board at all"); Dot brings Aria back as a small cartoon, on the owner's
+   * request of 2026-10-12, with a dock button to hide her.
    *
-   * ARIA'S FACE beside the board: a photoreal head lip-synced from her voice, on the student's own
-   * GPU (components/avatar/AriaAvatar.tsx). Off by a tap, remembered per browser; gone by itself
-   * where it cannot render. The ADHD track keeps its own drawn teacher.
+   * ARIA BESIDE THE BOARD: Dot, the cartoon orb lip-synced from her voice (components/avatar/
+   * DotAvatar.tsx), who can fly over to point at what the board names; or, with localStorage
+   * "aria.avatarLook" = "real", the photoreal head (components/avatar/AriaAvatar.tsx). Off by a tap,
+   * pointing off by another, both remembered per browser. The ADHD track keeps its own drawn teacher.
    */
-  // const [avatarOn, setAvatarOn] = useState(true);
-  // const [avatarUnavailable, setAvatarUnavailable] = useState(false);
-  // useEffect(() => {
-  //   let remembered = true;
-  //   try { remembered = localStorage.getItem("aria.avatar") !== "off"; } catch { /* default on */ }
-  //   if (!remembered) queueMicrotask(() => setAvatarOn(false));
-  // }, []);
-  // const toggleAvatar = () => setAvatarOn((on) => {
-  //   try { localStorage.setItem("aria.avatar", on ? "off" : "on"); } catch { /* not remembered */ }
-  //   return !on;
-  // });
-  // const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
-  // const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
+  const [avatarOn, setAvatarOn] = useState(true);
+  const [avatarFlies, setAvatarFlies] = useState(true);
+  const [avatarLook, setAvatarLook] = useState<AvatarLook>("dot");
+  const [avatarUnavailable, setAvatarUnavailable] = useState(false);
+  useEffect(() => {
+    let remembered = true;
+    let flies = true;
+    let look: AvatarLook = "dot";
+    try {
+      remembered = localStorage.getItem("aria.avatar") !== "off";
+      flies = localStorage.getItem("aria.avatarFly") !== "off";
+      look = localStorage.getItem("aria.avatarLook") === "real" ? "real" : "dot";
+    } catch { /* defaults */ }
+    queueMicrotask(() => {
+      if (!remembered) setAvatarOn(false);
+      if (!flies) setAvatarFlies(false);
+      if (look !== "dot") setAvatarLook(look);
+    });
+  }, []);
+  const toggleAvatar = () => setAvatarOn((on) => {
+    try { localStorage.setItem("aria.avatar", on ? "off" : "on"); } catch { /* not remembered */ }
+    return !on;
+  });
+  const toggleAvatarFlies = () => setAvatarFlies((on) => {
+    try { localStorage.setItem("aria.avatarFly", on ? "off" : "on"); } catch { /* not remembered */ }
+    return !on;
+  });
+  const avatarState: AvatarState = avatarStateFor(voicePhase, speaking || tutor.speaking);
+  const showAvatar = avatarOn && !avatarUnavailable && !adhd && !pdfWorkspace;
   /*
    * HER FACE NEVER COVERS A QUESTION (components/avatar/BoardAvatar.tsx): beside the questions panel
    * while it is open, and a small picture in the board's corner while a question — a checkpoint, a
    * quiz, or an answer she is drawing — is on the board.
    */
   const askPanelRef = useRef<HTMLDivElement>(null);
-  // const questionOnBoard = quiz.phase !== "idle" || (isCheckpoint && Boolean(beat.checkpoint)) || Boolean(chat.explainBoard);
-  // const avatarMode: BoardAvatarMode = questionOnBoard ? "pip" : sideOpen && !chatInDock ? "beside-panel" : "board";
+  const questionOnBoard = quiz.phase !== "idle" || (isCheckpoint && Boolean(beat.checkpoint)) || Boolean(chat.explainBoard);
+  const avatarMode: BoardAvatarMode = questionOnBoard ? "pip" : sideOpen && !chatInDock ? "beside-panel" : "board";
   const renderChatPanel = (variant: { compact?: boolean; inline?: boolean }) => (
     <ChatPanel
       onClose={sidePanelAlways ? undefined : () => setAskOpen(false)}
@@ -3501,9 +3520,10 @@ export function LessonPlayer({
           canUndo={annCanUndo(annotations)}
           askOpen={askOpen}
           onToggleAsk={!chatInDock && !sidePanelAlways ? () => setAskOpen((open) => !open) : undefined}
-          // Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF above).
-          // avatarOn={showAvatar}
-          // onToggleAvatar={!avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
+          avatarOn={showAvatar}
+          onToggleAvatar={!avatarUnavailable && !adhd && !pdfWorkspace ? toggleAvatar : undefined}
+          avatarFlies={avatarFlies}
+          onToggleAvatarFlies={showAvatar && avatarLook === "dot" ? toggleAvatarFlies : undefined}
           micOn={tutor.status === "live" && !tutor.muted}
           onToggleMic={() => {
             if (tutor.status === "live") tutor.toggleMute();
@@ -3574,10 +3594,9 @@ export function LessonPlayer({
           </div>
         </header>}
 
-        {/* Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF above).
         {showAvatar && (
-          <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} onUnavailable={() => setAvatarUnavailable(true)} />
-        )} */}
+          <BoardAvatar state={avatarState} mode={avatarMode} board={boardSurfaceRef} panel={askPanelRef} look={avatarLook} flies={avatarFlies} onUnavailable={() => setAvatarUnavailable(true)} />
+        )}
 
         {voiceBlocked && (
           <div className="absolute left-4 right-4 top-28 z-50 flex items-center justify-between gap-4 rounded-[var(--radius-lg)] border border-[var(--hud-line)] bg-[var(--warn-dim)] px-5 py-3.5 shadow-[var(--elev-2)] lg:left-6 lg:right-6">
@@ -4830,14 +4849,10 @@ function PaintSignal({ onPainted }: { onPainted: () => void }) {
   return null;
 }
 
-/*
- * Aria's face is switched off (see ARIA'S FACE IS SWITCHED OFF in LessonPlayer).
- *
- * Her face follows the voice: talking (hers or the lecture's) speaks, a reply being formed thinks, an open mic listens.
- * function avatarStateFor(phase: VoicePhase, talking: boolean): AvatarState {
- *   if (talking || phase === "aria-speaking") return "speaking";
- *   if (phase === "thinking" || phase === "drawing" || phase === "connecting" || phase === "reconnecting") return "thinking";
- *   if (phase === "listening" || phase === "student-speaking") return "listening";
- *   return "idle";
- * }
- */
+/** Her face follows the voice: talking (hers or the lecture's) speaks, a reply being formed thinks, an open mic listens. */
+function avatarStateFor(phase: VoicePhase, talking: boolean): AvatarState {
+  if (talking || phase === "aria-speaking") return "speaking";
+  if (phase === "thinking" || phase === "drawing" || phase === "connecting" || phase === "reconnecting") return "thinking";
+  if (phase === "listening" || phase === "student-speaking") return "listening";
+  return "idle";
+}

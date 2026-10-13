@@ -12,6 +12,7 @@ import { canvasSentences, validatePlan } from "./plan";
 import { type CanvasBoardOp, type CanvasBoardSpec, type CanvasPlanBeat } from "./types";
 import { slug, validateCanvasSpec } from "./validate";
 import { saveCanvasImage, saveCanvasLecture, type CanvasLecture } from "./store";
+import { createOpenAI } from "../openaiClient";
 
 export type { CanvasLecture };
 
@@ -29,7 +30,7 @@ export type { CanvasLecture };
  * look at a picture's points — never a board.
  */
 
-export const PLAN_MODEL = process.env.CANVAS_PLAN_MODEL ?? "gpt-5.6-terra";
+export const PLAN_MODEL = process.env.CANVAS_PLAN_MODEL ?? "gpt-5.6-luna";
 const SPEC_MODEL = process.env.CANVAS_SPEC_MODEL ?? "gpt-5.6-luna";
 const BUDGET_MS = Number(process.env.CANVAS_BUDGET_MS) || 195_000;
 
@@ -44,7 +45,7 @@ export type CanvasProgress = { step: string; detail?: string };
 
 export function client(): OpenAI {
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not set");
-  return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  return createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 }
 
 export function bounded<T>(work: Promise<T>, ms: number, what: string): Promise<T> {

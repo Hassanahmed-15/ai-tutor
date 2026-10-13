@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Rewrite one lecture beat into short lines, at three reading levels, in a single call.
@@ -118,7 +118,7 @@ export async function POST(req: Request) {
 
   if (!script) return NextResponse.json({ error: "script is required" }, { status: 400 });
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   try {
     const completion = await client.chat.completions.create({
       model: MODEL,

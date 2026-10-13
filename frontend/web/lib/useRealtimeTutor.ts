@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { DrawScript } from "@/components/sketch/LiveSketch";
 import { addCost, addUnpriced, recordJsonCost } from "./costLedger";
 import { realtimeCostFor, type RealtimeUsage } from "./modelPricing";
+import { reportClientSpend } from "./spendTag";
 
 /**
  * Full-duplex live voice tutor over the OpenAI Realtime API (WebRTC, speech-to-speech).
@@ -398,7 +399,11 @@ export function useRealtimeTutor(opts: UseRealtimeTutorOptions) {
           break;
         case "response.done":
           // Each response reports its own usage; see realtimeCostFor.
-          addCost("liveTutor", realtimeCostFor((evt.response as { usage?: RealtimeUsage } | undefined)?.usage));
+          {
+            const usd = realtimeCostFor((evt.response as { usage?: RealtimeUsage } | undefined)?.usage);
+            addCost("liveTutor", usd);
+            reportClientSpend("gpt-realtime", Number(usd));
+          }
           // Generation is complete, but her audio may still be PLAYING. Reassess: if audio has also
           // drained, arm the settle; otherwise output_audio_buffer.stopped will. This correctly ends
           // silent terminal responses (a bare resume_lecture / pause_lecture tool call) too.

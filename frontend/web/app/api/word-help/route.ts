@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * What one word means, in the sentence the student was actually reading.
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   const sentence = typeof body.sentence === "string" ? body.sentence.trim().slice(0, 400) : "";
   if (!word) return NextResponse.json({ error: "word is required" }, { status: 400 });
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   try {
     const completion = await client.chat.completions.create({
       model: MODEL,

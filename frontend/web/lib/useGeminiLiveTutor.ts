@@ -29,6 +29,9 @@ import {
   createBrowserLocalTranscriber,
   type LocalTranscriber,
 } from "./voice/localTranscriber";
+import { reportClientSpend } from "./spendTag";
+
+const LIVE_MODEL_FOR_SPEND = "gemini-live";
 
 /** Which Live models take a thinkingConfig. The 3.8 line rejects it at the socket. */
 export function supportsThinkingLevel(model: string): boolean {
@@ -1313,7 +1316,12 @@ export function useGeminiLiveTutor(options: UseGeminiLiveTutorOptions) {
 
   const handleServerMessage = useCallback(
     (message: GeminiServerMessage) => {
-      if (message.usageMetadata) addCost("liveTutor", geminiLiveCostFor(message.usageMetadata));
+      if (message.usageMetadata) {
+        const usd = geminiLiveCostFor(message.usageMetadata);
+        addCost("liveTutor", usd);
+        // The live voice talks to Google directly, so the server never sees this spend: report it.
+        reportClientSpend(LIVE_MODEL_FOR_SPEND, Number(usd));
+      }
       /*
        * The server's VAD no longer interrupts anything.
        *

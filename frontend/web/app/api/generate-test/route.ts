@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { GENERATE_TEST_SYSTEM_PROMPT } from "@/lib/testPrompt";
 import { sanitizeTestBank } from "@/lib/testSanitize";
 import type { Beat } from "@/lib/lessonContent";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
 import { STRICT_TEST_RULES, groundTestQuestions } from "@/lib/strictSourceAnswers";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Generates a hard, genuine short-answer test bank from a finished lecture's final beats —
@@ -15,7 +15,7 @@ import { STRICT_TEST_RULES, groundTestQuestions } from "@/lib/strictSourceAnswer
  * Honesty: one gpt-4o call, beats compacted to text only (no images re-sent) — same cost class
  * as a single explain/route.ts call. Needs OPENAI_API_KEY in frontend/web/.env.local.
  */
-const MODEL = process.env.OPENAI_TEST_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_TEST_MODEL ?? "gpt-5.6-luna";
 const ATTEMPTS = 2;
 
 function compactBeatsForTest(beats: Beat[]) {
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
   const source = typeof body.source === "string" ? body.source.trim().slice(0, 16_000) : "";
   const strict = sourceScope?.fidelity === "strict" && Boolean(source);
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userMsg =
     `Lecture topic: "${topic}"\nBeats taught (use these ids as beatId):\n${JSON.stringify(compactBeatsForTest(beats))}\n\n` +
     (strict ? `SOURCE — the student's own document, the text this lecture was taught from. Test only what SOURCE states:\n${source}\n\n` : "") +

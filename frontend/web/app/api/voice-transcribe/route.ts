@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI, { toFile } from "openai";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) return NextResponse.json({ text: "" }, { status: 503 });
   const bytes = Buffer.from(await req.arrayBuffer());
   if (bytes.length < 1_000 || bytes.length > MAX_BYTES) return NextResponse.json({ text: "" }, { status: 400 });
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 8_000, maxRetries: 0 });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 8_000, maxRetries: 0 });
   try {
     const result = await client.audio.transcriptions.create({
       file: await toFile(bytes, "utterance.wav", { type: "audio/wav" }),

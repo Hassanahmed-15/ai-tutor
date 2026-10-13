@@ -38,10 +38,15 @@ const PRICES: Record<string, Price> = {
   "gpt-5-nano": { input: 0.2, output: 1.25 },
   // Image tokens, not per-image. gpt-image-1 also bills $5.00/1M for text input.
   "gpt-image-1": { input: 10.0, output: 40.0 },
+  // The mini image model: about a quarter of gpt-image-1 per picture ($0.015 vs $0.063 at medium,
+  // 1536x1024), checked 2026-10-13. Listed BEFORE prefix matching can price it as gpt-image-1.
+  "gpt-image-1-mini": { input: 2.5, output: 8.0 },
   "text-embedding-3-small": { input: 0.02, output: 0 },
   // Narration. Text input and AUDIO output tokens, from the speech endpoint's SSE usage event.
   // Checked 2026-09-18 on developers.openai.com/api/docs/pricing.
   "gpt-4o-mini-tts": { input: 0.6, output: 12.0 },
+  // Speech-to-text fallback (app/api/voice-transcribe): audio in, text out. About $0.003 a minute.
+  "gpt-4o-mini-transcribe": { input: 3.0, output: 5.0 },
   // Reading a YouTube video (lib/youtube/geminiVideo.ts). Paid tier, text/image/video input and
   // output including thinking; $0 on a free-tier key. From ai.google.dev/gemini-api/docs/pricing,
   // checked 2026-10-03. These rates are listed as doubling on 2027-01-01 ($1.50 / $7.50).

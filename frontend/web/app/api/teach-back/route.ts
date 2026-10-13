@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { sanitizeTeachBackOpening, sanitizeTeachBackReply } from "@/lib/teachBack";
+import { createOpenAI } from "@/lib/openaiClient";
 
-const MODEL = process.env.OPENAI_TEACH_BACK_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_TEACH_BACK_MODEL ?? "gpt-5.6-luna";
 
 const OPENING_PROMPT = `You are simulating a thoughtful learner so the real student can learn by teaching.
 Use only the supplied lesson beat. Hold exactly one plausible misconception about a causal relationship in that beat, then ask the student for help in a natural first-person voice.
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
   if (!title || !script) return NextResponse.json({ error: "A complete lesson beat is required." }, { status: 400 });
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
     if (action === "start") {
       const completion = await client.chat.completions.create({
         model: MODEL,

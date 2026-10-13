@@ -25,7 +25,7 @@ type StructureSceneOp = Extract<DrawOp, { kind: "structureScene" }>;
  * broken.
  */
 
-const MODEL = process.env.OPENAI_STRUCTURE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_STRUCTURE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_STRUCTURE_MAX_TOKENS ?? 1_200)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_STRUCTURE_ATTEMPTS ?? 2)));
 

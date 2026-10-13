@@ -33,7 +33,7 @@ type DrawOp = DrawScript["ops"][number];
  * clean preparing/unavailable card (no legacy template board in the normal flow).
  */
 
-const MODEL = process.env.OPENAI_BLACKBOARD_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_BLACKBOARD_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const MAX_TOKENS = Math.max(2_000, Math.min(8_000, Number(process.env.OPENAI_BLACKBOARD_MAX_TOKENS ?? 4_000)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(6, Number(process.env.OPENAI_BLACKBOARD_ATTEMPTS ?? 4)));
 

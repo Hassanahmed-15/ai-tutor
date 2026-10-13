@@ -78,6 +78,8 @@ import {
   ungroundedScriptSentences,
   withoutSourcePointers,
 } from "./strictSourceScript";
+import { createOpenAI } from "./openaiClient";
+import { withSpendScope } from "./spend/scope";
 
 const MODEL = process.env.OPENAI_PROGRESSIVE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o-mini";
 
@@ -113,9 +115,12 @@ export async function processProgressiveLectureTask(task: ProgressiveLectureTask
     console.log(`[timing] kind=queue-wait session=${task.sessionId} ms=${queuedFor} type=${task.type} ${seq}`);
   }
   try {
-    if (task.type === "plan") await planLecture(task.userId, task.sessionId);
-    else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
-    else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
+    // Every paid call this task makes is filed under the lecture (lib/spend, the cost badge).
+    await withSpendScope({ tag: task.sessionId, kind: "generation" }, async () => {
+      if (task.type === "plan") await planLecture(task.userId, task.sessionId);
+      else if (task.type === "generate-beat") await generateBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
+      else await enrichBeat(task.userId, task.sessionId, task.sequence, task.revision, queuedFor ?? undefined);
+    });
   } finally {
     logTiming(task.type, task.sessionId, startedAt, seq);
   }
@@ -476,7 +481,7 @@ async function generateOneBeat(
 ): Promise<{ beat: Beat; costUsd: number; scriptMs: number }> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set.");
-  const client = new OpenAI({ apiKey });
+  const client = createOpenAI({ apiKey });
   const strict = source.strict;
   /*
    * The word budget IS the board's dwell time: the player advances when narration ends and has no
@@ -987,7 +992,7 @@ async function enrichBeat(userId: string, sessionId: string, sequence: number, r
 
   const fallback = JSON.parse(JSON.stringify(doc.beat)) as Beat;
   const candidate = JSON.parse(JSON.stringify(doc.beat)) as Beat;
-  const client = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
+  const client = process.env.OPENAI_API_KEY ? createOpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
   let visualKind = planned.visualKind;
   let costUsd = 0;
   let visualChoiceMs = 0;

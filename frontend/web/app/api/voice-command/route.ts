@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Natural-language voice command interpreter for the Blind lecture player. The student has
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     `What do they want?`;
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const completion = await client.chat.completions.create({
       model: MODEL,
       temperature: 0.3,

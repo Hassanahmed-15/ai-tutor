@@ -52,14 +52,15 @@ export type ImageFillUpdate = {
 // flat per-image rate when the response omits usage data.
 // Source: https://openai.com/api/pricing/
 const IMAGE_FLAT_RATE = 0.011;                    // conservative fallback for one low-quality image
-// "gpt-image-1" is the only OpenAI image model that exists today (confirmed against the
+// Default gpt-image-1-mini since 2026-10-13: side by side on board subjects it drew as well as
+// gpt-image-1 at about a quarter of the price. (History: "gpt-image-1" was once the only model; confirmed against the
 // installed SDK's ImageModel union: 'dall-e-2' | 'dall-e-3' | 'gpt-image-1' — there is no
 // "gpt-image-2"). A prior config pointed at that nonexistent model first, which meant every
 // single image silently failed once, burned a network round-trip, then fell back — the direct
 // cause of multi-minute generation times. "1536x1024" is gpt-image-1's actual valid landscape
 // size (its size enum is 1024x1024 | 1536x1024 | 1024x1536 | auto — NOT 1792x1024, which is a
 // dall-e-3-only size and would have errored too).
-const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1";
+const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1-mini";
 // Priced from the shared table so a change of IMAGE_MODEL cannot leave a stale rate behind.
 const IMAGE_INPUT_TOKEN_PRICE = priceFor(IMAGE_MODEL).input / 1_000_000;
 const IMAGE_OUTPUT_TOKEN_PRICE = priceFor(IMAGE_MODEL).output / 1_000_000;

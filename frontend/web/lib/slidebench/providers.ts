@@ -4,6 +4,7 @@ import OpenAI from "openai";
 
 import { apiKeyFingerprint, slideBenchCost, type SlideBenchModel } from "./models";
 import { stripCodeFences } from "./scoring";
+import { createOpenAI } from "../openaiClient";
 
 /**
  * ONE SHAPE FOR EVERY PROVIDER.
@@ -42,7 +43,7 @@ async function generateWithOpenAI(
     return emptyResult(apiKeyId, Date.now() - startedAt, `${model.apiKeyEnv} is not set.`);
   }
   try {
-    const client = new OpenAI({ apiKey: key });
+    const client = createOpenAI({ apiKey: key });
     const response = await client.chat.completions.create({
       model: model.id,
       messages: [{ role: "user", content: prompt }],

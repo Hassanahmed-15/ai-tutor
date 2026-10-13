@@ -26,7 +26,7 @@ import { chooseFocus, lectureState, rememberPictures, withPlanLock, type BoardPi
 
 const PLAN_MODEL = process.env.ILLUSTRATION_PLAN_MODEL ?? "gpt-5.6-luna";
 const LOCATE_MODEL = process.env.ILLUSTRATION_LOCATE_MODEL ?? "gpt-5.6-luna";
-const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-1";
+const IMAGE_MODEL = process.env.ILLUSTRATION_IMAGE_MODEL ?? "gpt-image-1-mini";
 const STORE_W = 1200;
 const STORE_H = 800;
 

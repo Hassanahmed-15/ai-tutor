@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { costFor } from "@/lib/modelPricing";
 import { canvasUser } from "../access";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
   }
   const elements = (body.elements ?? []).slice(0, 40);
   const ids = new Set(elements.map((e) => e.id));
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const res = await openai.chat.completions.create({
     model: MODEL,
     response_format: { type: "json_object" },

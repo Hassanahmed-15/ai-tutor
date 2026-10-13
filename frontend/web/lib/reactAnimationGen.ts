@@ -47,7 +47,7 @@ import { withAudience } from "./learnerBrief";
  * line-diagram fallback.
  */
 
-const MODEL = process.env.OPENAI_ANIMATION_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_ANIMATION_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const PLANNER_MODEL = process.env.OPENAI_ANIMATION_PLANNER_MODEL ?? MODEL;
 const REVIEW_MODEL = process.env.OPENAI_ANIMATION_REVIEW_MODEL ?? MODEL;
 const MAX_TOKENS = Math.max(3_000, Math.min(20_000, Number(process.env.OPENAI_ANIMATION_MAX_TOKENS ?? 12_000)));

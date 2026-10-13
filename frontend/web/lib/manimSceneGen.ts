@@ -26,7 +26,7 @@ type ManimSceneOp = Extract<DrawOp, { kind: "manimScene" }>;
  * one.
  */
 
-const MODEL = process.env.OPENAI_MANIM_SCENE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_MANIM_SCENE_MODEL ?? process.env.OPENAI_LECTURE_MODEL ?? "gpt-5.6-luna";
 const MAX_TOKENS = Math.max(600, Math.min(4_000, Number(process.env.OPENAI_MANIM_SCENE_MAX_TOKENS ?? 1_200)));
 const MAX_ATTEMPTS = Math.max(1, Math.min(4, Number(process.env.OPENAI_MANIM_SCENE_ATTEMPTS ?? 2)));
 

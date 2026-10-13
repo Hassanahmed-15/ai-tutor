@@ -26,6 +26,7 @@ import type {
   SuprnotesContentBlock,
   SuprnotesLessonInput,
 } from "@/lib/suprnotes";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -52,7 +53,7 @@ const RENDER_SCALE = 2;
  * dial it back rather than editing code if a large upload starts seeing 429s.
  */
 const PAGE_CONCURRENCY = Math.max(1, Math.min(12, Number(process.env.PDF_PAGE_CONCURRENCY ?? 6)));
-const VISION_MODEL = process.env.OPENAI_PDF_VISION_MODEL ?? "gpt-4o";
+const VISION_MODEL = process.env.OPENAI_PDF_VISION_MODEL ?? "gpt-5.6-luna";
 
 type RenderedPage = {
   pageNumber: number;
@@ -740,7 +741,7 @@ async function parsePdfRequest(req: NextRequest) {
   const visionEnabled = process.env.PDF_VISION_ENABLED !== "0";
   // Every vision call this upload makes is priced from its own usage; see lib/costMeter.ts.
   const meter = createCostMeter();
-  const client = openaiKey && visionEnabled ? meter.wrap(new OpenAI({ apiKey: openaiKey })) : null;
+  const client = openaiKey && visionEnabled ? meter.wrap(createOpenAI({ apiKey: openaiKey })) : null;
 
   let uploadedBytes: Uint8Array;
   let pythonBytes: Uint8Array;

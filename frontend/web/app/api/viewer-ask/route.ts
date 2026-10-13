@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { currentUser } from "@/lib/auth";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 
@@ -19,7 +19,7 @@ export const runtime = "nodejs";
  * OPENAI_EXPLAIN_MODEL env var other explain-style calls already read — just without the
  * board-generation machinery a standalone reading view has no use for.
  */
-const MODEL = process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-5.6-luna";
 
 const SYSTEM_PROMPT = `You are Aria, a patient tutor helping a student who is reading a document on their own and selected a passage to ask about.
 Explain clearly and concretely in 2-4 short sentences, grounded in the selected passage and the surrounding context if given. Plain prose, no markdown, no headings, no bullet lists.
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Select some text first." }, { status: 400 });
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userContent = [
     documentName ? `Document: "${documentName}"${pageNumber ? `, page ${pageNumber}` : ""}` : "",
     `Selected passage:\n"""\n${selection}\n"""`,

@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { currentUser } from "@/lib/auth";
 import { countryName, customOption, sanitizeCountry, sanitizeOption, sanitizeOptions } from "@/lib/education";
 import { costFor } from "@/lib/modelPricing";
+import { createOpenAI } from "@/lib/openaiClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
 
   const what = kind === "subject" ? "academic subjects" : kind === "level" ? "study levels (stages of education)" : "curricula, exams, qualifications or study tracks";
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const res = await client.chat.completions.create({
       model: MODEL,
       response_format: { type: "json_object" },

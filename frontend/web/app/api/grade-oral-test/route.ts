@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { GRADE_ANSWER_RUBRIC_INSTRUCTION, GRADE_FEEDBACK_INSTRUCTION, type TestQuestion } from "@/lib/testPrompt";
 import { sanitizeGradeResults } from "@/lib/testSanitize";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * Grades a completed oral exam from its FULL transcript, in one post-session model call — the
@@ -11,7 +11,7 @@ import { sanitizeGradeResults } from "@/lib/testSanitize";
  * varies too much to pattern-match reliably). Uses the SAME rubric-judgment philosophy as written
  * grading (GRADE_ANSWER_RUBRIC_INSTRUCTION) so both modes converge on identical judgment quality.
  */
-const MODEL = process.env.OPENAI_TEST_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_TEST_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "questions and transcript are required" }, { status: 400 });
   }
 
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const transcriptText = transcript.map((t) => `${t.role === "you" || t.role === "student" ? "Student" : "Aria"}: ${t.text}`).join("\n");
 
   try {

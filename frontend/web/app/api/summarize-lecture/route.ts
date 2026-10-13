@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 import { createCostMeter } from "@/lib/costMeter";
 import {
   LECTURE_SUMMARY_STRICT_RULES,
@@ -11,6 +10,7 @@ import {
   type SummaryBeatInput,
 } from "@/lib/lectureSummary";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
+import { createOpenAI } from "@/lib/openaiClient";
 
 /**
  * The one-slide summary of a finished lecture (lib/lectureSummary.ts).
@@ -18,7 +18,7 @@ import { sanitizeSourceScope } from "@/lib/sourceScope";
  * The client only offers this once the lecture has been watched to the end; the route itself is
  * stateless and summarizes exactly the beats it is sent.
  */
-const MODEL = process.env.OPENAI_SUMMARY_MODEL ?? process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-4o";
+const MODEL = process.env.OPENAI_SUMMARY_MODEL ?? process.env.OPENAI_EXPLAIN_MODEL ?? "gpt-5.6-luna";
 
 export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
   const strict = sourceScope?.fidelity === "strict" && Boolean(source);
 
   const meter = createCostMeter();
-  const client = meter.wrap(new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+  const client = meter.wrap(createOpenAI({ apiKey: process.env.OPENAI_API_KEY }));
   const userMsg = [
     `Lecture subject: "${topic || "this lecture"}".`,
     request ? `What the student originally asked: "${request}".` : "",
