@@ -18,6 +18,7 @@ import { findYouTubeLink } from "@/lib/youtube/videoUrl";
 import { YouTubeLauncher } from "@/components/pages/YouTubeLauncher";
 import { AriaMark } from "@/components/brand/AriaMark";
 import { AriaBot } from "@/components/pages/AriaBot";
+import { SpendPill } from "@/components/SpendPill";
 
 /**
  * THE FRONT PAGE, with as little to read as a page can have: Aria herself saying hello, one place
@@ -114,7 +115,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
         }}
       />
 
-      <header className="relative z-10 flex h-16 items-center justify-between px-5 sm:px-8">
+      {/* z-20, one above the page below it, so the spend pill's breakdown opens over the content. */}
+      <header className="relative z-20 flex h-16 items-center justify-between px-5 sm:px-8">
         <span className="relative inline-flex items-center" aria-label="Aria">
           <AriaMark size={28} label="Aria" />
           {/* Her presence: a chalk dot that breathes while she waits. */}
@@ -124,6 +126,8 @@ export function LandingPage({ go }: { go: (p: PageName) => void; onStart: () => 
           <IconWord icon={<CircleHelp size={18} strokeWidth={1.7} />} word="Guide" onClick={() => setGuideOpen(true)} pressed={guideOpen} />
           {user && (
             <>
+              {/* Today's AI spend — Hassan's and Minahil's accounts only (renders nothing for anyone else). */}
+              <SpendPill />
               <button
                 type="button"
                 data-account-button

@@ -81,15 +81,20 @@ export async function spendForTags(tags: string[]): Promise<SpendSummary> {
   return summarize(resources);
 }
 
-/** One account's priced spend between two moments (used for its daily total, in Pakistan days). */
-export async function spendForUserBetween(userId: string, fromIso: string, toIso: string): Promise<SpendSummary> {
+/**
+ * Priced spend between two moments — one account's when `userId` is given, the whole app's when it
+ * is not. Used for the daily totals, which run in Pakistan days and so span two UTC partitions.
+ */
+export async function spendBetween(fromIso: string, toIso: string, userId?: string): Promise<SpendSummary> {
   const days = [...new Set([fromIso.slice(0, 10), toIso.slice(0, 10)])];
   const c = await container();
-  if (!c) return summarize(state.recent.filter((r) => r.userId === userId && r.at >= fromIso && r.at < toIso));
+  if (!c) return summarize(state.recent.filter((r) => (userId === undefined || r.userId === userId) && r.at >= fromIso && r.at < toIso));
+  const byUser = userId === undefined ? "" : " AND c.userId = @u";
+  const parameters = [{ name: "@from", value: fromIso }, { name: "@to", value: toIso }, ...(userId === undefined ? [] : [{ name: "@u", value: userId }])];
   const rows: Array<Pick<SpendEvent, "kind" | "model" | "usd">> = [];
   for (const day of days) {
     const { resources } = await c.items
-      .query<SpendEvent>({ query: "SELECT c.kind, c.model, c.usd FROM c WHERE c.userId = @u AND c.at >= @from AND c.at < @to", parameters: [{ name: "@u", value: userId }, { name: "@from", value: fromIso }, { name: "@to", value: toIso }] }, { partitionKey: day })
+      .query<SpendEvent>({ query: `SELECT c.kind, c.model, c.usd FROM c WHERE c.at >= @from AND c.at < @to${byUser}`, parameters }, { partitionKey: day })
       .fetchAll();
     rows.push(...resources);
   }

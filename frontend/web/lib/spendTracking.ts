@@ -4,10 +4,12 @@
  * is blocked. Every other account is not tracked at all.
  *
  * Pure (no server or browser APIs), so it is unit-tested (lib/anim/spendTracking.test.ts) and shared
- * by app/api/spend/route.ts, lib/spendReporter.ts and components/DailySpendBadge.tsx.
+ * by app/api/spend/route.ts and components/SpendPill.tsx (the pill beside the profile button on the
+ * main page — shown to these accounts only).
  *
- * What is counted is what the lecture's cost ledger measured (lib/costLedger.ts): reading the
- * document, planning, generating, narrating, answering questions and the live voice tutor.
+ * What is counted is the server's spend log (lib/spend): every paid AI call, priced as it is made
+ * and filed under the account it was for — planning, the lecture worker's boards, pictures,
+ * narration, questions, the PDF or video, and the live voice tutor.
  */
 
 /** The accounts tracked when SPEND_TRACKED_EMAILS is not set: Hassan's and Minahil's. */
@@ -45,24 +47,23 @@ export function spendDayRange(day: string): { from: string; to: string } {
   return { from: new Date(start).toISOString(), to: new Date(start + 86_400_000).toISOString() };
 }
 
-export function spendDocId(userId: string, day: string): string {
-  return `${userId}:${day}`;
-}
-
-/** The most one report may add — anything larger is a bug, not a lecture. */
+/** The most one browser report (the live voice's measured spend) may add — anything larger is a bug. */
 export const MAX_REPORT_USD = 5;
 
-/**
- * How much the lecture's ledger total went UP since it was last seen, and the new baseline.
- *
- * The ledger is per lecture: it climbs as costs are measured (a running generation total replaces
- * the last one, which is still a rise) and drops to zero when a new lecture starts. A rise is
- * reported; a drop is a new lecture, so the baseline moves down with it and nothing is reported.
- */
-export function ledgerIncrease(lastTotal: number, nextTotal: number): { reportUsd: number; baseline: number } {
-  if (!Number.isFinite(nextTotal) || nextTotal < 0) return { reportUsd: 0, baseline: lastTotal };
-  if (nextTotal <= lastTotal) return { reportUsd: 0, baseline: nextTotal };
-  return { reportUsd: nextTotal - lastTotal, baseline: nextTotal };
-}
+/** Where a day's spend went, as the spend log sums it (lib/spend/record.ts `SpendSummary`, minus the total). */
+export type SpendBreakdown = { calls: number; unpriced: number; byKind: Partial<Record<string, number>>; byModel: Record<string, number> };
 
-export type SpendStatus = { tracked: false } | { tracked: true; day: string; spentUsd: number; limitUsd: number; over: boolean };
+export type SpendStatus =
+  | { tracked: false }
+  | {
+      tracked: true;
+      day: string;
+      spentUsd: number;
+      limitUsd: number;
+      over: boolean;
+      /** This account's spend today, by part of the app and by model. */
+      breakdown?: SpendBreakdown;
+      /** The whole app's spend over the same Pakistan day. */
+      appUsd?: number;
+      appCalls?: number;
+    };

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
 import { databaseConfigured } from "@/lib/db/cosmos";
 import { spendScopeNow } from "@/lib/openaiClient";
-import { recordSpend, spendForDay, spendForTags, spendForUserBetween } from "@/lib/spend/record";
+import { recordSpend, spendBetween, spendForDay, spendForTags } from "@/lib/spend/record";
 import { MAX_REPORT_USD, dailyLimitUsd, isTracked, spendDay, spendDayRange, type SpendStatus } from "@/lib/spendTracking";
 
 export const runtime = "nodejs";
@@ -11,10 +11,11 @@ export const dynamic = "force-dynamic";
 /**
  * AI SPEND, read from the one spend log every paid call is written to (lib/spend, lib/openaiClient.ts).
  *
- *   GET                      → today's total for a TRACKED account (lib/spendTracking.ts: Hassan's and
- *                              Minahil's), with the daily limit; `{ tracked: false }` for everyone else.
- *                              Feeds components/DailySpendBadge.tsx. The day turns at midnight Pakistan time.
- *   GET ?tags=a,b            → everything spent under these lesson tags (the lesson's cost chip).
+ *   GET                      → today's spend for a TRACKED account (lib/spendTracking.ts: Hassan's and
+ *                              Minahil's) — total, by part and by model — with the daily limit and the
+ *                              whole app's total; `{ tracked: false }` for everyone else. Feeds
+ *                              components/SpendPill.tsx. The day turns at midnight Pakistan time.
+ *   GET ?tags=a,b            → everything spent under these lesson tags.
  *   GET ?day=today           → the whole app's spend today, for tracked accounts (and in development,
  *                              or everywhere with SPEND_DASHBOARD=1). Never shown to students.
  *   POST { model, usd }      → spend measured in the browser (the live voice talks to Google directly),
@@ -59,7 +60,17 @@ async function accountStatus(userId: string, email: string): Promise<SpendStatus
   if (!databaseConfigured() || !isTracked(email)) return { tracked: false };
   const day = spendDay();
   const { from, to } = spendDayRange(day);
-  const spentUsd = (await spendForUserBetween(userId, from, to).catch(() => null))?.totalUsd ?? 0;
+  const [mine, app] = await Promise.all([spendBetween(from, to, userId).catch(() => null), spendBetween(from, to).catch(() => null)]);
+  const spentUsd = mine?.totalUsd ?? 0;
   const limitUsd = dailyLimitUsd();
-  return { tracked: true, day, spentUsd: Math.round(spentUsd * 10_000) / 10_000, limitUsd, over: spentUsd > limitUsd };
+  return {
+    tracked: true,
+    day,
+    spentUsd: Math.round(spentUsd * 10_000) / 10_000,
+    limitUsd,
+    over: spentUsd > limitUsd,
+    breakdown: mine ? { calls: mine.calls, unpriced: mine.unpriced, byKind: mine.byKind, byModel: mine.byModel } : undefined,
+    appUsd: app ? Math.round(app.totalUsd * 10_000) / 10_000 : undefined,
+    appCalls: app?.calls,
+  };
 }

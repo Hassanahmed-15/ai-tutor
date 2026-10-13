@@ -16,7 +16,6 @@ import { LearnPage } from "@/components/pages/LearnPage";
 import { ViewerPage } from "@/components/pages/ViewerPage";
 import { AuthGate, useAuth } from "@/components/auth/AuthGate";
 import { VoiceTutor } from "@/components/voice/VoiceTutor";
-import { DailySpendBadge } from "@/components/DailySpendBadge";
 
 /**
  * Central client-side router. Every page (marketing + the five lesson players) is a named
@@ -85,8 +84,6 @@ export default function Home() {
   return (
     <AuthGate>
       <VoiceModeSwitch>{routed}</VoiceModeSwitch>
-      {/* Today's AI spend, for the tracked accounts only (lib/spendTracking.ts). */}
-      <DailySpendBadge />
     </AuthGate>
   );
 }

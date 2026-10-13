@@ -1,13 +1,7 @@
 "use client";
 
-import { SPEND_KIND_LABELS, useServerSpend } from "@/lib/useServerSpend";
-import type { SpendKind } from "@/lib/spend/usage";
-
-import { useSyncExternalStore } from "react";
 import type { Beat } from "@/lib/lessonContent";
 import { boardSummary, incomingSummary, type IncomingState } from "@/lib/anim/boardTagline";
-import { modelCostBreakdown } from "@/lib/anim/modelCosts";
-import { EMPTY_COST_LEDGER, getCostLedger, subscribeCostLedger } from "@/lib/costLedger";
 
 /**
  * A small corner label naming which engine drew the board you are looking at.
@@ -122,11 +116,14 @@ const INCOMING_TINT: Record<IncomingState, string> = {
 };
 
 /**
- * The lecture's cost and board status, as ONE small chip in the player's header — never over the
- * board (two full-width bars across the top of the picture were too much, 2026-09-29). The chip
- * shows the total and whether the next board is ready; hovering (or focusing) it opens the cost by
- * model (lib/anim/modelCosts.ts) and what drew this board (lib/anim/boardTagline.ts). Developer
- * telemetry, shown only with NEXT_PUBLIC_SHOW_RENDERER_BADGE=1 — students never see it.
+ * The board status, as ONE small chip in the player's header — never over the board (two
+ * full-width bars across the top of the picture were too much, 2026-09-29). The chip shows whether
+ * the next board is ready; hovering (or focusing) it opens what drew this board
+ * (lib/anim/boardTagline.ts). Developer telemetry, shown only with NEXT_PUBLIC_SHOW_RENDERER_BADGE=1 —
+ * students never see it.
+ *
+ * The lecture's COST is no longer shown here (2026-10-13): AI spend is on the main page, beside the
+ * profile button, for the tracked accounts only (components/SpendPill.tsx).
  */
 const NEXT_SHORT: Record<IncomingState, string> = {
   ready: "next ready",
@@ -136,70 +133,20 @@ const NEXT_SHORT: Record<IncomingState, string> = {
 };
 
 export function BoardTelemetry({ beats, index, planned }: { beats: Beat[]; index: number; planned: number }) {
-  const ledger = useSyncExternalStore(subscribeCostLedger, getCostLedger, () => EMPTY_COST_LEDGER);
-  /*
-   * The server's spend log (lib/spend) has EVERY paid call filed under this lesson — planning,
-   * boards, pictures, narration, questions, the PDF, the live voice — where the browser ledger only
-   * had what each feature remembered to report. It wins when it has answered.
-   */
-  const server = useServerSpend();
   if (process.env.NEXT_PUBLIC_SHOW_RENDERER_BADGE !== "1") return null;
-  const local = modelCostBreakdown(beats, ledger.lines);
-  const lesson = server.lesson && server.lesson.calls > 0 ? server.lesson : null;
-  const totalUsd = lesson ? lesson.totalUsd : local.totalUsd;
-  const parts = lesson
-    ? Object.entries(lesson.byKind).sort((a, b) => (b[1] ?? 0) - (a[1] ?? 0)).map(([kind, usd]) => ({ label: SPEND_KIND_LABELS[kind as SpendKind] ?? kind, usd: usd ?? 0 }))
-    : local.parts;
-  const models = lesson ? Object.entries(lesson.byModel).sort((a, b) => b[1] - a[1]) : [];
-  const unpriced = lesson ? lesson.unpriced : ledger.unpriced;
   const beat = beats[index];
   const incoming = incomingSummary(beats, index, planned);
   return (
     <div className="group relative shrink-0">
       <button
         type="button"
-        aria-label="Lecture cost by model and board status"
+        aria-label="Board status"
         className="flex h-7 items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 text-[10px] font-semibold text-slate-300 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300"
       >
-        <span className="tabular-nums text-cyan-300">${totalUsd.toFixed(3)}</span>
-        <span className="opacity-40">·</span>
         <span className={INCOMING_TINT[incoming.state]}>{NEXT_SHORT[incoming.state]}</span>
       </button>
       <div className="invisible absolute right-0 top-full z-[80] mt-2 w-72 rounded-xl border border-white/10 bg-slate-950/95 p-3 text-[11px] leading-snug text-slate-200 opacity-0 shadow-2xl backdrop-blur-md transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-        <p className="font-bold text-cyan-300">This lesson ${totalUsd.toFixed(4)}</p>
-        {parts.length > 0 ? (
-          <ul className="mt-1.5 space-y-0.5">
-            {parts.map((part) => (
-              <li key={part.label} className="flex justify-between gap-3">
-                <span className="truncate text-slate-300">{part.label}</span>
-                <span className="tabular-nums">${part.usd.toFixed(3)}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-1 text-slate-400">No spend measured yet.</p>
-        )}
-        {models.length > 0 && (
-          <div className="mt-2 border-t border-white/10 pt-2">
-            <p className="font-semibold text-slate-400">By model</p>
-            <ul className="mt-1 space-y-0.5">
-              {models.map(([model, usd]) => (
-                <li key={model} className="flex justify-between gap-3">
-                  <span className="truncate text-slate-300">{model}</span>
-                  <span className="tabular-nums">${usd.toFixed(4)}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {unpriced > 0 && <p className="mt-1 text-amber-300/80">+{unpriced} unpriced call{unpriced === 1 ? "" : "s"}</p>}
-        {server.day && (
-          <p className="mt-2 flex justify-between gap-3 border-t border-white/10 pt-2 font-semibold text-amber-200">
-            <span>Today, whole app ({server.day.calls} calls)</span>
-            <span className="tabular-nums">${server.day.totalUsd.toFixed(3)}</span>
-          </p>
-        )}
-        <div className="mt-2 space-y-0.5 border-t border-white/10 pt-2">
+        <div className="space-y-0.5">
           {beat && <p className="text-fuchsia-200">This board: {boardSummary(beat)}</p>}
           <p className={INCOMING_TINT[incoming.state]}>{incoming.text}</p>
         </div>
