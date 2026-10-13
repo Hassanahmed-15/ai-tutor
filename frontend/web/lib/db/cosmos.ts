@@ -44,6 +44,20 @@ export const VIEWER_DOCUMENTS_CONTAINER = "viewer-documents";
 export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
 /** The shared concept graph (lib/knowledge): concepts and the links between them, no student data. */
 export const KNOWLEDGE_GRAPH_CONTAINER = "knowledge-graph";
+/** Per-account AI spend per day, for the accounts lib/spendTracking.ts tracks. */
+export const DAILY_SPEND_CONTAINER = "daily-spend";
+
+/** One tracked account's AI spend on one (Pakistan) day. */
+export type DailySpendDoc = {
+  /** `${userId}:${day}` */
+  id: string;
+  userId: string;
+  email: string;
+  /** YYYY-MM-DD in Pakistan time. */
+  day: string;
+  spentUsd: number;
+  updatedAt: string;
+};
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -397,6 +411,10 @@ export function knowledgeGraph(): Container {
   return client().database(DATABASE_ID).container(KNOWLEDGE_GRAPH_CONTAINER);
 }
 
+export function dailySpend(): Container {
+  return client().database(DATABASE_ID).container(DAILY_SPEND_CONTAINER);
+}
+
 export function lectureJobs(): Container {
   return client().database(DATABASE_ID).container(LECTURE_JOBS_CONTAINER);
 }
@@ -475,6 +493,13 @@ export async function ensureContainers(): Promise<void> {
     // Concepts and links are read by id (a concept's key, a link's from|type|to), and the graph is
     // small enough that the few queries over it can fan out.
     partitionKey: { paths: ["/id"] },
+  });
+  await database.containers.createIfNotExists({
+    id: DAILY_SPEND_CONTAINER,
+    // One row per tracked account per day, read and written by that account only.
+    partitionKey: { paths: ["/userId"] },
+    // A day's total is only interesting for a while: rows retire themselves after 90 days.
+    defaultTtl: 90 * 86_400,
   });
   ensured = true;
 }
