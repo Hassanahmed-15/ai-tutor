@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { costFor } from "@/lib/modelPricing";
 import { createOpenAI, spendScopeNow } from "@/lib/openaiClient";
 import { recordSpend } from "@/lib/spend/record";
+import { createTtsQueue } from "@/lib/ttsQueue";
 
 /**
  * Teacher-voice text-to-speech. Streams warm, natural narration from OpenAI TTS so the
@@ -59,13 +60,21 @@ export async function POST(req: Request) {
      * to start its own paid call. Measured 2026-10-13: under a burst, one sentence could be bought up
      * to six times. Now every request for a sentence already being made waits for that one.
      */
-    let job = inflight.get(cacheKey);
-    const shared = Boolean(job);
-    if (!job) {
-      job = withTtsSlot(() => synthesize(input)).finally(() => inflight.delete(cacheKey));
-      inflight.set(cacheKey, job);
+    // A warm-up for later (lib/useNarrationPrefetch.ts) waits behind the sentence a student is about to hear.
+    const warm = req.headers.get("x-tts-priority") === "warm";
+    let entry = inflight.get(cacheKey);
+    const shared = Boolean(entry);
+    if (!entry) {
+      const priority = { warm };
+      const promise = withTtsSlot(() => withDeadline(synthesize(input)), priority).finally(() => inflight.delete(cacheKey));
+      entry = { promise, priority };
+      inflight.set(cacheKey, entry);
+    } else if (!warm && entry.priority.warm) {
+      // The student has reached a sentence still queued as a warm-up: it is needed NOW.
+      entry.priority.warm = false;
+      wakeWaiters();
     }
-    const { buffer, costUsd, estimated } = await job;
+    const { buffer, costUsd, estimated } = await entry.promise;
     if (!shared) {
       // Narration is billed per sentence; the spend log needs every one (the badge, today's total).
       const scope = await spendScopeNow();
@@ -105,26 +114,25 @@ export async function POST(req: Request) {
  * Raw fetch, because the installed SDK (openai 4.104) predates `stream_format`. Throws on anything
  * unexpected; `synthesize` then falls back to the ordinary call, except after a timeout.
  */
-const inflight = new Map<string, Promise<{ buffer: Buffer; costUsd: number | null; estimated: boolean }>>();
+type Synthesis = { buffer: Buffer; costUsd: number | null; estimated: boolean };
+const inflight = new Map<string, { promise: Promise<Synthesis>; priority: { warm: boolean } }>();
 
 /*
  * AT MOST A FEW SENTENCES AT ONCE. A burst of a dozen parallel requests made OpenAI queue them: the
  * measured calls hit their timeout, each then fell back to a SECOND paid call, and one clip took five
  * minutes (2026-10-13). A small queue keeps every call quick, so none is paid for twice.
+ *
+ * AND THE SENTENCE BEING HEARD GOES FIRST (2026-10-14). The queue was first come, first served, and
+ * one student's lecture alone asks for 4 clips of the sentence in hand plus 2 warm-ups of later parts —
+ * so the next sentence waited behind warm-ups for minutes ahead, the player gave up on it at 10 s, and
+ * the lecture went quiet mid-part (measured on the live site: a 16.8 s silence, warm-ups of 126 s and
+ * 176 s). Now a warm-up (header `x-tts-priority: warm`) never starts while a heard sentence waits, and
+ * warm-ups never hold all the slots; a warm-up the player then asks for is promoted (lib/ttsQueue.ts).
  */
 const TTS_CONCURRENCY = Math.max(1, Math.min(12, Number(process.env.TTS_CONCURRENCY ?? 4)));
-let active = 0;
-const waiting: Array<() => void> = [];
-async function withTtsSlot<T>(fn: () => Promise<T>): Promise<T> {
-  if (active >= TTS_CONCURRENCY) await new Promise<void>((resolve) => waiting.push(resolve));
-  active++;
-  try {
-    return await fn();
-  } finally {
-    active--;
-    waiting.shift()?.();
-  }
-}
+const ttsQueue = createTtsQueue(TTS_CONCURRENCY);
+const withTtsSlot = ttsQueue.run;
+const wakeWaiters = ttsQueue.wake;
 
 /*
  * Dollars per character of narration, learned from this server's measured sentences (a running
@@ -133,26 +141,78 @@ async function withTtsSlot<T>(fn: () => Promise<T>): Promise<T> {
  */
 let usdPerChar = 0.000028;
 
-async function synthesize(input: string): Promise<{ buffer: Buffer; costUsd: number | null; estimated: boolean }> {
-  try {
-    const measured = await synthesizeWithUsage(input);
-    const costUsd = costFor(TTS_MODEL, { prompt_tokens: measured.inputTokens, completion_tokens: measured.outputTokens });
-    if (input.length > 10) usdPerChar = usdPerChar * 0.9 + (costUsd / input.length) * 0.1;
-    return { buffer: measured.audio, costUsd, estimated: false };
-  } catch (error) {
-    // A stall (seen from this network before connecting, so usually unbilled) or an error: one plain
-    // retry keeps the narration going, and its cost is still recorded.
-    console.warn("[tts] measured call failed, falling back:", error instanceof Error ? error.message : error);
+/*
+ * EVERY CALL IS BOUNDED. The fallback used to be the SDK's default — a 10-minute timeout and two
+ * retries — so one slow upstream held a slot for minutes (176 s measured). Both calls now give up in
+ * well under a minute, and the player's own retry then asks again.
+ */
+const MEASURED_TIMEOUT_MS = 20_000;
+const FALLBACK_TIMEOUT_MS = 12_000;
+/*
+ * A sentence normally starts arriving in 1-2 s. A call with no answer at all after 6 s has hung
+ * upstream (measured 2026-10-14: hung calls never answered, healthy ones answered in 1.4-1.7 s), so
+ * it is dropped and asked again at once instead of holding a slot for the full 20 s. A call that never
+ * connected is not billed.
+ */
+const FIRST_BYTE_TIMEOUT_MS = 6_000;
+
+async function synthesize(input: string): Promise<Synthesis> {
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const measured = await synthesizeWithUsage(input);
+      const costUsd = costFor(TTS_MODEL, { prompt_tokens: measured.inputTokens, completion_tokens: measured.outputTokens });
+      if (input.length > 10) usdPerChar = usdPerChar * 0.9 + (costUsd / input.length) * 0.1;
+      return { buffer: measured.audio, costUsd, estimated: false };
+    } catch (error) {
+      // A stall (usually before connecting, so unbilled) or an error: asked again, then once plainly.
+      console.warn(`[tts] measured call ${attempt} failed:`, error instanceof Error ? error.message : error);
+    }
   }
   const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const speech = await client.audio.speech.create({ model: TTS_MODEL, voice: VOICE, input, instructions: TEACHER_TONE, response_format: "mp3" });
-  // This call reported no usage, but it was billed: estimated at the measured rate, never left out.
-  return { buffer: Buffer.from(await speech.arrayBuffer()), costUsd: input.length * usdPerChar, estimated: true };
+  // The SDK's `timeout` stops at the response headers; reading the audio is bounded by this signal
+  // (a body that stalled mid-stream held a slot for 304 s, measured 2026-10-14).
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(new Error("fallback timed out")), FALLBACK_TIMEOUT_MS);
+  try {
+    const speech = await client.audio.speech.create(
+      { model: TTS_MODEL, voice: VOICE, input, instructions: TEACHER_TONE, response_format: "mp3" },
+      { timeout: FALLBACK_TIMEOUT_MS, maxRetries: 0, signal: controller.signal },
+    );
+    // This call reported no usage, but it was billed: estimated at the measured rate, never left out.
+    return { buffer: Buffer.from(await speech.arrayBuffer()), costUsd: input.length * usdPerChar, estimated: true };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
+ * THE LAST GUARANTEE: a synthesis that is still not done after SYNTHESIS_DEADLINE_MS gives up its slot
+ * whatever it is stuck on, so one hung upstream call can never stall every lecture behind it.
+ */
+const SYNTHESIS_DEADLINE_MS = 45_000;
+function withDeadline<T>(work: Promise<T>): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error("synthesis deadline")), SYNTHESIS_DEADLINE_MS); });
+  return Promise.race([work, deadline]).finally(() => clearTimeout(timer));
 }
 
 async function synthesizeWithUsage(
   input: string,
 ): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number }> {
+  // A hung upstream request held one sentence's clip, and with it the whole narration: no answer in
+  // FIRST_BYTE_TIMEOUT_MS, or no finished clip in MEASURED_TIMEOUT_MS, and the call is dropped.
+  const controller = new AbortController();
+  const overall = setTimeout(() => controller.abort(new Error("timed out")), MEASURED_TIMEOUT_MS);
+  const firstByte = setTimeout(() => controller.abort(new Error(`no answer in ${FIRST_BYTE_TIMEOUT_MS / 1000} s`)), FIRST_BYTE_TIMEOUT_MS);
+  try {
+    return await readMeasuredSpeech(input, controller.signal, () => clearTimeout(firstByte));
+  } finally {
+    clearTimeout(overall);
+    clearTimeout(firstByte);
+  }
+}
+
+async function readMeasuredSpeech(input: string, signal: AbortSignal, answered: () => void): Promise<{ audio: Buffer; inputTokens: number; outputTokens: number }> {
   const res = await fetch("https://api.openai.com/v1/audio/speech", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "Content-Type": "application/json" },
@@ -164,9 +224,9 @@ async function synthesizeWithUsage(
       response_format: "mp3",
       stream_format: "sse",
     }),
-    // A hung upstream request held one sentence's clip, and with it the whole narration.
-    signal: AbortSignal.timeout(25_000),
+    signal,
   });
+  answered();
   if (!res.ok) throw new Error(`speech ${res.status} ${(await res.text().catch(() => "")).slice(0, 120)}`);
   const chunks: Buffer[] = [];
   type SpeechUsage = { input_tokens?: number; output_tokens?: number };
