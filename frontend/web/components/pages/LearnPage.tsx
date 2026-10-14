@@ -1971,7 +1971,7 @@ type BuildCost =
       // What the student wants (lib/lessonIntent.ts), and — for a typed topic in the normal mode —
       // read up on it first and plan from what was found (lib/webResearch.ts).
       ...(briefRef.current ? { brief: briefRef.current } : {}),
-      ...(researchWanted() ? { research: true } : {}),
+      ...(researchWanted() ? { research: true, ...(profile?.learner ? { learnerBasics: profile.learner } : {}) } : {}),
     }, t);
     // Every outline — a one-board answer or a whole lesson — waits on the student: they review,
     // edit and press Build. The planner still sizes it (a question plans 1-2 topics).
@@ -2043,7 +2043,8 @@ type BuildCost =
    */
   async function runIntent(subject: string) {
     setPlanLoading(true);
-    const data = await callPlanApi({ mode: "intent", topic: subject, request: requestTextRef.current || subject, exchanges: intentExchangesRef.current });
+    // The profile the page holds travels too: the Study level must not depend on a slow server read.
+    const data = await callPlanApi({ mode: "intent", topic: subject, request: requestTextRef.current || subject, exchanges: intentExchangesRef.current, ...(profile?.learner ? { learnerBasics: profile.learner } : {}) });
     setPlanLoading(false);
     if (data?.brief && typeof data.brief === "object") briefRef.current = data.brief as LessonBrief;
     const asked = data?.question as IntentQuestion | null | undefined;
@@ -5461,7 +5462,8 @@ function OutlineReviewState({
                   {outline.research && (
                     <details className="mt-2 text-[0.82rem] text-[var(--hud-text-dim)]" data-outline-research>
                       <summary className="cursor-pointer select-none">
-                        Planned from {outline.research.sources.length} web source{outline.research.sources.length === 1 ? "" : "s"}
+                        {outline.research.audience ? <>Planned for <span className="text-[var(--hud-text)]">{outline.research.audience}</span> · from </> : "Planned from "}
+                        {outline.research.sources.length} web source{outline.research.sources.length === 1 ? "" : "s"}
                         {outline.coverage && outline.coverage.total > 0 && (
                           <> · covers <span className="text-[var(--hud-text)]">{outline.coverage.covered}/{outline.coverage.total}</span> {outline.research.curriculum ?? "syllabus"} points</>
                         )}

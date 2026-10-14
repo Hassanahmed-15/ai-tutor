@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { packFromResearch, researchKey, sanitizeSourcePack, siteName, sourcesForText, uncoveredChecklist, type SourcePack } from "../webSources";
-import { MAX_INTENT_ROUNDS, briefLine, curriculumInText, sanitizeIntent } from "../lessonIntent";
+import { dropOffLevelSources, groundPointsInFound, levelBandOf, packFromResearch, researchKey, sanitizeSourcePack, siteName, sourcesForText, uncoveredChecklist, type SourcePack } from "../webSources";
+import { MAX_INTENT_ROUNDS, briefLine, curriculumInText, effectiveBrief, levelSearchTerms, profileAudience, sanitizeIntent } from "../lessonIntent";
 
 /* Lessons planned from web research, with sources per slide (lib/webSources.ts, lib/lessonIntent.ts), 2026-10-14. */
 
@@ -113,4 +113,105 @@ test("a curriculum named in the request is read from it", () => {
   assert.equal(curriculumInText("explain transformers in AI"), null);
   assert.equal(briefLine(null), "");
   assert.match(briefLine({ goal: "exam", curriculum: "Cambridge IGCSE Biology", scope: "the whole topic" }), /syllabus topic.*Cambridge IGCSE Biology.*the whole topic/);
+});
+
+/* ── The level from the profile's Study level (owner's direction, 2026-10-14) ───────────────────── */
+
+const card = (over: Partial<Parameters<typeof levelSearchTerms>[0]> = {}) => ({
+  level: "Intermediate (HSSC / FSc) / A-Level", subjectLevel: null, curricula: [], subjectCurricula: [], country: "Pakistan", topicSubject: "Biology", ...over,
+});
+
+test("Study level becomes the words searched: A Level, O Level, FSc, undergraduate", () => {
+  assert.deepEqual(levelSearchTerms(card()), { level: "A Level", exam: "Cambridge International A Level" }, "Pakistan, no board set: Cambridge");
+  assert.deepEqual(levelSearchTerms(card({ curricula: ["FSc / HSSC (Intermediate)"] })), { level: "FSc (HSSC, Pakistan)", exam: "FSc (HSSC) Pakistan" }, "the curriculum field says FSc");
+  assert.equal(levelSearchTerms(card({ country: "United Kingdom", level: "A-Level / Sixth form (Years 12–13)", curricula: ["A-Level"] })).exam, "A Level", "UK A-Level, no Cambridge assumed");
+  assert.deepEqual(levelSearchTerms(card({ level: "Matric (SSC) / O-Level" })), { level: "O Level", exam: "Cambridge O Level" });
+  assert.equal(levelSearchTerms(card({ level: "Matric (SSC) / O-Level", curricula: ["Cambridge IGCSE"] })).exam, "Cambridge IGCSE");
+  assert.deepEqual(levelSearchTerms(card({ level: "Undergraduate" })), { level: "undergraduate (university)", exam: null }, "no syllabus at university");
+  assert.equal(levelSearchTerms(card({ level: "Undergraduate", subjectLevel: "Intermediate (HSSC / FSc) / A-Level" })).level, "A Level", "a subject's own level wins");
+});
+
+test("the profile's audience: a syllabus only for a school exam level and a school subject", () => {
+  assert.deepEqual(profileAudience(card()), { curriculum: "Cambridge International A Level Biology", level: "A Level" });
+  assert.deepEqual(profileAudience(card({ topicSubject: null })), { curriculum: null, level: "A Level" }, "transformers in AI: the level only");
+  assert.deepEqual(profileAudience(card({ level: "Undergraduate" })), { curriculum: null, level: "undergraduate (university)" });
+  assert.equal(profileAudience(null), null);
+});
+
+test("precedence: the course in the request, then the answers, then the profile", () => {
+  const p = card();
+  assert.equal(effectiveBrief(null, "explain cell biology", p)?.curriculum, "Cambridge International A Level Biology", "nothing typed: the profile");
+  assert.equal(effectiveBrief({ goal: "exam", curriculum: "IB Diploma Biology" }, "cell biology", p)?.curriculum, "IB Diploma Biology", "an answer beats the profile");
+  assert.equal(effectiveBrief(null, "cell biology igcse", p)?.curriculum, "Cambridge IGCSE", "a course typed in the request beats the profile");
+  assert.equal(effectiveBrief(null, "cell biology a level", p)?.curriculum, "Cambridge International A Level Biology", "the request agreeing with the profile keeps the profile's detail");
+  assert.equal(effectiveBrief(null, "cell biology", p)?.level, "A Level");
+  assert.equal(effectiveBrief(null, "cell biology", null), null);
+});
+
+test("pages for another level are dropped, the syllabus and unlabelled pages are kept", () => {
+  assert.equal(levelBandOf("Cambridge International A Level Biology"), "senior");
+  assert.equal(levelBandOf("https://www.savemyexams.com/gcse/biology/cells/"), "secondary");
+  assert.equal(levelBandOf("https://openstax.org/books/biology-2e/pages/4-1"), "university");
+  assert.equal(levelBandOf("https://en.wikipedia.org/wiki/Cell_biology"), null);
+  const p: SourcePack = {
+    query: "q",
+    checklist: [],
+    points: [
+      { text: "Cells have organelles.", sources: ["S1", "S2"] },
+      { text: "A GCSE-only fact.", sources: ["S3"] },
+      { text: "Mitochondria make ATP.", sources: ["S4"] },
+    ],
+    sources: [
+      { id: "S1", title: "Cell biology", url: "https://en.wikipedia.org/wiki/Cell_biology", site: "Wikipedia" },
+      { id: "S2", title: "Syllabus", url: "https://www.cambridgeinternational.org/Images/9700-syllabus.pdf", site: "Cambridge International" },
+      { id: "S3", title: "Cells", url: "https://www.savemyexams.com/gcse/biology/cells/", site: "Save My Exams" },
+      { id: "S4", title: "Cell structure", url: "https://www.savemyexams.com/a-level/biology/cie/cell-structure/", site: "Save My Exams" },
+    ],
+  };
+  const { pack: kept, dropped } = dropOffLevelSources(p, "Cambridge International A Level Biology");
+  assert.deepEqual(dropped.map((s) => s.id), ["S3"]);
+  assert.deepEqual(kept.sources.map((s) => s.id), ["S1", "S2", "S4"]);
+  assert.ok(!kept.points.some((pt) => pt.text.startsWith("A GCSE-only")), "a fact only the off-level page stated goes with it");
+  assert.equal(dropOffLevelSources(p, null).dropped.length, 0, "no level, nothing dropped");
+  const thin = { ...p, sources: [p.sources[2], p.sources[3]] };
+  assert.equal(dropOffLevelSources(thin, "A Level").dropped.length, 0, "never below two sources");
+});
+
+test("links the model wrote itself become the real page the search saw on that site", () => {
+  const found = [
+    { url: "https://www.savemyexams.com/a-level/biology/cie/cell-structure/", title: "", cited: false },
+    { url: "https://en.wikipedia.org/wiki/Cell_(biology)", title: "Cell (biology)", cited: false },
+  ];
+  const json = {
+    audience: "Cambridge International A Level Biology",
+    points: [
+      { text: "Ribosomes are 80S in the cytoplasm.", urls: ["https://www.savemyexams.com/a-level/biology/made-up-path/"] },
+      { text: "A fact from a site the search never saw.", urls: ["https://unknown.example/x"] },
+    ],
+  };
+  const built = packFromResearch(json, found, "q");
+  assert.ok(built);
+  assert.equal(built.audience, "Cambridge International A Level Biology", "the audience survives");
+  assert.deepEqual(built.sources.map((s) => s.url), ["https://www.savemyexams.com/a-level/biology/cie/cell-structure/"], "the real page on that site, never the made-up path or an unseen site");
+  assert.deepEqual(built.points[1].sources, []);
+  // Nothing matched at all: the facts are credited to the pages the search returned.
+  const none = packFromResearch({ points: [{ text: "A fact.", urls: ["https://other.example/a"] }] }, found, "q");
+  assert.ok(none && none.sources.length === 2 && none.points[0].sources.length === 2);
+});
+
+test("a fact linked from memory is credited to the page its own search read that matches it", () => {
+  const pages = [
+    { url: "https://marlbridge.com/resources/a-level-biology-9700-the-mitotic-cell-cycle-revision-notes/", title: "" },
+    { url: "https://marlbridge.com/resources/a-level-biology-cell-structure-revision-notes/", title: "" },
+  ];
+  const json = { points: [
+    { text: "The mitotic cell cycle has interphase, mitosis and cytokinesis.", urls: ["https://www.cambridgeinternational.org/syllabus.pdf"] },
+    { text: "Ribosomes and the Golgi body are parts of cell structure.", urls: [] },
+    { text: "Already linked to a page the search read.", urls: [pages[1].url] },
+  ] };
+  const grounded = groundPointsInFound(json, pages) as { points: Array<{ urls: string[] }> };
+  assert.equal(grounded.points[0].urls[0], pages[0].url, "the cell-cycle page for the cell-cycle fact");
+  assert.equal(grounded.points[1].urls[0], pages[1].url, "the cell-structure page for the structure fact");
+  assert.deepEqual(grounded.points[2].urls, [pages[1].url], "a link the search saw is kept as it is");
+  assert.equal(groundPointsInFound(json, []), json, "no pages read, nothing changed");
 });

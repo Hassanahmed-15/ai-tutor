@@ -21,6 +21,8 @@ export type SourcePack = {
   query: string;
   /** The curriculum the research was for ("Cambridge IGCSE Biology 0610"), when there was one. */
   curriculum?: string;
+  /** Who it was researched for, from the student's profile ("Cambridge International A Level Biology"). */
+  audience?: string;
   /** The syllabus or learning points the lesson must cover — the outline is checked against these. */
   checklist: string[];
   /** The material: each fact once, with the source ids that state it. */
@@ -153,7 +155,43 @@ export function sanitizeSourcePack(raw: unknown): SourcePack | null {
   const checklist = [...new Set((Array.isArray(obj.checklist) ? obj.checklist : []).map((c) => text(c, 160)).filter(Boolean))].slice(0, MAX_CHECKLIST);
   if (points.length === 0 && checklist.length === 0) return null;
   const curriculum = text(obj.curriculum, 120);
-  return { query: text(obj.query, 300), ...(curriculum ? { curriculum } : {}), checklist, points, sources };
+  const audience = text(obj.audience, 120);
+  return { query: text(obj.query, 300), ...(curriculum ? { curriculum } : {}), ...(audience ? { audience } : {}), checklist, points, sources };
+}
+
+/**
+ * The level a page or a curriculum is written for, from its own words: "a-level" in a Save My Exams
+ * address, "IGCSE" in a title, "openstax … college" for a university text. Null when it does not say.
+ */
+export function levelBandOf(value: string): "secondary" | "senior" | "university" | "lower" | null {
+  const v = value.toLowerCase();
+  if (/\bks3\b|key[- ]stage[- ]3|year[- ]?[789]\b|middle[- ]school|grade[- ]?[678]\b/.test(v)) return "lower";
+  if (/\bas[- ]?(?:and[- ]?)?a[- ]?level|\ba[- ]?levels?\b|alevel|\bas[- ]?level|sixth[- ]form|\bfsc\b|\bhssc\b|\bib[- ]?dp\b|\bap[- ](?:bio|chem|phys|calc)/.test(v)) return "senior";
+  if (/igcse|\bgcse|\bo[- ]?levels?\b|olevel|\bmatric\b|\bssc\b|\bks4\b/.test(v)) return "secondary";
+  if (/openstax|libretexts|\buniversity\b|\bcollege\b|undergraduate|\.edu\/|\.ac\.uk\/|lecture[- ]notes/.test(v)) return "university";
+  return null;
+}
+
+/**
+ * NO PAGES FROM THE WRONG LEVEL. A source whose own address or title says it is for a different level
+ * than the student's (a GCSE page in an A Level lesson, a university text for O Level) is dropped,
+ * with the facts only it stated. Pages that do not say their level, and the syllabus itself, stay. A
+ * pack is never cut below two sources: then it is returned as it was.
+ */
+export function dropOffLevelSources(pack: SourcePack, target: string | null | undefined): { pack: SourcePack; dropped: WebSource[] } {
+  const want = target ? levelBandOf(target) : null;
+  if (!want) return { pack, dropped: [] };
+  const off = pack.sources.filter((s) => {
+    if (/syllabus|specification/i.test(`${s.title} ${s.url}`)) return false;
+    const band = levelBandOf(`${s.url} ${s.title}`);
+    return band !== null && band !== want;
+  });
+  if (off.length === 0 || pack.sources.length - off.length < 2) return { pack, dropped: [] };
+  const gone = new Set(off.map((s) => s.id));
+  const points = pack.points
+    .map((p) => ({ ...p, sources: p.sources.filter((id) => !gone.has(id)) }))
+    .filter((p, i) => p.sources.length > 0 || pack.points[i].sources.length === 0);
+  return { pack: { ...pack, sources: pack.sources.filter((s) => !gone.has(s.id)), points }, dropped: off };
 }
 
 const STOP = new Set(
@@ -262,40 +300,91 @@ export function betterChecklist(syllabus: unknown, content: unknown): unknown[] 
 export const sameUrl = (url: string) => url.replace(/[#?].*$/, "").replace(/\/+$/, "").toLowerCase();
 
 /**
- * The research, as a SourcePack: the model's points mapped onto the pages the search cited. A URL in
- * the JSON that the search never cited is dropped — unless the search cited nothing at all, in which
- * case the URLs it returned (from the same search turn) are the only record of where facts came from.
+ * FACTS CREDITED TO THE PAGES THEIR OWN SEARCH READ. A search for "cell biology A Level notes" read
+ * real A Level revision pages (marlbridge "A Level Biology 9700 cell structure revision notes",
+ * Seneca, …) and then linked every fact to the syllabus PDF from memory (measured 2026-10-14). A fact
+ * whose links are not pages THIS search returned is credited to the search's pages whose names match
+ * it best — or, when none does, its top result. Each search is grounded in its own pages only.
  */
-export function packFromResearch(json: Record<string, unknown> | null, cited: Array<{ url: string; title: string }>, query: string): SourcePack | null {
+export function groundPointsInFound(json: Record<string, unknown> | null, pages: Array<{ url: string; title: string }>): Record<string, unknown> | null {
+  if (!json || pages.length === 0 || !Array.isArray(json.points)) return json;
+  const seen = (u: unknown) => {
+    const url = cleanUrl(u);
+    return Boolean(url) && pages.some((p) => sameUrl(p.url) === sameUrl(url!));
+  };
+  const named = pages.map((p) => ({ url: p.url, words: new Set(contentWords(`${p.title} ${titleFromUrl(p.url)}`)) }));
+  const points = json.points.map((raw) => {
+    const rec = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+    const urls = Array.isArray(rec.urls) ? rec.urls : [];
+    if (urls.some(seen)) return { ...rec, urls: urls.filter(seen) };
+    const words = contentWords(String(rec.text ?? ""));
+    const ranked = named.map((p) => ({ url: p.url, score: words.filter((w) => p.words.has(w)).length })).sort((a, b) => b.score - a.score);
+    const best = ranked.filter((r) => r.score > 0).slice(0, 2).map((r) => r.url);
+    return { ...rec, urls: best.length ? best : [pages[0].url] };
+  });
+  return { ...json, points };
+}
+
+const hostOf = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+  } catch {
+    return "";
+  }
+};
+
+/**
+ * The research, as a SourcePack: the model's points mapped onto REAL pages — the ones its search
+ * cited or returned (`cited`; `cited: false` = returned only). Never a page the search did not see:
+ *  1. a link to a page the search saw is that page;
+ *  2. a link the model wrote to a page it did NOT see, on a site whose pages it did see, is that
+ *     site's page instead (measured 2026-10-14: a JSON answer often writes its own paths — 0 of 31
+ *     links matched, and the whole lesson lost its material);
+ *  3. anything else is dropped; and when nothing at all matched, the facts are credited to the pages
+ *     the search returned (they are where this search's facts came from).
+ */
+export function packFromResearch(json: Record<string, unknown> | null, cited: Array<{ url: string; title: string; cited?: boolean }>, query: string): SourcePack | null {
   if (!json) return null;
   const sources: WebSource[] = [];
+  const add = (page: { url: string; title: string }): string | null => {
+    const known = sources.find((s) => sameUrl(s.url) === sameUrl(page.url));
+    if (known) return known.id;
+    if (sources.length >= MAX_SOURCES) return null;
+    const id = `S${sources.length + 1}`;
+    const given = (page.title || "").trim();
+    // A search title that is only the site's name says nothing about the page: name it from its address.
+    const title = given && given.toLowerCase() !== siteName(page.url).toLowerCase() ? given : titleFromUrl(page.url) || siteName(page.url);
+    sources.push({ id, url: page.url, title, site: siteName(page.url) });
+    return id;
+  };
   const idFor = (raw: unknown): string | null => {
     const url = cleanUrl(raw);
     if (!url) return null;
-    const found = sources.find((s) => sameUrl(s.url) === sameUrl(url));
-    if (found) return found.id;
-    const fromSearch = cited.find((p) => sameUrl(p.url) === sameUrl(url));
-    if (!fromSearch && cited.length > 0) return null;
-    if (sources.length >= MAX_SOURCES) return null;
-    const id = `S${sources.length + 1}`;
-    const given = (fromSearch?.title || "").trim();
-    // A search title that is only the site's name says nothing about the page: name it from its address.
-    const title = given && given.toLowerCase() !== siteName(url).toLowerCase() ? given : titleFromUrl(url) || siteName(url);
-    sources.push({ id, url: fromSearch?.url ?? url, title, site: siteName(url) });
-    return id;
+    const exact = cited.find((p) => sameUrl(p.url) === sameUrl(url));
+    if (exact) return add(exact);
+    if (cited.length === 0) return add({ url, title: "" });
+    const sameSite = cited.find((p) => p.cited !== false && hostOf(p.url) === hostOf(url)) ?? cited.find((p) => hostOf(p.url) === hostOf(url));
+    return sameSite ? add(sameSite) : null;
   };
-  const points = (Array.isArray(json.points) ? json.points : []).map((p) => {
+  const rawPoints = Array.isArray(json.points) ? json.points : [];
+  let points = rawPoints.map((p) => {
     const rec = p && typeof p === "object" ? (p as Record<string, unknown>) : {};
     const ids = (Array.isArray(rec.urls) ? rec.urls : []).map(idFor).filter((id): id is string => Boolean(id));
     return { text: rec.text, sources: [...new Set(ids)] };
   });
-  // Pages the search cited that no point named still belong to the lesson's reading list.
-  for (const page of cited) idFor(page.url);
-  return sanitizeSourcePack({ query, curriculum: json.curriculum, checklist: json.checklist, points, sources });
+  // A page the answer CITED belongs on the reading list even if no point named it; a page the search
+  // merely returned only verifies the links points name.
+  for (const page of cited) if (page.cited !== false) add(page);
+  if (sources.length === 0 && cited.length > 0) {
+    const ids = cited.slice(0, 3).map(add).filter((id): id is string => Boolean(id));
+    points = points.map((p) => ({ ...p, sources: ids }));
+  }
+  return sanitizeSourcePack({ query, curriculum: json.curriculum, audience: json.audience, checklist: json.checklist, points, sources });
 }
 
-/** The cache key of a research run: the same topic, for the same curriculum, goal and part, is read once. */
+/** The cache key of a research run: the same topic, for the same curriculum, level, goal and part, is read once. */
 export function researchKey(topic: string, brief: LessonBrief | null | undefined): string {
   const norm = (value: string | undefined) => (value ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-  return [norm(topic), norm(brief?.curriculum), norm(brief?.goal), norm(brief?.scope)].join("|").slice(0, 250);
+  // The level is part of the key: the same topic for an undergraduate and an A Level student is two researches.
+  return [norm(topic), norm(brief?.curriculum), norm(brief?.level), norm(brief?.goal), norm(brief?.scope)].join("|").slice(0, 250);
 }

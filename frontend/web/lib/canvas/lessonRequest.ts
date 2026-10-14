@@ -140,6 +140,8 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
       }`,
       packForPrompt(pack, 8_000),
     );
+    // The student's level from their profile's Study level (lib/lessonIntent.ts): a rule, not a hint.
+    if (pack.audience) lines.push("", `THE LEVEL: ${pack.audience}. Teach exactly at this level — its depth, terms and expectations: nothing from a higher level, and nothing it takes for granted explained as if new.`);
   }
   if (question) lines.push(`This lesson ANSWERS ONE QUESTION: "${(strictQuestion || input.focus || input.topic).trim()}". The first board answers it directly; anything after only completes the answer. No interaction unless the student asked to practise.`);
 

@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/auth";
 import { studentCardFor } from "@/lib/learnerBasicsStore";
 import { buildTeachingPolicy, policyForPlanner, policyForQuestions } from "@/lib/teachingPolicy";
-import type { StudentCard } from "@/lib/studentCard";
+import { buildStudentCard, type StudentCard } from "@/lib/studentCard";
+import { mergeLearnerBasics } from "@/lib/learnerBasics";
 import OpenAI from "openai";
 import {
   CLARIFY_TOPIC_SYSTEM_PROMPT,
@@ -40,7 +41,7 @@ import { CANVAS_CODE_LINES, documentForCanvas, documentListings, listingIndex, t
 import { asksForCode, isCodeQuestion } from "@/lib/codeSpec";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import { createOpenAI } from "@/lib/openaiClient";
-import { INTENT_SYSTEM_PROMPT, briefLine, curriculumInText, sanitizeBrief, sanitizeIntent } from "@/lib/lessonIntent";
+import { INTENT_SYSTEM_PROMPT, briefLine, briefSettled, curriculumInText, effectiveBrief, profileAudience, sanitizeBrief, sanitizeIntent } from "@/lib/lessonIntent";
 import { packForPrompt, uncoveredChecklist, type LessonBrief, type SourcePack } from "@/lib/webSources";
 import { researchTopic } from "@/lib/webResearch";
 
@@ -124,11 +125,30 @@ const MODEL = process.env.OPENAI_PLAN_MODEL ?? "gpt-4o-mini";
  * The signed-in student's card (lib/studentCard.ts), or null. Capped so a slow profile read costs a
  * planning turn its personal touches, never its speed.
  */
-async function signedInCard(topic: string): Promise<StudentCard | null> {
+/*
+ * The two steps that need the student's LEVEL (intent and outline: what to ask, what to search and
+ * at what level) wait longer for the profile. With the 1 s cap the card came back null from a slow
+ * read and the level was lost (measured 2026-10-14) — and the outline waits ~10 s for research anyway.
+ */
+const PROFILE_LEVEL_WAIT_MS = 6_000;
+
+async function signedInCard(topic: string, waitMs = 1_000): Promise<StudentCard | null> {
   const signedIn = await currentUser().catch(() => null);
   if (!signedIn) return null;
-  const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), 1_000));
+  const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), waitMs));
   return Promise.race([studentCardFor(signedIn.userId, topic).catch(() => null), timeout]);
+}
+
+/**
+ * The card for the steps that need the student's LEVEL: the stored profile, or — when that read is
+ * slow (it timed out at 6 s from a distant network, 2026-10-14) — the profile the page already holds
+ * and sent along (`learnerBasics`), so the Study level is never lost to a slow database read.
+ */
+async function cardWithLevel(topic: string, body: Record<string, unknown>): Promise<StudentCard | null> {
+  const card = await signedInCard(topic, PROFILE_LEVEL_WAIT_MS);
+  if (card || !body.learnerBasics || typeof body.learnerBasics !== "object") return card;
+  if (!(await currentUser().catch(() => null))) return null;
+  return buildStudentCard(mergeLearnerBasics(body.learnerBasics, null, null), topic);
 }
 
 function personaLine(value: unknown): string {
@@ -1030,9 +1050,14 @@ export async function POST(req: Request) {
           .slice(-6)
       : [];
     const named = curriculumInText(requestText);
-    const card = await signedInCard(`${topic} ${requestText}`);
+    const card = await cardWithLevel(`${topic} ${requestText}`, body);
+    // Their level comes from the profile's Study level (lib/lessonIntent.ts profileAudience): it is
+    // known, so it is never asked.
+    const audience = profileAudience(card);
     const profileLine = card
-      ? `\nTHE STUDENT'S PROFILE: ${[card.level && `level ${card.level}`, card.country && `in ${card.country}`, card.curricula.length && `curricula: ${card.curricula.join(", ")}`, card.subjects.length && `subjects: ${card.subjects.join(", ")}`, card.inSubject && `this topic is in their subject ${card.inSubject}`].filter(Boolean).join("; ")}.`
+      ? `\nTHE STUDENT'S PROFILE: ${[card.level && `study level ${card.level}`, card.country && `in ${card.country}`, card.curricula.length && `curricula: ${card.curricula.join(", ")}`, card.subjects.length && `subjects: ${card.subjects.join(", ")}`, card.inSubject && `this topic is in their subject ${card.inSubject}`].filter(Boolean).join("; ")}.${
+          audience ? ` KNOWN FROM THE PROFILE — never ask it: level ${audience.level ?? "-"}${audience.curriculum ? `; this topic is taught at ${audience.curriculum}` : ""}.` : ""
+        }`
       : "\nNo profile: the student is not signed in or has not filled one in.";
     const answers = exchanges.length ? `\nALREADY ASKED AND ANSWERED (never ask these again):\n${exchanges.map((e) => `Q: ${e.question}\nA: ${e.answer}`).join("\n")}` : "";
     try {
@@ -1048,11 +1073,16 @@ export async function POST(req: Request) {
       });
       // A specific question ("why is the left ventricle wall thicker?") is never asked what it is for.
       const result = sanitizeIntent(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), exchanges.length, isDirectQuestion(requestText));
-      // A curriculum the request names is never lost to a model that left it out.
-      if (named && !result.brief.curriculum) result.brief.curriculum = named;
+      // The course named in the request, then the answers, then the profile — never lost to a model
+      // that left one out; and what the profile settles is not asked.
+      result.brief = effectiveBrief(result.brief, requestText, card) ?? result.brief;
+      if (!result.complete && briefSettled(result.brief)) {
+        result.complete = true;
+        result.question = null;
+      }
       return NextResponse.json({ ...result, costUsd: costUsd(completion.usage) });
     } catch (err) {
-      return NextResponse.json({ brief: named ? { curriculum: named, goal: "exam" } : {}, complete: true, question: null, costUsd: 0, degraded: err instanceof Error ? err.message : "intent unavailable" });
+      return NextResponse.json({ brief: effectiveBrief(named ? { goal: "exam" } : null, requestText, card) ?? {}, complete: true, question: null, costUsd: 0, degraded: err instanceof Error ? err.message : "intent unavailable" });
     }
   }
 
@@ -1134,7 +1164,8 @@ export async function POST(req: Request) {
      * syllabus — the request no longer fences the outline to "this and nothing beyond it": the
      * syllabus is what was asked. A specific question keeps its fence.
      */
-    const brief: LessonBrief | null = body.brief && typeof body.brief === "object" ? sanitizeBrief(body.brief) : null;
+    // Completed from the student's profile once it is read (below): their Study level, and the syllabus.
+    let brief: LessonBrief | null = body.brief && typeof body.brief === "object" ? sanitizeBrief(body.brief) : null;
     const wantsResearch = body.research === true && !sourceDocument;
     const syllabusAsked = (pack: SourcePack | null) => !directQuestion && (brief?.goal === "exam" || Boolean(pack?.checklist.length && pack.curriculum));
     const fencedRequest = (pack: SourcePack | null) => !syllabusAsked(pack);
@@ -1175,7 +1206,10 @@ export async function POST(req: Request) {
       : "";
     // The Teaching Policy (lib/teachingPolicy.ts): their grade, whether this topic is in their
     // syllabus, their goal and how big the steps should be.
-    const card = await signedInCard(`${topic} ${requestText}`);
+    const card = await cardWithLevel(`${topic} ${requestText}`, body);
+    // A typed topic is planned — and researched — for the level on the student's profile (Study
+    // level), with the request, then their answers, taking precedence (lib/lessonIntent.ts).
+    if (!sourceDocument) brief = effectiveBrief(brief, requestText || topic, card);
     const cardLine = card ? policyForPlanner(buildTeachingPolicy(card, { learner: sessionLearner, depth: sessionLearner ? resolveDepth(sessionLearner) : null })) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
@@ -1183,8 +1217,8 @@ export async function POST(req: Request) {
       withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
     const research: OutlineResearch | undefined = wantsResearch
       ? {
-          label: `Reading up on ${topic}${brief?.curriculum ? ` for ${brief.curriculum}` : ""} on the web…`,
-          find: async () => (await researchTopic({ topic, request: requestText, brief, level: card?.level ?? undefined }))?.pack ?? null,
+          label: `Reading up on ${topic}${brief?.curriculum ?? brief?.level ? ` for ${brief?.curriculum ?? brief?.level}` : ""} on the web…`,
+          find: async () => (await researchTopic({ topic, request: requestText, brief }))?.pack ?? null,
           contentFor,
           // The syllabus check runs on lessons, not on a one-question answer.
           checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,

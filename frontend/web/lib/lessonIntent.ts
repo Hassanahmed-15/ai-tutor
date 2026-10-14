@@ -65,12 +65,21 @@ export function sanitizeIntent(raw: unknown, answered: number, directQuestion = 
   const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const brief = sanitizeBrief(obj.brief);
   if (directQuestion) return { brief: { ...brief, goal: "question" }, complete: true, question: null };
-  const settled = brief.goal === "question" || Boolean(brief.goal && brief.curriculum && brief.scope);
+  const settled = briefSettled(brief);
   const q = obj.question && typeof obj.question === "object" ? (obj.question as Record<string, unknown>) : null;
   const question = q ? words(q.question, 220) : "";
   const options = q && Array.isArray(q.options) ? [...new Set(q.options.map((o) => words(o, 60)).filter(Boolean))].slice(0, 4) : [];
   const asks = !settled && !obj.complete && answered < MAX_INTENT_ROUNDS && question.length > 0;
   return { brief, complete: !asks, question: asks ? { question, options } : null };
+}
+
+/**
+ * Enough to plan the right lecture without asking: one specific question, or the goal, the scope and
+ * who it is for — a course, or the level from their profile (a university student has no syllabus;
+ * asking them "for a course?" every time is asking what the profile already says).
+ */
+export function briefSettled(brief: LessonBrief): boolean {
+  return brief.goal === "question" || Boolean(brief.goal && brief.scope && (brief.curriculum || brief.level));
 }
 
 /** Curricula named in the student's own words, as the planner should read them. */
@@ -93,6 +102,78 @@ const CURRICULA: Array<[RegExp, string]> = [
 /** "explain transport in animals igcse biology" → "Cambridge IGCSE". Null when no curriculum is named. */
 export function curriculumInText(value: string): string | null {
   return CURRICULA.find(([re]) => re.test(value))?.[1] ?? null;
+}
+
+/**
+ * THE STUDENT'S LEVEL, FROM THEIR PROFILE (owner's direction, 2026-10-14: "students will not say A
+ * level in the prompt — get it from the user profile", Settings → Learner profile → Study level).
+ *
+ * The Study level label ("Intermediate (HSSC / FSc) / A-Level", "Matric (SSC) / O-Level",
+ * "Undergraduate", …; a subject's own level wins) becomes the words searched and taught at, refined by
+ * the profile's curriculum field (FSc rather than A Level, IGCSE rather than O Level) and its board.
+ * `exam` is set only for a school exam level — it names a syllabus to search; `level` always is.
+ */
+export type ProfileCardLike = {
+  level: string | null;
+  subjectLevel: string | null;
+  curricula: string[];
+  subjectCurricula: string[];
+  country: string | null;
+  topicSubject: string | null;
+};
+
+/** Countries whose O and A Level students sit Cambridge papers unless their profile says otherwise. */
+const CAMBRIDGE_BY_DEFAULT = /^(?:pakistan|bangladesh|sri lanka|united arab emirates|saudi arabia|qatar|kuwait|bahrain|oman|mauritius|singapore)$/i;
+
+export function levelSearchTerms(card: ProfileCardLike): { level: string | null; exam: string | null } {
+  const label = (card.subjectLevel ?? card.level ?? "").trim();
+  const l = label.toLowerCase();
+  const courses = [...card.subjectCurricula, ...card.curricula].join(" | ").toLowerCase();
+  const cambridge = /cambridge/.test(courses) || (!/edexcel|pearson|aqa|ocr|wjec/.test(courses) && CAMBRIDGE_BY_DEFAULT.test(card.country ?? ""));
+  if (/a-level|a level|sixth form|intermediate|hssc|fsc|pre-university|upper secondary/.test(l)) {
+    if (/fsc|hssc|\bics\b/.test(courses)) return { level: "FSc (HSSC, Pakistan)", exam: "FSc (HSSC) Pakistan" };
+    if (/\bib\b|baccalaureate/.test(courses)) return { level: "IB Diploma", exam: "IB Diploma" };
+    if (/a-level|a level|sixth form/.test(l) || /a[- ]level/.test(courses)) {
+      const exam = cambridge ? "Cambridge International A Level" : "A Level";
+      return { level: "A Level", exam };
+    }
+    return { level: label, exam: null };
+  }
+  if (/o-level|o level|igcse|gcse|matric|\bssc\b/.test(l)) {
+    if (/igcse/.test(courses)) return { level: "IGCSE", exam: "Cambridge IGCSE" };
+    if (/\bgcse\b/.test(courses) && !/igcse/.test(courses)) return { level: "GCSE", exam: "GCSE" };
+    if (/matric|\bssc\b/.test(courses)) return { level: "Matric (SSC, Pakistan)", exam: "Matric (SSC) Pakistan" };
+    return { level: "O Level", exam: cambridge ? "Cambridge O Level" : "O Level" };
+  }
+  if (/undergrad/.test(l)) return { level: "undergraduate (university)", exam: null };
+  if (/postgrad|graduate|doctoral/.test(l)) return { level: "postgraduate", exam: null };
+  if (/professional/.test(l)) return { level: "professional", exam: null };
+  return { level: label || null, exam: null };
+}
+
+/**
+ * What the profile says this lesson is for: the level always, and — for a school exam level and a
+ * topic that belongs to a school subject — the syllabus to read ("Cambridge International A Level
+ * Biology"). A topic in no school subject ("transformers in AI") gets the level only.
+ */
+export function profileAudience(card: ProfileCardLike | null | undefined): { curriculum: string | null; level: string | null } | null {
+  if (!card) return null;
+  const { level, exam } = levelSearchTerms(card);
+  const curriculum = exam && card.topicSubject ? `${exam} ${card.topicSubject}` : null;
+  return level || curriculum ? { curriculum, level } : null;
+}
+
+/**
+ * The brief the lesson is planned for, by precedence: a curriculum named in the request, then what
+ * the student answered, then their profile. Never loses what a higher source said.
+ */
+export function effectiveBrief(brief: LessonBrief | null | undefined, request: string, card: ProfileCardLike | null | undefined): LessonBrief | null {
+  const named = curriculumInText(request);
+  const fromProfile = profileAudience(card);
+  const curriculum = named ? (fromProfile?.curriculum && fromProfile.curriculum.toLowerCase().includes(named.toLowerCase().replace(/^cambridge\s+/, "")) ? fromProfile.curriculum : named) : brief?.curriculum ?? fromProfile?.curriculum ?? undefined;
+  const level = brief?.level ?? fromProfile?.level ?? undefined;
+  const merged: LessonBrief = { ...(brief ?? {}), ...(curriculum ? { curriculum } : {}), ...(level ? { level } : {}) };
+  return Object.keys(merged).length ? merged : null;
 }
 
 /** The brief as one line for the planners: what the student wants this lecture to be. */
