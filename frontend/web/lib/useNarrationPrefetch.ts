@@ -68,10 +68,13 @@ async function drain(): Promise<void> {
       if (warmed.has(text)) continue;
       warmed.add(text);
       // The body is discarded: the point is to fill the server's cache, not to hold audio here.
+      // Marked as a warm-up, so the server makes the sentence being HEARD first (app/api/tts); and
+      // bounded, so one hung request cannot hold one of the two warmers for minutes.
       const ok = await fetch("/api/tts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-tts-priority": "warm" },
         body: JSON.stringify({ text }),
+        signal: typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(60_000) : undefined,
       })
         .then(async (r) => {
           // Warming spends real money on a miss, so it is this lecture's cost too.
