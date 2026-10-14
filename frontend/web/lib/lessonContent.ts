@@ -81,6 +81,11 @@ export interface Beat {
    * block it is about, so the PDF panel boxes the passage being spoken. Absent everywhere else.
    */
   sentenceBlockIds?: string[];
+  /**
+   * The web pages this slide's material came from (lib/webSources.ts sourcesForText), shown as a
+   * "Sources:" line at the foot of the slide. Only on typed-topic lessons taught from web research.
+   */
+  sources?: Array<{ title: string; url: string; site: string }>;
   draw?: DrawScript;
   /** Full-bleed real photo behind the slide (scene-setting beats only — hook/recap). Path under /public. */
   photoBackdrop?: string;

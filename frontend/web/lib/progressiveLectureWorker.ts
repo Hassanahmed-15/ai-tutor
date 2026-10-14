@@ -343,7 +343,9 @@ async function generateCanvasBoard(
     const strictDoc = strictDocumentOf(input);
     const video = videoDocumentOf(input);
     const strictSource = strictDoc ? { mode: "strict" as const, doc: strictDoc } : video ? { mode: "video" as const, doc: video } : null;
-    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource });
+    // Taught from web research (lib/webResearch.ts): each slide cites the pages it drew on.
+    const webSources = !document && !strictSource ? input.webSources ?? null : null;
+    const written = await writeCanvasBoard({ userId, sessionId, topic: session.topic, plan, index: sequence, earlier, notes: session.adaptationNotes, document, strictSource, webSources });
     beat = written.beat;
     costUsd = written.costUsd;
     fallbackUsed = written.fallback;

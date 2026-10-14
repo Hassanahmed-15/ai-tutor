@@ -40,6 +40,9 @@ import { CANVAS_CODE_LINES, documentForCanvas, documentListings, listingIndex, t
 import { asksForCode, isCodeQuestion } from "@/lib/codeSpec";
 import { buildImageParts, type ContentPart } from "@/lib/fullDocumentContext";
 import { createOpenAI } from "@/lib/openaiClient";
+import { INTENT_SYSTEM_PROMPT, briefLine, curriculumInText, sanitizeBrief, sanitizeIntent } from "@/lib/lessonIntent";
+import { packForPrompt, uncoveredChecklist, type LessonBrief, type SourcePack } from "@/lib/webSources";
+import { researchTopic } from "@/lib/webResearch";
 
 /**
  * At most this many uploaded pages ride along with a planning call. Planning needs to know what is
@@ -343,7 +346,7 @@ function sanitizeOutline(raw: unknown, fallbackTopic: string, polish = true): Pl
     // across subtopics now instead of collected in one top-level array.
     const scopingQuestion = scopingQuestionCount < 3 ? sanitizeScopingQuestion(rec.scopingQuestion) : undefined;
     if (scopingQuestion) scopingQuestionCount++;
-    if (title.trim()) subtopics.push({ title: title.trim().slice(0, 80), caption: caption.trim().slice(0, 160), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
+    if (title.trim()) subtopics.push({ title: title.trim().slice(0, 80), caption: caption.trim().slice(0, 240), reason: reason.trim().slice(0, 140), confidence, safetyNet, scopingQuestion });
   }
   if (!polish) return { topic, ...intent, subtopics };
   const polished = polishBeatPlan(
@@ -546,6 +549,60 @@ function angleInstructionLine(angleId: string | undefined): string {
   return angle ? `\nTeaching angle for this outline: ${angle.instruction}` : "";
 }
 
+/**
+ * Reading up before planning (lib/webResearch.ts), done INSIDE the outline stream so the student
+ * sees "Reading up on…" while it searches rather than a silent wait.
+ */
+type OutlineResearch = {
+  label: string;
+  find: () => Promise<SourcePack | null>;
+  contentFor: (pack: SourcePack | null) => string | ContentPart[];
+  /** Whether this outline must cover the pack's checklist (a syllabus lesson, not a question). */
+  checkCoverage: (pack: SourcePack) => boolean;
+};
+
+type Coverage = { covered: number; total: number; missing: string[] };
+
+const outlineText = (outline: PlanOutline) => outline.subtopics.map((s) => `${s.title} ${s.caption}`).join(" ");
+
+/**
+ * THE SYLLABUS CHECK before the student presses Start: the outline's titles and captions against the
+ * checklist the research found. An outline that leaves out more than a tenth of it is revised ONCE,
+ * told exactly which points are missing, and the revision is kept only if it misses fewer.
+ */
+async function coverChecklist(client: OpenAI, outline: PlanOutline, pack: SourcePack): Promise<{ outline: PlanOutline; costUsd: number; coverage: Coverage; added: string[] }> {
+  const total = pack.checklist.length;
+  const missing = uncoveredChecklist(pack.checklist, outlineText(outline));
+  const as = (o: PlanOutline, gaps: string[]) => ({ covered: total - gaps.length, total, missing: gaps });
+  if (missing.length <= Math.floor(total * 0.1)) return { outline, costUsd: 0, coverage: as(outline, missing), added: [] };
+  try {
+    const current = { topic: outline.topic, subtopics: outline.subtopics.map((s) => ({ title: s.title, caption: s.caption, reason: s.reason })) };
+    const completion = await client.chat.completions.create({
+      model: MODEL,
+      messages: [
+        { role: "system", content: REVISE_OUTLINE_SYSTEM_PROMPT },
+        {
+          role: "user",
+          content:
+            `Current outline:\n${JSON.stringify(current)}\n\nRequested change: "The student is covering this syllabus topic${pack.curriculum ? ` (${pack.curriculum})` : ""}, and the outline leaves out these points the syllabus expects: ${missing.join("; ")}. ` +
+            `Teach every one of them: fold each into the subtopic it belongs to and name it in that subtopic's caption; add a subtopic only for points that fit none. Keep everything else unchanged."${PROMPT_OUTLINE_RULES}`,
+        },
+      ],
+      temperature: 0.3,
+      max_tokens: OUTLINE_MAX_TOKENS,
+      response_format: { type: "json_object" },
+    });
+    const revised = sanitizeOutline(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), outline.topic);
+    const stillMissing = uncoveredChecklist(pack.checklist, outlineText(revised));
+    const spent = costUsd(completion.usage);
+    if (revised.subtopics.length === 0 || stillMissing.length >= missing.length) return { outline, costUsd: spent, coverage: as(outline, missing), added: [] };
+    const added = missing.filter((m) => !stillMissing.includes(m));
+    return { outline: { ...revised, ...(outline.scope ? { scope: outline.scope } : {}), ...(outline.depth ? { depth: outline.depth } : {}) }, costUsd: spent, coverage: as(revised, stillMissing), added };
+  } catch {
+    return { outline, costUsd: 0, coverage: as(outline, missing), added: [] };
+  }
+}
+
 /** Streams outline generation as NDJSON: {type:"thought", text} per completed subtopic reason
  *  and {type:"scoping-question", subtopicIndex, ...} per completed per-subtopic scopingQuestion
  *  (both as they land in the token stream, interleaved — a question about subtopic 2 can arrive
@@ -566,17 +623,29 @@ function streamOutline(
   nounTitles = false,
   /** How many subtopics a question may keep: 2, or one per code listing for a question about a PDF's code. */
   questionMax = 2,
+  /** Read up on the web first and plan from what was found (a typed-topic lesson in the normal mode). */
+  research?: OutlineResearch,
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: Record<string, unknown>) => controller.enqueue(encoder.encode(`${JSON.stringify(payload)}\n`));
       try {
+        let content = userContent;
+        let pack: SourcePack | null = null;
+        if (research) {
+          send({ type: "status", text: research.label });
+          pack = await research.find().catch(() => null);
+          if (pack) {
+            content = research.contentFor(pack);
+            send({ type: "thought", text: `I read ${pack.sources.length} source${pack.sources.length === 1 ? "" : "s"}${pack.curriculum ? `, including what the ${pack.curriculum} syllabus expects` : ""}, and I'll teach from them.` });
+          }
+        }
         const completion = await client.chat.completions.create({
           model: MODEL,
           messages: [
             { role: "system", content: systemPrompt },
-            { role: "user", content: userContent as OpenAI.Chat.Completions.ChatCompletionContentPart[] | string },
+            { role: "user", content: content as OpenAI.Chat.Completions.ChatCompletionContentPart[] | string },
           ],
           temperature: 0.6,
           max_tokens: OUTLINE_MAX_TOKENS,
@@ -622,9 +691,19 @@ function streamOutline(
          * A question's titles are kept as the planner wrote them ("Why Underfitting Happens");
          * title polishing forces the first to the subject's name and strips a leading "Why".
          */
-        const rawOutline = question
+        let rawOutline: PlanOutline = question
           ? { ...parsed, scope: "question" as const, subtopics: capQuestionOutline(parsed.subtopics, question, questionMax) }
           : forceLesson ? { ...parsed, scope: "lesson" as const } : parsed;
+        // The syllabus check (coverChecklist): a lesson that left points out is revised once.
+        let coverage: Coverage | undefined;
+        let coverageCost = 0;
+        if (pack && research?.checkCoverage(pack) && rawOutline.subtopics.length > 0 && rawOutline.scope !== "question") {
+          const checked = await coverChecklist(client, rawOutline, pack);
+          rawOutline = checked.outline;
+          coverage = checked.coverage;
+          coverageCost = checked.costUsd;
+          if (checked.added.length) send({ type: "thought", text: `Checked against the syllabus and added what was missing: ${checked.added.slice(0, 4).join(", ")}${checked.added.length > 4 ? "…" : "."}` });
+        }
         // The outline the student reviews shows the same titles the lecture will use.
         if (nounTitles) rawOutline.subtopics = rawOutline.subtopics.map((subtopic) => ({ ...subtopic, title: nounTitle(subtopic.title) }));
         const outline = focused
@@ -637,7 +716,14 @@ function streamOutline(
           send({ type: "error", error: "Could not plan an outline for that topic." });
         } else {
           const enriched = focused ? { outline, costUsd: 0 } : await ensureSafetyNets(client, outline);
-          send({ type: "outline", ...enriched.outline, costUsd: costUsd(usage) + enriched.costUsd });
+          send({
+            type: "outline",
+            ...enriched.outline,
+            costUsd: costUsd(usage) + enriched.costUsd + coverageCost,
+            // The material travels with the outline to the lecture, which teaches from it and cites it per slide.
+            ...(pack ? { research: pack } : {}),
+            ...(coverage ? { coverage } : {}),
+          });
         }
       } catch (err) {
         send({ type: "error", error: err instanceof Error ? err.message : "Planning failed" });
@@ -658,8 +744,8 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const mode = typeof body.mode === "string" ? body.mode : "";
-  if (mode !== "subject" && mode !== "clarify" && mode !== "diagnose" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
-    return NextResponse.json({ error: "mode must be subject, clarify, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
+  if (mode !== "subject" && mode !== "clarify" && mode !== "intent" && mode !== "diagnose" && mode !== "document-scope" && mode !== "document-question" && mode !== "outline" && mode !== "revise") {
+    return NextResponse.json({ error: "mode must be subject, clarify, intent, diagnose, document-scope, document-question, outline, or revise" }, { status: 400 });
   }
 
   const client = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -926,6 +1012,50 @@ export async function POST(req: Request) {
     }
   }
 
+  /*
+   * WHAT DOES THE STUDENT WANT? (lib/lessonIntent.ts) — one turn of the short conversation before a
+   * typed-topic lesson is planned: settle the goal, curriculum and scope from the request, the profile
+   * and the answers so far, or ask ONE question about what is missing. The client sends the answers
+   * back each round; the round limit is enforced in sanitizeIntent. Never blocks: on failure the
+   * brief is what the request alone says, and planning goes on.
+   */
+  if (mode === "intent") {
+    const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
+    const requestText = typeof body.request === "string" ? body.request.trim().slice(0, 400) : topic;
+    if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
+    const exchanges = Array.isArray(body.exchanges)
+      ? (body.exchanges as unknown[])
+          .filter((e): e is { question: string; answer: string } => Boolean(e) && typeof e === "object" && typeof (e as Record<string, unknown>).question === "string" && typeof (e as Record<string, unknown>).answer === "string")
+          .map((e) => ({ question: e.question.slice(0, 240), answer: e.answer.slice(0, 400) }))
+          .slice(-6)
+      : [];
+    const named = curriculumInText(requestText);
+    const card = await signedInCard(`${topic} ${requestText}`);
+    const profileLine = card
+      ? `\nTHE STUDENT'S PROFILE: ${[card.level && `level ${card.level}`, card.country && `in ${card.country}`, card.curricula.length && `curricula: ${card.curricula.join(", ")}`, card.subjects.length && `subjects: ${card.subjects.join(", ")}`, card.inSubject && `this topic is in their subject ${card.inSubject}`].filter(Boolean).join("; ")}.`
+      : "\nNo profile: the student is not signed in or has not filled one in.";
+    const answers = exchanges.length ? `\nALREADY ASKED AND ANSWERED (never ask these again):\n${exchanges.map((e) => `Q: ${e.question}\nA: ${e.answer}`).join("\n")}` : "";
+    try {
+      const completion = await client.chat.completions.create({
+        model: MODEL,
+        messages: [
+          { role: "system", content: INTENT_SYSTEM_PROMPT },
+          { role: "user", content: `The student typed: "${requestText}"\nThe lesson's subject: "${topic}"${named ? `\nThe request names a curriculum: ${named}.` : ""}${profileLine}${answers}` },
+        ],
+        temperature: 0.2,
+        max_tokens: 350,
+        response_format: { type: "json_object" },
+      });
+      // A specific question ("why is the left ventricle wall thicker?") is never asked what it is for.
+      const result = sanitizeIntent(JSON.parse(completion.choices[0]?.message?.content ?? "{}"), exchanges.length, isDirectQuestion(requestText));
+      // A curriculum the request names is never lost to a model that left it out.
+      if (named && !result.brief.curriculum) result.brief.curriculum = named;
+      return NextResponse.json({ ...result, costUsd: costUsd(completion.usage) });
+    } catch (err) {
+      return NextResponse.json({ brief: named ? { curriculum: named, goal: "exam" } : {}, complete: true, question: null, costUsd: 0, degraded: err instanceof Error ? err.message : "intent unavailable" });
+    }
+  }
+
   if (mode === "outline") {
     const topic = typeof body.topic === "string" ? body.topic.trim().slice(0, 200) : "";
     if (!topic) return NextResponse.json({ error: "topic is required" }, { status: 400 });
@@ -997,14 +1127,38 @@ export async function POST(req: Request) {
      * part ("explain the CNN part"), keeps the fence: that is the answer they asked for.
      */
     const documentIsSyllabus = Boolean(sourceDocument) && scope?.fidelity === "reference" && scope.breadth.kind === "whole" && !directQuestion;
-    const requestLine = documentIsSyllabus
+    /*
+     * WHAT THE STUDENT WANTS, AND WHAT THE WEB SAYS IT CONTAINS (lib/lessonIntent.ts, lib/webResearch.ts).
+     * A typed-topic lesson in the normal mode (`research: true`) is planned from material Aria read up
+     * on first. When the student is covering a syllabus topic — they said so, or the research found the
+     * syllabus — the request no longer fences the outline to "this and nothing beyond it": the
+     * syllabus is what was asked. A specific question keeps its fence.
+     */
+    const brief: LessonBrief | null = body.brief && typeof body.brief === "object" ? sanitizeBrief(body.brief) : null;
+    const wantsResearch = body.research === true && !sourceDocument;
+    const syllabusAsked = (pack: SourcePack | null) => !directQuestion && (brief?.goal === "exam" || Boolean(pack?.checklist.length && pack.curriculum));
+    const fencedRequest = (pack: SourcePack | null) => !syllabusAsked(pack);
+    const requestLineFor = (pack: SourcePack | null) => documentIsSyllabus
       ? `\nThe student uploaded this document to learn FROM it. Plan the lesson from the document's own content listed above: every subtopic is built on material in those sections, in a sensible teaching order, and together the subtopics cover the selected pages as a whole — not one section of them.${requestText ? ` The student typed "${requestText}" — use it only as what they call the subject or as what to emphasise.` : ""} If the typed words name something the document does not cover, the document wins; never plan a subtopic the document has no material for. You may go beyond the document when TEACHING each subtopic, not when choosing them.`
       // A whole-topic question is not fenced to "answer THIS and nothing beyond it": it asks for the topic.
       : topicRequest ? ""
       : requestText && requestText.toLowerCase() !== topic.toLowerCase()
       ? directQuestion
         ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it.`
-        : `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it. Honour what it asks for (e.g. a language, code, an exam focus), but title subtopics by the subject, never by this phrasing.`
+        : fencedRequest(pack)
+        ? `\nThe student's request, in their own words (typos and all): "${requestText}". The lecture must answer THIS, and nothing beyond it. Honour what it asks for (e.g. a language, code, an exam focus), but title subtopics by the subject, never by this phrasing.`
+        : `\nThe student's request, in their own words (typos and all): "${requestText}". They are covering this SYLLABUS TOPIC: plan the whole topic as their syllabus teaches it (the checklist below says what that is), titled by the subject, never by this phrasing.`
+      : "";
+    /*
+     * THE MATERIAL. The lesson is planned FROM what the research found — its facts and, for a syllabus
+     * topic, every point the syllabus expects — never around it.
+     */
+    const materialLine = (pack: SourcePack | null) => pack
+      ? `\n\nARIA READ UP ON THIS BEFORE PLANNING (web sources the student will see cited on each slide). Plan the lesson FROM this material: every subtopic is built on it${
+          syllabusAsked(pack) && pack.checklist.length
+            ? ", and together the subtopics teach EVERY point of what the syllabus expects. GROUP related points: usually 2 to 4 per subtopic, so a whole syllabus topic is about 6 to 10 subtopics — never one subtopic per point. A point may share a subtopic, never be left out, and each caption names the syllabus terms its subtopic teaches (captions may run to 30 words here)"
+            : directQuestion ? "; answer the question with it" : ", and together the subtopics cover its key ideas"
+        }. Never plan a subtopic the material has nothing for.\n${packForPrompt(pack, 7_000)}`
       : "";
     const preference = typeof body.teachingPreference === "string" && ["quick", "balanced", "deep"].includes(body.teachingPreference)
       ? `\nThe student's saved teaching preference is "${body.teachingPreference}"; their words in the request override it.`
@@ -1025,8 +1179,18 @@ export async function POST(req: Request) {
     const cardLine = card ? policyForPlanner(buildTeachingPolicy(card, { learner: sessionLearner, depth: sessionLearner ? resolveDepth(sessionLearner) : null })) : "";
     // A typed-prompt lesson (no document) titles every slide by its concept and covers each topic once.
     const promptRules = sourceDocument ? "" : PROMPT_OUTLINE_RULES;
-    const userContent = `Topic: "${topic}"${requestLine}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${listingLine}${promptRules}`;
-    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, withPages(userContent, pageImages), topic, false, directQuestion ? questionText : undefined, !sourceDocument && topicRequest, !sourceDocument, codeQuestion ? 12 : 2);
+    const contentFor = (pack: SourcePack | null) =>
+      withPages(`Topic: "${topic}"${requestLineFor(pack)}${briefLine(brief)}${clarifyLine}${angleInstructionLine(angle)}${sourceDocLine}${learnerLine}${cardLine}${personaLine(body.learnerPersona)}${scopeLine}${preference}${questionLine}${listingLine}${materialLine(pack)}${promptRules}`, pageImages);
+    const research: OutlineResearch | undefined = wantsResearch
+      ? {
+          label: `Reading up on ${topic}${brief?.curriculum ? ` for ${brief.curriculum}` : ""} on the web…`,
+          find: async () => (await researchTopic({ topic, request: requestText, brief, level: card?.level ?? undefined }))?.pack ?? null,
+          contentFor,
+          // The syllabus check runs on lessons, not on a one-question answer.
+          checkCoverage: (pack) => syllabusAsked(pack) && pack.checklist.length > 0,
+        }
+      : undefined;
+    return streamOutline(client, OUTLINE_LESSON_SYSTEM_PROMPT, contentFor(null), topic, false, directQuestion ? questionText : undefined, !sourceDocument && (topicRequest || syllabusAsked(null)), !sourceDocument, codeQuestion ? 12 : 2, research);
   }
 
   // mode === "revise"

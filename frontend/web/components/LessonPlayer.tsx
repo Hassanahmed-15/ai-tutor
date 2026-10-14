@@ -76,6 +76,7 @@ import { EngagementMeter } from "./EngagementMeter";
 import { FocusPauseOverlay } from "./FocusPauseOverlay";
 import { LessonCanvas, type CanvasKnowledge, type CanvasPanelInput } from "./canvas/LessonCanvas";
 import { BoardPeek, type PeekTarget } from "./knowledge/BoardPeek";
+import { SlideSources } from "./teaching/SlideSources";
 import type { CanvasBoardSpec } from "@/lib/canvas/types";
 import { CheckinOverlay } from "./adhd/CheckinOverlay";
 import { CHECKIN_INVITE_CUE } from "@/lib/geminiLiveContract";
@@ -3139,7 +3140,8 @@ export function LessonPlayer({
                 onRevealAnswer={revealCheckpointAnswer}
               />
             ) : canvasLesson ? (
-              <div className="relative h-full">
+              <div className="flex h-full flex-col">
+              <div className="relative min-h-0 flex-1">
                 <PaintSignal key={beat.id} onPainted={handleBoardPainted} />
                 <LessonCanvas
                   panels={canvasPanels}
@@ -3165,6 +3167,9 @@ export function LessonPlayer({
                   }}
                 />
                 {peek && <BoardPeek target={peek} onClose={() => setPeek(null)} />}
+              </div>
+              {/* Where this slide's material came from (lib/webSources.ts): typed-topic lessons taught from web research. */}
+              {!adhd && !deafMode && beat.sources && beat.sources.length > 0 && <SlideSources sources={beat.sources} />}
               </div>
             ) : (
               <BoardStage

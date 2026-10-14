@@ -46,6 +46,8 @@ export const LECTURE_JOBS_CONTAINER = "lecture-jobs";
 export const KNOWLEDGE_GRAPH_CONTAINER = "knowledge-graph";
 /** One row per paid AI call (lib/spend/record.ts), so every lecture's cost and the day's total can be read back. */
 export const SPEND_EVENTS_CONTAINER = "spend-events";
+/** What the web research found for a topic (lib/webResearch.ts), so the same topic is searched once for everyone. */
+export const WEB_RESEARCH_CONTAINER = "web-research";
 
 /**
  * One board, so `board` is a constant rather than a real dimension.
@@ -403,6 +405,13 @@ export function viewerDocuments(): Container {
 export async function spendEvents(): Promise<Container> {
   const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID, throughput: SHARED_THROUGHPUT });
   const { container } = await database.containers.createIfNotExists({ id: SPEND_EVENTS_CONTAINER, partitionKey: { paths: ["/day"] }, defaultTtl: 90 * 24 * 3600 });
+  return container;
+}
+
+/** Cached web research by topic key; on the shared pool, rows retire after 90 days so material stays fresh. */
+export async function webResearch(): Promise<Container> {
+  const { database } = await client().databases.createIfNotExists({ id: DATABASE_ID, throughput: SHARED_THROUGHPUT });
+  const { container } = await database.containers.createIfNotExists({ id: WEB_RESEARCH_CONTAINER, partitionKey: { paths: ["/id"] }, defaultTtl: 90 * 24 * 3600 });
   return container;
 }
 

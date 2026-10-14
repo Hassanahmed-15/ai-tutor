@@ -11,6 +11,7 @@ import { recordLesson, snapshotFrom } from "@/lib/learnerModel";
 import { updateLearnerMemory } from "@/lib/learnerMemoryStore";
 import { learnFromLesson, studentCardFor } from "@/lib/learnerBasicsStore";
 import { sanitizeSourceScope } from "@/lib/sourceScope";
+import { sanitizeSourcePack } from "@/lib/webSources";
 import { isProgrammingTopic } from "@/lib/codeSpec";
 
 export const runtime = "nodejs";
@@ -73,6 +74,9 @@ export async function POST(request: Request) {
     learner,
     learnerPersona: text(body.learnerPersona, 2_000),
   };
+  // The material from the outline's web research (lib/webSources.ts), checked again on the way in.
+  const webSources = sanitizeSourcePack(body.webSources ?? rawOutline?.research);
+  if (webSources) input.webSources = webSources;
   // The student card: their grade, country, curriculum and subjects from the profile, as rules —
   // the grade applies to every subject, the subject list decides whether to follow their syllabus.
   const card = await studentCardFor(auth.userId, `${topic} ${input.focus ?? ""}`).catch(() => null);

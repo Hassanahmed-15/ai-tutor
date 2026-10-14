@@ -77,6 +77,8 @@ import {
   documentSectionTitles,
 } from "@/lib/documentLessonPlanning";
 import { addSpendTag, endSpendTag, ensureSpendTag } from "@/lib/spendTag";
+import type { IntentQuestion } from "@/lib/lessonIntent";
+import type { LessonBrief, SourcePack } from "@/lib/webSources";
 
 /**
  * The "teach me anything" entry. After the user picks a mode, this asks what they want to
@@ -125,17 +127,24 @@ type PlanOutline = {
   topic: string;
   subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: ScopingQuestion }[];
   angle?: PlanningAngleId;
+  /** The web material this outline was planned from (lib/webSources.ts). */
+  research?: SourcePack;
+  /** How much of the syllabus checklist the outline covers. */
+  coverage?: { covered: number; total: number; missing: string[] };
 };
 type ClarifyQuestion = { question: string; options: string[] };
 type OutlineStreamEvent =
   | { type: "thought"; text?: string }
+  | { type: "status"; text?: string }
   | { type: "subtopic"; index?: number; subtopic?: PlanOutline["subtopics"][number] }
   | { type: "scoping-question"; subtopicIndex?: number; question?: string; options?: { label: string; instruction: string }[] }
-  | { type: "outline"; topic?: string; scope?: PlanOutline["scope"]; depth?: PlanOutline["depth"]; subtopics?: PlanOutline["subtopics"]; costUsd?: number }
+  | { type: "outline"; topic?: string; scope?: PlanOutline["scope"]; depth?: PlanOutline["depth"]; subtopics?: PlanOutline["subtopics"]; costUsd?: number; research?: SourcePack; coverage?: PlanOutline["coverage"] }
   | { type: "error"; error?: string };
 type LecturePayload = {
   topic: string;
   mood: string;
+  /** What Aria read up on before planning (lib/webSources.ts): taught from, and cited on each slide. */
+  webSources?: SourcePack;
   sourceType: "prompt" | "pdf" | "pptx" | "suprnotes" | "task-folder" | "youtube";
   mode: LectureMode;
   context?: string;
@@ -264,6 +273,15 @@ type BuildCost =
   // there's nothing to ask), the outline drafts live and a side chat takes over for mid-build
   // scoping questions + freeform revise.
   const [initialAmbiguityQuestions, setInitialAmbiguityQuestions] = useState<ClarifyQuestion[]>([]);
+  /*
+   * WHAT THE STUDENT WANTS (lib/lessonIntent.ts): the question Aria is asking about it, if any, the
+   * answers so far, and the brief they settle into. Then the web research the outline was planned
+   * from (lib/webResearch.ts), which the lecture is taught from and cites on every slide.
+   */
+  const [intentQuestion, setIntentQuestion] = useState<IntentQuestion | null>(null);
+  const intentExchangesRef = useRef<{ question: string; answer: string }[]>([]);
+  const briefRef = useRef<LessonBrief | null>(null);
+  const researchRef = useRef<SourcePack | null>(null);
   const [initialPlanningQuestions, setInitialPlanningQuestions] = useState<ScopingQuestion[]>([]);
   const [planningAnswers, setPlanningAnswers] = useState<Array<{ question: string; label: string; instruction: string; focus?: string | null; fidelity?: PdfFidelity; depthLevel?: DepthLevel }>>([]);
   const [documentPlanningActive, setDocumentPlanningActive] = useState(false);
@@ -705,7 +723,7 @@ type BuildCost =
    * plan is being drafted, an open mic transcribed the room into chat bubbles nobody asked for.
    */
   const outlineReady = Boolean(outline);
-  const questionOpen = Boolean(diagnosticQuestion) || diagnosticBusy || initialAmbiguityQuestions.length > 0;
+  const questionOpen = Boolean(diagnosticQuestion) || diagnosticBusy || initialAmbiguityQuestions.length > 0 || Boolean(intentQuestion);
   /*
    * AND ON THE PLAN ITSELF (2026-09-29, "the voice input doesn't really work nicely while
    * planning"). The plan screen closed the mic, so the revise_plan and approve_plan tools Aria was
@@ -1772,6 +1790,10 @@ type BuildCost =
   function resetPlanning() {
     announcedPlanRef.current = null;
     setInitialAmbiguityQuestions([]);
+    setIntentQuestion(null);
+    intentExchangesRef.current = [];
+    briefRef.current = null;
+    researchRef.current = null;
     setInitialPlanningQuestions([]);
     setPlanningAnswers([]);
     setClarifyAnswers([]);
@@ -1866,7 +1888,7 @@ type BuildCost =
       let buffer = "";
       const handle = (event: OutlineStreamEvent) => {
         if (event.type === "error") throw new Error(event.error || "Planning failed.");
-        if (event.type === "thought" && event.text) {
+        if ((event.type === "thought" || event.type === "status") && event.text) {
           setPlanThoughts((prev) => [...prev, event.text as string]);
         }
         if (event.type === "subtopic" && event.subtopic && typeof event.index === "number") {
@@ -1885,12 +1907,16 @@ type BuildCost =
         }
         if (event.type === "outline" && typeof event.costUsd === "number") addCost("planning", event.costUsd);
         if (event.type === "outline" && Array.isArray(event.subtopics)) {
+          // The web material the outline was planned from; a revision keeps the material it had.
+          if (event.research) researchRef.current = event.research;
           finalOutline = {
             topic: typeof event.topic === "string" ? event.topic : fallbackTopic,
             ...(event.scope === "question" || event.scope === "lesson" ? { scope: event.scope } : {}),
             ...(event.depth === "quick" || event.depth === "deep" ? { depth: event.depth } : {}),
             subtopics: event.subtopics,
             angle: typeof body.angle === "string" ? (body.angle as PlanningAngleId) : undefined,
+            ...(researchRef.current ? { research: researchRef.current } : {}),
+            ...(event.coverage ? { coverage: event.coverage } : {}),
           };
           setOutline(finalOutline);
         }
@@ -1942,6 +1968,10 @@ type BuildCost =
       // Absent (fidelity stays at its "reference" default) for a topic with no upload — the
       // server treats a missing/no-op scope exactly like today's unlabeled behavior.
       ...(sourceDocument ? { sourceScope: sourceScopeRef.current } : {}),
+      // What the student wants (lib/lessonIntent.ts), and — for a typed topic in the normal mode —
+      // read up on it first and plan from what was found (lib/webResearch.ts).
+      ...(briefRef.current ? { brief: briefRef.current } : {}),
+      ...(researchWanted() ? { research: true } : {}),
     }, t);
     // Every outline — a one-board answer or a whole lesson — waits on the student: they review,
     // edit and press Build. The planner still sizes it (a question plans 1-2 topics).
@@ -1997,6 +2027,40 @@ type BuildCost =
    * A caller that has just parsed a document already knows its source and scope before React has
    * committed state. `fresh` carries those values into either document planning or generation.
    */
+  /**
+   * A typed topic in the normal mode is planned from web research, after Aria settles what the
+   * student wants. Never for an uploaded document or video (those ARE the material), and never in the
+   * accessible modes (normal mode only).
+   */
+  function researchWanted(): boolean {
+    return selectedMode.id === "none" && !sourceDocument && !uploadedFile;
+  }
+
+  /**
+   * ONE ROUND of "what do you want from this lesson?" (lib/lessonIntent.ts). Either a question goes on
+   * screen, or the brief is settled and the usual conversation (level, then what they know) starts.
+   * Never blocks: a failed call settles on what the request alone says.
+   */
+  async function runIntent(subject: string) {
+    setPlanLoading(true);
+    const data = await callPlanApi({ mode: "intent", topic: subject, request: requestTextRef.current || subject, exchanges: intentExchangesRef.current });
+    setPlanLoading(false);
+    if (data?.brief && typeof data.brief === "object") briefRef.current = data.brief as LessonBrief;
+    const asked = data?.question as IntentQuestion | null | undefined;
+    if (data && data.complete === false && asked?.question) {
+      setIntentQuestion({ question: asked.question, options: Array.isArray(asked.options) ? asked.options : [] });
+      return;
+    }
+    setIntentQuestion(null);
+    await beginLearnerConversation(subject, intentExchangesRef.current.length > 0);
+  }
+
+  function answerIntent(question: string, answer: string) {
+    intentExchangesRef.current = [...intentExchangesRef.current, { question, answer }];
+    setIntentQuestion(null);
+    void runIntent(topic);
+  }
+
   /** The student chose "use it as a reference" on the source-mode screen. Strict never plans. */
   function referencePlanning(): boolean {
     return sourceModeChosenRef.current && sourceScopeRef.current.fidelity === "reference";
@@ -2163,6 +2227,21 @@ type BuildCost =
       setInitialAmbiguityQuestions(data.questions as ClarifyQuestion[]);
       return;
     }
+    // A typed topic in the normal mode: first settle what the student wants from it (runIntent),
+    // which then starts the conversation below.
+    if (researchWanted()) {
+      await runIntent(trimmed);
+      return;
+    }
+    await beginLearnerConversation(trimmed, false);
+  }
+
+  /**
+   * The conversation about the student before the outline: their level, then what they already know.
+   * `settledByIntent`: the "what do you want?" questions were just asked, and when they settled the
+   * curriculum or level the depth question is not asked on top of them.
+   */
+  async function beginLearnerConversation(trimmed: string, settledByIntent: boolean) {
     /*
      * Ask who this is for before planning what to teach.
      *
@@ -2211,6 +2290,14 @@ type BuildCost =
       setMemoryNote(known.subject
         ? `Pitched at your ${known.level.label} level in ${known.subject.label}, from your profile.${leaningLine} Say "simpler" or "deeper" any time.`
         : `Pitched for your ${known.level.label} level. This isn't one of your subjects, so Aria starts from the basics.${leaningLine} Say "simpler" or "deeper" any time.`);
+      setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
+      return;
+    }
+    // The student just told Aria their course or level: not asked again as a depth question.
+    const told = settledByIntent ? briefRef.current?.curriculum ?? briefRef.current?.level : undefined;
+    if (told) {
+      const option = DEPTH_OPTIONS[2];
+      setMemoryNote(`Pitched for ${told}, as you told Aria. Say "simpler" or "deeper" any time.`);
       setAutoDepth({ answer: option.label, question: depthQuestion(trimmed) });
       return;
     }
@@ -2584,7 +2671,7 @@ type BuildCost =
    */
   function approveOutline() {
     if (!outline) return;
-    if (diagnosticQuestion || initialPlanningQuestions.length > 0 || initialAmbiguityQuestions.length > 0) return;
+    if (diagnosticQuestion || initialPlanningQuestions.length > 0 || initialAmbiguityQuestions.length > 0 || intentQuestion) return;
     // No separate preview screen any more: the chat has just shown the student what Aria
     // understood about them and the plan itself, so Accept means "start".
     confirmLessonPlan();
@@ -2802,7 +2889,10 @@ type BuildCost =
       ...(fresh?.scopeSelected && (fresh.regionPages?.length || transcriptText)
         ? { selection: { pages: fresh.regionPages ?? [], transcript: transcriptText.slice(0, 8_000), description: trimmed } }
         : {}),
-      ...(approvedOutline ? { outline: approvedOutline } : {}),
+      // (Its research travels once, as webSources below.)
+      ...(approvedOutline ? { outline: { ...approvedOutline, research: undefined, coverage: undefined } } : {}),
+      // The web material the outline was planned from: the lecture teaches from it and cites it per slide.
+      ...(!doc && !slides && researchRef.current ? { webSources: researchRef.current } : {}),
       ...(teachingPreference !== "adaptive" ? { teachingPreference } : {}),
       // What lets the model read the pages instead of only a text extraction of them.
       ...(docImagesId ? { documentId: docImagesId } : {}),
@@ -3873,6 +3963,8 @@ type BuildCost =
           learnerDepth={learnerDepth}
           sourceScope={sourceScope}
           initialAmbiguityQuestions={initialAmbiguityQuestions}
+          intentQuestion={intentQuestion}
+          onAnswerIntent={answerIntent}
           initialPlanningQuestions={initialPlanningQuestions}
           planningAnswers={planningAnswers}
           documentPlanning={documentPlanningActive}
@@ -4615,6 +4707,8 @@ function OutlineReviewState({
   learnerDepth,
   sourceScope,
   initialAmbiguityQuestions,
+  intentQuestion,
+  onAnswerIntent,
   initialPlanningQuestions,
   planningAnswers,
   documentPlanning,
@@ -4667,6 +4761,9 @@ function OutlineReviewState({
   learnerDepth: DepthLevel | null;
   sourceScope: SourceScope;
   initialAmbiguityQuestions: ClarifyQuestion[];
+  /** "What do you want from this lesson?" (lib/lessonIntent.ts): the question on screen, if any. */
+  intentQuestion: IntentQuestion | null;
+  onAnswerIntent: (question: string, answer: string) => void;
   /** The ONE pre-draft gate, shown in the MAIN CANVAS (not the side chat) — topic-specific
    *  planning questions worth answering before drafting starts. Empty for most topics. */
   initialPlanningQuestions: ScopingQuestion[];
@@ -5307,6 +5404,14 @@ function OutlineReviewState({
               answer: (text) => { if (text.trim()) onAnswerAmbiguity(initialAmbiguityQuestions[0].question, text.trim()); },
               skip: () => onAnswerAmbiguity(initialAmbiguityQuestions[0].question, "Whichever meaning is most common"),
             })
+          ) : !outline && intentQuestion ? (
+            // What the student wants from the lesson, asked the way a tutor would, one thing at a time.
+            renderDiagnosticFocus({
+              question: intentQuestion.question,
+              options: intentQuestion.options,
+              answer: (text) => { if (text.trim()) onAnswerIntent(intentQuestion.question, text.trim()); },
+              skip: () => onAnswerIntent(intentQuestion.question, "No preference, use your best judgement"),
+            })
           ) : !outline && (loading || !error) ? (
             // Also covers the hand-offs between planning steps (clarify → memory → first question),
             // where nothing is loading yet no outline exists — that is not a failure.
@@ -5352,6 +5457,42 @@ function OutlineReviewState({
                       </p>
                     );
                   })()}
+                  {/* What Aria read up on (lib/webResearch.ts), and how much of the syllabus the plan covers. */}
+                  {outline.research && (
+                    <details className="mt-2 text-[0.82rem] text-[var(--hud-text-dim)]" data-outline-research>
+                      <summary className="cursor-pointer select-none">
+                        Planned from {outline.research.sources.length} web source{outline.research.sources.length === 1 ? "" : "s"}
+                        {outline.coverage && outline.coverage.total > 0 && (
+                          <> · covers <span className="text-[var(--hud-text)]">{outline.coverage.covered}/{outline.coverage.total}</span> {outline.research.curriculum ?? "syllabus"} points</>
+                        )}
+                      </summary>
+                      <ul className="mt-2 space-y-0.5">
+                        {outline.research.sources.map((source) => (
+                          <li key={source.url} className="truncate">
+                            <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline decoration-[var(--hud-line-strong)] underline-offset-2 hover:text-[var(--hud-text)]">
+                              {source.site}{source.title && source.title !== source.site ? ` — ${source.title}` : ""}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                      {outline.coverage && outline.coverage.missing.length > 0 && (
+                        <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                          <span className="text-[var(--hud-text-faint)]">Not in the plan yet:</span>
+                          {outline.coverage.missing.slice(0, 8).map((point) => (
+                            <button
+                              key={point}
+                              type="button"
+                              disabled={loading || sending}
+                              onClick={() => void onRevise(`Add "${point}" to the lesson, in the part it belongs to (or a new part if it fits none).`)}
+                              className="rounded-full border border-[var(--hud-line)] px-2 py-0.5 text-[0.75rem] hover:border-[var(--hud-line-strong)] hover:text-[var(--hud-text)] disabled:opacity-50"
+                            >
+                              + {point}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </details>
+                  )}
                 </div>
                 {(loading || sending) && (
                   <span className="flex items-center gap-2 text-sm text-[var(--hud-text-faint)]">

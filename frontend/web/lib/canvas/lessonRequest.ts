@@ -7,6 +7,7 @@ import type { SuprnotesLessonInput } from "../suprnotes";
 import { CANVAS_CODE_LINES, documentForCanvas, documentListings, extraBoardsForListings, listingIndex } from "./documentContext";
 import { strictPlanSection, videoParts, videoPlanSection } from "./sourceLessons";
 import { isVideoSource } from "../youtube/videoSource";
+import { packForPrompt } from "../webSources";
 
 /**
  * WHICH LECTURES ARE TAUGHT ON THE LESSON CANVAS, and what its planner is told about them.
@@ -127,6 +128,18 @@ export function canvasPlanRequest(input: ProgressiveLectureInput, knowledge?: Pl
     if (knowledge.mastered.length) lines.push(`- Already solid: ${knowledge.mastered.join(", ")}. Do not teach these again — mention them in passing as things they know.`);
     if (knowledge.earlier.length) lines.push(`- Learned in earlier lessons: ${knowledge.earlier.map((e) => `${e.label} (in "${e.topic}")`).join(", ")}. Build on these instead of re-explaining them, and say so out loud at least once, naming the earlier lesson ("remember electron shells from your lesson on atoms?").`);
     if (refresher) lines.push(`- Shaky on what this builds on: ${knowledge.shaky.map((s) => `${s.label} (needed for ${s.for})`).join(", ")}. Put ONE short extra board FIRST that refreshes ${knowledge.shaky[0].label} — 3 sentences, "refresher": true — then the lesson's own boards. It is the only board you may add.`);
+  }
+  // What Aria read up on before planning (lib/webResearch.ts): the scripts teach FROM it, and each
+  // slide shows the links it drew on. Not for a lesson from the student's own document or video.
+  const pack = input.webSources;
+  if (pack && !strictDoc && !video && !doc) {
+    lines.push(
+      "",
+      `TEACH FROM THIS MATERIAL — what Aria read up on for this lesson; every slide will cite the pages it drew on. Every fact a script states comes from this material (plain connecting explanation, analogies and worked examples in your own words are fine; a new fact, number or claim is not).${
+        pack.checklist.length ? " Name every syllabus point below on the board where it belongs, in the syllabus's own terms." : ""
+      }`,
+      packForPrompt(pack, 8_000),
+    );
   }
   if (question) lines.push(`This lesson ANSWERS ONE QUESTION: "${(strictQuestion || input.focus || input.topic).trim()}". The first board answers it directly; anything after only completes the answer. No interaction unless the student asked to practise.`);
 

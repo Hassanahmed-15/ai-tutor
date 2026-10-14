@@ -33,6 +33,8 @@
  * outlineGroundingInstruction below), used from app/api/generate-lecture/route.ts.
  */
 
+import type { SourcePack } from "./webSources";
+
 export const CLARIFY_TOPIC_SYSTEM_PROMPT = `You are Aria, preparing to plan a lesson. Decide only whether the typed topic needs disambiguation before anything else.
 Return JSON only: { "ambiguous": boolean, "questions": [{ "question": string, "options": string[] }] }
 
@@ -88,6 +90,7 @@ TEACH THE MINIMUM THAT ANSWERS IT. Slides are an output of teaching, never a tar
 - Then plan only the subtopics this scope and depth need. Stop as soon as the request is fully answered: never add a subtopic that re-explains, re-defines, re-examples or rewords something an earlier subtopic already covers. Each subtopic must add understanding the others do not — if you cannot name what NEW thing it adds, leave it out. Examples earn a subtopic only when each one shows something different (intuition, real case, technical case), never two of the same kind.
 
 STRICTLY WHAT WAS ASKED. Plan ONLY what the student's request asks for. Use as few subtopics as that genuinely needs (a question: 1-2; a whole lesson: only what the topic truly contains, with no maximum and no minimum); every subtopic must directly serve the request. Do not survey the wider field, add prerequisites or history they did not ask about, add applications or adjacent topics, or pad to a count. NEVER include a recap, summary, review, wrap-up or conclusion subtopic — the lecture ends on its last concept, and the student gets a separate one-slide summary afterwards.
+THE ONE EXCEPTION — A SYLLABUS TOPIC: when the input says the student is covering a syllabus topic and gives what the syllabus expects, that checklist IS what was asked. Plan subtopics that together teach EVERY checklist point (group related points, usually 2 to 4 per subtopic; never pad, never leave a point out) — the minimum here is the whole checklist, not one idea from it.
 "title" is 3-6 words and names the precise insight being taught. Vary titles by role: use a curiosity question for a hook, a causal/action title for a mechanism, a concrete worked-example title, or a contrast title where appropriate. Titles name what is TAUGHT, never an instruction ("Explore…", "Understand…"). Never use "Introduction", "Overview", "Core idea", "How it works", "Idea 2", "Quick check", or a raw page/slide/figure locator. Do not prefix every title with the main topic, and never create duplicate titles or numbered suffixes. "caption" is ONE sentence, <=18 words, previewing what that part of the lesson will teach.
 "reason" is Aria's own one-line planning thought explaining WHY this subtopic belongs here and why it's positioned where it is (<=16 words, first person, e.g. "Needed before the mechanism or the next step won't make sense.") — this is shown to the student live as the outline is built, so make it sound like genuine reasoning, not a restatement of the caption.
 "confidence": set to "low" ONLY on a subtopic where you genuinely had to guess at scope, audience level, or whether it belongs at all (e.g. you weren't sure if the student already knows a prerequisite, or whether a topic is too advanced/basic for this lesson). Omit it entirely on subtopics you're confident about — do not mark more than 1-2 subtopics low-confidence.
@@ -152,6 +155,10 @@ export type PlanOutline = {
   depth?: "quick" | "deep";
   subtopics: { title: string; caption: string; reason?: string; confidence?: "low"; safetyNet?: PlanSafetyNet; scopingQuestion?: PlanOutlineScopingQuestion }[];
   angle?: PlanningAngleId;
+  /** What the web research found (lib/webSources.ts): the lecture is taught from it and cites it per slide. */
+  research?: SourcePack;
+  /** How much of the syllabus checklist the outline covers, checked before the student presses Start. */
+  coverage?: { covered: number; total: number; missing: string[] };
 };
 
 /** Additive instruction appended to the existing generate-lecture user message when an approved outline is present. */

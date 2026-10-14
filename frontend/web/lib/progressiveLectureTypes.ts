@@ -120,6 +120,11 @@ export type ProgressiveLectureInput = {
   learnerPersona?: string;
   /** Who the lesson is for — grade, country, curriculum, subjects — as rules (lib/studentCard.ts). */
   studentCard?: import("./studentCard").StudentCard;
+  /**
+   * What Aria read up on before planning (lib/webResearch.ts): the lesson is taught from this
+   * material and every slide ends with the links it drew on (Beat.sources).
+   */
+  webSources?: import("./webSources").SourcePack;
 };
 
 export type ProgressiveLectureSessionDoc = {
