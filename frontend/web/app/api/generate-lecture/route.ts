@@ -63,7 +63,7 @@ import {
 } from "@/lib/fullDocumentContext";
 import type { Beat } from "@/lib/lessonContent";
 import { costFor } from "@/lib/modelPricing";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 import { blobStorageConfigured } from "@/lib/blobStorage";
 import { databaseConfigured } from "@/lib/db/cosmos";
 import { archiveLecture, normalizeLectureMode, normalizeLectureSourceType } from "@/lib/lectureArchive";
@@ -1318,16 +1318,29 @@ function snapshotBoards(tag: string, beats: Beat[]): void {
   console.error("[snapshot " + tag + "] " + rows.join("  "));
 }
 
+function lectureHistoryEnabled(): boolean {
+  return databaseConfigured() && blobStorageConfigured();
+}
+
+/** Keep a finished lecture when an account store exists. Without one, the beats still play. */
+async function rememberLecture(
+  userId: string,
+  topic: string,
+  sourceType: ReturnType<typeof normalizeLectureSourceType>,
+  mode: ReturnType<typeof normalizeLectureMode>,
+  beats: Beat[],
+): Promise<string> {
+  const archived = await archiveLecture({ userId, topic, sourceType, mode, beats });
+  void archived.finishVideos().catch((error) => {
+    console.error(`[lecture-archive] lecture ${archived.lectureId}: ${error instanceof Error ? error.message : "video persistence failed"}`);
+  });
+  return archived.lectureId;
+}
+
 export async function POST(req: Request) {
-  const session = await currentUser();
+  const session = await lessonCaller();
   if (!session) {
     return NextResponse.json({ error: "Authentication required." }, { status: 401 });
-  }
-  if (!databaseConfigured() || !blobStorageConfigured()) {
-    return NextResponse.json(
-      { error: "Lecture history storage is not configured." },
-      { status: 503 },
-    );
   }
 
   if (!process.env.OPENAI_API_KEY) {
@@ -1571,18 +1584,11 @@ export async function POST(req: Request) {
   if (!refresh) {
     const cached = await readCachedLecture(cacheKey);
     if (cached) {
-      const archived = await archiveLecture({
-        userId: session.userId,
-        topic: cached.topic || input.topic,
-        sourceType,
-        mode,
-        beats: cached.beats,
-      });
-      void archived.finishVideos().catch((error) => {
-        console.error(`[lecture-archive] cached lecture ${archived.lectureId}: ${error instanceof Error ? error.message : "video persistence failed"}`);
-      });
+      const lectureId = lectureHistoryEnabled()
+        ? await rememberLecture(session.userId, cached.topic || input.topic, sourceType, mode, cached.beats)
+        : null;
       return NextResponse.json({
-        lectureId: archived.lectureId,
+        lectureId,
         topic: cached.topic || input.topic,
         beats: cached.beats,
         costUsd: 0,
@@ -1762,18 +1768,11 @@ async function generateLecture(
     }
 
     setJobStage(jobId, "finalizing", { status: "Saving your replayable lecture" });
-    const archived = await archiveLecture({
-      userId,
-      topic: input.topic,
-      sourceType,
-      mode,
-      beats: base.beats,
-    });
-    const payload = { lectureId: archived.lectureId, topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats };
+    const lectureId = lectureHistoryEnabled()
+      ? await rememberLecture(userId, input.topic, sourceType, mode, base.beats)
+      : null;
+    const payload = { lectureId, topic: input.topic, beats: base.beats, costUsd, referenceImageStats, animationStats: reactAnimationStats, boardStats, manimSceneStats, structureStats };
     finishJob(jobId, payload);
-    void archived.finishVideos().catch((error) => {
-      console.error(`[lecture-archive] lecture ${archived.lectureId}: ${error instanceof Error ? error.message : "video persistence failed"}`);
-    });
     return NextResponse.json(payload);
   } catch (err) {
     if (err instanceof LectureJobCancelledError) {

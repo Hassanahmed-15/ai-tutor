@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/auth";
+import { lessonCaller } from "@/lib/auth";
 import { dispatchDueBeats } from "@/lib/progressiveDispatch";
 import { prepareAdaptiveRevision, progressiveBeat, progressiveBeats, progressiveSession, recordLearnerInteraction } from "@/lib/progressiveLectureStore";
 import type { LearnerInteraction, LearnerInteractionKind } from "@/lib/progressiveLectureTypes";
@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 const KINDS: LearnerInteractionKind[] = ["playhead", "deeper", "simpler", "more-examples", "code", "checkpoint", "question"];
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const auth = await currentUser();
+  const auth = await lessonCaller();
   if (!auth) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
   const { id } = await params;
   const session = await progressiveSession(auth.userId, id);
